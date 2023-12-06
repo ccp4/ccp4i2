@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>ProvideSequence</pluginName>
+        <creationTime>11:06 11/Apr/14</creationTime>
+        <pluginTitle>Task to bring sequences and alignemnts into the database</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="ProvideSequence">
+        <container id="controlParameters">
+            <content id="SEQUENCETEXT">
+                <className>CString</className>
+                <qualifiers>
+                    <default></default>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="inputData">
+            <content id="SEQIN">
+                <className>CSeqDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+      <content id="XYZMODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>coords</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>coords,seqres</enumerators>
+          <toolTip></toolTip>
+          <menuText>From coordinates,From SEQRES</menuText>
+        </qualifiers>
+      </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="SEQUENCEFILE_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CSeqDataFile</className>
+                </subItem>
+            </content>
+            <content id="CASUCONTENTOUT">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,26 @@
+<?xml version='1.0'?>
+<scene>
+    <data>
+        <MolData id='id1'>
+            <filename database="filenames/XYZOUT"></filename>
+            <MolDisp>
+                <select>all</select>
+                <style>SPLINE</style>
+                <colour_parameters>
+                     <colour_mode>bymodel</colour_mode>
+                </colour_parameters>
+            </MolDisp>
+        </MolData>
+    </data>
+    <View>
+        <scale_auto>1</scale_auto>
+        <slab_enabled>0</slab_enabled>
+        <centre_MolData>id1</centre_MolData>
+        <centre_selection>all</centre_selection>
+        <orientation_auto>
+            <molData>id1</molData>
+            <selection>all</selection>
+        </orientation_auto>
+        <scale_auto>1</scale_auto>
+    </View>
+</scene>

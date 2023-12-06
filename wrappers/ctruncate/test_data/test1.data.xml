@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>mdw</userId>
+    <creationTime>12:54 26/Jun/12</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>ctruncate</pluginName>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <HKLIN>
+         <project>CCP4I2</project>
+         <baseName>brap_pk_6A_scaled2.mtz</baseName>
+         <relPath>wrappers/pointless/test_data</relPath>
+      </HKLIN>
+      <ISIGI>
+        <I>IMEAN</I>
+        <SIGI>SIGIMEAN</SIGI>
+      </ISIGI>
+      <ISIGIanom>
+        <Ip>I(+)</Ip>
+        <SIGIp>SIGI(+)</SIGIp>
+        <Im>I(-)</Im>
+        <SIGIm>SIGI(-)</SIGIm>
+      </ISIGIanom>
+    </inputData>
+    <controlParameters/>
+  </ccp4i2_body>
+</ccp4i2>

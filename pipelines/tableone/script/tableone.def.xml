@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>Current</creationTime>
+    <userId>stevenkj</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>tableone</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>tableone</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="tableone">
+    <container id="inputData">
+      <content id="UNMERGED">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>File containing structure factors (MTZ)</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>MTZ File</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+          <sameCrystalLevel>1</sameCrystalLevel>
+        </qualifiers>
+      </content>
+
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <ifAtomSelection>True</ifAtomSelection>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <requiredSubType>1,0</requiredSubType>
+          <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

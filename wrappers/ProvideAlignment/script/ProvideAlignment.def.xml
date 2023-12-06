@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>ProvideAlignment</pluginName>
+        <creationTime>11:06 11/Apr/14</creationTime>
+        <pluginTitle>Task to bring sequences and alignemnts into the database</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="ProvideAlignment">
+        <container id="controlParameters">
+            <content id="PASTEORREAD">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>PASTE,ALIGNIN,HHPREDIN,BLASTIN</enumerators>
+                    <menuText>Paste an alignment,Read alignment from a file,Read HHPred results,Read Blast (XML) results</menuText>
+                    <default>PASTE</default>
+                </qualifiers>
+            </content>
+            <content id="ANNOTATION">
+                <className>CString</className>
+                <qualifiers>
+                  <default>Imported alignment</default>
+                </qualifiers>
+            </content>
+            <content id="SEQUENCETEXT">
+                <className>CString</className>
+                <qualifiers>
+                    <default>>Sequence_1
+SEQ-MIGHT-SEEM---THUS
+>Sequence_2
+-SAME-LENGTH-SEQ-----
+                    </default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="inputData">
+            <content id="ALIGNIN">
+                <className>CSeqAlignDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="HHPREDIN">
+                <className>CHhpredDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+	    <content id="ALI_INDEX">
+	      <className>CInt</className>
+	      <qualifiers>
+		<min>0</min>
+		<default>0</default>
+	      </qualifiers>
+	      </content>
+            <content id="BLASTIN">
+                <className>CBlastDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="ALIGNMENTFILE">
+                <className>CSeqAlignDataFile</className>
+                <qualifiers>
+                    <baseName>
+                        <allowedCharacters>*?</allowedCharacters>
+                    </baseName>
+                    <relPath>
+                        <allowedCharacters>*?</allowedCharacters>
+                    </relPath>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

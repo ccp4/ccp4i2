@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>ccp4mg_edit_model</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="ccp4mg_edit_model">
+        <container id="inputData">
+            <content id="ASUIN">
+                    <className>CAsuDataFile</className>
+                    <qualifiers>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+			<selectionMode>1</selectionMode>
+                    </qualifiers>
+            </content>
+            <content id="REDUNDANCYLEVEL">
+              <className>CInt</className>
+              <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>50,70,90,95,100,110</enumerators>
+                  <menuText>50,70,90,95,100,All</menuText>
+                  <default>100</default>
+              </qualifiers>
+            </content>
+            <content id="SEARCH_PDB">
+              <className>CBoolean</className>
+              <qualifiers>
+                  <default>True</default>
+              </qualifiers>
+            </content>
+            <content id="AFDBLEVEL">
+              <className>CInt</className>
+              <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>0,10,20,30,40,50,60,70,80,90</enumerators>
+                  <menuText>0,10,20,30,40,50,60,70,80,90</menuText>
+                  <default>50</default>
+              </qualifiers>
+            </content>
+            <content id="SEARCH_AFDB">
+              <className>CBoolean</className>
+              <qualifiers>
+                  <default>True</default>
+              </qualifiers>
+            </content>
+            <content id="PHMMERCUTOFF">
+              <className>CInt</className>
+              <qualifiers>
+                  <default>20</default>
+              </qualifiers>
+            </content>
+            <content id="MRMAX">
+              <className>CInt</className>
+              <qualifiers>
+                  <default>10</default>
+              </qualifiers>
+            </content>
+            <content id="HHPREDIN">
+                <className>CHhpredDataFile</className>
+                <qualifiers>
+      	            <guiLabel>HHPred hhr file</guiLabel>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+      	            <toolTip>The path to hhr file from a HHPred (https://toolkit.tuebingen.mpg.de/).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="PDBLOCAL">
+                <className>CDataFile</className>
+                <qualifiers>
+      	            <guiLabel>Path to local PDB mirror</guiLabel>
+                    <mustExist>True</mustExist>
+                    <isDirectory>True</isDirectory>
+                    <label>Local PDB mirror</label>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+      	            <toolTip>The path to the top-level directory of a local PDB mirror.</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

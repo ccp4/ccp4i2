@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.1</ccp4iVersion>
+        <pluginName>LidiaAcedrg</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>LidiaAcedrg</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="LidiaAcedrg">
+        <container id="inputData">
+            <content id='MOLSMILESORSKETCH'>
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>MOL,SMILES,SKETCH</enumerators>
+                    <menuText>a MOL file,a SMILES string,a sketch</menuText>
+                    <default>SKETCH</default>
+                    <guiLabel>Start from</guiLabel>
+                </qualifiers>
+            </content>
+            <content id='TLC'>
+                <className>CString</className>
+                <qualifiers>
+                    <minLength>3</minLength>
+                    <maxLength>3</maxLength>
+                    <default>DRG</default>
+                    <guiLabel>Three letter code for new molecule</guiLabel>
+                </qualifiers>
+            </content>
+            <content id='MOLIN'>
+                <className>CMDLMolDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id='SMILESIN'>
+                <className>CString</className>
+            </content>
+            <content id='CONFORMERSFROM'>
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>RDKIT,ACEDRG,BOTH</enumerators>
+                    <menuText>RDKit,ACEDRG,Both</menuText>
+                    <default>RDKIT</default>
+                </qualifiers>
+            </content>
+            <content id='NRANDOM'>
+                <className>CInt</className>
+                <qualifiers>
+                    <default>500</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="MOLOUT_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CMDLMolDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DICTOUT_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="XYZOUT_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>            
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

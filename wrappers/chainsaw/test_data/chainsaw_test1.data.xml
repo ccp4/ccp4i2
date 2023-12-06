@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>mdw</userId>
+    <creationTime>12:54 08/Jun/11</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>chainsaw</pluginName>
+    <pluginTitle>edit search model</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <XYZIN>
+        <project>CCP4I2</project>
+        <baseName>1a80_A.pdb</baseName>
+        <relPath>wrappers/chainsaw/test_data</relPath>
+      </XYZIN>
+      <ALIGNIN>
+        <project>CCP4I2</project>
+        <baseName>1mzr_1a80.pir</baseName>
+        <relPath>wrappers/chainsaw/test_data</relPath>
+      </ALIGNIN>
+    </inputData>
+    <controlParameters>
+      <MODE>MIXA</MODE>
+    </controlParameters>
+  </ccp4i2_body>
+</ccp4i2>

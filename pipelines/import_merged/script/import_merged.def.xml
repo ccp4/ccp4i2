@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>lizp</userId>
+    <creationTime>11:28 17/Jan/12</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>import_merged</pluginName>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="import_merged">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CGenericReflDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+	  <allowUndefined>False</allowUndefined>
+	  <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="HKLIN_OBS_CONTENT_FLAG">
+        <className>CInt</className>
+      </content>
+      <content id="HKLIN_OBS_COLUMNS">
+        <className>CString</className>
+      </content>
+       <content id="HKLIN_FREER_COLUMN">
+        <className>CString</className>
+      </content>
+     <content id="HKLIN_OBS">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+	  <allowUndefined>True</allowUndefined>
+	  <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
+       <content id="SPACEGROUPCELL">
+        <className>CSpaceGroupCell</className>
+       </content>
+       <content id="WAVELENGTH">
+        <className>CWavelength</className>
+	<qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+       </content>
+       <content id="CRYSTALNAME">
+        <className>CCrystalName</className>
+       </content>
+       <content id="DATASETNAME">
+        <className>CDatasetName</className>
+       </content>
+       <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+          </subType>
+        </qualifiers>
+       </content>
+       <content id="HKLIN_FORMAT">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>NONE,MTZ,MMCIF,SCA,OTHER</enumerators>
+          <default>NONE</default>
+        </qualifiers>
+      </content>
+      <content id="MMCIF_SELECTED_BLOCK">
+        <className>CString</className>
+      </content>
+      <content id="MMCIF_SELECTED_DETAILS">
+        <className>CString</className>
+      </content>
+      <content id="MMCIF_SELECTED_INFO">
+        <className>CString</className>
+      </content>
+      <content id="MMCIF_SELECTED_COLUMNS">
+        <className>CString</className>
+      </content>
+      <content id="HASFREER">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="MMCIF_SELECTED_ISINTENSITY">
+        <className>CInt</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="CAN_CUT_RESOLUTION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAXIMUM_RESOLUTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+      <content id="RESOLUTION_RANGE">
+        <className>CFloatRange</className>
+        <qualifiers>
+          <toolTip>Set resolution range (or just high resolution) to cut data for all steps (eg. 30.0 - 2.5, or enter just one of these values on the correct side)</toolTip>
+         </qualifiers>
+      </content>
+      <content id="RESOLUTION_RANGE_SET">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+     </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+	   <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="OBSOUT">
+        <className>CObsDataFile</className>
+        <qualifiers>
+	  <saveToDb>True</saveToDb>
+	</qualifiers>
+      </content>
+      <content id="FREEOUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+	  <saveToDb>True</saveToDb>
+	</qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="SKIP_FREER">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Do not or do extend imported FreeR flags</toolTip>
+        </qualifiers>
+      </content>
+      <content id="STARANISO_DATA">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="COMPLETE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>copy FreeR data from existing set</toolTip>
+        </qualifiers>
+      </content>
+      <content id="FREER_FRACTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>None</guiLabel>
+          <max>1.0</max>
+          <toolTip>Fraction in freeR set</toolTip>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="CUTRESOLUTION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="guiParameters">
+      <content id="HKLINISMTZ">
+        <className>CBoolean</className>
+      </content>
+      <content id="SHOW_MMCIF_BLOCKS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MMCIF_INDICES">
+        <className>CList</className>
+        <subItem>
+          <className>CInt</className>
+        </subItem>
+      </content>
+      <content id="MMCIF_BLOCKNAMES">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_DETAILS">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_INFO">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_COLUMNS">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_OTHER">
+        <className>CList</className>
+      </content>
+    </container>
+    
+  </ccp4i2_body>
+</ccp4i2>

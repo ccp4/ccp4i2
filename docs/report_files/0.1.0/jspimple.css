@@ -1,0 +1,134 @@
+select.graphSelect { max-width: 70%; min-width:80px; font-size:10px; text-align:center; margin-left:30px; font-family: Helvetica, Arial, sans-serif;}
+input.graphInput {font-size:10px;}
+div.legend { font-size:11px; font-family: Helvetica, Arial, sans-serif;}
+div.xlabel { position:relative; font-size:14px; font-weight:bold; line-height:0px;height:22px; clear:both; text-align:center; font-family: Helvetica, Arial, sans-serif; color:grey; }
+div.ylabel { font-size:14px;line-height:0px; padding-left:25px;font-weight: bold; height:13px; text-align:center; font-family: Helvetica, Arial, sans-serif; color:grey;}
+div.rylabel { font-size:13px;line-height:13px;height:13px;text-align:center; font-weight:bold; font-family: Helvetica, Arial, sans-serif; color:red;}
+div.flot-tick-label { font-family: Helvetica, Arial, sans-serif; }
+div.flot-x-axis { color:rgba(0,0,0,1);  font-size:12px; font-family: Helvetica, Arial, sans-serif;}
+
+div.flot-y1-axis { color:rgba(0,0,0,1); font-size:12px; font-family: Helvetica, Arial, sans-serif;}
+div.flot-y2-axis { color:rgba(255,0,0,1); font-size:12px; font-family: Helvetica, Arial, sans-serif;}
+div.flot-y3-axis { color:rgba(0,0,0,0); font-size:0px; font-family: Helvetica, Arial, sans-serif;}
+div.flot-y4-axis { color:rgba(0,0,0,0); font-size:0px; font-family: Helvetica, Arial, sans-serif;}
+
+.calculated-width {
+    width: 100%;
+    padding-left:14px; /* Depends on y-label size */
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;     
+    box-sizing: border-box; 
+
+}
+.calculated-width-left-right {
+    width: 100%;
+    padding-left:14px; /* Depends on y-label size */
+    padding-right:18px; /* Depends on r-y-label size */
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;     
+    box-sizing: border-box; 
+
+}
+.calculated-width-right {
+    width: 100%;
+    padding-right:18px; /* Depends on r-y-label size */
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;     
+    box-sizing: border-box; 
+
+}
+.right,
+.right2,
+.right3 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 11px; /* Depends on r-y-label size */
+  margin: auto;
+  font-size:11px; line-height:11px; /* Depends on r-y-label size */
+  font-family: Helvetica, Arial, sans-serif;
+  display: inline;
+    -webkit-transform-origin: 0% 50%;
+       -moz-transform-origin: 0% 50%;
+        -ms-transform-origin: 0% 50%;
+         -o-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
+    -webkit-transform: rotate(-90deg) translate(-50%, 50%);
+       -moz-transform: rotate(-90deg) translate(-50%, 50%);
+        -ms-transform: rotate(-90deg) translate(-50%, 50%);
+         -o-transform: rotate(-90deg) translate(-50%, 50%);
+            transform: rotate(-90deg) translate(-50%, 50%);
+}
+
+.left,
+.left2,
+.left3 {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 11px; /* Depends on y-label size */
+  padding-left: 0%;
+  padding-bottom: 2%;
+  font-size:11px; line-height:11px; /* Depends on y-label size */
+  font-family: Helvetica, Arial, sans-serif;
+  display: inline;
+    -webkit-transform-origin: 0 50%;
+       -moz-transform-origin: 0 50%;
+        -ms-transform-origin: 0 50%;
+         -o-transform-origin: 0 50%;
+            transform-origin: 0 50%;
+    -webkit-transform: rotate(-90deg) translate(0%, -50%);
+       -moz-transform: rotate(-90deg) translate(0%, -50%);
+        -ms-transform: rotate(-90deg) translate(0%, -50%);
+         -o-transform: rotate(-90deg) translate(0%, -50%);
+            transform: rotate(-90deg) translate(0%, -50%);
+}
+
+.left {
+    left: 0px;
+}
+
+.left2 {
+    left: 22px;
+}
+
+.left3 {
+    left: 44px;
+}
+
+.tooltip {
+    display:inline-block;
+    background:rgba(240, 240, 200, 1.0);
+    border: 1px solid #888;
+    padding: 5px;
+    font-size:12px;
+    z-index: 10;
+    position: relative;
+    left: 35px;
+    right: 0;
+    bottom: 90px;
+    float: left;
+    width: 50%;
+    text-align: left;
+}
+
+.tooltip_hidden {
+    display:none;
+}
+
+.datainfo {
+    display:inline-block;
+    background:rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    font-size:10px;
+    line-height:14px;
+    z-index: 10;
+    position: relative;
+    right: 10px;
+    bottom: 60px;
+    float: right;
+}
+
+.datainfo_hidden {
+    display:none;
+}

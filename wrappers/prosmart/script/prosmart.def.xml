@@ -1,0 +1,571 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>mdw</userId>
+    <creationTime>13:15 30/Sep/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>prosmart</pluginName>
+    <pluginTitle>prosmart: comparative structural analysis</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="prosmart">
+  
+    <container id="inputData">
+      <content id="TARGET_MODEL">
+         <className>CPdbDataFile</className>
+         <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>False</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+         </qualifiers>
+      </content>
+      <content id="CHAINLIST_1">
+         <className>CString</className>
+         <qualifiers>
+            <allowUndefined>True</allowUndefined>
+         </qualifiers>
+      </content>
+       <!--<content id="REFERENCE_MODEL">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+           <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+       </content>-->
+       <content id="REFERENCE_MODELS">
+          <className>CList</className>
+          <qualifiers>
+             <guiLabel>Reference model</guiLabel>
+             <listMinLength>1</listMinLength>
+          </qualifiers>
+          <subItem>
+             <className>CPdbDataFile</className>
+             <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <ifAtomSelection>False</ifAtomSelection>
+             </qualifiers>
+          </subItem>
+       </content>
+      <!---
+      <content id="XYZINLIST1">
+        <className>CPdbDataFileList</className>
+        <qualifiers>
+	  <listMinLength>1</listMinLength>
+          <ifAtomSelection>True</ifAtomSelection>
+          <mustExist>True</mustExist>
+        </qualifiers>
+	</content>
+	-->
+      <content id="EXT_FILE">
+        <className>CDataFile</className>
+        <qualifiers>
+          <fileExtensions>txt</fileExtensions>
+          <mustExist>False</mustExist>
+          <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FRAGLIB">
+        <className>CDataFile</className>
+        <qualifiers>
+	  <isDirectory>True</isDirectory>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>True</mustExist>
+          <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+    
+    <container id="outputData">
+      <content id="RESTRAINTS">
+        <className>CRefmacRestraintsDataFile</className>
+        <qualifiers>
+        </qualifiers>
+	  </content>
+    </container>
+	  
+    <container id="controlParameters">
+      <content id="PROGRAM_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>ALIGN_RESTRAIN,ALIGN,RESTRAIN</enumerators>
+          <menuText>align structures and generate restraints,align structures,generate restraints</menuText>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <default>ALIGN_RESTRAIN</default>
+	  <guiLabel>Use Prosmart to</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="NUCLEIC_ACID">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+         </qualifiers>
+      </content>
+      <content id="LIB_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>NONE,LIB,HELIX,STRAND</enumerators>
+	  <menuText>No,Use helix and strand,Use ideal helix only,Use representative strand only</menuText>
+          <onlyEnumerators>1</onlyEnumerators>
+          <default>NONE</default>
+	  <guiLabel>Perform fragment-based analysis</guiLabel>
+        </qualifiers>
+      </content>
+
+      <!-- Alignment -->
+      <content id="ALIGN_MODE">
+        <className>CString</className>
+        <qualifiers>
+	  <default>0</default>
+          <enumerators>0,1,2</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <menuText>use mainchain,use CA atoms,superpose mainchain and score CA atoms</menuText>
+	  <guiLabel>For alignment</guiLabel>
+        </qualifiers>
+      </content>  
+      <content id="FRAGLEN">
+        <className>CInt</className>
+	<qualifiers>
+	  <guiLabel>Fragment length</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="ALIGN_THRESHOLD">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Alignment threshold</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="HELIX_CUTOFF">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Helix gap penalty threshold</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="HELIX_PENALTY">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Helix gap penalty</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="REWARD_SEQ">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>True</default>
+	<guiLabel>Reward sequence-identical fragments</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="ALIGN_REFINE">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>True</default>
+	<guiLabel>Perform alignment refinement</guiLabel>
+        </qualifiers>
+      </content>
+
+      <!-- Superposition -->
+      <content id="SUPERPOSE_THRESHOLD">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Procrustes superposition threshold</guiLabel>
+	</qualifiers>
+      </content>
+
+      <!-- scoring -->
+      <content id="INCLUDE_MAIN">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+        <guiLabel>Include backbone atoms in side chain scores</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="PERFORM_FLIPS">
+        <className>CBoolean</className>
+        <qualifiers>
+	 <guiLabel>Allow side chain flips</guiLabel>
+        <default>True</default>
+        </qualifiers>
+      </content>
+
+      <!-- Rigid substructure identification -->
+      <content id="CLUSTER_PERFORM">
+        <className>CBoolean</className>
+        <qualifiers>
+	  <guiLabel>Perform rigid substructure identification</guiLabel>
+        <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="CLUSTER_SCORE">
+        <className>CFloat</className>
+        <qualifiers>
+	  <guiLabel>Procrustes score threshold</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="CLUSTER_ANGLE">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Intrafragment rotation score threshold</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="CLUSTER_MIN">
+        <className>CInt</className>
+	<qualifiers>
+	  <guiLabel>Minimum number of fragments per substructure</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="CLUSTER_LINK">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Single linkage clustering threshold</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="CLUSTER_RIGID">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Final cluster rigidity</guiLabel>
+	</qualifiers>
+      </content>
+      <!--  Pymol output
+      <content id="OUTPUT_PDB_FILES">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+        <guiLabel>Output PDB files</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="OUTPUT_WHOLE_PDB">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+        <guiLabel>'Output whole structure</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="OUTPUT_COLOUR_SCRIPTS">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+        <guiLabel>Output colour scripts</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="COLOUR_SCORE">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Main chain colour score threshold</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="SIDE_COLOUR_SCORE">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Side chain colour score threshold</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="PYMOL_CLUSTER_COLOR">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Cluster colour resolution scale factor</guiLabel>
+	</qualifiers>
+      </content>
+      -->
+
+
+
+      <content id="RESTRAIN_MAIN_VS_SIDE">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>MAIN,SIDE</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <menuText>Main chain atoms only,Main and side chain atoms</menuText>
+        <guiLabel>Generate restaints using</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RESTRAIN_ALL_VS_BEST">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>ALL,BEST</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <menuText>all reference chains for all target chains,only the best-matching chain for each target chain</menuText>
+        <guiLabel>Select</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RESTRAIN_TO_SELF">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+        <guiLabel>Include self-restraints</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RESTRAIN_SEQID">
+         <className>CFloat</className>
+         <qualifiers>
+            <charWidth>4</charWidth>
+            <min>0.0</min>
+            <max>100.0</max>
+            <toolTip>Minimum sequence identity between reference and target chains.</toolTip>
+         </qualifiers>
+      </content>
+      <content id="RESTRAIN_RMAX">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Maximum restraint distance</guiLabel>
+	  <toolTip>Size of sphere around atom in which restraints can exist</toolTip>
+	</qualifiers>
+      </content>
+      <content id="RESTRAIN_RMIN">
+        <className>CFloat</className>
+         <qualifiers>
+	  <guiLabel>Minimum restraint distance</guiLabel>
+	  <toolTip>Restraints of length below this value are not included</toolTip>
+	</qualifiers>
+      </content>
+      <content id="RESTRAIN_SIGMA">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Default sigma used to weight atomic distance restraints</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="RESTRAIN_MIN_SIGMA">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Minimum allowed sigma</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="RESTRAIN_SIGMATYPE">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>DEFAULT,CONSTANT,DD</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <menuText>'default sigma,constant estimated sigma,distant-dependent estimated sigma</menuText>
+	  <guiLabel>Use sigma estimation mode</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RESTRAIN_MAIN_CUTOFF">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Procrustes alignment score cutoff for restaints</guiLabel>
+	  <toolTip>Default 10.0 means this is effectively off</toolTip>
+	</qualifiers>
+      </content>
+      <content id="RESTRAIN_SIDE_CUTOFF">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Side chain average score cutoff</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="RESTRAIN_OUTLIER_THRESHOLD">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Outlier removal threshold</guiLabel>
+	  <toolTip>multipier of restraint sigma to create cutoff of extreme restaints (default 10.0 is effectivly off)</toolTip>
+	</qualifiers>
+      </content>
+      <content id="RESTRAIN_SCALE_SIGMAS">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Linear scale sigmas by factor</guiLabel>
+	  <toolTip>Default 1.0 - lower values increase effect of restaints</toolTip>
+	</qualifiers>
+      </content>
+      
+      <content id="RESTRAIN_BFAC_FILTER">
+         <className>CBoolean</className>
+         <qualifiers>
+            <guiLabel>Remove restraints involving atoms, in the homologue, that have high B-factors relative to the rest of the model.</guiLabel>
+         </qualifiers>
+      </content>
+      <content id="RESTRAIN_BFAC_ALPHA">
+         <className>CFloat</className>
+         <qualifiers>
+            <toolTip>Remove restraints involving atoms, in the homologue, that have high B-factors relative to the rest of the model.</toolTip>
+         </qualifiers>
+      </content>
+      <content id="RESTRAIN_ALT">
+         <className>CBoolean</className>
+         <qualifiers>
+            <guiLabel>Allow generation of restraints involving atoms with alt codes.</guiLabel>
+         </qualifiers>
+      </content>
+      <content id="RESTRAIN_OCCUP">
+         <className>CFloat</className>
+         <qualifiers>
+            <toolTip>Do not generate restraints involving atoms, either in the target or in homologous reference model, with occupancies lower than this value.</toolTip>
+         </qualifiers>
+      </content>
+      
+      <content id="RESTRAIN_RM_BONDS">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	 <guiLabel>Force removal of bonds/angles</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RESTRAIN_REFMAC_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>TYPE0,TYPE1,TYPE2</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <menuText>Replace existing bond type restraints,Add to existing bond type restraints,External restraints</menuText>
+	  <guiLabel>Treat as Refmac restraint type</guiLabel>
+        </qualifiers>
+      </content>
+       <content id="RESTRAIN_SELF">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+	  <guiLabel>Generate generic self-restraints</guiLabel>
+        </qualifiers>
+      </content>
+      
+      <!-- secondary structure bond restraints -->
+      <content id="H_BOND">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Generate H-bond or generic restraints</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_HELIX">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>false</default>
+	  <guiLabel>Generate restraints for helices (alpha, pi and 3-10)</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_SHEET">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Generate restraints For beta-sheets</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_310">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Generate restraints For 3_10 helices</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_ALPHA">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Generate restraints For alpha helices</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_PI">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Generate restraints For pi helices</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_STRICT">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Require strict structural conservation to helix/strand fragment</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_DIST">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Target restraint value</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="H_MIN">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Minimum interatomic distance for restrained atom-pairs</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="H_MAX">
+        <className>CFloat</className>
+	<qualifiers>
+	  <guiLabel>Maximum interatomic distance for restrained atom-pairs</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="H_MIN_SEP">
+        <className>CInt</className>
+	<qualifiers>
+	  <guiLabel>Minimum number of residues between restrained atom-pairs</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="H_MAX_SEP">
+        <className>CInt</className>
+	<qualifiers>
+	  <guiLabel>Maximum number of residues between restrained atom-pairs</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="H_BOND_OPT">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>TYPE1,TYPE2,TYPE3</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <menuText>Only O-N restraints (for helices),O-N And N-O restraints (for main chain and sheets),No selection - all main chain atom pairs</menuText>
+	  <guiLabel>Atom type selection</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="H_BOND_OVERRIDE">
+        <className>CInt</className>
+	<qualifiers>
+	  <guiLabel>Maximum number of bonds per atom</guiLabel>
+	</qualifiers>
+      </content>
+
+      <!--   
+      <content id="THREADS">
+        <className>CInt</className>
+	<qualifiers>
+	  <guiLabel></guiLabel>
+	</qualifiers>
+      </content>
+      -->
+      <content id="OUTPUT_DM">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+        <guiLabel>Output cluster distance matrices</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="DISPLAY_AS_DEGREES">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>True</default>
+        <guiLabel>Display angular scores in degrees</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="OUTPUT_PDB_CHAIN_RESTRAINTS">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Output restraints for individual chains</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="MERGE_CHAINS">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	  <guiLabel>Merge all chains within each PDB file</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RENAME_CHAIN">
+        <className>CString</className>
+	<qualifiers>
+	  <guiLabel>Regenerate PDB file with single chain ID</guiLabel>
+	</qualifiers>
+      </content>
+      <content id="IS_NMR_MD_ENSEMBLE">
+        <className>CBoolean</className>
+        <qualifiers>
+        <default>False</default>
+	<guiLabel>Structures are NMR/MD ensembles</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS">
+         <className>CString</className>
+      </content>
+    </container>
+    
+  </ccp4i2_body>
+</ccp4i2>

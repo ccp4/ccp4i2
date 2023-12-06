@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>mosflm</pluginName>
+        <creationTime>11:06 11/Apr/14</creationTime>
+        <pluginTitle>Run mosflm</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="mosflm">
+        <container id="inputData"></container>
+        <container id="controlParameters">
+            <content id="SCRIPT">
+                <className>CString</className>
+                <qualifiers>
+                    <default>
+directory /Volumes/Home/martin/Desktop/Dummy/MosflmTest/images&#13;
+template 72-c10-1_M5S8_2_####.cbf&#13;
+pname New Project&#13;
+dname New Dataset&#13;
+xname New Crystal&#13;
+title Untitled&#13;
+beam 219.83 212.62&#13;
+distance 269.60&#13;
+wavelength 0.979500&#13;
+twotheta 0.00&#13;
+divergence 0.02 0.02&#13;
+gain 0.87&#13;
+pixel 0.17200&#13;
+ADCOFFSET 0&#13;
+DISTORTION YSCALE 0.9998 TILT -10.0 TWIST 124.0&#13;
+OVERLOAD CUTOFF 3538100&#13;
+pixel 0.17200&#13;
+dispersion 0.0002&#13;
+polarisation synchrotron 0.95&#13;
+matrix 0.01455550 0.00586854 0.00352690 -0.00269807 -0.01458941 0.00154659 0.00530966 -0.00021008 -0.00888249&#13;
+cell 71.61 71.61 100.83 90.00 90.00 120.00&#13;
+symmetry P3&#13;
+mosaicity 0.275 BLOCKSIZE 100&#13;
+hklout 72-c10-1_M5S8_2_0001.mtz nomultiple&#13;
+resolution exclude none&#13;
+resolution 1.490 low 53.076 cutoff 0&#13;
+raster 13 13 9 4 4&#13;
+nullpix -1&#13;
+maxwidth 5&#13;
+profile tolerance 0.02 0.03 nref 10 rmsbg 20 CUTOFF 3538100 ISDR 2 OPTIMISE NOFIXBOX ICE 0.005 PRCUT 0.05&#13;
+backstop centre 220.00 212.48 radius 5.00&#13;
+separation 0.86 0.86 update close&#13;
+refinement LIMIT 108.00 SMOOTH RESIDUAL 10.0 MAXREF 200 NSM1 5 NSM2 10 GRADIENT 1.0000 nref 20 fix roff toff free xcen ycen xtofra yscale tilt twist CCOMEGA&#13;
+postref multi partition 0.35 MOSADD 0.05 MOSSMOOTH 10 sdfac 3 nref 10 fix a b c alpha beta gamma unfix mosaic&#13;
+misset -0.03 0.02 0.09&#13;
+process 1 19 block 10 start 251.00 angle 0.2  add 0&#13;
+run&#13;
+                    </default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="UNMERGEDMTZ">
+                <className>CUnmergedDataFile</className>
+                <qualifiers>
+                    <fileLabel></fileLabel>
+                    <baseName>
+                        <allowedCharacters>*?</allowedCharacters>
+                    </baseName>
+                    <relPath>
+                        <allowedCharacters>*?</allowedCharacters>
+                    </relPath>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>CCP4i2: Overview Structure Solution</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style>
+  #quickstart_step { display : block; }
+  #overview_img { width : 400px; margin:20px; float: left;}
+  #quickstart_annotation { }
+  #quickstart_high { color : red }
+  #quickstart_icon { color : red }
+</style>
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<table class="banner">
+<tr>
+<!--<td rowspan="2" width="200" ><img src="../ccp4i2.png" alt="CCP4 web logo"/></td>-->
+<td><img width=75 src="../general/ccp4i2.png" alt="CCP4 web logo"/></td>
+<td class="logohead">CCP4i2 &mdash; Overview of Structure Solution with CCP4i2</td>
+</tr>
+</table>
+
+<div id="quickstart_step"><img src="./datatypes.jpg" id="overview_img"></div>
+<div id="quickstart_annotation">
+   <a name="datatypes"/><h2>Data types</h2>
+<p> Within CCP4i2 each instance of data is a
+  file in our standard format - if you have data in non-standard
+  format it will be converted on import. The reflection data is no
+  longer all in one 'monster' MTZ file but split into 'mini' MTZ files
+  containing either <i>Reflections</i>, <i>Phases</i>, <i>Map
+  coefficients</i> or <i>Free R
+  set</i>s - <a href="../general/data_files.html">more info<a>. The key
+  data describing the model are <i>Sequence</i> and <i>Atomic model</i>; the
+  <i>Restraint dictionary</i> defines ideal structure geometry for model
+  refinement - <a href="../general/model_data.html">more info</a>.
+ <p>The different types of data have distinctive icons - where these
+  appear in input guis, reports, or on the <i>Job list</i> you can use the icons to drag-and-drop the data around the gui and
+  right-mouse click on the icon gives a menu with options including to
+  view the data.</p>
+</p><div style="clear: both;"></div></div>
+
+
+
+<div id="quickstart_step"><img src="./overview.jpg" id="overview_img"></div>
+<div id="quickstart_annotation">
+   <a name="datatypes"/><h2>Overview</h2>
+<p>The key stages in structure solution are shown - the initial <i>data
+  processing</i> produces merged <i>Reflection</i> data that can be used in
+  <i>Molecular replacement</i> (if you have similar known model
+  structure) or <i>Experimental phasing</i> to solve the structure and
+  give either initial
+  <i>Phases</i> or an initial <i>Atomic model</i> that can be used for further <i>Model
+  building and refinement</i>. The final refined <i>Atomic model</i> can then
+  be validated, analysed and submitted to the Protein Databank.</p>
+  <p>These key stages correspond to the <i>modules</i> on the <i>Task
+  menu</i> of the gui (though there are additional modules there).
+</p><div style="clear: both;"></div></div>
+
+<div id="quickstart_step"><img src="./data_processing.jpg" id="overview_img"></div>
+<div id="quickstart_annotation">
+   <a name=""/><h2>Data reduction and analysis</h2>
+<p>The first steps in CCP4i2 will depend on the status of your
+  experimental data: if you are starting from experimental image data you will
+  need to <i>Integrate X-ray images</i> to create unmerged reflection
+  data or you may have data that has been processed by <i>XIA2</i> at a
+  synchrotron and the data and details of <i>XIA2</i> run can be imported by
+  <i>Import integrated X-ray reflections</i> module.</p>
+  <p>The unmerged <i>Reflection</i> data is merged by a <i>Data reduction</i>
+  task that also provides important analysis of the data. Unmerged
+  data can be entered here in a variety of formats and the output will
+  be merged <i>Reflection</i> data and <i>Free R set</i>. The <i>Data reduction and
+  analysis</i> module has other tools to analyse the <i>Reflection</i> data.
+  </p><div style="clear: both;"></div></div>
+  
+<div id="quickstart_step"><img src="./exptl_phasing.jpg" id="overview_img"></div>
+<div id="quickstart_annotation">
+   <a name=""/><h2>Experimental phasing</h2>
+  <p>There are two totally automated experimental phasing tasks:
+  <i>CRANK2</i> that uses a variety of programs and can continue to
+  model building and refinement and <i>Shelx</i> that uses the various
+  Shelx programs.  Both produce <i>Phases</i> and initial <i>Map coefficients</i>and initial
+  <i>Atomic model</i>.</p>
+<div style="clear: both;"></div></div>
+
+<div id="quickstart_step"><img src="./molrep.jpg" id="overview_img"></div>
+<div id="quickstart_annotation">
+   <a name=""/><h2>Molecular replacement</h2>
+  <p>The <i>Molecular replacement</i> module includes tools to
+  truncate or edit the search model prior to molecular replacement and
+  then two different programs: <i>Phaser</i> or <i>Molrep</i> that
+  should output initial <i>Phases</i>, <i>Map coefficients</i> and <i>Atomic model</i>.</p>
+  <p>There are some other tasks for special cases.
+  </p><div style="clear: both;"></div></div>
+
+<div id="quickstart_step"><img src="./refinement.jpg" id="overview_img"></div>
+<div id="quickstart_annotation">
+   <a name=""/><h2>Model building and refinement</h2>
+  <p>This module has a variety of tasks: <i>Density modification</i>
+  can be used to improve initial <i>Phases</i> and <i>Autobuild protein</i>
+  will quickly build or extend a protein structure. The structure can
+  then be improved by cycles of <i>Refinement</i> and <i>Manual model
+  building</i>. The <i>Ligand pipeline</i> can be used to generate
+  initial coordinates and ligand geometry data for refinement.</p>
+<div style="clear: both;"></div></div>
+
+
+  
+<!--
+<div id="quickstart_step"><img src="./.jpg" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+   <a name=""/><h4></h4>
+<p>
+</p><div style="clear: both;"></div></div>
+
+-->
+  
+
+
+
+</body>
+</html>

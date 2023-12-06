@@ -1,0 +1,57 @@
+html {
+	line-height: 1.6em;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	margin: 10px;
+	text-align: left;
+	border-collapse: collapse;
+    clear: both;
+}
+
+h1 { color: green; }
+div.datatable { background: yellow; float: left; }
+
+th {
+    display:table-header-group;
+    font-weight:bold;
+	font-weight: normal;
+	padding: 2px 5px;
+        background:#8CD;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#8CD), to(#CEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #8CD, #CEE); 
+	border-top: 2px solid #8CD;
+	border-bottom: 1px solid #fff;
+	color: #000;
+
+}
+
+.cell, .hcell, .highlight-cell {
+    display:table-cell;
+    padding: 1px;
+    border : 1px solid white;
+}
+
+td.highlight-cell {
+	padding: 1px 5px; 
+	border-bottom: 1px solid #fff;
+	color: #222;
+	border-top: 1px solid #fff;
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FCC), to(#F33));
+        background:-moz-linear-gradient(0% 90% 90deg, #F33, #FCC); 
+}
+
+td.cell {
+	padding: 1px 5px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF); 
+}
+
+tbody tr:hover td {
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#8CD));
+        background:-moz-linear-gradient(0% 90% 90deg, #8CD, #FFF);
+	color: #339;
+}

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>lizp</userId>
+    <creationTime>12:37 07/Sep/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>molrep_selfrot</pluginName>
+    <pluginTitle>Self-rotation using Molrep</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="molrep_selfrot">
+    <file>
+      <CI2XmlDataFile>
+        <project>CCP4I2_TOP</project>
+        <relPath>wrappers/molrep_mr/script</relPath>
+        <baseName>molrep_mr.def.xml</baseName>
+      </CI2XmlDataFile>
+    </file>
+    <container id="inputData">   
+      <content id="F_PHI_MAP">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+	  <sameCrystalAs>F_SIGF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="SEQIN">
+        <className>CSeqDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="PSOUT">
+        <className>CPostscriptDataFile</className>
+        <qualifiers>
+	  <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

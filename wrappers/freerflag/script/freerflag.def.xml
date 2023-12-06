@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <hostName>pre-mac-2.lmb.internal</hostName>
+    <userId>pre</userId>
+    <ccp4iVersion>alpha_rev_70002</ccp4iVersion>
+    <pluginName>freerflag</pluginName>
+    <creationTime>16:33 02/Feb/16</creationTime>
+    <pluginTitle>FREERFLAG: add freeR column</pluginTitle>
+    <OS>MacOSX</OS>
+  </ccp4i2_header>
+  <ccp4i2_body id="freerflag">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>observed data,derived data,reference data</menuText>
+            <enumerators>1,2,3</enumerators>
+            <default>1</default>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <sameCrystalLevel>1</sameCrystalLevel>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+          </subType>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="FREEROUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+          </subType>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="CUTRESOLUTION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="COMPLETE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="FRAC">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>None</guiLabel>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>Fraction in freeR set</toolTip>
+          <default>0.05</default>
+          <max>1.0</max>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="UNIQUEIFY">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="RESMAX">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>High resolution limit</toolTip>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="GEN_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>Generate a new set or,complete an existing set of freeR flags</menuText>
+          <enumerators>GEN_NEW,COMPLETE</enumerators>
+          <default>GEN_NEW</default>
+        </qualifiers>
+      </content>
+      <content id="RELATIVE_RESOLUTION">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>UNKNOWN,SAME,DATAHIGHER,FREERHIGHER</enumerators>
+          <default>UNKNOWN</default>
+        </qualifiers>
+      </content>
+      <content id="FSIGF_RESMAX">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+      <content id="FREER_RESMAX">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

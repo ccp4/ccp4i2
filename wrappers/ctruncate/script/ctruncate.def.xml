@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>16:48 19/Jul/12</creationTime>
+    <userId>mdw</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>ctruncate</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Convert intensities to amplitudes</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="ctruncate">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="OBSIN">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+	  <requiredContentFlag>1,3</requiredContentFlag>
+	  <toolTip>Observed intensities</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ISIGI">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="I">
+              <columnType>F</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGI">
+              <columnType>Q</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+      <content id="FSIGF">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="F">
+              <columnType>F</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGF">
+              <columnType>Q</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+      <content id="ISIGIanom">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="Ip">
+              <columnType>K</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGIp">
+              <columnType>M</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="Im">
+              <columnType>K</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGIm">
+              <columnType>M</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+      <content id="FSIGFanom">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="Fp">
+              <columnType>G</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGFp">
+              <columnType>L</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="Fm">
+              <columnType>G</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGFm">
+              <columnType>L</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+      <content id="SEQIN">
+        <className>CSeqDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+	  <saveToDb>False</saveToDb>
+	</qualifiers>
+      </content>
+      <content id="OBSOUT">
+        <className>CObsDataFile</className>
+        <qualifiers>
+	  <saveToDb>True</saveToDb>
+	</qualifiers>
+      </content>
+      <content id="OBSOUT1">
+        <className>CObsDataFile</className>
+        <qualifiers>
+	  <saveToDb>True</saveToDb>
+	</qualifiers>
+      </content>
+      <content id="XMLOUT">
+        <className>CXmlDataFile</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="NRES">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of residues in the asymmetric unit for scaling purposes</toolTip>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="NO_ANISO">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Anisotropy correction will not be performed.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="AMPLITUDES">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Input data are amplitudes rather than intensities.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="OUTPUTMINIMTZ">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Convert output to a mini-MTZ</toolTip>
+        </qualifiers>
+      </content>
+      <content id="OUTPUT_INTENSITIES">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Convert output to intensities</toolTip>
+        </qualifiers>
+      </content>
+      <content id="OUTPUTMINIMTZCONTENTFLAG">
+        <className>CInt</className>
+        <qualifiers>
+          <default>0</default>
+	  <onlyEnumerators>True</onlyEnumerators>
+	  <enumerators>0,1,2,3,4</enumerators>
+          <toolTip>Convert output to a mini-MTZ of form defined by observed data content flag</toolTip>
+        </qualifiers>
+      </content>
+
+     </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

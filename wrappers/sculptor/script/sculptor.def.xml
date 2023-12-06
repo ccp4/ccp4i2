@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>mdw</userId>
+    <creationTime>13:15 30/Aug/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>sculptor</pluginName>
+    <pluginTitle>SCULPTOR: edit models for molecular replacement</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="sculptor">
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+	  <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id='ALIGNMENTORSEQUENCEIN'>
+          <className>CString</className>
+          <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>ALIGNMENT,SEQUENCE</enumerators>
+              <menuText>Multiple alignment plus id of target,Sequence of the target plus chain Id</menuText>
+              <default>ALIGNMENT</default>
+              <guiLabel>Target sequence as:</guiLabel>
+          </qualifiers>
+      </content>
+      <content id="ALIGNIN">
+        <className>CSeqAlignDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+      <content id="SEQUENCEIN">
+          <className>CSeqDataFile</className>
+          <qualifiers>
+              <allowUndefined>True</allowUndefined>
+              <mustExist>True</mustExist>
+          </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+        <content id="XYZOUT">
+            <className>CList</className>
+            <subItem>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <subType>2</subType>
+                </qualifiers>
+            </subItem>
+        </content>
+        <content id="PERFORMANCE">
+	  <className>CAtomCountPerformance</className>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="TITLE">
+        <className>CString</className>
+      </content>
+      <content id="CHAINIDS">
+          <className>CString</className>
+          <qualifiers>
+              <default>A</default>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>A,B,C,D,E,F</enumerators>
+          </qualifiers>
+      </content>
+      <content id="TARGETINDEX">
+          <className>CInt</className>
+          <qualifiers>
+	    <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+      </content>
+      <content id="DELETION">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>gap,remove_long,threshold_based_similarity,completeness_based_similarity</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="POLISHING">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>remove_short,keep_regular</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="PRUNING">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>schwarzenbacher,similarity</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="BFACTOR">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>asa,original,similarity</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="RENUMBER">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>model,target,original</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="RENAME">
+        <className>CBoolean</className>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>13:20 03/Sept/13</creationTime>
+    <userId>lizp</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>mergeMtz</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Merge experimental data objects to MTZ file</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="mergeMtz">
+    <container id="inputData">
+      <content id="MINIMTZINLIST">
+        <className>CMergeMiniMtzList</className>      
+      </content>
+    </container>
+    <container id="controlParameters"/>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+	  <jobCombo>False</jobCombo>
+	  <allowUndefined>True</allowUndefined>
+	  <mustExist>False</mustExist>
+	</qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

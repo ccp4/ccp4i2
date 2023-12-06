@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>23:00 11/Dec/12</creationTime>
+    <userId>noble</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>reindex_minimtz</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Reindex any mini MTZ</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="reindex_minimtz">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CMiniMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMiniMtzDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XMLOUT">
+        <className>CXmlDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="TITLE">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+      <content id="OPERATION">
+        <className>CReindexOperator</className>
+      </content>
+      <content id="NEWSPACEGROUP">
+        <className>CSpaceGroup</className>
+        <qualifiers/>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,60 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Import alignment</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>Import an alignment, probably for use in molecular
+      replacement, either by cut-n-paste or selecting a file. Various
+      alignment formats can be recognised and read: clustal, pir, fasta,
+      stockholm and phylip.  See the <a
+      href="../../general/model_data.html#alignment_files">Model Data<a> documentation
+      for description of these files.  <b>Beware</b> that text from
+      word processors or web pages may contain other formatting that
+      makes them unreadable.<p>
+      <p>The task can also read the search result files from HHPred or
+      Blast servers that usually contain multiple alignments.  Beware
+      that only the XML Blast files can be read - the text output is
+      too variable. Beware that search hits do not necessarilly
+      include the full sequence of the target or the hot structure -
+      they only show the common fragments but these are what are
+      required by the model editing programs (Chainsaw and Sculptor).</p>
+      <h2>Input</h2>
+      <img src="ProvideAlignment_task_1.png">
+      <p>Choose the mode of import from the menu offering past or read
+      an alignment or read a Blast or HHPred search file.<b class="img-ref">(1)</b></p>
+      <p>Paste an alignment here.<b class="img-ref">(2)</b></p>
+      <br/>
+      <img src="ProvideAlignment_task_2.png">
+      <p>If you select a Blast or HHPred file<b
+      class="img-ref">(3)</b> the search hits are listed here and you must select one.<b
+      class="img-ref">(4)</b>Holding the mouse over a hit will display
+      the alignment in a popup. You can also enter or edit the
+      annotation applied to the alignment.<b class="img-ref">(5)</b></p>
+
+    </dt>
+  <!--
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <p>INSERT TEXT HERE</p>
+
+    </div>
+  </dt>
+  -->
+</ul>
+
+</body>
+</html>
+

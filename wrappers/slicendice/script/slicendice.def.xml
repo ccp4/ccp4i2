@@ -1,0 +1,481 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>lizp</userId>
+    <creationTime>12:37 07/Sep/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>slicendice</pluginName>
+    <pluginTitle>SliceNDice</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="slicendice">
+
+    <container id="inputData">
+
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+       <content id="ASUIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+	  <fromPreviousJob>True</fromPreviousJob>
+	  <selectionMode>2</selectionMode>
+        </qualifiers>
+	</content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+           <mustExist>True</mustExist>
+           <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="SEQIN_2">
+        <className>CSeqDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="KEYIN">
+        <className>CDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+        </qualifiers>
+      </content>
+
+      <content id="SELECTEDCHAINS">
+          <className>CList</className>
+          <qualifiers>
+              <listMinLength>0</listMinLength>
+              <mustExist>False</mustExist>
+              <allowUndefined>True</allowUndefined>
+          </qualifiers>
+          <subItem>
+              <className>CString</className>
+              <qualifiers>
+                  <mustExist>False</mustExist>
+                  <allowUndefined>True</allowUndefined>
+              </qualifiers>
+          </subItem>
+      </content>
+
+    </container>
+
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="DIFFPHIOUT">
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers><default><subType>2</subType><contentFlag>1</contentFlag></default>
+              <saveToDb>True</saveToDb>
+          </qualifiers>
+      </content>
+      <content id="FPHIOUT">
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+              <default><subType>1</subType><contentFlag>1</contentFlag></default>
+              <saveToDb>True</saveToDb>
+          </qualifiers>
+      </content>
+      <content id="XMLOUT">
+          <className>CXmlDataFile</className>
+          <qualifiers>
+              <saveToDb>False</saveToDb>
+          </qualifiers>
+      </content>
+      <content id="PERFORMANCEINDICATOR">
+          <className>CRefinementPerformance</className>
+      </content>
+    </container>
+
+    <container id="modelParameters">
+      <content id="MIN_SPLITS">
+         <className>CInt</className>
+          <qualifiers>
+               <default>1</default>
+          </qualifiers>
+      </content>
+      <content id="MAX_SPLITS">
+         <className>CInt</className>
+          <qualifiers>
+               <default>3</default>
+          </qualifiers>
+      </content>
+      <content id="MODELSOURCE">
+        <className>CString</className>
+        <qualifiers>
+          <default>pdb</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>alphafold,rosetta,pdb</enumerators>
+          <toolTip>Model source</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="MRMAX">
+         <className>CInt</className>
+          <qualifiers>
+               <default>10</default>
+          </qualifiers>
+      </content>
+      <content id="REDUNDANCYLEVEL">
+        <className>CInt</className>
+        <qualifiers>
+            <onlyEnumerators>True</onlyEnumerators>
+            <enumerators>50,70,90,95,100,110,120</enumerators>
+            <menuText>50,70,90,95,100,All,AFDB</menuText>
+            <default>100</default>
+        </qualifiers>
+      </content>
+      <content id="SEARCH_PDB">
+        <className>CBoolean</className>
+        <qualifiers>
+            <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="PLDDT_THRESHOLD">
+        <className>CInt</className>
+        <qualifiers>
+            <onlyEnumerators>True</onlyEnumerators>
+            <enumerators>0,10,20,30,40,50,60,70,80,90</enumerators>
+            <menuText>0,10,20,30,40,50,60,70,80,90</menuText>
+            <default>70</default>
+        </qualifiers>
+      </content>
+      <content id="RMS_THRESHOLD">
+        <className>CFloat</className>
+        <qualifiers>
+            <default>1.75</default>
+        </qualifiers>
+      </content>
+      <content id="SEARCH_AFDB">
+        <className>CBoolean</className>
+        <qualifiers>
+            <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="HHPREDIN">
+          <className>CHhpredDataFile</className>
+          <qualifiers>
+	      <guiLabel>HHPred hhr file</guiLabel>
+              <mustExist>True</mustExist>
+              <allowUndefined>True</allowUndefined>
+              <fromPreviousJob>False</fromPreviousJob>
+	      <toolTip>The path to hhr file from a HHPred (https://toolkit.tuebingen.mpg.de/).</toolTip>
+          </qualifiers>
+      </content>
+      <content id="PDBLOCAL">
+          <className>CDataFile</className>
+          <qualifiers>
+	      <guiLabel>Path to local PDB mirror</guiLabel>
+              <mustExist>True</mustExist>
+              <isDirectory>True</isDirectory>
+              <label>Local PDB mirror</label>
+              <allowUndefined>True</allowUndefined>
+              <fromPreviousJob>False</fromPreviousJob>
+	      <toolTip>The path to the top-level directory of a local PDB mirror.</toolTip>
+          </qualifiers>
+      </content>
+
+      <content id="LOCAL">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+         </qualifiers>
+      </content>
+
+      <content id="XYZIN_LIST">
+        <className>CList</className>
+        <qualifiers>
+          <listMinLength>0</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+            <mustExist>False</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <ifAtomSelection>True</ifAtomSelection>
+          </qualifiers>
+        </subItem>
+      </content>
+
+      <content id="ENSEMBLES">
+        <className>CEnsembleList</className>
+        <qualifiers>
+          <listMinLength>1</listMinLength>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+
+    </container>
+
+    <container id="controlParameters">
+      <content id="INCLUDE">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+         </qualifiers>
+      </content>
+
+      <content id="NPROC">
+        <className>CInt</className>
+        <qualifiers>
+            <allowUndefined>False</allowUndefined>
+            <mustExist>True</mustExist>
+            <onlyEnumerators>True</onlyEnumerators>
+            <default>1</default>
+        </qualifiers>
+      </content>
+
+      <content id="LOCALONLY">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="NCYC">
+        <className>CInt</className>
+        <qualifiers>
+            <allowUndefined>False</allowUndefined>
+            <mustExist>True</mustExist>
+            <onlyEnumerators>True</onlyEnumerators>
+            <default>10</default>
+        </qualifiers>
+      </content>
+
+      <content id="BUCC">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="BCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <default>5</default>
+        </qualifiers>
+      </content>
+
+      <content id="PRF">
+        <className>CString</className>
+        <qualifiers>
+          <default>n</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>n,y,s</enumerators>
+          <toolTip>Try all</toolTip>
+        </qualifiers>
+      </content>
+      <content id="NP">
+        <className>CString</className>
+        <qualifiers>
+          <default>Auto</default>
+          <enumerators>Auto,10,20,30,50,100,200</enumerators>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="NPT">
+        <className>CString</className>
+        <qualifiers>
+          <default>Auto</default>
+          <enumerators>Auto,10,20,30,50,100</enumerators>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="NO_MOLS">
+        <className>CString</className>
+        <qualifiers>
+          <default>1</default>
+          <enumerators>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24</enumerators>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="SCORE">
+        <className>CString</className>
+        <qualifiers>
+          <default>y</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,n,c</enumerators>
+          <toolTip>Scoring andstopping rules</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ANISO">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,n,k</enumerators>
+          <default>y</default>
+        </qualifiers>
+      </content>
+      <content id="SEQ">
+        <className>CString</className>
+        <qualifiers>
+          <default>y</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,d,n</enumerators>
+          <toolTip>Try all</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SURF">
+        <className>CString</className>
+        <qualifiers>
+          <default>y</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,c,n,2,a</enumerators>
+          <toolTip>Try all</toolTip>
+        </qualifiers>
+      </content>
+      <content id="NMASU">
+        <className>CString</className>
+        <qualifiers>
+          <default>Auto</default>
+          <enumerators>Auto,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30</enumerators>
+        </qualifiers>
+      </content>
+      <content id="SIM">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+          <max>1.0</max>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+      <content id="RESMAX">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>1.0</min>
+          <max>10.0</max>
+          <default>3.0</default>
+        </qualifiers>
+      </content>
+      <content id="BADD">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+          <max>100.0</max>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+      <content id="RESMIN">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>1.0</min>
+          <max>100.0</max>
+          <default>15.0</default>
+        </qualifiers>
+      </content>
+      <content id="BOFF">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+          <max>100.0</max>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="guiParameters">
+      <content id="USE_FIXED">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="OPEN_PRF">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="OPEN_NPEAKS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="OPEN_SCORE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="OPEN_ANISO">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="OPEN_HIGH_PATH_VAR">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="HIGH_PATH_VAR">
+        <className>CString</className>
+        <qualifiers>
+          <default>s</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>s,i,r,b</enumerators>
+        </qualifiers>
+      </content>
+      <content id="OPEN_LOW_PATH_VAR">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="LOW_PATH_VAR">
+        <className>CString</className>
+        <qualifiers>
+          <default>c</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>c,r,b</enumerators>
+        </qualifiers>
+      </content>
+      <content id="OPEN_SEQ">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="OPEN_SURF">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+    </container>
+
+  </ccp4i2_body>
+</ccp4:ccp4i2>

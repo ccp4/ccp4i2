@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Example Job Report</title>
+</head>
+<body>
+
+
+
+
+<h3>Attempt at embedding Pimple widget</h3>
+<object type = "x-ccp4-widget/LogGraph" id="table_1" width="500" height="500">
+<param name="ccp4_data_id" value = "data_table_1"/>
+</object>
+
+<ccp4_data id="data_table_1" title="Cycle    1. Rfactor analysis, F distribution v resln" style="display:none;">
+<headers separator=" "> 
+M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used
+NR_free M(Fo_free) M(Fc_free) Rf_free   WR_free
+</headers>
+<data>
+ 0.019     723  84.15   292.1   292.4  0.21  0.22      52   293.1   299.2  0.19  0.19
+ 0.057    1454  98.70   350.9   346.1  0.17  0.18      66   332.3   329.1  0.14  0.14
+ 0.095    1807  97.86   276.4   266.8  0.20  0.19     113   293.0   284.9  0.16  0.15
+ 0.132    2143  97.91   188.7   185.7  0.24  0.27     103   177.6   178.5  0.26  0.28
+ 0.170    2335  97.14   155.2   150.3  0.25  0.26     144   167.7   154.0  0.21  0.23
+ 0.208    2577  96.12   140.9   129.5  0.26  0.27     151   138.2   130.8  0.27  0.28
+ 0.245    2809  96.76   119.6   107.5  0.28  0.28     151   126.5   110.4  0.26  0.27
+ 0.283    2916  93.73    93.9    87.9  0.30  0.29     165    87.9    84.5  0.34  0.31
+ 0.321    2931  88.75    76.8    72.5  0.32  0.31     155    75.8    70.6  0.31  0.28
+ 0.358    2874  83.09    60.8    59.3  0.34  0.32     162    62.5    58.9  0.33  0.32
+ 0.396    3022  82.69    54.0    52.2  0.34  0.32     173    53.6    53.3  0.37  0.34
+ 0.434    3170  83.43    48.0    45.8  0.35  0.31     178    44.7    44.0  0.39  0.33
+ 0.471    3248  81.57    42.4    40.8  0.36  0.32     173    41.2    39.0  0.34  0.30
+ 0.509    3316  80.92    38.2    36.2  0.37  0.32     192    38.4    36.9  0.34  0.29
+ 0.547    3417  79.43    34.6    33.0  0.38  0.33     150    35.5    33.6  0.37  0.34
+ 0.584    3427  77.12    32.3    30.1  0.40  0.35     166    33.7    30.7  0.41  0.36
+ 0.622    3494  76.72    30.4    28.0  0.39  0.35     170    29.9    27.2  0.36  0.31
+ 0.660    3493  74.92    29.1    25.7  0.39  0.36     187    28.7    26.0  0.37  0.33
+ 0.697    3544  74.44    27.3    23.9  0.40  0.37     205    26.1    24.3  0.37  0.35
+ 0.735    3401  69.25    26.3    22.5  0.41  0.38     182    23.2    20.7  0.43  0.41
+</data>
+<plot title="Cycle    1. &lt;Rfactor&gt; v. resln" type="xy" xcol="1" ycols="6,7,11,12" xscale="oneoversqrt" xlabel="Resolution / &#xC5;" linesize="2,1,3,4" colour="red,blue,red,blue" />
+<plot title="Cycle    1. &lt;Fobs> and &lt;Fc&gt; v. resln" type="xy" xcol="1" ycols="4,5,9,10" xscale="oneoversqrt" xlabel="Resolution / &#xC5;" linesize="2" symbol="*" symbolsize="20" colour="orange" />
+<plot title="Cycle    1. % observed v. resln" type="xy" xcol="1" ycols="3" xscale="oneoversqrt" xlabel="Resolution / &#xC5;" showlegend="false" linestyle="-." colour="red" >
+</plot>
+</ccp4_data>
+
+</body>
+</html>

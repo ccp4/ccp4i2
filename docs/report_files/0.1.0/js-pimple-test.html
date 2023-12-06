@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<title>JSPimple</title>
+<link rel="shortcut icon" href="icon.ico" />
+
+<link rel="stylesheet" type="text/css" href="jspimple.css"/>
+<script src="require.min.js" data-main="jspimple"></script>
+
+<script id="1_refmac5" type="application/xml">
+<CCP4ApplicationOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd">
+  <Fonts>
+    <titleFont/>
+    <axesTickerFont/>
+    <axesLabelFont/>
+    <legendFont/>
+  </Fonts>
+  <CCP4Table title="Cycle    1. Rfactor analysis, F distribution v resln">
+    <data>0.019 723.0 84.15 292.1 292.4 0.21 0.22 52.0 293.1 299.2 0.19 0.19
+0.057 1454.0 98.7 350.9 346.1 0.17 0.18 66.0 332.3 329.1 0.14 0.14
+0.095 1807.0 97.86 276.4 266.8 0.2 0.19 113.0 293.0 284.9 0.16 0.15
+0.132 2143.0 97.91 188.7 185.7 0.24 0.27 103.0 177.6 178.5 0.26 0.28
+0.17 2335.0 97.14 155.2 150.3 0.25 0.26 144.0 167.7 154.0 0.21 0.23
+0.208 2577.0 96.12 140.9 129.5 0.26 0.27 151.0 138.2 130.8 0.27 0.28
+0.245 2809.0 96.76 119.6 107.5 0.28 0.28 151.0 126.5 110.4 0.26 0.27
+0.283 2916.0 93.73 93.9 87.9 0.3 0.29 165.0 87.9 84.5 0.34 0.31
+0.321 2931.0 88.75 76.8 72.5 0.32 0.31 155.0 75.8 70.6 0.31 0.28
+0.358 2874.0 83.09 60.8 59.3 0.34 0.32 162.0 62.5 58.9 0.33 0.32
+0.396 3022.0 82.69 54.0 52.2 0.34 0.32 173.0 53.6 53.3 0.37 0.34
+0.434 3170.0 83.43 48.0 45.8 0.35 0.31 178.0 44.7 44.0 0.39 0.33
+0.471 3248.0 81.57 42.4 40.8 0.36 0.32 173.0 41.2 39.0 0.34 0.3
+0.509 3316.0 80.92 38.2 36.2 0.37 0.32 192.0 38.4 36.9 0.34 0.29
+0.547 3417.0 79.43 34.6 33.0 0.38 0.33 150.0 35.5 33.6 0.37 0.34
+0.584 3427.0 77.12 32.3 30.1 0.4 0.35 166.0 33.7 30.7 0.41 0.36
+0.622 3494.0 76.72 30.4 28.0 0.39 0.35 170.0 29.9 27.2 0.36 0.31
+0.66 3493.0 74.92 29.1 25.7 0.39 0.36 187.0 28.7 26.0 0.37 0.33
+0.697 3544.0 74.44 27.3 23.9 0.4 0.37 205.0 26.1 24.3 0.37 0.35
+0.735 3401.0 69.25 26.3 22.5 0.41 0.38 182.0 23.2 20.7 0.43 0.41
+</data>
+    <headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers>
+    <plot>
+      <title>Cycle    1. &lt;Rfactor&gt; v. resln</title>
+      <plotline xcol="1" ycol="6">
+        <label>Rf_used</label>
+        <symbol>o</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>b</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="7">
+        <label>WR_used</label>
+        <symbol>s</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>g</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="11">
+        <label>Rf_free</label>
+        <symbol>d</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>r</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="12">
+        <label>WR_free</label>
+        <symbol>^</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>c</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <xscale>oneoversqrt</xscale>
+      <xrange min="None" max="None"/>
+      <yrange min="0" max="None"/>
+      <xlabel>Resolution / Å</xlabel>
+      <ylabel>R factor</ylabel>
+      <legendposition x="0.75" y="0.15"/>
+    </plot>
+    <plot>
+      <title>Cycle    1. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title>
+      <plotline xcol="1" ycol="4"/>
+      <plotline xcol="1" ycol="5"/>
+      <plotline xcol="1" ycol="9"/>
+      <plotline xcol="1" ycol="10"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+    <plot>
+      <title>Cycle    1. % observed v. resln</title>
+      <plotline xcol="1" ycol="3"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+  </CCP4Table>
+  <CCP4Table title="Cycle    1. Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln">
+    <data>0.0192 518.0 0.919 205.0 0.855 723.0 0.901 0.981
+0.0569 1173.0 0.949 281.0 0.872 1454.0 0.935 0.98
+0.0946 1535.0 0.922 272.0 0.878 1807.0 0.915 0.98
+0.1323 1872.0 0.863 271.0 0.812 2143.0 0.857 0.974
+0.1699 2078.0 0.847 257.0 0.779 2335.0 0.839 0.964
+0.2076 2318.0 0.852 259.0 0.825 2577.0 0.85 0.991
+0.2453 2543.0 0.814 266.0 0.748 2809.0 0.807 0.996
+0.283 2677.0 0.79 239.0 0.748 2916.0 0.787 0.963
+0.3206 2720.0 0.76 211.0 0.69 2931.0 0.755 0.911
+0.3583 2692.0 0.73 182.0 0.63 2874.0 0.724 0.868
+0.396 2843.0 0.705 179.0 0.663 3022.0 0.703 0.845
+0.4337 2988.0 0.724 182.0 0.646 3170.0 0.719 0.853
+0.4713 3081.0 0.743 167.0 0.698 3248.0 0.741 0.853
+0.509 3146.0 0.701 170.0 0.661 3316.0 0.699 0.836
+0.5467 3256.0 0.691 161.0 0.67 3417.0 0.69 0.826
+0.5844 3290.0 0.623 137.0 0.6 3427.0 0.623 0.8
+0.622 3345.0 0.691 149.0 0.661 3494.0 0.689 0.835
+0.6597 3355.0 0.678 138.0 0.624 3493.0 0.676 0.839
+0.6974 3402.0 0.688 142.0 0.641 3544.0 0.686 0.853
+0.7351 3270.0 0.662 131.0 0.616 3401.0 0.661 0.836
+</data>
+    <headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1
+</headers>
+    <plot>
+      <title>Cycle    1. M(Fom) v. resln</title>
+      <plotline xcol="1" ycol="3">
+        <label>FOMa</label>
+        <symbol>o</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>b</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="5">
+        <label>FOMc</label>
+        <symbol>s</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>g</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="7">
+        <label>FOMall</label>
+        <symbol>d</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>r</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="8">
+        <label>SigmaA_Fc1</label>
+        <symbol>^</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>c</colour>
+        <linestyle>-</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <xrange min="None" max="None"/>
+      <yrange min="0" max="None"/>
+      <xlabel>&lt;4SSQ/LL&gt;</xlabel>
+      <legendposition x="0.15" y="0.15"/>
+    </plot>
+  </CCP4Table>
+  <CCP4Table title="Cycle   11. Rfactor analysis, F distribution v resln">
+    <data>0.019 723.0 84.15 302.3 307.0 0.19 0.2 52.0 303.3 321.4 0.21 0.21
+0.057 1454.0 98.7 363.1 354.9 0.15 0.15 66.0 343.8 328.0 0.15 0.15
+0.095 1807.0 97.86 286.1 274.8 0.17 0.16 113.0 303.2 298.0 0.16 0.15
+0.132 2143.0 97.91 195.2 194.3 0.2 0.21 103.0 183.8 181.8 0.25 0.26
+0.17 2335.0 97.14 160.6 161.0 0.19 0.21 144.0 173.5 163.7 0.22 0.23
+0.208 2577.0 96.12 145.8 139.2 0.18 0.19 151.0 143.0 135.4 0.19 0.2
+0.245 2809.0 96.76 123.8 118.0 0.18 0.18 151.0 130.9 121.2 0.19 0.21
+0.283 2916.0 93.73 97.2 95.3 0.18 0.18 165.0 90.9 89.6 0.23 0.22
+0.321 2931.0 88.75 79.5 79.6 0.18 0.17 155.0 78.4 80.2 0.21 0.2
+0.358 2874.0 83.09 62.9 63.9 0.18 0.17 162.0 64.7 64.6 0.22 0.2
+0.396 3022.0 82.69 55.9 56.4 0.18 0.16 173.0 55.4 57.5 0.2 0.17
+0.434 3170.0 83.43 49.7 49.4 0.18 0.16 178.0 46.2 46.5 0.21 0.19
+0.471 3248.0 81.57 43.9 43.8 0.19 0.16 173.0 42.7 42.0 0.2 0.17
+0.509 3316.0 80.92 39.5 39.5 0.2 0.17 192.0 39.8 39.1 0.22 0.18
+0.547 3417.0 79.43 35.8 36.1 0.21 0.17 150.0 36.7 35.9 0.22 0.19
+0.584 3427.0 77.12 33.4 33.1 0.22 0.18 166.0 34.9 34.2 0.24 0.2
+0.622 3494.0 76.72 31.4 30.6 0.22 0.18 170.0 30.9 30.5 0.23 0.19
+0.66 3493.0 74.92 30.1 28.4 0.22 0.19 187.0 29.6 28.0 0.23 0.21
+0.697 3544.0 74.44 28.3 26.3 0.24 0.21 205.0 27.0 25.4 0.27 0.23
+0.735 3401.0 69.25 27.2 24.8 0.24 0.21 182.0 24.0 21.6 0.27 0.25
+</data>
+    <headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers>
+    <plot>
+      <title>Cycle   11. &lt;Rfactor&gt; v. resln</title>
+      <plotline xcol="1" ycol="6"/>
+      <plotline xcol="1" ycol="7"/>
+      <plotline xcol="1" ycol="11"/>
+      <plotline xcol="1" ycol="12"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+    <plot>
+      <title>Cycle   11. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title>
+      <plotline xcol="1" ycol="4"/>
+      <plotline xcol="1" ycol="5"/>
+      <plotline xcol="1" ycol="9"/>
+      <plotline xcol="1" ycol="10"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+    <plot>
+      <title>Cycle   11. % observed v. resln</title>
+      <plotline xcol="1" ycol="3"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+  </CCP4Table>
+  <CCP4Table title="Cycle   11. Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln">
+    <data>0.0192 518.0 0.921 205.0 0.846 723.0 0.9 0.987
+0.0569 1173.0 0.947 281.0 0.874 1454.0 0.933 0.986
+0.0946 1535.0 0.923 272.0 0.867 1807.0 0.914 0.985
+0.1323 1872.0 0.871 271.0 0.81 2143.0 0.864 0.976
+0.1699 2078.0 0.863 257.0 0.784 2335.0 0.855 0.96
+0.2076 2318.0 0.888 259.0 0.848 2577.0 0.884 0.991
+0.2453 2543.0 0.889 266.0 0.862 2809.0 0.886 0.999
+0.283 2677.0 0.892 239.0 0.833 2916.0 0.887 0.982
+0.3206 2720.0 0.876 211.0 0.848 2931.0 0.874 0.945
+0.3583 2692.0 0.875 182.0 0.776 2874.0 0.869 0.935
+0.396 2843.0 0.892 179.0 0.858 3022.0 0.89 0.936
+0.4337 2988.0 0.898 182.0 0.842 3170.0 0.895 0.948
+0.4713 3081.0 0.9 167.0 0.845 3248.0 0.897 0.95
+0.509 3146.0 0.867 170.0 0.854 3316.0 0.867 0.933
+0.5467 3256.0 0.862 161.0 0.873 3417.0 0.863 0.924
+0.5844 3290.0 0.849 137.0 0.814 3427.0 0.847 0.924
+0.622 3345.0 0.863 149.0 0.81 3494.0 0.861 0.946
+0.6597 3355.0 0.867 138.0 0.84 3493.0 0.866 0.966
+0.6974 3402.0 0.842 142.0 0.846 3544.0 0.842 0.97
+0.7351 3270.0 0.844 131.0 0.839 3401.0 0.844 0.986
+</data>
+    <headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1
+</headers>
+    <plot>
+      <title>Cycle   11. M(Fom) v. resln</title>
+      <plotline xcol="1" ycol="3"/>
+      <plotline xcol="1" ycol="5"/>
+      <plotline xcol="1" ycol="7"/>
+      <plotline xcol="1" ycol="8"/>
+    </plot>
+  </CCP4Table>
+  <CCP4Table title="Rfactor analysis, stats vs cycle">
+    <data>0.0 0.2783 0.2668 0.741 250301.0 13484.0 0.0284 1.426 4.57 2.469 0.17
+1.0 0.227 0.2359 0.805 241026.0 13136.4 0.0299 1.371 2.898 1.47 0.163
+2.0 0.2057 0.2194 0.837 235671.0 12917.0 0.0307 1.373 2.642 1.33 0.169
+3.0 0.195 0.2111 0.854 232521.0 12787.8 0.0323 1.43 2.562 1.296 0.173
+4.0 0.1898 0.2073 0.862 230729.0 12713.8 0.0327 1.434 2.485 1.259 0.175
+5.0 0.1873 0.2056 0.867 229749.0 12676.0 0.0325 1.413 2.409 1.221 0.175
+6.0 0.1861 0.2048 0.87 229236.0 12657.3 0.032 1.38 2.338 1.184 0.174
+7.0 0.1854 0.2044 0.871 228920.0 12648.3 0.0321 1.38 2.312 1.172 0.177
+8.0 0.1849 0.2044 0.872 228742.0 12645.4 0.0322 1.384 2.301 1.168 0.181
+9.0 0.1848 0.2045 0.873 228632.0 12645.6 0.0323 1.388 2.296 1.166 0.187
+10.0 0.1849 0.2045 0.873 228629.0 12648.1 0.0317 1.352 2.254 1.142 0.189
+</data>
+    <headers separator=" ">Ncyc Rfact Rfree FOM -LL -LLfree rmsBOND zBOND rmsANGL zANGL rmsCHIRAL
+</headers>
+    <plot>
+      <title>&lt;Rfactor&gt; vs cycle</title>
+      <plotline xcol="1" ycol="2"/>
+      <plotline xcol="1" ycol="3"/>
+    </plot>
+    <plot>
+      <title>FOM vs cycle</title>
+      <plotline xcol="1" ycol="4"/>
+    </plot>
+    <plot>
+      <title>-LL vs cycle</title>
+      <plotline xcol="1" ycol="5"/>
+    </plot>
+    <plot>
+      <title>-LLfree vs cycle</title>
+      <plotline xcol="1" ycol="6"/>
+    </plot>
+    <plot>
+      <title>Geometry vs cycle</title>
+      <xlabel>Some label</xlabel>
+      <plotline xcol="1" ycol="7"/>
+      <plotline xcol="1" ycol="8"/>
+      <plotline xcol="1" ycol="9"/>
+      <plotline xcol="1" ycol="10"/>
+      <plotline xcol="1" ycol="11"/>
+      <!--<circle radius=".75" xpos="0.5" ypos="0.5" linestyle="-." linesize="3" linecolour="rgba(0, 255, 0, 0.5)" fillcolour="rgba(255, 255, 0, 0.5)" />-->
+      <circle radius=".75" xpos="3" ypos="3" linestyle="dashdot" linesize="3" linecolour="#00ff00" fillcolour="#ffff00"/>
+      <circle radius=".5" xpos="1" ypos="3" linesize="1" fillcolour="#00ff00" alpha="0.75" />
+      <polygon linestyle="dash" linesize="2" linecolour="#0000ff" fillcolour="#ff00ff" alpha="0.2">
+      1.0 1.0 2.0 1.0 	1.5 1.5
+      </polygon>
+      <linestrip linestyle="dashdot" linesize="2" linecolour="#0000ff">
+      3.0 3.0 2.0 5.0 	7.5 0.5
+      </linestrip>
+      <line x1="4.0" y1="1.0" x2="8.0" y2="4.0" linesize="2" linecolour="#00ff00">
+      </line>
+      <line x1="2.0" y1="4.0" x2="8.0" y2="0.5" linestyle="dot" linesize="5" linecolour="#ff00ff">
+      </line>
+      <ylabel>My test y-label, whoot, whoop!!!</ylabel>
+      <ylabel rightaxis="true">My test r-y-label, whoo, </ylabel>
+      <fixaspectratio>true</fixaspectratio>
+    </plot>
+  </CCP4Table>
+</CCP4ApplicationOutput>
+</script>
+<script id="atable3" type="application/xml">
+<CCP4ApplicationOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd">
+  <Fonts>
+    <titleFont family="Bitstream Vera Sans" size="16" weight="normal" slant="normal"/>
+    <axesTickerFont family="Bitstream Vera Sans" size="10" weight="normal" slant="normal"/>
+    <axesLabelFont family="Bitstream Vera Sans" size="10" weight="normal" slant="normal"/>
+    <legendFont family="Bitstream Vera Sans" size="10" weight="normal" slant="normal"/>
+  </Fonts>
+  <CCP4Table title="Cycle    1. Rfactor analysis, F distribution v resln">
+    <data>0.019 723.0 84.15 292.1 292.4 0.21 0.22 52.0 293.1 299.2 0.19 0.19
+0.057 1454.0 98.7 350.9 346.1 0.17 0.18 66.0 332.3 329.1 0.14 0.14
+0.095 1807.0 97.86 276.4 266.8 0.2 0.19 113.0 293.0 284.9 0.16 0.15
+0.132 2143.0 97.91 188.7 185.7 0.24 0.27 103.0 177.6 178.5 0.26 0.28
+0.17 2335.0 97.14 155.2 150.3 0.25 0.26 144.0 167.7 154.0 0.21 0.23
+0.208 2577.0 96.12 140.9 129.5 0.26 0.27 151.0 138.2 130.8 0.27 0.28
+0.245 2809.0 96.76 119.6 107.5 0.28 0.28 151.0 126.5 110.4 0.26 0.27
+0.283 2916.0 93.73 93.9 87.9 0.3 0.29 165.0 87.9 84.5 0.34 0.31
+0.321 2931.0 88.75 76.8 72.5 - 0.31 155.0 75.8 70.6 0.31 0.28
+0.358 2874.0 83.09 60.8 59.3 0.34 0.32 162.0 62.5 58.9 0.33 0.32
+0.396 3022.0 82.69 54.0 52.2 0.34 0.32 173.0 53.6 53.3 0.37 0.34
+0.434 3170.0 83.43 48.0 45.8 0.35 0.31 178.0 44.7 44.0 0.39 0.33
+0.471 3248.0 81.57 42.4 40.8 0.36 0.32 173.0 41.2 39.0 0.34 0.3
+0.509 3316.0 80.92 38.2 36.2 0.37 0.32 192.0 38.4 36.9 0.34 0.29
+0.547 3417.0 79.43 34.6 33.0 0.38 0.33 150.0 35.5 33.6 0.37 0.34
+0.584 3427.0 77.12 32.3 30.1 0.4 0.35 166.0 33.7 30.7 0.41 0.36
+0.622 3494.0 76.72 30.4 28.0 0.39 0.35 170.0 29.9 27.2 0.36 0.31
+0.66 3493.0 74.92 29.1 25.7 0.39 0.36 187.0 28.7 26.0 0.37 0.33
+0.697 3544.0 74.44 27.3 23.9 0.4 0.37 205.0 26.1 24.3 0.37 0.35
+0.735 3401.0 69.25 26.3 22.5 0.41 0.38 182.0 23.2 20.7 0.43 0.41
+</data>
+    <headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers>
+    <plot>
+      <plotline xcol="1" ycol="6">
+        <label>Rf_used</label>
+        <symbol>o</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>b</colour>
+        <linestyle>--</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="7">
+        <label>WR_used</label>
+        <symbol>s</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>y</colour>
+        <linestyle>-</linestyle>
+        <linesize>2</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="11">
+        <label>Rf_free</label>
+        <symbol>$\checkmark$</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>g</colour>
+        <linestyle>:</linestyle>
+        <linesize>3</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="12" rightaxis="true">
+        <label>wobbly</label>
+        <symbol>o</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>r</colour>
+        <linestyle>_</linestyle>
+        <linesize>4</linesize>
+        <showinlegend>true</showinlegend>
+        <fillcolour>#ff0000</fillcolour>
+        <visible>true</visible>
+      </plotline>
+      <!--<xrange min="0.01" max="0.750000699376"/>-->
+      <yrange min="0.08" max="0.48"/>
+      <yrange min="0.08" max="0.96" rightaxis="true"/>
+      <title>Cycle    1. &lt;Rfactor&gt; v. resln</title>
+      <xlabel>Resolution / Å</xlabel>
+      <ylabel>Test label on broken axes</ylabel>
+      <ylabel rightaxis="true">Test label on broken axes, right, right</ylabel>
+      <xbreaks>
+        <break min="0.206611570248" max="0.226757369615"/>
+        <break min="0.4" max="0.5"/>
+      </xbreaks>
+      <legendposition x="0.620708981365" y="0.75"/>
+      <circle radius=".1" xpos=".2" ypos=".25" linesize="1" fillcolour="#00ff00" alpha="0.75" />
+      <line x1=".05" y1=".2" x2=".4" y2=".3" linesize="2" linecolour="#00ff00"/>
+      <line x1=".05" y1=".2" x2=".15" y2=".4" linesize="2" linecolour="#00ff00"/>
+      <line x1=".3" y1=".4" x2=".6" y2=".3" linesize="2" linecolour="#ff0000"/>
+      <polygon linestyle="dash" linesize="2" linecolour="#0000ff" fillcolour="#ff00ff" alpha="0.2">
+      0.075 0.4 0.4 0.4 0.3 0.1
+      </polygon>
+      <xscale>oneoversqrt</xscale>
+      <yscale>log</yscale>
+    </plot>
+  </CCP4Table>
+</CCP4ApplicationOutput>
+</script>
+
+<script id="histotest" type="application/xml">
+<CCP4ApplicationOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd">
+  <CCP4Table title="Histogram test group">
+    <data>
+-100 0.019 -100
+-100 0.057 -100
+-75 0.095 -100
+-100 0.132 -100
+-75 0.17 75.3
+-50 0.208 -50
+-100 0.245 -100
+-100 0.283 100
+-100 0.321 -100
+-100 0.358 -100
+75.3 0.396 75.3
+-75 0.434 -75
+-100 0.471 -100
+-50 0.509 -50
+100 0.547 0
+-100 0.584 0
+100 0.622 0
+50 0.66 50
+-50 0.697 -50
+-100 0.735 0
+</data>
+    <headers separator="-">Integers-Floats-More integers
+</headers>
+    <plot>
+      <title>Histogram Test</title>
+      <histogram col="1">
+        <colour>b</colour>
+      </histogram>
+    </plot>
+    <plot>
+      <title>Bar chart Test</title>
+      <barchart col="1">
+        <colour>b</colour>
+      </barchart>
+    </plot>
+    <plot>
+      <title>Histogram Test 2</title>
+      <histogram col="2">
+        <nbins>20</nbins>
+        <colour>r</colour>
+      </histogram>
+      <xlabel>A histogram</xlabel>
+    </plot>
+    <plot>
+      <barplacement>stacked</barplacement>
+      <title>Stacked bar chart test</title>
+      <barchart col="1">
+        <colour>r</colour>
+      </barchart>
+      <barchart col="3">
+        <colour>g</colour>
+      </barchart>
+    </plot>
+    <plot>
+      <barplacement>sidebyside</barplacement>
+      <title>Side-by-side bar chart test</title>
+      <barchart col="1">
+        <colour>r</colour>
+      </barchart>
+      <barchart col="3">
+        <colour>g</colour>
+      </barchart>
+    </plot>
+  </CCP4Table>
+</CCP4ApplicationOutput>
+</script>
+
+
+<script id="atableblank" type="application/xml">
+<CCP4ApplicationOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd">
+  <Fonts>
+    <titleFont family="Bitstream Vera Sans" size="16" weight="normal" slant="normal"/>
+    <axesTickerFont family="Bitstream Vera Sans" size="10" weight="normal" slant="normal"/>
+    <axesLabelFont family="Bitstream Vera Sans" size="10" weight="normal" slant="normal"/>
+    <legendFont family="Bitstream Vera Sans" size="10" weight="normal" slant="normal"/>
+  </Fonts>
+  <CCP4Table title="Cycle    1. Rfactor analysis, F distribution v resln">
+    <data>0.019 723.0 84.15 292.1 292.4 0.21 0.22 52.0 293.1 299.2 0.19 0.19
+0.057 1454.0 98.7 350.9 346.1 0.17 0.18 66.0 332.3 329.1 0.14 0.14
+0.095 1807.0 97.86 276.4 266.8 0.2 0.19 113.0 293.0 284.9 0.16 0.15
+0.132 2143.0 97.91 188.7 185.7 0.24 0.27 103.0 177.6 178.5 0.26 0.28
+0.17 2335.0 97.14 155.2 150.3 0.25 0.26 144.0 167.7 154.0 0.21 0.23
+0.208 2577.0 96.12 140.9 129.5 0.26 0.27 151.0 138.2 130.8 0.27 0.28
+0.245 2809.0 96.76 119.6 107.5 0.28 0.28 151.0 126.5 110.4 0.26 0.27
+0.283 2916.0 93.73 93.9 87.9 0.3 0.29 165.0 87.9 84.5 0.34 0.31
+0.321 2931.0 88.75 76.8 72.5 - 0.31 155.0 75.8 70.6 0.31 0.28
+0.358 2874.0 83.09 60.8 59.3 0.34 0.32 162.0 62.5 58.9 0.33 0.32
+0.396 3022.0 82.69 54.0 52.2 0.34 0.32 173.0 53.6 53.3 0.37 0.34
+0.434 3170.0 83.43 48.0 45.8 0.35 0.31 178.0 44.7 44.0 0.39 0.33
+0.471 3248.0 81.57 42.4 40.8 0.36 0.32 173.0 41.2 39.0 0.34 0.3
+0.509 3316.0 80.92 38.2 36.2 0.37 0.32 192.0 38.4 36.9 0.34 0.29
+0.547 3417.0 79.43 34.6 33.0 0.38 0.33 150.0 35.5 33.6 0.37 0.34
+0.584 3427.0 77.12 32.3 30.1 0.4 0.35 166.0 33.7 30.7 0.41 0.36
+0.622 3494.0 76.72 30.4 28.0 0.39 0.35 170.0 29.9 27.2 0.36 0.31
+0.66 3493.0 74.92 29.1 25.7 0.39 0.36 187.0 28.7 26.0 0.37 0.33
+0.697 3544.0 74.44 27.3 23.9 0.4 0.37 205.0 26.1 24.3 0.37 0.35
+0.735 3401.0 69.25 26.3 22.5 0.41 0.38 182.0 23.2 20.7 0.43 0.41
+</data>
+    <headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers>
+    <plot>
+      <plotline xcol="1" ycol="6">
+        <label>Rf_used</label>
+        <symbol>o</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>b</colour>
+        <linestyle>--</linestyle>
+        <linesize>1</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="11">
+        <label>Rf_free</label>
+        <symbol>$\checkmark$</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>g</colour>
+        <linestyle>:</linestyle>
+        <linesize>3</linesize>
+      </plotline>
+      <plotline xcol="1" ycol="12" rightaxis="true">
+        <label>wobbly</label>
+        <symbol>^</symbol>
+        <symbolsize>5</symbolsize>
+        <colour>r</colour>
+        <linestyle>-.</linestyle>
+        <linesize>4</linesize>
+        <showinlegend>true</showinlegend>
+        <visible>true</visible>
+      </plotline>
+      <!--<xrange min="0.01" max="0.750000699376"/>-->
+      <title>Cycle    1. &lt;Rfactor&gt; v. resln</title>
+      <line x1=".05" y1=".2" x2=".4" y2=".3" linesize="2" linecolour="#00ff00"/>
+      <line x1=".05" y1=".2" x2=".15" y2=".4" linesize="2" linecolour="#00ff00"/>
+      <line x1=".3" y1=".4" x2=".6" y2=".3" linesize="2" linecolour="#ff0000"/>
+      <polygon linesize="0" linecolour="#ff00ff" fillcolour="#ff00ff" alpha="0.2">
+      0.075 0.4 0.4 0.4 0.4 0.1 0.075 0.1
+      </polygon>
+      <xscale>oneoversqrt</xscale>
+      <yscale>log</yscale>
+    </plot>
+  </CCP4Table>
+</CCP4ApplicationOutput>
+</script>
+
+
+
+<body>
+<h2>JSPimple</h2>
+<div id="pimplereport">This is a paragraph before we go into the nested div section.</div>
+
+<div style="height:1308px;max-width:1100px;"> <!--Adding width:1008px; makes this a fixed width table. Might be useful. Without it layout degrades to single column. -->
+  <div style="float:left;border: 1px solid black;width:250px;height:602px;line-height:602px;position:relative;">
+<span style="margin: 3px; text-align:justify;vertical-align:middle;display:inline-block;line-height:18px;font-size:18px;font-family: Helvetica, Arial, sans-serif;">
+This is an example layout with a left-hand div which is 602 pixels high and two rows, each of 300 pixels high.
+The second div of the first nested row is contains a deliberately massively oversized div to show that scroll bars
+can come to the rescue.
+Everything has border of 2 pixels. In this example, all the divs float, so that if the screen width shrinks to less than
+1000 the divs reposition. This is necessary to degrade gracefully for small width screens, but maybe not what is wanted on large
+screens on traditional OSes: Absolute positioning might be better in those cases. Suck it and see.
+<br/>
+<br/>
+This is a span with justified, vertically centered text. More css trickery.
+</span>
+  </div>
+  <div>
+    <div id="pimpleplot2" style="float:left;border: 1px solid black;width:250px;height:300px;position:relative;"></div>
+
+    <div style="float:left;border: 1px solid black;width:500px;height:300px;overflow:auto;position:relative;">
+      <div id="pimpleplot" style="width:800px;height:300px;">
+      </div>
+    </div>
+
+  </div>
+  <div>
+    <div id="pimpleplot3" style="overflow:hidden; float:left;border: 1px solid black;width:500px;height:300px;position:relative;"></div>
+    <div id="pimpleplot4" style="overflow:hidden; float:left;border: 1px solid black;width:250px;height:300px;position:relative;"></div>
+  </div>
+  <div>
+    <div id="pimpleplot5" style="overflow:hidden; float:left;border: 1px solid black;width:501px;height:300px;position:relative;"></div>
+    <div id="pimpleplot6" style="overflow:hidden; float:left;border: 1px solid black;width:501px;height:300px;position:relative;"></div>
+  </div>
+  <div id="pimpleplot7" style="overflow:hidden; float:left;border: 1px solid black;width:1004px;height:400px;position:relative;"></div>
+</div>
+<div style="float:left;width:100%;">This is a div after the nested div section. Why float left is required ...?</div>
+<div style="float:left;width:100%;">This is another div after the nested div section. Why float left is required ...?</div>
+<div style="float:left;width:100%;">
+<span>This is a span in a div after most of the divs</span>
+</div>
+<div id="pimpleploturl" style="overflow:hidden; float:left;border: 1px solid black;width:500px;height:300px;position:relative;"></div>
+
+<div style="clear:both;"/>
+<div id="pimpleplotblank" style="width:800px;height:300px;">
+<script>
+
+require(['jspimple'],function(jspimple){
+  var g = jspimple.CCP4GraphPlot("pimpleplot");
+  var g2 = jspimple.CCP4GraphPlot("pimpleplot2");
+
+var gurl = jspimple.CCP4GraphPlot("pimpleploturl");
+//gurl.loadFromUrl("test_file.txt")
+gurl.watchUrl("js-pimple-test_text.txt",2000)
+//gurl.loadFromUrl("silly.txt")
+
+g.loadFromID("1_refmac5")
+g2.loadFromID("atable3")
+
+var g3 = jspimple.CCP4GraphPlot("pimpleplot3");
+g3.loadFromID("1_refmac5")
+var g4 = jspimple.CCP4GraphPlot("pimpleplot4");
+g4.loadFromID("atable3")
+
+var g5 = jspimple.CCP4GraphPlot("pimpleplot5");
+g5.loadFromID("1_refmac5")
+var g6 = jspimple.CCP4GraphPlot("pimpleplot6");
+g6.loadFromID("atable3")
+
+var g7 = jspimple.CCP4GraphPlot("pimpleplot7");
+g7.loadFromID("histotest")
+
+var nplots = g7.getNumberOfPlots();
+console.log(nplots);
+for(var iplot=0;iplot<nplots;iplot++){
+  console.log(g7.getPlotData(iplot));
+}
+g7.setCurrentData(0);
+console.log(g7.getCurrentPlotName())
+g7.getCurrentPlotName()["xlabel"] = "xlabel edited after initial load"
+g7.getCurrentPlotName()["ylabel"] = "ylabel edited after initial load"
+g7.replot()
+
+nplots = g.getNumberOfPlots()
+console.log(g.getPlotData(nplots-1))
+var nlines = g.getPlotData(nplots-1).length
+console.log(g.getPlotData(nplots-1)[nlines-1])
+g.getPlotData(nplots-1)[nlines-1]["color"] = '#000000';
+g.getPlotData(nplots-1)[0]["lines"] = {show:false};
+g.getPlotData(nplots-1)[0]["label"] = null;
+
+g.replot()
+
+var pimplereport = document.getElementById("pimplereport");
+
+var myStringArray = ["pimpleplot","pimpleplot2","pimpleplot3","pimpleplot4","pimpleplot5","pimpleplot6","pimpleplot7"];
+
+for (var ipimp = 0; ipimp < myStringArray.length; ipimp++) {
+  var pimpname = myStringArray[ipimp];
+  var pimpleplot = document.getElementById(pimpname);
+  pimpleplot.pimpname = pimpname;
+  pimpleplot.addEventListener("graphHover",function(e) {
+     pimplereport.innerHTML = "Div " + this.pimpname + " hovered!!!"+e.detail.x+" "+e.detail.y + ". Plot " + e.detail.plot + " of table " + e.detail.table;
+  })
+  pimpleplot.addEventListener("graphClick",function(e) {
+     pimplereport.innerHTML = "Div " + this.pimpname + " clicked!!!"+e.detail.x+" "+e.detail.y + ". Plot " + e.detail.plot + " of table " + e.detail.table;
+  })
+}
+
+var gblank = jspimple.CCP4GraphPlot("pimpleplotblank");
+gblank.loadFromID("atableblank")
+
+});
+
+</script>
+
+</body>

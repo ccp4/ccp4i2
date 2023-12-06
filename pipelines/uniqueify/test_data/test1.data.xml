@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>mdw</userId>
+    <creationTime>12:54 10/Jun/11</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>uniqueify</pluginName>
+    <pluginTitle>complete reflection file</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <HKLIN>
+        <project>CCP4I2</project>
+        <baseName>rnase18_native.mtz</baseName>
+        <relPath>wrappers/cad_copy_column/test_data</relPath>
+      </HKLIN>
+    </inputData>
+    <outputData>
+      <HKLOUT>
+        <project>CCP4I2_TEST</project>
+        <baseName>uniqueify_out.mtz</baseName>
+      </HKLOUT>
+    </outputData>
+    <controlParameters>
+      <COMPLETE>No</COMPLETE>
+    </controlParameters>
+  </ccp4i2_body>
+</ccp4i2>

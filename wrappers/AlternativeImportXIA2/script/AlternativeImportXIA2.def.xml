@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>AlternativeImportXIA2</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="AlternativeImportXIA2">
+        <container id="inputData">
+            <content id="XIA2_DIRECTORY">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <isDirectory>True</isDirectory>
+                    <label>XIA2 output directory</label>
+                    <fileExtensions>xia2</fileExtensions>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="UNMERGEDOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CUnmergedDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="HKLOUT">
+                <className>CList</className>
+                <qualifiers/>
+                <subItem>
+                    <className>CObsDataFile</className>
+                    <qualifiers>
+                        <default>{'subType': '3'}</default>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="FREEROUT">
+                <className>CList</className>
+                <qualifiers/>
+                <subItem>
+                    <className>CFreeRDataFile</className>
+                    <qualifiers>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="runSummaries">
+                <className>CList</className>
+                <qualifiers>
+                    <listMaxLength>20</listMaxLength>
+                    <listMinLength>1</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CString</className>
+                    <qualifiers>
+		      <allowUndefined>True</allowUndefined>
+		      <minLength>0</minLength></qualifiers>
+                </subItem>
+            </content>
+            <content id="directoryPath">
+                <className>CString</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

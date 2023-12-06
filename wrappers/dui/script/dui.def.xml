@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+      <function>DEF</function>
+      <comment></comment>
+      <creationTime>Current</creationTime>
+      <userId>stevenkj</userId>
+      <ccp4iVersion>0.0.1</ccp4iVersion>
+      <jobId/>
+      <project></project>
+      <pluginName>dui</pluginName>
+      <pluginVersion></pluginVersion>
+      <pluginTitle>DUI - Dials User Interface</pluginTitle>
+      <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="dui">
+        <container id="inputData">
+            <content id="DUI_DIR">
+              <className>CDialsPickleFile</className>
+              <qualifiers>
+                <fromPreviousJob>True</fromPreviousJob>
+                <mustExist>False</mustExist>
+                <allowUndefined>True</allowUndefined>
+              </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="UNMERGEDMTZ">
+                <className>CList</className>
+                <subItem>
+                    <className>CUnmergedDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="MERGEDMTZ">
+                <className>CList</className>
+                <subItem>
+                    <className>CMtzDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DUI_ODIR">
+                <className>CList</className>
+                <subItem>
+                    <className>CDialsPickleFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

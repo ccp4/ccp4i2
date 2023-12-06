@@ -1,0 +1,373 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>Current</creationTime>
+    <userId>stevenkj</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>phaser_singleMR</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Single Atom MR with Phaser</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+
+  <ccp4i2_body id="phaser_singleMR">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>File containing structure factors (MTZ).</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+          <sameCrystalLevel>1</sameCrystalLevel>
+        </qualifiers>
+      </content>
+
+      <content id="ASUFILE">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+
+      <content id="COMP_BY">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>DEFAULT,MW,ASU</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+          <default>ASU</default>
+        </qualifiers>
+      </content>
+
+      <content id="ASU_PROTEIN_MW">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0</min>
+        </qualifiers>
+      </content>
+
+      <content id="ASU_NUCLEICACID_MW">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0</min>
+        </qualifiers>
+      </content>
+
+      <content id="RESOL_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="RESOL_LO">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>50.0</default>
+        </qualifiers>
+      </content>
+
+      <content id="RESOL_HI">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+
+      <content id="SINGLE_ATOM_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <default>S</default>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Atom type (periodic table symbol)</toolTip>
+          <charWidth>2</charWidth>
+        </qualifiers>
+      </content>
+
+      <content id="SINGLE_ATOM_NUM">
+        <className>CInt</className>
+        <qualifiers>
+          <default>1</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_ATOMTYP">
+        <className>CString</className>
+        <qualifiers>
+          <default>N</default>
+          <toolTip>Atom type (periodic table symbol)</toolTip>
+          <charWidth>2</charWidth>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_SIGCO_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_SIGCO">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>6.0</default>
+          <toolTip>LLG-map sigma cutoff for adding new atom sites</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_ATMSEP_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_ATMSEP">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>2.0</default>
+          <toolTip>LLG-map atomic separation distance cut-off</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_MAXCYC_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="LLG_COMPL_MAXCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <default>50</default>
+          <toolTip>LLG-map - Max number of completion cycles to use</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="inputDataExp">
+      <content id="EXP_PACKCT_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_PACKCT_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>PERCENT,BEST,ALLOWED,ALL</enumerators>
+          <menuText>Best packing (up to percent), Best packing (up to number), Max number of clashes, accept all solutions</menuText>
+          <default>PERCENT</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_PACKCT_AMT">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>5.0</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_QKPACK_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_TRAN_SRCHPK_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_TRAN_SRCHPK_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>PERCENT,SIGMA,NUMBER,ALL</enumerators>
+          <menuText>Percentage of top peak, Sigma (Z-Score) cutoff, number of peaks, all peaks</menuText>
+          <default>PERCENT</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_TRAN_SRCHPK_AMT">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>10.0</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_PURGE_TRANPK_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_PURGE_TRANPK_PER">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>75.0</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_PURGE_TRANPK_NUM">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_EXPLLG_CRT_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_EXPLLG_CRT">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>225.0</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_RESRAN_HRREFINE_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_RESRAN_HRREFINE_LO">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>50.0</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_RESRAN_HRREFINE_HI">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+
+      <content id="EXP_TRAN_NCS_ON">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CList</className>
+        <subItem>
+            <className>CPdbDataFile</className>
+            <qualifiers>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+        </subItem>
+      </content>
+
+      <content id="HKLOUT">
+        <className>CList</className>
+        <subItem>
+            <className>CMtzDataFile</className>
+            <qualifiers>
+                <saveToDb>False</saveToDb>
+            </qualifiers>
+        </subItem>
+      </content>
+
+      <content id="MAPOUT">
+        <className>CList</className>
+        <subItem>
+            <className>CMapCoeffsDataFile</className>
+            <qualifiers>
+                <default>
+                    <contentFlag>1</contentFlag>
+                    <subType>1</subType>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+        </subItem>
+      </content>
+
+      <content id="ABCDOUT">
+        <className>CList</className>
+        <subItem>
+            <className>CPhsDataFile</className>
+            <qualifiers>
+                <contentFlag>
+                    <default>1</default>
+                </contentFlag>
+            </qualifiers>
+        </subItem>
+      </content>
+
+      <content id="DIFMAPOUT">
+        <className>CList</className>
+        <subItem>
+            <className>CMapCoeffsDataFile</className>
+            <qualifiers>
+                <default>
+                    <contentFlag>1</contentFlag>
+                    <subType>2</subType>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+        </subItem>
+      </content>
+
+      <content id="PHASEOUT">
+        <className>CList</className>
+        <subItem>
+            <className>CPhsDataFile</className>
+            <qualifiers>
+                <saveToDb>True</saveToDb>
+                <contentFlag>
+                    <default>2</default>
+                </contentFlag>
+            </qualifiers>
+        </subItem>
+      </content>
+
+      <content id="PERFORMANCE">
+        <className>CExpPhasPerformance</className>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

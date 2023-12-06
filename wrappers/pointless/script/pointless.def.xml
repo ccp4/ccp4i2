@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <hostName>macf32-8.local</hostName>
+    <userId>pre</userId>
+    <ccp4iVersion>alpha_rev_4156</ccp4iVersion>
+    <pluginName>pointless</pluginName>
+    <creationTime>10:02 10/Oct/15</creationTime>
+    <OS>MacOSX</OS>
+  </ccp4i2_header>
+  <ccp4i2_body id="pointless">
+    <container id="inputData">
+      <content id="UNMERGEDFILES">
+        <className>CImportUnmergedList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CImportUnmerged</className>
+          <qualifiers>
+            <crystalName>
+              <guiLabel>crystal name</guiLabel>
+              <allowUndefined>False</allowUndefined>
+              <minLength>1</minLength>
+            </crystalName>
+            <dataset>
+              <guiLabel>dataset name</guiLabel>
+              <allowUndefined>False</allowUndefined>
+              <minLength>1</minLength>
+            </dataset>
+            <cell>
+              <a>
+                <guiLabel>a</guiLabel>
+                <toolTip>Cell length a in A</toolTip>
+              </a>
+              <b>
+                <guiLabel>b</guiLabel>
+                <toolTip>Cell length b in A</toolTip>
+              </b>
+              <c>
+                <guiLabel>c</guiLabel>
+                <toolTip>Cell length c in A</toolTip>
+              </c>
+              <alpha>
+                <guiLabel>alpha</guiLabel>
+                <toolTip>Cell angle alpha in degrees</toolTip>
+              </alpha>
+              <beta>
+                <guiLabel>beta</guiLabel>
+                <toolTip>Cell angle beta in degrees</toolTip>
+              </beta>
+              <gamma>
+                <guiLabel>gamma</guiLabel>
+                <toolTip>Cell angle gamma in degrees</toolTip>
+              </gamma>
+            </cell>
+            <file>
+              <mustExist>True</mustExist>
+              <fromPreviousJob>True</fromPreviousJob>
+              <allowUndefined>False</allowUndefined>
+              <contentFlag>
+                <min>0</min>
+              </contentFlag>
+              <baseName>
+                <allowedCharacters>*?</allowedCharacters>
+              </baseName>
+              <relPath>
+                <allowedCharacters>*?</allowedCharacters>
+              </relPath>
+            </file>
+          </qualifiers>
+        </subItem>
+      </content>
+   <content id="HKLIN_REF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>observed data,derived data,reference data</menuText>
+            <enumerators>1,2,3</enumerators>
+            <default>1</default>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_REF">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>unknown,model,homolog,fragment,heavy atoms</menuText>
+            <enumerators>0,1,2,3,4</enumerators>
+            <default>0</default>
+          </subType>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="MTZUNMERGEDOUT">
+        <className>CUnmergedMtzDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+        </qualifiers>
+      </content>
+      <content id="MTZMERGEDOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="MODE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Determine Laue group,Match index to reference,Choose a previous solution,Just combine input files</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>LAUE,MATCH,CHOOSE,COMBINE</enumerators>
+          <default>LAUE</default>
+        </qualifiers>
+      </content>
+      <content id="REFERENCE_DATASET">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Merged reflections,Unmerged reflections,Coordinates</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>HKL_MERGED,HKL_UNMERGED,XYZ</enumerators>
+          <default>HKL_MERGED</default>
+        </qualifiers>
+      </content>
+      <content id="WRITE_HKLOUT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="EXCLUDE_BATCH">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="EXCLUDED_BATCHES">
+        <className>CString</className>
+        <qualifiers>
+          <charWidth>50</charWidth>
+        </qualifiers>
+      </content>
+      <content id="COPY">
+        <className>CBoolean</className>
+        <qualifiers/>
+      </content>
+      <content id="SET_SETTING">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Default: set primitive orthorhombic groups in order (a&lt;b&lt;c) &amp; allow monoclinic I2 setting of C2,Always set primitive orthorhombic groups in order (a&lt;b&lt;c) &amp; allow monoclinic I2 setting of C2,Use reference setting for primitive orthorhombic &amp; always use C2 rather than I2,Set primitive orthorhombic groups in cell length order (a&lt;b&lt;c) but always use C2 rather than I2</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,CELL_BASED,SYMMETRY_BASED,C2</enumerators>
+          <toolTip>Setting convention for primitive orthorhombic and centred monoclinic lattices</toolTip>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="RESOLUTION_RANGE">
+        <className>CFloatRange</className>
+        <qualifiers/>
+      </content>
+      <content id="POINTLESS_USE_RESOLUTION_RANGE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Use this resolution range in symmetry determination</toolTip>
+          <default>False</default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="ISIGLIMIT">
+        <className>CFloat</className>
+        <qualifiers/>
+      </content>
+      <content id="CCHALFLIMIT">
+        <className>CFloat</className>
+        <qualifiers/>
+      </content>
+      <content id="TOLERANCE">
+        <className>CFloat</className>
+        <qualifiers/>
+      </content>
+      <content id="CHOOSE_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Perform search then choose Laue group solution number,Perform search then choose Laue group,Perform search then choose spacegroup,Specify Laue group and optionally reindex,Specify spacegroup and optionally reindex</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>SOLUTION_NO,LAUEGROUP,SPACEGROUP,REINDEX_SPACE</enumerators>
+          <default>SPACEGROUP</default>
+        </qualifiers>
+      </content>
+      <content id="CHOOSE_SOLUTION_NO">
+        <className>CInt</className>
+        <qualifiers/>
+      </content>
+      <content id="CHOOSE_LAUEGROUP">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+      <content id="CHOOSE_SPACEGROUP">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+      <content id="REINDEX_OPERATOR">
+        <className>CReindexOperator</className>
+        <qualifiers>
+          <h>
+            <default>h</default>
+          </h>
+          <k>
+            <default>k</default>
+          </k>
+          <l>
+            <default>l</default>
+          </l>
+        </qualifiers>
+      </content>
+      <content id="CELL">
+        <className>CCell</className>
+        <qualifiers>
+          <a>
+            <guiLabel>a</guiLabel>
+            <toolTip>Cell length a in A</toolTip>
+          </a>
+          <b>
+            <guiLabel>b</guiLabel>
+            <toolTip>Cell length b in A</toolTip>
+          </b>
+          <c>
+            <guiLabel>c</guiLabel>
+            <toolTip>Cell length c in A</toolTip>
+          </c>
+          <alpha>
+            <guiLabel>alpha</guiLabel>
+            <toolTip>Cell angle alpha in degrees</toolTip>
+          </alpha>
+          <beta>
+            <guiLabel>beta</guiLabel>
+            <toolTip>Cell angle beta in degrees</toolTip>
+          </beta>
+          <gamma>
+            <guiLabel>gamma</guiLabel>
+            <toolTip>Cell angle gamma in degrees</toolTip>
+          </gamma>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH">
+        <className>CWavelength</className>
+        <qualifiers>
+          <max>10.0</max>
+          <toolTip>Wavelength for file types which lack it</toolTip>
+        </qualifiers>
+      </content>
+      <content id="RUN_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>automatic,explicit batch ranges,by file (for Pointless)</menuText>
+          <enumerators>AUTO,BYRANGE,BYFILE</enumerators>
+          <default>AUTO</default>
+        </qualifiers>
+      </content>
+      <content id="RUN_BATCHLIST">
+        <className>CRunBatchRangeList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CRunBatchRange</className>
+          <qualifiers>
+            <runNumber>
+              <min>1</min>
+            </runNumber>
+            <fileNumber>
+              <min>1</min>
+            </fileNumber>
+            <batchRange0>
+              <min>1</min>
+            </batchRange0>
+            <batchRange1>
+              <min>1</min>
+            </batchRange1>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="REMOVE_LATTICE_CENTERING">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Remove reflections absent in centred lattice</toolTip>
+        </qualifiers>
+      </content>
+      <content id="LATTICE_CENTERING">
+        <className>CString</className>
+        <qualifiers>
+           <menuText>P,A,B,C,I,F,R:H</menuText>
+           <onlyEnumerators>True</onlyEnumerators>
+           <enumerators>P,A,B,C,I,F,H</enumerators>
+        </qualifiers>
+      </content>
+      <content id="ALLOW_NONCHIRAL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Allow non-chiral space groups</toolTip>
+        </qualifiers>
+      </content>
+    <content id="MMCIF_SELECTED_BLOCK">
+       <className>CString</className>
+    </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

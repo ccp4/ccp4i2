@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginTitle>ModelCraft</pluginTitle>
+        <pluginName>modelcraft</pluginName>
+        <userId>paul.bond@york.ac.uk</userId>
+    </ccp4i2_header>
+    <ccp4i2_body id="modelcraft">
+        <container id="inputData">
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="PHASES">
+                <className>CPhsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="ASUIN">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <ifAtomSelection>True</ifAtomSelection>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="USE_MODEL_PHASES">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="CYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>25</default>
+                </qualifiers>
+            </content>
+            <content id="AUTO_STOP">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="STOP_CYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>4</default>
+                </qualifiers>
+            </content>
+            <content id="BASIC">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="TWINNED">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="SHEETBEND">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="UNBIASED">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="SELENOMET">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+            </content>
+            <content id="ABCDOUT">
+                <className>CPhsDataFile</className>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CRefinementPerformance</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

@@ -1,0 +1,177 @@
+<?xml version="1.0" ?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>phaser_MR_RNP</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="phaser_MR_RNP">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>pipelines/phaser_pipeline/wrappers/phaser_MR/script</relPath>
+                <baseName>phaser_MR.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        
+        <container id="inputData">
+          <content id="MODE_TY">
+              <className>CString</className>
+              <qualifiers>
+                  <enumerators>MR_AUTO,MR_FRF,MR_FTF,MR_PAK,MR_RNP</enumerators>
+                  <menuText>Automated Phaser Search,Rotation Search,Translation Search, Packing Test, Refinement and Phasing</menuText>
+                  <onlyEnumerators>1</onlyEnumerators>
+                  <default>MR_RNP</default>
+              </qualifiers>
+            </content>
+            <content id="COMP_BY">
+                <className>CString</className>
+                <qualifiers>
+                    <enumerators>DEFAULT,MW,ASU</enumerators>
+                    <onlyEnumerators>1</onlyEnumerators>
+                    <default>DEFAULT</default>
+                </qualifiers>
+            </content>
+            <content id="RESOLUTION_LOW">
+                <className>CFloat</className>
+                </content>
+            <content id="RESOLUTION_HIGH">
+                <className>CFloat</className>
+                <qualifiers>
+                    </qualifiers>
+            </content>
+            <content id="SOLIN">
+                <className>CPhaserSolDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="USINGSOLELEMENTS">
+                <className>CList</className>
+                <qualifiers>
+                    <listMaxLength>1024</listMaxLength>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CString</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+        </container>
+        <container id="keywords">
+            <content id="TARG_TRAN">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Translation target function</guiLabel>
+                    <enumerators>fast,brute,phased</enumerators>
+                    <default>fast</default>
+                    <onlyEnumerators>1</onlyEnumerators>
+                </qualifiers>
+            </content>
+            <content id="TARG_TRAN_TYPE">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Fast translation target function type</guiLabel>
+                    <enumerators>LETF1,LETF2</enumerators>
+                    <default>LETF1</default>
+                    <onlyEnumerators>1</onlyEnumerators>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="dataReindexed">
+                <className>CBoolean</className>
+            </content>
+            <content id="XMLOUT">
+                <className>CXmlDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="SOLUTION_LLG">
+                <className>CList</className>
+                <qualifiers>
+                    <listMaxLength>None</listMaxLength>
+                    <listMinLength>None</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CFloat</className>
+                </subItem>
+            </content>
+            <content id="XYZOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="SOLOUT">
+                <className>CPhaserSolDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="HKLOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMtzDataFile</className>
+                    <qualifiers>
+                        <saveToDb>False</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="MAPOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <default>
+                            <contentFlag>1</contentFlag>
+                            <subType>1</subType>
+                        </default>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DIFMAPOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <default>
+                            <contentFlag>1</contentFlag>
+                            <subType>2</subType>
+                        </default>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="PHASEOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPhsDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                        <contentFlag>
+                            <default>2</default>
+                        </contentFlag>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+              
+    </ccp4i2_body>
+</ccp4:ccp4i2>
+
+    

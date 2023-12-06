@@ -1,0 +1,105 @@
+<?xml version='1.0'?>
+<typeDefinitions>
+  <mtzColumnGroup_F_SIGF>
+     <baseType>mtzColumnGroup</baseType>
+     <dataQualifiers>
+       <MTZ_file>HKLIN</MTZ_file>
+       <mustExist>1</mustExist>
+       <mimeTypeName>mtzColumnGroup_F_SIGF</mimeTypeName>
+       <requiredColumnsList>
+          <mtzColumn id="F">
+            <columnType>F</columnType>
+       	  </mtzColumn>
+          <mtzColumn id="SIGF">
+            <columnType>Q</columnType>
+            <partnerTo>F</partnerTo>
+	  </mtzColumn>
+      </requiredColumnsList>
+     </dataQualifiers>
+  </mtzColumnGroup_F_SIGF>
+  <mtzColumnGroup_Fp_SIGFp>
+     <baseType>mtzColumnGroup</baseType>
+     <dataQualifiers>
+       <MTZ_file>HKLIN</MTZ_file>
+       <mustExist>1</mustExist>
+       <mimeTypeName>mtzColumnGroup_Fp_SIGFp</mimeTypeName>
+       <requiredColumnsList>
+          <mtzColumn id="F+">
+            <columnType>G</columnType>
+       	  </mtzColumn>
+          <mtzColumn id="SIGF+">
+            <columnType>L</columnType>
+            <partnerTo>F+</partnerTo>
+	  </mtzColumn>
+      </requiredColumnsList>
+     </dataQualifiers>
+  </mtzColumnGroup_Fp_SIGFp>
+  <mtzColumnGroup_Fm_SIGFm>
+     <baseType>mtzColumnGroup</baseType>
+     <dataQualifiers>
+       <MTZ_file>HKLIN</MTZ_file>
+       <mustExist>1</mustExist>
+       <mimeTypeName>mtzColumnGroup_Fm_SIGFm</mimeTypeName>
+       <requiredColumnsList>
+          <mtzColumn id="F-">
+            <columnType>G</columnType>
+       	  </mtzColumn>
+          <mtzColumn id="SIGF-">
+            <columnType>L</columnType>
+            <partnerTo>F-</partnerTo>
+	  </mtzColumn>
+      </requiredColumnsList>
+     </dataQualifiers>
+  </mtzColumnGroup_Fm_SIGFm>
+  <mtzColumnGroup_FA_SIGFA>
+     <baseType>mtzColumnGroup</baseType>
+     <dataQualifiers>
+       <MTZ_file>HKLOUT</MTZ_file>
+       <mustExist>1</mustExist>
+       <mimeTypeName>mtzColumnGroup_FA_SIGFA</mimeTypeName>
+       <requiredColumnsList>
+          <mtzColumn id="FA">
+            <columnType>F</columnType>
+       	  </mtzColumn>
+          <mtzColumn id="SIGFA">
+            <columnType>Q</columnType>
+            <partnerTo>FA</partnerTo>
+	  </mtzColumn>
+      </requiredColumnsList>
+     </dataQualifiers>
+  </mtzColumnGroup_FA_SIGFA>
+  <mtzColumnGroup_EA_SIGEA>
+     <baseType>mtzColumnGroup</baseType>
+     <dataQualifiers>
+       <MTZ_file>HKLOUT</MTZ_file>
+       <mustExist>1</mustExist>
+       <mimeTypeName>mtzColumnGroup_EA_SIGEA</mimeTypeName>
+       <requiredColumnsList>
+          <mtzColumn id="EA">
+            <columnType>R</columnType>
+       	  </mtzColumn>
+          <mtzColumn id="SIGEA">
+            <columnType>Q</columnType>
+            <partnerTo>EA</partnerTo>
+	  </mtzColumn>
+      </requiredColumnsList>
+     </dataQualifiers>
+  </mtzColumnGroup_EA_SIGEA>
+  <mtzColumnGroup_PHI_W>
+     <baseType>mtzColumnGroup</baseType>
+     <dataQualifiers>
+       <MTZ_file>HKLIN</MTZ_file>
+       <mustExist>1</mustExist>
+       <mimeTypeName>mtzColumnGroup_PHI_W</mimeTypeName>
+       <requiredColumnsList>
+          <mtzColumn id="PHI">
+            <columnType>P</columnType>
+	  </mtzColumn>
+          <mtzColumn id="W">
+            <columnType>W</columnType>
+            <partnerTo>PHI</partnerTo>
+	  </mtzColumn>
+      </requiredColumnsList>
+     </dataQualifiers>
+  </mtzColumnGroup_PHI_W>
+</typeDefinitions>

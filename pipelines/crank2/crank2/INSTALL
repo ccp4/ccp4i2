@@ -1,0 +1,58 @@
+                      INSTALLATION OF CRANK2
+                      ----------------------
+
+
+Installation for use from command line
+--------------------------------------
+
+Add the crank2/bin directory (containing the crank2, and possibly also the programs, executables) 
+to the PATH environment variable.
+(This is the same directory that contains this INSTALL file. Please do not add any other crank2 
+subdirectories to the PATH!)
+
+For example, in bash:
+
+export PATH=/path-to-crank2-bin-directory:$PATH
+
+
+
+Installation for use from CCP4 graphical interface
+--------------------------------------------------
+
+1) Set the CRANK2 directory
+
+If you are using bash, add the following to your .profile or .bashrc or .bash_profile file:
+
+export CRANK2=/path-to-crank2-directory
+
+If you are using tcsh or csh, add the following to your .tcshrc or .login file:
+
+setenv CRANK2 /path-to-crank2-directory
+
+where the /path-to-crank2 is the directory containing this INSTALL file.
+
+
+2) Installation of the CCP4i interface
+
+Click on "System Administration" -> "Install/uninstall Tasks".  
+
+If you have an installation of an earlier Crank2 ccp4i gui, choose "Uninstall
+an existing task" and "Crank2" before proceeding with the installation.
+
+If you have administrator priviledges, you can install to the "main CCP4i" area, 
+otherwise please switch to the "user's local CCP4i" area.
+For "Task archive" choose the file /path-to-crank2-directory/ccp4i/crank2.tar.gz and
+click on "Apply".  Restart ccp4i to make sure the CRANK2 variable is set (logging off
+and on again might be needed in some cases as well).
+
+
+
+Compilation of the CRANK2 (sub)programs
+---------------------------------------
+
+The prerequisity is CCP4 installed from sources (the ccp4 libraries and header files are needed). 
+Then the following cmake command, issued in the crank2 directory, compiles and builds the binaries:
+cmake src && make && make install
+
+Note: in order for the new binaries to be used, the crank2/bin directory needs to be in the PATH
+before the $CCP4/bin directory. Otherwise the CCP4 version of the programs is used (if existing).

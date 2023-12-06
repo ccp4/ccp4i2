@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>phaser_simple</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="phaser_simple">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>pipelines/phaser_pipeline/script</relPath>
+                <baseName>phaser_pipeline.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        <container id="inputData">
+            <content id="RUNSHEETBEND">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <guiLabel>Tick if Sheetbend should be run before REFMAC</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="RUNREFMAC">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <guiLabel>Tick if simple REFMAC should be run after phaser</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="COMP_BY">
+                <className>CString</className>
+                <qualifiers>
+                    <enumerators>DEFAULT,MW,ASU</enumerators>
+                    <onlyEnumerators>1</onlyEnumerators>
+                    <default>MW</default>
+                </qualifiers>
+            </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <guiLabel>Search</guiLabel>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="NCOPIES">
+                <className>CInt</className>
+                <qualifiers>
+                    <min>1</min>
+                    <default>1</default>
+		    <enumerators>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24</enumerators>
+            <onlyEnumerators>False</onlyEnumerators>
+                </qualifiers>
+            </content>
+            <content id="ID_RMS">
+              <className>CString</className>
+              <qualifiers>
+                <enumerators>ID,RMS,CARD</enumerators>
+                <menuText>sequence identity (in range 0.0-1.0),RMS,read from header of PDB</menuText>
+                  <onlyEnumerators>1</onlyEnumerators>
+                  <default>ID</default>
+              </qualifiers>
+            </content>
+             <content id="SEARCHSEQUENCEIDENTITY">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0.0</min>
+                    <max>1.0</max>
+                    <default>0.9</default>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="SEARCHRMS">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0.0</min>
+                    <max>10.0</max>
+                    <default>1.0</default>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="FIXED_ID_RMS">
+            <className>CString</className>
+            <qualifiers>
+              <enumerators>ID,RMS</enumerators>
+              <menuText>sequence identity (in range 0.0-1.0),RMS</menuText>
+                <onlyEnumerators>1</onlyEnumerators>
+                <default>ID</default>
+            </qualifiers>
+          </content>
+          <content id="FIXEDSEQUENCEIDENTITY">
+             <className>CFloat</className>
+             <qualifiers>
+                 <min>0.0</min>
+                 <max>1.0</max>
+                 <default>0.9</default>
+                 <allowUndefined>True</allowUndefined>
+             </qualifiers>
+         </content>
+         <content id="FIXEDRMS">
+             <className>CFloat</className>
+             <qualifiers>
+                 <min>0.0</min>
+                 <max>10.0</max>
+                 <default>1.0</default>
+                 <allowUndefined>True</allowUndefined>
+             </qualifiers>
+         </content>
+            <content id="INPUT_FIXED">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_FIXED">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <guiLabel>Fixed</guiLabel>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>
+
+

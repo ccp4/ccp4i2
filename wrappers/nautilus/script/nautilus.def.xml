@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>cowtan</userId>
+        <creationTime>2017-03-22T13:41:05.561370</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>nautilus</pluginName>
+        <pluginTitle>nautilus</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="nautilus">
+ 
+    <!--Input data -->
+        <container id="inputData">
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="ABCD">
+                <className>CPhsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+		                <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="FWT_PHWT_IN">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <requiredSubType>1</requiredSubType>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="ASUIN">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <selectionMode>2</selectionMode>
+	                  <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1,0</requiredSubType>
+            		    <default><subType>1</subType></default>
+	            	    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+      	    </content>
+        </container>
+
+<!-- Control parameters -->
+        <container id="controlParameters">
+            <content id="CYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>3</default>
+                    <min>1</min>
+                </qualifiers>
+            </content>
+            <content id="RESOLUTION">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>2.0</default>
+                    <max>10.0</max>
+                    <min>1.0</min>
+                </qualifiers>
+            </content>
+      	    <content id="ANISOTROPY_CORRECTION">
+          	    <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+        </container>
+
+<!-- Output data -->
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                </qualifiers>
+            </content>
+        </container>
+
+    </ccp4i2_body>
+</ccp4i2>

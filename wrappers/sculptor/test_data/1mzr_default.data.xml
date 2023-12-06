@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>mdw</userId>
+    <creationTime>12:54 30/Aug/11</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>sculptor</pluginName>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <XYZIN>
+        <project>CCP4I2</project>
+        <baseName>input.pdb</baseName>
+        <relPath>wrappers/chainsaw/test_data</relPath>
+      </XYZIN>
+      <ALIGNIN>
+        <project>CCP4I2</project>
+        <baseName>alignment.pir</baseName>
+        <relPath>wrappers/chainsaw/test_data</relPath>
+      </ALIGNIN>
+    </inputData>
+    <outputData>
+      <FOLDER>/tmp/mdw</FOLDER>
+      <ROOT>1mzr_default</ROOT>
+    </outputData>
+    <controlParameters>
+      <TITLE>Sculptor test assuming defaults</TITLE>
+    </controlParameters>
+  </ccp4i2_body>
+</ccp4i2>

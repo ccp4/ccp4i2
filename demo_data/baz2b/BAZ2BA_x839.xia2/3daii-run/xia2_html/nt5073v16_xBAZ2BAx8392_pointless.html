@@ -1,0 +1,877 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!-- Baubles info
+     Version 0.0.8
+     Java loggraph:
+          archive  = JLogGraph.jar
+          codebase = .
+          code     = JLogGraph.class
+-->
+<!-- Inline stylesheet -->
+<style type="text/css"><!-- /* Hide the stylesheet from older browsers */
+body { font-family: Verdana, Arial, sans-serif;
+       font-size: 17px;
+       background-color: white; }
+h1 { background-color: gray; }
+h2 { background-color: lightgray; }
+.logfile { background-color: #fffddc; }
+.ccp4i   { font-weight: bold; }
+.banner  { background-color: lightgray;
+           border-top-style: solid;
+           border-bottom-style: solid;
+           border-color: gray;
+           border-width: 2px; }
+.summary  { font-weight: bold;
+            color: red;
+            font-size: 90%;
+            white-space: pre;
+            background-color: #ffffc6;
+            border-style: solid;
+            border-width: 1px;
+            border-color: orange; }
+.non_summary { font-size: 80%; }
+.result   { margin-left:5%; margin-right:5%; }
+.references { font-size: 70%; }
+.progname { font-size: 150%; font-weight: bold; }
+.proginfo { font-size: 90%; font-style: italic; }
+.progvers { font-size: 90%; font-style: italic; font-weight: bold; }
+.progterm { font-size: 90%; font-style: italic; font-weight: bold; }
+.doclink { font-size: 90%; position: absolute; right: 5%;}
+.applet  { border-bottom: 1px solid gray; }
+table,td,th { border-style: solid;
+              border-width: 2px;
+              border-spacing: 0;
+              border-color: gray;
+              padding: 1px;
+              font-size: 90%; }
+td,th { padding-left: 8px; padding-right: 8px; }
+.loggraph_tables      { border-style: none;
+                        background-color: #cfcdff; }
+table.loggraph_tables { padding: 8px;
+                        background-color: white; }
+.inner_control > a { font-size: 70%;
+                     background-color: white;
+                     position: relative; bottom: 0px; left: 80%; }
+-->
+</style>
+<!-- Javascript functions to hide/display folder content -->
+<script type="text/javascript">
+<!--  to hide script contents from old browsers
+
+// Pick loggraph
+// Hides all loggraphs and then shows just the one of
+// interest
+function pick_loggraph(name,i,nloggraphs)
+{
+  hide_all_loggraphs(name,nloggraphs);
+  show_loggraph(name,i);
+}
+
+// Function to display a loggraph associated with a log
+function show_loggraph(name,i)
+{
+  var loggraph_name = name + "_loggraph_" + i;
+  var loggraph_title = name + "_loggraph_title_" + i;
+  showElement(loggraph_name);
+  // Also make the title link bold
+  var obj = document.getElementById(loggraph_title);
+  obj.style.fontWeight = "bold";
+}
+
+// Function to hide a loggraph associated with a log
+function hide_loggraph(name,i)
+{
+  var loggraph_name = name + "_loggraph_" + i;
+  var loggraph_title = name + "_loggraph_title_" + i;
+  hideElement(loggraph_name);
+  // Also make the title link normal
+  var obj = document.getElementById(loggraph_title);
+  obj.style.fontWeight = "normal";
+}
+
+// Function to hide all loggraphs associated with a log
+function hide_all_loggraphs(name,n)
+{
+  // Loop over all graphs up to n and hide each one
+  for (var i=0; i<n; i++){
+    hide_loggraph(name,i);
+  }
+}
+
+// Function to open the complete log file from the
+// hidden state
+function open_full_logfile(name) {
+
+  // Show the entire logfile
+  var classname = name + "_logfile";
+  setDisplayByClass(classname,"block");
+
+  // Show the controls for toggling between
+  // summary and complete views
+  classname = name + "_logfile_open_controls";
+  setDisplayByClass(classname,"block");
+
+  // Hide the controls for accessing the logfile
+  // when it's hidden
+  classname = name + "_logfile_closed_controls";
+  setDisplayByClass(classname,"none");
+
+  // Show the full view
+  show_full_logfile(name);
+}
+
+// Function to open the log file summary from the
+// hidden state
+function open_summary_logfile(name) {
+
+  // Show the entire logfile
+  var classname = name + "_logfile";
+  setDisplayByClass(classname,"block");
+
+  // Show the controls for toggling between
+  // summary and complete views
+  classname = name + "_logfile_open_controls";
+  setDisplayByClass(classname,"block");
+
+  // Hide the controls for accessing the logfile
+  // when it's hidden
+  classname = name + "_logfile_closed_controls";
+  setDisplayByClass(classname,"none");
+
+  // Show the summary view
+  show_only_summary(name);
+}
+
+// Function to hide the complete log file
+function close_logfile(name)
+{
+  // Hide the entire logfile
+  var classname = name + "_logfile";
+  setDisplayByClass(classname,"none");
+
+  // Hide the controls for toggling between
+  // summary and complete views
+  classname = name + "_logfile_open_controls";
+  setDisplayByClass(classname,"none");
+
+  // Show the controls for accessing the logfile
+  // when it's hidden
+  classname = name + "_logfile_closed_controls";
+  setDisplayByClass(classname,"block");
+}
+
+// Function to show only summary for a program log
+function show_only_summary(name)
+{
+  // Hide everything that isn't a summary
+  // i.e. all the elements that have belong to
+  // classes ending with "_non_summary"
+  var classname = name + "_non_summary";
+  setDisplayByClass(classname,"none");
+
+  // Now deal with control elements
+
+  // Hide all controls that offer the option of
+  // showing the summary only
+  classname = name + "_show_summary_control";
+  setDisplayByClass(classname,"none");
+
+  // Show all controls that offer the option if
+  // showing the full log file
+  classname = name + "_show_full_logfile_control";
+  setDisplayByClass(classname,"block");
+}
+
+// Function to show full version of a program log
+function show_full_logfile(name)
+{
+  // Show all the associated elements that
+  // have class ending with "_non_summary"
+  var classname = name + "_non_summary";
+  setDisplayByClass(classname,"block");
+
+  // Now deal with control elements
+
+  // Show all controls that offer the option of
+  // showing the summary only
+  classname = name + "_show_summary_control";
+  setDisplayByClass(classname,"block");
+
+  // Hide all controls that offer the option if
+  // showing the full log file
+  classname = name + "_show_full_logfile_control";
+  setDisplayByClass(classname,"none");
+}
+
+// Open the view of a logfile fragment
+function open_fragment(n)
+{
+ var closed_classname = "fragment_closed_" + n;
+ setDisplayByClass(closed_classname,"none");
+ var open_classname = "fragment_open_" + n;
+ setDisplayByClass(open_classname,"block");
+}
+
+// Close the view of a logfile fragment
+function close_fragment(n)
+{
+ var closed_classname = "fragment_open_" + n;
+ setDisplayByClass(closed_classname,"none");
+ var open_classname = "fragment_closed_" + n;
+ setDisplayByClass(open_classname,"block");
+}
+
+// General function to reveal a specific element
+// Specify the id of an element and its display
+// style will be changed to "block"
+function showElement(name)
+{
+  // This changes the display style to be "block"
+  var obj = document.getElementById(name);
+  obj.style.display = "block";
+}
+
+// General function to hide a specific element
+// Specify the id of an element and its display
+// style will be changed to "none"
+function hideElement(name)
+{
+  // This changes the display style to be "none"
+  var obj = document.getElementById(name);
+  obj.style.display = "none";
+}
+
+// General function to set the display property for all elements
+// with a specific class
+// This is able to deal with elements that belong to multiple
+// classes
+function setDisplayByClass(classname,value)
+{
+  // Get all elements in the document
+  var elements = document.getElementsByTagName("*");
+
+  // For each element look for the "class" attribute
+  for (var i = 0; i < elements.length; i++) {
+      var node = elements.item(i);
+      // First try to get the class attribute using 'class'
+      // This seems to work on Firefox 2.* and 1.5
+      var classes = node.getAttribute('class');
+      if (classes == null) {
+          // If the attribute is null then try using the
+          // 'className' attribute instead
+          // This works for IE7 and IE6
+          classes = node.getAttribute('className');
+      }
+      if (classes != null) {
+          classes = classes.split(" ");
+          for (var k in classes) {
+              if (classes[k] == classname) {
+                  node.style.display = value;
+              }
+          }
+      }
+  }
+}
+
+// end hiding contents from old browsers  -->
+</script>
+<title>baubles: nt5073v16_xBAZ2BAx8392_pointless.log</title>
+</head>
+<body>
+<!-- Start of logfile -->
+<!-- baubles $Id: baubles.py 4468 2013-11-07 11:42:41Z graeme_winter $ -->
+<h1>nt5073v16_xBAZ2BAx8392_pointless.log</h1>
+<!-- List of references for programs -->
+<div class="references">Please consider citing the following papers:
+<ul>
+<li> Pointless
+<ul>
+<li> P.R.Evans, 'Scaling and assessment  of data quality' Acta Cryst. D62, 72-82  (2006).
+<a href="http://journals.iucr.org/d/issues/2006/01/00/ba5084/index.html">
+<b>PDF</b></a>
+P.R.Evans, 'An introduction to data reduction: space-group determination, scaling and intensity
+statistics' Acta Cryst. D67, 282-292 (2011)
+<a href="http://journals.iucr.org/d/issues/2011/04/00/ba5158/index.html">
+<b>PDF</b></a> </li>
+</ul>
+</ul>
+</div>
+<div class="banner">
+<a name="Pointless_0">
+<span class="progname">Pointless</span>
+<span class="progvers">Version 1.9.2</span>
+<span class="proginfo">Run at 11:08:02 on 15/ 5/2014</span>
+</a>
+</div>
+<div class="keytext">
+<p><b>Result:</b><div class=result>
+<p>
+Best Solution:    space group C 2 2 21<br />
+</p>
+<table>
+<tr><th>Reindex operator: </th><th>[h,k,l]</th></tr>
+<tr><th>Laue group probability: </th><td>1.000</td></tr>
+<tr><th>Systematic absence probability: </th><td>0.988</td></tr>
+<tr><th>Total probability: </th><td>0.988</td></tr>
+<tr><th>Space group confidence: </th><td>0.982</td></tr>
+<tr><th>Laue group confidence </th><td>0.000</td></tr>
+</table>
+<p>
+   Unit cell:    83.5  96.74  57.97        90     90     90<br />
+</p>
+<p>
+   37.14 to   2.04   - Resolution range selected on input<br />
+</p>
+<p>
+   Number of batches in file:   1800<br />
+</p>
+<p>
+The data do not appear to be twinned, from the L-test<br />
+</p>
+</div></p>
+</div>
+<div id="warnings" class="keytext">
+<p>The following warnings were issued:</p>
+<ul>
+<li><span class="Warning">WARNING: In LAUEGROUP command: 
+   Rhombohedral group name HKLIN will be used in the hexagonal [H] setting H KLIN</span></li>
+<li><span class="Warning">WARNING: In LAUEGROUP command: 
+   Rhombohedral group name HKLIN will be used in the hexagonal [H] setting H KLIN</span></li>
+</ul></div>
+<div id="POINTLESS_0_loggraph_folder" class="loggraphs">
+
+<table class="loggraph_tables">
+<tr>
+<td class="loggraph_tables">
+<div class="loggraph_tables">
+<p>The following tables were found in the logfile:</p>
+<p id="POINTLESS_0_loggraph_title_0" style="font-weight:bold"><a href="javascript://" onclick="pick_loggraph('POINTLESS_0',0,2)">L-test for twinning, twin fraction 0.020</a></p>
+<p id="POINTLESS_0_loggraph_title_1" style="font-weight:normal"><a href="javascript://" onclick="pick_loggraph('POINTLESS_0',1,2)">Axial reflections, axis c (lattice frame) screw axis 2(1)</a></p>
+</div>
+</td>
+
+<td>
+<div class="loggraph_applets">
+<div id="POINTLESS_0_loggraph_0" style="display:block">
+<div class=applet><applet archive="JLogGraph.jar"
+        code="JLogGraph.class"
+        codebase="."
+        width="500"
+        height="400">
+<param name="table" value="
+$TABLE: L-test for twinning, twin fraction 0.020:
+$GRAPHS
+ :Cumulative distribution of |L|, estimated fraction 0.020:N:1,2,3,4:
+$$
+ |L| N(|L|) Untwinned Twinned $$  $$
+ 0.0000 0.0000 0.0000 0.0000
+ 0.0500 0.0553 0.0500 0.0749
+ 0.1000 0.1081 0.1000 0.1495
+ 0.1500 0.1606 0.1500 0.2233
+ 0.2000 0.2116 0.2000 0.2960
+ 0.2500 0.2636 0.2500 0.3672
+ 0.3000 0.3152 0.3000 0.4365
+ 0.3500 0.3667 0.3500 0.5036
+ 0.4000 0.4173 0.4000 0.5680
+ 0.4500 0.4692 0.4500 0.6294
+ 0.5000 0.5220 0.5000 0.6875
+ 0.5500 0.5731 0.5500 0.7418
+ 0.6000 0.6230 0.6000 0.7920
+ 0.6500 0.6738 0.6500 0.8377
+ 0.7000 0.7230 0.7000 0.8785
+ 0.7500 0.7728 0.7500 0.9141
+ 0.8000 0.8218 0.8000 0.9440
+ 0.8500 0.8705 0.8500 0.9679
+ 0.9000 0.9180 0.9000 0.9855
+ 0.9500 0.9644 0.9500 0.9963
+ 1.0000 1.0000 1.0000 1.0000
+$$
+"><param name="list" value="4">
+</applet></div>
+<p><b>L-test for twinning, twin fraction 0.020</b></p>
+</div>
+<div id="POINTLESS_0_loggraph_1" style="display:none">
+<div class=applet><applet archive="JLogGraph.jar"
+        code="JLogGraph.class"
+        codebase="."
+        width="500"
+        height="400">
+<param name="table" value="
+$TABLE: Axial reflections, axis c (lattice frame) screw axis 2(1):
+$GRAPHS
+ :I/sigI vs. index, axis c, screw axis 2(1):N:1,4,5:
+ :I vs. index, axis c, screw axis 2(1):N:1,2:
+$$
+ Index I sigI I/sigI I'/sigI $$  $$
+ 2 155 6 26.21 26.21
+ 3 0 4 -0.00 0.00
+ 4 2853 104 27.48 27.48
+ 5 0 2 0.01 0.00
+ 6 531 20 26.78 26.78
+ 7 1 2 0.29 0.00
+ 8 384 15 26.17 26.17
+ 9 0 2 0.21 0.00
+ 10 125 5 22.71 22.71
+ 11 0 2 -0.22 0.00
+ 13 0 2 -0.20 0.00
+ 14 64 4 17.65 17.64
+ 15 2 2 1.14 0.35
+ 16 32 3 11.72 11.70
+ 17 0 2 0.15 0.00
+ 18 155 7 21.67 21.67
+ 19 -1 2 -0.33 0.00
+ 20 42 3 13.46 13.45
+ 21 0 2 0.27 0.40
+ 22 8 2 4.03 4.02
+ 23 1 2 0.52 0.37
+ 24 5 3 2.13 2.11
+ 25 1 2 0.43 0.11
+ 26 30 3 10.10 10.10
+ 27 -1 2 -0.61 0.00
+ 28 47 3 13.54 13.54
+$$
+"><param name="list" value="4">
+</applet></div>
+<p><b>Axial reflections, axis c (lattice frame) screw axis 2(1)</b></p>
+</div>
+</div>
+</td>
+
+</tr>
+</table>
+</div>
+<div class="doclink"><p><a href="/dls_sw/apps/ccp4/x86_64/6.4.0/8apr2014/ccp4-6.4.0/html/pointless.html">[Documentation]</a></p></div>
+
+<!-- Top-level visibility controls for POINTLESS_0 -->
+
+<div class="POINTLESS_0_logfile_closed_controls">
+   <!-- Controls available when logfile is completely hidden -->
+   <p>
+   <a href="javascript://"
+      onclick="open_summary_logfile('POINTLESS_0')">[Show logfile summary]</a>
+   <a href="javascript://"
+      onclick="open_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+   </p>
+</div>
+
+    <div class="POINTLESS_0_logfile_open_controls" style="display: none">
+   <!-- Controls available if some or all the logfile is visible -->
+   <div class="POINTLESS_0_show_full_logfile_control" style="display: none">
+      <p>Current view: summary only
+      <a href="javascript://"
+         onclick="show_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+     </p>
+   </div>
+   <div class="POINTLESS_0_show_summary_control">
+      <p>Current view: full logfile
+      <a href="javascript://"
+         onclick="show_only_summary('POINTLESS_0')">[Show logfile summary]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+      </p>
+   </div>
+</div>
+
+<!-- Start of the POINTLESS_0 logfile -->
+<div class="POINTLESS_0_logfile" style="display: none">
+
+<div class="logfile">
+
+<div class="POINTLESS_0_non_summary non_summary"><pre> ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 6.4: POINTLESS              version 1.9.2 : 06/03/14##
+ ###############################################################
+ User: unknown  Run date: 15/ 5/2014 Run time: 11:08:02 
+
+ Please reference: Collaborative Computational Project, Number 4. 1994.
+ &quot;The CCP4 Suite: Programs for Protein Crystallography&quot;. Acta Cryst. D50, 760-763.
+ as well as any specific reference in the program write-up.
+
+&gt;&gt;&gt;&gt;&gt; Input command lines &lt;&lt;&lt;&lt;&lt;
+
+lauegroup hklin
+setting symmetry-based
+
+&gt;&gt;&gt;&gt;&gt;     End of input    &lt;&lt;&lt;&lt;&lt;
+
+$TEXT:Warning:$$ $$
+WARNING: In LAUEGROUP command: 
+   Rhombohedral group name HKLIN will be used in the hexagonal [H] setting H KLIN
+$$
+
+$TEXT:Warning:$$ $$
+WARNING: In LAUEGROUP command: 
+   Rhombohedral group name HKLIN will be used in the hexagonal [H] setting H KLIN
+$$
+Release Date: 6th March 2014
+
+        ******************************************************
+        *                                                    *
+        *                     POINTLESS                      *
+        *                       1.9.2                        *
+        *                                                    *
+        *   Determine Laue group from unmerged intensities   *
+        *     Phil Evans MRC LMB, Cambridge                  *
+        * Uses cctbx routines by Ralf Grosse-Kunstleve et al.*
+        *                                                    *
+        ******************************************************
+
+ Spacegroup information obtained from library file: 
+ Logical Name: SYMINFO   Filename: /dls_sw/apps/ccp4/x86_64/6.4.0/8apr2014/ccp4-6.4.0/lib/data/syminfo.lib
+
+Reflection list generated from file:
+/dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2
+BAx8392/scale/SCALED_SAD_SWEEP1.mtz
+
+Title: From XDS file SCALED_SAD_SWEEP1.HKL, XDS run on 15-May-2014 from image
+
+   Space group from HKLIN file : C 2 2 2
+   Cell:   83.50  96.74  57.97  90.00  90.00  90.00
+   Resolution range in file:     37.14        2.04
+
+Time for reading file(s):    0.380 secs
+
+===============================================================
+
+&gt;*&gt; Summary of test data read in:
+   Resolution range accepted:    37.14        2.04
+
+   Number of reflections      =         15236
+   Number of observations     =         99053
+   Number of parts            =         99053
+   Number of batches in file  =          1800
+   Number of datasets         =             1
+      Project: nt5073v16 Crystal: xBAZ2BAx8392 Dataset: SAD
+      Run number:   1 consists of batches      1 to   1800
+         Phi range:     0.00 to     0.00   Time range:     0.00 to     0.00
+         Closest reciprocal axis to spindle: a* (angle    nan degrees)
+   Average unit cell:   83.50   96.74   57.97   90.00   90.00   90.00 
+   
+===============================================================
+
+Checking for possible twinning
+L-test for twinning (acentrics only) to maximum resolution    2.981
+    using Mn(I/sigmaI) cutoff    8.0
+Neighbouring reflections for test are +- 2 on h,k,l
+
+$TABLE: L-test for twinning, twin fraction 0.020:
+$GRAPHS:Cumulative distribution of |L|, estimated fraction 0.020:N:1,2,3,4:
+ $$
+      |L|       N(|L|)  Untwinned    Twinned   $$ $$
+     0.0000     0.0000     0.0000     0.0000
+     0.0500     0.0553     0.0500     0.0749
+     0.1000     0.1081     0.1000     0.1495
+     0.1500     0.1606     0.1500     0.2233
+     0.2000     0.2116     0.2000     0.2960
+     0.2500     0.2636     0.2500     0.3672
+     0.3000     0.3152     0.3000     0.4365
+     0.3500     0.3667     0.3500     0.5036
+     0.4000     0.4173     0.4000     0.5680
+     0.4500     0.4692     0.4500     0.6294
+     0.5000     0.5220     0.5000     0.6875
+     0.5500     0.5731     0.5500     0.7418
+     0.6000     0.6230     0.6000     0.7920
+     0.6500     0.6738     0.6500     0.8377
+     0.7000     0.7230     0.7000     0.8785
+     0.7500     0.7728     0.7500     0.9141
+     0.8000     0.8218     0.8000     0.9440
+     0.8500     0.8705     0.8500     0.9679
+     0.9000     0.9180     0.9000     0.9855
+     0.9500     0.9644     0.9500     0.9963
+     1.0000     1.0000     1.0000     1.0000
+$$
+      Estimated twin fraction alpha from cumulative N(|L|) plot 0.023 (+/-0.004)
+   &lt;|L|&gt;:    0.483 (0.5 untwinned, 0.375 perfect twin)
+      Estimated twin fraction alpha from &lt;|L|&gt;    0.020
+   :    0.315 (0.333 untwinned, 0.2 perfect twin)
+      Estimated twin fraction alpha from     0.018
+
+The L-test suggests that the data are not twinned
+Note that the estimate of the twin fraction from the L-test is not very accurate,
+  particularly for high twin fractions. Better estimates from other test need knowledge of
+  the point group and the twin operator, which are not available here
+Also these statistics come from unscaled (and unmerged) data, so may be inaccurate for that reason
+
+Time for twinning test    0.320 secs
+
+======================================================================
+
+Model for expectation(CC) = E(m) if symmetry is absent P(m;!S) = (1-m^k)^(1/k) with k =  2.2
+
+Reindexing or changing symmetry to selected Laue group C m m m
+Reindex operator from input cell to given Lauegroup: [h,k,l]
+
+   h'   = ( h k l ) (       1       0       0 )
+                    (       0       1       0 )
+                    (       0       0       1 )
+
+Unit cell after reindexing:  83.50  96.74  57.97  90.00  90.00  90.00
+
+Number of reflections  =             15236
+Number of observations =             99053
+Average multiplicity =                 6.5
+
+Resolution range in list:      37.14 -&gt;   2.04
+   
+Intensity normalisation: B-factor =  -17.6  +  -0.0010 * time  (final B -19.4)
+
+Resolution range reset to    37.14 to     2.71
+   using Mn(I/sigmaI) cutoff    6.0
+
+********************************************************
+
+Testing Lauegroups for systematic absences
+------------------------------------------
+
+I' is intensity adjusted by subtraction of a small fraction (0.02, NEIGHBOUR)
+ of the neighbouring intensities, to allow for possible overlap
+
+$TABLE: Axial reflections, axis c (lattice frame) screw axis 2(1):
+$GRAPHS:I/sigI vs. index, axis c, screw axis 2(1):N:1,4,5:
+:I vs. index, axis c, screw axis 2(1):N:1,2:
+ $$
+   Index          I       sigI    I/sigI   I'/sigI   $$ $$
+       2        155          6     26.21     26.21
+       3         -0          4     -0.00      0.00
+       4       2853        104     27.48     27.48
+       5          0          2      0.01      0.00
+       6        531         20     26.78     26.78
+       7          1          2      0.29      0.00
+       8        384         15     26.17     26.17
+       9          0          2      0.21      0.00
+      10        125          5     22.71     22.71
+      11         -0          2     -0.22      0.00
+      13         -0          2     -0.20      0.00
+      14         64          4     17.65     17.64
+      15          2          2      1.14      0.35
+      16         32          3     11.72     11.70
+      17          0          2      0.15      0.00
+      18        155          7     21.67     21.67
+      19         -1          2     -0.33      0.00
+      20         42          3     13.46     13.45
+      21          0          2      0.27      0.40
+      22          8          2      4.03      4.02
+      23          1          2      0.52      0.37
+      24          5          3      2.13      2.11
+      25          1          2      0.43      0.11
+      26         30          3     10.10     10.10
+      27         -1          2     -0.61      0.00
+      28         47          3     13.54     13.54
+$$
+
+Each 'zone' (axis or plane) in which some reflections may be systematically absent
+are scored by Fourier analysis of I'/sigma(I). 'PeakHeight' is the value
+in Fourier space at the relevent point (eg at 1/2 for a 2(1) axis)
+relative to the origin. This has an ideal value of 1.0 if the corresponding
+symmetry element is present. Zone directions (a,b,c) shown here are in the
+lattice group frame
+
+'Probability' is an estimate of how likely the element is to be  present
+
+</pre>
+  <!-- Add a control in the non-summary to flip back
+     to the summary only -->
+  <div class="POINTLESS_0_inner_control inner_control">
+     <a href="javascript://" onclick="show_only_summary('POINTLESS_0')">[Show summary only]</a>
+  </div>
+</div>
+
+<div class="summary"><pre>         Zone                Number PeakHeight  SD  Probability  ReflectionCondition
+
+Zones for Laue group C m m m
+ 1 screw axis 2(1) [c]           51   0.989   0.099   *** 0.988   00l: l=2n
+
+</pre></div>
+
+<div class="POINTLESS_0_non_summary non_summary"><pre>Time for systematic absence tests:    0.620 secs
+
+Possible spacegroups:
+--------------------
+Indistinguishable space groups are grouped together on successive lines
+
+'Reindex' is the operator to convert from the input hklin frame to the standard spacegroup frame.
+
+'TotProb' is a total probability estimate (unnormalised)
+
+'SysAbsProb' is an estimate of the probability of the space group based on
+the observed systematic absences.
+
+'Conditions' are the reflection conditions (absences)
+
+   Spacegroup         TotProb SysAbsProb     Reindex         Conditions
+
+    &lt;C 2 2 21&gt; ( 20)    0.988  0.988                         00l: l=2n (zone 1)
+    ..........
+     &lt;C 2 2 2&gt; ( 21)    0.012  0.012                         
+
+---------------------------------------------------------------
+
+Space group confidence (= Sqrt(Score * (Score - NextBestScore))) =     0.98
+
+Laue group confidence  (= Sqrt(Score * (Score - NextBestScore))) =     0.00
+
+Selecting space group C 2 2 21 as there is a single space group with the highest score
+
+</pre>
+  <!-- Add a control in the non-summary to flip back
+     to the summary only -->
+  <div class="POINTLESS_0_inner_control inner_control">
+     <a href="javascript://" onclick="show_only_summary('POINTLESS_0')">[Show summary only]</a>
+  </div>
+</div>
+
+<div class="summary"><pre> $TEXT:Result: $$ $$
+Best Solution:    space group C 2 2 21
+
+   Reindex operator:                   [h,k,l]                 
+   Laue group probability:             1.000
+   Systematic absence probability:     0.988
+   Total probability:                  0.988
+   Space group confidence:             0.982
+   Laue group confidence               0.000
+
+   Unit cell:    83.5  96.74  57.97        90     90     90
+
+   37.14 to   2.04   - Resolution range selected on input
+
+   Number of batches in file:   1800
+
+The data do not appear to be twinned, from the L-test
+
+$$ 
+</pre></div>
+
+<div class="POINTLESS_0_non_summary non_summary"><pre>HKLIN spacegroup: C 2 2 2  C-centred orthorhombic
+/dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/SCALED_SAD_SWEEP1.mtz
+Filename:
+/dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2
+BAx8392/scale/SCALED_SAD_SWEEP1.mtz
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Writing unmerged data to file pointless.mtz  in space group C 2 2 21
+
+   Reindexing operator         [h,k,l]
+
+   Real space transformation   (x,y,z)
+
+ * Title:
+
+ From XDS file SCALED_SAD_SWEEP1.HKL, XDS run on 15-May-2014 from image
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 nt5073v16
+          xBAZ2BAx8392
+          SAD
+             83.5000   96.7400   57.9700   90.0000   90.0000   90.0000
+             0.92001
+
+ * Number of Columns = 11
+
+ * Number of Reflections = 99053
+
+ * Missing value set to NaN in input mtz file
+
+ * Number of Batches = 1800
+
+ * Column Labels :
+
+ H K L M/ISYM BATCH I SIGI XDET YDET ROT FLAG
+
+ * Column Types :
+
+ H H H Y B J Q R R R I
+
+ * Associated datasets :
+
+ 0 0 0 0 0 0 0 0 0 0 0
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   83.5000   96.7400   57.9700   90.0000   90.0000   90.0000 
+
+ *  Resolution Range :
+
+    0.00072    0.24027     (     37.139 -      2.040 A )
+
+ * Sort Order :
+
+      1     2     3     4     5
+
+ * Space group = 'C 2 2 21' (number     20)
+
+  (spacegroup is known)
+
+$TEXT:Reference: $$ Please cite $$
+P.R.Evans, 'Scaling and assessment  of data quality' Acta Cryst. D62, 72-82  (2006).
+
+PDF
+P.R.Evans, 'An introduction to data reduction: space-group determination, scaling and intensity
+statistics' Acta Cryst. D67, 282-292 (2011)
+
+PDF
+$$
+</pre>
+  <!-- Add a control in the non-summary to flip back
+     to the summary only -->
+  <div class="POINTLESS_0_inner_control inner_control">
+     <a href="javascript://" onclick="show_only_summary('POINTLESS_0')">[Show summary only]</a>
+  </div>
+</div>
+
+
+</div>
+
+<!-- Tail-end visibility controls for POINTLESS_0 -->
+
+<div class="POINTLESS_0_logfile_closed_controls">
+   <!-- Controls available when logfile is completely hidden -->
+   <p>
+   <a href="javascript://"
+      onclick="open_summary_logfile('POINTLESS_0')">[Show logfile summary]</a>
+   <a href="javascript://"
+      onclick="open_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+   </p>
+</div>
+
+    <div class="POINTLESS_0_logfile_open_controls" style="display: none">
+   <!-- Controls available if some or all the logfile is visible -->
+   <div class="POINTLESS_0_show_full_logfile_control" style="display: none">
+      <p>Current view: summary only
+      <a href="javascript://"
+         onclick="show_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+     </p>
+   </div>
+   <div class="POINTLESS_0_show_summary_control">
+      <p>Current view: full logfile
+      <a href="javascript://"
+         onclick="show_only_summary('POINTLESS_0')">[Show logfile summary]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+      </p>
+   </div>
+</div>
+
+</div>
+<!-- End of POINTLESS_0 logfile -->
+
+<hr />
+<p><em>Generated for you by baubles 0.0.8 on Thu May 15 11:08:19 2014</em></p>
+</body>
+</html>

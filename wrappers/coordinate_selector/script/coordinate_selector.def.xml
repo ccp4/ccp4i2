@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>memn</userId>
+        <creationTime>13:15 30/Sep/11</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>coordinate_selector</pluginName>
+        <pluginTitle>COORDINATE SELECTOR:chop out a subset</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="coordinate_selector">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>4,3,2,1,0</requiredSubType>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                </qualifiers>
+            </content>
+	    <content id="NATOMS">
+	      <className>CAtomCountPerformance</className>
+	      </content>
+        </container>
+        <container id="controlParameters">
+            <content id="OVERRIDE_SUBTYPE">
+                <className>CInt</className>
+                <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+		  <default>0</default>
+                    <enumerators>0,1,2,3,4</enumerators>
+                    <menuText>unknown,model,homolog,fragment,heavy
+		    atoms</menuText>
+		    <guiLabel>Hint to appropriate use of the
+		    coordinate data</guiLabel>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

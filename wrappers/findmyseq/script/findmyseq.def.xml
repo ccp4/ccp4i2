@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+      <function>DEF</function>
+      <comment></comment>
+      <creationTime>Current</creationTime>
+      <userId>Kyle</userId>
+      <ccp4iVersion>0.0.1</ccp4iVersion>
+      <jobId/>
+      <project></project>
+      <pluginName>findmyseq</pluginName>
+      <pluginVersion></pluginVersion>
+      <pluginTitle>Find My Sequence</pluginTitle>
+      <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="findmyseq">
+    <container id="inputData">
+        <content id="F_SIGF">
+            <className>CObsDataFile</className>
+            <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <toolTip>MTZ Reflections File</toolTip>
+            </qualifiers>
+        </content>
+        <content id="XYZIN">
+            <className>CPdbDataFile</className>
+            <qualifiers>
+                <ifAtomSelection>True</ifAtomSelection>
+                <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <ifAtomSelection>True</ifAtomSelection>
+	            <requiredSubType>2,1,0</requiredSubType>
+                <default><subType>2</subType></default>
+                <toolTip>Model coordinates (PDB/mmCIF file).</toolTip>
+            </qualifiers>
+        </content>
+        <content id="FPHI">
+            <className>CMapCoeffsDataFile</className>
+            <qualifiers>
+	            <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <toolTip>Map (F/PHI)</toolTip>
+            </qualifiers>
+        </content>
+        <content id="LSEQDB">
+            <className>CDataFile</className>
+            <qualifiers>
+	            <guiLabel>Local Sequence Database</guiLabel>
+                <mustExist>False</mustExist>
+                <isDirectory>False</isDirectory>
+                <label>Local Sequence Db</label>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>False</fromPreviousJob>
+	            <toolTip>Local sequence database file (optional, please refer to FindMySequence documentation)</toolTip>
+            </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+        <content id="SEQOUT">
+            <className>CSeqDataFile</className>
+            <qualifiers>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+        </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

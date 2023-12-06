@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>13:33 26/Jul/12</creationTime>
+    <userId>cowtan</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>parrot</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Phase improvement using Parrot</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="parrot">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <requiredContentFlag>4</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="ABCD">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+	  <sameCrystalLevel>1</sameCrystalLevel>
+        </qualifiers>
+      </content>
+      <content id="ASUIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Sequence file for solvent content determination</toolTip>
+	  <selectionMode>2</selectionMode>
+        </qualifiers>
+	</content>
+      <content id="F_PHI">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>No NCS,NCS from heavy atom model,NCS from MR or partial model</menuText>
+          <enumerators>no,ha,mr</enumerators>
+          <default>no</default>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_HA">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+	  <requiredSubType>4</requiredSubType>
+          <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_MR">
+        <className>CPdbDataFile</className>
+         <qualifiers>
+	  <!--<requiredSubType>-4,0</requiredSubType> -->
+	   <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="ABCDOUT">
+        <className>CPhsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+            <default><subType>1</subType><contentFlag>1</contentFlag></default>
+            <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CExpPhasPerformance</className>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="F_SIGF_REF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>False</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <requiredContentFlag>4</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="ABCD_REF">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>False</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+	  <sameCrystalAs>F_SIGF_REF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_REF">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>False</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <menuText>normal (no NCS),normal (with NCS),many (with NCS)</menuText>
+          <default>3</default>
+          <enumerators>3,10,100</enumerators>
+          <allowUndefined>False</allowUndefined>
+          <onlyEnumerators>False</onlyEnumerators>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="ANISOTROPY_CORRECTION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="RESOLUTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <max>10.0</max>
+          <min>1.0</min>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="SOLVENT_CONTENT">
+        <className>CFloat</className>
+        <qualifiers>
+          <max>1.0</max>
+          <min>0.0</min>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="NCS_MASK_FILTER_RADIUS">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>8.0</default>
+          <max>20.0</max>
+          <min>5.0</min>
+        </qualifiers>
+      </content>
+      <content id="VERBOSE">
+        <className>CInt</className>
+        <qualifiers>
+          <min>0</min>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

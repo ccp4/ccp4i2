@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Ligand Tutorial</title>
+	<link rel="stylesheet" href="../docs/ccp4i2.css">
+        <style>
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+        </style>
+</head>
+
+<body>
+<h2>Programs</h2>
+<p>
+LIDIA, PHASER, ACEDRG, REFMAC, RDKIT, COOT
+</p>
+
+<h2>Scenario</h2>
+<p>
+(Accurately) informed that there is &ldquo;a lot of chod&rdquo; among the structure ligand complexes in the PDB, you decide to re-solve the structure of everyone's favourite PPI drug target MDM2 in complex with the game-changing tool compound Nutlin 3A.
+</p>
+<p>
+There is a dodgy 1.6 angstrom structure (4hg7) deposited by a disreputable group.... so you plan to use only the deposited reflections for that structure. There is a nice MDM2 structure from another group that you choose for your startpoint (1t4e). You plan to use modern tools to make a start model for Nutlin 3A.
+</p>
+
+<h2>Task 1: Molecular replacement – Molrep or Phaser</h2>
+<img height="300" alt="Molecular replacement" src="LigandTutorial1.png"/>
+<p>
+HINT: You can import files (reflections or coordinates) from the PDB directly: in the file browser dialog (accessed by clicking   ): a line at the top allows you to provide the accession code.
+</p>
+<p>
+HINT: Several tasks (e.g. Phaser molecular replacement) allow you to use a &ldquo;selection&rdquo; or subset from the coordinates you provide. For molecular replacement, it may be worthwhile specifying to use only one chain of a model you download: they often contain more than one chain. The syntax for specifying subsets is well worth knowing, but to specify chain A, you need only provide the selection string &ldquo;A/&rdquo; (quotation marks should not be included).
+</p>
+ 
+<h2>Task 2: Make your ligand – Make ligand task (LIDIA, ACEDRG, RDKIT)</h2>
+<img height="300" alt="Make ligand" src="LigandTutorial2.png"/>
+<p>
+Hint: The structural formula of Nutlin 3A is:
+</p>
+<img height="200" alt="Nutlin ligand" src="LigandTutorial3.png"/>
+<p>
+Hint: Lidia (currently) requires you to click both &ldquo;Apply&rdquo; and &ldquo;Quit&rdquo; to fire up the coordinate generating stuff
+</p>
+  
+<h2>Task 3: Introduce your ligand into the structure (Manual model building: COOT)</h2>
+<img height="300" alt="Coot" src="LigandTutorial4.png"/>
+
+</body>
+</html>
+ 

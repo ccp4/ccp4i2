@@ -1,0 +1,1161 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <hostName>pre-mac-2.lmb.internal</hostName>
+    <userId>pre</userId>
+    <ccp4iVersion>alpha_rev_70042</ccp4iVersion>
+    <pluginName>aimless_pipe</pluginName>
+    <creationTime>12:56 30/Jun/17</creationTime>
+    <OS>MacOSX</OS>
+  </ccp4i2_header>
+  <ccp4i2_body id="aimless_pipe">
+    <container id="inputData">
+      <content id="UNMERGEDFILES">
+        <className>CImportUnmergedList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CImportUnmerged</className>
+          <qualifiers>
+            <crystalName>
+              <guiLabel>crystal name</guiLabel>
+              <allowUndefined>False</allowUndefined>
+              <minLength>1</minLength>
+              <allowedCharsCode>1</allowedCharsCode>
+            </crystalName>
+            <dataset>
+              <guiLabel>dataset name</guiLabel>
+              <allowUndefined>False</allowUndefined>
+              <minLength>1</minLength>
+              <allowedCharsCode>1</allowedCharsCode>
+            </dataset>
+            <cell>
+              <a>
+                <guiLabel>a</guiLabel>
+                <toolTip>Cell length a in A</toolTip>
+              </a>
+              <b>
+                <guiLabel>b</guiLabel>
+                <toolTip>Cell length b in A</toolTip>
+              </b>
+              <c>
+                <guiLabel>c</guiLabel>
+                <toolTip>Cell length c in A</toolTip>
+              </c>
+              <alpha>
+                <guiLabel>alpha</guiLabel>
+                <toolTip>Cell angle alpha in degrees</toolTip>
+              </alpha>
+              <beta>
+                <guiLabel>beta</guiLabel>
+                <toolTip>Cell angle beta in degrees</toolTip>
+              </beta>
+              <gamma>
+                <guiLabel>gamma</guiLabel>
+                <toolTip>Cell angle gamma in degrees</toolTip>
+              </gamma>
+            </cell>
+            <file>
+              <mustExist>True</mustExist>
+              <fromPreviousJob>True</fromPreviousJob>
+              <allowUndefined>False</allowUndefined>
+              <contentFlag>
+                <min>0</min>
+              </contentFlag>
+              <baseName>
+                <allowedCharacters>*?</allowedCharacters>
+              </baseName>
+              <relPath>
+                <allowedCharacters>*?</allowedCharacters>
+              </relPath>
+            </file>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="HKLIN_FORMAT">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>NONE,MTZ,MMCIF,SCA,OTHER</enumerators>
+          <default>NONE</default>
+        </qualifiers>
+      </content>
+      <content id="NUMBER_OF_DATASETS">
+        <className>CList</className>
+        <subItem>
+          <className>CInt</className>
+        </subItem>
+      </content>
+    <content id="HKLIN_REF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>observed data,derived data,reference data</menuText>
+            <enumerators>1,2,3</enumerators>
+            <default>1</default>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_REF">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>unknown,model,homolog,fragment,heavy atoms</menuText>
+            <enumerators>0,1,2,3,4</enumerators>
+            <default>0</default>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="MMCIF_SELECTED_BLOCK">
+         <className>CString</className>
+      </content>
+      <content id="MMCIF_SELECTED_DETAILS">
+         <className>CString</className>
+      </content>
+      <content id="MMCIF_SELECTED_INFO">
+         <className>CString</className>
+      </content>
+      <content id="MMCIF_SELECTED_COLUMNS">
+         <className>CString</className>
+      </content>
+      <content id="MMCIF_SELECTED_ISINTENSITY">
+        <className>CInt</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="MMCIF_FILE_INDEX">
+        <className>CInt</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CObsDataFile</className>
+          <qualifiers>
+            <default/>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <subType>
+              <menuText>observed data,derived data,reference data</menuText>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>1,2,3</enumerators>
+              <default>1</default>
+            </subType>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="IMEANOUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CObsDataFile</className>
+          <qualifiers>
+            <default/>
+            <contentFlag>3</contentFlag>
+            <subType>
+              <menuText>observed data,derived data,reference data</menuText>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>1,2,3</enumerators>
+              <default>1</default>
+            </subType>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="FREEROUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="XMLOUT">
+        <className>CXmlDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CDataReductionPerformance</className>
+        <qualifiers>
+          <highResLimit>
+            <min>0.0</min>
+          </highResLimit>
+        </qualifiers>
+      </content>
+      <content id="UNMERGEDOUT">
+        <className>CUnmergedDataFileList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CUnmergedDataFile</className>
+          <qualifiers>
+            <toolTip>Scaled unmerged observed data</toolTip>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <baseName>
+              <allowedCharacters>*?</allowedCharacters>
+            </baseName>
+            <relPath>
+              <allowedCharacters>*?</allowedCharacters>
+            </relPath>
+          </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="DOPHASERANALYSIS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>Run Phaser analysis after Aimless</toolTip>
+        </qualifiers>
+      </content>
+      <content id="AUTOCUTOFF">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Run Aimless twice, first to find resolution limit</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ANALYSIS_MODE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MODE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Determine Laue group and space group,Match index to reference data,Choose a known or previous solution,No symmetry testing just copy and combine input files</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>LAUE,MATCH,CHOOSE,COMBINE</enumerators>
+          <default>LAUE</default>
+        </qualifiers>
+      </content>
+      <content id="SET_SETTING">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Default: set primitive orthorhombic groups in order (a&lt;b&lt;c) &amp; allow monoclinic I2 setting of C2,Always set primitive orthorhombic groups in order (a&lt;b&lt;c) &amp; allow monoclinic I2 setting of C2,Use reference setting for primitive orthorhombic &amp; always use C2 rather than I2,Set primitive orthorhombic groups in cell length order (a&lt;b&lt;c) but always use C2 rather than I2</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,CELL_BASED,SYMMETRY_BASED,C2</enumerators>
+          <toolTip>Setting convention for primitive orthorhombic and centred monoclinic lattices</toolTip>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="REFERENCE_DATASET">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Reflection list,Coordinates</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>HKL,XYZ</enumerators>
+          <toolTip>Reflection list or coordinate list</toolTip>
+          <default>HKL</default>
+        </qualifiers>
+      </content>
+      <content id="REFERENCE_FOR_AIMLESS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="CHOOSE_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>Perform search then choose Laue group solution number,Perform search then choose Laue group,Perform search then choose spacegroup,Specify spacegroup and optionally reindex</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>SOLUTION_NO,LAUEGROUP,SPACEGROUP,REINDEX_SPACE</enumerators>
+          <default>SPACEGROUP</default>
+        </qualifiers>
+      </content>
+      <content id="CHOOSE_SOLUTION_NO">
+        <className>CInt</className>
+        <qualifiers/>
+      </content>
+      <content id="CHOOSE_LAUEGROUP">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+      <content id="CHOOSE_SPACEGROUP">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+      <content id="REINDEX_OPERATOR">
+        <className>CReindexOperator</className>
+        <qualifiers>
+          <h>
+            <default>h</default>
+          </h>
+          <k>
+            <default>k</default>
+          </k>
+          <l>
+            <default>l</default>
+          </l>
+        </qualifiers>
+      </content>
+      <content id="EXCLUDE_BATCH">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>List batches or batch ranges to exclude from all steps</toolTip>
+        </qualifiers>
+      </content>
+      <content id="EXCLUDED_BATCHES">
+        <className>CString</className>
+        <qualifiers>
+          <charWidth>50</charWidth>
+        </qualifiers>
+      </content>
+      <content id="RESOLUTION_RANGE">
+        <className>CFloatRange</className>
+        <qualifiers>
+          <toolTip>Set resolution range (or just high resolution) to cut data for all steps (eg. 30.0 - 2.5, or enter just one of these values on the correct side)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="INFOCONTENTTHRESHOLD">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>None</guiLabel>
+          <default>0.1</default>
+`          <toolTip>Information content threshold</toolTip>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="ISIGLIMIT">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>I/sigma(I) threshold </toolTip>
+        </qualifiers>
+      </content>
+      <content id="CCHALFLIMIT">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>CC(1/2) threshold </toolTip>
+        </qualifiers>
+      </content>
+      <content id="CCHALFDISASTER">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>CC(1/2) inner shell disaster limit </toolTip>
+          <default>0.1</default>
+        </qualifiers>
+      </content>
+      <content id="MULTIPLICITYDISASTER">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Minimum multiplicity, inner disaster limit</toolTip>
+          <default>1.3</default>
+        </qualifiers>
+      </content>
+      <content id="TOLERANCE">
+        <className>CFloat</className>
+        <qualifiers/>
+      </content>
+      <content id="CELL">
+        <className>CCell</className>
+        <qualifiers>
+          <a>
+            <guiLabel>a</guiLabel>
+            <toolTip>Cell length a in A</toolTip>
+          </a>
+          <b>
+            <guiLabel>b</guiLabel>
+            <toolTip>Cell length b in A</toolTip>
+          </b>
+          <c>
+            <guiLabel>c</guiLabel>
+            <toolTip>Cell length c in A</toolTip>
+          </c>
+          <alpha>
+            <guiLabel>alpha</guiLabel>
+            <toolTip>Cell angle alpha in degrees</toolTip>
+          </alpha>
+          <beta>
+            <guiLabel>beta</guiLabel>
+            <toolTip>Cell angle beta in degrees</toolTip>
+          </beta>
+          <gamma>
+            <guiLabel>gamma</guiLabel>
+            <toolTip>Cell angle gamma in degrees</toolTip>
+          </gamma>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH">
+        <className>CWavelength</className>
+        <qualifiers>
+          <max>10.0</max>
+          <toolTip>Wavelength for file types which lack it</toolTip>
+        </qualifiers>
+      </content>
+      <content id="COMPLETE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>copy FreeR data from existing set</toolTip>
+        </qualifiers>
+      </content>
+      <content id="FREER_FRACTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>None</guiLabel>
+          <max>1.0</max>
+          <toolTip>Fraction in freeR set</toolTip>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="CUTRESOLUTION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="OVERRIDE_CELL_DIFFERENCE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel></guiLabel>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="ACCEPT_OVERLOADS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Maybe keep overloads is many are missing</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ACCEPT_EDGES">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Accepting edge observations may increase completeness if needed</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ACCEPT_XDS_MISFITS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>XDS outliers (MISFITS) are rejected by default</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SCALING_PROTOCOL">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>with automatic default settings,on rotation with secondary beam correction,on rotation axis,constant,No scaling only merge,by batch mode[deprecated]</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,SECONDARY,ROTATION,CONSTANT,ONLYMERGE,BATCH</enumerators>
+          <toolTip>define scaling protocol for all runs</toolTip>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="BFACTOR_SCALE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>switch relative B-factor scaling on</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SCALES_ROTATION_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>rotation interval,number of bins</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>SPACING,NBINS</enumerators>
+          <toolTip>spacing for scales along primary beam</toolTip>
+          <default>SPACING</default>
+        </qualifiers>
+      </content>
+      <content id="SCALES_ROTATION_SPACING">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>5.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>spacing in degrees</toolTip>
+          <charWidth>6</charWidth>
+        </qualifiers>
+      </content>
+      <content id="SCALES_ROTATION_NBINS">
+        <className>CInt</className>
+        <qualifiers>
+          <default>1</default>
+          <toolTip>number of primary scales </toolTip>
+        </qualifiers>
+      </content>
+      <content id="SCALES_BROTATION_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>rotation interval,number of bins</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>SPACING,NBINS</enumerators>
+          <toolTip>spacing for B-factors along primary beam</toolTip>
+          <default>SPACING</default>
+        </qualifiers>
+      </content>
+      <content id="SCALES_BROTATION_SPACING">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>20.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>spacing in degrees</toolTip>
+          <charWidth>6</charWidth>
+        </qualifiers>
+      </content>
+      <content id="SCALES_BROTATION_NBINS">
+        <className>CInt</className>
+        <qualifiers>
+          <default>1</default>
+          <toolTip>number of primary scales </toolTip>
+        </qualifiers>
+      </content>
+      <content id="SCALES_SECONDARY_NSPHHARMONICS">
+        <className>CInt</className>
+        <qualifiers>
+          <default>4</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>number of spherical harmonic terms (eg 4  - 6)</toolTip>
+          <charWidth>6</charWidth>
+        </qualifiers>
+      </content>
+      <content id="SCALES_TILETYPE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>automatic,no tile correction,CCD [default]</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,NONE,CCD</enumerators>
+          <toolTip>automatically on for 3x3 ADSC detectors</toolTip>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="SCALES_NTILEX">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>number of tiles on X</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SCALES_NTILEY">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>number of tiles on Y</toolTip>
+        </qualifiers>
+      </content>
+      <content id="OUTLIER_OVERRIDE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>override default outlier rejection</toolTip>
+        </qualifiers>
+      </content>
+      <content id="OUTLIER_EMAX">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>5.0</default>
+          <charWidth>5</charWidth>
+          <toolTip>maximum allowed E to exclude unreasonably large intensities</toolTip>
+        </qualifiers>
+      </content>
+      <content id="OUTLIER_SDMAX">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>6.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>for &gt;2 observations, reject if more than this SDs</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="OUTLIER_SDMAX2">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>6.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>for 2 observations, reject if more than this SDs</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="OUTLIER_SDMAXALL">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>8.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>for differences between I+ and I-, reject if more than this SDs</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="OUTLIER_SDMAXALL_ADJUST">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>increase rejection threshold for large anomalous differences</toolTip>
+        </qualifiers>
+      </content>
+      <content id="OUTLIER_COMBINE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>test for rejections across datasets</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ANALYSIS_OVERRIDE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>override default outlier rejection</toolTip>
+        </qualifiers>
+      </content>
+      <content id="CCMINIMUM">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.2</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>minimum CC(1/2) for resolution estimation</toolTip>
+          <charWidth>6</charWidth>
+        </qualifiers>
+      </content>
+      <content id="CCANOMMINIMUM">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.10</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>minimum CC(1/2) for anomalous resolution estimation</toolTip>
+          <charWidth>6</charWidth>
+        </qualifiers>
+      </content>
+      <content id="ISIGMINIMUM">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>minimum Mn(I/sd(I)) for resolution estimation</toolTip>
+          <charWidth>6</charWidth>
+        </qualifiers>
+      </content>
+      <content id="RUN_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>automatic,explicit batch ranges,by file (for Pointless)</menuText>
+          <enumerators>AUTO,BYRANGE,BYFILE</enumerators>
+          <default>AUTO</default>
+        </qualifiers>
+      </content>
+      <content id="RUN_BATCHLIST">
+        <className>CRunBatchRangeList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CRunBatchRange</className>
+          <qualifiers>
+            <runNumber>
+              <min>1</min>
+            </runNumber>
+            <fileNumber>
+              <min>1</min>
+            </fileNumber>
+            <batchRange0>
+              <min>1</min>
+            </batchRange0>
+            <batchRange1>
+              <min>1</min>
+            </batchRange1>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="SDCORRECTION_OVERRIDE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Override default SDcorrection</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_REFINE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>None</guiLabel>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Refine SDcorrection parameters</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_FIXSDB">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Fix sdB parameters</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_OPTIONS">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>INDIVIDUAL,SAME,SIMILAR</enumerators>
+          <menuText>individual,same,similar</menuText>
+          <default>SAME</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>use different, same or similar SDfactors for each run</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_DAMP">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.05</default>
+          <toolTip>damping factor in SD refinement</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_SIMILARITY_SDFAC">
+        <className>CFloat</className>
+        <qualifiers>
+          <charWidth>7</charWidth>
+          <max>None</max>
+          <min>None</min>
+          <default>0.05</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>SD(sdFac) for similarity </toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_SIMILARITY_SDB">
+        <className>CFloat</className>
+        <qualifiers>
+          <charWidth>7</charWidth>
+          <guiLabel>None</guiLabel>
+          <min>None</min>
+          <default>3.0</default>
+          <max>None</max>
+          <toolTip>SD(sdB) for similarity </toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_SIMILARITY_SDADD">
+        <className>CFloat</className>
+        <qualifiers>
+          <charWidth>7</charWidth>
+          <guiLabel>None</guiLabel>
+          <min>None</min>
+          <default>0.04</default>
+          <max>None</max>
+          <toolTip>SD(sdAdd) for similarity </toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_SET">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Set SD correction factors</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_SDFAC">
+        <className>CFloat</className>
+        <qualifiers>
+          <charWidth>7</charWidth>
+          <max>None</max>
+          <min>None</min>
+          <default>1.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>sdFac</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_SDB">
+        <className>CFloat</className>
+        <qualifiers>
+          <charWidth>7</charWidth>
+          <guiLabel>None</guiLabel>
+          <min>None</min>
+          <default>0.0</default>
+          <max>None</max>
+          <toolTip>sdB</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_SDADD">
+        <className>CFloat</className>
+        <qualifiers>
+          <charWidth>7</charWidth>
+          <guiLabel>None</guiLabel>
+          <min>None</min>
+          <default>0.03</default>
+          <max>None</max>
+          <toolTip>sdAdd</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SDCORRECTION_TIESDB_SD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>10.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>restraint on sdB value</toolTip>
+          <charWidth>7</charWidth>
+        </qualifiers>
+      </content>
+      <content id="INTENSITIES_OVERRIDE">
+        <className>CBoolean</className>
+        <qualifiers/>
+      </content>
+      <content id="INTENSITIES_OPTIONS">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>COMBINE,PROFILE,SUMMATION</enumerators>
+          <menuText>combined intensities,profile-fitted intensities,summation intensities</menuText>
+          <default>COMBINE</default>
+          <guiLabel>choose how to use partially-recorded observations</guiLabel>
+          <toolTip>None</toolTip>
+        </qualifiers>
+      </content>
+      <content id="PARTIALS_TEST">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>accept partials with total fraction between these limits</toolTip>
+        </qualifiers>
+      </content>
+      <content id="PARTIALS_FRACLOW">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.95</default>
+          <charWidth>7</charWidth>
+        </qualifiers>
+      </content>
+      <content id="PARTIALS_FRACHIGH">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.05</default>
+          <charWidth>7</charWidth>
+          <toolTip>None</toolTip>
+        </qualifiers>
+      </content>
+      <content id="PARTIALS_CHECK">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>check consistency of MPART flags from Mosflm</toolTip>
+        </qualifiers>
+      </content>
+      <content id="PARTIALS_SCALE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>scale partials which fall below the TEST limit</toolTip>
+        </qualifiers>
+      </content>
+      <content id="PARTIALS_SCALE_MIN">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+          <guiLabel>...down to a minimum fraction</guiLabel>
+          <toolTip>None</toolTip>
+          <charWidth>7</charWidth>
+        </qualifiers>
+      </content>
+      <content id="SCALING_DETAILS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>Details of scaling</toolTip>
+        </qualifiers>
+      </content>
+      <content id="CYCLES_FLAG">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>None</guiLabel>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Set number of cycles for scale refinement</toolTip>
+        </qualifiers>
+      </content>
+      <content id="CYCLES_N">
+        <className>CInt</className>
+        <qualifiers>
+          <default>10</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>Set number of cycles for scale refinement</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="PARALLEL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Switch on parallel refinement</toolTip>
+        </qualifiers>
+      </content>
+      <content id="PARALLEL_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <charWidth>28</charWidth>
+          <enumerators>AUTO,NUMBER,FRACTION,OFF</enumerators>
+          <menuText>set automatically,set number of processors,set fraction of processors,single processor</menuText>
+          <default>AUTO</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <toolTip>Set how many processors to use</toolTip>
+        </qualifiers>
+      </content>
+      <content id="NPROC">
+        <className>CInt</className>
+        <qualifiers>
+          <max>8</max>
+          <min>1</min>
+          <toolTip>number of processors to use</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="FRACPROC">
+        <className>CFloat</className>
+        <qualifiers>
+          <max>1.0</max>
+          <min>0.0</min>
+          <toolTip>fraction of processors to use</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="SELECT1">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>set minimum I/sd for 1st round scaling</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SELECT_IOVSDMIN">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>3.0</default>
+          <charWidth>7</charWidth>
+          <toolTip>set minimum I/sd for 1st round scaling</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SELECT2">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>set minimum E for 2nd round scaling</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SELECT_EMIN">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+          <charWidth>7</charWidth>
+          <toolTip>set minimum E for 2nd round scaling</toolTip>
+          <guiLabel>None</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="REFINE_REFERENCE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Refine against reference dataset</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_ROTATION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>Restrain successive primary beam scales together</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_ROTATION_SD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.05</default>
+          <charWidth>7</charWidth>
+          <toolTip>Restrain successive primary beam scales together with this SD</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_BFACTOR">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>Restrain successive B-factors together</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_BFACTOR_SD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.05</default>
+          <charWidth>7</charWidth>
+          <toolTip>Restrain successive B-factors together with this SD</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_SURFACE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>Restrain secondary beam scales to sphere</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_SURFACE_SD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.005</default>
+          <charWidth>7</charWidth>
+          <toolTip>Restrain secondary beam scales to sphere with this SD</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_BZERO">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Tie B-factors to zero</toolTip>
+        </qualifiers>
+      </content>
+      <content id="TIE_BZERO_SD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>10.0</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>Tie B-factors to zero</toolTip>
+          <charWidth>7</charWidth>
+        </qualifiers>
+      </content>
+      <content id="ONLYMERGE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <saveToDb>True</saveToDb>
+          <toolTip>Only merge</toolTip>
+        </qualifiers>
+      </content>
+      <content id="POINTLESS_USE_RESOLUTION_RANGE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <saveToDb>True</saveToDb>
+          <toolTip>Use this resolution range in symmetry determination</toolTip>
+        </qualifiers>
+      </content>
+      <qualifiers/>
+      <content id="OUTPUT_UNMERGED">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>Output Unmerged data as well as merged</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ORIGINAL_HKL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Output Unmerged data with original hkl</toolTip>
+        </qualifiers>
+      </content>
+      <content id="EXPERT_OPTIONS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>... if you know what you are doing</toolTip>
+        </qualifiers>
+      </content>
+      <content id="REMOVE_LATTICE_CENTERING">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Remove reflections absent in centred lattice</toolTip>
+        </qualifiers>
+      </content>
+      <content id="LATTICE_CENTERING">
+        <className>CString</className>
+        <qualifiers>
+           <menuText>P,A,B,C,I,F,R:H</menuText>
+           <onlyEnumerators>True</onlyEnumerators>
+           <enumerators>P,A,B,C,I,F,H</enumerators>
+        </qualifiers>
+      </content>
+      <content id="ALLOW_NONCHIRAL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Allow non-chiral space groups</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="guiParameters">
+      <content id="REFERENCE_DATASET_SET">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>whether a reference file is defined</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SCALING_PROTOCOL_SET">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <saveToDb>True</saveToDb>
+          <toolTip>whether scaling protocol has been explicitly set</toolTip>
+        </qualifiers>
+      </content>
+      <qualifiers/>
+      <content id="SHOW_MMCIF_BLOCKS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MMCIF_INDICES">
+        <className>CList</className>
+        <subItem>
+          <className>CInt</className>
+        </subItem>
+      </content>
+      <content id="MMCIF_BLOCKNAMES">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_DETAILS">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_INFO">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_COLUMNS">
+        <className>CList</className>
+      </content>
+      <content id="MMCIF_BLOCK_OTHER">
+        <className>CList</className>
+      </content>
+      <content id="NFILES_WITH_MULTIPLE_DATASETS">
+        <className>CInt</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

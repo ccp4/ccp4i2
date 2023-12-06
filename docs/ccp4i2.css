@@ -1,0 +1,239 @@
+
+
+TABLE.banner TD.header_text { font-size:xx-large; }
+TABLE.banner TD.logohead { font-size:x-large; }
+TABLE.banner TD.logotitle { font-size:x-large; }
+
+
+/* general */ /* I do not like this (SJM 29/03/2018) and I have removed margin on *everything* as it also applied to b,i,em, etc. I think global text-align, etc. is also iffy. */
+* {
+	line-height: 1.6em;
+	font-family:"Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+/* This is all necessary if we specifically give say Lucida Grande above, which we probably should not. */
+/*
+B EM {
+    font-family: "Helvetica Bold", Sans-Serif;
+}
+
+EM B {
+    font-family: "Helvetica Bold", Sans-Serif;
+}
+
+B I {
+    font-family: "Helvetica Bold", Sans-Serif;
+}
+
+I B {
+    font-family: "Helvetica Bold", Sans-Serif;
+}
+
+B {
+    font-family: "Helvetica Bold", Sans-Serif;
+}
+*/
+
+
+/* Navigation bar */
+.navigationBar { background-color: #999999;
+                    width: 100%; }
+.navigationBar th { background-image:
+                        url(../images/navbar/lightgrey_white.gif);
+                    background-color: #aaaaaa;
+	            border-style: solid;
+                    border-width: 1px;
+                    border-bottom-color: #777777;
+                    border-top-color: #777777;
+                    border-right-color: #dddddd;
+                    border-left-color: #555555; }
+.navigationBar a { text-decoration: none; }
+
+/* initialise hidesection and subjob as hidden */
+.hidesection {display: none}
+.subjob {display: none}
+
+/* fancy buttons */
+span.button {
+	color:#000;
+	text-decoration:none;
+        margin:3px;
+	padding:1px;
+	padding-left:20px;
+	padding-right:20px;
+	border:1px solid #DDD;
+	text-align:center;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+span.button:hover {
+	border-color:#3278BE;
+
+        background:#CCCCEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+}
+/* folder header */
+span.folder {
+        display:block;
+	color:#E0000;
+	text-decoration:none;
+        margin:3px;
+        width:600px;
+        height:1.6em;
+	padding:1px;
+	padding-left:20px;
+	padding-right:20px;
+	border:2px solid #DDD;
+	text-align:left;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#CED4D4;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+span.folder_link {
+        display:block;
+	color:#E0000;
+	text-decoration:none;
+        margin:3px;
+        width:600px;
+        height:1.6em;
+	padding:1px;
+	padding-left:20px;
+	padding-right:20px;
+	border:2px solid #DDD;
+	text-align:left;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#CED4D4;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+
+span.folder_link a {
+    color: #000000;
+    text-decoration:none;
+}
+
+span.button:hover {
+	border-color:#3278BE;
+
+        background:#CCCCEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+}
+
+/* fancy tables */
+th {
+	font-weight: normal;
+	padding: 2px 20px;
+        background:#CCCCEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #DDF);
+	border-top: 2px solid #DDF;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+tbody.fancy tr td {
+	padding: 2px 20px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+tfoot.fancy tr td {
+	background: #e8edff;
+	font-size: 12px;
+	color: #99c;
+}
+tbody.fancy tr:hover td {
+        background:#CCCCEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+	color: #339;
+}
+
+h1.error_report {
+    color:#EE0000;
+}
+
+h5.section {
+    
+}
+
+span.help {
+    display:block;
+    vertical-align:bottom;
+}
+
+div.datalist {
+   margin: 3px 3px;
+
+}
+
+object.qt_object  {
+   margin: 1px 1px;
+
+}
+object.qt_launch  {
+   margin: 3px 3px;
+   height:30px;
+   width:150px;
+}
+object.qt_launch_task  {
+   margin: 3px 3px;
+   height:30px;
+   width:150px;
+}
+
+object.loggraph  {
+   height: 400px;
+   width: 600px;
+   align: center;
+   margin-left:auto;
+   margin-right:auto;
+   margin-top: 3px;
+   margin-bottom: 3px;
+   border-width: 1px;
+   border-style: solid;
+}
+
+img.mg {
+   margin: 0px 0px;
+   border-width: 1px;
+   border-style: solid;
+   height: 400px;
+   width: 400px;
+  }
+
+p.annotation {
+  font-style:italic;
+}
+
+div.subjob {
+  background:#EEE;
+  }
+
+img.icon { height: 24px;
+           width: 24px;
+	 }

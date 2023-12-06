@@ -1,0 +1,2087 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module smartie</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>smartie</strong></big></big> (version 0.0.14)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/pjx/PROGRAMS/smartie/smartie.py">/home/pjx/PROGRAMS/smartie/smartie.py</a></font></td></tr></table>
+    <p><tt>smartie:&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>&nbsp;parsing&nbsp;functions<br>
+&nbsp;<br>
+The&nbsp;smartie&nbsp;module&nbsp;provides&nbsp;a&nbsp;set&nbsp;of&nbsp;classes&nbsp;and&nbsp;methods&nbsp;for&nbsp;parsing<br>
+logfiles&nbsp;from&nbsp;CCP4i&nbsp;and&nbsp;CCP4&nbsp;programs.&nbsp;The&nbsp;central&nbsp;class&nbsp;is&nbsp;the&nbsp;'<a href="#logfile">logfile</a>',<br>
+which&nbsp;provides&nbsp;a&nbsp;basic&nbsp;DOM-like&nbsp;description&nbsp;of&nbsp;a&nbsp;<a href="#logfile">logfile</a>&nbsp;and&nbsp;its<br>
+contents.&nbsp;Other&nbsp;classes&nbsp;provide&nbsp;descriptions&nbsp;of&nbsp;smaller&nbsp;chunks&nbsp;of&nbsp;<a href="#logfile">logfile</a><br>
+features&nbsp;(programs,&nbsp;tables,&nbsp;<a href="#keytext">keytext</a>&nbsp;data&nbsp;and&nbsp;CCP4i&nbsp;informational&nbsp;messages).<br>
+&nbsp;<br>
+The&nbsp;name&nbsp;'smartie'&nbsp;reflects&nbsp;the&nbsp;module's&nbsp;origins&nbsp;as&nbsp;the&nbsp;intended&nbsp;driver<br>
+for&nbsp;a&nbsp;'smart&nbsp;<a href="#logfile">logfile</a>&nbsp;browser'.<br>
+&nbsp;<br>
+Some&nbsp;additional&nbsp;documentation&nbsp;material&nbsp;is&nbsp;also&nbsp;available&nbsp;in&nbsp;the&nbsp;file<br>
+smartie_overview.html.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="copy.html">copy</a><br>
+<a href="linecache.html">linecache</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="smartie.html#buffer">buffer</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="smartie.html#tablebuffer">tablebuffer</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="smartie.html#fragment">fragment</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="smartie.html#ccp4i_info">ccp4i_info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smartie.html#program">program</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="smartie.html#keytext">keytext</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smartie.html#logfile">logfile</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smartie.html#patternmatch">patternmatch</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smartie.html#summary">summary</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smartie.html#table">table</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smartie.html#table_column">table_column</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smartie.html#table_graph">table_graph</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="buffer">class <strong>buffer</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Buffer&nbsp;object&nbsp;for&nbsp;parsing&nbsp;log&nbsp;files.<br>
+&nbsp;<br>
+The&nbsp;<a href="#buffer">buffer</a>&nbsp;object&nbsp;holds&nbsp;lines&nbsp;of&nbsp;text&nbsp;which&nbsp;are&nbsp;added<br>
+a&nbsp;line&nbsp;at&nbsp;a&nbsp;time&nbsp;via&nbsp;the&nbsp;'append'&nbsp;method.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="buffer-__init__"><strong>__init__</strong></a>(self, maxsize<font color="#909090">=0</font>)</dt><dd><tt>Initialise&nbsp;a&nbsp;new&nbsp;<a href="#buffer">buffer</a>&nbsp;object.<br>
+&nbsp;<br>
+If&nbsp;'maxsize'&nbsp;is&nbsp;greater&nbsp;than&nbsp;zero&nbsp;then&nbsp;it&nbsp;sets&nbsp;the<br>
+maximum&nbsp;number&nbsp;of&nbsp;lines&nbsp;that&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;will&nbsp;hold.<br>
+If&nbsp;this&nbsp;number&nbsp;of&nbsp;lines&nbsp;is&nbsp;exceeded&nbsp;by&nbsp;an&nbsp;append<br>
+operation,&nbsp;then&nbsp;the&nbsp;'oldest'&nbsp;line&nbsp;is&nbsp;dropped&nbsp;from<br>
+the&nbsp;<a href="#buffer">buffer</a>.<br>
+If&nbsp;'maxsize'&nbsp;is&nbsp;zero&nbsp;or&nbsp;negative&nbsp;then&nbsp;no&nbsp;upper&nbsp;limit<br>
+is&nbsp;placed&nbsp;on&nbsp;the&nbsp;number&nbsp;of&nbsp;lines&nbsp;that&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;will<br>
+store.</tt></dd></dl>
+
+<dl><dt><a name="buffer-all"><strong>all</strong></a>(self)</dt><dd><tt>Return&nbsp;entire&nbsp;<a href="#buffer">buffer</a>&nbsp;contents&nbsp;as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+All&nbsp;lines&nbsp;in&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;will&nbsp;be&nbsp;concatenated&nbsp;into&nbsp;a&nbsp;single<br>
+string&nbsp;with&nbsp;line&nbsp;ends&nbsp;terminated&nbsp;by&nbsp;a&nbsp;newline&nbsp;character.</tt></dd></dl>
+
+<dl><dt><a name="buffer-append"><strong>append</strong></a>(self, line)</dt><dd><tt>Append&nbsp;a&nbsp;line&nbsp;of&nbsp;text&nbsp;to&nbsp;the&nbsp;<a href="#buffer">buffer</a>.<br>
+&nbsp;<br>
+The&nbsp;line&nbsp;will&nbsp;have&nbsp;any&nbsp;trailing&nbsp;'end&nbsp;of&nbsp;line'<br>
+characters&nbsp;removed&nbsp;automatically&nbsp;upon&nbsp;storage.</tt></dd></dl>
+
+<dl><dt><a name="buffer-clear"><strong>clear</strong></a>(self)</dt><dd><tt>Clear&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;of&nbsp;all&nbsp;content.<br>
+&nbsp;<br>
+Delete&nbsp;all&nbsp;lines&nbsp;currently&nbsp;stored&nbsp;in&nbsp;the&nbsp;<a href="#buffer">buffer</a>.</tt></dd></dl>
+
+<dl><dt><a name="buffer-contents"><strong>contents</strong></a>(self, n, m)</dt><dd><tt>Return&nbsp;lines&nbsp;'n'&nbsp;through&nbsp;to&nbsp;'m'&nbsp;as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;specified&nbsp;lines&nbsp;from&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;concatenated<br>
+into&nbsp;a&nbsp;single&nbsp;string&nbsp;with&nbsp;line&nbsp;ends&nbsp;terminated&nbsp;by&nbsp;a&nbsp;newline<br>
+character.</tt></dd></dl>
+
+<dl><dt><a name="buffer-getlines"><strong>getlines</strong></a>(self, n, m)</dt><dd><tt>Return&nbsp;lines&nbsp;'n'&nbsp;through&nbsp;to&nbsp;'m'&nbsp;as&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;set&nbsp;of&nbsp;lines&nbsp;starting&nbsp;from&nbsp;line&nbsp;index&nbsp;'n'&nbsp;up&nbsp;to<br>
+but&nbsp;not&nbsp;including&nbsp;line&nbsp;index&nbsp;'m',&nbsp;as&nbsp;a&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="buffer-len"><strong>len</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;lines&nbsp;currently&nbsp;stored.</tt></dd></dl>
+
+<dl><dt><a name="buffer-line"><strong>line</strong></a>(self, n)</dt><dd><tt>Return&nbsp;the&nbsp;n'th&nbsp;line&nbsp;of&nbsp;text&nbsp;from&nbsp;the&nbsp;<a href="#buffer">buffer</a>.<br>
+&nbsp;<br>
+The&nbsp;line&nbsp;will&nbsp;be&nbsp;returned&nbsp;without&nbsp;end-of-line&nbsp;characters.</tt></dd></dl>
+
+<dl><dt><a name="buffer-tail"><strong>tail</strong></a>(self, n<font color="#909090">=10</font>)</dt><dd><tt>Return&nbsp;the&nbsp;'tail'&nbsp;of&nbsp;the&nbsp;<a href="#buffer">buffer</a>.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;last&nbsp;n&nbsp;lines&nbsp;of&nbsp;text&nbsp;stored&nbsp;in&nbsp;the<br>
+<a href="#buffer">buffer</a>,&nbsp;concatenated&nbsp;into&nbsp;a&nbsp;single&nbsp;string&nbsp;with&nbsp;end&nbsp;lines<br>
+terminated&nbsp;by&nbsp;a&nbsp;newline&nbsp;character.<br>
+If&nbsp;a&nbsp;number&nbsp;of&nbsp;lines&nbsp;is&nbsp;not&nbsp;specified&nbsp;then&nbsp;it&nbsp;defaults<br>
+to&nbsp;the&nbsp;last&nbsp;10&nbsp;lines&nbsp;of&nbsp;text.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ccp4i_info">class <strong>ccp4i_info</strong></a>(<a href="smartie.html#fragment">fragment</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;CCP4i&nbsp;information&nbsp;message&nbsp;in&nbsp;a&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+The&nbsp;<a href="#ccp4i_info">ccp4i_info</a>&nbsp;class&nbsp;has&nbsp;the&nbsp;following&nbsp;attributes:<br>
+&nbsp;<br>
+'message':&nbsp;the&nbsp;text&nbsp;of&nbsp;the&nbsp;CCP4i&nbsp;information&nbsp;message.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ccp4i_info-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ccp4i_info-isccp4i_info"><strong>isccp4i_info</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ccp4i_info-isfragment"><strong>isfragment</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="smartie.html#fragment">fragment</a>:<br>
+<dl><dt><a name="ccp4i_info-__getattr__"><strong>__getattr__</strong></a>(self, key)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;value&nbsp;=&nbsp;<a href="#fragment">fragment</a>.key<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;get_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;value&nbsp;=&nbsp;<a href="#fragment">fragment</a>[key]<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;get_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Implement&nbsp;the&nbsp;__len__&nbsp;built-in&nbsp;method.<br>
+&nbsp;<br>
+The&nbsp;length&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;lines<br>
+of&nbsp;text&nbsp;that&nbsp;it&nbsp;contains.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt><dd><tt>Implement&nbsp;the&nbsp;__nonzero__&nbsp;built-in&nbsp;method.<br>
+&nbsp;<br>
+The&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;considered&nbsp;'nonzero'&nbsp;once&nbsp;an<br>
+attribute,&nbsp;<a href="#table">table</a>&nbsp;or&nbsp;<a href="#keytext">keytext</a>&nbsp;has&nbsp;been&nbsp;assigned<br>
+to&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;<a href="#program">program</a>[key]&nbsp;=&nbsp;value<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;set_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-addkeytext"><strong>addkeytext</strong></a>(self, name<font color="#909090">=''</font>, junk_text<font color="#909090">=''</font>, message<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+Create&nbsp;a&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;and&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;list&nbsp;of<br>
+keytexts&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+The&nbsp;values&nbsp;of&nbsp;the&nbsp;parameters&nbsp;'name',&nbsp;'junk_text'&nbsp;and<br>
+'message'&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;initialise&nbsp;the&nbsp;new&nbsp;<a href="#keytext">keytext</a><br>
+object&nbsp;(one&nbsp;or&nbsp;more&nbsp;of&nbsp;these&nbsp;can&nbsp;be&nbsp;blank).<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-addtable"><strong>addtable</strong></a>(self, tabletext<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+Create&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;and&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;list&nbsp;of<br>
+tables&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+If&nbsp;'tabletext'&nbsp;is&nbsp;nonblank&nbsp;then&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;will<br>
+be&nbsp;automatically&nbsp;populated&nbsp;from&nbsp;the&nbsp;text,&nbsp;if&nbsp;possible.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-attributes"><strong>attributes</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;attributes.<br>
+&nbsp;<br>
+The&nbsp;list&nbsp;contains&nbsp;all&nbsp;the&nbsp;attributes&nbsp;that&nbsp;have&nbsp;been<br>
+set&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-findtable"><strong>findtable</strong></a>(self, title_pattern, index<font color="#909090">=0</font>)</dt><dd><tt>Fetch&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;by&nbsp;matching&nbsp;the&nbsp;title.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated;&nbsp;use&nbsp;the&nbsp;'tables'&nbsp;method<br>
+instead.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;looks&nbsp;up&nbsp;a&nbsp;particular&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;a&nbsp;list<br>
+of&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;(argument&nbsp;'table_list'),&nbsp;by&nbsp;finding<br>
+the&nbsp;first&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;list&nbsp;which&nbsp;matches&nbsp;the&nbsp;supplied<br>
+regular&nbsp;expression&nbsp;'title_pattern'.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;more&nbsp;than&nbsp;one&nbsp;matching&nbsp;<a href="#table">table</a>&nbsp;then&nbsp;the&nbsp;'index'<br>
+argument&nbsp;specifies&nbsp;which&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;matching&nbsp;tables<br>
+should&nbsp;be&nbsp;returned.&nbsp;If&nbsp;index&nbsp;is&nbsp;out&nbsp;of&nbsp;range&nbsp;(or&nbsp;there&nbsp;are<br>
+no&nbsp;matching&nbsp;tables)&nbsp;then&nbsp;return&nbsp;'None'.<br>
+&nbsp;<br>
+It&nbsp;calls&nbsp;the&nbsp;'find_table_by_title'&nbsp;function.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-get_attribute"><strong>get_attribute</strong></a>(self, key)</dt><dd><tt>Return&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute.&nbsp;If&nbsp;the&nbsp;attribute&nbsp;has&nbsp;been&nbsp;read&nbsp;from&nbsp;the&nbsp;file<br>
+then&nbsp;its&nbsp;value&nbsp;is&nbsp;returned,&nbsp;otherwise&nbsp;a&nbsp;KeyError<br>
+exception&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-get_endline"><strong>get_endline</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;end&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-get_source_file"><strong>get_source_file</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;source&nbsp;document&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-get_startline"><strong>get_startline</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;start&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-has_attribute"><strong>has_attribute</strong></a>(self, key)</dt><dd><tt>Check&nbsp;whether&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute&nbsp;has&nbsp;been&nbsp;set.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute.&nbsp;If&nbsp;the&nbsp;attribute&nbsp;has&nbsp;been&nbsp;set&nbsp;then&nbsp;this<br>
+method&nbsp;returns&nbsp;True,&nbsp;otherwise&nbsp;it&nbsp;returns&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-isprogram"><strong>isprogram</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;this&nbsp;represents&nbsp;a&nbsp;<a href="#program">program</a>&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-keytext"><strong>keytext</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#keytext">keytext</a>&nbsp;object.<br>
+&nbsp;<br>
+For&nbsp;example:&nbsp;<a href="#program">program</a>.<a href="#ccp4i_info-keytext">keytext</a>(i)&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#keytext">keytext</a><br>
+object&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;object.&nbsp;The&nbsp;methods<br>
+of&nbsp;the&nbsp;<a href="#keytext">keytext</a>&nbsp;class&nbsp;can&nbsp;then&nbsp;be&nbsp;used&nbsp;to&nbsp;drill&nbsp;down&nbsp;into<br>
+the&nbsp;contents&nbsp;of&nbsp;the&nbsp;message.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;nkeytexts&nbsp;method&nbsp;to&nbsp;get&nbsp;the&nbsp;total&nbsp;number&nbsp;of<br>
+<a href="#keytext">keytext</a>&nbsp;objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>/<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-nkeytexts"><strong>nkeytexts</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;keytexts&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+'Keytexts'&nbsp;are&nbsp;warnings&nbsp;and&nbsp;messages&nbsp;issued&nbsp;by&nbsp;the<br>
+ccperror/CCPERR&nbsp;functions&nbsp;within&nbsp;programs;&nbsp;see&nbsp;the<br>
+loggraph&nbsp;format&nbsp;documentation&nbsp;for&nbsp;more&nbsp;information,&nbsp;e.g.<br>
+<a href="http://www.ccp4.ac.uk/dist/html/loggraphformat.html">http://www.ccp4.ac.uk/dist/html/loggraphformat.html</a></tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-ntables"><strong>ntables</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;tables&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-retrieve"><strong>retrieve</strong></a>(self)</dt><dd><tt>Retrieve&nbsp;the&nbsp;text&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+This&nbsp;uses&nbsp;the&nbsp;'retrieve'&nbsp;method&nbsp;within&nbsp;the&nbsp;module.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-set_attribute"><strong>set_attribute</strong></a>(self, key, value)</dt><dd><tt>Set&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute&nbsp;which&nbsp;will&nbsp;be&nbsp;assigned&nbsp;the&nbsp;given&nbsp;value.<br>
+If&nbsp;the&nbsp;attribute&nbsp;doesn't&nbsp;exist&nbsp;then&nbsp;it&nbsp;will&nbsp;be&nbsp;created,<br>
+if&nbsp;it&nbsp;does&nbsp;then&nbsp;the&nbsp;current&nbsp;value&nbsp;will&nbsp;be&nbsp;overwritten<br>
+by&nbsp;the&nbsp;new&nbsp;one.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-set_attributes_from_dictionary"><strong>set_attributes_from_dictionary</strong></a>(self, dict)</dt><dd><tt>Set&nbsp;the&nbsp;values&nbsp;of&nbsp;multiple&nbsp;<a href="#fragment">fragment</a>&nbsp;attributes.<br>
+&nbsp;<br>
+For&nbsp;each&nbsp;key&nbsp;in&nbsp;dictionary&nbsp;'dict',&nbsp;the&nbsp;value&nbsp;of&nbsp;a<br>
+<a href="#fragment">fragment</a>&nbsp;attribute&nbsp;with&nbsp;the&nbsp;same&nbsp;name&nbsp;as&nbsp;the&nbsp;key&nbsp;will<br>
+be&nbsp;assigned&nbsp;the&nbsp;same&nbsp;value&nbsp;as&nbsp;that&nbsp;of&nbsp;the&nbsp;key.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-set_endline"><strong>set_endline</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;end&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-set_source_file"><strong>set_source_file</strong></a>(self, source_file)</dt><dd><tt>Set&nbsp;the&nbsp;source&nbsp;document&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+The&nbsp;source&nbsp;document&nbsp;is&nbsp;specified&nbsp;as&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;that<br>
+the&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;part&nbsp;of.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-set_startline"><strong>set_startline</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;start&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-table"><strong>table</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#table">table</a>&nbsp;object.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated,&nbsp;use&nbsp;'<a href="#fragment">fragment</a>.<a href="#ccp4i_info-tables">tables</a>()[i]'<br>
+instead.<br>
+&nbsp;<br>
+<a href="#fragment">fragment</a>.<a href="#ccp4i_info-table">table</a>(i)&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;associated<br>
+with&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;object.&nbsp;The&nbsp;methods&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;class<br>
+can&nbsp;then&nbsp;be&nbsp;used&nbsp;to&nbsp;drill&nbsp;down&nbsp;into&nbsp;the&nbsp;contents&nbsp;of&nbsp;the<br>
+<a href="#table">table</a>.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;ntables&nbsp;method&nbsp;to&nbsp;get&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;<a href="#table">table</a><br>
+objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="ccp4i_info-tables"><strong>tables</strong></a>(self, select_title<font color="#909090">=''</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;tables&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;'select_title'&nbsp;is&nbsp;specifed&nbsp;then&nbsp;this&nbsp;returns<br>
+the&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;stored&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a><br>
+object.<br>
+&nbsp;<br>
+If&nbsp;'select_title'&nbsp;is&nbsp;given&nbsp;then&nbsp;this&nbsp;is&nbsp;compiled&nbsp;as<br>
+a&nbsp;regular&nbsp;expression&nbsp;pattern,&nbsp;and&nbsp;the&nbsp;method&nbsp;returns&nbsp;a<br>
+list&nbsp;containing&nbsp;only&nbsp;those&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;for&nbsp;which&nbsp;the<br>
+title&nbsp;matches&nbsp;the&nbsp;pattern.<br>
+&nbsp;<br>
+In&nbsp;either&nbsp;case&nbsp;if&nbsp;no&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;are&nbsp;found&nbsp;then&nbsp;an<br>
+empty&nbsp;list&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;calls&nbsp;the&nbsp;'find_tables_by_title'&nbsp;function.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="fragment">class <strong>fragment</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;generic&nbsp;<a href="#fragment">fragment</a>&nbsp;of&nbsp;a&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+The&nbsp;<a href="#fragment">fragment</a>&nbsp;object&nbsp;is&nbsp;intended&nbsp;to&nbsp;represent&nbsp;any<br>
+'top-level'&nbsp;<a href="#fragment">fragment</a>&nbsp;of&nbsp;a&nbsp;<a href="#logfile">logfile</a>,&nbsp;for&nbsp;example&nbsp;a<br>
+<a href="#program">program</a>&nbsp;<a href="#logfile">logfile</a>&nbsp;or&nbsp;some&nbsp;output&nbsp;from&nbsp;a&nbsp;script&nbsp;that<br>
+appears&nbsp;inbetween&nbsp;<a href="#program">program</a>&nbsp;logs.<br>
+&nbsp;<br>
+The&nbsp;<a href="#fragment">fragment</a>&nbsp;class&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;base&nbsp;class&nbsp;for<br>
+the&nbsp;<a href="#program">program</a>&nbsp;and&nbsp;<a href="#ccp4i_info">ccp4i_info</a>&nbsp;classes.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="fragment-__getattr__"><strong>__getattr__</strong></a>(self, key)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;value&nbsp;=&nbsp;<a href="#fragment">fragment</a>.key<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;get_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="fragment-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;value&nbsp;=&nbsp;<a href="#fragment">fragment</a>[key]<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;get_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="fragment-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialise&nbsp;a&nbsp;new&nbsp;<a href="#fragment">fragment</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="fragment-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Implement&nbsp;the&nbsp;__len__&nbsp;built-in&nbsp;method.<br>
+&nbsp;<br>
+The&nbsp;length&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;lines<br>
+of&nbsp;text&nbsp;that&nbsp;it&nbsp;contains.</tt></dd></dl>
+
+<dl><dt><a name="fragment-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt><dd><tt>Implement&nbsp;the&nbsp;__nonzero__&nbsp;built-in&nbsp;method.<br>
+&nbsp;<br>
+The&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;considered&nbsp;'nonzero'&nbsp;once&nbsp;an<br>
+attribute,&nbsp;<a href="#table">table</a>&nbsp;or&nbsp;<a href="#keytext">keytext</a>&nbsp;has&nbsp;been&nbsp;assigned<br>
+to&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="fragment-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;<a href="#program">program</a>[key]&nbsp;=&nbsp;value<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;set_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="fragment-addkeytext"><strong>addkeytext</strong></a>(self, name<font color="#909090">=''</font>, junk_text<font color="#909090">=''</font>, message<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+Create&nbsp;a&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;and&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;list&nbsp;of<br>
+keytexts&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+The&nbsp;values&nbsp;of&nbsp;the&nbsp;parameters&nbsp;'name',&nbsp;'junk_text'&nbsp;and<br>
+'message'&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;initialise&nbsp;the&nbsp;new&nbsp;<a href="#keytext">keytext</a><br>
+object&nbsp;(one&nbsp;or&nbsp;more&nbsp;of&nbsp;these&nbsp;can&nbsp;be&nbsp;blank).<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="fragment-addtable"><strong>addtable</strong></a>(self, tabletext<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+Create&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;and&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;list&nbsp;of<br>
+tables&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+If&nbsp;'tabletext'&nbsp;is&nbsp;nonblank&nbsp;then&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;will<br>
+be&nbsp;automatically&nbsp;populated&nbsp;from&nbsp;the&nbsp;text,&nbsp;if&nbsp;possible.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="fragment-attributes"><strong>attributes</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;attributes.<br>
+&nbsp;<br>
+The&nbsp;list&nbsp;contains&nbsp;all&nbsp;the&nbsp;attributes&nbsp;that&nbsp;have&nbsp;been<br>
+set&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-findtable"><strong>findtable</strong></a>(self, title_pattern, index<font color="#909090">=0</font>)</dt><dd><tt>Fetch&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;by&nbsp;matching&nbsp;the&nbsp;title.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated;&nbsp;use&nbsp;the&nbsp;'tables'&nbsp;method<br>
+instead.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;looks&nbsp;up&nbsp;a&nbsp;particular&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;a&nbsp;list<br>
+of&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;(argument&nbsp;'table_list'),&nbsp;by&nbsp;finding<br>
+the&nbsp;first&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;list&nbsp;which&nbsp;matches&nbsp;the&nbsp;supplied<br>
+regular&nbsp;expression&nbsp;'title_pattern'.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;more&nbsp;than&nbsp;one&nbsp;matching&nbsp;<a href="#table">table</a>&nbsp;then&nbsp;the&nbsp;'index'<br>
+argument&nbsp;specifies&nbsp;which&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;matching&nbsp;tables<br>
+should&nbsp;be&nbsp;returned.&nbsp;If&nbsp;index&nbsp;is&nbsp;out&nbsp;of&nbsp;range&nbsp;(or&nbsp;there&nbsp;are<br>
+no&nbsp;matching&nbsp;tables)&nbsp;then&nbsp;return&nbsp;'None'.<br>
+&nbsp;<br>
+It&nbsp;calls&nbsp;the&nbsp;'find_table_by_title'&nbsp;function.</tt></dd></dl>
+
+<dl><dt><a name="fragment-get_attribute"><strong>get_attribute</strong></a>(self, key)</dt><dd><tt>Return&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute.&nbsp;If&nbsp;the&nbsp;attribute&nbsp;has&nbsp;been&nbsp;read&nbsp;from&nbsp;the&nbsp;file<br>
+then&nbsp;its&nbsp;value&nbsp;is&nbsp;returned,&nbsp;otherwise&nbsp;a&nbsp;KeyError<br>
+exception&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="fragment-get_endline"><strong>get_endline</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;end&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="fragment-get_source_file"><strong>get_source_file</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;source&nbsp;document&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-get_startline"><strong>get_startline</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;start&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="fragment-has_attribute"><strong>has_attribute</strong></a>(self, key)</dt><dd><tt>Check&nbsp;whether&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute&nbsp;has&nbsp;been&nbsp;set.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute.&nbsp;If&nbsp;the&nbsp;attribute&nbsp;has&nbsp;been&nbsp;set&nbsp;then&nbsp;this<br>
+method&nbsp;returns&nbsp;True,&nbsp;otherwise&nbsp;it&nbsp;returns&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="fragment-isccp4i_info"><strong>isccp4i_info</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;this&nbsp;is&nbsp;a&nbsp;CCP4i&nbsp;information&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-isfragment"><strong>isfragment</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;this&nbsp;represents&nbsp;a&nbsp;basic&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-isprogram"><strong>isprogram</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;this&nbsp;represents&nbsp;a&nbsp;<a href="#program">program</a>&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-keytext"><strong>keytext</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#keytext">keytext</a>&nbsp;object.<br>
+&nbsp;<br>
+For&nbsp;example:&nbsp;<a href="#program">program</a>.<a href="#fragment-keytext">keytext</a>(i)&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#keytext">keytext</a><br>
+object&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;object.&nbsp;The&nbsp;methods<br>
+of&nbsp;the&nbsp;<a href="#keytext">keytext</a>&nbsp;class&nbsp;can&nbsp;then&nbsp;be&nbsp;used&nbsp;to&nbsp;drill&nbsp;down&nbsp;into<br>
+the&nbsp;contents&nbsp;of&nbsp;the&nbsp;message.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;nkeytexts&nbsp;method&nbsp;to&nbsp;get&nbsp;the&nbsp;total&nbsp;number&nbsp;of<br>
+<a href="#keytext">keytext</a>&nbsp;objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>/<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-nkeytexts"><strong>nkeytexts</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;keytexts&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+'Keytexts'&nbsp;are&nbsp;warnings&nbsp;and&nbsp;messages&nbsp;issued&nbsp;by&nbsp;the<br>
+ccperror/CCPERR&nbsp;functions&nbsp;within&nbsp;programs;&nbsp;see&nbsp;the<br>
+loggraph&nbsp;format&nbsp;documentation&nbsp;for&nbsp;more&nbsp;information,&nbsp;e.g.<br>
+<a href="http://www.ccp4.ac.uk/dist/html/loggraphformat.html">http://www.ccp4.ac.uk/dist/html/loggraphformat.html</a></tt></dd></dl>
+
+<dl><dt><a name="fragment-ntables"><strong>ntables</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;tables&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-retrieve"><strong>retrieve</strong></a>(self)</dt><dd><tt>Retrieve&nbsp;the&nbsp;text&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+This&nbsp;uses&nbsp;the&nbsp;'retrieve'&nbsp;method&nbsp;within&nbsp;the&nbsp;module.</tt></dd></dl>
+
+<dl><dt><a name="fragment-set_attribute"><strong>set_attribute</strong></a>(self, key, value)</dt><dd><tt>Set&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute&nbsp;which&nbsp;will&nbsp;be&nbsp;assigned&nbsp;the&nbsp;given&nbsp;value.<br>
+If&nbsp;the&nbsp;attribute&nbsp;doesn't&nbsp;exist&nbsp;then&nbsp;it&nbsp;will&nbsp;be&nbsp;created,<br>
+if&nbsp;it&nbsp;does&nbsp;then&nbsp;the&nbsp;current&nbsp;value&nbsp;will&nbsp;be&nbsp;overwritten<br>
+by&nbsp;the&nbsp;new&nbsp;one.</tt></dd></dl>
+
+<dl><dt><a name="fragment-set_attributes_from_dictionary"><strong>set_attributes_from_dictionary</strong></a>(self, dict)</dt><dd><tt>Set&nbsp;the&nbsp;values&nbsp;of&nbsp;multiple&nbsp;<a href="#fragment">fragment</a>&nbsp;attributes.<br>
+&nbsp;<br>
+For&nbsp;each&nbsp;key&nbsp;in&nbsp;dictionary&nbsp;'dict',&nbsp;the&nbsp;value&nbsp;of&nbsp;a<br>
+<a href="#fragment">fragment</a>&nbsp;attribute&nbsp;with&nbsp;the&nbsp;same&nbsp;name&nbsp;as&nbsp;the&nbsp;key&nbsp;will<br>
+be&nbsp;assigned&nbsp;the&nbsp;same&nbsp;value&nbsp;as&nbsp;that&nbsp;of&nbsp;the&nbsp;key.</tt></dd></dl>
+
+<dl><dt><a name="fragment-set_endline"><strong>set_endline</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;end&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="fragment-set_source_file"><strong>set_source_file</strong></a>(self, source_file)</dt><dd><tt>Set&nbsp;the&nbsp;source&nbsp;document&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+The&nbsp;source&nbsp;document&nbsp;is&nbsp;specified&nbsp;as&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;that<br>
+the&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;part&nbsp;of.</tt></dd></dl>
+
+<dl><dt><a name="fragment-set_startline"><strong>set_startline</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;start&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="fragment-table"><strong>table</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#table">table</a>&nbsp;object.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated,&nbsp;use&nbsp;'<a href="#fragment">fragment</a>.<a href="#fragment-tables">tables</a>()[i]'<br>
+instead.<br>
+&nbsp;<br>
+<a href="#fragment">fragment</a>.<a href="#fragment-table">table</a>(i)&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;associated<br>
+with&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;object.&nbsp;The&nbsp;methods&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;class<br>
+can&nbsp;then&nbsp;be&nbsp;used&nbsp;to&nbsp;drill&nbsp;down&nbsp;into&nbsp;the&nbsp;contents&nbsp;of&nbsp;the<br>
+<a href="#table">table</a>.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;ntables&nbsp;method&nbsp;to&nbsp;get&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;<a href="#table">table</a><br>
+objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="fragment-tables"><strong>tables</strong></a>(self, select_title<font color="#909090">=''</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;tables&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;'select_title'&nbsp;is&nbsp;specifed&nbsp;then&nbsp;this&nbsp;returns<br>
+the&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;stored&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a><br>
+object.<br>
+&nbsp;<br>
+If&nbsp;'select_title'&nbsp;is&nbsp;given&nbsp;then&nbsp;this&nbsp;is&nbsp;compiled&nbsp;as<br>
+a&nbsp;regular&nbsp;expression&nbsp;pattern,&nbsp;and&nbsp;the&nbsp;method&nbsp;returns&nbsp;a<br>
+list&nbsp;containing&nbsp;only&nbsp;those&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;for&nbsp;which&nbsp;the<br>
+title&nbsp;matches&nbsp;the&nbsp;pattern.<br>
+&nbsp;<br>
+In&nbsp;either&nbsp;case&nbsp;if&nbsp;no&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;are&nbsp;found&nbsp;then&nbsp;an<br>
+empty&nbsp;list&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;calls&nbsp;the&nbsp;'find_tables_by_title'&nbsp;function.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="keytext">class <strong>keytext</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;<a href="#keytext">keytext</a>&nbsp;message&nbsp;in&nbsp;a&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="keytext-__init__"><strong>__init__</strong></a>(self, name<font color="#909090">=''</font>, junk_text<font color="#909090">=''</font>, message<font color="#909090">=''</font>)</dt><dd><tt>#&nbsp;Initialise&nbsp;the&nbsp;<a href="#keytext">keytext</a>&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="keytext-junk_text"><strong>junk_text</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="keytext-message"><strong>message</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="keytext-name"><strong>name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="keytext-setjunk_text"><strong>setjunk_text</strong></a>(self, junk_text)</dt></dl>
+
+<dl><dt><a name="keytext-setmessage"><strong>setmessage</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="keytext-setname"><strong>setname</strong></a>(self, name)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="logfile">class <strong>logfile</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;<a href="#program">program</a>&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+A&nbsp;<a href="#logfile">logfile</a>&nbsp;object&nbsp;is&nbsp;populated&nbsp;and&nbsp;returned&nbsp;by&nbsp;the<br>
+<a href="#-parselog">parselog</a>()&nbsp;function.&nbsp;This&nbsp;takes&nbsp;a&nbsp;file&nbsp;name&nbsp;as&nbsp;a&nbsp;single<br>
+compulsory&nbsp;argument;&nbsp;the&nbsp;optional&nbsp;'progress'&nbsp;argument<br>
+specifies&nbsp;a&nbsp;number&nbsp;of&nbsp;lines&nbsp;at&nbsp;which&nbsp;to&nbsp;report&nbsp;progress<br>
+when&nbsp;parsing&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+A&nbsp;<a href="#logfile">logfile</a>&nbsp;object&nbsp;holds&nbsp;lists&nbsp;of&nbsp;'programs',&nbsp;'tables',<br>
+'<a href="#keytext">keytext</a>&nbsp;messages'&nbsp;and&nbsp;'CCP4i&nbsp;information&nbsp;messages',<br>
+plus&nbsp;a&nbsp;master&nbsp;list&nbsp;of&nbsp;'fragments'&nbsp;(which&nbsp;can&nbsp;be&nbsp;any&nbsp;of<br>
+the&nbsp;above).&nbsp;There&nbsp;are&nbsp;methods&nbsp;to&nbsp;allow&nbsp;access&nbsp;to&nbsp;each&nbsp;of<br>
+these&nbsp;lists.<br>
+There&nbsp;is&nbsp;also&nbsp;a&nbsp;list&nbsp;of&nbsp;CCP4&nbsp;'summaries'&nbsp;that&nbsp;have&nbsp;been<br>
+been&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.&nbsp;These&nbsp;are&nbsp;kept&nbsp;distinct&nbsp;from<br>
+the&nbsp;<a href="#logfile">logfile</a>&nbsp;fragments&nbsp;above.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="logfile-__init__"><strong>__init__</strong></a>(self, filename)</dt><dd><tt>Initialise&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="logfile-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt><dd><tt>Implement&nbsp;the&nbsp;nonzero&nbsp;built-in&nbsp;method.<br>
+&nbsp;<br>
+The&nbsp;<a href="#logfile">logfile</a>&nbsp;will&nbsp;test&nbsp;as&nbsp;True&nbsp;if&nbsp;at&nbsp;least&nbsp;one<br>
+<a href="#fragment">fragment</a>&nbsp;is&nbsp;defined&nbsp;-&nbsp;otherwise&nbsp;it&nbsp;will&nbsp;test&nbsp;as<br>
+False.</tt></dd></dl>
+
+<dl><dt><a name="logfile-addccp4i_info"><strong>addccp4i_info</strong></a>(self)</dt><dd><tt>Add&nbsp;another&nbsp;<a href="#ccp4i_info">ccp4i_info</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+Creates&nbsp;a&nbsp;new&nbsp;<a href="#ccp4i_info">ccp4i_info</a>&nbsp;object&nbsp;and&nbsp;added&nbsp;to&nbsp;the<br>
+list&nbsp;of&nbsp;fragments,&nbsp;and&nbsp;to&nbsp;the&nbsp;list&nbsp;of&nbsp;CCP4i&nbsp;information<br>
+messages&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-addfragment"><strong>addfragment</strong></a>(self, fragment)</dt><dd><tt>Add&nbsp;an&nbsp;existing&nbsp;<a href="#fragment">fragment</a>-like&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-addkeytext"><strong>addkeytext</strong></a>(self, thiskeytext<font color="#909090">=False</font>, name<font color="#909090">=''</font>, junk_text<font color="#909090">=''</font>, message<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;list&nbsp;of&nbsp;keytexts.<br>
+&nbsp;<br>
+If&nbsp;an&nbsp;existing&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;is&nbsp;supplied&nbsp;with&nbsp;the<br>
+thiskeytext&nbsp;argument&nbsp;this&nbsp;is&nbsp;appended&nbsp;to&nbsp;the&nbsp;list.<br>
+Otherwise&nbsp;a&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;is&nbsp;created&nbsp;and<br>
+populated&nbsp;with&nbsp;the&nbsp;contents&nbsp;of&nbsp;the&nbsp;name,&nbsp;junk_text<br>
+and&nbsp;message&nbsp;arguments.</tt></dd></dl>
+
+<dl><dt><a name="logfile-addprogram"><strong>addprogram</strong></a>(self)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;<a href="#program">program</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-addsummary"><strong>addsummary</strong></a>(self, start_line<font color="#909090">=-1</font>)</dt><dd><tt>Add&nbsp;another&nbsp;<a href="#summary">summary</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+A&nbsp;new&nbsp;<a href="#summary">summary</a>&nbsp;object&nbsp;is&nbsp;created&nbsp;and&nbsp;returned.&nbsp;The<br>
+new&nbsp;object&nbsp;is&nbsp;also&nbsp;added&nbsp;to&nbsp;the&nbsp;list&nbsp;of&nbsp;summaries<br>
+for&nbsp;the&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-addtable"><strong>addtable</strong></a>(self, thistable<font color="#909090">=False</font>, tabletext<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;list&nbsp;of&nbsp;tables.<br>
+&nbsp;<br>
+If&nbsp;an&nbsp;existing&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;is&nbsp;specified&nbsp;with&nbsp;the<br>
+thistable&nbsp;argument&nbsp;then&nbsp;this&nbsp;is&nbsp;appended&nbsp;to&nbsp;the<br>
+list.&nbsp;Otherwise&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;is&nbsp;created.&nbsp;In<br>
+that&nbsp;case,&nbsp;if&nbsp;tabletext&nbsp;is&nbsp;supplied&nbsp;then&nbsp;this&nbsp;is<br>
+used&nbsp;to&nbsp;populate&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object;&nbsp;otherwise&nbsp;the<br>
+new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;is&nbsp;empty.</tt></dd></dl>
+
+<dl><dt><a name="logfile-append_ccp4i_header"><strong>append_ccp4i_header</strong></a>(self, line)</dt><dd><tt>Append&nbsp;a&nbsp;line&nbsp;of&nbsp;text&nbsp;to&nbsp;the&nbsp;CCP4i&nbsp;header.</tt></dd></dl>
+
+<dl><dt><a name="logfile-append_ccp4i_tail"><strong>append_ccp4i_tail</strong></a>(self, line)</dt><dd><tt>Append&nbsp;a&nbsp;line&nbsp;of&nbsp;text&nbsp;to&nbsp;the&nbsp;CCP4i&nbsp;tail.</tt></dd></dl>
+
+<dl><dt><a name="logfile-ccp4i_header"><strong>ccp4i_header</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;CCP4i&nbsp;header&nbsp;content.</tt></dd></dl>
+
+<dl><dt><a name="logfile-ccp4i_info"><strong>ccp4i_info</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#ccp4i_info">ccp4i_info</a>&nbsp;object&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;i&nbsp;counts&nbsp;up&nbsp;starting&nbsp;from&nbsp;zero.</tt></dd></dl>
+
+<dl><dt><a name="logfile-ccp4i_tail"><strong>ccp4i_tail</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;CCP4i&nbsp;tail&nbsp;content.</tt></dd></dl>
+
+<dl><dt><a name="logfile-filename"><strong>filename</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;filename&nbsp;of&nbsp;the&nbsp;source&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-findtable"><strong>findtable</strong></a>(self, title_pattern, index<font color="#909090">=0</font>)</dt><dd><tt>Fetch&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;by&nbsp;matching&nbsp;the&nbsp;title.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated;&nbsp;use&nbsp;the&nbsp;'tables'&nbsp;method<br>
+instead.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;looks&nbsp;up&nbsp;a&nbsp;particular&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;a&nbsp;list<br>
+of&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;(argument&nbsp;'table_list'),&nbsp;by&nbsp;finding<br>
+the&nbsp;first&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;list&nbsp;which&nbsp;matches&nbsp;the&nbsp;supplied<br>
+regular&nbsp;expression&nbsp;'title_pattern'.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;more&nbsp;than&nbsp;one&nbsp;matching&nbsp;<a href="#table">table</a>&nbsp;then&nbsp;the&nbsp;'index'<br>
+argument&nbsp;specifies&nbsp;which&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;matching&nbsp;tables<br>
+should&nbsp;be&nbsp;returned.&nbsp;If&nbsp;index&nbsp;is&nbsp;out&nbsp;of&nbsp;range&nbsp;(or&nbsp;there&nbsp;are<br>
+no&nbsp;matching&nbsp;tables)&nbsp;then&nbsp;return&nbsp;'None'.<br>
+&nbsp;<br>
+It&nbsp;calls&nbsp;the&nbsp;'find_table_by_title'&nbsp;function.</tt></dd></dl>
+
+<dl><dt><a name="logfile-fragment"><strong>fragment</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+A&nbsp;<a href="#fragment">fragment</a>&nbsp;can&nbsp;be&nbsp;a&nbsp;<a href="#program">program</a>,&nbsp;<a href="#table">table</a>,&nbsp;CCP4i&nbsp;message&nbsp;or<br>
+<a href="#keytext">keytext</a>&nbsp;object.<br>
+Note&nbsp;that&nbsp;i&nbsp;counts&nbsp;up&nbsp;from&nbsp;zero.</tt></dd></dl>
+
+<dl><dt><a name="logfile-fragment_to_program"><strong>fragment_to_program</strong></a>(self, i)</dt><dd><tt>Convert&nbsp;the&nbsp;i'th&nbsp;<a href="#fragment">fragment</a>&nbsp;to&nbsp;a&nbsp;<a href="#program">program</a>.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;allows&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;to&nbsp;be<br>
+recast&nbsp;as&nbsp;a&nbsp;<a href="#program">program</a>,&nbsp;and&nbsp;performs&nbsp;all&nbsp;the&nbsp;necessary<br>
+book&nbsp;keeping&nbsp;operations&nbsp;such&nbsp;as&nbsp;updating&nbsp;the&nbsp;lists<br>
+of&nbsp;<a href="#fragment">fragment</a>&nbsp;and&nbsp;<a href="#program">program</a>&nbsp;objects.<br>
+&nbsp;<br>
+On&nbsp;successful&nbsp;conversion&nbsp;the&nbsp;converted&nbsp;<a href="#program">program</a><br>
+object&nbsp;is&nbsp;returned.&nbsp;If&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;already&nbsp;a<br>
+<a href="#program">program</a>&nbsp;then&nbsp;no&nbsp;action&nbsp;is&nbsp;taken.</tt></dd></dl>
+
+<dl><dt><a name="logfile-isccp4i"><strong>isccp4i</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;appears&nbsp;to&nbsp;be&nbsp;from&nbsp;CCP4i.</tt></dd></dl>
+
+<dl><dt><a name="logfile-keytext"><strong>keytext</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;i&nbsp;counts&nbsp;up&nbsp;starting&nbsp;from&nbsp;zero.</tt></dd></dl>
+
+<dl><dt><a name="logfile-nccp4i_info"><strong>nccp4i_info</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;<a href="#ccp4i_info">ccp4i_info</a>&nbsp;messages.</tt></dd></dl>
+
+<dl><dt><a name="logfile-newfragment"><strong>newfragment</strong></a>(self)</dt><dd><tt>Generate&nbsp;a&nbsp;new&nbsp;fragement&nbsp;and&nbsp;add&nbsp;to&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;new&nbsp;<a href="#fragment">fragment</a>&nbsp;object&nbsp;and&nbsp;calls&nbsp;addfragment&nbsp;to<br>
+add&nbsp;it&nbsp;to&nbsp;the&nbsp;list&nbsp;of&nbsp;fragments&nbsp;for&nbsp;this&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-nfragments"><strong>nfragments</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;fragments.</tt></dd></dl>
+
+<dl><dt><a name="logfile-nkeytexts"><strong>nkeytexts</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;keytexts&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-nprograms"><strong>nprograms</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;<a href="#program">program</a>&nbsp;objects.</tt></dd></dl>
+
+<dl><dt><a name="logfile-nsummaries"><strong>nsummaries</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;summaries&nbsp;found&nbsp;in&nbsp;the&nbsp;log.</tt></dd></dl>
+
+<dl><dt><a name="logfile-ntables"><strong>ntables</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;tables&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="logfile-program"><strong>program</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#program">program</a>&nbsp;object&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;i&nbsp;counts&nbsp;up&nbsp;starting&nbsp;from&nbsp;zero.</tt></dd></dl>
+
+<dl><dt><a name="logfile-set_fragment_end"><strong>set_fragment_end</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;end&nbsp;line&nbsp;of&nbsp;the&nbsp;most&nbsp;recent&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+The&nbsp;most&nbsp;recent&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;the&nbsp;last&nbsp;<a href="#fragment">fragment</a>&nbsp;object<br>
+in&nbsp;the&nbsp;list&nbsp;of&nbsp;fragments&nbsp;for&nbsp;this&nbsp;<a href="#logfile">logfile</a>.&nbsp;'line_no'<br>
+is&nbsp;the&nbsp;current&nbsp;line&nbsp;number&nbsp;in&nbsp;the&nbsp;source&nbsp;file.<br>
+&nbsp;<br>
+The&nbsp;supplied&nbsp;line&nbsp;number&nbsp;is&nbsp;always&nbsp;taken&nbsp;as&nbsp;the&nbsp;last<br>
+line&nbsp;number&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>.&nbsp;This&nbsp;method&nbsp;will&nbsp;also<br>
+check&nbsp;the&nbsp;start&nbsp;line&nbsp;number&nbsp;and&nbsp;will&nbsp;attempt&nbsp;to&nbsp;set<br>
+it&nbsp;to&nbsp;a&nbsp;reasonable&nbsp;value&nbsp;if&nbsp;it&nbsp;is&nbsp;not&nbsp;set:&nbsp;either&nbsp;the<br>
+first&nbsp;line&nbsp;after&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;previous&nbsp;<a href="#fragment">fragment</a>,<br>
+or&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;file&nbsp;(if&nbsp;there&nbsp;is&nbsp;no&nbsp;previous<br>
+<a href="#fragment">fragment</a>).</tt></dd></dl>
+
+<dl><dt><a name="logfile-set_fragment_start"><strong>set_fragment_start</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;start&nbsp;line&nbsp;of&nbsp;the&nbsp;most&nbsp;recent&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+The&nbsp;most&nbsp;recent&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;the&nbsp;last&nbsp;<a href="#fragment">fragment</a>&nbsp;object<br>
+in&nbsp;the&nbsp;list&nbsp;of&nbsp;fragments&nbsp;for&nbsp;this&nbsp;<a href="#logfile">logfile</a>.&nbsp;'line_no'<br>
+is&nbsp;the&nbsp;current&nbsp;line&nbsp;number&nbsp;in&nbsp;the&nbsp;source&nbsp;file.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;has&nbsp;an&nbsp;'nlines'&nbsp;attribute&nbsp;then&nbsp;this<br>
+is&nbsp;taken&nbsp;to&nbsp;be&nbsp;the&nbsp;offset&nbsp;from&nbsp;the&nbsp;current&nbsp;line&nbsp;back<br>
+to&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>.&nbsp;If&nbsp;nlines&nbsp;is&nbsp;not<br>
+present&nbsp;then&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;taken&nbsp;to&nbsp;start&nbsp;after&nbsp;the<br>
+end&nbsp;of&nbsp;the&nbsp;previous&nbsp;<a href="#fragment">fragment</a>.&nbsp;If&nbsp;there&nbsp;is&nbsp;no&nbsp;previous<br>
+<a href="#fragment">fragment</a>&nbsp;then&nbsp;it&nbsp;is&nbsp;assumed&nbsp;to&nbsp;start&nbsp;from&nbsp;the&nbsp;first<br>
+line&nbsp;of&nbsp;the&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="logfile-summary"><strong>summary</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#summary">summary</a>&nbsp;object&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;i&nbsp;counts&nbsp;up&nbsp;starting&nbsp;from&nbsp;zero.</tt></dd></dl>
+
+<dl><dt><a name="logfile-table"><strong>table</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated,&nbsp;use&nbsp;'<a href="#logfile">logfile</a>.<a href="#logfile-tables">tables</a>()[i]'<br>
+instead.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;i&nbsp;counts&nbsp;up&nbsp;starting&nbsp;from&nbsp;zero.</tt></dd></dl>
+
+<dl><dt><a name="logfile-tables"><strong>tables</strong></a>(self, select_title<font color="#909090">=''</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;tables&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;'select_title'&nbsp;is&nbsp;specifed&nbsp;then&nbsp;this&nbsp;returns<br>
+the&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;stored&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a><br>
+object.<br>
+&nbsp;<br>
+If&nbsp;'select_title'&nbsp;is&nbsp;given&nbsp;then&nbsp;this&nbsp;is&nbsp;compiled&nbsp;as<br>
+a&nbsp;regular&nbsp;expression&nbsp;pattern,&nbsp;and&nbsp;the&nbsp;method&nbsp;returns&nbsp;a<br>
+list&nbsp;containing&nbsp;only&nbsp;those&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;for&nbsp;which&nbsp;the<br>
+title&nbsp;matches&nbsp;the&nbsp;pattern.<br>
+&nbsp;<br>
+In&nbsp;either&nbsp;case&nbsp;if&nbsp;no&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;are&nbsp;found&nbsp;then&nbsp;an<br>
+empty&nbsp;list&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;calls&nbsp;the&nbsp;'find_tables_by_title'&nbsp;function.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="patternmatch">class <strong>patternmatch</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;holding&nbsp;regular&nbsp;expressions&nbsp;for&nbsp;<a href="#logfile">logfile</a>&nbsp;features.<br>
+&nbsp;<br>
+The&nbsp;<a href="#patternmatch">patternmatch</a>&nbsp;object&nbsp;provides&nbsp;a&nbsp;set&nbsp;of&nbsp;methods&nbsp;that&nbsp;can<br>
+match&nbsp;various&nbsp;features&nbsp;that&nbsp;might&nbsp;be&nbsp;found&nbsp;in&nbsp;CCP4&nbsp;logfiles,<br>
+and&nbsp;logfiles&nbsp;from&nbsp;other&nbsp;programs.&nbsp;These&nbsp;are:<br>
+&nbsp;<br>
+isccp4banner:&nbsp;check&nbsp;for&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;banner<br>
+isccp4termination:&nbsp;check&nbsp;for&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;termination&nbsp;message<br>
+isshelxbanner:&nbsp;check&nbsp;for&nbsp;SHELX&nbsp;<a href="#program">program</a>&nbsp;banner<br>
+isshelxtermination:&nbsp;check&nbsp;for&nbsp;SHELX&nbsp;<a href="#program">program</a>&nbsp;termination<br>
+isccp4keytext:&nbsp;check&nbsp;for&nbsp;CCP4&nbsp;<a href="#keytext">keytext</a>&nbsp;messages<br>
+isccp4table:&nbsp;check&nbsp;for&nbsp;CCP4&nbsp;<a href="#table">table</a><br>
+isccp4iheader:&nbsp;check&nbsp;for&nbsp;CCP4i&nbsp;<a href="#logfile">logfile</a>&nbsp;header&nbsp;line<br>
+isccp4itail:&nbsp;check&nbsp;for&nbsp;CCP4i&nbsp;<a href="#logfile">logfile</a>&nbsp;tail&nbsp;line<br>
+isccp4iinformation:&nbsp;check&nbsp;for&nbsp;CCP4i&nbsp;information&nbsp;block<br>
+&nbsp;<br>
+It&nbsp;also&nbsp;provides&nbsp;methods&nbsp;to&nbsp;match&nbsp;single&nbsp;lines:<br>
+&nbsp;<br>
+isdataline:&nbsp;check&nbsp;if&nbsp;line&nbsp;contains&nbsp;CCP4&nbsp;keyword&nbsp;input<br>
+isfileopen:&nbsp;check&nbsp;if&nbsp;line&nbsp;contains&nbsp;CCP4&nbsp;file&nbsp;opening&nbsp;information<br>
+issummary_begin:&nbsp;check&nbsp;if&nbsp;line&nbsp;contains&nbsp;the&nbsp;start&nbsp;of&nbsp;a&nbsp;<a href="#summary">summary</a><br>
+issummary_end:&nbsp;check&nbsp;if&nbsp;the&nbsp;line&nbsp;contains&nbsp;the&nbsp;end&nbsp;of&nbsp;a&nbsp;<a href="#summary">summary</a><br>
+&nbsp;<br>
+In&nbsp;each&nbsp;case,&nbsp;the&nbsp;method&nbsp;returns&nbsp;False&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;match,<br>
+and&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;data&nbsp;items&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;match.&nbsp;The&nbsp;data<br>
+items&nbsp;are&nbsp;dependent&nbsp;on&nbsp;the&nbsp;type&nbsp;of&nbsp;pattern&nbsp;that&nbsp;is&nbsp;matched&nbsp;-<br>
+see&nbsp;the&nbsp;information&nbsp;for&nbsp;the&nbsp;relevant&nbsp;method&nbsp;for&nbsp;descriptions.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="patternmatch-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="patternmatch-compile"><strong>compile</strong></a>(self, name, pattern)</dt><dd><tt>Returns&nbsp;a&nbsp;compiled&nbsp;regular&nbsp;expression&nbsp;from&nbsp;the&nbsp;pattern.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;a&nbsp;compiled&nbsp;regular&nbsp;expression&nbsp;associated<br>
+with&nbsp;'name',&nbsp;based&nbsp;on&nbsp;the&nbsp;supplied&nbsp;'pattern'.&nbsp;If&nbsp;the&nbsp;name<br>
+already&nbsp;has&nbsp;a&nbsp;compiled&nbsp;expression&nbsp;then&nbsp;that&nbsp;is&nbsp;returned,<br>
+otherwise&nbsp;the&nbsp;compile&nbsp;method&nbsp;compiles&nbsp;and&nbsp;stores&nbsp;it&nbsp;before<br>
+returning&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-get_pattern"><strong>get_pattern</strong></a>(self, name)</dt><dd><tt>Fetch&nbsp;a&nbsp;compiled&nbsp;regular&nbsp;expression&nbsp;associated&nbsp;with&nbsp;'name'.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-has_pattern"><strong>has_pattern</strong></a>(self, name)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;pattern&nbsp;associated&nbsp;'name'.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4banner"><strong>isccp4banner</strong></a>(self, text)</dt><dd><tt>Regular&nbsp;expression&nbsp;match&nbsp;to&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+Given&nbsp;a&nbsp;block&nbsp;of&nbsp;text,&nbsp;attempts&nbsp;to&nbsp;match&nbsp;it&nbsp;against<br>
+regular&nbsp;expressions&nbsp;for&nbsp;a&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+Returns&nbsp;False&nbsp;if&nbsp;the&nbsp;match&nbsp;fails,&nbsp;otherwise&nbsp;returns<br>
+a&nbsp;dictionary&nbsp;object&nbsp;populated&nbsp;with&nbsp;attributes<br>
+derived&nbsp;from&nbsp;the&nbsp;supplied&nbsp;text.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;isccp4banner_standard&nbsp;and&nbsp;isccp4banner_phaser<br>
+functions&nbsp;for&nbsp;descriptions&nbsp;of&nbsp;the&nbsp;attributes&nbsp;that&nbsp;are<br>
+extracted.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4banner_old"><strong>isccp4banner_old</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;an&nbsp;old-style&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+'Old-style'&nbsp;banners&nbsp;come&nbsp;from&nbsp;versions&nbsp;of&nbsp;CCP4&nbsp;predating<br>
+version&nbsp;4.1&nbsp;of&nbsp;the&nbsp;suite.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;from&nbsp;the&nbsp;CCP4&nbsp;banner.<br>
+&nbsp;<br>
+version:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;version;&nbsp;for&nbsp;CCP4&nbsp;programs,&nbsp;this&nbsp;is&nbsp;the<br>
+version&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.&nbsp;For&nbsp;programs&nbsp;that&nbsp;don't<br>
+explicitly&nbsp;give&nbsp;their&nbsp;own&nbsp;version&nbsp;number&nbsp;this&nbsp;will&nbsp;be&nbsp;the&nbsp;same<br>
+as&nbsp;the&nbsp;CCP4&nbsp;library&nbsp;version.<br>
+&nbsp;<br>
+date:&nbsp;the&nbsp;date&nbsp;string&nbsp;found&nbsp;in&nbsp;the&nbsp;CCP4&nbsp;banner;&nbsp;it&nbsp;is<br>
+typically&nbsp;the&nbsp;last&nbsp;date&nbsp;that&nbsp;the&nbsp;source&nbsp;code&nbsp;file&nbsp;was<br>
+committed&nbsp;to&nbsp;CVS.&nbsp;(It&nbsp;is&nbsp;not&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;was<br>
+run&nbsp;on&nbsp;-&nbsp;for&nbsp;that,&nbsp;use&nbsp;'rundate'&nbsp;and&nbsp;'runtime').<br>
+&nbsp;<br>
+ccp4version:&nbsp;the&nbsp;CCP4&nbsp;library&nbsp;version&nbsp;as&nbsp;it&nbsp;appears&nbsp;in&nbsp;the<br>
+<a href="#program">program</a>&nbsp;banner.&nbsp;Typically&nbsp;this&nbsp;includes&nbsp;only&nbsp;the&nbsp;major&nbsp;and<br>
+minor&nbsp;version&nbsp;numbers,&nbsp;but&nbsp;not&nbsp;the&nbsp;patch&nbsp;level.<br>
+&nbsp;<br>
+user:&nbsp;the&nbsp;user&nbsp;id&nbsp;that&nbsp;appears&nbsp;in&nbsp;the&nbsp;CCP4&nbsp;banner&nbsp;at&nbsp;runtime.<br>
+&nbsp;<br>
+runtime:&nbsp;the&nbsp;time&nbsp;of&nbsp;day&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+rundate:&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4banner_phaser"><strong>isccp4banner_phaser</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;'phaser-style'&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+'Phaser-style'&nbsp;banners&nbsp;look&nbsp;similar&nbsp;to&nbsp;CCP4&nbsp;banners&nbsp;but<br>
+contain&nbsp;some&nbsp;different&nbsp;information.&nbsp;They&nbsp;are&nbsp;also&nbsp;used&nbsp;by<br>
+the&nbsp;'pointless'&nbsp;<a href="#program">program</a>.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;from&nbsp;the&nbsp;banner.<br>
+&nbsp;<br>
+version:&nbsp;the&nbsp;reported&nbsp;<a href="#program">program</a>&nbsp;version.<br>
+&nbsp;<br>
+user:&nbsp;the&nbsp;user&nbsp;id&nbsp;that&nbsp;appears&nbsp;in&nbsp;the&nbsp;banner&nbsp;at&nbsp;runtime.<br>
+&nbsp;<br>
+rundate:&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+runtime:&nbsp;the&nbsp;time&nbsp;of&nbsp;day&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+os:&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;'os&nbsp;type'&nbsp;as&nbsp;reported&nbsp;in&nbsp;the&nbsp;banner,<br>
+for&nbsp;example&nbsp;'linux'.<br>
+&nbsp;<br>
+date:&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;'release&nbsp;date'&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;banner.<br>
+&nbsp;<br>
+ccp4version:&nbsp;currently&nbsp;set&nbsp;to&nbsp;'?'.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4banner_standard"><strong>isccp4banner_standard</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;standard&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;from&nbsp;the&nbsp;CCP4&nbsp;banner.<br>
+&nbsp;<br>
+version:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;version;&nbsp;for&nbsp;CCP4&nbsp;programs,&nbsp;this&nbsp;is&nbsp;the<br>
+version&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.&nbsp;For&nbsp;programs&nbsp;that&nbsp;don't<br>
+explicitly&nbsp;give&nbsp;their&nbsp;own&nbsp;version&nbsp;number&nbsp;this&nbsp;will&nbsp;be&nbsp;the&nbsp;same<br>
+as&nbsp;the&nbsp;CCP4&nbsp;library&nbsp;version.<br>
+&nbsp;<br>
+date:&nbsp;the&nbsp;date&nbsp;string&nbsp;found&nbsp;in&nbsp;the&nbsp;CCP4&nbsp;banner;&nbsp;it&nbsp;is<br>
+typically&nbsp;the&nbsp;last&nbsp;date&nbsp;that&nbsp;the&nbsp;source&nbsp;code&nbsp;file&nbsp;was<br>
+committed&nbsp;to&nbsp;CVS.&nbsp;(It&nbsp;is&nbsp;not&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;was<br>
+run&nbsp;on&nbsp;-&nbsp;for&nbsp;that,&nbsp;use&nbsp;'rundate'&nbsp;and&nbsp;'runtime').<br>
+&nbsp;<br>
+ccp4version:&nbsp;the&nbsp;CCP4&nbsp;library&nbsp;version&nbsp;as&nbsp;it&nbsp;appears&nbsp;in&nbsp;the<br>
+<a href="#program">program</a>&nbsp;banner.&nbsp;Typically&nbsp;this&nbsp;includes&nbsp;only&nbsp;the&nbsp;major&nbsp;and<br>
+minor&nbsp;version&nbsp;numbers,&nbsp;but&nbsp;not&nbsp;the&nbsp;patch&nbsp;level.<br>
+&nbsp;<br>
+user:&nbsp;the&nbsp;user&nbsp;id&nbsp;that&nbsp;appears&nbsp;in&nbsp;the&nbsp;CCP4&nbsp;banner&nbsp;at&nbsp;runtime.<br>
+&nbsp;<br>
+runtime:&nbsp;the&nbsp;time&nbsp;of&nbsp;day&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+rundate:&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4i_information"><strong>isccp4i_information</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;CCP4i&nbsp;information&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4iheader"><strong>isccp4iheader</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;CCP4i&nbsp;header&nbsp;line.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4itail"><strong>isccp4itail</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;CCP4i&nbsp;tail&nbsp;line.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4keytext"><strong>isccp4keytext</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;CCP4&nbsp;<a href="#keytext">keytext</a>&nbsp;message&nbsp;($TEXT).<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+name:&nbsp;the&nbsp;message&nbsp;'name'&nbsp;or&nbsp;identifier<br>
+&nbsp;<br>
+junk_text:&nbsp;'junk'&nbsp;text&nbsp;provided&nbsp;by&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;(normally&nbsp;ignored)<br>
+&nbsp;<br>
+message:&nbsp;the&nbsp;message&nbsp;text<br>
+&nbsp;<br>
+nlines:&nbsp;the&nbsp;number&nbsp;of&nbsp;lines&nbsp;of&nbsp;text&nbsp;covered&nbsp;by&nbsp;the&nbsp;entire&nbsp;<a href="#keytext">keytext</a><br>
+message&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4table"><strong>isccp4table</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#table">table</a>&nbsp;($TABLE).<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+rawtable:&nbsp;the&nbsp;exact&nbsp;text&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;as&nbsp;it&nbsp;appeared&nbsp;in&nbsp;the<br>
+<a href="#logfile">logfile</a><br>
+&nbsp;<br>
+title:&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+type:&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;type.<br>
+&nbsp;<br>
+graphs:&nbsp;the&nbsp;text&nbsp;of&nbsp;the&nbsp;$GRAPHS&nbsp;portion&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;text.<br>
+&nbsp;<br>
+columns:&nbsp;the&nbsp;text&nbsp;of&nbsp;the&nbsp;column&nbsp;headers&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+text:&nbsp;the&nbsp;'junk'&nbsp;text&nbsp;after&nbsp;the&nbsp;column&nbsp;headers&nbsp;and&nbsp;before&nbsp;the<br>
+actual&nbsp;<a href="#table">table</a>&nbsp;data.<br>
+&nbsp;<br>
+data:&nbsp;the&nbsp;text&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;data&nbsp;(i.e.&nbsp;columns&nbsp;and&nbsp;rows&nbsp;of<br>
+numbers&nbsp;or&nbsp;other&nbsp;data.<br>
+&nbsp;<br>
+nlines:&nbsp;the&nbsp;number&nbsp;of&nbsp;lines&nbsp;of&nbsp;text&nbsp;covered&nbsp;by&nbsp;the&nbsp;entire&nbsp;<a href="#table">table</a><br>
+block.<br>
+&nbsp;<br>
+These&nbsp;data&nbsp;items&nbsp;are&nbsp;themselves&nbsp;relatively&nbsp;unprocessed,&nbsp;so&nbsp;it<br>
+is&nbsp;recommended&nbsp;that&nbsp;the&nbsp;text&nbsp;that&nbsp;matches&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;should&nbsp;be<br>
+fed&nbsp;into&nbsp;a&nbsp;'<a href="#table">table</a>'&nbsp;object&nbsp;which&nbsp;provides&nbsp;a&nbsp;much&nbsp;easier&nbsp;to&nbsp;use<br>
+interface&nbsp;to&nbsp;the&nbsp;various&nbsp;bits&nbsp;of&nbsp;data&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+a&nbsp;<a href="#table">table</a></tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4termination"><strong>isccp4termination</strong></a>(self, text)</dt><dd><tt>Regular&nbsp;expression&nbsp;match&nbsp;to&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;termination.<br>
+&nbsp;<br>
+Given&nbsp;a&nbsp;block&nbsp;of&nbsp;text,&nbsp;attempts&nbsp;to&nbsp;match&nbsp;it&nbsp;against<br>
+regular&nbsp;expressions&nbsp;for&nbsp;a&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;termination.<br>
+Returns&nbsp;False&nbsp;if&nbsp;the&nbsp;match&nbsp;fails,&nbsp;otherwise&nbsp;returns<br>
+a&nbsp;dictionary&nbsp;object&nbsp;populated&nbsp;with&nbsp;attributes<br>
+derived&nbsp;from&nbsp;the&nbsp;supplied&nbsp;text.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;isccp4termination_standard&nbsp;and<br>
+isccp4termination_phaser&nbsp;functions&nbsp;for&nbsp;descriptions&nbsp;of<br>
+the&nbsp;attributes&nbsp;that&nbsp;are&nbsp;extracted.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4termination_phaser"><strong>isccp4termination_phaser</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;'phaser-style'&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;termination.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+termination_name:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;name&nbsp;as&nbsp;reported&nbsp;in&nbsp;the<br>
+CCP4&nbsp;termination&nbsp;message&nbsp;at&nbsp;the&nbsp;tail&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;log.<br>
+&nbsp;<br>
+termination_message:&nbsp;the&nbsp;message&nbsp;text&nbsp;displayed&nbsp;in&nbsp;the<br>
+CCP4&nbsp;termination&nbsp;message,&nbsp;e.g.&nbsp;'SUCCESS'.<br>
+&nbsp;<br>
+systemtime:&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'CPU&nbsp;time'&nbsp;given&nbsp;at<br>
+termination.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;this&nbsp;is&nbsp;a&nbsp;subset&nbsp;of&nbsp;the&nbsp;attributes&nbsp;collected<br>
+for&nbsp;standard&nbsp;CCP4&nbsp;termination&nbsp;messages.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isccp4termination_standard"><strong>isccp4termination_standard</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;standard&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;termination.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+termination_name:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;name&nbsp;as&nbsp;reported&nbsp;in&nbsp;the<br>
+CCP4&nbsp;termination&nbsp;message&nbsp;at&nbsp;the&nbsp;tail&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;log.<br>
+&nbsp;<br>
+termination_message:&nbsp;the&nbsp;message&nbsp;text&nbsp;displayed&nbsp;in&nbsp;the<br>
+CCP4&nbsp;termination&nbsp;message,&nbsp;e.g.&nbsp;'Normal&nbsp;termination'.<br>
+&nbsp;<br>
+usertime:&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'user&nbsp;time'&nbsp;given&nbsp;at<br>
+termination.<br>
+&nbsp;<br>
+systemtime:&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'system&nbsp;time'&nbsp;given&nbsp;at<br>
+termination.<br>
+&nbsp;<br>
+elapsedtime:&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'elapsed&nbsp;time'&nbsp;given&nbsp;at<br>
+termination.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isdataline"><strong>isdataline</strong></a>(self, line)</dt><dd><tt>Test&nbsp;if&nbsp;line&nbsp;matches&nbsp;a&nbsp;CCP4&nbsp;keyword&nbsp;input&nbsp;line.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;tries&nbsp;to&nbsp;match&nbsp;the&nbsp;keyword&nbsp;input&nbsp;lines.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+returns&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+data_line:&nbsp;the&nbsp;keyword&nbsp;data</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isfileopen"><strong>isfileopen</strong></a>(self, line)</dt><dd><tt>Test&nbsp;if&nbsp;line&nbsp;matches&nbsp;a&nbsp;CCP4&nbsp;file&nbsp;opening&nbsp;report.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;tries&nbsp;to&nbsp;match&nbsp;the&nbsp;reports&nbsp;of&nbsp;a&nbsp;file&nbsp;opening<br>
+event&nbsp;from&nbsp;the&nbsp;CCP4&nbsp;libraries,&nbsp;which&nbsp;report&nbsp;the&nbsp;logical&nbsp;name<br>
+and&nbsp;associated&nbsp;filename.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+returns&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+logical_name:&nbsp;the&nbsp;logical&nbsp;name<br>
+filename:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;associated&nbsp;filename</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isshelxbanner"><strong>isshelxbanner</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;SHELX&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;tries&nbsp;to&nbsp;match&nbsp;the&nbsp;banners&nbsp;from&nbsp;SHELXC,<br>
+SHELXD&nbsp;and&nbsp;SHELXE.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+name:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;name.<br>
+&nbsp;<br>
+version:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;version.<br>
+&nbsp;<br>
+runtime:&nbsp;the&nbsp;time&nbsp;of&nbsp;day&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+rundate:&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-isshelxtermination"><strong>isshelxtermination</strong></a>(self, text)</dt><dd><tt>Test&nbsp;if&nbsp;text&nbsp;matches&nbsp;a&nbsp;SHELX&nbsp;<a href="#program">program</a>&nbsp;termination.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;tries&nbsp;to&nbsp;match&nbsp;the&nbsp;messages&nbsp;from&nbsp;SHELXC,<br>
+SHELXD&nbsp;and&nbsp;SHELXE.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:<br>
+&nbsp;<br>
+termination_name:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;name&nbsp;as&nbsp;reported&nbsp;in&nbsp;the<br>
+SHELX&nbsp;termination&nbsp;message&nbsp;at&nbsp;the&nbsp;tail&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;log.<br>
+&nbsp;<br>
+termination_message:&nbsp;the&nbsp;message&nbsp;text&nbsp;displayed&nbsp;in&nbsp;the<br>
+termination&nbsp;message.&nbsp;The&nbsp;content&nbsp;of&nbsp;this&nbsp;text&nbsp;varies<br>
+between&nbsp;SHELXC&nbsp;and&nbsp;SHELXD/E&nbsp;so&nbsp;no&nbsp;further&nbsp;processing&nbsp;is<br>
+currently&nbsp;attempted.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-issummary_begin"><strong>issummary_begin</strong></a>(self, line)</dt><dd><tt>Test&nbsp;if&nbsp;line&nbsp;matches&nbsp;a&nbsp;CCP4&nbsp;SUMMARY_BEGIN&nbsp;line.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;tries&nbsp;to&nbsp;match&nbsp;lines&nbsp;that&nbsp;indicate&nbsp;the&nbsp;start<br>
+of&nbsp;a&nbsp;CCP4&nbsp;<a href="#summary">summary</a>&nbsp;block&nbsp;i.e.&nbsp;lines&nbsp;containing&nbsp;the&nbsp;text<br>
+'&lt;!--SUMMARY_BEGIN--&gt;'.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;True.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-issummary_end"><strong>issummary_end</strong></a>(self, line)</dt><dd><tt>Test&nbsp;if&nbsp;line&nbsp;matches&nbsp;a&nbsp;CCP4&nbsp;SUMMARY_END&nbsp;line.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;tries&nbsp;to&nbsp;match&nbsp;lines&nbsp;that&nbsp;indicate&nbsp;the&nbsp;end<br>
+of&nbsp;a&nbsp;CCP4&nbsp;<a href="#summary">summary</a>&nbsp;block&nbsp;i.e.&nbsp;lines&nbsp;containing&nbsp;the&nbsp;text<br>
+'&lt;!--SUMMARY_END--&gt;'.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;match&nbsp;fails&nbsp;then&nbsp;return&nbsp;False;&nbsp;if&nbsp;it&nbsp;succeeds&nbsp;then<br>
+return&nbsp;True.</tt></dd></dl>
+
+<dl><dt><a name="patternmatch-store_pattern"><strong>store_pattern</strong></a>(self, name, cpattern)</dt><dd><tt>Store&nbsp;a&nbsp;compiled&nbsp;regular&nbsp;expression&nbsp;associated&nbsp;with&nbsp;'name'.<br>
+&nbsp;<br>
+'cpattern'&nbsp;is&nbsp;a&nbsp;compiled&nbsp;regular&nbsp;expression&nbsp;which<br>
+will&nbsp;be&nbsp;associated&nbsp;with&nbsp;'name'.&nbsp;The&nbsp;expression&nbsp;can&nbsp;be<br>
+retrieved&nbsp;using&nbsp;the&nbsp;'get_pattern'.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="program">class <strong>program</strong></a>(<a href="smartie.html#fragment">fragment</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;the&nbsp;log&nbsp;for&nbsp;a&nbsp;single&nbsp;<a href="#program">program</a>.<br>
+&nbsp;<br>
+<a href="#program">program</a>&nbsp;objects&nbsp;are&nbsp;instantiated&nbsp;and&nbsp;populated&nbsp;by&nbsp;parselog<br>
+as&nbsp;part&nbsp;of&nbsp;the&nbsp;parsing&nbsp;process.&nbsp;The&nbsp;<a href="#program">program</a>&nbsp;object&nbsp;is<br>
+intended&nbsp;to&nbsp;describe&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;of&nbsp;<a href="#logfile">logfile</a>&nbsp;that&nbsp;corresponds<br>
+to&nbsp;the&nbsp;run&nbsp;of&nbsp;a&nbsp;particular&nbsp;<a href="#program">program</a>,&nbsp;although&nbsp;in&nbsp;practice<br>
+other&nbsp;types&nbsp;of&nbsp;<a href="#logfile">logfile</a>&nbsp;features&nbsp;(for&nbsp;example,&nbsp;'interstitial'<br>
+fragments&nbsp;i.e.&nbsp;bits&nbsp;of&nbsp;output&nbsp;inbetween&nbsp;<a href="#program">program</a>&nbsp;logs)&nbsp;are<br>
+also&nbsp;assigned&nbsp;to&nbsp;<a href="#program">program</a>&nbsp;objects&nbsp;in&nbsp;the&nbsp;current&nbsp;version&nbsp;of<br>
+smartie.<br>
+&nbsp;<br>
+A&nbsp;<a href="#program">program</a>&nbsp;object&nbsp;holds&nbsp;various&nbsp;attributes&nbsp;describing&nbsp;the<br>
+<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;question,&nbsp;as&nbsp;well&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;tables<br>
+and&nbsp;<a href="#keytext">keytext</a>&nbsp;messages.&nbsp;A&nbsp;<a href="#program">program</a>&nbsp;object&nbsp;may&nbsp;also&nbsp;hold&nbsp;CCP4i<br>
+information&nbsp;messages,&nbsp;however&nbsp;normally&nbsp;it&nbsp;will&nbsp;not&nbsp;hold&nbsp;this<br>
+at&nbsp;the&nbsp;same&nbsp;time&nbsp;as&nbsp;actual&nbsp;<a href="#program">program</a>&nbsp;data.<br>
+&nbsp;<br>
+The&nbsp;attributes&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;object&nbsp;can&nbsp;be<br>
+accessed&nbsp;using&nbsp;either&nbsp;of&nbsp;the&nbsp;syntaxes&nbsp;'<a href="#program">program</a>['attribute']'<br>
+or&nbsp;'<a href="#program">program</a>.attribute'.<br>
+&nbsp;<br>
+For&nbsp;programs&nbsp;using&nbsp;the&nbsp;standard&nbsp;CCP4&nbsp;banners,&nbsp;the&nbsp;following<br>
+attributes&nbsp;may&nbsp;be&nbsp;defined:<br>
+&nbsp;<br>
+name:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;from&nbsp;the&nbsp;CCP4&nbsp;banner,&nbsp;or<br>
+equivalent.<br>
+&nbsp;<br>
+version:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;version;&nbsp;for&nbsp;CCP4&nbsp;programs,&nbsp;this&nbsp;is&nbsp;the<br>
+version&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.&nbsp;For&nbsp;programs&nbsp;that&nbsp;don't<br>
+explicitly&nbsp;give&nbsp;their&nbsp;own&nbsp;version&nbsp;number&nbsp;this&nbsp;will&nbsp;be&nbsp;the&nbsp;same<br>
+as&nbsp;the&nbsp;CCP4&nbsp;library&nbsp;version.<br>
+&nbsp;<br>
+date:&nbsp;the&nbsp;date&nbsp;string&nbsp;found&nbsp;in&nbsp;the&nbsp;CCP4&nbsp;banner;&nbsp;it&nbsp;is<br>
+typically&nbsp;the&nbsp;last&nbsp;date&nbsp;that&nbsp;the&nbsp;source&nbsp;code&nbsp;file&nbsp;was<br>
+committed&nbsp;to&nbsp;CVS.&nbsp;It&nbsp;is&nbsp;not&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;was<br>
+run&nbsp;on&nbsp;-&nbsp;for&nbsp;that,&nbsp;see&nbsp;the&nbsp;'rundate'&nbsp;and&nbsp;'runtime'&nbsp;attributes.<br>
+&nbsp;<br>
+ccp4version:&nbsp;the&nbsp;CCP4&nbsp;library&nbsp;version&nbsp;as&nbsp;it&nbsp;appears&nbsp;in&nbsp;the<br>
+<a href="#program">program</a>&nbsp;banner.&nbsp;Typically&nbsp;this&nbsp;includes&nbsp;only&nbsp;the&nbsp;major&nbsp;and<br>
+minor&nbsp;version&nbsp;numbers,&nbsp;but&nbsp;not&nbsp;the&nbsp;patch&nbsp;level.<br>
+&nbsp;<br>
+user:&nbsp;the&nbsp;user&nbsp;id&nbsp;that&nbsp;appears&nbsp;in&nbsp;the&nbsp;CCP4&nbsp;banner&nbsp;at&nbsp;runtime.<br>
+&nbsp;<br>
+runtime:&nbsp;the&nbsp;time&nbsp;of&nbsp;day&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+rundate:&nbsp;the&nbsp;date&nbsp;that&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;run&nbsp;started&nbsp;at&nbsp;as<br>
+reported&nbsp;in&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;banner.<br>
+&nbsp;<br>
+termination_name:&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;name&nbsp;as&nbsp;reported&nbsp;in&nbsp;the<br>
+CCP4&nbsp;termination&nbsp;message&nbsp;at&nbsp;the&nbsp;tail&nbsp;of&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;log.<br>
+&nbsp;<br>
+termination_message:&nbsp;the&nbsp;message&nbsp;text&nbsp;displayed&nbsp;in&nbsp;the<br>
+CCP4&nbsp;termination&nbsp;message.<br>
+&nbsp;<br>
+usertime:&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'user&nbsp;time'&nbsp;given&nbsp;at<br>
+termination.<br>
+&nbsp;<br>
+systemtime:&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'system&nbsp;time'&nbsp;given&nbsp;at<br>
+termination.<br>
+&nbsp;<br>
+elapsedtime:&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'elapsed&nbsp;time'&nbsp;given&nbsp;at<br>
+termination.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;not&nbsp;all&nbsp;these&nbsp;attributes&nbsp;may&nbsp;be&nbsp;defined,&nbsp;for<br>
+example&nbsp;if&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;an&nbsp;incomplete&nbsp;CCP4&nbsp;log<br>
+file&nbsp;or&nbsp;if&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;is&nbsp;not&nbsp;a&nbsp;CCP4&nbsp;<a href="#program">program</a>.&nbsp;Use&nbsp;the<br>
+'attributes'&nbsp;method&nbsp;to&nbsp;get&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;defined<br>
+attributes.<br>
+&nbsp;<br>
+In&nbsp;addition&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;object&nbsp;also&nbsp;stores&nbsp;a&nbsp;list&nbsp;of&nbsp;the<br>
+keyword&nbsp;input&nbsp;lines;&nbsp;this&nbsp;list&nbsp;can&nbsp;be&nbsp;retrieved&nbsp;directly<br>
+using&nbsp;the&nbsp;'keywords'&nbsp;method.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="program-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialise&nbsp;a&nbsp;new&nbsp;<a href="#program">program</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="program-addkeyword"><strong>addkeyword</strong></a>(self, line)</dt><dd><tt>Append&nbsp;a&nbsp;keyword&nbsp;input&nbsp;line&nbsp;to&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+This&nbsp;appends&nbsp;a&nbsp;keyword&nbsp;input&nbsp;line&nbsp;(with&nbsp;any&nbsp;leading&nbsp;text<br>
+removed)&nbsp;to&nbsp;the&nbsp;list&nbsp;of&nbsp;keyword&nbsp;lines&nbsp;stored&nbsp;in&nbsp;the<br>
+<a href="#program">program</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="program-addlogicalname"><strong>addlogicalname</strong></a>(self, logical_name, filename)</dt><dd><tt>Add&nbsp;a&nbsp;logical&nbsp;name/filename&nbsp;reference.<br>
+&nbsp;<br>
+This&nbsp;adds&nbsp;a&nbsp;logical&nbsp;name&nbsp;and&nbsp;the&nbsp;associated&nbsp;filename&nbsp;to<br>
+the&nbsp;dictionary&nbsp;of&nbsp;files&nbsp;that&nbsp;were&nbsp;reported&nbsp;as&nbsp;being&nbsp;opened<br>
+in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;same&nbsp;logical&nbsp;name&nbsp;is&nbsp;added&nbsp;multiple&nbsp;times&nbsp;then&nbsp;only<br>
+the&nbsp;last&nbsp;associated&nbsp;filename&nbsp;is&nbsp;kept.</tt></dd></dl>
+
+<dl><dt><a name="program-isccp4"><strong>isccp4</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;from&nbsp;a&nbsp;CCP4&nbsp;<a href="#program">program</a>.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;True&nbsp;if&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;of&nbsp;<a href="#logfile">logfile</a>&nbsp;appeared&nbsp;to<br>
+be&nbsp;from&nbsp;a&nbsp;CCP4&nbsp;<a href="#program">program</a>,&nbsp;and&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="program-isfragment"><strong>isfragment</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;this&nbsp;represents&nbsp;a&nbsp;raw&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+Overrides&nbsp;the&nbsp;'isfragment'&nbsp;method&nbsp;in&nbsp;the&nbsp;base&nbsp;class.</tt></dd></dl>
+
+<dl><dt><a name="program-isprogram"><strong>isprogram</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;this&nbsp;represents&nbsp;a&nbsp;<a href="#program">program</a>&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+Overrides&nbsp;the&nbsp;'isprogram'&nbsp;method&nbsp;in&nbsp;the&nbsp;base&nbsp;class.</tt></dd></dl>
+
+<dl><dt><a name="program-keywords"><strong>keywords</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;list&nbsp;of&nbsp;keyword&nbsp;lines.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;keyword&nbsp;input&nbsp;lines<br>
+that&nbsp;have&nbsp;been&nbsp;stored&nbsp;for&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;object.&nbsp;The&nbsp;lines<br>
+are&nbsp;otherwise&nbsp;unprocessed.&nbsp;The&nbsp;lines&nbsp;are&nbsp;stored&nbsp;in&nbsp;the<br>
+order&nbsp;that&nbsp;they&nbsp;were&nbsp;originally&nbsp;stored,&nbsp;and&nbsp;so&nbsp;should<br>
+reflect&nbsp;the&nbsp;order&nbsp;that&nbsp;they&nbsp;appear&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>.</tt></dd></dl>
+
+<dl><dt><a name="program-logicalnamefile"><strong>logicalnamefile</strong></a>(self, logical_name)</dt><dd><tt>Return&nbsp;the&nbsp;filename&nbsp;associated&nbsp;with&nbsp;a&nbsp;logical&nbsp;name.<br>
+&nbsp;<br>
+Given&nbsp;a&nbsp;logical&nbsp;name,&nbsp;return&nbsp;the&nbsp;associated&nbsp;filename.<br>
+If&nbsp;the&nbsp;logical&nbsp;name&nbsp;isn't&nbsp;found&nbsp;then&nbsp;a&nbsp;KeyError<br>
+exception&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="program-logicalnames"><strong>logicalnames</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;logical&nbsp;names&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>.<br>
+&nbsp;<br>
+The&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;associated&nbsp;with&nbsp;a&nbsp;logical&nbsp;name&nbsp;can<br>
+be&nbsp;retrieved&nbsp;using&nbsp;the&nbsp;'logicalnamefile'&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="program-set_isccp4"><strong>set_isccp4</strong></a>(self, isccp4)</dt><dd><tt>Set&nbsp;whether&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;from&nbsp;a&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;or&nbsp;not.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;sets&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;isccp4&nbsp;flag&nbsp;to&nbsp;True<br>
+if&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;determined&nbsp;to&nbsp;be&nbsp;from&nbsp;a&nbsp;CCP4<br>
+<a href="#program">program</a>,&nbsp;and&nbsp;False&nbsp;if&nbsp;not.&nbsp;Use&nbsp;the&nbsp;'isccp4'&nbsp;method&nbsp;to<br>
+return&nbsp;the&nbsp;value&nbsp;of&nbsp;this&nbsp;flag.</tt></dd></dl>
+
+<dl><dt><a name="program-set_termination"><strong>set_termination</strong></a>(self, termination)</dt><dd><tt>Set&nbsp;whether&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;has&nbsp;a&nbsp;termination&nbsp;message.<br>
+&nbsp;<br>
+This&nbsp;sets&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;'termination'&nbsp;flag&nbsp;to&nbsp;be<br>
+True&nbsp;if&nbsp;a&nbsp;termination&nbsp;message&nbsp;was&nbsp;found,&nbsp;and&nbsp;False&nbsp;if<br>
+not.&nbsp;Use&nbsp;the&nbsp;'termination'&nbsp;method&nbsp;to&nbsp;return&nbsp;the&nbsp;value<br>
+of&nbsp;this&nbsp;flag.</tt></dd></dl>
+
+<dl><dt><a name="program-termination"><strong>termination</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>&nbsp;ends&nbsp;with&nbsp;a&nbsp;valid&nbsp;termination.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;True&nbsp;if&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;appeared&nbsp;to&nbsp;finish&nbsp;with&nbsp;a<br>
+recognised&nbsp;termination&nbsp;message,&nbsp;False&nbsp;otherwise.<br>
+Program&nbsp;fragments&nbsp;that&nbsp;do&nbsp;not&nbsp;end&nbsp;with&nbsp;a&nbsp;termination<br>
+message&nbsp;may&nbsp;have&nbsp;terminated&nbsp;prematurely&nbsp;due&nbsp;to&nbsp;an&nbsp;error.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="smartie.html#fragment">fragment</a>:<br>
+<dl><dt><a name="program-__getattr__"><strong>__getattr__</strong></a>(self, key)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;value&nbsp;=&nbsp;<a href="#fragment">fragment</a>.key<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;get_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="program-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;value&nbsp;=&nbsp;<a href="#fragment">fragment</a>[key]<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;get_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="program-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Implement&nbsp;the&nbsp;__len__&nbsp;built-in&nbsp;method.<br>
+&nbsp;<br>
+The&nbsp;length&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;lines<br>
+of&nbsp;text&nbsp;that&nbsp;it&nbsp;contains.</tt></dd></dl>
+
+<dl><dt><a name="program-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt><dd><tt>Implement&nbsp;the&nbsp;__nonzero__&nbsp;built-in&nbsp;method.<br>
+&nbsp;<br>
+The&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;considered&nbsp;'nonzero'&nbsp;once&nbsp;an<br>
+attribute,&nbsp;<a href="#table">table</a>&nbsp;or&nbsp;<a href="#keytext">keytext</a>&nbsp;has&nbsp;been&nbsp;assigned<br>
+to&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="program-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Implements&nbsp;the&nbsp;functionality&nbsp;for&nbsp;<a href="#program">program</a>[key]&nbsp;=&nbsp;value<br>
+&nbsp;<br>
+Wrapper&nbsp;for&nbsp;the&nbsp;set_attribute&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="program-addkeytext"><strong>addkeytext</strong></a>(self, name<font color="#909090">=''</font>, junk_text<font color="#909090">=''</font>, message<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+Create&nbsp;a&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object&nbsp;and&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;list&nbsp;of<br>
+keytexts&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+The&nbsp;values&nbsp;of&nbsp;the&nbsp;parameters&nbsp;'name',&nbsp;'junk_text'&nbsp;and<br>
+'message'&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;initialise&nbsp;the&nbsp;new&nbsp;<a href="#keytext">keytext</a><br>
+object&nbsp;(one&nbsp;or&nbsp;more&nbsp;of&nbsp;these&nbsp;can&nbsp;be&nbsp;blank).<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;new&nbsp;<a href="#keytext">keytext</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="program-addtable"><strong>addtable</strong></a>(self, tabletext<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+Create&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;and&nbsp;add&nbsp;it&nbsp;to&nbsp;the&nbsp;list&nbsp;of<br>
+tables&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+If&nbsp;'tabletext'&nbsp;is&nbsp;nonblank&nbsp;then&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;will<br>
+be&nbsp;automatically&nbsp;populated&nbsp;from&nbsp;the&nbsp;text,&nbsp;if&nbsp;possible.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="program-attributes"><strong>attributes</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;attributes.<br>
+&nbsp;<br>
+The&nbsp;list&nbsp;contains&nbsp;all&nbsp;the&nbsp;attributes&nbsp;that&nbsp;have&nbsp;been<br>
+set&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="program-findtable"><strong>findtable</strong></a>(self, title_pattern, index<font color="#909090">=0</font>)</dt><dd><tt>Fetch&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;by&nbsp;matching&nbsp;the&nbsp;title.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated;&nbsp;use&nbsp;the&nbsp;'tables'&nbsp;method<br>
+instead.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;looks&nbsp;up&nbsp;a&nbsp;particular&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;a&nbsp;list<br>
+of&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;(argument&nbsp;'table_list'),&nbsp;by&nbsp;finding<br>
+the&nbsp;first&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;list&nbsp;which&nbsp;matches&nbsp;the&nbsp;supplied<br>
+regular&nbsp;expression&nbsp;'title_pattern'.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;more&nbsp;than&nbsp;one&nbsp;matching&nbsp;<a href="#table">table</a>&nbsp;then&nbsp;the&nbsp;'index'<br>
+argument&nbsp;specifies&nbsp;which&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;matching&nbsp;tables<br>
+should&nbsp;be&nbsp;returned.&nbsp;If&nbsp;index&nbsp;is&nbsp;out&nbsp;of&nbsp;range&nbsp;(or&nbsp;there&nbsp;are<br>
+no&nbsp;matching&nbsp;tables)&nbsp;then&nbsp;return&nbsp;'None'.<br>
+&nbsp;<br>
+It&nbsp;calls&nbsp;the&nbsp;'find_table_by_title'&nbsp;function.</tt></dd></dl>
+
+<dl><dt><a name="program-get_attribute"><strong>get_attribute</strong></a>(self, key)</dt><dd><tt>Return&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute.&nbsp;If&nbsp;the&nbsp;attribute&nbsp;has&nbsp;been&nbsp;read&nbsp;from&nbsp;the&nbsp;file<br>
+then&nbsp;its&nbsp;value&nbsp;is&nbsp;returned,&nbsp;otherwise&nbsp;a&nbsp;KeyError<br>
+exception&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="program-get_endline"><strong>get_endline</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;end&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="program-get_source_file"><strong>get_source_file</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;source&nbsp;document&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="program-get_startline"><strong>get_startline</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;start&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="program-has_attribute"><strong>has_attribute</strong></a>(self, key)</dt><dd><tt>Check&nbsp;whether&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute&nbsp;has&nbsp;been&nbsp;set.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute.&nbsp;If&nbsp;the&nbsp;attribute&nbsp;has&nbsp;been&nbsp;set&nbsp;then&nbsp;this<br>
+method&nbsp;returns&nbsp;True,&nbsp;otherwise&nbsp;it&nbsp;returns&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="program-isccp4i_info"><strong>isccp4i_info</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;this&nbsp;is&nbsp;a&nbsp;CCP4i&nbsp;information&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="program-keytext"><strong>keytext</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#keytext">keytext</a>&nbsp;object.<br>
+&nbsp;<br>
+For&nbsp;example:&nbsp;<a href="#program">program</a>.<a href="#program-keytext">keytext</a>(i)&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#keytext">keytext</a><br>
+object&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>&nbsp;object.&nbsp;The&nbsp;methods<br>
+of&nbsp;the&nbsp;<a href="#keytext">keytext</a>&nbsp;class&nbsp;can&nbsp;then&nbsp;be&nbsp;used&nbsp;to&nbsp;drill&nbsp;down&nbsp;into<br>
+the&nbsp;contents&nbsp;of&nbsp;the&nbsp;message.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;nkeytexts&nbsp;method&nbsp;to&nbsp;get&nbsp;the&nbsp;total&nbsp;number&nbsp;of<br>
+<a href="#keytext">keytext</a>&nbsp;objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#program">program</a>/<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="program-nkeytexts"><strong>nkeytexts</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;keytexts&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+'Keytexts'&nbsp;are&nbsp;warnings&nbsp;and&nbsp;messages&nbsp;issued&nbsp;by&nbsp;the<br>
+ccperror/CCPERR&nbsp;functions&nbsp;within&nbsp;programs;&nbsp;see&nbsp;the<br>
+loggraph&nbsp;format&nbsp;documentation&nbsp;for&nbsp;more&nbsp;information,&nbsp;e.g.<br>
+<a href="http://www.ccp4.ac.uk/dist/html/loggraphformat.html">http://www.ccp4.ac.uk/dist/html/loggraphformat.html</a></tt></dd></dl>
+
+<dl><dt><a name="program-ntables"><strong>ntables</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;tables&nbsp;found&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="program-retrieve"><strong>retrieve</strong></a>(self)</dt><dd><tt>Retrieve&nbsp;the&nbsp;text&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+This&nbsp;uses&nbsp;the&nbsp;'retrieve'&nbsp;method&nbsp;within&nbsp;the&nbsp;module.</tt></dd></dl>
+
+<dl><dt><a name="program-set_attribute"><strong>set_attribute</strong></a>(self, key, value)</dt><dd><tt>Set&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;attribute.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;a&nbsp;string&nbsp;specifying&nbsp;a&nbsp;particular&nbsp;<a href="#fragment">fragment</a><br>
+attribute&nbsp;which&nbsp;will&nbsp;be&nbsp;assigned&nbsp;the&nbsp;given&nbsp;value.<br>
+If&nbsp;the&nbsp;attribute&nbsp;doesn't&nbsp;exist&nbsp;then&nbsp;it&nbsp;will&nbsp;be&nbsp;created,<br>
+if&nbsp;it&nbsp;does&nbsp;then&nbsp;the&nbsp;current&nbsp;value&nbsp;will&nbsp;be&nbsp;overwritten<br>
+by&nbsp;the&nbsp;new&nbsp;one.</tt></dd></dl>
+
+<dl><dt><a name="program-set_attributes_from_dictionary"><strong>set_attributes_from_dictionary</strong></a>(self, dict)</dt><dd><tt>Set&nbsp;the&nbsp;values&nbsp;of&nbsp;multiple&nbsp;<a href="#fragment">fragment</a>&nbsp;attributes.<br>
+&nbsp;<br>
+For&nbsp;each&nbsp;key&nbsp;in&nbsp;dictionary&nbsp;'dict',&nbsp;the&nbsp;value&nbsp;of&nbsp;a<br>
+<a href="#fragment">fragment</a>&nbsp;attribute&nbsp;with&nbsp;the&nbsp;same&nbsp;name&nbsp;as&nbsp;the&nbsp;key&nbsp;will<br>
+be&nbsp;assigned&nbsp;the&nbsp;same&nbsp;value&nbsp;as&nbsp;that&nbsp;of&nbsp;the&nbsp;key.</tt></dd></dl>
+
+<dl><dt><a name="program-set_endline"><strong>set_endline</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;end&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="program-set_source_file"><strong>set_source_file</strong></a>(self, source_file)</dt><dd><tt>Set&nbsp;the&nbsp;source&nbsp;document&nbsp;for&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+The&nbsp;source&nbsp;document&nbsp;is&nbsp;specified&nbsp;as&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;that<br>
+the&nbsp;<a href="#fragment">fragment</a>&nbsp;is&nbsp;part&nbsp;of.</tt></dd></dl>
+
+<dl><dt><a name="program-set_startline"><strong>set_startline</strong></a>(self, line_no)</dt><dd><tt>Set&nbsp;the&nbsp;start&nbsp;line&nbsp;of&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;in&nbsp;the&nbsp;source&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="program-table"><strong>table</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;<a href="#table">table</a>&nbsp;object.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated,&nbsp;use&nbsp;'<a href="#fragment">fragment</a>.<a href="#program-tables">tables</a>()[i]'<br>
+instead.<br>
+&nbsp;<br>
+<a href="#fragment">fragment</a>.<a href="#program-table">table</a>(i)&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;associated<br>
+with&nbsp;the&nbsp;<a href="#fragment">fragment</a>&nbsp;object.&nbsp;The&nbsp;methods&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;class<br>
+can&nbsp;then&nbsp;be&nbsp;used&nbsp;to&nbsp;drill&nbsp;down&nbsp;into&nbsp;the&nbsp;contents&nbsp;of&nbsp;the<br>
+<a href="#table">table</a>.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;ntables&nbsp;method&nbsp;to&nbsp;get&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;<a href="#table">table</a><br>
+objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#fragment">fragment</a>.</tt></dd></dl>
+
+<dl><dt><a name="program-tables"><strong>tables</strong></a>(self, select_title<font color="#909090">=''</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;tables&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a>.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;'select_title'&nbsp;is&nbsp;specifed&nbsp;then&nbsp;this&nbsp;returns<br>
+the&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;stored&nbsp;in&nbsp;the&nbsp;<a href="#fragment">fragment</a><br>
+object.<br>
+&nbsp;<br>
+If&nbsp;'select_title'&nbsp;is&nbsp;given&nbsp;then&nbsp;this&nbsp;is&nbsp;compiled&nbsp;as<br>
+a&nbsp;regular&nbsp;expression&nbsp;pattern,&nbsp;and&nbsp;the&nbsp;method&nbsp;returns&nbsp;a<br>
+list&nbsp;containing&nbsp;only&nbsp;those&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;for&nbsp;which&nbsp;the<br>
+title&nbsp;matches&nbsp;the&nbsp;pattern.<br>
+&nbsp;<br>
+In&nbsp;either&nbsp;case&nbsp;if&nbsp;no&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;are&nbsp;found&nbsp;then&nbsp;an<br>
+empty&nbsp;list&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;calls&nbsp;the&nbsp;'find_tables_by_title'&nbsp;function.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="summary">class <strong>summary</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;<a href="#summary">summary</a>&nbsp;block&nbsp;in&nbsp;a&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+The&nbsp;<a href="#summary">summary</a>&nbsp;object&nbsp;holds&nbsp;information&nbsp;about&nbsp;the&nbsp;location<br>
+of&nbsp;a&nbsp;block&nbsp;of&nbsp;text&nbsp;in&nbsp;a&nbsp;<a href="#logfile">logfile</a>.&nbsp;Normally&nbsp;this&nbsp;text&nbsp;would<br>
+be&nbsp;a&nbsp;<a href="#summary">summary</a>&nbsp;block&nbsp;from&nbsp;a&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>,&nbsp;which&nbsp;is<br>
+identified&nbsp;as&nbsp;starting&nbsp;with&nbsp;the&nbsp;text&nbsp;'&lt;!--SUMMARY_BEGIN--&gt;'<br>
+and&nbsp;terminating&nbsp;with&nbsp;the&nbsp;text&nbsp;'&lt;!--SUMMARY_END--&gt;'.<br>
+&nbsp;<br>
+In&nbsp;practice,&nbsp;the&nbsp;<a href="#summary">summary</a>&nbsp;object&nbsp;has&nbsp;three&nbsp;attributes:&nbsp;the<br>
+name&nbsp;of&nbsp;a&nbsp;source&nbsp;file,&nbsp;and&nbsp;the&nbsp;start&nbsp;and&nbsp;end&nbsp;line&nbsp;numbers<br>
+of&nbsp;the&nbsp;block&nbsp;of&nbsp;text&nbsp;within&nbsp;that&nbsp;file.&nbsp;The&nbsp;actual&nbsp;text&nbsp;is<br>
+not&nbsp;stored.&nbsp;It&nbsp;can&nbsp;be&nbsp;fetched&nbsp;using&nbsp;the&nbsp;'retrieve'&nbsp;method,<br>
+in&nbsp;which&nbsp;case&nbsp;it&nbsp;is&nbsp;read&nbsp;directly&nbsp;from&nbsp;the&nbsp;file&nbsp;and<br>
+returned.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="summary-__init__"><strong>__init__</strong></a>(self, source_file, start_line<font color="#909090">=-1</font>)</dt><dd><tt>#&nbsp;Initialise&nbsp;the&nbsp;<a href="#keytext">keytext</a>&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="summary-end"><strong>end</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;end&nbsp;line&nbsp;for&nbsp;the&nbsp;<a href="#summary">summary</a>&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="summary-iscomplete"><strong>iscomplete</strong></a>(self)</dt><dd><tt>Check&nbsp;whether&nbsp;the&nbsp;<a href="#summary">summary</a>&nbsp;block&nbsp;is&nbsp;complete.<br>
+&nbsp;<br>
+Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;start&nbsp;and&nbsp;end&nbsp;line&nbsp;numbers<br>
+are&nbsp;valid&nbsp;and&nbsp;consistent,&nbsp;and&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="summary-retrieve"><strong>retrieve</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;text&nbsp;within&nbsp;the&nbsp;<a href="#summary">summary</a>&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="summary-set_end"><strong>set_end</strong></a>(self, end_line)</dt><dd><tt>Set&nbsp;the&nbsp;end&nbsp;line&nbsp;for&nbsp;the&nbsp;<a href="#summary">summary</a>&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="summary-set_start"><strong>set_start</strong></a>(self, start_line)</dt><dd><tt>Set&nbsp;the&nbsp;start&nbsp;line&nbsp;for&nbsp;the&nbsp;<a href="#summary">summary</a>&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="summary-start"><strong>start</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;start&nbsp;line&nbsp;for&nbsp;the&nbsp;<a href="#summary">summary</a>&nbsp;block.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="table">class <strong>table</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#table">table</a><br>
+&nbsp;<br>
+The&nbsp;<a href="#table">table</a>&nbsp;class&nbsp;represents&nbsp;the&nbsp;various&nbsp;components&nbsp;of&nbsp;a&nbsp;<a href="#table">table</a><br>
+as&nbsp;output&nbsp;in&nbsp;CCP4&nbsp;<a href="#program">program</a>&nbsp;logfiles.&nbsp;These&nbsp;tables&nbsp;are&nbsp;formatted<br>
+in&nbsp;a&nbsp;standard&nbsp;way&nbsp;that&nbsp;enables&nbsp;the&nbsp;data&nbsp;that&nbsp;they&nbsp;contain&nbsp;to<br>
+be&nbsp;displayed&nbsp;by&nbsp;the&nbsp;(x|j)loggraph&nbsp;programs.<br>
+&nbsp;<br>
+For&nbsp;a&nbsp;description&nbsp;of&nbsp;the&nbsp;loggraph&nbsp;format&nbsp;see&nbsp;the&nbsp;loggraph<br>
+format&nbsp;documentation,&nbsp;e.g.<br>
+<a href="http://www.ccp4.ac.uk/dist/html/loggraphformat.html">http://www.ccp4.ac.uk/dist/html/loggraphformat.html</a><br>
+&nbsp;<br>
+A&nbsp;<a href="#table">table</a>&nbsp;consists&nbsp;of&nbsp;a&nbsp;number&nbsp;of&nbsp;columns&nbsp;of&nbsp;data,&nbsp;and&nbsp;a<br>
+number&nbsp;of&nbsp;graphs&nbsp;which&nbsp;are&nbsp;defined&nbsp;as&nbsp;being&nbsp;a&nbsp;subset&nbsp;of&nbsp;these<br>
+columns.&nbsp;Within&nbsp;smartie&nbsp;the&nbsp;<a href="#table_column">table_column</a>&nbsp;class&nbsp;represents&nbsp;an<br>
+individual&nbsp;column,&nbsp;and&nbsp;the&nbsp;<a href="#table_graph">table_graph</a>&nbsp;class&nbsp;represents&nbsp;an<br>
+individual&nbsp;graph.<br>
+&nbsp;<br>
+A&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;can&nbsp;be&nbsp;populated&nbsp;when&nbsp;it&nbsp;is&nbsp;created,&nbsp;by<br>
+supplying&nbsp;it&nbsp;with&nbsp;text&nbsp;containing&nbsp;a&nbsp;CCP4-formatted&nbsp;<a href="#table">table</a><br>
+(typically,&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;of&nbsp;<a href="#logfile">logfile</a>&nbsp;text).&nbsp;Alternatively&nbsp;an<br>
+'empty'&nbsp;<a href="#table">table</a>&nbsp;can&nbsp;be&nbsp;instantiated&nbsp;and&nbsp;then&nbsp;populated&nbsp;using<br>
+the&nbsp;methods&nbsp;of&nbsp;the&nbsp;objects.<br>
+&nbsp;<br>
+The&nbsp;contents&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;can&nbsp;be&nbsp;output&nbsp;in&nbsp;the&nbsp;correct<br>
+CCP4&nbsp;format&nbsp;using&nbsp;the&nbsp;'show'&nbsp;and&nbsp;'jloggraph'&nbsp;methods.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="table-__init__"><strong>__init__</strong></a>(self, tabletext<font color="#909090">=''</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object.<br>
+&nbsp;<br>
+If&nbsp;tabletext&nbsp;contains&nbsp;the&nbsp;text&nbsp;of&nbsp;an&nbsp;existing<br>
+CCP4-formatted&nbsp;<a href="#table">table</a>&nbsp;then&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;will<br>
+attempt&nbsp;to&nbsp;parse&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;and&nbsp;populate&nbsp;itself&nbsp;using<br>
+the&nbsp;supplied&nbsp;data.<br>
+&nbsp;<br>
+If&nbsp;'tabletext'&nbsp;cannot&nbsp;be&nbsp;interpreted&nbsp;as&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;<br>
+then&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;will&nbsp;be&nbsp;'empty'&nbsp;and&nbsp;will&nbsp;contain<br>
+no&nbsp;data.&nbsp;In&nbsp;this&nbsp;case,&nbsp;if&nbsp;'tabletext'&nbsp;consists&nbsp;of&nbsp;a<br>
+single&nbsp;line&nbsp;with&nbsp;no&nbsp;trailing&nbsp;newline&nbsp;then&nbsp;the&nbsp;<a href="#table">table</a><br>
+object&nbsp;title&nbsp;will&nbsp;be&nbsp;set&nbsp;to&nbsp;'tabletext'<br>
+automatically.</tt></dd></dl>
+
+<dl><dt><a name="table-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt><dd><tt>Builtin:&nbsp;provides&nbsp;the&nbsp;True/False&nbsp;test.<br>
+&nbsp;<br>
+A&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;is&nbsp;nonzero&nbsp;if&nbsp;data&nbsp;has&nbsp;been&nbsp;loaded<br>
+into&nbsp;it&nbsp;either&nbsp;at&nbsp;instantiation&nbsp;or&nbsp;subsequently<br>
+using&nbsp;any&nbsp;of&nbsp;its&nbsp;methods.</tt></dd></dl>
+
+<dl><dt><a name="table-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Builtin:&nbsp;return&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;title</tt></dd></dl>
+
+<dl><dt><a name="table-add_data"><strong>add_data</strong></a>(self, rowdata)</dt><dd><tt>Add&nbsp;a&nbsp;row&nbsp;of&nbsp;values&nbsp;to&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+'rowdata'&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;which&nbsp;specifies&nbsp;column<br>
+names&nbsp;as&nbsp;keys&nbsp;defining&nbsp;the&nbsp;values&nbsp;to&nbsp;be&nbsp;appended.&nbsp;For<br>
+example,&nbsp;if&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;has&nbsp;columns&nbsp;called&nbsp;'X',&nbsp;'Y'&nbsp;and<br>
+'Z',&nbsp;then&nbsp;rowdata&nbsp;might&nbsp;be&nbsp;defined&nbsp;as:<br>
+&nbsp;<br>
+rowdata&nbsp;=&nbsp;{&nbsp;'X':&nbsp;0.0,&nbsp;'Y':&nbsp;0.776,&nbsp;'Z':&nbsp;878&nbsp;}<br>
+&nbsp;<br>
+'Null'&nbsp;values&nbsp;(i.e.&nbsp;'*'&nbsp;character)&nbsp;will&nbsp;be&nbsp;added&nbsp;to<br>
+columns&nbsp;not&nbsp;named&nbsp;to&nbsp;keep&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;data&nbsp;well-formed.<br>
+For&nbsp;example:<br>
+&nbsp;<br>
+rowdata&nbsp;=&nbsp;{&nbsp;'X':&nbsp;0.0,&nbsp;'Z':&nbsp;878&nbsp;}<br>
+&nbsp;<br>
+will&nbsp;assign&nbsp;the&nbsp;expected&nbsp;data&nbsp;to&nbsp;the&nbsp;'X'&nbsp;and&nbsp;'Z'columns,<br>
+while&nbsp;assigning&nbsp;the&nbsp;'*'&nbsp;character&nbsp;to&nbsp;the&nbsp;'Y'&nbsp;column.</tt></dd></dl>
+
+<dl><dt><a name="table-addcolumn"><strong>addcolumn</strong></a>(self, title<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;column&nbsp;to&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;adds&nbsp;a&nbsp;new&nbsp;'<a href="#table_column">table_column</a>'&nbsp;object&nbsp;to<br>
+the&nbsp;<a href="#table">table</a>,&nbsp;to&nbsp;represent&nbsp;a&nbsp;column&nbsp;of&nbsp;data.<br>
+Optionally&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;column&nbsp;can&nbsp;be&nbsp;supplied<br>
+via&nbsp;the&nbsp;'title'&nbsp;argument.&nbsp;The&nbsp;<a href="#table_column">table_column</a>&nbsp;is<br>
+otherwise&nbsp;unpopulated.<br>
+&nbsp;<br>
+The&nbsp;new&nbsp;<a href="#table_column">table_column</a>&nbsp;is&nbsp;returned&nbsp;by&nbsp;this&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="table-addgraph"><strong>addgraph</strong></a>(self, title<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;graph&nbsp;object&nbsp;to&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;adds&nbsp;a&nbsp;new&nbsp;'<a href="#table_graph">table_graph</a>'&nbsp;object&nbsp;to&nbsp;the<br>
+<a href="#table">table</a>.&nbsp;Optionally&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;new&nbsp;graph&nbsp;can&nbsp;be<br>
+supplied&nbsp;using&nbsp;the&nbsp;'title'&nbsp;argument.&nbsp;All&nbsp;other&nbsp;graph<br>
+attributes&nbsp;are&nbsp;unset&nbsp;by&nbsp;default.</tt></dd></dl>
+
+<dl><dt><a name="table-col"><strong>col</strong></a>(self, name)</dt><dd><tt>Return&nbsp;the&nbsp;data&nbsp;in&nbsp;the&nbsp;column&nbsp;identified&nbsp;by&nbsp;'name'.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;data&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;column<br>
+identified&nbsp;by&nbsp;'name'&nbsp;(for&nbsp;example,&nbsp;'Rfree'),&nbsp;as&nbsp;a<br>
+list&nbsp;of&nbsp;values.&nbsp;(This&nbsp;is&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;values<br>
+in&nbsp;the&nbsp;<a href="#table_column">table_column</a>&nbsp;object&nbsp;representing&nbsp;the&nbsp;column.)<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;named&nbsp;column&nbsp;isn't&nbsp;found&nbsp;then&nbsp;a&nbsp;LookupError<br>
+exception&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="table-columns"><strong>columns</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;original&nbsp;column&nbsp;titles&nbsp;text&nbsp;string.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;'raw'&nbsp;string&nbsp;that&nbsp;was&nbsp;supplied<br>
+via&nbsp;the&nbsp;'setcolumns'&nbsp;method,&nbsp;i.e.&nbsp;a&nbsp;single&nbsp;string&nbsp;with<br>
+whitespace&nbsp;delimited&nbsp;column&nbsp;titles.&nbsp;Of&nbsp;itself&nbsp;this<br>
+data&nbsp;is&nbsp;probably&nbsp;not&nbsp;very&nbsp;useful.</tt></dd></dl>
+
+<dl><dt><a name="table-data"><strong>data</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;'raw'&nbsp;data&nbsp;from&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;body.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;'raw'&nbsp;<a href="#table">table</a>&nbsp;body&nbsp;text&nbsp;as<br>
+supplied&nbsp;originally&nbsp;via&nbsp;the&nbsp;'setdata'&nbsp;method.&nbsp;Of<br>
+itself&nbsp;this&nbsp;data&nbsp;is&nbsp;probably&nbsp;not&nbsp;very&nbsp;useful.</tt></dd></dl>
+
+<dl><dt><a name="table-definegraph"><strong>definegraph</strong></a>(self, title, columns, scaling<font color="#909090">=''</font>)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;graph&nbsp;definition&nbsp;to&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;provides&nbsp;an&nbsp;interface&nbsp;to&nbsp;adding&nbsp;new&nbsp;graph<br>
+definitions&nbsp;to&nbsp;an&nbsp;existing&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+title:&nbsp;&nbsp;&nbsp;title&nbsp;for&nbsp;the&nbsp;graph.<br>
+columns:&nbsp;a&nbsp;list&nbsp;of&nbsp;column&nbsp;names.&nbsp;The&nbsp;first&nbsp;column<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;the&nbsp;be&nbsp;the&nbsp;X-axis,&nbsp;others&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Y-values.<br>
+scaling:&nbsp;(optional)&nbsp;the&nbsp;scaling&nbsp;definition.<br>
+&nbsp;<br>
+Possible&nbsp;scaling&nbsp;strings&nbsp;are:<br>
+&nbsp;<br>
+'A':&nbsp;fully&nbsp;automatic&nbsp;(axes&nbsp;limits&nbsp;are&nbsp;automatically<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;determined&nbsp;when&nbsp;the&nbsp;graph&nbsp;is&nbsp;rendered&nbsp;(this&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;default)<br>
+'N':&nbsp;'nought',&nbsp;axes&nbsp;limits&nbsp;start&nbsp;at&nbsp;zero<br>
+'XMIN|XMAXxYMIN|YMAX':&nbsp;limits&nbsp;xmin,xmax&nbsp;and&nbsp;ymin,ymax.<br>
+&nbsp;<br>
+Raises&nbsp;a&nbsp;ValueError&nbsp;if&nbsp;insufficient&nbsp;number&nbsp;of&nbsp;columns<br>
+are&nbsp;specified,&nbsp;or&nbsp;if&nbsp;a&nbsp;specified&nbsp;column&nbsp;name&nbsp;doesn't<br>
+appear&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="table-graphs"><strong>graphs</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;graph&nbsp;titles&nbsp;and&nbsp;descriptions.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;'raw'&nbsp;string&nbsp;containing&nbsp;the<br>
+graph&nbsp;definitions&nbsp;for&nbsp;the&nbsp;<a href="#table">table</a>,&nbsp;which&nbsp;were&nbsp;originally<br>
+supplied&nbsp;via&nbsp;the&nbsp;'setgraphs'&nbsp;method.&nbsp;Of&nbsp;itself&nbsp;this<br>
+data&nbsp;is&nbsp;probably&nbsp;not&nbsp;very&nbsp;useful.</tt></dd></dl>
+
+<dl><dt><a name="table-html"><strong>html</strong></a>(self, border<font color="#909090">=2</font>)</dt><dd><tt>Return&nbsp;the&nbsp;text&nbsp;of&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;with&nbsp;HTML&nbsp;formatting.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;(column<br>
+titles&nbsp;and&nbsp;column&nbsp;data)&nbsp;marked&nbsp;up&nbsp;as&nbsp;a&nbsp;HTML&nbsp;<a href="#table">table</a>.<br>
+The&nbsp;width&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;can&nbsp;be&nbsp;controlled&nbsp;by&nbsp;setting<br>
+the&nbsp;'border'&nbsp;argument.<br>
+Any&nbsp;HTML&nbsp;special&nbsp;characters&nbsp;(&lt;,&nbsp;&gt;&nbsp;and&nbsp;&amp;)&nbsp;in&nbsp;the<br>
+column&nbsp;titles&nbsp;or&nbsp;data&nbsp;items&nbsp;are&nbsp;automatically<br>
+converted&nbsp;to&nbsp;the&nbsp;correct&nbsp;form&nbsp;for&nbsp;HTML.</tt></dd></dl>
+
+<dl><dt><a name="table-jloggraph"><strong>jloggraph</strong></a>(self, codebase<font color="#909090">=''</font>, width<font color="#909090">=400</font>, height<font color="#909090">=300</font>)</dt><dd><tt>Return&nbsp;a&nbsp;jloggraph-formatted&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;text&nbsp;for&nbsp;CCP4-formatted&nbsp;<a href="#table">table</a><br>
+from&nbsp;this&nbsp;object&nbsp;which&nbsp;includes&nbsp;the&nbsp;HTML&nbsp;tags&nbsp;required<br>
+for&nbsp;the&nbsp;jloggraph&nbsp;Java&nbsp;applet.<br>
+&nbsp;<br>
+The&nbsp;codebase&nbsp;argument&nbsp;should&nbsp;specify&nbsp;the&nbsp;full&nbsp;path&nbsp;for<br>
+the&nbsp;JLogGraph.class&nbsp;and&nbsp;JLogCanvas.class&nbsp;files&nbsp;required<br>
+to&nbsp;run&nbsp;the&nbsp;applet&nbsp;(typically&nbsp;this&nbsp;is&nbsp;$CCP4/bin/).</tt></dd></dl>
+
+<dl><dt><a name="table-list_columns"><strong>list_columns</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;column&nbsp;names&nbsp;defined&nbsp;in&nbsp;the&nbsp;graph.</tt></dd></dl>
+
+<dl><dt><a name="table-loggraph"><strong>loggraph</strong></a>(self, pad_columns<font color="#909090">=True</font>)</dt><dd><tt>Return&nbsp;a&nbsp;loggraph-formatted&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+The&nbsp;loggraph&nbsp;method&nbsp;generates&nbsp;the&nbsp;text&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;based<br>
+on&nbsp;the&nbsp;data&nbsp;stored&nbsp;in&nbsp;the&nbsp;object,&nbsp;with&nbsp;the&nbsp;correct<br>
+tags&nbsp;defining&nbsp;the&nbsp;columns&nbsp;and&nbsp;graphs&nbsp;and&nbsp;which&nbsp;should<br>
+be&nbsp;viewable&nbsp;in&nbsp;(x)loggraph.<br>
+&nbsp;<br>
+For&nbsp;information&nbsp;on&nbsp;the&nbsp;'pad_columns'&nbsp;option,&nbsp;see&nbsp;the&nbsp;'show'<br>
+method&nbsp;(the&nbsp;setting&nbsp;here&nbsp;is&nbsp;passed&nbsp;directly&nbsp;to&nbsp;'show').<br>
+&nbsp;<br>
+To&nbsp;generate&nbsp;jloggraph-formatted&nbsp;tables&nbsp;use&nbsp;the<br>
+jloggraph&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="table-ncolumns"><strong>ncolumns</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;columns&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;number&nbsp;of&nbsp;<a href="#table_column">table_column</a><br>
+objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="table-ngraphs"><strong>ngraphs</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;graphs&nbsp;defined&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;number&nbsp;of&nbsp;'<a href="#table_graph">table_graph</a>'<br>
+objects&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="table-nrows"><strong>nrows</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;complete&nbsp;rows&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;shortest&nbsp;column&nbsp;of&nbsp;data&nbsp;stored<br>
+in&nbsp;the&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="table-parse_error"><strong>parse_error</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;the&nbsp;supplied&nbsp;<a href="#table">table</a>&nbsp;was&nbsp;parsed&nbsp;correctly.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;was&nbsp;a&nbsp;problem&nbsp;parsing&nbsp;the&nbsp;raw&nbsp;<a href="#table">table</a>&nbsp;text&nbsp;(for<br>
+example&nbsp;if&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;was&nbsp;incomplete&nbsp;or&nbsp;misformatted)&nbsp;then<br>
+<a href="#table-parse_error">parse_error</a>()&nbsp;will&nbsp;return&nbsp;True,&nbsp;otherwise&nbsp;it&nbsp;will&nbsp;be<br>
+False.</tt></dd></dl>
+
+<dl><dt><a name="table-rawtable"><strong>rawtable</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;'raw'&nbsp;<a href="#table">table</a>&nbsp;text&nbsp;taken&nbsp;from&nbsp;the&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;any&nbsp;original&nbsp;'raw'&nbsp;text&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;that<br>
+was&nbsp;used&nbsp;to&nbsp;populate&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;wasn't&nbsp;populated&nbsp;from&nbsp;a&nbsp;text&nbsp;<a href="#fragment">fragment</a><br>
+then&nbsp;this&nbsp;will&nbsp;return&nbsp;an&nbsp;empty&nbsp;string.&nbsp;The&nbsp;'loggraph'&nbsp;and<br>
+'jloggraph'&nbsp;methods&nbsp;are&nbsp;recommended&nbsp;over&nbsp;the&nbsp;'rawtable'<br>
+method&nbsp;as&nbsp;a&nbsp;way&nbsp;to&nbsp;return&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;data&nbsp;formatted&nbsp;with<br>
+loggraph&nbsp;tags.</tt></dd></dl>
+
+<dl><dt><a name="table-setcolumns"><strong>setcolumns</strong></a>(self, columns)</dt><dd><tt>Create&nbsp;new&nbsp;columns&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;from&nbsp;the&nbsp;'raw'&nbsp;data.<br>
+&nbsp;<br>
+Within&nbsp;a&nbsp;CCP4-formatted&nbsp;<a href="#table">table</a>,&nbsp;titles&nbsp;of&nbsp;columns&nbsp;are<br>
+supplied&nbsp;as&nbsp;a&nbsp;string&nbsp;of&nbsp;white-space&nbsp;delimited&nbsp;'tokens'<br>
+(the&nbsp;tokens&nbsp;are&nbsp;the&nbsp;titles).&nbsp;For&nbsp;example:<br>
+&nbsp;<br>
+Resln_Range&nbsp;1/resol^2&nbsp;Nref&nbsp;Nz1&nbsp;Nz2&nbsp;Nz3&nbsp;...<br>
+&nbsp;<br>
+This&nbsp;string&nbsp;is&nbsp;supplied&nbsp;to&nbsp;the&nbsp;setcolumns&nbsp;method&nbsp;as&nbsp;the<br>
+'columns'&nbsp;argument.&nbsp;setcolumns&nbsp;then&nbsp;extracts&nbsp;the<br>
+individual&nbsp;column&nbsp;titles&nbsp;and&nbsp;for&nbsp;each&nbsp;makes&nbsp;a&nbsp;new<br>
+(empty)&nbsp;<a href="#table_column">table_column</a>&nbsp;object.<br>
+&nbsp;<br>
+If&nbsp;<a href="#table">table</a>&nbsp;values&nbsp;have&nbsp;previously&nbsp;been&nbsp;stored&nbsp;in&nbsp;the<br>
+<a href="#table">table</a>&nbsp;object&nbsp;(via&nbsp;the&nbsp;'setdata'&nbsp;method)&nbsp;then&nbsp;setcolumns<br>
+will&nbsp;also&nbsp;attempt&nbsp;to&nbsp;populate&nbsp;the&nbsp;columns&nbsp;from&nbsp;this<br>
+data.</tt></dd></dl>
+
+<dl><dt><a name="table-setdata"><strong>setdata</strong></a>(self, data)</dt><dd><tt>Store&nbsp;the&nbsp;raw&nbsp;tabulated&nbsp;data&nbsp;for&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+The&nbsp;body&nbsp;of&nbsp;a&nbsp;CCP4-formatted&nbsp;<a href="#table">table</a>&nbsp;contains&nbsp;tabulated<br>
+data&nbsp;items&nbsp;corresponding&nbsp;to&nbsp;columns&nbsp;associated&nbsp;with&nbsp;the<br>
+column&nbsp;titles.&nbsp;The&nbsp;<a href="#table">table</a>&nbsp;body&nbsp;consists&nbsp;of&nbsp;a&nbsp;sequence<br>
+of&nbsp;white-space&nbsp;separated&nbsp;data&nbsp;items&nbsp;(typically&nbsp;numbers<br>
+but&nbsp;could&nbsp;be&nbsp;other&nbsp;data).<br>
+&nbsp;<br>
+The&nbsp;<a href="#table">table</a>&nbsp;body&nbsp;data&nbsp;is&nbsp;supplied&nbsp;to&nbsp;this&nbsp;method&nbsp;as&nbsp;a<br>
+single&nbsp;text&nbsp;string&nbsp;via&nbsp;the&nbsp;'data'&nbsp;argument,&nbsp;and&nbsp;is<br>
+stored&nbsp;as&nbsp;is&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;object.<br>
+If&nbsp;<a href="#table">table</a>&nbsp;columns&nbsp;have&nbsp;also&nbsp;previously&nbsp;been&nbsp;defined<br>
+then&nbsp;this&nbsp;method&nbsp;will&nbsp;further&nbsp;attempt&nbsp;to&nbsp;populate&nbsp;the<br>
+columns&nbsp;with&nbsp;the&nbsp;data&nbsp;from&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;body.</tt></dd></dl>
+
+<dl><dt><a name="table-setgraphs"><strong>setgraphs</strong></a>(self, graphs)</dt><dd><tt>Store&nbsp;the&nbsp;graph&nbsp;definitions&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;'raw'&nbsp;format.<br>
+&nbsp;<br>
+Within&nbsp;a&nbsp;CCP4-formatted&nbsp;<a href="#table">table</a>,&nbsp;one&nbsp;or&nbsp;more&nbsp;graphs&nbsp;are<br>
+be&nbsp;defined&nbsp;using&nbsp;simple&nbsp;strings.&nbsp;Generally&nbsp;the&nbsp;descriptions<br>
+take&nbsp;the&nbsp;form:<br>
+&nbsp;<br>
+:graph1&nbsp;name:graphtype:column_list:<br>
+:graph2&nbsp;name:graphtype:column_list:&nbsp;...<br>
+&nbsp;<br>
+(The&nbsp;graph&nbsp;definitions&nbsp;can&nbsp;be&nbsp;separated&nbsp;using&nbsp;whitespace,<br>
+not&nbsp;necessarily&nbsp;newlines).<br>
+&nbsp;<br>
+The&nbsp;'setgraphs'&nbsp;method&nbsp;takes&nbsp;an&nbsp;arbitrary&nbsp;number&nbsp;of&nbsp;graph<br>
+definition&nbsp;strings&nbsp;of&nbsp;the&nbsp;above&nbsp;form&nbsp;and&nbsp;extracts&nbsp;from&nbsp;each<br>
+the&nbsp;data,&nbsp;namely:&nbsp;the&nbsp;graph&nbsp;name&nbsp;(i.e.&nbsp;title),&nbsp;the&nbsp;type<br>
+(normally&nbsp;either&nbsp;GRAPH&nbsp;or&nbsp;SCATTER)&nbsp;and&nbsp;a&nbsp;list&nbsp;of&nbsp;column<br>
+numbers&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="table-setrawtable"><strong>setrawtable</strong></a>(self, rawtable)</dt><dd><tt>Store&nbsp;the&nbsp;'raw'&nbsp;<a href="#table">table</a>&nbsp;text&nbsp;from&nbsp;the&nbsp;original&nbsp;<a href="#logfile">logfile</a>.<br>
+&nbsp;<br>
+The&nbsp;raw&nbsp;<a href="#table">table</a>&nbsp;data&nbsp;is&nbsp;the&nbsp;original&nbsp;text&nbsp;(for&nbsp;example,&nbsp;the<br>
+<a href="#fragment">fragment</a>&nbsp;of&nbsp;log&nbsp;file&nbsp;text)&nbsp;supplied&nbsp;to&nbsp;the&nbsp;object&nbsp;to<br>
+populate&nbsp;itself&nbsp;from.</tt></dd></dl>
+
+<dl><dt><a name="table-settext"><strong>settext</strong></a>(self, text)</dt><dd><tt>Store&nbsp;the&nbsp;arbitrary&nbsp;text&nbsp;from&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+Within&nbsp;a&nbsp;CCP4-formatted&nbsp;<a href="#table">table</a>&nbsp;there&nbsp;is&nbsp;space&nbsp;for&nbsp;a<br>
+'arbitrary&nbsp;text'&nbsp;(see&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;format&nbsp;documentation<br>
+for&nbsp;more&nbsp;details&nbsp;on&nbsp;this).&nbsp;This&nbsp;text&nbsp;is&nbsp;not&nbsp;used&nbsp;when<br>
+plotting&nbsp;graphs&nbsp;but&nbsp;is&nbsp;included&nbsp;when&nbsp;the&nbsp;data&nbsp;in&nbsp;the<br>
+<a href="#table">table</a>&nbsp;is&nbsp;written&nbsp;back&nbsp;out&nbsp;in&nbsp;CCP4&nbsp;$TABLE&nbsp;format.</tt></dd></dl>
+
+<dl><dt><a name="table-settitle"><strong>settitle</strong></a>(self, title)</dt><dd><tt>Store&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;title.<br>
+&nbsp;<br>
+The&nbsp;<a href="#table">table</a>&nbsp;title&nbsp;is&nbsp;an&nbsp;arbitrary&nbsp;string&nbsp;of&nbsp;text&nbsp;that&nbsp;is<br>
+intended&nbsp;to&nbsp;describe&nbsp;briefly&nbsp;the&nbsp;nature&nbsp;of&nbsp;the&nbsp;data<br>
+presented&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="table-settype"><strong>settype</strong></a>(self, graphtype)</dt><dd><tt>Store&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;graph&nbsp;type.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;currently&nbsp;one&nbsp;of&nbsp;two&nbsp;possible&nbsp;loggraph&nbsp;keywords,<br>
+either&nbsp;GRAPHS&nbsp;or&nbsp;SCATTER.&nbsp;The&nbsp;keyword&nbsp;is&nbsp;an&nbsp;indication<br>
+to&nbsp;plotting&nbsp;software&nbsp;of&nbsp;how&nbsp;the&nbsp;data&nbsp;should&nbsp;be&nbsp;displayed:<br>
+&nbsp;<br>
+GRAPHS:&nbsp;line&nbsp;graphs,&nbsp;with&nbsp;data&nbsp;points&nbsp;joined&nbsp;by&nbsp;lines<br>
+SCATTER:&nbsp;scatter&nbsp;plots,&nbsp;with&nbsp;data&nbsp;plotted&nbsp;as&nbsp;points.<br>
+&nbsp;<br>
+Raises&nbsp;a&nbsp;ValueError&nbsp;if&nbsp;the&nbsp;graphtype&nbsp;is&nbsp;not&nbsp;recognised.</tt></dd></dl>
+
+<dl><dt><a name="table-show"><strong>show</strong></a>(self, loggraph<font color="#909090">=False</font>, html<font color="#909090">=False</font>, pad_columns<font color="#909090">=True</font>)</dt><dd><tt>Return&nbsp;the&nbsp;text&nbsp;of&nbsp;a&nbsp;CCP4-formatted&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+The&nbsp;show&nbsp;method&nbsp;generates&nbsp;the&nbsp;text&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;based<br>
+on&nbsp;the&nbsp;data&nbsp;stored&nbsp;in&nbsp;the&nbsp;object.&nbsp;If&nbsp;the&nbsp;'loggraph'<br>
+argument&nbsp;is&nbsp;specified&nbsp;as&nbsp;'True'&nbsp;then&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;includes<br>
+the&nbsp;correct&nbsp;tags&nbsp;defining&nbsp;the&nbsp;columns&nbsp;and&nbsp;graphs&nbsp;and<br>
+which&nbsp;should&nbsp;be&nbsp;viewable&nbsp;in&nbsp;(x)loggraph.&nbsp;If&nbsp;the&nbsp;'html'<br>
+argument&nbsp;is&nbsp;specified&nbsp;then&nbsp;special&nbsp;HTML&nbsp;characters&nbsp;in<br>
+the&nbsp;titles&nbsp;are&nbsp;escaped.<br>
+&nbsp;<br>
+If&nbsp;'pad_columns'&nbsp;is&nbsp;True&nbsp;then&nbsp;columns&nbsp;will&nbsp;be&nbsp;padded<br>
+with&nbsp;spaces&nbsp;in&nbsp;order&nbsp;to&nbsp;make&nbsp;them&nbsp;line&nbsp;up&nbsp;nicely.&nbsp;If<br>
+padding&nbsp;is&nbsp;not&nbsp;required&nbsp;then&nbsp;set&nbsp;it&nbsp;to&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="table-table_column"><strong>table_column</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;column&nbsp;associated&nbsp;with&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#table_column">table_column</a>&nbsp;object&nbsp;in&nbsp;the<br>
+<a href="#table">table</a>.&nbsp;Note&nbsp;that&nbsp;i&nbsp;counts&nbsp;from&nbsp;zero.<br>
+&nbsp;<br>
+Generally&nbsp;applications&nbsp;that&nbsp;want&nbsp;to&nbsp;examine&nbsp;the&nbsp;data<br>
+stored&nbsp;in&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;are&nbsp;better&nbsp;off&nbsp;using&nbsp;the&nbsp;'col'<br>
+method&nbsp;of&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;class&nbsp;rather&nbsp;than&nbsp;the<br>
+'<a href="#table_column">table_column</a>'&nbsp;method.&nbsp;The&nbsp;'col'&nbsp;method&nbsp;allows&nbsp;data<br>
+to&nbsp;be&nbsp;retrieved&nbsp;by&nbsp;column&nbsp;name,&nbsp;and&nbsp;returns&nbsp;the<br>
+column&nbsp;of&nbsp;data&nbsp;as&nbsp;a&nbsp;Python&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="table-table_graph"><strong>table_graph</strong></a>(self, i)</dt><dd><tt>Return&nbsp;the&nbsp;i'th&nbsp;graph&nbsp;object.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;the&nbsp;i'th&nbsp;<a href="#table_graph">table_graph</a>&nbsp;object<br>
+associated&nbsp;with&nbsp;the&nbsp;<a href="#table">table</a>.&nbsp;(Note&nbsp;that&nbsp;i&nbsp;starts&nbsp;from<br>
+zero.)</tt></dd></dl>
+
+<dl><dt><a name="table-text"><strong>text</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;arbitrary&nbsp;text&nbsp;from&nbsp;the&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;any&nbsp;arbitrary&nbsp;text&nbsp;associated&nbsp;with&nbsp;the<br>
+<a href="#table">table</a>&nbsp;header&nbsp;that&nbsp;was&nbsp;previously&nbsp;stored&nbsp;using&nbsp;the<br>
+'settext'&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="table-title"><strong>title</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;title&nbsp;stored&nbsp;in&nbsp;the&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="table-type"><strong>type</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;graph&nbsp;type.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;'settype'&nbsp;method&nbsp;for&nbsp;the&nbsp;possible&nbsp;values&nbsp;and&nbsp;their<br>
+associated&nbsp;meanings&nbsp;for&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;graph&nbsp;type.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="table_column">class <strong>table_column</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;column&nbsp;in&nbsp;a&nbsp;CCP4i&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#table">table</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="table_column-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt><dd><tt>Implement&nbsp;<a href="#table_column">table_column</a>[i]&nbsp;to&nbsp;return&nbsp;the&nbsp;i'th&nbsp;data&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="table_column-__init__"><strong>__init__</strong></a>(self, title<font color="#909090">=''</font>)</dt><dd><tt>Initialise&nbsp;the&nbsp;<a href="#table_column">table_column</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="table_column-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Implements&nbsp;len(<a href="#table_column">table_column</a>).</tt></dd></dl>
+
+<dl><dt><a name="table_column-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;column&nbsp;contains&nbsp;data,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="table_column-append"><strong>append</strong></a>(self, item)</dt><dd><tt>Append&nbsp;a&nbsp;data&nbsp;value&nbsp;to&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;column.<br>
+&nbsp;<br>
+The&nbsp;value&nbsp;will&nbsp;be&nbsp;stored&nbsp;as&nbsp;integer,&nbsp;float&nbsp;or&nbsp;string&nbsp;as<br>
+appropriate.</tt></dd></dl>
+
+<dl><dt><a name="table_column-data"><strong>data</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;list&nbsp;of&nbsp;data&nbsp;values&nbsp;in&nbsp;the&nbsp;column.</tt></dd></dl>
+
+<dl><dt><a name="table_column-nrows"><strong>nrows</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;in&nbsp;the&nbsp;column.</tt></dd></dl>
+
+<dl><dt><a name="table_column-settitle"><strong>settitle</strong></a>(self, title)</dt><dd><tt>Set&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;column.</tt></dd></dl>
+
+<dl><dt><a name="table_column-title"><strong>title</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;column.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="table_graph">class <strong>table_graph</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;describing&nbsp;a&nbsp;graph&nbsp;in&nbsp;a&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+Tables&nbsp;in&nbsp;logfiles&nbsp;can&nbsp;contain&nbsp;any&nbsp;number&nbsp;of&nbsp;'graphs',<br>
+which&nbsp;are&nbsp;represented&nbsp;within&nbsp;smartie&nbsp;by&nbsp;<a href="#table_graph">table_graph</a><br>
+objects.<br>
+&nbsp;<br>
+A&nbsp;graph&nbsp;is&nbsp;defined&nbsp;by&nbsp;a&nbsp;title,&nbsp;a&nbsp;scaling&nbsp;type,&nbsp;and&nbsp;a<br>
+collection&nbsp;of&nbsp;table_columns&nbsp;storing&nbsp;columns&nbsp;of&nbsp;data.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="table_graph-__init__"><strong>__init__</strong></a>(self, title<font color="#909090">=''</font>, scaling<font color="#909090">=''</font>, column_list<font color="#909090">=[]</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;<a href="#table_graph">table_graph</a>&nbsp;object.<br>
+&nbsp;<br>
+The&nbsp;'title'&nbsp;argument&nbsp;is&nbsp;a&nbsp;string&nbsp;containing&nbsp;the&nbsp;title<br>
+for&nbsp;the&nbsp;graph.<br>
+'scaling'&nbsp;is&nbsp;a&nbsp;string&nbsp;describing&nbsp;how&nbsp;the&nbsp;graph&nbsp;should<br>
+be&nbsp;displayed&nbsp;within&nbsp;the&nbsp;(x|j)loggraph&nbsp;<a href="#program">program</a>.<br>
+'column_list'&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;integers&nbsp;corresponding&nbsp;to<br>
+the&nbsp;columns&nbsp;in&nbsp;the&nbsp;<a href="#table">table</a>&nbsp;that&nbsp;holds&nbsp;the&nbsp;graph.&nbsp;The&nbsp;first<br>
+column&nbsp;in&nbsp;the&nbsp;list&nbsp;will&nbsp;form&nbsp;the&nbsp;'x'&nbsp;axis&nbsp;of&nbsp;the&nbsp;graph<br>
+when&nbsp;displayed,&nbsp;the&nbsp;others&nbsp;will&nbsp;be&nbsp;displayed&nbsp;on&nbsp;the<br>
+'y'&nbsp;axis.</tt></dd></dl>
+
+<dl><dt><a name="table_graph-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="table_graph-columns"><strong>columns</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;list&nbsp;of&nbsp;columns&nbsp;associated&nbsp;with&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;integers&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;columns<br>
+in&nbsp;the&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="table_graph-graphcols"><strong>graphcols</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;column&nbsp;names&nbsp;in&nbsp;the&nbsp;graph.</tt></dd></dl>
+
+<dl><dt><a name="table_graph-scaling"><strong>scaling</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;scaling&nbsp;description.</tt></dd></dl>
+
+<dl><dt><a name="table_graph-set_parent_table"><strong>set_parent_table</strong></a>(self, table)</dt><dd><tt>Store&nbsp;a&nbsp;reference&nbsp;to&nbsp;the&nbsp;parent&nbsp;<a href="#table">table</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="table_graph-setcolumns"><strong>setcolumns</strong></a>(self, columns)</dt><dd><tt>Set&nbsp;the&nbsp;table_columns&nbsp;associated&nbsp;with&nbsp;the&nbsp;graph.<br>
+&nbsp;<br>
+The&nbsp;columns&nbsp;are&nbsp;specified&nbsp;as&nbsp;a&nbsp;string&nbsp;of&nbsp;the&nbsp;form<br>
+e.g.&nbsp;'1,2,4,5'.&nbsp;Note&nbsp;that&nbsp;the&nbsp;column&nbsp;numbers&nbsp;are&nbsp;adjusted<br>
+downwards&nbsp;by&nbsp;1&nbsp;to&nbsp;map&nbsp;onto&nbsp;Python&nbsp;numbering&nbsp;(which&nbsp;starts<br>
+at&nbsp;zero).</tt></dd></dl>
+
+<dl><dt><a name="table_graph-setscaling"><strong>setscaling</strong></a>(self, scaling)</dt><dd><tt>Store&nbsp;the&nbsp;scaling&nbsp;description.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;a&nbsp;string&nbsp;which&nbsp;should&nbsp;take&nbsp;one&nbsp;of&nbsp;three&nbsp;possible<br>
+forms,&nbsp;and&nbsp;which&nbsp;is&nbsp;an&nbsp;instruction&nbsp;to&nbsp;the&nbsp;display<br>
+<a href="#program">program</a>&nbsp;on&nbsp;how&nbsp;to&nbsp;scale&nbsp;the&nbsp;graph&nbsp;data&nbsp;for&nbsp;display.<br>
+&nbsp;<br>
+'A'&nbsp;is&nbsp;'fully&nbsp;automatic'&nbsp;scaling&nbsp;(the&nbsp;display&nbsp;<a href="#program">program</a><br>
+determines&nbsp;the&nbsp;scaling&nbsp;itself&nbsp;for&nbsp;both&nbsp;axes).<br>
+'N'&nbsp;(for&nbsp;'nought')&nbsp;is&nbsp;automatic&nbsp;y&nbsp;coordinate&nbsp;scaling,&nbsp;where<br>
+the&nbsp;lowest&nbsp;limit&nbsp;on&nbsp;the&nbsp;y&nbsp;axis&nbsp;is&nbsp;0s.<br>
+'XMIN|XMAXxYMIN|YMAX'&nbsp;(where&nbsp;XMIN,&nbsp;XMAX&nbsp;and&nbsp;YMIN,&nbsp;YMAX&nbsp;are<br>
+numbers)&nbsp;specifies&nbsp;the&nbsp;exact&nbsp;limits&nbsp;of&nbsp;both&nbsp;axes.</tt></dd></dl>
+
+<dl><dt><a name="table_graph-settitle"><strong>settitle</strong></a>(self, title)</dt><dd><tt>Store&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;graph.</tt></dd></dl>
+
+<dl><dt><a name="table_graph-title"><strong>title</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;graph.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="tablebuffer">class <strong>tablebuffer</strong></a>(<a href="smartie.html#buffer">buffer</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Buffer&nbsp;object&nbsp;specialised&nbsp;for&nbsp;dealing&nbsp;with&nbsp;CCP4&nbsp;tables.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;extends&nbsp;the&nbsp;'<a href="#buffer">buffer</a>'&nbsp;class&nbsp;with&nbsp;additional<br>
+data&nbsp;and&nbsp;methods&nbsp;specialised&nbsp;for&nbsp;CCP4&nbsp;tables.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="tablebuffer-__init__"><strong>__init__</strong></a>(self, maxsize<font color="#909090">=0</font>)</dt><dd><tt>Initialise&nbsp;a&nbsp;new&nbsp;<a href="#tablebuffer">tablebuffer</a>&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-append"><strong>append</strong></a>(self, line)</dt><dd><tt>Append&nbsp;a&nbsp;line&nbsp;of&nbsp;text&nbsp;to&nbsp;the&nbsp;<a href="#tablebuffer">tablebuffer</a>.<br>
+&nbsp;<br>
+This&nbsp;overrides&nbsp;the&nbsp;append&nbsp;method&nbsp;of&nbsp;the&nbsp;parent&nbsp;class<br>
+and&nbsp;performs&nbsp;additional&nbsp;checks&nbsp;on&nbsp;the&nbsp;line&nbsp;being<br>
+added,&nbsp;to&nbsp;also&nbsp;identify&nbsp;specific&nbsp;features&nbsp;(such&nbsp;as<br>
+'$$'&nbsp;symbols)&nbsp;that&nbsp;are&nbsp;part&nbsp;of&nbsp;a&nbsp;CCP4&nbsp;<a href="#table">table</a>.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-clear"><strong>clear</strong></a>(self)</dt><dd><tt>Clear&nbsp;the&nbsp;<a href="#tablebuffer">tablebuffer</a>&nbsp;of&nbsp;all&nbsp;data.<br>
+&nbsp;<br>
+This&nbsp;overrides&nbsp;the&nbsp;'clear'&nbsp;method&nbsp;of&nbsp;the&nbsp;parent&nbsp;class<br>
+and&nbsp;also&nbsp;resets&nbsp;the&nbsp;flag&nbsp;data&nbsp;that&nbsp;is&nbsp;specific&nbsp;to&nbsp;the<br>
+<a href="#tablebuffer">tablebuffer</a>&nbsp;class.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-complete"><strong>complete</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;appears&nbsp;to&nbsp;contain&nbsp;a&nbsp;complete&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+Returns&nbsp;'True'&nbsp;if&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;contains&nbsp;the&nbsp;following<br>
+features,&nbsp;encountered&nbsp;in&nbsp;this&nbsp;order:<br>
+1.&nbsp;'$TABLE'&nbsp;token<br>
+2.&nbsp;'$GRAPH'&nbsp;or&nbsp;'$SCATTER'&nbsp;token<br>
+3.&nbsp;Four&nbsp;'$$'&nbsp;tokens<br>
+In&nbsp;this&nbsp;case&nbsp;it&nbsp;is&nbsp;likely&nbsp;that&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;contains&nbsp;a<br>
+complete&nbsp;CCP4&nbsp;<a href="#table">table</a>.<br>
+&nbsp;<br>
+If&nbsp;any&nbsp;of&nbsp;these&nbsp;elements&nbsp;are&nbsp;missing&nbsp;then&nbsp;the&nbsp;method<br>
+returns&nbsp;'False'.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="smartie.html#buffer">buffer</a>:<br>
+<dl><dt><a name="tablebuffer-all"><strong>all</strong></a>(self)</dt><dd><tt>Return&nbsp;entire&nbsp;<a href="#buffer">buffer</a>&nbsp;contents&nbsp;as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+All&nbsp;lines&nbsp;in&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;will&nbsp;be&nbsp;concatenated&nbsp;into&nbsp;a&nbsp;single<br>
+string&nbsp;with&nbsp;line&nbsp;ends&nbsp;terminated&nbsp;by&nbsp;a&nbsp;newline&nbsp;character.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-contents"><strong>contents</strong></a>(self, n, m)</dt><dd><tt>Return&nbsp;lines&nbsp;'n'&nbsp;through&nbsp;to&nbsp;'m'&nbsp;as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;specified&nbsp;lines&nbsp;from&nbsp;the&nbsp;<a href="#buffer">buffer</a>&nbsp;concatenated<br>
+into&nbsp;a&nbsp;single&nbsp;string&nbsp;with&nbsp;line&nbsp;ends&nbsp;terminated&nbsp;by&nbsp;a&nbsp;newline<br>
+character.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-getlines"><strong>getlines</strong></a>(self, n, m)</dt><dd><tt>Return&nbsp;lines&nbsp;'n'&nbsp;through&nbsp;to&nbsp;'m'&nbsp;as&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;set&nbsp;of&nbsp;lines&nbsp;starting&nbsp;from&nbsp;line&nbsp;index&nbsp;'n'&nbsp;up&nbsp;to<br>
+but&nbsp;not&nbsp;including&nbsp;line&nbsp;index&nbsp;'m',&nbsp;as&nbsp;a&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-len"><strong>len</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;lines&nbsp;currently&nbsp;stored.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-line"><strong>line</strong></a>(self, n)</dt><dd><tt>Return&nbsp;the&nbsp;n'th&nbsp;line&nbsp;of&nbsp;text&nbsp;from&nbsp;the&nbsp;<a href="#buffer">buffer</a>.<br>
+&nbsp;<br>
+The&nbsp;line&nbsp;will&nbsp;be&nbsp;returned&nbsp;without&nbsp;end-of-line&nbsp;characters.</tt></dd></dl>
+
+<dl><dt><a name="tablebuffer-tail"><strong>tail</strong></a>(self, n<font color="#909090">=10</font>)</dt><dd><tt>Return&nbsp;the&nbsp;'tail'&nbsp;of&nbsp;the&nbsp;<a href="#buffer">buffer</a>.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;last&nbsp;n&nbsp;lines&nbsp;of&nbsp;text&nbsp;stored&nbsp;in&nbsp;the<br>
+<a href="#buffer">buffer</a>,&nbsp;concatenated&nbsp;into&nbsp;a&nbsp;single&nbsp;string&nbsp;with&nbsp;end&nbsp;lines<br>
+terminated&nbsp;by&nbsp;a&nbsp;newline&nbsp;character.<br>
+If&nbsp;a&nbsp;number&nbsp;of&nbsp;lines&nbsp;is&nbsp;not&nbsp;specified&nbsp;then&nbsp;it&nbsp;defaults<br>
+to&nbsp;the&nbsp;last&nbsp;10&nbsp;lines&nbsp;of&nbsp;text.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-copyfragment"><strong>copyfragment</strong></a>(fragment0, newobj)</dt><dd><tt>Copy&nbsp;the&nbsp;data&nbsp;in&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;to&nbsp;another&nbsp;object.<br>
+&nbsp;<br>
+The&nbsp;data&nbsp;in&nbsp;the&nbsp;source&nbsp;<a href="#fragment">fragment</a>&nbsp;'fragment0'&nbsp;is&nbsp;copied&nbsp;to&nbsp;the<br>
+target&nbsp;object&nbsp;'newobj',&nbsp;and&nbsp;'newobj'&nbsp;is&nbsp;returned.&nbsp;'newobj'<br>
+should&nbsp;be&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;object&nbsp;or&nbsp;some&nbsp;subclass&nbsp;of&nbsp;<a href="#fragment">fragment</a>&nbsp;(such<br>
+as&nbsp;a&nbsp;'<a href="#program">program</a>'&nbsp;object).<br>
+&nbsp;<br>
+copyfragment&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;'mutate'&nbsp;a&nbsp;<a href="#fragment">fragment</a>&nbsp;into&nbsp;(for<br>
+example)&nbsp;a&nbsp;<a href="#program">program</a>&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-escape_xml_characters"><strong>escape_xml_characters</strong></a>(data)</dt><dd><tt>Return&nbsp;copy&nbsp;of&nbsp;string&nbsp;with&nbsp;XML&nbsp;special&nbsp;characters&nbsp;escaped.<br>
+&nbsp;<br>
+This&nbsp;replaces&nbsp;the&nbsp;characters&nbsp;&lt;,&nbsp;&gt;&nbsp;and&nbsp;&amp;&nbsp;with&nbsp;the&nbsp;XML&nbsp;escape<br>
+sequences&nbsp;&amp;lt;,&nbsp;&amp;gt;&nbsp;and&nbsp;&amp;amp;.&nbsp;It&nbsp;also&nbsp;replaces&nbsp;double<br>
+quotes&nbsp;with&nbsp;&amp;quot;.<br>
+&nbsp;<br>
+This&nbsp;could&nbsp;be&nbsp;replaced&nbsp;in&nbsp;future&nbsp;by&nbsp;the<br>
+'xml.sax.saxutils.escape'&nbsp;function.</tt></dd></dl>
+ <dl><dt><a name="-find_table_by_title"><strong>find_table_by_title</strong></a>(table_list, title_pattern, index<font color="#909090">=0</font>)</dt><dd><tt>Fetch&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;object&nbsp;from&nbsp;a&nbsp;list&nbsp;by&nbsp;matching&nbsp;the&nbsp;title.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;deprecated;&nbsp;use&nbsp;find_tables_by_title&nbsp;instead.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;looks&nbsp;up&nbsp;a&nbsp;particular&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;a&nbsp;list<br>
+of&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;(argument&nbsp;'table_list'),&nbsp;by&nbsp;finding<br>
+the&nbsp;first&nbsp;<a href="#table">table</a>&nbsp;in&nbsp;the&nbsp;list&nbsp;which&nbsp;matches&nbsp;the&nbsp;supplied<br>
+regular&nbsp;expression&nbsp;'title_pattern'.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;more&nbsp;than&nbsp;one&nbsp;matching&nbsp;<a href="#table">table</a>&nbsp;then&nbsp;the&nbsp;'index'<br>
+argument&nbsp;specifies&nbsp;which&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;matching&nbsp;tables<br>
+should&nbsp;be&nbsp;returned.&nbsp;If&nbsp;index&nbsp;is&nbsp;out&nbsp;of&nbsp;range&nbsp;(or&nbsp;there&nbsp;are<br>
+no&nbsp;matching&nbsp;tables)&nbsp;then&nbsp;return&nbsp;'None'.</tt></dd></dl>
+ <dl><dt><a name="-find_tables_by_title"><strong>find_tables_by_title</strong></a>(table_list, title_pattern)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;tables&nbsp;by&nbsp;matching&nbsp;the&nbsp;title.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;a&nbsp;list&nbsp;of&nbsp;<a href="#table">table</a>&nbsp;objects&nbsp;containing<br>
+all&nbsp;the&nbsp;tables&nbsp;in&nbsp;the&nbsp;supplied&nbsp;list&nbsp;'table_list'&nbsp;for<br>
+which&nbsp;the&nbsp;regular&nbsp;expression&nbsp;'title_pattern'&nbsp;matches<br>
+the&nbsp;<a href="#table">table</a>&nbsp;title.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;pattern&nbsp;is&nbsp;given&nbsp;then&nbsp;a&nbsp;list&nbsp;with&nbsp;all&nbsp;the&nbsp;<a href="#table">table</a><br>
+objects&nbsp;will&nbsp;be&nbsp;returned.<br>
+&nbsp;<br>
+A&nbsp;list&nbsp;is&nbsp;always&nbsp;returned,&nbsp;so&nbsp;in&nbsp;cases&nbsp;where&nbsp;there<br>
+are&nbsp;no&nbsp;matches&nbsp;an&nbsp;empty&nbsp;list&nbsp;is&nbsp;returned,&nbsp;and&nbsp;if&nbsp;there<br>
+is&nbsp;just&nbsp;one&nbsp;match&nbsp;then&nbsp;a&nbsp;list&nbsp;with&nbsp;a&nbsp;single&nbsp;item&nbsp;is<br>
+returned.</tt></dd></dl>
+ <dl><dt><a name="-offsetline"><strong>offsetline</strong></a>(linen, pattern_result)</dt><dd><tt>Return&nbsp;the&nbsp;line&nbsp;number&nbsp;offset&nbsp;by&nbsp;the&nbsp;size&nbsp;of&nbsp;a&nbsp;matched&nbsp;pattern.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;an&nbsp;internal&nbsp;utility&nbsp;function.<br>
+&nbsp;<br>
+Given&nbsp;'linen'&nbsp;(the&nbsp;current&nbsp;line&nbsp;number)&nbsp;and&nbsp;'pattern_result'<br>
+(a&nbsp;dictionary&nbsp;containing&nbsp;data&nbsp;items&nbsp;returned&nbsp;from&nbsp;one&nbsp;of&nbsp;the<br>
+regular&nbsp;expression&nbsp;functions),&nbsp;this&nbsp;function&nbsp;returns&nbsp;a&nbsp;line<br>
+number&nbsp;which&nbsp;is&nbsp;offset&nbsp;to&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;regular&nbsp;expression.<br>
+It&nbsp;does&nbsp;this&nbsp;by&nbsp;locating&nbsp;a&nbsp;dictionary&nbsp;key&nbsp;'nlines',&nbsp;which<br>
+gives&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;regular&nbsp;expression&nbsp;match.</tt></dd></dl>
+ <dl><dt><a name="-parselog"><strong>parselog</strong></a>(filen, progress<font color="#909090">=0</font>)</dt><dd><tt>Process&nbsp;a&nbsp;file&nbsp;and&nbsp;return&nbsp;a&nbsp;populated&nbsp;<a href="#logfile">logfile</a>&nbsp;object.<br>
+&nbsp;<br>
+parselog&nbsp;takes&nbsp;a&nbsp;file&nbsp;name&nbsp;as&nbsp;input;&nbsp;optionally&nbsp;if&nbsp;the<br>
+progress&nbsp;argument&nbsp;is&nbsp;set&nbsp;to&nbsp;a&nbsp;positive&nbsp;integer&nbsp;then&nbsp;the<br>
+function&nbsp;also&nbsp;reports&nbsp;its&nbsp;progress&nbsp;when&nbsp;it&nbsp;reaches&nbsp;a<br>
+multiple&nbsp;of&nbsp;that&nbsp;number&nbsp;of&nbsp;lines.<br>
+&nbsp;<br>
+parselog&nbsp;works&nbsp;by&nbsp;reading&nbsp;the&nbsp;source&nbsp;file&nbsp;one&nbsp;line&nbsp;at&nbsp;a<br>
+time&nbsp;from&nbsp;beginning&nbsp;to&nbsp;end.&nbsp;Each&nbsp;line&nbsp;is&nbsp;added&nbsp;to&nbsp;two<br>
+buffers:&nbsp;a&nbsp;'small'&nbsp;<a href="#buffer">buffer</a>,&nbsp;which&nbsp;stores&nbsp;the&nbsp;last&nbsp;10&nbsp;lines<br>
+read,&nbsp;and&nbsp;a&nbsp;'large'&nbsp;<a href="#tablebuffer">tablebuffer</a>,&nbsp;which&nbsp;can&nbsp;store&nbsp;the&nbsp;last<br>
+1000&nbsp;lines.<br>
+&nbsp;<br>
+After&nbsp;a&nbsp;line&nbsp;has&nbsp;been&nbsp;added,&nbsp;the&nbsp;small&nbsp;<a href="#buffer">buffer</a>&nbsp;is&nbsp;checked<br>
+against&nbsp;a&nbsp;series&nbsp;of&nbsp;regular&nbsp;expressions&nbsp;designed&nbsp;to&nbsp;match<br>
+the&nbsp;various&nbsp;features&nbsp;(banners,&nbsp;terminations&nbsp;and&nbsp;so&nbsp;on).<br>
+If&nbsp;a&nbsp;match&nbsp;is&nbsp;found&nbsp;then&nbsp;parselog&nbsp;updates&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;object<br>
+that&nbsp;it&nbsp;is&nbsp;constructing&nbsp;and&nbsp;then&nbsp;clears&nbsp;the&nbsp;<a href="#buffer">buffer</a>.<br>
+The&nbsp;<a href="#tablebuffer">tablebuffer</a>&nbsp;is&nbsp;also&nbsp;checked&nbsp;at&nbsp;each&nbsp;line,&nbsp;to&nbsp;see&nbsp;if&nbsp;it<br>
+contains&nbsp;a&nbsp;whole&nbsp;CCP4&nbsp;<a href="#logfile">logfile</a>&nbsp;<a href="#table">table</a>.&nbsp;(The&nbsp;<a href="#tablebuffer">tablebuffer</a>&nbsp;is&nbsp;a<br>
+specialised&nbsp;form&nbsp;of&nbsp;<a href="#buffer">buffer</a>&nbsp;which&nbsp;is&nbsp;intended&nbsp;to&nbsp;optimise<br>
+dealing&nbsp;with&nbsp;tables).<br>
+&nbsp;<br>
+The&nbsp;<a href="#buffer">buffer</a>&nbsp;sizes&nbsp;for&nbsp;the&nbsp;small&nbsp;and&nbsp;large&nbsp;buffers&nbsp;affect&nbsp;the<br>
+speed&nbsp;of&nbsp;operation&nbsp;of&nbsp;parselog&nbsp;-&nbsp;if&nbsp;they&nbsp;are&nbsp;large&nbsp;then&nbsp;the<br>
+parsing&nbsp;is&nbsp;slower&nbsp;because&nbsp;larger&nbsp;chunks&nbsp;of&nbsp;text&nbsp;are&nbsp;being<br>
+tested&nbsp;multiple&nbsp;times.<br>
+However&nbsp;if&nbsp;the&nbsp;buffers&nbsp;are&nbsp;too&nbsp;small&nbsp;to&nbsp;accommodate&nbsp;some<br>
+of&nbsp;the&nbsp;<a href="#logfile">logfile</a>&nbsp;features&nbsp;then&nbsp;parselog&nbsp;is&nbsp;unable&nbsp;to&nbsp;detect<br>
+those&nbsp;features.&nbsp;As&nbsp;some&nbsp;logfiles&nbsp;can&nbsp;contain&nbsp;extremely&nbsp;large<br>
+tables,&nbsp;the&nbsp;<a href="#tablebuffer">tablebuffer</a>&nbsp;must&nbsp;also&nbsp;be&nbsp;large.&nbsp;However&nbsp;other<br>
+features&nbsp;are&nbsp;generally&nbsp;quite&nbsp;small.<br>
+&nbsp;<br>
+The&nbsp;other&nbsp;factor&nbsp;that&nbsp;can&nbsp;affect&nbsp;the&nbsp;speed&nbsp;of&nbsp;parsing&nbsp;is&nbsp;the<br>
+make-up&nbsp;of&nbsp;the&nbsp;<a href="#logfile">logfile</a>.&nbsp;Counterintuitively,&nbsp;long&nbsp;files&nbsp;that<br>
+contain&nbsp;few&nbsp;recognisable&nbsp;features&nbsp;can&nbsp;take&nbsp;longer&nbsp;because&nbsp;the<br>
+buffers&nbsp;are&nbsp;only&nbsp;infrequently&nbsp;flushed.</tt></dd></dl>
+ <dl><dt><a name="-process_start_tag"><strong>process_start_tag</strong></a>(tag_text)</dt><dd><tt>Process&nbsp;an&nbsp;arbitrary&nbsp;HTML&nbsp;start&nbsp;tag.<br>
+&nbsp;<br>
+Given&nbsp;the&nbsp;text&nbsp;of&nbsp;an&nbsp;arbitrary&nbsp;tag,&nbsp;this&nbsp;function&nbsp;returns<br>
+a&nbsp;tuple&nbsp;consisting&nbsp;of&nbsp;two&nbsp;elements.&nbsp;The&nbsp;first&nbsp;element&nbsp;is<br>
+the&nbsp;tag&nbsp;name,&nbsp;the&nbsp;second&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;keys<br>
+corresponding&nbsp;to&nbsp;attributes&nbsp;found&nbsp;in&nbsp;the&nbsp;tag&nbsp;and&nbsp;the&nbsp;values<br>
+of&nbsp;those&nbsp;keys&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;attribute&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-remove_blank_lines"><strong>remove_blank_lines</strong></a>(text)</dt><dd><tt>Remove&nbsp;duplicated&nbsp;blank&nbsp;lines&nbsp;from&nbsp;text.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;tries&nbsp;to&nbsp;remove&nbsp;extra&nbsp;blank&nbsp;lines&nbsp;from<br>
+the&nbsp;supplied&nbsp;text,&nbsp;so&nbsp;that&nbsp;multiple&nbsp;blank&nbsp;lines&nbsp;are<br>
+collapsed&nbsp;to&nbsp;just&nbsp;a&nbsp;single&nbsp;line.</tt></dd></dl>
+ <dl><dt><a name="-retrieve"><strong>retrieve</strong></a>(filen, start, end)</dt><dd><tt>Retrieve&nbsp;a&nbsp;block&nbsp;of&nbsp;text&nbsp;from&nbsp;a&nbsp;file.<br>
+&nbsp;<br>
+Given&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;file&nbsp;'filen'&nbsp;and&nbsp;a&nbsp;pair&nbsp;of&nbsp;start&nbsp;and<br>
+end&nbsp;line&nbsp;numbers,&nbsp;extract&nbsp;and&nbsp;return&nbsp;the&nbsp;text&nbsp;from&nbsp;the<br>
+file.<br>
+&nbsp;<br>
+This&nbsp;uses&nbsp;the&nbsp;linecache&nbsp;module&nbsp;-&nbsp;beware&nbsp;of&nbsp;problems&nbsp;with<br>
+consuming&nbsp;too&nbsp;much&nbsp;memory&nbsp;if&nbsp;the&nbsp;cache&nbsp;isn't&nbsp;cleared.</tt></dd></dl>
+ <dl><dt><a name="-salvage_tag_data"><strong>salvage_tag_data</strong></a>(tag_text)</dt><dd><tt>Extract&nbsp;data&nbsp;from&nbsp;a&nbsp;HTML&nbsp;tag.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;deals&nbsp;with&nbsp;extracting&nbsp;the&nbsp;useful&nbsp;data&nbsp;from<br>
+certain&nbsp;HTML&nbsp;tags&nbsp;found&nbsp;in&nbsp;CCP4&nbsp;logfiles.<br>
+Currently&nbsp;it&nbsp;is&nbsp;set&nbsp;up&nbsp;to&nbsp;extract&nbsp;CCP4&nbsp;<a href="#table">table</a>&nbsp;data&nbsp;from&nbsp;the<br>
+'param'&nbsp;tags&nbsp;of&nbsp;JLogGraph&nbsp;applets.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;data&nbsp;could&nbsp;be&nbsp;salvaged&nbsp;then&nbsp;an&nbsp;empty&nbsp;string&nbsp;is<br>
+returned.</tt></dd></dl>
+ <dl><dt><a name="-strip_logfile_html"><strong>strip_logfile_html</strong></a>(text)</dt><dd><tt>Strip&nbsp;out&nbsp;HTML&nbsp;tags&nbsp;from&nbsp;<a href="#logfile">logfile</a>&nbsp;text.<br>
+&nbsp;<br>
+Return&nbsp;copy&nbsp;of&nbsp;input&nbsp;'text'&nbsp;with&nbsp;HTML&nbsp;tags&nbsp;removed<br>
+and&nbsp;any&nbsp;HTML&nbsp;special&nbsp;characters&nbsp;escaped.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;this&nbsp;is&nbsp;specialised&nbsp;for&nbsp;CCP4&nbsp;logfiles,<br>
+in&nbsp;particular&nbsp;CCP4-formatted&nbsp;logfiles&nbsp;will&nbsp;be<br>
+extracted&nbsp;from&nbsp;&lt;param&nbsp;name='<a href="#table">table</a>'&nbsp;...&gt;&nbsp;tags.</tt></dd></dl>
+ <dl><dt><a name="-summarise"><strong>summarise</strong></a>(thislog)</dt><dd><tt>Summarise&nbsp;the&nbsp;content&nbsp;of&nbsp;a&nbsp;<a href="#logfile">logfile</a>&nbsp;object.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;takes&nbsp;a&nbsp;<a href="#logfile">logfile</a>&nbsp;object&nbsp;as&nbsp;input&nbsp;and&nbsp;writes&nbsp;a<br>
+a&nbsp;<a href="#summary">summary</a>&nbsp;of&nbsp;the&nbsp;contents&nbsp;(fragments,&nbsp;programs,&nbsp;tables,&nbsp;messages<br>
+and&nbsp;so&nbsp;on)&nbsp;to&nbsp;stdout.</tt></dd></dl>
+ <dl><dt><a name="-table_example"><strong>table_example</strong></a>()</dt><dd><tt>Demonstration&nbsp;function&nbsp;that&nbsp;creates&nbsp;and&nbsp;populates&nbsp;a&nbsp;<a href="#table">table</a>&nbsp;object.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;is&nbsp;for&nbsp;demonstration&nbsp;purposes&nbsp;only;&nbsp;it&nbsp;shows<br>
+the&nbsp;basics&nbsp;of&nbsp;how&nbsp;to&nbsp;make&nbsp;and&nbsp;output&nbsp;a&nbsp;<a href="#table">table</a>.&nbsp;It&nbsp;creates<br>
+a&nbsp;new&nbsp;<a href="#table">table</a>&nbsp;object,&nbsp;names&nbsp;it,&nbsp;populates&nbsp;some&nbsp;columns&nbsp;of&nbsp;data<br>
+and&nbsp;then&nbsp;adds&nbsp;some&nbsp;graph&nbsp;definitions&nbsp;before&nbsp;outputting&nbsp;the<br>
+formatted&nbsp;<a href="#table">table</a>&nbsp;to&nbsp;stdout.</tt></dd></dl>
+ <dl><dt><a name="-table_tags"><strong>table_tags</strong></a>(filen)</dt><dd><tt>Report&nbsp;occurances&nbsp;of&nbsp;'$TABLE'&nbsp;tags&nbsp;in&nbsp;a&nbsp;log&nbsp;file.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;is&nbsp;principally&nbsp;a&nbsp;diagnostic&nbsp;tool&nbsp;and&nbsp;is<br>
+independent&nbsp;of&nbsp;the&nbsp;other&nbsp;classes&nbsp;and&nbsp;methods&nbsp;in&nbsp;this<br>
+module.&nbsp;It&nbsp;takes&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;log&nbsp;file&nbsp;as&nbsp;input,<br>
+scans&nbsp;the&nbsp;file&nbsp;for&nbsp;occurances&nbsp;of&nbsp;the&nbsp;$TABLE&nbsp;tag,&nbsp;and<br>
+reports&nbsp;this&nbsp;to&nbsp;stdout.</tt></dd></dl>
+ <dl><dt><a name="-tag_is_spacegroup"><strong>tag_is_spacegroup</strong></a>(text)</dt><dd><tt>Check&nbsp;if&nbsp;a&nbsp;HTML&nbsp;tag&nbsp;looks&nbsp;like&nbsp;a&nbsp;spacegroup&nbsp;name.<br>
+&nbsp;<br>
+This&nbsp;does&nbsp;a&nbsp;very&nbsp;crude&nbsp;test&nbsp;to&nbsp;see&nbsp;whether&nbsp;the&nbsp;supplied<br>
+string&nbsp;looks&nbsp;like&nbsp;a&nbsp;spacegroup&nbsp;name&nbsp;(rather&nbsp;than&nbsp;a&nbsp;random<br>
+HTML&nbsp;tag).</tt></dd></dl>
+ <dl><dt><a name="-tokenise"><strong>tokenise</strong></a>(line)</dt><dd><tt>Tokenise&nbsp;a&nbsp;string&nbsp;and&nbsp;return&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+Split&nbsp;a&nbsp;line&nbsp;of&nbsp;text&nbsp;into&nbsp;tokens&nbsp;separated&nbsp;by&nbsp;whitespace,&nbsp;but<br>
+ignoring&nbsp;whitespace&nbsp;that&nbsp;appears&nbsp;within&nbsp;quotes.<br>
+&nbsp;<br>
+This&nbsp;attempts&nbsp;to&nbsp;do&nbsp;a&nbsp;similar&nbsp;to&nbsp;job&nbsp;the&nbsp;CCP4&nbsp;'parser'&nbsp;(which&nbsp;is<br>
+itself&nbsp;actually&nbsp;a&nbsp;tokeniser)&nbsp;in&nbsp;the&nbsp;core&nbsp;CCP4&nbsp;libraries.&nbsp;The<br>
+hard&nbsp;part&nbsp;is&nbsp;dealing&nbsp;with&nbsp;quoted&nbsp;strings&nbsp;which&nbsp;form&nbsp;a&nbsp;single<br>
+token,&nbsp;and&nbsp;which&nbsp;can&nbsp;themselves&nbsp;also&nbsp;contain&nbsp;quotes.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__cvs_id__</strong> = '$Id: smartie.html,v 1.1 2008/08/26 14:23:39 pjx Exp $'<br>
+<strong>__version__</strong> = '0.0.14'</td></tr></table>
+</body></html>

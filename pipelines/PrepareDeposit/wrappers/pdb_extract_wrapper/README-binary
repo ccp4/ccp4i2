@@ -1,0 +1,53 @@
+
+             Installation and Usage Notes for the Pdb Extract Application
+                            (Binary Distribution)
+
+
+
+1.  Installation
+
+a.  Uncompress and unbundle the distribution using the following command:
+
+        zcat pdb-extract-vX.XXX-XXX.tar.gz | tar -xf - 
+
+b.  Set up the environment variables.
+
+    - Define PDB_EXTRACT environment variable to point to the installation
+    directory. Assuming that the installation directory is
+    /home/username/pdb-extract-vX.XXX-XXX, execute in the shell:
+
+        For C shell users:
+          setenv PDB_EXTRACT /home/username/pdb-extract-vX.XXX-XXX
+
+        For Bourne shell users:
+          PDB_EXTRACT=/home/username/pdb-extract-vX.XXX-XXX; export PDB_EXTRACT
+
+    - Add "bin" subdirectory to the PATH environment variable.
+    Execute in the shell:
+
+        For C shell users:
+          setenv PATH "$PDB_EXTRACT/bin:"$PATH
+
+        For Bourne shell users:
+          PATH="$PDB_EXTRACT/bin:"$PATH; export PATH
+
+
+2.  Demonstration
+
+There is one example included in this distribution. It is located in the 
+subdirectories of "pdb-extract-vX.X/examples" directory. The directory
+contains the following:
+
+    input_data - contains the input data for the example
+    deposit - contains the resulting files:
+        Example_x.cif - this is the merged file created by "pdb_extract"
+        Example_x.sf.cif - this is the structure factor for deposit and is
+          created by "pdb_extract_sf"
+
+To execute the examples, position in the appropriate directory and invoke
+test.sh and test_script.sh scripts. For example:
+
+    cd pdb-extract-vX.XXX-XXX/pdb-extract-vX.X/examples/Example_1
+    ./test.sh
+    ./test_script.sh
+

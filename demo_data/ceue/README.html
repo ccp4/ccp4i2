@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd" >
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>Demo data: CeuE</title>
+<link rel="stylesheet" type="text/css" href="../../docs/ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>CCP4i2 Tutorial: Apo-CeuE (PDB:3ZKW)</h1>
+
+<p>A medium sized structure with a MW of ~30kDa which can be solved fairly easily by molecular replacement.</p>
+
+<p>The structure was published by Raines, D.J., Moroz, O.V., Wilson, K.S., and Duhme-Klair, A., in 2013 in a paper entitled "Interactions of a Periplasmic Binding Protein with a Tetradentate Siderophore Mimic." ANGEW.CHEM.INT.ED.ENGL. vol:52, pag:4595 (2013), Identifiers: PubMed ID <a href=http://europepmc.org/abstract/MED/23512642>23512642</a> DOI <a href=http://dx.doi.org/10.1002/anie.201300751>10.1002/anie.201300751</a></p>
+
+<p>There are three independent monomers of apo-CeuE in the P1 asymmetric unit. The unmerged intensity data can first be scaled and merged using the Data Reduction pipeline. Recommended cutoff at 1.7Å. Put it on the same origin as the merged MTZ file.</p>
+
+<p>Suggested MR models, with rather low sequence identity around 30%, are PDB 3tef or 4jcc.</p>
+
+<p>Then try autobuilding with Buccaneer.</p>
+
+<h2>Data files</h2>
+<ul>
+<li><a href="./3zkw.seq">3zkw.seq</a> CeuE sequence</li>
+<li><a href="./apo-ceue-sad-sweep1.hkl">apo-ceue-sad-sweep1.hkl</a> XDS file containing unmerged data for input to data reduction.</li>
+<li><a href="./Initial_APO_Data.mtz">Initial_APO_Data.mtz</a> MTZ file containing the merged intensity data, I+ and I-, plus the Rfree flag..</li>
+<li><a href="./3TEF.pdb">3TEF.pdb</a> PDB file for 3TEF search model.</li>
+<li><a href="./4JCC.pdb">4JCC.pdb</a> PDB file for 4JCC search model.</li>
+</ul>
+
+<!-- Files from:
+apo-ceue-sad-sweep1.hkl originally mx7864v6_apoHA00AQ0562M3S21_SAD_SWEEP1_CORRECT.HKL (York via Johan, Dan, Keith)
+Initial_APO_Data.mtz (York via Keith)
+-->
+
+<address></address>
+<!-- hhmts start -->Last modified: Thu Feb 26 14:37:05 GMT 2015 <!-- hhmts end -->
+</body>
+</html>

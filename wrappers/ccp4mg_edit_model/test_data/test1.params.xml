@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <comment/>
+    <projectName>demo8</projectName>
+    <hostName>bilbo.chem.york.ac.uk</hostName>
+    <userId>lizp</userId>
+    <ccp4iVersion>0.0.4</ccp4iVersion>
+    <jobId></jobId>
+    <pluginName>coot_rebuild</pluginName>
+    <projectId></projectId>
+    <creationTime>18:31 23/Apr/14</creationTime>
+    <pluginTitle/>
+    <jobNumber>53</jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <XYZIN>
+        <dbFileId></dbFileId>
+        <baseName>XYZOUT.pdb</baseName>
+        <project>CCP4I2_TOP</project>
+        <subType>1</subType>
+        <annotation>Model refined by Prosmart/Refmac</annotation>
+        <relPath>wrappers/coot_rebuild/test_data</relPath>
+      </XYZIN>
+      <FPHIIN>
+        <dbFileId></dbFileId>
+        <contentFlag>1</contentFlag>
+        <baseName>FPHIOUT.mtz</baseName>
+        <project>CCP4I2_TOP</project>
+        <subType>1</subType>
+        <annotation>Weighted map from refinement</annotation>
+        <relPath>wrappers/coot_rebuild/test_data</relPath>
+      </FPHIIN>
+    </inputData>
+    <guiAdmin>
+      <followFrom></followFrom>
+      <jobTitle>Rebuild model with Coot</jobTitle>
+      <patchSelection>
+        <taskName>coot_rebuild</taskName>
+      </patchSelection>
+    </guiAdmin>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

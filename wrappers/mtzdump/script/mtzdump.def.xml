@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>mtzdump</pluginName>
+    <pluginTitle>MTZDump</pluginTitle>
+    <userId>lizp</userId>
+    <creationTime></creationTime>
+    <ccp4iVersion>0.1</ccp4iVersion>
+    <pluginVersion></pluginVersion>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+           <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="CELL">
+        <className>CCell</className>
+      </content>
+    </container>
+    <container id="controlParameters">
+     <content id="HEADER">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>1</default>
+         </qualifiers>
+      </content>
+    </container>
+</ccp4i2_body>
+</ccp4i2>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>cowtan</userId>
+    <creationTime>13:15 15/Feb/12</creationTime>
+    <pluginVersion>0.0.1</pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>mrbump_basic</pluginName>
+    <pluginTitle>MrBUMP Basic</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <HKLIN>
+        <project>CCP4I2_TOP</project>
+        <baseName>toxd.mtz</baseName>
+        <relPath>test/mrbump_data</relPath>
+      </HKLIN>
+      <F_SIGF>
+        <FP>FTOXD3</FP>
+        <SIGFP>SIGFTOXD3</SIGFP>
+      </F_SIGF>
+      <FREERFLAG>
+        <FREE>FreeR_flag</FREE>
+      </FREERFLAG>
+      <SEQIN>
+        <project>CCP4I2_TOP</project>
+        <baseName>toxd.seq</baseName>
+        <relPath>test/mrbump_data</relPath>
+      </SEQIN>
+    </inputData>
+    <outputData>
+      <HKLOUT>
+        <project/>
+        <baseName/>
+        <relPath/>
+      </HKLOUT>
+      <XYZOUT>
+        <project/>
+        <baseName/>
+        <relPath/>
+      </XYZOUT>
+      <XMLOUT>
+        <project/>
+        <baseName/>
+        <relPath/>
+      </XMLOUT>
+    </outputData>
+    <controlParameters>
+      <LOW_PASS_VAR/>
+      <PRF>n</PRF>
+    </controlParameters>
+    <guiParameters>
+      <USE_FIXED>True</USE_FIXED>
+    </guiParameters>
+  </ccp4i2_body>
+</ccp4i2>

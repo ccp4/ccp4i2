@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+<link rel="stylesheet" type="text/css" href="../task.css">  
+  <link rel="stylesheet" type="text/css" href="./aimless_pipe.css">  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Scaling and merging</title></head><body>
+<h3>Scaling and merging statistics (program AIMLESS)</h3>
+<ol>
+  <li><a href="#Resolution">Estimation of resolution</a></li>
+  <li><a href="#Batch">Radiation damage etc, analysis by Batch</a></li>
+  <li><a href="#Anomalous">Detection of an anomalous signal</a></li>
+  <li><a href="#SDs">Analysis of Standard Deviations</a></li>
+
+
+  <li><a href="#Statistics">Statistical measures</a></li>
+  <li><a href="#References">References</a><br>
+  </li>
+</ol>
+<p><a href="./aimless_pipe.html">Back to main page</a></p>
+<p><a href="./symmetry.html">Back to details of Symmetry determination</a></p>
+
+<h4><a name="Resolution"></a>Estimation of resolution</h4>
+
+<br>
+<figure><img alt="Resolution statistics" src="aimless_pipe_report_8.png">
+<figcaption>Figure 8: Resolution statistics</figcaption>
+</figure>
+<p class="wide">
+What is the real resolution? The good guides are (a) the correlation
+coefficient between random half-datasets
+CC(�&#8218;½), and (b) the average
+signal/noise after averaging symmetry-related observations
+&lt;&lt;I&gt;/&#963;(&lt;I&gt;)&gt;, labelled Mn(I)/sd(Mn(I)) in the Aimless
+table. The default cut-off on CC(½) around 0.3, and on
+&lt;&lt;I&gt;/&#963;(&lt;I&gt;)&gt; is ~1.3. Resolution cut-offs ought to
+take
+into account anisotropy of diffraction, which is not handled gracefully
+by current software. Aimless analyses anisotropy in cones around 2 or 3
+orthogonal principal directions (depending on the point group). The
+final Summary table includes a rough estimate of the resolution in each
+direction, as well as overall estimates. It is often best to integrate
+the data to a higher resolution and then cut it back after examining
+the Report. Note that R<sub>merge</sub> and its relatives are not
+  good indicators of resolution, as they increase to arbitrary large
+  values as the intensities get weaker.
+</p>
+<figure class="smaller"><img alt="Completeness vs. Resolution" src="aimless_pipe_report_9.png">
+<figcaption>Figure 9: Completeness vs. Resolution</figcaption>
+</figure>
+<p class="wide">
+Figure 8 shows three graphs against resolution which help you to
+decide whether the estimated resolution limits are sensible, tabulated
+in 8(d), from CC(½) and Mn(I)/sd(Mn(I)). 8(a) shows CC(½) (red
+line) with a curve fit (pale blue): it also shows CCanom (green line)
+which shows in this case that there is a strong anomalous signal (see
+later). 8(b) shows the anisotropy, in two directions for this
+tetragonal example. 8(c) shows I/&#963;I after merging (yellow) and
+before (blue). Note that by default XDS integrated into the corners of
+a square detector, so the highest resolution data are very incomplete
+(and the completeness of the anomalous data is worse) (figure 9)
+</p>
+<p class="wide">
+It is a mistake to cut back the resolution too severely at the data
+reduction stage. It makes sense to restrict the resolution in locating
+heavy-atom sub-structures, but in refinement and model building even
+weak high resolution data can be helpful. Cutting back the resolution
+makes your R-factors look better, but is unlikely to improve your
+model.
+</p>
+<br>
+<h4><a name="Batch"></a>Analysis against Batch, radiation damage etc</h4>
+<figure class="full"><img alt="Analysis against batch" src="aimless_pipe_report_10.png">
+<figcaption>Figure 10: Analysis against batch</figcaption>
+</figure>
+<br>
+<p class="wide">
+The Batch Number is the image number for the central part of a spot,
+  if necessary incremented by a multiple of 1000 if you are merging multiple
+  sweeps or crystals. The various analyses against Batch allow you to
+  detect (a) radiation damage, causing a general decay in data quality
+  with time (radiation dose) (b) individual bad parts of the data,
+  single bad images or parts where something went wrong: these need
+  further investigation, examining the images and the integration
+  process (c) if you are merging data from multiple crystals or
+  sweeps (all called Runs in AIMLESS), some may be better than others
+  (see below) 
+</p>
+
+<p class="wide"> Figure 10 shows a straightforward example of radiation damage. With
+  increasing radiation dose, the relative B-factor becomes more
+  negative (figure 10b), so that the average scale (red in 10a)
+  increases above the scale at infinite resolution (blue in
+  10a). R<sub>merge</sub> tends to increase (figure 10c), and the
+  estimated maximum resolution gets worse (figure 10d, roughly estimated as the
+  point at which  I/&#963;I falls below 1.0). The cumulative
+  completeness plot (figure 10e) shows that the second half of the
+  data could be omitted without compomising completeness, and it would
+  be worth trying structure solution and refinement with the truncated
+data as well as the full set.</p>
+<br>
+<figure class="smaller"><img alt="one bad image" src="aimless_pipe_report_badimage.png">
+<figcaption>Figure 11: one bad image</figcaption>
+</figure>
+<p class="wide">
+Sometimes there is just a single bad image which should be excluded, as in figure 11.
+</p><br>
+<figure class="small"><img alt="run pair correlations" src="aimless_pipe_report_runCC.png">
+<figcaption>Figure 12: run pair correlations</figcaption>
+</figure>
+<p class="wide">With multiple crystals or sweeps, the decision on which
+part(s) of the data to include is more complicated. With large numbers
+of crystals, the analysis by the program BLEND may be useful. AIMLESS
+does include&nbsp; two other analyses which may be useful:</p>
+<ol>
+  <li>A table of pairwise correlations between runs, presented as a
+  table (figure 12) and a graph against resolution</li>
+  <li>If you have a preliminary structure, you can give the calculated
+  structure factors as a reference file  (using the Input option
+  <span style="font-style: italic;">Use reference data in analysis
+  against Batch after scaling</span>).
+  This will plot the correlation coefficient and R-factor between the
+  observed intensity and F<sub>calc</sub><sup>2</sup> as a function of
+  Batch, which may help to show which parts of the data
+  agree best with the model. Of course this has some danger of model
+  bias, so perhaps should be used with caution.<br>
+  </li>
+</ol>
+<h4><a name="Completeness"></a>Completeness and multiplicity</h4>
+<p class="wide">
+Datasets should be complete, as near to 100% as you can manage. Some
+loss of completeness can be tolerated in the outermost resolution
+bins. Dangers: watch out for bad anomalous completeness (see example
+left). Note that in P1 you need a rotation of at least 180°+2&#952;max
+(better 360°) to get complete anomalous data.
+Note that XDS integrates into the corners of square detectors,
+leading to very incomplete data at the maximum resolution. You should
+apply a high resolution limit, maybe to the resolution of the
+  inscribed circle. Detectors with many tiles may lose significant
+  numbers of spots in the gaps between tiles, leading to serious
+  incompleteness in low symmetry space groups (P1). You can complete
+  the data with another dataset collected by rotation about a
+  different axis (eg with a Kappa offset). You may also be able to
+  recover some data by accepting "Edge" reflections flagged by MOSFLM
+  (see Input->Additional options).
+</p>
+<h4><a name="Anomalous"></a>Detection of an anomalous signal</h4>
+<figure class="threequarter"><img alt="Anomalous signal detection" src="aimless_pipe_report_anom.png">
+<figcaption>Figure 13: Anomalous signal detection<br>
+Top line: strong anomalous signal. Bottom line: no anomalous (native)
+</figcaption>
+</figure>
+<p class="wide">
+The most useful indicator of the presence of an anomalous signal is
+the plot of CC(anom) (green line in the left-hand panels of figure
+11). CC(anom) is the correlation between two random half-dataset
+values of (I+ - I-), a similar definition to that for CC(½). Figure 13 top
+left shows typical behaviour of a strong signal, declining with
+resolution as the intensities weaken. With multiple datasets (eg MAD),
+then the correlation between datasets is also plotted. The correlation
+coefficient is essentially the slope of the scatter plot shown in the
+central panels of figure 13 (DelAnom scatterplot), showing elongation
+along the diagonal at the top, and a random pattern on the bottom. The
+right-hand panels are normal probability or Q-Q plots: these have a
+slope &gt; 1.0 if the differences are greater than would be expected from
+their estimated errors. For the location of the anomalous
+sub-structure, you might want to restrict the resolution to the point
+where CC(anom) drops below about 0.3, then use the full resolution
+range for phasing. Even a weak or undetectable anomalous signal may be
+useful for locating anomalous scatterers in difference Fouriers once
+you have phases (or better in log-likelihood gradient maps).
+</p>
+<br>
+<h4><a name="SDs"></a>Analysis of Standard Deviations</h4>
+<figure class="small"><img alt="SD correction plot" src="aimless_pipe_report_SDplot.png">
+<figcaption>Figure 14: SD correction plot</figcaption>
+</figure>
+<p class="wide">
+AIMLESS compares the observed scatter of symmetry-related observations
+around the mean with the estimated &#963;(I), and "corrects" the &#963;(I) by a
+multiplier and a function of &lt;I&gt;. On average, the observed scatter
+should equal the estimated standard deviation.</p>
+<p class="wide">
+<span class="equation">&#963;'2(I) = SdFac2 {&#963;2(I)+ SdB
+  &lt;Ih&gt; + (SdAdd &lt;Ih&gt;)2}</span>
+</p>
+<p class="wide">
+where &lt;Ih&gt; is the average intensity of reflection h.
+By default, the three parameters SdFac, SdB &amp; SdAdd are determined
+automatically, with separate values for fulls &amp; partials, and for each
+run. The plot in figure 14 represents the distribution of normalised
+errors&nbsp;<span class="equation">&#948; =
+  (I-&lt;Ih&gt;)/&#963;(I)</span> as a function of &lt;Ih&gt;. This
+  distribution 
+should have a standard deviation of 1.0, so the plot should be
+horizontal with a value = 1.0 everywhere. If it slopes upwards, then
+&#963;(I) is too small for large I, so SdAdd should be increased, or
+reduced if it slopes downwards. The example in figure 14 is OK but not
+  particularly good, but if these plots vary too much from 1.0 then
+  some parameters can be changed in the input, in Additional
+  Options-&gt;override default parameters for each run. Useful options
+  are (a) making the the parameters the same or similar (ie
+  restrained equal) for all runs, and (b) fixing the sdB parameter to 0.0.
+
+</p><br>
+
+<h4><a name="Statistics"></a>Statistics</h4>
+<p class="wide">
+<em>Measures of self-consistency:</em> these are R-factor or
+  correlation coefficient statistics which compare symmetry-related or
+replacate measurements. They are used in analyses against resolution
+and against batch, as described above.
+</p><ol>
+  <li>Classical R<sub>merge</sub>:
+<span class="equation">
+  &#8721;<sub>h</sub>&#8721;<sub>l</sub>|I<sub>hl</sub>-&lt;I<sub>h</sub>&gt;|/
+  &#8721;&#8721;&lt;I<sub>h</sub>&gt;</span>
+  </li>
+  <li>R<sub>meas</sub>:
+<span class="equation">
+  &#8721;<sub>h</sub>&#8721;<sub>l</sub>(n/n-1)<sup>1/2</sup>
+  |I<sub>hl</sub>-&lt;I<sub>h</sub>&gt;|/&#8721;&#8721;&lt;I<sub>h</sub>&gt;</span>
+<br>Multiplicity-weighted R-factor, a better overall indicator than the
+  classic version as it does not increase with multiplicity
+  </li>
+  <li>R<sub>pim</sub>:
+<span class="equation">
+  &#8721;<sub>h</sub>&#8721;<sub>l</sub>(1/n-1)<sup>1/2</sup>
+  |I<sub>hl</sub>-&lt;I<sub>h</sub>&gt;|/&#8721;&#8721;&lt;I<sub>h</sub>&gt;</span>
+<br>Precision-indicating R-factor, more closely related to precision of
+  the merged intensity   </li>
+  <li>Correlation coefficients, such as CC(�)
+  <br>These have the advantage of well-defined statistical properties
+  (0 no correlation, +1 perfect correlation), unlike R-factors</li>
+</ol>
+<p class="wide">
+ Note that some authorities use a slightly different definition of
+R<sub>merge</sub> and its relatives, with 
+<span class="equation"> &#8721;&#8721;I<sub>hl</sub></span>
+as the denominator instead of
+<span class="equation"> &#8721;&#8721;&lt;I<sub>h</sub>&gt;</span>.
+These are likely to have very similar values in most cases.
+</p>
+
+<h4><a name="References"></a>References</h4>
+<p class="wide">
+To be added
+</p>
+</body></html>

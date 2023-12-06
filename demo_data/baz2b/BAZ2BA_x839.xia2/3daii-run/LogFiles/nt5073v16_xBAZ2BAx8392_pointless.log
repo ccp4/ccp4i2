@@ -1,0 +1,346 @@
+ 
+ ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 6.4: POINTLESS              version 1.9.2 : 06/03/14##
+ ###############################################################
+ User: unknown  Run date: 15/ 5/2014 Run time: 11:08:02 
+
+
+ Please reference: Collaborative Computational Project, Number 4. 1994.
+ "The CCP4 Suite: Programs for Protein Crystallography". Acta Cryst. D50, 760-763.
+ as well as any specific reference in the program write-up.
+
+>>>>> Input command lines <<<<<
+
+lauegroup hklin
+setting symmetry-based
+
+>>>>>     End of input    <<<<<
+
+
+$TEXT:Warning:$$ $$
+WARNING: In LAUEGROUP command: 
+   Rhombohedral group name HKLIN will be used in the hexagonal [H] setting H KLIN
+$$
+
+$TEXT:Warning:$$ $$
+WARNING: In LAUEGROUP command: 
+   Rhombohedral group name HKLIN will be used in the hexagonal [H] setting H KLIN
+$$
+Release Date: 6th March 2014
+
+
+        ******************************************************
+        *                                                    *
+        *                     POINTLESS                      *
+        *                       1.9.2                        *
+        *                                                    *
+        *   Determine Laue group from unmerged intensities   *
+        *     Phil Evans MRC LMB, Cambridge                  *
+        * Uses cctbx routines by Ralf Grosse-Kunstleve et al.*
+        *                                                    *
+        ******************************************************
+
+
+ Spacegroup information obtained from library file: 
+ Logical Name: SYMINFO   Filename: /dls_sw/apps/ccp4/x86_64/6.4.0/8apr2014/ccp4-6.4.0/lib/data/syminfo.lib
+
+
+Reflection list generated from file:
+/dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2
+BAx8392/scale/SCALED_SAD_SWEEP1.mtz
+
+Title: From XDS file SCALED_SAD_SWEEP1.HKL, XDS run on 15-May-2014 from image
+
+   Space group from HKLIN file : C 2 2 2
+   Cell:   83.50  96.74  57.97  90.00  90.00  90.00
+   Resolution range in file:     37.14        2.04
+
+Time for reading file(s):    0.380 secs
+
+===============================================================
+
+>*> Summary of test data read in:
+   Resolution range accepted:    37.14        2.04
+
+   Number of reflections      =         15236
+   Number of observations     =         99053
+   Number of parts            =         99053
+   Number of batches in file  =          1800
+   Number of datasets         =             1
+      Project: nt5073v16 Crystal: xBAZ2BAx8392 Dataset: SAD
+      Run number:   1 consists of batches      1 to   1800
+         Phi range:     0.00 to     0.00   Time range:     0.00 to     0.00
+         Closest reciprocal axis to spindle: a* (angle    nan degrees)
+   Average unit cell:   83.50   96.74   57.97   90.00   90.00   90.00 
+   
+===============================================================
+
+Checking for possible twinning
+L-test for twinning (acentrics only) to maximum resolution    2.981
+    using Mn(I/sigmaI) cutoff    8.0
+Neighbouring reflections for test are +- 2 on h,k,l
+
+$TABLE: L-test for twinning, twin fraction 0.020:
+$GRAPHS:Cumulative distribution of |L|, estimated fraction 0.020:N:1,2,3,4:
+ $$
+      |L|       N(|L|)  Untwinned    Twinned   $$ $$
+     0.0000     0.0000     0.0000     0.0000
+     0.0500     0.0553     0.0500     0.0749
+     0.1000     0.1081     0.1000     0.1495
+     0.1500     0.1606     0.1500     0.2233
+     0.2000     0.2116     0.2000     0.2960
+     0.2500     0.2636     0.2500     0.3672
+     0.3000     0.3152     0.3000     0.4365
+     0.3500     0.3667     0.3500     0.5036
+     0.4000     0.4173     0.4000     0.5680
+     0.4500     0.4692     0.4500     0.6294
+     0.5000     0.5220     0.5000     0.6875
+     0.5500     0.5731     0.5500     0.7418
+     0.6000     0.6230     0.6000     0.7920
+     0.6500     0.6738     0.6500     0.8377
+     0.7000     0.7230     0.7000     0.8785
+     0.7500     0.7728     0.7500     0.9141
+     0.8000     0.8218     0.8000     0.9440
+     0.8500     0.8705     0.8500     0.9679
+     0.9000     0.9180     0.9000     0.9855
+     0.9500     0.9644     0.9500     0.9963
+     1.0000     1.0000     1.0000     1.0000
+$$
+      Estimated twin fraction alpha from cumulative N(|L|) plot 0.023 (+/-0.004)
+   <|L|>:    0.483 (0.5 untwinned, 0.375 perfect twin)
+      Estimated twin fraction alpha from <|L|>    0.020
+   <L^2>:    0.315 (0.333 untwinned, 0.2 perfect twin)
+      Estimated twin fraction alpha from <L^2>    0.018
+
+The L-test suggests that the data are not twinned
+Note that the estimate of the twin fraction from the L-test is not very accurate,
+  particularly for high twin fractions. Better estimates from other test need knowledge of
+  the point group and the twin operator, which are not available here
+Also these statistics come from unscaled (and unmerged) data, so may be inaccurate for that reason
+
+Time for twinning test    0.320 secs
+
+======================================================================
+
+Model for expectation(CC) = E(m) if symmetry is absent P(m;!S) = (1-m^k)^(1/k) with k =  2.2
+
+Reindexing or changing symmetry to selected Laue group C m m m
+Reindex operator from input cell to given Lauegroup: [h,k,l]
+
+   h'   = ( h k l ) (       1       0       0 )
+                    (       0       1       0 )
+                    (       0       0       1 )
+
+
+Unit cell after reindexing:  83.50  96.74  57.97  90.00  90.00  90.00
+
+
+Number of reflections  =             15236
+Number of observations =             99053
+Average multiplicity =                 6.5
+
+Resolution range in list:      37.14 ->   2.04
+   
+Intensity normalisation: B-factor =  -17.6  +  -0.0010 * time  (final B -19.4)
+
+Resolution range reset to    37.14 to     2.71
+   using Mn(I/sigmaI) cutoff    6.0
+
+********************************************************
+
+Testing Lauegroups for systematic absences
+------------------------------------------
+
+I' is intensity adjusted by subtraction of a small fraction (0.02, NEIGHBOUR)
+ of the neighbouring intensities, to allow for possible overlap
+
+
+$TABLE: Axial reflections, axis c (lattice frame) screw axis 2(1):
+$GRAPHS:I/sigI vs. index, axis c, screw axis 2(1):N:1,4,5:
+:I vs. index, axis c, screw axis 2(1):N:1,2:
+ $$
+   Index          I       sigI    I/sigI   I'/sigI   $$ $$
+       2        155          6     26.21     26.21
+       3         -0          4     -0.00      0.00
+       4       2853        104     27.48     27.48
+       5          0          2      0.01      0.00
+       6        531         20     26.78     26.78
+       7          1          2      0.29      0.00
+       8        384         15     26.17     26.17
+       9          0          2      0.21      0.00
+      10        125          5     22.71     22.71
+      11         -0          2     -0.22      0.00
+      13         -0          2     -0.20      0.00
+      14         64          4     17.65     17.64
+      15          2          2      1.14      0.35
+      16         32          3     11.72     11.70
+      17          0          2      0.15      0.00
+      18        155          7     21.67     21.67
+      19         -1          2     -0.33      0.00
+      20         42          3     13.46     13.45
+      21          0          2      0.27      0.40
+      22          8          2      4.03      4.02
+      23          1          2      0.52      0.37
+      24          5          3      2.13      2.11
+      25          1          2      0.43      0.11
+      26         30          3     10.10     10.10
+      27         -1          2     -0.61      0.00
+      28         47          3     13.54     13.54
+$$
+
+
+Each 'zone' (axis or plane) in which some reflections may be systematically absent
+are scored by Fourier analysis of I'/sigma(I). 'PeakHeight' is the value
+in Fourier space at the relevent point (eg at 1/2 for a 2(1) axis)
+relative to the origin. This has an ideal value of 1.0 if the corresponding
+symmetry element is present. Zone directions (a,b,c) shown here are in the
+lattice group frame
+
+'Probability' is an estimate of how likely the element is to be  present
+
+<!--SUMMARY_BEGIN-->
+
+         Zone                Number PeakHeight  SD  Probability  ReflectionCondition
+
+Zones for Laue group C m m m
+ 1 screw axis 2(1) [c]           51   0.989   0.099   *** 0.988   00l: l=2n
+
+<!--SUMMARY_END-->
+
+Time for systematic absence tests:    0.620 secs
+
+
+Possible spacegroups:
+--------------------
+Indistinguishable space groups are grouped together on successive lines
+
+'Reindex' is the operator to convert from the input hklin frame to the standard spacegroup frame.
+
+'TotProb' is a total probability estimate (unnormalised)
+
+'SysAbsProb' is an estimate of the probability of the space group based on
+the observed systematic absences.
+
+'Conditions' are the reflection conditions (absences)
+
+
+   Spacegroup         TotProb SysAbsProb     Reindex         Conditions
+
+    <C 2 2 21> ( 20)    0.988  0.988                         00l: l=2n (zone 1)
+    ..........
+     <C 2 2 2> ( 21)    0.012  0.012                         
+
+
+---------------------------------------------------------------
+
+
+Space group confidence (= Sqrt(Score * (Score - NextBestScore))) =     0.98
+
+Laue group confidence  (= Sqrt(Score * (Score - NextBestScore))) =     0.00
+
+Selecting space group C 2 2 21 as there is a single space group with the highest score
+
+<!--SUMMARY_BEGIN--> $TEXT:Result: $$ $$
+Best Solution:    space group C 2 2 21
+
+   Reindex operator:                   [h,k,l]                 
+   Laue group probability:             1.000
+   Systematic absence probability:     0.988
+   Total probability:                  0.988
+   Space group confidence:             0.982
+   Laue group confidence               0.000
+
+   Unit cell:    83.5  96.74  57.97        90     90     90
+
+   37.14 to   2.04   - Resolution range selected on input
+
+   Number of batches in file:   1800
+
+The data do not appear to be twinned, from the L-test
+
+$$ <!--SUMMARY_END-->
+
+
+HKLIN spacegroup: C 2 2 2  C-centred orthorhombic
+/dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/SCALED_SAD_SWEEP1.mtz
+Filename:
+/dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2
+BAx8392/scale/SCALED_SAD_SWEEP1.mtz
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Writing unmerged data to file pointless.mtz  in space group C 2 2 21
+
+   Reindexing operator         [h,k,l]
+
+   Real space transformation   (x,y,z)
+
+ * Title:
+
+ From XDS file SCALED_SAD_SWEEP1.HKL, XDS run on 15-May-2014 from image
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 nt5073v16
+          xBAZ2BAx8392
+          SAD
+             83.5000   96.7400   57.9700   90.0000   90.0000   90.0000
+             0.92001
+
+ * Number of Columns = 11
+
+ * Number of Reflections = 99053
+
+ * Missing value set to NaN in input mtz file
+
+ * Number of Batches = 1800
+
+ * Column Labels :
+
+ H K L M/ISYM BATCH I SIGI XDET YDET ROT FLAG
+
+ * Column Types :
+
+ H H H Y B J Q R R R I
+
+ * Associated datasets :
+
+ 0 0 0 0 0 0 0 0 0 0 0
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   83.5000   96.7400   57.9700   90.0000   90.0000   90.0000 
+
+ *  Resolution Range :
+
+    0.00072    0.24027     (     37.139 -      2.040 A )
+
+ * Sort Order :
+
+      1     2     3     4     5
+
+ * Space group = 'C 2 2 21' (number     20)
+
+  (spacegroup is known)
+
+
+$TEXT:Reference: $$ Please cite $$
+P.R.Evans, 'Scaling and assessment  of data quality' Acta Cryst. D62, 72-82  (2006).
+<a href="http://journals.iucr.org/d/issues/2006/01/00/ba5084/index.html">
+<b>PDF</b></a>
+P.R.Evans, 'An introduction to data reduction: space-group determination, scaling and intensity
+statistics' Acta Cryst. D67, 282-292 (2011)
+<a href="http://journals.iucr.org/d/issues/2011/04/00/ba5158/index.html">
+<b>PDF</b></a>
+$$

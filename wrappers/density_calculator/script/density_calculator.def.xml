@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginTitle>Density Calculator</pluginTitle>
+        <pluginName>density_calculator</pluginName>
+        <userId>paul.bond@york.ac.uk</userId>
+    </ccp4i2_header>
+    <ccp4i2_body id="density_calculator">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <ifAtomSelection>True</ifAtomSelection>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="FORM_FACTOR">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>X-ray,Electron,Neutron</menuText>
+                    <enumerators>xray,electron,neutron</enumerators>
+                    <default>xray</default>
+                </qualifiers>
+            </content>
+            <content id="D_MIN">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>2.0</default>
+                    <min>0.1</min>
+                </qualifiers>
+            </content>
+            <content id="RATE">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>1.5</default>
+                    <min>0.1</min>
+                </qualifiers>
+            </content>
+            <content id="BLUR_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>No blurring,REFMAC blurring,Custom blurring</menuText>
+                    <enumerators>none,refmac,custom</enumerators>
+                    <default>refmac</default>
+                </qualifiers>
+            </content>
+            <content id="BLUR">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>0</default>
+                </qualifiers>
+            </content>
+            <content id="UNBLUR">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="CUTOFF">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>1e-5</default>
+                    <min>1e-100</min>
+                </qualifiers>
+            </content>
+            <content id="MOTT_BETHE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="MAPOUT">
+                <className>CMapDataFile</className>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

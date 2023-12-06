@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>CCP4i2 Developer Notes</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+</head>
+<body>
+<h2>CCP4i2 Developer Notes - Database</h2>
+<h4>Introduction</h4>
+<p>Useful docs: <a href="http://www.w3schools.com/sql/">w3 schools
+sql</a>, <a href="http://www.sqlite.org/lang.html">sql as understood
+by sqlite</a>, <a href="https://en.wikipedia.org/wiki/Three-letter_acronym">wikipedia for TLAs etc</a>.</p>
+<p>i2 uses sqlite accessed by the Python sqlite3 interface.  Discussion on
+other options later. All access should be via the database api,
+<i>dbapi/CCP4DbApi.py</i> and the
+schema is <i>dbapi/database_schema.sql</i>. The db is usually opened as part
+of startup by <i>utils/startup.py:startDb()</i> function and can be
+accesed via <i>CCP4Modules.PROJECTSMANAGER().db()</i>.  By default the user database file
+is <i>$HOME/.CCP4I2/db/database.sqlite</i> but this can be changed either as
+command line argument (-db) or by the environment variables:</br>
+CCP4_LOCAL_HOME which resets where .CCP4I2 and other project
+directories are by default</br>
+CCP4_LOCAL_DOTDIR resets .CCP4I2 parent path</br>
+These are mostly useful for classroom environments with disk space
+and/or network speed issues.</p>
+<p>Note that Python sqlite has a stated requirement that the sqlite is in the
+main thread. The database is accessed by both the main gui process and
+the 'background' runTask processes. I have tried to minimise all
+access but especially from runTask processes.</p>
+<p>The present implementation expects the db to have a single user
+access - the users login name is found automatically and checked
+against the value saved in Users table (set when database created) and
+may fail if they do not match. The gui (in startup.py:startDb() function) deals with this by asking the
+user to provide the 'old' username as found in the db. There are tables in db such as
+ProjectsUsersPermissions which are intended for a more sophisticated
+multi-user access but are not fully implemented.</p>
+<p>For each of the main tables in the database each row has an id which is a randomly generated
+unique identifier that serves as the primary key. In Python this is
+handled as a string (or as defined by <i>CCP4DbApi.UUIDTYPE</i>
+valriable which is currently set
+to str) and is widely used and saved in Python code.
+There are also some tables (FileTypes, JobStatus) which contain
+list of integers used like 'enums' in the 'main' tables.  The content
+of these tables is often duplicated in definitions at the top of
+dbapi/CCP4DbApi.py so take care to update both. </p>
+<p>To <b>inspect the db</b> in the <i>Job list</i> the context (right mouse)
+menus for jobs and files have a <i>View->Database entry</i>
+option. Also the program <i>sqlitebrowser</i> is very useful and can also be
+used to edit a db.</p>
+<h4>Overview of CDbApi methods</h4>
+<p>All access to the db is channeled through the <i>excute()</i> and <i>commit()</i>
+methods so changes needed when porting to
+alternative sql are hopefully localised to these methods.
+Most methods in CDbApi create an sql command and use
+<i>execute()</i> (always!) to execute that command. This function
+traps and reports errors and if <i>setDiagnostic()</i> has been set True it will
+print to terminal all executed sql commands. If the sql command has
+changed the database then this must be followed by a call to <i>commit()</i>. If the
+change is not commited then the process does not release the db and,
+typically for the case of the gui holding the db, prevents the runTask from
+reporting a job finished so it appears to run forever. If the sql
+command is a 'getter' returning data then the <i>fetchAll2Py()</i> or
+<i>fetchAll2PyList()</i> method should be called to return the data as lists
+of appropriate Python data types. The difference between these
+functions is that  <i>fetchAll2Py()</i> returns a single list of a
+single column of data from the db but <i>fetchAll2PyList()</i> returns
+a list of lists of multiple columns. Both of these functions
+require as input either the Python type or list of Python types for the returned data.
+</p>
+<p>For the main tables in the database there are methods:<br/>
+<b>createWhatever()</b> - create new row in table<br/>
+<b>updateWhatever(whateverId=None,key=None,value=None)</b> - update key
+column in row to value.<br/>
+<b>getWhateverInfo(whateverId,mode=None)</b> - return a dictionary of data
+for the whatever with id whateverId for all the columns listed in
+mode argument. If mode is None (the default), then all the columns are
+returned. If mode is a single column name then the single Python
+value is return rather than a dict. The keys in the return dict are
+the column names but all lower case.<br/>
+<b>deleteWhatever(whateverId)</b> - delete the row with id whateverId</br>
+</p>
+<p>Note that, for convenience, the much used <i>getJobInfo()</i> can
+return data taken from tables other than the
+Jobs table: projectname, runtime (finish-start time),
+parentjobnumber, childjobs, descendentjobs, performanceclass,
+performance.</p>
+<p>There are numerous methods to return more complex data combinations
+required in specific gui context, to <a href="#gleanJobFiles" >load data from finished jobs</a>, to handle running jobs(?LINK),
+and to support import/export of projects(?LINK).</p>
+
+<p>The following review of db tables mentions several redundant and
+'not yet fully implemented' tables and columns. There is a difficulty
+that the sqlite <i>update</i> command will not remove columns - this can only be
+done by copying the db without the no-longer-required features.</p>
+
+<a name="database_projects"><h4>Projects and related tables</h4>
+<p>The Projects table holds:
+<ul><li>ProjectName - name as seen by user</li>
+<li>ProjectDirectory - the full path to the prpject directory</li>
+<li>UserId</li> - references to users table which holds the owners
+login name</li>
+<li>ProjectCreated - when project created</li>
+<li>LastAccess - when user last appended project</li>
+<li>ParentProjectId - reference to another project which is parent to
+this on. <a href="../docs/general/tutorial.html#projects" >User
+docs.</a></li>
+<li>LastJobNumber - the number of the last job created in the
+project</li>
+<li>FollowFromJobID - the last  finished job whose output files become
+input to next created job</li>
+<li>LastCleanupTime - last time prject cleanup - redundant.</li>
+<li>I1ProjectName - Name of equivalent i1 project. <a href="../docs/general/CCP4i1Projects.html" >User docs.</a> </li>
+<li>I1ProjectDirectory - Directory of equivalent i1 project.</li>
+</ul>
+<p>ProjectsUsersPermissions is a table to hold project access details
+for users other than the owner - not currently used.</p>
+<p>ProjectExports and ProjectImports tables track whenever a project
+is exported or imported. Currently this info is used in the gui to offer user
+option to export only jobs created since last import/export. 
+ProjectImports.ProjectExportDatabaseId references the databaseId of
+the source of the imported data. There is potentially useful info on
+'where did that job come from' in these tables but not currently
+accessible from the gui.</p>
+<p>Recently (Oct 2016) tables to support tags and comments on projects
+have been added. (<a
+href="../docs/general/searchTools.html#search_projects">Searching
+projects docs</a>. The Tags table is a simple list of
+tags but with Tags.ParentTagID enables grouping of tags into
+heirarchy. The ProjectTags table associates a project with a tag. The
+ProjectComments table saves comments with userid and time and
+potentially could be used for 'conversation' on the project.</p>
+
+
+<a name="database_jobs"><h4>Jobs and related tables</h4>
+<ul><li>ProjectID - reference to project containing job</li>
+    <li>ParentJobID - reference to parent job if it is sub-job in a pipeline</li>
+    <li>JobNumber - a text string that identifies job to user
+  (actually just an integer)</li>
+    <li>JobTitle - short description as appears in gui and is editable
+  by user</li>
+    <li>UserId - user that created job</li>
+    <li>UserAgent - application that created job - currently always i2
+    gui</li>
+    <li>CreationTime - time that job created, replaced with time it
+    starts running</li>
+    <li>FinishTime - time job finishs</li>
+    <li>Status - reference to JobStatus table and
+    CCP4DbApi.JOB_STATUS_TEXT list one-word status</li>
+    <li>TaskName - name of task</li>
+    <li>TaskVersion - version number of the task</li>
+    <li>Evaluation - reference to JobEvaluation - appears as
+    smiley/sad/etc icons in the gui Job list</li>
+    <li>PreceedingJobID - reference to job from which input data was
+    taken - this is tricky to define and not now very useful</li>	
+    <li> processId</li>The system process id held while the job is
+    running - used to kill job</li>
+  </ul>
+  <p>The Comments table is a list of comments on specific jobs.</p>
+  <p>JobKeyValues and JobKeyCharValues hold items of real or char data
+  performance indicators
+  that summaries the quality of the job result. See <a
+  href="../docs/developers/pipelines.html#performance_indicators">dev
+  docs</a>. The KeyTypes table lists the allowed
+  JobKeyValues.KeyTypeID values.</p>
+
+<a name="database_files"><h4>Files and related tables</h4>
+<p>A record of a file is created in the Files table when the file is
+either imported into i2 or the file is output by a job. The Files
+record includes the jobId of the job importing/creating the file. If the file
+was imported then it is also recorded in the ImportedFiles table
+(whose columns include the name of the original source file).</p>
+<p><b>FileUses</b> The file may be subsequently input into another job and the
+FileUses table is used to associate the file with that other job (with
+Role value indicating 'in').
+A further complication is that a file may be ouput twice (sort-of) by a
+sub-job in a pipeline and then being one of the final files output by the
+whole pipeline - the file needs to be associated with two jobs and
+so a FileUses entry (with a Role column value indicating 'out') is
+used for the second job.</p>
+<p><b>Filename</b> The Files.Filename column contains just the name of
+the file (no path). A file is always expected to be in the job directory of the job
+that created or imported it or in the CCP4_IMPORTED_FILES directory
+for the project. The Files.PathFlag column indicates which of these it
+is. There is a redundant Files.FilePath column (which can not be
+easily removed form an sqlite db).</p>
+<p><b>JobParamName</b> In both Files and FileUses tables there is the jobId of a job and
+also a JobParamName column which contains the name of the parameter
+from the task (e.g. XYZIN).</p>
+<p><b>Annotation</b> Files.Annotation is a short text string to appear in the
+gui.</p>
+<p><b>File types</b> There are three Files columns containing flags to
+denote some aspect of file type:</br>
+<b>Files.FiletypeID</b> is the fundamental type which corresponds to a single
+data class derived from CDataFile and possible values listed in
+CCP4DbApi.FILETYPELIST.</br>
+<b>Files.FileContent</b> Some types of file (notable the 'mini' MTZs) can hold data in different forms and this column flags that form -
+permissible values depend on the Files.FiletypeID.</br>
+<b>Files.FileSubType</b> For some types of file (eg CPdbDataFile) the
+content of the file may only be appropriate for use in a some context
+that use that type of file. This is an attempt at codifying that
+problem - it is little used in practice.</br>
+Note -- The names FileContent and FileSubType would probably be more
+appropriate if reversed!
+</p>
+
+<p><b>ImportFiles</b> This table exists mostly to hold the <i>SourceFilename</i>
+of an imported file. It also contains a checksum value for the source
+file at the time of import. Any subsequent access to the source file
+should check it has the same checksum i.e. is still the same file.</p>
+
+<p><b>ExportFiles</b> Ideally when a user exports a file from i2 (presumably to
+use in some other software) the export is noted in this table. When
+another file is subsequently imported (presumably the output from the
+other software) it should be associated with the exported file.  There
+is a column <i>ImportFiles.ExportFileID</i> to make this connection.  This
+is not fully implemented and used partly due to user resistance to
+being organised.</p>
+
+<p><b>FileAssociations</b> with support tables FileAssociationTypes,
+FileAssociationRoles and FileAssociationMembers is intended to make an
+association between two files such as the reflection data and
+freer data. This is fully implemented in CDbApi but not used yet. The
+CDbApi.createFileAssociation() method creates an entry in the
+FileAssociations table and then for every file in the association adds
+an entry to FileAssociationMembers with a reference to the
+FileAssociations entry.</p>
+
+<a name="gleanJobFiles"/><p><b>Loading file data</b>. The <i>params.def.xml</i> file associated with the job contains all
+parameters associated with the job including the input and output data files. The <i>CDbApi.gleanJobFiles()</i>
+method extracts data from the <i>params.def.xml</i> and creates the
+Files and FileUse records. The
+gleanJobFiles() method is passed a
+CContainer instance containing the contents of the param file. The
+method scans the inputData and outputData sub-containers for objects
+of type derived from CDataFile and checks if the spcified file name
+exists before creating a Files or FileUses record.</p>
+
+
+<a name="database_databases"><h4>Databases and other assorted tables</h4>
+<ul>
+<li>The Databases table keeps a record of itself and all databases from
+which data has been imported.</li>
+<li>UserAgents is a table of 'enums' for applications which access the
+db - currently just i2 gui.</li>
+<li>UserRoles is enums for concept of different type of user - not
+used.</li>
+<li>Users - List of users - currently just the one user.</li>
+<li>DirectoryAliases - copies i1 functionality of allowing user to
+create alias to frequently user directory. No longer used.</li>
+<li>XData - a table that could hold a text xml representation of any
+data class - not used but potentially could be.</li>
+<li>LastUniqueIds -redundant</li>
+</ul>
+
+<a name="updating_schema"><h4>Updating the schema</h4>
+<p>Adding a new column or table requires a series of changes: updating
+the schema, ensuring that existing databases get updated, esuring that
+the various methods accessing the changed table are updated and
+ensuring that the 'temp' tables used to import projects are in sync.</p>
+<ul>
+  <li>Make a copy of your <i>.CCP4I2/db</i> directory</li>
+  <li>Change the version and data at the top of the <i>database_schema.sql</i>
+  comments</li>
+  <li>Add a note of the changes to the list of changes in the
+  schema comments</li>
+  <li>Make the changes in database_schema.sql</li>
+  <li>Add an update_<i>version</i>() method in <i>CCP4DbApi.py</i> - note
+  that the version is what you are updating from (not to).</li>
+  <li>Add a line to <i>updateDbSchema()</i> to call your new method</li>
+  <li>Update the CDbApi.<i>WHATEVER</i>ITEMS and
+  CDbApi.<i>WHATEVER</i>TYPES lists that (at top of file) - these are record
+  of the data in each table and what Python data type they should be
+  converted to.</li>
+  <li>Concider any changes necessary to createWhatever(),
+  updateWhatever(), getWhateverInfo(), and deleteWhatever()
+  methods.</li>
+  <li>If a new table has reference to Projects, Jobs or Files tables then it will
+  need to be included in the deleteProject(), deleteJob() or
+  deleteFile() methods.</li>
+  <li>Many schema changes need to be replicated in
+  dbapi/temp_database_sqema.sql which is used to temporarilly hold
+  data when importing projects.  Some 'transient' data -
+  e.g. ServerJobs, tracking remote running jobs, should not be
+  exported so does not need to be in the 'temp' database. See
+  <a href="import_schema_mismatch">import/export note</a>.</li>
+  <li>Test that you existing db is updated safely and then try with
+  the .CCP4I2 moved aside so db is created from scratch.</li>
+  <li>Test export and import of a project.</li>
+  <li>Before checking in inform ysbl-ccp4i2dev and advise them to save .CCP4I2/db - I would
+  do this for all but the most trivial change.</li>
+ </ul>
+</body>
+ </html>
+ 
+<a name="COpenJob"/><h4>CDbUtils.COpenJob</h4>
+<p>This class is used as a cache for info on one job to minimise db
+access. It's contents are updated if the db is updated and it emits
+appropriate change signals. The class is mostly used as a member of
+CProjectViewer class.</p>
+<p>COpenJob also contains methods to create and run jobs so it has
+some of the functionality of CProjectViewer but accessible
+programatically and non-graphically. COpenJob is currently used in the
+project based testing (<i>CCP4ProjectBasedTesting.py</i>). It could be
+useful in an automated system such as the <a href="../developer_projects/demo_i2_scripts/README"/>demo_i2_scripts</a>.</p>
+
+
+<h4>Exporting and Importing Projects</h4>
+
+ <p>i2 can export a whole project or some selected jobs from one
+ project by creating a
+ compressed (zip) file containing all or some restricted part of the project directory and an xml
+ representation of the appropriate part of the database.  When the
+ compressed file is imported i2 creates a new project or adds to an
+ existing project as appropriate. The import mechanism is careful not
+ to import jobs or files that already exist.  The import/export
+ mechanism is heavily dependent on the UUIDs (<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Wikipedia</a>) Projects.projectId,
+ Jobs.JobId, Files.FileId to check what is already in the
+ database.</p>
+ <p>The interface to import/export is in
+ <i>CCP4ProjectsManagerGui.py</i> and
+ CCP4ProjectsManager.compressProject() is used to export selected jobs. An outline of
+ the export process:
+ <ul>
+   <li>If a limited set of jobs is being exported use
+<i> CDbApi.getJobInputFiles()</i> to list the files input to those jobs and
+ also list the jobs that provide the input files. These additional files and
+ jobs will be included in the export.</li>
+   <li>Create an XML file,
+ <i>project_directory</i>/CCP4_TMP/DATABASE_<i>time</i>.db.xml,
+ containing a fragment of database created by
+ <i>CDbApi.getTablesEtree()</i></li>
+ <li>Create the compressed file in a separate thread using
+ <i>CCP4Export.ExportProjectThread</i></li>
+</ul>
+<p>The import process is a tricky piece of code and should be changed
+with extreme caution. Note the <i>CCP4Export.ImportProjectThread</i>
+ is not actually a thread as could not access db from separate thread.
+ The basic process:</p>
+<ul>
+  <li>Extract the project xml file from the compressed file
+ (<i>ProjectsManager.extractDatabaseXml()</i>) and load the file header
+  in <i>CCP4DbApi.CDbXml</i> class to get basic project info.</li>
+  <li>Check the ProjectId of the imported project -
+ dependent on whether it is already in db decide to create new or extend
+  existing project - gui confirms this with the user.</li>
+  <li><i>CDbXml.loadTempTables()</i> loads the xml into temporary
+  tables.</li>
+  <li>The <i>excl</i> column in the temporary tables flags any job or file
+ that should not be imported because it already exists or the actual
+ job directory or file failed to import to the project
+ directory. <i>CDbXml.setExclInTempTables()</i> sets excl for any job/file
+ that already exists in db and determines if the imported job numbers
+  need changing.</li>
+  <li><i>CDbXml.setExclImportedFiles()</i> why?</li>
+  <li><i>CCP4Export.ImportProjectThread</i> unpacks compressed file to the
+ project directory - this has access to the CDbXml object to check if
+ file is to be copied - see <i>ImportProjectThread.extractJobsFromZip()</i>
+  </li>
+  <li><i>CDbXml.cleanupTempTables()</i> updates dependent temporary tables based on
+  <i>TempJobs.excl</i></li>
+  <li><i>CDbXml.importTempTables()</i> copies data from the temporary to main
+  tables in database</li>
+  <li><i>CDbXml.removeTempTables()</i> deletes the temporary tables.</li>
+  </ul>
+ 
+
+<a name="import_schema_mismatch"><p><b>Schema syncing issues.</b> There is a potential for problems if the import/export i2
+ installation have different database schema. I believe the import code
+ can handle getting tables or columns that it does not recognise or
+ missing tables and columns but there may be issues with missing
+ content.</p>
+ 
+  <h4>Future database development issues</h4>
+  <p>There has been discussion on enabling an alternative RDBMS to
+  sqlite - the requiremenst for any alternative would be that they are free and
+  ideally can be distributed by ccp4 or are easy for a user
+  site to install. Comprehensive list RDBMS at <a
+ href="https://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems"/>wikipedia</a>. The
+  advantage would be for a user site to have a central database for
+  everyones projects.  One way to use this would be for
+ the local sqlite db to remain the immediate db but to update to a
+  central db regularly.<p>
+  <p>Some notes:</p>
+  <ul>
+  <li>Qt has a module to access some of the main RDBMSs- probably not
+  built into ccp4 Qt.</li>
+  <li>Obviously any centralised db must sort out security and which
+  users access which projects.</li>
+  <li>The 'handshaking' to the RRBMS is mostly handled by
+  <i>CDbApi.connection()</i>, <i>CDbApi.execute()</i> and <i>CDbApi.commit()</i> and hopefully
+  any changes can be localised to those methods.</li>
+  <li>The sql language has different dialects - that used in i2
+  is mostly very simple and generic and should port without problems -
+  watch errors from<i> CDbApi.execute()</i> when testing.</li>
+  <li>The method <i>CDbApi.getJobTree()</i> is a recursive search which may
+  have portability issues - and probably could be written better in an
+  alternative dialect.</li>
+  <li>sqlite does not have a easy way to remove columns so there
+ is some redundant stuff in the i2 db. The only way to remove it is to
+ copy the whole database (without the unwanted bits) and this is
+ probably worth doing as part of a move to any alternative sql
+  base.</li>
+  <li>There are sqlite extensions fts3 and fts4 which enable
+  full-text-searching which might improove job/project searching. They
+  are not in our current python environment</li>
+ </ul>

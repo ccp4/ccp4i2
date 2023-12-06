@@ -1,0 +1,1687 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>huw</userId>
+    <hostName>idris.lan</hostName>
+    <creationTime>2020-06-22T09:36:13.359598</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>phaser_MR</pluginName>
+    <OS>darwin</OS>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="phaser_MR">
+    <container id="inputData">
+      <content id="F_OR_I">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>F,I</enumerators>
+          <guiLabel>Use Fs or Is (depending on availability)</guiLabel>
+          <default>I</default>
+        </qualifiers>
+      </content>
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredContentFlag>1,2,3,4</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="I_SIGI">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredContentFlag>1,3</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="FPHI">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="ABCD">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="KILLFILEPATH">
+        <className>CFilePath</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="ASU_PROTEIN_MW">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="ASU_NUCLEICACID_MW">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="ASUFILE">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="ENSEMBLES">
+        <className>CEnsembleList</className>
+        <qualifiers>
+          <listMinLength>1</listMinLength>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FIXENSEMBLES">
+        <className>CList</className>
+        <subItem>
+          <className>CString</className>
+          <qualifiers>
+            <allowUndefined>False</allowUndefined>
+          </qualifiers>
+        </subItem>
+        <qualifiers>
+          <listMinLength>0</listMinLength>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="guiParameters">
+      <content id="EXPERT_LEVEL">
+        <className>CInt</className>
+        <qualifiers>
+          <enumerators>0,1,2,3</enumerators>
+          <menuText>Basic,Intermediate,Expert,Developer</menuText>
+          <default>1</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="keywords">
+      <container id="general">
+        <qualifiers>
+          <guiLabel>Output files and logging</guiLabel>
+          <guiDefinition>
+            <phaserMode>*</phaserMode>
+          </guiDefinition>
+        </qualifiers>
+        <content id="ROOT">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Base output filename</guiLabel>
+            <guiDefinition/>
+            <default>PHASER</default>
+          </qualifiers>
+        </content>
+        <content id="TITL">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Title</guiLabel>
+            <guiDefinition/>
+            <default>[no title set]</default>
+          </qualifiers>
+        </content>
+        <content id="MUTE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Suppress output</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="XYZO">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Write PDB file</guiLabel>
+            <guiDefinition>
+              <phaserMode>MR*</phaserMode>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="XYZO_ENSE">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Write PDB files of ensembles to separate files for each solution</guiLabel>
+            <guiDefinition>
+              <phaserMode>MR*</phaserMode>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="XYZO_PACK">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Write PDB files of coordinates used for packing</guiLabel>
+            <guiDefinition>
+              <phaserMode>MR*</phaserMode>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="HKLO">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Write MTZ file</guiLabel>
+            <guiDefinition>
+              <phaserMode>MR_AUTO</phaserMode>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="INFO">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Report information content of data</guiLabel>
+            <guiDefinition>
+              <phaserMode>MR_AUTO</phaserMode>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="JOBS">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Number of parallel threads</guiLabel>
+            <toolTip>For a more efficient use of your computer whilst retaining responsiveness set the number of threads to the number of CPU cores present minus 1. This assumes that there are no other CPU intensive programs running.</toolTip>
+            <guiDefinition/>
+            <default>4</default>
+          </qualifiers>
+        </content>
+        <content id="KEYW">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Write keywords (script) file</guiLabel>
+            <guiDefinition>
+              <phaserMode>MR*</phaserMode>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="bfactor_refine">
+        <qualifiers>
+          <guiLabel>B-factor restraints for refinement macrocycles</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_RNP</phaserMode>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="BFAC_REFI_REST">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Restrain B-factors to zero</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="BFAC_REFI_SIGM">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Sigma for B-factor refinement restraint</guiLabel>
+            <guiDefinition/>
+            <default>6.0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="bins_data">
+        <qualifiers>
+          <guiLabel>Reflection binning for data</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="BINS_DATA_MINI">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Minimum number of bins</guiLabel>
+            <guiDefinition/>
+            <default>6</default>
+          </qualifiers>
+        </content>
+        <content id="BINS_DATA_MAXI">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of bins</guiLabel>
+            <guiDefinition/>
+            <default>50</default>
+          </qualifiers>
+        </content>
+        <content id="BINS_DATA_WIDT">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Width of bins (number of reflections)</guiLabel>
+            <guiDefinition/>
+            <default>500</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="BOXS">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Box scale for ensemble F(calc)</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+          <default>4.0</default>
+        </qualifiers>
+      </content>
+      <container id="ellg">
+        <qualifiers>
+          <guiLabel>Expected LLG target</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="ELLG_TARG">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Target value for expected LLG</guiLabel>
+            <guiDefinition/>
+            <default>225.0</default>
+          </qualifiers>
+        </content>
+        <content id="ELLG_RMSD_MULT">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Multiplier to rmsd for high resolution cutoff</guiLabel>
+            <guiDefinition/>
+            <default>None</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="FORM">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Scattering Form Factor type</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+          </guiDefinition>
+          <enumerators>xray,electron,neutron</enumerators>
+          <menuText>Use xray scattering,Use electron scattering,Use neutron scattering</menuText>
+          <default>xray</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <container id="macano">
+        <qualifiers>
+          <guiLabel>Anisotropy correction</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="MACA_PROT">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>protocol</guiLabel>
+            <guiDefinition/>
+            <enumerators>default,off,custom</enumerators>
+            <default>default</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACA_MACR_REF_ANIS">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine anisotropy</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACA_MACR_REF_BINS">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine bins</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACA_MACR_REF_SOLK">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine bulk solvent scale factor</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACA_MACR_REF_SOLB">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine bulk solvent B-factor</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACA_MACR_NCYC">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of cycles</guiLabel>
+            <guiDefinition/>
+            <default>None</default>
+          </qualifiers>
+        </content>
+        <content id="MACA_MACR_MINI">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Minimizer</guiLabel>
+            <guiDefinition/>
+            <enumerators>BFGS,NEWTON,DESCENT</enumerators>
+            <default>BFGS</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="macmr">
+        <qualifiers>
+          <guiLabel>MR refinement</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_RNP</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="MACM_PROT">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>MR refinement protocol</guiLabel>
+            <guiDefinition/>
+            <enumerators>default,off,custom</enumerators>
+            <default>default</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_REF_ROTA">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine rotation</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_REF_TRAN">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine translation</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_REF_BFAC">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine B-factors</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_REF_VRMS">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine RMS variance(s)</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_REF_CELL">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine EM cell scale factor</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_REF_OFAC">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine occupancy factor</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_LAST_ONLY">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Refine rot/tra/bfac/vrms of last added component only</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_NCYC">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of cycles</guiLabel>
+            <guiDefinition/>
+            <default>None</default>
+          </qualifiers>
+        </content>
+        <content id="MACM_MACR_MINI">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>minimizer</guiLabel>
+            <guiDefinition/>
+            <enumerators>BFGS,NEWTON,DESCENT</enumerators>
+            <default>BFGS</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="occupancy">
+        <qualifiers>
+          <guiLabel>Occupancy refinement parameters</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="OCCU_MIN">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Minimum occupancy in refinement</guiLabel>
+            <guiDefinition/>
+            <default>0.01</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_MAX">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Maximum occupancy in refinement</guiLabel>
+            <guiDefinition/>
+            <default>1.0</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_MERG">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Merge occupancy offsets after refinement</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_OFFS">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Select offset if merging not performed</guiLabel>
+            <guiDefinition/>
+            <default>0</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_FRAC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Minimum fraction scattering of original model for output</guiLabel>
+            <guiDefinition/>
+            <default>0.5</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_BIAS">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Bias towards lower fraction-scattering in binary threshold determination</guiLabel>
+            <guiDefinition/>
+            <default>0.1</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_WIND_ELLG">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Target ellg for number of residues in occupancy window</guiLabel>
+            <guiDefinition/>
+            <default>5.0</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_WIND_MAX">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of residues in occupancy refinement window</guiLabel>
+            <guiDefinition/>
+            <default>11</default>
+          </qualifiers>
+        </content>
+        <content id="OCCU_WIND_NRES">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Number of residues in occupancy refinement window (overrides ellg target)</guiLabel>
+            <guiDefinition/>
+            <default>0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="outliers">
+        <qualifiers>
+          <guiLabel>Outlier rejection</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="OUTL_REJE">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Reject outliers</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="OUTL_PROB">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Reject outlier probability threshold</guiLabel>
+            <guiDefinition/>
+            <default>1e-06</default>
+          </qualifiers>
+        </content>
+        <content id="OUTL_INFO">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Reject outliers information threshold</guiLabel>
+            <guiDefinition/>
+            <default>0.01</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="pack">
+        <qualifiers>
+          <guiLabel>Packing function</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_PAK</phaserMode>
+          </guiDefinition>
+        </qualifiers>
+        <content id="PACK_SELE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Allow solutions</guiLabel>
+            <guiDefinition/>
+            <enumerators>percent,all</enumerators>
+            <menuText>up to specified cutoff as percent,all (no packing test)</menuText>
+            <default>percent</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="PACK_CUTO">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Allowed clashes cutoff</guiLabel>
+            <toolTip>Depending on the choice of method to filter solutions by packing, this can be either a percentage value or an absolute number.</toolTip>
+            <guiDefinition/>
+            <default>10</default>
+          </qualifiers>
+        </content>
+        <content id="PACK_QUIC">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Stop packing check when cutoff is exceeded</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="PACK_COMP">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Pack ensembles into a compact association</guiLabel>
+            <toolTip>Minimize distances between centres of mass for the addition of each component in a solution.</toolTip>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="PACK_KEEP_HIGH_TFZ">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Keep solutions with high TFZ even if they do not pack</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="peaks_rotation">
+        <qualifiers>
+          <guiLabel>Rotation peak selection</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF</phaserMode>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="PEAK_ROTA_SELE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Select peaks by</guiLabel>
+            <guiDefinition/>
+            <enumerators>percent,sigma,number,all</enumerators>
+            <default>percent</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="PEAK_ROTA_CUTO">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>cutoff</guiLabel>
+            <guiDefinition/>
+            <default>75.000001</default>
+          </qualifiers>
+        </content>
+        <content id="PEAK_ROTA_CLUS">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Select clustered peaks</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="PEAK_ROTA_DOWN">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Percentage value to search deeper in the rotation list</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>15.0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="peaks_translation">
+        <qualifiers>
+          <guiLabel>Translation peak selection</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="PEAK_TRAN_SELE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Select peaks by</guiLabel>
+            <guiDefinition/>
+            <enumerators>percent,sigma,number,all</enumerators>
+            <default>percent</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="PEAK_TRAN_CUTO">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>cutoff</guiLabel>
+            <guiDefinition/>
+            <default>75.000001</default>
+          </qualifiers>
+        </content>
+        <content id="PEAK_TRAN_CLUS">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Select clustered peaks</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="PERM">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Permute search order (MR_AUTO only)</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <container id="purge_rotation">
+        <qualifiers>
+          <guiLabel>Purge RF solution list</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>0</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="PURG_ROTA_ENAB">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Purge solution list</guiLabel>
+            <toolTip>Purge solution list according to best solution so far at end of TF and in FULL and FAST searches after refinement step</toolTip>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_ROTA_PERC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Percent difference between top and mean solutions</guiLabel>
+            <guiDefinition/>
+            <default>75.000001</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_ROTA_NUMB">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</guiLabel>
+            <guiDefinition/>
+            <default>0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="purge_gyre">
+        <qualifiers>
+          <guiLabel>Purge GYRE solution list</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_RNP</phaserMode>
+            <expertLevel>0</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="PURG_GYRE_ENAB">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Purge solution list</guiLabel>
+            <toolTip>Purge solution list according to best solution so far at end of TF and in FULL and FAST searches after refinement step</toolTip>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_GYRE_PERC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Percent difference between top and mean solutions</guiLabel>
+            <guiDefinition/>
+            <default>75.000001</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_GYRE_NUMB">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</guiLabel>
+            <guiDefinition/>
+            <default>5</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="purge_translation">
+        <qualifiers>
+          <guiLabel>Purge TF solution list</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>0</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="PURG_TRAN_ENAB">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Purge solution list</guiLabel>
+            <toolTip>Purge solution list according to best solution so far at end of TF</toolTip>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_TRAN_PERC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Percent difference between top and mean solutions</guiLabel>
+            <guiDefinition/>
+            <default>75.000001</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_TRAN_NUMB">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Max. number of solutions after purging</guiLabel>
+            <toolTip>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</toolTip>
+            <guiDefinition/>
+            <default>0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="purge_rnp">
+        <qualifiers>
+          <guiLabel>Purge refinement and phasing solution list</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="PURG_RNP_ENAB">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Purge solution list</guiLabel>
+            <toolTip>Purge solution list according to best solution so far at end of TF and in FULL and FAST searches after refinement step</toolTip>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_RNP_PERC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Percent difference between top and mean solutions</guiLabel>
+            <guiDefinition/>
+            <default>75.000001</default>
+          </qualifiers>
+        </content>
+        <content id="PURG_RNP_NUMB">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</guiLabel>
+            <guiDefinition/>
+            <default>50</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="RESC_ROTA">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Rescore rotation</guiLabel>
+          <toolTip>Only applies to automatic MR and fast rotation function</toolTip>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <enumerators>True,False,Auto</enumerators>
+          <menuText>Yes,No,Auto</menuText>
+          <default>Auto</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="RESC_TRAN">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Rescore translation</guiLabel>
+          <toolTip>Only applies to automatic MR and fast translation function</toolTip>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <enumerators>True,False,Auto</enumerators>
+          <menuText>Yes,No,Auto</menuText>
+          <default>Auto</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="RESH_PERC">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Percentage of resharpening factor to apply</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+          <default>100.0</default>
+        </qualifiers>
+      </content>
+      <container id="resolution">
+        <qualifiers>
+          <guiLabel>Resolution limits</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="RESO_HIGH">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>High resolution</guiLabel>
+            <toolTip>High resolution limit for all calculations but final refinement. Leave blank to allow Phaser to set adaptive defaults.</toolTip>
+            <guiDefinition/>
+            <default>None</default>
+          </qualifiers>
+        </content>
+        <content id="RESO_LOW">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Low resolution</guiLabel>
+            <guiDefinition/>
+            <default>None</default>
+          </qualifiers>
+        </content>
+        <content id="RESO_AUTO_HIGH">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>High resolution limit for refinement</guiLabel>
+            <toolTip>High resolution limit for final refinement. Reduce if available memory will be exceeded by refining at full resolution.</toolTip>
+            <guiDefinition>
+              <phaserMode>MR_AUTO</phaserMode>
+            </guiDefinition>
+            <default>None</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="RFAC_USE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>If the R-factor is low for ensemble at origin then abort MR</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="RFAC_CUTO">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>If the R-factor is below this cutoff for ensemble at origin then abort MR</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <default>40.0</default>
+        </qualifiers>
+      </content>
+      <container id="rotate">
+        <qualifiers>
+          <guiLabel>Brute rotation function</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="ROTA_VOLU">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>volume</guiLabel>
+            <guiDefinition/>
+            <enumerators>full,around</enumerators>
+            <default>full</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="ROTA_EULE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>euler</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="ROTA_RANG">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>range</guiLabel>
+            <guiDefinition/>
+            <default>10.0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="SAMP_ROTA">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Rotation sampling angle</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF</phaserMode>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+          <default>None</default>
+        </qualifiers>
+      </content>
+      <content id="SAMP_TRAN">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Translation sampling distance</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+          <default>None</default>
+        </qualifiers>
+      </content>
+      <container id="search">
+        <qualifiers>
+          <guiLabel>Automatic search parameters</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO</phaserMode>
+          </guiDefinition>
+        </qualifiers>
+        <content id="SEAR_ORDE_AUTO">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Determine search order automatically</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="SEAR_METH">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Search method</guiLabel>
+            <toolTip>Setting this option to Fast mode will automatically consolidate solutions from multiple translation searches, which substantially reduces runtime for multi-copy structures. Also, if there is not a clear solution for a component, then the translation search will search deeper in the rotation list.</toolTip>
+            <guiDefinition/>
+            <enumerators>fast,full</enumerators>
+            <menuText>Fast,Full search</menuText>
+            <default>fast</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="SEAR_PRUN">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Refine occupancy for solutions rejected from packing at end of FAST search mode</guiLabel>
+            <toolTip>The PDB file may then have some residues with occupancies set to zero to satisfy packing criteria</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="SEAR_BFAC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>B-factor of search model</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>0.0</default>
+          </qualifiers>
+        </content>
+        <content id="SEAR_OFAC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Occupancy factor of search model (partial scattering)</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>1.0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="sgalternative">
+        <qualifiers>
+          <guiLabel>Alternative space groups</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+          </guiDefinition>
+        </qualifiers>
+        <content id="SGAL_SELE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Also try alternative space group(s)</guiLabel>
+            <toolTip>To specify a subgroup for data expansion, click on More...</toolTip>
+            <guiDefinition/>
+            <enumerators>all,hand,list,none</enumerators>
+            <menuText>All possible in same pointgroup,Enantiomeric spacegroup only,Listed spacegroups only,No alternatives</menuText>
+            <default>hand</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="SGAL_BASE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Hall symbol of subgroup of data space group</guiLabel>
+            <toolTip>Hall symbol can be obtained from the log of a prior run of Phaser</toolTip>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="SGAL_TEST">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Space group to try</guiLabel>
+            <guiDefinition>
+              <multiple>True</multiple>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="solparameters">
+        <qualifiers>
+          <guiLabel>Bulk solvent parameters</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="SOLP_SIGA_FSOL">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>siga_fsol</guiLabel>
+            <guiDefinition/>
+            <default>1.05</default>
+          </qualifiers>
+        </content>
+        <content id="SOLP_SIGA_BSOL">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>siga_bsol</guiLabel>
+            <guiDefinition/>
+            <default>501.605</default>
+          </qualifiers>
+        </content>
+        <content id="SOLP_SIGA_MIN">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>siga_min</guiLabel>
+            <guiDefinition/>
+            <default>0.1</default>
+          </qualifiers>
+        </content>
+        <content id="SOLP_BULK_USE">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>bulk_use</guiLabel>
+            <guiDefinition/>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="SOLP_BULK_FSOL">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>bulk_fsol</guiLabel>
+            <guiDefinition/>
+            <default>0.35</default>
+          </qualifiers>
+        </content>
+        <content id="SOLP_BULK_BSOL">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>bulk_bsol</guiLabel>
+            <guiDefinition/>
+            <default>45.0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="SOLU_ORIG_ENSE">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Ensembles already placed at origin</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR*</phaserMode>
+            <expertLevel>3</expertLevel>
+            <multiple>True</multiple>
+          </guiDefinition>
+        </qualifiers>
+      </content>
+      <content id="TARG_ROTA">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Rotation target function type</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <enumerators>fast,brute</enumerators>
+          <default>fast</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="TARG_ROTA_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Rotation target function</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+          <enumerators>LERF1,CORRELATION</enumerators>
+          <default>LERF1</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="TARG_TRAN">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Translation target function type</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <enumerators>fast,brute,phased</enumerators>
+          <default>fast</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="TARG_TRAN_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Fast translation target function type</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF</phaserMode>
+            <expertLevel>3</expertLevel>
+          </guiDefinition>
+          <enumerators>LETF1,LETF2</enumerators>
+          <default>LETF1</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <container id="tncs">
+        <qualifiers>
+          <guiLabel>Translational NCS</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FRF,MR_FTF,MR_RNP</phaserMode>
+          </guiDefinition>
+        </qualifiers>
+        <content id="TNCS_USE">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Account for translational NCS if present</guiLabel>
+            <toolTip>If checked, Phaser will attempt to correct for TNCS if it has been detected based on the Patterson map.</toolTip>
+            <guiDefinition>
+              <expertLevel>0</expertLevel>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_NMOL">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Number of molecules or complexes related by translation vector</guiLabel>
+            <guiDefinition>
+              <expertLevel>0</expertLevel>
+            </guiDefinition>
+            <default>0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_MAXN">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Maximum number of NMOL to consider in tNCS analysis</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>None</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_RLIS_ADD">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Supplement rotation list with rotations of known components</guiLabel>
+            <guiDefinition>
+              <expertLevel>0</expertLevel>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_TRAN_VECT">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>TNCS vector. 0,0,0 = use internally determined vector.</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="TNCS_TRAN_PERT">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Perturb translation vector from patterson/input position if it is on a special position</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_PATT_HIRE">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>High resolution limit for Patterson calculation</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>5.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_PATT_MAPS">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Write out patterson map</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_PATT_LORE">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Low resolution limit for Patterson calculation</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>10.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_PATT_PERC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Percent of origin peak height</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>20.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_PATT_DIST">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Minimum distance of Patterson peak from origin</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>15.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_VARI_RMSD">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Initial rmsd for sigmaa calculation between NCS copies</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.4</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_VARI_FRAC">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Initial fraction for sigmaa calculation between NCS copies</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>1.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_ROTA_ANGL">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>TNCS rotation angle.</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="TNCS_ROTA_SAMP">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Sampling (degrees) around origin for initiating TNCS rotation refinements. 0 = use internally determined default.</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>-999.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_ROTA_RANG">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Range (degrees) around origin for initiating TNCS rotation refinements. 0 = use internally determined default.</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>-999.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_GFUN_RADI">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Molecular Radius for G-function</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_COMM_PEAK">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Commensurate modulation test parameter</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.95</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_COMM_TOLF">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Commensurate modulation test parameter</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.02</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_COMM_TOLO">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Commensurate modulation test parameter</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>5.0</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_COMM_PATT">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Commensurate modulation test parameter</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.1</default>
+          </qualifiers>
+        </content>
+        <content id="TNCS_COMM_MISS">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Commensurate modulation test parameter</guiLabel>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.2</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="TOPF">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Number of top PDB files to output</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR*</phaserMode>
+            <expertLevel>0</expertLevel>
+          </guiDefinition>
+          <default>1</default>
+        </qualifiers>
+      </content>
+      <container id="translation">
+        <qualifiers>
+          <guiLabel>Brute translation function</guiLabel>
+          <guiDefinition>
+            <phaserMode>MR_FTF</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="TRAN_VOLU">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>volume</guiLabel>
+            <guiDefinition/>
+            <enumerators>full,line,region,around</enumerators>
+            <default>full</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="TRAN_FRAC">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Use fractional coordinates (False = orthogonal)</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="TRAN_STAR">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>start</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="TRAN_END">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>end</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="TRAN_RANG">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>range</guiLabel>
+            <guiDefinition/>
+            <default>5.0</default>
+          </qualifiers>
+        </content>
+        <content id="TRAN_PACK_USE">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Do packing test for top peaks in translation function</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="TRAN_PACK_BASE">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Do packing test for base solutions in translation function</guiLabel>
+            <guiDefinition/>
+            <enumerators>True,False,Auto</enumerators>
+            <menuText>Yes,No,Auto</menuText>
+            <default>Auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="TRAN_PACK_CUTO">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Pairwise packing test percent for translation function</guiLabel>
+            <guiDefinition/>
+            <default>50.0</default>
+          </qualifiers>
+        </content>
+        <content id="TRAN_PACK_NUMB">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Max number peaks for packing test in translation function</guiLabel>
+            <guiDefinition/>
+            <default>500.0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="OUTP_LEVE">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Verbosity level for logfile output</guiLabel>
+          <guiDefinition>
+            <expertLevel>0</expertLevel>
+          </guiDefinition>
+          <enumerators>logfile,silent,concise,summary,verbose,debug</enumerators>
+          <default>logfile</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <container id="zscore">
+        <qualifiers>
+          <guiDefinition>
+            <phaserMode>MR_AUTO,MR_FTF,MR_PAK</phaserMode>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <content id="ZSCO_USE">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Use Z-score cutoff in fast search for amalgamation of solutions</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="ZSCO_STOP">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Use Z-score cutoff to terminate search</guiLabel>
+            <guiDefinition/>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="ZSCO_SOLV">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>TFZ indicating solved</guiLabel>
+            <guiDefinition/>
+            <default>8.0</default>
+          </qualifiers>
+        </content>
+        <content id="ZSCO_POSS_SOLV">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>TFZ indicating possibly solved</guiLabel>
+            <guiDefinition/>
+            <default>6.0</default>
+          </qualifiers>
+        </content>
+        <content id="ZSCO_HALF">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Use half the highest TFZ score as the minimum</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+      </container>
+    </container>
+    <container id="outputData">
+        </container>
+  </ccp4i2_body>
+</ccp4i2>

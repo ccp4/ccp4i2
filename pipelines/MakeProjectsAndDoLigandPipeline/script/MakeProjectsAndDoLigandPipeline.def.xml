@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>martin</userId>
+        <creationTime>2017-03-28T18:52:07.916916</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>MakeProjectsAndDoLigandPipeline</pluginName>
+        <pluginTitle>Brief title For plugin</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="MakeProjectsAndDoLigandPipeline">
+        <!--You must provide an inputData container, although it can be empty-->
+        <container id="inputData">
+            <content id="ROOT_DIRECTORY">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <isDirectory>True</isDirectory>
+                    <label>Root directory for data paths</label>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id='PIPELINE'>
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>PHASER_RNP,DIMPLE</enumerators>
+                    <menuText>Phaser RNP pipeline,Dimple</menuText>
+                    <default>PHASER_RNP</default>
+                </qualifiers>
+            </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>4,3,2,1,0</requiredSubType>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <toolTip>Set of FreeR reflections</toolTip>
+                </qualifiers>
+            </content>
+            <content id="PATH_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CString</className>
+                    <qualifiers>
+                        <default>DummyPath</default>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="PROJECTNAME_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CString</className>
+                    <qualifiers>
+                        <default>DummyProjectnaem</default>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="SMILES_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CString</className>
+                    <qualifiers>
+                        <default>DummySmilesString</default>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+        <!--generally we put control parameters into a container called "controlParameters"...although the-->
+        <!--existence and name of this container are both optional-->
+        <container id="controlParameters">
+        </container>
+        <!--You must provide an outputData container, although it can be empty-->
+        <container id="outputData">
+            <content id="XYZOUT_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <default><subType>1</subType></default>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DIFFPHIOUT_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers><default><subType>2</subType><contentFlag>1</contentFlag></default>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="FPHIOUT_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <default><subType>1</subType><contentFlag>1</contentFlag></default>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+<!--Here specify what sort of data constitutes a PERFORMANCEinDICATOR  for this task
+            <content id="PERFORMANCEINDICATOR">
+                <className>CRefinementPerformance</className>
+            </content>
+-->
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

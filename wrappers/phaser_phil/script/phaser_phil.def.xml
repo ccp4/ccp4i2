@@ -1,0 +1,3148 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>david</userId>
+    <hostName>brno</hostName>
+    <creationTime>2017-07-07T12:00:04.065494</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>phaser_phil</pluginName>
+    <OS>linux2</OS>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="phaser_phil">
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <ifAtomSelection>True</ifAtomSelection>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+          <requiredSubType>4,3,2,1,0</requiredSubType>
+        </qualifiers>
+      </content>
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+          </default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="verbose">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>verbose</guiLabel>
+          <guiDefinition/>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="dry_run">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>dry_run</guiLabel>
+          <guiDefinition/>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="show_script">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>show_script</guiLabel>
+          <guiDefinition/>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="show_defaults">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>show_defaults</guiLabel>
+          <guiDefinition/>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="test_mode">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>test_mode</guiLabel>
+          <guiDefinition/>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <container id="phaser">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="phaser__mode">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Phaser mode</guiLabel>
+            <guiDefinition>
+              <style>bold OnChange:update_phaser_mode phaser:ignore renderer:draw_phaser_mode_widget</style>
+              <caption>Anisotropy_correction Cell_content_analysis Automatic_experimental_phasing Automatic_molecular_replacement Rotation_function Translation_function Packing Refinement_and_phasing Normal_mode_analysis Domain_analysis</caption>
+            </guiDefinition>
+            <enumerators>ANO,CCA,EP_AUTO,MR_AUTO,MR_FRF,MR_FTF,MR_PAK,MR_RNP,NMAXYZ,SCEDS</enumerators>
+            <default>MR_AUTO</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="phaser__sad_mode">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Phaser mode</guiLabel>
+            <guiDefinition>
+              <style>bold OnChange:update_phaser_mode phaser:ignore</style>
+              <caption>SAD_phasing MR-SAD_phasing</caption>
+            </guiDefinition>
+            <enumerators>SAD,MR_SAD</enumerators>
+            <default>SAD</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="phaser__hklin">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Data file</guiLabel>
+            <toolTip>Reflections file with X-ray data (any format)</toolTip>
+            <guiDefinition>
+              <style>bold input_file file_type:hkl OnChange:update_phaser_hkl_info phaser:mode:ANO,MR*</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__labin">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Data labels</guiLabel>
+            <guiDefinition>
+              <style>bold renderer:draw_phaser_labin_widget phaser:mode:ANO,MR*</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__model">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>model</guiLabel>
+            <guiDefinition>
+              <style>phaser:mode:MR* input_file file_type:pdb</style>
+              <multiple>True</multiple>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__seq_file">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Sequence file</guiLabel>
+            <guiDefinition>
+              <style>phaser:mode:MR* input_file file_type:seq</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__mol_weight">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Molecular weight</guiLabel>
+            <toolTip>Explicit value in the absence of the sequence file for your target structure</toolTip>
+            <guiDefinition>
+              <style>phaser:mode:MR*</style>
+            </guiDefinition>
+            <default>None</default>
+          </qualifiers>
+        </content>
+        <content id="phaser__model_rmsd">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Model RMSDs</guiLabel>
+            <toolTip>RMSD of search model(s) to target structure</toolTip>
+            <guiDefinition>
+              <style>phaser:mode:MR*</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__model_identity">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Sequence identities</guiLabel>
+            <toolTip>Sequence identity (as percent value) of search model(s) to target structure</toolTip>
+            <guiDefinition>
+              <style>phaser:mode:MR*</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__model_idhi">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>VRMS perturbed upwards when estimating from ID</guiLabel>
+            <toolTip>Sequence identity (as percent value) of search model(s) to target structure, with upwards perturbabion of VRMS</toolTip>
+            <guiDefinition>
+              <style>phaser:mode:MR_AUTO</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__model_idlo">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>VRMS perturbed downwards when estimating from ID</guiLabel>
+            <toolTip>Sequence identity (as percent value) of search model(s) to target structure, with downwards perturbabion of VRMS</toolTip>
+            <guiDefinition>
+              <style>phaser:mode:MR_AUTO</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__component_copies">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Component copies</guiLabel>
+            <toolTip>The scattering power entered either as the sequence file or as the molecular weight will be multiplied by this number. Say your target consists of three identical molecules but you have specified the weight for only one of them then you should enter the value 3 here</toolTip>
+            <guiDefinition>
+              <style>phaser:mode:MR_AUTO spinner</style>
+            </guiDefinition>
+            <default>1</default>
+            <min>1</min>
+          </qualifiers>
+        </content>
+        <content id="phaser__search_copies">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Number of copies to search for</guiLabel>
+            <toolTip>If the target you are searching for consists of more identical molecules specify how many of these you wish to search for</toolTip>
+            <guiDefinition>
+              <style>phaser:mode:MR_AUTO bold spinner</style>
+            </guiDefinition>
+            <default>1</default>
+            <min>1</min>
+          </qualifiers>
+        </content>
+        <content id="phaser__chain_type">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>chain_type</guiLabel>
+            <guiDefinition>
+              <style>phaser:mode:MR*</style>
+            </guiDefinition>
+            <enumerators>protein,dna,rna</enumerators>
+            <default>protein</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <container id="phaser__crystal">
+          <qualifiers>
+            <guiDefinition>
+              <style>phaser:mode:EP_AUTO</style>
+              <multiple>True</multiple>
+            </guiDefinition>
+          </qualifiers>
+          <content id="phaser__crystal__xtal_id">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>xtal_id</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="phaser__crystal__pdb_file">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>Sites file (PDB)</guiLabel>
+              <guiDefinition>
+                <style>bold input_file file_type:pdb OnChange:verify_sites</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__crystal__ha_file">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>Sites file (HA)</guiLabel>
+              <guiDefinition>
+                <style>input_file</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <container id="phaser__crystal__dataset">
+            <qualifiers>
+              <guiDefinition>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__crystal__dataset__wave_id">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>wave_id</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="phaser__crystal__dataset__hklin">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Data file</guiLabel>
+                <guiDefinition>
+                  <style>bold input_file file_type:hkl OnChange:update_phaser_hkl_info</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__crystal__dataset__labin">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Data labels</guiLabel>
+                <guiDefinition>
+                  <style>bold renderer:draw_phaser_labin_widget OnChange:update_wavelength_from_array</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__crystal__dataset__wavelength">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>wavelength</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0.1</min>
+                <max>3.1</max>
+              </qualifiers>
+            </content>
+            <content id="phaser__crystal__dataset__energy">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>energy</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+                <min>4000</min>
+                <max>124000</max>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <container id="phaser__crystal_symmetry">
+          <qualifiers>
+            <guiDefinition>
+              <style>phaser:mode:ANO,CCA,EP*,MR*</style>
+            </guiDefinition>
+          </qualifiers>
+          <content id="phaser__crystal_symmetry__unit_cell">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>unit_cell</guiLabel>
+              <guiDefinition>
+                <style>bold</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__crystal_symmetry__space_group">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>space_group</guiLabel>
+              <guiDefinition>
+                <style>bold</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+        </container>
+        <container id="phaser__composition">
+          <qualifiers>
+            <guiDefinition>
+              <style>phaser:mode:ANO,CCA,EP*,MR_AUTO,MR_FRF,MR_FTF,MR_RNP</style>
+            </guiDefinition>
+          </qualifiers>
+          <content id="phaser__composition__solvent">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Fractional solvent content</guiLabel>
+              <guiDefinition>
+                <style>bold</style>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__composition__chain">
+            <qualifiers>
+              <guiLabel>Macromolecular chain</guiLabel>
+              <guiDefinition>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__composition__chain__chain_type">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>chain_type</guiLabel>
+                <guiDefinition>
+                  <style>phaser:silent bold</style>
+                </guiDefinition>
+                <enumerators>protein,na</enumerators>
+                <default>protein</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__composition__chain__comp_type">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Specify the ASU contents as</guiLabel>
+                <guiDefinition>
+                  <style>bold phaser:ignore OnChange:show_phaser_comp_widgets</style>
+                  <caption>Sequence_file Sequence_string_(unformatted) Molecular_weight Number_of_residues_or_bases</caption>
+                </guiDefinition>
+                <enumerators>sequence_file,sequence,mw,nres</enumerators>
+                <default>sequence_file</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__composition__chain__sequence_file">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Sequence file</guiLabel>
+                <toolTip>Sequence file must be a plain text file, not RTF or Word document</toolTip>
+                <guiDefinition>
+                  <style>input_file file_type:seq</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__composition__chain__sequence">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Sequence</guiLabel>
+                <guiDefinition>
+                  <style>height:48</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__composition__chain__nres">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of residues</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__composition__chain__mw">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Molecular weight</guiLabel>
+                <toolTip>Provide molecular weight in Daltons</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__composition__chain__num">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of copies</guiLabel>
+                <toolTip>The scattering power of the ASU contents entered below will be multiplied by this number. Say your target consists of three identical molecules but you specify the ASU contents of only one molecule then you should enter the value 3 here.</toolTip>
+                <guiDefinition>
+                  <style>spinner max=1000 min=1 bold</style>
+                </guiDefinition>
+                <default>1</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__composition__atom">
+            <qualifiers>
+              <guiLabel>Heavy atom</guiLabel>
+              <guiDefinition>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__composition__atom__element">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>element</guiLabel>
+                <guiDefinition>
+                  <style>bold renderer:draw_element_interface</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__composition__atom__num">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of atoms</guiLabel>
+                <guiDefinition>
+                  <style>spinner max=1000 min=0 bold</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <container id="phaser__ensemble">
+          <qualifiers>
+            <guiDefinition>
+              <style>phaser:mode:MR*</style>
+              <multiple>True</multiple>
+            </guiDefinition>
+          </qualifiers>
+          <content id="phaser__ensemble__model_id">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Model ID</guiLabel>
+              <toolTip>ID used to select ensembles as components for search should contain letters, numbers and underscores but no spaces</toolTip>
+              <guiDefinition>
+                <style>bold OnChange:update_phaser_ensemble_list renderer:draw_phaser_model_id</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__disable_check">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Disable similarity check</guiLabel>
+              <toolTip>Phaser will normally check for consistency between individual models in an ensemble, and stop with an error message if they are sufficiently dissimilar (taking into account truncations/extensions in addition to sequence similarity). In some cases it may be desirable to turn off this feature, especially when an ensemble of models from different species is being used. (This only applies to the current ensemble.)</toolTip>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__use_hetatm">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Preserve heteroatoms (ligands)</guiLabel>
+              <toolTip>Toggle for the use of HETATM records in pdb file</toolTip>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__estimator">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Estimation method for rmsd from sequence identity</guiLabel>
+              <toolTip>Estimation of rmsd from sequence identity</toolTip>
+              <guiDefinition/>
+              <enumerators>oeffner,chothialesk</enumerators>
+              <default>oeffner</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__solution_at_origin">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Ensemble is fixed partial solution</guiLabel>
+              <toolTip>If checked, the ensemble will be treated as a known partial solution already placed in the unit cell. No additional search will be performed on this ensemble.</toolTip>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__ensemble__coordinates">
+            <qualifiers>
+              <guiDefinition>
+                <style>phaser:silent</style>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__ensemble__coordinates__pdb">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Ensemble model</guiLabel>
+                <guiDefinition>
+                  <style>file_type:pdb input_file</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__coordinates__rmsd">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>rmsd</guiLabel>
+                <toolTip>RMSD of the model relative to the expected structure.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__coordinates__identity">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>identity</guiLabel>
+                <toolTip>Sequence identity of the model relative to the crystallized structure.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__coordinates__read_variance_from_pdb_remarks">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Read variances from PDB REMARK section</guiLabel>
+                <toolTip>This can use remarks inserted by the Sculptor utility in multi-model PDB files to set the sequence identity for each model. It is only appropriate if using a single PDB file.</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__ensemble__map_hklin">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>Reflections file</guiLabel>
+              <toolTip>MTZ-format reflections file containing map coefficients</toolTip>
+              <guiDefinition>
+                <style>bold input_file file_type:hkl OnChange:extract_phaser_map_coeffs</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__map_labels">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Column labels</guiLabel>
+              <toolTip>Labels for amplitude data and phases, or pre-calculated map coefficients</toolTip>
+              <guiDefinition>
+                <style>bold renderer:draw_phaser_map_widget</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__map_extent">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>map_extent</guiLabel>
+              <guiDefinition>
+                <style>bold</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__map_rms">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>RMSD</guiLabel>
+              <toolTip>RMSD of the model represented by the map relative to the expected structure.</toolTip>
+              <guiDefinition>
+                <style>bold</style>
+              </guiDefinition>
+              <default>1.0</default>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__map_centre">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Centre</guiLabel>
+              <guiDefinition>
+                <style>bold</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__map_protein_mw">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Protein mass</guiLabel>
+              <guiDefinition/>
+              <default>0.0</default>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__map_nucleic_mw">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Nucleic acid mass</guiLabel>
+              <guiDefinition/>
+              <default>0.0</default>
+            </qualifiers>
+          </content>
+          <content id="phaser__ensemble__map_cell_scale">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Cell scale factor</guiLabel>
+              <guiDefinition/>
+              <default>1.0</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__ensemble__ptgroup">
+            <qualifiers>
+              <guiLabel>Pointgroup comparison settings</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__ensemble__ptgroup__coverage">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percentage coverage for two sequences to be considered in same pointgroup</guiLabel>
+                <guiDefinition/>
+                <default>0.0</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__ptgroup__identity">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percentage identity for two sequences to be considered in same pointgroup</guiLabel>
+                <guiDefinition/>
+                <default>0.0</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__ptgroup__rmsd">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percentage rmsd for two models to be considered in same pointgroup</guiLabel>
+                <guiDefinition/>
+                <default>0.0</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__ptgroup__tolangular">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Angular tolerance for pointgroup</guiLabel>
+                <guiDefinition/>
+                <default>0.0</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__ptgroup__tolspatial">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Spatial tolerance for pointgroup</guiLabel>
+                <guiDefinition/>
+                <default>0.0</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__ensemble__bins">
+            <qualifiers>
+              <guiLabel>Reflection binning for ensembles</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF,MR_FTF,MR_RNP box auto_align</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__ensemble__bins__minimum">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Minimum number of bins</guiLabel>
+                <guiDefinition/>
+                <default>0</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__bins__maximum">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>maximum</guiLabel>
+                <guiDefinition/>
+                <default>0</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__ensemble__bins__width">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Width of bins (number of reflections)</guiLabel>
+                <guiDefinition/>
+                <default>0</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__ensemble__trace">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="phaser__ensemble__trace__pdb">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Trace pdb file</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <container id="phaser__ensemble__trace__sampling">
+              <qualifiers>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+              <content id="phaser__ensemble__trace__sampling__use">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Sample trace coordinates using all atoms, C-alpha atoms, a hexagonal grid in the atomic volume or use an automatically determined choice</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>all,calpha,hexgrid,auto</enumerators>
+                  <default>auto</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__ensemble__trace__sampling__target">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Target for number of points in hexagonal grid</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__ensemble__trace__sampling__distance">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>Sampling distance for hexagonal grid</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__ensemble__trace__sampling__range">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Allowed range below Target for number of points in hexagonal grid</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__ensemble__trace__sampling__min">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Minimum sampling distance for points in hexagonal grid</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__ensemble__trace__sampling__wang">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>Scale factor for volume filled by trace molecule from wang mask</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__ensemble__trace__sampling__asa">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>Accessible surface area cutoff for hexagonal grid</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__ensemble__trace__sampling__ncycle">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Maximum of cycles for optimizing trace length</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+        </container>
+        <container id="phaser__search">
+          <qualifiers>
+            <guiLabel>Search component</guiLabel>
+            <guiDefinition>
+              <style>phaser:mode:MR_AUTO,MR_FRF ,columns:2</style>
+              <multiple>True</multiple>
+            </guiDefinition>
+          </qualifiers>
+          <content id="phaser__search__ensembles">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Strategy</guiLabel>
+              <guiDefinition>
+                <style>bold renderer:draw_phaser_ensemble_list2</style>
+                <caption>Specify the different components for which you want to search. If more than one ensemble is listed for a component Phaser will try them all as alternative models for that component.</caption>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__search__copies">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>copies</guiLabel>
+              <toolTip>If the target you are searching for consists of more molecules specify how many of them you wish to search for.</toolTip>
+              <guiDefinition>
+                <style>bold spinner noauto</style>
+              </guiDefinition>
+              <default>1</default>
+              <min>0</min>
+            </qualifiers>
+          </content>
+        </container>
+        <content id="phaser__solution">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Use partial solution from previous job</guiLabel>
+            <guiDefinition>
+              <style>phaser:mode:MR* bold renderer:draw_phaser_result_list help_anchor:use-solution</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="phaser__output_dir">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Output directory</guiLabel>
+            <guiDefinition>
+              <style>bold directory</style>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <container id="phaser__keywords">
+          <qualifiers>
+            <guiDefinition>
+              <style>menu_item</style>
+            </guiDefinition>
+          </qualifiers>
+          <container id="phaser__keywords__general">
+            <qualifiers>
+              <guiLabel>Output files and logging</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:* phaser:silent noauto box menu_item auto_align</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__general__root">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Base output filename</guiLabel>
+                <guiDefinition>
+                  <style>bold</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__title">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Title</guiLabel>
+                <guiDefinition>
+                  <style>noauto</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__mute">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Suppress output</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                  <style>hidden tribool</style>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__xyzout">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Write PDB file</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                  <style>phaser:mode:EP*,MR*,NMAXYZ,SCEDS tribool</style>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__xyzout_ensemble">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Write PDB files of ensembles to separate files for each solution</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                  <style>phaser:mode:EP*,MR*,NMAXYZ,SCEDS tribool</style>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__xyzout_packing">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Write PDB files of coordinates used for packing</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                  <style>phaser:mode:MR* tribool</style>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__hklout">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Write MTZ file</guiLabel>
+                <guiDefinition>
+                  <style>phaser:mode:EP_AUTO,MR_AUTO tribool</style>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__jobs">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of parallel threads</guiLabel>
+                <guiDefinition>
+                  <style>hidden phaser:noindex</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__general__keywords">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Write keywords (script) file</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                  <style>phaser:mode:MR*,EP* box</style>
+                </guiDefinition>
+                <default>False</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__atoms">
+            <qualifiers>
+              <guiLabel>Heavy atoms</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:EP_AUTO auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__atoms__change_scatterer">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Replace scatterer type in PDB file</guiLabel>
+                <toolTip>useful for shelxd output pdb file</toolTip>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__atoms__change_scatterer_type">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>New scatterer type</guiLabel>
+                <toolTip>useful for shelxd output pdb file</toolTip>
+                <guiDefinition>
+                  <style>renderer:draw_phaser_scatterer_widget</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__atoms__change_bfac_wilson">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Reset B-factors to Wilson B-factor</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__atoms__change_original">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Reset B-factors to Wilson B-factor</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__bfactor_wilson">
+            <qualifiers>
+              <guiLabel>B-factor restraints</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:EP_AUTO auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__bfactor_wilson__restraint">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Use Wilson restraint for isotropic components of atomic B-factors</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__bfactor_wilson__sigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Sigma for Wilson restraint</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__bfactor_sphericity">
+            <qualifiers>
+              <guiLabel>B-factor restraints</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:EP_AUTO auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__bfactor_sphericity__restraint">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Use sphericity restraint on isotropic B-factors</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__bfactor_sphericity__sigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Sigma for sphericity restraint</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__bfactor_refine">
+            <qualifiers>
+              <guiLabel>B-factor restraints for refinement macrocycles</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_RNP auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__bfactor_refine__restraint">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Restrain B-factors to zero</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__bfactor_refine__sigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Sigma for B-factor refinement restraint</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__bins_data">
+            <qualifiers>
+              <guiLabel>Reflection binning for data</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:ANO,EP_AUTO,MR_AUTO,MR_FRF,MR_FTF,MR_RNP box auto_align</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__bins_data__minimum">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Minimum number of bins</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__bins_data__maximum">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Maximum number of bins</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__bins_data__width">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Width of bins (number of reflections)</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__boxscale">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Box scale for ensemble F(calc)</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF,MR_FTF,MR_RNP</style>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__composition">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="phaser__keywords__composition__minimum_solvent">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Minimum fractional solvent content</guiLabel>
+                <guiDefinition>
+                  <style>bold</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__cluster_pdb">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>Cluster compound pdb file</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:EP_AUTO file_type:pdb input_file</style>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__eigen">
+            <qualifiers>
+              <guiLabel>Eigenvector and eigenvalue input</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:NMAYXZ,SCEDS auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__eigen__read">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Eigenvector file</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__eigen__write">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Write eigenfile</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__ellg">
+            <qualifiers>
+              <guiLabel>Expected LLG target</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR_AUTO auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__ellg__target">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Target value for expected LLG</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__formfactors">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Scattering Form Factor type</guiLabel>
+              <guiDefinition>
+                <style>bold phaser:mode:MR_AUTO,MR_FRF,MR_FTF,MR_RNP</style>
+                <caption>Use_xray_scattering Use_electron_scattering Use_neutron_scattering</caption>
+              </guiDefinition>
+              <enumerators>xray,electron,neutron</enumerators>
+              <default>xray</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__find">
+            <qualifiers>
+              <guiLabel>Parameters for Phassade search</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:PHASSADE auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__find__scatterer">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Scattering types</guiLabel>
+                <toolTip>This is the scattering types to find, which can be atomic elements, cluster compounds, or purely imaginary (type AX) or real (RX) scatterers.</toolTip>
+                <guiDefinition>
+                  <style>noauto bold phaser:as_multiple renderer:draw_phaser_scatterers_widget</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__find__number">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of scatterers to find</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__find__cluster">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Scatterer is a cluster</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__find__target">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Target for substructure search</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <container id="phaser__keywords__find__purge">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="phaser__keywords__find__purge__enable">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Purge solution list</guiLabel>
+                  <toolTip>Purge phassade atom list</toolTip>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__find__purge__percent">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>Percent difference between top and mean solutions</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__find__purge__number">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+            </container>
+            <container id="phaser__keywords__find__peaks">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="phaser__keywords__find__peaks__select">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Select peaks by</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>percent,sigma,number,all</enumerators>
+                  <default>percent</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__find__peaks__cutoff">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>cutoff</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__find__peaks__cluster">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Select clustered peaks</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <content id="phaser__keywords__hand">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Heavy atom hand</guiLabel>
+              <guiDefinition>
+                <style>bold phaser:mode:EP_AUTO</style>
+                <caption>Use_given_hand Use_opposite_hand Both_hands</caption>
+              </guiDefinition>
+              <enumerators>off,on,both</enumerators>
+              <default>off</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__llgcompletion">
+            <qualifiers>
+              <guiLabel>Log-likelihood gradient completion</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:EP_AUTO auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__llgcompletion__complete">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Enable structure completion by log-likelihood gradient maps</guiLabel>
+                <guiDefinition>
+                  <style>noauto</style>
+                </guiDefinition>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__llgcompletion__scatterer">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Scattering types</guiLabel>
+                <toolTip>This should be a space-separated list of the scattering types to search for, which can be atomic elements, cluster compounds, or purely imaginary (type AX) or real (RX) scatterers.</toolTip>
+                <guiDefinition>
+                  <style>noauto bold phaser:as_multiple renderer:draw_phaser_scatterers_widget</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__llgcompletion__clash">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Set clash distance between atoms</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__llgcompletion__sigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Z-score for accepting peaks as new atoms</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__llgcompletion__ncycle">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Maximum number of cycles of LLG structure completion</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__llgcompletion__method">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Type of llg maps imaginary or real+imaginary per scattering type</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>atomtype,imaginary</enumerators>
+                <default>atomtype</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__llgmaps">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Write out LLG maps</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:EP_AUTO auto_align box</style>
+              </guiDefinition>
+              <enumerators>True,False,None</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__macano">
+            <qualifiers>
+              <guiLabel>Anisotropy correction</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:ANO,EP_AUTO,MR_AUTO,MR_FRF,MR_FTF,MR_RNP box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__macano__protocol">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>protocol</guiLabel>
+                <guiDefinition>
+                  <style>OnChange:toggle_phaser_scope_enabled</style>
+                </guiDefinition>
+                <enumerators>default,off,custom</enumerators>
+                <default>default</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <container id="phaser__keywords__macano__macrocycle">
+              <qualifiers>
+                <guiLabel>Anisotropy refinement macrocycle</guiLabel>
+                <guiDefinition>
+                  <style>phaser:kwargs phaser:silent</style>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+              <content id="phaser__keywords__macano__macrocycle__ref_anis">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine anisotropy</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macano__macrocycle__ref_bins">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine bins</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macano__macrocycle__ref_solk">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine bulk solvent scale factor</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macano__macrocycle__ref_solb">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine bulk solvent B-factor</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macano__macrocycle__ncyc">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Maximum number of cycles</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macano__macrocycle__minimizer">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Minimizer</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>BFGS,NEWTON,DESCENT</enumerators>
+                  <default>BFGS</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <container id="phaser__keywords__macmr">
+            <qualifiers>
+              <guiLabel>MR refinement</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_RNP box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__macmr__protocol">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>MR refinement protocol</guiLabel>
+                <guiDefinition>
+                  <style>OnChange:toggle_phaser_scope_enabled</style>
+                </guiDefinition>
+                <enumerators>default,off,custom</enumerators>
+                <default>default</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <container id="phaser__keywords__macmr__macrocycle">
+              <qualifiers>
+                <guiLabel>MR refinement macrocycle</guiLabel>
+                <guiDefinition>
+                  <style>no_none auto_align phaser:kwargs phaser:silent</style>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+              <content id="phaser__keywords__macmr__macrocycle__ref_rota">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine rotation</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__ref_tran">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine translation</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__ref_bfac">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine B-factors</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__ref_vrms">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine RMS variance(s)</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__ref_cell">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine EM cell scale factor</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__ref_ofac">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine occupancy factor</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__last_only">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine rot/tra/bfac/vrms of last added component only</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__ncyc">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Maximum number of cycles</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macmr__macrocycle__minimizer">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>minimizer</guiLabel>
+                  <guiDefinition>
+                    <style>phaser:silent</style>
+                  </guiDefinition>
+                  <enumerators>BFGS,NEWTON,DESCENT</enumerators>
+                  <default>BFGS</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <container id="phaser__keywords__macsad">
+            <qualifiers>
+              <guiLabel>SAD refinement</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:EP_AUTO box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__macsad__protocol">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>protocol</guiLabel>
+                <guiDefinition>
+                  <style>OnChange:toggle_phaser_scope_enabled</style>
+                </guiDefinition>
+                <enumerators>default,off,custom</enumerators>
+                <default>default</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <container id="phaser__keywords__macsad__macrocycle">
+              <qualifiers>
+                <guiLabel>SAD refinement macrocycle</guiLabel>
+                <guiDefinition>
+                  <style>phaser:kwargs auto_align phaser:silent</style>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+              <content id="phaser__keywords__macsad__macrocycle__ref_pk">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine Partial Structure scale factor</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_pb">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine Partial Structure B-factor</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_xyz">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure positions</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_occ">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure occupancies</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_bfac">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure B-factors</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_fdp">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure Fdp</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_sa">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure variance SA</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_sb">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure variance SB</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_sp">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure variance SP</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ref_sd">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Refine substructure variance SD</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>True,False,None</enumerators>
+                  <default>None</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__ncyc">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Number of cycles</guiLabel>
+                  <guiDefinition/>
+                  <default>50</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__target">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>target</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>sadm_only,not_anom_only</enumerators>
+                  <default>not_anom_only</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__macsad__macrocycle__minimizer">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>minimizer</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>bfgs,newton,descent</enumerators>
+                  <default>bfgs</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <container id="phaser__keywords__occupancy">
+            <qualifiers>
+              <guiLabel>Occupancy refinement parameters</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_OCC,box auto_align</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__occupancy__min">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Minimum occupancy in refinement</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__occupancy__max">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Maximum occupancy in refinement</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__occupancy__merge">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Merge occupancy offsets after refinement</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__occupancy__offset">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Select offset if merging not performed</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__occupancy__fraction">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Minimum fraction scattering of original model for output</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <container id="phaser__keywords__occupancy__window">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="phaser__keywords__occupancy__window__ellg">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>Target ellg for number of residues in occupancy window</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__occupancy__window__max">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Maximum number of residues in occupancy refinement window</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__occupancy__window__nresidues">
+                <className>CInt</className>
+                <qualifiers>
+                  <guiLabel>Number of residues in occupancy refinement window (overrides ellg target)</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <container id="phaser__keywords__outliers">
+            <qualifiers>
+              <guiLabel>Outlier rejection</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:EP_AUTO,MR_AUTO,MR_FRF,MR_FTF,MR_RNP box auto_align</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__outliers__reject">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Reject outliers</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__outliers__probability">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Reject outlier probability threshold</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__outliers__information">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Reject outliers information threshold</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__pack">
+            <qualifiers>
+              <guiLabel>Packing function</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:MR_AUTO,MR_PAK auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__pack__select">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Allow solutions</guiLabel>
+                <guiDefinition>
+                  <style>bold</style>
+                  <caption>up_to_specified_cutoff_as_percent all_(no_packing_test)</caption>
+                </guiDefinition>
+                <enumerators>percent,all</enumerators>
+                <default>percent</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__pack__cutoff">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Allowed clashes cutoff</guiLabel>
+                <toolTip>Depending on the choice of method to filter solutions by packing, this can be either a percentage value or an absolute number.</toolTip>
+                <guiDefinition>
+                  <style>bold</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__pack__quick">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Stop packing check when cutoff is exceeded</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__pack__compact">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Pack ensembles into a compact association</guiLabel>
+                <toolTip>Minimize distances between centres of mass for the addition of each component in a solution.</toolTip>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__pack__keep_high_tfz">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Keep solutions with high TFZ even if they do not pack</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__partial">
+            <qualifiers>
+              <guiLabel>Partial model input</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:EP_AUTO auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__partial__mode">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Partial model type</guiLabel>
+                <toolTip>Determines whether phases are taken from an actual model (PDB file) or electron density.</toolTip>
+                <guiDefinition>
+                  <style>phaser:ignore OnChange:update_partial_model_mode</style>
+                </guiDefinition>
+                <enumerators>model,map</enumerators>
+                <default>model</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__partial__pdb">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Partial model (pdb file)</guiLabel>
+                <guiDefinition>
+                  <style>bold file_type:pdb OnChange:update_phaser_pdb_info noauto</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__partial__cif">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Partial model (cif file)</guiLabel>
+                <guiDefinition>
+                  <style>bold file_type:pdb OnChange:update_phaser_pdb_info noauto</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__partial__hklin">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Partial model (as map)</guiLabel>
+                <guiDefinition>
+                  <style>bold file_type:hkl OnChange:update_phaser_partial_labin noauto</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__partial__variance">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Partial model quality</guiLabel>
+                <toolTip>Defines type of statistic used to describe deviation of the partial model relative to the expected structure.</toolTip>
+                <guiDefinition>
+                  <style>bold noauto</style>
+                  <caption>RMS Identity</caption>
+                </guiDefinition>
+                <enumerators>rms,id</enumerators>
+                <default>id</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__partial__deviation">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Identity or RMS</guiLabel>
+                <toolTip>Deviation of the partial model relative to the expected structure. Can be either sequence identity (as a percent value, i.e. 0 to 100) or RMSD (in Angstroms).</toolTip>
+                <guiDefinition>
+                  <style>bold noauto</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__partial_labin">
+            <qualifiers>
+              <guiLabel>Partial structure F and PHIC</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:EP_AUTO auto_align box hidden</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__partial_labin__fc">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>FC label</guiLabel>
+                <toolTip>FC column label for partial structure HKLIN</toolTip>
+                <guiDefinition>
+                  <style>renderer:draw_phaser_partial_labin_widget noauto</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__partial_labin__phic">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>PHIC label</guiLabel>
+                <toolTip>PHIC column label for partial structure HKLIN</toolTip>
+                <guiDefinition>
+                  <style>renderer:draw_phaser_partial_labin_widget noauto</style>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__peaks_rotation">
+            <qualifiers>
+              <guiLabel>Rotation peak selection</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__peaks_rotation__select">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Select peaks by</guiLabel>
+                <guiDefinition/>
+                <enumerators>percent,sigma,number,all</enumerators>
+                <default>percent</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__peaks_rotation__cutoff">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>cutoff</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__peaks_rotation__cluster">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Select clustered peaks</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__peaks_rotation__down">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percentage value to search deeper in the rotation list</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__peaks_translation">
+            <qualifiers>
+              <guiLabel>Translation peak selection</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__peaks_translation__select">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Select peaks by</guiLabel>
+                <guiDefinition/>
+                <enumerators>percent,sigma,number,all</enumerators>
+                <default>percent</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__peaks_translation__cutoff">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>cutoff</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__peaks_translation__cluster">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Select clustered peaks</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__permutations">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Permute search order (MR_AUTO only)</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO</style>
+              </guiDefinition>
+              <enumerators>True,False,None</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__purge_rotation">
+            <qualifiers>
+              <guiLabel>Purge RF solution list</guiLabel>
+              <guiDefinition>
+                <expertLevel>0</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__purge_rotation__enable">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Purge solution list</guiLabel>
+                <toolTip>Purge solution list according to best solution so far at end of TF and in FULL and FAST searches after refinement step</toolTip>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__purge_rotation__percent">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percent difference between top and mean solutions</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__purge_rotation__number">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__purge_translation">
+            <qualifiers>
+              <guiLabel>Purge TF solution list</guiLabel>
+              <guiDefinition>
+                <expertLevel>0</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__purge_translation__enable">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Purge solution list</guiLabel>
+                <toolTip>Purge solution list according to best solution so far at end of TF</toolTip>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__purge_translation__percent">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percent difference between top and mean solutions</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__purge_translation__number">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Max. number of solutions after purging</guiLabel>
+                <toolTip>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__purge_rnp">
+            <qualifiers>
+              <guiLabel>Purge refinement and phasing solution list</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__purge_rnp__enable">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Purge solution list</guiLabel>
+                <toolTip>Purge solution list according to best solution so far at end of TF and in FULL and FAST searches after refinement step</toolTip>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__purge_rnp__percent">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percent difference between top and mean solutions</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__purge_rnp__number">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Maximum number of solutions to survive purging (irrespective of percent cutoff). Set to zero to ignore.</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__rescore_rotation">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Rescore rotation</guiLabel>
+              <toolTip>Only applies to automatic MR and fast rotation function</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF box tribool</style>
+              </guiDefinition>
+              <enumerators>True,False,None</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__rescore_translation">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Rescore translation</guiLabel>
+              <toolTip>Only applies to automatic MR and fast translation function</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF box tribool</style>
+              </guiDefinition>
+              <enumerators>True,False,None</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__resharpen_percent">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Percentage of resharpening factor to apply</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:MR_AUTO,EP*,ANO,MR_FRF,MR_FTF,MR_RNP box</style>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__resolution">
+            <qualifiers>
+              <guiLabel>Resolution limits</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:ANO,CCA,EP_AUTO,MR_AUTO,MR_FRF,MR_FTF,MR_RNP box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__resolution__high">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>High resolution</guiLabel>
+                <toolTip>High resolution limit for all calculations but final refinement. Leave blank to allow Phaser to set adaptive defaults.</toolTip>
+                <guiDefinition>
+                  <style>bold noauto</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__resolution__low">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Low resolution</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__resolution__auto_high">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>High resolution limit for refinement</guiLabel>
+                <toolTip>High resolution limit for final refinement. Reduce if available memory will be exceeded by refining at full resolution.</toolTip>
+                <guiDefinition>
+                  <style>phaser:mode:MR_AUTO</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__rfactor_use">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>If the R-factor is low for ensemble at origin then abort MR</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF,MR_FTF,EP_AUTO box</style>
+              </guiDefinition>
+              <enumerators>True,False,None</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__rfactor_cutoff">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>If the R-factor is below this cutoff for ensemble at origin then abort MR</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF,MR_FTF,EP_AUTO box</style>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__rotate">
+            <qualifiers>
+              <guiLabel>Brute rotation function</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__rotate__volume">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>volume</guiLabel>
+                <guiDefinition/>
+                <enumerators>full,around</enumerators>
+                <default>full</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__rotate__euler">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>euler</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__rotate__range">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>range</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__sampling_rotation">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Rotation sampling angle</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF box</style>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__sampling_translation">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Translation sampling distance</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF box</style>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__scattering">
+            <qualifiers>
+              <guiLabel>Scattering information</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:EP_AUTO box</style>
+              </guiDefinition>
+            </qualifiers>
+            <container id="phaser__keywords__scattering__scatterer">
+              <qualifiers>
+                <guiLabel>Anomalous scatterer</guiLabel>
+                <guiDefinition>
+                  <style>auto_align phaser:kwargs</style>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+              <content id="phaser__keywords__scattering__scatterer__type">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>type</guiLabel>
+                  <guiDefinition>
+                    <style>renderer:draw_phaser_scatterer_widget</style>
+                  </guiDefinition>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__scattering__scatterer__fp">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>fp</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__scattering__scatterer__fdp">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>fdp</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                </qualifiers>
+              </content>
+              <content id="phaser__keywords__scattering__scatterer__fixfdp">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Fix fdp</guiLabel>
+                  <guiDefinition/>
+                  <enumerators>EDGE,ON,OFF</enumerators>
+                  <default>EDGE</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+            </container>
+            <content id="phaser__keywords__scattering__restraint">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Restrain scattering factors</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__scattering__sigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Scattering restraint sigma</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__search">
+            <qualifiers>
+              <guiLabel>Automatic search parameters</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:MR_AUTO box noauto</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__search__order_auto">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Determine search order automatically</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__search__method">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Search method</guiLabel>
+                <toolTip>Setting this option to Fast mode will automatically consolidate solutions from multiple translation searches, which substantially reduces runtime for multi-copy structures. Also, if there is not a clear solution for a component, then the translation search will search deeper in the rotation list.</toolTip>
+                <guiDefinition>
+                  <style>noauto bold</style>
+                  <caption>Fast Full_search</caption>
+                </guiDefinition>
+                <enumerators>fast,full</enumerators>
+                <default>fast</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__search__pruning">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Refine occupancy for solutions rejected from packing at end of FAST search mode</guiLabel>
+                <toolTip>The PDB file may then have some residues with occupancies set to zero to satisfy packing criteria</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__search__bfactor">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>B-factor of search model</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__search__ofactor">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Occupancy factor of search model (partial scattering)</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__sgalternative">
+            <qualifiers>
+              <guiLabel>Alternative space groups</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:MR_AUTO,MR_FTF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__sgalternative__select">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Also try alternative space group(s)</guiLabel>
+                <toolTip>To specify a subgroup for data expansion, click on More...</toolTip>
+                <guiDefinition>
+                  <style>bold noauto</style>
+                  <caption>All_possible_in_same_pointgroup Enantiomeric_spacegroup_only Listed_spacegroups_only No_alternatives</caption>
+                </guiDefinition>
+                <enumerators>all,hand,list,none</enumerators>
+                <default>all</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__sgalternative__base">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Hall symbol of subgroup of data space group</guiLabel>
+                <toolTip>Hall symbol can be obtained from the log of a prior run of Phaser</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__sgalternative__test">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Space group to try</guiLabel>
+                <guiDefinition>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="phaser__keywords__solparameters">
+            <qualifiers>
+              <guiLabel>Bulk solvent parameters</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF,MR_FTF,MR_RNP auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__solparameters__siga_fsol">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>siga_fsol</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__solparameters__siga_bsol">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>siga_bsol</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__solparameters__siga_min">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>siga_min</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__solparameters__bulk_use">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>bulk_use</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__solparameters__bulk_fsol">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>bulk_fsol</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__solparameters__bulk_bsol">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>bulk_bsol</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__solution_origin_ensemble">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Ensembles already placed at origin</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR* auto_align box hidden</style>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__target_rotation">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Rotation target function type</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF box</style>
+              </guiDefinition>
+              <enumerators>fast,brute</enumerators>
+              <default>fast</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__target_rotation_type">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Rotation target function</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FRF box</style>
+              </guiDefinition>
+              <enumerators>LERF1,CORRELATION</enumerators>
+              <default>LERF1</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__target_translation">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Translation target function type</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF box</style>
+              </guiDefinition>
+              <enumerators>fast,brute</enumerators>
+              <default>fast</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="phaser__keywords__target_translation_type">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Fast translation target function type</guiLabel>
+              <guiDefinition>
+                <expertLevel>3</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF box</style>
+              </guiDefinition>
+              <enumerators>LETF1,LETF2</enumerators>
+              <default>LETF1</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__tncs">
+            <qualifiers>
+              <guiLabel>Translational NCS</guiLabel>
+              <guiDefinition>
+                <style>phaser:mode:MR_AUTO,MR_FRF,MR_FTF,MR_RNP,EP* auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__tncs__use">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Account for translational NCS if present</guiLabel>
+                <toolTip>If checked, Phaser will attempt to correct for TNCS if it has been detected based on the Patterson map.</toolTip>
+                <guiDefinition>
+                  <expertLevel>0</expertLevel>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__nmol">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of molecules or complexes related by translation vector</guiLabel>
+                <guiDefinition>
+                  <expertLevel>0</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__rlist_add">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Supplement rotation list with rotations of known components</guiLabel>
+                <guiDefinition>
+                  <expertLevel>0</expertLevel>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__translation_vector">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>TNCS vector. 0,0,0 = use internally determined vector.</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__translation_perturb">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Perturb translation vector from patterson/input position if it is on a special position</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__rotation_angle">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>TNCS rotation angle.</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__patterson_hires">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>High resolution limit for Patterson calculation</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__patterson_lores">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Low resolution limit for Patterson calculation</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__patterson_percent">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Percent of origin peak height</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__patterson_distance">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Minimum distance of Patterson peak from origin</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__variance_rmsd">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Initial rmsd for sigmaa calculation between NCS copies</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__variance_frac">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Initial fraction for sigmaa calculation between NCS copies</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__gfunction_radius">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Molecular Radius for G-function</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__rotation_sampling">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Sampling (degrees) around origin for initiating TNCS rotation refinements. 0 = use internally determined default.</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__rotation_range">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Range (degrees) around origin for initiating TNCS rotation refinements. 0 = use internally determined default.</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__link_restraint">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Use occupancy restraint for NCS related atoms</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                  <style>phaser:mode:EP*</style>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__link_sigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Sigma of occupancy restraint for NCS related atoms</guiLabel>
+                <guiDefinition>
+                  <expertLevel>3</expertLevel>
+                  <style>phaser:mode:EP*</style>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__tncs__pair_only">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Only add atoms to LLG gradient maps in pairs, not as single atoms</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                  <style>phaser:mode:EP*</style>
+                </guiDefinition>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__topfiles">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Number of top PDB files to output</guiLabel>
+              <guiDefinition>
+                <expertLevel>0</expertLevel>
+                <style>phaser:mode:MR* box</style>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__translation">
+            <qualifiers>
+              <guiLabel>Brute translation function</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_FTF auto_align box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__translation__volume">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>volume</guiLabel>
+                <guiDefinition/>
+                <enumerators>full,line,region,around</enumerators>
+                <default>full</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__fractional">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Use fractional coordinates (False = orthogonal)</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__start">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>start</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__end">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>end</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__range">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>range</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__packing_use">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Do packing test for top peaks in translation function</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__packing_base">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Do packing test for base solutions in translation function</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__packing_cutoff">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Pairwise packing test percent for translation function</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__translation__packing_number">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Max number peaks for packing test in translation function</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="phaser__keywords__output_level">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Verbosity level for logfile output</guiLabel>
+              <guiDefinition>
+                <expertLevel>0</expertLevel>
+              </guiDefinition>
+              <enumerators>logfile,silent,concise,summary,verbose,debug</enumerators>
+              <default>logfile</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <container id="phaser__keywords__zscore">
+            <qualifiers>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <style>phaser:mode:MR_AUTO,MR_FTF,MR_PAK box</style>
+              </guiDefinition>
+            </qualifiers>
+            <content id="phaser__keywords__zscore__use">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Use Z-score cutoff in fast search for amalgamation of solutions</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__zscore__stop">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Use Z-score cutoff to terminate search</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__zscore__solved">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>TFZ indicating solved</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__zscore__possibly_solved">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>TFZ indicating possibly solved</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="phaser__keywords__zscore__half">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Use half the highest TFZ score as the minimum</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,None</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <container id="phaser__run_control">
+          <qualifiers>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="phaser__run_control__gui_run">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>gui_run</guiLabel>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+        </container>
+      </container>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

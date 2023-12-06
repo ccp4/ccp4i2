@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd" >
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>Demo data: GerE</title>
+<link rel="stylesheet" type="text/css" href="../../docs/ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>CCP4i2 Tutorial: GerE (PDB:1FSE)</h1>
+
+<p>This structure can be solved quickly by either experimental phasing or
+molecular replacement and is a good one to try as an introduction to CCP4.</p>
+
+<p>The data are from the crystal structure of GerE, a transcription activator from Bacillus subtilis, which was solved by MAD phasing using the Se signal (V.M.A. Ducros, R.J. Lewis, C.S. Verma, E.J. Dodson, G. Leonard, J.P. Turkenburg, G.N. Murshudov, A.J. Wilkinson and J.A. Brannigan, J. Mol. Biol. (2001) 306 759-771).</p>
+
+<p>With modern software, the structure can also be easily solved by SAD phasing from just the Se peak data using any of the software available. The structure has 6-fold non-crystallographic symmetry (NCS) with 3 distinct dimers in the assymetric unit, however there are only 2 Se atoms per molecule, so the NCS is difficult to determine from the heavy atom coordinates alone. A typical strategy involves density modification without NCS, then automated model building to obtain a preliminary model. This model may be used to provide NCS information for a better density modification calculation.</p>
+
+<p>SIRAS phasing may also be attempted using the native data.</p>
+
+<h2>Data files</h2>
+<ul>
+<li><a href=gere.fasta>gere.fasta</a> GerE sequence</li>
+<li><a href=gere.mtz>gere.mtz</a> MTZ file containing the anomolous <i>intensity</i> data measured at the Se peak, and a Free-R flag.</li>
+<li><a href=gere_nat.mtz>gere_nat.mtz</a> MTZ file containing native data. While anomalous data are provided, there is no significant anomalous signal.</li>
+<!--<li><a href=gere_peak.sca>gere_peak.sca</a> <a href=gere_nat.sca>gere_nat.sca</a> <a href=gere_new_infl.sca>gere_new_infl.sca</a> <a href=gere_new_hrm.sca>gere_new_hrm.sca</a> <a href=gere_new_lrm.sca>gere_new_lrm.sca</a> SCALEPACK files for the MAD data.</li>-->
+<li style="color:grey;"><a href=gere_scaled_data.mtz>gere_scaled_data.mtz</a> MTZ file containing scaled and merged <i>amplitude</i> data for all the MAD wavelengths.</li>
+<li><a href=gere_molA.pdb>gere_molA.pdb</a> Structure for a single molecule.</li>
+</ul>
+
+<!-- Files from:
+gere.mtz from $CEXAM/gere.mtz
+gere_nat.mtz from /y/people/ccp4/projects/MADval/gere_nat.mtz
+/y/people/ccp4/cuba_stuff/saveit/tut2003/data//gere*.sca
+-->
+
+<address></address>
+<!-- hhmts start -->Last modified: Fri Feb 20 17:26:38 GMT 2015 <!-- hhmts end -->
+</body>
+</html>

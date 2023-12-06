@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>memn</userId>
+    <creationTime>17:32 18/May/12</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>editbfac</pluginName>
+    <pluginTitle>Edit B-factors - set B-Factors manually or automatically for AlphaFold models</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="editbfac">
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+      <content id="XYZDISTMOD">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	      <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+      <content id="PAEIN">
+        <className>CDialsJsonFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <fromPreviousJob>False</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>Alphafold PAE file (json)</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+      <content id="XYZFILES">
+        <className>CList</className>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+             <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="AUTOSETALPHAFOLD">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="AUTOSETROSETTAFOLD">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="BTREATMENT">
+        <className>CString</className>
+        <qualifiers>
+          <default>lddt</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>lddt,rmsd,b_value</enumerators>
+          <toolTip>B-factor conversion</toolTip>
+        </qualifiers>
+      </content>
+      <content id="BFACTOR_STATIC">
+          <className>CFloat</className>
+          <qualifiers>
+          <default>20</default>
+          </qualifiers>
+      </content>
+      <content id="CONFCUT">
+          <className>CBoolean</className>
+          <qualifiers>
+            <default>True</default>
+            <toolTip>Remove low confidence residues (based on minimum lddt or max rmsd, as appropriate).</toolTip>
+          </qualifiers>
+      </content>
+      <content id="COMPACTREG">
+          <className>CBoolean</className>
+          <qualifiers>
+            <default>True</default>
+            <toolTip>Split model into compact residues after removing low confidence residues.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="MAXDOM">
+          <className>CInt</className>
+          <qualifiers>
+            <default>3</default>
+            <toolTip>Maximum domains to obtain.  You can use this to merge 
+the closest domains at the end of splitting the model. Make 
+it bigger (and optionally make domain_size smaller) to 
+get more domains.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="DOMAINSIZE">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>15.0</default>
+            <toolTip>Approximate size of domains to be found (A units).  This is the resolution that 
+will be used to make a domain map.  If you are getting too many 
+domains, try making domain_size bigger (maximum is 70 A).</toolTip>
+          </qualifiers>
+      </content>
+      <content id="MINDOML">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>10.0</default>
+            <toolTip>Minimum length of a domain to keep (reject at end if smaller). No. of residues.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="MAXFRACCL">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>0.3</default>
+            <toolTip>Minimum length of a domain to keep (reject at end if smaller). No. of residues.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="MINSEQRESI">
+          <className>CInt</className>
+          <qualifiers>
+            <default>5</default>
+            <toolTip>Minimum length of a short segment to keep (reject at end ).</toolTip>
+          </qualifiers>
+      </content>
+      <content id="MINREMSEQL">
+          <className>CInt</className>
+          <qualifiers>
+            <default>15</default>
+            <toolTip>Used to choose whether the sequence of a removed 
+segment is written to the remainder sequence file.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="MINLDDT">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>0.7</default>
+            <toolTip>If low-confidence residues are removed, the cutoff is defined by 
+minimum_lddt or maximum_rmsd, whichever is defined (you cannot 
+define both).  A minimum lddt of 0.70 corresponds to a maximum rmsd 
+of 1.5.  Minimum lddt values are fractional or not depending on 
+the value of input_lddt_is_fractional.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="MAXRMSD">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>1.5</default>
+            <toolTip>If low-confidence residues are removed, the cutoff is defined by 
+minimum_lddt or maximum_rmsd, whichever is defined (you cannot 
+define both).  A minimum lddt of 0.70 corresponds to a maximum rmsd 
+of 1.5.  Minimum lddt values are fractional or not depending on 
+the value of input_lddt_is_fractional.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="SUBMINB">
+          <className>CBoolean</className>
+          <qualifiers>
+            <default>False</default>
+            <toolTip>If set, subtract the lowest B-value from all B-values just before writing out the 
+final files.  Does not affect the cutoff for removing low-confidence residues.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="WEIGHTCA">
+          <className>CBoolean</className>
+          <qualifiers>
+            <default>False</default>
+            <toolTip>Adjust the edge weighting for each residue pair according  
+to the distance between CA residues. If this is True, 
+then distance_model must be provided. See also distance_power</toolTip>
+          </qualifiers>
+      </content>
+      <content id="DISTPOW">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>1.0</default>
+            <toolTip>If weight_by_ca_ca_distance is True, then edge weights will 
+be multiplied by 1/distance**distance_power.</toolTip>
+          </qualifiers>
+      </content>
+      <content id="PAEPOWER">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>1.0</default>
+            <toolTip>If PAE matrix (predicted alignment error matrix) is supplied,
+each edge in the graph will be weighted proportional to
+(1/ pae**pae_power). Use this to try and get the number of domains
+that you want (try 1, 0.5, 1.5, 2)</toolTip>
+          </qualifiers>
+      </content>
+      <content id="PAECUTOFF">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>5.0</default>
+            <toolTip>If PAE matrix (predicted alignment error matrix) is supplied,
+graph edges will only be created for residue pairs with 
+pae is less than pae_cutoff</toolTip>
+          </qualifiers>
+      </content>
+      <content id="PAEGRAPHRES">
+          <className>CFloat</className>
+          <qualifiers>
+            <default>1.0</default>
+            <toolTip>If PAE matrix (predicted alignment error matrix) is supplied,
+pae_graph_resolution regulates how aggressively the clustering 
+algorithm is. Smaller values lead to larger clusters. Value 
+should be larger than zero, and values larger than 5 are 
+unlikely to be useful</toolTip>
+          </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

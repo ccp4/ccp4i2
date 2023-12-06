@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>mdw</userId>
+    <creationTime>13:23 28/Jun/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>mtzheader</pluginName>
+    <pluginTitle>MTZHEADER: extract MTZ header information</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="mtzheader">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="MERGED">
+        <className>CBoolean</className>
+      </content>
+     <content id="SPACEGROUPCELL">
+        <className>CSpaceGroupCell</className>
+      </content>
+      <content id="MAXRESOLUTION">
+        <className>CFloat</className>
+      </content>
+      <content id="NO_REFLECTIONS">
+        <className>CInt</className>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

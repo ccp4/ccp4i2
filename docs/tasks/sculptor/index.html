@@ -1,0 +1,75 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Truncate search model - SCULPTOR</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>Difficult molecular replacement problems (e.g. homology less
+      than 30%) can be helped by
+      trimming loops and side chains from the target model where it
+      has poor sequence alignment to the search sequence. To run this
+      task you can enter either the search sequence for which the task will
+      perform an alignment to the template structure or you may import
+      your preferred alignment. You may get a
+      better alignment of the template and target sequence from
+      tools such as HHPred, PROMALS3D or FFAS.  The supported sequence
+      and alignment formats are described in the <a href="../../general/model_data.html">Model data
+      documentation</a>.</p>
+      <h2>Input</h2>
+      <img src="sculptor_task_1.png">
+      <p>Select the template structure<b class="img-ref">(1)</b></p>
+      <p>Choose to enter the target sequence or an alignment<b class="img-ref">(2)</b></p>
+      <p>Select and alignment file and specify which sequence in the
+      file is the target.<b class="img-ref">(3)</b></p>
+      <br/>
+      <h2>Options</h2>
+      <img src="sculptor_task_2.png">
+      <p><b class="img-ref">(1)</b>Pruning side chain alternative modes (from <a href="https://www.phenix-online.org/documentation/reference/sculptor.html">Phenix documentation</a>):
+    <b>schwarzenbacher</b> Implements the algorithm published by
+      Schwarzenbacher et al. (2004), who propose that for optimal
+      molecular replacement results a residue sidechain should be
+      truncated if aligned with a non-identical residue, and not
+      truncated otherwise. The level of truncation is controlled by
+      the pruning_level parameter, and defaults to 3 (which
+      corresponds to Cgamma) and can be controlled by the
+      pruning_level parameter of the schwarzenbacher scope.
+    <b>Similarity</b> Uses sequence similarity values for deciding the level of truncation. Residues above full_truncation_limit are not truncated at all, those below the full_truncation_limit are truncated to Cbeta, and those in between are truncated according to the pruning_level parameter (all available from the similarity scopei). Results tend to be similar to those given by the Schwarzenbacher algorithm; however, it is possible to get high similarity values (and full sidechain preservation) for certain substitutions (i.e. TYR to PHE), and low-sequence similarity zones can end up being truncated to Cbeta. </p>
+<p><b class="img-ref">(2)</b>B factor of model:
+<b>original</b> This uses the original B-factor of atoms. This is
+      primarily intended as a contributor to a combination, but can
+      also be used to manipulate current B-factors, e.g. set them to a
+constant value.
+<b>asa</b> This calculates accessible surface area for an isolated
+      chain and transforms the raw values to B-factors. A high
+      ASA-value indicates a potential for flexibility. The calculation
+      can be configured by the precision and probe_radius parameters
+of the asa scope.
+<b>similarity</b> Low sequence similarity regions tend to be more dissimilar. 
+</p>
+      <br/>
+     
+
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <p>INSERT TEXT HERE</p>
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>mdw</userId>
+    <creationTime>17:32 18/May/12</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>gesamt</pluginName>
+    <pluginTitle>Gesamt - structural alignment</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="gesamt">
+    <container id="inputData">
+      <content id="XYZIN_QUERY">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_TARGET">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_LIST">
+        <className>CList</className>
+        <qualifiers>
+            <listMinLength>2</listMinLength>
+        </qualifiers>
+        <subItem>
+            <className>CPdbDataFile</className>
+            <qualifiers>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+            </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT_QUERY">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+      <content id='TRANSFORMATION'>
+          <className>CTransformation</className>
+      </content>
+      <content id='RMS'>
+          <className>CFloat</className>
+      </content>
+      <content id='Q'>
+          <className>CFloat</className>
+      </content>
+      <content id='NRES'>
+          <className>CInt</className>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CSuperposePerformance</className>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="OUTPUT_COORDS">
+        <className>CString</className>
+        <qualifiers>
+          <default>minusO</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>none,minusO,minusOF</enumerators>
+          <menuText>Do not output,Output superposed,Moving model only</menuText>
+        </qualifiers>
+      </content>
+      <content id="MODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>normal</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>high,normal</enumerators>
+          <menuText>optimise quality of fit,balance speed and quality</menuText>
+        </qualifiers>
+      </content>
+      <content id="PAIRMULTI">
+        <className>CString</className>
+        <qualifiers>
+          <default>PAIR</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>PAIR,MULTIPLE</enumerators>
+          <menuText>Pairwise,Multiple</menuText>
+        </qualifiers>
+      </content>
+     </container>
+  </ccp4i2_body>
+</ccp4i2>

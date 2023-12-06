@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment>my first wrapper</comment>
+    <userId>mdw</userId>
+    <creationTime>11:28 27/Apr/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>cad_copy_column</pluginName>
+    <pluginTitle>CAD: copy column between files</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="cad_copy_column">
+    <container id="inputData">
+      <content id="HKLIN1">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+      <content id="HKLIN2">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN2</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="FREE">
+              <columnType>I</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+      <content id="FSIGF">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN2</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="F">
+              <columnType>F</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGF">
+              <columnType>Q</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+   </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="TITLE">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

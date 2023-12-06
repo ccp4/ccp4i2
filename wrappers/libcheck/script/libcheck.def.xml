@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment>merge monomers</comment>
+    <projectName></projectName>
+    <userId>lizp</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId></jobId>
+    <pluginName>libcheck</pluginName>
+    <pluginVersion></pluginVersion>
+    <projectId></projectId>
+    <creationTime>18:04 22/Nov/12</creationTime>
+    <pluginTitle></pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="libcheck">
+    <container id="inputData">
+      <content id="DICTLIB">
+        <className>CDictDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+      <content id="MERGELIST">
+        <className>CList</className>
+        <subItem>
+          <className>CDictDataFile</className>
+          <qualifiers>
+            <mustExist>True</mustExist>
+          </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <container id="controlParameters">
+     <content id="RUN_MODE">
+        <className>CString</className>
+         <qualifiers>
+           <enumerators>MERGE</enumerators>
+           <onlyEnumerators>True</onlyEnumerators>
+	   <default>MERGE</default>
+	 </qualifiers>
+     </content>
+    </container>
+    <container id="outputData"/>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>mdw</userId>
+    <creationTime>12:54 26/Jun/12</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>baverage</pluginName>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <XYZIN>
+         <project>CCP4I2</project>
+         <baseName>1df7.pdb</baseName>
+         <relPath>test/data</relPath>
+      </XYZIN>
+    </inputData>
+    <controlParameters>
+      <SET_BLIMIT>True</SET_BLIMIT>
+      <BLIMIT_MC>
+        <start>20.0</start>
+        <end>50.0</end>
+      </BLIMIT_MC>
+      <BLIMIT_SC>
+        <start>30.0</start>
+        <end>60.0</end>
+      </BLIMIT_SC>
+    </controlParameters>
+  </ccp4i2_body>
+</ccp4i2>

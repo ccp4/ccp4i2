@@ -1,0 +1,20 @@
+@misc{Bricogne:buster,
+author = "Bricogne G. and Blanc E. and Brandl M. and Flensburg C. and Keller P. and Paciorek W. and Roversi P. and Sharff A. and Smart O.S. and Vonrhein C. and Womack T.O.",
+title = "BUSTER version 2.10.3. Cambridge, United Kingdom: Global Phasing Ltd.",
+year = "2018",
+}
+
+@article{Smart:ba5178,
+author = "Smart, Oliver S. and Womack, Thomas O. and Flensburg, Claus and Keller, Peter and Paciorek, W{\l}odek and Sharff, Andrew and Vonrhein, Clemens and Bricogne, G{\'{e}}rard",
+title = "{Exploiting structure similarity in refinement: automated NCS and target-structure restraints in {\it BUSTER}}",
+journal = "Acta Crystallographica Section D",
+year = "2012",
+volume = "68",
+number = "4",
+pages = "368--380",
+month = "Apr",
+doi = {10.1107/S0907444911056058},
+url = {https://doi.org/10.1107/S0907444911056058},
+abstract = {Maximum-likelihood X-ray macromolecular structure refinement in {\it BUSTER} has been extended with restraints facilitating the exploitation of structural similarity. The similarity can be between two or more chains within the structure being refined, thus favouring NCS, or to a distinct `target' structure that remains fixed during refinement. The~local structural similarity restraints (LSSR) approach considers all distances less than 5.5{\AA} between pairs of atoms in the chain to be restrained. For each, the difference from the distance between the corresponding atoms in the related chain is found. LSSR applies a restraint penalty on each difference. A functional form that reaches a plateau for large differences is used to avoid the restraints distorting parts of the structure that are not similar. Because LSSR are local, there is no need to separate out domains. Some restraint pruning is still necessary, but this has been automated. LSSR have been available to academic users of {\it BUSTER} since 2009 with the easy-to-use {\tt -autoncs} and {\tt -{\-}target target.pdb} options. The~use of LSSR is illustrated in the re-refinement of PDB entries 5rnt, where {\tt -target} enables the correct ligand-binding structure to be found, and 1osg, where {\tt -autoncs} contributes to the location of an additional copy of the cyclic peptide ligand.},
+keywords = {BUSTER, NCS restraints, target-structure restraints, local structural similarity restraints},
+}

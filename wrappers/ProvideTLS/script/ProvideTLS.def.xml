@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>ProvideTLS</pluginName>
+        <creationTime>11:06 11/Apr/14</creationTime>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="ProvideTLS">
+        <container id="controlParameters">
+            <content id="TLSTEXT">
+                <className>CString</className>
+                <qualifiers>
+                    <default>
+TLS From REFMAC
+RANGE  'A   0.' 'A 999.' ALL
+                    </default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="inputData">
+            <content id="TLSIN">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="TLSFILE">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <baseName>
+                        <allowedCharacters>*?</allowedCharacters>
+                    </baseName>
+                    <relPath>
+                        <allowedCharacters>*?</allowedCharacters>
+                    </relPath>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

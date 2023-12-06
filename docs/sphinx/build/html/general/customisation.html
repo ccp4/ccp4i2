@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#00020a">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>CCP4i2 — Customisation &#8212; CCP4i2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/contentui.css" />
+    <link rel="stylesheet" type="text/css" href="https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/contentui.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#005BBB data-md-color-accent=yellow>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" id="__gitlab"><path fill="currentColor" d="M93.667 473.347l90.684-279.097H2.983l90.684 279.097z" transform="translate(156.198 1.16)"/><path fill="currentColor" d="M221.333 473.345L130.649 194.25H3.557l217.776 279.095z" transform="translate(28.531 1.16)" opacity=".7"/><path fill="currentColor" d="M32 195.155L4.441 279.97a18.773 18.773 0 0 0 6.821 20.99l238.514 173.29L32 195.155z" transform="translate(.089 .256)" opacity=".5"/><path fill="currentColor" d="M2.667-84.844h127.092L75.14-252.942c-2.811-8.649-15.047-8.649-17.856 0L2.667-84.844z" transform="translate(29.422 280.256)"/><path fill="currentColor" d="M2.667 473.345L93.351 194.25h127.092L2.667 473.345z" transform="translate(247.198 1.16)" opacity=".7"/><path fill="currentColor" d="M221.334 195.155l27.559 84.815a18.772 18.772 0 0 1-6.821 20.99L3.557 474.25l217.777-279.095z" transform="translate(246.307 .256)" opacity=".5"/><path fill="currentColor" d="M130.667-84.844H3.575l54.618-168.098c2.811-8.649 15.047-8.649 17.856 0l54.618 168.098z" transform="translate(336.974 280.256)"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#general/customisation" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="CCP4i2  documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CCP4i2  documentation</span>
+          <span class="md-header-nav__topic"> CCP4i2 — Customisation </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">CCP4i2  documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="CCP4i2 documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="CCP4i2 documentation">CCP4i2  documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#general-customisation--page-root" class="md-nav__link">CCP4i2 — Customisation</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#introduction" class="md-nav__link">Introduction</a>
+        </li>
+        <li class="md-nav__item"><a href="#workflows" class="md-nav__link">Workflows</a>
+        </li>
+        <li class="md-nav__item"><a href="#task-parameters-and-patches" class="md-nav__link">Task Parameters and Patches</a>
+        </li>
+        <li class="md-nav__item"><a href="#custom-tasks" class="md-nav__link">Custom Tasks</a>
+        </li>
+        <li class="md-nav__item"><a href="#appendix-pathname-expansions" class="md-nav__link">Appendix - pathname expansions</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/general/customisation.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="ccp4i2-customisation">
+<h1 id="general-customisation--page-root">CCP4i2 — Customisation<a class="headerlink" href="#general-customisation--page-root" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="tutorial.html">Brief tutorial</a></p>
+<p><a class="reference external" href="data_files.html">Experimental data</a></p>
+<p><a class="reference external" href="model_data.html">Model data</a></p>
+<p><a class="reference external" href="atom_selection.html">Atom selection</a></p>
+<p><a class="reference external" href="customisation.html">Customisation</a></p>
+<section id="introduction">
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">There are several tools to enable users to customise CCP4i2:</div>
+<div class="line"><a class="reference external" href="#workflows">Workflows</a> allow you to save and rerun a series of
+tasks</div>
+<div class="line"><a class="reference external" href="#com_file_patchs">Task parameters and patches</a> are used to save
+and restore task control parameters and/or to edit command files in
+order to access program features not available in the interface</div>
+<div class="line"><a class="reference external" href="#custom_tasks">Custom tasks</a> allow you to run programs not
+supported by the interface - you must provide a command line and
+command files</div>
+</div>
+<p>These customisations can be set up and managed from the <em>Customisation</em>
+pull-down menu. Each customisation has a manager window with options to
+create, edit and delete. Each customisation can be exported (as a
+compressed file) or imported so it is possible to share with colleagues.</p>
+<p>The various customisations are saved in <a class="reference external" href="./tutorial.html#profile">your profile directory/custom
+in the appropriate directory: workflows, comfilepatchs, tasks or
+importedjobs. Each customisation has its own directory which is given
+the customisation name that you provide and the contents of this
+directory will depend on the type of
+customisation.</a></p>
+</section>
+<section id="workflows">
+<h2 id="workflows">Workflows<a class="headerlink" href="#workflows" title="Permalink to this heading">¶</a></h2>
+<p>Workflows are a mechanism for users to save a series of tasks that they
+use frequently and rerun them as one task. The new workflow will have an
+auto-generated user interface to select the minimal input data. The
+user’s preferred control parameters from the template tasks are saved
+and reused in each run of the workflow.</p>
+<div class="line-block">
+<div class="line">To create a workflow you should run the series of tasks that you want
+to encapsulate as a workflow. Be particularly careful about what
+output data from one task is chosen as input for another task because
+the workflow manager will automatically copy the same data flow in the
+generated workflow. When the tasks have run and completed successfully
+choose <em>Workflows</em> from the pull-down menu and select <em>New</em> in the
+Workflow Manager window. In the next window you will have to select
+the project and the template jobs and provide a unique name for the
+workflow. The workflow manager will then analyse the template jobs and
+saves the workflow in a directory: <em>your profile
+directory/custom/workflows/workflow name</em>. You are then presented with
+window with options to customise the interface to the workflow. The
+same window can be recalled by clicking the <em>Edit</em> button in the
+Workflow Manager window. The options are:</div>
+<div class="line"><em>Short title for workflow task</em> - enter the text that will appear in
+the task menu and the project viewer. <em>Labels for input files</em> - This
+is a list of the input data files required by the workflow - check
+that it matches with your expectation. By default the input gui will
+have labels appropriate for the file type but you can change these to
+give specific hints if necessary.</div>
+<div class="line"><em>Select overall workflow output files</em> - This is a list of files
+output by all of the tasks in the workflow and by checking the boxes
+you can control which files are displayed in the project viewer as the
+overall output of the workflow. By default the output files of the
+last task are the overall output files. For each file you can also
+enter a short description that will appear in the project viewer.</div>
+</div>
+<p>The workflows that are present in the directory <em>your profile
+directory/custom/workflows</em> are listed at the top of the task menu and
+clicking on one of this will bring up a task interface for the required
+input files. There is a second tab on the interface, <em>Control parameters
+for sub-tasks</em> and under this is a list of the sub-tasks which can be
+clicked to open a window with an interface to edit the control
+parameters of the task.</p>
+<div class="line-block">
+<div class="line">Workflows work well where there is input and output of just one
+coordinate file but some known limitations..</div>
+<div class="line">If there is output of more than one cordinate file (or any other type
+of file) then only the first file will be used in subsequent tasks.</div>
+<div class="line">Tasks which require addidional input (eg Phaser requiring Identity/RMS
+data for each input ensemble) do not work in a workflow.</div>
+</div>
+</section>
+<section id="task-parameters-and-patches">
+<h2 id="task-parameters-and-patches">Task Parameters and Patches<a class="headerlink" href="#task-parameters-and-patches" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">This is a tool to do one or both of two things:</div>
+<div class="line">Save the control parameters used in one job so they can be restored
+and used in another job with one click</div>
+<div class="line">Edit a program command file and save the changes to apply to the
+command file for subsequent runs of the program. This could be useful
+to access program functionality not currently interfaced by CCP4i2 or
+possibly to set multiple parameters with one-click rather than editing
+multiple options in the interface.</div>
+</div>
+<p>To use this tool you should first run the program in question from
+CCP4i2 in order to create a template command file that can be edited
+later. If the job is long-running and not useful you can kill it without
+loosing the command file. From the <em>Customisation</em> pull-down choose
+<em>Task parameters and patches</em> and click the <em>New</em> option. In the <em>Task
+Parameter and Patches Manager</em> window you should first choose the
+project and job that will provide the parameters and the template
+command file. You should check/uncheck the option to save the task
+control parameters and then edit the template command file is necessary.
+This command file patch tool uses an approach similar to the <em>Unix diff</em>
+and <em>patch</em> tools that are described at
+<a class="reference external" href="http://en.wikipedia.org/wiki/Diff">Wikipedia</a>; these will probably
+work best if you make the changes as simple as possible - ideally as
+additional lines at the end of the file. You should enter a name and
+title (to appear on the interface task menu) for the patch before saving
+it.</p>
+<p>When there are task parameters and patches available for a task then
+will be listed in the interface for that task at the bottom of the
+<em>Input data</em> tab. Selected task parameters will be applied immediately
+to the parameters in the interface.Selected patch will be applied to the
+command file when the task is run. You might want to check that the
+resultant command file is correct by viewing it in the <em>Project
+directory</em> on the left-hand side of the Project Viewer window; the
+command file is in the appropriate job directory and normally called
+<em>com.txt</em>.</p>
+</section>
+<section id="custom-tasks">
+<h2 id="custom-tasks">Custom Tasks<a class="headerlink" href="#custom-tasks" title="Permalink to this heading">¶</a></h2>
+<p>This is a mechanism for you to run non-CCP4 programs from CCP4i2 with a
+simple interface, similar to the standard CCP4i2 task interfaces,
+enabling users to select input data and set important parameters. The
+custom task jobs with their input and output data are recorded in the
+database and shown in the project viewer the same as any other job. To
+set up a custom task you must provide the text of a command line to run
+a program and also, if it is used, the text of a command file. The text
+can include variables (such as input file names) as parameter names. You
+must then provide more information on each variable parameter - the data
+type (such as file type) is essential. Based on the information
+provided, a simple interface is auto-generated for the user to input the
+variables such as input file names.</p>
+<div class="line-block">
+<div class="line">The <em>Custom task</em> interface to set up a custom task is accessed from
+the <em>Customisation</em> menu. The interface to enter a new custom task has
+two main sections - one to enter the command line and, optionally,
+command file text and below that a section to define the variable
+parameters that appear in the command line or file. You should first
+enter the command line with variable names beginning with a hash tag -
+something like:</div>
+<div class="line"><em>myprogram #HKLIN #PDBIN -ncycles #NCYCLES</em></div>
+<div class="line">Here the program <em>myprogram</em> has command line parameters: HKLIN - an
+MTZ experimental data file, PDBIN - structure coordinates and NCYCLES
+- the number of cycles. The parameter name begins with a hash tag
+though and alternative tag can be specified at te top of the
+interface. The command file text can be entered in similar style. By
+default when the custom task is run a command file will be written to
+the task’s working directory and will be called <em>com.txt</em>. It is also
+possible to specify the name of the command file if the program
+expects files with a specific name.</div>
+</div>
+<p>After entering the command line/file text click the <em>Update parameters</em>
+button to fill out the parameters section with the parameters from the
+command line/file section. For each parameter you will need to choose:</p>
+<ul class="simple">
+<li><p>a label that will appear in the interface - this is optional and
+defaults to the usual label for the data type</p></li>
+<li><p>the data type (i.e. probably the type of file)</p></li>
+<li><p>function (input,output..).</p></li>
+<li><p>if the parameter is obligatory (check box)</p></li>
+<li><p>if the parameter is recorded in the database (check box)</p></li>
+</ul>
+<p>It is important to set the ‘Record in database’ option correctly.
+Usually coordinate models and experimental data such as new phases
+should be recorded in the database so the flow of data can be followed
+and output data can be passed on to subsequent programs. Other data such
+as log files or program-specific ‘library’ files or program control
+parameters should not be recorded in the database but they are still
+saved in parameter files.</p>
+<p>For parameters that are files there is an optional field to enter a file
+name. This name is relative to the work directory where the job is run.
+This filename only needs to be entered if the program requires an input
+file with a specific name (in which case the user-selected file input
+file will be copied to that filename) or produces an output file whose
+filename is not specified in the command line or command file (in which
+case the file will be copied from the filename to a CCP4i2 standard
+filename). For the output files the filename can be a filename wildcard
+(a.k.a. ‘pathname expansion’ or ‘glob’) which can include a ‘*’ to match
+any character string. There are further wildcard options described
+<a class="reference external" href="#pathname_expansions">here</a>.</p>
+<p>The most difficult issue may be handling
+<a class="reference external" href="./data_files.html#MTZ">mini-MTZs</a>: CCP4i2 handles experimental data
+as separate observed data, phases, FreeR flags or map coefficients but
+presently most programs expect input with these combined to a single
+MTZ. The way to handle this for custom tasks is to have the single input
+MTZ parameter in the command text and this has the data type
+<em>CMtzDataFile</em>. You then create additional parameters in the parameter
+list with one parameter for each mini-MTZ that constitutes the
+monster-MTZ. (To add a parameter to the parameter table click the ‘+’
+symbol by the parameter table.) The extra parameter should be assigned a
+mini-MTZ datatype (CObsDataFile,CPhsDataFile, CMapCoeffsDataFile or
+CFreeRDataFile) and then an extra line appears in the interface with an
+option to <em>Merge to or split from monster MTZ</em>; this has a combo box to
+select from any defined <em>CMtzDataFile</em> file. The mini-MTZs that you
+define will appear in the user interface for the task and the system
+will automatically merge them to create the monster-MTZ that is the
+program input file. To handle splitting an output monster-MTZ you also
+need to enter the names of the MTZ columns that are split out into the
+mini-MTZs. There is another possible complication if the program will
+only accept observed data or phases in a limited set of representations
+(see explanation <a class="reference external" href="./miniMTZs.html#representations">here</a>). If you set
+a data type <em>CObsDataFile</em> or <em>CPhsDataFile</em> with <em>input</em> function then
+a list of the possible representations will appear and you can un-check
+any which are unacceptable to the program. The custom task run mechanism
+will attempt to convert data to an appropriate representation
+automatically.</p>
+<p>Distributed with CCP4i2 there is an example custom task for running the
+model building program <a class="reference external" href="http://www.embl-hamburg.de/ARP">ARP-wARP</a>.
+The ARP-wARP program itself is not automatically included in the CCP4
+distribution and you may need to download it from
+<a class="reference external" href="http://www.ccp4.ac.uk/download">CCP4</a> or the
+<a class="reference external" href="http://www.embl-hamburg.de/ARP">ARP-wARP</a> site. To import the
+example custom task choose <em>Custom task</em> from the <em>Customisation</em> menu
+and choose <em>Import</em> in the <em>Custom task Manager</em> dialog box and select
+the file <em>Your CCp4i2
+directory/test/custom_tasks/arp_trace.ccp4_customtask.tar.gz</em>. You can
+then double-click the newly-imported <em>arp_trace</em> task to edit and see
+the contents. At the top of the <em>Create custom task</em> window you can see
+the name and the title (text that will appear in the interface).</p>
+<p>The ARP-wARP autotrace script is run with a simple command line that
+includes the name of a monster-MTZ file that must include observed data
+and phases. In the <em>Create custom task</em> window the <em>Command line</em> field
+is the path to the ARP-wARP autotrace script (which you will probably
+need to edit appropriately for your computer) and keyword, ‘datafile’
+and then the parameter ‘#HKLIN’. There is no command file for running
+ARP-wARP so that field is empty. The list of parameters is important for
+ensuring the correct behaviour of the interface. HKLIN is the one actual
+input file to ARP-wARP and is a monster-MTZ file of type <em>CMtzDataFile</em>
+but it is made up from OBSIN (observed data with data type CObsDataFile)
+and PHSIN (phases with data type CPhsDataFile) which have the <em>Merge to
+MTZ</em> value set to ‘HKLIN’ which is the cue to the system to create the
+monster-MTZ HKLIN from those files. For the input observed data ARP-wARP
+will only accept a limited set of representations and so the
+<em>Representation</em> field is set to ‘Fmean’.</p>
+<p>The output files from ARP-wARP are PDBOUT which has type CPdbDataFile
+and HKLOUT, a monster-MTZ of type CMtzDataFile. For both of these the
+<em>File path</em> field is filled in with a path to the expected output file.
+ARP-wARP creates a directory for output files with a default name
+devised from the current data and time so we can not predict it but we
+can use a ‘*’ wildcard in the file path and, though it may look odd in
+this case, the output filenames include the name of the input MTZ file
+which will be ‘HKLIN’. There are two further mini-MTZ output files
+defined, MAPOUT and DIFFMAPOUT that will contain map coefficients so
+have type ‘CMapCoeffsDataFile’ - these are split out from the program
+output HKLOUT file so have ‘HKLOUT’ in the <em>Merge to MTZ</em> field and have
+entries in the <em>List of column labels</em> field. Finally note the <em>Record
+in database</em> column: the two input and output monster-MTZ files are not
+recorded as they are regarded as temporary intermediate files but the
+input and output mini-MTZs and the output PDBOUT file are recorded.</p>
+<p>Once the example ARP-wARP custom task is loaded the task title will
+appear in the <em>Task menu</em> in the <em>Custom tasks</em> section which is near
+the top of the list of tasks. If you click on this then the interface
+appears - the input requires just two files for the observed data and
+phases. The ARP-wARP script takes some time to run but you can follow
+progress by viewing the log file (right-mouse click on the job in the
+left project view window to get a context menu with a <em>View</em> option.)
+You can also see what files are created by the job by choosing the
+<em>Project directory</em> view from the tab options on the left side of the
+Project Viewer window and opening the directory folder for the
+appropriate job.</p>
+</section>
+<section id="appendix-pathname-expansions">
+<h2 id="appendix-pathname-expansions">Appendix - pathname expansions<a class="headerlink" href="#appendix-pathname-expansions" title="Permalink to this heading">¶</a></h2>
+<p>Some examples of pathname expansions:</p>
+<ul class="simple">
+<li><p><strong>./*.pdb</strong> finds files in the current directory with any filename
+and the file extension ‘.pdb’</p></li>
+<li><p><strong>./*/*.pdb</strong>finds files in any sub-directory with any filename and
+the file extension ‘.pdb’</p></li>
+<li><p><strong>./[0-9]???.pdb</strong> finds files in the current directory with a
+filename beginning with a character in the range 0 to 9 (i.e any
+number), followed by three characters that may be anything and the
+extension ‘.pdb’</p></li>
+</ul>
+<p>Last modified: Fri Feb 20 16:17:24 GMT 2015</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2020, CCP4.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.2.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

@@ -1,0 +1,514 @@
+
+
+TABLE.banner TD.header_text { font-size:xx-large; }
+TABLE.banner TD.logohead { font-size:x-large; }
+TABLE.banner TD.logotitle { font-size:x-large; }
+
+
+
+/* general */
+
+ul, li {
+margin: 0;
+padding: 0;
+}
+
+body { 
+        min-width: 650px; 
+     }
+
+html {
+	line-height: 1.6em;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	margin: 10px;
+	text-align: left;
+	border-collapse: collapse;
+        clear: both;
+}
+
+div.title { color: #669; }
+p.title1 { float:left }
+p.title2 { float:right }
+
+/* initialize stlye to allow hide and show of divs */
+div.galleryDivObj.hidden {display:none;}
+div.galleryDivObj.displayed {display:block;}
+div.ObjectGallery {width:900px;}
+
+/*Specialization of styles to outline selected element in the table-sub element of a gallery widget*/
+.galleryListObj.Selected {
+	padding: 1px 5px; 
+	color: #669;
+	border-style: solid;
+    border-color: black;
+    border-width:1px;
+    background:#EEEEEE;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#EEE));
+    background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF); 
+}
+
+/* initialise hidesection and subjob as hidden */
+.hidesection.hidden {visibility:hidden; width:650px; position:absolute; left:-9000;}
+.hidesection.displayed {display: block;}
+.subjob {display: none; width:650px;}
+
+/* fancy buttons */
+span.button {
+	color:#000;
+	text-decoration:none;
+        margin:3px;
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	border:1px solid #DDD;
+	text-align:center;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+span.button:hover {
+	border-color:#3278BE;
+
+        background:#CCCCEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+}
+/* folder header */
+span.folder {
+        display:block;
+	color:#E0000;
+	text-decoration:none;
+        margin:3px;
+        max-width:1000px;
+        height:1.6em;
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	border:2px solid #DDD;
+	text-align:left;
+    font-size:125%;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#CED4D4;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+span.folder_link {
+        display:block;
+	color:#E0000;
+	text-decoration:none;
+        margin:1px;
+        /*width:600px;*/
+        height:1.6em;
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	border:2px solid #DDD;
+	text-align:left;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#CED4D4;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+
+span.folder_link a {
+    color: #000000;
+    text-decoration:none;
+}
+
+span.button:hover {
+	border-color:#3278BE;
+
+        background:#87C8D8;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+}
+
+/* fancy tables */
+table.center {  margin-left:auto;margin-right:auto; font-size: smaller;}
+th {
+	font-weight: normal;
+	padding: 2px 5px;
+        background:#8CD;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#8
+CD), to(#CEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #8CD, #CEE); 
+	border-top: 2px solid #8CD;
+	border-bottom: 1px solid #fff;
+	color: #000;
+}
+tbody.fancy tr td {
+	padding: 1px 5px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF); 
+}
+tfoot.fancy tr td {
+	background: #e8edff;
+	font-size: 12px;
+	color: #99c;
+}
+tbody.fancy tr:hover td {
+        background:#&CD;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#8CD));
+        background:-moz-linear-gradient(0% 90% 90deg, #8CD, #FFF);
+	color: #339;
+}
+
+tbody.layout  {
+      padding: 0px;
+      border : 1px solid;
+      border-spacing: 1px;
+      border-collapse: collapse;
+     }
+
+tbody.layout tr {
+      padding: 1px;
+      border : 1px solid;
+      line-height: 30px;
+     }
+
+tbody.layout tr td.thin {
+      border : 1px solid;
+      padding: 0px;
+      background:#EEEEEE;
+      line-height: 30px;
+    }
+
+h1.error_report {
+    color:#EE0000;
+}
+
+h5.section {
+    font-size:x-large;
+    clear: both;
+}
+
+span.help {
+    display:block;
+    vertical-align:bottom;
+}
+
+div.datalist {
+   margin: 3px 3px;
+
+}
+
+object.qt_object  {
+   margin: 0px 0px;
+   padding: 0px;
+}
+object.qt_launch  {
+   margin: 0px 0px;
+   border-width: 0px;
+   padding: 0px;
+   height:30px;
+   width:150px;
+}
+object.qt_launch_task  {
+   margin: 1px 1px;
+   height:30px;
+   width:150px;
+}
+
+object.loggraph  {
+   align: center;
+   margin-left:auto;
+   margin-right:auto;
+   margin-top: 1px;
+   margin-bottom: 1px;
+   border-width: 1px;
+   border-style: solid;
+   width: 400px;
+   height: 300px;
+}
+
+div.container {
+   display: table;
+   width: 400px;
+    }
+div.row {
+   display: table-row;
+   width: 400px;
+    }
+div.thinrow {
+   display: table-row;
+   height: 5px;
+   margin: 0px;
+   padding: 0px;
+   width: 400px;
+
+    }
+div.cell {
+   display: table-cell;
+   width: 200px;
+    }
+
+
+img.mg {
+   margin: 0px 0px;
+   border-width: 1px;
+   border-style: solid;
+   height: 300px;
+   width: 300px;
+  }
+
+table.picture {
+  background:#EEE;
+  padding: 0px 0px;
+}
+table.picture tr {
+  margin: 2px;
+  padding: 0px 0px;
+}
+
+table.picture tr td {
+  width: 150px;
+  height: 1px;
+  padding: 0px 0px;
+  border: 0px;
+  margin: 0px;
+}
+
+p.annotation {
+  font-style:italic;
+}
+
+div.subjob {
+  background:#EEE;
+  }
+
+/* bibliographic references */
+div.bibreference {
+
+}
+div.bibreference p.authors {
+  font-weight:bold;
+}
+div.bibreference p.articletitle {
+  font-style:italic;
+}
+div.bibreference p.source {
+}
+
+object.qticon {
+  width: 26px;
+  height: 26px;
+}
+
+pre {font-family: 'Courier New', monospace;line-height:1;}
+
+td.cell, td.hcell, td.highlight-cell {
+    display:table-cell;
+    padding: 1px;
+    border : 1px solid white;
+}
+
+td.highlight-cell {
+	padding: 1px 5px; 
+	border-bottom: 1px solid #fff;
+	color: #222;
+	border-top: 1px solid #fff;
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FCC), to(#F33));
+        background:-moz-linear-gradient(0% 90% 90deg, #F33, #FCC); 
+}
+
+td.cell {
+	padding: 1px 5px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF); 
+}
+
+div.row:hover div {
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#8CD));
+        background:-moz-linear-gradient(0% 90% 90deg, #8CD, #FFF);
+	color: #339;
+}
+
+div.downloadable:hover {
+    border-color:#3278BE;    
+    background:#CCCCEE;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCE));
+    background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+}
+
+.menu{
+  display: none;
+  position: absolute;
+  z-index: 10;
+  transition: all 0.2s ease;	
+  margin-top: 1em;
+  margin-left: 0em;
+  background-color: #fff;
+  width: 10em;
+  overflow: hidden;
+  
+}
+
+/* Style the navbar */
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  z-index: 2000;
+}
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  z-index: 2001;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 96%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+.alignleft { 
+    float: left;
+    clear:both;
+    display: inline-block;
+    padding: 0px 0px; 0px; 0px; 
+}
+.alignleft:hover{
+    cursor: pointer;
+} 
+.clear { clear:both; height 0px; display: inline-block;}
+.alignright { float: left;border: 1px solid black; margin: auto 5px; display: inline-block; width:92%; overflow: hidden; white-space: nowrap;}
+
+.dataline {border: 1px solid black; width: 80%; display: block; height: 26px; padding: 5px 5px; 5px; 5px;}
+
+.menu li{
+    list-style: none;
+    margin:4px;
+}
+
+.menu li a{
+    color: black;
+    display: block;
+    background-color: #ffffff;
+}
+
+.menu li a:hover{
+    cursor: pointer;
+    background-color: #bbbbbb;
+}
+
+.show{
+     display: block;
+}
+
+.menu--active {
+  display: block;
+}
+
+.webgllaunchbutton {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Green */
+    transition-duration: 0.1s;
+}
+
+.webgllaunchbutton:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.webgllaunchbutton:hover {
+  background-color: #4C7F50; /* Green */
+  color: white;
+  cursor: pointer;
+}
+
+.webgllaunchbutton:active {
+  background-color: #1CAF10; /* Green */
+  color: white;
+  cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 30px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 400px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+

@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#00020a">
+  <script src="../../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Integrate images with DIALS - using DUI &#8212; CCP4i2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/contentui.css" />
+    <link rel="stylesheet" type="text/css" href="https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/contentui.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Aimless data reduction pipeline" href="../aimless_pipe/index.html" />
+    <link rel="prev" title="DIALS Reciprocal Lattice Viewer" href="../dials/rlattice_viewer.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#005BBB data-md-color-accent=yellow>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" id="__gitlab"><path fill="currentColor" d="M93.667 473.347l90.684-279.097H2.983l90.684 279.097z" transform="translate(156.198 1.16)"/><path fill="currentColor" d="M221.333 473.345L130.649 194.25H3.557l217.776 279.095z" transform="translate(28.531 1.16)" opacity=".7"/><path fill="currentColor" d="M32 195.155L4.441 279.97a18.773 18.773 0 0 0 6.821 20.99l238.514 173.29L32 195.155z" transform="translate(.089 .256)" opacity=".5"/><path fill="currentColor" d="M2.667-84.844h127.092L75.14-252.942c-2.811-8.649-15.047-8.649-17.856 0L2.667-84.844z" transform="translate(29.422 280.256)"/><path fill="currentColor" d="M2.667 473.345L93.351 194.25h127.092L2.667 473.345z" transform="translate(247.198 1.16)" opacity=".7"/><path fill="currentColor" d="M221.334 195.155l27.559 84.815a18.772 18.772 0 0 1-6.821 20.99L3.557 474.25l217.777-279.095z" transform="translate(246.307 .256)" opacity=".5"/><path fill="currentColor" d="M130.667-84.844H3.575l54.618-168.098c2.811-8.649 15.047-8.649 17.856 0l54.618 168.098z" transform="translate(336.974 280.256)"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#tasks/dui/index" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../index.html" title="CCP4i2  documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CCP4i2  documentation</span>
+          <span class="md-header-nav__topic"> Integrate images with DIALS - using DUI </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../"versions.json"",
+        target_loc = "../../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">CCP4i2  documentation</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">CCP4i2 Task Documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../index.html" title="CCP4i2 documentation" class="md-nav__button md-logo">
+      
+        <img src="../../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../../index.html"
+       title="CCP4i2 documentation">CCP4i2  documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#tasks-dui-index--page-root" class="md-nav__link">Integrate images with DIALS - using DUI</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#input" class="md-nav__link">Input</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#import" class="md-nav__link">Import</a>
+        </li>
+        <li class="md-nav__item"><a href="#find" class="md-nav__link">Find</a>
+        </li>
+        <li class="md-nav__item"><a href="#index" class="md-nav__link">Index</a>
+        </li>
+        <li class="md-nav__item"><a href="#lattice" class="md-nav__link">Lattice</a>
+        </li>
+        <li class="md-nav__item"><a href="#refine" class="md-nav__link">Refine</a>
+        </li>
+        <li class="md-nav__item"><a href="#integration" class="md-nav__link">Integration</a>
+        </li>
+        <li class="md-nav__item"><a href="#symmetry" class="md-nav__link">Symmetry</a>
+        </li>
+        <li class="md-nav__item"><a href="#scale" class="md-nav__link">Scale</a>
+        </li>
+        <li class="md-nav__item"><a href="#export" class="md-nav__link">Export</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../../_sources/tasks/dui/index.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="integrate-images-with-dials-using-dui">
+<h1 id="tasks-dui-index--page-root">Integrate images with DIALS - using DUI<a class="headerlink" href="#tasks-dui-index--page-root" title="Permalink to this heading">¶</a></h1>
+<p>The DIALS User Interface (DUI) provides a robust graphical interface to run and control DIALS. DIALS is a modern x-ray data analysis package (that can also be used from a command line) which is used for processing diffraction images. DIALS fully supports most image data formats, and will integrate and index reflections.</p>
+<p>You can click <a class="reference external" href="https://dials.github.io/documentation/tutorials/processing_in_detail_betalactamase_dui.html">here</a> to learn more about processing with DUI.</p>
+<section id="input">
+<h2 id="input">Input<a class="headerlink" href="#input" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><p><img alt="image1" src="../../_images/dui_task_1.png"/></p>
+</div></blockquote>
+<p>No input information is required in the task interface to run DUI, although there is an option available to continue from a previous task. The x-ray image input is controlled through the DUI interface itself; if you would like to continue on from a previous DUI task in the project you can set this in the drop down menu by selecting one of the items listed as,``continue from previous dials session``.</p>
+<p>On termination, the output reflection data objects will be automatically added to the project database and listed as output.</p>
+<p>Interactive Image Processing with DUI includes next steps:</p>
+<section id="import">
+<h3 id="import">Import<a class="headerlink" href="#import" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>import image data files into a format that can be used within DIALS.</strong></p>
+</div></blockquote>
+<p>If all the images in the dataset are consistent, then the dataset is imported and initial models for the “Beam”, “Scan” and “Detector” are created. The images are now also displayed within the <strong>“Image”</strong> tab.</p>
+</section>
+<section id="find">
+<h3 id="find">Find<a class="headerlink" href="#find" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>locate spots on some or all of the data</strong></p>
+</div></blockquote>
+<p>The first “real” task in any processing using DIALS is the spot finding. This program tries to find strong spots on a sequence of images. Spot finding will be done against each logically grouped set of images given. Strong pixels will be found on each image and spots will be formed from connected components.</p>
+<p>Spot-finding, like most of the other processing steps in DUI, presents user parameters at two levels of detail. The <strong>“Simple”</strong> tab contains the basic parameters that are the most commonly changed. The <strong>“Advanced”</strong> tab contains all of those again, plus other parameters that may be required for expert use with challenging data sets. Once the job is finished, the image viewer will display small blue boxes around the pixels that have been marked as strong.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">It</span> <span class="pre">is</span> <span class="pre">also</span> <span class="pre">useful</span> <span class="pre">to</span> <span class="pre">click</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">“Report</span> <span class="pre">View”</span> <span class="pre">tab</span> <span class="pre">and</span> <span class="pre">scroll</span> <span class="pre">down</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">“Analysis</span> <span class="pre">of</span> <span class="pre">strong</span> <span class="pre">reflections”.</span> <span class="pre">This</span> <span class="pre">shows</span> <span class="pre">a</span> <span class="pre">graph</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">strong</span> <span class="pre">spots</span> <span class="pre">found</span> <span class="pre">per</span> <span class="pre">image.</span></code></p>
+</div></blockquote>
+<p><em>If you see the number of strong spots drop off over the dataset, or otherwise show large variability, we may start to worry about issues such as radiation damage or a poorly-centered crystal.</em></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">If</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">case</span> <span class="pre">where</span> <span class="pre">spot-finding</span> <span class="pre">has</span> <span class="pre">gone</span> <span class="pre">badly,</span> <span class="pre">it</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">helpful</span> <span class="pre">to</span> <span class="pre">debug</span> <span class="pre">using</span> <span class="pre">the</span> <span class="pre">"image</span> <span class="pre">viewer"</span> <span class="pre">and</span> <span class="pre">"reciprocal</span> <span class="pre">lattice</span> <span class="pre">viewer",</span> <span class="pre">which</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">launched</span> <span class="pre">via</span> <span class="pre">buttons</span> <span class="pre">shown</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">“Tools”</span> <span class="pre">tab.</span></code></p>
+<blockquote>
+<div><div class="toggle-header docutils container">
+<p><strong>more about reciprocal lattice viewer</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<blockquote>
+<div><p>This viewer displays the strong spots in 3D, after mapping them from their detector positions to reciprocal space. In a favourable case you should be able to see the crystal’s reciprocal lattice by eye in the strong spot positions. Some practice may be needed in rotating the lattice to an orientation that shows off the periodicity in reciprocal lattice positions.</p>
+</div></blockquote>
+</div>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="index">
+<h3 id="index">Index<a class="headerlink" href="#index" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>determining a crystal model which explains the position of the found spots (may optionally involve choices about lattice or space group)</strong></p>
+</div></blockquote>
+<p>This program attempts to perform autoindexing on strong spots after spot finding. If one or more lattices are identified given the input list of strong spots, then the crystal orientation and experimental geometry are refined to minimize the differences between the observed and predicted spot centroids.</p>
+<p>The simple parameters allow only to select between different <strong>“Indexing Methods”</strong>, the default of which is the 3D FFT algorithm. The other options are the 1D FFT (DPS) algorithm and a special version of the 3D FFT called real space grid search, which is particularly useful for narrow wedges containing multiple lattices, but requires a known cell and space group to be set under the “Advanced” parameters.</p>
+<p><em>By default the program searches for a primitive lattice, and then proceeds with refinement in space group P1. If the unit cell and space group parameters are set, then the program will only accept solutions which are consistent with these parameters. Space group constraints will be enforced in refinement as appropriate.</em></p>
+<p><em>The RMSDs at the start of each cycle start off worse than at the end of the previous cycle, because the best fit model for lower resolution data is being applied to higher resolution reflections. As long as each macrocycle shows a reduction in RMSDs then refinement is doing its job of extending the applicability of the model out to a new resolution limit, until eventually the highest resolution strong spots have been included.</em></p>
+</section>
+<section id="lattice">
+<h3 id="lattice">Lattice<a class="headerlink" href="#lattice" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>finding a Bravais lattice</strong></p>
+</div></blockquote>
+<p>Full refinement of the crystal and experimental geometry parameters will be performed (by default) in all Bravais settings that are consistent with the input primitive unit cell. A table is printed containing various information for each potential Bravais setting, including the metric fit (a measure of the deviation from the triclinic cell), the root-mean-square-deviations (rmsd), in mm, between the observed and predicted spot centroids, the refined unit cell parameters in each Bravais setting, and the change of basis operator to transform from the triclinic cell to each Bravais setting.</p>
+<p><em>If Bravais lattice unknown before indexing, we can determine likely candidates - by taking the results of the P1 autoindexing, and running refinement with all of the possible Bravais settings applied. You can then choose your preferred solution. Run this without altering any of the defaults, as they are suitable for the majority of data sets.Once the job has run, a window will pop up containing scoring data and the unit cell for each Bravais setting.</em></p>
+</section>
+<section id="refine">
+<h3 id="refine">Refine<a class="headerlink" href="#refine" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>improving the model</strong></p>
+</div></blockquote>
+<p>The model is already refined during indexing, but we can also add explicit refinement steps here. This is beneficial because it will use all reflections in refinement rather than a subset, uses a more sophisticated outlier rejection algorithm and will later allow us to fit a scan-varying model of the crystal.</p>
+<p>In the <strong>“Report View”</strong> we can see plots of how the cell and orientation changes during the scan.</p>
+<blockquote>
+<div><div class="toggle-header docutils container">
+<p><strong>Other useful plots in the report are:</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<ul class="simple">
+<li><p>Difference between observed and calculated centroids vs phi, which shows how the average residuals in each of X, Y, and φ vary as a fuction of φ. If scan-varying refinement has been successful in capturing the real changes during the scan then we would expect these plots to be straight lines.</p></li>
+<li><p>Centroid residuals in X and Y, in which the X, Y residuals are shown directly. The key point here is to look for a globular shape centred at the origin.</p></li>
+<li><p>Difference between observed and calculated centroids in X and Y, which show the difference between predicted and observed reflection positions in either X or Y as functions of detector position. From these plots it is very easy to see whole tiles that are worse than their neighbours, and whether those tiles might be simply shifted or slightly rotated compared to the model detector.</p></li>
+</ul>
+</div>
+</div></blockquote>
+</section>
+<section id="integration">
+<h3 id="integration">Integration<a class="headerlink" href="#integration" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>recording how many counts in each spot, subtract background, usually fit reflection profiles.</strong></p>
+</div></blockquote>
+<p>This program is used to integrate the reflections on the diffraction images. The program will output a set of integrated reflections and an experiment list with additional profile model data.</p>
+<p><em>Mostly, the default parameters are fine for Pilatus data, which will perform XDS-like 3D profile fitting while using a generalized linear model in order to fit a Poisson-distributed background model.</em></p>
+<blockquote>
+<div><p><em>It possible to have adjusted the resolution limits using arameters d_min and d_max under prediction in the “Advanced” parameters tab.</em></p>
+</div></blockquote>
+<p>After these jobs are finished, the reflections are ‘post-processed’, which includes the application of the LP correction to the intensities. Then summary tables are printed giving quality statistics first by frame, and then by resolution bin.</p>
+<blockquote>
+<div><div class="toggle-header docutils container">
+<p>more about <strong>Report View</strong></p>
+</div>
+<div class="toggle-content docutils container">
+<blockquote>
+<div><p>The <strong>“Report View”</strong> now contains additional plots under the <strong>“Analysis of reflection intensities”</strong> and <strong>“Analysis of reference profiles”</strong> sections. It is worth checking through these, particularly paying attention to the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Reflection and reference correlations binned in X/Y. These are useful companions to the plots of centroid residual as a function of detector position above. Whereas the above plots show systematic errors in the positions and orientations of tiles of a multi-panel detector, these plots indicate what effect that (and any other position-specific systematic error) has on the integrated data quality. The first of these plots shows the correlation between reflections and their reference profiles for all reflections in the dataset. The second shows only the correlations between the strong reference reflections and their profiles (thus these are expected to be higher and do not extend to such high resolution).</p></li>
+<li><p>Distribution of I/Sigma vs Z. This reproduces the IσIIσI information versus frame number given in the log file in a graphical form. Here we see that IσIIσI is fairly flat over the whole dataset, which we might use as an indication that there were no bad frames, not much radiation damage occurred and that scale factors are likely to be fairly uniform.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<p><em>At this point we could export the integrated data set in MTZ format</em></p>
+</div></blockquote>
+</section>
+<section id="symmetry">
+<h3 id="symmetry">Symmetry<a class="headerlink" href="#symmetry" title="Permalink to this heading">¶</a></h3>
+<p>This program implements the methods of <strong>POINTLESS</strong> <a class="reference external" href="https://doi.org/10.1107/S0907444905036693">[Evans 2006]</a> and  <a class="reference external" href="https://doi.org/10.1107/S090744491003982X">[Evans_2011]</a>  for scoring and determination of Laue group symmetry.
+The program takes as input a set of one or more integrated experiments and reflections.</p>
+<p><strong>Stages of space group determination in POINTLESS</strong> :</p>
+<ol class="arabic simple">
+<li><p>from the cell dimensions, determine the maximum possible lattice symmetry, with some tolerance ( <em>ignoring any input symmetry</em> )</p></li>
+<li><p>for each possible rotation operator, score potentially related observations pairs for agreement ( <em>correlation coefficients and R-factor</em> )</p></li>
+<li><p>score all possible combinations of operators to determine the point group ( <em>point groups from the maximum down to P1</em> )</p></li>
+<li><p>score axial systematic absences to detect screw axes, hence space group ( <em>axial observations are sometimes unobserved</em> )</p></li>
+</ol>
+<p><strong>Symmetry determination with POINTLESS</strong> :</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>score individual symmetry operators in the maximum lattice group</dt><dd><p>comparing pairs of observations related by each possible rotational operator, using correlation coefficients and R-factors on normalized intensities | E | <sup>2</sup></p>
+</dd>
+</dl>
+</li>
+<li><p><strong>score possible point groups</strong></p></li>
+<li><p><strong>space group from axial systematic absences</strong></p></li>
+</ol>
+<p><a href="#id1"><span class="problematic" id="id2">`</span></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>space group is only a hypothesis until the structure has been determined and satisfactorily refined</p>
+</div>
+</section>
+<section id="scale">
+<h3 id="scale">Scale<a class="headerlink" href="#scale" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>correction for experimental effects i.e. beam intensity, illuminated volume, sample absorption etc.</strong></p>
+</div></blockquote>
+<p>This program performs scaling on integrated datasets, which attempts to improve the internal consistency of the reflection intensities by correcting for various experimental effects.
+By default, a physically motivated scaling model is used, with a scale, decay (B-factor) and absorption correction. If the input files contain multiple datasets, all data will be scaled against a common target of unique reflection intensities.</p>
+<p>A scaling.html file is also generated, containing interactive plots of merging statistics and scaling model plots.</p>
+</section>
+<section id="export">
+<h3 id="export">Export<a class="headerlink" href="#export" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>exporting the results of dials processing in various formats.</strong></p>
+</div></blockquote>
+<p>The output formats currently supported are:</p>
+<p><strong>MTZ</strong> format exports the files as an unmerged mtz file, ready for input to downstream programs such as Pointless and Aimless. For exporting integrated, but unscaled data, the required input is a models.expt file and an integrated.refl file. For exporting scaled data, the required input is a models.expt file and a scaled.pickle file, also passing the option intensity=scale.</p>
+<p><strong>NXS</strong> format exports the files as an NXmx file. The required input is a models.expt file and an integrated.refl file.</p>
+<p><strong>MMCIF</strong> format exports the files as an mmcif file. The required input is a models.expt file and an integrated.refl file.</p>
+<p><strong>XDS_ASCII</strong> format exports intensity data and the experiment metadata in the same format as used by the output of XDS in the CORRECT step - output can be scaled with XSCALE.</p>
+<p><strong>SADABS</strong> format exports intensity data (and geometry by direction cosines) as an ersatz-SADABS format reverse engineered from the file format used by EvalCCD for input to SADABS.</p>
+<p><strong>MOSFLM</strong> format exports the files as an index.mat mosflm-format matrix file and a mosflm.in file containing basic instructions for input to mosflm. The required input is an models.expt file.</p>
+<p><strong>XDS</strong> format exports a models.expt file as XDS.INP and XPARM.XDS files. If a reflection pickle is given it will be exported as a SPOT.XDS file.</p>
+<blockquote>
+<div><p>for more information please visit: <a class="reference external" href="https://dials.github.io/index.html">https://dials.github.io/index.html</a></p>
+</div></blockquote>
+<p>Further information on DIALS and DUI, is available from the DIALS web-site: <a class="reference external" href="https://dials.diamond.ac.uk/">DIALS Home Page</a></p>
+<p><strong>References</strong></p>
+<p><a class="reference external" href="https://doi.org/10.1107/S0907444905036693">Evans, P. (2006). Acta Cryst. D62, 72-82.</a></p>
+<p><a class="reference external" href="https://doi.org/10.1107/S090744491003982X">Evans, P. R. (2011) Acta Cryst. D67, 282-292.</a></p>
+<p><a class="reference external" href="https://doi.org/10.1107/S2059798317017235">Winter, G., Waterman, D. G., Parkhurst, J. M., Brewster, A. S., Gildea, R. J., Gerstel, M., Fuentes-Montero, L., Vollmar, M., Michels-Clark, T., Young, I. D., Sauter, N. K. &amp; Evans, G. (2018). Acta Cryst. D74, 85-97.</a></p>
+<p><strong>ACKNOWLEDGEMENTS</strong></p>
+<p>This article uses materials from  <a class="reference external" href="https://dials.github.io/documentation/tutorials/index.html">tutorials</a></p>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="../dials/rlattice_viewer.html" title="DIALS Reciprocal Lattice Viewer"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> DIALS Reciprocal Lattice Viewer </span>
+              </div>
+            </a>
+          
+          
+            <a href="../aimless_pipe/index.html" title="Aimless data reduction pipeline"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Aimless data reduction pipeline </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2020, CCP4.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.2.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

@@ -1,0 +1,620 @@
+<html>
+<a name="CDataFile"><h3>CDataFile:  A data file - expected  to have associated class for file contents</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CDataFileContent"><h3>CDataFileContent:  Base class for classes holding file contents</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFileContent">CCP4File.CDataFileContent</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CExePath"><h3>CExePath</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CExePath">CCP4File.CExePath</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>exePath</td><td><a href="./CCP4File.html#CDataFile">CDataFile</a></td></tr>
+<tr><td>exeName</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CExePathList"><h3>CExePathList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4File.html#CExePathList">CCP4File.CExePathList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4File.html#CExePath">CExePath</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>1</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CExportedFile"><h3>CExportedFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CExportedFile">CCP4File.CExportedFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>exportId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CExportedFileList"><h3>CExportedFileList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4File.html#CExportedFileList">CCP4File.CExportedFileList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4File.html#CExportedFile">CExportedFile</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CFileFunction"><h3>CFileFunction:  List of recognised XML file functions</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4File.html#CFileFunction">CCP4File.CFileFunction</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>['DEF', 'PARAMS', 'LOG', 'PROJECTDIRECTORIES', 'COM', 'REFMAC', 'OUTPUT', 'STATUS', 'PROJECTDATABASE', 'MGSCENE', 'JOBSERVERSTATUS', 'WORKFLOW', 'COMFILEPATCH', 'CUSTOMTASK', 'IMPORTEDJOB', 'I1SUPPLEMENT', 'UNKNOWN']</b></td><td></td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CFilePath"><h3>CFilePath:  A file path</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4File.html#CFilePath">CCP4File.CFilePath</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if allow undefined value at run time</td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>None</b></td><td>Default file path</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+<tr><td>allowedCharacters</td><td><i>str</i></td><td><b></b></td><td>Set of characters allowed in file name</td></tr>
+<tr><td>allowedCharactersMode</td><td><i>int</i></td><td><b>1</b></td><td>Handling of violation of allowed characters</td></tr>
+</table>
+<a name="CI2XmlDataFile"><h3>CI2XmlDataFile:  A reference to an XML file with CCP4i2 Header</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CXmlDataFile">CCP4File.CXmlDataFile</a> -> <a href="./CCP4File.html#CI2XmlDataFile">CCP4File.CI2XmlDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>header</td><td><a href="./CCP4File.html#CI2XmlHeader">CI2XmlHeader</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['xml']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+<tr><td>autoLoadHeader</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+</table>
+<a name="CI2XmlHeader"><h3>CI2XmlHeader:  Container for header info from XML file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CI2XmlHeader">CCP4File.CI2XmlHeader</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>function</td><td><a href="./CCP4File.html#CFileFunction">CFileFunction</a></td></tr>
+<tr><td>comment</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>projectName</td><td><a href="./CCP4File.html#CProjectName">CProjectName</a></td></tr>
+<tr><td>hostName</td><td><a href="./CCP4Annotation.html#CHostName">CHostName</a></td></tr>
+<tr><td>userId</td><td><a href="./CCP4Annotation.html#CUserId">CUserId</a></td></tr>
+<tr><td>ccp4iVersion</td><td><a href="./CCP4File.html#CVersion">CVersion</a></td></tr>
+<tr><td>jobId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>pluginVersion</td><td><a href="./CCP4File.html#CVersion">CVersion</a></td></tr>
+<tr><td>jobNumber</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>projectId</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>creationTime</td><td><a href="./CCP4Annotation.html#CTime">CTime</a></td></tr>
+<tr><td>pluginName</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>pluginTitle</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>OS</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CMmcifData"><h3>CMmcifData:  Generic mmCIF data.
+     This is intended to be a base class for other classes
+     specific to coordinates, reflections or geometry data.</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFileContent">CCP4File.CDataFileContent</a> -> <a href="./CCP4File.html#CMmcifData">CCP4File.CMmcifData</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CMmcifDataFile"><h3>CMmcifDataFile:  A generic mmCIF format file.
+     This is intended to be a base class for other classes
+     specific to coordinates, reflections or geometry data.</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CMmcifDataFile">CCP4File.CMmcifDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CPostscriptDataFile"><h3>CPostscriptDataFile:  An postscript format file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CPostscriptDataFile">CCP4File.CPostscriptDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['ps']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/postscript</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CProjectId"><h3>CProjectId:  The CCP4i2 database project id - a global unique id</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4Data.html#CUUID">CCP4Data.CUUID</a> -> <a href="./CCP4File.html#CProjectId">CCP4File.CProjectId</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if allow undefined value at run time</td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>None</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+<tr><td>allowUnfound</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if allow unfound project at run time</td></tr>
+</table>
+<a name="CProjectName"><h3>CProjectName:  The name of a CCP4i project or directory alias</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4File.html#CProjectName">CCP4File.CProjectName</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if allow undefined value at run time</td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>None</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+<tr><td>allowAlias</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if allow project to be directory alias at run time</td></tr>
+<tr><td>allowUnfound</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if allow unfound project at run time</td></tr>
+</table>
+<a name="CSceneDataFile"><h3>CSceneDataFile:  An xml format file for defining scene in CCP4mg.</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CSceneDataFile">CCP4File.CSceneDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>CCP4mg scene</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['scene.xml']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-scene</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>CCP4mg scene file</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>scene</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>NotImplemented</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CSearchPath"><h3>CSearchPath</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CSearchPath">CCP4File.CSearchPath</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>path</td><td><a href="./CCP4File.html#CDataFile">CDataFile</a></td></tr>
+<tr><td>name</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CSearchPathList"><h3>CSearchPathList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4File.html#CSearchPathList">CCP4File.CSearchPathList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4File.html#CSearchPath">CSearchPath</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CTextDataFile"><h3>CTextDataFile:  A text data file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CTextDataFile">CCP4File.CTextDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['txt', 'log']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>"text/plain"</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>Standard plain text</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CVersion"><h3>CVersion:  A (string) version number of the form n.m.i</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4File.html#CVersion">CCP4File.CVersion</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if allow an unset value at run time</td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>None</b></td><td>A default value</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>10</b></td><td>Number of characters allowed for widget in GUI</td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CXmgrDataFile"><h3>CXmgrDataFile:  An xmgr format file.
+     This is the input format for xmgrace, as output by scala 
+     or aimless</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CXmgrDataFile">CCP4File.CXmgrDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['xmgr']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CXmlDataFile"><h3>CXmlDataFile:  A reference to an XML file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CXmlDataFile">CCP4File.CXmlDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['xml']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+</html>

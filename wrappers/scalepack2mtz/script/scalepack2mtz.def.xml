@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>mdw</userId>
+    <creationTime>19:15 30/Aug/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>scalepack2mtz</pluginName>
+    <pluginTitle></pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="scalepack2mtz">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CGenericReflDataFile</className>
+        <qualifiers>
+	  <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+      <content id="SPACEGROUPCELL">
+        <className>CSpaceGroupCell</className>
+      </content>
+      <content id="WAVELENGTH">
+        <className>CWavelength</className>
+      </content>
+      <content id="HKLIN_OBS_CONTENT_FLAG">
+        <className>CInt</className>
+      </content>
+      <content id="HKLIN_OBS_COLUMNS">
+        <className>CString</className>
+      </content>
+       <content id="HKLIN_FREER_COLUMN">
+        <className>CString</className>
+       </content>
+       <content id="CRYSTALNAME">
+        <className>CString</className>
+       </content>
+       <content id="DATASETNAME">
+        <className>CString</className>
+       </content>
+       <content id="RESOLUTION_RANGE">
+        <className>CFloatRange</className>
+        <qualifiers>
+          <toolTip>Set resolution range (or just high resolution) to cut data for all steps (eg. 30.0 - 2.5, or enter just one of these values on the correct side)</toolTip>
+        </qualifiers>
+       </content>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="OBSOUT">
+        <className>CObsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FREEOUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers/>
+   </content>
+    </container>
+    <container id="controlParameters">
+      <content id="ANOMALOUS">
+        <className>CBoolean</className>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

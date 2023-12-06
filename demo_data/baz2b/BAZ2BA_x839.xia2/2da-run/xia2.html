@@ -1,0 +1,209 @@
+<html>
+<head>
+<title>xia2 Processing Report: </title>
+<!-- Inline content from /dls_sw/apps/xia2/4497/xia2/Modules/Xia2html/xia2.css -->
+<style type="text/css"><!-- /* Hide the stylesheet from older browsers *"
+/* xia2.css
+   Stylesheet for xia2.html
+   CVS_id $Id: xia2.css 2944 2010-01-07 17:15:21Z pjx $
+   */
+body { font-family: Arial, sans-serif;
+       font-size: 17px;
+       color: black;
+       background-color: white; }
+h1 { font-family: Georgia, serif;
+     background-color: gray;
+     color: white;
+     padding: 5 10 5 10; }
+h2 { font-family: Georgia, serif;
+     background-color: lightgray;
+     padding: 1 10 1 10;  }
+h3 { font-family: Georgia, serif;
+     background-color: lightblue;
+     padding: 1 15 1 15; }
+h4 { background-color: #ffd799;
+     display: inline;
+     padding: 1 10 1 10; }
+h5 { background-color: lightgray;
+     display: inline;
+     padding: 1 10 1 10; }
+
+p,table { margin-left: 10px;
+          margin-right: 10px; }
+
+/* Specific styling for section 2 elements
+   They are surrounded by a solid border with the
+   heading positioned across it */
+div.section_2 { border: solid 3px gray;
+                margin-top: 35px;
+		margin-bottom: 25px;
+                padding-top: 15px;
+		position: relative; }
+div.section_2 h2 { color: white;
+                   background-color: gray;
+		   display: inline;
+                   position: absolute; 
+		   top: -40; left: 5; }
+
+div.anonymous { border: none;
+                margin: 0 0 0 0;
+                padding: 0 0 0 0;}
+
+/* Default styling for images */
+img { vertical-align: bottom; }
+
+/* Warnings */
+.warning { background-color: red;
+           color: white;
+           font-size: 75%;
+	   font-weight: bold;
+           padding: 10px;
+           width: 90%;
+           margin-left: auto;
+           margin-right: auto;
+           margin-top: 10px;
+           margin-bottom: 10px; }
+.warning a { color: white; }
+
+/* Information */
+.info { font-style: italic;
+        font-size: 90%; }
+.info img { vertical-align: bottom; }
+
+/* Preamble-style text */
+.preamble { font-size: 90% }
+
+/* Default styling for all tables */
+table { margin: 10px; }
+table,td,th { border-style: none;
+              border-spacing: 0;
+              padding: 2px;
+              font-size: 90%;
+              empty-cells: show; }
+td,th { border-style: solid;
+        border-width: 2px;
+        border-color: darkgray;
+        padding-left: 8px;
+        padding-right: 8px; }
+th { background-color: gray;
+     color: white;
+     font-weight: bold;
+     border-top-style: none;
+     border-bottom-style: none; }
+
+/* Styling the "key" table */
+table.key { border-style: none;
+            font-size: 80%; }
+table.key th { background-color: gray;
+               font-weight: bold;
+               font-size: 85%;
+               color: white; }
+
+/* Styling the "xia2_info" table */
+table.xia2_info { border-style: none; }
+table.xia2_info td { border-style: none; }
+table.xia2_info tr > td:first-child { border-style: solid;
+        border-width: 2px;
+	border-color: white;
+	background-color: gray;
+	font-weight: bold;
+	color: white; }
+
+/* Styling the "table_one" summary table */
+table.table_one { border-style: none;
+                  empty-cells: show;
+                  border-top-style: solid;
+                  border-bottom-style: solid;
+		  border-collapse: collapse;
+                  background-color: #fffddc; }
+table.table_one th { border-style: none;
+                     border-top-style: solid;
+                     border-bottom-style: solid;
+                     background-color: #ffffcd;
+                     padding: 10px;
+                     text-align: left;
+                     color: black; }
+table.table_one td { border-style: none; }
+table.table_one td:first-child { font-weight: bold; }
+table.table_one tr.unit_cell > td:first-child { text-align: right;
+                                                font-weight: bold; }
+
+/* Styling the table of reflection files */
+table.refln_files { border-style: none;
+                  width: 85%;
+                  margin-left: auto;
+                  margin-right: auto;
+                  empty-cells: show; }
+table.refln_files * { border-style: none;}
+table.refln_files td { vertical-align: top;
+                     border-bottom: 2px solid gray; }
+table.refln_files tr.refln_format > td:first-child { background-color: #377cb1;
+                                                     color: white;
+                                                     font-weight: bold;
+                                                     font-size: 100%;
+                                                     border-top: 10px solid white; }
+table.refln_files tr.refln_format > td { border-bottom: 2px solid #377cb1; }
+table.refln_files tr.refln_header td { background-color: lightblue;
+                                       color: black;
+                                       font-style: italic;
+                                       border-style: none;
+                                       border-top: 2px solid white;
+                                       border-bottom: 2px solid white; }
+table.refln_files tr.useful_for td { font-weight: bold; }
+
+/* Styling the table of log files */
+table.log_files { border-style: none;
+                  width: 85%;
+                  margin-left: auto;
+                  margin-right: auto;
+                  empty-cells: show; }
+table.log_files * { border-style: none;}
+table.log_files td { vertical-align: bottom;
+                     border-bottom: 2px solid gray; }
+table.log_files tr.proc_stage > td:first-child { background-color: #377cb1;
+                                                 color: white;
+                                                 font-weight: bold;
+                                                 font-size: 100%;
+                                                 border-top: 10px solid white; }
+table.log_files tr.proc_stage > td { border-bottom: 2px solid #377cb1; }
+table.log_files tr.proc_description td { background-color: lightblue;
+                                         color: black;
+                                         font-style: italic;
+                                         border-style: none;
+                                         border-top: 2px solid white;
+                                         border-bottom: 2px solid white; }
+
+/* Sequence information */
+.sequence { font-family: monospace; }
+
+/* Footer */
+p.footer { background-color: #fffddc;
+           font-size: 75%;
+           padding: 10px; }
+-->
+</style></head>
+<body><div id='sect_1-xia2-processing-report_-' class='section_1'><h1>xia2 Processing Report: </h1>
+<div class='warning'><img src='xia2_html/warning.png' /> Xia2html failed to process the output from this run in directory<br /><a href='.'>/dls/i04-1/data/2014/nt5073-16/processed/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2/2da-run</a></div><p>xia2 terminated with the message:</p>
+<ul>
+<li>error "error in indexing"</li>
+</ul>
+<p>A tar file with diagnostic information has been created:</p>
+<ul>
+<li><a href='/dls/i04-1/data/2014/nt5073-16/processed/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2/2da-run/xia2_html/xia2-fail.tar'>/dls/i04-1/data/2014/nt5073-16/processed/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2/2da-run/xia2_html/xia2-fail.tar</a></li>
+</ul>
+<p>Please report the error and send this tar file to <a href='mailto:graeme.winter@diamond.ac.uk'>graeme.winter@diamond.ac.uk</a></p>
+<div id='sect_2-xia2-details' class='section_2'><h2>xia2 Details</h2>
+<p class="preamble">Details about this run:</p>
+<div class='xia2_info'><table class='xia2_info' >
+<tr><td>Version</td><td>0.3.6.3</td></tr>
+<tr><td>Run time</td><td>unavailable</td></tr>
+<tr><td>Command line</td><td>xia2 -min_images 3 -2da -xparallel -1 -atom s -blend -project nt5073v16 -crystal xBAZ2BAx8392 -ispyb_xml_out ispyb.xml -image /dls/i04-1/data/2014/nt5073-16/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_0001.cbf</td></tr>
+<tr><td>Termination status</td><td>error "error in indexing"</td></tr>
+<tr><td>xia2.txt file</td><td><a href='xia2.txt'>/dls/i04-1/data/2014/nt5073-16/processed/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2/2da-run/xia2.txt</a></td></tr>
+</table>
+</div>
+</div>
+<p class="footer">This file was generated for you from xia2 output by Xia2html 0.0.5 on Thu May 15 11:03:55 2014<br />Powered by Magpie 0.0.1 and Canary 0.0.3<br />&copy; Diamond 2009</p>
+</div>
+</body>
+</html>

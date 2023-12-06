@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>acedrg</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>acedrg</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="acedrg">
+        <container id="inputData">
+            <content id='MOLORSMILES'>
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>MOL,SMILES</enumerators>
+                    <default>MOL</default>
+                    <guiLabel>Input mol file or SMILES string</guiLabel>
+                </qualifiers>
+            </content>
+            <content id='TLC'>
+                <className>CString</className>
+                <qualifiers>
+                    <minLength>3</minLength>
+                    <maxLength>3</maxLength>
+                    <default>DRG</default>
+                    <guiLabel>Three letter code for new molecule</guiLabel>
+                </qualifiers>
+            </content>
+            <content id='MOLIN'>
+                <className>CMDLMolDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id='NRANDOM'>
+                <className>CInt</className>
+                <qualifiers>
+                    <default>500</default>
+                    </qualifiers>
+                </content>
+            <content id='SMILESIN'>
+                <className>CString</className>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="DICTOUT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="DICTOUT_RDKIT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="XYZOUT_RDKIT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="MOLOUT">
+                <className>CMDLMolDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

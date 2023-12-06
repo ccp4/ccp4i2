@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [ -z $CCP4 ]; then
+  CCP4="/Applications/ccp4"
+  export CCP4
+fi
+
+echo "CCP4" ${CCP4}
+. ${CCP4}/bin/ccp4.setup-sh
+
+CCP4I2=$(cd $(dirname $0)/.. ; pwd)
+CCP4I2_TOP=$CCP4I2
+PYTHONSTARTUP=$CCP4I2/bin/ccp4i2.pythonrc
+export CCP4I2 CCP4I2_TOP PYTHONSTARTUP
+. $CCP4/bin/ccp4.setup-sh
+
+#exec $CCP4/bin/ccp4-python $CCP4I2/bin/browser.py $@
+
+# LIBTBX_BUILD is used in cctbx to find libtbx_env file (pickle)
+export LIBTBX_BUILD=$CCP4/lib/py2/cctbx
+
+# Old PYTHONPATH is ignored -- it may be set for different Python version.
+# Special case when Windows Python is called from MSYS/MinGW shell is handled
+# near to "python.exe" below (";" must be used as a separator in that case).
+export PYTHONPATH="$CCP4/lib/python2.7/site-packages:$CCP4/lib/py2:$CCP4/lib/py2/site-packages:$LIBTBX_BUILD/../site-packages/phaser:$LIBTBX_BUILD/../site-packages/tntbx:$LIBTBX_BUILD/../site-packages:$LIBTBX_BUILD/../site-packages/cctbx_project:$LIBTBX_BUILD/../site-packages/cctbx_project/boost_adaptbx:$LIBTBX_BUILD/../site-packages/cctbx_project/libtbx/pythonpath:$LIBTBX_BUILD/lib:$CCP4/share/python:$CCP4I2"
+#echo $PYTHONPATH
+
+# MSYS translates most of paths automatically, but it needs help here
+if [ "$(uname)" = MINGW32_NT-6.1 ]; then
+  CCP4="$(cd "$CCP4" && pwd -W)"
+  export PYTHONPATH="$CCP4/lib/python2.7/site-packages;$CCP4/lib/py2;$CCP4/lib/py2/site-packages;$LIBTBX_BUILD/../site-packages/phaser;$LIBTBX_BUILD/../site-packages/tntbx;$LIBTBX_BUILD/../site-packages;$LIBTBX_BUILD/../site-packages/cctbx_project;$LIBTBX_BUILD/../site-packages/cctbx_project/boost_adaptbx;$LIBTBX_BUILD/../site-packages/cctbx_project/libtbx/pythonpath;$LIBTBX_BUILD/lib;$CCP4/share/python"
+fi
+#${CCP4}/libexec/ccp4i2 ${CCP4I2}/bin/browser.py $@
+
+LC_ALL=C
+export LC_ALL
+
+browser=${CCP4I2}/core/CCP4I2Runner.py
+launcher=${CCP4}/libexec/ccp4i2
+test -x ${launcher} || launcher=${CCP4}/bin/ccp4-python
+exec ${launcher} ${browser} $@
+
+exit   ############################# Old stuff below

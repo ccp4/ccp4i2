@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>phaser_pipeline</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="phaser_pipeline">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>pipelines/phaser_pipeline/wrappers/phaser_MR_AUTO/script</relPath>
+                <baseName>phaser_MR_AUTO.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        <container id="inputData">
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="RUNSHEETBEND">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <guiLabel>Tick if Sheetbend should be run before REFMAC</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="RUNREFMAC">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <guiLabel>Tick if simple REFMAC should be run after phaser</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="RUNCOOT">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>Tick if COOT should fill-and-fit partial residues</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_TARGET">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <ifAtomSelection>False</ifAtomSelection>
+                    <guiLabel>Reference structure</guiLabel>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="F_SIGF_OUT">
+                <className>CObsDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="FREERFLAG_OUT">
+                <className>CFreeRDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="XYZOUT_COOT">
+                <className>CPdbDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="XYZOUT_CSYMMATCH">
+                <className>CPdbDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="XYZOUT_SHEETBEND">
+                <className>CPdbDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="XYZOUT_REFMAC">
+                <className>CPdbDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="DIFMAPOUT_REFMAC">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>2</subType>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="MAPOUT_REFMAC">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>1</subType>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="PERFORMANCEINDICATOR">
+                <className>CRefinementPerformance</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>
+
+    

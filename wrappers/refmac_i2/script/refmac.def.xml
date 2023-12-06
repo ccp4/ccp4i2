@@ -1,0 +1,847 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>refmac</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:42 23/Dec/12</creationTime>
+        <pluginTitle>Model refinement with refmac.</pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="refmac">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>1,0</requiredSubType>
+                    <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <toolTip>Free R set corresponding to the reflection data.
+See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="ABCD">
+                <className>CPhsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="TLSIN">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>File specifying TLS groups. If not provided, auto TLS refinement can still be performed (see the "Options" tab).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="EXTERNALRESTRAINTS">
+                <className>CRefmacRestraintsDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <toolTip>Set of REFMAC commands that encapsulate extrnal restraints as identified by e.g. prosmart</toolTip>
+                </qualifiers>
+            </content>
+            <content id="EXTERNAL_RESTRAINTS_FILE">
+               <className>CRefmacRestraintsDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <mustExist>True</mustExist>
+                  <allowUndefined>True</allowUndefined>
+                  <fromPreviousJob>True</fromPreviousJob>
+                  <guiLabel>External restraints</guiLabel>
+                  <toolTip>File specifying additional REFMAC5 external restraints (e.g. from ProSMART or LibG)</toolTip>
+               </qualifiers>
+            </content>
+            <content id="PROSMART_PROTEIN_RESTRAINTS">
+               <className>CRefmacRestraintsDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <mustExist>True</mustExist>
+                  <allowUndefined>True</allowUndefined>
+                  <fromPreviousJob>True</fromPreviousJob>
+                  <guiLabel>ProSMART restraints for protein chains</guiLabel>
+               </qualifiers>
+            </content>
+            <content id="PROSMART_NUCLEICACID_RESTRAINTS">
+               <className>CRefmacRestraintsDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <mustExist>True</mustExist>
+                  <allowUndefined>True</allowUndefined>
+                  <fromPreviousJob>True</fromPreviousJob>
+                  <guiLabel>ProSMART restraints for nucleic acid chains</guiLabel>
+               </qualifiers>
+            </content>
+            <content id="PLATONYZER_RESTRAINTS">
+               <className>CRefmacRestraintsDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <mustExist>True</mustExist>
+                  <allowUndefined>True</allowUndefined>
+                  <fromPreviousJob>True</fromPreviousJob>
+                  <guiLabel>Platonyzer restraints for metal sites</guiLabel>
+               </qualifiers>
+            </content>
+            <content id="REFMAC_KEYWORD_FILE">
+               <className>CRefmacKeywordFile</className>
+               <qualifiers>
+                  <toolTip>Additional keywords in a text file.</toolTip>
+                  <guiLabel>Refmac keyword file</guiLabel>
+                  <saveToDb>True</saveToDb>
+                  <mustExist>True</mustExist>
+                  <allowUndefined>True</allowUndefined>
+                  <fromPreviousJob>True</fromPreviousJob>
+                  <guiLabel>Extra keywords file</guiLabel>
+               </qualifiers>
+            </content>
+            <content id="DICT_LIST">
+               <className>CList</className>
+               <qualifiers>
+                  <listMinLength>0</listMinLength>
+               </qualifiers>
+               <subItem>
+                  <className>CDictDataFile</className>
+                  <qualifiers>
+                     <default><contentFlag>1</contentFlag></default>
+                     <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                     <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                     <toolTip>Restraint dictionary (mmCIF file) representing ideal geometry, e.g. for a ligand(s).</toolTip>
+                     <label>Ligand geometry</label>
+                     <fileExtensions>cif</fileExtensions>
+                     <guiLabel>Restraint dictionary</guiLabel>
+                     <saveToDb>True</saveToDb>
+                     <mustExist>True</mustExist>
+                     <allowUndefined>True</allowUndefined>
+                     <fromPreviousJob>True</fromPreviousJob>
+                  </qualifiers>
+               </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="CIFFILE">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>2</contentFlag>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType><contentFlag>1</contentFlag></default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="DIFFPHIOUT">
+               <className>CMapCoeffsDataFile</className>
+               <qualifiers><default><subType>2</subType><contentFlag>1</contentFlag></default>
+                  <saveToDb>True</saveToDb>
+               </qualifiers>
+            </content>
+            <content id="ANOMFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default><subType>3</subType><contentFlag>1</contentFlag></default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="DIFANOMFPHIOUT">
+               <className>CMapCoeffsDataFile</className>
+               <qualifiers><default><subType>3</subType><contentFlag>1</contentFlag></default>
+                  <saveToDb>True</saveToDb>
+               </qualifiers>
+            </content>
+            <content id="ABCDOUT">
+                <className>CPhsDataFile</className>
+                <qualifiers>
+                <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="TLSOUT">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="LIBOUT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="DICT">
+               <className>CDictDataFile</className>
+               <qualifiers>
+                  <default><contentFlag>2</contentFlag></default>
+                  <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                  <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                  <toolTip>Restraint dictionary (mmCIF file) representing ideal geometry, e.g. for a ligand(s).</toolTip>
+                  <label>Ligand geometry</label>
+                  <fileExtensions>cif</fileExtensions>
+                  <guiLabel>Restraint dictionary</guiLabel>
+               </qualifiers>
+            </content>
+            <content id="COOTSCRIPTOUT">
+               <className>CCootHistoryDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+               </qualifiers>
+            </content>
+            <content id="PSOUT">
+                <className>CPostscriptDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="PERFORMANCEINDICATOR">
+                <className>CRefinementPerformance</className>
+            </content>
+        </container>
+        <container id="controlParameters">
+           <content id="REFINEMENT_MODE">
+              <className>CString</className>
+              <qualifiers>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <menuText>Restrained,Rigid body</menuText>
+                 <enumerators>RESTR,RIGID</enumerators>
+                 <!--<menuText>Restrained,Rigid Body,Unrestrained</menuText>
+                 <enumerators>RESTR,RIGID,UNRES</enumerators>-->
+                 <default>RESTR</default>
+                 <allowUndefined>False</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="NCYCRIGID">
+              <className>CInt</className>
+              <qualifiers>
+                 <default>10</default>
+                 <min>0</min>
+                 <toolTip>Number of REFMAC5 rigid body refinement cycles to perform.</toolTip>
+              </qualifiers>
+           </content>
+            <content id="RIGID_BODY_SELECTION">
+                <className>CAtomRefmacSelectionList</className>
+                <qualifiers/>
+            </content>
+            <content id="OCCUPANCY_REFINEMENT">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default> <!-- Will only be performed if OCCUPANCY_GROUPS is also True -->
+                  <toolTip>Specify for subunitary atomic occupancy parameters to be refined.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="OCCUPANCY_GROUPS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="OCCUPANCY_COMPLETE">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="OCCUPANCY_INCOMPLETE">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="OCCUPANCY_SELECTION">
+               <className>COccRefmacSelectionList</className>
+               <qualifiers/>
+            </content>
+            <content id="OCCUPANCY_COMPLETE_TABLE">
+               <className>COccRelationRefmacList</className>
+               <qualifiers/>
+            </content>
+            <content id="OCCUPANCY_INCOMPLETE_TABLE">
+               <className>COccRelationRefmacList</className>
+               <qualifiers/>
+            </content>
+            <content id="TITLE">
+                <className>CString</className>
+                <qualifiers/>
+            </content>
+            <content id="TOGGLE_INPUT">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="TOGGLE_PARAMETERS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="TOGGLE_RESTRAINTS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="TOGGLE_SCALING">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="TOGGLE_OUTPUT">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="NCYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>10</default>
+                    <min>0</min>
+                    <toolTip>Number of REFMAC5 refinement cycles to perform.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="TLSMODE">
+               <className>CString</className>
+               <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <menuText>none,automatic,explicit TLS group definitions</menuText>
+                  <enumerators>NONE,AUTO,FILE</enumerators>
+                  <default>NONE</default>
+                  <toolTip>Specify whether to use TLS parameters - adds 21 parameters per group, representing anisotropic displacement (concerted screw motion of rigid bodies).</toolTip>
+               </qualifiers>
+            </content>
+          <content id="AUTOTLS">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+              <toolTip>Automatically identify and use TLS groups during refinement. Adds 21 parameters per group, representing anisotropic displacement (concerted screw motion of rigid bodies).</toolTip>
+            </qualifiers>
+          </content>
+            <content id="NTLSCYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>5</default>
+                    <min>0</min>
+                    <toolTip>Number of cycles used to refine TLS parameters - these are refined separately, prior to the main refinement cycles.</toolTip>
+                </qualifiers>
+            </content>
+          <content id="NTLSCYCLES_AUTO">
+            <className>CInt</className>
+            <qualifiers>
+              <default>5</default>
+              <min>0</min>
+               <toolTip>Number of cycles used to refine TLS parameters - these are refined separately, prior to the main refinement cycles.</toolTip>
+            </qualifiers>
+          </content>
+          <content id="WEIGHT_OPT">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>AUTO,MANUAL</enumerators>
+              <menuText>automatic,manual</menuText>
+              <default>AUTO</default>
+                <toolTip>If automatic weighting is selected, Refmac will adjust the weight each refinement cycle in order to try and ensure reasonable geometry on average.</toolTip>
+            </qualifiers>
+          </content>
+            <content id="WEIGHT">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0.0</min>
+                    <toolTip>Constant weight controlling the relative contribution of data (reflections) and restraint (geometry) terms.</toolTip>
+                </qualifiers>
+            </content>
+          <content id="USE_TWIN">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+                <toolTip>Specify whether it is known that the crystal is twinned (if in doubt, leave unticked).</toolTip>
+            </qualifiers>
+          </content>
+          <!--<content id="TWIN_TYPE">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>I,F</enumerators>
+              <menuText>intensities (I),SF amplitudes (F)</menuText>
+                <toolTip>Either use intensities directly, or alternatively use SF amplitudes.</toolTip>
+              <default>I</default>
+            </qualifiers>
+          </content>-->
+          <content id="HYDR_USE">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>True</default>
+               <toolTip>Specify whether or not riding hydrogen atoms are to be used during refinement.</toolTip>
+            </qualifiers>
+          </content>
+          <content id="HYDR_ALL">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>ALL,YES</enumerators>
+              <menuText>generate hydrogens,only if present in file</menuText>
+               <toolTip>Specify whether hydrogens are to be generated and used, or whether
+hydrogens are only to be used if already present in the input coordinate file.</toolTip>
+              <default>ALL</default>
+            </qualifiers>
+          </content>
+          <content id="HYDROGENS">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>NO,YES,ALL</enumerators>
+              <default>NO</default>
+            </qualifiers>
+          </content>
+          
+          <content id="H_REFINE">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="H_REFINE_SELECT">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>ALL,POLAR,RPOLAR</enumerators>
+              <menuText>All hydrogens,Polar hydrogens,Rotatable polar hydrogens</menuText>
+              <default>ALL</default>
+            </qualifiers>
+          </content>
+          <content id="H_TORSION">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="HD_FRACTION">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="HD_FRACTION_TYPE">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>ALL,POLAR</enumerators>
+              <menuText>All hydrogens - for perdeuterated crystals,Polar hydrogens - for H/D exchange experiments</menuText>
+              <default>POLAR</default>
+            </qualifiers>
+          </content>
+          <content id="HD_INIT">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>NO,DEUTERIUM,MIXTURE</enumerators>
+              <menuText>No - assumes H/D fraction has been refined before,All to D - for perdeuterated crystals,To D for exchangable atoms; H for others - for H/D exchange experiments</menuText>
+              <default>NO</default>
+              <toolTip>If H/D fractions have not already been refined then initialisation is required. If they have already been refined then they should not require reinitialisation.</toolTip>
+            </qualifiers>
+          </content>
+          <content id="HD_INIT_HALL">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>DEUTERIUM,MIXTURE</enumerators>
+              <menuText>All to D - for perdeuterated crystals,To D for exchangable atoms; H for others - for H/D exchange experiments</menuText>
+              <default>MIXTURE</default>
+              <toolTip>If H/D fractions have not already been refined then initialisation is required.</toolTip>
+            </qualifiers>
+          </content>
+          
+          <content id="USE_NCS">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+               <toolTip>Restrain NCS-related molecules to ensure that they are structurally consistent with each other.</toolTip>
+            </qualifiers>
+          </content>
+          <content id="NCS_TYPE">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>L,G</enumerators>
+              <menuText>local,global</menuText>
+              <default>L</default>
+               <toolTip>Specify whether local or global NCS restraints should be used. Default: local.</toolTip>
+            </qualifiers>
+          </content>
+          <content id="NCS_AUTO">
+            <className>CString</className>
+            <qualifiers>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>A</enumerators>
+              <menuText>automatically</menuText>
+              <default>A</default>
+               <toolTip>At present, only automatic NCS restraints can be specified from within the interface.
+For manual specification, see the help page.</toolTip>
+            </qualifiers>
+          </content>
+            <content id="USE_LOCAL_SYMMETRY">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="USE_JELLY">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <toolTip>Use jelly-body restraints to stabilise refinement, ensuring that the model doesn't change too much from one cycle to the next (more cycles required).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="JELLY_SIGMA">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>0.01</default>
+                    <toolTip>Lower values allow the model to change less each cycle. Default: 0.01.</toolTip>
+                </qualifiers>
+            </content>
+          <content id="JELLY_DIST">
+            <className>CFloat</className>
+            <qualifiers>
+              <default>4.2</default>
+               <toolTip>Maximum interatomic distance for jelly-body restraints. Controls flexibility. Default: 4.2.</toolTip>
+            </qualifiers>
+          </content>
+          
+          <content id="PROSMART_PROTEIN_WEIGHT">
+             <className>CFloat</className>
+             <qualifiers>
+                <!--<default>10.0</default>-->
+             </qualifiers>
+          </content>
+          <content id="PROSMART_PROTEIN_ALPHA"><!--Note this used to be GMWT-->
+             <className>CFloat</className>
+             <qualifiers>
+                <!--<default>1.0</default>-->
+             </qualifiers>
+          </content>
+          <content id="PROSMART_PROTEIN_DMAX">
+             <className>CFloat</className>
+             <qualifiers>
+                <!--<default>4.2</default>-->
+             </qualifiers>
+          </content>
+          <content id="PROSMART_NUCLEICACID_WEIGHT">
+             <className>CFloat</className>
+             <qualifiers>
+                <!--<default>10.0</default>-->
+             </qualifiers>
+          </content>
+          <content id="PROSMART_NUCLEICACID_ALPHA"><!--Note this used to be GMWT-->
+             <className>CFloat</className>
+             <qualifiers>
+                <!--<default>1.0</default>-->
+             </qualifiers>
+          </content>
+          <content id="PROSMART_NUCLEICACID_DMAX">
+             <className>CFloat</className>
+             <qualifiers>
+                <!--<default>4.2</default>-->
+             </qualifiers>
+          </content>
+          
+          <content id="MAKE_LINK">
+             <className>CBoolean</className>
+             <qualifiers>
+                <default>False</default>
+                <toolTip>Detect covalent linkages based on the current atomic coordinates, and apply LINK records accordingly.</toolTip>
+             </qualifiers>
+          </content>
+          <content id="OVERRIDE_LINK">
+             <className>CBoolean</className>
+             <qualifiers>
+                <default>False</default>
+                <toolTip>Remove all existing LINK records in the coordinate file, then detect covalent linkages based on proximity.</toolTip>
+             </qualifiers>
+          </content>
+          
+            <content id="TLSOUT_ADDU">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="B_REFINEMENT_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>isotropic,anisotropic,overall,mixed isotropic/anisotropic</menuText>
+                    <enumerators>ISOT,ANIS,OVER,MIXED</enumerators>
+                    <default>ISOT</default>
+                   <toolTip>Specifies B-factor parameterisation. Default: isotropic.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="PHOUT">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="MAP_SHARP">
+                <className>CBoolean</className>
+              <qualifiers>
+                <default>False</default>
+                 <toolTip>Perform anisotropic regularised map sharpening when calculating electron density maps.</toolTip>
+              </qualifiers>
+            </content>
+          <content id="MAP_SHARP_CUSTOM">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+               <toolTip>By default, the sharpening parameter is automatically set to the overall model B-factor after refinement.</toolTip>
+            </qualifiers>
+          </content>
+            <content id="BSHARP">
+                <className>CFloat</className>
+               <qualifiers>
+                  <toolTip>Specify custom sharpening parameter, which is the B-factor to "remove" from the map.</toolTip>
+               </qualifiers>
+            </content>
+          <content id="BFACSETUSE">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+               <toolTip>Reset all atomic B-factors to a fixed value prior to refinement (advised when performing TLS refinement).</toolTip>
+            </qualifiers>
+          </content>
+          <content id="BFACSET">
+            <className>CFloat</className>
+            <qualifiers>
+             <default>30</default>
+            </qualifiers>
+          </content>
+          <!--<content id="BFACSETUSE">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+               <toolTip>Reset all atomic B-factors to a fixed value prior to refinement.</toolTip>
+            </qualifiers>
+          </content>
+            <content id="BFACSET">
+                <className>CFloat</className>
+            </content>-->
+
+          <content id="OUTPUT_HYDROGENS">
+             <className>CString</className>
+             <qualifiers>
+                <onlyEnumerators>True</onlyEnumerators>
+                <menuText>default,yes,no</menuText>
+                <enumerators>DEFAULT,YES,NO</enumerators>
+                <default>DEFAULT</default>
+                <toolTip>Specifies whether calculated riding hydrogens are to be output. By default, hydrogens are not output to PDB files, but are output to mmCIF files (flagged as calculated).</toolTip>
+             </qualifiers>
+          </content>
+
+          <content id="RESOLUTION">
+            <className>CFloat</className>
+          </content>
+          <content id="RES_CUSTOM">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="RES_MIN">
+            <className>CFloat</className>
+          </content>
+          <content id="RES_MAX">
+            <className>CFloat</className>
+          </content>
+          <content id="USEANOMALOUS">
+             <className>CBoolean</className>
+             <qualifiers>
+                <default>False</default>
+             </qualifiers>
+          </content>
+          <content id="USEANOMALOUSFOR">
+             <className>CString</className>
+             <qualifiers>
+                <onlyEnumerators>True</onlyEnumerators>
+                <enumerators>OUTPUTMAPS,SADREFINEMENT</enumerators>
+                <menuText>Anomalous map calculation only,SAD refinement</menuText>
+                <default>OUTPUTMAPS</default>
+             </qualifiers>
+          </content>
+          <!--<content id="USEANOMALOUSFOR">
+              <className>CString</className>
+              <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>NOTHING,OUTPUTMAPS,SADREFINEMENT</enumerators>
+                  <menuText>Ignore anomalous scattering,Anomalous map calculation only,SAD refinement</menuText>
+                  <default>NOTHING</default>
+              </qualifiers>
+          </content>-->
+          <content id="WAVELENGTH">
+              <className>CWavelength</className>
+              <qualifiers>
+                  <max>10.0</max>
+                  <toolTip>Override wavelength</toolTip>
+                  <allowUndefined>True</allowUndefined>
+              </qualifiers>
+          </content>
+          <content id="MAKE_NEW_LIGAND_EXIT">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="SCALE_TYPE">
+              <className>CString</className>
+              <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>SIMPLE,BABINET</enumerators>
+                  <menuText>simple,Babinet bulk</menuText>
+                  <default>SIMPLE</default>
+              </qualifiers>
+              </content>
+          <content id="SOLVENT_MASK_TYPE">
+             <className>CString</className>
+             <qualifiers>
+                <onlyEnumerators>True</onlyEnumerators>
+                <enumerators>EXPLICIT,NO</enumerators>
+                <menuText>explicit,no</menuText>
+                <default>EXPLICIT</default>
+             </qualifiers>
+          </content>
+          <!--<content id="USE_SOLVENT_MASK">
+             <className>CBoolean</className>
+             <qualifiers>
+                <default>True</default>
+             </qualifiers>
+          </content>-->
+          <content id="SOLVENT_ADVANCED">
+             <className>CBoolean</className>
+             <qualifiers>
+                <default>False</default>
+             </qualifiers>
+          </content>
+          <content id="SOLVENT_VDW_RADIUS">
+             <className>CFloat</className>
+             <qualifiers>
+                <default>1.2</default>
+             </qualifiers>
+          </content>
+          <content id="SOLVENT_IONIC_RADIUS">
+             <className>CFloat</className>
+             <qualifiers>
+                <default>0.8</default>
+             </qualifiers>
+          </content>
+          <content id="SOLVENT_SHRINK">
+             <className>CFloat</className>
+             <qualifiers>
+                <default>0.8</default>
+             </qualifiers>
+          </content>
+            <content id="EXTRAREFMACKEYWORDS">
+                <className>CString</className>
+                <qualifiers>
+                    <default>
+&#13;# Replace this with optional additional keyword input&#13;
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="REFPRO_RSR_RWORK_LIMIT">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>0.40</default>
+                    <charWidth>4</charWidth>
+                    <toolTip>Use this option to prevent fitting against a potentially misleading map</toolTip>
+                </qualifiers>
+            </content>
+            <content id="ADD_WATERS">
+              <className>CBoolean</className>
+              <qualifiers>
+                <default>False</default>
+                  <toolTip>Add waters and do a further 5 refinement cycles after main refinement job finishes.</toolTip>
+              </qualifiers>
+            </content>
+            <content id="REFPRO_COOT_REALSPACE_OPERATION">
+                  <className>CString</className>
+                  <qualifiers>
+                      <onlyEnumerators>True</onlyEnumerators>
+                      <enumerators>coot_stepped_refine,coot_fit_residues,coot_add_waters,none</enumerators>
+                      <menuText>stepped refine,fill and fit,add waters,nothing</menuText>
+                      <default>none</default>
+                  </qualifiers>
+            </content>
+            <content id="REFPRO_USERAMA">
+                  <className>CBoolean</className>
+                  <qualifiers>
+                      <default>True</default>
+                  </qualifiers>
+            </content>
+            <content id="SCATTERING_FACTORS">
+               <className>CString</className>
+               <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>XRAY,ELECTRON,NEUTRON</enumerators>
+                  <menuText>X-ray,Electron,Neutron</menuText>
+                  <default>XRAY</default>
+                  <toolTip>Specify to use appropriate scattering factors for the experiment type.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="SCATTERING_ELECTRON">
+               <className>CString</className>
+               <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>MB,GAUSSIAN</enumerators>
+                  <menuText>Mott-Bethe,Sum of Gaussians</menuText>
+                  <default>MB</default>
+                  <toolTip>Specify electron form factor calculation method</toolTip>
+               </qualifiers>
+            </content>
+
+
+
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

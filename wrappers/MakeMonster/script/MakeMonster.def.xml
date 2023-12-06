@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>MakeMonster</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="MakeMonster">
+        <container id="inputData">
+            <content id="NObsObjects">
+                <className>CInt</className>
+                <qualifiers><onlyEnumerators>True</onlyEnumerators><enumerators>0,1,2,3,4,5,6</enumerators><menuText>0,1,2,3,4,5,6</menuText><default>1</default></qualifiers>
+            </content>
+            <content id="Obs_1">
+                <className>CObsDataFile</className>
+                <qualifiers><guiLabel>Refl. #1</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Obs_1_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>4</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2,3,4</enumerators><menuText>I+/I-,F+/F-,Imean,Fmean</menuText></qualifiers>
+            </content>
+            <content id="Obs_1_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>1</default></qualifiers>
+            </content>
+            <content id="Obs_2">
+                <className>CObsDataFile</className>
+                <qualifiers><guiLabel>Refl. #2</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Obs_2_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>4</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2,3,4</enumerators><menuText>I+/I-,F+/F-,Imean,Fmean</menuText></qualifiers>
+            </content>
+            <content id="Obs_2_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>2</default></qualifiers>
+            </content>
+            <content id="Obs_3">
+                <className>CObsDataFile</className>
+                <qualifiers><guiLabel>Refl. #3</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Obs_3_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>4</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2,3,4</enumerators><menuText>I+/I-,F+/F-,Imean,Fmean</menuText></qualifiers>
+            </content>
+            <content id="Obs_3_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>3</default></qualifiers>
+            </content>
+            <content id="Obs_4">
+                <className>CObsDataFile</className>
+                <qualifiers><guiLabel>Refl. #4</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Obs_4_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>4</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2,3,4</enumerators><menuText>I+/I-,F+/F-,Imean,Fmean</menuText></qualifiers>
+            </content>
+            <content id="Obs_4_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>4</default></qualifiers>
+            </content>
+            <content id="Obs_5">
+                <className>CObsDataFile</className>
+                <qualifiers><guiLabel>Refl. #5</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Obs_5_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>4</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2,3,4</enumerators><menuText>I+/I-,F+/F-,Imean,Fmean</menuText></qualifiers>
+            </content>
+            <content id="Obs_5_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>5</default></qualifiers>
+            </content>
+            <content id="Obs_6">
+                <className>CObsDataFile</className>
+                <qualifiers><guiLabel>Refl. #6</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Obs_6_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>4</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2,3,4</enumerators><menuText>I+/I-,F+/F-,Imean,Fmean</menuText></qualifiers>
+            </content>
+            <content id="Obs_6_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>6</default></qualifiers>
+            </content>
+            <content id="NPhiObjects">
+                <className>CInt</className>
+                <qualifiers><onlyEnumerators>True</onlyEnumerators><enumerators>0,1,2,3,4,5,6</enumerators><menuText>0,1,2,3,4,5,6</menuText><default>0</default></qualifiers>
+            </content>
+            <content id="Phi_1">
+                <className>CPhsDataFile</className>
+                <qualifiers><guiLabel>Phase #1</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Phi_1_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>2</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2</enumerators><menuText>HL,Phi/FOM</menuText></qualifiers>
+            </content>
+            <content id="Phi_1_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>1</default></qualifiers>
+            </content>
+            <content id="Phi_2">
+                <className>CPhsDataFile</className>
+                <qualifiers><guiLabel>Phase #2</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Phi_2_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>2</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2</enumerators><menuText>HL,Phi/FOM</menuText></qualifiers>
+            </content>
+            <content id="Phi_2_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>2</default></qualifiers>
+            </content>
+            <content id="Phi_3">
+                <className>CPhsDataFile</className>
+                <qualifiers><guiLabel>Phase #3</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Phi_3_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>2</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2</enumerators><menuText>HL,Phi/FOM</menuText></qualifiers>
+            </content>
+            <content id="Phi_3_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>3</default></qualifiers>
+            </content>
+            <content id="Phi_4">
+                <className>CPhsDataFile</className>
+                <qualifiers><guiLabel>Phase #4</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Phi_4_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>2</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2</enumerators><menuText>HL,Phi/FOM</menuText></qualifiers>
+            </content>
+            <content id="Phi_4_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>4</default></qualifiers>
+            </content>
+            <content id="Phi_5">
+                <className>CPhsDataFile</className>
+                <qualifiers><guiLabel>Phase #5</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Phi_5_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>2</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2</enumerators><menuText>HL,Phi/FOM</menuText></qualifiers>
+            </content>
+            <content id="Phi_5_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>5</default></qualifiers>
+            </content>
+            <content id="Phi_6">
+                <className>CPhsDataFile</className>
+                <qualifiers><guiLabel>Phase #6</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="Phi_6_OutputRepresentation">
+                <className>CInt</className>
+                <qualifiers><default>2</default><onlyEnumerators>True</onlyEnumerators><enumerators>1,2</enumerators><menuText>HL,Phi/FOM</menuText></qualifiers>
+            </content>
+            <content id="Phi_6_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>6</default></qualifiers>
+            </content>
+            
+            <content id="NFWTObjects">
+                <className>CInt</className>
+                <qualifiers><onlyEnumerators>True</onlyEnumerators><enumerators>0,1,2,3,4,5,6</enumerators><menuText>0,1,2,3,4,5,6</menuText><default>0</default></qualifiers>
+            </content>
+            
+            <content id="FWT_1">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType><guiLabel>Map coeffs #1</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FWT_1_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>1</default></qualifiers>
+            </content>
+            
+            <content id="FWT_2">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType><guiLabel>Map coeffs #2</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FWT_2_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>2</default></qualifiers>
+            </content>
+            
+            <content id="FWT_3">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType><guiLabel>Map coeffs #3</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FWT_3_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>3</default></qualifiers>
+            </content>
+            
+            <content id="FWT_4">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType><guiLabel>Map coeffs #4</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FWT_4_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>4</default></qualifiers>
+            </content>
+            
+            <content id="FWT_5">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType><guiLabel>Map coeffs #5</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FWT_5_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>5</default></qualifiers>
+            </content>
+            
+            <content id="FWT_6">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType><guiLabel>Map coeffs #6</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FWT_6_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>6</default></qualifiers>
+            </content>
+            
+            <content id="NDELFWTObjects">
+                <className>CInt</className>
+                <qualifiers><onlyEnumerators>True</onlyEnumerators><enumerators>0,1,2,3,4,5,6</enumerators><menuText>0,1,2,3,4,5,6</menuText><default>0</default></qualifiers>
+            </content>
+            
+            <content id="DELFWT_1">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>2</requiredSubType><guiLabel>Map coeffs #1</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="DELFWT_1_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>1</default></qualifiers>
+            </content>
+            
+            <content id="DELFWT_2">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>2</requiredSubType><guiLabel>Map coeffs #2</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="DELFWT_2_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>2</default></qualifiers>
+            </content>
+            
+            <content id="DELFWT_3">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>2</requiredSubType><guiLabel>Map coeffs #3</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="DELFWT_3_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>3</default></qualifiers>
+            </content>
+            
+            <content id="DELFWT_4">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>2</requiredSubType><guiLabel>Map coeffs #4</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="DELFWT_4_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>4</default></qualifiers>
+            </content>
+            
+            <content id="DELFWT_5">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>2</requiredSubType><guiLabel>Map coeffs #5</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="DELFWT_5_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>5</default></qualifiers>
+            </content>
+            
+            <content id="DELFWT_6">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>2</requiredSubType><guiLabel>Map coeffs #6</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="DELFWT_6_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>6</default></qualifiers>
+            </content>
+            
+            <content id="NFREERObjects">
+                <className>CInt</className>
+                <qualifiers><onlyEnumerators>True</onlyEnumerators><enumerators>0,1,2,3,4,5,6</enumerators><menuText>0,1,2,3,4,5,6</menuText><default>0</default></qualifiers>
+            </content>
+            
+            <content id="FREER_1">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <guiLabel>Free R #1</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREER_1_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>1</default></qualifiers>
+            </content>
+            
+            <content id="FREER_2">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <guiLabel>MFree R #2</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREER_2_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>2</default></qualifiers>
+            </content>
+            
+            <content id="FREER_3">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <guiLabel>Free R #3</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREER_3_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>3</default></qualifiers>
+            </content>
+            
+            <content id="FREER_4">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <guiLabel>Free R #4</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREER_4_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>4</default></qualifiers>
+            </content>
+            
+            <content id="FREER_5">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <guiLabel>Free R #5</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREER_5_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>5</default></qualifiers>
+            </content>
+            
+            <content id="FREER_6">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <guiLabel>Free R #6</guiLabel><allowUndefined>True</allowUndefined><mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREER_6_Suffix">
+                <className>CString</className>
+                <qualifiers><maxLength>10</maxLength><default>6</default></qualifiers>
+            </content>
+            
+        </container>
+        <container id="outputData">
+            <content id="HKLOUT">
+                <className>CMtzDataFile</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Import sequence or alignment</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>The sequence import task allows you to import a sequence of sequence alignment object into the database. While it is possible to browse for a sequence in most task interfaces, it is more convenient to have the sequence already available in the database. One chain sequence is stored in one data object: complexes of multiple chains are then described by a combination of sequence objects.</p>
+      <h2>Input</h2>
+      <img src="ProvideSequence_task_1.png">
+      <p>First, the type of object to be created must be selected. This may be either a sequence, or a sequence alignment. For experimental phasing projects it is generally sufficient to provide just the sequence of the molecule or complex of interest. For molecular replacement projects, it may be useful to import a sequence alignment with homologous structures, if one has been determined from an external source <b class="img-ref">(1)</b></p>
+      <p>Next, the sequence information is entered. This may be in the form of an existing file (or even a database object), in which case the file or object are selected using one of the options in section <b class="img-ref">(2)</b>.</p>
+      <p>Otherwise, a sequence or sequence alignment may be pasted into the text box <b class="img-ref">(3)</b>, using either fasta (.fasta) format for sequences or CLUSTALW format for alignments (.aln). Other sequence formats may be read correctly, however the results should be checked.</p>
+      <br/>
+
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <img src="ProvideSequence_report_1.png">
+      <p>The sequence entered and input and output files are reported.</p>
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

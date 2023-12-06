@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>Current</creationTime>
+    <userId>stevenkj</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>acorn</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Experimental Phasing with Acorn</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="acorn">
+  
+    <container id="inputData">
+	
+	  <content id="F_SIGF">
+	  	<className>CObsDataFile</className>
+	  	<qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Reflection data</toolTip>
+        </qualifiers>
+	  </content>
+	  
+	  <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+	  	  <sameCrystalLevel>1</sameCrystalLevel>
+        </qualifiers>
+      </content>
+      
+      <content id="ABCD">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+	      <mustExist>True</mustExist>
+	      <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+	      <sameCrystalAs>F_SIGF</sameCrystalAs>
+	      <toolTip>Phase information</toolTip>
+        </qualifiers>
+      </content>
+    
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <ifAtomSelection>True</ifAtomSelection>
+          <mustExist>False</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <requiredSubType>1,0</requiredSubType>
+          <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
+        </qualifiers>
+      </content>
+      
+      <content id="PERFORMANCE">
+        <className>CExpPhasPerformance</className>
+      </content>
+      
+    </container>
+    
+    <container id="controlParameters">
+
+      <content id="ACORN_PHSIN_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>known co-ordinate set, initial phase set</menuText>
+          <enumerators>model,phases</enumerators>
+          <default>model</default>
+        </qualifiers>
+      </content>
+
+      <content id="ACORN_ECALC">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+
+      <content id="ACORN_EXTEND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACORN_EXTENDRES">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACORN_ANISOTROPY">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACORN_BGRID">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOGEN_GRID">
+      	<className>CFloat</className>
+     	<qualifiers>
+          <default>0.3333</default>
+        </qualifiers>
+      </content>
+            
+      <content id="ACORN_BSEED">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOGEN_SEED">
+      	<className>CInt</className>
+    	<qualifiers>
+          <default>1</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACORN_BRESOL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOREF_RESOLL">
+      	<className>CFloat</className>
+    	<qualifiers>
+          <default>50.0</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOREF_RESOLU">
+      	<className>CFloat</className>
+    	<qualifiers>
+          <default>1.0</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACORN_BEXCLUDE">
+      	<className>CBoolean</className>
+    	<qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="ACORN_BECUT">
+      	<className>CBoolean</className>
+    	<qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOREF_EXCLUDE">
+      	<className>CFloat</className>
+    	<qualifiers>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOREF_ECUT">
+      	<className>CFloat</className>
+    	<qualifiers>
+          <default>5.0</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_CUSTOM">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_CUSTDDM">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_TRIALS">
+        <className>CInt</className>
+          <qualifiers> 
+            <onlyEnumerators>True</onlyEnumerators>
+            <enumerators>1,2,3,4,5,6,7,8,9,10</enumerators>
+            <menuText>1,2,3,4,5,6,7,8,9,10</menuText>
+            <default>1</default>
+          </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_1">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_1">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_1">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>NO</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_2">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_2">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_2">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>NCSER</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_3">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_3">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_3">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>NCSER</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_4">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_4">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_4">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>NCSER</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_5">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_5">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_5">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>ENHS</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_6">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_6">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_6">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>ENHS</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_7">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_7">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_7">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>ENHS</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_8">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_8">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_8">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>ENHS</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_9">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_9">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_9">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>ENHS</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_NCDDM_10">
+        <className>CInt</className>
+        <qualifiers>
+          <default>500</default>
+        </qualifiers>
+      </content>
+			
+      <content id="ACOPH_DDMK_10">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>DDM,DDM0,DDM1,DDM2</menuText>
+          <enumerators>DDM,DDM0,DDM1,DDM2</enumerators>
+          <default>DDM</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_REFINE_10">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>only, and Sayre equation refinement, and Weak density enhancement</menuText>
+          <enumerators>NO,NCSER,ENHS</enumerators>
+          <default>ENHS</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_PATSUP">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+            
+      <content id="ACOPH_CUTDDM">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>3.0</default>
+        </qualifiers>
+      </content>
+      
+       <content id="ACOPH_PSFINISH">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOPH_CCFINISH">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.25</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOMPS_PEAKSEARCH">
+      	<className>CBoolean</className>
+      	<qualifiers>
+    	  <default>False</default>
+      	</qualifiers>
+      </content>
+      
+      <content id="ACOMPS_MAXPEAKS">
+        <className>CInt</className>
+        <qualifiers>
+          <default>40</default>
+        </qualifiers>
+      </content>
+      
+      <content id="ACOMPS_RMSMULT">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>5.0</default>
+        </qualifiers>
+      </content>
+      
+    </container>
+  
+    
+    <container id="outputData">
+
+      <content id="PHSOUT">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+            <saveToDb>True</saveToDb>
+            <default>
+                <contentFlag>2</contentFlag>
+            </default>
+        </qualifiers>
+      </content>
+    
+      <content id="FPHIOUT">
+         <className>CMapCoeffsDataFile</className>
+         <qualifiers>
+           <saveToDb>True</saveToDb>
+           <default>
+             <subType>1</subType>
+               <contentFlag>1</contentFlag>
+           </default>
+         </qualifiers>
+       </content>
+
+       <content id="EPHIOUT">
+         <className>CMapCoeffsDataFile</className>
+         <qualifiers>
+           <saveToDb>True</saveToDb>
+           <default>
+             <subType>1</subType>
+               <contentFlag>1</contentFlag>
+           </default>
+         </qualifiers>
+       </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4:ccp4i2>

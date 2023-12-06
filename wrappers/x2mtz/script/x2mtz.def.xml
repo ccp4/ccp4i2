@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>lizp</userId>
+    <creationTime>11:28 17/Jan/12</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>x2mtz</pluginName>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="mtz2mini">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+	  <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="HKLIN_OBS_CONTENT_FLAG">
+        <className>CInt</className>
+      </content>
+      <content id="HKLIN_OBS_COLUMNS">
+        <className>CString</className>
+      </content>
+       <content id="HKLIN_FREER_COLUMN">
+        <className>CString</className>
+       </content>
+       </container>
+       <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="OBSOUT">
+        <className>CObsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FREEOUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="controlParameters">
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

@@ -1,0 +1,1831 @@
+<html>
+<a name="CAltSpaceGroup"><h3>CAltSpaceGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CSpaceGroup">CCP4XtalData.CSpaceGroup</a> -> <a href="./CCP4XtalData.html#CAltSpaceGroup">CCP4XtalData.CAltSpaceGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Hermann-Mauguin space group name</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>crystal_data#space_group</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CAltSpaceGroupList"><h3>CAltSpaceGroupList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CAltSpaceGroupList">CCP4XtalData.CAltSpaceGroupList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CAltSpaceGroup">CAltSpaceGroup</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CAnomalousColumnGroup"><h3>CAnomalousColumnGroup:  
+  Selection of F/I and AnomF/I columns from MTZ.
+  Expected to be part of ab initio phasing dataset ( CDataset)
+  </h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CAnomalousColumnGroup">CCP4XtalData.CAnomalousColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>['The real part of the experimental structure factors', 'The anomalous part of the experimental structure factors']</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CAnomalousIntensityColumnGroup"><h3>CAnomalousIntensityColumnGroup:  
+  Selection of I and AnomI columns from MTZ.
+  Expected to be part of ab initio phasing dataset ( CDataset)
+  </h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CAnomalousIntensityColumnGroup">CCP4XtalData.CAnomalousIntensityColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Intensity and anomalous intensity</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>['The real part of the experimental intensity', 'The anomalous part of the experimental intensity']</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CAnomalousScatteringElement"><h3>CAnomalousScatteringElement:  Definition of a anomalous scattering element</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4Data.html#COneWord">CCP4Data.COneWord</a> -> <a href="./CCP4ModelData.html#CElement">CCP4ModelData.CElement</a> -> <a href="./CCP4XtalData.html#CAnomalousScatteringElement">CCP4XtalData.CAnomalousScatteringElement</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>Se</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>4</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>['Br', 'Fe', 'Pt', 'Se']</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CAsuComponent"><h3>CAsuComponent:  A component of the asymmetric unit. This is for use in MR, defining
+     what we are searching for. There are similarities to CCrystalComponents
+     and it should maybe be merged.</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CAsuComponent">CCP4XtalData.CAsuComponent</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>moleculeType</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>numberOfCopies</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>seqFile</td><td><a href="./CCP4ModelData.html#CSeqDataFile">CSeqDataFile</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CAsuComponentList"><h3>CAsuComponentList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CAsuComponentList">CCP4XtalData.CAsuComponentList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CAsuComponent">CAsuComponent</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Contents of asymmetric unit</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>1</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CAtomicFormFactors"><h3>CAtomicFormFactors:  
+  Table of form factors for element v wavelength
+  </h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CTable">CCP4Data.CTable</a> -> <a href="./CCP4XtalData.html#CAtomicFormFactors">CCP4XtalData.CAtomicFormFactors</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Atomic form factors for given element and wavelength</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>allowUndefinedHeader</td><td><i>bool</i></td><td><b>False</b></td><td></td></tr>
+<tr><td>uniqueHeader</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>rowLabel</td><td><i>str</i></td><td><b>atomic element</b></td><td></td></tr>
+<tr><td>columnLabel</td><td><i>str</i></td><td><b>wavelength</b></td><td></td></tr>
+</table>
+<a name="CCell"><h3>CCell:  A unit cell</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CCell">CCP4XtalData.CCell</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>a</td><td><a href="./CCP4XtalData.html#CCellLength">CCellLength</a></td></tr>
+<tr><td>c</td><td><a href="./CCP4XtalData.html#CCellLength">CCellLength</a></td></tr>
+<tr><td>b</td><td><a href="./CCP4XtalData.html#CCellLength">CCellLength</a></td></tr>
+<tr><td>beta</td><td><a href="./CCP4XtalData.html#CCellAngle">CCellAngle</a></td></tr>
+<tr><td>alpha</td><td><a href="./CCP4XtalData.html#CCellAngle">CCellAngle</a></td></tr>
+<tr><td>gamma</td><td><a href="./CCP4XtalData.html#CCellAngle">CCellAngle</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Cell lengths and angles</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>crystal_data#cell</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CCellAngle"><h3>CCellAngle:  A cell angle</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CFloat">CCP4Data.CFloat</a> -> <a href="./CCP4XtalData.html#CCellAngle">CCP4XtalData.CCellAngle</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>float</i></td><td><b>None</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Cell angle in degrees</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>10</b></td><td></td></tr>
+<tr><td>min</td><td><i>float</i></td><td><b>0.0</b></td><td>The inclusive minimum value</td></tr>
+<tr><td>max</td><td><i>float</i></td><td><b>180.0</b></td><td>The inclusive maximum value</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of allowed or recommended values - see onlyEnumerators</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of strings, matching items in enumerators list, to appear on GUI menu</td></tr>
+</table>
+<a name="CCellLength"><h3>CCellLength:  A cell length</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CFloat">CCP4Data.CFloat</a> -> <a href="./CCP4XtalData.html#CCellLength">CCP4XtalData.CCellLength</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>False</b></td><td></td></tr>
+<tr><td>default</td><td><i>float</i></td><td><b>None</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Cell length in A</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>10</b></td><td></td></tr>
+<tr><td>min</td><td><i>float</i></td><td><b>0.0</b></td><td>The inclusive minimum value</td></tr>
+<tr><td>max</td><td><i>float</i></td><td><b>None</b></td><td>The inclusive maximum value</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of allowed or recommended values - see onlyEnumerators</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of strings, matching items in enumerators list, to appear on GUI menu</td></tr>
+</table>
+<a name="CColumnGroup"><h3>CColumnGroup:  Groups of columns in MTZ - probably from analysis by hklfile</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CColumnGroup">CCP4XtalData.CColumnGroup</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>columnGroupType</td><td><a href="./CCP4Data.html#COneWord">COneWord</a></td></tr>
+<tr><td>columnList</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>selected</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>dataset</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CColumnGroupItem"><h3>CColumnGroupItem:  Definition of set of columns that form a 'group'</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CColumnGroupItem">CCP4XtalData.CColumnGroupItem</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>defaultList</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>columnName</td><td><a href="./CCP4Data.html#COneWord">COneWord</a></td></tr>
+<tr><td>partnerTo</td><td><a href="./CCP4Data.html#COneWord">COneWord</a></td></tr>
+<tr><td>columnType</td><td><a href="./CCP4XtalData.html#CColumnTypeList">CColumnTypeList</a></td></tr>
+<tr><td>partnerOffset</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CColumnGroupList"><h3>CColumnGroupList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CColumnGroupList">CCP4XtalData.CColumnGroupList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CColumnGroup">CColumnGroup</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CColumnType"><h3>CColumnType:  A list of recognised MTZ column types</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CColumnType">CCP4XtalData.CColumnType</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>F</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>True</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R']</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CColumnTypeList"><h3>CColumnTypeList:  A list of acceptable MTZ column types</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CColumnTypeList">CCP4XtalData.CColumnTypeList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CColumnType">CColumnType</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CCrystalComponents"><h3>CCrystalComponents:  A list of sequences, monomers and anomalous scatterers expected in a crystal</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CCrystalComponents">CCP4XtalData.CCrystalComponents</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>monomers</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>phasingGroup</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>sequences</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CCrystalCompositionLabel"><h3>CCrystalCompositionLabel:  
+  Serves as column header for CCrystalComposition - is a name for a composition model
+  The composition model can be for one of three units
+  </h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CCrystalCompositionLabel">CCP4XtalData.CCrystalCompositionLabel</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>identifier</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>unit</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CCrystalCompositionTable"><h3>CCrystalCompositionTable:   A table of crystal components v. composition models</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4XtalData.html#CCrystalCompositionTable">CCP4XtalData.CCrystalCompositionTable</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+
+<a name="CCrystalName"><h3>CCrystalName</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CCrystalName">CCP4XtalData.CCrystalName</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>False</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Unique identifier for crystal (one word)</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>1</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CDataset"><h3>CDataset:  
+  The experimental data model for ab initio phasing
+  </h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CDataset">CCP4XtalData.CDataset</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>datasetName</td><td><a href="./CCP4XtalData.html#CDatasetName">CDatasetName</a></td></tr>
+<tr><td>formFactorSource</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>crystalName</td><td><a href="./CCP4XtalData.html#CCrystalName">CCrystalName</a></td></tr>
+<tr><td>selected</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>obsDataFile</td><td><a href="./CCP4XtalData.html#CObsDataFile">CObsDataFile</a></td></tr>
+<tr><td>formFactors</td><td><a href="./CCP4XtalData.html#CFormFactor">CFormFactor</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CDatasetList"><h3>CDatasetList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CDatasetList">CCP4XtalData.CDatasetList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CDataset">CDataset</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CDatasetName"><h3>CDatasetName</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CDatasetName">CCP4XtalData.CDatasetName</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>False</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Unique identifier for dataset (one word)</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>1</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CExperimentalDataType"><h3>CExperimentalDataType:  Experimental data type e.g. native or peak</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CExperimentalDataType">CCP4XtalData.CExperimentalDataType</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>SAD</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>True</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>['native', 'derivative', 'SAD', 'peak', 'inflection', 'high_remote', 'low_remote', '']</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CFPairColumnGroup"><h3>CFPairColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CFPairColumnGroup">CCP4XtalData.CFPairColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Anomalous structure factors and sigma</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CFSigFColumnGroup"><h3>CFSigFColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CFSigFColumnGroup">CCP4XtalData.CFSigFColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Structure factor and sigma</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CFormFactor"><h3>CFormFactor:  
+  The for factor (Fp and Fpp) for a giving element and wavelength
+  </h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CFormFactor">CCP4XtalData.CFormFactor</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>Fp</td><td><a href="./CCP4Data.html#CFloat">CFloat</a></td></tr>
+<tr><td>Fpp</td><td><a href="./CCP4Data.html#CFloat">CFloat</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CFreeRColumnGroup"><h3>CFreeRColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CFreeRColumnGroup">CCP4XtalData.CFreeRColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Set of FreeR flags</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CFreeRDataFile"><h3>CFreeRDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMtzDataFile">CCP4XtalData.CMtzDataFile</a> -> <a href="./CCP4XtalData.html#CMiniMtzDataFile">CCP4XtalData.CMiniMtzDataFile</a> -> <a href="./CCP4XtalData.html#CFreeRDataFile">CCP4XtalData.CFreeRDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Set of reflections used for FreeR calculation</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Free R set</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#FreeR</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz', 'cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-mtz-freerflag</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>FreeR flag</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>freeRflag</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CMtzData</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+<tr><td>correctColumns</td><td><i>list</i></td><td><b>['I']</b></td><td>A list of coloumn data types expected in the file</td></tr>
+<tr><td>columnGroupClassList</td><td><i>str</i></td><td><b>[<class 'CCP4XtalData.CFreeRColumnGroup'>]</b></td><td></td></tr>
+<tr><td>sameCrystalAs</td><td><i>str</i></td><td><b>NotImplemented</b></td><td>Name of CMtzDataFile object that crystal parameters should match - probably the observed data</td></tr>
+</table>
+<a name="CGenericReflDataFile"><h3>CGenericReflDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CGenericReflDataFile">CCP4XtalData.CGenericReflDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>A reflection data file in MTZ or a non-CCP4 format</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Reflection data</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>import_merged#file_formats</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz', 'hkl', 'HKL', 'sca', 'SCA', 'mmcif', 'cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-generic-reflections</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CUnmergedDataContent</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CHLColumnGroup"><h3>CHLColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CHLColumnGroup">CCP4XtalData.CHLColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Hendrickson-Lattmann coefficients</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CIPairColumnGroup"><h3>CIPairColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CIPairColumnGroup">CCP4XtalData.CIPairColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Anomalous intensities and sigma</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CISigIColumnGroup"><h3>CISigIColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CISigIColumnGroup">CCP4XtalData.CISigIColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Intensity and sigma</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CImageFile"><h3>CImageFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CImageFile">CCP4XtalData.CImageFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>First image file in a directory</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Image file</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['img']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-image</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>Image file</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CImosflmXmlDataFile"><h3>CImosflmXmlDataFile:  An iMosflm data file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CImosflmXmlDataFile">CCP4XtalData.CImosflmXmlDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>iMosflm data</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['imosflm.xml']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/iMosflm-xml</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>iMosflm data</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>imosflm</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CImportUnmerged"><h3>CImportUnmerged</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CImportUnmerged">CCP4XtalData.CImportUnmerged</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>crystalName</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>dataset</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>cell</td><td><a href="./CCP4XtalData.html#CCell">CCell</a></td></tr>
+<tr><td>excludeSelection</td><td><a href="./CCP4Data.html#CRangeSelection">CRangeSelection</a></td></tr>
+<tr><td>file</td><td><a href="./CCP4XtalData.html#CUnmergedDataFile">CUnmergedDataFile</a></td></tr>
+<tr><td>wavelength</td><td><a href="./CCP4XtalData.html#CWavelength">CWavelength</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Imported data file, cell parameters and crystal/dataset identifiers</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>import_merged#file_formats</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CImportUnmergedList"><h3>CImportUnmergedList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CImportUnmergedList">CCP4XtalData.CImportUnmergedList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CImportUnmerged">CImportUnmerged</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>1</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CMapCoeffsDataFile"><h3>CMapCoeffsDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMtzDataFile">CCP4XtalData.CMtzDataFile</a> -> <a href="./CCP4XtalData.html#CMiniMtzDataFile">CCP4XtalData.CMiniMtzDataFile</a> -> <a href="./CCP4XtalData.html#CMapCoeffsDataFile">CCP4XtalData.CMapCoeffsDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Electron density map coefficients: F,Phi</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Map coefficients</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#MapCoeffs</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz', 'cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-mtz-map</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>MTZ F-phi</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>map_coefficients</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CMtzData</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+<tr><td>correctColumns</td><td><i>list</i></td><td><b>['FP', 'FQP']</b></td><td>A list of coloumn data types expected in the file</td></tr>
+<tr><td>columnGroupClassList</td><td><i>str</i></td><td><b>[<class 'CCP4XtalData.CMapColumnGroup'>]</b></td><td></td></tr>
+<tr><td>sameCrystalAs</td><td><i>str</i></td><td><b>NotImplemented</b></td><td>Name of CMtzDataFile object that crystal parameters should match - probably the observed data</td></tr>
+</table>
+<a name="CMapColumnGroup"><h3>CMapColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CMapColumnGroup">CCP4XtalData.CMapColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Structure factor and phase to define a map</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CMapDataFile"><h3>CMapDataFile:  A CCP4 Map file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMapDataFile">CCP4XtalData.CMapDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>A map in CCP4 format</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Electron Density Map</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#map_files</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['map']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-map</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>CCP4 Electron density map</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CMergeMiniMtz"><h3>CMergeMiniMtz</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CMergeMiniMtz">CCP4XtalData.CMergeMiniMtz</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>columnNames</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>columnTag</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>fileName</td><td><a href="./CCP4XtalData.html#CMiniMtzDataFile">CMiniMtzDataFile</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CMergeMiniMtzList"><h3>CMergeMiniMtzList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CMergeMiniMtzList">CCP4XtalData.CMergeMiniMtzList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CMergeMiniMtz">CMergeMiniMtz</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>2</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CMiniMtzDataFile"><h3>CMiniMtzDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMtzDataFile">CCP4XtalData.CMtzDataFile</a> -> <a href="./CCP4XtalData.html#CMiniMtzDataFile">CCP4XtalData.CMiniMtzDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Mini-MTZ file containing reflection,phases,FreeR set or map coefficients</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Experimental data</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#MTZ</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz', 'cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-mtz-mini</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>MTZ experimental data</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CMtzData</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+<tr><td>correctColumns</td><td><i>list</i></td><td><b>['FQ', 'JQ', 'GLGL', 'KMKM', 'AAAA', 'PW', 'FP', 'I']</b></td><td>A list of coloumn data types expected in the file</td></tr>
+<tr><td>columnGroupClassList</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>sameCrystalAs</td><td><i>str</i></td><td><b>NotImplemented</b></td><td>Name of CMtzDataFile object that crystal parameters should match - probably the observed data</td></tr>
+</table>
+<a name="CMiniMtzDataFileList"><h3>CMiniMtzDataFileList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CMiniMtzDataFileList">CCP4XtalData.CMiniMtzDataFileList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CMiniMtzDataFile">CMiniMtzDataFile</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CMmcifReflData"><h3>CMmcifReflData:  Reflection data in mmCIF format</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFileContent">CCP4File.CDataFileContent</a> -> <a href="./CCP4File.html#CMmcifData">CCP4File.CMmcifData</a> -> <a href="./CCP4XtalData.html#CMmcifReflData">CCP4XtalData.CMmcifReflData</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>cell</td><td><a href="./CCP4XtalData.html#CCell">CCell</a></td></tr>
+<tr><td>haveIobsColumn</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>haveFobsColumn</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>wavelength</td><td><a href="./CCP4XtalData.html#CWavelength">CWavelength</a></td></tr>
+<tr><td>spaceGroup</td><td><a href="./CCP4XtalData.html#CSpaceGroup">CSpaceGroup</a></td></tr>
+<tr><td>haveFpmObsColumn</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>haveIpmObsColumn</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>haveFreeRColumn</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CMmcifReflDataFile"><h3>CMmcifReflDataFile:  A reflection file in mmCIF format</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4File.html#CMmcifDataFile">CCP4File.CMmcifDataFile</a> -> <a href="./CCP4XtalData.html#CMmcifReflDataFile">CCP4XtalData.CMmcifReflDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>A reflection file in mmCIF format</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>mmCIF reflection data</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#mmCIF</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>chemical/x-cif</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b></b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CMmcifReflData</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CMtzColumn"><h3>CMtzColumn:  An MTZ column with column label and column type</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CMtzColumn">CCP4XtalData.CMtzColumn</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>groupIndex</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>columnLabel</td><td><a href="./CCP4Data.html#COneWord">COneWord</a></td></tr>
+<tr><td>columnType</td><td><a href="./CCP4XtalData.html#CColumnType">CColumnType</a></td></tr>
+<tr><td>dataset</td><td><a href="./CCP4Data.html#COneWord">COneWord</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CMtzColumnGroup"><h3>CMtzColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CMtzColumnGroup">CCP4XtalData.CMtzColumnGroup</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>groupType</td><td><a href="./CCP4XtalData.html#CMtzColumnGroupType">CMtzColumnGroupType</a></td></tr>
+<tr><td>columns</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CMtzColumnGroupType"><h3>CMtzColumnGroupType</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CColumnType">CCP4XtalData.CColumnType</a> -> <a href="./CCP4XtalData.html#CMtzColumnGroupType">CCP4XtalData.CMtzColumnGroupType</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>F</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>True</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R']</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CMtzData"><h3>CMtzData:  Some of the data contents of an MTZ file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFileContent">CCP4File.CDataFileContent</a> -> <a href="./CCP4XtalData.html#CMtzData">CCP4XtalData.CMtzData</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>cell</td><td><a href="./CCP4XtalData.html#CCell">CCell</a></td></tr>
+<tr><td>wavelengths</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>datasets</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>crystalNames</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>spaceGroup</td><td><a href="./CCP4XtalData.html#CSpaceGroup">CSpaceGroup</a></td></tr>
+<tr><td>resolutionRange</td><td><a href="./CCP4XtalData.html#CResolutionRange">CResolutionRange</a></td></tr>
+<tr><td>datasetCells</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>listOfColumns</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>merged</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CMtzDataFile"><h3>CMtzDataFile:  An MTZ experimental data file</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMtzDataFile">CCP4XtalData.CMtzDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Experimental data in CCP4's MTZ format</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Experimental data</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#MTZ</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-mtz</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>MTZ experimental data</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CMtzData</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CMtzDataset"><h3>CMtzDataset</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CMtzDataset">CCP4XtalData.CMtzDataset</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>columnGroups</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>name</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CObsDataFile"><h3>CObsDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMtzDataFile">CCP4XtalData.CMtzDataFile</a> -> <a href="./CCP4XtalData.html#CMiniMtzDataFile">CCP4XtalData.CMiniMtzDataFile</a> -> <a href="./CCP4XtalData.html#CObsDataFile">CCP4XtalData.CObsDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Observed structure factors or intensities</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Reflections</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#Obs</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz', 'cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-mtz-observed</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>MTZ observed</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>observed_data</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CMtzData</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+<tr><td>correctColumns</td><td><i>list</i></td><td><b>['KMKM', 'GLGL', 'JQ', 'FQ']</b></td><td>A list of coloumn data types expected in the file</td></tr>
+<tr><td>columnGroupClassList</td><td><i>str</i></td><td><b>[<class 'CCP4XtalData.CIPairColumnGroup'>, <class 'CCP4XtalData.CFPairColumnGroup'>, <class 'CCP4XtalData.CISigIColumnGroup'>, <class 'CCP4XtalData.CFSigFColumnGroup'>]</b></td><td></td></tr>
+<tr><td>sameCrystalAs</td><td><i>str</i></td><td><b>NotImplemented</b></td><td>Name of CMtzDataFile object that crystal parameters should match - probably the observed data</td></tr>
+</table>
+<a name="CPhaserSolDataFile"><h3>CPhaserSolDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CPhaserSolDataFile">CCP4XtalData.CPhaserSolDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Possible solutions passed between runs of the Phaser program</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Phaser solutions</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#phasersol</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['phaser_sol.pkl']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/phaser-sol</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>Phaser solution file</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>phaser_sol</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CPhasingGroup"><h3>CPhasingGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CPhasingGroup">CCP4XtalData.CPhasingGroup</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>formula</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>type</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CPhiFomColumnGroup"><h3>CPhiFomColumnGroup</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a> -> <a href="./CCP4XtalData.html#CPhiFomColumnGroup">CCP4XtalData.CPhiFomColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Phase and figure of merit</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CPhsDataFile"><h3>CPhsDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMtzDataFile">CCP4XtalData.CMtzDataFile</a> -> <a href="./CCP4XtalData.html#CMiniMtzDataFile">CCP4XtalData.CMiniMtzDataFile</a> -> <a href="./CCP4XtalData.html#CPhsDataFile">CCP4XtalData.CPhsDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Phases in Hendrickson-Lattmann or Phi/FOM form</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Phases</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#Phs</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz', 'cif', 'ent']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-mtz-phases</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>MTZ phases</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>phases</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CMtzData</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+<tr><td>correctColumns</td><td><i>list</i></td><td><b>['AAAA', 'PW']</b></td><td>A list of coloumn data types expected in the file</td></tr>
+<tr><td>columnGroupClassList</td><td><i>str</i></td><td><b>[<class 'CCP4XtalData.CHLColumnGroup'>, <class 'CCP4XtalData.CPhiFomColumnGroup'>]</b></td><td></td></tr>
+<tr><td>sameCrystalAs</td><td><i>str</i></td><td><b>NotImplemented</b></td><td>Name of CMtzDataFile object that crystal parameters should match - probably the observed data</td></tr>
+</table>
+<a name="CProgramColumnGroup"><h3>CProgramColumnGroup:  A group of MTZ columns required for program input</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup">CCP4XtalData.CProgramColumnGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>[]</b></td><td>Preferred values for column names</td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+<tr><td>toolTipList</td><td><i>list</i></td><td><b>[]</b></td><td>Tooltips for columns in group</td></tr>
+</table>
+<a name="CProgramColumnGroup0"><h3>CProgramColumnGroup0</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CProgramColumnGroup0">CCP4XtalData.CProgramColumnGroup0</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>datasetName</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>columnGroup</td><td><a href="./CCP4XtalData.html#CMtzColumnGroup">CMtzColumnGroup</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>groupTypes</td><td><i>list</i></td><td><b>[]</b></td><td>Type of columnGroup required by program</td></tr>
+<tr><td>mtzFileKey</td><td><i>str</i></td><td><b></b></td><td>The key for a CMtxDataFile in the same CContainer</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the parameter must be set at run time</td></tr>
+</table>
+<a name="CReindexOperator"><h3>CReindexOperator</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CReindexOperator">CCP4XtalData.CReindexOperator</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>h</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>k</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>l</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CResolutionRange"><h3>CResolutionRange</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CResolutionRange">CCP4XtalData.CResolutionRange</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>high</td><td><a href="./CCP4Data.html#CFloat">CFloat</a></td></tr>
+<tr><td>low</td><td><a href="./CCP4Data.html#CFloat">CFloat</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CRunBatchRange"><h3>CRunBatchRange</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CRunBatchRange">CCP4XtalData.CRunBatchRange</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>runNumber</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>fileNumber</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>batchRange0</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>batchRange1</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Specify range of reflections to treat as one run</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CRunBatchRangeList"><h3>CRunBatchRangeList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CRunBatchRangeList">CCP4XtalData.CRunBatchRangeList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CRunBatchRange">CRunBatchRange</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>1</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CShelxFADataFile"><h3>CShelxFADataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CShelxFADataFile">CCP4XtalData.CShelxFADataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Data used by Shelx programs</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Shelx FA</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#shelxfa</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['hkl']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-shelx-FA</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>Shelx FA</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>shelx_FA</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CShelxLabel"><h3>CShelxLabel</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CShelxLabel">CCP4XtalData.CShelxLabel</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>UNDEFINED</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Hint to Shelx for the use of the dataset</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>True</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>['UNDEFINED', 'HREM', 'LREM', 'PEAK', 'INFL', 'NAT', 'DERI']</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>['undefined', 'high remote', 'low remote', 'peak', 'inflection', 'native', 'derivative']</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CSpaceGroup"><h3>CSpaceGroup:  A string holding the space group</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4XtalData.html#CSpaceGroup">CCP4XtalData.CSpaceGroup</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Hermann-Mauguin space group name</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>crystal_data#space_group</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CSpaceGroupCell"><h3>CSpaceGroupCell:  Cell space group and parameters</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4XtalData.html#CSpaceGroupCell">CCP4XtalData.CSpaceGroupCell</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>cell</td><td><a href="./CCP4XtalData.html#CCell">CCell</a></td></tr>
+<tr><td>spaceGroup</td><td><a href="./CCP4XtalData.html#CSpaceGroup">CSpaceGroup</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Space group and cell length and angles</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>crystal_data#cell_space_group</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CUnmergedDataContent"><h3>CUnmergedDataContent</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFileContent">CCP4File.CDataFileContent</a> -> <a href="./CCP4XtalData.html#CUnmergedDataContent">CCP4XtalData.CUnmergedDataContent</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>knownwavelength</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>format</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>batchs</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>wavelength</td><td><a href="./CCP4XtalData.html#CWavelength">CWavelength</a></td></tr>
+<tr><td>spaceGroup</td><td><a href="./CCP4XtalData.html#CSpaceGroup">CSpaceGroup</a></td></tr>
+<tr><td>knowncell</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>datasetName</td><td><a href="./CCP4XtalData.html#CDatasetName">CDatasetName</a></td></tr>
+<tr><td>numberLattices</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>crystalName</td><td><a href="./CCP4XtalData.html#CCrystalName">CCrystalName</a></td></tr>
+<tr><td>lowRes</td><td><a href="./CCP4Data.html#CFloat">CFloat</a></td></tr>
+<tr><td>cell</td><td><a href="./CCP4XtalData.html#CCell">CCell</a></td></tr>
+<tr><td>highRes</td><td><a href="./CCP4Data.html#CFloat">CFloat</a></td></tr>
+<tr><td>merged</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CUnmergedDataFile"><h3>CUnmergedDataFile:   Handle MTZ, XDS and scalepack files. Allow wildcard filename</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CUnmergedDataFile">CCP4XtalData.CUnmergedDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Unmerged experimental data in any format</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Unmerged reflections</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#unmerged_data</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz', 'hkl', 'HKL', 'sca', 'SCA']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-unmerged-experimental</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>Unmerged experimental data</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>CUnmergedDataContent</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CUnmergedDataFileList"><h3>CUnmergedDataFileList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4XtalData.html#CUnmergedDataFileList">CCP4XtalData.CUnmergedDataFileList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4XtalData.html#CUnmergedDataFile">CUnmergedDataFile</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CUnmergedMtzDataFile"><h3>CUnmergedMtzDataFile</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4File.html#CDataFile">CCP4File.CDataFile</a> -> <a href="./CCP4XtalData.html#CMtzDataFile">CCP4XtalData.CMtzDataFile</a> -> <a href="./CCP4XtalData.html#CUnmergedMtzDataFile">CCP4XtalData.CUnmergedMtzDataFile</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>dbFileId</td><td><a href="./CCP4Data.html#CUUID">CUUID</a></td></tr>
+<tr><td>contentFlag</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>baseName</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+<tr><td>project</td><td><a href="./CCP4File.html#CProjectId">CProjectId</a></td></tr>
+<tr><td>subType</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>annotation</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>relPath</td><td><a href="./CCP4File.html#CFilePath">CFilePath</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data file can be undefined at run time</td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Unmerged experimental data in CCP4's MTZ format</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>Unmerged MTZ reflections</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>data_files#MTZ</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>True</b></td><td>Save the name of this file in the database</td></tr>
+<tr><td>fileExtensions</td><td><i>list</i></td><td><b>['mtz']</b></td><td>A list of strings containing allowed file extensions (no dot)</td></tr>
+<tr><td>mimeTypeName</td><td><i>str</i></td><td><b>application/CCP4-mtz-unmerged</b></td><td></td></tr>
+<tr><td>mimeTypeDescription</td><td><i>str</i></td><td><b>MTZ unmerged experimental data</b></td><td></td></tr>
+<tr><td>fileLabel</td><td><i>str</i></td><td><b>None</b></td><td>Label for file</td></tr>
+<tr><td>mustExist</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if data file must exist at run time</td></tr>
+<tr><td>fromPreviousJob</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if input data file can be inferred from preceeding jobs</td></tr>
+<tr><td>jobCombo</td><td><i>bool</i></td><td><b>True</b></td><td>Flag if data widget should be a combo box </td></tr>
+<tr><td>fileContentClassName</td><td><i>str</i></td><td><b>None</b></td><td>A string containing the name of a class which will hold the file contents</td></tr>
+<tr><td>isDirectory</td><td><i>bool</i></td><td><b>False</b></td><td>Flag if the data is a directory</td></tr>
+<tr><td>requiredSubType</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed sub types</td></tr>
+<tr><td>requiredContentFlag</td><td><i>list</i></td><td><b>None</b></td><td>A list of allowed content flags</td></tr>
+</table>
+<a name="CWavelength"><h3>CWavelength:  Wavelength in Angstrom</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CFloat">CCP4Data.CFloat</a> -> <a href="./CCP4XtalData.html#CWavelength">CCP4XtalData.CWavelength</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>float</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Data collection wavelength in Angstrom</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>10</b></td><td></td></tr>
+<tr><td>min</td><td><i>float</i></td><td><b>0.0</b></td><td>The inclusive minimum value</td></tr>
+<tr><td>max</td><td><i>float</i></td><td><b>None</b></td><td>The inclusive maximum value</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of allowed or recommended values - see onlyEnumerators</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of strings, matching items in enumerators list, to appear on GUI menu</td></tr>
+</table>
+</html>

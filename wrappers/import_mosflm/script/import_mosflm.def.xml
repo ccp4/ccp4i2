@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <hostName>mnmacpro.ncl.ac.uk</hostName>
+    <userId>martin</userId>
+    <ccp4iVersion>0.0.4</ccp4iVersion>
+    <pluginName>import_mosflm</pluginName>
+    <creationTime>11:06 11/Apr/14</creationTime>
+    <pluginTitle>Import mosflm</pluginTitle>
+    <jobNumber/>
+  </ccp4i2_header>
+  <ccp4i2_body id="import_mosflm">
+      <container id="inputData">
+          <content id="MOSFLMXML">
+              <className>CDataFile</className>
+              <qualifiers>
+                  <mustExist>True</mustExist>
+                  <fileExtensions>mos,sav</fileExtensions>
+                  <toolTip>XML output from iMosflm save session</toolTip>
+                  <saveToDb>False</saveToDb>
+              </qualifiers>
+          </content>
+          <content id="UNMERGEDMTZ">
+              <className>CUnmergedDataFile</className>
+              <qualifiers>
+                  <mustExist>True</mustExist>
+                  <baseName>
+                      <allowedCharacters>*?</allowedCharacters>
+                  </baseName>
+                  <relPath>
+                      <allowedCharacters>*?</allowedCharacters>
+                  </relPath>
+              </qualifiers>
+          </content>
+      </container>
+      <container id="outputData">
+      </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,421 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>13:33 26/Jul/12</creationTime>
+    <userId>cowtan</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>arp_warp_classic</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Model building using ARP/WARP classic</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="arp_warp_classic">
+
+    <container id="inputData">
+      <content id="AWA_FOBS">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredSubType>1</requiredSubType>
+          <guiLabel>AWA_FOBS</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_FREE">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>AWA_FOBS</sameCrystalAs>
+	  <sameCrystalLevel>1</sameCrystalLevel>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_MODELIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredSubType>1</requiredSubType>
+          <default><subType>1</subType></default>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_PHINI">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>AWA_FOBS</sameCrystalAs>
+          <requiredContentFlag>2</requiredContentFlag>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_HEAVYIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredSubType>4</requiredSubType>
+          <default><subType>4</subType></default>
+          <guiLabel>Substructure</guiLabel>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_PHREF">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>AWA_FOBS</sameCrystalAs>
+          <requiredSubType>1</requiredSubType>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_SEQIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <fromPreviousJob>True</fromPreviousJob>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+	  <selectionMode>0</selectionMode>
+        </qualifiers>
+      </content>
+      </container>
+
+    <container id="outputData">
+      <content id="FPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <subType>1</subType>
+          <contentFlag>1</contentFlag>
+        </qualifiers>
+      </content>
+      <content id="DIFFPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <subType>2</subType>
+          <contentFlag>1</contentFlag>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <subType>1</subType>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="XYZDUM">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <subType>1</subType>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CModelBuildPerformance</className>
+        <qualifiers/>
+      </content>
+    </container>
+
+    <container id="controlParameters">
+      <content id="AWA_ARP_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>WARPNTRACEPHASES</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>WARPNTRACEPHASES,WARPNTRACEMODEL</enumerators>
+          <menuText>automated model building starting from experimental phases,automated model building starting from existing model</menuText>
+        </qualifiers>
+      </content>
+      <content id="AWA_REF_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText> None  , Phases  , HL coefficients  , Anomalous data  </menuText>
+          <enumerators>AWA_REFML,AWA_PHASED,AWA_HL,AWA_SAD</enumerators>
+          <default>AWA_REFML</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_SCAT_LAMBDA_AWA_SAD">
+        <className>CFloat</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <default>0.992</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_BIG_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <charWidth>3</charWidth>
+          <min>1</min>
+          <default>10</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_SMALL_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <min>1</min>
+          <charWidth>3</charWidth>
+          <default>5</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_MOCKYES">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_JSRVIEW">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_MOCKPAUSE">
+        <className>CInt</className>
+        <qualifiers>
+          <default>35</default>
+          <min>0</min>
+          <charWidth>4</charWidth>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_ANO_OPTION">
+        <className>CString</className>
+        <qualifiers>
+          <default>LAMBDA</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>LAMBDA,MEASURED,CUKA</enumerators>
+          <menuText>at specific wavelength,by fluorescence scan data,at CuK-alpha wavelength</menuText>
+        </qualifiers>
+      </content>
+      <content id="AWA_SCAT_ATOM">
+        <className>CString</className>
+        <qualifiers>
+          <default>SE</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_SCAT_FP_AWA_SAD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>-7.0</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_SCAT_FDP_AWA_SAD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>6.5</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_USE_COND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_FORCE_COND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_FAKE_DATA">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_NCS_RESTRAINTS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_NCS_EXTENSION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_LOOPS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_BUILD_SIDE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_SIDE_AFTER">
+        <className>CInt</className>
+        <qualifiers>
+          <charWidth>2</charWidth>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_IS_SEMET">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_ALBE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_SKIP_BUILD">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_SKIP_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <charWidth>2</charWidth>
+          <min>0</min>
+          <default>0</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_FREEBUILD">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_FLATTEN">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_MULTITRACE">
+        <className>CInt</className>
+        <qualifiers>
+          <default>5</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_ADDATOM_SIGMA">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>3.2</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_REMATOM_SIGMA">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_UP_UPDATE">
+        <className>CInt</className>
+        <qualifiers>
+          <default>1</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_TWIN">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_NCYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <charWidth>2</charWidth>
+          <min>1</min>
+          <default>1</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="AWA_PHASE_BLUR">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_WEIGHT_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>AUTO</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>AUTO,MANUAL</enumerators>
+          <menuText>Automatic,Manual</menuText>
+        </qualifiers>
+      </content>
+      <content id="AWA_WMAT">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_RIDGE_RESTRAINTS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+      <content id="AWA_SCALE">
+        <className>CString</className>
+        <qualifiers>
+          <default>SIMPLE</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>BULK,SIMPLE</enumerators>
+          <menuText>BULK,SIMPLE</menuText>
+        </qualifiers>
+      </content>
+      <content id="AWA_SCANIS">
+        <className>CString</className>
+        <qualifiers>
+          <default>Y</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>N,Y</enumerators>
+          <menuText>isotropic,anisotropic</menuText>
+        </qualifiers>
+      </content>
+      <content id="AWA_REFMAC_REF_SET">
+        <className>CString</className>
+        <qualifiers>
+          <default>N</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>N,Y</enumerators>
+          <menuText>working,free</menuText>
+        </qualifiers>
+      </content>
+      <content id="AWA_SOLVENT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="guiParameters">
+      <content id="AWA_TOTAL_CYCLES">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4:ccp4i2>

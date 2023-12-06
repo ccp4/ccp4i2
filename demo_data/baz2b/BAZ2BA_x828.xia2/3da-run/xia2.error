@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/dls_sw/apps/xia2/4497/xia2/Applications/xia2.py", line 321, in <module>
+    xia2()
+  File "/dls_sw/apps/xia2/4497/xia2/Applications/xia2.py", line 215, in xia2
+    Chatter.write(str(CommandLine.get_xinfo()))
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XProject.py", line 58, in __str__
+    return self.__repr__()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XProject.py", line 54, in __repr__
+    result += str(self._crystals[crystal])
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XCrystal.py", line 456, in __str__
+    return self.__repr__()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XCrystal.py", line 315, in __repr__
+    result += str(self._wavelengths[wavelength])
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XWavelength.py", line 112, in __str__
+    return self.__repr__()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XWavelength.py", line 94, in __repr__
+    result += '%s\n' % str(s)
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XSweep.py", line 462, in __str__
+    return self.__repr__()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XSweep.py", line 499, in __repr__
+    repr += 'MTZ file: %s\n' % self.get_integrater_intensities()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/XSweep.py", line 769, in get_integrater_intensities
+    reflections = self._get_integrater().get_integrater_intensities()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/Interfaces/Integrater.py", line 540, in get_integrater_intensities
+    self.integrate()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/Interfaces/Integrater.py", line 481, in integrate
+    self._integrate_prepare()
+  File "/dls_sw/apps/xia2/4497/xia2/Modules/Integrater/XDSIntegrater.py", line 260, in _integrate_prepare
+    cell = self._intgr_indexer.get_indexer_cell()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/Interfaces/Indexer.py", line 483, in get_indexer_cell
+    self.index()
+  File "/dls_sw/apps/xia2/4497/xia2/Schema/Interfaces/Indexer.py", line 332, in index
+    result = self._index()
+  File "/dls_sw/apps/xia2/4497/xia2/Wrappers/Labelit/LabelitIndex.py", line 455, in _index
+    raise RuntimeError, 'error in indexing'
+RuntimeError: error in indexing

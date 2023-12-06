@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <pluginName>refmac_wrk</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <XYZIN>
+        <project>CCP4I2_TOP</project>
+        <relPath>test/data</relPath>
+        <baseName>1ajs_link.pdb</baseName>
+      </XYZIN>
+      <HKLIN>
+        <project>CCP4I2_TOP</project>
+        <relPath>test/data</relPath>
+        <baseName>1ajs.mtz</baseName>
+      </HKLIN>
+      <FOBS>
+        <FP>FP</FP>
+        <Sigma>SIGFP</Sigma>
+      </FOBS>
+      <FREERFLAG>
+        <FREE>FreeR_flag</FREE>
+      </FREERFLAG>
+      <MAKE_LIBRARY>
+        <project>CCP4I2_TOP</project>
+        <relPath>test/data</relPath>
+        <baseName>1ajs_link.lib</baseName>
+      </MAKE_LIBRARY>
+    </inputData>
+    <controlParameters>
+      <MAKE_HYDROGEN>NO</MAKE_HYDROGEN>
+      <NCYCLES>2</NCYCLES>
+    </controlParameters>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

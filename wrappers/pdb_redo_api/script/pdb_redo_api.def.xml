@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>sjm</userId>
+    <creationTime>09:00 27/Oct/22</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>pdb_redo_api</pluginName>
+    <pluginTitle>Refine structures using PDB-REDO Web service</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="pdb_redo_api">
+    <container id="controlParameters">
+        <content id="PAIRED">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Perform paired refinement</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NOLOOPS">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Do not try to complete loops</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NOPEPFLIP">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Do not perform peptide flips</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NOSCBUILD">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Do not rebuild or complete side-chain</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NOCENTRIFUGE">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Do not delete poor waters</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NOSUGARBUILD">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Do not (re)build carbohydrates</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NOREBUILD">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Skip model rebuilding</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NEWMODEL">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Update the model even if the initial refinement is poor</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="ISOTROPIC">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Force isotropic B-factors</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="ANISOTROPIC">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Force anisotropic B-factors (within limits)</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="NOTLS">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <guiLabel>Do not perform TLS refinement</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="TIGHTER">
+             <className>CInt</className>
+             <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>0,1,2</enumerators>
+                  <menuText>0,1,2</menuText>
+                  <default>0</default>
+                 <guiLabel>Use tighter restraints in refinement</guiLabel>
+             </qualifiers>
+        </content>
+        <content id="LOOSER">
+             <className>CInt</className>
+             <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>0,1,2</enumerators>
+                  <menuText>0,1,2</menuText>
+                  <default>0</default>
+                 <guiLabel>Use looser restraints in refinement</guiLabel>
+             </qualifiers>
+        </content>
+    </container>
+    <container id="inputData">
+      <content id="DICT">
+          <className>CDictDataFile</className>
+          <qualifiers>
+              <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+              <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+              <toolTip>Ideal ligand geometry for refinement</toolTip>
+              <label>Ligand geometry</label>
+              <fileExtensions>cif</fileExtensions>
+              <mustExist>True</mustExist>
+              <allowUndefined>True</allowUndefined>
+          </qualifiers>
+      </content>
+      <content id="SEQIN">
+        <className>CSeqDataFile</className>
+        <qualifiers>
+            <mustExist>True</mustExist>
+            <fromPreviousJob>True</fromPreviousJob>
+            <allowUndefined>True</allowUndefined>
+            <toolTip>Sequence File</toolTip>
+            <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+	  <ifAtomSelection>False</ifAtomSelection>
+        </qualifiers>
+      </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <toolTip>Free R set corresponding to the reflection data.
+See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
+                </qualifiers>
+            </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT_BESTTLS">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <annotation>Conservatively optimized coordinates</annotation>
+          </default>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT_FINAL">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <annotation>Fully optimized coordinates</annotation>
+          </default>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FPHIOUT_BESTTLS">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>1</contentFlag>
+            <annotation>Conservatively optimized density map</annotation>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="DIFFPHIOUT_BESTTLS">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>2</subType>
+            <contentFlag>1</contentFlag>
+            <annotation>Conservatively optimized difference map</annotation>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FPHIOUT_FINAL">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>1</contentFlag>
+            <annotation>Fully optimized density map</annotation>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="DIFFPHIOUT_FINAL">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>2</subType>
+            <contentFlag>1</contentFlag>
+            <annotation>Fully optimized difference map</annotation>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCE">
+         <className>CRefinementPerformance</className>
+         <qualifiers/>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

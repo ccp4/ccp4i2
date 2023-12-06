@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#00020a">
+  <script src="../../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Dealing with AlphaFold and RoseTTAFold models in CCP4i2 &#8212; CCP4i2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/contentui.css" />
+    <link rel="stylesheet" type="text/css" href="https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/contentui.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#005BBB data-md-color-accent=yellow>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" id="__gitlab"><path fill="currentColor" d="M93.667 473.347l90.684-279.097H2.983l90.684 279.097z" transform="translate(156.198 1.16)"/><path fill="currentColor" d="M221.333 473.345L130.649 194.25H3.557l217.776 279.095z" transform="translate(28.531 1.16)" opacity=".7"/><path fill="currentColor" d="M32 195.155L4.441 279.97a18.773 18.773 0 0 0 6.821 20.99l238.514 173.29L32 195.155z" transform="translate(.089 .256)" opacity=".5"/><path fill="currentColor" d="M2.667-84.844h127.092L75.14-252.942c-2.811-8.649-15.047-8.649-17.856 0L2.667-84.844z" transform="translate(29.422 280.256)"/><path fill="currentColor" d="M2.667 473.345L93.351 194.25h127.092L2.667 473.345z" transform="translate(247.198 1.16)" opacity=".7"/><path fill="currentColor" d="M221.334 195.155l27.559 84.815a18.772 18.772 0 0 1-6.821 20.99L3.557 474.25l217.777-279.095z" transform="translate(246.307 .256)" opacity=".5"/><path fill="currentColor" d="M130.667-84.844H3.575l54.618-168.098c2.811-8.649 15.047-8.649 17.856 0l54.618 168.098z" transform="translate(336.974 280.256)"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#tasks/alphafold_utilities/predicted_models" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../index.html" title="CCP4i2  documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CCP4i2  documentation</span>
+          <span class="md-header-nav__topic"> Dealing with AlphaFold and RoseTTAFold models in CCP4i2 </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../"versions.json"",
+        target_loc = "../../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">CCP4i2  documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../index.html" title="CCP4i2 documentation" class="md-nav__button md-logo">
+      
+        <img src="../../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../../index.html"
+       title="CCP4i2 documentation">CCP4i2  documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#tasks-alphafold-utilities-predicted-models--page-root" class="md-nav__link">Dealing with AlphaFold and RoseTTAFold models in CCP4i2</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#using-structure-predictions-from-external-sources" class="md-nav__link">Using structure predictions from external sources</a>
+        </li>
+        <li class="md-nav__item"><a href="#after-mr-with-predicted-models" class="md-nav__link">After MR with predicted models</a>
+        </li>
+        <li class="md-nav__item"><a href="#ccp4i2-alphafold-utilities" class="md-nav__link">CCP4i2 AlphaFold Utilities</a>
+        </li>
+        <li class="md-nav__item"><a href="#tutorials" class="md-nav__link">Tutorials</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../../_sources/tasks/alphafold_utilities/predicted_models.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="dealing-with-alphafold-and-rosettafold-models-in-ccp4i2">
+<h1 id="tasks-alphafold-utilities-predicted-models--page-root">Dealing with AlphaFold and RoseTTAFold models in CCP4i2<a class="headerlink" href="#tasks-alphafold-utilities-predicted-models--page-root" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://www.nature.com/articles/s41586-021-03819-2">AlphaFold2</a> and <a class="reference external" href="https://robetta.bakerlab.org/">RoseTTAFold</a> predicted models are widely acknowledged as good structure templates for Molecular Replacement (MR). This article describes AlphaFold and RoseTTAFold implementation and the use of predicted models in CCP4i2.</p>
+<section id="using-structure-predictions-from-external-sources">
+<h2 id="using-structure-predictions-from-external-sources">Using structure predictions from external sources<a class="headerlink" href="#using-structure-predictions-from-external-sources" title="Permalink to this heading">¶</a></h2>
+<p>Predicted models can be used in i2 in exactly the same way as models derived from experimentally determined structures (<em>taken from PDB or elsewhere</em>). The only difference between them is that <strong>structure prediction software puts pLLDT scores (AlphaFold) or rmsd estimates (RoseTTAFold) in place of B-factors</strong>. This misguides MR programs regarding the regions with low or high reliability, and, therefore, the <strong>scores must be recalculated as B-factors</strong>.</p>
+<p>After models were imported in i2 please, please, use <a class="reference external" href="../editbfac/index.html">Process Predicted Models</a> task to create estimated B-values for the models. The task also allows performing some model processing like removing low confidence regions and/or splitting the model into compact regions. As a result, the predicted model can be further used in molecular replacement programs (<a class="reference external" href="../phaser_pipeline/index.html">Phaser</a> and <a class="reference external" href="../molrep_pipe/index.html">Molrep</a>) or directly in Slice-n-Dice, without a preliminary model preparation step. Slice-n-Dice task is useful in case when noticeable conformations in MR models are expected (for example, predicted models cannot provide an exact hinge state or a twist between domains). Slice-n-Dice attempt to split the given model into a predefined number of conservative domains, and, in addition, Slice-n-Dice attempts to molecular replace them separately with <a class="reference external" href="../phaser_pipeline/index.html">Phaser</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="http://chango.ibmb.csic.es/shredder">Arcimboldo Shredder</a> provides functionality similar to Slice-n-Dice. It can use models directly and split models into domains which will be used for further MR.</p>
+</div>
+<p>Just like PDB models, predicted models are automatically scanned, acquired and analysed in automatic pipelines  <a class="reference external" href="../mrbump_basic/index.html">MrBUMP</a>, <a class="reference external" href="../mrparse/index.html">MrParse</a> , <a class="reference external" href="../ccp4mg_edit_model/index.html">Interactive selection of MR model components CCP4mg and MrBUMP</a> and <a class="reference external" href="../lorestr_i2/index.html">Lorestr</a> directly from the AlphaFold Database (AFDB) at the EBI.</p>
+</section>
+<section id="after-mr-with-predicted-models">
+<h2 id="after-mr-with-predicted-models">After MR with predicted models<a class="headerlink" href="#after-mr-with-predicted-models" title="Permalink to this heading">¶</a></h2>
+<p>Post-phasing steps in structure solution are not different for MR with predicted or from-the-PDB models.</p>
+<p>Predicted models usually have a very high sequence similarity with the target structure: 100% if a structure was generated from the given sequence, and very close to 100% if the structure was obtained from AFDB. Nevertheless, structure rebuilding with <a class="reference external" href="../modelcraft/index.html">Modelcraft</a>, <a class="reference external" href="../buccaneer_build_refine_mr/index.html">Buccaneer</a> or <a class="reference external" href="../arp_warp_classic/index.html">Arp/wArp</a> is usually required after phasing because parts of the model are often removed at model preparation stage due to the low confidence score (equivalent to high B-factors). Even if the structure was phased using Slice-n-Dice without the model preparation step, not all domains may get fitted.</p>
+<p>Building a structure includes cycles of manual corrections in Coot followed by refinement with <a class="reference external" href="../prosmart_refmac/index.html">Refmac</a>. In low resolutions, the process is stabilised by using external restraints generated by Prosmart (part of Refmac task) from homologous structures. This is conveniently automated by <a class="reference external" href="../lorestr_i2/index.html">Lorestr</a>, which can automatically acquire suitable structure homologs from both PDB and AFDB.</p>
+</section>
+<section id="ccp4i2-alphafold-utilities">
+<h2 id="ccp4i2-alphafold-utilities">CCP4i2 AlphaFold Utilities<a class="headerlink" href="#ccp4i2-alphafold-utilities" title="Permalink to this heading">¶</a></h2>
+<p>Please note, that AlphaFold and RoseTTAFold utilities can be found in corresponding section in the CCP4i2 task list menu</p>
+<a class="reference internal image-reference" href="../../_images/alphafold_utilities.png"><img alt="../../_images/alphafold_utilities.png" class="align-center" src="../../_images/alphafold_utilities.png" style="width: 909.0px; height: 694.0px;"/></a>
+</section>
+<section id="tutorials">
+<h2 id="tutorials">Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="../../roadshow/index.html#mr-model-selection-and-creation-using-ccp4mgmrbump">Creating Molecular Replacement Search Ensembles with CCP4MG/MrBUMP</a> tutorial can be nice practice on how to create the ensembles for Molecular Replacement with <a class="reference external" href="https://www.ccp4.ac.uk/MG/">CCP4mg</a> molecular viewer.</p>
+<p><strong>ACKNOWLEDGEMENTS</strong></p>
+<p>This article uses materials kindly provided by Dr. Ronan Keegan, whose help is greatly appreciated.</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2020, CCP4.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.2.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

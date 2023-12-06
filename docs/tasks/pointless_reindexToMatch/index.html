@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Reindex or change spacegroup</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>Sometimes when comparing similar structures, the spacegroup or indexing convention may be different even when the crystal packing is similar. In this case the symmetry should be expanded or reduced as necessary and the indexing convention changed to match the existing structure.</p>
+      <img src="pointless_reindexToMatch_task_1.png">
+      <p>Similarly during the course of a structure solution it may become obvious that the spacegroup has been incorrectly determined. For example, a symmetry which is present in the data may have been missed leading to the selection of a spacegroup with lower symmetry, or a higher spacegroup may have been selected due to the presence of twinning or pseudo-symmetry. In the latter case, the data processing should be repeated to obtain a complete list of reflections. In the former case, the reflections can be reduced to the higher symmetry asymmetric unit by averaging symmetry equivalent reflections.</p>
+      <p>The reindex and change spacegroup task addresses each of theses problems. It will reindex a set of observations, and optionally a set of Free-R flags, to match a reference structure or set of observations.</p>
+
+      <h2>Input</h2>
+      <p>The task requires two types of information: the observations (and optionally Free-R set) to reindex, and a reference dataset structure to which the indexing should conform.</p>
+      <p>The reflection data object (and optionally Free-R set) are selected <b class="img-ref">(1)</b>.</p>
+      <p>The spacesgroup and indexing information can come from an existing structure, or from a set of observations, or be specified in terms of a unit cell and spacegroup. These are selected from the menu <b class="img-ref">(2)</b>. The corresponding dateset, model or values can then be selected <b class="img-ref">(3)</b>.</p>
+      <br/>
+
+  </dt>
+
+  <!--
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <p>INSERT TEXT HERE</p>
+
+    </div>
+  </dt>
+  -->
+</ul>
+
+</body>
+</html>
+

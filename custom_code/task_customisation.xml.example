@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>TASKCUSTOMISATION</function>
+    <comment>Installation specific task customisations</comment>
+    <creationTime>13:33 26/Jul/16</creationTime>
+    <userId>lizp</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <!-- Block running large tasks on the local machine - force to run
+	 on server -->
+    <blockLocal>
+      <taskName>crank2</taskName>
+      <taskName>phaser_pipeline</taskName>
+      <taskName>phaser_simple</taskName>
+      <taskName>phaser_rnp_pipeline</taskName>
+    </blockLocal>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

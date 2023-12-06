@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <creationTime>11:06 04/Dec/14</creationTime>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="ShelxBase">
+        <container id="inputData">
+            <content id="SAD">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <requiredContentFlag>1,2</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="HREM">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <requiredContentFlag>1,2</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="LREM">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <requiredContentFlag>1,2</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="INFL">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <requiredContentFlag>1,2</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="PEAK">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <requiredContentFlag>1,2</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="NAT">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="SIR">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="SIRA">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <requiredContentFlag>1,2</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="RIP">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="RIPA">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <requiredContentFlag>1,2,0</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+        </container>
+        <container id='controlParameters'>
+            <content id='MODE'>
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>SAD,MAD,SIR,SIRAS,RIP,RIPAS</enumerators>
+                    <menuText>SAD - Single wavelength anomalous dispersion,MAD - Multiwavelength anomalous dispersion,SIR - Single isomorphous replacement,SIRAS - SIR with anomalous dispersion,RIP - Radiation induced phasing,RIPAS - RIP with anomalous dispersion</menuText>
+                    <default>SAD</default>
+                </qualifiers>
+            </content>
+            <content id='SHEL'>
+                <className>CFloatRange</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

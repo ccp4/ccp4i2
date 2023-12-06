@@ -1,0 +1,491 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <creationTime>14:00 19/Jul/12</creationTime>
+        <userId>cowtan</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId/>
+        <project></project>
+        <pluginName>prosmart_refmac</pluginName>
+        <pluginVersion></pluginVersion>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="prosmart_refmac">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>wrappers/refmac_i2/script</relPath>
+                <baseName>refmac.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        <container id="inputData">
+           <content id="AMINOACID_CHAINS">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="NUCLEOTIDE_CHAINS">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+        </container>
+        <container id="prosmartProtein">
+            <!--<content id="REFERENCE_MODEL">
+              <className>CPdbDataFile</className>
+              <qualifiers>
+                 <saveToDb>True</saveToDb>
+                 <mustExist>True</mustExist>
+                 <allowUndefined>True</allowUndefined>
+                 <fromPreviousJob>False</fromPreviousJob>
+                 <guiLabel>Reference model</guiLabel>
+                 <requiredSubType>2,1,0</requiredSubType>
+                 <default>
+                    <subType>2</subType>
+                 </default>
+              </qualifiers>
+            </content>-->
+            <content id="REFERENCE_MODELS">
+               <className>CList</className>
+               <qualifiers>
+                  <guiLabel>Reference model</guiLabel>
+                  <listMinLength>0</listMinLength>
+               </qualifiers>
+               <subItem>
+                  <className>CPdbDataFile</className>
+                  <qualifiers>
+                     <mustExist>True</mustExist>
+                     <allowUndefined>True</allowUndefined>
+                     <ifAtomSelection>False</ifAtomSelection>
+                  </qualifiers>
+               </subItem>
+            </content>
+            <content id="MODE">
+               <className>CString</className>
+               <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>DISABLED,SELECTED,UNSELECTED,NOPROTEIN,RIGIDMODE</enumerators>
+                  <default>DISABLED</default>
+               </qualifiers>
+            </content>
+            <content id="TOGGLE">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="CHAINLIST_1">
+               <className>CString</className>
+               <qualifiers>
+                  <allowUndefined>True</allowUndefined>
+                  <toolTip>Select which protein chains to generate external restraints for</toolTip>
+               </qualifiers>
+            </content>
+            <content id="ALL_BEST">
+               <className>CString</className>
+               <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>ALL,BEST</enumerators>
+                  <menuText>all,the most structurally similar</menuText>
+                  <default>ALL</default>
+                  <toolTip>Select whether to generate restraints using all chains, or just the one that is the most structurally similar to the target, from each homologous reference model.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="SEQID">
+               <className>CFloat</className>
+               <qualifiers>
+                  <charWidth>4</charWidth>
+                  <default>75.0</default>
+                  <min>0.0</min>
+                  <max>100.0</max>
+                  <toolTip>Minimum sequence identity between reference and target chains.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="WEIGHT">
+               <className>CFloat</className>
+               <qualifiers>
+                  <allowUndefined>True</allowUndefined>
+                  <charWidth>4</charWidth>
+                  <!--<default>10.0</default>-->
+                  <min>0.0</min>
+                  <toolTip>Controls the influence of external restraints during refinement (default: 1.0).</toolTip>
+               </qualifiers>
+            </content>
+            <content id="ALPHA">
+               <className>CFloat</className>
+               <qualifiers>
+                  <allowUndefined>True</allowUndefined>
+                  <charWidth>4</charWidth>
+                  <!--<default>0.02</default>-->
+                  <min>0.0</min>
+                  <toolTip>Alpha parameter - controls robustness to outliers, with lower values resulting in outliers having less of an effect (default: 1.0). E.g. 2.0 corresponds to Least Squares, and -2.0 corresponds to the Geman-McClure loss function.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="DMAX">
+               <className>CFloat</className>
+               <qualifiers>
+                  <allowUndefined>True</allowUndefined>
+                  <charWidth>4</charWidth>
+                  <!--<default>4.2</default>-->
+                  <min>0.0</min>
+                  <toolTip>Max interatomic distance of restraints to be used during refinement (default: use all)</toolTip>
+               </qualifiers>
+            </content>
+            <content id="SIDE_MAIN">
+               <className>CString</className>
+               <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>SIDE,MAIN</enumerators>
+                  <default>SIDE</default>
+                  <menuText>main and side chain,only main chain</menuText>
+                  <toolTip>Select whether to generate restraints involving both main chain and side chain atoms, or main chain atoms only.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="RMIN">
+               <className>CFloat</className>
+               <qualifiers>
+                  <charWidth>4</charWidth>
+                  <default>2.5</default>
+                  <min>0.0</min>
+                  <toolTip>Generate restraints with minimum interatomic distance (Angstroms).</toolTip>
+               </qualifiers>
+            </content>
+            <content id="RMAX">
+               <className>CFloat</className>
+               <qualifiers>
+                  <charWidth>4</charWidth>
+                  <default>6.0</default>
+                  <min>0.0</min>
+                  <toolTip>Generate restraints with maximum interatomic distance (Angstroms).</toolTip>
+               </qualifiers>
+            </content>
+            <content id="ADVANCED">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="TOGGLE_BFAC">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="BFAC">
+               <className>CFloat</className>
+               <qualifiers>
+                  <charWidth>4</charWidth>
+                  <default>2.0</default>
+                  <min>0.0</min>
+                  <toolTip>Remove restraints involving atoms, in the homologue, that have high B-factors relative to the rest of the model.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="TOGGLE_ALT">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="OCCUPANCY">
+               <className>CFloat</className>
+               <qualifiers>
+                  <charWidth>4</charWidth>
+                  <default>0.0</default>
+                  <min>0.0</min>
+                  <max>1.0</max>
+                  <toolTip>Do not generate restraints involving atoms, either in the target or in homologous reference model, with occupancies lower than this value.</toolTip>
+               </qualifiers>
+            </content>
+            <content id="KEYWORDS">
+               <className>CString</className>
+               <qualifiers>
+                  <charWidth>60</charWidth>
+                  <default></default>
+               </qualifiers>
+            </content>
+        </container>
+        <container id="prosmartNucleicAcid">
+           <content id="REFERENCE_MODELS">
+              <className>CList</className>
+              <qualifiers>
+                 <guiLabel>Reference model</guiLabel>
+                 <listMinLength>0</listMinLength>
+              </qualifiers>
+              <subItem>
+                 <className>CPdbDataFile</className>
+                 <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <ifAtomSelection>False</ifAtomSelection>
+                 </qualifiers>
+              </subItem>
+           </content>
+           <content id="MODE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>DISABLED,SELECTED,UNSELECTED,NONUCLEICACID,RIGIDMODE</enumerators>
+                 <default>DISABLED</default>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+              </qualifiers>
+           </content>
+           <content id="CHAINLIST_1">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <toolTip>Select which nucleotide chains to generate external restraints for</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ALL_BEST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>ALL,BEST</enumerators>
+                 <menuText>all,the most structurally similar</menuText>
+                 <default>ALL</default>
+                 <toolTip>Select whether to generate restraints using all chains, or just the one that is the most structurally similar to the target, from each homologous reference model.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="SEQID">
+              <className>CFloat</className>
+              <qualifiers>
+                 <charWidth>4</charWidth>
+                 <default>75.0</default>
+                 <min>0.0</min>
+                 <max>100.0</max>
+                 <toolTip>Minimum sequence identity between reference and target chains.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="WEIGHT">
+              <className>CFloat</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <charWidth>4</charWidth>
+                 <!--<default>10.0</default>-->
+                 <min>0.0</min>
+                 <toolTip>Controls the influence of external restraints during refinement (default: 1.0).</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ALPHA">
+              <className>CFloat</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <charWidth>4</charWidth>
+                 <!--<default>0.02</default>-->
+                 <min>0.0</min>
+                 <toolTip>Alpha parameter - controls robustness to outliers, with lower values resulting in outliers having less of an effect (default: 1.0). E.g. 2.0 corresponds to Least Squares, and -2.0 corresponds to the Geman-McClure loss function.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="DMAX">
+              <className>CFloat</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <charWidth>4</charWidth>
+                 <!--<default>4.2</default>-->
+                 <min>0.0</min>
+                 <toolTip>Max interatomic distance of restraints to be used during refinement (default: use all)</toolTip>
+              </qualifiers>
+           </content>
+           <content id="SIDE_MAIN">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>SIDE,MAIN</enumerators>
+                 <default>SIDE</default>
+                 <menuText>backbone and base,only backbone</menuText>
+                 <toolTip>Select whether to generate restraints involving both main chain and side chain atoms, or main chain atoms only.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="RMIN">
+              <className>CFloat</className>
+              <qualifiers>
+                 <charWidth>4</charWidth>
+                 <default>2.5</default>
+                 <min>0.0</min>
+                 <toolTip>Generate restraints with minimum interatomic distance (Angstroms).</toolTip>
+              </qualifiers>
+           </content>
+           <content id="RMAX">
+              <className>CFloat</className>
+              <qualifiers>
+                 <charWidth>4</charWidth>
+                 <default>6.0</default>
+                 <min>0.0</min>
+                 <toolTip>Generate restraints with maximum interatomic distance (Angstroms).</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ADVANCED">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE_BFAC">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>True</default>
+              </qualifiers>
+           </content>
+           <content id="BFAC">
+              <className>CFloat</className>
+              <qualifiers>
+                 <charWidth>4</charWidth>
+                 <default>2.0</default>
+                 <min>0.0</min>
+                 <toolTip>Remove restraints involving atoms, in the homologue, that have high B-factors relative to the rest of the model.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE_ALT">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+              </qualifiers>
+           </content>
+           <content id="OCCUPANCY">
+              <className>CFloat</className>
+              <qualifiers>
+                 <charWidth>4</charWidth>
+                 <default>0.0</default>
+                 <min>0.0</min>
+                 <max>1.0</max>
+                 <toolTip>Do not generate restraints involving atoms, in the homologue, with occupancies lower than this value.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="KEYWORDS">
+              <className>CString</className>
+              <qualifiers>
+                 <charWidth>60</charWidth>
+                 <default></default>
+              </qualifiers>
+           </content>
+        </container>
+        <container id="libg">
+           <content id="MODE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>DISABLED,SELECTED,UNSELECTED,NONUCLEICACID,RIGIDMODE</enumerators>
+                 <default>DISABLED</default>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+              </qualifiers>
+           </content>
+           <content id="OPTION">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>ALL,MANUAL</enumerators>
+                 <menuText>all,specify restraint types</menuText>
+                 <default>ALL</default>
+              </qualifiers>
+           </content>
+           <content id="BP">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+              </qualifiers>
+           </content>
+           <content id="ADVANCED">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+              </qualifiers>
+           </content>
+           <content id="KEYWORDS">
+              <className>CString</className>
+              <qualifiers>
+                 <default># Replace this with optional additional libg keywords</default>
+              </qualifiers>
+           </content>
+        </container>
+        <container id="platonyzer">
+            <content id="TOGGLE">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="MODE">
+               <className>CString</className>
+               <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>ZN,NA_MG</enumerators>
+                  <menuText>Zinc,Zinc/Sodium/Magnesium</menuText>
+                  <default>ZN</default>
+               </qualifiers>
+            </content>
+            <content id="RM_VDW">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <default>True</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="OPTIMISE_WEIGHT">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="REFMAC_CLEANUP">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="VALIDATE_IRIS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="VALIDATE_BAVERAGE">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="VALIDATE_RAMACHANDRAN">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="VALIDATE_MOLPROBITY">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+            <content id="RUN_MOLPROBITY">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

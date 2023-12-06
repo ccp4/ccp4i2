@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CCP4I2 Developers/Testers Introduction</title>
+</head>
+
+<body>
+<h1>CCP4I2 Developers/Testers Introduction</h1>
+
+<h3>Other documentation</h3>
+<p>
+<a href="./data_classes.html">Data Classes and Containers</a>
+<br/><a href="./modules/index.html">List of <i>CData</i> Classes<a>
+<br/><a href="./example_code.html">Example Code for <i>CData</i> Classes</a>
+<br/><a href="./error_handling.html">Error Handling</a>
+<br/><a href="./pipelines.html">Developing Wrappers and Pipelines</a>
+<br/><a href="./command_templates.html">Program Command Templates</a>
+<br/><a href="./task_guis.html">Task GUIs</a>
+<br/><a href="./reports.html">Report Generation</a>
+<br/><a href="./extras.html">Non-programming requirements for implementing CCP4i2 tasks</a>
+<br/><a href="./remote_jobs.html">Remote Jobs</a>
+<br/><a href="./project_based_testing.html">Project Based Testing</a>
+<br/><a href="./demo_data.html">Creating downloadable demo data</a>
+</p>
+
+<h3>Downloading CCP4i2</h3>
+<p>See <a href="http://www.ccp4.ac.uk">http://www.ccp4.ac.uk</a></p>
+
+
+<h3>defEd</h3>
+<p>This is a GUI to create or edit a DEF XML file which defines the data for a GUI task or a pipeline plugin. The shell script to start it is <i>ccp4i2/bin/defEd</i>.  The program has built-in help.</p>
+
+
+<a name="console"><h3>Running CCP4I2 in Console Mode</h3>
+<p>The script <i>ccp4i2/bin/pyi2</i> will open a Python console with set the CCP4I2 environment set up.
+
+<pre>
+console> pyi2
+Python 2.6.4 (r264:75821M, Oct 27 2009, 19:48:32) 
+[GCC 4.0.1 (Apple Inc. build 5493)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print PROJECTSMANAGER().db().listProjectNames()
+CCP4I2_TEST
+>>>
+>>> 
+..
+( diagnostic)
+..
+OK
+>>>
+</pre>
+<p>The CCP4Modules module is imported as part of the setup and this provides functions such as PROJECTSMANAGER() that returns the instance of the CCP4ProjectsManager.CProjectsManager class. In the example code above this is used to access the database (using db() method).</p>
+<p>The setup also ensures that plugins in the plugins directory are on the PYTHONPATH so can be loaded and, like the buccaneer example above, the module test suite run.</p>
+
+<h3>Source Code Organisation</h3>
+<p>Core code organised according to external dependencies into directories listed below.</p>
+<table>
+  <tr>
+    <td>Linux</td><td>Linux-specific executables or data files</td>
+  </tr><tr>
+    <td>MacOSX</td><td>MacOSX-specific executables and data files</td>
+  </tr><tr>
+    <td>Windows</td><td>WindowsX-specific executables and data files</td>
+  </tr><tr>
+    <td>bin</td><td>OS-independent Python or shell scripts</td>
+  </tr><tr>
+    <td>core</td><td>No external dependencies</td>
+  </tr><tr>
+    <td>qtcore</td><td>Uses the non-graphical QtCore module</td>
+  </tr><tr>
+    <td>qtgui</td><td>Uses the graphical QtGui module</td>
+   </tr><tr>
+    <td>dbapi</td><td>API to RDMS database</td>
+   </tr><tr>
+    <td>utils</td><td>A few utilties to aid startup of different executables</td>
+   </tr><tr>
+    <td>wrappers</td><td>Plugins to wrap individual programs</td>
+   </tr><tr>
+    <td>pipelines</td><td>Pipeline plugins</td>
+   </tr><tr>
+    <td>tasks</td><td>GUIS to wrappers and plugins</td>
+   </tr><tr>
+    <td>test/data</td><td>Test data</td>
+   </tr><tr>
+    <td>qticons</td><td>Gui icons</td>
+   </tr><tr>
+      <td>pimple</td><td>Code for pimple graph plotting (aka loggraph)</td>
+   </tr><tr>
+      <td>report</td><td>Code for report generation</td>
+   </tr>
+</table>
+
+<p>Plugins use the following modules directly</p>
+
+<table>
+  <tr>
+    <td>core/CCP4Data</td>
+    <td>CData base class and generic data classes such as CFloat and CDataFile</td>
+    </tr><tr>
+      <td>core/CCP4XtalData</td>
+      <td>crystallographic experimental data classes</td>
+    </tr><tr>
+      <td>core/CCP4ModelData</td>
+      <td>model data classes</td>
+    </tr><tr>
+      <td>core/CCP4MathsData</td>
+      <td>basic maths data classes</td>
+    </tr><tr>
+      <td>core/CCP4File</td>
+      <td>files data</td>
+    </tr><tr>
+      <td>core/CC4Annotation</td>
+      <td>annotation data classes</td>
+    </tr><tr>
+      <td>core/CCP4Container</td>
+      <td>CContainer - a data container - the internal Python equivalent of the DEF file</td>
+    </tr><tr>
+    </tr><tr>
+      <td>core/CCP4ErrorHandling</td>
+      <td>CException</td>
+    </tr><tr>
+    </tr><tr>
+      <td>core/CCP4ProcessManager</td>
+      <td>Running separate processes</td>
+    </tr><tr>
+</table>
+
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Fri Feb 12 16:14:51 GMT 2016 <!-- hhmts end -->
+</body> </html>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>mdw</userId>
+    <creationTime>11:00 25/Oct/22</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>pdbset_ui</pluginName>
+    <pluginTitle>Scripted structure edits - Pdbset</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="pdbset_ui">
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+       <container id="controlParameters">
+          <content id="EXTRA_PDBSET_KEYWORDS">
+             <className>CString</className>
+             <qualifiers>
+                <default>END
+                </default>
+             </qualifiers>
+          </content>
+       </container>
+    
+  </ccp4i2_body>
+</ccp4i2>

@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>mdw</userId>
+    <creationTime>11:28 03/Nov/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>mtzutils</pluginName>
+    <pluginTitle>MTZUTILS: add or delete columns</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="mtzutils">
+    <container id="inputData">
+      <content id="HKLIN1">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="FSIGF">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN1</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="F">
+              <columnType>F</columnType>
+            </columnGroupItem>
+            <columnGroupItem id="SIGF">
+              <columnType>Q</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+      <content id="HKLIN2">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>False</fromPreviousJob>
+        </qualifiers>
+      </content>
+   </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="TITLE">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+      <content id="MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>include columns,exclude columns</menuText>
+          <enumerators>INCLUDE,EXCLUDE</enumerators>
+          <default>EXCLUDE</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

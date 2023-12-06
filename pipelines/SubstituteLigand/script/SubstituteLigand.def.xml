@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.1</ccp4iVersion>
+        <pluginName>SubstituteLigand</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>SubstituteLigand</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="SubstituteLigand">
+        <container id="inputData">
+            <content id='SMILES'>
+                <className>CString</className>
+                <qualifiers>
+                    <toolTip>SMILES string defining the structure of the model to be built</toolTip>
+                    <default>CC(C)OC1=C(C=CC(=C1)OC)C2=NC(C(N2C(=O)N3CCNC(=O)C3)C4=CC=C(C=C4)Cl)C5=CC=C(C=C5)Cl</default>
+                    <guiLabel>SMILES String of new ligand</guiLabel>
+                    <guiMode>multiLine</guiMode>
+                </qualifiers>
+            </content>
+            <content id='XYZIN'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <mustExist>True</mustExist>
+                    <toolTip>Reference PDB will be used to direct spacegroup choice and as start point for molecular replacement - use atom selection to exclude waters and/or ligands</toolTip>
+                </qualifiers>
+            </content>
+            <content id="UNMERGEDFILES">
+                <className>CImportUnmergedList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF_IN">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <toolTip>Merged reflections e.g. from import, XIA2 or aimless_pipe</toolTip>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG_IN">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <toolTip>Set of FreeR reflections</toolTip>
+                </qualifiers>
+            </content>
+            <content id='MOLIN'>
+                <className>CMDLMolDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id='SMILESIN'>
+                <className>CString</className>
+                <qualifiers>
+                    <minLength>1</minLength>
+                    <guiMode>multiLine</guiMode>
+                </qualifiers>
+            </content>
+            <content id='PIPELINE'>
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>PHASER_RNP,DIMPLE</enumerators>
+                    <menuText>Phaser RNP pipeline,Dimple</menuText>
+                    <default>PHASER_RNP</default>
+                </qualifiers>
+            </content>
+            <content id="DICTIN">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <toolTip>Ligand geometry in REFMAC dict (cif) format</toolTip>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="F_SIGF_OUT">
+                <className>CObsDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="FREERFLAG_OUT">
+                <className>CFreeRDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="DICTOUT">
+                <className>CDictDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>2</subType>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>1</subType>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="OBSAS">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>UNMERGED,MERGED</enumerators>
+                    <menuText>unmerged,merged</menuText>
+                    <default>UNMERGED</default>
+                    <guiLabel>Observed data provided as </guiLabel>
+                    <toolTip>Pipeline can start from merged or unmerged data</toolTip>
+                </qualifiers>
+            </content>
+            <content id="LIGANDAS">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>MOL,DICT,SMILES,SKETCH,NONE</enumerators>
+                    <menuText>MDL Mol file,REFMAC Dict,SMILES String,LIDIA Sketch,NONE</menuText>
+                    <default>SMILES</default>
+                    <toolTip>Chemistry of the ligand can be provided in any of the above ways...no ligand means no ligand search</toolTip>
+                </qualifiers>
+            </content>
+            <content id="RESOLUTION_RANGE">
+                <className>CFloatRange</className>
+                <qualifiers>
+                    <toolTip>Set resolution range (or just high resolution) to cut data for all steps</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

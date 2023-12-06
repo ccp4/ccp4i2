@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>12:57 20/Feb/2013</creationTime>
+    <userId>lizp</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>xia2_integration</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Integration in XIA2</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="xia2_integration">
+  <container id="inputData">
+    <content id="XIA2_DIRECTORY">
+      <className>CDataFile</className>
+      <qualifiers>
+        <mustExist>True</mustExist>
+	<allowUndefined>False</allowUndefined>
+	<isDirectory>True</isDirectory>
+         <saveToDb>False</saveToDb>
+      </qualifiers>
+    </content>
+  </container>
+  <container id="outputData">
+    <content id="HKLOUT">
+      <className>CUnmergedDataFile</className>
+      <qualifiers>
+        <mustExist>True</mustExist>
+         <saveToDb>True</saveToDb>
+      </qualifiers>
+    </content>
+  </container>
+  <container id="controlParameters">
+   </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

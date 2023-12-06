@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#00020a">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>CCP4i2 Command Line - i2run &#8212; CCP4i2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/contentui.css" />
+    <link rel="stylesheet" type="text/css" href="https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/contentui.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CCP4i2 Update History" href="../updatelog/index.html" />
+    <link rel="prev" title="Structure alignment using gesamt" href="../tasks/gesamt/index.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#005BBB data-md-color-accent=yellow>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" id="__gitlab"><path fill="currentColor" d="M93.667 473.347l90.684-279.097H2.983l90.684 279.097z" transform="translate(156.198 1.16)"/><path fill="currentColor" d="M221.333 473.345L130.649 194.25H3.557l217.776 279.095z" transform="translate(28.531 1.16)" opacity=".7"/><path fill="currentColor" d="M32 195.155L4.441 279.97a18.773 18.773 0 0 0 6.821 20.99l238.514 173.29L32 195.155z" transform="translate(.089 .256)" opacity=".5"/><path fill="currentColor" d="M2.667-84.844h127.092L75.14-252.942c-2.811-8.649-15.047-8.649-17.856 0L2.667-84.844z" transform="translate(29.422 280.256)"/><path fill="currentColor" d="M2.667 473.345L93.351 194.25h127.092L2.667 473.345z" transform="translate(247.198 1.16)" opacity=".7"/><path fill="currentColor" d="M221.334 195.155l27.559 84.815a18.772 18.772 0 0 1-6.821 20.99L3.557 474.25l217.777-279.095z" transform="translate(246.307 .256)" opacity=".5"/><path fill="currentColor" d="M130.667-84.844H3.575l54.618-168.098c2.811-8.649 15.047-8.649 17.856 0l54.618 168.098z" transform="translate(336.974 280.256)"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#i2run/i2run" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="CCP4i2  documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CCP4i2  documentation</span>
+          <span class="md-header-nav__topic"> CCP4i2 Command Line - i2run </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">CCP4i2  documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="CCP4i2 documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="CCP4i2 documentation">CCP4i2  documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#i2run-i2run--page-root" class="md-nav__link">CCP4i2 Command Line - i2run</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#why-would-i-use-i2run" class="md-nav__link">Why would I use i2run ?</a>
+        </li>
+        <li class="md-nav__item"><a href="#i-m-interested-show-me-how-easy-it-is" class="md-nav__link">I’m interested…show me how easy it is</a>
+        </li>
+        <li class="md-nav__item"><a href="#but-why-not-just-run-e-g-refmac" class="md-nav__link">But why not just run (e.g.) <em>refmac</em> ?</a>
+        </li>
+        <li class="md-nav__item"><a href="#column-labels" class="md-nav__link">Column labels</a>
+        </li>
+        <li class="md-nav__item"><a href="#discovering-the-i2run-command-to-achieve-a-particular-run" class="md-nav__link">Discovering the i2run command to achieve a particular run</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#keywords-for-a-task" class="md-nav__link">Keywords for a task</a>
+        </li>
+        <li class="md-nav__item"><a href="#from-the-ccp4i2-gui" class="md-nav__link">From the CCP4i2 GUI</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#input-data-objects" class="md-nav__link">Input data objects</a>
+        </li>
+        <li class="md-nav__item"><a href="#exotic-dataobject-types" class="md-nav__link">Exotic dataobject types</a>
+        </li>
+        <li class="md-nav__item"><a href="#specifying-file-inputs" class="md-nav__link">Specifying file inputs</a>
+        </li>
+        <li class="md-nav__item"><a href="#coordinates-and-selections" class="md-nav__link">Coordinates and selections</a>
+        </li>
+        <li class="md-nav__item"><a href="#asymmetric-unit-content-files" class="md-nav__link">Asymmetric unit content files</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/i2run/i2run.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="ccp4i2-command-line-i2run">
+<h1 id="i2run-i2run--page-root">CCP4i2 Command Line - i2run<a class="headerlink" href="#i2run-i2run--page-root" title="Permalink to this heading">¶</a></h1>
+<p>i2run is a mechanism for running CCP4i2 tasks and pipelines from the command line.
+Tasks can be run so that they are recorded into a user’s project database, recorded into <em>some other</em> database or executed without reference to a database</p>
+<section id="why-would-i-use-i2run">
+<h2 id="why-would-i-use-i2run">Why would I use i2run ?<a class="headerlink" href="#why-would-i-use-i2run" title="Permalink to this heading">¶</a></h2>
+<p>A few scenarios</p>
+<ul class="simple">
+<li><p>Because you're in a hurry and can't be bothered to fire up CCP4i2</p></li>
+<li><p>Because you want to automate and do the same things many times</p></li>
+<li><p>Because you want to use the CCP4i2 database from a third party program (e.g. coot ?)</p></li>
+</ul>
+</section>
+<section id="i-m-interested-show-me-how-easy-it-is">
+<h2 id="i-m-interested-show-me-how-easy-it-is">I’m interested…show me how easy it is<a class="headerlink" href="#i-m-interested-show-me-how-easy-it-is" title="Permalink to this heading">¶</a></h2>
+<p>Thank you.
+Here is text that will run <em>refmac</em>, capturing the output in a (pre-existing) project called “GammaDemo” in your CCP4i2 database</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run prosmart_refmac \
+     --F_SIGF $CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+     --XYZIN $CCP4/share/ccp4i2/demo_data/gamma/gamma_model.pdb \
+     --projectName GammaDemo
+</pre></div>
+</div>
+<p>To create a new project (<em>e.g. GammaDemo3</em> ) to run your job, you will additionally have to specify a directory where the project should be created</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run prosmart_refmac \
+     --F_SIGF $CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+     --XYZIN $CCP4/share/ccp4i2/demo_data/gamma/gamma_model.pdb \
+     --projectName GammaDemo3 \
+     --projectPath /Users/martin/CCP4I2_PROJECTS/GammaDemo3
+</pre></div>
+</div>
+</section>
+<section id="but-why-not-just-run-e-g-refmac">
+<h2 id="but-why-not-just-run-e-g-refmac">But why not just run (e.g.) <em>refmac</em> ?<a class="headerlink" href="#but-why-not-just-run-e-g-refmac" title="Permalink to this heading">¶</a></h2>
+<p><strong>*SO*</strong> many reasons.</p>
+<p><strong>Firstly</strong> because the prosmart_refmac pipeline allows you to do much more.  In the same command line you can, for example, provide a reference PDB to which prosmart restraints will be calculated, and trivially add waters afterwards</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Generate some mdm2 data
+i2run aimless_pipe \
+    --UNMERGEDFILES \
+        crystalName=hg7 \
+        dataset=DS1 \
+        file=$CCP4/share/ccp4i2/demo_data/mdm2/mdm2_unmerged.mtz \
+    --projectName hg7 \
+    --projectPath /Users/martin/CCP4I2_PROJECTS/hg7
+#
+#Re-refine 4hg7.pdb, removing waters from start model, restrained against MDM2 for 4qo4.pdb
+i2run prosmart_refmac \
+    --F_SIGF fileUse="-1.HKLOUT[0]" \
+    --XYZIN \
+        fullPath=$CCP4/share/ccp4i2/demo_data/mdm2/4hg7.pdb \
+        selection/text="not (HOH)" \
+    --prosmartProtein.TOGGLE True\
+    --prosmartProtein.REFERENCE_MODELS \
+        fullPath=$CCP4/share/ccp4i2/demo_data/mdm2/4qo4.cif \
+    --projectName hg7
+</pre></div>
+</div>
+<p><strong>Secondly</strong> because your job is now organised without book keeping: one command line has sorted out how to store and name the output files so that they can readily be reused. It has also provided you with a nice digested report that is (arguably) even easier to analyse than a refmac log file !</p>
+</section>
+<section id="column-labels">
+<h2 id="column-labels">Column labels<a class="headerlink" href="#column-labels" title="Permalink to this heading">¶</a></h2>
+<p>Okay, so what if I want to run a job using an input MTZ file that does not use the standard mtz column labels used by CCP4i2 ?</p>
+<p>Well, we've got your back.  For example, if observed reflection data are stored in an MTZ file with  non canonical column labels, you just add a “columnLabels=” subdirective in the readily understood clipper syntax. In this case you specify the path to the input reflection file using the “fullPath=” directive</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run phaser_simple \
+    --F_SIGF \
+        fullPath=$CCP4/share/ccp4i2/demo_data/beta_blip/beta_blip_P3221.mtz \
+        columnLabels="/*/*/[Fobs,Sigma]" \
+    --F_OR_I F \
+    --XYZIN \
+        $CCP4/share/ccp4i2/demo_data/beta_blip/beta.pdb \
+    --projectName BetaBlip
+</pre></div>
+</div>
+<p><em>N.B.</em> The phaser task normally expects to find a set of intensities to use, unless the “F_OR_I” input parameter is set to the value “F”</p>
+</section>
+<section id="discovering-the-i2run-command-to-achieve-a-particular-run">
+<h2 id="discovering-the-i2run-command-to-achieve-a-particular-run">Discovering the i2run command to achieve a particular run<a class="headerlink" href="#discovering-the-i2run-command-to-achieve-a-particular-run" title="Permalink to this heading">¶</a></h2>
+<section id="keywords-for-a-task">
+<h3 id="keywords-for-a-task">Keywords for a task<a class="headerlink" href="#keywords-for-a-task" title="Permalink to this heading">¶</a></h3>
+<p>To find the keyword options available for a particular task or pipeline, simply issue an i2run command, specifying the name of the pipeline and giving the “-h” flag</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i2run</span> <span class="n">prosmart_refmac</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+</section>
+<section id="from-the-ccp4i2-gui">
+<h3 id="from-the-ccp4i2-gui">From the CCP4i2 GUI<a class="headerlink" href="#from-the-ccp4i2-gui" title="Permalink to this heading">¶</a></h3>
+<p>Because the syntax to define a particular set of parameters for an i2 executable cna be complicated
+(which is, after all, why we provide a GUI), there is a mechanism to allow you to configure a run in the GUI
+and discover the corrsponding i2run command.  Because this is a sophisticated option it is not exposed by default
+and requires a user to “Right click” on the toolbar to control which buttons are visible.  Enable the button
+“Show i2run command”.  Now, your toolbar should include an extra button (Fig. 1)</p>
+<blockquote>
+<div><figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/ShowI2runCommandButton.png"><img alt="../_images/ShowI2runCommandButton.png" src="../_images/ShowI2runCommandButton.png" style="width: 50%;"/></a>
+<figcaption>
+<p><span class="caption-text">Figure 1. Show i2run command button in CCP4i2 toolbar</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p>With this option now available, you can configure a task to run in the GUI and, if the corresponding task is
+selected in the task list, clicking the “Show i2run command” button will pop up a modal dialog showing the exact
+i2run command which would run the equivalent job (Fig.2)</p>
+<blockquote>
+<div><figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/ShowI2runCommandResults.png"><img alt="../_images/ShowI2runCommandResults.png" src="../_images/ShowI2runCommandResults.png" style="width: 50%;"/></a>
+<figcaption>
+<p><span class="caption-text">Figure 2. i2run command for a task configured in the GUI</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p>This text can be copied and pasted into a script to run the command from the command line. It can also be edited
+to modify, e.g. selecting different input files, or different control parameter values.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i2run</span> <span class="n">phaser_simple</span> <span class="o">--</span><span class="n">projectName</span> <span class="n">GammaDemo</span> \
+    <span class="o">--</span><span class="n">F_SIGF</span> \
+        <span class="s2">"dbFileId=fd96a5dc3ff511e99e2d6a00025fd280"</span> \
+        <span class="s2">"contentFlag=1"</span> \
+        <span class="s2">"baseName=merged_intensities_Xe_-imported_1.mtz"</span> \
+        <span class="s2">"project=84e59a573ff511e99d256a00025fd280"</span> \
+        <span class="s2">"subType=1"</span> \
+        <span class="s2">"annotation=Reflections imported from merged_intensities_Xe_-imported.mtz by job 1"</span> \
+        <span class="s2">"relPath=CCP4_IMPORTED_FILES"</span> \
+    <span class="o">--</span><span class="n">ASU_PROTEIN_MW</span> <span class="mf">20000.0</span> \
+    <span class="o">--</span><span class="n">ASU_NUCLEICACID_MW</span> <span class="mf">1.0</span> \
+    <span class="o">--</span><span class="n">ENSEMBLES</span> \
+        <span class="s2">"use=True"</span> \
+        <span class="s2">"number=1"</span> \
+        <span class="s2">"label=Ensemble_1"</span> \
+    <span class="o">--</span><span class="n">FREERFLAG</span> \
+        <span class="s2">"dbFileId=2d824287cd8011ea98779801a7ae2c3b"</span> \
+        <span class="s2">"contentFlag=1"</span> \
+        <span class="s2">"baseName=FREERFLAG.mtz"</span> \
+        <span class="s2">"project=84e59a573ff511e99d256a00025fd280"</span> \
+        <span class="s2">"annotation=45 FreeR - Spg:P 21 21 21;Resln:1.81A;Cell:34.1,54.8,68.0,90.0,90.0,90.0"</span> \
+        <span class="s2">"relPath=CCP4_JOBS/job_45"</span> \
+    <span class="o">--</span><span class="n">RUNSHEETBEND</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">RUNREFMAC</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">XYZIN</span> \
+        <span class="s2">"dbFileId=fd9b35de3ff511e98d276a00025fd280"</span> \
+        <span class="s2">"contentFlag=1"</span> \
+        <span class="s2">"baseName=gamma_model_1.pdb"</span> \
+        <span class="s2">"project=84e59a573ff511e99d256a00025fd280"</span> \
+        <span class="s2">"subType=0"</span> \
+        <span class="s2">"annotation=Search imported from gamma_model.pdb by job 1"</span> \
+        <span class="s2">"relPath=CCP4_IMPORTED_FILES"</span> \
+    <span class="o">--</span><span class="n">TITL</span> <span class="n">SET</span><span class="p">]</span> \
+    <span class="o">--</span><span class="n">MUTE</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_ANIS</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_BINS</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_SOLK</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_SOLB</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_ROTA</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_TRAN</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_BFAC</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_VRMS</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_CELL</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_OFAC</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_LAST_ONLY</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">PURG_RNP_NUMB</span> <span class="mi">0</span> \
+    <span class="o">--</span><span class="n">RESC_ROTA</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">RESC_TRAN</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">SGAL_SELE</span> <span class="nb">all</span> \
+</pre></div>
+</div>
+<p>The command is relatively verbose, and the example above can easily be abridged to give the following <a class="reference internal" href="#snippet">snippet</a>.</p>
+<div class="highlight-default notranslate" id="snippet"><div class="highlight"><pre><span></span><span class="n">i2run</span> <span class="n">phaser_simple</span> <span class="o">--</span><span class="n">projectName</span> <span class="n">GammaDemo</span> \
+    <span class="o">--</span><span class="n">F_SIGF</span> \
+        <span class="s2">"dbFileId=fd96a5dc3ff511e99e2d6a00025fd280"</span> \
+    <span class="o">--</span><span class="n">ASU_PROTEIN_MW</span> <span class="mf">20000.0</span> \
+    <span class="o">--</span><span class="n">ASU_NUCLEICACID_MW</span> <span class="mf">1.0</span> \
+    <span class="o">--</span><span class="n">ENSEMBLES</span> \
+        <span class="s2">"use=True"</span> \
+        <span class="s2">"number=1"</span> \
+        <span class="s2">"label=Ensemble_1"</span> \
+    <span class="o">--</span><span class="n">FREERFLAG</span> \
+        <span class="s2">"dbFileId=2d824287cd8011ea98779801a7ae2c3b"</span> \
+    <span class="o">--</span><span class="n">RUNSHEETBEND</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">RUNREFMAC</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">XYZIN</span> \
+        <span class="s2">"dbFileId=fd9b35de3ff511e98d276a00025fd280"</span> \
+    <span class="o">--</span><span class="n">TITL</span> <span class="n">SET</span><span class="p">]</span> \
+    <span class="o">--</span><span class="n">MUTE</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_ANIS</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_BINS</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_SOLK</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACA_MACR_REF_SOLB</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_ROTA</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_TRAN</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_BFAC</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_VRMS</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_CELL</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_REF_OFAC</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">MACM_MACR_LAST_ONLY</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">PURG_RNP_NUMB</span> <span class="mi">0</span> \
+    <span class="o">--</span><span class="n">RESC_ROTA</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">RESC_TRAN</span> <span class="kc">True</span> \
+    <span class="o">--</span><span class="n">SGAL_SELE</span> <span class="nb">all</span> \
+</pre></div>
+</div>
+</section>
+</section>
+<section id="input-data-objects">
+<h2 id="input-data-objects">Input data objects<a class="headerlink" href="#input-data-objects" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="exotic-dataobject-types">
+<h2 id="exotic-dataobject-types">Exotic dataobject types<a class="headerlink" href="#exotic-dataobject-types" title="Permalink to this heading">¶</a></h2>
+<p>CCP4i2 uses some special data classes, which present a challenge to specifying on the command line.  An example is the CEnsemble data structure which represents one or more models, each formed of one or more related sets of coordinate, to be used in moleculr replacement.  i2run handles these challenges by using subdirectives to address the different elements of the underlying data structure.  While hard to say, this is relatively easy to illustrate.  Here is an i2run command which specifies a set of ensembles to use in the phaser expert task to solve beta blip</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run phaser_pipeline \
+    --F_SIGF \
+        fullPath=$CCP4/share/ccp4i2/demo_data/beta_blip/beta_blip_P3221.mtz \
+        columnLabels="/*/*/[Fobs,Sigma]" \
+    --ENSEMBLES \
+        use=True \
+        pdbItemList/identity_to_target=0.9 \
+        pdbItemList/structure=$CCP4/share/ccp4i2/demo_data/beta_blip/beta.pdb \
+    --ENSEMBLES \
+        use=True \
+        pdbItemList/identity_to_target=0.9 \
+        pdbItemList/structure=$CCP4/share/ccp4i2/demo_data/beta_blip/blip.pdb \
+    --RUNREFMAC False \
+    --RUNSHEETBEND False \
+    --F_OR_I F \
+    --RESOLUTION_HIGH 3.0 \
+    --ASUFILE \
+        seqFile=$CCP4/share/ccp4i2/demo_data/beta_blip/beta.seq \
+        seqFile=$CCP4/share/ccp4i2/demo_data/beta_blip/blip.seq \
+    --projectName BetaBlip
+</pre></div>
+</div>
+</section>
+<section id="specifying-file-inputs">
+<h2 id="specifying-file-inputs">Specifying file inputs<a class="headerlink" href="#specifying-file-inputs" title="Permalink to this heading">¶</a></h2>
+<p>We have already introduced the option of specifying input files by their full path, <em>e.g.</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run coordinate_selector \
+    --XYZIN fullPath=$CCP4/share/ccp4i2/demo_data/CDK1CyclinBCKS2/1jst.pdb \
+    --projectName CDK1CyclinBCKS2
+</pre></div>
+</div>
+<p>or more succinctly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run coordinate_selector \
+    --XYZIN $CCP4/share/ccp4i2/demo_data/CDK1CyclinBCKS2/1jst.pdb \
+    --projectName CDK1CyclinBCKS2
+</pre></div>
+</div>
+<p>But it is also possible to use a file that already exists within the database by using a reference to a job number and parameter name where it was created/used with the syntax <em>jobNumber</em>. <em>paramName</em> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i2run</span> <span class="n">coordinate_selector</span> \
+    <span class="o">--</span><span class="n">XYZIN</span> <span class="n">fileUse</span><span class="o">=</span><span class="mf">1.</span><span class="n">XYZIN</span> \
+    <span class="o">--</span><span class="n">projectName</span> <span class="n">CDK1CyclinBCKS2</span>
+</pre></div>
+</div>
+<p>A <em>negative</em> jobNumber indicates a <em>relative</em> job number, <em>e.g.</em> a jobNumber of -1 refers to the previous job in the project</p>
+<p>If the file was an element of an output list (as is the case for tasks which can produce multiple outputs, such as multiple datasets output from AIMLESS), then you can use array-style indexing to specify which element to choose:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run import_merged \
+    --HKLIN fullPath=$CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+    --projectName GammaDemo
+
+i2run aimless_pipe --UNMERGEDFILES \
+    crystalName=Nat1 dataset=DS1 file=$CCP4/share/ccp4i2/demo_data/gamma/gamma_native.mtz \
+    --projectName GammaDemo
+
+i2run shelx \
+    --SHELXCDE True \
+    --ATOM_TYPE Xe \
+    --EXPTYPE SIRAS \
+    --NATIVE True \
+    --F_SIGFanom fileUse="-2.OBSOUT" \
+    --F_SIGFnative fileUse="-1.HKLOUT[0]" \
+    --SEQIN seqFile=$CCP4/share/ccp4i2/demo_data/gamma/gamma.pir \
+    --USER_MBREF_BIGCYC True \
+    --MBREF_BIGCYC 2 \
+    --projectName GammaDemo
+</pre></div>
+</div>
+<p>Or by using the files database UUID, which may be discovered by inspecting the database entry of the file in an interactive CCP4i2 session</p>
+</section>
+<section id="coordinates-and-selections">
+<h2 id="coordinates-and-selections">Coordinates and selections<a class="headerlink" href="#coordinates-and-selections" title="Permalink to this heading">¶</a></h2>
+<p>A subset of CCP4i2 tasks (<em>e.g.</em> list) allow for the task to run on a specified subset of an input coordinate file.  To specify this subset on the command line use the “selection/text=” subdirective on a coordinate file specification. Selections are provided in the mmdb syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run coordinate_selector \
+    --XYZIN \
+        fullPath=$CCP4/share/ccp4i2/demo_data/CDK1CyclinBCKS2/1jst.pdb \
+        "selection/text=A/ or (CYS)" \
+    --projectName CDK1CyclinBCKS2
+</pre></div>
+</div>
+</section>
+<section id="asymmetric-unit-content-files">
+<h2 id="asymmetric-unit-content-files">Asymmetric unit content files<a class="headerlink" href="#asymmetric-unit-content-files" title="Permalink to this heading">¶</a></h2>
+<p>Several CCP4i2 tasks (<em>e.g.</em> phaser, buccaneer, parrot) use a special file (file.asucontent.xml) to specify the expected contents of the asymmetric unit. These files can be created by a dedicated task using i2run…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run ProvideAsuContents \
+    --ASU_CONTENT \
+        description=Beta-lactamase \
+        sequence=HPETLVKVKDAEDQLGARVGYIELDLNSGKILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTDGMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPNDERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKSGAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW \
+        source/baseName=beta.seq \
+        source/relPath=$CCP4/share/ccp4i2/demo_data/beta_blip \
+        nCopies=1 \
+        polymerType=PROTEIN \
+        name=Beta-lactamase \
+    --ASU_CONTENT \
+        description="Beta-lactamase inhibitory protein" \
+        sequence=AGVMTGAKFTQIQFGMTRQQVLDIAGAENCETGGSFGDSIHCRGHAAGDYYAYATFGFTSAAADAKVDSKSQEKLLAPSAPTLTLAKFNQVTVGMTRAQVLATVGQGSCTTWSEYYPAYPSTAGVTLSLSCFDVDGYSSTGFYRGSAHLWFTDGVLQGKRQWDLV \
+        source/baseName=blip.seq \
+        source/relPath=$CCP4/share/ccp4i2/demo_data/beta_blip \
+        nCopies=1 \
+        polymerType=PROTEIN \
+        name=Beta-lactamase-inhibitor \
+    --projectName BetaBlip \
+    --projectPath /tmp/martin/BetaBlip \
+    --dbFile /tmp/martin/BetaBlip.sqlite
+</pre></div>
+</div>
+<p>Alternatively, i2run provides a mechanism to generate them “on the fly” in tasks that use them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i2run parrot\
+    --F_SIGF fullPath=$CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+    --ABCD fullPath=$CCP4/share/ccp4i2/demo_data/gamma/initial_phases.mtz \
+    --ASUIN \
+        seqFile=$CCP4/share/ccp4i2/demo_data/gamma/gamma.pir \
+    --projectName GammaDemo
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="../tasks/gesamt/index.html" title="Structure alignment using gesamt"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Structure alignment using gesamt </span>
+              </div>
+            </a>
+          
+          
+            <a href="../updatelog/index.html" title="CCP4i2 Update History"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> CCP4i2 Update History </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2020, CCP4.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.2.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

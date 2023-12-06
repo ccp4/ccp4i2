@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>CCP4i2 Quick Start</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style>
+  #quickstart_step { display : block; }
+  #quickstart_img { width : 900px; margin:10px;}
+  #quickstart_img { margin:10px;}
+  #quickstart_annotation { }
+  #quickstart_high { color : red }
+  #quickstart_icon { color : red }
+</style>
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<table class="banner">
+<tr>
+<!--<td rowspan="2" width="200" ><img src="../ccp4i2.png" alt="CCP4 web logo"/></td>-->
+<td><img width=75 src="../general/ccp4i2.png" alt="CCP4 web logo"/></td>
+<td class="logohead">CCP4i2 &mdash; Quickstart Introduction to CCP4i2</td>
+</tr>
+</table>
+
+   <a name="creating_project"/><h2>1 Creating a Project</h2>
+<div id="quickstart_step"><img src="./new_project.png" id="quickstart_img_s"></div>
+<div id="quickstart_annotation">
+<p>You should organise your work into projects - usually one project per structure solution but ther are no rules.
+ <br/> A new project is created by selecting <b><em>New project</em></b> option on the <b><em>Projects</em></b> pull-down menu.
+  <br/> Each project has an associated directory for the files created in the project and you will have to create or choose an existing directory and select a name for the project.  A <i>Project viewer</i> should then open. You can open the project by selecting it from the <b><em>Projects</em></b> menu at any time.
+ </p>
+</p><div style="clear: both;"></div></div>
+
+<hr/>
+
+
+<a name="creating_job"/><h2>2 The project window - create a job</h2>
+<div id="quickstart_step"><img src="./proj_win.jpg" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+<p> If you need some test data go to <i>Download test data</i> on the <i>Utilities</i> menu and choose the <i>rnase</i> data.
+<br/>Double click on a task in the <i>Task menu</i> to open a job - try <i>Refinement</i> first.
+</p>
+  <div style="clear: both;"></div>
+</div>
+
+<hr/>
+
+<a name="job_input"/><h2>3 Input data for a job</h2>
+<div id="quickstart_step"><img src="./input_data.png" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+<p><span id="quickstart_high">1</span> The new job is shown in the <i>Job list</i>
+<br/><span id="quickstart_high">2</span> The <i>Input Data</i> tab is open for you to select data - other tabs have other parameter input
+  <br/><span id="quickstart_high">3</span> Missing or invalid essential data is highlighted in red
+  <br/><span id="quickstart_high">4</span> Click on browser button to open file browser - note that in the file browser you can download data from EBI or other databases.
+</p><div style="clear: both;"></div></div>
+
+<hr/>
+
+<a name="file_import"/><h2>4 Importing a file</h2>
+<div id="quickstart_step"><img src="./provenance.png" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+<p>Whenever you select a new file CCP4i2 will make a copy to the project directory so nothing is lost and ..
+ <br/> <span id="quickstart_high">1</span> this window asks you for information on the source of the file to save to the CCP4i2 database. The progam provides a sensible default which you may edit.
+<br/><span id="quickstart_high">2</span> or you can click to make the bothersome window go away!. Unchecking <span id="quickstart_high">3</span> will stop these windows appearing when you load files in future.
+</p><div style="clear: both;"></div></div>
+
+<hr/>
+
+<a name="mtz_import"/><h2>5 Importing experimental data - the tricky bit</h2>
+<div id="quickstart_step"><img src="./mtz_import.png" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+<p>The four types of experimental data: reflections, phases, freeR
+  sets and map coefficients are put in separate files in CCP4i2 (<a
+  href="../general/data_files.html">more discussion</a>) but if you
+  have an old-style 'monster'  MTZ file you will need to select the
+  right columns from that file so it can be imported into a new-style
+  'mini' MTZ. By default CCP4i2 will import the richest source of data (e.g.anomalous intensities have more information than a structure factor and sigma so they are preferred). 
+  Don't worry - these will be converted automatically for any program that can not handle a particular form of data.
+  <b>You must also load the same file into the <em>Free R set</em> input for this task. CCP4i2 does not do this automatically!</b>
+  </p>
+</p><div style="clear: both;"></div></div>
+
+<hr/>
+
+<a name="running_job"/><h2>6 Running the job</h2>
+<div id="quickstart_step"><img src="./running.png" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+<p><span id="quickstart_high">1</span> After selecting the required data click the <i>Run</i> button.
+<br/><span id="quickstart_high">2</span> A running man icon on the <i>Job list</i> and in job status bar indicates the job is running.
+<br/><span id="quickstart_high">3</span> For many tasks the <i>Results</i> tab opens to display a constantly updating report.
+  </p><div style="clear: both;"></div></div>
+
+<hr/>
+
+<!--
+<div id="quickstart_step"><img src="./.jpg" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+   <a name=""/><h4></h4>
+<p><span id="quickstart_high">1</span>
+<br/><span id="quickstart_high">2</span>
+</p><div style="clear: both;"></div></div>
+
+-->
+  
+
+<a name="job_finished"/><h2>7 The job has finished</h2>
+<div id="quickstart_step"><img src="./job_done.png" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+  <p><span id="quickstart_high">1</span> The <i>Job list</i> shows the
+  job, any sub-jobs, imported files and output files - right-mouse
+  click on these for pop-up menu with options to view job log files,
+  database info or view files in Coot or CCP4mg.
+  <br/><span id="quickstart_high">2</span> After looking at the report choose your next job - click on the <i>Task menu</i> button to get back to the list of tasks or
+  <br/><span id="quickstart_high">3</span> under the report are one-click buttons to open probable next jobs. Click on <i>COOT</i> to create a Coot task.
+  </p><div style="clear: both;"></div></div>
+
+<hr/>
+
+<a name="job_input_2"/> <h2>8 <i>Manual model rebuilding</i> input data</h2>
+  <div id="quickstart_step"><img src="./coot_data_input.png" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+<p>When you open a new job CCP4i2 tries to fill-in the input data by taking the output files (or sometimes the input files or even earlier files) from the <i>follow-on</i> job.
+<br/><span id="quickstart_high">1</span> The job used to provide the input files is indicated at the top of the job <i>Input data</i> - there is a menu to select the job.
+  <br/> <span id="quickstart_high">2</span> The icon by any data can be right-mouse clicked for a menu with options to <i>View</i> a file and other useful tools.  It is also possible to drag a data object from the job list to this data input icon.
+  <br/> <span id="quickstart_high">3</span> The data may have been selected automatically but you do need to click the <i>Run</i> button to start <i>Coot</i>.
+</p><div style="clear: both;"></div></div>
+
+<hr/>
+
+<a name="coot_save"/><h2>9 Saving models from Coot</h2>
+<div id="quickstart_step"><img src="./coot_save.png" id="quickstart_img"></div>
+<div id="quickstart_annotation">
+<p><span id="quickstart_high">1</span> You should do your model
+  building in <i>Coot</i> as usual but save the model by the <i>Save
+  to CCP4i2</i> option on the <i>CCP4i2 extensions</i> menu or the <i>File</i> menu. It is not necessary to do the usual <i>Save Coordinates</i> in <i>Coot</i>.
+<br/><span id="quickstart_high">2</span> The <i>Manual model
+  rebuilding</i> job and the model data are saved in the CCP4i2
+  database and displayed in the <i>Job list</i>. Note: if you have not saved
+  any data to <i>CCP4i2</i> when you close <i>Coot</i> the job will be removed from
+  the <i>Job list</i>.
+  </p><div style="clear: both;"></div></div>
+  
+<p>See the <a href="../roadmap/index.html">Overview</a> for a summary
+  of the data and functionality in <i>CCP4i2</i>.</p>
+</body>
+</html>

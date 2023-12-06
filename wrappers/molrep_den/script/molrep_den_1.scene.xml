@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<scene>
+    <data>
+    <MolData id='id1'>
+       <filename database="filenames/XYZOUT"></filename>
+    </MolData>
+    <!--
+    <MapData id='id3'><filename database="filenames/MAPOUT"></filename>
+     <model>id1</model>
+     <contourUnits>sigma</contourUnits>
+    </MapData>
+    <MapData id='id4'><filename database="filenames/DIFMAPOUT"></filename>
+     <isDifferenceMap>True</isDifferenceMap>
+     <model>id1</model>
+    </MapData>
+    -->
+   </data>
+  <View>
+     <scale_auto>1</scale_auto>
+     <slab_enabled>0</slab_enabled>
+     <centre_MolData>id1</centre_MolData>
+     <centre_selection>all</centre_selection>
+     <!-- <scale_auto_contacts>1</scale_auto_contacts> -->
+     <orientation_auto>
+       <selection>all</selection>
+       <molData>id1</molData>
+     </orientation_auto>
+     <slab_enabled>0</slab_enabled>
+  </View>
+  <wizard><template>Ribbons:colour chains</template>
+    <parameters>
+      <MolData1>id1</MolData1>
+      <!--
+      <MapData1>id3</MapData1>
+      <MapData2>id4</MapData2>
+      -->
+    </parameters>
+  </wizard>
+</scene>

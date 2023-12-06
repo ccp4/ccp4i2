@@ -1,0 +1,1930 @@
+======================= Summary of density modification =======================
+
+input data ---->
+>>> resolution: 500.0 - 2.4
+>>> sg= C2 a= 108.742 b= 61.679 c= 71.652 alpha= 90 beta= 97.151 gamma= 90
+>>> reflection file= mad_scale.hkl
+>>> reflection file= mad_phase2.hkl
+
+data usage ---->
+>>> reflections with |Fobs|/sigma_F < 0.0 rejected
+>>> reflections with |Fobs| > 10000 * rms(Fobs) rejected
+>>> theoretical total number of refl. in resol. range:     36136 ( 100.0 % )
+>>> number of unobserved reflections (no entry or |F|=0):  14193 (  39.3 % )
+>>> number of reflections rejected:                            0 (   0.0 % )
+>>> total number of reflections used:                      21943 (  60.7 % )
+>>> number of reflections in working set:                  21943 (  60.7 % )
+
+input parameters ---->
+>>> solvent mask type= rms
+>>> solvent content= 54.000 %
+
+>>> averaging= false
+
+>>> truncation= true
+>>> ratio of macromolecular and solvent densities= 1.31
+>>> truncate density below 0.35 fraction
+>>> truncate density above 1 fraction
+
+>>> solvent modification= true
+>>> solvent modification method= flip
+>>> scale solvent flipping factor= true
+
+>>> relative weights for phase combination: u=1  v=1
+>>> stepsize for integration of phase probabilities= 5 degrees
+>>> grid= 0.25
+
+================================= cycle   0 ===================================
+
+ current high resolution limit= 2.4000
+  number of reflections phased= 21868
+                   mask radius= 3.5000
+       solvent mask volume (%)=  53.67
+       average solvent density= -.0003
+average macromolecular density= 0.0004
+           RMS solvent density= 0.0699
+    RMS macromolecular density= 0.0986
+                     RMS ratio= 0.7084
+                        F000/V= 0.0027
+                  starting FOM= 0.6854
+
+================================= cycle   1 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.96
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0002
+ starting average macromolecular density= 0.0002
+            starting RMS solvent density= 0.0699
+     starting RMS macromolecular density= 0.0987
+                      starting RMS ratio= 0.7080
+                                  F000/V= 0.0013
+
+             delta phi(initial)(degrees)=  15.96
+                delta phi(last)(degrees)=  45.32
+                                 R-value= 0.5210
+                    FOM weighted R-value= 0.5064
+                                mean FOM= 0.5956
+                 density truncated below= -0.03869 (34.822 %)
+                 density truncated above=  1.39458 ( 0.000 %)
+              solvent modified by factor= -0.46837
+         solvent modified by addition of=  0.00783
+                     new solvent density= -.0066
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8711   17.1829
+    2   4.99    6.29       2023      0.8218   12.8424
+    3   4.36    4.99       2015      0.8181   15.5959
+    4   3.96    4.36       1993      0.7841   16.3483
+    5   3.68    3.96       2003      0.7489   16.6009
+    6   3.46    3.68       2001      0.7380   19.8156
+    7   3.29    3.46       2024      0.6685   20.0487
+    8   3.14    3.29       2001      0.6390   21.4708
+    9   3.02    3.14       2026      0.5979   25.9163
+   10   2.92    3.02       2005      0.5602   21.7965
+   11   2.83    2.92       1994      0.5270   28.7787
+   12   2.75    2.83       2006      0.5046   56.7464
+   13   2.67    2.75       2032      0.4058   88.7035
+   14   2.61    2.67       1972      0.4073   91.1052
+   15   2.55    2.61       1982      0.4018   89.2247
+   16   2.50    2.55       1997      0.4051   89.8793
+   17   2.45    2.50       2053      0.4142   91.2898
+   18   2.40    2.45       2008      0.4060   92.4857
+
+================================= cycle   2 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.88
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0009
+ starting average macromolecular density= 0.0010
+            starting RMS solvent density= 0.1023
+     starting RMS macromolecular density= 0.1651
+                      starting RMS ratio= 0.6198
+                                  F000/V= 0.0068
+
+             delta phi(initial)(degrees)=  21.04
+                delta phi(last)(degrees)=  22.49
+                                 R-value= 0.4870
+                    FOM weighted R-value= 0.4715
+                                mean FOM= 0.6509
+                 density truncated below= -0.07079 (34.746 %)
+                 density truncated above=  2.25142 ( 0.000 %)
+              solvent modified by factor= -0.50066
+         solvent modified by addition of=  0.01074
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8813    6.0208
+    2   4.99    6.29       2023      0.8313    5.7666
+    3   4.36    4.99       2015      0.8405    8.3016
+    4   3.96    4.36       1993      0.8111    8.9666
+    5   3.68    3.96       2003      0.7875   10.5871
+    6   3.46    3.68       2001      0.7680   10.6695
+    7   3.29    3.46       2024      0.7065   12.6742
+    8   3.14    3.29       2001      0.6683   12.8704
+    9   3.02    3.14       2026      0.6469   16.1681
+   10   2.92    3.02       2005      0.6075   17.2412
+   11   2.83    2.92       1994      0.5778   19.8104
+   12   2.75    2.83       2006      0.5785   28.4238
+   13   2.67    2.75       2032      0.5079   37.7867
+   14   2.61    2.67       1972      0.5021   39.7350
+   15   2.55    2.61       1982      0.4961   39.5992
+   16   2.50    2.55       1997      0.5013   42.9392
+   17   2.45    2.50       2053      0.5068   43.8556
+   18   2.40    2.45       2008      0.4958   43.3343
+
+================================= cycle   3 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.01
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0002
+ starting average macromolecular density= 0.0002
+            starting RMS solvent density= 0.0939
+     starting RMS macromolecular density= 0.1612
+                      starting RMS ratio= 0.5826
+                                  F000/V= 0.0017
+
+             delta phi(initial)(degrees)=  24.21
+                delta phi(last)(degrees)=  15.37
+                                 R-value= 0.4663
+                    FOM weighted R-value= 0.4512
+                                mean FOM= 0.6925
+                 density truncated below= -0.07117 (35.036 %)
+                 density truncated above=  2.12357 ( 0.000 %)
+              solvent modified by factor= -0.51437
+         solvent modified by addition of=  0.00820
+                     new solvent density= -.0113
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8845    4.1238
+    2   4.99    6.29       2023      0.8329    3.1391
+    3   4.36    4.99       2015      0.8513    5.5933
+    4   3.96    4.36       1993      0.8255    5.9614
+    5   3.68    3.96       2003      0.8090    7.2006
+    6   3.46    3.68       2001      0.7872    7.7429
+    7   3.29    3.46       2024      0.7334    8.8514
+    8   3.14    3.29       2001      0.6946    9.3236
+    9   3.02    3.14       2026      0.6732   12.0960
+   10   2.92    3.02       2005      0.6434   13.2693
+   11   2.83    2.92       1994      0.6169   14.4622
+   12   2.75    2.83       2006      0.6494   18.8430
+   13   2.67    2.75       2032      0.5879   23.9786
+   14   2.61    2.67       1972      0.5780   26.0002
+   15   2.55    2.61       1982      0.5757   27.5442
+   16   2.50    2.55       1997      0.5702   28.3227
+   17   2.45    2.50       2053      0.5755   29.4043
+   18   2.40    2.45       2008      0.5754   30.8205
+
+================================= cycle   4 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.02
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0007
+ starting average macromolecular density= 0.0008
+            starting RMS solvent density= 0.0895
+     starting RMS macromolecular density= 0.1608
+                      starting RMS ratio= 0.5568
+                                  F000/V= 0.0053
+
+             delta phi(initial)(degrees)=  26.52
+                delta phi(last)(degrees)=  11.61
+                                 R-value= 0.4512
+                    FOM weighted R-value= 0.4368
+                                mean FOM= 0.7132
+                 density truncated below= -0.07280 (34.833 %)
+                 density truncated above=  2.12434 ( 0.000 %)
+              solvent modified by factor= -0.52645
+         solvent modified by addition of=  0.00781
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8855    2.2865
+    2   4.99    6.29       2023      0.8360    2.5191
+    3   4.36    4.99       2015      0.8581    4.8971
+    4   3.96    4.36       1993      0.8321    4.3499
+    5   3.68    3.96       2003      0.8220    5.8687
+    6   3.46    3.68       2001      0.7985    6.0357
+    7   3.29    3.46       2024      0.7507    6.8892
+    8   3.14    3.29       2001      0.7190    8.1648
+    9   3.02    3.14       2026      0.6983    9.2099
+   10   2.92    3.02       2005      0.6739   10.4276
+   11   2.83    2.92       1994      0.6453   10.9122
+   12   2.75    2.83       2006      0.6776   13.9538
+   13   2.67    2.75       2032      0.6171   17.9573
+   14   2.61    2.67       1972      0.6054   19.4984
+   15   2.55    2.61       1982      0.6066   20.0350
+   16   2.50    2.55       1997      0.5976   21.3380
+   17   2.45    2.50       2053      0.6066   21.5838
+   18   2.40    2.45       2008      0.6067   23.0242
+
+================================= cycle   5 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.01
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0009
+ starting average macromolecular density= 0.0010
+            starting RMS solvent density= 0.0865
+     starting RMS macromolecular density= 0.1601
+                      starting RMS ratio= 0.5406
+                                  F000/V= 0.0071
+
+             delta phi(initial)(degrees)=  28.00
+                delta phi(last)(degrees)=   8.93
+                                 R-value= 0.4403
+                    FOM weighted R-value= 0.4264
+                                mean FOM= 0.7323
+                 density truncated below= -0.07359 (34.754 %)
+                 density truncated above=  2.10021 ( 0.000 %)
+              solvent modified by factor= -0.53426
+         solvent modified by addition of=  0.00745
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8861    1.7765
+    2   4.99    6.29       2023      0.8375    1.7755
+    3   4.36    4.99       2015      0.8618    3.4990
+    4   3.96    4.36       1993      0.8364    3.6396
+    5   3.68    3.96       2003      0.8308    4.7167
+    6   3.46    3.68       2001      0.8042    4.8548
+    7   3.29    3.46       2024      0.7622    5.5716
+    8   3.14    3.29       2001      0.7342    6.4322
+    9   3.02    3.14       2026      0.7126    6.9416
+   10   2.92    3.02       2005      0.6977    7.4977
+   11   2.83    2.92       1994      0.6692    8.0879
+   12   2.75    2.83       2006      0.7099   10.6588
+   13   2.67    2.75       2032      0.6454   14.4047
+   14   2.61    2.67       1972      0.6409   14.5685
+   15   2.55    2.61       1982      0.6364   15.4748
+   16   2.50    2.55       1997      0.6313   15.9712
+   17   2.45    2.50       2053      0.6427   17.4010
+   18   2.40    2.45       2008      0.6422   17.3615
+
+================================= cycle   6 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.08
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0011
+ starting average macromolecular density= 0.0014
+            starting RMS solvent density= 0.0847
+     starting RMS macromolecular density= 0.1599
+                      starting RMS ratio= 0.5297
+                                  F000/V= 0.0092
+
+             delta phi(initial)(degrees)=  29.03
+                delta phi(last)(degrees)=   7.28
+                                 R-value= 0.4331
+                    FOM weighted R-value= 0.4197
+                                mean FOM= 0.7421
+                 density truncated below= -0.07208 (35.193 %)
+                 density truncated above=  2.09692 ( 0.000 %)
+              solvent modified by factor= -0.53423
+         solvent modified by addition of=  0.00850
+                     new solvent density= -.0113
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8860    1.5375
+    2   4.99    6.29       2023      0.8390    1.4456
+    3   4.36    4.99       2015      0.8643    2.8961
+    4   3.96    4.36       1993      0.8413    3.2955
+    5   3.68    3.96       2003      0.8356    3.7433
+    6   3.46    3.68       2001      0.8065    4.3536
+    7   3.29    3.46       2024      0.7721    4.8748
+    8   3.14    3.29       2001      0.7469    5.2592
+    9   3.02    3.14       2026      0.7241    6.3400
+   10   2.92    3.02       2005      0.7112    5.8607
+   11   2.83    2.92       1994      0.6874    7.0908
+   12   2.75    2.83       2006      0.7227    8.5735
+   13   2.67    2.75       2032      0.6570   11.6158
+   14   2.61    2.67       1972      0.6531   11.2707
+   15   2.55    2.61       1982      0.6505   12.5256
+   16   2.50    2.55       1997      0.6470   13.0992
+   17   2.45    2.50       2053      0.6567   13.3064
+   18   2.40    2.45       2008      0.6557   13.8563
+
+================================= cycle   7 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.15
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0015
+ starting average macromolecular density= 0.0018
+            starting RMS solvent density= 0.0835
+     starting RMS macromolecular density= 0.1599
+                      starting RMS ratio= 0.5222
+                                  F000/V= 0.0120
+
+             delta phi(initial)(degrees)=  29.81
+                delta phi(last)(degrees)=   6.27
+                                 R-value= 0.4279
+                    FOM weighted R-value= 0.4148
+                                mean FOM= 0.7542
+                 density truncated below= -0.07367 (34.818 %)
+                 density truncated above=  2.09540 ( 0.000 %)
+              solvent modified by factor= -0.54124
+         solvent modified by addition of=  0.00818
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8865    1.1831
+    2   4.99    6.29       2023      0.8396    1.1396
+    3   4.36    4.99       2015      0.8666    2.4341
+    4   3.96    4.36       1993      0.8427    2.6684
+    5   3.68    3.96       2003      0.8381    3.0904
+    6   3.46    3.68       2001      0.8099    3.4983
+    7   3.29    3.46       2024      0.7765    4.3793
+    8   3.14    3.29       2001      0.7552    4.6681
+    9   3.02    3.14       2026      0.7336    5.2608
+   10   2.92    3.02       2005      0.7236    5.3260
+   11   2.83    2.92       1994      0.6969    6.1829
+   12   2.75    2.83       2006      0.7428    7.8859
+   13   2.67    2.75       2032      0.6815    9.2816
+   14   2.61    2.67       1972      0.6768   10.1436
+   15   2.55    2.61       1982      0.6718   10.8495
+   16   2.50    2.55       1997      0.6702   11.6924
+   17   2.45    2.50       2053      0.6799   11.1505
+   18   2.40    2.45       2008      0.6827   12.1012
+
+================================= cycle   8 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.14
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0016
+ starting average macromolecular density= 0.0019
+            starting RMS solvent density= 0.0825
+     starting RMS macromolecular density= 0.1600
+                      starting RMS ratio= 0.5158
+                                  F000/V= 0.0132
+
+             delta phi(initial)(degrees)=  30.44
+                delta phi(last)(degrees)=   5.49
+                                 R-value= 0.4227
+                    FOM weighted R-value= 0.4099
+                                mean FOM= 0.7630
+                 density truncated below= -0.07461 (34.681 %)
+                 density truncated above=  2.09028 ( 0.000 %)
+              solvent modified by factor= -0.54526
+         solvent modified by addition of=  0.00794
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8872    0.9642
+    2   4.99    6.29       2023      0.8403    1.1012
+    3   4.36    4.99       2015      0.8683    2.0068
+    4   3.96    4.36       1993      0.8456    2.3631
+    5   3.68    3.96       2003      0.8394    2.9010
+    6   3.46    3.68       2001      0.8121    3.1615
+    7   3.29    3.46       2024      0.7810    3.7230
+    8   3.14    3.29       2001      0.7612    3.8531
+    9   3.02    3.14       2026      0.7405    4.5155
+   10   2.92    3.02       2005      0.7343    4.8820
+   11   2.83    2.92       1994      0.7074    5.1661
+   12   2.75    2.83       2006      0.7563    7.4722
+   13   2.67    2.75       2032      0.6969    8.2553
+   14   2.61    2.67       1972      0.6923    8.8224
+   15   2.55    2.61       1982      0.6880    9.5942
+   16   2.50    2.55       1997      0.6895    9.6564
+   17   2.45    2.50       2053      0.6966    9.9988
+   18   2.40    2.45       2008      0.6976   10.3494
+
+================================= cycle   9 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.15
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0018
+ starting average macromolecular density= 0.0021
+            starting RMS solvent density= 0.0816
+     starting RMS macromolecular density= 0.1599
+                      starting RMS ratio= 0.5101
+                                  F000/V= 0.0141
+
+             delta phi(initial)(degrees)=  30.84
+                delta phi(last)(degrees)=   4.77
+                                 R-value= 0.4191
+                    FOM weighted R-value= 0.4065
+                                mean FOM= 0.7651
+                 density truncated below= -0.07263 (35.249 %)
+                 density truncated above=  2.06945 ( 0.000 %)
+              solvent modified by factor= -0.54195
+         solvent modified by addition of=  0.00906
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8877    0.7064
+    2   4.99    6.29       2023      0.8410    0.9987
+    3   4.36    4.99       2015      0.8690    1.8999
+    4   3.96    4.36       1993      0.8471    2.1007
+    5   3.68    3.96       2003      0.8422    2.6217
+    6   3.46    3.68       2001      0.8134    2.8010
+    7   3.29    3.46       2024      0.7820    3.3549
+    8   3.14    3.29       2001      0.7663    3.6667
+    9   3.02    3.14       2026      0.7470    4.0807
+   10   2.92    3.02       2005      0.7400    4.1446
+   11   2.83    2.92       1994      0.7150    4.7106
+   12   2.75    2.83       2006      0.7585    5.8999
+   13   2.67    2.75       2032      0.6968    7.1679
+   14   2.61    2.67       1972      0.6938    7.4755
+   15   2.55    2.61       1982      0.6907    7.9947
+   16   2.50    2.55       1997      0.6888    8.1389
+   17   2.45    2.50       2053      0.6946    8.5166
+   18   2.40    2.45       2008      0.6980    9.5883
+
+================================= cycle  10 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.08
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0019
+ starting average macromolecular density= 0.0022
+            starting RMS solvent density= 0.0810
+     starting RMS macromolecular density= 0.1596
+                      starting RMS ratio= 0.5076
+                                  F000/V= 0.0152
+
+             delta phi(initial)(degrees)=  31.26
+                delta phi(last)(degrees)=   4.29
+                                 R-value= 0.4158
+                    FOM weighted R-value= 0.4034
+                                mean FOM= 0.7691
+                 density truncated below= -0.07288 (35.193 %)
+                 density truncated above=  2.05515 ( 0.000 %)
+              solvent modified by factor= -0.54431
+         solvent modified by addition of=  0.00904
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8877    0.6708
+    2   4.99    6.29       2023      0.8413    0.8663
+    3   4.36    4.99       2015      0.8710    1.9057
+    4   3.96    4.36       1993      0.8485    2.0483
+    5   3.68    3.96       2003      0.8447    2.2699
+    6   3.46    3.68       2001      0.8157    2.8161
+    7   3.29    3.46       2024      0.7841    3.1500
+    8   3.14    3.29       2001      0.7714    3.3477
+    9   3.02    3.14       2026      0.7500    3.7287
+   10   2.92    3.02       2005      0.7474    4.0515
+   11   2.83    2.92       1994      0.7196    4.1352
+   12   2.75    2.83       2006      0.7642    5.5935
+   13   2.67    2.75       2032      0.7023    6.2190
+   14   2.61    2.67       1972      0.6995    7.0432
+   15   2.55    2.61       1982      0.6966    6.7930
+   16   2.50    2.55       1997      0.6945    7.4193
+   17   2.45    2.50       2053      0.7025    7.3501
+   18   2.40    2.45       2008      0.7027    7.8843
+
+================================= cycle  11 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.86
+                             mask radius= 3.5000
+
+        starting average solvent density= -.0019
+ starting average macromolecular density= 0.0023
+            starting RMS solvent density= 0.0804
+     starting RMS macromolecular density= 0.1592
+                      starting RMS ratio= 0.5047
+                                  F000/V= 0.0155
+
+             delta phi(initial)(degrees)=  31.71
+                delta phi(last)(degrees)=   4.30
+                                 R-value= 0.4123
+                    FOM weighted R-value= 0.4001
+                                mean FOM= 0.7709
+                 density truncated below= -0.07246 (35.291 %)
+                 density truncated above=  2.03753 ( 0.000 %)
+              solvent modified by factor= -0.54489
+         solvent modified by addition of=  0.00916
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8883    0.8884
+    2   4.99    6.29       2023      0.8424    0.9212
+    3   4.36    4.99       2015      0.8719    1.8259
+    4   3.96    4.36       1993      0.8498    2.3406
+    5   3.68    3.96       2003      0.8478    2.2801
+    6   3.46    3.68       2001      0.8188    2.6730
+    7   3.29    3.46       2024      0.7861    3.1329
+    8   3.14    3.29       2001      0.7739    3.1600
+    9   3.02    3.14       2026      0.7565    3.8953
+   10   2.92    3.02       2005      0.7532    4.0914
+   11   2.83    2.92       1994      0.7235    4.2639
+   12   2.75    2.83       2006      0.7657    5.5334
+   13   2.67    2.75       2032      0.7013    6.3182
+   14   2.61    2.67       1972      0.7014    7.0727
+   15   2.55    2.61       1982      0.6986    6.9572
+   16   2.50    2.55       1997      0.6938    7.3326
+   17   2.45    2.50       2053      0.7016    7.2717
+   18   2.40    2.45       2008      0.7023    7.5291
+
+================================= cycle  12 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.15
+                             mask radius= 3.4650
+
+        starting average solvent density= -.0020
+ starting average macromolecular density= 0.0023
+            starting RMS solvent density= 0.0799
+     starting RMS macromolecular density= 0.1591
+                      starting RMS ratio= 0.5023
+                                  F000/V= 0.0158
+
+             delta phi(initial)(degrees)=  31.88
+                delta phi(last)(degrees)=   4.59
+                                 R-value= 0.4116
+                    FOM weighted R-value= 0.3994
+                                mean FOM= 0.7714
+                 density truncated below= -0.07432 (34.886 %)
+                 density truncated above=  2.02413 ( 0.000 %)
+              solvent modified by factor= -0.55095
+         solvent modified by addition of=  0.00822
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8882    1.0274
+    2   4.99    6.29       2023      0.8424    0.9226
+    3   4.36    4.99       2015      0.8722    1.9722
+    4   3.96    4.36       1993      0.8493    2.3041
+    5   3.68    3.96       2003      0.8487    2.3613
+    6   3.46    3.68       2001      0.8190    2.8826
+    7   3.29    3.46       2024      0.7861    3.1263
+    8   3.14    3.29       2001      0.7760    3.2829
+    9   3.02    3.14       2026      0.7594    3.9381
+   10   2.92    3.02       2005      0.7545    4.1936
+   11   2.83    2.92       1994      0.7265    4.8740
+   12   2.75    2.83       2006      0.7655    5.7387
+   13   2.67    2.75       2032      0.7049    6.7343
+   14   2.61    2.67       1972      0.7008    7.4976
+   15   2.55    2.61       1982      0.6990    7.5238
+   16   2.50    2.55       1997      0.6933    8.1033
+   17   2.45    2.50       2053      0.6981    8.1089
+   18   2.40    2.45       2008      0.7021    8.0240
+
+================================= cycle  13 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.01
+                             mask radius= 3.4300
+
+        starting average solvent density= -.0018
+ starting average macromolecular density= 0.0021
+            starting RMS solvent density= 0.0795
+     starting RMS macromolecular density= 0.1592
+                      starting RMS ratio= 0.4993
+                                  F000/V= 0.0144
+
+             delta phi(initial)(degrees)=  32.23
+                delta phi(last)(degrees)=   4.28
+                                 R-value= 0.4088
+                    FOM weighted R-value= 0.3969
+                                mean FOM= 0.7729
+                 density truncated below= -0.07440 (34.946 %)
+                 density truncated above=  2.02742 ( 0.000 %)
+              solvent modified by factor= -0.55103
+         solvent modified by addition of=  0.00792
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8892    0.8267
+    2   4.99    6.29       2023      0.8434    1.0418
+    3   4.36    4.99       2015      0.8733    1.8911
+    4   3.96    4.36       1993      0.8498    2.1633
+    5   3.68    3.96       2003      0.8512    2.2954
+    6   3.46    3.68       2001      0.8213    2.8618
+    7   3.29    3.46       2024      0.7875    2.8762
+    8   3.14    3.29       2001      0.7773    3.5316
+    9   3.02    3.14       2026      0.7646    3.5461
+   10   2.92    3.02       2005      0.7603    3.9735
+   11   2.83    2.92       1994      0.7287    4.1900
+   12   2.75    2.83       2006      0.7653    4.9226
+   13   2.67    2.75       2032      0.7064    5.9586
+   14   2.61    2.67       1972      0.7005    6.5299
+   15   2.55    2.61       1982      0.7018    7.2105
+   16   2.50    2.55       1997      0.6933    7.6377
+   17   2.45    2.50       2053      0.6979    7.6616
+   18   2.40    2.45       2008      0.7002    7.9372
+
+================================= cycle  14 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.90
+                             mask radius= 3.3950
+
+        starting average solvent density= -.0017
+ starting average macromolecular density= 0.0019
+            starting RMS solvent density= 0.0788
+     starting RMS macromolecular density= 0.1589
+                      starting RMS ratio= 0.4961
+                                  F000/V= 0.0132
+
+             delta phi(initial)(degrees)=  32.50
+                delta phi(last)(degrees)=   4.21
+                                 R-value= 0.4059
+                    FOM weighted R-value= 0.3938
+                                mean FOM= 0.7743
+                 density truncated below= -0.07352 (35.204 %)
+                 density truncated above=  2.01072 ( 0.000 %)
+              solvent modified by factor= -0.54929
+         solvent modified by addition of=  0.00803
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8910    0.7746
+    2   4.99    6.29       2023      0.8444    0.9609
+    3   4.36    4.99       2015      0.8748    1.8451
+    4   3.96    4.36       1993      0.8511    2.1707
+    5   3.68    3.96       2003      0.8526    2.0894
+    6   3.46    3.68       2001      0.8213    2.7146
+    7   3.29    3.46       2024      0.7897    3.2402
+    8   3.14    3.29       2001      0.7813    3.5454
+    9   3.02    3.14       2026      0.7665    3.3084
+   10   2.92    3.02       2005      0.7610    3.6923
+   11   2.83    2.92       1994      0.7312    4.5063
+   12   2.75    2.83       2006      0.7667    4.9073
+   13   2.67    2.75       2032      0.7071    6.0585
+   14   2.61    2.67       1972      0.7009    6.3428
+   15   2.55    2.61       1982      0.7050    6.5958
+   16   2.50    2.55       1997      0.6941    7.1303
+   17   2.45    2.50       2053      0.6976    7.8341
+   18   2.40    2.45       2008      0.7009    8.1313
+
+================================= cycle  15 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.09
+                             mask radius= 3.3600
+
+        starting average solvent density= -.0016
+ starting average macromolecular density= 0.0019
+            starting RMS solvent density= 0.0783
+     starting RMS macromolecular density= 0.1588
+                      starting RMS ratio= 0.4930
+                                  F000/V= 0.0127
+
+             delta phi(initial)(degrees)=  32.59
+                delta phi(last)(degrees)=   4.22
+                                 R-value= 0.4058
+                    FOM weighted R-value= 0.3938
+                                mean FOM= 0.7741
+                 density truncated below= -0.07410 (35.148 %)
+                 density truncated above=  1.99609 ( 0.000 %)
+              solvent modified by factor= -0.55173
+         solvent modified by addition of=  0.00758
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8911    0.8189
+    2   4.99    6.29       2023      0.8448    0.9572
+    3   4.36    4.99       2015      0.8757    1.9202
+    4   3.96    4.36       1993      0.8514    2.1422
+    5   3.68    3.96       2003      0.8520    2.2416
+    6   3.46    3.68       2001      0.8220    2.7505
+    7   3.29    3.46       2024      0.7899    3.3171
+    8   3.14    3.29       2001      0.7817    3.3334
+    9   3.02    3.14       2026      0.7685    3.5344
+   10   2.92    3.02       2005      0.7624    3.9399
+   11   2.83    2.92       1994      0.7308    4.4812
+   12   2.75    2.83       2006      0.7653    5.0911
+   13   2.67    2.75       2032      0.7056    5.8466
+   14   2.61    2.67       1972      0.7003    6.1744
+   15   2.55    2.61       1982      0.7051    6.3808
+   16   2.50    2.55       1997      0.6910    7.1626
+   17   2.45    2.50       2053      0.6961    8.0386
+   18   2.40    2.45       2008      0.7001    7.8615
+
+================================= cycle  16 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.07
+                             mask radius= 3.3250
+
+        starting average solvent density= -.0016
+ starting average macromolecular density= 0.0018
+            starting RMS solvent density= 0.0780
+     starting RMS macromolecular density= 0.1589
+                      starting RMS ratio= 0.4911
+                                  F000/V= 0.0126
+
+             delta phi(initial)(degrees)=  32.71
+                delta phi(last)(degrees)=   4.08
+                                 R-value= 0.4042
+                    FOM weighted R-value= 0.3923
+                                mean FOM= 0.7723
+                 density truncated below= -0.07551 (34.814 %)
+                 density truncated above=  1.99141 ( 0.000 %)
+              solvent modified by factor= -0.55512
+         solvent modified by addition of=  0.00688
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8917    0.7042
+    2   4.99    6.29       2023      0.8456    0.7913
+    3   4.36    4.99       2015      0.8761    1.9237
+    4   3.96    4.36       1993      0.8530    2.2736
+    5   3.68    3.96       2003      0.8529    2.1679
+    6   3.46    3.68       2001      0.8207    2.8206
+    7   3.29    3.46       2024      0.7904    3.0694
+    8   3.14    3.29       2001      0.7847    3.4119
+    9   3.02    3.14       2026      0.7722    3.5081
+   10   2.92    3.02       2005      0.7655    4.3178
+   11   2.83    2.92       1994      0.7321    4.5382
+   12   2.75    2.83       2006      0.7588    4.8001
+   13   2.67    2.75       2032      0.6981    5.5473
+   14   2.61    2.67       1972      0.6920    6.3667
+   15   2.55    2.61       1982      0.6963    5.8210
+   16   2.50    2.55       1997      0.6830    6.7695
+   17   2.45    2.50       2053      0.6920    7.1056
+   18   2.40    2.45       2008      0.6958    7.5129
+
+================================= cycle  17 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.88
+                             mask radius= 3.2900
+
+        starting average solvent density= -.0013
+ starting average macromolecular density= 0.0015
+            starting RMS solvent density= 0.0775
+     starting RMS macromolecular density= 0.1586
+                      starting RMS ratio= 0.4883
+                                  F000/V= 0.0102
+
+             delta phi(initial)(degrees)=  32.95
+                delta phi(last)(degrees)=   4.10
+                                 R-value= 0.4017
+                    FOM weighted R-value= 0.3899
+                                mean FOM= 0.7727
+                 density truncated below= -0.07507 (35.019 %)
+                 density truncated above=  1.96977 ( 0.000 %)
+              solvent modified by factor= -0.55410
+         solvent modified by addition of=  0.00653
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8926    0.7233
+    2   4.99    6.29       2023      0.8465    0.8298
+    3   4.36    4.99       2015      0.8773    1.8088
+    4   3.96    4.36       1993      0.8537    2.0301
+    5   3.68    3.96       2003      0.8542    2.1564
+    6   3.46    3.68       2001      0.8218    2.7300
+    7   3.29    3.46       2024      0.7921    2.8850
+    8   3.14    3.29       2001      0.7871    3.3941
+    9   3.02    3.14       2026      0.7765    3.2896
+   10   2.92    3.02       2005      0.7665    3.9671
+   11   2.83    2.92       1994      0.7366    4.8803
+   12   2.75    2.83       2006      0.7545    4.8089
+   13   2.67    2.75       2032      0.6965    6.0459
+   14   2.61    2.67       1972      0.6913    6.3012
+   15   2.55    2.61       1982      0.6954    6.1925
+   16   2.50    2.55       1997      0.6826    7.0668
+   17   2.45    2.50       2053      0.6890    7.1710
+   18   2.40    2.45       2008      0.6945    7.5172
+
+================================= cycle  18 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.00
+                             mask radius= 3.2550
+
+        starting average solvent density= -.0012
+ starting average macromolecular density= 0.0014
+            starting RMS solvent density= 0.0771
+     starting RMS macromolecular density= 0.1586
+                      starting RMS ratio= 0.4862
+                                  F000/V= 0.0098
+
+             delta phi(initial)(degrees)=  33.03
+                delta phi(last)(degrees)=   3.98
+                                 R-value= 0.4010
+                    FOM weighted R-value= 0.3892
+                                mean FOM= 0.7704
+                 density truncated below= -0.07538 (35.025 %)
+                 density truncated above=  1.95766 ( 0.000 %)
+              solvent modified by factor= -0.55562
+         solvent modified by addition of=  0.00625
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8932    0.7348
+    2   4.99    6.29       2023      0.8470    1.0784
+    3   4.36    4.99       2015      0.8773    1.8241
+    4   3.96    4.36       1993      0.8547    1.9952
+    5   3.68    3.96       2003      0.8546    2.1416
+    6   3.46    3.68       2001      0.8215    2.6759
+    7   3.29    3.46       2024      0.7922    2.8841
+    8   3.14    3.29       2001      0.7887    3.2533
+    9   3.02    3.14       2026      0.7790    3.2761
+   10   2.92    3.02       2005      0.7666    3.9467
+   11   2.83    2.92       1994      0.7396    4.2385
+   12   2.75    2.83       2006      0.7466    4.4951
+   13   2.67    2.75       2032      0.6889    5.5644
+   14   2.61    2.67       1972      0.6826    6.3284
+   15   2.55    2.61       1982      0.6864    5.7710
+   16   2.50    2.55       1997      0.6754    7.0691
+   17   2.45    2.50       2053      0.6839    6.9358
+   18   2.40    2.45       2008      0.6891    7.4104
+
+================================= cycle  19 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.99
+                             mask radius= 3.2200
+
+        starting average solvent density= -.0011
+ starting average macromolecular density= 0.0013
+            starting RMS solvent density= 0.0767
+     starting RMS macromolecular density= 0.1586
+                      starting RMS ratio= 0.4835
+                                  F000/V= 0.0089
+
+             delta phi(initial)(degrees)=  33.19
+                delta phi(last)(degrees)=   3.71
+                                 R-value= 0.3993
+                    FOM weighted R-value= 0.3877
+                                mean FOM= 0.7703
+                 density truncated below= -0.07498 (35.152 %)
+                 density truncated above=  1.94836 ( 0.000 %)
+              solvent modified by factor= -0.55415
+         solvent modified by addition of=  0.00631
+                     new solvent density= -.0114
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8931    0.7041
+    2   4.99    6.29       2023      0.8476    0.9009
+    3   4.36    4.99       2015      0.8781    1.7477
+    4   3.96    4.36       1993      0.8549    1.9577
+    5   3.68    3.96       2003      0.8558    1.9444
+    6   3.46    3.68       2001      0.8224    2.4950
+    7   3.29    3.46       2024      0.7949    2.7727
+    8   3.14    3.29       2001      0.7888    2.9231
+    9   3.02    3.14       2026      0.7823    3.0945
+   10   2.92    3.02       2005      0.7676    3.5063
+   11   2.83    2.92       1994      0.7418    3.7648
+   12   2.75    2.83       2006      0.7442    4.3755
+   13   2.67    2.75       2032      0.6864    5.2131
+   14   2.61    2.67       1972      0.6827    5.7874
+   15   2.55    2.61       1982      0.6841    5.5952
+   16   2.50    2.55       1997      0.6755    6.4230
+   17   2.45    2.50       2053      0.6799    6.4723
+   18   2.40    2.45       2008      0.6859    7.0862
+
+================================= cycle  20 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.15
+                             mask radius= 3.1850
+
+        starting average solvent density= -.0010
+ starting average macromolecular density= 0.0012
+            starting RMS solvent density= 0.0764
+     starting RMS macromolecular density= 0.1587
+                      starting RMS ratio= 0.4815
+                                  F000/V= 0.0079
+
+             delta phi(initial)(degrees)=  33.27
+                delta phi(last)(degrees)=   3.91
+                                 R-value= 0.3992
+                    FOM weighted R-value= 0.3875
+                                mean FOM= 0.7720
+                 density truncated below= -0.07717 (34.726 %)
+                 density truncated above=  1.93674 ( 0.000 %)
+              solvent modified by factor= -0.55974
+         solvent modified by addition of=  0.00501
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8935    0.8062
+    2   4.99    6.29       2023      0.8485    1.0079
+    3   4.36    4.99       2015      0.8778    1.7172
+    4   3.96    4.36       1993      0.8556    2.1148
+    5   3.68    3.96       2003      0.8560    2.0156
+    6   3.46    3.68       2001      0.8223    2.6269
+    7   3.29    3.46       2024      0.7949    2.7987
+    8   3.14    3.29       2001      0.7885    2.8351
+    9   3.02    3.14       2026      0.7817    3.1059
+   10   2.92    3.02       2005      0.7695    3.7007
+   11   2.83    2.92       1994      0.7434    4.2152
+   12   2.75    2.83       2006      0.7493    4.7687
+   13   2.67    2.75       2032      0.6907    5.4775
+   14   2.61    2.67       1972      0.6856    6.2679
+   15   2.55    2.61       1982      0.6862    5.9091
+   16   2.50    2.55       1997      0.6801    6.8755
+   17   2.45    2.50       2053      0.6842    6.9244
+   18   2.40    2.45       2008      0.6889    7.2075
+
+================================= cycle  21 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.05
+                             mask radius= 3.1500
+
+        starting average solvent density= -.0008
+ starting average macromolecular density= 0.0009
+            starting RMS solvent density= 0.0760
+     starting RMS macromolecular density= 0.1588
+                      starting RMS ratio= 0.4786
+                                  F000/V= 0.0063
+
+             delta phi(initial)(degrees)=  33.49
+                delta phi(last)(degrees)=   4.18
+                                 R-value= 0.3967
+                    FOM weighted R-value= 0.3851
+                                mean FOM= 0.7753
+                 density truncated below= -0.07721 (34.789 %)
+                 density truncated above=  1.92993 ( 0.000 %)
+              solvent modified by factor= -0.55963
+         solvent modified by addition of=  0.00467
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8939    0.8628
+    2   4.99    6.29       2023      0.8492    0.9948
+    3   4.36    4.99       2015      0.8797    1.9454
+    4   3.96    4.36       1993      0.8557    2.2227
+    5   3.68    3.96       2003      0.8570    2.3116
+    6   3.46    3.68       2001      0.8236    3.2279
+    7   3.29    3.46       2024      0.7967    3.0818
+    8   3.14    3.29       2001      0.7893    2.8965
+    9   3.02    3.14       2026      0.7846    3.4139
+   10   2.92    3.02       2005      0.7707    4.2483
+   11   2.83    2.92       1994      0.7496    4.1442
+   12   2.75    2.83       2006      0.7538    4.8327
+   13   2.67    2.75       2032      0.6959    6.0927
+   14   2.61    2.67       1972      0.6947    6.3459
+   15   2.55    2.61       1982      0.6916    6.4619
+   16   2.50    2.55       1997      0.6849    6.9743
+   17   2.45    2.50       2053      0.6897    7.7535
+   18   2.40    2.45       2008      0.6951    7.5075
+
+================================= cycle  22 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.98
+                             mask radius= 3.1150
+
+        starting average solvent density= -.0007
+ starting average macromolecular density= 0.0008
+            starting RMS solvent density= 0.0755
+     starting RMS macromolecular density= 0.1587
+                      starting RMS ratio= 0.4757
+                                  F000/V= 0.0052
+
+             delta phi(initial)(degrees)=  33.79
+                delta phi(last)(degrees)=   4.05
+                                 R-value= 0.3945
+                    FOM weighted R-value= 0.3831
+                                mean FOM= 0.7770
+                 density truncated below= -0.07716 (34.892 %)
+                 density truncated above=  1.92743 ( 0.000 %)
+              solvent modified by factor= -0.55987
+         solvent modified by addition of=  0.00445
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8944    0.7625
+    2   4.99    6.29       2023      0.8497    0.9781
+    3   4.36    4.99       2015      0.8804    1.9509
+    4   3.96    4.36       1993      0.8576    2.1928
+    5   3.68    3.96       2003      0.8595    2.1178
+    6   3.46    3.68       2001      0.8267    2.9615
+    7   3.29    3.46       2024      0.7988    3.2769
+    8   3.14    3.29       2001      0.7899    2.9109
+    9   3.02    3.14       2026      0.7866    3.2505
+   10   2.92    3.02       2005      0.7718    4.1152
+   11   2.83    2.92       1994      0.7536    4.1103
+   12   2.75    2.83       2006      0.7560    4.8644
+   13   2.67    2.75       2032      0.6960    5.5027
+   14   2.61    2.67       1972      0.6966    5.8736
+   15   2.55    2.61       1982      0.6934    6.3063
+   16   2.50    2.55       1997      0.6876    6.9710
+   17   2.45    2.50       2053      0.6917    7.2606
+   18   2.40    2.45       2008      0.6962    7.4052
+
+================================= cycle  23 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.05
+                             mask radius= 3.0800
+
+        starting average solvent density= -.0006
+ starting average macromolecular density= 0.0007
+            starting RMS solvent density= 0.0749
+     starting RMS macromolecular density= 0.1586
+                      starting RMS ratio= 0.4725
+                                  F000/V= 0.0047
+
+             delta phi(initial)(degrees)=  33.94
+                delta phi(last)(degrees)=   4.07
+                                 R-value= 0.3935
+                    FOM weighted R-value= 0.3822
+                                mean FOM= 0.7786
+                 density truncated below= -0.07736 (34.916 %)
+                 density truncated above=  1.91692 ( 0.000 %)
+              solvent modified by factor= -0.56096
+         solvent modified by addition of=  0.00422
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8947    0.7061
+    2   4.99    6.29       2023      0.8501    0.9633
+    3   4.36    4.99       2015      0.8811    1.9257
+    4   3.96    4.36       1993      0.8576    2.1653
+    5   3.68    3.96       2003      0.8600    2.1126
+    6   3.46    3.68       2001      0.8266    2.8862
+    7   3.29    3.46       2024      0.8014    3.0723
+    8   3.14    3.29       2001      0.7914    3.0713
+    9   3.02    3.14       2026      0.7884    3.6275
+   10   2.92    3.02       2005      0.7720    4.0408
+   11   2.83    2.92       1994      0.7572    4.0410
+   12   2.75    2.83       2006      0.7599    4.9153
+   13   2.67    2.75       2032      0.6986    6.1453
+   14   2.61    2.67       1972      0.6993    6.0657
+   15   2.55    2.61       1982      0.6957    6.3295
+   16   2.50    2.55       1997      0.6869    7.0192
+   17   2.45    2.50       2053      0.6950    7.1740
+   18   2.40    2.45       2008      0.6994    7.0283
+
+================================= cycle  24 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.84
+                             mask radius= 3.0450
+
+        starting average solvent density= -.0004
+ starting average macromolecular density= 0.0005
+            starting RMS solvent density= 0.0746
+     starting RMS macromolecular density= 0.1585
+                      starting RMS ratio= 0.4705
+                                  F000/V= 0.0035
+
+             delta phi(initial)(degrees)=  34.18
+                delta phi(last)(degrees)=   4.07
+                                 R-value= 0.3910
+                    FOM weighted R-value= 0.3796
+                                mean FOM= 0.7783
+                 density truncated below= -0.07706 (34.986 %)
+                 density truncated above=  1.91522 ( 0.000 %)
+              solvent modified by factor= -0.56050
+         solvent modified by addition of=  0.00404
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8958    0.6881
+    2   4.99    6.29       2023      0.8511    1.1288
+    3   4.36    4.99       2015      0.8819    2.0668
+    4   3.96    4.36       1993      0.8590    2.0581
+    5   3.68    3.96       2003      0.8622    2.0293
+    6   3.46    3.68       2001      0.8286    3.2042
+    7   3.29    3.46       2024      0.8035    2.9684
+    8   3.14    3.29       2001      0.7931    3.1948
+    9   3.02    3.14       2026      0.7880    3.5471
+   10   2.92    3.02       2005      0.7737    3.9481
+   11   2.83    2.92       1994      0.7588    4.0098
+   12   2.75    2.83       2006      0.7574    4.4834
+   13   2.67    2.75       2032      0.6945    5.7181
+   14   2.61    2.67       1972      0.6939    6.3367
+   15   2.55    2.61       1982      0.6936    6.2088
+   16   2.50    2.55       1997      0.6846    6.8254
+   17   2.45    2.50       2053      0.6932    7.5953
+   18   2.40    2.45       2008      0.6969    7.1770
+
+================================= cycle  25 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.08
+                             mask radius= 3.0100
+
+        starting average solvent density= -.0005
+ starting average macromolecular density= 0.0006
+            starting RMS solvent density= 0.0740
+     starting RMS macromolecular density= 0.1585
+                      starting RMS ratio= 0.4669
+                                  F000/V= 0.0038
+
+             delta phi(initial)(degrees)=  34.20
+                delta phi(last)(degrees)=   4.03
+                                 R-value= 0.3905
+                    FOM weighted R-value= 0.3790
+                                mean FOM= 0.7788
+                 density truncated below= -0.07845 (34.720 %)
+                 density truncated above=  1.90370 ( 0.000 %)
+              solvent modified by factor= -0.56455
+         solvent modified by addition of=  0.00344
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8962    0.6439
+    2   4.99    6.29       2023      0.8518    1.3006
+    3   4.36    4.99       2015      0.8828    2.1067
+    4   3.96    4.36       1993      0.8589    2.1288
+    5   3.68    3.96       2003      0.8622    2.1769
+    6   3.46    3.68       2001      0.8293    3.0810
+    7   3.29    3.46       2024      0.8036    3.0732
+    8   3.14    3.29       2001      0.7921    3.1368
+    9   3.02    3.14       2026      0.7886    3.6052
+   10   2.92    3.02       2005      0.7754    4.0166
+   11   2.83    2.92       1994      0.7609    3.8073
+   12   2.75    2.83       2006      0.7582    4.5134
+   13   2.67    2.75       2032      0.6943    5.9640
+   14   2.61    2.67       1972      0.6932    6.1669
+   15   2.55    2.61       1982      0.6947    6.2256
+   16   2.50    2.55       1997      0.6830    6.8071
+   17   2.45    2.50       2053      0.6947    6.6944
+   18   2.40    2.45       2008      0.6979    7.1156
+
+================================= cycle  26 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.07
+                             mask radius= 2.9750
+
+        starting average solvent density= -.0003
+ starting average macromolecular density= 0.0003
+            starting RMS solvent density= 0.0737
+     starting RMS macromolecular density= 0.1588
+                      starting RMS ratio= 0.4641
+                                  F000/V= 0.0021
+
+             delta phi(initial)(degrees)=  34.31
+                delta phi(last)(degrees)=   4.11
+                                 R-value= 0.3888
+                    FOM weighted R-value= 0.3773
+                                mean FOM= 0.7790
+                 density truncated below= -0.07848 (34.865 %)
+                 density truncated above=  1.90522 ( 0.000 %)
+              solvent modified by factor= -0.56422
+         solvent modified by addition of=  0.00312
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8965    0.7576
+    2   4.99    6.29       2023      0.8528    1.3425
+    3   4.36    4.99       2015      0.8828    1.9177
+    4   3.96    4.36       1993      0.8599    2.2673
+    5   3.68    3.96       2003      0.8625    2.3446
+    6   3.46    3.68       2001      0.8300    2.8205
+    7   3.29    3.46       2024      0.8046    3.0926
+    8   3.14    3.29       2001      0.7912    3.0402
+    9   3.02    3.14       2026      0.7899    3.6374
+   10   2.92    3.02       2005      0.7783    4.3147
+   11   2.83    2.92       1994      0.7596    3.7094
+   12   2.75    2.83       2006      0.7578    4.2911
+   13   2.67    2.75       2032      0.6924    5.9660
+   14   2.61    2.67       1972      0.6937    6.4936
+   15   2.55    2.61       1982      0.6942    6.1595
+   16   2.50    2.55       1997      0.6834    7.0739
+   17   2.45    2.50       2053      0.6948    7.3000
+   18   2.40    2.45       2008      0.6975    7.4350
+
+================================= cycle  27 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.87
+                             mask radius= 2.9400
+
+        starting average solvent density= -.0002
+ starting average macromolecular density= 0.0002
+            starting RMS solvent density= 0.0732
+     starting RMS macromolecular density= 0.1585
+                      starting RMS ratio= 0.4617
+                                  F000/V= 0.0014
+
+             delta phi(initial)(degrees)=  34.47
+                delta phi(last)(degrees)=   4.03
+                                 R-value= 0.3868
+                    FOM weighted R-value= 0.3752
+                                mean FOM= 0.7809
+                 density truncated below= -0.07833 (34.880 %)
+                 density truncated above=  1.90121 ( 0.000 %)
+              solvent modified by factor= -0.56456
+         solvent modified by addition of=  0.00294
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8973    0.6581
+    2   4.99    6.29       2023      0.8536    1.0580
+    3   4.36    4.99       2015      0.8838    2.1108
+    4   3.96    4.36       1993      0.8617    2.1999
+    5   3.68    3.96       2003      0.8632    2.1779
+    6   3.46    3.68       2001      0.8313    3.0044
+    7   3.29    3.46       2024      0.8072    3.2592
+    8   3.14    3.29       2001      0.7917    3.1652
+    9   3.02    3.14       2026      0.7919    3.6015
+   10   2.92    3.02       2005      0.7797    4.0365
+   11   2.83    2.92       1994      0.7623    3.7938
+   12   2.75    2.83       2006      0.7602    4.5217
+   13   2.67    2.75       2032      0.6958    5.6361
+   14   2.61    2.67       1972      0.6961    6.2131
+   15   2.55    2.61       1982      0.6972    6.2331
+   16   2.50    2.55       1997      0.6851    6.6689
+   17   2.45    2.50       2053      0.6996    6.8411
+   18   2.40    2.45       2008      0.6993    7.2746
+
+================================= cycle  28 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.90
+                             mask radius= 2.9050
+
+        starting average solvent density= 0.0000
+ starting average macromolecular density= 0.0000
+            starting RMS solvent density= 0.0727
+     starting RMS macromolecular density= 0.1585
+                      starting RMS ratio= 0.4586
+                                  F000/V= 0.0001
+
+             delta phi(initial)(degrees)=  34.64
+                delta phi(last)(degrees)=   4.13
+                                 R-value= 0.3848
+                    FOM weighted R-value= 0.3732
+                                mean FOM= 0.7816
+                 density truncated below= -0.07720 (35.277 %)
+                 density truncated above=  1.89560 ( 0.000 %)
+              solvent modified by factor= -0.56183
+         solvent modified by addition of=  0.00326
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8979    0.6511
+    2   4.99    6.29       2023      0.8542    1.2188
+    3   4.36    4.99       2015      0.8842    1.9809
+    4   3.96    4.36       1993      0.8634    2.0234
+    5   3.68    3.96       2003      0.8635    2.1686
+    6   3.46    3.68       2001      0.8319    2.7508
+    7   3.29    3.46       2024      0.8092    3.0324
+    8   3.14    3.29       2001      0.7916    3.3955
+    9   3.02    3.14       2026      0.7928    3.6920
+   10   2.92    3.02       2005      0.7807    3.9800
+   11   2.83    2.92       1994      0.7633    3.9176
+   12   2.75    2.83       2006      0.7608    4.8201
+   13   2.67    2.75       2032      0.6969    5.9178
+   14   2.61    2.67       1972      0.6953    6.5612
+   15   2.55    2.61       1982      0.6975    6.3610
+   16   2.50    2.55       1997      0.6850    7.2626
+   17   2.45    2.50       2053      0.6999    7.0294
+   18   2.40    2.45       2008      0.6996    7.5320
+
+================================= cycle  29 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.03
+                             mask radius= 2.8700
+
+        starting average solvent density= 0.0000
+ starting average macromolecular density= 0.0000
+            starting RMS solvent density= 0.0722
+     starting RMS macromolecular density= 0.1585
+                      starting RMS ratio= 0.4556
+                                  F000/V= 0.0003
+
+             delta phi(initial)(degrees)=  34.71
+                delta phi(last)(degrees)=   4.02
+                                 R-value= 0.3838
+                    FOM weighted R-value= 0.3721
+                                mean FOM= 0.7811
+                 density truncated below= -0.07913 (34.814 %)
+                 density truncated above=  1.89310 ( 0.000 %)
+              solvent modified by factor= -0.56733
+         solvent modified by addition of=  0.00230
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8982    0.6263
+    2   4.99    6.29       2023      0.8551    0.9443
+    3   4.36    4.99       2015      0.8841    1.8224
+    4   3.96    4.36       1993      0.8640    1.9464
+    5   3.68    3.96       2003      0.8644    2.2806
+    6   3.46    3.68       2001      0.8326    2.9902
+    7   3.29    3.46       2024      0.8096    2.8822
+    8   3.14    3.29       2001      0.7923    3.1447
+    9   3.02    3.14       2026      0.7914    3.6844
+   10   2.92    3.02       2005      0.7803    3.9782
+   11   2.83    2.92       1994      0.7625    3.5941
+   12   2.75    2.83       2006      0.7597    4.6563
+   13   2.67    2.75       2032      0.6952    5.8921
+   14   2.61    2.67       1972      0.6924    6.3792
+   15   2.55    2.61       1982      0.6960    6.4388
+   16   2.50    2.55       1997      0.6839    6.9600
+   17   2.45    2.50       2053      0.6972    7.0283
+   18   2.40    2.45       2008      0.6998    7.1512
+
+================================= cycle  30 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.03
+                             mask radius= 2.8350
+
+        starting average solvent density= 0.0002
+ starting average macromolecular density= -.0002
+            starting RMS solvent density= 0.0719
+     starting RMS macromolecular density= 0.1586
+                      starting RMS ratio= 0.4536
+                                  F000/V= -.0012
+
+             delta phi(initial)(degrees)=  34.72
+                delta phi(last)(degrees)=   4.22
+                                 R-value= 0.3829
+                    FOM weighted R-value= 0.3712
+                                mean FOM= 0.7785
+                 density truncated below= -0.07775 (35.264 %)
+                 density truncated above=  1.89050 ( 0.000 %)
+              solvent modified by factor= -0.56378
+         solvent modified by addition of=  0.00271
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8981    0.6560
+    2   4.99    6.29       2023      0.8556    0.8881
+    3   4.36    4.99       2015      0.8844    1.9048
+    4   3.96    4.36       1993      0.8648    2.0281
+    5   3.68    3.96       2003      0.8646    2.2439
+    6   3.46    3.68       2001      0.8344    2.7669
+    7   3.29    3.46       2024      0.8104    2.9032
+    8   3.14    3.29       2001      0.7923    2.8640
+    9   3.02    3.14       2026      0.7911    3.7919
+   10   2.92    3.02       2005      0.7797    3.9973
+   11   2.83    2.92       1994      0.7581    4.0173
+   12   2.75    2.83       2006      0.7545    4.9037
+   13   2.67    2.75       2032      0.6861    6.1634
+   14   2.61    2.67       1972      0.6878    6.8551
+   15   2.55    2.61       1982      0.6909    6.9492
+   16   2.50    2.55       1997      0.6778    7.6720
+   17   2.45    2.50       2053      0.6890    7.3855
+   18   2.40    2.45       2008      0.6926    7.9304
+
+================================= cycle  31 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.15
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0002
+ starting average macromolecular density= -.0002
+            starting RMS solvent density= 0.0716
+     starting RMS macromolecular density= 0.1587
+                      starting RMS ratio= 0.4512
+                                  F000/V= -.0013
+
+             delta phi(initial)(degrees)=  34.71
+                delta phi(last)(degrees)=   3.89
+                                 R-value= 0.3833
+                    FOM weighted R-value= 0.3714
+                                mean FOM= 0.7805
+                 density truncated below= -0.07880 (35.069 %)
+                 density truncated above=  1.89720 ( 0.000 %)
+              solvent modified by factor= -0.56687
+         solvent modified by addition of=  0.00216
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8981    0.6933
+    2   4.99    6.29       2023      0.8559    0.8850
+    3   4.36    4.99       2015      0.8843    2.0668
+    4   3.96    4.36       1993      0.8647    1.9448
+    5   3.68    3.96       2003      0.8650    2.0712
+    6   3.46    3.68       2001      0.8342    2.2735
+    7   3.29    3.46       2024      0.8097    2.6109
+    8   3.14    3.29       2001      0.7922    2.9339
+    9   3.02    3.14       2026      0.7906    3.4188
+   10   2.92    3.02       2005      0.7776    3.8817
+   11   2.83    2.92       1994      0.7562    3.8005
+   12   2.75    2.83       2006      0.7610    4.2524
+   13   2.67    2.75       2032      0.6923    5.8047
+   14   2.61    2.67       1972      0.6935    5.9378
+   15   2.55    2.61       1982      0.6972    6.2305
+   16   2.50    2.55       1997      0.6833    6.8122
+   17   2.45    2.50       2053      0.6933    7.0277
+   18   2.40    2.45       2008      0.6997    7.4200
+
+================================= cycle  32 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.15
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0002
+ starting average macromolecular density= -.0002
+            starting RMS solvent density= 0.0716
+     starting RMS macromolecular density= 0.1589
+                      starting RMS ratio= 0.4504
+                                  F000/V= -.0014
+
+             delta phi(initial)(degrees)=  34.79
+                delta phi(last)(degrees)=   3.60
+                                 R-value= 0.3825
+                    FOM weighted R-value= 0.3707
+                                mean FOM= 0.7824
+                 density truncated below= -0.07868 (35.110 %)
+                 density truncated above=  1.89491 ( 0.000 %)
+              solvent modified by factor= -0.56659
+         solvent modified by addition of=  0.00224
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8979    0.6756
+    2   4.99    6.29       2023      0.8556    0.8955
+    3   4.36    4.99       2015      0.8853    1.8070
+    4   3.96    4.36       1993      0.8645    1.9608
+    5   3.68    3.96       2003      0.8656    2.1657
+    6   3.46    3.68       2001      0.8363    2.2603
+    7   3.29    3.46       2024      0.8101    2.5922
+    8   3.14    3.29       2001      0.7929    2.6744
+    9   3.02    3.14       2026      0.7919    3.3510
+   10   2.92    3.02       2005      0.7799    3.6862
+   11   2.83    2.92       1994      0.7537    3.4706
+   12   2.75    2.83       2006      0.7653    4.0101
+   13   2.67    2.75       2032      0.6948    5.5968
+   14   2.61    2.67       1972      0.6974    5.4864
+   15   2.55    2.61       1982      0.7031    5.5686
+   16   2.50    2.55       1997      0.6888    5.7937
+   17   2.45    2.50       2053      0.6965    6.1382
+   18   2.40    2.45       2008      0.7044    6.7319
+
+================================= cycle  33 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.93
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0003
+ starting average macromolecular density= -.0003
+            starting RMS solvent density= 0.0713
+     starting RMS macromolecular density= 0.1587
+                      starting RMS ratio= 0.4493
+                                  F000/V= -.0022
+
+             delta phi(initial)(degrees)=  34.93
+                delta phi(last)(degrees)=   3.47
+                                 R-value= 0.3809
+                    FOM weighted R-value= 0.3691
+                                mean FOM= 0.7817
+                 density truncated below= -0.07964 (34.872 %)
+                 density truncated above=  1.89599 ( 0.000 %)
+              solvent modified by factor= -0.56921
+         solvent modified by addition of=  0.00153
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8982    0.6195
+    2   4.99    6.29       2023      0.8562    0.8233
+    3   4.36    4.99       2015      0.8852    1.5097
+    4   3.96    4.36       1993      0.8658    1.9117
+    5   3.68    3.96       2003      0.8667    2.1953
+    6   3.46    3.68       2001      0.8378    2.5618
+    7   3.29    3.46       2024      0.8125    2.4083
+    8   3.14    3.29       2001      0.7945    2.4688
+    9   3.02    3.14       2026      0.7927    3.2742
+   10   2.92    3.02       2005      0.7811    3.5565
+   11   2.83    2.92       1994      0.7564    3.5021
+   12   2.75    2.83       2006      0.7631    3.6957
+   13   2.67    2.75       2032      0.6923    5.2526
+   14   2.61    2.67       1972      0.6935    5.3004
+   15   2.55    2.61       1982      0.6980    5.0512
+   16   2.50    2.55       1997      0.6849    5.5334
+   17   2.45    2.50       2053      0.6935    5.9523
+   18   2.40    2.45       2008      0.6988    6.7841
+
+================================= cycle  34 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.86
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0003
+ starting average macromolecular density= -.0003
+            starting RMS solvent density= 0.0710
+     starting RMS macromolecular density= 0.1585
+                      starting RMS ratio= 0.4479
+                                  F000/V= -.0022
+
+             delta phi(initial)(degrees)=  35.02
+                delta phi(last)(degrees)=   3.36
+                                 R-value= 0.3795
+                    FOM weighted R-value= 0.3678
+                                mean FOM= 0.7836
+                 density truncated below= -0.07849 (35.146 %)
+                 density truncated above=  1.88970 ( 0.000 %)
+              solvent modified by factor= -0.56667
+         solvent modified by addition of=  0.00206
+                     new solvent density= -.0115
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8981    0.4647
+    2   4.99    6.29       2023      0.8561    0.8107
+    3   4.36    4.99       2015      0.8855    1.4160
+    4   3.96    4.36       1993      0.8657    1.7951
+    5   3.68    3.96       2003      0.8677    2.1280
+    6   3.46    3.68       2001      0.8400    2.4446
+    7   3.29    3.46       2024      0.8145    2.3735
+    8   3.14    3.29       2001      0.7951    2.4668
+    9   3.02    3.14       2026      0.7947    3.0811
+   10   2.92    3.02       2005      0.7825    3.4872
+   11   2.83    2.92       1994      0.7574    3.4199
+   12   2.75    2.83       2006      0.7671    3.7935
+   13   2.67    2.75       2032      0.6949    4.8232
+   14   2.61    2.67       1972      0.6968    5.2845
+   15   2.55    2.61       1982      0.7031    5.2046
+   16   2.50    2.55       1997      0.6896    5.3459
+   17   2.45    2.50       2053      0.6951    5.8937
+   18   2.40    2.45       2008      0.7015    6.2628
+
+================================= cycle  35 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.96
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0002
+ starting average macromolecular density= -.0002
+            starting RMS solvent density= 0.0709
+     starting RMS macromolecular density= 0.1586
+                      starting RMS ratio= 0.4467
+                                  F000/V= -.0016
+
+             delta phi(initial)(degrees)=  34.99
+                delta phi(last)(degrees)=   3.27
+                                 R-value= 0.3798
+                    FOM weighted R-value= 0.3681
+                                mean FOM= 0.7818
+                 density truncated below= -0.07978 (34.826 %)
+                 density truncated above=  1.89038 ( 0.000 %)
+              solvent modified by factor= -0.57041
+         solvent modified by addition of=  0.00155
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8981    0.5427
+    2   4.99    6.29       2023      0.8558    0.8664
+    3   4.36    4.99       2015      0.8852    1.4749
+    4   3.96    4.36       1993      0.8657    1.8117
+    5   3.68    3.96       2003      0.8680    2.1405
+    6   3.46    3.68       2001      0.8390    2.1212
+    7   3.29    3.46       2024      0.8141    2.1634
+    8   3.14    3.29       2001      0.7956    2.4628
+    9   3.02    3.14       2026      0.7945    3.0052
+   10   2.92    3.02       2005      0.7816    3.3335
+   11   2.83    2.92       1994      0.7579    3.2709
+   12   2.75    2.83       2006      0.7625    3.5718
+   13   2.67    2.75       2032      0.6911    4.6700
+   14   2.61    2.67       1972      0.6921    5.3660
+   15   2.55    2.61       1982      0.6975    5.0635
+   16   2.50    2.55       1997      0.6854    5.1638
+   17   2.45    2.50       2053      0.6915    5.5620
+   18   2.40    2.45       2008      0.6968    6.2251
+
+================================= cycle  36 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.88
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0002
+ starting average macromolecular density= -.0003
+            starting RMS solvent density= 0.0707
+     starting RMS macromolecular density= 0.1587
+                      starting RMS ratio= 0.4456
+                                  F000/V= -.0019
+
+             delta phi(initial)(degrees)=  35.18
+                delta phi(last)(degrees)=   3.40
+                                 R-value= 0.3784
+                    FOM weighted R-value= 0.3667
+                                mean FOM= 0.7835
+                 density truncated below= -0.08025 (34.712 %)
+                 density truncated above=  1.89389 ( 0.000 %)
+              solvent modified by factor= -0.57133
+         solvent modified by addition of=  0.00128
+                     new solvent density= -.0117
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8980    0.6358
+    2   4.99    6.29       2023      0.8560    0.8835
+    3   4.36    4.99       2015      0.8868    1.6827
+    4   3.96    4.36       1993      0.8660    1.9500
+    5   3.68    3.96       2003      0.8688    2.3371
+    6   3.46    3.68       2001      0.8409    2.2906
+    7   3.29    3.46       2024      0.8153    2.2479
+    8   3.14    3.29       2001      0.7978    2.5406
+    9   3.02    3.14       2026      0.7953    3.2477
+   10   2.92    3.02       2005      0.7829    3.3920
+   11   2.83    2.92       1994      0.7580    3.4700
+   12   2.75    2.83       2006      0.7647    3.7371
+   13   2.67    2.75       2032      0.6920    4.7685
+   14   2.61    2.67       1972      0.6936    5.3819
+   15   2.55    2.61       1982      0.7013    4.9507
+   16   2.50    2.55       1997      0.6895    5.3414
+   17   2.45    2.50       2053      0.6958    5.9142
+   18   2.40    2.45       2008      0.7003    6.3671
+
+================================= cycle  37 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.01
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0001
+ starting average macromolecular density= -.0002
+            starting RMS solvent density= 0.0707
+     starting RMS macromolecular density= 0.1588
+                      starting RMS ratio= 0.4451
+                                  F000/V= -.0012
+
+             delta phi(initial)(degrees)=  35.07
+                delta phi(last)(degrees)=   3.41
+                                 R-value= 0.3792
+                    FOM weighted R-value= 0.3675
+                                mean FOM= 0.7833
+                 density truncated below= -0.07920 (34.998 %)
+                 density truncated above=  1.88998 ( 0.000 %)
+              solvent modified by factor= -0.56900
+         solvent modified by addition of=  0.00197
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8983    0.6389
+    2   4.99    6.29       2023      0.8556    0.8532
+    3   4.36    4.99       2015      0.8858    1.4169
+    4   3.96    4.36       1993      0.8658    1.9863
+    5   3.68    3.96       2003      0.8684    2.3430
+    6   3.46    3.68       2001      0.8402    2.2711
+    7   3.29    3.46       2024      0.8152    2.2537
+    8   3.14    3.29       2001      0.7967    2.6663
+    9   3.02    3.14       2026      0.7939    3.2916
+   10   2.92    3.02       2005      0.7810    3.4797
+   11   2.83    2.92       1994      0.7587    3.3764
+   12   2.75    2.83       2006      0.7648    3.7532
+   13   2.67    2.75       2032      0.6934    4.6341
+   14   2.61    2.67       1972      0.6935    5.4828
+   15   2.55    2.61       1982      0.7010    5.1817
+   16   2.50    2.55       1997      0.6899    5.3414
+   17   2.45    2.50       2053      0.6962    5.8572
+   18   2.40    2.45       2008      0.7006    6.5302
+
+================================= cycle  38 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  53.95
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0002
+ starting average macromolecular density= -.0002
+            starting RMS solvent density= 0.0707
+     starting RMS macromolecular density= 0.1589
+                      starting RMS ratio= 0.4447
+                                  F000/V= -.0013
+
+             delta phi(initial)(degrees)=  35.17
+                delta phi(last)(degrees)=   3.31
+                                 R-value= 0.3782
+                    FOM weighted R-value= 0.3665
+                                mean FOM= 0.7835
+                 density truncated below= -0.07888 (35.115 %)
+                 density truncated above=  1.89559 ( 0.000 %)
+              solvent modified by factor= -0.56796
+         solvent modified by addition of=  0.00215
+                     new solvent density= -.0116
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8978    0.5473
+    2   4.99    6.29       2023      0.8558    0.8576
+    3   4.36    4.99       2015      0.8869    1.4298
+    4   3.96    4.36       1993      0.8660    2.0310
+    5   3.68    3.96       2003      0.8683    2.4135
+    6   3.46    3.68       2001      0.8405    2.4084
+    7   3.29    3.46       2024      0.8156    2.2559
+    8   3.14    3.29       2001      0.7990    2.5934
+    9   3.02    3.14       2026      0.7937    3.0931
+   10   2.92    3.02       2005      0.7820    3.3232
+   11   2.83    2.92       1994      0.7590    3.5138
+   12   2.75    2.83       2006      0.7643    3.6389
+   13   2.67    2.75       2032      0.6926    4.2682
+   14   2.61    2.67       1972      0.6924    5.2403
+   15   2.55    2.61       1982      0.7004    4.7946
+   16   2.50    2.55       1997      0.6915    5.3373
+   17   2.45    2.50       2053      0.6961    5.6545
+   18   2.40    2.45       2008      0.7013    6.2424
+
+================================= cycle  39 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.16
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0000
+ starting average macromolecular density= 0.0000
+            starting RMS solvent density= 0.0707
+     starting RMS macromolecular density= 0.1591
+                      starting RMS ratio= 0.4443
+                                  F000/V= 0.0001
+
+             delta phi(initial)(degrees)=  35.08
+                delta phi(last)(degrees)=   3.41
+                                 R-value= 0.3796
+                    FOM weighted R-value= 0.3679
+                                mean FOM= 0.7847
+                 density truncated below= -0.08026 (34.735 %)
+                 density truncated above=  1.89519 ( 0.000 %)
+              solvent modified by factor= -0.57172
+         solvent modified by addition of=  0.00177
+                     new solvent density= -.0117
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.8976    0.5933
+    2   4.99    6.29       2023      0.8554    1.0453
+    3   4.36    4.99       2015      0.8864    1.5693
+    4   3.96    4.36       1993      0.8657    2.0110
+    5   3.68    3.96       2003      0.8674    2.3182
+    6   3.46    3.68       2001      0.8400    2.4509
+    7   3.29    3.46       2024      0.8155    2.2428
+    8   3.14    3.29       2001      0.7962    2.6195
+    9   3.02    3.14       2026      0.7921    3.0184
+   10   2.92    3.02       2005      0.7798    3.5051
+   11   2.83    2.92       1994      0.7592    3.5398
+   12   2.75    2.83       2006      0.7681    3.7612
+   13   2.67    2.75       2032      0.6956    4.5940
+   14   2.61    2.67       1972      0.6977    5.3449
+   15   2.55    2.61       1982      0.7031    5.0757
+   16   2.50    2.55       1997      0.6971    5.4114
+   17   2.45    2.50       2053      0.7014    5.7451
+   18   2.40    2.45       2008      0.7061    6.4833
+
+================================= cycle  40 ===================================
+
+           current high resolution limit= 2.4000
+            number of reflections phased= 36136
+                 solvent mask volume (%)=  54.07
+                             mask radius= 2.8000
+
+        starting average solvent density= 0.0000
+ starting average macromolecular density= 0.0000
+            starting RMS solvent density= 0.0707
+     starting RMS macromolecular density= 0.1592
+                      starting RMS ratio= 0.4440
+                                  F000/V= -.0003
+
+             delta phi(initial)(degrees)=  43.42
+                delta phi(last)(degrees)=   9.74
+                                 R-value= 0.2314
+                    FOM weighted R-value= 0.2238
+                                mean FOM= 0.8911
+                 density truncated below= -0.08021 (34.768 %)
+                 density truncated above=  1.90070 ( 0.000 %)
+              solvent modified by factor=  0.00000
+         solvent modified by addition of=  0.00175
+                     new solvent density= -.0117
+
+                                       FOM      dphi
+                                       ---      ----
+ #bin | resolution range | #refl | 
+    1   6.29  500.01       2001      0.9287    4.0854
+    2   4.99    6.29       2023      0.9176    9.2787
+    3   4.36    4.99       2015      0.9490   10.6536
+    4   3.96    4.36       1993      0.9268   11.1928
+    5   3.68    3.96       2003      0.9518   13.3261
+    6   3.46    3.68       2001      0.9275   12.7065
+    7   3.29    3.46       2024      0.9060   11.1372
+    8   3.14    3.29       2001      0.8966   11.5509
+    9   3.02    3.14       2026      0.8954   11.1732
+   10   2.92    3.02       2005      0.8930   11.4180
+   11   2.83    2.92       1994      0.8747   11.1174
+   12   2.75    2.83       2006      0.8883    8.8237
+   13   2.67    2.75       2032      0.8473    7.4502
+   14   2.61    2.67       1972      0.8441    8.0536
+   15   2.55    2.61       1982      0.8509    8.0957
+   16   2.50    2.55       1997      0.8429    8.3148
+   17   2.45    2.50       2053      0.8468    8.1202
+   18   2.40    2.45       2008      0.8523    8.7753
+

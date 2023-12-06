@@ -1,0 +1,387 @@
+
+PMID- 21460454
+OWN - NLM
+STAT- MEDLINE
+DA  - 20110404
+DCOM- 20110627
+LR  - 20131018
+IS  - 1399-0047 (Electronic)
+IS  - 0907-4449 (Linking)
+VI  - 67
+IP  - Pt 4
+DP  - 2011 Apr
+TI  - REFMAC5 for the refinement of macromolecular crystal structures.
+PG  - 355-67
+LID - 10.1107/S0907444911001314 [doi]
+AB  - This paper describes various components of the macromolecular crystallographic
+      refinement program REFMAC5, which is distributed as part of the CCP4 suite.
+      REFMAC5 utilizes different likelihood functions depending on the diffraction data
+      employed (amplitudes or intensities), the presence of twinning and the
+      availability of SAD/SIRAS experimental diffraction data. To ensure chemical and
+      structural integrity of the refined model, REFMAC5 offers several classes of
+      restraints and choices of model parameterization. Reliable models at resolutions 
+      at least as low as 4 A can be achieved thanks to low-resolution refinement tools 
+      such as secondary-structure restraints, restraints to known homologous
+      structures, automatic global and local NCS restraints, `jelly-body' restraints
+      and the use of novel long-range restraints on atomic displacement parameters
+      (ADPs) based on the Kullback-Leibler divergence. REFMAC5 additionally offers TLS 
+      parameterization and, when high-resolution data are available, fast refinement of
+      anisotropic ADPs. Refinement in the presence of twinning is performed in a fully 
+      automated fashion. REFMAC5 is a flexible and highly optimized refinement package 
+      that is ideally suited for refinement across the entire resolution spectrum
+      encountered in macromolecular crystallography.
+FAU - Murshudov, Garib N
+AU  - Murshudov GN
+AD  - Structural Biology Laboratory, Department of Chemistry, University of York,
+      Heslington, York, England. garib@ysbl.york.ac.uk
+FAU - Skubak, Pavol
+AU  - Skubak P
+FAU - Lebedev, Andrey A
+AU  - Lebedev AA
+FAU - Pannu, Navraj S
+AU  - Pannu NS
+FAU - Steiner, Roberto A
+AU  - Steiner RA
+FAU - Nicholls, Robert A
+AU  - Nicholls RA
+FAU - Winn, Martyn D
+AU  - Winn MD
+FAU - Long, Fei
+AU  - Long F
+FAU - Vagin, Alexei A
+AU  - Vagin AA
+LA  - eng
+GR  - 064405/Z/01/A/Wellcome Trust/United Kingdom
+GR  - BB/F0202281/Biotechnology and Biological Sciences Research Council/United Kingdom
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20110318
+PL  - England
+TA  - Acta Crystallogr D Biol Crystallogr
+JT  - Acta crystallographica. Section D, Biological crystallography
+JID - 9305878
+SB  - IM
+MH  - Anisotropy
+MH  - Crystallography, X-Ray/*methods
+MH  - Likelihood Functions
+MH  - *Software
+PMC - PMC3069751
+OID - NLM: PMC3069751
+EDAT- 2011/04/05 06:00
+MHDA- 2011/06/28 06:00
+CRDT- 2011/04/05 06:00
+PHST- 2010/07/14 [received]
+PHST- 2011/01/10 [accepted]
+PHST- 2011/03/18 [epublish]
+AID - S0907444911001314 [pii]
+AID - 10.1107/S0907444911001314 [doi]
+PST - ppublish
+SO  - Acta Crystallogr D Biol Crystallogr. 2011 Apr;67(Pt 4):355-67. doi:
+      10.1107/S0907444911001314. Epub 2011 Mar 18.
+URL - http://www.ncbi.nlm.nih.gov/pubmed/21460454
+
+PMID- 15572771
+OWN - NLM
+STAT- MEDLINE
+DA  - 20041201
+DCOM- 20050222
+LR  - 20081121
+IS  - 0907-4449 (Print)
+IS  - 0907-4449 (Linking)
+VI  - 60
+IP  - Pt 12 Pt 1
+DP  - 2004 Dec
+TI  - REFMAC5 dictionary: organization of prior chemical knowledge and guidelines for
+      its use.
+PG  - 2184-95
+AB  - One of the most important aspects of macromolecular structure refinement is the
+      use of prior chemical knowledge. Bond lengths, bond angles and other chemical
+      properties are used in restrained refinement as subsidiary conditions. This
+      contribution describes the organization and some aspects of the use of the
+      flexible and human/machine-readable dictionary of prior chemical knowledge used
+      by the maximum-likelihood macromolecular-refinement program REFMAC5. The
+      dictionary stores information about monomers which represent the constitutive
+      building blocks of biological macromolecules (amino acids, nucleic acids and
+      saccharides) and about numerous organic/inorganic compounds commonly found in
+      macromolecular crystallography. It also describes the modifications the building 
+      blocks undergo as a result of chemical reactions and the links required for
+      polymer formation. More than 2000 monomer entries, 100 modification entries and
+      200 link entries are currently available. Algorithms and tools for updating and
+      adding new entries to the dictionary have also been developed and are presented
+      here. In many cases, the REFMAC5 dictionary allows entirely automatic generation 
+      of restraints within REFMAC5 refinement runs.
+FAU - Vagin, Alexei A
+AU  - Vagin AA
+AD  - Structural Biology Laboratory, Department of Chemistry, University of York, York 
+      YO10 5YW, England.
+FAU - Steiner, Roberto A
+AU  - Steiner RA
+FAU - Lebedev, Andrey A
+AU  - Lebedev AA
+FAU - Potterton, Liz
+AU  - Potterton L
+FAU - McNicholas, Stuart
+AU  - McNicholas S
+FAU - Long, Fei
+AU  - Long F
+FAU - Murshudov, Garib N
+AU  - Murshudov GN
+LA  - eng
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20041126
+PL  - Denmark
+TA  - Acta Crystallogr D Biol Crystallogr
+JT  - Acta crystallographica. Section D, Biological crystallography
+JID - 9305878
+RN  - 0 (Peptide Library)
+RN  - 0 (Proteins)
+SB  - IM
+MH  - Chemical Phenomena
+MH  - Chemistry
+MH  - *Computational Biology
+MH  - Crystallography, X-Ray
+MH  - Dictionaries as Topic
+MH  - Internet
+MH  - Models, Molecular
+MH  - Peptide Library
+MH  - Protein Conformation
+MH  - Proteins/*chemistry
+MH  - *Software
+EDAT- 2004/12/02 09:00
+MHDA- 2005/02/23 09:00
+CRDT- 2004/12/02 09:00
+PHST- 2004/04/19 [received]
+PHST- 2004/09/22 [accepted]
+PHST- 2004/11/26 [epublish]
+AID - S0907444904023510 [pii]
+AID - 10.1107/S0907444904023510 [doi]
+PST - ppublish
+SO  - Acta Crystallogr D Biol Crystallogr. 2004 Dec;60(Pt 12 Pt 1):2184-95. Epub 2004
+      Nov 26.
+
+PMID- 15299926
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+DA  - 20040809
+DCOM- 20050217
+LR  - 20070724
+IS  - 0907-4449 (Print)
+IS  - 0907-4449 (Linking)
+VI  - 53
+IP  - Pt 3
+DP  - 1997 May 1
+TI  - Refinement of macromolecular structures by the maximum-likelihood method.
+PG  - 240-55
+AB  - This paper reviews the mathematical basis of maximum likelihood. The likelihood
+      function for macromolecular structures is extended to include prior phase
+      information and experimental standard uncertainties. The assumption that
+      different parts of a structure might have different errors is considered. A
+      method for estimating sigma(A) using 'free' reflections is described and its
+      effects analysed. The derived equations have been implemented in the program
+      REFMAC. This has been tested on several proteins at different stages of
+      refinement (bacterial alpha-amylase, cytochrome c', cross-linked insulin and
+      oligopeptide binding protein). The results derived using the maximum-likelihood
+      residual are consistently better than those obtained from least-squares
+      refinement.
+FAU - Murshudov, G N
+AU  - Murshudov GN
+AD  - Chemistry Department, University of York, Heslington, England.
+FAU - Vagin, A A
+AU  - Vagin AA
+FAU - Dodson, E J
+AU  - Dodson EJ
+LA  - eng
+PT  - Journal Article
+PL  - Denmark
+TA  - Acta Crystallogr D Biol Crystallogr
+JT  - Acta crystallographica. Section D, Biological crystallography
+JID - 9305878
+EDAT- 1997/05/01 00:00
+MHDA- 1997/05/01 00:01
+CRDT- 1997/05/01 00:00
+AID - 10.1107/S0907444996012255 [doi]
+AID - S0907444996012255 [pii]
+PST - ppublish
+SO  - Acta Crystallogr D Biol Crystallogr. 1997 May 1;53(Pt 3):240-55.
+
+
+PMID- 22505260
+OWN - NLM
+STAT- MEDLINE
+DA  - 20120416
+DCOM- 20120619
+LR  - 20140220
+IS  - 1399-0047 (Electronic)
+IS  - 0907-4449 (Linking)
+VI  - 68
+IP  - Pt 4
+DP  - 2012 Apr
+TI  - Low-resolution refinement tools in REFMAC5.
+PG  - 404-17
+LID - 10.1107/S090744491105606X [doi]
+AB  - Two aspects of low-resolution macromolecular crystal structure analysis are
+      considered: (i) the use of reference structures and structural units for
+      provision of structural prior information and (ii) map sharpening in the presence
+      of noise and the effects of Fourier series termination. The generation of
+      interatomic distance restraints by ProSMART and their subsequent application in
+      REFMAC5 is described. It is shown that the use of such external structural
+      information can enhance the reliability of derived atomic models and stabilize
+      refinement. The problem of map sharpening is considered as an inverse deblurring 
+      problem and is solved using Tikhonov regularizers. It is demonstrated that this
+      type of map sharpening can automatically produce a map with more structural
+      features whilst maintaining connectivity. Tests show that both of these
+      directions are promising, although more work needs to be performed in order to
+      further exploit structural information and to address the problem of reliable
+      electron-density calculation.
+FAU - Nicholls, Robert A
+AU  - Nicholls RA
+AD  - Structural Studies Division, MRC Laboratory of Molecular Biology, Cambridge CB2
+      0QH, England.
+FAU - Long, Fei
+AU  - Long F
+FAU - Murshudov, Garib N
+AU  - Murshudov GN
+LA  - eng
+GR  - MC_UP_A025_1012/Medical Research Council/United Kingdom
+GR  - MC_US_A025_0104/Medical Research Council/United Kingdom
+GR  - Biotechnology and Biological Sciences Research Council/United Kingdom
+GR  - Wellcome Trust/United Kingdom
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20120316
+PL  - United States
+TA  - Acta Crystallogr D Biol Crystallogr
+JT  - Acta crystallographica. Section D, Biological crystallography
+JID - 9305878
+RN  - 0 (Proteins)
+SB  - IM
+MH  - Crystallography, X-Ray/*methods
+MH  - Models, Molecular
+MH  - Protein Structure, Secondary
+MH  - Protein Structure, Tertiary
+MH  - Proteins/analysis/chemistry
+PMC - PMC3322599
+OID - NLM: PMC3322599
+EDAT- 2012/04/17 06:00
+MHDA- 2012/06/20 06:00
+CRDT- 2012/04/17 06:00
+PHST- 2011/11/02 [received]
+PHST- 2011/12/28 [accepted]
+PHST- 2012/03/16 [epublish]
+AID - S090744491105606X [pii]
+AID - 10.1107/S090744491105606X [doi]
+PST - ppublish
+SO  - Acta Crystallogr D Biol Crystallogr. 2012 Apr;68(Pt 4):404-17. doi:
+      10.1107/S090744491105606X. Epub 2012 Mar 16.
+
+PMID- 10089417
+OWN - NLM
+STAT- MEDLINE
+DA  - 19990503
+DCOM- 19990503
+LR  - 20070724
+IS  - 0907-4449 (Print)
+IS  - 0907-4449 (Linking)
+VI  - 55
+IP  - Pt 1
+DP  - 1999 Jan
+TI  - Efficient anisotropic refinement of macromolecular structures using FFT.
+PG  - 247-55
+AB  - This paper gives the equations for the use of fast Fourier transformations in
+      individual atomic anisotropic refinement. Restraints on bonded atoms, on the
+      sphericity of each atom and between non-crystallographic symmetry related atoms
+      are described. These have been implemented in the program REFMAC and its
+      performance with several examples is analysed. All the tests show that
+      anisotropic refinement not only reduces the R value and Rfree but also improves
+      the fit to geometric targets, indicating that this parameterization is valuable
+      for improving models derived from experimental data. The computer time taken is
+      comparable to that for isotropic refinements.
+FAU - Murshudov, G N
+AU  - Murshudov GN
+AD  - Chemistry Department, University of York, Heslington, York YO1 5DD, England and
+      CLRC, Daresbury Laboratory, Daresbury, Warrington WA4 4AD,
+      England.garib@yorvic.york.ac.uk
+FAU - Vagin, A A
+AU  - Vagin AA
+FAU - Lebedev, A
+AU  - Lebedev A
+FAU - Wilson, K S
+AU  - Wilson KS
+FAU - Dodson, E J
+AU  - Dodson EJ
+LA  - eng
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+DEP - 19990101
+PL  - DENMARK
+TA  - Acta Crystallogr D Biol Crystallogr
+JT  - Acta crystallographica. Section D, Biological crystallography
+JID - 9305878
+RN  - 0 (Macromolecular Substances)
+RN  - EC 1.11.1.6 (Catalase)
+RN  - EC 3.1.- (Ribonucleases)
+SB  - IM
+MH  - Catalase/chemistry
+MH  - *Crystallography, X-Ray
+MH  - *Fluorescence Polarization
+MH  - *Fourier Analysis
+MH  - Macromolecular Substances
+MH  - Models, Molecular
+MH  - Protein Conformation
+MH  - Ribonucleases/chemistry
+MH  - Software
+EDAT- 1999/03/25 03:01
+MHDA- 2000/06/23 11:00
+CRDT- 1999/03/25 03:01
+PHST- 1998/10/02 [received]
+PHST- 1998/10/25 [accepted]
+PHST- 1999/01/01 [epublish]
+AID - 10.1107/S090744499801405X [doi]
+AID - S090744499801405X [pii]
+PST - ppublish
+SO  - Acta Crystallogr D Biol Crystallogr. 1999 Jan;55(Pt 1):247-55. Epub 1999 Jan 1.
+
+PMID- 14696379
+OWN - NLM
+STAT- MEDLINE
+DA  - 20031230
+DCOM- 20040204
+LR  - 20091119
+IS  - 0076-6879 (Print)
+IS  - 0076-6879 (Linking)
+VI  - 374
+DP  - 2003
+TI  - Macromolecular TLS refinement in REFMAC at moderate resolutions.
+PG  - 300-21
+FAU - Winn, Martyn D
+AU  - Winn MD
+AD  - Daresbury Laboratory, Daresbury, Warrington, WA4 4AD, United Kingdom.
+FAU - Murshudov, Garib N
+AU  - Murshudov GN
+FAU - Papiz, Miroslav Z
+AU  - Papiz MZ
+LA  - eng
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+PL  - United States
+TA  - Methods Enzymol
+JT  - Methods in enzymology
+JID - 0212271
+RN  - 0 (Proteins)
+SB  - IM
+MH  - Chemistry Techniques, Analytical/*methods
+MH  - Crystallography, X-Ray/methods
+MH  - *Data Interpretation, Statistical
+MH  - Likelihood Functions
+MH  - Models, Molecular
+MH  - Protein Structure, Tertiary
+MH  - Proteins/*chemistry
+MH  - *Software
+EDAT- 2003/12/31 05:00
+MHDA- 2004/02/05 05:00
+CRDT- 2003/12/31 05:00
+AID - 10.1016/S0076-6879(03)74014-2 [doi]
+AID - S0076687903740142 [pii]
+PST - ppublish
+SO  - Methods Enzymol. 2003;374:300-21.

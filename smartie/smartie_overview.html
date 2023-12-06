@@ -1,0 +1,790 @@
+<html>
+<head>
+<title>smartie.py: CCP4 logfile parser</title>
+</head>
+<body>
+
+<!--CVS_id: $Id: smartie_overview.html,v 1.1 2008/08/26 14:23:39 pjx Exp $-->
+
+<h1>smartie.py: CCP4 logfile parser tools</h1>
+
+<p><b>Usage documentation for version 0.0.15</b></p>
+
+<h2>Introduction</h2>
+
+<p><b>smartie</b> is a set of Python classes and methods intended 
+to provide tools for parsing the content of CCP4 logfiles. The name
+"smartie" reflects its origins as the driver for a "smart logfile
+browser", although this aim has not yet been realised.</p>
+
+<p>The <b>logfile</b> class lies at the heart of smartie. Once
+populated from a file, a logfile object gives a high-level view of
+that file in terms of "components" (CCP4i comments, individual
+program logs, tables, warnings, summaries and so on). The logfile
+class was loosely inspired by the Javascript DOM (document object model)
+for describing hypertext documents, although it is far more limited
+at present.</p>
+
+<p>To see an example of smartie parsing a logfile, feed it one of
+the example logfiles included in the distribution, e.g.:</p>
+
+<pre>
+<b>% python smartie.py 7_refmac5.log</b>
+</pre>
+
+<p>or all the example log files:</p>
+
+<pre>
+<b>% python smartie.py *.log | more</b>
+</pre>
+
+<p>or try it on a file of your own.</p>
+
+<h2>Module documentation</h2>
+
+<p>The documentation for the classes and functions in the smartie
+module (generated using <tt>pydoc</tt>) are here:</p>
+
+<ul>
+<li><a href="smartie.html">smartie.html</a></li>
+</ul>
+
+<p>There are also <a href="#class_overviews">overviews of the different
+classes below</a>.</p>
+
+<h2>Usage examples</h2>
+
+<h3>1. Interrogating logfiles</h3>
+
+<p>To create a new logfile object describing (say) a CCP4i logfile
+from a <tt>scala</tt> job, we use the smartie's <tt>parselog</tt>
+method:</p>
+
+<pre>
+<b>&gt;&gt;&gt; import smartie</b>
+<b>&gt;&gt;&gt; logfile = smartie.parselog("22_scala.log")</b>
+</pre>
+
+<p>We can then find out for example how many "fragments" smartie
+thought it had found in this file:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.nfragments()</b>
+<em>8</em>
+</pre>
+
+<p>Fragments are any particular chunk of logfile that smartie
+recognised. We can interrogate the type of fragment, for example:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.fragment(0).isccp4i_info()</b>
+<em>True</em>
+</pre>
+
+<p>If we're only interested in the fragments that looked like individual
+program output then we can also find out how many programs it thought
+it had found, by querying its list of program logs:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.nprograms()</b>
+<em>7</em>
+</pre>
+
+<p>We can ask it some questions about individual fragments, for
+example:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.program(1).isccp4()</b>
+<em>True</em>
+<b>&gt;&gt;&gt; logfile.program(1).name</b>
+<em>'Scala'</em>
+<b>&gt;&gt;&gt; logfile.program(1).version</b>
+<em>'5.99'</em>
+<b>&gt;&gt;&gt; logfile.program(1).termination_message</b>
+<em>'** Normal termination **'</em>
+</pre>
+
+<p>It is also possible to get a list of the keyword input lines
+for each program logfile, for example:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.program(0).name</b>
+<em>'SORTMTZ'</em>
+<b>&gt;&gt;&gt; logfile.program(0).keywords()</b>
+<em>['ASCEND', 'H K L M/ISYM BATCH']</em>
+</pre>
+
+<p>For each program any "logical name/filename" pairs found in
+the logfile are also stored and can be retrieved. To get a list
+of the logical names associated with files that were opened:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.program(1).logicalnames()</b>
+<em>['HKLIN', 'HKLOUT', 'SYMINFO']</em>
+</pre>
+
+<p>Then, to find out what the associated file is for a particular
+logical name:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.program(1).logicalnamefile("HKLIN")</b>
+<em>'/home/pjx/PROJECTS/myProject/aucn_sorted.mtz'</em>
+<b>&gt;&gt;&gt; logfile.program(1).logicalnamefile("HKLOUT")</b>
+<em>'/tmp/pjx/PROJECT_22_2_mtz.tmp'</em>
+</pre>
+
+<p>The logfile class offers similar methods for fragments which
+are not CCP4 program output but are (for example) messages from
+CCP4i. Smartie also has a <tt>summarise</tt> function which will
+print a report of the logfile contents:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile = smartie.parselog("22_scala.log")</b>
+<b>&gt;&gt;&gt; smartie.summarise(logfile)</b>
+<em>Summary for 22_scala.log
+
+This is a CCP4i logfile
+
+8 logfile fragments
+
+Fragments:
+        CCP4i info
+        Program: SORTMTZ
+        Program: Scala
+        Program: MTZDUMP
+        Program: UNIQUE
+        Program: FREERFLAG
+        Program: CAD
+        Program: FREERFLAG
+
+7 program logfiles
+
+Programs:
+        SORTMTZ v5.99   (CCP4 5.99)
+        Scala   v5.99   (CCP4 5.99)
+
+                Tables:
+                Table: ">>> Scales v rotation range, red_aucn"
+                Table: "Analysis against Batch, red_aucn"
+                Table: "Analysis against resolution , red_aucn"
+
+...</em>
+</pre>
+
+<p>The fragments and fragment-derived objects (programs and ccp4i_info)
+also allow the text of the fragment to be retrieved from the logfile.
+For example:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile = smartie.parselog("22_scala.log")</b>
+<b>&gt;&gt;&gt; prog = logfile.program(0)</b>
+<b>&gt;&gt;&gt; print prog.retrieve()</b>
+<em> ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 5.99: SORTMTZ            version 5.99      : 06/09/05##
+ ###############################################################
+ User: pjx  Run date: 31/ 1/2006 Run time: 16:02:55
+
+...</em>
+</pre>
+
+<h3>2. Extracting summaries from marked up logfiles</h3>
+
+<p>As of version 0.0.8, logfile objects store information about blocks
+of "summary" text that are found in the source logfile. A summary block
+is a section of logfile output that is enclosed within
+&lt;!--SUMMARY_BEGIN--&gt; and &lt;!--SUMMARY_END--&gt; tags, for
+example:</p>
+
+<pre>&lt;B&gt;&lt;FONT COLOR="#FF0000"&gt;&lt;!--SUMMARY_BEGIN--&gt;
+
+================================================================================
+
+Summary data for Project: DMSO Crystal: DMSO Dataset: red_aucn
+
+                                           Overall  OuterShell
+
+  Low resolution limit                       35.27      3.16
+  High resolution limit                       3.00      3.00
+...
+&lt;!--SUMMARY_END--&gt;&lt;/FONT&gt;&lt;/B&gt;
+</pre>
+
+<p>There are a number of methods available to interrogate the summary block
+information, for example: to find out how many summary blocks a logfile
+contains:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile = smartie.parselog("22_scala.log")</b>
+<b>&gt;&gt;&gt; logfile.nsummaries()</b>
+<em>30</em>
+</pre>
+
+<p>i.e. the logfile holds 30 summary blocks. For each summary block the
+start and end lines in the source logfile can be retrieved, as can the
+actual text, for example to get information on the 13th summary block in
+a log file:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.summary(12).start()</b>
+<em>853</em>
+<b>&gt;&gt;&gt; logfile.summary(12).end()</b>
+<em>855</em>
+<b>&gt;&gt;&gt; print logfile.summary(12).retrieve()</b>
+<em>&lt;B&gt;&lt;FONT COLOR="#FF0000"&gt;&lt;!--SUMMARY_BEGIN--&gt;
+Logical name: CORRELPLOT, Filename: /home/pjx/PROJECTS/myProject/PROJECT_22_correlplot.xmgr
+&lt;!--SUMMARY_END--&gt;&lt;/FONT&gt;&lt;/B&gt;</em>
+</pre>
+
+<p>It's not clear that this functionality is particularly useful. One
+application is to write out all the summaries in one go e.g.:</p>
+
+<pre>
+<b>&gt;&gt;&gt; for i in range(0,logfile.nsummaries()):</b>
+<b>...    print logfile.summary(i).retrieve()</b>
+<b>...</b>
+</pre>
+
+<p>(In this last example, Smartie's <tt>strip_logfile_html()</tt> command
+could also be used to remove any HTML tags in the output - and to escape any
+HTML special characters - in order to make the summary output easier to
+read.)</p>
+
+<p>This functionality is provided in the
+<a href="show_summary.py">show_summary.py</a> example script.</p>
+
+<h3>3. Working with tables and graphs</h3>
+
+<p>Once a logfile object has been constructed from a file, smartie
+offers various ways to find out about the tables associated with
+the file overall, and with individual programs and fragments.</p>
+
+<p>We can ask it about tables that it found for an individual
+fragment or program:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.fragment(2).ntables()</b>
+<em>7</em>
+<b>&gt;&gt;&gt; logfile.program(1).tables()[3].title()</b>
+<em>'Analysis against intensity, red_aucn'</em>
+<b>&gt;&gt;&gt; logfile.program(1).tables()[4].ngraphs()</b>
+<em>4</em>
+<b>&gt;&gt;&gt; logfile.program(1).tables()[4].table_graph(0).title()</b>
+<em>'Completeness v Resolution '</em>
+<b>&gt;&gt;&gt; logfile.program(1).tables()[4].nrows()</b>
+<em>10</em>
+</pre>
+
+<p>We can also ask it similar questions about tables in the logfile
+as a whole, for example:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile.ntables()</b>
+<em>7</em>
+</pre>
+
+<p>We can also fetch a table in a logfile or a program by specifying
+a regular expression pattern that matches the table title, for
+example:</p>
+
+<pre>
+<b>&gt;&gt;&gt; logfile = smartie.parselog("7_refmac5.log")</b>
+<b>&gt;&gt;&gt; logfile.tables("Rfactor analysis, stats vs cycle")[0].title()</b>
+<em>'Rfactor analysis, stats vs cycle'</em>
+<b>&gt;&gt;&gt; logfile.program(0).tables("Cycle   11")[0].title()</b>
+<em>'Cycle   11. Rfactor analysis, F distribution v resln'</em>
+</pre>
+
+<p>For a particular table we can get the values for a particular
+column:</p>
+
+<pre>
+<b>&gt;&gt;&gt; tbl = logfile.tables()[6]</b>
+<b>&gt;&gt;&gt; tbl.col("Rfree")</b>
+<em>['0.178', '0.196', '0.204', '0.210', '0.215', '0.221', '0.222', '0.225',
+'0.227', '0.228', '0.229']</em>
+<b>&gt;&gt;&gt; tbl.col("Rfree")[-1]</b>
+<em>'0.229'</em>
+</pre>
+
+<h3>4. Using the table class to create tables and graphs</h3>
+
+<p>smartie's table, table_graph and table_columns are intended to
+be useful not only for reading tables from logfiles, but also for
+constructing and writing them.</p>
+
+<p>In outline the steps involved are:</p>
+
+<ol>
+<li>Create a new table e.g.
+    <tt>tbl = smartie.table(<em>title</em>)</tt>
+</li>
+<li>Define a set of columns e.g.
+    <tt>tbl.addcolumn(<em>column_name</em>)</tt>
+</li>
+<li>Add data to the table "row-wise" e.g.
+    <tt>tbl.add_data(<em>dictionary</em>)</tt>
+</li>
+<li>(Optionally) add graph definitions e.g.
+    <tt>tbl.definegraph(<em>title</em>,<em>column_list</em>)</tt>
+</li>
+</ol>
+
+<p>Graph definitions are required in order to generate $TABLE marked-up
+loggraph table using the table.loggraph() and related methods.</p>
+
+<p>An example of creating and populating a new table can be found in
+the smartie.table_example() method. Alternatively:</p>
+
+<pre>
+<b>&gt;&gt;&gt; tbl = smartie.table("A table with random data")</b>
+<b>&gt;&gt;&gt; for i in range(0,3):
+...     col = tbl.addcolumn("col_"+str(i))
+...</b>
+<b>&gt;&gt;&gt; for j in range(0,6):
+...     tbl.add_data({"col_0":j,"col_1":j*2,"col_2":j*3})
+...</b>
+<b>&gt;&gt;&gt; tbl.definegraph("An arbitrary graph",("col_0","col_1"))</b>
+<b>&gt;&gt;&gt; tbl.definegraph("Another arbitrary graph",("col_0","col_2"))</b>
+<b>&gt;&gt;&gt; print tbl.loggraph()</b>
+<em>$TABLE: A table with random data:
+$GRAPHS
+ :An arbitrary graph:A:1,2:
+ :Another arbitrary graph:A:1,3:
+$$
+  col_0  col_1  col_2 $$ $$
+      0      0      0
+      1      2      3
+      2      4      6
+      3      6      9
+      4      8     12
+      5     10     15
+$$</em>
+</pre>
+
+<p>If you want the graph to be written with the Jloggraph applet markup also
+included then you can use instead:</p>
+
+<pre>
+<b>&gt;&gt;&gt; print tbl.jloggraph()</b>
+<em>&lt;applet width="400" height="300" code="JLogGraph.class"
+codebase=""&gt;&lt;param name="table" value="
+$TABLE: A table with random data:
+$GRAPHS
+ :An arbitrary graph:A:1,2:
+ :Another arbitrary graph:A:1,3:
+$$
+  col_0  col_1  col_2 $$ $$
+      0      0      0
+      1      2      3
+      2      4      6
+      3      6      9
+      4      8     12
+      5     10     15
+$$"&gt;&lt;b&gt;For inline graphs use a Java browser&lt;/b&gt;&lt;/applet&gt;</em>
+</pre>
+
+<p>Alternatively, the <tt>show</tt> method will just return the table body
+(column titles plus data) as a block of text without any additional markup,
+and the <tt>html</tt> method will return a similar table formatted with the
+appropriate HTML tags (and with any special characters converted to their
+HTML equivalents for correct display).</p>
+
+<a name="class_overviews"></a>
+<h2>Overview of Smartie classes</h2>
+
+<p>Smartie offers the following principle classes:</p>
+
+<ul>
+<li>the <b>logfile</b> class, which gives a high-level description
+    of a logfile made up of smaller fragments (currently called
+    "programs" within the context of smartie, although not all of
+    them are actually program logfiles) </li>
+<li>the <b>fragment</b> class, which describes a generic fragment of
+    a logfile, and additional <b>program</b> and <b>ccp4i_info</b>
+    classes that are derived from it, and which typically describe the
+    log from a single CCP4 program and messages from CCP4i respectively.</li>
+<li>the <b>table</b> class, which describes a CCP4 formatted table</li>
+<li>the <b>summary</b> class, which describes the location of a block
+    of summary text (enclosed within CCP4 summary tags) within a
+    logfile </li>
+</ul>
+
+<p>There are a number of additional classes support to support these:</p>
+
+<ul>
+<li>the <b>table_graph</b> and <b>table_column</b> classes provide a way to
+    interact with the components of <b>tables</b></li>
+<li>the <b>keytext</b> class describes warnings from CCP4 programs
+    that are typically found embedded in program logfiles.</li>
+</ul>
+
+<p>Finally there are also some classes which are primarily intended for
+use internally to smartie:</p>
+
+<ul>
+<li>the <b>buffer</b> and <b>tablebuffer</b> classes</li>
+</ul>
+
+<p>A logfile object is populated and returned by the
+<b>parselog()</b> function. This takes a file name as a single
+compulsory argument; the optional "progress" argument specifies
+a number of lines at which to report progress when parsing the
+file. It can recognise the following features in a logfile:</p>
+
+<ul>
+<li>CCP4 program banners (both standard and "phaser-style")</li>
+<li>CCP4 program terminations (both standard and "phaser-style")</li>
+<li>CCP4-formatted tables</li>
+<li>CCP4-formatted warnings from CCPERR</li>
+<li>CCP4i logfile "head" and "tail" (termination)</li>
+<li>CCP4i information messages</li>
+<li>CCP4 "summary" tags enclosing blocks of summary text</li>
+</ul></p>
+
+<p>parselog reads a logfile and returns a logfile object based
+on the file contents. A logfile object holds lists of <em>fragments</em>,
+<em>programs</em>, <em>tables</em>, <em>keytext messages</em>,
+<em>CCP4i information messages</em> and <em>summary blocks</em>.</p>
+
+<h2>Applications using Smartie</h2>
+
+<p>Smartie is currently used in three applications:</p>
+
+<ul>
+<li>The <a href="http://www.ccp4.ac.uk/MrBUMP/">MrBUMP</a> automated
+    molecular replacement program uses Smartie's table extraction and
+    manipulation functionality to help in processing output from
+    some of the underlying programs</li>
+<li>The "baubles" program uses smartie to analyse a CCP4 logfile
+    before reformatting it in a mixture of HTML, CSS and Javascript
+    for display in a web browser.</li>
+<li>The "starKey" program developed as part of CCP4's contribution to
+    the BIOXHIT project uses Smartie to gather information about which
+    programs were run by a particular CCP4i task - see
+    <a href="http://www.ccp4.ac.uk/projects/bioxhit_public/">CCP4-BIOXHIT:
+    Available Files</a></li>
+</ul>
+
+<h2>Known issues/to-do list</h2>
+
+<ul>
+<li>When constructing tables there is no way to validate them (e.g.
+    checking that there are the correct number of rows in each
+    column etc) before writing out</li>
+<li>The API for the table and related classes needs a review and
+    overhaul in the context of actual usage</li>
+<li>The fragment class should have better methods to query what type
+    of fragment (program, table etc).</li>
+<li>Deal properly with HTML and SUMMARY markup of CCP4 logfiles -
+    for example, by taking this into account when looking for start
+    and end</li>
+<li>Improvements to the CCP4i header, tail and messages - most
+    likely make these into dedicated subclasses of the fragment
+    class.</li>
+</ul>
+
+<h2>Change log</h2>
+
+<h3>Changes in 0.0.15</h3>
+
+<ul>
+<li><tt>buffer</tt> class now supports <tt>len(buffer)</tt> for retrieving
+    number of lines stored.</li>
+<li>Table parsing errors: <tt>parselog</tt> reports filename and location of
+    tables that cannot be properly parsed, and warning from
+    <tt>table.__populate_columns()</tt> has been updated to be less cryptic.</li>
+</ul>
+
+<h3>Changes in 0.0.14</h3>
+
+<ul>
+<li><tt>table.show()</tt> has new optional argument <tt>pad_columns</tt>,
+    which controls whether data items in table columns are padded with
+    spaces in order to align them. <tt>table.loggraph()</tt> also
+    supports this argument.</li>
+<li><tt>strip_logfile_html</tt> tries to salvage spacegroup names that have
+    been written in the form &lt;P 41&gt;, using new function
+    <tt>tag_is_spacegroup</tt>.</li>
+<li><tt>buffer</tt> class has a new <tt>all()</tt> method: this returns
+    the whole buffer as a string, so can be used instead of the <tt>tail</tt>
+    method for buffer objects which do not have a fixed size.</li>
+<li><tt>parselog</tt> now creates <tt>table</tt> objects for any table-like
+    feature that is found, even if the table cannot subsequently be parsed.
+    The raw text of a table is always available using the
+    <tt>table.rawtext()</tt> method, even if the table is not parsed
+    correctly, and diagnostic warnings to stdout have been reduced to a
+    single line.</li>
+<li><tt>parselog</tt>: the limit of 1000 lines has been removed from the
+    tablebuffer, so arbitrarily large tables can now be processed (within
+    system limits).</li>
+</ul>
+
+<h3>Changes in 0.0.13</h3>
+
+<ul>
+<li>Bug fix: fix </tt>len(fragment)</tt> function so that it always
+    returns zero or greater.</li>
+</ul>
+
+<h3>Changes in 0.0.12</h3>
+
+<ul>
+<li>Bug fix: patternmatch.isccp4banner() has been updated to recognise
+    CCP4 version numbers that include a trailing lower-case letter
+    e.g. 6.0.99a. Previously programs with these version numbers
+    did not have their banners identified by smartie.</li>
+<li>The number of lines in the logfile that belong to a fragments (or
+    program) object can be obtained by using the </tt>len</tt> function,
+    e.g. len(fragment).</li>
+</ul>
+
+<h3>Changes in 0.0.11</h3>
+
+<ul>
+<li>logfile class: the "source" log file name is now stored as an
+    absolute path.</li>
+<li>Updates to the smartie directory structure: example logfiles are
+    now in the "logfiles" subdirectory.</li>
+<li>"test" subdirectory contains a basic set of unit tests for some
+    of the pattern matching functions in smartie - it can be run
+    using <tt>python test/test_smartie.py</tt>.
+</ul>
+
+<h3>Changes in 0.0.10</h3>
+
+<ul>
+<li>show_summary.py: example script that uses smartie to process a
+    logfile and then prints the text enclosed in summary tags.</li>
+<li>$TABLE recognition failed for some examples where the table
+    title contains ":" characters before the end of the title string.
+    In this case smartie would complain that it couldn't process the
+    table - now it applies a second matching step with fewer
+    constraints before giving up.<li>
+<li>table.jloggraph(): now escapes special HTML characters in table
+    and graph titles when generating applet code, including double
+    quotes &quot; - otherwise these can cause problems with
+    JLogGraph's parsing of the result table.</li>
+<li>escape_xml_characters(): now also escapes double quotes and
+    replaces them with &amp;quot;. Updated to use "replace" rather
+    than regular expressions (Kevin Cowtan).</li>
+<li>parselog: buffer size increased to 50 lines, which means that
+    features of up to 50 lines can be recognised (used to be
+    10) (Kevin Cowtan).</li>
+<li>patternmatch class: methods for detecting program banners and
+    termination messages now have an additional fast test which
+    skips the full regular expression tests if not passed - this
+    has resulted in a significant speed-up (Kevin Cowtan).</li>
+<li>retrieve functions: this has been modified and should be faster
+    now for big files. Previously it was slow due to sub-optimal
+    usage of the linecache module.</li>
+<li>table.show(): always printed tables as $GRAPHS, even if they were
+    originally $SCATTER plots - now fixed.</li>
+<li>Bug fix: table_column.append() always converted numerical values
+    to integers, regardless of whether they were actually integers or
+    floats. Now floats should be properly treated.</li>
+<li>table_graph.graphcols(): new method that returns a list of the
+    column names that make up the graph.</li>
+<li>table class: new methods to make it easier to build tables
+    from scratch, specifically:<br />
+    table.list_columns(): return a list of the column names defined
+    in the table<br />
+    table.add_data(): add a "row" of data to the table<br />
+    table.definegraph(): add a new graph definition to the table
+    based on the existing columns.<br />
+    The table_example() function has also been updated to show how
+    this new methods can be used to make a new table.</li>
+</ul>
+
+<h3>Changes in 0.0.9</h3>
+
+<ul>
+<li>tokenise() function: now recognises either single or double
+    quotes as token delimiters (and quotes of one type can contain
+    quotes of the other type).</li>
+</ul>
+
+<h3>Changes in 0.0.8</h3>
+
+<ul>
+<li>Minor modification to parselog, to set the start line for
+    "unknown" program fragments to be immediately after the end of
+    the previous fragment (relevant if you are using the retrieve()
+    methods of programs and fragments).</li>
+<li>Bug fix: escape_xml_characters() raised an exception if the
+    supplied data was not a string, which caused problems with the
+    table.html() method (now fixed).</li>
+<li>Bug fix: table.jloggraph() method did not include the $TABLE..
+    and other tags when generating the HTML code, so graphs would
+    not display correctly (now fixed).</li>
+<li>Significant update to docstrings to provide more extensive
+    documentation in <a href="smartie.html">smartie.html</a>.</li>
+<li>strip_logfile_html() updated to extract CCP4 formatted tables
+    from &lt;param...&gt; used for JLogGraph displays.</li>
+<li>Removed report_example() function.</li>
+<li>Added new "summary" class, which describes the location of a
+    block of summary text within a logfile that is marked up with
+    CCP4 summary tags. logfile objects can store summary objects
+    and parselog() will add them in the order that they are located
+    in the file.<br />
+    summary objects are not yet assocated with fragments.</li>
+<li>New function copyfragment() allows one fragment or fragment
+    subclass to be populated from another.</li>
+<li>logfile class: new method fragment_to_program() will convert
+    an existing fragment object stored in the logfile object to a
+    program object, at the same time updating the program lists
+    appropriately.</li>
+<li>program class: added new methods addlogicalname(),
+    logicalnames() and logicalnamefile() that allow the storage and
+    retrieval of the logical name/file name pairs found in the
+    program logfile.<br />
+    The parselog() function now recognises the file opening reports
+    in the logfile and adds the data to the program object
+    automatically.</li>
+</ul>
+
+<h3>Changes in 0.0.7</h3>
+
+<ul>
+<li>parselog() recognises keyworded input lines (i.e. logfile lines
+    starting with a " Data line---" preamble) and stores the lines
+    themselves in the appropriate program objects. The list of keyword
+    lines can be retrieved using the program.keywords() method.</li>
+</ul>
+
+<h3>Changes in 0.0.6</h3>
+
+<ul>
+<li>Table values are now stored as floats or integers as appropriate.
+    Items that cannot be converted to numerical values are stored as
+    strings, as before.</li>
+<li>table object now has an nrows() method that returns the number of
+    rows of data in the table. The table_column object also has a new
+    nrows() method that returns the number of rows in a single column.</li>
+<li>logfile and fragment classes have new tables() method, which by
+    default returns the list of tables for that object. It can also
+    return a subset of tables that match a regular expression for
+    their titles, and thus supercedes the existing findtable()
+    methods in those classes. The tables() method also supercedes
+    the existing table() method, which is now deprecated.</li>
+<li>Bug fix: findtable() method in logfile and fragment classes didn't
+    work correctly, this is now fixed - see updated documentation.
+    However, findtable() is now deprecated in favour of the new tables()
+    methods in those classes.</li>
+<li>Bug fix: fixed fragment class so that pickle.dump() can be used
+    to serialise a smartie logfile object (previously caused a crash)</li>
+</ul>
+
+<h3>Changes in 0.0.5</h3>
+
+<ul>
+<li>Bug fix: handle cases where the logfile being processed
+    doesn't appear to contain any recognisable features such as
+    program banners or tables (previously this caused a crash).</li>
+<li>Bug fix: handle log files with DOS-formatted line endings.</li>
+<li>Updated to deal with old-style (pre-5.0) CCP4 program banners
+    and termination messages (both 4.1 and 4.0).</li>
+<li>Updated to deal with Phaser 1.3.3 program banner, which
+    appears to differ from the 1.3.2 version.</li>
+<li>Table processing improved to deal with tables that don't
+    conform to the loggraph $TABLE specification.</li>
+</ul>
+
+<h3>Changes in 0.0.4</h3>
+
+<ul>
+<li><tt>table</tt> class: the <tt>findtable()</tt> method has an
+    optional second argument that specifies where in the list to
+    start the search from - see module documentation for more
+    detailed information.</li>
+<li><tt>table</tt> class: there is a new <tt>html()</tt> method
+    that generates a HTML table with the column titles and
+    data.</li>
+</ul>
+
+<h3>Changes in 0.0.3</h3>
+
+<ul>
+<li>Bug fix: parselog now recognises CCP4 program names that
+    contain bracket characters (previously failed to recognise
+    names like "MOLREP(ccp4)9.0.08"). Added new example file
+    <tt>3_molrep.log</tt> which originally exposed this
+    problem.</li>
+<li>Bug fix: parselog code was broken for handling incomplete
+    program log files where the start banner is missing but the
+    termination message is present, this is now fixed. Added new
+    example files <tt>scala_nobanner.log</tt> and
+    <tt>molrep_nobanner.log</tt>, which demonstrate this
+    situation.</li>
+<li>Added <tt>findtable()</tt> methods to <tt>logfile</tt>,
+    <tt>fragment</tt> and <tt>program</tt> classes. This allows
+    a table to be retrieved by specifying a regular expression
+    which matches the table title.</li>
+<li>The function of the <tt>table.show()</tt> has changed; by
+    default it now returns only the table body (column titles
+    plus data) without any additional markup. The behaviour in
+    the previous version can be obtained either by specifying
+    the <tt>loggraph</tt> argument as <tt>True</tt>, or by
+    using the new <tt>table.loggraph()</tt> method - both of
+    which return the table data formatted as a loggraph table.</li>
+</ul>
+
+<h3>Changes in 0.0.2</h3>
+
+<ul>
+<li>The logfile class now has a list of fragment objects, and
+    the program object list is used exclusively for referring
+    to logfile fragments that are from programs. There are new
+    methods <tt>logfile.nfragments()</tt> and
+    <tt>logfile.fragment(i)</tt> to access the fragment list,
+    and the <tt>summarise</tt> function also includes summaries
+    of the fragments.<li>
+<li>The method for accessing attributes of a program object has
+    changed, so now instead of e.g. <tt>program.name()</tt> you
+    must use either <tt>program.name</tt> (i.e. no parentheses), or
+    <tt>program["name"]</tt>, or <tt>program.get_attribute("name")</tt>
+    (the first two methods simply wrap the last one).<br />
+    The change in implementation means that there are no longer
+    explicit methods defined in the program class to tell you
+    what the available attributes are; instead use the
+    <tt>program.attributes()</tt> method to get a list, and see
+    the documentation in <a href="smartie.html">smartie.html</a>
+    for descriptions of each attribute.</li>
+<li>There is now a way to access the data in a table column
+    by referencing its name, using the new <tt>col()</tt> method
+    of the <tt>table</tt> class - for example
+    <tt>table.col("Rfree")</tt> returns a list of the values
+    in the "Rfree" column of the table, and
+    <tt>table.col("Rfree")[-1]</tt> references the last value.</li>
+<li>Added support for retrieving the text for a fragment
+    directly from the logfile - the <tt>fragment</tt>,
+    <tt>program</tt> and <tt>ccp4i_info</tt> classes all
+    support the <tt>retrieve</tt> method to allow the text to
+    be fetched from the file and returned as a string.</li>
+<li>Fixed a bug in the <tt>jloggraph</tt> method of the <tt>table</tt>
+    class (only the last line was ever returned).</li>
+</ul>
+
+<h2>See also</h2>
+
+<p>The CCP4 documentation contains details of the format and syntax for CCP4
+tables, graphs and keytext messages:</p>
+
+<ul>
+<li><a href="http://www.ccp4.ac.uk/html/loggraphformat.html">loggraphformat</a></li>
+</ul>
+
+<h2>Acknowledgements</h2>
+
+<p>Thanks to Ronan Keegan, Wendy Yang and Martyn Winn for providing
+useful input to the development of smartie.</p>
+
+<p>Kevin Cowtan has also provided code changes and useful feedback.</p>
+
+<h2>Author</h2>
+
+<p>Peter Briggs, 2006-8</p>
+
+</body>
+</html>

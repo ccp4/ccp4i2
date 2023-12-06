@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#00020a">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>CCP4i2 — Brief tutorial &#8212; CCP4i2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/contentui.css" />
+    <link rel="stylesheet" type="text/css" href="https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/contentui.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#005BBB data-md-color-accent=yellow>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" id="__gitlab"><path fill="currentColor" d="M93.667 473.347l90.684-279.097H2.983l90.684 279.097z" transform="translate(156.198 1.16)"/><path fill="currentColor" d="M221.333 473.345L130.649 194.25H3.557l217.776 279.095z" transform="translate(28.531 1.16)" opacity=".7"/><path fill="currentColor" d="M32 195.155L4.441 279.97a18.773 18.773 0 0 0 6.821 20.99l238.514 173.29L32 195.155z" transform="translate(.089 .256)" opacity=".5"/><path fill="currentColor" d="M2.667-84.844h127.092L75.14-252.942c-2.811-8.649-15.047-8.649-17.856 0L2.667-84.844z" transform="translate(29.422 280.256)"/><path fill="currentColor" d="M2.667 473.345L93.351 194.25h127.092L2.667 473.345z" transform="translate(247.198 1.16)" opacity=".7"/><path fill="currentColor" d="M221.334 195.155l27.559 84.815a18.772 18.772 0 0 1-6.821 20.99L3.557 474.25l217.777-279.095z" transform="translate(246.307 .256)" opacity=".5"/><path fill="currentColor" d="M130.667-84.844H3.575l54.618-168.098c2.811-8.649 15.047-8.649 17.856 0l54.618 168.098z" transform="translate(336.974 280.256)"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#general/tutorial" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="CCP4i2  documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CCP4i2  documentation</span>
+          <span class="md-header-nav__topic"> CCP4i2 — Brief tutorial </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">CCP4i2  documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="CCP4i2 documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="CCP4i2 documentation">CCP4i2  documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#general-tutorial--page-root" class="md-nav__link">CCP4i2 — Brief tutorial</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#creating-and-managing-projects" class="md-nav__link">Creating and Managing Projects</a>
+        </li>
+        <li class="md-nav__item"><a href="#project-windows" class="md-nav__link">Project Windows</a>
+        </li>
+        <li class="md-nav__item"><a href="#the-task" class="md-nav__link">The Task</a>
+        </li>
+        <li class="md-nav__item"><a href="#entering-data-for-a-job" class="md-nav__link">Entering data for a job</a>
+        </li>
+        <li class="md-nav__item"><a href="#the-follow-from-facility" class="md-nav__link">The <strong>Follow from</strong> facility</a>
+        </li>
+        <li class="md-nav__item"><a href="#the-job-list" class="md-nav__link">The Job list</a>
+        </li>
+        <li class="md-nav__item"><a href="#the-project-directory" class="md-nav__link">The Project directory</a>
+        </li>
+        <li class="md-nav__item"><a href="#the-profile-directory" class="md-nav__link">The Profile directory</a>
+        </li>
+        <li class="md-nav__item"><a href="#running-jobs-and-processes" class="md-nav__link">Running jobs and processes</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/general/tutorial.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="ccp4i2-brief-tutorial">
+<h1 id="general-tutorial--page-root">CCP4i2 — Brief tutorial<a class="headerlink" href="#general-tutorial--page-root" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="tutorial.html">Brief tutorial</a></p>
+<p><a class="reference external" href="data_files.html">Experimental data</a></p>
+<p><a class="reference external" href="model_data.html">Model data</a></p>
+<p><a class="reference external" href="atom_selection.html">Atom selection</a></p>
+<section id="creating-and-managing-projects">
+<h2 id="creating-and-managing-projects">Creating and Managing Projects<a class="headerlink" href="#creating-and-managing-projects" title="Permalink to this heading">¶</a></h2>
+<p>The CCP4 interface requires you to group your work into projects. There
+are no rules on what goes into one project but, as a guideline, one
+project would usually result in one structure. Corresponding to each
+project is a directory that contains all the files associated with
+project. By default, the directory for a new project is created in the
+master <em>CCP4I2_PROJECTS</em> directory (in your home area) and given the
+same name as the project but you have the option to create or use a
+different directory. Please do not move the project directory or any of
+the files, except using tools in the <em>Project Manager</em> window, otherwise
+CCP4i2 will then be unable to find them! The earlier CCP4i had a
+database file for each project kept in the project directory but the new
+CCP4i2, by default, has one database for all of the projects of one
+user. CCP4i2 maintains the database (and other important data) in a
+profile directory usually called .CCP4I2 in your home area.</p>
+<p>It is possible to order projects in an hierarchy - this is new in CCP4i2
+- do this by drag-and-dropping the projects in <em>Project Manager</em> window.
+Note that if you do change the logical heirachy of projects in CCP4i2
+the project directories are not moved. CCP4i2 does not allow you to
+create project directories within other project directories as this
+complicates managing the project.</p>
+<p>Starting CCP4i2 for the first time you should see a web browser page
+with options for <a class="reference external" href="./welcome.html">creating a project</a>. Follow these
+to create either a <em>General</em> project or a specific project. Follow the
+instructions and you should then see a project window for that project.</p>
+</section>
+<section id="project-windows">
+<h2 id="project-windows">Project Windows<a class="headerlink" href="#project-windows" title="Permalink to this heading">¶</a></h2>
+<p>On the left side of the window is a list of jobs and on the right is a
+view of one selected job. To open a new job click the <strong>Task menu</strong>
+button from the toolbar and select a task from the list that appears on
+the right-hand side (double click a line in the list).</p>
+</section>
+<section id="the-task">
+<h2 id="the-task">The Task<a class="headerlink" href="#the-task" title="Permalink to this heading">¶</a></h2>
+<p>The task frame on the right hand side of the project window has three
+tabs:</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: Fuller options for task input. Most tasks will have
+multiple tabs including <strong>Input data</strong>. If you prefer the ‘old style’
+folder layout to tabs then this can be set in the <strong>Preferences</strong>.</p></li>
+<li><p><strong>Results</strong>: A task report appears when the job completes. If there
+is no report available then a log file or error diagnostic may
+appear.</p></li>
+<li><p><strong>Comments</strong>:A place for you to add any comments on the job.</p></li>
+</ul>
+</section>
+<section id="entering-data-for-a-job">
+<h2 id="entering-data-for-a-job">Entering data for a job<a class="headerlink" href="#entering-data-for-a-job" title="Permalink to this heading">¶</a></h2>
+<p>Most tasks only require you to select the appropriate input data and
+they can then run with reasonable default parameters. The quick way to
+select input data is selecting the previous job to ‘follow from’. The
+task input will be set as the output from that job, or if there is no
+appropriate output then the input or the output from preceding jobs. To
+select a file you can:</p>
+<ul class="simple">
+<li><p>Select from the drop down list of appropriate data from preceding
+jobs</p></li>
+<li><p>Click <strong>Browse files</strong> to use a file browser</p></li>
+<li><p>Drag a file icon from the job list or a job report onto the file icon</p></li>
+<li><p>Drag a job icon from the job list onto the file icon</p></li>
+</ul>
+<p>If input data is missing or invalid this is indicated by a red border to
+the data widget. Click the <strong>Run</strong> or <strong>Save</strong> button to run the task.
+There is a warning message if data is missing or invalid.</p>
+</section>
+<section id="the-follow-from-facility">
+<h2 id="the-follow-from-facility">The <strong>Follow from</strong> facility<a class="headerlink" href="#the-follow-from-facility" title="Permalink to this heading">¶</a></h2>
+<p>You will frequently want to take the data output by one job directly
+into the next task. Typically this data will be experimental data or a
+model. To make this easier the interface to each task has a <strong>Follow
+from</strong> option which allows you to choose which preceding job to take
+data from. If the <em>follow from</em> job has not output any data of the
+appropriate type then CCP4i2 will search back through the input to the
+<em>follow from</em> job and preceding jobs to find data of the appropriate
+type. The selected data is then displayed in the interface and you can
+change the individual items of data independently if necessary.</p>
+</section>
+<section id="the-job-list">
+<h2 id="the-job-list">The Job list<a class="headerlink" href="#the-job-list" title="Permalink to this heading">¶</a></h2>
+<p>The job list shows a job number and name with an icon indicating its
+current status (pending, running, failed, finished). A job be opened to
+show sub-jobs and output files. A right mouse click on the job list will
+give a context menu with options to Delete, Clone or View a job or View,
+Edit label or Export a file. If you wish to re-run a job then you should
+clone it - all the data and parameters that you have set will be copied
+into the new task.</p>
+<p>The next column in the job list shows the ‘follow from’ job as green
+up-arrows. By default the data output by this job is input to the next
+opened job. The ‘follow from’ status can be changed by right mouse
+clicking the green arrow or dots and selecting the new status from the
+menu. The subsequent columns in the table are the job rating and summary
+that you may have entered in the <strong>Status</strong> frame.</p>
+</section>
+<section id="the-project-directory">
+<h2 id="the-project-directory">The Project directory<a class="headerlink" href="#the-project-directory" title="Permalink to this heading">¶</a></h2>
+<p>This is an alternative view to the job list. It is a standard directory
+and file listing of the project directory where there is one directory
+(called job_<em>n</em>) for each job. This is most useful for
+trouble-shooting - ideally users should not need to do this!</p>
+</section>
+<section id="the-profile-directory">
+<h2 id="the-profile-directory">The Profile directory<a class="headerlink" href="#the-profile-directory" title="Permalink to this heading">¶</a></h2>
+<p>CCP4i2 maintains a directory in your home area which contains your
+personal data and preferences. Particularly it contains the database for
+all of your projects and so should be treated with care and backed up!
+On Linux and Mac systems the profile directory is .CCP4I2
+(<em>dot</em>CCP4I2) in your home area and on Windows it is CCP4I2 (no dot)
+in ??.</p>
+<p>On Linux and Macs it is possible to set an alternative profile directory
+in the environment variable CCP4_LOCAL_HOME. This may be most useful in
+a workshop situation where multiple users have the same account. The
+users will have to start CCP4i2 from the command line with something
+like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">CCP4_LOCAL_HOME</span><span class="o">=</span><span class="s2">"/whereever/master_dir/my_dir"</span> <span class="n">ccp4i2</span>
+</pre></div>
+</div>
+<p>where each user has their own <em>my_dir</em> in a <em>master_dir</em>.</p>
+</section>
+<section id="running-jobs-and-processes">
+<h2 id="running-jobs-and-processes">Running jobs and processes<a class="headerlink" href="#running-jobs-and-processes" title="Permalink to this heading">¶</a></h2>
+<p>A CCP4i2 job is started immediately when you click the <em>Run</em> button on
+the toolbar. A ‘Running man’ icon and gold colouring on the <em>Job list</em>
+indicate that the job is running. For long-running tasks intermediate
+‘running’ reports are displayed and you may also see <em>sub-tasks</em> and
+intermediate data files listed in the <em>Job list</em>. The job is run as a
+separate, background process that is also called ‘ccp4i2’ and this may
+start one or more processes running CCP4 programs. When the background
+process finishes it updates the CCP4i2 database with the job status
+(usually ‘Finished’ or ‘Failed’). The graphical CCP4i2 window regularly
+checks the job status in the database and will update the ‘Job list’
+when the job finishes.</p>
+<p>The <em>Utilities</em> menu item <em>List running jobs and processes</em> will list
+all of the jobs that are running according to the CCP4i2 database and
+for each job will show the ‘ccp4i2’ background process and any program
+processes that are ‘children’ of the ccp4i2 process. If no ‘ccp4i2’
+process is listed for a job then it appears that the job has failed
+without updating it’s database status and it is recommended that you use
+the <em>Mark as failed</em> button to correct the database.</p>
+<p>This tool also lists processes running on another
+<a class="reference external" href="./servers.html">server</a> machine via the <em>Run remote</em> button.</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2020, CCP4.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.2.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

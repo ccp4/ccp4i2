@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>lizp</userId>
+    <creationTime>11:22 04/Oct/11</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>dummy</pluginName>
+    <pluginTitle/>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="demo">
+    <container id="inputData">
+     <content id="HKLIN">
+        <className>CObsDataFile</className>
+        <qualifiers>
+	  <allowUndefined>True</allowUndefined>
+          <mustExist>True</mustExist>
+	  <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+     </content>
+          <content id="PDBIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+	  <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+	  <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="PDBIN_COMPULSARY">
+        <className>CBoolean</className>
+        <qualifiers>
+           <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="CELL">
+        <className>CCell</className>
+        <qualifiers>
+          <a>
+            <toolTip>Cell length a in A</toolTip>
+          </a>
+          <b>
+            <toolTip>Cell length b in A</toolTip>
+          </b>
+          <c>
+            <toolTip>Cell length c in A</toolTip>
+          </c>
+          <alpha>
+            <toolTip>Cell angle alpha in degrees</toolTip>
+          </alpha>
+          <beta>
+            <toolTip>Cell angle beta in degrees</toolTip>
+          </beta>
+          <gamma>
+            <toolTip>Cell angle gamma in degrees</toolTip>
+          </gamma>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="PDBOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="CHOOSEONE">
+        <className>CInt</className>
+        <qualifiers>
+          <default>2</default>
+          <enumerators>None,1,2,3</enumerators>
+	  <menuText>program decides,one,two,three</menuText>
+        </qualifiers>
+      </content>
+      <content id="CHOOSEOTHER">
+        <className>CInt</className>
+        <qualifiers>
+          <default>1</default>
+          <enumerators>1,2,3</enumerators>
+        </qualifiers>
+      </content>
+      <content id="QUICKNDIRTY">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <default>quick</default>
+          <enumerators>quick,thorough</enumerators>
+        </qualifiers>
+      </content>
+      <content id="WILLITWORK">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="WILLITWORKTIMES">
+        <className>CInt</className>
+        <qualifiers>
+          <default>0</default>
+        </qualifiers>
+      </content>
+   
+      <content id="TESTINPUT">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+      <content id="DOHARDSTUFF">
+        <className>CBoolean</className>
+        <qualifiers/>
+      </content>
+      <content id="NCYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <default>2</default>
+          <max>100</max>
+          <min>1</min>
+	  <enumerators>1,2,5,10</enumerators>
+        </qualifiers>
+      </content>
+      <content id="REFINE_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <default>simple</default>
+          <enumerators>simple,custom</enumerators>
+          <toolTip>Keep it simple</toolTip>
+        </qualifiers>
+      </content>
+      <content id="REF_PARAM_A">
+        <className>CFloat</className>
+        <qualifiers>
+          <max>100.0</max>
+          <enumerators>None,5.0,2.0,20.0</enumerators>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="REF_PARAM_B">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>fast,slow</enumerators>
+        </qualifiers>
+      </content>
+      <content id="REF_PARAM_C">
+        <className>CFloat</className>
+        <qualifiers>
+          <max>10.0</max>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+     <content id="MRFILELIST">
+        <className>CList</className>
+        <subItem>
+          <className>CString</className>
+	</subItem>
+     </content>
+     <content id="ASUCOMPONENTLIST">
+        <className>CList</className>
+        <subItem>
+          <className>CAsuComponent</className>
+	</subItem>
+     </content>
+      <content id="WHAT">
+        <className>CInt</className>
+        <qualifiers>
+          <default>3</default>
+        </qualifiers>
+      </content>    
+      <content id="EVER">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>12</default>
+        </qualifiers>
+      </content>
+      <content id="WHATEVER">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>666</default>
+        </qualifiers>
+      </content>
+    <content id="OBSCURE_A">
+        <className>CString</className>
+        <qualifiers>
+	  <guiLabel>obscure mode</guiLabel>
+	  <enumerators>foo,bar</enumerators>
+          <default>foo</default>
+        </qualifiers>
+      </content>
+    <content id="OBSCURE_B">
+        <className>CFloat</className>
+        <qualifiers>
+	  <guiLabel>obscure cutoff value</guiLabel>
+          <default>-7.3</default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="guiParameters">
+      <content id="IFWHAT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>    
+      <content id="IFEVER">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

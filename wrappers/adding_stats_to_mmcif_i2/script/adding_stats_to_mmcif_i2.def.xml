@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>martin</userId>
+        <creationTime>2018-09-24T18:42:55.970502</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>adding_stats_to_mmcif_i2</pluginName>
+        <pluginTitle>Brief title For plugin</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="adding_stats_to_mmcif_i2">
+        <!--You must provide an inputData container, although it can be empty-->
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>False</ifAtomSelection>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <requiredContentFlag>2</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="ASUCONTENT">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="SCALEDUNMERGED">
+                <className>CUnmergedDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Scaled unmerged datafile</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <toolTip>Free R set corresponding to the reflection data.
+                        See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="DICT_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers>
+                        <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                        <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                        <toolTip>Restraint dictionary (mmCIF file) representing ideal geometry, e.g. for a ligand(s).</toolTip>
+                        <label>Ligand geometry</label>
+                        <fileExtensions>cif</fileExtensions>
+                        <guiLabel>Restraint dictionary</guiLabel>
+                        <saveToDb>True</saveToDb>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="TLSIN">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>File specifying TLS groups.
+                        If not provided, auto TLS refinement can still be performed (see the "Options" tab).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="AIMLESSXML">
+                <className>CXmlDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="REFMACINPUTPARAMSXML">
+                <className>CXmlDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+        </container>
+        <!--generally we put control parameters into a container called "controlParameters"...although the-->
+        <!--existence and name of this container are both optional-->
+        <container id="controlParameters">
+
+            <content id="SENDTOVALIDATIONSERVER">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Send to validation server</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="USEAIMLESSXML">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Use statistics from AIMLESS </guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="INCLUDEUNMERGED">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Use scaled unmerged data</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="TLSOUT_ADDU">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="USEANOMALOUS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="USE_TWIN">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+
+        </container>
+        <!--You must provide an outputData container, although it can be empty-->
+        <container id="outputData">
+            <content id="MMCIFOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>2</contentFlag>
+                        <annotation>Coordinates in MMCIF format for upload</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="CIFREFLECTIONS">
+                <className>CMmcifReflDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Reflections in MMCIF format for upload</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="PDFOUT">
+                <className>CPDFDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Validation PDF from EBI</annotation>
+                    </default>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="VALIDATIONXML">
+                <className>CEBIValidationXMLDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Validation XML from EBI</annotation>
+                    </default>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <subType>2</subType>
+                        <contentFlag>1</contentFlag>
+                        <annotation>Fo-Fc Difference electron density map</annotation>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <subType>1</subType>
+                        <contentFlag>1</contentFlag>
+                        <annotation>Eelectron density map</annotation>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="COOTSCRIPTOUT">
+                <className>CCootHistoryDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

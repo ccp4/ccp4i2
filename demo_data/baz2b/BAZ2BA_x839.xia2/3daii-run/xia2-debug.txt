@@ -1,0 +1,333 @@
+3DA II R pipeline (XDS IDXREF all images) selected
+Interpreted from image /dls/i04-1/data/2014/nt5073-16/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_0001.cbf:
+Template BAZ2BA-x839_2_####.cbf
+Directory /dls/i04-1/data/2014/nt5073-16/BAZ2BA/BAZ2BA-x839
+Project: nt5073v16
+Heavy atom: s
+Crystal: xBAZ2BAx8392
+ISPyB XML output set to ispyb.xml
+Min No. images / sweep set to 3
+XParallel set to -1
+Blend mode on
+Making directory: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/Harvest
+Created CCP4_SCR: /tmp/4140913.1.medium.q/tmpabF8Rj
+Removing 0 apparently still images
+Removing 0 apparently still images
+Resetting indexer done as prepare not done
+Resetting indexer finish done as index not done
+Resetting indexer done as prepare not done
+Selected image 1
+Selected image 450
+Selected image 900
+Logfile: labelit.index -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/setup/1_labelit.index.log
+Indexing from images:
+/dls/i04-1/data/2014/nt5073-16/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_0001.cbf
+/dls/i04-1/data/2014/nt5073-16/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_0450.cbf
+/dls/i04-1/data/2014/nt5073-16/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_0900.cbf
+Overriding value for wavelength SAD to 0.920000
+Reading 1800 headers took 0s
+Exposure epoch for sweep BAZ2BA-x839_2_####.cbf: 1400148153 1400148243
+Using XDS Integrater in new resolution mode
+Integrater factory: Setting wavelength: 0.920000
+Deleting all stored results.
+Using XDS II Indexer
+Indexer factory: Setting wavelength: 0.920000
+Making directory: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/index
+Latest header information for image 1:
+beam = (143.99324000000001, 124.99928000000001)
+date = Thu May 15 11:02:33 2014
+detector = dectris
+detector_class = pilatus 2M
+distance = 189.45
+epoch = 1400148153.0
+exposure_time = 0.05
+phi_end = 30.1
+phi_start = 30.0
+phi_width = 0.1
+pixel = (0.17200000000000001, 0.17200000000000001)
+raw_beam = (143.99324000000001, 124.99928000000001)
+size = (1679, 1475)
+two_theta = 0.0
+wavelength = 0.92
+Making directory: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate
+Sweep epoch: 1400148153
+Latest header information for image 1:
+beam = (143.99324000000001, 124.99928000000001)
+date = Thu May 15 11:02:33 2014
+detector = dectris
+detector_class = pilatus 2M
+distance = 189.45
+epoch = 1400148153.0
+exposure_time = 0.05
+phi_end = 30.1
+phi_start = 30.0
+phi_width = 0.1
+pixel = (0.17200000000000001, 0.17200000000000001)
+raw_beam = (143.99324000000001, 124.99928000000001)
+size = (1679, 1475)
+two_theta = 0.0
+wavelength = 0.92
+Resetting indexer done as prepare not done
+Resetting integrater done as prepare not done
+Resetting integrater finish done as integrate not done
+Resetting indexer done as prepare not done
+Resetting integrater done as prepare not done
+Resetting indexer done as prepare not done
+Preparing to do some integration...
+XDS INTEGRATE PREPARE:
+Wavelength: 0.920000
+Distance: 189.45
+Resetting indexer done as prepare not done
+Resetting indexer finish done as index not done
+Resetting indexer done as prepare not done
+XDS INDEX PREPARE:
+Wavelength: 0.920000
+Distance: 189.45
+Adding images for indexer: 1 -> 1800
+Logfile: xds -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/index/2_xds_XYCORR.log
+Logfile: xds -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/index/3_xds_INIT.log
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/index/4_xds_par_COLSPOT.log
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/index/5_xds_par_IDXREF.log
+Testing II or I indexing
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/index/6_xds_par_IDXREF.log
+Adding images for indexer: 1 -> 5
+Adding images for indexer: 451 -> 455
+Adding images for indexer: 901 -> 905
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/index/7_xds_par_IDXREF.log
+I:  0.90 0.30 0.11
+II: 0.91 0.36 0.11
+Selecting I or II, chose ii
+Ignoring solution with lattice tP
+Ignoring solution with lattice tP
+Ignoring solution with lattice oP
+Target unit cell: 83.40 96.70 57.90 90.00 90.00 90.00
+Chosen unit cell: 83.40 96.70 57.90 90.00 90.00 90.00
+Absent: 3  vs.  Present: 31041 Total: 36264
+Centring analysis: oC => oC
+Low resolution limit assigned as: 52.33
+Low resolution set to: 52.3305391791
+Files available at the end of XDS integrate prepare:
+Y-CORRECTIONS.cbf
+SPOT.XDS
+BLANK.cbf
+X-CORRECTIONS.cbf
+XPARM.XDS
+BKGINIT.cbf
+GAIN.cbf
+Doing some integration...
+Logfile: xds -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/8_xds_DEFPIX.log
+Setting low resolution limit in DEFPIX to 52.33
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/9_xds_par_INTEGRATE.log
+Xparallel: -1 using 6 chunks
+Mosaic spread range: 0.111 0.161 0.267
+Resetting integrater, to ensure refined orientation is used
+Using low resolution limit: 52.33
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/10_xds_par_CORRECT.log
+XDS applied reindex: -2 0 0 0 0 2 0 0 0 0 -2 0
+Postrefinement in P1 results:
+83.425  96.703  57.905  90.018  89.981  89.720
+0.026   0.030   0.019   0.011   0.007   0.010
+Deviations: 0.36 pixels 0.08 degrees
+Using low resolution limit: 52.33
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/11_xds_par_CORRECT.log
+Setting spacegroup to: 20
+Setting cell to: 83.40 96.70 57.90 90.00 90.00 90.00
+XDS applied reindex: 2 0 0 0 0 2 0 0 0 0 2 0
+Postrefinement in "correct" spacegroup results:
+83.500  96.756  57.967  90.000  90.000  90.000
+0.069   0.040   0.026   0.000   0.000   0.000
+Deviations: 0.69 pixels 0.07 degrees
+Error correction parameters: A=1.000 B=0.000
+Axis misalignment 0.10 degrees
+RMSD ratio: 1.92
+RMSPhi ratio: 0.74
+Wrote 0 old reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Wrote 28 new reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Resetting integrater finish done as integrate not done
+Doing some integration...
+Logfile: xds -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/12_xds_DEFPIX.log
+Setting low resolution limit in DEFPIX to 52.33
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/13_xds_par_INTEGRATE.log
+Using globally refined parameters
+Xparallel: -1 using 6 chunks
+Mosaic spread range: 0.114 0.114 0.114
+Using low resolution limit: 52.33
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/14_xds_par_CORRECT.log
+Setting spacegroup to: 20
+Setting cell to: 83.40 96.70 57.90 90.00 90.00 90.00
+XDS applied reindex: 2 0 0 0 0 2 0 0 0 0 2 0
+Postrefinement in "correct" spacegroup results:
+83.498  96.743  57.966  90.000  90.000  90.000
+0.076   0.052   0.032   0.000   0.000   0.000
+Deviations: 0.69 pixels 0.06 degrees
+Error correction parameters: A=1.000 B=0.000
+Axis misalignment 0.10 degrees
+0 alien reflections are already removed
+Wrote 28 old reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Wrote 14 new reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Scaler reset
+Using XDSA Scaler
+Making directory: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale
+Scaler reset
+Resetting Scaler done as prepare not done
+Called scaler done from Schema.Interfaces.Scaler 394 (False)
+Resetting scaler finish done as scaling not done
+Called scaler finish done from Schema.Interfaces.Scaler 401 (False)
+Resetting Scaler done as prepare not done
+Called scaler done from Schema.Interfaces.Scaler 394 (False)
+For EPOCH 1400148153 have:
+ID = nt5073v16/xBAZ2BAx8392/SAD
+SWEEP = SWEEP1
+Doses scaled by 1.00e+00
+Logfile: pointless -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/15_pointless.log
+Scaling intensities by factor 1.000000e+00
+Logfile: pointless -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/16_pointless.log
+Possible lattices (pointless):
+oC mP mC aP
+Agreed lattice oC
+Pointless analysis of /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/SWEEP1-combat.mtz
+Pointgroup: C 2 2 2 (h,k,l)
+Composing x,y,z and h,k,l -> x,y,z
+Deleting REMOVE.HKL as reindex op set.
+Set spacegroup as 21
+Using low resolution limit: 52.33
+Logfile: xds_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/17_xds_par_CORRECT.log
+XDS applied reindex: 2 0 0 0 0 2 0 0 0 0 2 0
+Postrefinement in "correct" spacegroup results:
+83.498  96.743  57.966  90.000  90.000  90.000
+0.078   0.052   0.032   0.000   0.000   0.000
+Deviations: 0.69 pixels 0.06 degrees
+Error correction parameters: A=1.000 B=0.000
+Axis misalignment 0.10 degrees
+Wrote 0 old reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Wrote 35 new reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Copying /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/SAD/SWEEP1/integrate/XDS_ASCII.HKL to /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/SAD_SWEEP1.HKL
+Cell for SWEEP1: 83.50 96.74 57.97 90.00 90.00 90.00
+=> 339274 reflections
+Determined unit cell: 83.50 96.74 57.97 90.00 90.00 90.00
+RAM usage at XDSScalerA.py 722: 90472
+Logfile: xscale_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/18_xscale_par.log
+Set CELL: 83.50 96.74 57.97 90.00 90.00 90.00
+Set SPACEGROUP_NUMBER: 21
+Gathering measurements for scaling
+Epoch: 1400148153
+HKL: SAD_SWEEP1.HKL (SAD/SWEEP1)
+RAM usage at XDSScalerA.py 773: 90472
+XSCALE scale factor found to be: 3.423340e+04
+Wrote 0 old reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Wrote 29 new reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Called scaler done from Modules.Scaler.XDSScalerA 865 (False)
+RAM usage at XDSScalerA.py 722: 90472
+Logfile: xscale_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/19_xscale_par.log
+Set CELL: 83.50 96.74 57.97 90.00 90.00 90.00
+Set SPACEGROUP_NUMBER: 21
+Gathering measurements for scaling
+Epoch: 1400148153
+HKL: SAD_SWEEP1.HKL (SAD/SWEEP1)
+RAM usage at XDSScalerA.py 773: 90472
+XSCALE scale factor found to be: 3.494210e+04
+0 alien reflections are already removed
+Wrote 29 old reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Wrote 5 new reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Called scaler done from Modules.Scaler.XDSScalerA 865 (False)
+RAM usage at XDSScalerA.py 722: 90472
+Logfile: xscale_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/20_xscale_par.log
+Set CELL: 83.50 96.74 57.97 90.00 90.00 90.00
+Set SPACEGROUP_NUMBER: 21
+Gathering measurements for scaling
+Epoch: 1400148153
+HKL: SAD_SWEEP1.HKL (SAD/SWEEP1)
+RAM usage at XDSScalerA.py 773: 90472
+XSCALE scale factor found to be: 3.499090e+04
+0 alien reflections are already removed
+Wrote 34 old reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Wrote 2 new reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Called scaler done from Modules.Scaler.XDSScalerA 865 (False)
+RAM usage at XDSScalerA.py 722: 90472
+Logfile: xscale_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/21_xscale_par.log
+Set CELL: 83.50 96.74 57.97 90.00 90.00 90.00
+Set SPACEGROUP_NUMBER: 21
+Gathering measurements for scaling
+Epoch: 1400148153
+HKL: SAD_SWEEP1.HKL (SAD/SWEEP1)
+RAM usage at XDSScalerA.py 773: 90472
+XSCALE scale factor found to be: 3.501870e+04
+RAM usage at XDSScalerA.py 876: 90472
+RAM usage at XDSScalerA.py 923: 90472
+Set 1 is from data SAD_SWEEP1.HKL
+Set 1 wavelength 0.920000
+Logfile: pointless -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/22_pointless.log
+Scaling intensities by factor 2.855617e-05
+RAM usage at XDSScalerA.py 947: 135212
+Resolution analysis: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/SCALED_SAD_SWEEP1.mtz nbins=100 isigma=1.000000 misigma=2.000000
+Called scaler done from Modules.Scaler.XDSScalerA 1031 (False)
+RAM usage at XDSScalerA.py 1037: 135212
+Returning as scaling not finished...
+RAM usage at XDSScalerA.py 722: 135212
+Logfile: xscale_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/23_xscale_par.log
+Set CELL: 83.50 96.74 57.97 90.00 90.00 90.00
+Set SPACEGROUP_NUMBER: 21
+Gathering measurements for scaling
+Epoch: 1400148153
+HKL: SAD_SWEEP1.HKL (SAD/SWEEP1)
+RAM usage at XDSScalerA.py 773: 135212
+XSCALE scale factor found to be: 5.505070e+03
+0 alien reflections are already removed
+Wrote 36 old reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Wrote 1 new reflections to REMOVE.HKL
+Rejected 0 as z < 0.000000
+Called scaler done from Modules.Scaler.XDSScalerA 865 (False)
+RAM usage at XDSScalerA.py 722: 135212
+Logfile: xscale_par -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/24_xscale_par.log
+Set CELL: 83.50 96.74 57.97 90.00 90.00 90.00
+Set SPACEGROUP_NUMBER: 21
+Gathering measurements for scaling
+Epoch: 1400148153
+HKL: SAD_SWEEP1.HKL (SAD/SWEEP1)
+RAM usage at XDSScalerA.py 773: 135212
+XSCALE scale factor found to be: 5.501080e+03
+RAM usage at XDSScalerA.py 876: 135212
+RAM usage at XDSScalerA.py 923: 135212
+Set 1 is from data SAD_SWEEP1.HKL
+Set 1 wavelength 0.920000
+Logfile: pointless -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/25_pointless.log
+Scaling intensities by factor 1.817825e-04
+RAM usage at XDSScalerA.py 947: 135212
+Resolution analysis: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/SCALED_SAD_SWEEP1.mtz nbins=100 isigma=1.000000 misigma=2.000000
+RAM usage at XDSScalerA.py 1037: 135212
+Logfile: pointless -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/26_pointless.log
+Updating unit cell to 83.50 96.74 57.97 90.00 90.00 90.00
+Logfile: sortmtz -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/27_sortmtz.log
+Scaler highest resolution set to  2.04
+Logfile: aimless -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/28_aimless.log
+Run 1 corresponds to sweep SWEEP1
+Aimless status: okey dokey
+Logfile: aimless -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/29_aimless.log
+Run 1 corresponds to sweep SWEEP1
+Aimless status: okey dokey
+Logfile: mtz2various -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/30_mtz2various.log
+Running anomalous signal analysis on /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/nt5073v16_xBAZ2BAx8392_scaled.mtz
+Logfile: ctruncate -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/31_ctruncate.log
+0 absent reflections in SAD removed
+Logfile: freerflag -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/32_freerflag.log
+Logfile: freerflag -> /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/xBAZ2BAx8392/scale/33_freerflag.log
+Making directory: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/DataFiles
+Directory exists: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/DataFiles
+Directory exists: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/DataFiles
+Directory exists: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/DataFiles
+Making directory: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/LogFiles
+Directory exists: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/DataFiles
+Making directory: /dls/i04-1/data/2014/nt5073-16/tmp/BAZ2BA/BAZ2BA-x839/BAZ2BA-x839_2_/xia2-3daii-run/1400148120/DataFiles/Integrate

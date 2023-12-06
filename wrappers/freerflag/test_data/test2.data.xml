@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>mdw</userId>
+    <creationTime>12:54 08/Jun/11</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>freerflag</pluginName>
+    <pluginTitle>add freeR column</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <F_SIGF>
+        <project>CCP4I2_TOP</project>
+        <baseName>rnase25_fsigf.mtz</baseName>
+        <relPath>wrappers/freerflag/test_data</relPath>
+      </F_SIGF>
+      <FREERFLAG>
+        <project>CCP4I2_TOP</project>
+        <baseName>rnase25_freer.mtz</baseName>
+        <relPath>wrappers/freerflag/test_data</relPath>
+      </FREERFLAG>
+    </inputData>
+    <outputData>
+      <FREEROUT>
+        <project>CCP4I2_TEST</project>
+        <baseName>freerflag_test2.mtz</baseName>
+      </FREEROUT>
+    </outputData>
+    <controlParameters>
+      <COMPLETE>True</COMPLETE>
+    </controlParameters>
+  </ccp4i2_body>
+</ccp4i2>

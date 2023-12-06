@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>USERID</userId>
+        <creationTime>HH:MM DD/MON/YY</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>i2Dimple</pluginName>
+        <pluginTitle>Brief title For plugin</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="i2Dimple">
+<!--You must provide an inputData container, although it can be empty-->
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>4,3,2,1,0</requiredSubType>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+        </container>
+<!--generally we put control parameters into a container called "controlParameters"...although the-->
+<!--existence and name of this container are both optional-->
+        <container id="controlParameters">
+            <content id="MR_WHEN_R">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>0.45</default>
+                </qualifiers>
+            </content>
+        </container>
+<!--You must provide an outputData container, although it can be empty-->
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                </qualifiers>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default><subType>2</subType><contentFlag>1</contentFlag></default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType><contentFlag>1</contentFlag></default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="PERFORMANCEINDICATOR">
+                <className>CRefinementPerformance</className>
+            </content>
+            <content id="COOTSCRIPTOUT">
+                <className>CCootHistoryDataFile</className>
+                <saveToDb>True</saveToDb>
+            </content>
+            <content id="F_SIGF_OUT">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG_OUT">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

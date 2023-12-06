@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <hostName>pre.lmb.internal</hostName>
+    <userId>pre</userId>
+    <ccp4iVersion></ccp4iVersion>
+    <pluginName>scaleit</pluginName>
+    <creationTime></creationTime>
+    <pluginTitle>SCALEIT: compare datasets</pluginTitle>
+    <OS>MacOSX</OS>
+  </ccp4i2_header>
+  <ccp4i2_body id="scaleit">
+    <container id="inputData">
+      <content id="MERGEDFILES">
+        <className>CMiniMtzDataFileList</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+        <subItem>
+          <className>CObsDataFile</className>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>observed data,derived data,reference data</menuText>
+            <enumerators>1,2,3</enumerators>
+            <default>1</default>
+          </subType>
+        </subItem>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+	  <saveToDb>False</saveToDb>
+	</qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="RESOLUTION_MAX">
+        <className>CFloat</className>
+        <qualifiers/>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

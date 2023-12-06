@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>clustalw</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>clustalw</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="clustalw">
+        <container id="inputData">
+            <content id='SEQUENCELISTORALIGNMENT'>
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>SEQUENCELIST,ALIGNMENT</enumerators>
+                    <menuText>As list of sequences,As an alignment or catenated group</menuText>
+                    <default>ALIGNMENT</default>
+                    <guiLabel>Sequences provided as :</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="SEQIN">
+                <className>CList</className>
+                <subItem>
+                    <className>CSeqDataFile</className>
+                    <qualifiers>
+                        <minLength>0</minLength>
+                        <maxLength>1000</maxLength>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id='ALIGNMENTIN'>
+                <className>CSeqAlignDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id='ALIGNMENTOUT'>
+                <className>CSeqAlignDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

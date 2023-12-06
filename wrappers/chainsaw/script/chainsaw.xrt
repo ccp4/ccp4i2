@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII" standalone="yes"?>
+<!-- chainsaw report template -->
+<report xmlns:xrt="http://www.ccp4.ac.uk/xrt">
+
+<xrt:text>The following search models were generated:</xrt:text> 
+
+<xrt:table select="//outputData">
+<xrt:data title="Model" select="XYZOUT/baseName" />
+<xrt:data title="Deleted" select="NO_DELETED" />
+<xrt:data title="Conserved"   select="NO_CONSERVED"/>
+<xrt:data title="Mutated"   select="NO_MUTATED"/>
+</xrt:table>
+
+</report>

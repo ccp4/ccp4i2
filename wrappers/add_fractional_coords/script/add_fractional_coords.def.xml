@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginTitle>Add Fractional Coordinates</pluginTitle>
+        <pluginName>add_fractional_coords</pluginName>
+        <userId>paul.bond@york.ac.uk</userId>
+    </ccp4i2_header>
+    <ccp4i2_body id="add_fractional_coords">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

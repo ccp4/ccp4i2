@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>mdw</userId>
+    <creationTime>15:43 28/Jun/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>uniqueify</pluginName>
+    <pluginTitle>UNIQUEIFY: standardise reflection data file</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="uniqueify">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CProgramColumnGroup</className>
+        <qualifiers>
+          <mtzFileKey>HKLIN</mtzFileKey>
+          <columnGroup>
+            <columnGroupItem id="FREE">
+              <columnType>I</columnType>
+            </columnGroupItem>
+          </columnGroup>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="COMPLETE">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>Yes,No,Auto</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+          <default>Auto</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

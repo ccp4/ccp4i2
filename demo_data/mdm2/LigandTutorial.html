@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Ligand Tutorial</title>
+	<link rel="stylesheet" href="../../docs/ccp4i2.css">
+        <style>
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+
+        </style>
+</head>
+
+<body>
+
+<h2>Programs</h2>
+<p>
+ACEDRG, PHASER, REFMAC, RDKIT, COOT
+</p>
+
+<h2>Scenario</h2>
+<p>
+(Accurately) informed that there is &ldquo;a lot of rubbish&rdquo; among the structure ligand complexes in the PDB, you decide to re-solve the structure of everyone’s favourite PPI drug target MDM2 in complex with the game-changing tool compound Nutlin 3A.
+
+There is a dodgy 1.6 Å structure (PDB: 4hg7) deposited by a disreputable group….so you plan to use their deposited reflections, but start from someone else’s model
+
+There is a nice MDM2 structure from another group (4qo4) that you choose for your startpoint. You plan to use modern tools to make a start model for Nutlin 3A. The other model is of a longer construct and you will only use residues 20-107 of Chain A.
+</p>
+
+<h2>Task 1: Get the data</h2>
+
+<ol>
+<li>Open CCP4i2 and make a new project called MDM2
+<li>&ldquo;Utilities&rdquo; -&gt; &ldquo;Copy demo data to project&rdquo; -&gt; &ldquo;MDM2&rdquo;
+<li>Click the &ldquo;Task menu&rdquo; button in CCP4i2.
+<li>Expand the Import merged data, AU contents, alignments or coordinates section.
+<li>Create a new Import merged reflection data task
+<li>You can import files (reflections or coordinates) from the PDB directly: in the file browser dialog (accessed by clicking  ): a line at the top allows you to provide the accession code (4hg7).
+
+<img height="60" alt="Download Coordinates" src="LigandTutorial-mdm2-1.png"/>
+ 
+
+<li>Click &ldquo;Download&rdquo; then once the file has downloaded &ldquo;Open&rdquo; and click &ldquo;OK&rdquo; on the file provenance pop-up.
+<li>Enter a name for &ldquo;Crystal&rdquo; and &ldquo;Dataset&rdquo;
+<li>Click &ldquo;Run&rdquo;
+<li>You’ll see a nice report about the quality of the data which should hopefully look familiar. The data from the original file are kept - the report is for analysis only. 
+</ol>
+
+<h2>Task 2: Make your ligand – Make ligand task (LIDIA, ACEDRG, RDKIT)</h2>
+ 
+<img height="300" alt="Make Ligand" src="LigandTutorial-mdm2-2.png"/>
+
+<ol>
+<li>This takes a while to run so it’s best to do it next. Click the &ldquo;Task menu&rdquo; button in CCP4i2.
+<li>Expand the Ligands section.
+<li>Create a new Make Ligand – Acedrg job.
+<li>The fastest option is to change &ldquo;Start with molecular structure from&rdquo; in the &ldquo;Start point&rdquo; subsection to &ldquo;a SMILES string:<br/>
+COc1ccc(c(OC(C)C)c1)C2=N[C@H]([C@H](N2C(=O)N3CCNC(=O)C3)c4ccc(Cl)cc4)c5ccc(Cl)cc5</br>
+<li>Perhaps change &ldquo;Three letter code for output monomer&rdquo; to something more informative?
+<li>Click &ldquo;Run&rdquo;
+</ol>
+
+HINT: The structural formula of Nutlin 3A is:<br/>
+
+<img height="200" alt="Nutlin Ligand" src="LigandTutorial-mdm2-3.png"/>
+ 
+
+<h2>Task 3: Generate a starting model (Molecular replacement: PHASER)</h2>
+
+<ol>
+<li>Whilst waiting move on to molecular replacement. First we need to define the contents of the asymmetric unit. Click the &ldquo;Task menu&rdquo; button in the toolbar.
+<li>Expand the Import merged data, AU contents, alignments or coordinates section.
+<li>Create a new Define AU contents job.
+<li>Click &ldquo;Browse for sequence file&rdquo; and load &ldquo;4hg7.seq&rdquo; from the &ldquo;mdm2&rdquo; folder.
+<li>Click &ldquo;Run&rdquo;
+<li>Click the &ldquo;Task menu&rdquo; button in CCP4i2.
+<li>Expand the Molecular replacement section.
+<li>Create a new Basic Molecular Replacement – PHASER  job.
+<li>The reflection data will be automatically filled in but we need to change &ldquo;Composition of the asymmetric unit&rdquo; in the &ldquo;Composition&rdquo; subsection to &ldquo;Provided as full specification by sequence&rdquo; which should select the output of the Define AU contents job automatically.
+<li>For the search model download the coordinates from the PDB directly: in the file browser dialog (accessed by clicking  ): a line at the top allows you to provide the accession code (4qo4).
+<li>This is the structure of a longer construct so we need to select only residues 20-107. 
+<li>Right click the icon left of &ldquo;Search&rdquo; in the &ldquo;Search model&rdquo; subsection and choose &ldquo;Select atoms&rdquo; Provide the selection string &ldquo;A/20-107&rdquo; (quotation marks should not be included).
+<li>Click &ldquo;Run&rdquo;
+<li>Does the report indicate molecular replacement has been successful? What is the LLG and TF Z-score?
+</ol>
+
+<h2>Task 4: Refine the starting model to create difference density for the ligand (Refinement: REFMAC5)</h2>
+
+<ol>
+<li>Click the &ldquo;REFMAC5&rdquo; button at the bottom of the report
+<li>This will create a new Refinement – REFMAC5 job with the coordinates from the previous Molecular replacement job already selected. 
+<li>Change &ldquo;Number of refinement cycles&rdquo; in the &ldquo;Options&rdquo; subsection to 20.
+<li>Click &ldquo;Run&rdquo;
+</ol>
+
+<h2>Task 5: Generate a starting model (Manual model building: COOT, Refinement – REFMAC5)</h2>
+
+<ol>
+<li>After 20 cycles R/Rfree should be ~0.35/0.37. Click the &ldquo;COOT&rdquo; button at the bottom of the report.
+<li>This will create a new Manual model building - COOT job with all the inputs appropriately already selected. 
+<li>Click &ldquo;Run&rdquo; and inspect the maps. 
+<li>Find the ligand density HINT: &ldquo;Validate&rdquo; -&gt; &ldquo;Unmodelled blobs…&rdquo;
+<li>Rebuild (or delete) the sidechains pointing into the ligand density HINT: Y67 and H73.
+<li>&ldquo;File&rdquo; -&gt; &ldquo;Save to CCP4i2&rdquo; when you’re done. 
+<li>Close Coot and click the &ldquo;REFMAC5&rdquo; button at the bottom of the report and run the Refinement – REFMAC5 task again – the job is automatically filled with the correct inputs.
+</ol>
+
+<h2>Task 6: Introduce your ligand into the structure (Manual model building: COOT)</h2>
+
+<ol>
+<li>Click the &ldquo;COOT&rdquo; button at the bottom of the Refinement – REFMAC5 report.
+<li>All the correct inputs are automatically filled in but you need to select the dictionary for the ligand you made earlier as the &ldquo;Geometry dictionary&rdquo; in the &ldquo;Additional data&rdquo; subsection. 
+<li>Click &ldquo;Run&rdquo;
+<li>Again find the large blob of difference electron density.
+<li>Summon coordinates for the ligand (Coot: &ldquo;File&rdquo; -&gt; &ldquo;Get monomer…&rdquo; and provide the three letter code you gave to the drug).
+<li>Invite Coot to place the ligand into the electron density (&ldquo;Ligand&rdquo; -&gt; &ldquo;Find Ligands…&rdquo;
+<li>Tick &ldquo;Flexible?&rdquo; and &ldquo;DRG_from_dict&rdquo; (or whatever you called the ligand).
+<li>Click &ldquo;Find Ligands&rdquo;
+<li>Merge the positioned ligand into your main coordinates (&ldquo;Edit&rdquo; -&gt; &ldquo;Merge Molecules…&rdquo;
+<li>Write updated coordinates into your CCP4i2 session (&ldquo;File&rdquo; -&gt; &ldquo;Save to CCP4i2&rdquo; or &ldquo;CCP4i2 extensions&rdquo; -&gt; &ldquo;Save to CCP4i2&rdquo;
+<li> Run the Refinement – REFMAC5 task again and inspect the difference density for your newly fitted ligand.
+</ol>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>kovoleg</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>lorestr_i2</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:42 23/Dec/12</creationTime>
+        <pluginTitle>Low Resolution Refinement Pipeline</pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="lorestr_i2">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>1,0</requiredSubType>
+                    <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>File containing structure factor amplitudes and uncertainties (F/SigF).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <toolTip>Free R set corresponding to the reflection data.
+See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="TLSIN">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>File specifying TLS groups. 
+If not provided, auto TLS refinement can still be performed (see the "Options" tab).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="DICT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                    <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                    <toolTip>Restraint dictionary (mmCIF file) representing ideal ligand geometry.</toolTip>
+                    <label>Ligand geometry</label>
+                    <fileExtensions>cif</fileExtensions>
+                    <guiLabel>Ligand description</guiLabel>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="REFERENCE_MODEL">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <guiLabel>Reference model</guiLabel>
+                    <requiredSubType>2,1,0</requiredSubType>
+                    <default>
+                        <subType>2</subType>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="REFERENCE_LIST">
+                  <className>CList</className>
+                   <qualifiers>
+                       <guiLabel>Reference model</guiLabel>
+                       <listMinLength>0</listMinLength>
+                   </qualifiers>
+                    <subItem>
+                          <className>CPdbDataFile</className>
+                          <qualifiers>
+                                <mustExist>True</mustExist>
+                                <allowUndefined>True</allowUndefined>
+                                <ifAtomSelection>False</ifAtomSelection>
+                          </qualifiers>
+                    </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType><contentFlag>1</contentFlag></default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <subType>2</subType>
+                    <contentFlag>1</contentFlag>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="EXTERNAL_RESTRAINTS_FILE">
+               <className>CRefmacRestraintsDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <allowUndefined>True</allowUndefined>
+                  <guiLabel>External restraints for REFMAC</guiLabel>
+               </qualifiers>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CRefinementPerformance</className>
+                <qualifiers/>
+            </content>
+            <content id="COOTSCRIPTOUT">
+                <className>CCootHistoryDataFile</className>
+                <saveToDb>True</saveToDb>
+            </content>
+            <content id="TLSOUT">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="TITLE">
+                <className>CString</className>
+                <qualifiers/>
+            </content>
+            <content id="AUTO">
+            <className>CString</className>
+            <qualifiers>
+            <default>all</default>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>all,pdb,af,none</enumerators>
+            <menuText>PDB and AlphaFold,PDB only,AlphaFold only,None (do not fetch)</menuText>
+            </qualifiers>
+            </content>
+            <content id="CPU">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>1</default>
+                    <min>1</min>
+                    <toolTip>Number of CPUs for parallel refinement</toolTip>
+                </qualifiers>
+            </content>
+          <content id="MR">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+               <toolTip>Run 100-200 cycles of jelly body refinement first - useful if your model is straight after molecular replacement</toolTip>
+            </qualifiers>
+          </content>
+          <content id="OVB">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+               <toolTip>Force overall B-factors refinement (for very low resolution)</toolTip>
+            </qualifiers>
+          </content>
+            <content id="SS">
+                <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+                  <toolTip>Save disk space by removing excessive ProSMART output</toolTip>
+               </qualifiers>
+            </content>
+          <content id="NC">
+            <className>CInt</className>
+            <qualifiers>
+              <default>3</default>
+              <min>1</min>
+               <toolTip>Number of chains for restraints generation (will determine number of refinement protocols to run)</toolTip>
+            </qualifiers>
+          </content>
+          <content id="NH">
+            <className>CInt</className>
+            <qualifiers>
+             <default>5</default>
+             <min>1</min>
+             <toolTip>Maximal number of homologues for analysis</toolTip>
+            </qualifiers>
+          </content>
+          <content id="DNA">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+               <toolTip>Generate restraints for DNA/RNA chains</toolTip>
+            </qualifiers>
+          </content>
+          <content id="MINRES">
+            <className>CFloat</className>
+            <qualifiers>
+              <default>3.5</default>
+               <toolTip>Low-resolution limit for automatically fetched homologues</toolTip>
+            </qualifiers>
+          </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

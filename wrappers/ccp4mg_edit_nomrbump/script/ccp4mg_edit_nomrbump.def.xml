@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>ccp4mg_edit_nomrbump</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="ccp4mg_edit_nomrbump">
+        <container id="inputData">
+            <content id="XYZIN_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<container id="keywords">
+  <content id="ROOT">
+    <className>CString</className>
+    <qualifiers>
+      <guiLabel>Base output filename</guiLabel>
+    </qualifiers>
+  </content>
+  <content id="TITL">
+    <className>CString</className>
+    <qualifiers>
+      <guiLabel>Title</guiLabel>
+    </qualifiers>
+  </content>
+  <content id="VERB">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Verbose output</guiLabel>
+    </qualifiers>
+  </content>
+  <content id="DEBU">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Print debugging output</guiLabel>
+    </qualifiers>
+  </content>
+  <content id="MUTE">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Suppress output</guiLabel>
+      <expertLevel>2</expertLevel>
+    </qualifiers>
+  </content>
+  <content id="XYZO">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Write PDB file</guiLabel>
+      <expertLevel>2</expertLevel>
+      <default>True</default>
+    </qualifiers>
+  </content>
+  <content id="XYZO_ENSE">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Write PDB files of ensembles to separate files for each solution</guiLabel>
+      <expertLevel>3</expertLevel>
+      <default>True</default>
+    </qualifiers>
+  </content>
+  <content id="HKLO">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Write MTZ file</guiLabel>
+      <default>True</default>
+    </qualifiers>
+  </content>
+  <content id="JOBS">
+    <className>CInt</className>
+    <qualifiers>
+      <guiLabel>Number of parallel threads</guiLabel>
+      <default>2</default>
+    </qualifiers>
+  </content>
+  <content id="KEYW">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Write keywords (script) file</guiLabel>
+      <expertLevel>2</expertLevel>
+      <default>False</default>
+    </qualifiers>
+  </content>
+  <content id="CLUS_PDB">
+    <className>CString</className>
+    <qualifiers>
+      <guiLabel>Cluster compound pdb file</guiLabel>
+    </qualifiers>
+  </content>
+  <content id="HAND">
+    <className>CString</className>
+    <qualifiers>
+      <guiLabel>Heavy atom hand</guiLabel>
+      <enumerators>off,on,both</enumerators>
+      <default>both</default>
+      <menuText>Use given hand,Use opposite hand,Both hands</menuText>
+      <onlyEnumerators>1</onlyEnumerators>
+    </qualifiers>
+  </content>
+  <content id="LLGM">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>Write out LLG maps</guiLabel>
+      <expertLevel>1</expertLevel>
+      <default>False</default>
+    </qualifiers>
+  </content>
+  <content id="RESH_PERC">
+    <className>CFloat</className>
+    <qualifiers>
+      <guiLabel>Percentage of resharpening factor to apply</guiLabel>
+      <expertLevel>2</expertLevel>
+      <default>100.0</default>
+    </qualifiers>
+  </content>
+  <content id="RFAC_USE">
+    <className>CBoolean</className>
+    <qualifiers>
+      <guiLabel>If the R-factor is low for ensemble at origin then abort MR</guiLabel>
+      <expertLevel>1</expertLevel>
+      <default>True</default>
+    </qualifiers>
+  </content>
+  <content id="RFAC_CUTO">
+    <className>CFloat</className>
+    <qualifiers>
+      <guiLabel>If the R-factor is below this cutoff for ensemble at origin then abort MR</guiLabel>
+      <expertLevel>1</expertLevel>
+      <default>35.0</default>
+    </qualifiers>
+  </content>
+</container>
+

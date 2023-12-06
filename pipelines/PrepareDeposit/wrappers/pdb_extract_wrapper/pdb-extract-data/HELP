@@ -1,0 +1,204 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		       PDB_EXTRACT  HELP
+     ASSEMBLING COMPLETE STRUCTURE INFORMATION FOR DEPOSITION
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+You can either use the on-line tool (http://pdb-extract.rcsb.org/) or 
+following ONE of the two Unix options:
+
+Option 1: The Unix script method (easier)
+Option 2: The full Unix command method (allows greater flexibility)
+
+==================================Option 1==================================
+
+STEP 1: Generate the data template file (called data_template.text) and the  
+        script input file (called log_script.inp) using the command:
+
+     extract  -pdb  coordinate_PDB_file   (if PDB format)
+or
+     extract  -cif  coordinate_CIF_file
+(if mmCIF format) 
+
+        The file data_template.text contains data entries for the sequence 
+        of each unique polymer present in the structure. It also contains
+	fields for entering other non-electronically captured information 
+        like the author name(s), citation(s), etc.
+ 
+        The file log_script.inp has fields for entering the names of logfiles 
+        obtained from different crystallographic applications which were used 
+	for the structure determination. Relevant data from these log files 
+	are extracted by pdb_extract for the deposition. 
+
+First, complete the data entry fields of the ASCII file 'data_template.text' 
+Second, complete the data entry fields of the ASCII file 'log_script.inp'
+
+STEP 2: Run the program:
+
+     extract  -ext  log_script.inp
+  
+	This will produce two mmCIF files, one for all the structure 
+	factors (output_sf.cif) and the other for the coordinates and 
+	all the statistics from steps of structure solution (output.cif).
+
+STEP 3: Validation and deposition:
+     
+        It is recommended to upload the two files (output.cif  and
+        output_sf.cif) to ADIT (http://deposit.pdb.org/adit/)
+	for validation and direct deposition.
+
+==================================Option 2==================================
+
+STEP 1: Generate the data template file (data_template.text) by the command:
+
+     extract  -pdb  coordinate_PDB_file   (if PDB format)
+  or
+     extract  -cif  coordinate_CIF_file   (if mmCIF format) 
+
+	The file data_template.text is the same as that generated in option 1.
+
+STEP 2: Run pdb_extract
+     
+	In this option, the names of logfiles from different crystallographic 
+	applications are entered directly in the command line. See example.
+ 
+Example 1. Data deposition for a molecular replacement (MR) experiment:
+
+    STRUCTURE SOLUTION DETAILS:
+   	# data scaling by HKL (one structure factor data set)
+   	# molecular replacement by AMORE.
+        # final refinement by REFMAC5.
+
+    FILES NEEDED FOR INFORMATION EXTRACTION:
+   	* one LOG file generated from scaling by HKL: scaleui.log.
+   	* two LOG files from AMORE(rotation & translation): tran.log, rot.log
+   	* two files from REFMAC5: native.refmac(mmCIF format),and 
+                                  refmac.pdb (PDB format)
+	* data_template.text: for non-electronically captured information.
+
+    DATA EXTRACTION USING THE FOLLOWING COMMAND:
+    pdb_extract    -e  MR \
+               -m  AMORE -iLOG tran.log rot.log \
+               -r  REFMAC5 -iCIF native.refmac -iPDB refmac.pdb \
+               -s  HKL -iLOG scaleui.log \
+            -iENT  data_template.text \
+               -o  output.cif
+
+    DEPOSIT ALL THE REFLECTION DATA SETS BY USING THE COMMAND:
+
+    pdb_extract_sf -rt F -rp MTZ -idat native.mtz 
+
+
+Example 2. Data deposition for MAD experiment:
+
+   STRUCTURE SOLUTION DETAILS: 
+        # All of the data sets processed by HKL.
+        # MAD phasing by SOLVE.
+        # Density modification by RESOLVE.
+        # Final refinement by CNS.
+
+   FILES NEEDED FOR INFORMATION EXTRACTION:
+        * one LOG file from data indexing 'index.log'.  by HKL 
+        * one LOG file and one data file from scaling for refinement. by HKL 
+          native.log & native.cv (converted to CNS format). 
+        * three LOG files and three data file from scaling for phasing.by HKL
+          scale1.log scale2.log scale3.log: scale1.sca scale2.sca scale3.sca
+        * one LOG file from phasing by SOLVE. 'solve.prt'.
+        * one LOG file from density modification by RESOLVE. 'resolve.log'
+        * one PDB file from refinement by CNS. 'final.pdb'
+   	* one data template file from EXTRACT.  'data_template.text'
+
+    DATA EXTRACTION USING THE FOLLOWING COMMAND:
+    pdb_extract    -e  MAD \
+               -p  SOLVE -iLOG solve.prt \
+               -d  RESOLVE -iLOG resolve.log \
+               -r  CNS -ipdb final.pdb  \
+               -i  HKL -iLOG index.log \            (data set for refinement)
+               -s  HKL -iLOG native.log \           (data set for refinement)
+               -sp HKL scale1.log scale2.log scale3.log \     (for phasing)
+             -iENT data_template.text \
+               -o  output.cif
+
+
+    DEPOSIT ALL THE REFLECTION DATA SETS BY USING THE COMMAND:
+
+    pdb_extract_sf -rt F -rp CNS -idat native.cv \      (for refinement)
+               -dt I -dp HKL \                           (for phasing)
+               -c  1 -w 1 -idat  scale1.sca \
+               -c  1 -w 2 -idat  scale2.sca \
+               -c  1 -w 3 -idat  scale3.sca \
+               -o  output_sf.cif
+
+
+    NOTE: In the command line, no space is allowed after (\). 
+
+
+STEP 3: Validation and deposition:
+        The same as option 1
+
+============================================================================
+COMMONLY USED ARGUMENTS FOR PROGRAM PDB_EXTRACT (FOR STRUCTURAL INFORMATION)
+
+usage:    pdb_extract [OPTION]... [FILE]...
+ 
+OPTIONS:
+   -o  output file name given by user (default: pdb_extract.mmcif)
+   -e  experimental methods [MR|SAD|MAD|SIR|SIRAS|MIR|MIRAS|AB_INITIO]
+   -i  software for indexing/integration [HKL|DENZO|DTREK|MOSFLM] 
+   -s  software for data scaling (refinement) 
+       [SCALA|HKL|SCALEPACK|DTREK|SAINT|3DSCALE|XSCALE|X-GEN|PROSCALE]
+       [XPREP|MARSCALE]
+  -sp  software for data scaling (phasing) 
+       [SCALA|HKL|SCALEPACK|DTREK|SAINT|3DSCALE|XSCALE|X-GEN|PROSCALE]
+   -p  software for phasing 
+       [CNS|XPLOR|MLPHARE|SOLVE|SHELX|SNB|BnP|BP3|SHARP|PHASER|PHASES|WARP]
+   -m  software for molecular replacement 
+       [AMORE|CNS|XPLOR|EPMR|MOLREP|BEAST|PHASER|COMO]
+   -d  software for density modification 
+       [CNS|XPLOR|DM|RESOLVE|SOLOMON|SHELXE|SHARP]
+   -r  software for refinement 
+       [CNS|XPLOR|REFMAC5|SHELX|TNT|BUSTER-TNT|PROLSQ|NUCLSQ|RESTRAIN|PHENIX|MAIN]
+-iLOG  Followed by LOG file generated from the above software
+-iPDB  Followed by PDB file generated from the above software
+-iCIF  Followed by mmCIF file generated from the above software
+-iENT  Followed by data_template.text generated by 'extract -pdb pdb_fil_name'
+       or followed by any other self_defined mmCIF file containing 
+       complete sequences and author information. 
+-iDAT  Followed by reflection data file to generate <I/sigmaI>, 
+       when it is not in the LOG file of data scaling (e.g. HKL).
+-NMR   A key to switch between NMR and Xray system.
+       If -NMR exists, it is for NMR system (default X_RAY).
+       
+============================================================================
+COMMONLY USED ARGUMENTS FOR PROGRAM PDB_EXTRACT_SF (reflection data)
+
+usage:    pdb_extract_sf [OPTION]... [FILE]...
+ 
+ -o  followed by the output file name.
+-dt  followed by data type (I or F) used for phasing.
+-dp  followed by data format used for phasing.
+     (CIF|mmCIF|CNS|HKL|SCALEPACK|DTREK|SAINT|XSCALE|OTHER)
+ -c  followed by crystal number (like -c 1 ).
+ -w  followed by wavelength number (like -w 1).
+ 
+-rt  followed by data type (I or F) used for refinement.
+-rp  followed by data format used for refinement.
+     (CNS|CIF|mmCIF|MTZ|TNT|SHELX|HKL|SCALEPACK|DTREK|SAINT|XSCALE|OTHER)
+-iDAT  followed by a file name containing reflection data.
+       (MTZ file must be converted to mmCIF using mtz2various script.)
+ 
+Examples:
+To convert two reflection data sets used for MAD phasing:
+pdb_extract_sf -o output.mmcif -dt I -dp HKL -c 1 -w 1 -iDAT name1.sca
+ -c 1 -w 2 -iDAT name2.sca
+ 
+To convert reflection data used for final refinement
+pdb_extract_sf -o output.mmcif -rt F -rp CNS -iDAT name1.cv
+ 
+To convert reflection data used for final refinement and phasing:
+pdb_extract_sf -o output.mmcif -rt F -rp CNS -iDAT name.cv
+ -dt I -dp HKL -c 1 -w 1 -iDAT name1.sca  -c 1 -w 2 -iDAT name2.sca
+
+NOTES: 
+      -rt and -rp are used for refinement.
+      -dt, -fp, -c, and -w are used for phasing.
+===================================END======================================

@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Truncate Search Model</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>Molecular replacement results are generally improved if the search model is pruned to remove side chains which are not conserved between the search model and the target structure. This task takes an alignment between target and model sequences and modifies the model pdb file by renaming and pruning non-conserved residues. The names of the retained atoms will be changed if necessary to match the target. Conserved residues are left unchanged.</p>
+      <p>The residues in the output pdb file will be numbered in a way consistent with the target sequence i.e. if a residue in the target corresponds to a gap in the model, the residue numbers in the output pdb file will contain a gap, but if a residue in the model corresponds to a gap in the target, the residue numbers in the output pdb file will be consecutive.</p>
+      <p>If there are alternate conformations in the input pdb file, chainsaw will choose the most probable conformation, and assign it an occupancy of 1 in the output pdb file.</p>
+      <h2>Input</h2>
+      <img src="chainsaw_task_1.png">
+      <p>The task requires to data objects as input.</p>
+      <p>The first input is the atomic coordinates of the search model, as downloaded from the PDB.</p>
+      <p>The second input is a sequence alignment between the search model and the target structure.</p>
+      <p>Since the sequence alignment will contain two aligned sequences, the name of the target structure sequence in the alignment file must also be selected from the drop-down menu.</p>
+      <br/>
+      <h2>Options</h2>
+      <img src="chainsaw_task_2.png">
+      <p>The level of truncation may also be selected. Currently, three modes are supported. The default, "truncate to CG", is the mixed model of Schwarzenbacher et al. in which non-conserved residues are truncated to the gamma atom, while conserved residues are preserved unchanged. The "truncate to CB" mode is similar, but non-conserved residues are truncated to the beta atom. The "tuncate to last common atom" mode retains the maximal number of atoms common to the target and model residues.</p>
+      <br/>
+
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <img src="chainsaw_report_1.png">
+      <p>The task reports how many residues were conserved and how many were mutated.</p>
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

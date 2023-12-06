@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>lizp</userId>
+    <creationTime>12:37 07/Sep/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>molrep_den</pluginName>
+    <pluginTitle>Fitting to a map using Molrep</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="molrep_den">
+    <container id="inputData">
+      <content id="F_PHI_MAP">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_FIX">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredSubType>1,0</requiredSubType>
+          <default><subType>1</subType></default>
+        </qualifiers>
+      </content>
+      <content id="ASUIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <selectionMode>1</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <saveToDb>True</saveToDb>
+          <ifAtomSelection>True</ifAtomSelection>
+          <requiredSubType>2,1,0</requiredSubType>
+          <default><subType>2</subType></default>
+        </qualifiers>
+      </content>
+      <content id="SEQIN_2">
+        <className>CSeqDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_2">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <saveToDb>False</saveToDb>
+          <requiredSubType>2,1,0</requiredSubType>
+          <default><subType>2</subType></default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <default><subType>1</subType></default>
+          <subType>1</subType>
+        </qualifiers>
+      </content>
+      <content id="XMLOUT">
+        <className>CXmlDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="PRF">
+        <className>CString</className>
+        <qualifiers>
+          <default>n</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>n,y,s</enumerators>
+          <toolTip>Try all</toolTip>
+        </qualifiers>
+      </content>
+      <content id="NP">
+        <className>CString</className>
+        <qualifiers>
+          <default>Auto</default>
+          <enumerators>Auto,10,20,30,50,100,200</enumerators>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="NPT">
+        <className>CString</className>
+        <qualifiers>
+          <default>Auto</default>
+          <enumerators>Auto,10,20,30,50,100</enumerators>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="NMON">
+        <className>CString</className>
+        <qualifiers>
+          <default>Auto</default>
+          <enumerators>Auto,1,2,3,4,5,6,7,8,9,10,11,12</enumerators>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="SCORE">
+        <className>CString</className>
+        <qualifiers>
+          <default>y</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,n,c</enumerators>
+          <toolTip>Scoring andstopping rules</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ANISO">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,n,k</enumerators>
+          <default>y</default>
+        </qualifiers>
+      </content>
+      <content id="SEQ">
+        <className>CString</className>
+        <qualifiers>
+          <default>y</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,d,n</enumerators>
+          <toolTip>Try all</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SURF">
+        <className>CString</className>
+        <qualifiers>
+          <default>y</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>y,c,n,2,a</enumerators>
+          <toolTip>Try all</toolTip>
+        </qualifiers>
+      </content>
+      <content id="NMON_EXP">
+        <className>CString</className>
+        <qualifiers>
+          <default>Auto</default>
+          <enumerators>Auto,1,2,3,4,5,6,7,8,9,10,11,12</enumerators>
+        </qualifiers>
+      </content>
+      <content id="SIM">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+          <max>1.0</max>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+      <content id="RESMAX">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="BADD">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+          <max>100.0</max>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+      <content id="RESMIN">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="BOFF">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+          <max>100.0</max>
+          <default>0.0</default>
+        </qualifiers>
+      </content>
+      <content id="HIGH_PATH_VAR">
+        <className>CString</className>
+        <qualifiers>
+          <default>s</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>s,i,r,b</enumerators>
+        </qualifiers>
+      </content>
+      <content id="LOW_PATH_VAR">
+        <className>CString</className>
+        <qualifiers>
+          <default>c</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>c,r,b</enumerators>
+        </qualifiers>
+      </content>
+      <content id="SG_OPTIONS">
+        <className>CString</className>
+        <qualifiers>
+          <default>no</default>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>no,specify,laue</enumerators>
+          <menuText>as input reflection file,specify alternative,all space groups in Laue group of input reflection file</menuText>
+        </qualifiers>
+      </content>
+      <content id="SG">
+        <className>CSpaceGroup</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="guiParameters">
+      <content id="PERFORM">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>den</enumerators>
+          <default>den</default>
+        </qualifiers>
+      </content>
+      <content id="OPEN_HIGH_PATH_VAR">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

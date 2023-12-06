@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>demo_copycell</pluginName>
+    <userId>lizp</userId>
+    <creationTime></creationTime>
+    <ccp4iVersion>0.1</ccp4iVersion>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Demo copy cell</pluginTitle>
+  </ccp4i2_header>
+  <ccp4i2_body>
+  <container id="inputData">
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+           <mustExist>True</mustExist>
+	    <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+           <mustExist>True</mustExist>
+	    <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+  </container>
+  <container id="outputData">
+     <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+	<qualifiers><saveToDb>True</saveToDb></qualifiers>
+     </content>
+  </container>
+  <container id="controlParameters">
+  </container>
+</ccp4i2_body>
+</ccp4i2>

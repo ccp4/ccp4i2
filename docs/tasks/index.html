@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:xsi="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ASCII" />
+    <title>CCP4i2 Tasks</title>
+    <script src="./xreport.js"></script>
+    <link rel="stylesheet" type="text/css" href="./task.css" />
+    <link rel="stylesheet" type="text/css" href="./jspimple.css" />
+  </head>
+  <body>
+    <div class="title">CCP4i2 Task Documentation</div>
+    <div class="module">
+      <img src="../../svgicons/data_entry.svg" alt="data_entry" />
+      <p>Import merged data, sequences, alignments or coordinates</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/import_merged.svg" alt="import_merged" class="taskIcon" />
+        <a href="./import_merged/index.html">
+          <p>Import merged reflection data</p>
+        </a>
+      </div>
+      <p class="taskDesc">Import reflection data in any format, report on contents and create CCP4i2 data objects</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/ProvideSequence.svg" alt="ProvideSequence" class="taskIcon" />
+        <a href="./ProvideSequence/index.html">
+          <p>Import a sequence</p>
+        </a>
+      </div>
+      <p class="taskDesc">Enter a sequence from a sequence file, from a PDB, or by cut and paste</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/ProvideAlignment.svg" alt="ProvideAlignment" class="taskIcon" />
+        <a href="./ProvideAlignment/index.html">
+          <p>Import an alignment</p>
+        </a>
+      </div>
+      <p class="taskDesc">Enter an alignment from a file or by cut and paste</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/AlternativeImportXIA2.svg" alt="AlternativeImportXIA2" class="taskIcon" />
+        <a href="./AlternativeImportXIA2/index.html">
+          <p>Import Xia2 results</p>
+        </a>
+      </div>
+      <p class="taskDesc">Harvest merged and unmerged files from selected XIA2 data reduction protocols</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/coordinate_selector.svg" alt="coordinate_selector" class="taskIcon" />
+        <a href="./coordinate_selector/index.html">
+          <p>Import a coordinate set - optional selection of subset</p>
+        </a>
+      </div>
+      <p class="taskDesc">Select (potentially complicated) subset from a coordinate set</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/ccp4.svg" alt="ProvideAsuContents" class="taskIcon" />
+        <p>Define contents of crystal</p>
+      </div>
+      <p class="taskDesc">Provide list of chain sequences- import sequence or from coordinate file</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/splitMtz.svg" alt="splitMtz" class="taskIcon" />
+        <a href="./splitMtz/index.html">
+          <p>Import and Split MTZ into experimental data objects</p>
+        </a>
+      </div>
+      <p class="taskDesc">Select groups of columns from the MTZ file (csplitmtz)</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/data_processing.svg" alt="data_processing" />
+      <p>Integrate X-ray images</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/simple_xia2.svg" alt="simple_xia2" class="taskIcon" />
+        <p>Automated integration of images with DIALS - XIA2</p>
+      </div>
+      <p class="taskDesc">Select a directory containing images and integrate them</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/xia2_dials.svg" alt="xia2_dials" class="taskIcon" />
+        <p>Automated integration of images with DIALS using xia2</p>
+      </div>
+      <p class="taskDesc">Select a directory containing images and integrate them</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/imosflm.svg" alt="imosflm" class="taskIcon" />
+        <a href="./imosflm/index.html">
+          <p>Integrate images with Mosflm</p>
+        </a>
+      </div>
+      <p class="taskDesc">Launch iMosflm and capture output</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/data_reduction.svg" alt="data_reduction" />
+      <p>X-ray data reduction and analysis</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/aimless_pipe.svg" alt="aimless_pipe" class="taskIcon" />
+        <a href="./aimless_pipe/index.html">
+          <p>Data reduction - AIMLESS</p>
+        </a>
+      </div>
+      <p class="taskDesc">Scale and analyse unmerged data and suggest space group (Pointless, Aimless, Ctruncate, FreeRflag)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/freerflag.svg" alt="freerflag" class="taskIcon" />
+        <a href="./freerflag/index.html">
+          <p>Generate a Free R set</p>
+        </a>
+      </div>
+      <p class="taskDesc">Generate a Free R set for a complete set of reflection indices to a given resolution (FreeRflag)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/matthews.svg" alt="matthews" class="taskIcon" />
+        <a href="./matthews/index.html">
+          <p>Estimate AU content</p>
+        </a>
+      </div>
+      <p class="taskDesc">Estimate number of molecules in the asymmetric unit and solvent content (Matthews_coeff)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/molrep_selfrot.svg" alt="molrep_selfrot" class="taskIcon" />
+        <p>Calculate self rotation function</p>
+      </div>
+      <p class="taskDesc">Evaluate data for anisotropy, optical resolution, pseudo translation and perform self-rotation function (Molrep)</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/expt_phasing.svg" alt="expt_phasing" />
+      <p>Experimental phasing</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/crank2.svg" alt="crank2" class="taskIcon" />
+        <a href="./crank2/index.html">
+          <p>Automated structure solution - CRANK2 phasing and building</p>
+        </a>
+      </div>
+      <p class="taskDesc">CRANK2 experimental phasing pipeline</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/shelx.svg" alt="shelx" class="taskIcon" />
+        <a href="./shelx/index.html">
+          <p>Automated structure solution - SHELXC/D/E phasing and building</p>
+        </a>
+      </div>
+      <p class="taskDesc">Experimental phasing pipeline SHELX (run via Crank2)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/phaser_EP_AUTO.svg" alt="phaser_EP_AUTO" class="taskIcon" />
+        <p>SAD phasing from heavy atom sites - PHASER</p>
+      </div>
+      <p class="taskDesc">Complete a heavy atom model and calculate phases</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/acorn.svg" alt="acorn" class="taskIcon" />
+        <p>ACORN - Phase Refinement with Dynamic Density Modification</p>
+      </div>
+      <p class="taskDesc">Un-biased improvement of initial phases for high resolution data (1.5 Angstoms and better)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/parrot.svg" alt="parrot" class="taskIcon" />
+        <a href="./parrot/index.html">
+          <p>Density modification - PARROT</p>
+        </a>
+      </div>
+      <p class="taskDesc">Modify the electron density (Parrot)</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/bioinformatics.svg" alt="bioinformatics" />
+      <p>Bioinformatics including model preparation for Molecular Replacement</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/ccp4mg_edit_model.svg" alt="ccp4mg_edit_model" class="taskIcon" />
+        <a href="./ccp4mg_edit_model/index.html">
+          <p>Interactive model preparation - CCP4mg and MrBUMP</p>
+        </a>
+      </div>
+      <p class="taskDesc">Identify MR models with MrBUMP, display and select with CCP4mg</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/ccp4mg_edit_nomrbump.svg" alt="ccp4mg_edit_nomrbump" class="taskIcon" />
+        <a href="./ccp4mg_edit_nomrbump/index.html">
+          <p>Interactive selection of MR model components - CCP4mg</p>
+        </a>
+      </div>
+      <p class="taskDesc">Use CCP4mg to select components of a search model and output to i2 for MR</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/chainsaw.svg" alt="chainsaw" class="taskIcon" />
+        <a href="./chainsaw/index.html">
+          <p>Truncate search model - CHAINSAW</p>
+        </a>
+      </div>
+      <p class="taskDesc">Truncate and renumber model prior to molecular replacement</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/sculptor.svg" alt="sculptor" class="taskIcon" />
+        <a href="./sculptor/index.html">
+          <p>Truncate search model - SCULPTOR</p>
+        </a>
+      </div>
+      <p class="taskDesc">Truncate model prior to molecular replacement</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/phaser_ensembler.svg" alt="phaser_ensembler" class="taskIcon" />
+        <p>Build an ensemble for PHASER</p>
+      </div>
+      <p class="taskDesc">Compile assorted related structures into an ensemble for use in PHASER</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/clustalw.svg" alt="clustalw" class="taskIcon" />
+        <a href="./clustalw/index.html">
+          <p>Align sequences - CLUSTALW</p>
+        </a>
+      </div>
+      <p class="taskDesc">Align sequences using clustalw</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/molecular_replacement.svg" alt="molecular_replacement" />
+      <p>Molecular Replacement</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/mrbump_basic.svg" alt="mrbump_basic" class="taskIcon" />
+        <a href="./mrbump_basic/index.html">
+          <p>Automated structure solution - MrBUMP</p>
+        </a>
+      </div>
+      <p class="taskDesc">Run a quick MrBUMP job with streamlined settings</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/phaser_simple.svg" alt="phaser_simple" class="taskIcon" />
+        <p>Basic Molecular Replacement - PHASER</p>
+      </div>
+      <p class="taskDesc">Simple MR with optional refinement and rebuilding (Phaser)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/phaser_pipeline.svg" alt="phaser_pipeline" class="taskIcon" />
+        <a href="./phaser_pipeline/index.html">
+          <p>Expert Mode Molecular Replacement - PHASER</p>
+        </a>
+      </div>
+      <p class="taskDesc">Advanced MR options followed by refinement and rebuilding (Phaser, Refmac5, Coot)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/molrep_pipe.svg" alt="molrep_pipe" class="taskIcon" />
+        <a href="./molrep_pipe/index.html">
+          <p>Molecular Replacement and refinement - MOLREP</p>
+        </a>
+      </div>
+      <p class="taskDesc">Molecular replacement (Molrep)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/molrep_den.svg" alt="molrep_den" class="taskIcon" />
+        <p>Molecular replacement with electron density - MOLREP</p>
+      </div>
+      <p class="taskDesc">Use electron density as the search model (Molrep)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/csymmatch.svg" alt="csymmatch" class="taskIcon" />
+        <a href="./csymmatch/index.html">
+          <p>Match model to reference structure</p>
+        </a>
+      </div>
+      <p class="taskDesc">Match symmetry and origin of output model to reference structure (Csymmatch)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/parrot.svg" alt="parrot" class="taskIcon" />
+        <a href="./parrot/index.html">
+          <p>Density modification - PARROT</p>
+        </a>
+      </div>
+      <p class="taskDesc">Modify the electron density (Parrot)</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/model_building.svg" alt="model_building" />
+      <p>Model building and Graphics</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/buccaneer_build_refine_mr.svg" alt="buccaneer_build_refine_mr" class="taskIcon" />
+        <a href="./buccaneer_build_refine_mr/index.html">
+          <p>Autobuild protein - BUCCANEER</p>
+        </a>
+      </div>
+      <p class="taskDesc">Iterations of model building (Buccaneer) and refinement (Refmac5, Prosmart and Coot)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/coot_rebuild.svg" alt="coot_rebuild" class="taskIcon" />
+        <a href="./coot_rebuild/index.html">
+          <p>Manual model building - COOT</p>
+        </a>
+      </div>
+      <p class="taskDesc">Interactive building (Coot)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/coot_script_lines.svg" alt="coot_script_lines" class="taskIcon" />
+        <a href="./coot_script_lines/index.html">
+          <p>Scripted model building - COOT</p>
+        </a>
+      </div>
+      <p class="taskDesc">Use scripts to fit sidechains, perform stepped refinement, fill and fit... (non-interactive Coot)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/coot_find_waters.svg" alt="coot_find_waters" class="taskIcon" />
+        <a href="./coot_find_waters/index.html">
+          <p>Find waters - COOT</p>
+        </a>
+      </div>
+      <p class="taskDesc">Find and filter waters based on electron density and contacts (non-interactive Coot)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/arp_warp_classic.png" alt="arp_warp_classic" class="taskIcon" />
+        <p>ARP/wARP</p>
+      </div>
+      <p class="taskDesc">Build model (ARP/wARP classic)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/ccp4mg_general.svg" alt="ccp4mg_general" class="taskIcon" />
+        <a href="./ccp4mg_general/index.html">
+          <p>Molecular graphics visualization and figure creation - CCP4MG</p>
+        </a>
+      </div>
+      <p class="taskDesc">Interactive molecular graphics: visualization, figure preparation, analysis.</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/shelxeMR.svg" alt="shelxeMR" class="taskIcon" />
+        <p>Model building from Molecular Replacement solution using Shelxe</p>
+      </div>
+      <p class="taskDesc">Use Shelxe to attempt to improve (or verify) a solution from Molecular Replacement</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/refinement.svg" alt="refinement" />
+      <p>Refinement</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/prosmart_refmac.svg" alt="prosmart_refmac" class="taskIcon" />
+        <a href="./prosmart_refmac/index.html">
+          <p>Refinement - REFMAC5</p>
+        </a>
+      </div>
+      <p class="taskDesc">Refine (Refmac5) with optional restraints (Prosmart)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/ProvideTLS.svg" alt="ProvideTLS" class="taskIcon" />
+        <p>Import and/or edit TLS set definitions</p>
+      </div>
+      <p class="taskDesc">Enter TLS information to be used later in the project</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/phaser_rnp_pipeline.svg" alt="phaser_rnp_pipeline" class="taskIcon" />
+        <p>Rigid body refinement - PHASER</p>
+      </div>
+      <p class="taskDesc">Define rigid bodies for refinement (Phaser), fill partial residues (Coot) and refine (Refmac)</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/ligands.svg" alt="ligands" />
+      <p>Ligands</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/LidiaAcedrg.svg" alt="LidiaAcedrg" class="taskIcon" />
+        <p>MAKE LIGAND</p>
+      </div>
+      <p class="taskDesc">Generate a PDB file and dictionary (acedrg) from MOL file, SMILES, or sketch (lidia)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/SubstituteLigand.svg" alt="SubstituteLigand" class="taskIcon" />
+        <p>Automated solution of isomorphous ligand complex</p>
+      </div>
+      <p class="taskDesc">A ligand workflow, starting from merged or unmerged reflections, SMILES, and an isomorphous parent structure</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/validation.svg" alt="validation" />
+      <p>Validation and analysis</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/edstats.svg" alt="edstats" class="taskIcon" />
+        <a href="./edstats/index.html">
+          <p>Analyse agreement between model and density - EDSTATS</p>
+        </a>
+      </div>
+      <p class="taskDesc">Calculates real-space metrics for evaluating the agreement between model and density (Edstats, cfft)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/qtpisa.svg" alt="qtpisa" class="taskIcon" />
+        <p>Interface and quaternary structure analysis - PISA</p>
+      </div>
+      <p class="taskDesc">Interface and assembly analysis (qtpisa)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/privateer.svg" alt="privateer" class="taskIcon" />
+        <p>Validation of carbohydrate structures - PRIVATEER</p>
+      </div>
+      <p class="taskDesc">Checks stereochemistry, conformation and fit to positive omit density, and describes glycans (Privateer)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/validate_protein.svg" alt="validate_protein" class="taskIcon" />
+        <a href="./validate_protein/index.html">
+          <p>Analyse model geometry</p>
+        </a>
+      </div>
+      <p class="taskDesc">Calculate mean B-factors, Ramachandran plots and other metrics to aid in validation (Clipper)</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/export.svg" alt="export" />
+      <p>Export and Deposition</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/PrepareDeposit.svg" alt="PrepareDeposit" class="taskIcon" />
+        <a href="./PrepareDeposit/index.html">
+          <p>Prepare files for deposition</p>
+        </a>
+      </div>
+      <p class="taskDesc">Prepare files for deposition</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/mergeMtz.svg" alt="mergeMtz" class="taskIcon" />
+        <a href="./mergeMtz/index.html">
+          <p>Merge experimental data objects to MTZ</p>
+        </a>
+      </div>
+      <p class="taskDesc">Export 'old' style MTZ file</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/expt_data_utility.svg" alt="expt_data_utility" />
+      <p>Reflection data tools</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/pointless_reindexToMatch.svg" alt="pointless_reindexToMatch" class="taskIcon" />
+        <a href="./pointless_reindexToMatch/index.html">
+          <p>Reindex or  change spacegroup</p>
+        </a>
+      </div>
+      <p class="taskDesc">Reindex to match reference data/coordinates and/or change space group of reflections or Free R set (Pointless)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/phaser_EP_LLG.svg" alt="phaser_EP_LLG" class="taskIcon" />
+        <a href="./phaser_EP_LLG/index.html">
+          <p>Anomalous map from coordinates - PHASER</p>
+        </a>
+      </div>
+      <p class="taskDesc">Calculate anomalous LLG map phased by coordinates to highlight anomalous scatterers (Phaser)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/cmapcoeff.svg" alt="cmapcoeff" class="taskIcon" />
+        <a href="./cmapcoeff/index.html">
+          <p>Calculate unusual map coefficients</p>
+        </a>
+      </div>
+      <p class="taskDesc">Compute map coefficients from set of observations and phases (cmapcoeff)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/chltofom.svg" alt="chltofom" class="taskIcon" />
+        <a href="./chltofom/index.html">
+          <p>Convert HL phase to and from Phi/Fom</p>
+        </a>
+      </div>
+      <p class="taskDesc">Interconvert phases between Hendrickson Lattman and Phi/FOM representation</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/cphasematch.svg" alt="cphasematch" class="taskIcon" />
+        <a href="./cphasematch/index.html">
+          <p>Match and analyse phases to reference set</p>
+        </a>
+      </div>
+      <p class="taskDesc">Compare phases from different sources (with option change of origin/hand)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/ctruncate.svg" alt="ctruncate" class="taskIcon" />
+        <a href="./ctruncate/index.html">
+          <p>Convert intensities to amplitudes</p>
+        </a>
+      </div>
+      <p class="taskDesc">Convert reflection intensities to structure factors (ctruncate)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/freerflag.svg" alt="freerflag" class="taskIcon" />
+        <a href="./freerflag/index.html">
+          <p>Generate a Free R set</p>
+        </a>
+      </div>
+      <p class="taskDesc">Generate a Free R set for a complete set of reflection indices to a given resolution (FreeRflag)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/matthews.svg" alt="matthews" class="taskIcon" />
+        <a href="./matthews/index.html">
+          <p>Estimate AU content</p>
+        </a>
+      </div>
+      <p class="taskDesc">Estimate number of molecules in the asymmetric unit and solvent content (Matthews_coeff)</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/model_data_utility.svg" alt="model_data_utility" />
+      <p>Coordinate data tools</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/csymmatch.svg" alt="csymmatch" class="taskIcon" />
+        <a href="./csymmatch/index.html">
+          <p>Match model to reference structure</p>
+        </a>
+      </div>
+      <p class="taskDesc">Match symmetry and origin of output model to reference structure (Csymmatch)</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/gesamt.svg" alt="gesamt" class="taskIcon" />
+        <a href="./gesamt/index.html">
+          <p>Structural alignment - Gesamt</p>
+        </a>
+      </div>
+      <p class="taskDesc">Superpose one protein structure on another</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/coordinate_selector.svg" alt="coordinate_selector" class="taskIcon" />
+        <a href="./coordinate_selector/index.html">
+          <p>Import a coordinate set - optional selection of subset</p>
+        </a>
+      </div>
+      <p class="taskDesc">Select (potentially complicated) subset from a coordinate set</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/pdbview_edit.svg" alt="pdbview_edit" class="taskIcon" />
+        <p>Edit PDB/CIF files by hand</p>
+      </div>
+      <p class="taskDesc">Edit PDB/CIF files by hand with the PdbView program</p>
+    </div>
+    <div class="module">
+      <img src="../../svgicons/developer_tools.svg" alt="developer_tools" />
+      <p>Developer tools</p>
+    </div>
+    <div class="taskList">
+      <div class="taskTitle">
+        <img src="../../svgicons/MakeMonster.svg" alt="MakeMonster" class="taskIcon" />
+        <p>Export monster mtz</p>
+      </div>
+      <p class="taskDesc">Build an MTZ file from data objects</p>
+      <div class="taskTitle">
+        <img src="../../svgicons/TestObsConversions.svg" alt="TestObsConversions" class="taskIcon" />
+        <p>Test CCP4i2 observed data interconversions</p>
+      </div>
+      <p class="taskDesc">Exercise CCP4i2 Observed data representation conversions</p>
+    </div>
+  </body>
+</html>

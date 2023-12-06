@@ -1,0 +1,35 @@
+
+28JUN2013
+'Quick' release for WG2 demo. Should work on Macs,Linux,Windows.
+Interfaces to Coot and import of XIA2 and most main xtallographic functionality but not ab initio solution.
+
+
+
+1AUG2012
+
+Update to the Python,Qt libraries + include mmdb, hklfile - requires reinstalling from scratch from www.ysbl.york.ac.uk/~ccp4i2/downloads.  This is a gzipped tarball for mac or linux. Once it is untarred you should be able to update to the latest Python code from the ccpforge svn by:
+> cd ccp4i2
+> export svnroot=http://ccpforge.cse.rl.ac.uk/svn/ccp4i2
+> export SVN_EDITOR=vi
+> svn update
+
+Please delete old databases ( $HOME/.CCP4I2/db directory ) as database schema is updated.
+Running a setup script is not necessary - running the executable bin/ccp4i2 should start up the gui.
+
+Developers can use  utils/setup.csh (or new utils.setup.sh) to set up development environment - requires editing to set CCP4I2_TOP.
+
+Alternative layout around the 'Report' page with links to report sections and 'what next' buttons.
+
+Job interrupt and restart (only current example Bucanneer-Refmac). Job kill and delete tidied up.
+
+MTZ split to functional data objects.
+There are 4 tasks at top of the Job List that demonstrate this. The first will split and existing MTZ into componenets and these can be used in the subsequent parrot-buccaneer-refmac sequence.
+Note that this is a demonstration and not necessarilly very flexible or robust.
+The guis probably should not show a choice of freeR data if there is only one set per project.
+
+Import Experimental Data test version
+NB This does nothing and has known bugs.
+This is intended to demonstate a single gui where xtaller can input all necessary info so that all subsequent processing could, in principle, just be 'Next..Run..Next..Run'. 
+
+basic pointless-aimless-ctruncate pipeline done. Called aimless_pipe. Not very well tested, and not really release quality - from Martyn
+

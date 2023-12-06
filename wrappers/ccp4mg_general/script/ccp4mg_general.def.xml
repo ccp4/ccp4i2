@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>ccp4mg_general</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>14:25 24/Oct/15</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="ccp4mg_general">
+        <container id="inputData">
+            <content id="DICT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                    <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                    <toolTip>Custom Ligand dictionary</toolTip>
+                    <label>Custom Ligand dictionary</label>
+                    <fileExtensions>cif,dict</fileExtensions>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="FPHIIN_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>1</requiredSubType>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DELFPHIIN_LIST">
+                <className>CList</className>
+                <qualifiers>
+                </qualifiers>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>2</requiredSubType>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="SEQUENCE_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CSeqDataFile</className>
+                    <qualifiers>
+                        <minLength>0</minLength>
+                        <maxLength>0</maxLength>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="FPHIOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DELFPHIOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

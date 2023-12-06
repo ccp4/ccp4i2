@@ -1,0 +1,488 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>nicholls</userId>
+        <creationTime>2019-02-04T16:38:09.992558</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>MakeLink</pluginName>
+        <pluginTitle>Brief title For plugin</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="MakeLink">
+        <!--You must provide an inputData container, although it can be empty-->
+        <container id="inputData">
+           <content id="LINK_ID">
+              <className>CString</className>
+           </content>
+           <content id="ANNOTATION">
+              <className>CString</className>
+           </content>
+           <content id="MON_1_TYPE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>TLC,CIF</enumerators>
+                 <menuText>the Monomer Library,custom ligand dictionary</menuText>
+                 <default>TLC</default>
+                 <toolTip>Choose whether to obtain molecular description from the CCP4 Monomer Library, or provide a custom ligand description</toolTip>
+              </qualifiers>
+           </content>
+           <content id="MON_2_TYPE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>TLC,CIF</enumerators>
+                 <menuText>the Monomer Library,custom ligand dictionary</menuText>
+                 <default>TLC</default>
+                 <toolTip>Choose whether to obtain molecular description from the CCP4 Monomer Library, or provide a custom ligand description</toolTip>
+              </qualifiers>
+           </content>
+           <content id="DICT_1">
+              <className>CDictDataFile</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <saveToDb>True</saveToDb>
+                 <toolTip>File containing ligand/monomer description (CIF)</toolTip>
+              </qualifiers>
+           </content>
+           <content id="DICT_2">
+              <className>CDictDataFile</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <saveToDb>True</saveToDb>
+                 <toolTip>File containing ligand/monomer description (CIF)</toolTip>
+              </qualifiers>
+           </content>
+           <content id="RES_NAME_1_TLC">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <charWidth>5</charWidth>
+                 <minLength>1</minLength>
+                 <maxLength>3</maxLength>
+                 <toolTip>Specify the three-letter code corresponding to the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="RES_NAME_2_TLC">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <charWidth>5</charWidth>
+                 <minLength>1</minLength>
+                 <maxLength>3</maxLength>
+                 <toolTip>Specify the three-letter code corresponding to the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="RES_NAME_1_CIF">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select a monomer to be linked</toolTip>
+              </qualifiers>
+           </content>
+           <content id="RES_NAME_2_CIF">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select a monomer to be linked</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ATOM_NAME_1_TLC">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom involved in the link</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ATOM_NAME_2_TLC">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom involved in the link</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ATOM_NAME_1_CIF">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom involved in the link</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ATOM_NAME_2_CIF">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom involved in the link</toolTip>
+              </qualifiers>
+           </content>
+           <content id="ATOM_NAME_1">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <charWidth>6</charWidth>
+                 <minLength>1</minLength>
+                 <maxLength>4</maxLength>
+              </qualifiers>
+           </content>
+           <content id="ATOM_NAME_2">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <charWidth>6</charWidth>
+                 <minLength>1</minLength>
+                 <maxLength>4</maxLength>
+              </qualifiers>
+           </content>
+           
+           <content id="TOGGLE_DELETE_1">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+                 <toolTip>Select to delete an atom from the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE_DELETE_2">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+                 <toolTip>Select to delete an atom from the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="DELETE_1">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="DELETE_2">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="DELETE_1_LIST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom to be deleted. To delete more than one atom, provide extra AceDRG instructions in the Advanced tab</toolTip>
+              </qualifiers>
+           </content>
+           <content id="DELETE_2_LIST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom to be deleted. To delete more than one atom, provide extra AceDRG instructions in the Advanced tab</toolTip>
+              </qualifiers>
+           </content>
+           
+           <content id="TOGGLE_CHARGE_1">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+                 <toolTip>Select to change the charge of an atom from the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE_CHARGE_2">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+                 <toolTip>Select to change the charge of an atom from the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHARGE_1">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="CHARGE_2">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="CHARGE_1_LIST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom whose charge will be changed. To change the charge of more than one atom, provide extra AceDRG instructions in the Advanced tab</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHARGE_2_LIST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>    </menuText>
+                 <toolTip>Select the atom whose charge will be changed. To change the charge of more than one atom, provide extra AceDRG instructions in the Advanced tab</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHARGE_1_VALUE">
+              <className>CInt</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="CHARGE_2_VALUE">
+              <className>CInt</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           
+           <content id="TOGGLE_CHANGE_1">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+                 <toolTip>Select to change the order of a bond in the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE_CHANGE_2">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+                 <toolTip>Select to change the order of a bond in the monomer</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHANGE_BOND_1_LIST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>         </menuText>
+                 <toolTip>Select the bond to be changed. To change more than one bond, provide extra AceDRG instructions in the Advanced tab</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHANGE_BOND_2_LIST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>         </menuText>
+                 <toolTip>Select the bond to be changed. To change more than one bond, provide extra AceDRG instructions in the Advanced tab</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHANGE_BOND_1">
+              <className>CString</className>
+           </content>
+           <content id="CHANGE_BOND_2">
+              <className>CString</className>
+           </content>
+           <content id="CHANGE_BOND_1_TYPE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>SINGLE,DOUBLE,TRIPLE</enumerators>
+                 <menuText>single,double,triple</menuText>
+                 <toolTip>Select the appropriate bond order</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHANGE_BOND_2_TYPE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>SINGLE,DOUBLE,TRIPLE</enumerators>
+                 <menuText>single,double,triple</menuText>
+                 <toolTip>Select the appropriate bond order</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CHANGE_1_TYPE">
+              <className>CString</className>
+           </content>
+           <content id="CHANGE_2_TYPE">
+              <className>CString</className>
+           </content>
+           <content id="XYZIN">
+              <className>CPdbDataFile</className>
+              <qualifiers>
+                 <ifAtomSelection>False</ifAtomSelection>
+                 <mustExist>False</mustExist>
+                 <allowUndefined>True</allowUndefined>
+                 <fromPreviousJob>True</fromPreviousJob>
+                 <requiredSubType>1,0</requiredSubType>
+                 <toolTip>mmCIF file containing model coordinates</toolTip>
+              </qualifiers>
+           </content>
+        </container>
+        
+        <!--generally we put control parameters into a container called "controlParameters"...although the-->
+        <!--existence and name of this container are both optional-->
+        <container id="controlParameters">
+           <content id="BOND_ORDER">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>SINGLE,DOUBLE,TRIPLE</enumerators>
+                 <menuText>single,double,triple</menuText>
+                 <default>SINGLE</default>
+                 <toolTip>Specify the order of the covalent bond between the atoms to be linked</toolTip>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE_LINK">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+                 <toolTip>Select to search for matching links in the input model, and apply link records accordingly</toolTip>
+              </qualifiers>
+           </content>
+           <content id="LINK_MODE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>AUTO,MANUAL</enumerators>
+                 <menuText>automatically to all matching residue-pairs,to a specific residue-pair</menuText>
+                 <default>AUTO</default>
+                 <toolTip>Specify whether to automatically scan the model and apply links to all matching residue-pairs, or to manually specify the residue-pair to be linked</toolTip>
+              </qualifiers>
+           </content>
+<!--           <content id="TOGGLE_AUTOLINK">-->
+<!--              <className>CBoolean</className>-->
+<!--              <qualifiers>-->
+<!--                 <default>False</default>-->
+<!--                 <toolTip>Select to search for matching links in the input model, and apply link records accordingly</toolTip>-->
+<!--              </qualifiers>-->
+<!--           </content>-->
+           <content id="LINK_DISTANCE">
+              <className>CFloat</className>
+              <qualifiers>
+                 <default>1.5</default>
+                 <min>0.0</min>
+                 <toolTip>Detection radius for potential links, as a multiplier relative to the dictionary value.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="MODEL_RES_LIST">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>tmp</enumerators>
+                 <menuText>         </menuText>
+                 <toolTip>Select the residues to be linked</toolTip>
+              </qualifiers>
+           </content>
+           <content id="MODEL_LINK_DISTANCE">
+              <className>CFloat</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <min>0.0</min>
+                 <toolTip>Detection radius for potential links, in Angstroms</toolTip>
+              </qualifiers>
+           </content>
+           <content id="EXTRA_ACEDRG_INSTRUCTIONS">
+              <className>CString</className>
+              <qualifiers>
+                 <default>
+# Replace this with optional additional AceDRG link instructions
+# Note - these instructions will be appended to those in the input tab
+# Warning - if custom instructions are provided then the output
+#           model may not correctly reflect generated links
+#
+# Syntax:
+#    DELETE ATOM [ATOM] [MOL (1 or 2)]
+#    CHANGE BOND [ATOM1] [ATOM2] [BOND TYPE] [MOL (1 or 2)]
+#    CHANGE CHARGE [MOL (1 or 2)] [ATOM] [CHARGE]
+#
+# Examples:
+#
+# To delete atom C4A in the first monomer:
+#    DELETE ATOM C4A 1
+#
+# To change bond C-O in the second monomer to double:
+#    CHANGE BOND C O DOUBLE 2
+#
+# To change charge of SD in the second monomer to 1:
+#    CHANGE CHARGE 2 SD 1
+                 </default>
+                 <toolTip>Additional commands to be appended to the AceDRG link instruction file. See AceDRG documentation for more information.</toolTip>
+              </qualifiers>
+           </content>
+           <content id="EXTRA_ACEDRG_KEYWORDS">
+              <className>CString</className>
+              <qualifiers>
+                 <default>
+                    &#13;# Replace this with optional additional AceDRG command line arguments&#13;
+                 </default>
+                 <toolTip>Additional arguments to be appended to the AceDRG command line instruction. See AceDRG documentation for more information.</toolTip>
+              </qualifiers>
+           </content>
+        </container>
+        
+        <!--You must provide an outputData container, although it can be empty-->
+        <container id="outputData">
+           <content id="INSTRUCTION_FILE">
+              <className>CTextDataFile</className>
+              <qualifiers>
+                 <saveToDb>True</saveToDb>
+                 <mustExist>False</mustExist>
+                 <allowUndefined>True</allowUndefined>
+                 <fromPreviousJob>False</fromPreviousJob>
+                 <guiLabel>AceDRG instruction file</guiLabel>
+                 <toolTip>Contains the instruction that was provided to AceDRG in order to generate the link description</toolTip>
+              </qualifiers>
+           </content>
+           <content id="CIF_OUT">
+              <className>CDictDataFile</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <saveToDb>True</saveToDb>
+                 <guiLabel>Link dictionary</guiLabel>
+                 <toolTip>Specifies the chemistry and restraints required to describe the link, along with modifications that must be applied to the linked monomers</toolTip>
+              </qualifiers>
+           </content>
+           <content id="XYZOUT">
+              <className>CPdbDataFile</className>
+              <qualifiers>
+                 <mustExist>False</mustExist>
+                 <allowUndefined>True</allowUndefined>
+                 <saveToDb>True</saveToDb>
+                 <guiLabel>Output model with links</guiLabel>
+                 <toolTip>mmCIF File containing model coordinates, with links applied</toolTip>
+              </qualifiers>
+           </content>
+           <content id="UNL_PDB">
+              <className>CString</className>
+           </content>
+           <content id="UNL_CIF">
+              <className>CString</className>
+           </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

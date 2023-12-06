@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>TestObsConversions</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:42 23/Dec/12</creationTime>
+        <pluginTitle>Test interconversion of different observation representations</pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="TestObsConversions">
+        <container id="inputData">
+            <content id="F_SIGF_AS_IPAIR">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <requiredContentFlag>1</requiredContentFlag>
+                    <toolTip>File containing structure factor amplitudes/intensities and uncertainties (I+/I-).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF_AS_IMEAN">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <requiredContentFlag>1</requiredContentFlag>
+                    <toolTip>File containing structure factor amplitudes/intensities and uncertainties (I+/I-).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF_AS_FPAIR">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <requiredContentFlag>1</requiredContentFlag>
+                    <toolTip>File containing structure factor amplitudes/intensities and uncertainties (I+/I-).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF_INTERMEDIATE">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <requiredContentFlag>4</requiredContentFlag>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="PERFORMANCEINDICATOR">
+                <className>CTestObsConversionsPerformance</className>
+            </content>
+            <content id="F_SIGF_FINAL">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                    </default>
+                </qualifiers>
+                <saveToDb>True</saveToDb>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="INPUT_REPRESENTATION">
+                <className>CInt</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>1,2,3</enumerators>
+                    <menuText>I+ and I-, F+ and F-, Imean</menuText>
+                    <default>1</default>
+                </qualifiers>
+            </content>
+            <content id="OUTPUT_REPRESENTATION">
+                <className>CInt</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>1,2,3,4</enumerators>
+                    <menuText>I+ and I-, F+ and F-, Imean, Fmean</menuText>
+                    <default>4</default>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

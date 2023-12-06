@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd" >
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>Demo data: CeuE</title>
+<link rel="stylesheet" type="text/css" href="../../docs/ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>CCP4i2 Tutorial: CeuE 4-LICAM complex (PDB:3ZK3)</h1>
+
+<p>A medium sized structure with a MW of ~30kDa which can be solved fairly easily by molecular replacement.</p>
+
+<p>The structure was published by Raines, D.J., Moroz, O.V., Wilson, K.S., and Duhme-Klair, A., in 2013 in a paper entitled "Interactions of a Periplasmic Binding Protein with a Tetradentate Siderophore Mimic." ANGEW.CHEM.INT.ED.ENGL. vol:52, pag:4595 (2013), Identifiers: PubMed ID <a href=http://europepmc.org/abstract/MED/23512642>23512642</a> DOI <a href=http://dx.doi.org/10.1002/anie.201300751>10.1002/anie.201300751</a></p>
+
+<p>There is one independent monomer of the CeuE 4-LICAM complex in the P21 21 21 asymmetric unit. First scale and merge the unmerged intensity data using the Data Reduction pipeline. Put it on the same origin as the merged MTZ file.</p>
+
+<h3>Data Reduction</h3>
+
+<p>You can use MR models PDB 3tef or 4jcc with rather low sequence identity, around 30%, to solve the structure, or use the 3ZKW coordinates of the apo-protein if you have already solved CeuE in the previous example. If starting form the MR models try autobuilding with Buccaneer.</p>
+
+<h3>Creating a Ligand</h3>
+
+<p>If you do not wish to make the ligand dictionary yourself, you get just get it from the Monomer Library by
+using Get Monomer in COOT to download LCM. It is more instructive to create a new ligand dictionary using with Make Ligand 
+starting from the sketch below, or using Lidia in COOT.</p>
+<img src="4-LICAM.png" style="text-align:center"/>
+
+<h2>Data files</h2>
+<ul>
+<li><a href="./3zkw.seq">3zkw.seq</a> CeuE sequence</li>
+<li><a href="./apo-ceue-sad-sweep1-ligand.hkl">apo-ceue-sad-sweep1-ligand.hkl</a> XDS file containing unmerged data for input to data reduction.</li>
+<li><a href="./Initial_4_LICAM.mtz">Initial_4_LICAM.mtz</a> MTZ file containing the merged intensity data, I+ and I-, plus the Rfree flag.</li>
+<li><a href="./3TEF.pdb">3TEF.pdb</a> PDB file for 3TEF search model.</li>
+<li><a href="./4JCC.pdb">4JCC.pdb</a> PDB file for 4JCC search model.</li>
+</ul>
+
+<!-- Files from:
+apo-ceue-sad-sweep1-ligand.hkl originally mx1221v56_ceueb1HA00AR19284_SAD_SWEEP1_CORRECT.HKL (York via Johan, Dan, Keith)
+Initial_LICAM_4.mtz originally "Initial 4-LICAM Data.mtz" (York via Keith)
+-->
+
+<address></address>
+<!-- hhmts start -->Last modified: Thu Feb 26 14:37:05 GMT 2015 <!-- hhmts end -->
+</body>
+</html>

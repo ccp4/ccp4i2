@@ -1,0 +1,1419 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <ccp4iVersion>0.0.4</ccp4iVersion>
+    <pluginName>crank2</pluginName>
+    <creationTime>17:03 29/Jul/14</creationTime>
+  </ccp4i2_header>
+  <ccp4i2_body id="crank2">
+    <container id="inputData">
+      <content id="F_SIGFanom">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <toolTip>Input Friedel pairs I+/I- or F+/F- for SAD, SIRAS or MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+          <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom2">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <toolTip>Input Friedel pairs I+/I- or F+/F- for MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom3">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <toolTip>Input Friedel pairs I+/I- or F+/F- for MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom4">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <toolTip>Input Friedel pairs I+/I- or F+/F- for MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="NON_MTZ">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you wish to input HKL or SCA file(s) (both unmerged and merged data will be accepted)</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom_nonmtz">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <toolTip>Input unmerged or merged hkl/sca with anomalous signal for SAD, SIRAS or MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+          <guiLabel>Reflections</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom2_nonmtz">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <toolTip>Input unmerged or merged hkl/sca with anomalous signal for MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+          <guiLabel>Reflections</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom3_nonmtz">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <toolTip>Input unmerged or merged hkl/sca with anomalous signal for MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+          <guiLabel>Reflections</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom4_nonmtz">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <toolTip>Input unmerged or merged hkl/sca with anomalous signal for MAD phasing</toolTip>
+          <mustExist>True</mustExist>
+          <requiredContentFlag>1,2</requiredContentFlag>
+          <guiLabel>Reflections</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="ATOM_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Substructure (heavy atom) element type (periodic table symbol)</toolTip>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFnative">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <toolTip>Input intensities or structure factors for the "native" crystal</toolTip>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFnative_nonmtz">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <toolTip>Input intensities or structure factors in sca/hkl for the "native" crystal</toolTip>
+          <mustExist>True</mustExist>
+          <guiLabel>Reflections</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH4">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Wavelength at which the dataset was measured.  Used for estimation of f',f'' if they were not specified by user, otherwise ignored</toolTip>
+          <charWidth>8</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH3">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Wavelength at which the dataset was measured.  Used for estimation of f',f'' if they were not specified by user, otherwise ignored</toolTip>
+          <charWidth>8</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH2">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Wavelength at which the dataset was measured.  Used for estimation of f',f'' if they were not specified by user, otherwise ignored</toolTip>
+          <charWidth>8</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Wavelength at which the dataset was measured.  Used for estimation of f',f'' if they were not specified by user, otherwise ignored</toolTip>
+          <charWidth>8</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="USER_WAVELENGTH"><className>CBoolean</className></content>
+      <content id="USER_WAVELENGTH2"><className>CBoolean</className></content>
+      <content id="USER_WAVELENGTH3"><className>CBoolean</className></content>
+      <content id="USER_WAVELENGTH4"><className>CBoolean</className></content>
+      <content id="FPRIME">
+        <className>CFloat</className>
+        <qualifiers>
+          <charWidth>5</charWidth>
+          <toolTip>Anomalous scattering coefficient f' for the dataset #1 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="FDPRIME">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Anomalous scattering coefficient f'' for the dataset #1 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="FPRIME2">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Anomalous scattering coefficient f' for the dataset #2 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="FDPRIME2">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Anomalous scattering coefficient f'' for the dataset #2 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="FPRIME3">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Anomalous scattering coefficient f' for the dataset #3 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="FDPRIME3">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Anomalous scattering coefficient f'' for the dataset #3 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="FPRIME4">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Anomalous scattering coefficient f' for the dataset #4 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="FDPRIME4">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Anomalous scattering coefficient f'' for the dataset #4 and substructure atom type. A good estimate can be obtained from a fluorescence scan.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_FPRIME"><className>CBoolean</className></content>
+      <content id="USER_FDPRIME"><className>CBoolean</className></content>
+      <content id="USER_FPRIME2"><className>CBoolean</className></content>
+      <content id="USER_FDPRIME2"><className>CBoolean</className></content>
+      <content id="USER_FPRIME3"><className>CBoolean</className></content>
+      <content id="USER_FDPRIME3"><className>CBoolean</className></content>
+      <content id="USER_FPRIME4"><className>CBoolean</className></content>
+      <content id="USER_FDPRIME4"><className>CBoolean</className></content>
+      <content id="CELL_A">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Cell dimension "a" (in A)</toolTip>
+          <charWidth>6</charWidth>
+        </qualifiers>
+      </content>
+      <content id="CELL_B">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Cell dimension "b" (in A)</toolTip>
+          <charWidth>6</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="CELL_C">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Cell dimension "c" (in A)</toolTip>
+          <charWidth>6</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="CELL_D">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Cell angle alpha (in deg)</toolTip>
+          <charWidth>6</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="CELL_E">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Cell angle beta (in deg)</toolTip>
+          <charWidth>6</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="CELL_F">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Cell angle gamma (in deg)</toolTip>
+          <charWidth>6</charWidth>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="SPACEGROUP">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Spacegroup (CCP4 style; for example P212121)</toolTip>
+          <charWidth>8</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_CELL_A"><className>CBoolean</className></content>
+      <content id="USER_CELL_B"><className>CBoolean</className></content>
+      <content id="USER_CELL_C"><className>CBoolean</className></content>
+      <content id="USER_CELL_D"><className>CBoolean</className></content>
+      <content id="USER_CELL_E"><className>CBoolean</className></content>
+      <content id="USER_CELL_F"><className>CBoolean</className></content>
+      <content id="USER_SPACEGROUP"><className>CBoolean</className></content>
+      <content id="NUMBER_SUBSTRUCTURE">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Expected total number of substructure atoms in the asymmetric unit</toolTip>
+          <min>1</min>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="SUBSTRDET_NUM_DSUL">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of disulphides in the asymmetric unit that substructure detection should search for as single atoms and then model as disulfides</toolTip>
+          <min>0</min>
+          <charWidth>2</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_NUMBER_SUBSTRUCTURE"><className>CBoolean</className></content>
+      <content
+	  id="USER_SUBSTRDET_NUM_DSUL"><className>CBoolean</className></content>
+      <!--
+      <content id="SEQIN">
+        <className>CSeqDataFile</className>
+        <qualifiers>
+          <toolTip>Protein sequence (will be used for parameter estimation and model building)</toolTip>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fileExtensions>['pir','seq','fas']</fileExtensions>
+        </qualifiers>
+	</content>
+	-->
+        <content id="SEQIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <toolTip>Protein sequence (will be used for parameter estimation and model building)</toolTip>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+	  <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <toolTip>Input (partial) model</toolTip>
+          <default>{'subType': '1'}</default>
+          <requiredSubType>1,0</requiredSubType>
+          <allowUndefined>True</allowUndefined>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>unknown,model,homolog,fragment</menuText>
+            <enumerators>0,1,2,3</enumerators>
+            <default>1</default>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_SUB">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <toolTip>Input substructure model (for phasing purposes)</toolTip>
+          <default>{'subType': '1'}</default>
+          <requiredSubType>1,0</requiredSubType>
+          <subType>
+            <onlyEnumerators>True</onlyEnumerators>
+            <menuText>unknown,model,homolog,fragment</menuText>
+            <enumerators>0,1,2,3</enumerators>
+            <default>1</default>
+          </subType>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_SUB_RES">
+        <className>CString</className>
+      </content>
+      <content id="FPHIN_HL">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <subType>1</subType>
+          <toolTip>Input phase distribution</toolTip>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="INPUT_PHASES">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you have initial phases for input</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="EXPTYPE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>SAD,SIRAS,MAD</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>SAD,SIRAS,MAD</enumerators>
+          <allowUndefined>False</allowUndefined>
+          <default>SAD</default>
+        </qualifiers>
+      </content>
+      <content id="USER_EXPTYPE"><className>CBoolean</className></content>
+      <content id="REPLACE_MET_MSE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you wish to replace methionines by selenomethionines in the input partial model</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="START_PIPELINE">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>The pipeline will start with this process (the actual pipeline and parameters can be found in Advanced Options)</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>refatompick,substrdet,phdmmb,phas,handdet,dmfull,building,ref</enumerators>
+          <menuText>Substructure improvement,Substructure detection,Den.mod. + poly-Ala tracing,Substructure phasing,Hand determination,Density modification,Model building,Refinement</menuText>
+          <default>substrdet</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="END_PIPELINE">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>The pipeline will end with this process (the actual pipeline and parameters  an be found in Advanced Options)</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>substrdet,phdmmb,phas,refatompick,handdet,dmfull,building,ref</enumerators>
+          <menuText>Substructure detection,Den.mod. + poly-Ala tracing,Substructure phasing,Substructure improvement,Hand determination,Density modification,Model building,Refinement</menuText>
+          <default>ref</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="SHELXCDE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you wish to use SHELXC->SHELXD->SHELXE in the pipeline (the actual pipeline and parameters can be found in Advanced Options)</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="SHELX_SEPAR">
+        <className>CBoolean</className>
+      </content>
+      <content id="DNA">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="SUBSTR_ATOMS_NATIVE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if the substructure from the crystal #1 is also present in the "native" crystal</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTR_ATOMS_NATIVE"><className>CBoolean</className></content>
+      <content id="NATIVE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if data from a "native" crystal is available (will be used for model building and refinement as well as phasing)</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAD2">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you have another anomalously scattering dataset collected at a different wavelength (will be used for MAD phasing)</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAD3">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you have another anomalously scattering dataset collected at a different wavelength (will be used for MAD phasing)</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAD4">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you have another anomalously scattering dataset collected at a different wavelength (will be used for MAD phasing)</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="DNAME">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify whether the dataset #1 was collected at peak, inflection point, high or low remote of the anomalous scattering curve (may be often omitted for SAD,SIRAS)</toolTip>
+          <onlyEnumerators>False</onlyEnumerators>
+          <enumerators>peak,infl,hrem,lrem</enumerators>
+          <menuText>peak,infl,hrem,lrem</menuText>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="DNAME2">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify whether the dataset #2 was collected at peak, inflection point, high or low remote of the anomalous scattering curve</toolTip>
+          <onlyEnumerators>False</onlyEnumerators>
+          <enumerators>peak,infl,hrem,lrem</enumerators>
+          <menuText>peak,infl,hrem,lrem</menuText>
+          <default></default>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="DNAME3">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify whether the dataset #3 was collected at peak, inflection point, high or low remote of the anomalous scattering curve</toolTip>
+          <onlyEnumerators>False</onlyEnumerators>
+          <enumerators>peak,infl,hrem,lrem</enumerators>
+          <menuText>peak,infl,hrem,lrem</menuText>
+          <default></default>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="DNAME4">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify whether the dataset #4 was collected at peak, inflection point, high or low remote of the anomalous scattering curve</toolTip>
+          <onlyEnumerators>False</onlyEnumerators>
+          <enumerators>peak,infl,hrem,lrem</enumerators>
+          <menuText>peak,infl,hrem,lrem</menuText>
+          <default></default>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="USER_DNAME"><className>CBoolean</className></content>
+      <content id="USER_DNAME2"><className>CBoolean</className></content>
+      <content id="USER_DNAME3"><className>CBoolean</className></content>
+      <content id="USER_DNAME4"><className>CBoolean</className></content>
+      <content id="INPUT_PARTIAL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you have a partial model (for example from molecular replacement) that needs to be rebuilt</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="PARTIAL_AS_SUBSTR">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you wish to remove all protein atoms from the inputted partial model and start phasing only from the anomalous substucture atoms present in the model</toolTip>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="SUBSTR_IN_PARTIAL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="FREE">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify whether free set of reflections should be excluded in refinement to calculate Rfree. Either an existing free set of reflections can be inputted or a new free set can be generated.</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>new,existing,no</enumerators>
+          <menuText>new set,existing set,no</menuText>
+          <default>new</default>
+        </qualifiers>
+      </content>
+      <content id="MONOMERS_ASYM">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of monomers in the asymmetric unit (expected)</toolTip>
+          <min>1</min>
+          <onlyEnumerators>True</onlyEnumerators>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_MONOMERS_ASYM"><className>CBoolean</className></content>
+      <content id="SOLVENT_CONTENT">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Solvent content in the crystal (expected)</toolTip>
+          <min>0.0</min>
+          <max>1.0</max>
+          <onlyEnumerators>True</onlyEnumerators>
+          <charWidth>7</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SOLVENT_CONTENT"><className>CBoolean</className></content>
+      <content id="RESIDUES_MON">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of residues per monomer</toolTip>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="USER_RESIDUES_MON"><className>CBoolean</className></content>
+      <content id="RESIDUES_MON_COPY">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Input the (expected) number of residues per monomer.</toolTip>
+          <min>0</min>
+          <width>5</width>
+        </qualifiers>
+      </content>
+      <content id="RESIDUES_MON_INFO">
+        <className>CString</className>
+      </content>
+      <content id="NUCLEOTIDES_MON">
+        <className>CInt</className>
+        <qualifiers>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="INPUT_SEQUENCE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if sequence for the protein is available (recommended)</toolTip>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="SAVED_FPMFILE">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FPMFILE2">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FPMFILE3">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FPMFILE4">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FAVFILE">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FAVFILE2">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FAVFILE3">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FAVFILE4">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FAVFILE_NATIVE">
+        <className>CString</className>
+        <qualifiers><default></default></qualifiers>
+      </content>
+      <content id="SAVED_FPLUS">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FPLUS2">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FPLUS3">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FPLUS4">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFPLUS">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFPLUS2">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFPLUS3">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFPLUS4">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FMIN">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FMIN2">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FMIN3">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FMIN4">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFMIN">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFMIN2">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFMIN3">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFMIN4">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FAVER">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FAVER2">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FAVER3">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FAVER4">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_FAVER_NATIVE">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFAVER">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFAVER2">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFAVER3">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFAVER4">
+        <className>CString</className>
+      </content>
+      <content id="SAVED_SIGFAVER_NATIVE">
+        <className>CString</className>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <toolTip>Specify the existing 'free' set of reflections to be used</toolTip>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="FREE_RATIO">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Specify the ratio of reflections tagged as 'free' and used for validation purposes</toolTip>
+          <default>5</default>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>{'subType': '1'}</default>
+        </qualifiers>
+      </content>
+      <content id="FPHOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default><subType>1</subType></default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FPHOUT_2FOFC">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default><subType>1</subType></default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT_SUBSTR">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>{'subType': '1'}</default>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT_SUB_RES">
+        <className>CString</className>
+      </content>
+      <content id="FPHOUT_HL">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FPHOUT_DIFF">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default><subType>2</subType></default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FPHOUT_DIFFANOM">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <contentFlag>1</contentFlag>
+            <subType>2</subType>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT_HAND2">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>{'subType': '1'}</default>
+        </qualifiers>
+      </content>
+      <content id="FPHOUT_HAND2">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <subType><default>1</default></subType>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FPHOUT_HL_HAND2">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom_OUT">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom_OUT2">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom_OUT3">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="F_SIGFanom_OUT4">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="F_SIGF_OUT">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="FREEROUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CExpPhasPerformance</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="REFATOMPICK_REF_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>The program that will be used in the process of substructure improvement</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>REFMAC5</menuText>
+          <enumerators>refmac</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="REFATOMPICK_RMS_THRESHOLD">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Atoms above the specified RMS threshold in the anomalous difference map will be added to the substructure</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <min>0.0</min>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_REFATOMPICK_RMS_THRESHOLD"><className>CBoolean</className></content>
+      <content id="REFATOMPICK_OCC_CUT">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Removes substr. atoms with occupancies refined below the specified value.</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <min>0.0</min>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_REFATOMPICK_OCC_CUT"><className>CBoolean</className></content>
+      <content id="REFATOMPICK_NUM_ITER">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of iterations of new substructure atoms picking</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <min>0</min>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_REFATOMPICK_NUM_ITER"><className>CBoolean</className></content>
+      <content id="REFATOMPICK_REFCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of refinement cycles in each picking iteration</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <min>0</min>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_REFATOMPICK_REFCYC"><className>CBoolean</className></content>
+      <content id="KEYWORDS_REFATOMPICK">
+        <className>CList</className>
+        <qualifiers>
+          <toolTip>Additional keywords for substructure improvement</toolTip>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="FAEST_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for FA estimation</toolTip>
+          <menuText>SHELXC,AFRO,ECALC</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>shelxc,afro,ecalc</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="SUBSTRDET_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for substructure determination</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>SHELXD,PRASA,CRUNCH2</menuText>
+          <enumerators>shelxd,prasa,crunch2</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="SUBSTRDET_HIGH_RES_CUTOFF">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>High resolution cutoff used in substructure determination.  A starting point rule of thumb for SAD data is resolution + 0.5A. </toolTip>
+          <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_HIGH_RES_CUTOFF"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_HIGH_RES_CUTOFF_CCHALF">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Determine the high resolution cutoff for substructure determination from CCanom1/2 (only available if unmerged data inputted to SHELXC)</toolTip>
+          <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_HIGH_RES_CUTOFF_CCHALF"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_HIGH_RES_CUTOFF_RADIUS">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>Substructure determination high resolution cutoff radius:  cutoffs will be tested in this radius around the specified initial cutoff.  A radius of 0.5A around data resolution+0.5A is typically sufficient. </toolTip>
+          <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_HIGH_RES_CUTOFF_RADIUS"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_HIGH_RES_CUTOFF_STEP">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>In the specified substructure determination high resolution cutoff radius, the testing cutoff values will be derived by increasing/decreasing by the step value.  A step of 0.25A is typically sufficient. </toolTip>
+          <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_HIGH_RES_CUTOFF_STEP"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_THRESHOLD_STOP">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>If this threshold is reached, substructure determination will stop early, assuming a solution that will be used for phasing  (saving some time for the "easy" datasets).  CFOM is defined as CC+CCweak for SHELXD, CC*FOM*CLD for PRASA</toolTip>
+          <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_THRESHOLD_STOP"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_THRESHOLD_WEAK">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>If CFOM from SHELXD is smaller than this threshold, thorough building will be used:  more cycles, search for helices, increased search time factor.  Set to 0 to disable, set to 1000 to always use thorough building.</toolTip>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_THRESHOLD_WEAK"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_NUM_TRIALS">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of substructure detection trials performed if CFOM threshold is not reached.</toolTip>
+          <min>0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_NUM_TRIALS"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_NUM_THREADS">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of CPU threads used to improve the speed of substructure detection via parallelization. All the local CPU's used by default. Only recommended to set manually in case of limited responsivness of the default setting.</toolTip>
+          <min>0</min>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_NUM_THREADS"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_MIN_DIST_ATOMS">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>The (expected) minimal distance between substructure atoms</toolTip>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_MIN_DIST_ATOMS"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_MIN_DIST_SYMM_ATOMS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if you expect that (some) substucture atoms can be in special positions in the cell</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_MIN_DIST_SYMM_ATOMS"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_OPTIMIZE_SOL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>The solutions found can be optimized and a different solution can be picked (by default, multiple solutions are optimized only in case of a small FOM)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_OPTIMIZE_SOL"><className>CBoolean</className></content>
+      <content id="SUBSTRDET_NUM_ATOMS">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>The found substructure will be cut to max. the specified number of substructure atoms in the asymmetric unit, by removal of the atoms from the smallest peaks</toolTip>
+          <charWidth>3</charWidth>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="USER_SUBSTRDET_NUM_ATOMS"><className>CBoolean</className></content>
+      <content id="PRASA_MINPEAKS">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Substructures with number of significant peaks (in ASU) below the specified number will be ignored.</toolTip>
+          <charWidth>3</charWidth>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_SUBSTRDET">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any additional program keywords (separate multiple keywords by a comma).  Keywords specified here will always take preference over defaults or other settings.</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>25</charWidth>
+        </qualifiers>
+      </content>
+      <content id="PHAS_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for substructure phasing and refinement</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>REFMAC5,BP3</menuText>
+          <enumerators>refmac,bp3</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="PHAS_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of substructure refinement cycles</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_PHAS_CYCLES"><className>CBoolean</className></content>
+      <content id="KEYWORDS_PHAS">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any additional program keywords</toolTip>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="DO_HANDDET">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>If selected, hand determination will be performed.  If not selected, the input hand will be assumed correct.</toolTip>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="HANDDET_DMCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of density modification cycles in hand determination</toolTip>
+        </qualifiers>
+      </content>
+      <content id="HANDDET_THRESHOLD_DISCRIM">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>The requested difference between hands for hand discrimination.  Set to 20 or more to always use both hands in model building.  Set to 0 to always take hand with the better score.</toolTip>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="HANDDET_DMFULL_DM_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for density modification in hand determination</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>Solomon</menuText>
+          <enumerators>solomon</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_HANDDET_DM">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="HANDDET_DMFULL_PHCOMB_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for phase combination in hand determination</toolTip>
+          <menuText>Multicomb</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>multicomb</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_HANDDET_PHCOMB">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="DMFULL_DMCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of density modification cycles</toolTip>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_DMFULL_DMCYC"><className>CBoolean</className></content>
+      <content id="DMFULL_THRESHOLD_STOP">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>If this threshold is reached, density modification will stop early, assuming a good map that can be used for building  (saving some time for the "easy" datasets)</toolTip>
+          <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_DMFULL_THRESHOLD_STOP"><className>CBoolean</className></content>
+      <content id="DMFULL_DM_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for density modification</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>Parrot,Solomon</menuText>
+          <enumerators>parrot,solomon</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="DMFULL_PHCOMB_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for phase combination in density modification</toolTip>
+          <menuText>REFMAC5,Multicomb</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>refmac,multicomb</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_DMFULL_PHCOMB">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any custom phase combination program options (separate multiple options by a comma)</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>30</charWidth>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_DMFULL_DM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any custom density modification program options (separate multiple options by a comma)</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>30</charWidth>
+        </qualifiers>
+      </content>
+      <content id="PHDMMB_DMCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of density modification cycles per each model building iteration</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_PHDMMB_DMCYC"><className>CBoolean</className></content>
+      <content id="PHDMMB_BIGCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of model building cycles</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_PHDMMB_BIGCYC"><className>CBoolean</className></content>
+      <content id="PHDMMB_THRESHOLD_STOP">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>If this threshold is reached, poly-Ala tracing will stop early, assuming a good quality model has been obtained  (saving time for the "easy" datasets)</toolTip>
+            <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_PHDMMB_THRESHOLD_STOP"><className>CBoolean</className></content>
+      <content id="PHDMMB_THRESHOLD_HAND_STOP">
+        <className>CFloat</className>
+        <qualifiers>
+          <toolTip>If this correlation coefficient threshold is reached, hand is considered determined and poly-Ala tracing for the other hand will stop</toolTip>
+          <min>0.0</min>
+          <charWidth>5</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_PHDMMB_THRESHOLD_HAND_STOP"><className>CBoolean</className></content>
+      <content id="PHDMMB_THOROUGH_BUILD">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Use "thorough" SHELXE building (more cycles, search for helices, increased search time factor)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_PHDMMB_THOROUGH_BUILD"><className>CBoolean</className></content>
+      <content id="ARGUMENTS_SHELXE">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any additional SHELXE arguments, separate multiple arguments by a comma (example: -z for substructure optimization).  Arguments specified here will always take preference over defaults or other settings.</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>25</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USE_COMB">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Use the "combined" Crank2 building algorithm - a multivariate SAD function combining information from anomalous and non-anomalous signal from data, density modification and model building</toolTip>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="COMB_PHDMMB_MINBIGCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Minimal number of model building iterations</toolTip>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_MINBIGCYC"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_MAXBIGCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Maximal number of model building iterations</toolTip>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_MAXBIGCYC"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_NCS_DET">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option to estimate NCS (can be time consuming with large number of atoms)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_NCS_DET"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_NCS_DET_MR">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option to estimate NCS from the partial model</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_NCS_DET_MR"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_SKIP_INITIAL_BUILD">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Skip the first model building iteration (the initial phase and DM restrained refinement cycles are performed with the model inputted to this step)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_SKIP_INITIAL_BUILD"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_REBUILD_ONLY">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option if the actual model should be inputted to each building cycle (if not selected then alternate building from phases only and from phases+model)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_REBUILD_ONLY"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_START_SHELXE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Option to start building using ShelxE backbone tracing and later switch to Buccaneer. May improve the building at higher resolutions.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_START_SHELXE"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_NUM_PARALLEL">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Parallel model building: the specified number of models is built and refined simultanously, often improving the final model quality.  Parallel building is performed if a value larger than 1 is specified; 5 may a good value.  Expect significant slowdown if the specified number is larger than the number of free cores of your system.</toolTip>
+          <charWidth>3</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_COMB_PHDMMB_NUM_PARALLEL"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_DMFULL_DM_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for real space density modification within the "combined" model building</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>Parrot,Solomon</menuText>
+          <enumerators>parrot,solomon</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_COMB_DM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any custom density modification program options (separate multiple options by a comma)</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>30</charWidth>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_COMB_SHELXE">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any custom SHELXE program options (separate multiple options by a comma)</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>15</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_MBREF_BIGCYC"><className>CBoolean</className></content>
+      <content id="COMB_PHDMMB_DMFULL_REF_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for data and density modification phase restrained refinement</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>REFMAC5</menuText>
+          <enumerators>refmac</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="MB_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for automatic real space model building</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>Buccaneer,ARP/wARP</menuText>
+          <enumerators>buccaneer,arpwarp</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_MB">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify any custom model building program options (separate multiple options by a comma)</toolTip>
+          <allowUndefined>True</allowUndefined>
+          <charWidth>30</charWidth>
+        </qualifiers>
+      </content>
+      <content id="MBREF_REF_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for model refinement between the model building iterations</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>REFMAC5</menuText>
+          <enumerators>refmac</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="MBREF_BIGCYC">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of model building iterations</toolTip>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_MB_REF">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="REF_PROGRAM">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Program used for refinement</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>REFMAC5</menuText>
+          <enumerators>refmac</enumerators>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="KEYWORDS_REF">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="REF_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <toolTip>Number of refinement cycles</toolTip>
+          <charWidth>4</charWidth>
+        </qualifiers>
+      </content>
+      <content id="USER_REF_CYCLES"><className>CBoolean</className></content>
+      <content id="REF_EXCLUDE_FREE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option to exclude the "free" reflections in refinement</toolTip>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="MBREF_EXCLUDE_FREE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Select this option to exclude the "free" reflections in model building and refinement</toolTip>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="COMB_PHDMMB_EXCLUDE_FREE">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Specify when the "free" reflections will be excluded in the "combined" model building</toolTip>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>never,in the last cycles,always</menuText>
+          <enumerators>never,last,always</enumerators>
+          <allowUndefined>False</allowUndefined>
+          <default>always</default>
+        </qualifiers>
+      </content>
+      <content id="PRESENT_STYLE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>tree in presentation,tree in i2 panel,rvapi folding page,native i2 folding page</menuText>
+          <enumerators>rvapi_tree,i2_tree,bigpage,i2_bigpage</enumerators>
+          <allowUndefined>False</allowUndefined>
+          <default>i2_bigpage</default>
+        </qualifiers>
+      </content>
+      <content id="INITIAL_DEFAULTS_GEN">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="CLEANUP">
+        <className>CBoolean</className>
+        <qualifiers>
+          <toolTip>Remove all the intermediate MTZ files as the job ends</toolTip>
+          <default>True</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

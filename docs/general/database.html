@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>CCP4i2 Database</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+</head>
+<body>
+
+<table class="banner">
+<tr>
+<!--<td rowspan="2" width="200" ><img src="../ccp4i2.png" alt="CCP4 web logo"/></td>-->
+<td><img width=75 src="ccp4i2.png" alt="CCP4 web logo"/></td>
+<td class="logohead">CCP4i2 &mdash; CCP4i2 Database</td>
+</tr>
+</table>
+
+
+<pre>
+ cd $HOME/.CCP4I2/db
+ echo '.dump' | sqlite3 database.sqlite  > database.dump
+ echo '.read database.dump' | sqlite rebuilt_database.sqlite
+</pre>
+
+</body>

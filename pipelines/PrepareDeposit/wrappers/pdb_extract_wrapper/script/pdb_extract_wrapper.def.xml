@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>pdb_extract_wrapper</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>pdb_extract_wrapper</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="pdb_extract_wrapper">
+        <container id="inputData">
+            <content id='XYZIN'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="ENTRYDATAIN">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="SEQUENCE_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CSeqDataFile</className>
+                    <qualifiers>
+                        <minLength>0</minLength>
+                        <maxLength>0</maxLength>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="CHAINID_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CString</className>
+                    <qualifiers>
+                        <minLength>0</minLength>
+                        <maxLength>0</maxLength>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="ENTRYDATA">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="CIFFILE">
+                <className>CMmcifDataFile</className>
+                <qualifiers>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

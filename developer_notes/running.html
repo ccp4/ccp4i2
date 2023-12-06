@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>CCP4i2 Developer Notes</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+</head>
+<body>
+<h2>CCP4i2 Developer Notes - Running jobs</h2>
+
+<p>This is an outline of what happens from the user clicking the 'Run'
+button to the report from the finished job being shown.</p>
+
+<a name="starting"/><h4>Starting a job</h4>
+<p>The 'Run' button/action is defined in <i>CProjectViewer</i> and, when
+clicked calls <i>CTaskInputFrame.runTask()</i> which does:
+<ul>
+  <li><i>CTaskWidget.updateModelFromView()</i> - cascades down the task
+  widgets to ensure the data objects are up-to-date with the widget
+  content (they should be up-to-date but this is checking)</li>
+  <li>Run <i>CTaskWidget.fix()</i> - base class version does nothing but may
+  be reimplemented in tasks to do a final 'fix'</li>
+  <li>Call <i>CTaskWidget.isValid()</i> and <i>CTaskWidget.taskValidity()</i> to
+  return list of invalid/missing input. If there is invalid/missing
+  then give user error report and quit running.</li>
+  <li>Check if there is a block on running task locally (see
+  LINK).</li>
+  <li>Call <i>CProjectsManager.importFiles()</i> which will copy any selected
+  file-to-import into the project CCP4_IMPORTED_FILES directory and
+  record it in the database.
+  Note that MTZs have been imported when they were selected
+  due to requiring interactive user selection of columns.</li>
+  <li><i>CTaskInputFrame.makeJobInputFile()</i> is called to write out the
+  <i>input_params.xml</i> file for the job</li>
+  <li>Call <i>CDbApi.gleanJobFiles()</i> to record input data in the
+  database</li>
+  <li>Action now depends on the mode of the task:
+  <br/><i>editor</i> mode implies all necessary functionality was in the
+  gui and job can just be reported finished to the database.
+  <br/><i>runRemote</i> runMode is set if user clicked 'Run remote'
+  button and so job goes in <a href="#remote">Running remotely</a>
+  system.
+  <br/><i>internal</i> the task script is run in the gui process by <i>CProjectManager.runInternalTask()</i> -
+  usually for a trivially brief script
+  <br/><i>default</i> the database is updated to set job status to queued.
+  </li>
+  <li>The task widget is redrawn with the widgets made non-editable.</li>
+</ul>
+<p>Running external jobs is controlled by <i>CJobController</i> class which
+is instantiated on startup (<i>utils/startup.py
+startJobController()</i>) with a timer calling<i> CJobController.doChecks()</i>
+every 1sec. <i>doChecks()</i> calls <i>checkJobQueue()</i> which queries the
+database for any queued jobs and if any are returned passes them to
+<i>CJobController.runTask()</i> (or <i>CJobController.runOnServer()</i> for remote jobs).</p>
+<p><i>CJobController.runTask()</i> uses the Qt <i>QProcess</i> class to run the task
+in a separate process.
+(There is also code to use Python <i>subprocess</i> but it does not emit a
+signal (or anything equivalent) when
+the job is finished and is less straightforward to manipulate the
+environment of the external job). The <i>QProcess</i> class enables the
+process environment to be edited (possibly to
+pass some info as environment variables) and the process output is
+redirected to <i>stdout.txt</i> and <i>stderr.txt</i>.  The 'finish' signal from
+<i>QProcess</i> is connected to <i>CJobController.handleFinish()</i> and the job
+started using <i>QProcess.start()</i>. The database is updated to set the job status to
+'running'.</p>
+
+<a name="running"/><h4>The non-graphical 'script' process</h4>
+<p>The non-graphical process starts with the Python interpreter
+running <i>bin/runTask.py</i> - this bootstraps a non-graphical i2
+environment. (Note that it is very important to avoid any graphical
+dependency as these scripts may be run on servers without any
+graphical libraries - beware some weird crashes on servers may be due
+to this failure.) The <i>runTask</i> script is passed the name of the job
+<i>input_params.xml</i> on the command line. It will also take keyworded command
+line argments to reset the database file or to specify a compressed
+project file which is used in running on a server.</p>
+<p>Each task in i2 should have a 'script' which is a subclass of
+<i>CPluginScript</i> as explained in the <a
+href="../docs/developers/pipelines.html">developers
+docs</a>. 'Pipeline' scripts will use other scripts as
+'subroutines'/'functions'. Between the <i>runTask</i> script and
+the 'top' <i>CPluginScript</i> subclass there is the <i>CRunPlugin</i> class.
+<p>The <i>runTask</i> script creates an instance of
+<i>CCP4PluginScript.CRunPlugin</i> and passes it the <i>input_params.xml</i> or
+compressed project file. Past versions of i2 have made <i>CRunPlugin</i> a
+sub-class of Python <i>thread</i> so it ran as a separate
+thread (hence some of the comments in the code). The separate thread
+was intended to help trapping errors but that did not really work.
+<i>CRunPlugin.run()</i> does most of the work of the class.
+If <i>CRunPlugin</i> is passed a compressed project file (when it is
+running on a server) then it unpacks the compressed file to temporary
+directory and creates a temporary database. <i>CRunPlugin</i> decides the
+job work directory by assuming the <i>input_params.xml</i> file is in the work
+directory. The <i>jobId</i>, <i>projectId</i> and taskname are taken from the
+<i>input_params.xml</i> header. <i>CRunPlugin.run()</i> creates an instance of
+<i>CDatabaseHandler</i> which caches job metadata and has a few
+methods to handle interaction with the database and this instance is
+passed down to all instances of <i>CPluginScript</i>.</p>
+<p><i>CRunPlugin.run()</i> uses <i>TASKMANAGER().getPluginScriptClass()</i> to get
+the right <i>CPluginScript</i> subclass for the given taskname and
+instantiates the class and uses <i>CPluginScript.setDbData()</i> to pass the
+instance of <i>CDatabaseHandler</i> and other job
+metadata. <i>CPluginScript.process()</i> is called to start the script
+proper.</p>
+<p>Pipeline tasks reimplement <i>CPluginScript.process()</i> to
+control the flow of subtasks but a 'simple' task relies on the base class
+<i>CPluginScript.process()</i> to actually run the wrapped program as
+another process. <i>CPluginScript.process()</i> checks that input and
+output parameters are ok before calling <i>processInputFiles()</i>
+which should have been reimplemented by the task to make any
+manipulations of the input data, then <i>makeCommandAndScript()</i>
+which should be reimplemented to
+create the comand line and script for the program and then it runs the
+program. After the program finishes <i>process()</i> calls
+<i>postProcess()</i> which checks the external process status and then
+calls <i>processOutputFiles()</i> which
+should be reimplemented by the task to do any manipulations of output
+files.  <i>postProcess()</i> finally calls
+<i>CPluginScript.reportStatus()</i> passing a SUCCEEDED or FAILED
+flag. <i>reportStatus()</i> is responsible for finishing the task by
+reporting the status to the database, saving the final parameters to
+<i>params.xml</i> and emitting a finished signal. The final
+<i>params.xml</i> is probably little changed from the
+<i>input_params.xml</i> for the 'top' pipeline task but it is a useful
+record of the parameters passed to subtasks programmatically.</p>
+<p>The wrapped program is run as a separate process by the
+<i>CProcessManager()</i> class. This has code to use either Python <i>subprocess</i>
+or <i>QProcess</i> and currently uses <i>QProcess</i> for the ease of manipulation
+of the process environment and the fact that there is a signal when
+the external process finishes.  There should be one instance of
+<i>CProcessManager()</i> per i2 process - accessed by
+<i>CCP4Modules.PROCESSMANAGER()</i>. It should be used to start *all*
+external processes. It maintains a record of all process and writes
+useful diagnostic to <i>stdout</i> for all processes. 
+</p>
+
+<a name="finished"/><h4>Handling the finished job</h4>
+<p>In the script process <i>CPluginScript.reportStatus()</i> reports the job status
+(finished or failed) and the time to the database when the job completes. In the
+graphical process the job controller
+<i>CProjectsManager.checkForFinishedJobs()</i> is called at (1s) intervals
+to call <i>CDbApi.getRecentlyFinishedJobs()</i> to query the database for
+jobs the finished since the last check. When finished jobs are found
+<i>CDbApi.getRecentlyFinishedJobs()</i> emits a <i>'jobFinished'</i>
+signal. The job list code in <i>CCP4ProjectWidget</i> connects that signal to
+updateJob() (via <i>updateFinishedJob()</i>) which updates the
+<i>QProjectModel</i> for the job list to show the changed job status and
+any output files.<p>
+The database <i>'jobFinished'</i> signal is also recognised by
+<i>CTaskWidget</i> (in <i>CCP4ProjectViewer.py</i>) and triggers
+<i>CTaskWidget.handleJobFinished()</i> which resets which actions are
+enabled in the project viewer and calls <i>CReportView.showOutput()</i> to
+regenerate the job report.  Note that a 'running' report is triggered
+by changes to the job <i>program.xml</i> file (the <i>FILEWATCHER()</i> =
+<i>CFileSystemWatcher</i> which sub-classes <i>QFileSystemWatcher</i> is set to
+watch that file).</p>
+
+<a name="script_errors"/><h4>Handling script errors</h4>
+<p>Handling errors either in the task script or in the external
+program and providing meaningful feedback to users is a major
+headache.
+The task script should call <i>CPluginScript.appendErrorReport()</i> to
+report any error or warning.  These errors are written to the job
+<i>diagnostic.xml</i> file and presented to the user in the automatically
+generated 'failed job' report (<i>CReportGenerator.makeFailedReport()</i>).
+The 'core' <i>CPluginScript</i> code has thorough error trapping about any
+calls to task-specific code but can only prevent crashes and return
+very generic error messages.</p>
+<p>The main cause of jobs stopping without trace is crashes in subjobs
+that are run in asynchronous mode - this is a strong reason not to use
+asynchronous mode.</p>
+
+
+<a name="remote"/><h4>Running remotely</h4>
+<p>See user <a href="../docs/general/servers.html">Server
+documentation</a>. We hope that a 'system manager' or other competent
+person will setup the remote servers for a user site and save the
+configuration in
+<i>ccp4/shared/ccp4i2/local_setup/serverSetup.params.xml</i>. 
+<i>CCP4JobControllerGui.py</i> contains <i>CServerSetupWindow</i>
+class which provides the gui to configure the server(s). It is
+expected that there might be multiple servers using the same mechanism
+- these can be setup as one 'server group' - the gui is provided by
+<i>CServerGroupView</i> which is an i2 'view' widget for
+<i>CCP4Annotation.CServerGroup</i>.</p>
+
+<p>When the user clicks the 'Run on server' button
+<i>CTaskInputFrame.runRemotely()</i> presents a dialog box
+(<i>CCP4JobControlGui.CServerParamsDialog</i>) that loads the server config
+file (so it knows what servers are available) and then offers the user the choice
+the server and requests info such as password. If this dialog returns
+'Accepted' status then the parameters entered by the user are
+recovered by a call to <i>CServerParamsDialog.getParams()</i> and passed (along with a
+<i>jobId</i>) to <i>CJobController.createServerParams()</i>.
+<i>runRemotely()</i> then
+calls <i>makeJobBall()</i> whose behaviour is dependent on whether or
+not the server
+ has access to the local file system. Firstly it always creates an xml version of a cutdown
+database with only the info necessary to run this job. Then for
+servers without access to the local file system it creates a tarball
+containing all necessary input files for the job. When this is finished
+the job status in the database is updated to 'queued'.</p>
+<p>The <i>CJobController</i> class subclasses <i>CJobServer</i> which
+provides the functionality to run jobs on a server. This separation
+into another class/file was partly to make some useful code 
+potentially available outside i2. <i>CJobServer._serverParams</i> is a Python dict 
+with the keys being the <i>jobId</i> and dictionary item being an
+instance of <i>CJobServer</i>, a small class to hold and access the
+parameters for the server jobs. 
+The call to <i>CJobServer.createServerParams()</i> creates an instance
+of <i>CJobServer</i> and adds to <i>_serverParams</i> 
+and also loads the data into the main
+i2 database <i>ServerJobs</i> table. The database provides secure
+storage even if the gui process is closed or crashes but the
+<i>_serverParams</i> is used as cache to limit database access. The data in
+<i>_serverParams</i> and in the database is deleted when the job completes or the user
+deletes the job.</i></p>
+<p>There are utility functions in <i>CJobServer</i> to support interaction with
+remote machines. The interactions are
+usually handled by the <i>paramiko</i> Python library and run in a
+separate thread to avoid blocking the main thread. The <i>CJobServer</i> functions
+that are run in separate thread have names starting with underscore
+(e.g. <i>_transportFiles()</i> and it is important that if they fail
+they emit a suitable signal that is handled by the main thread. Note
+that the <i>sqlite</i> database should only be accessed from the main
+thread!</p>
+<p>The <i>CJobServer</i> utility functions:</p>
+<table>
+  <tr><td>openSSHConnection</td><td>Open an ssh connection!</td></tr>
+  <tr><td>transportFiles</td><td>Copy files to or from another
+    machine</td></tr>
+    <tr><td>testRemoteFiles</td><td>test if a file exists on the
+      remote filesystem</td></tr>
+     <tr><td>sendSSHCommand</td><td>Invoke a shell command on the
+       remote machine</td></tr>
+</table>
+
+<p>The supported mechanisms of running on server:</p>
+<table>
+  <tr><td>test</td><td>Actually runs job locally as test of the
+    software</td</tr>
+    <tr><td>ssh</td><td>Use sftp to copy files and ssh to start remote
+      process</td>
+     <tr><td>ssh_shared</td><td>As ssh but relying on server seeing same
+       filesystem so no file copying is necessary</td></tr>
+     <tr><td>qsub_local</td><td>Submit to <i>qsub</i> job queue has
+       'client' on users machine but can access other
+       servers.</td></tr>
+      <tr><td>qsub_remote</td><td>Submit to <i>qsub</i> job queue that is
+      only supported on another machine</td></tr>
+      <tr><td>custom</td><td>Use a custom mechanism with code supplied by user</td></tr>
+</table>
+
+<p><i>CJobController.doChecks()</i> is called at intervals to perform
+various polling functions:
+<br><i>checkJobQueue()</i> checks if there are queued jobs and
+calls <i>CJobController.runOnServer()</i> if they are to be run on a server.
+</p>
+
+<p><i>CJobController.runOnServer()</i> basically does three things:
+create a shell script to run the job, copies script and data to remote
+machine if necessary, and then, actually in <i>runOnServer2()</i>, start the
+job. <i>saveSh()</i> is used to write the shell script that runs the
+jo. Note that the script ends with a bit of code to write the process id to a file that
+can be read by i2 to recover the process id which used later to check
+if the process is still running.  
+For the 'ssh_shared' and 'qsub_local' mechanisms the client and server
+see the same filesystem so they do not
+need files copying to the remote machine but a temporary database file
+is specified so the main database file is not also being accessed from
+another machine which potentially messes up the database locking. The
+<i>transportFiles()</i> method is used to copy files to the remote machine
+and this is done in a separate thread to avoid blocking the main
+thread and on completion the <i>runOnServer2()</i> method is called.</p>
+<p><i>runOnServer2()</i> usually calls either <i>runInSSH()</i> or
+<i>runInQsub()</i> to start the job but there is also <i>runLocalTest()</i>
+which just runs the job locally (as a basic test of some of the server
+code) or calls the custom handler methods. If the job has started
+successfully then the <i>CServerParams.pollFinish</i> and
+<i>CServerParams.pollReport</i> flags are set appropriately.</p>
+
+<p><i>CJobController.doChecks()</i> also calls:
+<br/><i>CJobController.pollRemoteFinish()</i> which checks
+<i>CServerParams.pollFinish</i> values 
+for any 'remote' jobs that need to be polled to test if finished - if
+yes then 1 in every <i>SERVERCHECK</i> cycles 
+the appropriate polling mechanism is invoked.
+<br/><i>CJobController.pollRemoteReportUpdate()</i> checks
+<i>CServerParams.pollReport</i> which flags if there
+are remote jobs for which the report can be updated and for 1 in every
+<i>REPORTCHECK</i> cycles calls <i>updateReports()</i> to poll the remote machine
+for updated <i>program.xml</i>.</p>
+
+<p>Based on the <i>polRemote</i> flag the following methods are called
+to check job status:
+<br/><i>CJobServer.pollForFinishedFlagFile()</i> groups jobs by machine so
+there is only one query per machine tesing for a file called
+'FINISHED' in the temporary job directory.
+<br/><i>CJobServer.pollQsubStat()</i> Use <i>qstat</i> to find status
+of queued job.
+<br/>If a job is finished then call <i>handleFinishedServerJob()</i> which
+copies files back from a remote machine if necessary and then call
+<i>loadRemoteRun()</i> to read the xml database file into temporary tables in
+the database and then, if necessary, extract the output data files
+from the compressed file. The database temporary tables are then
+copied to the main tables and they are deleted. A 'job finished'
+signal is emitted so the graphical display is updated.</p>
+
+<p>If the <i>pollReport</i> flag is set then <i>updateReports()</i> is
+called. For mechanisms with files on the local disk you might expect the usual
+mechanism of watching for file changes with <i>QFileSystemWatcher</i> to
+notify of changes to the <i>program.xml</i> but it does not see
+changes caused by another machine. So <i>updateReports()</i>
+checks if the job <i>program.xml</i> has increased in size and, if so,
+emits a 'remoteJobUpdated' signal which is picked up by the
+<i>CProjectViewer</i> to force an update of the displayed report.  For jobs
+with files on a remote machine <i>updateReports()</i> copies the
+<i>program.xml</i> back to the client - the change to the local
+<i>program.xml</i> is seen and acted on by the
+<i>QFileSystemWatcher</i> mechanism.</p>
+
+<p>The non-graphical script side of i2, <i>bin/runTask.py</i>
+and <i>CCP4PluginScript</i> code, has some features to support
+running on a server. In particular if the first argument to
+<i>bin/runTask.py</i> is not a file with .xml extension then it is
+assumed to be a compressed file containing input files and a cutdown
+xml database which are unpacked by the <i>CRunPlugin</i> class. The
+same class will create a 'final' compressed file including updated xml
+version of the database.</p>
+<p>If the server
+has access to the same filesystem as the client then the important
+difference in script running is that it uses a temporary database to
+avoid possible issues of two machines accessing the same database. The
+xml version of a cutdown database is based to 
+<i>bin/runTask.py</i> by the <i>-dbxml</i> argument. <i>CRunPlugin</i>
+creates a temporary database and loads from the xml file. It also
+creates an updated xml database file on job completion.</p>
+
+
+<a name="non-graphical"/><h4>Running jobs non-graphically</h4>
+
+<p>It is possible to run a non-graphical process that mimics the i2
+interface by starting scripts as separate processes. This is enabled
+by the  <i>COpenJob</i> class (in <i>CDbUtils.py</i> file). This class 
+was originally intended to cache job information to minimise database
+access but now also contains functionality equivalent to that in
+<i>CProjectViewer</i> to enable running jobs.  The demo script
+<i>developer_projects/COpenJob-2.py</i> shows how to use this in four
+steps:
+<ul>
+<li>instantiate <i>COpenJob</i> with a <i>projectId</i></li>
+<li>call <i>COpenJob.createJob()</i> with the name of task required
+to run - this will enter a job in the database and return a <i>jobId</i></li>
+<li>load <i>COpenJob.container</i> with data - note that
+<i>COpenJob.setInputByContextJob(contextJobId)</i> can be used to auto-populate
+the input data based on 'following on' from the job with <i>contextJobId</i></li>
+<li>call <i>COpenJob.runJob()</i> to start the job</p></li>
+</ul>
+
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<?xml version="1.0" ?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>phaser_EP</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="phaser_EP">
+        <container id="keywords">
+            <content id="ROOT">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Base output filename</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="TITL">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Title</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="VERB">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Verbose output</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="DEBU">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Print debugging output</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="MUTE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Suppress output</guiLabel>
+                    <expertLevel>2</expertLevel>
+                </qualifiers>
+            </content>
+            <content id="XYZO">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write PDB file</guiLabel>
+                    <expertLevel>2</expertLevel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="XYZO_ENSE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write PDB files of ensembles to separate files for each solution</guiLabel>
+                    <expertLevel>3</expertLevel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="HKLO">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write MTZ file</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="JOBS">
+                <className>CInt</className>
+                <qualifiers>
+                    <guiLabel>Number of parallel threads</guiLabel>
+                    <default>2</default>
+                </qualifiers>
+            </content>
+            <content id="KEYW">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write keywords (script) file</guiLabel>
+                    <expertLevel>2</expertLevel>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="CLUS_PDB">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Cluster compound pdb file</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="HAND">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Heavy atom hand</guiLabel>
+                    <enumerators>off,on,both</enumerators>
+                    <default>both</default>
+                    <menuText>Use given hand,Use opposite hand,Both hands</menuText>
+                    <onlyEnumerators>1</onlyEnumerators>
+                </qualifiers>
+            </content>
+            <content id="LLGM">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write out LLG maps</guiLabel>
+                    <expertLevel>1</expertLevel>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="RESH_PERC">
+                <className>CFloat</className>
+                <qualifiers>
+                    <guiLabel>Percentage of resharpening factor to apply</guiLabel>
+                    <expertLevel>2</expertLevel>
+                    <default>100.0</default>
+                </qualifiers>
+            </content>
+            <content id="RFAC_USE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>If the R-factor is low for ensemble at origin then abort MR</guiLabel>
+                    <expertLevel>1</expertLevel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="RFAC_CUTO">
+                <className>CFloat</className>
+                <qualifiers>
+                    <guiLabel>If the R-factor is below this cutoff for ensemble at origin then abort MR</guiLabel>
+                    <expertLevel>1</expertLevel>
+                    <default>35.0</default>
+                </qualifiers>
+            </content>
+            <content id="PART_VARI">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Specify expected model accuracy by %ID or RMSD</guiLabel>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>ID,RMS</enumerators>
+                    <default>ID</default>
+                </qualifiers>
+            </content>
+            <content id="PART_DEVI">
+                <className>CFloat</className>
+                <qualifiers>
+                    <guiLabel>%ID or RMSD of model</guiLabel>
+                    <default>0.8</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="inputData">
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <requiredContentFlag>1,2</requiredContentFlag>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+        <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_PARTIAL">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <!-- the negative subType means not heavy atom file - to avoid muddling the likely input files from shelxd
+                    <requiredSubType>-4</requiredSubType>-->
+                </qualifiers>
+            </content>
+            <content id="MAPCOEFF_PARTIAL">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <saveToDb>True</saveToDb>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>1</subType>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_HA">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+           <requiredSubType>4,0</requiredSubType>
+                </qualifiers>
+            </content>
+            <content id="ASUFILE">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                  <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <selectionMode>2</selectionMode>
+                </qualifiers>
+            </content>
+          <content id='SFAC'>
+            <className>CString</className>
+            <qualifiers>
+                <default>SE</default>
+            </qualifiers>
+        </content>
+        <content id='NTRY'>
+            <className>CInt</className>
+        </content>
+        <content id='FIND'>
+            <className>CInt</className>
+            <qualifiers>
+                <default>4</default>
+            </qualifiers>
+        </content>
+        <content id="PARTIALMODELORMAP">
+            <className>CString</className>
+            <qualifiers>
+                <onlyEnumerators>True</onlyEnumerators>
+                <enumerators>SEARCH,NONE,MODEL,MAP</enumerators>
+                <menuText>Find heavy atoms,Partial heavy atom substructure,Partial protein/nucleic acid model,Map coefficients for protein/nucleic acid</menuText>
+                <default>NONE</default>
+            </qualifiers>
+        </content>
+            <content id="COMP_BY">
+                <className>CString</className>
+                <qualifiers>
+                    <enumerators>MW,ASU</enumerators>
+                    <onlyEnumerators>1</onlyEnumerators>
+                    <default>MW</default>
+                </qualifiers>
+            </content>
+            <content id="RESOLUTION_LOW">
+                <className>CFloat</className>
+            </content>
+            <content id="RESOLUTION_HIGH">
+                <className>CFloat</className>
+                <qualifiers>
+                </qualifiers>
+            </content>
+            <content id="ASU_PROTEIN_MW">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>1</min>
+                </qualifiers>
+            </content>
+            <content id="ASU_NUCLEICACID_MW">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>1</min>
+                </qualifiers>
+            </content>
+            <content id="WAVELENGTH">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>1.5418</default>
+                    <min>0.2</min>
+                    <max>9.0</max>
+                </qualifiers>
+            </content>
+            <content id="PURE_ANOMALOUS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <toolTip>Search for "pure anomalous" scatterers...for analysis not phasing</toolTip>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="LLGC_CYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>50</default>
+                </qualifiers>
+            </content>
+            <content id="ELEMENTS">
+                <className>CList</className>
+                <subItem>
+                    <className>CString</className>
+                </subItem>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+          <content id="RUNPARROT">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="RUNBUCCANEER">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="BUCCANEER_ITERATIONS">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>1</default>
+                    <enumerators>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,15,17,18,19,20</enumerators>
+                    <onlyEnumerators>False</onlyEnumerators>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XMLOUT">
+                <className>CXmlDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="HKLOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMtzDataFile</className>
+                    <qualifiers>
+                        <saveToDb>False</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="LLGMAPOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                        <default>
+                            <contentFlag>1</contentFlag>
+                            <subType>2</subType>
+                        </default>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="MAPOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                        <default>
+                            <contentFlag>1</contentFlag>
+                            <subType>1</subType>
+                        </default>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="XYZOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="ABCDOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPhsDataFile</className>
+                    <qualifiers>
+                        <contentFlag>
+                            <default>1</default>
+                        </contentFlag>
+                    </qualifiers>
+                </subItem>
+            </content>
+        <content id="FPHIOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <contentFlag>
+                            <default>1</default>
+                        </contentFlag>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

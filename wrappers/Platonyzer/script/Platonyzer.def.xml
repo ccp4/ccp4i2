@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>nicholls</userId>
+        <creationTime>2022-09-27T12:21:43.994600</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>Platonyzer</pluginName>
+        <pluginTitle>platonyzer metal site restraints</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="Platonyzer">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>4,3,2,1,0</requiredSubType>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="MODE">
+               <className>CString</className>
+               <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>ZN,NA_MG</enumerators>
+                  <menuText>Zinc,Zinc/Sodium/Magnesium</menuText>
+                  <default>ZN</default>
+               </qualifiers>
+            </content>
+            <content id="RM_VDW">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <default>True</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="RESTRAINTS">
+              <className>CRefmacRestraintsDataFile</className>
+              <qualifiers>
+              </qualifiers>
+            </content>
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                    <fileExtensions>cif</fileExtensions>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+<!--Here specify what sort of data constitutes a PERFORMANCEinDICATOR  for this task
+            <content id="PERFORMANCEINDICATOR">
+                <className>CRefinementPerformance</className>
+            </content>
+-->
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

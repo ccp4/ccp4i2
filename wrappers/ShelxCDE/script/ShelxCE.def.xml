@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>ShelxCE</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>ShelxCE</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="ShelxCE">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>wrappers/ShelxCDE/script</relPath>
+                <baseName>ShelxCDEBase.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        <container id="inputData">
+            <content id='HAIN'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id='HAOUT'>
+                <className>CPdbDataFile</className>
+            </content>
+            <content id='XYZOUT'>
+                <className>CPdbDataFile</className>
+            </content>
+            <content id="MAPOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>1</subType>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="ANOMMAPOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>2</subType>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="PHSOUT">
+                <className>CPhsDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <default>
+                        <contentFlag>2</contentFlag>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CExpPhasPerformance</className>
+            </content>
+        </container>
+        <container id='keywords'>
+            <content id="aN">
+                <className>CInt</className>
+                <qualifiers><guiLabel> N cycles autotracing [off]</guiLabel></qualifiers>
+            </content>
+            <content id="AX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> maximum random initial rotation in deg. for -O  [-A3.0]</guiLabel></qualifiers>
+            </content>
+            <content id="bX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> B-value to weight anomalous map (xx.pha and xx.hat)  [-b5.0]</guiLabel></qualifiers>
+            </content>
+            <content id="cX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> fraction of pixels in crossover region [-c0.4]</guiLabel></qualifiers>
+            </content>
+            <content id="dX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> truncate reflection data to X Angstroms [off]</guiLabel></qualifiers>
+            </content>
+            <content id="eX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> add missing 'free lunch' data up to X Angstroms  [dmin+0.2]</guiLabel></qualifiers>
+            </content>
+            <content id="f">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel> read F rather than intensity from native .hkl file  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="FX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> fract. weight for phases from previous global cycle  [-F0.8]</guiLabel></qualifiers>
+            </content>
+            <content id="gX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> solvent gamma flipping factor [-g1.1]</guiLabel></qualifiers>
+            </content>
+            <content id="GX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> threshold for accepting new peptide when tracing  [-G0.7]</guiLabel></qualifiers>
+            </content>
+            <content id="h">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel>heavy atoms also present in native structure</guiLabel></qualifiers>
+            </content>
+            <content id="hN">
+                <qualifiers><guiLabel> (N) heavy atoms also present in native structure [-h0]</guiLabel></qualifiers>
+            </content>
+            <content id="i">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel> invert space group and input (sub)structure or phases  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="IN">
+                <className>CInt</className>
+                <qualifiers><guiLabel> in cycle 1 only, do N cycles DM (free lunch if -e)  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="kX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> minimum height/sigma for heavy atom sites in xx.hat  [-k4.5]</guiLabel></qualifiers>
+            </content>
+            <content id="KN">
+                <className>CInt</className>
+                <qualifiers><guiLabel> keep starting fragment unchanged for N global cycles  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="K">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel> keep fragment unchanged throughout</guiLabel></qualifiers>
+            </content>
+            <content id="lN">
+                <className>CInt</className>
+                <qualifiers><guiLabel> reserve space for 1000000N reflections [-l2]</guiLabel></qualifiers>
+            </content>
+            <content id="LN">
+                <className>CInt</className>
+                <qualifiers><guiLabel> minimum chain length (at least 3 chains are retained)  [-L6]</guiLabel></qualifiers>
+            </content>
+            <content id="mN">
+                <className>CInt</className>
+                <qualifiers><guiLabel> N iterations of density modification per global cycle  [-m20]</guiLabel></qualifiers>
+            </content>
+            <content id="n">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel>apply N-fold NCS to traces [off]</guiLabel></qualifiers>
+            </content>
+            <content id="nN">
+                <className>CInt</className>
+                <qualifiers><guiLabel>apply N-fold NCS to traces [off]</guiLabel></qualifiers>
+            </content>
+            <content id="O">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel>random-start rigid-group domain searches  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="ON">
+                <className>CInt</className>
+                <qualifiers><guiLabel>N random-start rigid-group domain searches  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="o">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel>prune residues to optimize CC for xx.pda  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="oN">
+                <className>CInt</className>
+                <qualifiers><guiLabel>prune up to N residues to optimize CC for xx.pda  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="q">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel> search for alpha-helices [off]</guiLabel></qualifiers>
+            </content>
+            <content id="rX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> FFT grid set to X times maximum indices [-r3.0]</guiLabel></qualifiers>
+            </content>
+            <content id="sX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> solvent fraction [-s0.45]</guiLabel></qualifiers>
+            </content>
+            <content id="tX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> time factor for helix and peptide search  [-t1.0]</guiLabel></qualifiers>
+            </content>
+            <content id="uX">
+                <className>CInt</className>
+                <qualifiers><guiLabel> allocable memory in MB for fragment optimization  [-u500]</guiLabel></qualifiers>
+            </content>
+            <content id="UX">
+                <className>CInt</className>
+                <qualifiers><guiLabel> abort if less than X% of initial CA stay within 0.7A  [-U0]</guiLabel></qualifiers>
+            </content>
+            <content id="vX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> density sharpening [default set by resol., 0 if .pda  read]</guiLabel></qualifiers>
+            </content>
+            <content id="wX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> add experimental phases with weight X each iteration  [-w0.2]</guiLabel></qualifiers>
+            </content>
+            <content id="x">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel> diagnostics, requires PDB reference file xx.ent  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="yX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> highest resol. in Ang. for calc. phases from xx.pda  [-y1.8]</guiLabel></qualifiers>
+            </content>
+            <content id="zN">
+                <className>CInt</className>
+                <qualifiers><guiLabel> substructure optimization for a maximum of N atoms  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="z">
+                <className>CBoolean</className>
+                <qualifiers><guiLabel> subucture optimization, number of atoms not limited  [off]</guiLabel></qualifiers>
+            </content>
+            <content id="ZX">
+                <className>CFloat</className>
+                <qualifiers><guiLabel> maximum shift in Ang. from initial position for -O  [-Z1.0]</guiLabel></qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

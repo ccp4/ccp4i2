@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>Current</creationTime>
+    <userId>stevenkj</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>shelxeMR</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle>Electron Density improvement using Shelxe</pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="shelxeMR">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>File containing structure factors (MTZ).</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+          <sameCrystalLevel>1</sameCrystalLevel>
+        </qualifiers>
+      </content>
+
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <ifAtomSelection>True</ifAtomSelection>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <requiredSubType>1,0</requiredSubType>
+          <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="FSOLVENT">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.45</default>
+          <min>0.0</min>
+          <max>1.0</max>
+          <toolTip>Fraction of solvent present in the asymmetric unit.</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="NTCYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <default>15</default>
+          <min>1</min>
+          <toolTip>Number of tracing cycles. Recommended to set this to 4+ cycles. </toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="NMCYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <default>20</default>
+          <min>1</min>
+          <toolTip>Number of density modification cycles. Recommended to set this to 4+ cycles. </toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="SALPHELICE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>Search for Alpha Helices in Structure</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="PRUNRES">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>Prune residues to optimize correlation coef. for model</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="USENFOLD">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>Apply n-fold symmetry (non-crystallographic) to C-alpha traces</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="TIMEFAC">
+        <className>CInt</className>
+        <qualifiers>
+          <default>1</default>
+          <min>1</min>
+          <max>4</max>
+          <toolTip>Time factor for helix and peptide search</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="SBETA">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Look for Parallel Beta Sheets</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="SANTIBETA">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Look for Anti-Parallel Beta Sheets</toolTip>
+        </qualifiers>
+      </content>
+
+      <content id="PERFORMANCE">
+        <className>CExpPhasPerformance</className>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+
+      <content id="FPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default><subType>1</subType><contentFlag>1</contentFlag></default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+
+      <content id="PERFORMANCE">
+        <className>CExpPhasPerformance</className>
+      </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4:ccp4i2>

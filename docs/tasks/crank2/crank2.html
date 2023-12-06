@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link rel="stylesheet" type="text/css" href="./task-crank2.css"><title>Crank2 experimental phasing task</title></head><body>
+<dl class="tabs">
+ <dt> <input checked="checked" name="tabs" id="tab1" type="radio"> <label for="tab1">Input Data</label>
+  <div id="tab-content1" class="tab-content">
+    The "Automated structure solution - Crank2" experimental phasing task builds a model automatically from intensities or amplitudes from single or multiple-wavelength anomalous diffraction (SAD/MAD) or single isomorphous replacement (SIRAS) experiments.  The user can optionally choose to input a partial model and start or end the automated pipeline at each of the steps below:  
+<ol>
+  <li>Substructure detection with <a
+  href="http://shelx.uni-ac.gwdg.de/SHELX/shelxd_mm_keywords.php">SHELXD</a>
+  or PRASA (to be released in 2016) using FA values obtained from <a
+  href="http://shelx.uni-ac.gwdg.de/SHELX/shelxc_keywords.php">SHELXC</a>,
+  <a href="http://www.ccp4.ac.uk/html/afro.html">AFRO</a> or <a
+  href="http://www.ccp4.ac.uk/html/ecalc.html">ECALC</a></li>
+  <li>Substructure improvement & phasing with <a
+  href="http://www.ccp4.ac.uk/html/refmac5.html">REFMAC</a>, <a
+  href="http://shelx.uni-ac.gwdg.de/SHELX/shelxe_keywords.php">SHELXE</a>,
+  or <a href="http://www.ccp4.ac.uk/html/bp3.html">BP3</a></li>
+  <li>Hand determination with <a
+  href="http://www.ccp4.ac.uk/html/solomon.html">SOLOMON</a> and
+  MAPRO or SHELXE</li>
+  <li>Density modification with SHELXE or <a
+  href="http://www.ccp4.ac.uk/html/parrot.html">PARROT</a> or SOLOMON
+  with phase combination with REFMAC or MULTICOMB</li>
+  <li>Model building with <a
+  href="http://www.ccp4.ac.uk/html/cbuccaneer.html">Buccaneer</a>, <a
+  href="http://www.embl-hamburg.de/ARP/Manual/UserGuide7.5.html">ARP/wARP</a>
+  or SHELXE iterated with model refinement with REFMAC</li>
+  <li>Model refinement with REFMAC</li> </ol>
+    <h2>Input</h2>
+    <figure><img src="crank2-input-labels.png"> <figcaption>    Figure 1: Main input</figcaption></figure>
+     <p>A pipeline can be started or stopped at any stage <b class="img-ref">(1.1)</b>  For example, if an anomalously scattering substructure has been determined already, it can be input in PDB format
+by selecting to start the pipeline at "Substructure improvement" (SAD experiment) or "Substructure phasing" (SIRAS,MAD).</p>
+
+    <p>A partial protein model can be input in PDB format <b class="img-ref">(1.2)</b>, to be rebuilt using the SAD data.  If the partial model is biased, the option to exclude the non-anomalous atoms from the partial model can give better results.  It is recommended to try both approaches.</p>
+
+    <p>Inputting a protein sequence <b class="img-ref">(1.3)</b> is beneficial for model building.  If it is not available, click off the Input protein sequence option and input the number of protein residues per monomer.</p>
+
+    <p>Input the substructure atom element symbol (i.e. Se for Selenium) and the number of substructure atoms in the asymmetric unit <b class="img-ref">(1.4)</b>.  The number of substructure atoms in the asymmetric unit is the number of substructure atoms in your protein multiplied by the number of protein molecules that are present in the asymmetric unit.  For sulfur-SAD phasing of structures containing disulfide bonds, the sulfur atoms that make such bonds should be counted separately in the number of substructure sites, and the minimum distance between sites should be given as 1.5A in the "Advanced options" section <b class="img-ref">(3.3)</b>. If the anomalous resolution is worse than about 2.1A, the disulfides will not be resolved, so the number of disulfides (i.e. "S-S pairs") should be specified and the minimum distance increased to 3.5A, but the number of sites is still the total number of anomalously scattering atoms.</p>
+
+  <p>Input the anomalous reflections data in a merged MTZ file containing the Bijvoet/anomalous intensities or structure factor amplitudes <b class="img-ref">(1.6)</b>.  Alternatively, unmerged or merged XDS (XDS_ASCII.HKL), HKL2000 (.sca) or SHELX (.hkl) files can be input <b class="img-ref">(1.5)</b>. 
+Inputting unmerged files is recommended if SHELXC is used since it can make use of it for improved estimates of FA values and reporting of statistics such as the anomalous correlation coefficient (CCanom1/2).
+If non-MTZ reflection data is input, fields for crystal cell dimensions and spacegroup appear and are automatically filled by the ccp4i2 interface if the information exists in the input file.  If they have not been filled in, please input them.</p>
+  
+<p>Finally, the Crank2 pipeline requires the anomalous scattering coefficients f' and f" for the substructure atom at the wavelength of the data collected.
+The interface can automatically fill in the theoretical values for the scattering factors but it is very important to check these, especially for wavelengths close to the absorption edge.  
+The values from a fluorescent scan are always better and recommended to use.  For MAD data, the reflection data and f' and f" values can be input for all the other wavelengths collected <b class="img-ref">(1.7)</b>.</p>
+    
+    <p> If a native data set is available, it can also be input <b class="img-ref">(1.8)</b>.  
+The native dataset is always used for building and refinement but it can be also used for SIRAS phasing:  If only a single anomalous dataset is input together with the native data, an option to switch between the SIRAS and SAD phasing can be selected under the "Important Paramaters" tab.
+
+Finally, a previously defined cross-validation or "free" set can be input <b class="img-ref">(1.9)</b> or the cross-validation can be turned off, otherwise the default is to define a new set</p>.
+
+<h2>Important Options</h2>
+    <figure> <img src="crank2-important-options.png"> 
+	    <figcaption> Figure 2: Important options </figcaption></figure>
+    
+    <p>This page (and the next one) offers options that can improve results if default (automatically determined) values are not optimal.
+From the number of protein residues per monomer, the interface will obtain a guess for the number of molecules in the asymmetric unit and the solvent content based on a Matthew's coefficient analysis.  
+These values are only a guess and (re-)running the task with 'correct' values can significantly improve results.</p>
+    <figure> <img src="crank2-advanced-options-labels.png"> 
+	    <figcaption> Figure 3: Advanced options</figcaption></figure>
+<h2>Advanced Options</h2>
+    <p>The third pane offers advanced options, ones you will not normally need to change for the first run. If you suspect that substructure detection was not successful, consider running with different resolution cutoffs <b class="img-ref">(3.1)</b> and more trials <b class="img-ref">(3.2)</b> if the results indicate that there is an anomalous signal.  For sulfur-SAD phasing, as mentioned above, if your anomalous resolution is greater than 2.1, adjust the minimum distance between atoms <b class="img-ref">(3.3)</b> to 1.5.   Another useful option that can improve results is more iterations in model building.<b class="img-ref">(3.4)</b>  
+If you wish to improve a partial model, it is generally better to "continue" the previous job by inputting the partially built model and phases from it by using the "CRANK2 phasing & building" button that appears below the report from a completed job.
+For all steps, the gui provides the ability to input custom keywords for individual programs (i.e. <b class="img-ref">(3.5)</b>, <b class="img-ref">(3.6)</b>).  Please look at all the documentation for individual programs (links shown
+above) to see supported keywords.  Multiple options can be inputted, separated by a comma.</p>
+
+    <br/>
+    </div>
+  </dt>
+  <dt>
+<input name="tabs" id="tab2" type="radio"> <label for="tab2">Results</label>
+<div id="tab-content2" class="tab-content">
+While the task is running, graphs are updated to indicate the performance for each step.  
+After and typically while each step is being performed, a summary with statistics indicating the performance is provided.  
+For many graphs, a shaded gray area is shown to indicate a region of poor statistics.
+For some steps, the user may click on a button on the bottom right panel of the Results section to stop the current step.  
+If the button is pressed, the step will be stopped after finishing the current iteration and the next step of the pipeline will follow. 
+This can be used to save time if the user is happy with the results of the current step as indicated by the Results report.
+
+<h3>FA estimation</h3>
+<p>
+<figure class="small"> <img src="danosigdano.png"><figcaption>Figure 4: Anomalous difference to noise versus resolution </figcaption></figure>
+Besides generating the FA values, this step may also provide useful information about the input datasets. 
+Figure 4 shows the graph of Dano/Sigdano - a measure of the anomalous signal strength - as a function of resolution.  The larger the number, the greater the signal and a value of about 0.8 indicates zero signal.  
+If unmerged data was input, the graph of CCAnom1/2 - the anomalous difference correlation within a dataset - versus resolution (Figure 5) <figure class="small"> <img src="anom-cchalf.png"><figcaption>Figure 5: Anomalous difference correlation within dataset</figcaption></figure>
+ is shown. Again the larger the number, the greater the signal and values over approximately 30% indicate a significant anomalous signal.  
+Evaluating these graphs is useful if the substructure was not correctly identified and the user should re-run the task by manually inputting a resolution cutoff, or even several jobs varying the cutoff for difficult cases with small anomalous signals.  
+Similarly, in the case of a MAD experiment, the signed anomalous correlation between data sets is shown (Figure 6) <figure class="small"> <img src="signed-anom-diff-correl-MAD.png"><figcaption>Figure 6: Anomalous difference correlation between MAD datasets</figcaption></figure>.  If there is a significant anomalous signal for different wavelengths, a high anomalous difference correlation for them will be present (above 30%).</p>  
+
+<br>
+<br>
+
+<h3>Substructure detection</h3>
+<p><figure class="threequarter"> <img src="shelxd-occ-cc-ccweak.png"><figcaption>Figure 7: Summary, Occupancy and CC versus CCweak for the trials graphs</figcaption></figure></p>
+
+<p><figure class="small"> <img src="cfom-trials.png"><figcaption>Figure 8: Distribution of CFOM from trials</figcaption></figure></p>
+
+
+<p>A good indication that the substructure has been correctly determined is if the threshold (i.e. CFOM in the case of SHELXD) has been reached before the maximum number of cycles has been performed: 
+the report summary for the Substructure detection step will state this.  
+A division of trials in the Distribution of CFOM (Figure 7) is also an encouraging indicator: 
+the graph shows the separation of incorrect (lower CFOM) trials from correct (higher CFOM) solutions.  
+This division can also be observed as clustering in a graph of CC against CCweak where the trials (shown in circles) in the the top right indicate correct solutions with higher values of CC and CCweak.
+However, some datasets, especially those with small anomalous signals, show little discrimination between the CFOM of solutions and of wrong substructures.
+
+The graph of occupancies versus atom number details the number of significant peaks that have been found and can be used cautiously to indicate the number of substructure atoms and protein molecules in the asymmetric unit.  </p>
+
+<br>
+<br>
+
+<h3>Substructure improvement and phasing</h3>
+<p>
+ <figure class="small"> <img src="phasing-summary.png"><figcaption>Figure 9: Phasing summary</figcaption></figure>
+A Crank2 job from SAD data will attempt to automatically improve the substructure obtained from phasing, using anomalous likelohood gradient maps for detection of additional anomalous scatterers.
+The phasing report summary shows the number of anomalous atoms that have been added or removed and quotes the estimated mean figure of merit (FOM) of phases.
+For substructure phasing, density modification and model building and refinement, the mean FOM is the estimated mean cosine of the phase error: 
+thus, a number closer to 1 is better than a number closer to zero.  Values greater than 0.3 after phasing often indicate good phases. 
+Yet, the average FOM is just an estimation of the quality of the phases which may be skewed and occasionally models can be successfully 
+built with a low estimated FOM after phasing:  for example, this data set has a figure of merit of 0.1 
+after phasing, but still leads to successful model building.
+</p>
+
+
+<br>
+<br>
+
+<h3>Hand determination</h3>
+<p>
+    <figure class="medium"> <img src="hand-det-crank2.png"><figcaption>Figure 10: Hand determination summary</figcaption></figure>
+Reciprocal space information from substructure phasing can not, in general, resolve the correct enantiomorph.
+However, in many cases comparison of the quality of resulting experimental maps for both hands can be used to distinguish the correct hand.
+The quality of the experimental map can be estimated by its skewness or a related parameter of correlation with local deviation of the map (CLD).
+Furthermore, statistics from density modification of both maps, such as FOM and contrast, can be used to determine the hand, with the assumption that the right hand can be improved more than the wrong one.
+<BR>
+The Crank2 pipeline uses a combined score from comparison between the CLD from phasing and FOM from iterations of a quick density modification.
+In vast majority of cases, the right hand is correctly identified by the scoring and a large difference between the scores indicates that a correct hand has been chosen 
+(thus, it may be also used as an indirect indicator of success of the substructure determination).
+However, in case of very weak experimental phases it may happen that the map based indicators fail and the wrong hand is picked.  
+Such case can be often recognized by small discrimination between the scores and the CLD values of both hands around 0.
+Although such cases are rate, it is recommended to rerun the job with the other hand
+<BR>
+The SHELX pipeline does not attempt to determine the hand;  instead, it runs SHELXE density modification and building 
+with both hands and the correct hand is simply the one that leads to a model built.  However, the contrast of the map for
+both hands in the initial density modification is reported in a plot (Figure X+2); a significantly better contrast such as shown in the Figure X+2 is a good indicator of the correct hand. 
+</p>
+
+<br>
+<br>
+
+<h3>Density modification</h3>
+<p>
+    <figure class="medium"> <img src="denmod-summary-crank2.png"> <figcaption>Figure 11: Density modification summary</figcaption></figure>
+Figure 11 shows the summary from density modification, reporting if non-crystallographic symmetry (NCS) operators were detected by Parrot 
+and the figure of merit (FOM) and an estimate of the bias that was detected in the density modification (beta parameter). 
+A value of FOM underneath 0.35 indicates either very weak phases or a wrong solution, ie the substructure (or rarely its hand) was not determined correctly.
+A value of FOM above 0.5 indicates good phases with high chances of model building success in the next step (except of datasets with resolution lower than ~4A where the resolution may become the model building bottleneck).
+</p>
+
+<br>
+<br>
+
+<h3>Model building</h3>
+<p>
+    <figure class="threequarter"> <img src="residues-per-cycle-and-rcomb.png"> 
+	    <figcaption>Figure 12: Summary and graphs of Residues, FOM and Rfactors</figcaption></figure>
+</p>
+The model building summary (Figure 12) will indicate whether a majority of the model was correctly built.  
+In the graphs, an R-factor under 40% and a large number of residue built in a small number of fragments are good indication of success.
+<br>
+<br>
+
+<h3>Model refinement</h3>
+<p>
+    <figure class="medium"> <img src="refine-refmac.png"> 
+	    <figcaption>Figure 13: Summary and graphs of Rfactors</figcaption></figure>
+Finally, the model refinement summmary quotes the R-factors versus the cycle number: lower R-factors (underneath 40%) are a good indication and a small difference between the working and free R-factors is positive.  In general, the R-values should plateau - if this hasn't occurred, and the R-factors are still going down, more refinement steps can further improve the model.
+</p>
+  </div>
+  </dt>
+</dl>
+
+</body></html>

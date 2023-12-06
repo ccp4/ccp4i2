@@ -1,0 +1,51 @@
+<?xml version='1.0'?>
+<scene>
+    <data>
+        <MolData id='id1'>
+            <filename>SUBSTITUTEME</filename>
+            <MolDisp>
+                <select>{not /*/*/*/*[H]}</select>
+                <colour_parameters>
+                    <colour_mode>one_colour</colour_mode>
+                    <non_C_atomtype>1</non_C_atomtype>
+                    <one_colour>yellow</one_colour>
+                </colour_parameters>
+                <style>CYLINDERS</style>
+                <label_params>
+                    <label_style>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>1</label_style_entry>
+                        <label_style_entry>1</label_style_entry>
+                        <label_style_entry>1</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                        <label_style_entry>0</label_style_entry>
+                    </label_style>
+                    <label_user_oneperres>1</label_user_oneperres>
+                    <label_colour>complement</label_colour>
+                    <truncate_mol_name>0</truncate_mol_name>
+                    <label_user_selparams/>
+                    <label_select>label_all</label_select>
+                    <truncate_mol_name_length>6</truncate_mol_name_length>
+                </label_params>
+            </MolDisp>
+        </MolData>
+    </data>
+    <View>
+        <centre_MolData>id1</centre_MolData>
+        <centre_selection>all</centre_selection>
+        <!-- <scale_auto_contacts>1</scale_auto_contacts> -->
+        <orientation_auto>
+            <selection>all</selection>
+            <molData>id1</molData>
+        </orientation_auto>
+    </View>
+</scene>

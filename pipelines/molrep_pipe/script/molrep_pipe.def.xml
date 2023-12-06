@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>lizp</userId>
+    <creationTime>12:37 06/Jun/15</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>molrep_pipe</pluginName>
+    <pluginTitle>MR using Molrep</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="molrep_pipeline">
+    <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>wrappers/molrep_mr/script</relPath>
+                <baseName>molrep_mr.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+
+    <container id="inputData">
+        <content id="DYNREP">
+            <className>CBoolean</className>
+            <qualifiers>
+                <default>False</default>
+                <guiLabel>Tick for REFMAC dynamic report (devel option)</guiLabel>
+            </qualifiers>
+        </content>
+        <content id="RUNSHEETBEND">
+            <className>CBoolean</className>
+            <qualifiers>
+                <default>True</default>
+                <guiLabel>Tick if Sheetbend should be run before REFMAC</guiLabel>
+            </qualifiers>
+        </content>
+        <content id="REFMAC_NCYC">
+            <className>CString</className>
+            <qualifiers>
+                <default>20</default>
+                <enumerators>0,5,10,20,50,100,200</enumerators>
+                <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+        </content>
+        <content id="FREERFLAG">
+            <className>CFreeRDataFile</className>
+            <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <sameCrystalAs>F_SIGF</sameCrystalAs>
+            </qualifiers>
+        </content>
+    </container>
+    <container id="outputData">
+        <content id="F_SIGF">
+            <className>CObsDataFile</className>
+            <qualifiers>
+                <default>
+                    <subType>1</subType>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+        </content>
+        <content id="FREERFLAG">
+            <className>CFreeRDataFile</className>
+            <qualifiers>
+                <saveToDb>True</saveToDb>
+                <sameCrystalAs>F_SIGF</sameCrystalAs>
+            </qualifiers>
+        </content>
+        <content id="XYZOUT_SHEETBEND">
+            <className>CPdbDataFile</className>
+            <qualifiers/>
+        </content>
+        <content id="XYZOUT_MOLREP">
+            <className>CPdbDataFile</className>
+            <qualifiers/>
+        </content>
+        <content id="DIFFPHIOUT">
+            <className>CMapCoeffsDataFile</className>
+            <qualifiers>
+                <default>
+                    <subType>2</subType>
+                    <contentFlag>1</contentFlag>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+        </content>
+        <content id="FPHIOUT">
+            <className>CMapCoeffsDataFile</className>
+            <qualifiers>
+                <default>
+                    <subType>1</subType>
+                    <contentFlag>1</contentFlag>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+        </content>
+        <content id="PERFORMANCE">
+            <className>CRefinementPerformance</className>
+            <qualifiers/>
+        </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4i2>

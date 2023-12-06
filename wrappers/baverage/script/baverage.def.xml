@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>17:08 19/Jul/12</creationTime>
+    <userId>ville</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>baverage</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle></pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="baverage">
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="SET_BLIMIT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="BLIMIT_MC">
+        <className>CFloatRange</className>
+        <qualifiers>
+          <default>{'start': 0.0, 'end': 100.0}</default>
+        </qualifiers>
+      </content>
+      <content id="BLIMIT_SC">
+        <className>CFloatRange</className>
+        <qualifiers>
+          <default>{'start': 0.0, 'end': 100.0}</default>
+        </qualifiers>
+      </content>
+      <content id="SET_BRANGE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="BRANGE">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>5.0</default>
+          <toolTip>None</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="RMSTAB">
+        <className>CDataFile</className>
+        <qualifiers>
+          <fileExtensions>txt</fileExtensions>
+        </qualifiers>
+      </content>
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <jobCombo>False</jobCombo>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

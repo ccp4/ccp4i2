@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>phaser_EP_LLG</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="phaser_EP_LLG">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>pipelines/phaser_pipeline/wrappers/phaser_EP_AUTO/script</relPath>
+                <baseName>phaser_EP_AUTO.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        <container id="inputData">
+            <content id="PARTIALMODELORMAP">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>NONE,MODEL,MAP</enumerators>
+                    <menuText>No partial model,Coordinate data,Map coefficients</menuText>
+                    <default>MODEL</default>
+                </qualifiers>
+            </content>
+            <content id="LLGC_CYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>0</default>
+                </qualifiers>
+            </content>
+            <content id="PURE_ANOMALOUS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <toolTip>Search for "pure anomalous" scatterers...for analysis not phasing</toolTip>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="keywords">
+            <content id="LLGM">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write out LLG maps</guiLabel>
+                    <expertLevel>1</expertLevel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="XYZO">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write PDB file</guiLabel>
+                    <expertLevel>2</expertLevel>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>
+
+

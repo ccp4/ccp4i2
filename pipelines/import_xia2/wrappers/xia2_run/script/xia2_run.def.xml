@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment></comment>
+    <creationTime>12:57 20/Feb/2013</creationTime>
+    <userId>lizp</userId>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <jobId/>
+    <project></project>
+    <pluginName>xia2_run</pluginName>
+    <pluginVersion></pluginVersion>
+    <pluginTitle></pluginTitle>
+    <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="xia2_run">
+  <container id="inputData">
+    <content id="XIA2_DIRECTORY">
+      <className>CDataFile</className>
+      <qualifiers>
+	<saveToDb>True</saveToDb>
+        <mustExist>True</mustExist>
+	<allowUndefined>False</allowUndefined>
+	<isDirectory>True</isDirectory>
+      </qualifiers>
+    </content>
+  </container>
+  <container id="outputData">
+    <content id="UNMERGEDHKL">
+        <className>CList</className>
+        <subItem>
+          <className>CUnmergedDataFile</className>
+   	  <qualifiers>
+            <saveToDb>True</saveToDb>
+	  </qualifiers>
+        </subItem>
+    </content>
+    <content id="HKLOUT">
+      <className>CMtzDataFile</className>
+      <qualifiers>
+         <saveToDb>True</saveToDb>
+      </qualifiers>
+    </content>
+    <content id="FSIGF">
+      <className>CObsDataFile</className>
+      <qualifiers>
+	 <guiLabel>Simple F and SigF</guiLabel>
+         <saveToDb>True</saveToDb>
+      </qualifiers>
+    </content>
+    <content id="FANOM">
+      <className>CObsDataFile</className>
+      <qualifiers>
+	 <guiLabel>F anomalous</guiLabel>
+         <saveToDb>True</saveToDb>
+      </qualifiers>
+    </content>
+    <content id="IANOM">
+      <className>CObsDataFile</className>
+      <qualifiers>
+         <saveToDb>True</saveToDb>
+	 <guiLabel>I anomalous</guiLabel>
+      </qualifiers>
+    </content>
+    <content id="FREER">
+      <className>CFreeRDataFile</className>
+      <qualifiers>
+         <saveToDb>True</saveToDb>
+      </qualifiers>
+    </content>
+    <content id="PERFORMANCE">
+      <className>CDataReductionPerformance</className>
+      <qualifiers> 
+        <saveToDb>True</saveToDb>
+      </qualifiers>
+   </content>
+   </container>
+  <container id="controlParameters">
+    <content id="RUN_MODE">
+      <className>CString</className>
+      <qualifiers>
+	<onlyEnumerators>True</onlyEnumerators>
+	<enumerators>2d,3d,3dii,2da,3da,3daii</enumerators>
+	<menuText>Mosflm-Scala integration and processing,XDS-XSCALE integration and processing,XDS-XSCALE integration with image indexing and processing,Mosflm-Aimless integration and processing,XDS-XSCALE-Aimless integration and processing,XDS-Aimless integration with image indexing and processing</menuText>
+      </qualifiers>
+    </content>
+   </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

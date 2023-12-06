@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd" >
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>Demo data: RNAse</title>
+<link rel="stylesheet" type="text/css" href="../../docs/ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>CCP4i2 Tutorial: RNAse (PDB:1SAR)</h1>
+
+<p>This structure can be solved (1) by experimental phasing using SAD or SIRAS, or (2) by molecular replacement. In addition, there are data for two complexes allowing automated or manual ligand fitting.</p>
+
+<p>Reference for the structure of ribonuclease from <i>Streptomyces aureofaciens</i> (RNase Sa) and its complex with guanosine 3&prime;monophosphate, 3&prime;GMP: <i>Sevcik, J., Dodson, E. J., &amp; Dodson, G. G. (1991). Determination and restrained least-squares refinement of the structures of ribonuclease Sa and its complex with 3&prime;guanylic acid at 1.8&nbsp;&#8491; resolution. Acta Crystallographica Section B: Structural Science, 47(2), 240-253.</i></p>
+
+<h2>Experimental phasing</h2>
+<p>
+The structure was first solved using heavy atom derivatives. Data for three derivatives (Hg, I and Pt), including the anomalous components (collected using CuK-&alpha; radiation) can be loaded from the first mtz file (rnase25_Nat_Derivs.mtz), which also contains the native enzyme data, all at 2.5&nbsp;&#8491; resolution. 
+This MTZ file contains structure factor amplitudes (not intensities) for both data sets. 
+</p>
+
+<p>
+The native data are in the columns labelled:
+</p>
+<p>Column	FNAT	SIGFNAT<p/>
+<p>
+And the derivative data are in the columns labelled:
+</p>
+<p>Column	FHG(+)	SIGFHG(+)	FHG(-)	SIGFHG(-)<p/>
+<p>Column	FI(+)	SIGFI(+)	FI(-)	SIGFI(-)<p/>
+<p>Column	FPTNCD25(+)	SIGFPTNCD25(+)	FPTNCD25(-)	SIGFPTNCD25(-) <p/>
+<p>
+The structure can be solved using the CRANK2 or SHELXCDE pipelines, using SAD or SIRAS. The Pt is the best derivative, and there are estimated to be around 5 Pt atoms per monomer. The Hg derivative does now lead to a simple solution - the structures was originally solved by MIR.
+</p>
+
+<h2>Molecular Replacement</h2>
+<p>
+PDB files for two models are provided. Both lead to a straightforward solution allowing rebuilding with Buccaneer. Other models can be found using the MrBUMP-CCP4mg Task, starting from the sequence. 
+</p>
+
+<h2>Ligand Fitting</h2>
+<p>
+Amplitudes for the ligand complexes and a higher resolution native set are in the 1.8&nbsp;&#8491; data file. These can be used for manual or automated Ligand Fitting.
+The names, PDB codes for the complexes, 3 letter ligand code and canonical smiles strings for the ligands are:
+<p>
+<p>3&prime;GMP	PDB: 2SAR		3GP</p>
+<p>c1nc2c(n1[C@H]3[C@@H]([C@@H]([C@H](O3)CO)OP(=O)(O)O)O)N=C(NC2=O)N</p>
+<p>2&prime;GMP	PDB: 3DGY		2GP</p>
+<p>c1nc2c(n1[C@H]3[C@@H]([C@@H]([C@H](O3)CO)O)OP(=O)(O)O)N=C(NC2=O)N</p>
+
+
+<h2>Data files</h2>
+<ul>
+<li><a href="rnase.fasta">rnase.fasta</a> - RNAse sequence</li>
+<li><a href="rnase18_Nat_Complexes.mtz">rnase18_Nat_Complexes.mtz</a> - MTZ file containing native amplitudes to 1.8&nbsp;&#8491; plus two complexes, the first with 3&prime;GMP (3GP) and the second with 2&prime;GMP (2GP).</li>
+<li><a href="rnase25_Nat_Derivs.mtz">rnase25_Nat_Derivs.mtz</a> - MTZ file containing native amplitudes to 2.5&nbsp;&#8491; plus three heavy atom derivatives with anomalous data, Hg, PT and I.</li>
+<li><a href=rnase_model.pdb>rnase_model.pdb</a> Refined structure.</li>
+<li><a href="1sar.pdb">1sar.pdb</a> - Refined apo-native 1.8&nbsp;&#8491; structure.</>
+<li><a href="3a5e.pdb">3a5e.pdb</a> - MR model with 95% sequence identify.</li>
+<li><a href="1mgw.pdb">1mgw.pdb</a> - MR model with 69% sequence identify.</li>
+<li><a href="3GMP_smiles.txt">3GMP_smiles.txt</a> - smiles string for 3&prime;GMP</li>
+<li><a href="2GMP_smiles.txt">2GMP_smiles.txt</a> - smiles string for 2&prime;GMP</li>
+</ul>
+
+<!-- Files from:
+$CEXAM/rnase/rnase.seq
+$CEXAM/rnase/rnase25F+F-.mtz
+MR models from PDB
+-->
+
+<address></address>
+<!-- hhmts start -->Last modified: Fri Feb 20 17:26:38 GMT 2015 <!-- hhmts end -->
+</body>
+</html>

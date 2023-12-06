@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>cowtan</userId>
+        <creationTime>2020-03-20T19:51:15.674780</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>sheetbend</pluginName>
+        <pluginTitle>Brief title For plugin</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="sheetbend">
+
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>4,3,2,1,0</requiredSubType>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="controlParameters">
+            <content id="REFINE_COORD">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="REFINE_U_ISO">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="REFINE_U_ANISO">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="CYCLES">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>12</default>
+                    <min>1</min>
+                </qualifiers>
+            </content>
+            <content id="RESOLUTION">
+                <className>CString</className>
+                <qualifiers>
+                    <default>6.0, 3.0</default>
+                </qualifiers>
+            </content>
+            <content id="RADIUS_SCALE">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>4.0</default>
+                    <allowUndefined>True</allowUndefined>
+                    <min>1.0</min>
+                    <max>10.0</max>
+                </qualifiers>
+            </content>
+            <content id="REFINE_REGULARIZE_CYCLES">
+                <className>CInt</className>
+                <allowUndefined>True</allowUndefined>
+                <qualifiers>
+                    <default>1</default>
+                    <min>1</min>
+                </qualifiers>
+            </content>
+            <content id="PSEUDO_REGULARIZE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="POSTREFINE_COORD">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="POSTREFINE_U_ISO">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="POSTREFINE_U_ANISO">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                </qualifiers>
+            </content>
+        </container>
+
+    </ccp4i2_body>
+</ccp4i2>

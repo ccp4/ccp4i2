@@ -1,0 +1,126 @@
+Developers Guide to Working with CCP4i2
+=======================================
+
+This is a short introductory guide, intended to help developers get started with the basics of working with CCP4i2. It will cover how to checkout and run different versions of CCP4i2, and the basic structure of CCP4i2.
+
+
+Location of CCP4i2
+------------------
+
+Assuming you already have an installation of CCP4 it should be straightforward to find the ccp4i2 code. You will find it in the share directory as shown below (CCP4 is the installation base directory in this case)
+::
+
+    CCP4
+     ├── ccp4-7.1
+     │    ├── <Files>
+     │    ├── include
+     │    ├── lib
+     │    ├── libexec
+     │    └── share
+     │         ├── <Various other folders>
+     │         └── ccp4i2
+     │
+     └──install.log 
+
+When you check out ccp4i2 from one the repositories (currently using bzr), what you check out will be, is this part of the release (what's in the ccp4i2 directory) - of course this will not be exactly the same in the majority of cases.
+
+
+Quick Guide to Checking Out ccp4i2
+----------------------------------
+The main development branch is the one that users will be most likely interested in. This branch can be checked out using :-
+
+::
+
+   bzr checkout bzr+ssh://<username>@oisin.rc-harwell.ac.uk/scmrepos/bzr/ccp4i2/devel/ ccp4i2-devel
+
+This command will checkout the latest version of ccp4i2 (the development version) into the directory **ccp4i2-devel**. For example, if done in share this will result in :-
+
+::
+
+ └── share
+      ├── <Various other folders>
+      ├── ccp4i2
+      └── ccp4i2-devel
+   
+The version here in ccp4i2-devel is the checked out devel version of ccp4i2, the folder ccp4i2 contains your original version (from the release) - note the folder ccp4i2 is the one that will be picked up. You can re-name folders (be careful if you do this), or you can create a soft link (using ln -s) to switch between versions; note there could potentially be dependencies on updated code that is not in the version of CCP4 you are using (something to keep in mind - it's situational).
+
+nb.You will need an account on oisin (& access to i2) to use bzr to obtain ccp4i2 (contact the core ccp4 team), and <username> will be what you use for oisin.
+
+
+For Example
+-----------
+For a linux based system :-
+
+::
+
+   cd CCP4/ccp4-7.1/share/
+   mv ccp4i2 ccp4i2-orig7114
+   bzr checkout bzr+ssh://<username>@oisin.rc-harwell.ac.uk/scmrepos/bzr/ccp4i2/devel/ ccp4i2-devel
+   ln -s ccp4i2-devel ccp4i2
+
+This moves the original version of i2 to *ccp4i2-orig7114*, checks out the new version into the folder *ccp4i2-devel* and soft-links to it so the new version is picked up when you run ccp4i2. This is shown below:-
+
+::
+
+   └── share
+        ├── <Various other folders>
+        ├── ccp4i2
+	├── ccp4i2-orig7114
+        └── ccp4i2-devel
+
+
+Where *ccp4i2* is now a softlink. Note that you can bring ccp4i2-devel up to date with what is in the devel bzr branch by using the command :-
+
+::
+
+   bzr update
+
+This command should be run in the folder *ccp4i2-devel*
+
+
+The Pre-release Branch
+----------------------
+There is also a pre-release branch which can be checked out using :-
+
+::
+
+   bzr checkout bzr+ssh://stevenkj@oisin.rc-harwell.ac.uk/scmrepos/bzr/ccp4i2/for-release/ ccp4i2-forel
+
+(this command will put the checked out version into the folder *ccp4i2-forel*). The for-release branch contains the version of the code that is **intended** for release, which is designated with various tags - these indicate the expected CCP4 release version. The a,b,c,etc. in the tags indicates various incremental updates - bug fixes, late additions etc.
+
+
+Bzr - A Very Brief Introduction
+-------------------------------
+This is a very quick guide to using **bzr**, which is the distributed repository system used for ccp4i2. It is strongly recommend that you familiarise youself with bzr before using it; there are guides available on the web which you should go through.
+
+::
+
+   bzr checkout --revision=6453 <location of repository/branch> <local folder>
+
+This is as described above, but the example here also shows how to checkout a specific numbered version of ccp4i2.
+
+::
+
+   bzr update
+
+Updates the local copy to the latest version stored in the repository (ie. get changes people have made since you either, last typed this or checked out the code).
+
+::
+
+   bzr qlog
+
+Shows the various code commits people have made (this is the graphical version, you can also use the standard command **bzr log**). Do this in the checked out folder.
+
+::
+
+   bzr qdiff
+
+Shows the difference between the code you have in the local folder and what is in the repository/branch. Again, this should be done in the checked out folder. Note again, there is a non-graphical version **bzr diff**.
+
+Before using the **qlog** and **qdiff** you may need to install **qbzr** (recommended - the commands below are for Ubuntu):-
+
+::
+
+   sudo apt update
+   sudo apt install qbzr
+

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd" >
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>CCP4i2 Search Tools</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+</head>
+<body>
+
+
+<table class="banner">
+<tr>
+<!--<td rowspan="2" width="200" ><img src="../ccp4i2.png" alt="CCP4 web logo"/></td>-->
+<td><img width=75 src="ccp4i2.png" alt="CCP4 web logo"/></td>
+<td class="logohead">CCP4i2 &mdash; CCP4i2 Search Tools</td>
+</tr>
+</table>
+
+
+<!--
+<table class="navigationBar"><tr>
+<th><a href="CCP4i1Projects.html">CCP4i projects</a></th> 
+<th><a href="data_files.html">Experimental data</a></th>
+<th><a href="model_data.html">Model data</a></th> 
+<th><a href="atom_selection.html">Atom selection</a></th> 
+<th><a href="servers.html">Servers</a></th> 
+</tr></table>
+-->
+
+<p><b>Please note, the CCP4i2 search tools are being radically changed. <em>This documentation</em> is likely no longer valid.</b></p>
+
+
+<a name="job_search"/><h3>Job search</h3>
+<p>The <i>Job search</i> tool on the <i>Project viewer</i> toolbar will find a job in the project based on
+its name, when it was run and text in its title or annotation (see <a
+href="#text_search_syntax">text search syntax</a>. In
+addition you can search:</p>
+<ul>
+  <li>the <i>Data history</i> for which you must select one job and
+  the data type of input or output data - this will select preceeding
+  jobs that provided input data and succeeding that used output data.
+  Note that the job context menu (right mouse click on a job) in the
+  <i>Job list</i> has a <i>Data history</i> option with similar functionality.</li>
+  <li>the jobs that used specific <i>control parameters</i> in running a job (beware this
+  searches the parameter files which can be slow). See <a href="#control_params">details</a>.</li>
+  <li>where an external <i>Imported file</i> is first used - you must
+  select or provide the path name of the file</li>
+</ul>
+<p>The 'hit' jobs are highlighted on the <i>Job list</i> in red. The
+<i>Data history</i> search may well find more than one path after the
+job and you can scroll between the options with the slider that is
+displayed above the <i>Job list</i>.<p>
+
+
+
+
+<a name="text_search_syntax"/><h3>Text search syntax</h3>
+<p>The job search tool will search the job title (as it appears in the
+<i>Job list</i>) or <i>Comments</i> (as entered in the <i>Comments</i>
+tab for the job) for the text string which may contain the following
+wildcards:</p>
+
+<table>
+<tr><th>Wildcard</th> <th>Description</th></tr>
+<tr><td>%</td> <td>A substitute for zero or more characters</td></tr>
+<tr><td>_</td> 	<td>A substitute for a single character</td></tr>
+<tr><td>[charlist]</td> 	<td>Sets and ranges of characters to match</td></tr>
+<tr><td>[^charlist] or[!charlist]</td> <td>Matches only a character NOT specified within the brackets</td></tr>
+</table>
+
+<p>For example to find jobs whose title begin with 'Refinement' you
+will need to enter <i>Refinement%</i></p>
+
+<a name="control_params"/><h3>Searching control parameters</h3>
+
+<p>This tool is intended to help you find jobs that were run with
+specific parameters. The job parameters are not saved in the database
+and so the search must open the <i>input_params.xml</i> file for each
+searched job - this may be slow. In the search dialog the taskname
+must be chosen and the <i>Control parameters</i> radio button clicked
+to show the options.  The parameter name must be selected from a list
+- if you do not know the parameter name open a job of the required
+task and hover the cursor over the input field you are interested in;
+the tooltip that appears after a short time should have the
+name of the parameter at the end of the help text. The parameter name
+is usually uppercase letters.  The definition of the required value
+can have one or more components which are separated by spaces so for
+example to find a value between 10 and 20 the definition would be
+'<i>&gt;10  &lt;20</i>'.  The following comparison operators can be used:</p>
+
+<table>
+  <tr><th>Operation</th> <th>Description</th></tr>
+  <tr><td>&lt;</td> <td>less than</td></tr>
+    <tr><td>&gt;</td> <td>greater than</td></tr>
+      <tr><td>=</td> <td>equal to</td></tr>
+	<tr><td>!=</td> <td>not equal to</td></tr>
+	  <tr><td>&lt;=</td> <td>less than or equal</td></tr>
+	  <tr><td>&gt;=</td> <td>greater than or equal</td></tr>
+ </table>
+<p>If there is no operator then it is assumed to be 'equal to'. If a
+  comma-separated list of values is entered then any of those values
+ will be found.</p>
+
+
+ <a name="search_projects"/><h3>Search projects</h3>
+<p>There is a simple text search tool at the bottom of the <i>Manage
+projects</i> window. By default the text search is applied to the project name,
+ description and tags (the last two can be entered when creating the
+ project or using the <i>Edit description</i> tool in the <i>Manage
+projects</i> window) but unchecking the appropriate boxes can remove
+ any of these from the search.  The <a href="#text_search_syntax">syntax for the search text</a> is the
+ same as for the job search tool. Hit projects are highlighted in red
+ in the project list and any 'parent' project with hit children is
+ highlighted in pink.</p>
+ <p>Click on the <i>Advanced search tools</i> button
+<img src="../../qticons/search-plus.png" alt="Advanced search
+ button" width="30" height="30"/> in the <i>Search</i> bar to see more search options. The
+ search can be restricted to:
+ <br/>projects active in a given period - the
+ 'active' period of a project is from when it was first created until
+ when it was last opened
+ <br/>sub-projects of a specified project.
+ <br/>It is also possible to find the projects that have imported a
+ specified file or use a specified project directory.</p>
+ 
+ 
+<address></address>
+<!-- hhmts start -->Last modified: Wed Nov 16 17:44:04 GMT 2016 <!-- hhmts end -->
+</body>
+</html>

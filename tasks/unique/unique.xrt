@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII" standalone="yes"?>
+<!-- unique report template -->
+<report xmlns:xrt="http://www.ccp4.ac.uk/xrt">
+
+<p>This job generated <xrt:text select="//NO_REFLECTIONS"/> reflections up to a resolution of <xrt:text select="//RESOLUTION"/> Angstrom.</p> 
+
+<p>The crystal is in spacegroup <xrt:text select="//spaceGroup"/> and has cell dimensions <xrt:text select="//cell/a"/> <xrt:text select="//cell/b"/> <xrt:text select="//cell/c"/> <xrt:text select="//cell/alpha"/> <xrt:text select="//cell/beta"/> <xrt:text select="//cell/gamma"/> </p>
+
+
+</report>

@@ -1,0 +1,475 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>Josep</userId>
+        <creationTime>12:40 26/Sep/17</creationTime>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>arcimboldo</pluginName>
+        <pluginTitle>arcimboldo</pluginTitle>
+        <pluginVersion></pluginVersion>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="arcimboldo">
+        <container id="inputData">
+            <content id="CONFIG_FILE">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <requiredContentFlag>1,2,3,4</requiredContentFlag>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content> 
+            <content id="LITE_HELICES_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CInt</className>
+                    <qualifiers>
+                        <mustExist>False</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <default>1</default>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="LITE_CUSTOMS_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>False</allowUndefined>
+                        <ifAtomSelection>True</ifAtomSelection>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="PDB_LITE">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>False</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="LITE_FIXED">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <isDirectory>True</isDirectory>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <!-- Borges !-->
+            <content id="BORGES_CUSTOM">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <isDirectory>True</isDirectory>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="PDB_SHREDDER">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content> 
+        </container>
+        <container id="advancedData">
+            <content id="SHELXE_LINE">
+                <className>CString</className>
+                <qualifiers>
+                    <charWidth>50</charWidth>
+                    <onlyEnumerators>False</onlyEnumerators>
+                </qualifiers>
+            </content>
+            <content id="KEYWORDS">
+                <className>CString</className>
+            </content>
+        </container>
+        <container id="developerOptions">
+            <content id="DEVELOPER_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>Normal run, Generate bor-file and exit, Run in a copy of existing wrkdir</menuText>
+                    <enumerators>NORMAL,BOR,EXISTING</enumerators>
+                    <default>NORMAL</default>
+                </qualifiers>
+            </content>
+            <content id="EXISTING_FOLDER">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <isDirectory>True</isDirectory>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="controlParameters">
+            <content id="ARCIMBOLDO_RUN">
+                <className>CString</className>
+                <qualifiers>
+                    <default>this machine</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>this machine,local grid,remote grid</menuText>
+                    <enumerators>multiprocessing,local_grid,remote_grid</enumerators>
+                    <default>multiprocessing</default>
+                </qualifiers>
+            </content>
+            <content id="RUN_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>from system bor-file,from custom bor-file</menuText>
+                    <enumerators>SYSTEM,CUSTOM</enumerators>
+                    <default>SYSTEM</default>
+                </qualifiers>
+            </content>
+            <content id="ARCIMBOLDO_OPTIONS">
+                <className>CString</className>
+                <qualifiers>
+                    <default>no</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>LITE,BORGES,SHREDDER</enumerators>
+                    <enumerators>LITE,BORGES,SHREDDER</enumerators>
+                </qualifiers>
+            </content>
+            <content id="MOLECULAR_WEIGHT">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default></default>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <charWidth>10</charWidth>
+                    <toolTip></toolTip>
+                </qualifiers>
+            </content>
+            <content id="N_COMPONENTS">
+                <className>CInt</className>
+                <qualifiers>
+                    <charWidth>2</charWidth>
+                    <default>1</default>
+                </qualifiers>
+            </content>
+            <!-- Lite -->
+            <content id="COIL_COILED">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="N_FRAGMENTS">
+                <className>CInt</className>
+                <qualifiers>
+                    <charWidth>2</charWidth>
+                    <default>2</default>
+                </qualifiers>
+            </content>
+            <content id="HELIX_LENGTH">
+                <className>CInt</className>
+                <qualifiers>
+                    <charWidth>2</charWidth>
+                    <default>14</default>
+                </qualifiers>
+            </content>
+            <content id="TNCS">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="TNCS_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>True</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="FRAGMENT_SIZE">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="FRAGMENT_SIZE_T">
+                <className>CInt</className>
+                    <qualifiers>
+                        <charWidth>3</charWidth>
+                        <default></default>
+                    </qualifiers>
+            </content>
+            <content id="LITE_MODELS">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <default>HELIX</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>one or more copies of a helix,one or more copies of a custom model,several different helices,several different custom models</menuText>
+                    <enumerators>HELIX,CUSTOM,HELICES,CUSTOMS</enumerators>
+                </qualifiers>
+            </content>
+            <content id="LITE_RMSD">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>0.2</default>
+                    <charWidth>4</charWidth>
+                    <toolTip></toolTip>
+                </qualifiers>
+            </content>
+            <content id="LITE_PARTIAL">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="BORGES_LIBRARY">
+                <className>CString</className>
+                <qualifiers>
+                    <default>CUSTOM</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>helices uu,helices ud,strands udu,strands uud,strands uuu,strands uuuu,strands udud,CUSTOM</menuText>
+                    <enumerators>HELI_lib_uu,HELI_lib_ud,BETA_lib_udu,BETA_lib_uud,BETA_lib_uuu,BETA_lib_uuuu,BETA_lib_udud,CUSTOM</enumerators>
+                </qualifiers>
+            </content>
+            <content id="BORGES_GYRE">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="BORGES_GYRE_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>both</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>both,no_gyre</enumerators>
+                </qualifiers>
+            </content>
+            <content id="BORGES_GIMBLE">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="BORGES_GIMBLE_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>True</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="BORGES_MULTICOPY">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="BORGES_MULTICOPY_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>False</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <!-- Shredder !-->
+            <content id="SHREDDER_RMSD">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_RMSD_T">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>1.2</default>
+                    <charWidth>4</charWidth>
+                    <toolTip></toolTip>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_CONVERT">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_CONVERT_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>True</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_MAKE">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_MAKE_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>True</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_OPTIONS">
+                <className>CString</className>
+                <qualifiers>
+                    <default>spherical</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>sequential,spherical</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_COIL">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_COIL_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>remove_coil</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>maintain_coil,remove_coil</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_GYRE">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_GYRE_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>both</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>both, no_gyre</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_GIMBLE">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_GIMBLE_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>True</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_LLG">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_LLG_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>False</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_COMBINE">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_COMBINE_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>True</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_MULTICOPY">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+            <content id="SHREDDER_MULTICOPY_T">
+                <className>CString</className>
+                <qualifiers>
+                    <default>False</default>
+                    <menuText>On,Off</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>True,False</enumerators>
+                </qualifiers>
+            </content>
+            <content id="SHREDDER_PREDICTED">
+                <className>CBoolean</className>
+                    <qualifiers>
+                        <default>False</default>
+                    </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XMLOUT">
+              <className>CXmlDataFile</className>
+              <qualifiers>
+                  <saveToDb>False</saveToDb>
+              </qualifiers>
+            </content>  
+            <content id="XYZOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="PHSOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPhsDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

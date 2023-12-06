@@ -1,0 +1,2371 @@
+
+ ***** CORRECT ***** (VERSION January 10, 2014)  15-May-2014
+
+ INPUT PARAMETER VALUES
+ ----------------------
+ SPACE_GROUP_NUMBER=   20 as used in the INTEGRATE step
+ UNIT_CELL_CONSTANTS=    83.090    96.791    57.950  90.000  90.000  90.000 as used by INTEGRATE
+ FRIEDEL'S_LAW=FALSE
+ PROFILE_FITTING= TRUE 
+ OVERLOAD=   1048500     MINPK=  75.00000    WFAC1=   1.0
+ INCLUDE_RESOLUTION_RANGE=    50.380     0.000
+ NAME_TEMPLATE_OF_DATA_FRAMES=/dls/i04-1/data/2014/nt5073-16/BAZ2BA/BAZ2BA-x828/BAZ2BA-x828_1_????.cbf CBF
+ DATA_RANGE=       1    1800
+ ROTATION_AXIS=  0.999997  0.001739 -0.001819
+ OSCILLATION_RANGE=  0.100000
+ STARTING_ANGLE=    30.000     STARTING_FRAME=       1
+ X-RAY_WAVELENGTH=  0.920000
+ INCIDENT_BEAM_DIRECTION=  0.001908 -0.002084  1.086953
+ FRACTION_OF_POLARIZATION=   0.990
+ POLARIZATION_PLANE_NORMAL=  0.000000  1.000000  0.000000
+ AIR=   0.00100
+ DETECTOR=PILATUS
+ SILICON=  3.074299 SENSOR_THICKNESS=  0.320000
+ NUMBER OF DETECTOR SEGMENTS   1
+ NX=  1475  NY=  1679    QX=  0.172000  QY=  0.172000
+ ORGX=    731.00  ORGY=    841.80
+ DETECTOR_DISTANCE=   189.230
+ DIRECTION_OF_DETECTOR_X-AXIS=   1.00000   0.00000   0.00000
+ DIRECTION_OF_DETECTOR_Y-AXIS=   0.00000   1.00000   0.00000
+ BEAM_DIVERGENCE_E.S.D.=   0.030
+ REFLECTING_RANGE_E.S.D.=   0.055
+ MINIMUM_ZETA=     0.050
+ MAXIMUM_ERROR_OF_SPOT_POSITION=   3.0
+ MAXIMUM_ERROR_OF_SPINDLE_POSITION=   2.0
+ MINIMUM_I/SIGMA=   3.0
+ REFLECTIONS/CORRECTION_FACTOR=      50
+ STRICT_ABSORPTION_CORRECTION=TRUE  
+ CORRECTIONS= DECAY MODULATION ABSORPTION                      
+ REFERENCE_DATA_SET=                                                  
+
+
+  340434 REFLECTIONS ON FILE "INTEGRATE.HKL"
+       0 CORRUPTED REFLECTION RECORDS (IGNORED)
+       0 MATCHING REFLECTIONS SPECIFIED IN FILE "FILTER.HKL"
+       0 REFLECTIONS INCOMPLETE OR OUTSIDE IMAGE RANGE       1 ...    1800
+       0 OVERLOADED REFLECTIONS (IGNORED)
+       0 REFLECTIONS OUTSIDE ACCEPTED RESOLUTION RANGES
+                OR TOO CLOSE TO ROTATION AXIS (IGNORED)
+  340434 REFLECTIONS ACCEPTED
+
+
+
+ ******************************************************************************
+                      AUTOMATIC SPACE GROUP ASSIGNMENT
+ ******************************************************************************
+
+ XDS adopts the following approach.
+ (1) it looks for possible symmetries of the crystal lattice
+ (2) it computes a redundancy independent R-factor for all enantiomorphous
+     point groups compatible with the observed lattice symmetry.
+ (3) it selects the group which explains the intensity data at an acceptable,
+     redundancy-independent R-factor (Rmeas, Rrim) using a minimum number of
+     unique reflections.
+
+ This approach does not test for the presence of screw axes. Consequently,
+ orthorhombic cell axes will be specified in increasing length (following
+ conventions), despite the possibility that different assignments for the
+ cell axes could become necessary for space groups P222(1) and P2(1)2(1)2
+ containing one or two screw axes, respectively.
+
+ The user can always override the automatic decisions by specifying the
+ correct space group number and unit cell constants in XDS.INP and repeating
+ the CORRECT step of XDS. This provides a simple way to rename orthorhombic
+ cell constants if screw axes are present.
+
+ In addition, the user has the option to specify in XDS.INP
+ (a) a reference data set or
+ (b) a reindexing transformation or
+ (c) the three basis vectors (if known from processing a previous data set
+ taken at the same crystal orientation in a multi-wavelength experiment).
+ These features of XDS are useful for resolving the issue of alternative
+ settings of polar or rhombohedral cells (like P4, P6, R3).
+
+ =====> Specifications provided by the user in XDS.INP:
+ SPACE_GROUP_NUMBER=   21 (0: unknown symmetry and unit cell)
+ UNIT_CELL_CONSTANTS=    83.09    96.79    57.95  90.000  90.000  90.000
+ UNIT_CELL_A-AXIS=     0.000     0.000     0.000 (0 0 0 : unknown)
+ UNIT_CELL_B-AXIS=     0.000     0.000     0.000 (0 0 0 : unknown)
+ UNIT_CELL_C-AXIS=     0.000     0.000     0.000 (0 0 0 : unknown)
+ REIDX=  0  0  0  0  0  0  0  0  0  0  0  0 (all 0 : not specified)
+ TEST_RESOLUTION_RANGE=   10.00    5.00 (Angstrom) for space group determination
+ NUMBER OF ACCEPTED REFLECTIONS FOR CALCULATING Rmeas             6750
+ NUMBER OF ACCEPTED UNIQUE REFLECTIONS FROM REFERENCE DATA SET       0
+
+
+ *********** DETERMINATION OF LATTICE CHARACTER AND BRAVAIS LATTICE ***********
+
+ The CHARACTER OF A LATTICE is defined by the metrical parameters of its
+ reduced cell as described in the INTERNATIONAL TABLES FOR CRYSTALLOGRAPHY
+ Volume A, p. 746 (KLUWER ACADEMIC PUBLISHERS, DORDRECHT/BOSTON/LONDON, 1989).
+ Note that more than one lattice character may have the same BRAVAIS LATTICE.
+
+ A lattice character is marked "*" to indicate a lattice consistent with the
+ observed locations of the diffraction spots. These marked lattices must have
+ low values for the QUALITY OF FIT and their implicated UNIT CELL CONSTANTS
+ should not violate the ideal values by more than
+ MAX_CELL_AXIS_ERROR=  0.03
+ MAX_CELL_ANGLE_ERROR=           3.0 (Degrees)
+
+ The REINDEXING TRANSFORMATION REIDX() consists of 12 integers that relate
+ the original indices H,K,L from file INTEGRATE.HKL to the indices H',K',L'
+ with respect to the new cell.
+    H'=(REIDX(1)*H+REIDX( 2)*K+REIDX( 3)*L)/IDXV+REIDX( 4)
+    K'=(REIDX(5)*H+REIDX( 6)*K+REIDX( 7)*L)/IDXV+REIDX( 8)
+    L'=(REIDX(9)*H+REIDX(10)*K+REIDX(11)*L)/IDXV+REIDX(12)
+ The value of the integer IDXV depends on the lattice type used for
+ specifying reflections on file INTEGRATE.HKL; IDXV is
+ 1 for a primitive,
+ 2 for a face or body centred,
+ 3 for a rhombohedral,
+ 4 for a lattice centred on all faces.
+ IDXV is set by XDS and cannot be input by the user.
+
+  LATTICE-  BRAVAIS-   QUALITY  UNIT CELL CONSTANTS (ANGSTROEM & DEGREES)    REINDEXING TRANSFORMATION
+ CHARACTER  LATTICE     OF FIT      a      b      c   alpha  beta gamma
+
+ *  31        aP          0.0      57.9   63.8   63.8  81.3  90.0  90.0    0  0  2  0 -1 -1  0  0  1 -1  0  0
+ *  44        aP          0.0      57.9   63.8   63.8  98.7  90.0  90.0    0  0 -2  0 -1 -1  0  0 -1  1  0  0
+ *  35        mP          0.0      63.8   57.9   63.8  90.0  98.7  90.0    1  1  0  0  0  0  2  0  1 -1  0  0
+ *  20        mC          0.0      96.8   83.1   57.9  90.0  90.0  90.0    0 -2  0  0 -2  0  0  0  0  0 -2  0
+ *  23        oC          0.0      83.1   96.8   57.9  90.0  90.0  90.0   -2  0  0  0  0  2  0  0  0  0 -2  0
+ *  25        mC          0.0      83.1   96.8   57.9  90.0  90.0  90.0   -2  0  0  0  0  2  0  0  0  0 -2  0
+    34        mP         92.1      57.9   63.8   63.8  98.7  90.0  90.0    0  0  2  0  1 -1  0  0  1  1  0  0
+    33        mP         92.1      57.9   63.8   63.8  98.7  90.0  90.0    0  0  2  0  1 -1  0  0  1  1  0  0
+    32        oP         92.1      57.9   63.8   63.8  98.7  90.0  90.0    0  0 -2  0 -1 -1  0  0 -1  1  0  0
+    21        tP         92.1      63.8   63.8   57.9  90.0  90.0  98.7   -1 -1  0  0 -1  1  0  0  0  0 -2  0
+    10        mC        197.7      86.2   86.2   63.8  83.5  96.5  95.5   -1  1 -2  0  1 -1 -2  0 -1 -1  0  0
+    14        mC        197.7      86.2   86.2   63.8  96.5  96.5  84.5    1 -1  2  0  1 -1 -2  0  1  1  0  0
+    13        oC        197.7      86.2   86.2   63.8  96.5  96.5  84.5   -1 -1 -2  0 -1 -1  2  0 -1  1  0  0
+     2        hR        197.7      86.2   86.2  112.8  97.8  82.2 122.4    1 -1 -2  0  1  1  2  0  0 -2  2  0
+     4        hR        197.7      86.2   86.2  101.3  90.6  89.4 111.7   -1  1  2  0  1  1 -2  0 -2  0 -2  0
+    11        tP        197.7      57.9   63.8   63.8  98.7  90.0  90.0    0  0 -2  0 -1 -1  0  0 -1  1  0  0
+    41        mC        210.7     133.6   63.8   57.9  90.0  90.0  70.6   -3 -1  0  0 -1  1  0  0  0  0 -2  0
+    30        mC        210.7      63.8  133.6   57.9  90.0  90.0  70.6   -1 -1  0  0 -3  1  0  0  0  0 -2  0
+    40        oC        210.7      63.8  133.6   57.9  90.0  90.0 109.4    1  1  0  0 -3  1  0  0  0  0  2  0
+    22        hP        210.7      63.8   63.8   57.9  90.0  90.0  98.7   -1 -1  0  0 -1  1  0  0  0  0 -2  0
+    39        mC        250.0     140.1   57.9   63.8  90.0  98.0  65.6    2  2  2  0  0  0  2  0  1 -1  0  0
+    37        mC        250.0     140.1   57.9   63.8  90.0  98.0  65.6    2  2  2  0  0  0  2  0  1 -1  0  0
+     5        cI        272.2      86.2   86.2   83.1  61.2  61.2  68.3    1  1  2  0  1 -1  2  0  2  0  0  0
+     3        cP        289.7      57.9   63.8   63.8  98.7  90.0  90.0    0  0  2  0  1 -1  0  0  1  1  0  0
+    28        mC        342.1      57.9  140.1   63.8  82.0  90.0  65.6    0  0  2  0  2  2  2  0 -1  1  0  0
+    29        mC        342.1      57.9  140.1   63.8  82.0  90.0  65.6    0  0  2  0  2  2  2  0 -1  1  0  0
+    36        oC        342.1      57.9  140.1   63.8  82.0  90.0 114.4    0  0  2  0 -2 -2 -2  0  1 -1  0  0
+    38        oC        342.1      57.9  140.1   63.8  82.0  90.0 114.4    0  0  2  0 -2 -2 -2  0  1 -1  0  0
+     1        cF        355.6     101.3  101.3  112.8 107.1 107.1 110.2    2  0 -2  0 -2  0 -2  0  0  2  2  0
+    12        hP        447.7      57.9   63.8   63.8  98.7  90.0  90.0    0  0 -2  0 -1 -1  0  0 -1  1  0  0
+    42        oI        460.7      57.9   63.8  145.7 107.7 113.4  90.0    0  0 -2  0 -1  1  0  0  3  1  2  0
+    19        oI        500.0      57.9   83.1  112.8  90.0  59.1  90.0    0  0 -2  0  2  0  0  0  0 -2 -2  0
+    27        mC        500.0     140.1   57.9   83.1  90.0 126.4  65.6   -2 -2 -2  0  0  0 -2  0  2  0  0  0
+    15        tI        513.5      57.9   63.8  145.7  72.3  66.6  90.0    0  0  2  0  1 -1  0  0  3  1  2  0
+    18        tI        532.9      83.1  112.8   57.9  59.1  90.0  90.0    2  0  0  0  0  2  2  0  0  0  2  0
+    26        oF        532.9      57.9  140.1  140.1  72.7 114.4 114.4    0  0  2  0 -2 -2 -2  0  2 -2 -2  0
+     9        hR        763.5      57.9   86.2  200.8  86.2 106.8 132.3    0  0  2  0 -1 -1 -2  0  4 -2 -2  0
+     6        tI        999.0      83.1   86.2   86.2  68.3  61.2  61.2    2  0  0  0  1  1  2  0  1 -1  2  0
+     7        tI        999.0      86.2   86.2   83.1  61.2  61.2  68.3    1  1  2  0  1 -1  2  0  2  0  0  0
+     8        oI        999.0      86.2   86.2   83.1  61.2  61.2  68.3   -1  1 -2  0 -1 -1 -2  0 -2  0  0  0
+    16        oF        999.0      86.2   86.2  145.7  87.6 119.5  84.5   -1  1 -2  0 -1  1  2  0  3  1  2  0
+    17        mC        999.0      86.2   86.2   86.2  68.3 122.4  84.5   -1  1  2  0 -1  1 -2  0 -1 -1 -2  0
+    24        hR        999.0     145.7   96.8   57.9  90.0  66.6 109.4    3 -1  2  0  0  2  0  0  0  0  2  0
+    43        mI        999.0      86.2  145.7   63.8 107.7 137.7  60.5   -1 -1 -2  0 -3  1 -2  0  1  1  0  0
+
+ ****** LATTICE SYMMETRY IMPLICATED BY SPACE GROUP SYMMETRY ******
+
+BRAVAIS-            POSSIBLE SPACE-GROUPS FOR PROTEIN CRYSTALS
+  TYPE                     [SPACE GROUP NUMBER,SYMBOL]
+  aP      [1,P1]
+  mP      [3,P2] [4,P2(1)]
+ mC,mI    [5,C2]
+  oP      [16,P222] [17,P222(1)] [18,P2(1)2(1)2] [19,P2(1)2(1)2(1)]
+  oC      [21,C222] [20,C222(1)]
+  oF      [22,F222]
+  oI      [23,I222] [24,I2(1)2(1)2(1)]
+  tP      [75,P4] [76,P4(1)] [77,P4(2)] [78,P4(3)] [89,P422] [90,P42(1)2]
+          [91,P4(1)22] [92,P4(1)2(1)2] [93,P4(2)22] [94,P4(2)2(1)2]
+          [95,P4(3)22] [96,P4(3)2(1)2]
+  tI      [79,I4] [80,I4(1)] [97,I422] [98,I4(1)22]
+  hP      [143,P3] [144,P3(1)] [145,P3(2)] [149,P312] [150,P321] [151,P3(1)12]
+          [152,P3(1)21] [153,P3(2)12] [154,P3(2)21] [168,P6] [169,P6(1)]
+          [170,P6(5)] [171,P6(2)] [172,P6(4)] [173,P6(3)] [177,P622]
+          [178,P6(1)22] [179,P6(5)22] [180,P6(2)22] [181,P6(4)22] [182,P6(3)22]
+  hR      [146,R3] [155,R32]
+  cP      [195,P23] [198,P2(1)3] [207,P432] [208,P4(2)32] [212,P4(3)32]
+          [213,P4(1)32]
+  cF      [196,F23] [209,F432] [210,F4(1)32]
+  cI      [197,I23] [199,I2(1)3] [211,I432] [214,I4(1)32]
+
+
+ Several solutions exist for the given space group that explain the data. The
+ selected solution (marked "*") correlates best with the given reference data set.
+ The independent settings of the cell can be obtained by application of the
+ REINDEXING TRANSFORMATION to the original indices H,K,L from file INTEGRATE.HKL
+
+ CORRELATION = correlation factor with the reference data set
+ NPAIR       = number of unique reflection pairs correlated 
+ Rmeas=Rrim  = redundancy independent R-factor (intensities)
+               For definition see:
+               Rmeas : Diederichs & Karplus,
+                       Nature Struct. Biol. 4, 269-275 (1997);
+               Rrim  : Weiss & Hilgenfeld,
+                       J.Appl.Cryst. 30,203-205 (1997).
+ COMPARED    = number of reflections used for calculating Rmeas
+ ESD         = Agreement with given unit cell geometry
+
+ CORRELATION  NPAIR  Rmeas  COMPARED  ESD       REINDEX TRANSFORMATION
+
+  *   0.00        0   12.0    5784    0.00  2  0  0  0  0  2  0  0  0  0  2  0
+
+ ************ SELECTED SPACE GROUP AND UNIT CELL FOR THIS DATA SET ************
+
+ SPACE_GROUP_NUMBER=   21
+ UNIT_CELL_CONSTANTS=    83.09    96.79    57.95  90.000  90.000  90.000
+ UNIT_CELL_A-AXIS=    65.803    11.109    49.436
+ UNIT_CELL_B-AXIS=   -42.368    77.866    38.898
+ UNIT_CELL_C-AXIS=   -24.631   -33.546    40.324
+ REFLECTIONS H,K,L FROM "INTEGRATE.HKL" WILL BE REINDEXED BY
+ H' = (  2*H +  0*K +  0*L)/ 2 +  0
+ K' = (  0*H +  2*K +  0*L)/ 2 +  0
+ L' = (  0*H +  0*K +  2*L)/ 2 +  0
+
+ *****  8 EQUIVALENT POSITIONS IN SPACE GROUP # 21 *****
+
+    If x',y',z' is an equivalent position to x,y,z, then
+        x'=x*ML(1)+y*ML( 2)+z*ML( 3)+ML( 4)/12.0
+        y'=x*ML(5)+y*ML( 6)+z*ML( 7)+ML( 8)/12.0
+        z'=x*ML(9)+y*ML(10)+z*ML(11)+ML(12)/12.0
+
+    #    1  2  3  4    5  6  7  8    9 10 11 12 
+    1    1  0  0  0    0  1  0  0    0  0  1  0
+    2   -1  0  0  0    0 -1  0  0    0  0  1  0
+    3    1  0  0  0    0 -1  0  0    0  0 -1  0
+    4   -1  0  0  0    0  1  0  0    0  0 -1  0
+    5    1  0  0  6    0  1  0  6    0  0  1  0
+    6   -1  0  0  6    0 -1  0  6    0  0  1  0
+    7    1  0  0  6    0 -1  0  6    0  0 -1  0
+    8   -1  0  0  6    0  1  0  6    0  0 -1  0
+
+ ******************************************************************************
+      MEAN DISCREPANCIES BETWEEN OBSERVED AND CALCULATED SPOT LOCATIONS
+ ******************************************************************************
+
+ The discrepancies in X- and Y-coordinates of the spots are depicted in the
+ two images DX-CORRECTIONS.cbf and DY-CORRECTIONS.cbf for inspection with
+ the XDS-Viewer.
+
+
+
+ ******************************************************************************
+  REFINEMENT OF DIFFRACTION PARAMETERS USING ALL IMAGES
+ ******************************************************************************
+
+
+ REFINED VALUES OF DIFFRACTION PARAMETERS DERIVED FROM  55555 INDEXED SPOTS
+ REFINED PARAMETERS:   DISTANCE BEAM ORIENTATION CELL AXIS
+ STANDARD DEVIATION OF SPOT    POSITION (PIXELS)     0.37
+ STANDARD DEVIATION OF SPINDLE POSITION (DEGREES)    0.04
+ SPACE GROUP NUMBER     21
+ UNIT CELL PARAMETERS     83.091    96.794    57.951  90.000  90.000  90.000
+ E.S.D. OF CELL PARAMETERS  6.6E-02 3.2E-02 1.8E-02 0.0E+00 0.0E+00 0.0E+00
+ REC. CELL PARAMETERS   0.012035  0.010331  0.017256  90.000  90.000  90.000
+ COORDINATES OF UNIT CELL A-AXIS    65.844    11.109    49.450
+ COORDINATES OF UNIT CELL B-AXIS   -42.353    77.858    38.903
+ COORDINATES OF UNIT CELL C-AXIS   -24.627   -33.548    40.328
+ CRYSTAL MOSAICITY (DEGREES)     0.055
+ LAB COORDINATES OF ROTATION AXIS  0.999997  0.001719 -0.001820
+ DIRECT BEAM COORDINATES (REC. ANGSTROEM)   0.001893 -0.002110  1.086953
+ DETECTOR COORDINATES (PIXELS) OF DIRECT BEAM     732.93    839.69
+ DETECTOR ORIGIN (PIXELS) AT                      731.01    841.83
+ CRYSTAL TO DETECTOR DISTANCE (mm)       189.24
+ LAB COORDINATES OF DETECTOR X-AXIS  1.000000  0.000000  0.000000
+ LAB COORDINATES OF DETECTOR Y-AXIS  0.000000  1.000000  0.000000
+
+
+ THE DATA COLLECTION STATISTICS REPORTED BELOW ASSUMES:
+ SPACE_GROUP_NUMBER=   21
+ UNIT_CELL_CONSTANTS=    83.09    96.79    57.95  90.000  90.000  90.000
+
+
+ ******************************************************************************
+        MEAN INTENSITY AS FUNCTION OF SPINDLE POSITION WITHIN DATA IMAGE
+ ******************************************************************************
+
+ This statistics could serve as a diagnostic tool for detecting
+ shutter problems (suggested by Kay Diederichs).
+ Data are corrected for this effect if PATCH_SHUTTER_PROBLEM=TRUE in XDS.INP.
+ ===> Selected : PATCH_SHUTTER_PROBLEM=FALSE
+
+ INTERVAL = Angular interval in units of the oscillation range
+            covered by a data image.
+ NUMBER   = Number of reflections in each interval
+ INTENSITY= Mean intensity of the reflections in each interval
+ FACTOR   = Correction factor applied to intensities;
+            INTENSITY(overall)/INTENSITY(interval)
+
+   INTERVAL     NUMBER      INTENSITY      FACTOR
+ -0.05  0.05     34094         52.189       0.990
+  0.05  0.15     34004         51.265       1.008
+  0.15  0.25     34167         50.743       1.018
+  0.25  0.35     33763         51.914       0.995
+  0.35  0.45     34134         52.820       0.978
+  0.45  0.55     34228         48.853       1.057
+  0.55  0.65     33873         51.956       0.994
+  0.65  0.75     34353         53.777       0.961
+  0.75  0.85     34138         51.959       0.994
+  0.85  0.95     33680         51.060       1.012
+ 
+ -0.05  0.95    340434         51.654       1.000
+ 
+
+ ******************************************************************************
+           CORRECTION FACTORS AS FUNCTION OF IMAGE NUMBER & RESOLUTION
+ ******************************************************************************
+
+ RECIPROCAL CORRECTION FACTORS FOR INPUT DATA SETS MERGED TO
+ OUTPUT FILE: XDS_ASCII.HKL                                     
+
+ THE CALCULATIONS ASSUME         FRIEDEL'S_LAW=FALSE
+ TOTAL NUMBER OF CORRECTION FACTORS DEFINED      720
+ DEGREES OF FREEDOM OF CHI^2 FIT             37560.9
+ CHI^2-VALUE OF FIT OF CORRECTION FACTORS      1.164
+ NUMBER OF CYCLES CARRIED OUT                      6
+
+ CORRECTION FACTORS for visual inspection by XDS-Viewer DECAY.cbf           
+ XMIN=     0.4 XMAX=  1799.7 NXBIN=   36
+ YMIN= 0.00043 YMAX= 0.69850 NYBIN=   20
+ NUMBER OF REFLECTIONS USED FOR DETERMINING CORRECTION FACTORS      54256
+
+
+ ******************************************************************************
+  CORRECTION FACTORS AS FUNCTION OF X (fast) & Y(slow) IN THE DETECTOR PLANE
+ ******************************************************************************
+
+ RECIPROCAL CORRECTION FACTORS FOR INPUT DATA SETS MERGED TO
+ OUTPUT FILE: XDS_ASCII.HKL                                     
+
+ THE CALCULATIONS ASSUME         FRIEDEL'S_LAW=FALSE
+ TOTAL NUMBER OF CORRECTION FACTORS DEFINED     1085
+ DEGREES OF FREEDOM OF CHI^2 FIT             37537.2
+ CHI^2-VALUE OF FIT OF CORRECTION FACTORS      1.151
+ NUMBER OF CYCLES CARRIED OUT                      4
+
+ CORRECTION FACTORS for visual inspection by XDS-Viewer MODPIX.cbf          
+ XMIN=     4.8 XMAX=  1470.0 NXBIN=   31
+ YMIN=     8.0 YMAX=  1672.1 NYBIN=   35
+ NUMBER OF REFLECTIONS USED FOR DETERMINING CORRECTION FACTORS      54256
+
+
+ ******************************************************************************
+   CORRECTION FACTORS AS FUNCTION OF IMAGE NUMBER & DETECTOR SURFACE POSITION
+ ******************************************************************************
+
+ RECIPROCAL CORRECTION FACTORS FOR INPUT DATA SETS MERGED TO
+ OUTPUT FILE: XDS_ASCII.HKL                                     
+
+ THE CALCULATIONS ASSUME         FRIEDEL'S_LAW=FALSE
+ TOTAL NUMBER OF CORRECTION FACTORS DEFINED      468
+ DEGREES OF FREEDOM OF CHI^2 FIT             37579.0
+ CHI^2-VALUE OF FIT OF CORRECTION FACTORS      1.138
+ NUMBER OF CYCLES CARRIED OUT                      3
+
+ CORRECTION FACTORS for visual inspection by XDS-Viewer ABSORP.cbf          
+ XMIN=     0.4 XMAX=  1799.7 NXBIN=   36
+ DETECTOR_SURFACE_POSITION=     737     840
+ DETECTOR_SURFACE_POSITION=     986    1123
+ DETECTOR_SURFACE_POSITION=     489    1123
+ DETECTOR_SURFACE_POSITION=     489     557
+ DETECTOR_SURFACE_POSITION=     986     557
+ DETECTOR_SURFACE_POSITION=    1301    1105
+ DETECTOR_SURFACE_POSITION=     971    1480
+ DETECTOR_SURFACE_POSITION=     504    1480
+ DETECTOR_SURFACE_POSITION=     174    1105
+ DETECTOR_SURFACE_POSITION=     174     575
+ DETECTOR_SURFACE_POSITION=     504     200
+ DETECTOR_SURFACE_POSITION=     971     200
+ DETECTOR_SURFACE_POSITION=    1301     575
+ NUMBER OF REFLECTIONS USED FOR DETERMINING CORRECTION FACTORS      54256
+
+
+ ******************************************************************************
+    CORRECTION PARAMETERS FOR THE STANDARD ERROR OF REFLECTION INTENSITIES
+ ******************************************************************************
+
+ The variance v0(I) of the intensity I obtained from counting statistics is
+ replaced by v(I)=a*(v0(I)+b*I^2). The model parameters a, b are chosen to
+ minimize the discrepancies between v(I) and the variance estimated from
+ sample statistics of symmetry related reflections. This model implicates
+ an asymptotic limit ISa=1/SQRT(a*b) for the highest I/Sigma(I) that the
+ experimental setup can produce (Diederichs (2010) Acta Cryst D66, 733-740).
+
+     a        b          ISa
+ 9.681E-01  1.564E-03   25.70
+
+
+ ******************************************************************************
+      STANDARD ERROR OF REFLECTION INTENSITIES AS FUNCTION OF RESOLUTION
+      FOR DATA SET  XDS_ASCII.HKL                                     
+ ******************************************************************************
+
+  I/Sigma  = mean intensity/Sigma of a reflection in shell
+  Chi^2    = goodness of fit between sample variances of
+             symmetry-related intensities and their errors
+             (Chi^2 = 1 for perfect agreement)
+  R-FACTOR
+  observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+  expected = expected R-FACTOR derived from Sigma(I)
+
+   NUMBER  = number of reflections in resolution shell
+             used for calculation of R-FACTOR
+  ACCEPTED = number of accepted reflections
+  REJECTED = number of rejected reflections (MISFITS),
+             recognized by comparison with symmetry-related
+             reflections.
+
+ RESOLUTION RANGE  I/Sigma  Chi^2  R-FACTOR  R-FACTOR  NUMBER ACCEPTED REJECTED
+                                   observed  expected
+
+   48.397  11.619    23.58   1.17      2.87      2.68     580     580      27
+   11.619   8.337    23.34   1.10      2.74      2.75    1005    1005      35
+    8.337   6.841    21.51   1.17      2.91      2.83    1341    1341      44
+    6.841   5.939    19.36   1.33      3.25      2.99    1564    1564      38
+    5.939   5.320    19.77   1.16      3.11      2.97    1710    1710      51
+    5.320   4.862    20.24   1.18      3.01      2.90    1790    1791      41
+    4.862   4.504    20.85   1.23      2.92      2.71    1475    1505      52
+    4.504   4.216    20.04   1.19      2.77      2.86    1886    1892      62
+    4.216   3.976    19.82   1.19      2.91      2.93    2101    2106      63
+    3.976   3.773    19.50   1.26      3.15      3.00    2144    2151      66
+    3.773   3.599    18.74   1.21      3.12      3.03    2419    2426      62
+    3.599   3.446    17.59   1.26      3.48      3.17    2576    2582      74
+    3.446   3.312    16.65   1.31      3.74      3.37    2686    2687      51
+    3.312   3.192    15.60   1.34      4.19      3.64    2840    2840      69
+    3.192   3.084    13.79   1.24      4.47      4.02    3000    3000      46
+    3.084   2.986    12.59   1.21      4.72      4.33    3114    3115      36
+    2.986   2.898    11.56   1.16      4.97      4.61    3104    3104      36
+    2.898   2.816    10.70   1.16      5.68      5.21    3423    3423      35
+    2.816   2.741     9.97   1.14      5.88      5.52    3311    3312      28
+    2.741   2.672     9.42   1.10      6.35      5.97    3537    3537      34
+    2.672   2.608     7.64   1.08      7.74      7.42    3560    3560      32
+    2.608   2.548     7.08   1.11      8.46      7.92    3595    3597      14
+    2.548   2.492     6.29   1.02      8.72      8.55    3052    3092      21
+    2.492   2.440     6.13   1.04      9.57      9.11    2900    2974      19
+    2.440   2.391     5.48   1.05     10.62     10.28    3284    3325      25
+    2.391   2.345     4.72   1.04     12.54     12.17    3551    3578      24
+    2.345   2.301     4.33   1.03     13.87     13.54    3720    3741      19
+    2.301   2.259     4.01   1.04     14.74     14.39    3821    3834      26
+    2.259   2.220     3.56   1.13     18.18     16.92    4091    4103      29
+    2.220   2.183     3.41   1.05     17.52     16.83    4118    4131      13
+    2.183   2.148     3.23   1.03     18.78     18.45    4163    4179      19
+    2.148   2.114     2.85   1.08     21.39     20.28    4272    4291      13
+    2.114   2.082     2.46   1.03     25.09     24.33    4395    4407      16
+    2.082   2.051     2.26   1.02     26.86     26.28    4279    4290      29
+    2.051   2.021     1.85   1.04     34.81     33.82    4634    4640      18
+    2.021   1.993     1.68   1.06     37.80     36.25    4446    4451      24
+    1.993   1.966     1.32   0.99     46.76     46.15    4687    4695      34
+    1.966   1.940     1.18   1.00     52.74     52.35    4705    4707      14
+    1.940   1.915     1.12   0.99     56.46     56.26    4831    4837      29
+    1.915   1.891     0.73   0.97     85.56     85.77    4997    4999      20
+    1.891   1.868     0.85   0.99     73.01     72.56    4719    4726      21
+    1.868   1.845     0.70   0.95     88.43     89.15    5177    5179      15
+    1.845   1.824     0.63   0.93     95.38     97.13    4974    4979      14
+    1.824   1.803     0.51   0.93    116.14    119.80    5274    5278      13
+    1.803   1.783     0.48   0.92    121.06    125.04    4697    4744      11
+    1.783   1.764     0.39   0.96    149.90    151.65    4069    4165      17
+    1.764   1.745     0.38   0.91    152.41    157.36    4352    4435      12
+    1.745   1.726     0.36   0.91    160.62    167.08    4568    4631       6
+    1.726   1.709     0.34   0.94    172.68    176.22    4920    4961      10
+    1.709   1.692     0.28   0.92    206.55    213.73    5037    5074      10
+    1.692   1.675     0.25   0.92    228.57    235.80    5183    5203      13
+    1.675   1.659     0.23   0.90    245.06    256.97    5187    5214       9
+    1.659   1.643     0.18   0.91    304.39    315.78    5437    5474      11
+    1.643   1.628     0.17   0.88    320.52    339.08    5261    5293      19
+    1.628   1.613     0.14   0.87    379.36    403.07    5575    5612      14
+    1.613   1.599     0.16   0.89    344.41    360.57    5438    5472      10
+    1.599   1.584     0.13   0.90    421.80    439.03    5689    5727       7
+    1.584   1.571     0.10   0.90    528.62    550.46    5474    5497      12
+    1.571   1.557     0.13   0.90    419.53    436.91    5552    5573      13
+    1.557   1.544     0.11   0.94    487.06    497.43    5718    5763      12
+    1.544   1.532     0.08   0.90    600.46    624.71    5705    5734      12
+    1.532   1.519     0.10   0.92    508.02    523.22    5438    5478      10
+    1.519   1.507     0.09   0.91    546.16    567.85    5724    5769      17
+    1.507   1.495     0.07   0.86    650.45    694.11    5603    5634       8
+    1.495   1.484     0.02   0.88   1610.43   1705.88    5255    5300       6
+    1.484   1.473     0.05   0.89    885.50    929.00    5835    5882      14
+    1.473   1.462     0.06   0.89    771.95    804.87    5483    5527      17
+    1.462   1.451     0.05   0.86    937.86   1002.33    5511    5556      12
+    1.451   1.440     0.04   0.89   1035.08   1089.08    5185    5306      14
+    1.440   1.430     0.03   0.82    964.51   1065.82    4339    4558       8
+    1.430   1.420     0.01   0.86   1981.99   2101.50    3963    4227       9
+    1.420   1.410     0.03   0.87   1060.05   1132.19    3577    3854      14
+    1.410   1.400     0.06   0.90    722.58    752.78    3469    3817      12
+    1.400   1.391     0.02   0.84   1677.10   1811.33    3047    3392      13
+    1.391   1.381     0.03   0.82   1093.45   1182.70    2850    3243      12
+    1.381   1.372     0.04   0.85    910.64    981.30    2700    3073      12
+    1.372   1.363    -0.00   0.91   2189.16   2264.03    2445    2870      14
+    1.363   1.355     0.01   0.92   1438.53   1470.79    2299    2727       7
+    1.355   1.346     0.01   0.90   3234.94   3380.78    2020    2466       6
+    1.346   1.338     0.03   0.85   1112.79   1197.63    1876    2373       4
+    1.338   1.329     0.04   0.85    749.83    807.81    1716    2216       4
+    1.329   1.321     0.00   0.85  10033.05  10897.58    1534    2028       2
+    1.321   1.313     0.01   0.81   2540.80   2788.96    1326    1867       8
+    1.313   1.305     0.01   0.83   1818.34   1963.30    1286    1849       0
+    1.305   1.298     0.04   0.84    838.01    889.56    1129    1688      14
+    1.298   1.290     0.03   0.83    818.92    872.84    1062    1608       4
+    1.290   1.283     0.05   0.83    884.08    944.33     915    1470       8
+    1.283   1.275     0.01   0.87   2133.56   2225.32     888    1398       2
+    1.275   1.268     0.03   0.84   1005.95   1087.90     748    1247       4
+    1.268   1.261     0.11   0.84   1476.68   1616.15     661    1158       6
+    1.261   1.254    -0.00   0.87   8266.38   8573.34     538     973       4
+    1.254   1.247     0.04   0.96    550.26    538.41     440     866       8
+    1.247   1.241     0.01   0.77   1069.53   1168.43     367     764       4
+    1.241   1.234     0.02   0.83   4061.71   4327.32     354     720       2
+    1.234   1.228     0.03   0.79    673.55    738.42     237     528       2
+    1.228   1.221     0.04   0.85    609.36    644.12     210     490       0
+    1.221   1.215    -0.03   0.88   1120.29   1110.64     134     326       2
+    1.215   1.209     0.06   1.06    -99.90    -99.90      69     236       0
+    1.209   1.203     0.09   0.84    -99.90    -99.90      46     135       0
+    1.203   1.197     0.08   0.00    -99.90    -99.90       0      47       0
+   --------------------------------------------------------------------------
+   48.397   1.197     3.03   0.98      8.13      8.06  324992  338502    1932
+ 
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR VARIOUS SUBSETS OF INCLUDED DATA IMAGES
+ ******************************************************************************
+
+ Data set statistics is reported below several times, each with a different
+ upper limit on the number of images included. This provides the user with
+ the information for deciding which data images should be excluded from the
+ final data set because of radiation damage or other defects. If the user
+ decides for a subset of "good" images that differs from the specification
+ as given by the input parameter (see DATA_RANGE= in XDS.INP) the CORRECT-
+ step of XDS must be repeated with the new parameter values for DATA_RANGE=.
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1     201
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58        2036    1650      5323       31.0%       2.5%      2.4%      723   22.52      3.4%    99.8*    29    1.198      16
+     2.54        3907    3076      9660       31.8%       3.6%      3.2%     1476   14.24      4.8%    99.8*     4    0.861      46
+     2.07        4712    3919     12493       31.4%       7.8%      7.6%     1448    5.48     10.6%    98.4*     5    0.773      16
+     1.79        5998    5096     14835       34.4%      24.6%     24.7%     1689    1.63     33.6%    90.0*   -20    0.840      18
+     1.60        6203    5429     16793       32.3%     100.9%    107.3%     1523    0.43    141.7%    34.4*   -73    0.634       3
+     1.47        6974    6093     18558       32.8%     309.5%    317.9%     1762    0.15    437.7%     6.6      0    0.000       0
+     1.36        4842    4396     20154       21.8%    1958.9%   2161.8%      892    0.04   2770.3%     6.2      0    0.000       0
+     1.27        2298    2286     21649       10.6%     139.6%    154.2%       24    0.03    197.4%   -15.9      0    0.000       0
+     1.20         699     699     23061        3.0%     -99.9%    -99.9%        0  -99.00    -99.9%     0.0      0    0.000       0
+    total       37669   32644    142526       22.9%       5.0%      4.9%     9537    3.50      6.8%    99.8*    -2    0.890      99
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES   37911
+ NUMBER OF REJECTED MISFITS                             238
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                      37673
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS                32647
+
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1     401
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58        4052    2581      5323       48.5%       2.8%      2.6%     2474   25.00      3.7%    99.8*    15    1.035     268
+     2.54        7812    5288      9660       54.7%       3.7%      3.4%     4228   14.95      4.7%    99.7*    12    0.956     544
+     2.07        9411    6881     12493       55.1%       8.2%      8.0%     4503    5.70     10.9%    98.4*     4    0.862     707
+     1.79       12014    8604     14835       58.0%      25.3%     25.8%     6287    1.66     34.4%    91.2*     2    0.780    1101
+     1.60       12406    9473     16793       56.4%      96.8%     99.1%     5693    0.44    134.9%    36.7*    -4    0.630     916
+     1.47       13917   10268     18558       55.3%     238.5%    249.1%     7273    0.15    336.8%     9.0      1    0.589    1304
+     1.36        9714    8323     20154       41.3%     467.0%    503.8%     2782    0.04    660.5%     4.5     -1    0.563     298
+     1.27        4587    4555     21649       21.0%     257.6%    318.8%       64    0.02    364.3%    17.0      0    0.000       0
+     1.20        1381    1381     23061        6.0%     -99.9%    -99.9%        0  -99.00    -99.9%     0.0      0    0.000       0
+    total       75294   57354    142526       40.2%       5.4%      5.3%    33304    3.54      7.3%    99.8*     3    0.735    5138
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES   75748
+ NUMBER OF REJECTED MISFITS                             446
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                      75302
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS                57360
+
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1     601
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58        6133    3282      5323       61.7%       2.8%      2.6%     4700   27.28      3.5%    99.8*    13    0.972     598
+     2.54       11722    6368      9660       65.9%       3.8%      3.6%     8674   16.49      4.8%    99.8*     4    0.865    1031
+     2.07       14111    8464     12493       67.7%       9.6%      9.4%     9376    6.09     12.3%    98.5*     3    0.851    1015
+     1.79       17960   10305     14835       69.5%      32.3%     33.3%    12747    1.77     41.8%    89.5*     4    0.788    1347
+     1.60       18591   11600     16793       69.1%     121.8%    125.9%    12223    0.46    161.5%    35.9*     1    0.676    1371
+     1.47       20886   12283     18558       66.2%     321.1%    336.4%    15232    0.16    428.7%     6.0      1    0.588    1879
+     1.36       14562   11067     20154       54.9%     695.6%    740.1%     6379    0.04    942.0%     1.7     -2    0.536     686
+     1.27        6875    6717     21649       31.0%     415.5%    514.2%      312    0.03    583.8%    22.6     19    0.622      49
+     1.20        2082    2082     23061        9.0%     -99.9%    -99.9%        0  -99.00    -99.9%     0.0      0    0.000       0
+    total      112922   72168    142526       50.6%       6.2%      6.1%    69643    3.77      8.0%    99.8*     3    0.731    7976
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES  113556
+ NUMBER OF REJECTED MISFITS                             622
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                     112934
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS                72175
+
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1     801
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58        8199    3820      5323       71.8%       2.6%      2.6%     7297   29.44      3.4%    99.8*     8    0.891    1168
+     2.54       15656    7355      9660       76.1%       3.9%      3.7%    13720   17.59      4.9%    99.8*    -2    0.828    2110
+     2.07       18819    9706     12493       77.7%      11.0%     10.8%    15369    6.31     14.3%    98.2*     1    0.813    2246
+     1.79       23935   11743     14835       79.2%      39.2%     40.5%    20487    1.81     51.0%    86.4*     1    0.735    2922
+     1.60       24786   13276     16793       79.1%     149.7%    156.1%    19794    0.47    196.9%    30.9*     1    0.632    2732
+     1.47       27834   14304     18558       77.1%     384.3%    402.9%    23501    0.15    508.7%     4.8     -1    0.568    3101
+     1.36       19412   12993     20154       64.5%     705.2%    747.4%    11677    0.05    954.7%     1.3      1    0.542    1640
+     1.27        9144    8202     21649       37.9%    1016.9%   1097.9%     1878    0.02   1436.3%     3.3      2    0.576     308
+     1.20        2787    2736     23061       11.9%     -99.9%    -99.9%      102  -99.00    -99.9%    -2.5     19    0.425      12
+    total      150572   84135    142526       59.0%       6.5%      6.6%   113825    3.97      8.5%    99.8*     1    0.697   16239
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES  151374
+ NUMBER OF REJECTED MISFITS                             778
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                     150596
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS                84148
+
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1    1000
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58       10244    4574      5323       85.9%       2.6%      2.6%     9245   29.73      3.4%    99.8*     7    0.874    1455
+     2.54       19527    8718      9660       90.2%       3.9%      3.8%    17786   17.55      5.1%    99.7*     0    0.855    3009
+     2.07       23480   11288     12493       90.4%      12.3%     12.0%    20360    6.16     15.9%    97.9*     1    0.814    3365
+     1.79       29867   13994     14835       94.3%      43.4%     44.3%    26439    1.72     56.3%    84.8*     0    0.721    4556
+     1.60       30899   15644     16793       93.2%     163.0%    169.6%    25800    0.44    212.6%    29.3*     1    0.620    4195
+     1.47       34715   17617     18558       94.9%     417.4%    437.4%    29076    0.13    546.5%     4.4      1    0.565    4546
+     1.36       24237   15658     20154       77.7%     822.3%    870.3%    15459    0.04   1107.9%     1.3      1    0.533    2650
+     1.27       11417    9587     21649       44.3%     901.8%    976.1%     3642    0.02   1272.5%     3.0      6    0.542     758
+     1.20        3491    3237     23061       14.0%     981.6%   1031.9%      508    0.05   1388.2%    -0.9      5    0.517      97
+    total      187877  100317    142526       70.4%       6.8%      6.9%   148315    3.92      8.8%    99.8*     1    0.687   24631
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES  188906
+ NUMBER OF REJECTED MISFITS                             993
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                     187913
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS               100336
+
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1    1200
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58       12291    5164      5323       97.0%       2.6%      2.7%    11476   30.47      3.4%    99.8*     5    0.870    1756
+     2.54       23476    9613      9660       99.5%       4.1%      3.9%    22215   18.03      5.2%    99.8*     1    0.859    3482
+     2.07       28180   12199     12493       97.6%      13.4%     13.0%    26002    6.30     17.2%    97.8*     1    0.819    4072
+     1.79       35780   14771     14835       99.6%      48.2%     49.1%    33961    1.76     61.5%    83.7*     1    0.720    5570
+     1.60       37096   16434     16793       97.9%     178.1%    185.6%    34102    0.44    229.8%    28.0*     0    0.618    5551
+     1.47       41655   18426     18558       99.3%     472.6%    493.5%    39058    0.13    615.5%     3.4      0    0.558    6594
+     1.36       29113   17154     20154       85.1%     895.4%    951.7%    21829    0.04   1213.2%     1.0      1    0.536    3825
+     1.27       13707   10896     21649       50.3%     959.2%   1031.6%     5604    0.03   1354.5%     3.7      4    0.534    1059
+     1.20        4206    3739     23061       16.2%    1042.7%   1125.4%      934    0.05   1474.6%     0.7      2    0.536     169
+    total      225504  108396    142526       76.1%       7.2%      7.3%   195181    4.10      9.3%    99.8*     1    0.676   32078
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES  226753
+ NUMBER OF REJECTED MISFITS                            1199
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                     225554
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS               108421
+
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1    1400
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58       14336    5229      5323       98.2%       2.7%      2.7%    13998   32.83      3.4%    99.8*     4    0.883    2129
+     2.54       27368    9635      9660       99.7%       4.3%      4.1%    27046   19.39      5.4%    99.8*     1    0.868    4264
+     2.07       32888   12367     12493       99.0%      14.3%     13.8%    31986    6.64     17.9%    97.8*     3    0.831    5209
+     1.79       41763   14806     14835       99.8%      52.2%     52.8%    41428    1.83     64.9%    83.8*     1    0.719    6841
+     1.60       43279   16716     16793       99.5%     194.5%    202.1%    41879    0.44    245.3%    28.5*     1    0.615    6997
+     1.47       48615   18502     18558       99.7%     510.8%    534.3%    47691    0.13    645.6%     4.2      1    0.561    8129
+     1.36       34005   17880     20154       88.7%     973.5%   1034.1%    28272    0.03   1293.9%     1.5      0    0.527    5070
+     1.27       16035   11866     21649       54.8%    1146.3%   1226.1%     8299    0.02   1617.5%     2.3      3    0.529    1492
+     1.20        4917    4148     23061       18.0%    1015.7%   1106.6%     1538    0.04   1436.4%     2.9      3    0.499     199
+    total      263206  111149    142526       78.0%       7.5%      7.6%   242137    4.30      9.5%    99.8*     1    0.676   40330
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES  264686
+ NUMBER OF REJECTED MISFITS                            1426
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                     263260
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS               111173
+
+
+
+ ******************************************************************************
+  SUMMARY OF DATA SET STATISTICS FOR IMAGE   DATA_RANGE=       1    1600
+ ******************************************************************************
+
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58       16383    5279      5323       99.2%       2.9%      2.8%    16203   35.04      3.5%    99.8*     5    0.894    2243
+     2.54       31307    9644      9660       99.8%       4.5%      4.2%    31248   20.73      5.5%    99.8*     1    0.880    4487
+     2.07       37576   12412     12493       99.4%      14.8%     14.3%    37146    7.01     18.0%    97.9*     2    0.831    5575
+     1.79       47735   14815     14835       99.9%      54.8%     55.0%    47641    1.92     66.0%    85.3*     2    0.731    7052
+     1.60       49457   16732     16793       99.6%     207.0%    215.1%    48626    0.45    253.2%    30.4*     1    0.615    7359
+     1.47       55549   18506     18558       99.7%     546.4%    568.6%    55042    0.13    668.8%     4.1      1    0.561    8522
+     1.36       38882   17971     20154       89.2%    1040.3%   1104.5%    34740    0.03   1347.6%     1.9      0    0.522    5313
+     1.27       18346   12095     21649       55.9%    1363.8%   1454.9%    12364    0.02   1918.5%     2.0      3    0.526    1648
+     1.20        5631    4411     23061       19.1%    1119.6%   1181.6%     2440    0.04   1583.4%     1.2      3    0.496     205
+    total      300866  111865    142526       78.5%       7.9%      7.9%   285450    4.57      9.6%    99.8*     1    0.679   42404
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES  302593
+ NUMBER OF REJECTED MISFITS                            1649
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                     300944
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS               111897
+
+
+
+ ******************************************************************************
+  STATISTICS OF SAVED DATA SET "XDS_ASCII.HKL" (DATA_RANGE=       1    1800)
+ FILE TYPE:         XDS_ASCII      MERGE=FALSE          FRIEDEL'S_LAW=FALSE
+ ******************************************************************************
+
+   REFLECTIONS OF TYPE H,0,0  0,K,0  0,0,L OR EXPECTED TO BE ABSENT (*)
+   --------------------------------------------------------------------
+
+   H    K    L  RESOLUTION  INTENSITY     SIGMA    INTENSITY/SIGMA  #OBSERVED
+
+    0    0    2    28.975   0.8704E+03  0.2423E+02        35.93           2 
+    0    0    3    19.317  -0.5352E+00  0.4197E+00        -1.27           2 
+    0    0    4    14.488   0.1054E+05  0.2905E+03        36.27           2 
+    0    0    5    11.590  -0.5113E+00  0.7030E+00        -0.73           2 
+    0    0    7     8.279  -0.8767E+00  0.9013E+00        -0.97           2 
+    0    0    8     7.244   0.2966E+04  0.8255E+02        35.93           2 
+    0    0    9     6.439  -0.9122E+00  0.1220E+01        -0.75           2 
+    0    0   10     5.795   0.8094E+03  0.2345E+02        34.52           2 
+    0    0   11     5.268  -0.1367E+01  0.1424E+01        -0.96           2 
+    0    0   12     4.829   0.1007E+04  0.2913E+02        34.57           2 
+    0    0   14     4.139   0.1250E+03  0.5190E+01        24.08           2 
+    0    0   15     3.863   0.3712E+00  0.2075E+01         0.18           2 
+    0    0   16     3.622   0.6338E+03  0.1941E+02        32.65           2 
+    0    0   17     3.409   0.1522E+01  0.2144E+01         0.71           2 
+    0    0   18     3.219   0.7276E+03  0.2205E+02        32.99           2 
+    0    0   19     3.050   0.1395E+01  0.2248E+01         0.62           2 
+    0    0   20     2.898   0.4093E+03  0.1346E+02        30.41           2 
+    0    0   21     2.760   0.1181E+01  0.2101E+01         0.56           2 
+    0    0   22     2.634   0.3132E+02  0.3055E+01        10.25           2 
+    0    0   23     2.520  -0.4885E+00  0.2074E+01        -0.24           2 
+    0    0   24     2.415   0.4316E+02  0.3606E+01        11.97           2 
+    0    0   26     2.229   0.1271E+03  0.6634E+01        19.16           2 
+    0    0   27     2.146  -0.1180E+01  0.2563E+01        -0.46           2 
+    0    0   28     2.070   0.3216E+03  0.1219E+02        26.38           2 
+    0    0   29     1.998   0.3170E+01  0.3997E+01         0.79           1 
+    0    0   30     1.932   0.8817E+01  0.4985E+01         1.77           1 
+    0    0   31     1.869   0.2169E+01  0.2998E+01         0.72           2 
+    0    0   32     1.811   0.5768E+01  0.3284E+01         1.76           2 
+    0    0   33     1.756  -0.1674E+01  0.2916E+01        -0.57           2 
+    0    0   34     1.704   0.9607E+01  0.3330E+01         2.88           2 
+    0    0   35     1.656  -0.2135E+01  0.3047E+01        -0.70           2 
+    0    0   36     1.610  -0.2542E+01  0.3479E+01        -0.73           2 
+    0    0   37     1.566   0.8242E+00  0.3220E+01         0.26           2 
+    0    0   38     1.525   0.8729E+01  0.3698E+01         2.36           2 
+    0    0   39     1.486  -0.5788E+01  0.3148E+01        -1.84           2 
+    0    0   40     1.449   0.5565E+01  0.3643E+01         1.53           2 
+    0    0   41     1.413  -0.3797E+01  0.3104E+01        -1.22           2 
+    0    0   42     1.380   0.4789E+01  0.3653E+01         1.31           2 
+    0    0   43     1.348  -0.4571E+01  0.3650E+01        -1.25           2 
+    0    4    0    24.199   0.1161E+03  0.3586E+01        32.38           2 
+    0    6    0    16.132   0.1734E+03  0.5351E+01        32.40           2 
+    0    8    0    12.099   0.2487E+03  0.7620E+01        32.64           2 
+    0   10    0     9.679   0.3704E+03  0.1112E+02        33.31           2 
+    0   12    0     8.066   0.2124E+04  0.5953E+02        35.68           2 
+    0   14    0     6.914   0.2110E+03  0.7178E+01        29.40           2 
+    0   16    0     6.050   0.5549E+02  0.3211E+01        17.28           2 
+    0   18    0     5.377   0.7051E+02  0.3864E+01        18.25           2 
+    0   20    0     4.840   0.1276E+04  0.3695E+02        34.52           2 
+    0   24    0     4.033   0.1709E+04  0.4932E+02        34.65           2 
+    0   26    0     3.723   0.1035E+04  0.3121E+02        33.15           2 
+    0   28    0     3.457   0.4763E+02  0.4736E+01        10.06           2 
+    0   30    0     3.226   0.4333E+02  0.4487E+01         9.66           2 
+    0   32    0     3.025   0.4345E+03  0.1515E+02        28.67           2 
+    0   34    0     2.847   0.3622E+03  0.1335E+02        27.13           2 
+    0   36    0     2.689   0.8580E+02  0.5990E+01        14.32           2 
+    0   38    0     2.547   0.5797E+02  0.5193E+01        11.16           2 
+    0   40    0     2.420   0.1813E+03  0.8896E+01        20.38           2 
+    0   44    0     2.200   0.1633E+02  0.4322E+01         3.78           2 
+    0   46    0     2.104   0.6678E+02  0.5695E+01        11.73           2 
+    0   48    0     2.017   0.4956E+01  0.4483E+01         1.11           1 
+    0   50    0     1.936   0.6155E+01  0.3418E+01         1.80           2 
+    0   52    0     1.861   0.4630E+01  0.2829E+01         1.64           2 
+    0   54    0     1.792   0.3106E+02  0.4017E+01         7.73           2 
+    0   56    0     1.728   0.1126E+02  0.3252E+01         3.46           2 
+    0   58    0     1.669   0.2762E+01  0.2802E+01         0.99           2 
+    0   62    0     1.561  -0.1560E+01  0.3107E+01        -0.50           2 
+    0   64    0     1.512  -0.4451E+01  0.2799E+01        -1.59           2 
+    0   66    0     1.467   0.9197E+01  0.3580E+01         2.57           2 
+    0   68    0     1.423   0.9800E+00  0.3006E+01         0.33           2 
+    0   70    0     1.383   0.4848E+01  0.3359E+01         1.44           2 
+    0   72    0     1.344  -0.3440E+01  0.3253E+01        -1.06           2 
+    4    0    0    20.773   0.2473E+01  0.4301E+00         5.75           2 
+    6    0    0    13.848   0.6337E+03  0.1779E+02        35.63           2 
+    8    0    0    10.386   0.6441E+03  0.1819E+02        35.41           2 
+   10    0    0     8.309   0.8102E+03  0.2288E+02        35.40           2 
+   12    0    0     6.924   0.7183E+03  0.2046E+02        35.11           2 
+   14    0    0     5.935   0.3453E+04  0.9587E+02        36.02           2 
+   16    0    0     5.193   0.4229E+03  0.1263E+02        33.48           2 
+   18    0    0     4.616   0.1866E+03  0.6350E+01        29.38           2 
+   20    0    0     4.155   0.5269E+03  0.1581E+02        33.33           2 
+   22    0    0     3.777   0.2008E+04  0.5674E+02        35.39           2 
+   24    0    0     3.462   0.5245E+03  0.2329E+02        22.52           1 
+   26    0    0     3.196   0.2997E+03  0.1012E+02        29.60           2 
+   30    0    0     2.770   0.1545E+03  0.6463E+01        23.91           2 
+   32    0    0     2.597   0.5065E+01  0.2344E+01         2.16           2 
+   34    0    0     2.444   0.7128E+02  0.4502E+01        15.83           2 
+   36    0    0     2.308   0.2603E+02  0.3374E+01         7.72           2 
+   38    0    0     2.187   0.2002E+01  0.2978E+01         0.67           2 
+   40    0    0     2.077  -0.6130E+00  0.2964E+01        -0.21           2 
+   42    0    0     1.978  -0.2863E+01  0.2834E+01        -1.01           2 
+   44    0    0     1.888  -0.4035E+00  0.2747E+01        -0.15           2 
+   46    0    0     1.806  -0.1424E+01  0.2728E+01        -0.52           2 
+   48    0    0     1.731   0.3452E+01  0.2692E+01         1.28           2 
+   50    0    0     1.662   0.4299E+01  0.2979E+01         1.44           2 
+   52    0    0     1.598   0.2711E+00  0.2880E+01         0.09           2 
+   56    0    0     1.484   0.5983E+01  0.3291E+01         1.82           2 
+   58    0    0     1.433  -0.5126E-01  0.3217E+01        -0.02           2 
+
+          COMPLETENESS AND QUALITY OF DATA SET
+          ------------------------------------
+
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     3.58       18359    5288      5323       99.3%       3.0%      2.9%    18303   37.16      3.5%    99.8*     6    0.902    2317
+     2.54       35133    9646      9660       99.9%       4.7%      4.3%    35115   21.97      5.5%    99.8*     1    0.876    4525
+     2.07       42290   12434     12493       99.5%      15.0%     14.5%    42005    7.40     17.9%    98.2*     3    0.839    5684
+     1.79       53673   14816     14835       99.9%      55.8%     55.6%    53609    2.01     65.7%    86.4*     0    0.730    7070
+     1.60       55656   16747     16793       99.7%     210.8%    219.1%    55129    0.47    251.6%    31.1*     1    0.618    7608
+     1.47       62480   18508     18558       99.7%     563.3%    586.7%    62073    0.13    671.3%     3.8      1    0.561    8594
+     1.36       43813   18257     20154       90.6%    1078.0%   1147.4%    40658    0.03   1366.0%     2.1      0    0.520    5951
+     1.27       20656   12854     21649       59.4%    1335.7%   1428.9%    14898    0.02   1846.6%     1.6      1    0.517    2128
+     1.20        6358    4758     23061       20.6%    1206.0%   1267.9%     3122    0.04   1685.8%     0.6      2    0.511     265
+    total      338418  113308    142526       79.5%       8.1%      8.1%   324912    4.78      9.7%    99.9*     1    0.676   44142
+
+
+ NUMBER OF REFLECTIONS IN SELECTED SUBSET OF IMAGES  340434
+ NUMBER OF REJECTED MISFITS                            1932
+ NUMBER OF SYSTEMATIC ABSENT REFLECTIONS                  0
+ NUMBER OF ACCEPTED OBSERVATIONS                     338502
+ NUMBER OF UNIQUE ACCEPTED REFLECTIONS               113340
+
+
+
+ ******************************************************************************
+    WILSON STATISTICS OF DATA SET  "XDS_ASCII.HKL"
+ ******************************************************************************
+
+ Data is divided into resolution shells and a straight line 
+ A - 2*B*SS is fitted to log<I>, where
+   RES    = mean resolution (Angstrom) in shell
+   SS     = mean of (sin(THETA)/LAMBDA)**2 in shell
+   <I>    = mean reflection intensity in shell
+   BO     = (A - log<I>)/(2*SS)
+    #     = number of reflections in resolution shell
+
+   WILSON LINE (using all data) : A=   5.127 B=  25.945 CORRELATION=  0.94
+      #      RES      SS        <I>       log(<I>)       BO
+    1018     6.741   0.006  2.8597E+02       5.656     -48.1
+    1709     4.198   0.014  2.7098E+02       5.602     -16.7
+    2169     3.279   0.023  1.3700E+02       4.920       4.4
+    2540     2.779   0.032  4.4738E+01       3.801      20.5
+    2866     2.454   0.042  1.9132E+01       2.951      26.2
+    3145     2.221   0.051  1.1611E+01       2.452      26.4
+    3437     2.043   0.060  5.5032E+00       1.705      28.6
+    3654     1.903   0.069  2.2512E+00       0.811      31.2
+    3900     1.788   0.078  1.0655E+00       0.063      32.4
+    4112     1.691   0.087  6.4012E-01      -0.446      31.9
+    4297     1.609   0.097  3.5516E-01      -1.035      31.9
+    4507     1.537   0.106  2.7114E-01      -1.305      30.4
+    4680     1.475   0.115  1.6065E-01      -1.829      30.3
+    4800     1.419   0.124  1.2354E-01      -2.091      29.1
+    4533     1.370   0.133  9.1835E-02      -2.388      28.2
+    3865     1.325   0.142  9.5652E-02      -2.347      26.3
+    3039     1.285   0.151  1.4286E-01      -1.946      23.3
+    1965     1.248   0.160  2.9276E-01      -1.228      19.8
+     743     1.217   0.169  1.2762E-01      -2.059      21.3
+
+
+ HIGHER ORDER MOMENTS OF WILSON DISTRIBUTION OF  CENTRIC DATA
+    AS COMPARED WITH THEORETICAL VALUES. (EXPECTED: 1.00)    
+      #      RES        <I**2>/      <I**3>/      <I**4>/  
+                         3<I>**2     15<I>**3    105<I>**4 
+
+     265     6.741        1.206        1.739        2.322
+     262     4.198        1.003        0.792        0.540
+     261     3.279        2.102        6.092       19.268
+     262     2.779        1.594        2.064        2.335
+     262     2.454        1.583        2.586        4.031
+     259     2.221        1.871        3.163        5.019
+     273     2.043        2.508        5.321       10.145
+     259     1.903        2.479        4.536        7.323
+     260     1.788        2.390        4.381        8.869
+     272     1.691        3.414        4.946        7.597
+     262     1.609        5.441        6.879       12.845
+     270     1.537        6.967        3.609       16.867
+     257     1.475       22.448       40.265      203.054
+     247     1.419       51.483       38.574      731.505
+     170     1.325      112.166      262.719     3842.836
+     133     1.285       52.127       52.089      680.678
+      79     1.248       13.542       14.535       60.522
+    4291   overall       18.596       21.841      406.913
+
+
+ HIGHER ORDER MOMENTS OF WILSON DISTRIBUTION OF ACENTRIC DATA
+    AS COMPARED WITH THEORETICAL VALUES. (EXPECTED: 1.00)    
+      #      RES        <I**2>/      <I**3>/      <I**4>/  
+                         2<I>**2      6<I>**3     24<I>**4 
+
+     753     6.741        1.202        1.504        1.900
+    1447     4.198        0.972        0.952        0.909
+    1908     3.279        1.287        2.833        9.632
+    2278     2.779        1.088        1.339        1.792
+    2604     2.454        1.159        1.536        2.159
+    2886     2.221        1.289        2.030        3.662
+    3164     2.043        1.359        2.233        3.900
+    3395     1.903        1.421        2.125        3.325
+    3640     1.788        1.868        3.370        6.703
+    3840     1.691        2.412        4.814       13.629
+    4035     1.609        4.018        5.465       13.953
+    4237     1.537        6.407        7.685       25.989
+    4423     1.475       18.048       19.778      185.259
+    4553     1.419       45.194       66.030     1248.903
+    4326     1.370      114.271      169.505     7447.816
+    3695     1.325      125.209      136.805     9119.647
+    2906     1.285       73.934      112.461     3326.263
+    1886     1.248      139.079    19852.553  2564185.348
+     712     1.217      141.547      198.773    12035.509
+   56688   overall       33.570      699.577    86914.676
+
+   ======= CUMULATIVE INTENSITY DISTRIBUTION =======
+ DEFINITIONS:
+   <I>    = mean reflection intensity
+ Na(Z)exp = expected number of acentric reflections with I <= Z*<I>
+ Na(Z)obs = observed number of acentric reflections with I <= Z*<I>
+ Nc(Z)exp = expected number of  centric reflections with I <= Z*<I>
+ Nc(Z)obs = observed number of  centric reflections with I <= Z*<I>
+
+
+
+ Nc(Z)obs/Nc(Z)exp versus resolution and Z (0.1-1.0)
+      #      RES     0.1   0.2   0.3   0.4   0.5   0.6   0.7   0.8   0.9   1.0
+
+     265     6.741  1.26  1.26  1.18  1.16  1.12  1.09  1.10  1.12  1.09  1.07
+     262     4.198  0.92  0.92  0.87  0.93  0.95  0.93  0.91  0.93  0.94  0.95
+     261     3.279  0.96  1.02  1.05  1.03  1.00  1.00  1.01  1.00  0.98  0.97
+     262     2.779  0.98  0.95  0.95  0.96  1.00  1.04  1.05  1.03  1.03  1.01
+     262     2.454  0.91  1.02  1.07  1.02  1.02  1.03  1.03  1.04  1.03  1.05
+     259     2.221  1.03  1.03  1.05  1.04  1.08  1.06  1.05  1.03  1.04  1.03
+     273     2.043  1.09  0.96  1.00  1.08  1.03  1.03  1.03  1.04  1.04  1.03
+     259     1.903  1.31  1.06  1.05  0.98  0.95  0.94  0.94  0.94  0.98  1.01
+     260     1.788  1.33  1.03  1.00  0.94  0.92  0.90  0.93  0.92  0.92  0.91
+     272     1.691  1.48  1.08  0.94  0.85  0.83  0.79  0.78  0.77  0.74  0.74
+     262     1.609  1.40  1.03  0.88  0.81  0.76  0.74  0.72  0.71  0.73  0.72
+     270     1.537  1.54  1.11  0.95  0.88  0.82  0.77  0.73  0.70  0.69  0.68
+     257     1.475  1.80  1.32  1.10  0.99  0.90  0.84  0.80  0.76  0.75  0.73
+     247     1.419  1.94  1.39  1.16  1.03  0.94  0.87  0.82  0.79  0.75  0.72
+     170     1.325  1.78  1.31  1.12  1.01  0.92  0.85  0.80  0.77  0.73  0.71
+     133     1.285  1.76  1.30  1.08  0.99  0.91  0.84  0.79  0.77  0.73  0.71
+      79     1.248  1.83  1.32  1.12  0.99  1.00  0.92  0.91  0.87  0.83  0.85
+    4291   overall  1.25  1.04  0.97  0.92  0.90  0.87  0.86  0.85  0.84  0.84
+
+
+ Na(Z)obs/Na(Z)exp versus resolution and Z (0.1-1.0)
+      #      RES     0.1   0.2   0.3   0.4   0.5   0.6   0.7   0.8   0.9   1.0
+
+     753     6.741  1.14  1.16  1.09  1.10  1.09  1.07  1.03  1.08  1.04  1.05
+    1447     4.198  0.97  0.96  1.00  1.04  1.02  0.99  1.00  1.02  1.02  1.02
+    1908     3.279  1.10  1.13  1.15  1.16  1.16  1.14  1.12  1.09  1.08  1.07
+    2278     2.779  1.14  1.15  1.13  1.11  1.10  1.08  1.07  1.07  1.06  1.05
+    2604     2.454  1.15  1.14  1.10  1.09  1.09  1.08  1.07  1.07  1.07  1.07
+    2886     2.221  1.41  1.29  1.28  1.23  1.19  1.17  1.14  1.11  1.09  1.08
+    3164     2.043  1.66  1.38  1.27  1.25  1.22  1.19  1.16  1.13  1.11  1.09
+    3395     1.903  2.30  1.55  1.31  1.23  1.16  1.13  1.10  1.08  1.06  1.04
+    3640     1.788  2.95  1.79  1.40  1.22  1.12  1.06  1.03  1.01  0.99  0.98
+    3840     1.691  3.43  1.94  1.45  1.22  1.10  1.01  0.97  0.93  0.92  0.91
+    4035     1.609  4.05  2.20  1.60  1.31  1.14  1.03  0.95  0.90  0.86  0.84
+    4237     1.537  4.21  2.27  1.64  1.33  1.14  1.02  0.94  0.88  0.83  0.80
+    4423     1.475  4.70  2.51  1.78  1.42  1.20  1.07  0.97  0.90  0.85  0.80
+    4553     1.419  4.96  2.63  1.85  1.47  1.24  1.09  0.99  0.91  0.85  0.81
+    4326     1.370  5.02  2.65  1.86  1.47  1.24  1.09  0.98  0.90  0.84  0.79
+    3695     1.325  5.14  2.70  1.90  1.50  1.26  1.10  1.00  0.91  0.85  0.80
+    2906     1.285  4.92  2.59  1.83  1.45  1.23  1.08  0.97  0.90  0.84  0.80
+    1886     1.248  5.09  2.71  1.92  1.53  1.30  1.15  1.04  0.96  0.90  0.85
+     712     1.217  4.97  2.63  1.84  1.47  1.24  1.09  0.98  0.91  0.85  0.80
+   56688   overall  3.47  2.03  1.55  1.32  1.18  1.08  1.02  0.97  0.94  0.91
+
+
+ List of    500 reflections *NOT* obeying Wilson distribution (Z> 10.0)
+
+   h    k    l     RES      Z     Intensity    Sigma
+
+    9   71   16    1.26  559.49  0.3276E+03  0.1584E+02 "alien"
+    5   37   40    1.26  366.61  0.2147E+03  0.1190E+02 "alien"
+    4    6   45    1.28   70.89  0.2025E+02  0.6040E+01 "alien"
+   32   62    4    1.33   70.11  0.1341E+02  0.5294E+01 "alien"
+   41   49   11    1.37   66.15  0.1215E+02  0.3874E+01 "alien"
+   16    2   47    1.20   59.38  0.1516E+02  0.5993E+01 "alien"
+   53   13   22    1.33   57.66  0.1103E+02  0.4140E+01 "alien"
+   37   25   31    1.35   57.35  0.1053E+02  0.3992E+01 "alien"
+   55   33    8    1.32   56.04  0.1072E+02  0.4033E+01 "alien"
+   10   78    9    1.21   55.68  0.1421E+02  0.5438E+01 "alien"
+   20   66    1    1.38   55.67  0.1022E+02  0.3419E+01 "alien"
+   53   39    3    1.32   55.63  0.1064E+02  0.4026E+01 "alien"
+   11   77    7    1.23   55.51  0.1417E+02  0.4229E+01 "alien"
+   32   20   33    1.39   54.95  0.1009E+02  0.4839E+01 "alien"
+   47   45    6    1.35   54.84  0.1007E+02  0.5715E+01 "alien"
+   18   16   43    1.27   53.88  0.1539E+02  0.5925E+01 "alien"
+   42   52   12    1.31   53.86  0.1030E+02  0.5618E+01 "alien"
+   40   20   32    1.31   52.98  0.1013E+02  0.5731E+01 "alien"
+   50   12   24    1.35   52.38  0.9620E+01  0.4150E+01 "alien"
+   25   63    9    1.36   52.21  0.9590E+01  0.3680E+01 "alien"
+   57    7   17    1.33   51.66  0.9883E+01  0.2964E+01 "alien"
+   26   12   43    1.23   50.48  0.1288E+02  0.4232E+01 "alien"
+   27   63   13    1.31   49.79  0.9525E+01  0.3847E+01 "alien"
+   36   26   30    1.38   49.48  0.9089E+01  0.3826E+01 "alien"
+   61    1    3    1.36   49.42  0.9077E+01  0.5251E+01 "alien"
+    3    3   44    1.31   49.07  0.9388E+01  0.3785E+01 "alien"
+    9   27   39    1.36   48.99  0.8998E+01  0.3865E+01 "alien"
+    1   55   35    1.21   48.87  0.1247E+02  0.5774E+01 "alien"
+   55    9   21    1.32   48.65  0.9306E+01  0.4223E+01 "alien"
+   55    3   12    1.44   48.62  0.1201E+02  0.3988E+01 "alien"
+   46   34   18    1.38   48.32  0.8875E+01  0.2782E+01 "alien"
+   45   29   22    1.38   48.25  0.8863E+01  0.2725E+01 "alien"
+   54   14   21    1.32   48.19  0.9219E+01  0.4197E+01 "alien"
+   26   30   33    1.39   47.96  0.8808E+01  0.3691E+01 "alien"
+   54   32   12    1.32   47.91  0.9165E+01  0.3888E+01 "alien"
+   64    4    8    1.28   47.73  0.1364E+02  0.6073E+01 "alien"
+   59   11   13    1.33   47.72  0.9129E+01  0.4349E+01 "alien"
+   56    2   20    1.32   47.70  0.9125E+01  0.3101E+01 "alien"
+   34   54   15    1.35   47.64  0.8750E+01  0.3619E+01 "alien"
+   29   35   31    1.36   47.33  0.8692E+01  0.3795E+01 "alien"
+   24   24   37    1.35   47.11  0.9012E+01  0.3920E+01 "alien"
+   29   19   36    1.35   47.09  0.8648E+01  0.3645E+01 "alien"
+   18    2   40    1.38   45.90  0.8430E+01  0.3622E+01 "alien"
+   18   26   39    1.32   45.76  0.8753E+01  0.5205E+01 "alien"
+   35   15   34    1.35   45.51  0.8359E+01  0.3451E+01 "alien"
+    4   16   43    1.31   45.50  0.8704E+01  0.3954E+01 "alien"
+   46   44    6    1.38   45.45  0.8348E+01  0.3802E+01 "alien"
+   21   75    2    1.23   45.41  0.1159E+02  0.6394E+01 "alien"
+   50   42    4    1.34   45.41  0.8686E+01  0.3971E+01 "alien"
+   23   67    7    1.32   45.37  0.8679E+01  0.3637E+01 "alien"
+   20   16   40    1.33   45.33  0.8672E+01  0.3902E+01 "alien"
+   26   64    9    1.34   45.09  0.8626E+01  0.3701E+01 "alien"
+   24   58   16    1.39   45.08  0.8279E+01  0.3748E+01 "alien"
+   56    8   16    1.36   44.85  0.8238E+01  0.2870E+01 "alien"
+    7   55   31    1.27   44.66  0.1276E+02  0.5845E+01 "alien"
+   27   49   24    1.37   44.45  0.8164E+01  0.4026E+01 "alien"
+   35   49   21    1.33   44.34  0.8482E+01  0.4086E+01 "alien"
+   18   64   17    1.32   44.07  0.8430E+01  0.4878E+01 "alien"
+    1   63   30    1.20   43.78  0.1117E+02  0.6565E+01 "alien"
+   32   36   29    1.36   43.75  0.8035E+01  0.3992E+01 "alien"
+   33   53   17    1.36   43.73  0.8032E+01  0.3770E+01 "alien"
+   64    6   15    1.23   43.70  0.1115E+02  0.6364E+01 "alien"
+   66   14    7    1.22   43.69  0.1115E+02  0.4546E+01 "alien"
+   36   56   13    1.32   43.58  0.8336E+01  0.3846E+01 "alien"
+   57    7   13    1.38   43.52  0.7994E+01  0.3984E+01 "alien"
+   54   38    5    1.31   43.12  0.8249E+01  0.4081E+01 "alien"
+   42   24   28    1.35   43.09  0.7915E+01  0.5166E+01 "alien"
+   15   67    4    1.39   42.97  0.7893E+01  0.3423E+01 "alien"
+   55   27   13    1.33   42.97  0.8220E+01  0.2690E+01 "alien"
+   62    8   11    1.29   42.60  0.1217E+02  0.4189E+01 "alien"
+   37   41   26    1.31   42.59  0.8147E+01  0.3963E+01 "alien"
+   20   30   36    1.36   42.32  0.7773E+01  0.3801E+01 "alien"
+   60   18    4    1.34   42.14  0.8061E+01  0.3957E+01 "alien"
+   18   70   11    1.28   42.11  0.1203E+02  0.4028E+01 "alien"
+   44   52   18    1.23   42.09  0.1074E+02  0.5789E+01 "alien"
+   30   36   32    1.32   42.06  0.8046E+01  0.4043E+01 "alien"
+   22   10   39    1.37   41.98  0.7711E+01  0.2446E+01 "alien"
+    4   68   24    1.22   41.86  0.1068E+02  0.5961E+01 "alien"
+   55   11   20    1.32   41.83  0.8003E+01  0.3999E+01 "alien"
+   34   50   18    1.37   41.82  0.7681E+01  0.3638E+01 "alien"
+   34   50   21    1.33   41.82  0.8000E+01  0.4025E+01 "alien"
+   50   14   24    1.34   41.67  0.7971E+01  0.4180E+01 "alien"
+   22   64   12    1.35   41.58  0.7638E+01  0.3564E+01 "alien"
+   59   27    8    1.29   41.42  0.1184E+02  0.4181E+01 "alien"
+   27   35   31    1.38   41.37  0.7599E+01  0.3816E+01 "alien"
+   35   55    9    1.38   41.36  0.7597E+01  0.3417E+01 "alien"
+   48   10   26    1.35   41.34  0.7593E+01  0.4287E+01 "alien"
+   46   26   24    1.35   41.30  0.7585E+01  0.3898E+01 "alien"
+   51   25   20    1.33   41.29  0.7899E+01  0.4142E+01 "alien"
+   47    7   27    1.36   41.08  0.7544E+01  0.6037E+01 "alien"
+   30   26   35    1.33   40.74  0.7794E+01  0.3726E+01 "alien"
+   14   56   25    1.35   40.73  0.7482E+01  0.3561E+01 "alien"
+   13   25   41    1.30   40.68  0.1162E+02  0.4211E+01 "alien"
+   32   66   15    1.21   40.35  0.1030E+02  0.5371E+01 "alien"
+   43   49   12    1.33   40.32  0.7714E+01  0.3599E+01 "alien"
+   38   16   34    1.31   40.30  0.7710E+01  0.5237E+01 "alien"
+   31   59    8    1.37   40.14  0.7373E+01  0.3410E+01 "alien"
+   29   15   37    1.34   39.98  0.7648E+01  0.3602E+01 "alien"
+   57   21    5    1.38   39.94  0.7337E+01  0.3371E+01 "alien"
+   18   64   15    1.35   39.94  0.7336E+01  0.3650E+01 "alien"
+   49    5   26    1.35   39.91  0.7634E+01  0.5680E+01 "alien"
+   43   29   27    1.32   39.86  0.7626E+01  0.3905E+01 "alien"
+   20   64   16    1.32   39.79  0.7611E+01  0.3698E+01 "alien"
+   24   22   39    1.30   39.76  0.7606E+01  0.4078E+01 "alien"
+   14    6   46    1.23   39.54  0.1009E+02  0.4013E+01 "alien"
+   34   58    4    1.37   39.42  0.7240E+01  0.3379E+01 "alien"
+   44   12   28    1.37   39.32  0.7223E+01  0.4132E+01 "alien"
+   64    6    9    1.27   39.32  0.1123E+02  0.4472E+01 "alien"
+   20   64   13    1.35   39.23  0.7206E+01  0.3861E+01 "alien"
+   62    4   10    1.30   39.11  0.7481E+01  0.3619E+01 "alien"
+   43   49   10    1.34   39.08  0.7477E+01  0.4671E+01 "alien"
+   41   49   17    1.31   38.91  0.7444E+01  0.4077E+01 "alien"
+   28   44   27    1.36   38.81  0.7129E+01  0.5014E+01 "alien"
+   20   26   37    1.36   38.79  0.7125E+01  0.3636E+01 "alien"
+   57    1   18    1.33   38.79  0.7421E+01  0.3050E+01 "alien"
+    8   66   12    1.39   38.78  0.7123E+01  0.3475E+01 "alien"
+   62   10   11    1.29   38.55  0.1102E+02  0.4308E+01 "alien"
+   33   13   36    1.33   38.40  0.7346E+01  0.4613E+01 "alien"
+    9   55   29    1.31   38.36  0.7338E+01  0.3657E+01 "alien"
+   61   15    5    1.32   38.22  0.7311E+01  0.3328E+01 "alien"
+   36   18   34    1.33   38.17  0.7302E+01  0.5452E+01 "alien"
+    8    4   43    1.33   38.14  0.7297E+01  0.2621E+01 "alien"
+   52   18   20    1.35   38.07  0.6992E+01  0.4115E+01 "alien"
+   24   62   10    1.38   38.05  0.6989E+01  0.3486E+01 "alien"
+    3   73    4    1.32   37.98  0.7265E+01  0.3506E+01 "alien"
+   47   43    1    1.39   37.92  0.6965E+01  0.2845E+01 "alien"
+   16   58   21    1.38   37.83  0.6949E+01  0.2641E+01 "alien"
+   15   29   38    1.35   37.70  0.7212E+01  0.4956E+01 "alien"
+   24   56   20    1.36   37.63  0.6911E+01  0.3678E+01 "alien"
+   37   47   21    1.33   37.62  0.7198E+01  0.4089E+01 "alien"
+   50   14   25    1.33   37.50  0.7175E+01  0.4274E+01 "alien"
+   41   49    3    1.41   37.49  0.9263E+01  0.3763E+01 "alien"
+   33   33   29    1.38   37.48  0.6883E+01  0.2678E+01 "alien"
+   51    5   23    1.36   37.44  0.6876E+01  0.2884E+01 "alien"
+   58   20    6    1.36   37.42  0.6873E+01  0.2780E+01 "alien"
+   43   35   30    1.22   37.39  0.9544E+01  0.6493E+01 "alien"
+   36   48   19    1.36   37.38  0.6866E+01  0.3822E+01 "alien"
+   47   33   18    1.37   37.36  0.6862E+01  0.2688E+01 "alien"
+   50   18   25    1.31   37.22  0.7120E+01  0.4321E+01 "alien"
+   55    7   22    1.30   37.10  0.7097E+01  0.4076E+01 "alien"
+   39   13   32    1.36   37.08  0.6811E+01  0.3486E+01 "alien"
+    3   57   22    1.43   37.08  0.9161E+01  0.3449E+01 "alien"
+   63    9    2    1.31   37.06  0.7090E+01  0.5745E+01 "alien"
+   26   56   19    1.36   37.01  0.6798E+01  0.3670E+01 "alien"
+   51   41   14    1.28   37.00  0.1057E+02  0.6067E+01 "alien"
+   22    2   41    1.32   36.96  0.7070E+01  0.3650E+01 "alien"
+   28   62    3    1.38   36.86  0.6770E+01  0.3447E+01 "alien"
+   31   67   14    1.22   36.64  0.9353E+01  0.3974E+01 "alien"
+   35   31   32    1.31   36.54  0.6991E+01  0.4088E+01 "alien"
+   17   69    7    1.33   36.50  0.6982E+01  0.3508E+01 "alien"
+   13   79    4    1.20   36.48  0.9312E+01  0.5220E+01 "alien"
+   15    3   47    1.20   36.48  0.9311E+01  0.5342E+01 "alien"
+   23   69    9    1.28   36.46  0.1042E+02  0.3980E+01 "alien"
+   40   38   22    1.37   36.30  0.6667E+01  0.2601E+01 "alien"
+   21   27   36    1.38   36.28  0.6664E+01  0.3823E+01 "alien"
+   25   19   38    1.34   36.15  0.6915E+01  0.3585E+01 "alien"
+   61    9    3    1.35   36.13  0.6636E+01  0.3818E+01 "alien"
+   42   44   23    1.27   36.12  0.1032E+02  0.4595E+01 "alien"
+    3   69   24    1.21   36.10  0.9214E+01  0.5448E+01 "alien"
+   28   30   32    1.39   36.10  0.8919E+01  0.3883E+01 "alien"
+   56   24   10    1.35   36.08  0.6628E+01  0.4080E+01 "alien"
+   48   22   22    1.37   36.02  0.6615E+01  0.2693E+01 "alien"
+   42   34   27    1.30   35.99  0.1028E+02  0.4224E+01 "alien"
+   46   18   27    1.34   35.92  0.6872E+01  0.4266E+01 "alien"
+   39   29   31    1.30   35.84  0.1024E+02  0.4259E+01 "alien"
+   57   21    9    1.36   35.82  0.6579E+01  0.2704E+01 "alien"
+   38   48   23    1.28   35.78  0.1022E+02  0.4361E+01 "alien"
+   62   10    6    1.32   35.74  0.6837E+01  0.3995E+01 "alien"
+   42   38   20    1.38   35.67  0.6552E+01  0.2610E+01 "alien"
+   28   56   18    1.35   35.65  0.6547E+01  0.3703E+01 "alien"
+   58    4   12    1.37   35.63  0.6543E+01  0.4042E+01 "alien"
+   51    7   24    1.34   35.59  0.6809E+01  0.4338E+01 "alien"
+   13   21   40    1.35   35.58  0.6535E+01  0.2553E+01 "alien"
+   14   16   41    1.34   35.48  0.6788E+01  0.3654E+01 "alien"
+   30   64    5    1.32   35.44  0.6780E+01  0.3546E+01 "alien"
+   55    9   23    1.29   35.44  0.1012E+02  0.4281E+01 "alien"
+   20   68    8    1.32   35.41  0.6775E+01  0.3575E+01 "alien"
+   52    6   22    1.36   35.39  0.6501E+01  0.3380E+01 "alien"
+   33   55   17    1.33   35.39  0.6770E+01  0.3717E+01 "alien"
+    8   20   39    1.41   35.35  0.8736E+01  0.2691E+01 "alien"
+   15   69    5    1.35   35.33  0.6489E+01  0.2536E+01 "alien"
+    8   14   42    1.34   35.31  0.6754E+01  0.2702E+01 "alien"
+   45   41   18    1.33   35.29  0.6750E+01  0.2679E+01 "alien"
+   30   32   32    1.36   35.18  0.6462E+01  0.3796E+01 "alien"
+   57   19    6    1.39   35.17  0.6459E+01  0.2681E+01 "alien"
+   22   56   19    1.40   35.11  0.8675E+01  0.3685E+01 "alien"
+   54   30   14    1.32   35.06  0.6706E+01  0.2810E+01 "alien"
+   24   30   35    1.36   35.05  0.6437E+01  0.3630E+01 "alien"
+   43   43   12    1.40   34.88  0.8618E+01  0.3080E+01 "alien"
+    4    2   44    1.31   34.84  0.6665E+01  0.3077E+01 "alien"
+   26    8   39    1.34   34.73  0.6644E+01  0.3546E+01 "alien"
+   50   42   11    1.31   34.71  0.6640E+01  0.3818E+01 "alien"
+   23   67    8    1.32   34.60  0.6620E+01  0.3752E+01 "alien"
+   55    7   21    1.32   34.56  0.6612E+01  0.4102E+01 "alien"
+   31   13   35    1.38   34.50  0.6336E+01  0.3333E+01 "alien"
+   30    4   37    1.36   34.48  0.6334E+01  0.3150E+01 "alien"
+   31    9   35    1.40   34.48  0.8520E+01  0.3386E+01 "alien"
+   20   36   33    1.39   34.46  0.6330E+01  0.3452E+01 "alien"
+   64    6   18    1.20   34.42  0.8786E+01  0.6443E+01 "alien"
+   26   54   18    1.41   34.41  0.8502E+01  0.3515E+01 "alien"
+    5   71   10    1.32   34.38  0.6577E+01  0.2422E+01 "alien"
+    1   51   37    1.21   34.35  0.8767E+01  0.5371E+01 "alien"
+   55   27    4    1.39   34.34  0.6307E+01  0.2734E+01 "alien"
+    2   48   38    1.22   34.33  0.8761E+01  0.5395E+01 "alien"
+   56   14   12    1.39   34.30  0.6300E+01  0.2116E+01 "alien"
+   14   24   40    1.33   34.29  0.6560E+01  0.3400E+01 "alien"
+   33    9   36    1.35   34.28  0.6557E+01  0.3383E+01 "alien"
+    4   10   43    1.33   34.27  0.6557E+01  0.2854E+01 "alien"
+   44    4   28    1.39   34.21  0.6283E+01  0.3840E+01 "alien"
+   55   23   20    1.28   34.16  0.9759E+01  0.4354E+01 "alien"
+   21   45   28    1.40   34.12  0.8430E+01  0.5574E+01 "alien"
+   42   42   22    1.30   34.10  0.6523E+01  0.2897E+01 "alien"
+   61   13   15    1.27   34.10  0.9742E+01  0.6100E+01 "alien"
+   31   21   34    1.37   34.10  0.6262E+01  0.3263E+01 "alien"
+    5   31   44    1.21   34.06  0.8693E+01  0.5825E+01 "alien"
+   57   15   14    1.34   34.04  0.6512E+01  0.3951E+01 "alien"
+   24   68    4    1.31   34.00  0.6503E+01  0.3588E+01 "alien"
+    2   12   44    1.30   33.96  0.9702E+01  0.3998E+01 "alien"
+   28   34   33    1.33   33.90  0.6485E+01  0.3906E+01 "alien"
+   32   34   29    1.38   33.89  0.6225E+01  0.3195E+01 "alien"
+   52   24    1    1.49   33.88  0.1088E+02  0.5480E+01 "alien"
+   28   14   37    1.36   33.86  0.6220E+01  0.3468E+01 "alien"
+    8   64   17    1.37   33.86  0.6218E+01  0.3478E+01 "alien"
+    3    9   43    1.34   33.79  0.6464E+01  0.2639E+01 "alien"
+   33   51   22    1.31   33.75  0.6456E+01  0.4060E+01 "alien"
+    9   17   42    1.33   33.72  0.6451E+01  0.3702E+01 "alien"
+    7   59   22    1.38   33.72  0.6193E+01  0.2346E+01 "alien"
+   26   58   14    1.39   33.64  0.6179E+01  0.3358E+01 "alien"
+    4   24   40    1.36   33.59  0.6170E+01  0.2565E+01 "alien"
+   57   17   14    1.34   33.52  0.6412E+01  0.4165E+01 "alien"
+   39   53    9    1.36   33.52  0.6156E+01  0.3548E+01 "alien"
+   13   53   28    1.34   33.51  0.6411E+01  0.3572E+01 "alien"
+   22   24   37    1.36   33.49  0.6151E+01  0.3460E+01 "alien"
+   61    5   10    1.32   33.47  0.6403E+01  0.3136E+01 "alien"
+   23   29   34    1.40   33.46  0.8267E+01  0.3523E+01 "alien"
+   21    7   41    1.32   33.34  0.6379E+01  0.3368E+01 "alien"
+   38   50   16    1.35   33.28  0.6367E+01  0.3895E+01 "alien"
+   29   61   14    1.32   33.23  0.6356E+01  0.3771E+01 "alien"
+   46   38   16    1.36   33.21  0.6099E+01  0.3685E+01 "alien"
+   25    7   39    1.35   33.21  0.6099E+01  0.4883E+01 "alien"
+   51   37    1    1.38   33.10  0.6080E+01  0.2784E+01 "alien"
+    4   36   37    1.35   33.04  0.6069E+01  0.2489E+01 "alien"
+   36   48   21    1.33   33.01  0.6314E+01  0.4231E+01 "alien"
+   44   40   16    1.38   32.97  0.6056E+01  0.3636E+01 "alien"
+   56   10   20    1.31   32.95  0.6303E+01  0.4157E+01 "alien"
+   50   34   16    1.33   32.93  0.6300E+01  0.3757E+01 "alien"
+    9   59   26    1.31   32.90  0.6293E+01  0.3647E+01 "alien"
+   44   44   15    1.34   32.88  0.6291E+01  0.3778E+01 "alien"
+   52   16   23    1.32   32.86  0.6286E+01  0.4128E+01 "alien"
+   22   40   31    1.38   32.81  0.6026E+01  0.3908E+01 "alien"
+    9   17   44    1.27   32.73  0.9353E+01  0.3994E+01 "alien"
+    7   63   20    1.35   32.69  0.6003E+01  0.3424E+01 "alien"
+   20    2   42    1.31   32.68  0.6252E+01  0.2630E+01 "alien"
+   56   36   17    1.21   32.66  0.8337E+01  0.4090E+01 "alien"
+   59   33   14    1.21   32.66  0.8336E+01  0.5639E+01 "alien"
+   17    7   39    1.41   32.56  0.8045E+01  0.2372E+01 "alien"
+   43   45   15    1.35   32.56  0.5980E+01  0.3787E+01 "alien"
+    1   15   42    1.35   32.53  0.5975E+01  0.2624E+01 "alien"
+   51   23   22    1.32   32.52  0.6221E+01  0.3259E+01 "alien"
+   40   12   30    1.39   32.50  0.5970E+01  0.2793E+01 "alien"
+    6   72   19    1.23   32.44  0.8280E+01  0.5609E+01 "alien"
+   54   22   18    1.32   32.41  0.6201E+01  0.3202E+01 "alien"
+   53   35   11    1.32   32.37  0.6192E+01  0.3802E+01 "alien"
+    1   71   21    1.22   32.34  0.8254E+01  0.4032E+01 "alien"
+   42   38   23    1.33   32.21  0.6163E+01  0.2790E+01 "alien"
+   44   28   27    1.31   32.19  0.6158E+01  0.3913E+01 "alien"
+   48   20   25    1.33   32.08  0.6137E+01  0.3089E+01 "alien"
+   35   21   33    1.35   32.06  0.5889E+01  0.3550E+01 "alien"
+   34   42   26    1.34   32.06  0.6133E+01  0.2795E+01 "alien"
+   30   64    8    1.31   32.05  0.6130E+01  0.3659E+01 "alien"
+   43   25   26    1.37   32.02  0.5882E+01  0.4106E+01 "alien"
+   46   14   26    1.38   31.95  0.5868E+01  0.4116E+01 "alien"
+   48   10   25    1.37   31.89  0.5858E+01  0.4338E+01 "alien"
+   20   58   18    1.40   31.87  0.7873E+01  0.3511E+01 "alien"
+   19   21   40    1.32   31.79  0.6081E+01  0.3699E+01 "alien"
+   53   25   17    1.34   31.76  0.6075E+01  0.4047E+01 "alien"
+   33   31   33    1.31   31.75  0.6073E+01  0.4032E+01 "alien"
+   53   29    3    1.42   31.70  0.7833E+01  0.2724E+01 "alien"
+   45   35   21    1.34   31.69  0.6063E+01  0.2541E+01 "alien"
+   46   48   20    1.22   31.68  0.8086E+01  0.4226E+01 "alien"
+   57    5   13    1.38   31.68  0.5818E+01  0.3319E+01 "alien"
+   43   29   23    1.39   31.67  0.5817E+01  0.2666E+01 "alien"
+   33   59    4    1.37   31.65  0.5814E+01  0.3467E+01 "alien"
+   30   30   32    1.37   31.65  0.5813E+01  0.3764E+01 "alien"
+   60    8    5    1.37   31.64  0.5812E+01  0.3933E+01 "alien"
+   52   36   12    1.32   31.60  0.6046E+01  0.3659E+01 "alien"
+   40   44   20    1.34   31.55  0.6035E+01  0.2734E+01 "alien"
+   30   28   32    1.39   31.54  0.5793E+01  0.3738E+01 "alien"
+   22   36   33    1.37   31.50  0.5786E+01  0.3623E+01 "alien"
+   10   24   41    1.32   31.49  0.6025E+01  0.3601E+01 "alien"
+   11   49   32    1.31   31.49  0.6024E+01  0.5172E+01 "alien"
+   49   23   23    1.33   31.39  0.6004E+01  0.2824E+01 "alien"
+   28   58   15    1.36   31.37  0.5762E+01  0.3441E+01 "alien"
+   14   52   27    1.37   31.37  0.5762E+01  0.3344E+01 "alien"
+    9   39   37    1.31   31.36  0.6000E+01  0.3615E+01 "alien"
+   33   31   30    1.38   31.34  0.5756E+01  0.3673E+01 "alien"
+   20   68   11    1.30   31.30  0.5988E+01  0.3801E+01 "alien"
+   33   33   31    1.34   31.28  0.5985E+01  0.3839E+01 "alien"
+   61   11    4    1.34   31.28  0.5983E+01  0.3917E+01 "alien"
+   59   19    7    1.34   31.23  0.5974E+01  0.2725E+01 "alien"
+   37   13   33    1.36   31.22  0.5734E+01  0.3424E+01 "alien"
+   41   33   27    1.32   31.21  0.5971E+01  0.3827E+01 "alien"
+    3   71   22    1.21   31.19  0.7961E+01  0.3815E+01 "alien"
+   35   25   34    1.30   31.19  0.8912E+01  0.3964E+01 "alien"
+   33   61   13    1.29   31.19  0.8910E+01  0.4073E+01 "alien"
+   44   44   18    1.31   31.16  0.5961E+01  0.3812E+01 "alien"
+    7    1   42    1.37   31.10  0.5712E+01  0.2513E+01 "alien"
+   53   21   21    1.31   31.02  0.5935E+01  0.4024E+01 "alien"
+   22   68   10    1.30   30.91  0.8831E+01  0.3763E+01 "alien"
+   29   61    5    1.38   30.86  0.5668E+01  0.3342E+01 "alien"
+   52   34   14    1.32   30.84  0.5900E+01  0.2727E+01 "alien"
+    4   34   43    1.22   30.82  0.7867E+01  0.3912E+01 "alien"
+   40   50    2    1.41   30.81  0.7612E+01  0.3650E+01 "alien"
+   32   36   30    1.34   30.78  0.5887E+01  0.3916E+01 "alien"
+   23   69    3    1.30   30.74  0.5881E+01  0.3733E+01 "alien"
+   57   25   13    1.30   30.73  0.5879E+01  0.3762E+01 "alien"
+   57   35    8    1.27   30.71  0.8775E+01  0.4127E+01 "alien"
+   50   16   22    1.37   30.64  0.5628E+01  0.4013E+01 "alien"
+   18   22   39    1.35   30.64  0.5627E+01  0.3672E+01 "alien"
+   35   53   15    1.36   30.62  0.5623E+01  0.3684E+01 "alien"
+   41   29   26    1.37   30.61  0.5623E+01  0.2701E+01 "alien"
+   33   49   23    1.32   30.52  0.5839E+01  0.3934E+01 "alien"
+   40   42   18    1.39   30.50  0.5601E+01  0.2705E+01 "alien"
+   42   38   22    1.34   30.50  0.5834E+01  0.2712E+01 "alien"
+   39   31   28    1.34   30.44  0.5823E+01  0.3671E+01 "alien"
+   20   16   38    1.39   30.42  0.5588E+01  0.2290E+01 "alien"
+    1   65   19    1.34   30.37  0.5809E+01  0.2409E+01 "alien"
+   55   11   17    1.36   30.31  0.5568E+01  0.2774E+01 "alien"
+   57   19    9    1.37   30.27  0.5559E+01  0.2629E+01 "alien"
+   61    1    9    1.33   30.23  0.5783E+01  0.5605E+01 "alien"
+   16   22   39    1.36   30.23  0.5551E+01  0.2473E+01 "alien"
+   32   46   23    1.37   30.21  0.5548E+01  0.2705E+01 "alien"
+   61    1   12    1.31   30.18  0.5773E+01  0.2857E+01 "alien"
+   37   21   34    1.30   30.13  0.8610E+01  0.3844E+01 "alien"
+   30   54   16    1.39   30.09  0.5527E+01  0.3443E+01 "alien"
+   24   22   40    1.28   30.03  0.8580E+01  0.4115E+01 "alien"
+   39   37   27    1.31   30.02  0.5743E+01  0.4210E+01 "alien"
+   37   39   26    1.33   29.97  0.5733E+01  0.2834E+01 "alien"
+   35   29   32    1.32   29.92  0.5725E+01  0.3840E+01 "alien"
+   38   46   23    1.30   29.91  0.8545E+01  0.4423E+01 "alien"
+   18   66    8    1.37   29.90  0.5491E+01  0.3411E+01 "alien"
+    9   23   45    1.22   29.88  0.7628E+01  0.5640E+01 "alien"
+   32   42   25    1.38   29.75  0.5463E+01  0.2816E+01 "alien"
+   53   35    6    1.35   29.72  0.5458E+01  0.2799E+01 "alien"
+    7   29   38    1.38   29.68  0.5451E+01  0.3492E+01 "alien"
+   16   48   29    1.37   29.67  0.5450E+01  0.3479E+01 "alien"
+   54   14   16    1.39   29.65  0.5446E+01  0.2746E+01 "alien"
+   20   70    4    1.31   29.65  0.5673E+01  0.3495E+01 "alien"
+   42   50   14    1.31   29.63  0.5669E+01  0.3802E+01 "alien"
+   56   12   19    1.32   29.53  0.5650E+01  0.4284E+01 "alien"
+   56   30   22    1.20   29.51  0.7533E+01  0.5763E+01 "alien"
+   38   28   30    1.34   29.47  0.5638E+01  0.3851E+01 "alien"
+   16   58   20    1.39   29.44  0.5407E+01  0.1944E+01 "alien"
+   16   24   38    1.38   29.44  0.5407E+01  0.2519E+01 "alien"
+   53   17   17    1.38   29.40  0.5400E+01  0.2195E+01 "alien"
+   61   25    7    1.27   29.38  0.8396E+01  0.3063E+01 "alien"
+   53   35   13    1.30   29.36  0.5617E+01  0.3960E+01 "alien"
+   20   18   42    1.27   29.35  0.8385E+01  0.3808E+01 "alien"
+   29   63    1    1.35   29.28  0.5377E+01  0.3214E+01 "alien"
+    6   62   19    1.38   29.20  0.5363E+01  0.3246E+01 "alien"
+   14   46   31    1.36   29.15  0.5354E+01  0.3652E+01 "alien"
+   30   30   33    1.35   29.14  0.5352E+01  0.3842E+01 "alien"
+   38   46   21    1.33   29.12  0.5570E+01  0.3686E+01 "alien"
+   10   48   33    1.31   29.08  0.5562E+01  0.3595E+01 "alien"
+   27   23   35    1.38   29.07  0.5340E+01  0.3622E+01 "alien"
+   32   18   35    1.35   29.06  0.5338E+01  0.3409E+01 "alien"
+   28   26   34    1.37   29.05  0.5336E+01  0.3592E+01 "alien"
+   41   47    8    1.42   29.03  0.7174E+01  0.2437E+01 "alien"
+   35   47   21    1.36   29.02  0.5330E+01  0.3736E+01 "alien"
+   28   60    7    1.40   29.01  0.7168E+01  0.3305E+01 "alien"
+   29    1   38    1.35   28.94  0.5536E+01  0.4789E+01 "alien"
+    3   41   41    1.21   28.87  0.7368E+01  0.5713E+01 "alien"
+   54   36   12    1.29   28.87  0.8247E+01  0.3982E+01 "alien"
+   34   38   28    1.34   28.86  0.5522E+01  0.3966E+01 "alien"
+   33   21   34    1.35   28.86  0.5301E+01  0.3612E+01 "alien"
+   55   35    4    1.32   28.84  0.5518E+01  0.4058E+01 "alien"
+   33   53   15    1.38   28.81  0.5292E+01  0.3601E+01 "alien"
+   22   26   38    1.32   28.81  0.5511E+01  0.3581E+01 "alien"
+   28   20   37    1.33   28.76  0.5502E+01  0.3481E+01 "alien"
+   41   45   20    1.31   28.73  0.5497E+01  0.3885E+01 "alien"
+   34   60   15    1.27   28.65  0.8186E+01  0.4013E+01 "alien"
+   55   27   10    1.35   28.63  0.5258E+01  0.2735E+01 "alien"
+   28   20   35    1.39   28.60  0.5252E+01  0.3692E+01 "alien"
+   50   32   16    1.35   28.55  0.5243E+01  0.3543E+01 "alien"
+   45   29   26    1.31   28.54  0.5459E+01  0.3008E+01 "alien"
+   47   25   22    1.37   28.49  0.5233E+01  0.2681E+01 "alien"
+    5   71    1    1.36   28.49  0.5233E+01  0.2093E+01 "alien"
+   55    3   22    1.31   28.43  0.5439E+01  0.4377E+01 "alien"
+   54   12   20    1.34   28.42  0.5437E+01  0.3289E+01 "alien"
+   28   64   13    1.29   28.40  0.8114E+01  0.3907E+01 "alien"
+   24   40   31    1.36   28.37  0.5211E+01  0.5047E+01 "alien"
+   11   69    3    1.38   28.37  0.5211E+01  0.2421E+01 "alien"
+   49   19   24    1.34   28.35  0.5423E+01  0.3961E+01 "alien"
+   16   40   33    1.37   28.34  0.5205E+01  0.3328E+01 "alien"
+    3    9   44    1.31   28.28  0.5410E+01  0.3658E+01 "alien"
+   62   14    7    1.30   28.21  0.8059E+01  0.4360E+01 "alien"
+   39   37   29    1.27   28.19  0.8053E+01  0.4239E+01 "alien"
+   28   60   12    1.36   28.17  0.5173E+01  0.3526E+01 "alien"
+   31   69   13    1.20   28.15  0.7184E+01  0.5097E+01 "alien"
+   23   59   20    1.33   28.09  0.5374E+01  0.3833E+01 "alien"
+   18   68   13    1.30   28.08  0.8022E+01  0.3915E+01 "alien"
+    4   60   26    1.30   28.07  0.5369E+01  0.2519E+01 "alien"
+   41   49   10    1.37   28.04  0.5150E+01  0.3607E+01 "alien"
+   40   34   24    1.38   28.04  0.5149E+01  0.2701E+01 "alien"
+   27   39   30    1.37   28.03  0.5147E+01  0.5416E+01 "alien"
+   35   13   32    1.41   28.00  0.6919E+01  0.3211E+01 "alien"
+   45   45    2    1.40   27.98  0.6914E+01  0.3794E+01 "alien"
+   19   19   38    1.39   27.94  0.5132E+01  0.2362E+01 "alien"
+   59   29    7    1.28   27.93  0.7980E+01  0.4089E+01 "alien"
+   53    1   17    1.42   27.92  0.6900E+01  0.2698E+01 "alien"
+   43   19   27    1.38   27.92  0.5127E+01  0.2708E+01 "alien"
+   51   37    4    1.38   27.89  0.5123E+01  0.2833E+01 "alien"
+   66   10   10    1.22   27.89  0.7118E+01  0.4195E+01 "alien"
+    3   37   34    1.43   27.89  0.6890E+01  0.3483E+01 "alien"
+   17   69    9    1.32   27.88  0.5334E+01  0.3431E+01 "alien"
+   64   28    3    1.21   27.87  0.7115E+01  0.4367E+01 "alien"
+   14   72   10    1.28   27.82  0.7949E+01  0.3759E+01 "alien"
+    9   25   42    1.29   27.82  0.7948E+01  0.3749E+01 "alien"
+   36   12   34    1.35   27.82  0.5109E+01  0.3252E+01 "alien"
+   20   60   16    1.39   27.81  0.5107E+01  0.3294E+01 "alien"
+   33   25   33    1.35   27.81  0.5107E+01  0.3534E+01 "alien"
+   39   47   18    1.35   27.79  0.5316E+01  0.3938E+01 "alien"
+   25   17   36    1.40   27.75  0.6856E+01  0.3337E+01 "alien"
+   38   42   20    1.39   27.72  0.5091E+01  0.2680E+01 "alien"
+   35   53   16    1.34   27.72  0.5303E+01  0.3692E+01 "alien"
+   46   38   17    1.35   27.70  0.5088E+01  0.2507E+01 "alien"
+   64   14    2    1.27   27.69  0.7912E+01  0.4356E+01 "alien"
+   52   22   22    1.30   27.68  0.5294E+01  0.4105E+01 "alien"
+   49    7   26    1.34   27.67  0.5293E+01  0.5748E+01 "alien"
+   31   55   13    1.40   27.65  0.6832E+01  0.3380E+01 "alien"
+   61   17    7    1.31   27.59  0.5279E+01  0.4328E+01 "alien"
+   52   26    5    1.46   27.55  0.8852E+01  0.2643E+01 "alien"
+   26   12   37    1.39   27.51  0.5053E+01  0.5357E+01 "alien"
+   49   43    5    1.35   27.50  0.5261E+01  0.4082E+01 "alien"
+   31   27   33    1.36   27.44  0.5040E+01  0.3462E+01 "alien"
+   15   53   26    1.37   27.43  0.5038E+01  0.3247E+01 "alien"
+   45   51   20    1.20   27.41  0.6997E+01  0.4452E+01 "alien"
+   17   67   14    1.31   27.38  0.5238E+01  0.3794E+01 "alien"
+   30   54   20    1.34   27.38  0.5237E+01  0.3775E+01 "alien"
+   37   35   26    1.37   27.34  0.5021E+01  0.2612E+01 "alien"
+   55   31    9    1.33   27.31  0.5224E+01  0.3909E+01 "alien"
+   56   24    8    1.37   27.29  0.5012E+01  0.3913E+01 "alien"
+    6   68   17    1.31   27.26  0.5215E+01  0.2529E+01 "alien"
+   51   41    4    1.34   27.23  0.5208E+01  0.3993E+01 "alien"
+   60    4   11    1.34   27.20  0.5204E+01  0.3990E+01 "alien"
+   58   30    6    1.30   27.19  0.7768E+01  0.3958E+01 "alien"
+   11   17   44    1.27   27.18  0.7766E+01  0.3832E+01 "alien"
+   52   36    5    1.36   27.16  0.4989E+01  0.2788E+01 "alien"
+   22   28   36    1.36   27.15  0.4987E+01  0.3772E+01 "alien"
+   57   25   21    1.22   27.15  0.6930E+01  0.4286E+01 "alien"
+    7   73    8    1.30   27.12  0.7750E+01  0.3611E+01 "alien"
+   43   15   29    1.36   27.12  0.4982E+01  0.4922E+01 "alien"
+   33   15   33    1.41   27.10  0.6696E+01  0.3454E+01 "alien"
+   63   19    3    1.27   27.10  0.7742E+01  0.4370E+01 "alien"
+   19   33   35    1.37   27.09  0.4975E+01  0.3648E+01 "alien"
+   48   24   24    1.33   27.09  0.5182E+01  0.3292E+01 "alien"
+   65   17    9    1.22   27.06  0.6908E+01  0.4331E+01 "alien"
+    1    5   43    1.34   27.06  0.5177E+01  0.2303E+01 "alien"
+   48   32   23    1.29   27.03  0.7722E+01  0.2878E+01 "alien"
+   35   17   32    1.40   27.01  0.6673E+01  0.3481E+01 "alien"
+    9   71    9    1.32   27.00  0.5165E+01  0.3349E+01 "alien"
+   56    8   14    1.39   26.98  0.4956E+01  0.3867E+01 "alien"
+   25    5   38    1.38   26.98  0.4956E+01  0.3419E+01 "alien"
+   58   24    5    1.34   26.96  0.5158E+01  0.2805E+01 "alien"
+   25   65   10    1.32   26.95  0.5155E+01  0.3675E+01 "alien"
+   53   35    8    1.34   26.90  0.5145E+01  0.3833E+01 "alien"
+   29   11   36    1.39   26.90  0.4940E+01  0.3309E+01 "alien"
+    6   48   31    1.36   26.89  0.4938E+01  0.2278E+01 "alien"
+   53   25   20    1.30   26.87  0.7678E+01  0.4464E+01 "alien"
+   53   25   13    1.38   26.86  0.4934E+01  0.2115E+01 "alien"
+   29   19   37    1.33   26.85  0.5137E+01  0.3660E+01 "alien"
+    7   45   36    1.28   26.85  0.7672E+01  0.3001E+01 "alien"
+   55   17   16    1.35   26.82  0.4927E+01  0.2747E+01 "alien"
+   43   47    5    1.40   26.82  0.6627E+01  0.3744E+01 "alien"
+   51   27   23    1.28   26.81  0.7660E+01  0.3451E+01 "alien"
+   37   31   31    1.31   26.81  0.5128E+01  0.3939E+01 "alien"
+   27   63   10    1.34   26.79  0.5126E+01  0.3598E+01 "alien"
+    7   29   42    1.27   26.79  0.7653E+01  0.3814E+01 "alien"
+   38   54    9    1.36   26.78  0.4919E+01  0.3670E+01 "alien"
+    9   71   11    1.31   26.78  0.5123E+01  0.3577E+01 "alien"
+    3   73   18    1.22   26.76  0.6829E+01  0.3797E+01 "alien"
+    5   25   40    1.35   26.74  0.4912E+01  0.2539E+01 "alien"
+   50    6   23    1.38   26.74  0.4911E+01  0.2963E+01 "alien"
+   52   34   11    1.35   26.72  0.4908E+01  0.3709E+01 "alien"
+   45   11   26    1.40   26.72  0.6601E+01  0.4021E+01 "alien"
+   26   62   10    1.36   26.71  0.4905E+01  0.3521E+01 "alien"
+    8   68   19    1.28   26.70  0.7627E+01  0.3539E+01 "alien"
+   26   60   17    1.33   26.69  0.5107E+01  0.3709E+01 "alien"
+   29   59   17    1.31   26.69  0.5105E+01  0.3660E+01 "alien"
+   58   10    4    1.41   26.67  0.6590E+01  0.2917E+01 "alien"
+   56   18   17    1.32   26.65  0.5099E+01  0.3994E+01 "alien"
+   63    7   17    1.23   26.65  0.6802E+01  0.4390E+01 "alien"
+   47   43    6    1.38   26.64  0.4892E+01  0.3663E+01 "alien"
+   41   31   26    1.35   26.63  0.4891E+01  0.2744E+01 "alien"
+   29   67    6    1.28   26.62  0.7606E+01  0.5197E+01 "alien"
+   48   12   26    1.35   26.61  0.4887E+01  0.4200E+01 "alien"
+   38   32   31    1.29   26.60  0.7599E+01  0.4059E+01 "alien"
+   12   72   12    1.27   26.58  0.7595E+01  0.3660E+01 "alien"
+   61   33    5    1.23   26.58  0.6784E+01  0.6415E+01 "alien"
+   39   47   15    1.38   26.57  0.4881E+01  0.3821E+01 "alien"
+
+
+ List of    500 reflections *NOT* obeying Wilson distribution (sorted by resolution)
+ Ice rings could occur at (Angstrom):
+ 3.897,3.669,3.441, 2.671,2.249,2.072, 1.948,1.918,1.883,1.721
+
+   h    k    l     RES      Z     Intensity    Sigma
+
+   31   69   13    1.20   28.15  0.7184E+01  0.5097E+01
+   13   79    4    1.20   36.48  0.9312E+01  0.5220E+01
+   16    2   47    1.20   59.38  0.1516E+02  0.5993E+01
+   56   30   22    1.20   29.51  0.7533E+01  0.5763E+01
+   64    6   18    1.20   34.42  0.8786E+01  0.6443E+01
+    1   63   30    1.20   43.78  0.1117E+02  0.6565E+01
+   15    3   47    1.20   36.48  0.9311E+01  0.5342E+01
+   45   51   20    1.20   27.41  0.6997E+01  0.4452E+01
+   10   78    9    1.21   55.68  0.1421E+02  0.5438E+01
+    1   55   35    1.21   48.87  0.1247E+02  0.5774E+01
+    1   51   37    1.21   34.35  0.8767E+01  0.5371E+01
+    3   71   22    1.21   31.19  0.7961E+01  0.3815E+01
+    5   31   44    1.21   34.06  0.8693E+01  0.5825E+01
+    3   41   41    1.21   28.87  0.7368E+01  0.5713E+01
+    3   69   24    1.21   36.10  0.9214E+01  0.5448E+01
+   32   66   15    1.21   40.35  0.1030E+02  0.5371E+01
+   64   28    3    1.21   27.87  0.7115E+01  0.4367E+01
+   59   33   14    1.21   32.66  0.8336E+01  0.5639E+01
+   56   36   17    1.21   32.66  0.8337E+01  0.4090E+01
+   31   67   14    1.22   36.64  0.9353E+01  0.3974E+01
+    2   48   38    1.22   34.33  0.8761E+01  0.5395E+01
+    4   34   43    1.22   30.82  0.7867E+01  0.3912E+01
+   46   48   20    1.22   31.68  0.8086E+01  0.4226E+01
+   66   10   10    1.22   27.89  0.7118E+01  0.4195E+01
+    9   23   45    1.22   29.88  0.7628E+01  0.5640E+01
+    1   71   21    1.22   32.34  0.8254E+01  0.4032E+01
+   57   25   21    1.22   27.15  0.6930E+01  0.4286E+01
+    4   68   24    1.22   41.86  0.1068E+02  0.5961E+01
+   65   17    9    1.22   27.06  0.6908E+01  0.4331E+01
+    3   73   18    1.22   26.76  0.6829E+01  0.3797E+01
+   43   35   30    1.22   37.39  0.9544E+01  0.6493E+01
+   66   14    7    1.22   43.69  0.1115E+02  0.4546E+01
+   63    7   17    1.23   26.65  0.6802E+01  0.4390E+01
+    6   72   19    1.23   32.44  0.8280E+01  0.5609E+01
+   44   52   18    1.23   42.09  0.1074E+02  0.5789E+01
+   21   75    2    1.23   45.41  0.1159E+02  0.6394E+01
+   11   77    7    1.23   55.51  0.1417E+02  0.4229E+01
+   64    6   15    1.23   43.70  0.1115E+02  0.6364E+01
+   26   12   43    1.23   50.48  0.1288E+02  0.4232E+01
+   61   33    5    1.23   26.58  0.6784E+01  0.6415E+01
+   14    6   46    1.23   39.54  0.1009E+02  0.4013E+01
+    5   37   40    1.26  366.61  0.2147E+03  0.1190E+02
+    9   71   16    1.26  559.49  0.3276E+03  0.1584E+02
+   11   17   44    1.27   27.18  0.7766E+01  0.3832E+01
+   18   16   43    1.27   53.88  0.1539E+02  0.5925E+01
+   61   13   15    1.27   34.10  0.9742E+01  0.6100E+01
+    7   29   42    1.27   26.79  0.7653E+01  0.3814E+01
+   64    6    9    1.27   39.32  0.1123E+02  0.4472E+01
+   57   35    8    1.27   30.71  0.8775E+01  0.4127E+01
+   61   25    7    1.27   29.38  0.8396E+01  0.3063E+01
+   42   44   23    1.27   36.12  0.1032E+02  0.4595E+01
+    9   17   44    1.27   32.73  0.9353E+01  0.3994E+01
+   34   60   15    1.27   28.65  0.8186E+01  0.4013E+01
+   20   18   42    1.27   29.35  0.8385E+01  0.3808E+01
+   12   72   12    1.27   26.58  0.7595E+01  0.3660E+01
+   39   37   29    1.27   28.19  0.8053E+01  0.4239E+01
+    7   55   31    1.27   44.66  0.1276E+02  0.5845E+01
+   63   19    3    1.27   27.10  0.7742E+01  0.4370E+01
+   64   14    2    1.27   27.69  0.7912E+01  0.4356E+01
+   51   41   14    1.28   37.00  0.1057E+02  0.6067E+01
+   64    4    8    1.28   47.73  0.1364E+02  0.6073E+01
+   55   23   20    1.28   34.16  0.9759E+01  0.4354E+01
+   38   48   23    1.28   35.78  0.1022E+02  0.4361E+01
+   51   27   23    1.28   26.81  0.7660E+01  0.3451E+01
+   29   67    6    1.28   26.62  0.7606E+01  0.5197E+01
+   24   22   40    1.28   30.03  0.8580E+01  0.4115E+01
+   14   72   10    1.28   27.82  0.7949E+01  0.3759E+01
+    8   68   19    1.28   26.70  0.7627E+01  0.3539E+01
+    4    6   45    1.28   70.89  0.2025E+02  0.6040E+01
+    7   45   36    1.28   26.85  0.7672E+01  0.3001E+01
+   23   69    9    1.28   36.46  0.1042E+02  0.3980E+01
+   59   29    7    1.28   27.93  0.7980E+01  0.4089E+01
+   18   70   11    1.28   42.11  0.1203E+02  0.4028E+01
+   33   61   13    1.29   31.19  0.8910E+01  0.4073E+01
+   38   32   31    1.29   26.60  0.7599E+01  0.4059E+01
+   55    9   23    1.29   35.44  0.1012E+02  0.4281E+01
+    9   25   42    1.29   27.82  0.7948E+01  0.3749E+01
+   54   36   12    1.29   28.87  0.8247E+01  0.3982E+01
+   62   10   11    1.29   38.55  0.1102E+02  0.4308E+01
+   59   27    8    1.29   41.42  0.1184E+02  0.4181E+01
+   28   64   13    1.29   28.40  0.8114E+01  0.3907E+01
+   48   32   23    1.29   27.03  0.7722E+01  0.2878E+01
+   62    8   11    1.29   42.60  0.1217E+02  0.4189E+01
+   39   29   31    1.30   35.84  0.1024E+02  0.4259E+01
+   42   34   27    1.30   35.99  0.1028E+02  0.4224E+01
+    7   73    8    1.30   27.12  0.7750E+01  0.3611E+01
+   58   30    6    1.30   27.19  0.7768E+01  0.3958E+01
+   22   68   10    1.30   30.91  0.8831E+01  0.3763E+01
+   53   25   20    1.30   26.87  0.7678E+01  0.4464E+01
+   38   46   23    1.30   29.91  0.8545E+01  0.4423E+01
+    2   12   44    1.30   33.96  0.9702E+01  0.3998E+01
+   62   14    7    1.30   28.21  0.8059E+01  0.4360E+01
+   13   25   41    1.30   40.68  0.1162E+02  0.4211E+01
+   18   68   13    1.30   28.08  0.8022E+01  0.3915E+01
+   37   21   34    1.30   30.13  0.8610E+01  0.3844E+01
+   35   25   34    1.30   31.19  0.8912E+01  0.3964E+01
+   62    4   10    1.30   39.11  0.7481E+01  0.3619E+01
+   24   22   39    1.30   39.76  0.7606E+01  0.4078E+01
+   53   35   13    1.30   29.36  0.5617E+01  0.3960E+01
+   42   42   22    1.30   34.10  0.6523E+01  0.2897E+01
+    4   60   26    1.30   28.07  0.5369E+01  0.2519E+01
+   57   25   13    1.30   30.73  0.5879E+01  0.3762E+01
+   20   68   11    1.30   31.30  0.5988E+01  0.3801E+01
+   55    7   22    1.30   37.10  0.7097E+01  0.4076E+01
+   23   69    3    1.30   30.74  0.5881E+01  0.3733E+01
+   52   22   22    1.30   27.68  0.5294E+01  0.4105E+01
+   37   31   31    1.31   26.81  0.5128E+01  0.3939E+01
+   42   52   12    1.31   53.86  0.1030E+02  0.5618E+01
+   30   64    8    1.31   32.05  0.6130E+01  0.3659E+01
+    3    9   44    1.31   28.28  0.5410E+01  0.3658E+01
+   50   42   11    1.31   34.71  0.6640E+01  0.3818E+01
+    9   71   11    1.31   26.78  0.5123E+01  0.3577E+01
+   41   49   17    1.31   38.91  0.7444E+01  0.4077E+01
+   20   70    4    1.31   29.65  0.5673E+01  0.3495E+01
+   53   21   21    1.31   31.02  0.5935E+01  0.4024E+01
+    9   55   29    1.31   38.36  0.7338E+01  0.3657E+01
+   35   31   32    1.31   36.54  0.6991E+01  0.4088E+01
+    6   68   17    1.31   27.26  0.5215E+01  0.2529E+01
+   63    9    2    1.31   37.06  0.7090E+01  0.5745E+01
+   10   48   33    1.31   29.08  0.5562E+01  0.3595E+01
+   33   31   33    1.31   31.75  0.6073E+01  0.4032E+01
+    9   59   26    1.31   32.90  0.6293E+01  0.3647E+01
+   61   17    7    1.31   27.59  0.5279E+01  0.4328E+01
+   45   29   26    1.31   28.54  0.5459E+01  0.3008E+01
+   56   10   20    1.31   32.95  0.6303E+01  0.4157E+01
+   54   38    5    1.31   43.12  0.8249E+01  0.4081E+01
+   20    2   42    1.31   32.68  0.6252E+01  0.2630E+01
+   44   44   18    1.31   31.16  0.5961E+01  0.3812E+01
+   39   37   27    1.31   30.02  0.5743E+01  0.4210E+01
+   55    3   22    1.31   28.43  0.5439E+01  0.4377E+01
+   50   18   25    1.31   37.22  0.7120E+01  0.4321E+01
+   61    1   12    1.31   30.18  0.5773E+01  0.2857E+01
+   24   68    4    1.31   34.00  0.6503E+01  0.3588E+01
+    9   39   37    1.31   31.36  0.6000E+01  0.3615E+01
+   44   28   27    1.31   32.19  0.6158E+01  0.3913E+01
+   42   50   14    1.31   29.63  0.5669E+01  0.3802E+01
+   38   16   34    1.31   40.30  0.7710E+01  0.5237E+01
+    4   16   43    1.31   45.50  0.8704E+01  0.3954E+01
+   27   63   13    1.31   49.79  0.9525E+01  0.3847E+01
+   33   51   22    1.31   33.75  0.6456E+01  0.4060E+01
+   29   59   17    1.31   26.69  0.5105E+01  0.3660E+01
+   40   20   32    1.31   52.98  0.1013E+02  0.5731E+01
+   17   67   14    1.31   27.38  0.5238E+01  0.3794E+01
+    4    2   44    1.31   34.84  0.6665E+01  0.3077E+01
+   37   41   26    1.31   42.59  0.8147E+01  0.3963E+01
+    3    3   44    1.31   49.07  0.9388E+01  0.3785E+01
+   41   45   20    1.31   28.73  0.5497E+01  0.3885E+01
+   11   49   32    1.31   31.49  0.6024E+01  0.5172E+01
+   62   10    6    1.32   35.74  0.6837E+01  0.3995E+01
+   55    9   21    1.32   48.65  0.9306E+01  0.4223E+01
+   29   61   14    1.32   33.23  0.6356E+01  0.3771E+01
+   51   23   22    1.32   32.52  0.6221E+01  0.3259E+01
+   56   12   19    1.32   29.53  0.5650E+01  0.4284E+01
+   41   33   27    1.32   31.21  0.5971E+01  0.3827E+01
+   54   30   14    1.32   35.06  0.6706E+01  0.2810E+01
+   10   24   41    1.32   31.49  0.6025E+01  0.3601E+01
+   52   16   23    1.32   32.86  0.6286E+01  0.4128E+01
+   19   21   40    1.32   31.79  0.6081E+01  0.3699E+01
+   30   64    5    1.32   35.44  0.6780E+01  0.3546E+01
+   56   18   17    1.32   26.65  0.5099E+01  0.3994E+01
+    3   73    4    1.32   37.98  0.7265E+01  0.3506E+01
+   23   67    8    1.32   34.60  0.6620E+01  0.3752E+01
+   55    7   21    1.32   34.56  0.6612E+01  0.4102E+01
+   43   29   27    1.32   39.86  0.7626E+01  0.3905E+01
+   54   14   21    1.32   48.19  0.9219E+01  0.4197E+01
+   54   32   12    1.32   47.91  0.9165E+01  0.3888E+01
+   17   69    9    1.32   27.88  0.5334E+01  0.3431E+01
+    9   71    9    1.32   27.00  0.5165E+01  0.3349E+01
+   56    2   20    1.32   47.70  0.9125E+01  0.3101E+01
+   55   35    4    1.32   28.84  0.5518E+01  0.4058E+01
+   53   35   11    1.32   32.37  0.6192E+01  0.3802E+01
+   30   36   32    1.32   42.06  0.8046E+01  0.4043E+01
+   55   33    8    1.32   56.04  0.1072E+02  0.4033E+01
+   52   34   14    1.32   30.84  0.5900E+01  0.2727E+01
+   52   36   12    1.32   31.60  0.6046E+01  0.3659E+01
+   36   56   13    1.32   43.58  0.8336E+01  0.3846E+01
+   22   26   38    1.32   28.81  0.5511E+01  0.3581E+01
+   35   29   32    1.32   29.92  0.5725E+01  0.3840E+01
+   18   26   39    1.32   45.76  0.8753E+01  0.5205E+01
+   53   39    3    1.32   55.63  0.1064E+02  0.4026E+01
+   33   49   23    1.32   30.52  0.5839E+01  0.3934E+01
+    5   71   10    1.32   34.38  0.6577E+01  0.2422E+01
+   61    5   10    1.32   33.47  0.6403E+01  0.3136E+01
+   20   64   16    1.32   39.79  0.7611E+01  0.3698E+01
+   25   65   10    1.32   26.95  0.5155E+01  0.3675E+01
+   22    2   41    1.32   36.96  0.7070E+01  0.3650E+01
+   20   68    8    1.32   35.41  0.6775E+01  0.3575E+01
+   54   22   18    1.32   32.41  0.6201E+01  0.3202E+01
+   61   15    5    1.32   38.22  0.7311E+01  0.3328E+01
+   23   67    7    1.32   45.37  0.8679E+01  0.3637E+01
+   55   11   20    1.32   41.83  0.8003E+01  0.3999E+01
+   18   64   17    1.32   44.07  0.8430E+01  0.4878E+01
+   21    7   41    1.32   33.34  0.6379E+01  0.3368E+01
+   45   41   18    1.33   35.29  0.6750E+01  0.2679E+01
+   50   14   25    1.33   37.50  0.7175E+01  0.4274E+01
+   53   13   22    1.33   57.66  0.1103E+02  0.4140E+01
+   26   60   17    1.33   26.69  0.5107E+01  0.3709E+01
+   29   19   37    1.33   26.85  0.5137E+01  0.3660E+01
+    9   17   42    1.33   33.72  0.6451E+01  0.3702E+01
+   59   11   13    1.33   47.72  0.9129E+01  0.4349E+01
+   30   26   35    1.33   40.74  0.7794E+01  0.3726E+01
+   23   59   20    1.33   28.09  0.5374E+01  0.3833E+01
+   57    1   18    1.33   38.79  0.7421E+01  0.3050E+01
+   42   38   23    1.33   32.21  0.6163E+01  0.2790E+01
+   43   49   12    1.33   40.32  0.7714E+01  0.3599E+01
+   48   24   24    1.33   27.09  0.5182E+01  0.3292E+01
+   33   55   17    1.33   35.39  0.6770E+01  0.3717E+01
+   36   18   34    1.33   38.17  0.7302E+01  0.5452E+01
+   38   46   21    1.33   29.12  0.5570E+01  0.3686E+01
+   14   24   40    1.33   34.29  0.6560E+01  0.3400E+01
+   55   27   13    1.33   42.97  0.8220E+01  0.2690E+01
+   34   50   21    1.33   41.82  0.8000E+01  0.4025E+01
+   37   47   21    1.33   37.62  0.7198E+01  0.4089E+01
+   35   49   21    1.33   44.34  0.8482E+01  0.4086E+01
+   36   48   21    1.33   33.01  0.6314E+01  0.4231E+01
+   55   31    9    1.33   27.31  0.5224E+01  0.3909E+01
+   17   69    7    1.33   36.50  0.6982E+01  0.3508E+01
+   28   20   37    1.33   28.76  0.5502E+01  0.3481E+01
+    4   10   43    1.33   34.27  0.6557E+01  0.2854E+01
+   32   62    4    1.33   70.11  0.1341E+02  0.5294E+01
+   61    1    9    1.33   30.23  0.5783E+01  0.5605E+01
+   51   25   20    1.33   41.29  0.7899E+01  0.4142E+01
+   48   20   25    1.33   32.08  0.6137E+01  0.3089E+01
+   37   39   26    1.33   29.97  0.5733E+01  0.2834E+01
+   57    7   17    1.33   51.66  0.9883E+01  0.2964E+01
+   49   23   23    1.33   31.39  0.6004E+01  0.2824E+01
+   50   34   16    1.33   32.93  0.6300E+01  0.3757E+01
+   20   16   40    1.33   45.33  0.8672E+01  0.3902E+01
+   33   13   36    1.33   38.40  0.7346E+01  0.4613E+01
+    8    4   43    1.33   38.14  0.7297E+01  0.2621E+01
+   28   34   33    1.33   33.90  0.6485E+01  0.3906E+01
+   51   41    4    1.34   27.23  0.5208E+01  0.3993E+01
+   38   28   30    1.34   29.47  0.5638E+01  0.3851E+01
+   60   18    4    1.34   42.14  0.8061E+01  0.3957E+01
+   30   54   20    1.34   27.38  0.5237E+01  0.3775E+01
+    3    9   43    1.34   33.79  0.6464E+01  0.2639E+01
+   33   33   31    1.34   31.28  0.5985E+01  0.3839E+01
+   57   17   14    1.34   33.52  0.6412E+01  0.4165E+01
+   53   25   17    1.34   31.76  0.6075E+01  0.4047E+01
+   26   64    9    1.34   45.09  0.8626E+01  0.3701E+01
+   60    4   11    1.34   27.20  0.5204E+01  0.3990E+01
+   25   19   38    1.34   36.15  0.6915E+01  0.3585E+01
+   27   63   10    1.34   26.79  0.5126E+01  0.3598E+01
+    1   65   19    1.34   30.37  0.5809E+01  0.2409E+01
+   46   18   27    1.34   35.92  0.6872E+01  0.4266E+01
+   49   19   24    1.34   28.35  0.5423E+01  0.3961E+01
+   13   53   28    1.34   33.51  0.6411E+01  0.3572E+01
+   26    8   39    1.34   34.73  0.6644E+01  0.3546E+01
+   40   44   20    1.34   31.55  0.6035E+01  0.2734E+01
+   59   19    7    1.34   31.23  0.5974E+01  0.2725E+01
+   34   42   26    1.34   32.06  0.6133E+01  0.2795E+01
+   54   12   20    1.34   28.42  0.5437E+01  0.3289E+01
+   53   35    8    1.34   26.90  0.5145E+01  0.3833E+01
+   61   11    4    1.34   31.28  0.5983E+01  0.3917E+01
+   39   31   28    1.34   30.44  0.5823E+01  0.3671E+01
+   14   16   41    1.34   35.48  0.6788E+01  0.3654E+01
+   58   24    5    1.34   26.96  0.5158E+01  0.2805E+01
+    8   14   42    1.34   35.31  0.6754E+01  0.2702E+01
+   45   35   21    1.34   31.69  0.6063E+01  0.2541E+01
+   50   42    4    1.34   45.41  0.8686E+01  0.3971E+01
+   34   38   28    1.34   28.86  0.5522E+01  0.3966E+01
+   32   36   30    1.34   30.78  0.5887E+01  0.3916E+01
+   50   14   24    1.34   41.67  0.7971E+01  0.4180E+01
+   49    7   26    1.34   27.67  0.5293E+01  0.5748E+01
+   44   44   15    1.34   32.88  0.6291E+01  0.3778E+01
+   43   49   10    1.34   39.08  0.7477E+01  0.4671E+01
+   42   38   22    1.34   30.50  0.5834E+01  0.2712E+01
+   51    7   24    1.34   35.59  0.6809E+01  0.4338E+01
+   35   53   16    1.34   27.72  0.5303E+01  0.3692E+01
+   29   15   37    1.34   39.98  0.7648E+01  0.3602E+01
+    1    5   43    1.34   27.06  0.5177E+01  0.2303E+01
+   57   15   14    1.34   34.04  0.6512E+01  0.3951E+01
+   49   43    5    1.35   27.50  0.5261E+01  0.4082E+01
+   39   47   18    1.35   27.79  0.5316E+01  0.3938E+01
+   24   24   37    1.35   47.11  0.9012E+01  0.3920E+01
+   15   29   38    1.35   37.70  0.7212E+01  0.4956E+01
+   33    9   36    1.35   34.28  0.6557E+01  0.3383E+01
+   38   50   16    1.35   33.28  0.6367E+01  0.3895E+01
+   29    1   38    1.35   28.94  0.5536E+01  0.4789E+01
+   49    5   26    1.35   39.91  0.7634E+01  0.5680E+01
+   18   22   39    1.35   30.64  0.5627E+01  0.3672E+01
+   37   25   31    1.35   57.35  0.1053E+02  0.3992E+01
+   18   64   15    1.35   39.94  0.7336E+01  0.3650E+01
+   52   34   11    1.35   26.72  0.4908E+01  0.3709E+01
+   43   45   15    1.35   32.56  0.5980E+01  0.3787E+01
+   30   30   33    1.35   29.14  0.5352E+01  0.3842E+01
+   42   24   28    1.35   43.09  0.7915E+01  0.5166E+01
+   48   12   26    1.35   26.61  0.4887E+01  0.4200E+01
+   61    9    3    1.35   36.13  0.6636E+01  0.3818E+01
+   22   64   12    1.35   41.58  0.7638E+01  0.3564E+01
+   46   26   24    1.35   41.30  0.7585E+01  0.3898E+01
+    7   63   20    1.35   32.69  0.6003E+01  0.3424E+01
+    1   15   42    1.35   32.53  0.5975E+01  0.2624E+01
+   14   56   25    1.35   40.73  0.7482E+01  0.3561E+01
+   33   21   34    1.35   28.86  0.5301E+01  0.3612E+01
+   50   12   24    1.35   52.38  0.9620E+01  0.4150E+01
+   35   21   33    1.35   32.06  0.5889E+01  0.3550E+01
+   33   25   33    1.35   27.81  0.5107E+01  0.3534E+01
+   25    7   39    1.35   33.21  0.6099E+01  0.4883E+01
+   53   35    6    1.35   29.72  0.5458E+01  0.2799E+01
+    4   36   37    1.35   33.04  0.6069E+01  0.2489E+01
+   15   69    5    1.35   35.33  0.6489E+01  0.2536E+01
+   13   21   40    1.35   35.58  0.6535E+01  0.2553E+01
+   32   18   35    1.35   29.06  0.5338E+01  0.3409E+01
+   50   32   16    1.35   28.55  0.5243E+01  0.3543E+01
+   41   31   26    1.35   26.63  0.4891E+01  0.2744E+01
+   36   12   34    1.35   27.82  0.5109E+01  0.3252E+01
+   47   45    6    1.35   54.84  0.1007E+02  0.5715E+01
+    5   25   40    1.35   26.74  0.4912E+01  0.2539E+01
+   46   38   17    1.35   27.70  0.5088E+01  0.2507E+01
+   29   19   36    1.35   47.09  0.8648E+01  0.3645E+01
+   29   63    1    1.35   29.28  0.5377E+01  0.3214E+01
+   55   27   10    1.35   28.63  0.5258E+01  0.2735E+01
+   48   10   26    1.35   41.34  0.7593E+01  0.4287E+01
+   34   54   15    1.35   47.64  0.8750E+01  0.3619E+01
+   35   15   34    1.35   45.51  0.8359E+01  0.3451E+01
+   56   24   10    1.35   36.08  0.6628E+01  0.4080E+01
+   20   64   13    1.35   39.23  0.7206E+01  0.3861E+01
+   52   18   20    1.35   38.07  0.6992E+01  0.4115E+01
+   55   17   16    1.35   26.82  0.4927E+01  0.2747E+01
+   28   56   18    1.35   35.65  0.6547E+01  0.3703E+01
+   30   32   32    1.36   35.18  0.6462E+01  0.3796E+01
+   35   47   21    1.36   29.02  0.5330E+01  0.3736E+01
+   38   54    9    1.36   26.78  0.4919E+01  0.3670E+01
+   24   30   35    1.36   35.05  0.6437E+01  0.3630E+01
+   35   53   15    1.36   30.62  0.5623E+01  0.3684E+01
+   39   53    9    1.36   33.52  0.6156E+01  0.3548E+01
+   33   53   17    1.36   43.73  0.8032E+01  0.3770E+01
+   39   13   32    1.36   37.08  0.6811E+01  0.3486E+01
+    9   27   39    1.36   48.99  0.8998E+01  0.3865E+01
+   47    7   27    1.36   41.08  0.7544E+01  0.6037E+01
+   43   15   29    1.36   27.12  0.4982E+01  0.4922E+01
+   28   14   37    1.36   33.86  0.6220E+01  0.3468E+01
+    5   71    1    1.36   28.49  0.5233E+01  0.2093E+01
+   57   21    9    1.36   35.82  0.6579E+01  0.2704E+01
+   61    1    3    1.36   49.42  0.9077E+01  0.5251E+01
+   16   22   39    1.36   30.23  0.5551E+01  0.2473E+01
+   31   27   33    1.36   27.44  0.5040E+01  0.3462E+01
+   36   48   19    1.36   37.38  0.6866E+01  0.3822E+01
+   28   60   12    1.36   28.17  0.5173E+01  0.3526E+01
+   58   20    6    1.36   37.42  0.6873E+01  0.2780E+01
+   37   13   33    1.36   31.22  0.5734E+01  0.3424E+01
+   14   46   31    1.36   29.15  0.5354E+01  0.3652E+01
+   24   40   31    1.36   28.37  0.5211E+01  0.5047E+01
+    4   24   40    1.36   33.59  0.6170E+01  0.2565E+01
+   26   56   19    1.36   37.01  0.6798E+01  0.3670E+01
+   20   30   36    1.36   42.32  0.7773E+01  0.3801E+01
+   30    4   37    1.36   34.48  0.6334E+01  0.3150E+01
+   22   28   36    1.36   27.15  0.4987E+01  0.3772E+01
+   52    6   22    1.36   35.39  0.6501E+01  0.3380E+01
+   28   58   15    1.36   31.37  0.5762E+01  0.3441E+01
+   22   24   37    1.36   33.49  0.6151E+01  0.3460E+01
+   29   35   31    1.36   47.33  0.8692E+01  0.3795E+01
+   25   63    9    1.36   52.21  0.9590E+01  0.3680E+01
+   26   62   10    1.36   26.71  0.4905E+01  0.3521E+01
+   20   26   37    1.36   38.79  0.7125E+01  0.3636E+01
+   52   36    5    1.36   27.16  0.4989E+01  0.2788E+01
+    6   48   31    1.36   26.89  0.4938E+01  0.2278E+01
+   56    8   16    1.36   44.85  0.8238E+01  0.2870E+01
+   28   44   27    1.36   38.81  0.7129E+01  0.5014E+01
+   24   56   20    1.36   37.63  0.6911E+01  0.3678E+01
+   55   11   17    1.36   30.31  0.5568E+01  0.2774E+01
+   32   36   29    1.36   43.75  0.8035E+01  0.3992E+01
+   51    5   23    1.36   37.44  0.6876E+01  0.2884E+01
+   46   38   16    1.36   33.21  0.6099E+01  0.3685E+01
+   27   39   30    1.37   28.03  0.5147E+01  0.5416E+01
+   43   25   26    1.37   32.02  0.5882E+01  0.4106E+01
+   41   49   11    1.37   66.15  0.1215E+02  0.3874E+01
+   60    8    5    1.37   31.64  0.5812E+01  0.3933E+01
+   56   24    8    1.37   27.29  0.5012E+01  0.3913E+01
+   41   29   26    1.37   30.61  0.5623E+01  0.2701E+01
+   14   52   27    1.37   31.37  0.5762E+01  0.3344E+01
+   33   59    4    1.37   31.65  0.5814E+01  0.3467E+01
+   15   53   26    1.37   27.43  0.5038E+01  0.3247E+01
+   22   10   39    1.37   41.98  0.7711E+01  0.2446E+01
+   50   16   22    1.37   30.64  0.5628E+01  0.4013E+01
+   16   48   29    1.37   29.67  0.5450E+01  0.3479E+01
+   27   49   24    1.37   44.45  0.8164E+01  0.4026E+01
+   19   33   35    1.37   27.09  0.4975E+01  0.3648E+01
+   57   19    9    1.37   30.27  0.5559E+01  0.2629E+01
+   22   36   33    1.37   31.50  0.5786E+01  0.3623E+01
+   47   33   18    1.37   37.36  0.6862E+01  0.2688E+01
+    8   64   17    1.37   33.86  0.6218E+01  0.3478E+01
+    7    1   42    1.37   31.10  0.5712E+01  0.2513E+01
+   16   40   33    1.37   28.34  0.5205E+01  0.3328E+01
+   58    4   12    1.37   35.63  0.6543E+01  0.4042E+01
+   32   46   23    1.37   30.21  0.5548E+01  0.2705E+01
+   30   30   32    1.37   31.65  0.5813E+01  0.3764E+01
+   34   58    4    1.37   39.42  0.7240E+01  0.3379E+01
+   18   66    8    1.37   29.90  0.5491E+01  0.3411E+01
+   47   25   22    1.37   28.49  0.5233E+01  0.2681E+01
+   34   50   18    1.37   41.82  0.7681E+01  0.3638E+01
+   48   10   25    1.37   31.89  0.5858E+01  0.4338E+01
+   31   21   34    1.37   34.10  0.6262E+01  0.3263E+01
+   37   35   26    1.37   27.34  0.5021E+01  0.2612E+01
+   40   38   22    1.37   36.30  0.6667E+01  0.2601E+01
+   28   26   34    1.37   29.05  0.5336E+01  0.3592E+01
+   31   59    8    1.37   40.14  0.7373E+01  0.3410E+01
+   41   49   10    1.37   28.04  0.5150E+01  0.3607E+01
+   48   22   22    1.37   36.02  0.6615E+01  0.2693E+01
+   44   12   28    1.37   39.32  0.7223E+01  0.4132E+01
+   42   38   20    1.38   35.67  0.6552E+01  0.2610E+01
+   46   14   26    1.38   31.95  0.5868E+01  0.4116E+01
+   16   24   38    1.38   29.44  0.5407E+01  0.2519E+01
+   11   69    3    1.38   28.37  0.5211E+01  0.2421E+01
+   33   31   30    1.38   31.34  0.5756E+01  0.3673E+01
+   47   43    6    1.38   26.64  0.4892E+01  0.3663E+01
+   36   26   30    1.38   49.48  0.9089E+01  0.3826E+01
+   51   37    4    1.38   27.89  0.5123E+01  0.2833E+01
+   21   27   36    1.38   36.28  0.6664E+01  0.3823E+01
+   16   58   21    1.38   37.83  0.6949E+01  0.2641E+01
+   44   40   16    1.38   32.97  0.6056E+01  0.3636E+01
+   45   29   22    1.38   48.25  0.8863E+01  0.2725E+01
+   22   40   31    1.38   32.81  0.6026E+01  0.3908E+01
+    7   29   38    1.38   29.68  0.5451E+01  0.3492E+01
+   27   23   35    1.38   29.07  0.5340E+01  0.3622E+01
+   40   34   24    1.38   28.04  0.5149E+01  0.2701E+01
+   28   62    3    1.38   36.86  0.6770E+01  0.3447E+01
+   29   61    5    1.38   30.86  0.5668E+01  0.3342E+01
+   46   34   18    1.38   48.32  0.8875E+01  0.2782E+01
+   57    7   13    1.38   43.52  0.7994E+01  0.3984E+01
+   57   21    5    1.38   39.94  0.7337E+01  0.3371E+01
+   33   53   15    1.38   28.81  0.5292E+01  0.3601E+01
+   35   55    9    1.38   41.36  0.7597E+01  0.3417E+01
+   33   33   29    1.38   37.48  0.6883E+01  0.2678E+01
+   53   25   13    1.38   26.86  0.4934E+01  0.2115E+01
+   46   44    6    1.38   45.45  0.8348E+01  0.3802E+01
+   18    2   40    1.38   45.90  0.8430E+01  0.3622E+01
+   53   17   17    1.38   29.40  0.5400E+01  0.2195E+01
+   57    5   13    1.38   31.68  0.5818E+01  0.3319E+01
+   24   62   10    1.38   38.05  0.6989E+01  0.3486E+01
+   50    6   23    1.38   26.74  0.4911E+01  0.2963E+01
+   43   19   27    1.38   27.92  0.5127E+01  0.2708E+01
+   25    5   38    1.38   26.98  0.4956E+01  0.3419E+01
+   20   66    1    1.38   55.67  0.1022E+02  0.3419E+01
+   51   37    1    1.38   33.10  0.6080E+01  0.2784E+01
+   39   47   15    1.38   26.57  0.4881E+01  0.3821E+01
+    6   62   19    1.38   29.20  0.5363E+01  0.3246E+01
+    7   59   22    1.38   33.72  0.6193E+01  0.2346E+01
+   32   42   25    1.38   29.75  0.5463E+01  0.2816E+01
+   27   35   31    1.38   41.37  0.7599E+01  0.3816E+01
+   32   34   29    1.38   33.89  0.6225E+01  0.3195E+01
+   31   13   35    1.38   34.50  0.6336E+01  0.3333E+01
+   28   20   35    1.39   28.60  0.5252E+01  0.3692E+01
+   26   12   37    1.39   27.51  0.5053E+01  0.5357E+01
+   19   19   38    1.39   27.94  0.5132E+01  0.2362E+01
+   55   27    4    1.39   34.34  0.6307E+01  0.2734E+01
+   29   11   36    1.39   26.90  0.4940E+01  0.3309E+01
+   20   36   33    1.39   34.46  0.6330E+01  0.3452E+01
+   57   19    6    1.39   35.17  0.6459E+01  0.2681E+01
+   54   14   16    1.39   29.65  0.5446E+01  0.2746E+01
+   56    8   14    1.39   26.98  0.4956E+01  0.3867E+01
+   30   28   32    1.39   31.54  0.5793E+01  0.3738E+01
+   24   58   16    1.39   45.08  0.8279E+01  0.3748E+01
+   20   60   16    1.39   27.81  0.5107E+01  0.3294E+01
+   26   30   33    1.39   47.96  0.8808E+01  0.3691E+01
+   56   14   12    1.39   34.30  0.6300E+01  0.2116E+01
+   30   54   16    1.39   30.09  0.5527E+01  0.3443E+01
+   47   43    1    1.39   37.92  0.6965E+01  0.2845E+01
+    8   66   12    1.39   38.78  0.7123E+01  0.3475E+01
+   38   42   20    1.39   27.72  0.5091E+01  0.2680E+01
+   40   42   18    1.39   30.50  0.5601E+01  0.2705E+01
+   15   67    4    1.39   42.97  0.7893E+01  0.3423E+01
+   44    4   28    1.39   34.21  0.6283E+01  0.3840E+01
+   26   58   14    1.39   33.64  0.6179E+01  0.3358E+01
+   32   20   33    1.39   54.95  0.1009E+02  0.4839E+01
+   20   16   38    1.39   30.42  0.5588E+01  0.2290E+01
+   16   58   20    1.39   29.44  0.5407E+01  0.1944E+01
+   40   12   30    1.39   32.50  0.5970E+01  0.2793E+01
+   43   29   23    1.39   31.67  0.5817E+01  0.2666E+01
+   28   30   32    1.39   36.10  0.8919E+01  0.3883E+01
+   20   58   18    1.40   31.87  0.7873E+01  0.3511E+01
+   21   45   28    1.40   34.12  0.8430E+01  0.5574E+01
+   35   17   32    1.40   27.01  0.6673E+01  0.3481E+01
+   31    9   35    1.40   34.48  0.8520E+01  0.3386E+01
+   28   60    7    1.40   29.01  0.7168E+01  0.3305E+01
+   31   55   13    1.40   27.65  0.6832E+01  0.3380E+01
+   22   56   19    1.40   35.11  0.8675E+01  0.3685E+01
+   43   47    5    1.40   26.82  0.6627E+01  0.3744E+01
+   45   45    2    1.40   27.98  0.6914E+01  0.3794E+01
+   23   29   34    1.40   33.46  0.8267E+01  0.3523E+01
+   43   43   12    1.40   34.88  0.8618E+01  0.3080E+01
+   45   11   26    1.40   26.72  0.6601E+01  0.4021E+01
+   25   17   36    1.40   27.75  0.6856E+01  0.3337E+01
+   33   15   33    1.41   27.10  0.6696E+01  0.3454E+01
+   26   54   18    1.41   34.41  0.8502E+01  0.3515E+01
+    8   20   39    1.41   35.35  0.8736E+01  0.2691E+01
+   58   10    4    1.41   26.67  0.6590E+01  0.2917E+01
+   41   49    3    1.41   37.49  0.9263E+01  0.3763E+01
+   35   13   32    1.41   28.00  0.6919E+01  0.3211E+01
+   17    7   39    1.41   32.56  0.8045E+01  0.2372E+01
+   40   50    2    1.41   30.81  0.7612E+01  0.3650E+01
+   53   29    3    1.42   31.70  0.7833E+01  0.2724E+01
+   41   47    8    1.42   29.03  0.7174E+01  0.2437E+01
+   53    1   17    1.42   27.92  0.6900E+01  0.2698E+01
+    3   57   22    1.43   37.08  0.9161E+01  0.3449E+01
+    3   37   34    1.43   27.89  0.6890E+01  0.3483E+01
+   55    3   12    1.44   48.62  0.1201E+02  0.3988E+01
+   52   26    5    1.46   27.55  0.8852E+01  0.2643E+01
+   52   24    1    1.49   33.88  0.1088E+02  0.5480E+01
+
+ NUMBER OF UNIQUE ALIEN REFLECTIONS WITH A Z-SCORE ABOVE LIMIT      1285
+ (ALIENS ABOVE LIMIT (REJECT_ALIEN=      20.0) ARE MARKED INVALID)
+
+ NUMBER OF REFLECTION RECORDS ON OUTPUT FILE "XDS_ASCII.HKL"      340434
+ NUMBER OF ACCEPTED OBSERVATIONS (INCLUDING SYSTEMATIC ABSENCES)  335158
+ NUMBER OF REJECTED MISFITS & ALIENS (marked by -1*SIGMA(IOBS))     5276
+
+
+ cpu time used                 86.8 sec
+ elapsed wall-clock time       10.2 sec

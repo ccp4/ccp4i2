@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>pointless_reindexToMatch</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 27/Oct/14</creationTime>
+        <pluginTitle></pluginTitle>
+    </ccp4i2_header>
+    <ccp4i2_body id="pointless_reindexToMatch">
+        <container id="inputData">
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="HKLIN_FOBS_REF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="HKLIN_FMAP_REF">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="HKLIN_FC_REF">
+                <className>CMiniMtzDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_REF">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="REFERENCE">
+                <className>CString</className>
+                <qualifiers>
+                    <menuText>Observed data reference,Calculated data reference,2FoFc coefficient reference,Coordinate reference,User specified spacegroup and reindex,Remove lattice absences,Just analyse data symmetry</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>HKLIN_FOBS_REF,HKLIN_FC_REF,HKLIN_FMAP_REF,XYZIN_REF,SPECIFY,LATTICE,ANALYSE</enumerators>
+                    <default>XYZIN_REF</default>
+                </qualifiers>
+            </content>
+            <content id="CHOOSE_SPACEGROUP">
+                <className>CSpaceGroup</className>
+                <qualifiers/>
+            </content>
+            <content id="REINDEX_OPERATOR">
+                <className>CReindexOperator</className>
+            </content>
+            <content id="USE_REINDEX">
+               <className>CBoolean</className>
+               <qualifiers>
+                 <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="LATTICE_CENTERING">
+                <className>CString</className>
+                <qualifiers>
+                    <menuText>P,A,B,C,I,F,R:H</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>P,A,B,C,I,F,H</enumerators>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="F_SIGF_OUT">
+                <className>CObsDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="FREERFLAG_OUT">
+                <className>CFreeRDataFile</className>
+                <qualifiers/>
+            </content>
+            <content id="BestReindexIdentified">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

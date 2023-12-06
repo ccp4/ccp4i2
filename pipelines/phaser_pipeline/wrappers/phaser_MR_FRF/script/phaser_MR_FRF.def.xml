@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>huw</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>phaser_MR_FRF</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 05/Mar/19</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="phaser_MR_FRF">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>pipelines/phaser_pipeline/wrappers/phaser_MR/script</relPath>
+                <baseName>phaser_MR.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        
+        <container id="inputData">
+          <content id="MODE_TY">
+              <className>CString</className>
+              <qualifiers>
+                  <enumerators>MR_AUTO,MR_FRF,MR_FTF,MR_PAK,MR_RNP</enumerators>
+                  <menuText>Automated Phaser Search,Rotation Search,Translation Search, Packing Test, Refinement and Phasing</menuText>
+                  <onlyEnumerators>1</onlyEnumerators>
+                  <default>MR_AUTO</default>
+              </qualifiers>
+            </content>
+            <content id="COMP_BY">
+                <className>CString</className>
+                <qualifiers>
+                    <enumerators>DEFAULT,MW,ASU</enumerators>
+                    <onlyEnumerators>1</onlyEnumerators>
+                    <default>DEFAULT</default>
+                </qualifiers>
+            </content>
+            <content id="RESOLUTION_LOW">
+                <className>CFloat</className>
+                </content>
+            <content id="RESOLUTION_HIGH">
+                <className>CFloat</className>
+                <qualifiers>
+                    </qualifiers>
+            </content>
+            <content id="SGALT_SELECT">
+                <className>CString</className>
+                <qualifiers>
+                    <enumerators>ALL,HAND,LIST,NONE</enumerators>
+                    <menuText>All in pointgroup,Input and enantiomorph,Selected list,Input only</menuText>
+                    <onlyEnumerators>1</onlyEnumerators>
+                    <default>HAND</default>
+                </qualifiers>
+            </content>
+            <content id="SGALT_TEST">
+                <className>CAltSpaceGroupList</className>
+            </content>
+            <content id="SOLIN">
+                <className>CPhaserSolDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="RFILEIN">
+                <className>CPhaserRFileDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="USINGSOLELEMENTS">
+                <className>CList</className>
+                <qualifiers>
+                    <listMaxLength>1024</listMaxLength>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CString</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+          <content id="RFILEOUT">
+              <className>CPhaserRFileDataFile</className>
+              <qualifiers>
+                  <saveToDb>True</saveToDb>
+              </qualifiers>
+          </content>
+        </container>            
+    </ccp4i2_body>
+</ccp4:ccp4i2>
+
+    

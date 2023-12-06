@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CCP4I2 Developers Data Classes and Containers</title>
+</head>
+
+<h3>Contents</h3>
+<p>
+<br/><a href="#data classes">Data Classes</a>
+<br/><a href="#containers">The Container Class</a>
+<br/><a href="#adding_file_type"/>Creating a New File Type</a>
+<br/><a href="#File content"/>File content classes and <i>contentFlag</i> and <i>subType</i> flags</a>
+
+</p>
+
+<body>
+<h1>CCP4I2 Developers Data Classes and Containers</h1>
+
+
+
+<a name="data classes"/><h3>Data Classes</h3>
+<p>All data classes are sub-classed from <i>CCP4Data.CData</i>. The same classes are used by the gui and pipelines. The  <i>CCP4Data.CData</i> (in core directory) currently subclasses either<i>CCP4QtObject.CObject</i> or  <i>CCP4Object.CObject</i>. The first of these subclasses the Qt class  <i>QtCore.QObject</i> which provides <a href="http://doc.qt.nokia.com/4.6/signalsandslots.html">signals and slots</a> functionality. The second is intended as an alternative to Qt dependence but is not yet implemented.</p>
+<p>The <i>CCP4Data.CBaseData</i> class sub-classes CData and is the base class for all 'simple' data classes that hold one item of data.</p>
+
+Currently the data classes are in:
+<ul>
+<li>CCP4Data - general data</li>
+<li>CCP4XtalData MX experimental data</li>
+<li>CCP4ModelData MX  model data</li>
+<li>CCP4Files - files and XML handling</li>
+<li>CCP4Annotation - annotation and meta data</li>
+<li>CCP4MathsData - basic maths</li>
+</ul>
+There is a GUI widget for each data class - there is not necessarilly a simple ono-to-one relationship - each widget class has a MODEL_CLASS parameter which lists which data classes it can represent. The gui classes are in the <i>qtgui</i> directory.</p>
+<p>To enable easy XML input/output of data all data classes have methods to get and set an eTree representation of their data content. The eTree functionality is provided by <i>lxml</i> - see <a href="http://codespeak.net/lxml/">http://codespeak.net/lxml/</a>.The eTree representation is easily imported from or exported as XML.</p>
+
+<p>All CData classes have a few class-wide attributes that are usually defined at the top of the class.  These are:
+<table border="1">
+  <tr><td><b>Attribute</b></td><td><b>Format</b></td><td><b>Function</b></td></tr>
+  <tr><td>CONTENTS</td><td>Dictionary, keys are sub-object names and values are dictionaries with at least a <i>class</i> key.</td><td>The contents of 'complex' classes</td><tr>
+  <tr><td>PYTHONTYPE</td><td>A Python type</td><td>The Python type for simple data classes</td><tr>
+  <tr><td>QUALIFIERS</td><td>Dictionary, keys are qualifier names, and values are appropriate type for the qualifier.</td><td>Specify the default qualifiers for this class. This can be over-ridden for any instance of the class.</td><tr>
+  <tr><td>QUALIFIERS_ORDER</td><td>A list of qualifier names</td><td>The order qualifiers will apppear in defEd GUI.</td><tr>
+  <tr><td>QUALIFIERS_DEFINITION</td><td>Dictionary, keys are qualifier names, values are a dictionary with at least keys: <i>type</i> - a Python type and <i>description</i> - a brief description for defEd GUI. </td><td></td><tr>
+  <tr><td>ERROR_CODES</td><td>Dictionary</td><td>Described above</td><tr>
+  <tr><td>PROPERTIES</td><td>Dictionary with keys are property name and value is dictionary with <i>fget</i> and <i>fset</i> keys.</td><td>Analogous to the Python <i>property</i> command. This must be placed after the methods for <i>fget</i> and <i>fset</i>. </td><tr>
+</table>
+
+<p>These attributes should be accessed by methods such as <i>contents()</i> and <i>qualifier()</i> rather than accessed directly. The access methods implement the principle that sub-classes inherit the properties of base classes and that the QUALIFIER attributes can be over-ridden in particular class instances.</p>
+ 
+<p>The following table explains the main class methods - it is not comprehensive documentation.</p>
+<table border ="1">
+
+  <tr><th>CData method</th><th>Argument</th><th>Description</th></td>
+  <tr><td>__init__</td><td/><td/></tr>
+  <tr><td/><td>parent</td>
+  <td>The Qt system expects each QObject to have a parent QObject with the first ancestor object being the Qt QApplication. The CCP4Modules.QTAPPLICATION() function will return the QApplication if you need it but the usual parent of CData should be the <i>CContainer</i> that holds the data.</td>
+  </tr>
+  <tr><td/><td>qualifiers</td>
+  <td>A dictionary of parameters to 'fine-tune' the class - particularly specifying validation parameters such as maximum or minimum allowed values. This mechanism is intended to reduce the need for sub-classing. The allowed values can be seen in the __init__ method. The CData base class expects two parameters: a <i>name</i> and a <i>default</i> value. The name is the same as the element tag in the XML representation of the class. The default <i>default</i> value is the Python <i>None</i> (i.e. not set).</td></tr>
+  
+  <tr>
+    <tr><td>parent</td><td/>
+      <td>Return the parent object.</td></tr>
+
+  <tr><td>objectName</td><td/>
+      <td>Return the object's name.</td></tr>
+     
+  <tr><td>objectPath</td><td/>
+      <td>Return a 'path' name incuding parent object names. An underscore separator is used.</td></tr>
+        
+  <tr><td>getEtree</td><td/>
+  <td>Return an eTree element representing the data object.</td></tr>
+  
+  <tr><td>setEtree</td><td/><td>Parse an eTree element and initialise the data object.</td></tr>
+  <tr><td/><td>element</td><td>An etree element</td>
+
+  <tr><td>set</td><td/><td>Set the data. The method calls the <i>validity</i> method and will only set the data if the validity is OK. setData returns a CErrorReport from validity().</td></tr>
+  <tr><td/><td>data</td><td>The set method attempts to be very tolerant of input e.g. <i>i = CInt(); i.set('12')</i> is acceptable. Simple, one item, data objects expect the appropriate Python type or the appropriate CData class as argument to set.  Complex, multi item, data objects, expect Python dictionaries or the different components on the command line. See the <a href="./example_code.html">example code</a></td></tr>
+  <tr><td>unSet</td><td/><td>Unset the data</td></tr>
+  
+  <tr><td>get</td><td/><td>Return the data contents on the object. For a simple class with single item then that is returned; if the data has multiple items then they are returned as a Python dictionary.</td</tr>
+  <tr><td/><td>name</td><td>Optional name of one item in a multi-item data class. If this is set then only the named item is returned.</td></tr>
+
+  <tr><td>validity</td><td/><td>Return a <i>CErrorReport</i> indicating validity of input data.</td></tr>
+  <!-- <tr><td>coerce</td><td/><td>Return a dictionary representation of the class data that has been coerced to appropriate data type. This method is only useful where it has been reimplemented in some sub-classes.</td></tr> -->
+  <tr><td>fix</td><td/><td>Return a dictionary representation of the class data that has been fixed (possibly with significant change to content) to be valid. This method is only useful where it has been reimplemented in some sub-classes.</td></tr>
+
+  <tr><td>isSet</td><td/><td>Return <i>False</i>/ <i>True</i> dependent on whether the data is set or is a null value.</td></tr>
+  <tr><td>emitDataChanged</td><td/><td>A wrapper for the Qt QObject.emit() method to emit a 'dataChanged' signal.</td></tr>
+
+  <tr><td>setQualifiersEtree</td><td/><td>Parse an etree element containing the qualifiers for the class. This is used when the data type definitions are read from an XML file. Return a <i>CErrorReport</i></td></tr>
+  <tr><td/><td>element</td><td>etree element.</td></tr>
+
+  <tr><td>getQualifiersEtree</td><td/><td>Return a tuple of an eTree element containing the data qualifiers for the class and a <i>CErrorReport</i></td></tr>
+
+  <tr><td>contents</td><td></td><td>Return a dictionary specifying the contents of a complex class</td></tr>
+  <tr><td></td><td>name</td><td>Name of one item in the class. If this is set then returns definition of just that item.</td></tr>
+  <tr><td>qualifiers</td><td></td><td>Return a dictionary of qualifier values for the class.</td></tr>
+  <tr><td></td><td>name</td><td>The name of a qualifier. Return the value of that qualifier only.</td></tr>
+  <tr><td></td><td>default</td><td>If False do not return the qualifiers that have the default value for the class </td></tr>
+  <tr><td></td><td>custom</td><td>If False do not return the qualifiers that have the been customised in this instance of the class </td></tr>
+  <tr><td>qualifiersDefinition</td><td></td><td>Return the definition of the qualifiers for the class</td></tr>
+  <tr><td>pythonType</td><td></td><td>Return the Python type equivalent for a simple class</td></tr>
+  <tr><td></td><td>name</td><td>The name of a qualifier. Return the definition of that qualifier only.</td></tr>
+  <tr><td>qualifiersOrder</td><td></td><td>Return the order of the qualifiers used in a GUI.</td></tr>
+  <tr><td>setDefault</td><td></td><td>Set the data to the default value.</td></tr>
+</table>
+
+
+
+<a name="containers"/><h3>The Container Class</h3>
+<p><i>CCP4Container.CContainer</i> is a sub-class of <i>CData</i> which differs mostly in that its data contents (for most<i>CData</i>  defined bt the CONTENTS attribute)  are defined at run time. The container holds a set of data objects in a Python dictionary. Typically one container is associated with one gui window or one program wrapper. The data container classes are not sub-classed - their contents are specified when the class is instantiated. The data objects within the container apply their <i>validity()</i> method to ensure that all loaded data is valid. A data container may contain sub-containers.</p>
+
+<p>Typically the content of a <i>CContainer</i> is defined in a DEF (extension <i>def.xml</i>) file and its data is imported from and exported to PARAMS (extension <i>params.xml</i>) files. When the content definition is read the data objects to hold the data are created automatically.</p>
+<p>Containers are the Python representation of PARAMS files and these files contain a header holding meta-data such as creation date and project id. The header can be accessed as <i>myContainer.header</i> and is a CCP4File:CI2XmlHeader class. Tasks developers should not normally need to access this data as it is handled by the CCP4i2 core.</p>
+
+<table border="1">
+  <tr><th>Method</th><th>Argument</th><th>Description</th></tr>
+  <tr><td>loadContentsFromXml</td><td>-</td><td>Load the content definition from a DEF file. Returns a CErrorReport.</td></tr>
+  <tr><td>-</td><td>fileName</td><td>The full path name of a file</td></tr>
+  <tr><td>loadDataFromXml</td><td>-</td><td>Load the data values from a PARAMS file. Should only be used after the contents have been defined.Returns a CErrorReport.</td></tr>
+  <tr><td>-</td><td>fileName</td><td>The full path name of a file</td></tr>
+  <tr><td>saveContentsToXml</td><td></td><td>Save the content definition to a DEF file.Returns a CErrorReport. </td></tr>
+  <tr>><td>-</td><td>fileName</td><td>The full path name of a file</td></tr>
+  <tr><td>saveDataToXml</td><td/><td>Save the data values to a PARAMS file.Returns a CErrorReport. </td></tr>
+  <td>-</td><td>fileName</td><td>The full path name of a file</td></tr>
+  
+  <tr><td>loadContentsFromEtree</td><td/><td>Load the content definition from an eTree element</td></tr>
+  <tr><td>-</td><td>element</td><td>An eTree element</td></tr>
+  <tr><td>loadDataFromEtree</td><td>-</td><td>Load the data values from an eTree element. Should only be used after the contents have been defined.</td></tr>
+  <tr><td/><td>element</td><td>An eTree element</td></tr>
+  <tr><td>saveContentsToEtree</td><td>-</td><td>Return a Python tuple of an eTree element representing the contents and a CErrorReport.</td></tr>
+  <tr><td>saveDataToEtree</td><td>-</td><td>Return a Python tuple of an eTree element representing the data values and a CErrorReport.</td></tr>
+  <tr><td>addContent</td><td/>The arguments to this method define a data object. The method creates a new object and appends it to the container.</td></tr>
+  <tr><td>-</td><td>name</td><td>A name for the new data object</td></tr>
+  <tr><td>-</td><td>cls</td><td>The class of the new data object</td></tr>
+  <tr><td>-</td><td>qualifiers</td><td>A Python dictionary of qualifiiers for the new object</td></tr>
+  <tr><td>addObject</td><td/>Add an already existing data object ot the container</td></tr>
+  <tr><td>-</td><td>name</td><td>A name for the new data object</td></tr>
+  <tr><td>-</td><td>object</td><td>The CData object</td></tr>
+  <tr><td>-</td><td>afterObject</td><td>Insert the new object in the container after the object with this name. </td></tr>
+  <tr><td>replaceObject</td><td/>Replace a data object with given name by another existing object</td></tr>
+  <tr><td/><td>name</td><td>The name of an existing data object in the container</td></tr>
+  <tr><td/><td>object</td><td>A CData object</td></tr>
+  <tr><td>deleteObject</td><td/>Delete an object with given name</td></tr>
+  <tr><td/><td>name</td><td>The name of an existing data object in the container</td></tr>
+  <tr><td>renameObject</td><td/>Rename an object</td></tr>
+  <tr><td/><td>oldName</td><td>The name of an existing data object in the container</td></tr>
+  <tr><td/><td>newName</td><td>A new name</td></tr>
+  <tr><td>clear</td><td/>remove all content from the comtainer</td></tr>
+  <tr><td>dataOrder</td><td/>Return a list of all the names of data objects (and sub-containers) in the container</td></tr>
+  <tr><td>addHeader</td><td/>Add a CCP4File.CHeader header to the container.  This header can be set appropriately prior to exporting an XML file.</td></tr>
+  <tr><td>parseCommandLine</td><td/>Load data into the container by parsing a 'command line' formatted asa list of words</td></tr>
+  <tr><td/><td>commandLine</td><td>A list of words such as returned by sys.argv()</td></tr>
+   <tr><td/><td>template</td><td>Optional template for interpreting command line (<a href="#command line">more info</a>)</td></tr>
+</table>
+
+
+
+
+<!--
+<a name="command line"/><h3>Running a CPluginScript 'stand-alone'</h3>
+<p>Note that if a <i>CPluginScript</i> is run stand-alone then the process will not be recorded in the database (at least one issue is not knowing which project the task belongs to). Generally this should be discouraged.</p>
+<p>A <i>CPluginScript</i> can be used inside a stand-alone Python script that accepts command line arguments. For the user's convenience the stand-alone script will probably take the same command line arguments as the program which is wrapped by the <i>CPluginScript</i>. The <i>CPluginScript</i> contains a <i>CContainer</i> which has a <i>parseCommandLine()</i> method that takes the command line (as a list of words as returned by the <i>sys.argv()</i>) and loads the data into the CContainer.  If the command line has the 'standard' CCP4 form with logical names that match the names of data items within the CContainer then  <i>parseCommandLine()</i> needs no further input. For more complex command lines a second <i>template</i> argument is needed. It is a list of definitions for conversion of command line keywords - each definition is a list of the form
+  <br/> [ commandLineKeyword  ,  containerObjectName , [objectSubItemNames] ]
+<br/> The list of objectSubItemNames is only necessary if the keyword is followed by more than one item of data. For example to parse the line '-p /whereever/mystructure.pdb -x 3.5 5.7 6.8' which specifies a file (container data name PDBIN) and a 3D coordinate (container name COORD) the template will be:<p>
+  <pre>
+    [ [ '-p' , 'PDBIN' ],
+      [ '-x' , 'COORD', ['x','y','z'] ] ]
+  </pre>
+
+<p>A simple use of this in a stand-alone script might be:</p>
+  <pre>
+    import sys
+    comLine = sys.argv[1:]
+    template = [ [ '-p' , 'PDBIN' ],
+                 [ '-x' , 'COORD', ['x','y','z'] ] ]
+    # Initialise myPlugin (CPluginScript sub-class which will automatically
+    # set up container from myPlugin.def.xml)
+    p = myPlugin.myPlugin(self)
+    err = p.container.parseCommandLine(comLine,template)
+    if len(err)>0:
+
+     # What to do if failed to parse or input failed validity test?
+    p.process()
+   </pre>
+
+<p>The template definitions will accomodate alternative keywords; the <i>commandLineKeyword</i> can be replaced by a list of possible keywords:</p>
+  <pre>
+    [ [ ['-p','-prot','-protein'] , 'PDBIN' ],
+      [ ['-x','-xyz'] , 'COORD', ['x','y','z'] ] ]
+  </pre>
+
+<p>If the container has sub-containers (e.g. for <i>inputData</i> and <i>outputData</i>) - if is not necessary to specify these in the <i>containerObjectName</i>.  The method does not handle the case of a keyword being followed by a variable number of data items.</p>
+<p>Note that the <i>CPluginScript.appendCommandScript()</i> method has an argument to load a 'ready made' command script from a file. This may be useful in cases where a user provides a script.</p>
+-->
+
+<a name="adding_file_type"/><h3>Creating a New File Type</h3>
+<p>This is a brief how-to - mostly to remind Liz.</p>
+<p>To register a new file type in CCP4i2 it needs to be added in three different places (no, that's not good but at least its documented!):
+<ul>
+<li>A sub-class of <i>CCP4DataFile.CDataFile</i> should be created so there is an appropriate data object.</li>
+<li>It should be added to the mimetypes in <i>CCP4CustomMimeTypes</i> so the Qt file display and drag-n-drop can handle the files.</li>
+<li>It should be registered with the database by adding to lists in <i>CCP4DbApi</i>.</li>
+<li>Also a file icon should be provided in the <i>qticons</i> directory.</li>
+ </ul>
+<p>A simple file class definition might look like:
+<pre>
+class CPhaserSolDataFile(CCP4File.CDataFile):
+  
+  QUALIFIERS = { 'mimeTypeName' : 'application/phaser-sol',
+                 'mimeTypeDescription' : 'Phaser solution file',
+                 'fileExtensions' : [ 'phaser_sol.pkl' ],
+                 'fileContentClassName' : None,
+                 'fileLabel' : 'phaser_sol',
+                 'guiLabel' : 'Phaser solution file',
+                 'toolTip' : "Possible solutions passed between runs of the Phaser program",
+                 }
+</pre>
+<p>Note that the <i>mimeTypeName</i> must match the mime type in <i>CCP4CustomMimeTypes</i>,  <i>CCP4DbApi</i>. The <i>fileContentClassName</i> is not set here but if i2 needs to read the file then a file content class that sub-classes <i>CCP4File.CDataFileContent</i> should be implemented and the class name provided here as a string.</p>
+<p>A definition of the mime type looks like this:</p>
+<pre>
+      mimeType = CMimeType()
+      mimeType.name = "application/phaser-sol"
+      mimeType.description = "Phaser solution file"
+      mimeType.fileExtensions = ['phaser_sol.pkl']
+      mimeType.viewers = []
+      mimeType.icon = 'PhaserSolDataFile'
+      mimeType.className = 'PhaserSolDataFile'
+      self.mimeTypes["application/phaser-sol"] = mimeType
+</pre>
+<p>Note that the <i>className</i> should cross reference the class name and by default the system assumes the file icon is the class name but an alternative can be provided here to be used in the file browser. Note that the className and icon have dropped the leading 'C'.</p>
+<p>In the database file <i>CCP4DbApi</i> it is necessary to add the file type to three lists:
+ <ul>
+<li>FILETYPES_TEXT - this is a list of the mime types</li>
+<li>FILETYPES_CLASS - a list of file class names without the initial 'C'</li>
+<li>FILETYPELIST - a list of items with each element being a list of three items: a file type number, the mime type name and a short description.</li>
+ </ul>
+<p>It is imperative to keep these three lists in sync! Also if a file type is added to the list and then subsequently not required the slot should not be deleted or reused - it should just be left as a 'dummy' the same as file type 14.</p>
+
+ <a name="File content"/><h3>File content classes and <i>contentFlag</i> and <i>subType</i> flags</h3>
+ <p>The classes derived from <i>CDataFile</i> such as <i>CPdbDataFile</i> and the various forms of mini MTZ such as <i>CObsDataFile</i> basically serve as a reference to the data file holding the file path and some additional flags discussed later. A <i>fileContent</i> class such as <i>CPdbData</i> or <i>CMtzData</i> can hold some data extracted from the file. A example of using these:
+ <pre>
+   >>> from core import CCP4XtalData
+   >>> mtzData = CCP4XtalData.CMtzDataFile('/y/people/lizp/rnase25.mtz')
+   >>> print type(f.fileContent)
+   &lt;class 'CCP4XtalData.CMtzData'&gt;
+   >>> print f.fileContent.cell
+   {'a': '64.8970031738', 'c': '38.7919998169', 'b': '78.3229980469', 'beta': '1.57079632679', 'alpha': '1.57079632679', 'gamma': '1.57079632679'}
+ </pre>
+ <p>The file content classes are mostly being developed as required - please contact Liz if you need further functionality.<p>
+ <p>The file classes also contain two integer flags, <i>contentFlag</i> and <i>subType</i> that indicate something about the content of a selected file. The <i>contentFlag</i> is most important for mini MTZs to indicate the representation of the data (see <a href="../general/miniMtzs.html">miniMtzs</a> for explanation).
+ <table border="1">
+   <caption>CDataFile contentFlag allowed values</cation>
+   <tr><th>Name</th><th>Value</th><th>Meaning<th></tr>
+   <tr><td colspan="3"><b>CObsDataFile</b></td></tr>
+   <tr><td>CObsDataFile.CONTENT_FLAG_IPAIR</td><td>1</td><td>Freidal's pairs of intensities</td></tr>
+   <tr><td>CObsDataFile.CONTENT_FLAG_FPAIR</td><td>2</td><td>Freidal's pairs of structure factors</td></tr>
+   <tr><td>CObsDataFile.CONTENT_FLAG_IMEAN</td><td>3</td><td>averaged intensities</td></tr>
+   <tr><td>CObsDataFile.CONTENT_FLAG_FMEAN</td><td>4</td><td>averaged structure factures</td></tr>
+   <tr><td colspan="3"><b>CPhsDataFile</b></td></tr>
+   <tr><td>CPhsDataFile.CONTENT_FLAG_HL</td><td>1</td><td>Hendrickson-Lattmann coefficients</td></tr>
+   <tr><td>CPhsDataFile.CONTENT_FLAG_PHIFOM</td><td>1</td><td>phase and figure of merit</td></tr>
+   <tr><td colspan="3"><b>CMapCoeffsDataFile</b></td></tr>
+   <tr><td>CMapCoeffsDataFile.CONTENT_FLAG_FPHI</td><td>1</td><td>structure facture and phase</td></tr>
+ </table>
+ <p>The <i>contentFlag</i> is presently only used for mini-MTZs but, in principle, could be used to distiguish different forms of other data files. This flag is useful in automating handling of the mini-MTZs and ensuring programs are given data in a representation that they can handle.</p>
+ <p>The <i>subType</i> flag is presently used by mini-MTZ classes and <i>CPdbDataFile</i> to indicate the scientific content of the data.
+ <table border="1">
+   <caption>CDataFile subType allowed values</cation>
+   <tr><th>Name</th><th>Value</th><th>Meaning<th></tr>
+   <tr><td colspan="3"><b>CPdbDataFile</b></td></tr>
+   <tr><td>CPdbDataFile.SUBTYPE_UNKNOWN</td><td>0</td><td>unknown</td></tr>
+   <tr><td>CPdbDataFile.SUBTYPE_MODEL</td><td>1</td><td>working model</td></tr>
+   <tr><td>CPdbDataFile.SUBTYPE_HOMOLOG</td><td>2</td><td>homolog</td></tr>
+   <tr><td>CPdbDataFile.SUBTYPE_FRAGMENT</td><td>3</td><td>structure fragment (e.g. ligand)</td></tr>
+   <tr><td>CPdbDataFile.SUBTYPE_HEAVY_ATOMS</td><td>4</td><td>heavy atoms</td></tr>
+   <tr><td colspan="3"><b>CObsDataFile</b></td></tr>
+   <tr><td>CObsDataFile.SUBTYPE_OBSERVED</td><td>1</td><td>observed data</td></tr>
+   <tr><td>CObsDataFile.SUBTYPE_DERIVED</td><td>2</td><td>derived data</td></tr>
+   <tr><td>CObsDataFile.SUBTYPE_REFERENCE</td><td>3</td><td>reference data</td></tr>
+   <tr><td colspan="3"><b>CPhsDataFile</b></td></tr>
+   <tr><td>CPhsDataFile.SUBTYPE_UNBIASED</td><td>1</td><td>unbiased phases</td></tr>
+   <tr><td>CPhsDataFile.SUBTYPE_BIASED</td><td>2</td><td>biased phases</td></tr>
+   <tr><td colspan="3"><b>CMapCoeffsDataFile</b></td></tr>
+   <tr><td>CMapCoeffsDataFile.SUBTYPE_NORMAL</td><td>1</td><td>normal map</td></tr>
+   <tr><td>CMapCoeffsDataFile.SUBTYPE_DIFFERENCE</td><td>2</td><td>difference map</td></tr>
+   <tr><td colspan="3"><b>CCootHistoryDataFile</b></td></tr>
+   <tr><td>CCootHistoryDataFile.SUBTYPE_INITIAL</td><td>1</td><td>Initialisation for Coot</td></tr>
+   <tr><td>CCootHistoryDataFile.SUBTYPE_HISTORY</td><td>2</td><td>Coot history file</td></tr>
+ </table>
+ <p>This information can be used to ensure that the data is used appropriately.  Obviously the <i>subType</i> can be tricky to define so its use in the code is intended to be flexible.</p>
+ <p>If these flags are set in a <i>CDataFile</i> class that is being saved to the database then the <i>contentFlag</i> and/or <i>subType</i> are saved to the database. It is very helpful therefore if <i>CPluginScript.processOutputFiles()</i> implementations set these flags for output files. It is also possible to set a default value for <i>contentFlag</i> or <i>subType</i> in a wrapper def file if the nature of the program output file is known in advance (but done here is probably less obvious and may not be maintained properly).</p>
+ <p>It is possible to select input files based on the <i>contentFlag</i> or <i>subType</i> but note the handling of these two sorts of parameters is different and potentially could be different again for different data file classes.  The input file selection is specified by the qualifiers: <i>requiredContentFlag</i> and <i>requiredSubType</i> both of which are expected to be a list of integers.<p> <p>Currently the <i>requiredContentFlag</i> is only appropriate for mini-MTZ classes and should be set if a program can only handle a limited set of the possible mini-MTZ representations and the GUI will then only allow selection of files containing the appropriate representation or containing data that can be converted to the appropriate representation.</p>
+ <p>The definition of <i>subType</i> is less clear-cut than the  <i>contentFlag</i> especially for PDB files so when specifying a list of <i>requiredSubType</i> consider giving <i>CPdbDataFile.SUBTYPE_UNKNOWN</i> (i.e. 0) as the last value in the list as this serves as a 'wildcard' which will allow any PDB file to be selected but the GUI will set the default and the first choices on a drop-down list to be of the preferred <i>subType</i>.</p>
+ <p>In conclusion: in <i>CPluginScript.processOutputFiles()</i> set <i>contentFlag</i> and <i>subType</i> for the output file data classes that support these and in the def file set qualifers <i>requiredContentFlag</i> and <i>requiredSubType</i> for input file data classes.</p>
+ 
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Thu Apr 23 10:21:59 BST 2015 <!-- hhmts end -->
+</body> </html>

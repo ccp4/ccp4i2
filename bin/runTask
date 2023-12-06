@@ -1,0 +1,69 @@
+#!/bin/bash
+
+find_target(){
+  myexe="$1"
+  dir=`dirname $myexe`
+
+  target=`ls -l $myexe | awk '{loc=match($0,"->");target=substr($0,loc+3);print target}'`
+  target_strip_slash=`echo $target | sed -e 's=^/=='`
+
+  if [ x"$target_strip_slash" = x"$target" ]; then
+  target="$dir/$target"
+  fi
+  
+  if [ -h "$target" ]; then
+    echo `find_target "$target" "$dir"`
+  else
+    echo $target  
+  fi
+}
+
+if [ -h "$0" ]; then
+  target=`find_target "$0"`
+else
+  target="$0"
+fi
+
+
+mydir=`dirname $target`
+
+mydir_strip_dot=`echo $mydir | sed -e 's/^\.//'`
+mydir_strip_dotdot=`echo $mydir | sed -e 's/^\.\.//'`
+
+CCP4I2="$mydir/.."
+
+if [ x"$mydir" = x"." ]; then
+ CCP4I2="$PWD/.."
+fi
+
+if [ x"$mydir" != x"$mydir_strip_dot" ]; then
+  CCP4I2="$PWD/$mydir/.."
+fi
+
+if [ x"$mydir" != x"$mydir_strip_dotdot" ]; then
+  CCP4I2="$PWD/$mydir/.."
+fi
+
+if [ "${CCP4I2#/}" = "${CCP4I2}" ]; then
+  #echo "This is a relative path, so let us make it absolute."
+  CCP4I2="`pwd`/$CCP4I2"
+fi
+
+if [ -z $CCP4 ]; then
+  CCP4="/Applications/ccp4"
+  export CCP4
+fi
+
+echo "CCP4" ${CCP4}
+. ${CCP4}/bin/ccp4.setup-sh
+
+echo "CCP4I2 " ${CCP4I2}
+
+export CCP4I2
+export CCP4I2_TOP=$CCP4I2
+export PYTHONSTARTUP=$CCP4I2/bin/ccp4i2.pythonrc
+
+LC_ALL=C
+export LC_ALL
+
+${CCP4}/bin/ccp4-python ${CCP4I2}/bin/runTask.py $@

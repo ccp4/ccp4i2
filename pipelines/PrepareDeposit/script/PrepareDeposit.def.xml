@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.1</ccp4iVersion>
+        <pluginName>PrepareDeposit</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>PrepareDeposit</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="PrepareDeposit">
+        <container id="inputData">
+            <content id="USINGIORF">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>I,F,FANOM</enumerators>
+                    <menuText>Intensities,Amplitudes,Amplitudes with anomalous scattering</menuText>
+                    <default>F</default>
+                </qualifiers>
+            </content>
+            <content id="USINGANOMALOUS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="ISREFMACMMCIFOUTPUT">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="B_REFINEMENT_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>isotropic,anisotropic,overall,mixed isotropic/anisotropic</menuText>
+                    <enumerators>ISOT,ANIS,OVER,MIXED</enumerators>
+                    <default>ISOT</default>
+                    <toolTip>Specifies B-factor parameterisation. Default: isotropic.</toolTip>
+                </qualifiers>
+            </content>
+            <content id='PROVIDEDICT'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id='PROVIDETLS'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id='PROVIDESEQUENCES'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>True</ifAtomSelection>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>1,0</requiredSubType>
+                    <default><subType>1</subType></default>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredContentFlag>4</requiredContentFlag>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="TLSIN">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="DICT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <toolTip>CIF library encoding ligand geometry</toolTip>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="ASUIN">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <selectionMode>2</selectionMode>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="OUTPUTTYPE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>DIRECTORY,DATABASE</enumerators>
+                    <menuText>Output to directory,Capture to database</menuText>
+                    <default>DIRECTORY</default>
+                </qualifiers>
+            </content>
+            <content id="OUTPUT_DIRECTORY">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <isDirectory>True</isDirectory>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            CMmcifReflDataFile
+        </container>
+        <container id="outputData">
+            <content id="CIFREFLECTIONS">
+                <className>CMmcifReflDataFile</className>
+            </content>
+            <content id="CIFCOORDINATES">
+                <className>CMmcifDataFile</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

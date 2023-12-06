@@ -1,0 +1,398 @@
+
+ ***** XSCALE ***** (VERSION January 10, 2014  BUILT=20140307)  15-May-2014
+ Author: Wolfgang Kabsch
+ Copy licensed until 31-Dec-2014 to
+  academic users for non-commercial applications   
+ No redistribution.
+
+
+ ******************************************************************************
+                              CONTROL CARDS
+ ******************************************************************************
+
+ MAXIMUM_NUMBER_OF_PROCESSORS=16
+ SPACE_GROUP_NUMBER=21
+ UNIT_CELL_CONSTANTS= 83.50  96.74  57.97  90.00  90.00  90.00
+ MINIMUM_I/SIGMA=3.0
+ OUTPUT_FILE=SAD.HKL
+ FRIEDEL'S_LAW=FALSE MERGE=FALSE
+ STRICT_ABSORPTION_CORRECTION=TRUE
+ INPUT_FILE=SAD_SWEEP1.HKL XDS_ASCII
+ INCLUDE_RESOLUTION_RANGE= 52.33 2.04
+ CORRECTIONS= DECAY MODULATION ABSORPTION
+
+ THE DATA COLLECTION STATISTICS REPORTED BELOW ASSUMES:
+ SPACE_GROUP_NUMBER=   21
+ UNIT_CELL_CONSTANTS=    83.50    96.74    57.97  90.000  90.000  90.000
+
+ *****  8 EQUIVALENT POSITIONS IN SPACE GROUP # 21 *****
+
+    If x',y',z' is an equivalent position to x,y,z, then
+        x'=x*ML(1)+y*ML( 2)+z*ML( 3)+ML( 4)/12.0
+        y'=x*ML(5)+y*ML( 6)+z*ML( 7)+ML( 8)/12.0
+        z'=x*ML(9)+y*ML(10)+z*ML(11)+ML(12)/12.0
+
+    #    1  2  3  4    5  6  7  8    9 10 11 12 
+    1    1  0  0  0    0  1  0  0    0  0  1  0
+    2   -1  0  0  0    0 -1  0  0    0  0  1  0
+    3    1  0  0  0    0 -1  0  0    0  0 -1  0
+    4   -1  0  0  0    0  1  0  0    0  0 -1  0
+    5    1  0  0  6    0  1  0  6    0  0  1  0
+    6   -1  0  0  6    0 -1  0  6    0  0  1  0
+    7    1  0  0  6    0 -1  0  6    0  0 -1  0
+    8   -1  0  0  6    0  1  0  6    0  0 -1  0
+ 
+
+ ALL DATA SETS WILL BE SCALED TO SAD_SWEEP1.HKL                                                                                                          
+
+
+ ******************************************************************************
+                    READING INPUT REFLECTION DATA FILES
+ ******************************************************************************
+
+
+ NUMBER OF UNIQUE REFLECTIONS IN FILE "REMOVE.HKL"      37
+
+
+ DATA    MEAN       REFLECTIONS        INPUT FILE NAME
+ SET# INTENSITY  ACCEPTED REJECTED
+   1  0.2669E+02    99053    181  SAD_SWEEP1.HKL                                                                                                          
+
+ ******************************************************************************
+           CORRECTION FACTORS AS FUNCTION OF IMAGE NUMBER & RESOLUTION
+ ******************************************************************************
+
+ RECIPROCAL CORRECTION FACTORS FOR INPUT DATA SETS MERGED TO
+ OUTPUT FILE: SAD.HKL                                           
+
+ THE CALCULATIONS ASSUME         FRIEDEL'S_LAW=FALSE
+ TOTAL NUMBER OF CORRECTION FACTORS DEFINED      720
+ DEGREES OF FREEDOM OF CHI^2 FIT             36391.3
+ CHI^2-VALUE OF FIT OF CORRECTION FACTORS      0.995
+ NUMBER OF CYCLES CARRIED OUT                      3
+
+ CORRECTION FACTORS for visual inspection by XDS-Viewer DECAY_001.cbf       
+ XMIN=     0.3 XMAX=  1799.3 NXBIN=   36
+ YMIN= 0.00072 YMAX= 0.24027 NYBIN=   20
+ NUMBER OF REFLECTIONS USED FOR DETERMINING CORRECTION FACTORS      52272
+
+
+ ******************************************************************************
+  CORRECTION FACTORS AS FUNCTION OF X (fast) & Y(slow) IN THE DETECTOR PLANE
+ ******************************************************************************
+
+ RECIPROCAL CORRECTION FACTORS FOR INPUT DATA SETS MERGED TO
+ OUTPUT FILE: SAD.HKL                                           
+
+ THE CALCULATIONS ASSUME         FRIEDEL'S_LAW=FALSE
+ TOTAL NUMBER OF CORRECTION FACTORS DEFINED     1024
+ DEGREES OF FREEDOM OF CHI^2 FIT             36322.4
+ CHI^2-VALUE OF FIT OF CORRECTION FACTORS      0.991
+ NUMBER OF CYCLES CARRIED OUT                      3
+
+ CORRECTION FACTORS for visual inspection by XDS-Viewer MODPIX_001.cbf      
+ XMIN=   196.0 XMAX=  1270.6 NXBIN=   32
+ YMIN=   300.8 YMAX=  1378.8 NYBIN=   32
+ NUMBER OF REFLECTIONS USED FOR DETERMINING CORRECTION FACTORS      52272
+
+
+ ******************************************************************************
+   CORRECTION FACTORS AS FUNCTION OF IMAGE NUMBER & DETECTOR SURFACE POSITION
+ ******************************************************************************
+
+ RECIPROCAL CORRECTION FACTORS FOR INPUT DATA SETS MERGED TO
+ OUTPUT FILE: SAD.HKL                                           
+
+ THE CALCULATIONS ASSUME         FRIEDEL'S_LAW=FALSE
+ TOTAL NUMBER OF CORRECTION FACTORS DEFINED      468
+ DEGREES OF FREEDOM OF CHI^2 FIT             36396.0
+ CHI^2-VALUE OF FIT OF CORRECTION FACTORS      0.984
+ NUMBER OF CYCLES CARRIED OUT                      3
+
+ CORRECTION FACTORS for visual inspection by XDS-Viewer ABSORP_001.cbf      
+ XMIN=     0.3 XMAX=  1799.3 NXBIN=   36
+ DETECTOR_SURFACE_POSITION=     733     840
+ DETECTOR_SURFACE_POSITION=     916    1023
+ DETECTOR_SURFACE_POSITION=     551    1023
+ DETECTOR_SURFACE_POSITION=     551     657
+ DETECTOR_SURFACE_POSITION=     916     657
+ DETECTOR_SURFACE_POSITION=    1146    1011
+ DETECTOR_SURFACE_POSITION=     904    1254
+ DETECTOR_SURFACE_POSITION=     562    1254
+ DETECTOR_SURFACE_POSITION=     320    1011
+ DETECTOR_SURFACE_POSITION=     320     668
+ DETECTOR_SURFACE_POSITION=     562     425
+ DETECTOR_SURFACE_POSITION=     904     425
+ DETECTOR_SURFACE_POSITION=    1146     668
+ NUMBER OF REFLECTIONS USED FOR DETERMINING CORRECTION FACTORS      52272
+
+
+ ******************************************************************************
+    CORRECTION PARAMETERS FOR THE STANDARD ERROR OF REFLECTION INTENSITIES
+ ******************************************************************************
+
+ The variance v0(I) of the intensity I obtained from counting statistics is
+ replaced by v(I)=a*(v0(I)+b*I^2). The model parameters a, b are chosen to
+ minimize the discrepancies between v(I) and the variance estimated from
+ sample statistics of symmetry related reflections. This model implicates
+ an asymptotic limit ISa=1/SQRT(a*b) for the highest I/Sigma(I) that the
+ experimental setup can produce (Diederichs (2010) Acta Cryst D66, 733-740).
+ Often the value of ISa is reduced from the initial value ISa0 due to systematic
+ errors showing up by comparison with other data sets in the scaling procedure.
+ (ISa=ISa0=-1 if v0 is unknown for a data set.)
+
+     a        b          ISa    ISa0   INPUT DATA SET
+ 9.777E-01  2.692E-03   19.49   21.65 SAD_SWEEP1.HKL                                                                                                          
+ 
+
+ FACTOR TO PLACE ALL DATA SETS TO AN APPROXIMATE ABSOLUTE SCALE 0.550108E+04
+ (ASSUMING A PROTEIN WITH 50% SOLVENT)
+
+
+
+ ******************************************************************************
+  STATISTICS OF SCALED OUTPUT DATA SET : SAD.HKL
+  FILE TYPE:         XDS_ASCII      MERGE=FALSE          FRIEDEL'S_LAW=FALSE
+
+         0 OUT OF     99053 REFLECTIONS REJECTED
+     99053 REFLECTIONS ON OUTPUT FILE 
+
+ ******************************************************************************
+ DEFINITIONS:
+ R-FACTOR
+ observed = (SUM(ABS(I(h,i)-I(h))))/(SUM(I(h,i)))
+ expected = expected R-FACTOR derived from Sigma(I)
+
+ COMPARED = number of reflections used for calculating R-FACTOR
+ I/SIGMA  = mean of intensity/Sigma(I) of unique reflections
+            (after merging symmetry-related observations)
+ Sigma(I) = standard deviation of reflection intensity I
+            estimated from sample statistics
+
+ R-meas   = redundancy independent R-factor (intensities)
+            Diederichs & Karplus (1997), Nature Struct. Biol. 4, 269-275.
+
+ CC(1/2)  = percentage of correlation between intensities from
+            random half-datasets. Correlation significant at
+            the 0.1% level is marked by an asterisk.
+            Karplus & Diederichs (2012), Science 336, 1030-33
+ Anomal   = percentage of correlation between random half-sets
+  Corr      of anomalous intensity differences. Correlation
+            significant at the 0.1% level is marked.
+ SigAno   = mean anomalous difference in units of its estimated
+            standard deviation (|F(+)-F(-)|/Sigma). F(+), F(-)
+            are structure factor estimates obtained from the
+            merged intensity observations in each parity class.
+  Nano    = Number of unique reflections used to calculate
+            Anomal_Corr & SigAno. At least two observations
+            for each (+ and -) parity are required.
+
+       NOTE:      Friedel pairs are treated as different reflections.
+
+ SUBSET OF INTENSITY DATA WITH SIGNAL/NOISE >= -3.0 AS FUNCTION OF RESOLUTION
+ RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+   LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+     9.12        1246     325       332       97.9%       2.8%      3.7%     1246   32.83      3.2%    99.9*    -1    0.614     121
+     6.45        2264     589       589      100.0%       3.5%      4.1%     2264   28.19      4.1%    99.8*    13    0.775     253
+     5.27        2972     772       772      100.0%       4.1%      4.4%     2972   24.91      4.8%    99.8*     7    0.810     340
+     4.56        2719     839       893       94.0%       4.1%      4.3%     2644   23.87      4.9%    99.6*    -6    0.804     337
+     4.08        3328    1035      1047       98.9%       3.9%      4.2%     3323   23.38      4.7%    99.7*    17*   0.913     466
+     3.72        3718    1112      1132       98.2%       4.5%      4.4%     3709   23.05      5.4%    99.6*    39*   1.151     497
+     3.45        4053    1218      1230       99.0%       5.0%      4.8%     4034   20.79      6.0%    99.6*    32*   1.144     546
+     3.23        4630    1316      1326       99.2%       6.1%      5.6%     4630   18.45      7.2%    99.4*    26*   1.065     613
+     3.04        5019    1394      1403       99.4%       7.4%      6.9%     5016   15.19      8.7%    99.3*    16*   0.993     642
+     2.89        5348    1488      1496       99.5%       8.6%      8.2%     5339   12.81     10.1%    99.1*    19*   0.991     687
+     2.75        5734    1577      1582       99.7%      10.4%     10.0%     5723   10.87     12.2%    98.7*    15*   0.980     734
+     2.63        6009    1635      1641       99.6%      12.2%     11.8%     6001    9.22     14.3%    98.4*    10    0.920     763
+     2.53        5853    1687      1699       99.3%      15.7%     15.7%     5827    6.75     18.6%    97.6*     7    0.865     776
+     2.44        5038    1745      1791       97.4%      19.0%     19.8%     4821    5.09     23.1%    96.2*    12    0.865     679
+     2.36        5969    1846      1854       99.6%      22.4%     22.3%     5929    4.59     26.9%    94.7*     5    0.841     840
+     2.28        6337    1886      1898       99.4%      26.4%     26.5%     6305    4.00     31.4%    92.2*     5    0.819     866
+     2.21        6778    1951      1960       99.5%      30.9%     31.1%     6755    3.45     36.6%    91.4*     6    0.826     912
+     2.15        7133    2029      2040       99.5%      37.2%     37.7%     7101    2.85     43.9%    90.8*     8    0.828     936
+     2.09        7257    2058      2085       98.7%      47.3%     48.1%     7229    2.27     55.8%    81.0*     7    0.804     960
+     2.04        7648    2139      2151       99.4%      57.9%     59.5%     7617    1.83     68.2%    78.7*     2    0.751     996
+    total       99053   28641     28921       99.0%       7.3%      7.3%    98485   10.33      8.6%    99.8*    13*   0.891   12964
+
+
+ ========== STATISTICS OF INPUT DATA SET ==========
+
+
+  R-FACTORS FOR INTENSITIES OF DATA SET SAD_SWEEP1.HKL
+
+ RESOLUTION   R-FACTOR   R-FACTOR   COMPARED
+   LIMIT      observed   expected
+
+     9.12         2.8%       3.7%      1246
+     6.45         3.5%       4.1%      2264
+     5.27         4.1%       4.4%      2972
+     4.56         4.1%       4.3%      2644
+     4.08         3.9%       4.2%      3323
+     3.72         4.5%       4.4%      3709
+     3.45         5.0%       4.8%      4034
+     3.23         6.1%       5.6%      4630
+     3.04         7.4%       6.9%      5016
+     2.89         8.6%       8.2%      5339
+     2.75        10.4%      10.0%      5723
+     2.63        12.2%      11.8%      6001
+     2.53        15.7%      15.7%      5827
+     2.44        19.0%      19.8%      4821
+     2.36        22.4%      22.3%      5929
+     2.28        26.4%      26.5%      6305
+     2.21        30.9%      31.1%      6755
+     2.15        37.2%      37.7%      7101
+     2.09        47.3%      48.1%      7229
+     2.04        57.9%      59.5%      7617
+    total         7.3%       7.3%     98485
+
+
+ ******************************************************************************
+    WILSON STATISTICS OF SCALED DATA SET: SAD.HKL                                           
+ ******************************************************************************
+
+ Data is divided into resolution shells and a straight line 
+ A - 2*B*SS is fitted to log<I>, where
+   RES    = mean resolution (Angstrom) in shell
+   SS     = mean of (sin(THETA)/LAMBDA)**2 in shell
+   <I>    = mean reflection intensity in shell
+   BO     = (A - log<I>)/(2*SS)
+    #     = number of reflections in resolution shell
+
+   WILSON LINE (using all data) : A=  13.145 B=  38.103 CORRELATION=  0.98
+      #      RES      SS        <I>       log(<I>)       BO
+     233    11.259   0.002  4.1985E+05      12.948      49.9
+     376     7.072   0.005  1.8967E+05      12.153      99.2
+     458     5.549   0.008  1.6688E+05      12.025      68.9
+     508     4.714   0.011  2.4341E+05      12.402      33.0
+     599     4.169   0.014  2.3196E+05      12.354      27.5
+     657     3.777   0.018  2.3818E+05      12.381      21.8
+     713     3.476   0.021  1.7128E+05      12.051      26.4
+     770     3.237   0.024  1.0933E+05      11.602      32.3
+     801     3.043   0.027  6.9843E+04      11.154      36.9
+     850     2.880   0.030  5.1567E+04      10.851      38.1
+     884     2.741   0.033  4.0604E+04      10.612      38.0
+     940     2.620   0.036  2.6536E+04      10.186      40.6
+     943     2.513   0.040  2.0550E+04       9.931      40.6
+    1007     2.418   0.043  1.7481E+04       9.769      39.5
+    1035     2.334   0.046  1.2710E+04       9.450      40.2
+    1070     2.258   0.049  1.1906E+04       9.385      38.3
+    1090     2.189   0.052  1.0180E+04       9.228      37.5
+    1124     2.126   0.055  7.4645E+03       8.918      38.2
+    1177     2.067   0.058  5.9181E+03       8.686      38.1
+
+
+ HIGHER ORDER MOMENTS OF WILSON DISTRIBUTION OF  CENTRIC DATA
+    AS COMPARED WITH THEORETICAL VALUES. (EXPECTED: 1.00)    
+      #      RES        <I**2>/      <I**3>/      <I**4>/  
+                         3<I>**2     15<I>**3    105<I>**4 
+
+      91    11.259        0.892        1.036        1.093
+      93     7.072        0.783        0.573        0.363
+      91     5.549        0.609        0.530        0.421
+      75     4.714        0.816        0.532        0.299
+      92     4.169        1.072        0.891        0.656
+      92     3.777        0.913        0.721        0.504
+      93     3.476        1.068        0.993        0.799
+      92     3.237        1.022        0.770        0.499
+      93     3.043        1.318        1.412        1.250
+      86     2.880        1.593        1.842        1.764
+      91     2.741        1.343        1.425        1.298
+      89     2.620        0.896        0.846        0.698
+      78     2.513        2.473        5.002        8.987
+      93     2.418        0.814        0.574        0.346
+      91     2.334        0.705        0.583        0.441
+      87     2.258        1.456        1.975        2.453
+      94     2.189        4.334       11.780       27.427
+      85     2.126        1.896        2.278        2.358
+      92     2.067        3.227        6.446       10.686
+    1698   overall        1.433        2.123        3.308
+
+
+ HIGHER ORDER MOMENTS OF WILSON DISTRIBUTION OF ACENTRIC DATA
+    AS COMPARED WITH THEORETICAL VALUES. (EXPECTED: 1.00)    
+      #      RES        <I**2>/      <I**3>/      <I**4>/  
+                         2<I>**2      6<I>**3     24<I>**4 
+
+     142    11.259        1.041        0.869        0.656
+     283     7.072        1.091        1.121        1.065
+     367     5.549        1.139        1.191        1.189
+     433     4.714        0.951        0.909        0.866
+     507     4.169        1.001        1.030        1.023
+     565     3.777        0.953        0.879        0.783
+     620     3.476        1.056        1.131        1.169
+     678     3.237        0.938        0.879        0.798
+     708     3.043        0.996        1.029        1.056
+     764     2.880        0.964        0.958        0.947
+     793     2.741        1.052        1.225        1.515
+     851     2.620        1.137        1.391        1.746
+     865     2.513        1.057        1.169        1.229
+     914     2.418        1.155        1.434        1.816
+     944     2.334        1.143        1.313        1.466
+     983     2.258        1.187        1.453        1.745
+     996     2.189        1.156        1.684        2.538
+    1039     2.126        1.067        1.180        1.282
+    1085     2.067        1.116        1.362        1.659
+   13537   overall        1.075        1.224        1.409
+
+   ======= CUMULATIVE INTENSITY DISTRIBUTION =======
+ DEFINITIONS:
+   <I>    = mean reflection intensity
+ Na(Z)exp = expected number of acentric reflections with I <= Z*<I>
+ Na(Z)obs = observed number of acentric reflections with I <= Z*<I>
+ Nc(Z)exp = expected number of  centric reflections with I <= Z*<I>
+ Nc(Z)obs = observed number of  centric reflections with I <= Z*<I>
+
+
+
+ Nc(Z)obs/Nc(Z)exp versus resolution and Z (0.1-1.0)
+      #      RES     0.1   0.2   0.3   0.4   0.5   0.6   0.7   0.8   0.9   1.0
+
+      91    11.259  1.28  1.08  1.13  1.16  1.14  1.12  1.12  1.15  1.12  1.10
+      93     7.072  1.21  1.18  1.21  1.16  1.16  1.11  1.06  1.04  1.03  1.04
+      91     5.549  1.19  1.24  1.21  1.23  1.29  1.21  1.16  1.15  1.14  1.18
+      75     4.714  0.91  0.85  0.86  0.87  0.90  0.93  0.89  0.89  0.87  0.92
+      92     4.169  0.96  0.85  0.89  0.85  0.88  0.95  0.93  0.90  0.91  0.96
+      92     3.777  0.88  0.88  0.97  0.94  0.94  0.95  0.98  0.97  0.98  1.00
+      93     3.476  1.00  0.96  0.98  1.09  1.07  1.13  1.10  1.04  1.00  0.98
+      92     3.237  0.74  0.82  0.89  0.87  0.81  0.83  0.86  0.85  0.88  0.91
+      93     3.043  1.08  1.12  1.06  1.05  1.07  1.09  1.10  1.06  1.06  1.06
+      86     2.880  0.84  1.04  1.06  0.96  0.98  0.99  0.95  1.00  0.99  0.97
+      91     2.741  0.71  0.92  0.95  0.93  1.01  1.02  1.05  1.08  1.07  1.05
+      89     2.620  0.90  0.94  1.00  1.02  1.06  1.08  1.05  1.07  1.15  1.10
+      78     2.513  0.88  0.96  0.92  0.92  0.99  0.98  0.97  1.00  0.98  0.98
+      93     2.418  0.82  0.87  0.96  0.95  1.01  1.02  0.95  0.96  0.95  0.96
+      91     2.334  0.88  0.99  1.16  1.14  1.16  1.14  1.16  1.14  1.09  1.06
+      87     2.258  1.02  0.96  0.97  0.95  0.93  1.04  1.08  1.08  1.10  1.08
+      94     2.189  0.90  0.92  0.82  0.85  0.98  0.95  0.98  1.02  1.00  0.98
+      85     2.126  0.85  0.82  0.79  0.82  0.86  0.92  0.91  0.92  0.93  0.93
+      92     2.067  0.83  0.75  0.73  0.76  0.73  0.85  0.87  0.92  0.93  0.99
+    1698   overall  0.94  0.96  0.98  0.98  1.00  1.02  1.01  1.01  1.01  1.01
+
+
+ Na(Z)obs/Na(Z)exp versus resolution and Z (0.1-1.0)
+      #      RES     0.1   0.2   0.3   0.4   0.5   0.6   0.7   0.8   0.9   1.0
+
+     142    11.259  0.89  0.85  0.76  0.81  0.81  0.83  0.80  0.83  0.83  0.84
+     283     7.072  0.85  0.96  0.93  1.01  1.04  1.02  1.00  1.02  1.01  1.00
+     367     5.549  0.94  0.95  0.90  0.92  0.93  0.92  0.91  0.93  0.94  0.96
+     433     4.714  0.80  0.87  0.92  0.95  0.98  0.97  0.99  1.00  0.98  0.99
+     507     4.169  1.04  1.02  1.05  1.09  1.06  1.04  1.05  1.03  1.06  1.05
+     565     3.777  1.02  0.97  0.94  1.00  0.99  0.95  0.95  0.96  0.98  1.00
+     620     3.476  0.98  1.17  1.13  1.09  1.08  1.04  1.02  1.02  1.02  1.03
+     678     3.237  0.79  0.98  0.99  1.00  1.00  1.02  1.01  1.02  1.02  1.01
+     708     3.043  0.99  0.99  0.95  1.02  1.00  1.00  0.98  1.02  0.99  1.01
+     764     2.880  1.02  1.04  1.03  1.05  1.03  1.03  1.03  1.03  1.03  1.04
+     793     2.741  0.83  1.04  1.09  1.07  1.10  1.07  1.07  1.05  1.04  1.02
+     851     2.620  1.12  1.09  1.07  1.03  1.05  1.02  1.02  1.01  1.01  1.03
+     865     2.513  1.13  1.11  1.07  1.10  1.10  1.10  1.09  1.07  1.07  1.07
+     914     2.418  1.17  1.21  1.15  1.11  1.09  1.06  1.06  1.06  1.04  1.03
+     944     2.334  1.27  1.15  1.11  1.09  1.05  1.04  1.03  0.99  0.99  0.99
+     983     2.258  1.31  1.27  1.26  1.20  1.20  1.18  1.15  1.11  1.09  1.06
+     996     2.189  1.18  1.19  1.22  1.19  1.19  1.15  1.14  1.13  1.11  1.10
+    1039     2.126  1.30  1.06  1.04  1.05  1.07  1.07  1.11  1.09  1.08  1.06
+    1085     2.067  1.63  1.24  1.11  1.05  1.06  1.07  1.08  1.09  1.08  1.07
+   13537   overall  1.13  1.10  1.07  1.07  1.07  1.05  1.05  1.05  1.04  1.03
+
+ cpu time used by XSCALE       16.4 sec
+ elapsed wall-clock time        2.6 sec

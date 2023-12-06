@@ -1,0 +1,945 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>fcx32934</userId>
+    <hostName>nedvedice</hostName>
+    <creationTime>2022-11-09T14:49:52.108670</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>xia2_multiplex</pluginName>
+    <OS>linux</OS>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="xia2_multiplex">
+    <container id="inputData">
+      <content id="SEARCH_ROOT_DIR">
+        <className>CDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <isDirectory>True</isDirectory>
+          <guiLabel>Root directory</guiLabel>
+          <toolTip>Start search from this directory</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DIALS_INTEGRATED">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>DIALS .refl</guiLabel>
+          <toolTip>Must have an associated .expt file</toolTip>
+          <listMinLength>2</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CDataFile</className>
+          <qualifiers>
+            <saveToDb>False</saveToDb>
+            <mustExist>True</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <isDirectory>False</isDirectory>
+            <guiLabel>Bar</guiLabel>
+            <toolTip>Foo</toolTip>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="XIA2_RUN">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>Previous xia2 run directories</guiLabel>
+          <listMinLength>2</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CDataFile</className>
+          <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <isDirectory>True</isDirectory>
+            <guiLabel>Path to a previous xia2 run directory (containing a DataFiles sub-directory)</guiLabel>
+            <toolTip>Integration files will be automatically extracted from a previous xia2 run</toolTip>
+          </qualifiers>
+        </subItem>
+      </content>
+      <qualifiers/>
+    </container>
+    <container id="outputData">
+      <content id="UNMERGEDOUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CUnmergedDataFile</className>
+          <qualifiers>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <baseName>
+              <allowedCharacters>*?</allowedCharacters>
+            </baseName>
+            <relPath>
+              <allowedCharacters>*?</allowedCharacters>
+            </relPath>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="HKLOUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CObsDataFile</className>
+          <qualifiers>
+            <default/>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <subType>
+              <menuText>observed data,derived data,reference data</menuText>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>1,2,3</enumerators>
+              <default>1</default>
+            </subType>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CDataReductionPerformance</className>
+        <qualifiers/>
+      </content>
+      <qualifiers/>
+    </container>
+    <container id="controlParameters">
+      <container id="unit_cell_clustering">
+        <qualifiers>
+          <guiLabel>Unit cell clustering</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="unit_cell_clustering__threshold">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>threshold</guiLabel>
+            <toolTip>Threshold value for the clustering</toolTip>
+            <guiDefinition/>
+            <default>5000.0</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="unit_cell_clustering__log">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>log</guiLabel>
+            <toolTip>Display the dendrogram with a log scale</toolTip>
+            <guiDefinition/>
+            <default>False</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="scaling">
+        <qualifiers>
+          <guiLabel>Scaling</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="scaling__anomalous">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>anomalous</guiLabel>
+            <toolTip>Separate anomalous pairs in scaling and error model optimisation.</toolTip>
+            <guiDefinition/>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <container id="scaling__rotation">
+          <qualifiers>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="scaling__rotation__spacing">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Interval (in degrees) between scale factors on rotation axis</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+        </container>
+        <container id="scaling__brotation">
+          <qualifiers>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="scaling__brotation__spacing">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Interval (in degrees) between B-factors on rotation axis</guiLabel>
+              <guiDefinition/>
+              <default>None</default>
+            </qualifiers>
+          </content>
+        </container>
+        <container id="scaling__secondary">
+          <qualifiers>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="scaling__secondary__lmax">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Number of spherical harmonics for absorption correction</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>0</default>
+            </qualifiers>
+          </content>
+          <container id="scaling__secondary__share">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="scaling__secondary__share__absorption">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Shared absorption correction</guiLabel>
+                <toolTip>Apply a shared absorption correction between sweeps. Only suitable for scaling measurements from a single crystal.</toolTip>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>False</default>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <content id="scaling__absorption_level">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Absorption level</guiLabel>
+            <toolTip>Set the extent of absorption correction in scaling</toolTip>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <enumerators>low,medium,high</enumerators>
+            <default>None</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="scaling__model">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Scaling model</guiLabel>
+            <guiDefinition/>
+            <enumerators>physical,dose_decay,array,KB,auto</enumerators>
+            <default>auto</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="scaling__outlier_rejection">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Outlier rejection</guiLabel>
+            <guiDefinition/>
+            <enumerators>simple,standard</enumerators>
+            <default>None</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="scaling__min_partiality">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Minimum partiality</guiLabel>
+            <guiDefinition/>
+            <default>None</default>
+            <min>0</min>
+            <max>1</max>
+          </qualifiers>
+        </content>
+        <content id="scaling__partiality_cutoff">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Partiality cutoff</guiLabel>
+            <guiDefinition/>
+            <default>None</default>
+            <min>0</min>
+            <max>1</max>
+          </qualifiers>
+        </content>
+        <container id="scaling__reflection_selection">
+          <qualifiers>
+            <guiLabel>Reflection selection</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="scaling__reflection_selection__method">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>method</guiLabel>
+              <toolTip>Method to use when choosing a reflection subset for scaling model minimisation. The quasi_random option randomly selects reflections groups within a dataset, and also selects groups which have good connectedness across datasets for multi-dataset cases. The random option selects reflection groups randomly for both single and multi dataset scaling, so for a single dataset quasi_random == random. The intensity_ranges option uses the E2_range, Isigma_range and d_range options to the subset of reflections The use_all option uses all suitable reflections, which may be slow for large datasets.</toolTip>
+              <guiDefinition/>
+              <enumerators>quasi_random,intensity_ranges,use_all,random</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="scaling__reflection_selection__Isigma_range">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>I/&#963; range</guiLabel>
+              <toolTip>Minimum and maximum I/sigma values used to select a subset of reflections for minimisation. A value of 0.0 for the maximum indicates that no upper limit should be applied.</toolTip>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+        </container>
+      </container>
+      <container id="symmetry">
+        <qualifiers>
+          <guiLabel>Symmetry</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="symmetry__resolve_indexing_ambiguity">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Resolve indexing ambiguity</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <container id="symmetry__cosym">
+          <qualifiers>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="symmetry__cosym__normalisation">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>normalisation</guiLabel>
+              <guiDefinition/>
+              <enumerators>kernel,quasi,ml_iso,ml_aniso</enumerators>
+              <default>ml_iso</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__d_min">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>d_min</guiLabel>
+              <guiDefinition/>
+              <default>Auto</default>
+              <min>0</min>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__min_i_mean_over_sigma_mean">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Minimum &amp;lt;I&amp;gt;/&amp;lt;&#963;&amp;gt;</guiLabel>
+              <guiDefinition/>
+              <default>4.0</default>
+              <min>0</min>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__min_cc_half">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Minimum CC&#189;</guiLabel>
+              <guiDefinition/>
+              <default>0.6</default>
+              <min>0</min>
+              <max>1</max>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__lattice_group">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Lattice group</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__space_group">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Space group</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__lattice_symmetry_max_delta">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Lattice symmetry max &#948;</guiLabel>
+              <guiDefinition/>
+              <default>5.0</default>
+              <min>0</min>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__best_monoclinic_beta">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Best monoclinic &#946;</guiLabel>
+              <toolTip>If True, then for monoclinic centered cells, I2 will be preferred over C2 if it gives a less oblique cell (i.e. smaller beta angle).</toolTip>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__dimensions">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Dimensions</guiLabel>
+              <guiDefinition/>
+              <default>Auto</default>
+              <min>2</min>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__use_curvatures">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Use curvatures</guiLabel>
+              <guiDefinition/>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__weights">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Weights</guiLabel>
+              <guiDefinition/>
+              <enumerators>count,standard_error</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="symmetry__cosym__min_pairs">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Minimum number of pairs</guiLabel>
+              <toolTip>Minimum number of pairs for inclusion of correlation coefficient in calculation of Rij matrix.</toolTip>
+              <guiDefinition/>
+              <default>3</default>
+              <min>1</min>
+            </qualifiers>
+          </content>
+          <container id="symmetry__cosym__minimization">
+            <qualifiers>
+              <guiLabel>Minimization</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="symmetry__cosym__minimization__engine">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Engine</guiLabel>
+                <guiDefinition/>
+                <enumerators>scitbx,scipy</enumerators>
+                <default>scitbx</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="symmetry__cosym__minimization__max_iterations">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Maximum number of iterations</guiLabel>
+                <guiDefinition/>
+                <default>100</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="symmetry__cosym__minimization__max_calls">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Maximum number of calls</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <content id="symmetry__laue_group">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Laue group</guiLabel>
+            <toolTip>Specify the Laue group. If None, then the Laue group will be determined by dials.cosym.</toolTip>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="symmetry__space_group">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Space group</guiLabel>
+            <toolTip>Specify the space group. If None, then the dials.symmetry will perform analysis of systematically absent reflections to determine the space group.</toolTip>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="resolution">
+        <qualifiers>
+          <guiLabel>Resolution</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="resolution__d_max">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Low resolution cutoff</guiLabel>
+            <toolTip>Low resolution cutoff.</toolTip>
+            <guiDefinition/>
+            <default>None</default>
+            <min>0.0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__d_min">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>High resolution cutoff</guiLabel>
+            <toolTip>High resolution cutoff.</toolTip>
+            <guiDefinition/>
+            <default>None</default>
+            <min>0.0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__rmerge">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Outer shell Rmerge</guiLabel>
+            <toolTip>Maximum value of Rmerge in the outer resolution shell</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>None</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__completeness">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Outer shell completeness</guiLabel>
+            <toolTip>Minimum completeness in the outer resolution shell</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>None</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__cc_ref">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Outer shell CCref</guiLabel>
+            <toolTip>Minimum value of CC vs reference data set in the outer resolution shell</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>0.1</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__cc_half">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Outer shell CC&#189;</guiLabel>
+            <toolTip>Minimum value of CC&#189; in the outer resolution shell</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>0.3</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__cc_half_method">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>CC&#189; method</guiLabel>
+            <guiDefinition/>
+            <enumerators>half_dataset,sigma_tau</enumerators>
+            <default>sigma_tau</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="resolution__cc_half_significance_level">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>CC&#189; significance level</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>0.1</default>
+            <min>0</min>
+            <max>1</max>
+          </qualifiers>
+        </content>
+        <content id="resolution__cc_half_fit">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>CC&#189; fit</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <enumerators>polynomial,tanh</enumerators>
+            <default>tanh</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="resolution__isigma">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Outer shell unmerged &amp;lt;I/sigI&amp;gt;</guiLabel>
+            <toolTip>Minimum value of the unmerged &amp;lt;I/sigI&amp;gt; in the outer resolution shell</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>None</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__misigma">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Outer shell merged &amp;lt;I/sigI&amp;gt;</guiLabel>
+            <toolTip>Minimum value of the merged &amp;lt;I/sigI&amp;gt; in the outer resolution shell</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>None</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__i_mean_over_sigma_mean">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Outer shell unmerged &amp;lt;I&amp;gt;/&amp;lt;sigI&amp;gt;</guiLabel>
+            <toolTip>Minimum value of the unmerged &amp;lt;I&amp;gt;/&amp;lt;sigI&amp;gt; in the outer resolution shell</toolTip>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>None</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="resolution__nbins">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Number of resolution bins.</guiLabel>
+            <toolTip>Maximum number of resolution bins to use for estimation of resolution limit.</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>100</default>
+          </qualifiers>
+        </content>
+        <content id="resolution__reflections_per_bin">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Minimum number of reflections per bin</guiLabel>
+            <toolTip>Minimum number of reflections per bin.</toolTip>
+            <guiDefinition/>
+            <default>10</default>
+          </qualifiers>
+        </content>
+        <content id="resolution__binning_method">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Equal-volume or equal #ref binning.</guiLabel>
+            <toolTip>Use equal-volume bins or bins with approximately equal numbers of reflections per bin.</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <enumerators>counting_sorted,volume</enumerators>
+            <default>counting_sorted</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <content id="resolution__anomalous">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Anomalous</guiLabel>
+            <toolTip>Keep anomalous pairs separate in merging statistics</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="resolution__labels">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Labels</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="resolution__space_group">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Space group</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="resolution__reference">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Reference</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="resolution__emax">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Maximum normalised intensity</guiLabel>
+            <toolTip>Reject reflections with normalised intensities E^2 &amp;gt; emax^2</toolTip>
+            <guiDefinition/>
+            <default>4.0</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="rescale_after_resolution_cutoff">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Rescale after resolution cutoff</guiLabel>
+          <toolTip>Re-scale the data after application of a resolution cutoff</toolTip>
+          <guiDefinition/>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <container id="filtering">
+        <qualifiers>
+          <guiLabel>Filtering</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="filtering__method">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>method</guiLabel>
+            <toolTip>Choice of whether to do any filtering cycles, default None.</toolTip>
+            <guiDefinition/>
+            <enumerators>None,deltacchalf</enumerators>
+            <default>None</default>
+            <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+        </content>
+        <container id="filtering__deltacchalf">
+          <qualifiers>
+            <guiLabel>&#916;CC&#189;</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="filtering__deltacchalf__max_cycles">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Maximum number of cycles</guiLabel>
+              <guiDefinition/>
+              <default>None</default>
+              <min>1</min>
+            </qualifiers>
+          </content>
+          <content id="filtering__deltacchalf__max_percent_removed">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Maximum percentage removed</guiLabel>
+              <guiDefinition/>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <content id="filtering__deltacchalf__min_completeness">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Minimum completeness</guiLabel>
+              <toolTip>Desired minimum completeness, as a percentage (0 - 100).</toolTip>
+              <guiDefinition/>
+              <default>None</default>
+              <min>0</min>
+              <max>100</max>
+            </qualifiers>
+          </content>
+          <content id="filtering__deltacchalf__mode">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>mode</guiLabel>
+              <toolTip>Perform analysis on whole datasets or batch groups</toolTip>
+              <guiDefinition/>
+              <enumerators>dataset,image_group</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="filtering__deltacchalf__group_size">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Group size</guiLabel>
+              <toolTip>The number of images to group together when calculating delta cchalf in image_group mode</toolTip>
+              <guiDefinition/>
+              <default>None</default>
+              <min>1</min>
+            </qualifiers>
+          </content>
+          <content id="filtering__deltacchalf__stdcutoff">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Standard deviation cutoff</guiLabel>
+              <toolTip>Datasets with a &#916;CC&#189; below (mean - stdcutoff*std) are removed</toolTip>
+              <guiDefinition/>
+              <default>None</default>
+            </qualifiers>
+          </content>
+        </container>
+      </container>
+      <container id="multi_crystal_analysis">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="multi_crystal_analysis__unit_cell">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Unit cell</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+        <content id="multi_crystal_analysis__n_bins">
+          <className>CInt</className>
+          <qualifiers>
+            <guiLabel>Number of bins</guiLabel>
+            <guiDefinition/>
+            <default>20</default>
+            <min>1</min>
+          </qualifiers>
+        </content>
+        <content id="multi_crystal_analysis__d_min">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>High resolution cutoff</guiLabel>
+            <guiDefinition/>
+            <default>None</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <container id="multi_crystal_analysis__batch">
+          <qualifiers>
+            <guiDefinition>
+              <multiple>True</multiple>
+            </guiDefinition>
+          </qualifiers>
+          <content id="multi_crystal_analysis__batch__id">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>id</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="multi_crystal_analysis__batch__range">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>range</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+        </container>
+      </container>
+      <container id="two_theta_refine">
+        <qualifiers>
+          <guiLabel>2&#952; refinement</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="two_theta_refine__combine_crystal_models">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Combine crystal models</guiLabel>
+            <guiDefinition/>
+            <default>True</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="min_completeness">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Minimum completeness</guiLabel>
+          <guiDefinition/>
+          <default>None</default>
+          <min>0</min>
+          <max>1</max>
+        </qualifiers>
+      </content>
+      <content id="min_multiplicity">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Minimum multiplicity</guiLabel>
+          <guiDefinition/>
+          <default>None</default>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="max_clusters">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Maximum number of clusters</guiLabel>
+          <guiDefinition/>
+          <default>None</default>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="cluster_method">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Metric on which to perform clustering</guiLabel>
+          <guiDefinition/>
+          <enumerators>cos_angle,correlation,unit_cell</enumerators>
+          <default>cos_angle</default>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="identifiers">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Identifiers</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+      </content>
+      <content id="dose">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Dose</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+      </content>
+      <content id="nproc">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>nproc</guiLabel>
+          <toolTip>The number of processors to use</toolTip>
+          <guiDefinition>
+            <expertLevel>0</expertLevel>
+          </guiDefinition>
+          <default>Auto</default>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="remove_profile_fitting_failures">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Remove profile fitting failures</guiLabel>
+          <guiDefinition/>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="exclude_images">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Exclude images</guiLabel>
+          <toolTip>Input in the format exp:start:end Exclude a range of images (start, stop) from the dataset with experiment identifier exp  (inclusive of frames start, stop).</toolTip>
+          <guiDefinition>
+            <expertLevel>1</expertLevel>
+            <multiple>True</multiple>
+          </guiDefinition>
+        </qualifiers>
+      </content>
+      <content id="seed">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>seed</guiLabel>
+          <guiDefinition/>
+          <default>42</default>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <container id="output">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="output__log">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>log</guiLabel>
+            <guiDefinition/>
+            <default>xia2.multiplex.log</default>
+          </qualifiers>
+        </content>
+      </container>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

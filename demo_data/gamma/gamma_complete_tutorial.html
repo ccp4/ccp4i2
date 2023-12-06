@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-trans
+itional.dtd">
+<html><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="AUTHOR" content="Keith" /><title>Demo data: gamma</title>
+
+<link rel="stylesheet" type="text/css" href="../../docs/ccp4i2.css" title="CCP4i
+         2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>CCP4i2 Tutorial: gamma (PDB:1GYU)</h1>
+
+<p>Adapter proteins of the AP2 complex select membrane protein cargo for capture into vesicles. The Gamma adapter binds to peptide motifs on, amongst others, the EGF receptor, resulting in receptor internalization and recycling. Recognition of the cytoplasmic tail of EGFR is mediated by the ear domain, which was crystallized and into which Xenon atoms have been introduced under pressure prior to flash cooling. A SAD dataset was collected on a home source from these crystals.</p>
+
+<p>The structure can be solved quickly by either molecular replacement or experimental phasing and is a good introduction to CCP4i2. It can be solved by Molecular Replacement with the native data using 2ymt.pdb (the human homologue, 45% identical) as a search model, or by experimental SAD phasing from the Xe data (3 Xe sites, + maybe 3 possible sulphurs), or using SIRAS with both the native and Xe data. (Do not get the false impression that all structure solutions are this easy!).</p>
+
+<h2>Getting started</h2>
+
+<ol>
+<li><b>Open CCP4I2.</b> <p>A Tips window appears - close and proceed.</p>
+<li><b>Create New Project.</b><p>Open Projects directory from top menu bar. Give the project a name, e.g. Gamma, then click "Create project". </p>
+        <img height="350" alt="Create new project" src="Complete_New_Project.png"/>
+<li><b>Import sequence Task.</b> <p>Double click on the Task:</p>
+        <img height="300" alt="Create import task" src="Complete_New_Task.png"/>
+        <p>
+Click on the brown file browser button and a file browser will pop up. Select "demo-data" in the left-hand panel, select <i>gamma</i>, then <i><b>gamma.pir</b></i>. Run the job to load the Gamma sequence.
+</p>
+        <img height="250" alt="Sequence load" src="Complete_Sequence_load.png"/>
+<li><b>Data Reduction - Aimless Task.</b><p>Double click on this Task.</p>
+        <img height="250" alt="Data reduction task" src="Complete_Data_Reduction.png"/>
+<p>
+This will open up the Data reduction - Aimless Task. Click on the brown file browser button as for the sequence. Select "demo-data" in the left-hand panel, select <i>gamma</i>, and then <i><b>gamma_native.mtz</b></i> which contains the unmerged native data for the protein without Xe. Note: items highlighted in red are essential before the Task will run. A Crystal name and dataset name must be provided. <i>(Suggested names: Gamma and native)</i>. Run the Task
+</p>
+        <img height="350" alt="Data reduction set data" src="Complete_Data_Reduction_data.png"/>
+<p>
+The Results summary will suggest to what resolution the data are useful (based on CC1/2 &gt; 0.3). For these data the full resolution range can be used to 1.81&#x212B;. Look at the merging statistics. For most projects it is necessary to run this task twice - first to analyse all the observations, then after checking the report provided, to cut the list to a sensible resolution range and exclude any bad sets of images..
+</p><p><b>ALWAYS study the data merging output VERY carefully.</b>
+</p>
+<ul>
+<li>Is the Wilson plot linear? 
+<li>Is there evidence of twinning? 
+<li>Is there a non-crystallographic translation vector?
+</ul>
+<li><b>Estimate AU content Task. (X-ray data reduction and analysis Tasks). </b><p>The Matthews coefficient is used to estimate how many copies of the Gamma molecule could fit into the asymmetric unit of the orthorhombic unit cell. For this structure only one molecule can be accommodated.</p> 
+<li><b>Define AU Contents Task.</b><p> Use the sequence loaded above and define 1 copy in the AU. 
+<i> In some more complicated cases you may have to modify the number of copies after solving the structure.</i></p>
+</ol>
+
+
+<h2>Molecular Replacement - Preparation</h2>
+<p>
+Molecular replacement fits a known model with a related sequence into the new structure's unit cell. The first challenge is to find a suitable model. There are various tools to search sequence data bases and prepare models, but for this tutorial we will use the pre-selected model, 2ymt, which is then trimmed for Phaser using Sculptor to more closely match the new sequence. 
+</p>
+<ol>
+<li><b>Import Coordinate set Task.</b><p>Import the coordinates for a homology model, <i><b>2ymt</b></i>, from the EBI. Clicking on the brown browser button will open the panel below and allow 2ymt to be downloaded from the EBI.
+</p>
+        <img height="300" alt="Import coordinates" src="Complete_Import_Coords.png"/>
+<li><b>Import Sequence(s) Task</b><p>Import the sequence of <i><b>2ymt</b></i>, by selecting this in the Atomic Model option.</p>
+        <img height="200" alt="Import sequence" src="import_sequence_gamma.png"/>
+</ol>
+
+<h2>Molecular Replacement using the MOLREP pipeline</h2>
+<ol>
+<li><b>Molecular Replacement and Refinement - MOLREP Task.</b><p>Input the merged native data and Rfree set imported above, the homology model and the AU contents. MOLREP can extract the sequence from the AU contents and if this is given performs its own sequence alignment and model editing. If not, MOLREP used the full homology model.</p>
+        <img height="350" alt="Molrep" src="Complete_Molrep.png"/>
+<p> 
+The task will run MR, followed by 5 cycles of refinement with REFMAC. For Gamma, the task should produce a solution with an R factor of ~51%. 
+</p> 
+<li><b>Refinement REFMAC Task.</b> After successful MR, it is useful to run several more cycles of refinement before embarking on Autobuilding. (The MOLREP pipeline has already included 5 cycles of REFMAC). Input the MR model and run 25 cycles. For a correct MR solution, the R factor should drop significantly - in this case it reduces to about 37% - a very good starting point for correcting and rebuilding the model. 
+<li><b>Autobuild Protein - Buccaneer Task.</b> This can be run as a follow-on Task from the bottom of the REFMAC report, or from the Task Menu. Input the native data from, the REFMAC refined model and the AU contents.  
+<li><b>Conclusion.</b> You should now have a rather complete model which you can 
+ inspect and correct with COOT then refine a little more with REFMAC
+</ol>
+
+<h2>Molecular Replacement using Phaser</h2>
+<p>
+This is a powerful molecular replacement program which has several extra tools. Phaser can run with the complete homology model as search model, but this is definitely not a good idea as the strict Phaser packing checks often reject models with undesirable untrimmed loops. Hence it is better to first trim the search model to retain those features in common with the real sequence using the Sculptor Task, which requires aligned target and model sequences.
+</p>
+<ol>
+<li><b>Import Coordinate set Task.</b> As for MOLREP, Import the coordinates for a homology model, 2ymt, from the EBI. 
+<li><b>Import Sequence(s) Task.</b><p> Import the sequence of 2ymt, by selecting this in the Atomic Model option.</p>
+        <img height="100" alt="Phaser 1" src="Complete_Phaser1.png"/>
+ 
+<li><b>Align Sequences Task.</b> (Bioinformatics section).<p>Load first the sequence of Gamma, then the sequence generated from 2ymt. Use the + button to add these. The sequences will be aligned using Clustalw.</p>
+        <img height="200" alt="Phaser 2" src="Complete_Phaser2.png"/>
+ 
+<li><b>Truncate search model - Sculptor.</b> Bioinformatics section. Input the 2ymt model coordinate and the aligned sequences. Sculptor will output a suitably trimmed search model.
+<li><b>Basic Molecular Replacement - Phaser.</b><p>Select the native data and the search model output by Sculptor. Use the Provided by sequence option to load the defined AU contents. Set the sequence identity to known 0.45 for Gamma and 2ymt.
+As well as loading the AU contents you need to set the number of Copies to the expected value.</p>
+        <img height="250" alt="Phaser 3" src="Complete_Phaser3.png"/>
+ 
+<li><b>Refinement REFMAC Task.</b> Input the model from Phaser and run 25 cycles. For a correct MR solution, the R factor should drop significantly - in this case it reduces to about 37% - a very good starting point for correcting and rebuilding the model.
+<li><b>Autobuild Protein - Buccaneer Task.</b> This can be run as a follow-on Task from the bottom of the REFMAC report, or from the Task Menu. Input the native data from, the REFMAC refined model and the AU contents.  
+<li><b>Conclusion.</b> Buccaneer should output a rather complete model which you can refine a little more with REFMAC or just inspect and correct with COOT.
+<li><b>Match model to reference data Task.</b> For simplicity in later analysis, make sure solutions from REFMAC and Phaser are on the same origin, and use the same symmetry operator. (This task is under both Molecular Replacement or Coordinate Utilities) 
+</ol>
+
+
+<h2>Experimental Phasing - SAD</h2>
+<ol>
+<li><b>Data Reduction and Aimless Task.</b> Merge the Xenon derivative data from the gamma_Xe_mosflm.mtz file which contains the unmerged intensities. No resolution cutoff is needed - the data are good to 1.78&#x212B;. 
+You do not need to run (2), (3) or (4) if already done under Molecular Replacement.
+<li><b>Import Sequence Task.</b> Load the sequence for Gamma from the <i>gamma.pir</i> file.
+<li><b>Estimate AU content Task.</b> (X-ray data reduction and analysis Tasks). The Matthews coefficient is used to estimate how many copies of the Gamma molecule could fit into the asymmetric unit of the orthorhombic unit cell. For this structure only one molecule can be accommodated.
+<li><b>Define AU Contents Task.</b> Input the sequence from (2) and define 1 copy in the AU.
+<li><b>Automatic Structure Building - CRANK2 Phasing Building Task SAD option.</b> 
+This runs the Leiden Crank2 pipeline. Input the Xenon derivative Merged data and the AU contents. Define the anomalous scatterer as Xe, and insert a guess at the number expected - 3. CRANK2 will estimate the anomalous scattering components at this wavelength. The pipeline runs a series of subtasks (see below) and should output an essentially complete model with an R factor of ~24%. 
+<img height="450" alt="Crank pipeline" src="Complete_Crank_Pipeline.png"/>
+<li><b>Refinement REFMAC Task.</b> 
+The CRANK2 pipeline has refined this model against the Xenon derivative data. The native data are of better quality so it is sensible to carry out more cycles of refinement using these data.
+<li><b>Conclusion.</b> You can now inspect the resulting maps in COOT.
+</ol>
+
+
+<h2>Experimental Phasing - SIRAS</h2>
+<p>This task will use the Xe derivative observed data and the native data, and the AU contents information, already imported. 
+</p>
+<ol>
+<li><b>Automatic Structure Building - CRANK2 Phasing Building Task -SIRAS.</b> This runs the Leiden Crank2 pipeline. Input all the files as for SAD above but now add the merged native data as Crystal 2. The pipeline should finally output an essentially complete model with an R factor of ~25%. The refinement is done against the native data.
+<li><b>Conclusion.</b> You can now either run more cycles of REFMAC, or more usefully just inspect the resulting maps in COOT.
+</ol>
+
+<p>The data for <b>1gyu</b> were kindly donated by Phil Evans.</p>
+
+</body></html>

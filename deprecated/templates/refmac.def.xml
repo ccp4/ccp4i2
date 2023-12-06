@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>lizp</userId>
+    <creationTime>14:38 13/Jan/11</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>refmac</pluginName>
+    <pluginTitle/>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="refmac">
+    <container id="controlParameters">
+      <content id="EXCLUDE_RESOLUTION">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="EXCLUDE_RESOLUTION_RANGE">
+        <className>CFloatRange</className>
+        <qualifiers>
+          <compare>-1</compare>
+        </qualifiers>
+      </content>
+      <content id="MAKE_CHECK">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>Check all monomers against Refmac's dictionary description,Only check ligands against Refmac's dictionary description,User's naming convention</menuText>
+          <enumerators>ALL,LIGAND,NONE</enumerators>
+          <default>NONE</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_HYDROGEN">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>use if present in file,ignore even if present in file,generate all hydrogens</menuText>
+          <enumerators>YES,NO,ALL</enumerators>
+          <default>YES</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_HOUT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_PEPTIDE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_CISPEPTIDE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_SSBRIDGE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_SYMMETRY">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_NEWLIGAND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_REVIEW">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_SUGAR">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>defined in file or residues are close,defined in file only,residues are close only</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>YES,NO,D</enumerators>
+          <default>YES</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_CONNECTIVITY">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>defined in file or residues are close,defined in file only,residues are close only</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>YES,NO,D</enumerators>
+          <default>NO</default>
+        </qualifiers>
+      </content>
+      <content id="MAKE_LINK">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>defined in file or residues are close,defined in file only,residues are close only</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>YES,NO,D</enumerators>
+          <default>NO</default>
+        </qualifiers>
+      </content>
+      <content id="REFINE_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <menuText>review restraints,restrained refinement,unrestrained refinement,rigid body refinement,structure idealisation,TLS &amp; restrained refinement</menuText>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>REVIEW,REST,UNRE,RIGID,IDEA,TLS</enumerators>
+          <allowUndefined>False</allowUndefined>
+          <default>REST</default>
+        </qualifiers>
+      </content>
+      <content id="INPUT_PHASE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>no prior phase information,phase and FOM,Hendrickson-Lattman coefficients,SAD data directly</menuText>
+          <enumerators>NO,PHASE,HL,SAD</enumerators>
+          <allowUndefined>False</allowUndefined>
+          <default>NO</default>
+        </qualifiers>
+      </content>
+      <content id="PHASE_SCBLUR">
+        <className>CFloat</className>
+        <qualifiers/>
+      </content>
+      <content id="PHASE_BBLUR">
+        <className>CFloat</className>
+        <qualifiers/>
+      </content>
+      <content id="B_REFINEMENT_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <menuText>isotropic,anisotropic,overall,mixed isotropic and anisotropic)</menuText>
+          <enumerators>ISOT,ANIS,OVER,MIXED</enumerators>
+          <allowUndefined>False</allowUndefined>
+          <default>ISOT</default>
+        </qualifiers>
+      </content>
+      <content id="IFTLS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="TLS_NCYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <default>10</default>
+          <max>500</max>
+          <allowUndefined>False</allowUndefined>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="TWINREF_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <default>NO</default>
+          <menuText>no,intensity based,amplitude based</menuText>
+          <enumerators>NO,INTENSITIES,AMPLITUDES</enumerators>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="REF_SUBOCC">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="ANOMALOUS_FORM_FACTORS">
+        <className>CList</className>
+        <qualifiers>
+          <listMaxLength>None</listMaxLength>
+          <listMinLength>None</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CAnomalousFormFactor</className>
+          <qualifiers/>
+        </subItem>
+      </content>
+      <content id="NONAME_4">
+        <className>CString</className>
+        <qualifiers/>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

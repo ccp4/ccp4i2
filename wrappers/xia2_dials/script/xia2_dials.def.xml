@@ -1,0 +1,3173 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>fcx32934</userId>
+    <hostName>nedvedice</hostName>
+    <creationTime>2022-11-09T14:48:35.214107</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>xia2_dials</pluginName>
+    <OS>linux</OS>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="xia2_dials">
+    <container id="inputData">
+      <content id="IMAGE_FILE">
+        <className>CXia2ImageSelectionList</className>
+        <qualifiers>
+          <listMinLength>1</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CXia2ImageSelection</className>
+          <qualifiers>
+            <guiLabel>Image file path</guiLabel>
+            <toolTip>xia2 will automatically find other images in the dataset, optionally limited to the specified range</toolTip>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="IMAGE_DIRECTORY">
+        <className>CDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <isDirectory>True</isDirectory>
+        </qualifiers>
+      </content>
+      <qualifiers/>
+    </container>
+    <container id="outputData">
+      <content id="UNMERGEDOUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CUnmergedDataFile</className>
+          <qualifiers>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <baseName>
+              <allowedCharacters>*?</allowedCharacters>
+            </baseName>
+            <relPath>
+              <allowedCharacters>*?</allowedCharacters>
+            </relPath>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="HKLOUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CObsDataFile</className>
+          <qualifiers>
+            <default/>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <subType>
+              <menuText>observed data,derived data,reference data</menuText>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>1,2,3</enumerators>
+              <default>1</default>
+            </subType>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="FREEROUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CFreeRDataFile</className>
+          <qualifiers>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <subType>
+              <onlyEnumerators>True</onlyEnumerators>
+            </subType>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="DIALSJOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CDialsJsonFile</className>
+        </subItem>
+      </content>
+      <content id="DIALSPOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CDialsPickleFile</className>
+        </subItem>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CDataReductionPerformance</className>
+        <qualifiers/>
+      </content>
+      <qualifiers/>
+    </container>
+    <container id="controlParameters">
+      <container id="general">
+        <qualifiers>
+          <guiLabel>General settings</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="general__check_image_files_readable">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>check_image_files_readable</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>True</default>
+          </qualifiers>
+        </content>
+        <content id="general__check_for_saturated_pixels">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>check_for_saturated_pixels</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="dials">
+        <qualifiers>
+          <guiLabel>DIALS settings</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="dials__fix_geometry">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Fix geometry</guiLabel>
+            <toolTip>Whether or not to refine geometry in dials.index and dials.refine.  Most useful when also providing a reference geometry to xia2.</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="dials__fix_distance">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Fix distance</guiLabel>
+            <toolTip>Do not refine the detector distance in dials.index and dials.refine.</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <container id="dials__outlier">
+          <qualifiers>
+            <guiLabel>Centroid outlier rejection</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="dials__outlier__algorithm">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Outlier rejection algorithm</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <enumerators>null,auto,mcd,tukey,sauter_poon</enumerators>
+              <default>auto</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+        </container>
+        <content id="dials__check_indexing_symmetry">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>check_indexing_symmetry</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="dials__fast_mode">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Fast mode</guiLabel>
+            <toolTip>Set various parameters for rapid processing, compromising on quality</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="dials__close_to_spindle_cutoff">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Closeness to the spindle cutoff for including  reflections in refinement</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>0.02</default>
+            <min>0.0</min>
+          </qualifiers>
+        </content>
+        <container id="dials__detect_blanks">
+          <qualifiers>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="dials__detect_blanks__phi_step">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>phi_step</guiLabel>
+              <toolTip>Width of bins in degrees.</toolTip>
+              <guiDefinition/>
+              <default>2.0</default>
+              <min>0</min>
+            </qualifiers>
+          </content>
+          <content id="dials__detect_blanks__counts_fractional_loss">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>counts_fractional_loss</guiLabel>
+              <toolTip>Fractional loss (relative to the bin with the most counts) after  which a bin is flagged as potentially containing blank images.</toolTip>
+              <guiDefinition/>
+              <default>0.1</default>
+              <min>0</min>
+              <max>1</max>
+            </qualifiers>
+          </content>
+          <content id="dials__detect_blanks__misigma_fractional_loss">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>misigma_fractional_loss</guiLabel>
+              <toolTip>Fractional loss (relative to the bin with the highest misigma)  after  which a bin is flagged as potentially containing blank  images.</toolTip>
+              <guiDefinition/>
+              <default>0.1</default>
+              <min>0</min>
+              <max>1</max>
+            </qualifiers>
+          </content>
+        </container>
+        <container id="dials__masking">
+          <qualifiers>
+            <guiLabel>Masking</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+          <content id="dials__masking__border">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>border</guiLabel>
+              <toolTip>The border around the edge of the image.</toolTip>
+              <guiDefinition/>
+              <default>0</default>
+            </qualifiers>
+          </content>
+          <content id="dials__masking__d_min">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>d_min</guiLabel>
+              <toolTip>The high resolution limit in Angstrom for a pixel to be accepted by the filtering algorithm.</toolTip>
+              <guiDefinition/>
+              <default>None</default>
+              <min>0</min>
+            </qualifiers>
+          </content>
+          <content id="dials__masking__d_max">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>d_max</guiLabel>
+              <toolTip>The low resolution limit in Angstrom for a pixel to be accepted by the filtering algorithm.</toolTip>
+              <guiDefinition/>
+              <default>None</default>
+              <min>0</min>
+            </qualifiers>
+          </content>
+          <content id="dials__masking__disable_parallax_correction">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>disable_parallax_correction</guiLabel>
+              <toolTip>Set to ``True`` to use a faster, but less accurate, simple px-to-mm  mapping by disabling accounting for parallax correction when generating  resolution masks.</toolTip>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="dials__masking__resolution_range">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>resolution_range</guiLabel>
+              <toolTip>an untrusted resolution range</toolTip>
+              <guiDefinition>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <container id="dials__masking__untrusted">
+            <qualifiers>
+              <guiDefinition>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+            <content id="dials__masking__untrusted__panel">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Panel</guiLabel>
+                <toolTip>then the whole panel is masked out</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__untrusted__circle">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Circle</guiLabel>
+                <toolTip>An untrusted circle (xc, yc, r)</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__untrusted__rectangle">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Rectangle</guiLabel>
+                <toolTip>An untrusted rectangle (x0, x1, y0, y1)</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__untrusted__polygon">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Polygon</guiLabel>
+                <toolTip>The pixel coordinates (fast, slow) that define the corners  of the untrusted polygon. Spots whose centroids fall within  the bounds of the untrusted polygon will be rejected.</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__untrusted__pixel">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Pixel</guiLabel>
+                <toolTip>An untrusted pixel (y, x)</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="dials__masking__ice_rings">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__masking__ice_rings__filter">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>filter</guiLabel>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__ice_rings__unit_cell">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>unit_cell</guiLabel>
+                <toolTip>The unit cell to generate d_spacings for powder rings.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__ice_rings__space_group">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>space_group</guiLabel>
+                <toolTip>The space group used to generate d_spacings for powder rings.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__ice_rings__width">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>width</guiLabel>
+                <toolTip>The width of an ice ring (in 1/d^2).</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>0.002</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+            <content id="dials__masking__ice_rings__d_min">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>d_min</guiLabel>
+                <toolTip>The high resolution limit (otherwise use detector d_min)</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <container id="dials__find_spots">
+          <qualifiers>
+            <guiLabel>Spot finding</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="dials__find_spots__phil_file">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>phil file to pass to dials.find_spots</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <container id="dials__find_spots__threshold">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__find_spots__threshold__algorithm">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>algorithm</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <enumerators>dispersion,dispersion_extended</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="dials__find_spots__min_spot_size">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Minimum spot size</guiLabel>
+              <toolTip>The minimum number of contiguous pixels for a spot to be  accepted by the filtering algorithm.</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <content id="dials__find_spots__min_local">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>min_local</guiLabel>
+              <toolTip>The minimum number of pixels under the image processing  kernel that are need to do the thresholding operation.  Setting the value between 2 and the total number of pixels  under the kernel will force the algorithm to use that number  as the minimum. If the value is less than or equal to zero,  then the algorithm will use all pixels under the kernel. In  effect this will add a border of pixels which are always  classed as background around the edge of the image and around  any masked out pixels.</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>0</default>
+            </qualifiers>
+          </content>
+          <content id="dials__find_spots__sigma_strong">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Strong pixel sigma cutoff</guiLabel>
+              <toolTip>The number of standard deviations above the mean in the local  area above which the pixel will be classified as strong.</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <content id="dials__find_spots__filter_ice_rings">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Filter ice rings</guiLabel>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="dials__find_spots__kernel_size">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>kernel_size</guiLabel>
+              <toolTip>The size of the local area around the spot in which to  calculate the mean and variance. The kernel is given as a box</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>3</default>
+            </qualifiers>
+          </content>
+          <content id="dials__find_spots__global_threshold">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Global threshold cutoff</guiLabel>
+              <toolTip>The global threshold value. Consider all pixels less than  this value to be part of the background.</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+            </qualifiers>
+          </content>
+        </container>
+        <container id="dials__index">
+          <qualifiers>
+            <guiLabel>Indexing</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="dials__index__phil_file">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>phil file to pass to dials.index</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="dials__index__method">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Indexing method</guiLabel>
+              <guiDefinition/>
+              <enumerators>fft1d,fft3d,real_space_grid_search</enumerators>
+              <default>fft3d</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__index__max_cell">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Maximum cell length</guiLabel>
+              <toolTip>Maximum length of candidate unit cell basis vectors (in Angstrom).</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>0.0</default>
+            </qualifiers>
+          </content>
+          <container id="dials__index__max_cell_estimation">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__index__max_cell_estimation__max_height_fraction">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>max_height_fraction</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+                <max>1</max>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="dials__index__fft3d">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__index__fft3d__n_points">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of reciprocal space grid points</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="dials__index__reflections_per_degree">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Number of reflections per degree for random subset</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>100</default>
+            </qualifiers>
+          </content>
+          <content id="dials__index__histogram_binning">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>histogram_binning</guiLabel>
+              <toolTip>Choose between linear or logarithmic bins for nearest neighbour histogram analysis.</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>linear,log</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__index__nearest_neighbor_percentile">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>nearest_neighbor_percentile</guiLabel>
+              <toolTip>Percentile of NN histogram to use for max cell determination.</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+              <min>0</min>
+              <max>1</max>
+            </qualifiers>
+          </content>
+        </container>
+        <container id="dials__refine">
+          <qualifiers>
+            <guiLabel>Refinement</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+          <content id="dials__refine__phil_file">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>phil file to pass to dials.refine</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="dials__refine__scan_static">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>scan_static</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="dials__refine__scan_varying">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Fit a scan-varying model</guiLabel>
+              <guiDefinition/>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="dials__refine__interval_width_degrees">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Interval width between checkpoints (if scan-varying)</guiLabel>
+              <toolTip>Width of scan between checkpoints in degrees</toolTip>
+              <guiDefinition/>
+              <default>36.0</default>
+              <min>0.0</min>
+            </qualifiers>
+          </content>
+          <content id="dials__refine__reflections_per_degree">
+            <className>CInt</className>
+            <qualifiers>
+              <guiLabel>Number of reflections per degree for random subset</guiLabel>
+              <guiDefinition/>
+              <default>100</default>
+            </qualifiers>
+          </content>
+          <container id="dials__refine__restraints">
+            <qualifiers>
+              <toolTip>Least squares unit cell restraints to use in refinement.</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+            <container id="dials__refine__restraints__tie_to_target">
+              <qualifiers>
+                <guiDefinition>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+              <content id="dials__refine__restraints__tie_to_target__values">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Values</guiLabel>
+                  <toolTip>Target unit cell parameters for the restraint for this parameterisation</toolTip>
+                  <guiDefinition/>
+                </qualifiers>
+              </content>
+              <content id="dials__refine__restraints__tie_to_target__sigmas">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Sigmas</guiLabel>
+                  <toolTip>The unit cell target values are associated with sigmas which are used to determine the weight of each restraint. A sigma of zero will remove the restraint at that position. If symmetry constrains two cell dimensions to be equal then only the smaller of the two sigmas will be kept</toolTip>
+                  <guiDefinition/>
+                </qualifiers>
+              </content>
+              <content id="dials__refine__restraints__tie_to_target__id">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Id</guiLabel>
+                  <toolTip>Select only the specified experiments when looking up which parameterisations to apply these restraints to. If an identified parameterisation affects multiple experiments then the index of any one of those experiments suffices to restrain that parameterisation. If None (the default) then the restraints will be applied to all experiments.</toolTip>
+                  <guiDefinition/>
+                </qualifiers>
+              </content>
+            </container>
+            <container id="dials__refine__restraints__tie_to_group">
+              <qualifiers>
+                <guiDefinition>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+              <content id="dials__refine__restraints__tie_to_group__target">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Target</guiLabel>
+                  <toolTip>Function to tie group parameter values to</toolTip>
+                  <guiDefinition/>
+                  <enumerators>mean,low_memory_mean,median</enumerators>
+                  <default>mean</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="dials__refine__restraints__tie_to_group__sigmas">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Sigmas</guiLabel>
+                  <toolTip>The unit cell parameters are associated with sigmas which are used to determine the weight of each restraint. A sigma of zero will remove the restraint at that position.</toolTip>
+                  <guiDefinition/>
+                </qualifiers>
+              </content>
+              <content id="dials__refine__restraints__tie_to_group__id">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Id</guiLabel>
+                  <toolTip>Select only the specified experiments when looking up which  parameterisations to apply these restraints to. For every parameterisation that requires a restraint at least one experiment index must be supplied. If None (the default) the restraints will be applied to all experiments.</toolTip>
+                  <guiDefinition/>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+        </container>
+        <container id="dials__integrate">
+          <qualifiers>
+            <guiLabel>Integration</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+          <content id="dials__integrate__phil_file">
+            <className>CDataFile</className>
+            <qualifiers>
+              <guiLabel>phil file to pass to dials.integrate</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__background_outlier_algorithm">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Outlier rejection method</guiLabel>
+              <toolTip>Outlier rejection performed prior to background fit</toolTip>
+              <guiDefinition/>
+              <enumerators>null,nsigma,truncated,normal,plane,tukey</enumerators>
+              <default>null</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__background_algorithm">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Background fit method</guiLabel>
+              <guiDefinition/>
+              <enumerators>simple,null,glm</enumerators>
+              <default>glm</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__combine_partials">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>combine_partials</guiLabel>
+              <toolTip>Combine partial reflections for output</toolTip>
+              <guiDefinition/>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__partiality_threshold">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>partiality_threshold</guiLabel>
+              <toolTip>Minimum combined partiality for output</toolTip>
+              <guiDefinition/>
+              <default>0.99</default>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__mosaic">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>mosaic</guiLabel>
+              <toolTip>Mosaicity determination method to use</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>old,new</enumerators>
+              <default>old</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__scan_varying_profile">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>scan_varying_profile</guiLabel>
+              <toolTip>Use scan varying profile model in integration</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__d_min">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>High resolution cutoff for integration</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+              <min>0.0</min>
+            </qualifiers>
+          </content>
+          <content id="dials__integrate__d_max">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Low resolution cutoff for integration</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+              <min>0.0</min>
+            </qualifiers>
+          </content>
+          <container id="dials__integrate__min_spots">
+            <qualifiers>
+              <guiLabel>Override default profile parameters of dials.integrate</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__integrate__min_spots__overall">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>overall</guiLabel>
+                <toolTip>Minimum number of reflections required to perform profile  modelling.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+            <content id="dials__integrate__min_spots__per_degree">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>per_degree</guiLabel>
+                <toolTip>Minimum number of reflections per degree of sweep required to perform  profile modelling.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <container id="dials__high_pressure">
+          <qualifiers>
+            <guiLabel>Handle diamond anvil pressure cell data</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+          <content id="dials__high_pressure__correction">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>correction</guiLabel>
+              <toolTip>Correct for attenuation by a diamond anvil cell</toolTip>
+              <guiDefinition/>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <container id="dials__high_pressure__anvil">
+            <qualifiers>
+              <guiDefinition>
+                <caption>Properties of the mounted diamond anvils</caption>
+              </guiDefinition>
+            </qualifiers>
+            <content id="dials__high_pressure__anvil__density">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>density</guiLabel>
+                <toolTip>The density of the anvil material in kg per cubic metre.   The default is the typical density of synthetic diamond.</toolTip>
+                <guiDefinition/>
+                <default>3510.0</default>
+              </qualifiers>
+            </content>
+            <content id="dials__high_pressure__anvil__thickness">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>thickness</guiLabel>
+                <toolTip>The thickness in mm of each anvil in the pressure cell.   The default is the thickness of the pressure cells in use on  beamline I19 at Diamond Light Source.</toolTip>
+                <guiDefinition/>
+                <default>1.5925</default>
+              </qualifiers>
+            </content>
+            <content id="dials__high_pressure__anvil__normal">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>normal</guiLabel>
+                <toolTip>A 3-vector orthogonal to the anvil surfaces in the laboratory  frame when the goniometer is at zero datum, i.e. the axes are  all at zero degrees.  The vector may be given un-normalised.</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="dials__high_pressure__output">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__high_pressure__output__experiments">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>experiments</guiLabel>
+                <toolTip>The output experiment list file name. If None, don't output an  experiment list file.</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="dials__high_pressure__output__reflections">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>reflections</guiLabel>
+                <toolTip>The output reflection table file.</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="dials__high_pressure__output__log">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>log</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <container id="dials__scale">
+          <qualifiers>
+            <guiLabel>Scaling</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+          <content id="dials__scale__model">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>model</guiLabel>
+              <toolTip>Choice of scaling model parameterisation to apply</toolTip>
+              <guiDefinition/>
+              <enumerators>auto,physical,dose_decay,array,KB</enumerators>
+              <default>auto</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__rotation_spacing">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>rotation_spacing</guiLabel>
+              <toolTip>Parameter spacing for scale (rotation) term</toolTip>
+              <guiDefinition/>
+              <default>None</default>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__Bfactor">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Bfactor</guiLabel>
+              <toolTip>Include decay component in scaling</toolTip>
+              <guiDefinition/>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__absorption">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>absorption</guiLabel>
+              <toolTip>Include an absorption correction in scaling</toolTip>
+              <guiDefinition/>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <container id="dials__scale__physical_model">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__scale__physical_model__Bfactor_spacing">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Bfactor_spacing</guiLabel>
+                <toolTip>Parameter spacing for B-factor correction</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="dials__scale__physical_model__absorption_level">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>absorption_level</guiLabel>
+                <toolTip>Expected degree of relative absorption for different scattering paths through the crystal(s). If an option is selected, the scaling model parameters lmax and surface_weight will be set to appropriate values. Relative absorption increases as crystal size increases, increases as wavelength increases and is increased as the crystal dimensions become less equal (i.e. is higher for needle shaped crystals and zero for a spherical crystal). Definitions of the levels and approximate correction magnitude: low:    ~1%% relative absorption, expected for typical protein         crystals (containing no strongly absorbing atoms) on the         order of ~100um measured at ~1A wavelength. medium: ~5%% relative absorption high:   &amp;gt;25%% relative absorption, e.g. for measurements at long         wavelength or crystals with high absorption from heavy atoms.</toolTip>
+                <guiDefinition/>
+                <enumerators>low,medium,high</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="dials__scale__physical_model__lmax">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>lmax</guiLabel>
+                <toolTip>Order of spherical harmonics to use for absorption surface, defaults to 4 if no absorption_level is chosen.</toolTip>
+                <guiDefinition/>
+                <default>Auto</default>
+                <min>2</min>
+              </qualifiers>
+            </content>
+            <content id="dials__scale__physical_model__surface_weight">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>surface_weight</guiLabel>
+                <toolTip>Restraint weight applied to spherical harmonic terms in the absorption correction. A lower restraint allows a higher amount of absorption correction. Defaults to 5e5 if no absorption_level is chosen.</toolTip>
+                <guiDefinition/>
+                <default>Auto</default>
+              </qualifiers>
+            </content>
+            <container id="dials__scale__physical_model__share">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="dials__scale__physical_model__share__absorption">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <guiLabel>absorption</guiLabel>
+                  <toolTip>If True, one absorption correction model is refined for all sweeps Therefore it should only be used when scaling data from a single crystal</toolTip>
+                  <guiDefinition/>
+                  <default>False</default>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <container id="dials__scale__dose_decay_model">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <container id="dials__scale__dose_decay_model__share">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="dials__scale__dose_decay_model__share__decay">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <guiLabel>decay</guiLabel>
+                  <toolTip>Share the decay model between sweeps.</toolTip>
+                  <guiDefinition>
+                    <expertLevel>1</expertLevel>
+                  </guiDefinition>
+                  <default>True</default>
+                </qualifiers>
+              </content>
+            </container>
+            <content id="dials__scale__dose_decay_model__resolution_dependence">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>resolution_dependence</guiLabel>
+                <toolTip>Use a dose model that depends linearly or quadratically on 1/d</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>quadratic,linear</enumerators>
+                <default>quadratic</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="dials__scale__dose_decay_model__lmax">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>lmax</guiLabel>
+                <toolTip>Order of spherical harmonics to use for absorption surface</toolTip>
+                <guiDefinition/>
+                <default>4</default>
+                <min>2</min>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="dials__scale__array_model">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="dials__scale__array_model__resolution_bins">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>resolution_bins</guiLabel>
+                <toolTip>Number of bins to parameterise decay component</toolTip>
+                <guiDefinition/>
+                <default>10</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+            <content id="dials__scale__array_model__absorption_bins">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>absorption_bins</guiLabel>
+                <toolTip>Number of bins in each dimension (applied to both x and y) for  binning the detector position for the absorption term of the  array model.</toolTip>
+                <guiDefinition/>
+                <default>5</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="dials__scale__intensity_choice">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>intensity_choice</guiLabel>
+              <toolTip>Choose from profile fitted or summation intensities, or  an optimised combination of profile/sum.</toolTip>
+              <guiDefinition/>
+              <enumerators>profile,summation,combine</enumerators>
+              <default>combine</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__error_model">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>error_model</guiLabel>
+              <toolTip>Choice of whether to refine an error model to adjust the intensity sigmas using a two-parameter model.</toolTip>
+              <guiDefinition/>
+              <enumerators>basic,None</enumerators>
+              <default>basic</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__error_model_grouping">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>error_model_grouping</guiLabel>
+              <toolTip>Choice of how the error models should be optimised in scaling, either a combined more for all sweeps, an individual error model per sweep or in custom user-defined groups.</toolTip>
+              <guiDefinition/>
+              <enumerators>combined,individual,grouped</enumerators>
+              <default>combined</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__error_model_group">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>error_model_group</guiLabel>
+              <toolTip>Specify a subset of sweeps which should share an error model, for the option error_model_grouping=grouped.</toolTip>
+              <guiDefinition>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__full_matrix">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>full_matrix</guiLabel>
+              <toolTip>Option to turn on/off Levenberg-Marquardt refinement round used  to determine error estimates on scale factors. auto will set  full_matrix=True if 4 sweeps or less.</toolTip>
+              <guiDefinition/>
+              <enumerators>True,False,Auto</enumerators>
+              <default>Auto</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__outlier_rejection">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>outlier_rejection</guiLabel>
+              <toolTip>Choice of outlier rejection routine. Standard may take a  significant amount of time to run for large datasets or high  multiplicities, whereas simple should be quick for these datasets.</toolTip>
+              <guiDefinition/>
+              <enumerators>standard,simple</enumerators>
+              <default>standard</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__outlier_zmax">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>outlier_zmax</guiLabel>
+              <toolTip>Cutoff z-score value for identifying outliers based on their  normalised deviation within the group of equivalent reflections</toolTip>
+              <guiDefinition/>
+              <default>6.0</default>
+              <min>3.0</min>
+            </qualifiers>
+          </content>
+          <content id="dials__scale__partiality_threshold">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>partiality_threshold</guiLabel>
+              <toolTip>Minimum partiality to use for scaling and for post-scaling  exported output.</toolTip>
+              <guiDefinition/>
+              <default>0.4</default>
+            </qualifiers>
+          </content>
+        </container>
+      </container>
+      <container id="ccp4">
+        <qualifiers>
+          <guiLabel>CCP4 data reduction options</guiLabel>
+          <guiDefinition>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+        </qualifiers>
+        <container id="ccp4__reindex">
+          <qualifiers>
+            <guiLabel>reindex</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="ccp4__reindex__program">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>program</guiLabel>
+              <guiDefinition/>
+              <enumerators>pointless,reindex,cctbx</enumerators>
+              <default>pointless</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+        </container>
+        <container id="ccp4__aimless">
+          <qualifiers>
+            <guiLabel>aimless</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="ccp4__aimless__intensities">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>intensities</guiLabel>
+              <guiDefinition/>
+              <enumerators>summation,profile,combine</enumerators>
+              <default>combine</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="ccp4__aimless__surface_tie">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Surface tie</guiLabel>
+              <guiDefinition/>
+              <default>0.001</default>
+            </qualifiers>
+          </content>
+          <content id="ccp4__aimless__surface_link">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Surface link</guiLabel>
+              <guiDefinition/>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <container id="ccp4__aimless__rotation">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="ccp4__aimless__rotation__spacing">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Interval (in degrees) between scale factors on rotation axis</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>5</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="ccp4__aimless__brotation">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="ccp4__aimless__brotation__spacing">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Interval (in degrees) between B-factors on rotation axis</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="ccp4__aimless__secondary">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="ccp4__aimless__secondary__frame">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>frame</guiLabel>
+                <toolTip>Whether to do the secondary beam correction in the camera spindle  frame or the crystal frame</toolTip>
+                <guiDefinition/>
+                <enumerators>camera,crystal</enumerators>
+                <default>crystal</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="ccp4__aimless__secondary__lmax">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Aimless # secondary harmonics</guiLabel>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>6</default>
+              </qualifiers>
+            </content>
+          </container>
+        </container>
+        <container id="ccp4__truncate">
+          <qualifiers>
+            <guiLabel>truncate</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="ccp4__truncate__program">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>program</guiLabel>
+              <guiDefinition/>
+              <enumerators>ctruncate,cctbx</enumerators>
+              <default>cctbx</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+        </container>
+      </container>
+      <container id="xia2">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+        <container id="xia2__settings">
+          <qualifiers>
+            <guiLabel>xia2 settings</guiLabel>
+            <guiDefinition/>
+          </qualifiers>
+          <content id="xia2__settings__small_molecule">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Use small molecule settings</guiLabel>
+              <toolTip>Assume that the dataset comes from a  chemical crystallography experiment</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__small_molecule_bfactor">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>B factor scaling for small molecule sets</guiLabel>
+              <toolTip>Use B factor scaling for small molecule sets</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__failover">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Fail over gracefully</guiLabel>
+              <toolTip>If processing a sweep fails, keep going</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__multi_crystal">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Settings for working with multiple crystals</guiLabel>
+              <toolTip>Settings for working with multiple crystals</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__interactive">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Interactive indexing</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__project">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>project</guiLabel>
+              <toolTip>A name for the data processing project</toolTip>
+              <guiDefinition/>
+              <default>AUTOMATIC</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__crystal">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>crystal</guiLabel>
+              <toolTip>A name for the crystal</toolTip>
+              <guiDefinition/>
+              <default>DEFAULT</default>
+            </qualifiers>
+          </content>
+          <container id="xia2__settings__input">
+            <qualifiers>
+              <guiLabel>xia2 input settings</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="xia2__settings__input__atom">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Heavy atom name, optional</guiLabel>
+                <toolTip>Set the heavy atom name, if appropriate</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__anomalous">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Separate anomalous pairs in merging</guiLabel>
+                <guiDefinition/>
+                <enumerators>True,False,Auto</enumerators>
+                <default>Auto</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__working_directory">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Working directory (i.e. not $CWD)</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__json">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Take headers from json file</guiLabel>
+                <toolTip>dxtbx-format models.expt file which can be provided as an  alternative source of images header information to avoid the  need to read all the image headers on start-up.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__reference_geometry">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Take experimental geometry from json file</guiLabel>
+                <toolTip>Experimental geometry from this models.expt will  override the geometry from the image headers.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__xinfo">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Use xinfo instead of image directory</guiLabel>
+                <toolTip>Provide an xinfo file as input as alternative to directory  containing image files.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__reverse_phi">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Reverse rotation axis</guiLabel>
+                <toolTip>Reverse the direction of the phi axis rotation.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__gain">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Detector gain</guiLabel>
+                <toolTip>Detector gain if using DIALS</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__min_images">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Minimum number of matching images</guiLabel>
+                <toolTip>Minimum number of matching images to include a sweep in processing.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>10</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__input__min_oscillation_range">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Minimum oscillation range</guiLabel>
+                <toolTip>Minimum oscillation range of a sweep for inclusion in processing.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <container id="xia2__settings__input__tolerance">
+              <qualifiers>
+                <toolTip>Tolerances used to determine shared models</toolTip>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+              <container id="xia2__settings__input__tolerance__beam">
+                <qualifiers>
+                  <guiDefinition/>
+                </qualifiers>
+                <content id="xia2__settings__input__tolerance__beam__wavelength">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>wavelength</guiLabel>
+                    <toolTip>The wavelength tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__tolerance__beam__direction">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>direction</guiLabel>
+                    <toolTip>The direction tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__tolerance__beam__polarization_normal">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>polarization_normal</guiLabel>
+                    <toolTip>The polarization normal tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__tolerance__beam__polarization_fraction">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>polarization_fraction</guiLabel>
+                    <toolTip>The polarization fraction tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+              </container>
+              <container id="xia2__settings__input__tolerance__detector">
+                <qualifiers>
+                  <guiDefinition/>
+                </qualifiers>
+                <content id="xia2__settings__input__tolerance__detector__fast_axis">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>fast_axis</guiLabel>
+                    <toolTip>The fast axis tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__tolerance__detector__slow_axis">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>slow_axis</guiLabel>
+                    <toolTip>The slow axis tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__tolerance__detector__origin">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>origin</guiLabel>
+                    <toolTip>The origin tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>0.05</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+              </container>
+              <container id="xia2__settings__input__tolerance__goniometer">
+                <qualifiers>
+                  <guiDefinition/>
+                </qualifiers>
+                <content id="xia2__settings__input__tolerance__goniometer__rotation_axis">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>rotation_axis</guiLabel>
+                    <toolTip>The rotation axis tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__tolerance__goniometer__fixed_rotation">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>fixed_rotation</guiLabel>
+                    <toolTip>The fixed rotation tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__tolerance__goniometer__setting_rotation">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>setting_rotation</guiLabel>
+                    <toolTip>The setting rotation tolerance</toolTip>
+                    <guiDefinition/>
+                    <default>1e-06</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+              </container>
+              <container id="xia2__settings__input__tolerance__scan">
+                <qualifiers>
+                  <guiDefinition/>
+                </qualifiers>
+                <content id="xia2__settings__input__tolerance__scan__oscillation">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>oscillation</guiLabel>
+                    <toolTip>The oscillation tolerance for the scan, as a fraction of the image width</toolTip>
+                    <guiDefinition/>
+                    <default>0.03</default>
+                    <min>0.0</min>
+                  </qualifiers>
+                </content>
+              </container>
+            </container>
+            <container id="xia2__settings__input__geometry">
+              <qualifiers>
+                <toolTip>Allow overrides of experimental geometry</toolTip>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+              <container id="xia2__settings__input__geometry__beam">
+                <qualifiers>
+                  <guiLabel>Beam overrides</guiLabel>
+                  <guiDefinition>
+                    <expertLevel>1</expertLevel>
+                  </guiDefinition>
+                </qualifiers>
+                <content id="xia2__settings__input__geometry__beam__wavelength">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>wavelength</guiLabel>
+                    <toolTip>Override the beam wavelength</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__direction">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Sample to source direction</guiLabel>
+                    <toolTip>Override the sample to source direction</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__polarization_normal">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Polarization normal</guiLabel>
+                    <toolTip>Override the polarization normal</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__polarization_fraction">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>Polarization fraction</guiLabel>
+                    <toolTip>Override the polarization fraction</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                    <min>0.0</min>
+                    <max>1.0</max>
+                  </qualifiers>
+                </content>
+              </container>
+              <container id="xia2__settings__input__geometry__detector">
+                <qualifiers>
+                  <guiLabel>Detector overrides</guiLabel>
+                  <guiDefinition>
+                    <expertLevel>1</expertLevel>
+                  </guiDefinition>
+                </qualifiers>
+                <container id="xia2__settings__input__geometry__detector__panel">
+                  <qualifiers>
+                    <guiDefinition>
+                      <multiple>True</multiple>
+                    </guiDefinition>
+                  </qualifiers>
+                  <content id="xia2__settings__input__geometry__detector__panel__id">
+                    <className>CInt</className>
+                    <qualifiers>
+                      <guiLabel>Panel ID</guiLabel>
+                      <toolTip>The panel number</toolTip>
+                      <guiDefinition/>
+                      <default>0</default>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__name">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel name</guiLabel>
+                      <toolTip>Override the panel name</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__type">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel type</guiLabel>
+                      <toolTip>Override the panel type</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__gain">
+                    <className>CFloat</className>
+                    <qualifiers>
+                      <guiLabel>Gain value</guiLabel>
+                      <toolTip>The gain of the detector panel</toolTip>
+                      <guiDefinition/>
+                      <default>None</default>
+                      <min>0</min>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__pedestal">
+                    <className>CFloat</className>
+                    <qualifiers>
+                      <guiLabel>Pedestal value</guiLabel>
+                      <toolTip>The pedestal of the detector panel</toolTip>
+                      <guiDefinition/>
+                      <default>None</default>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__pixel_size">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel pixel size</guiLabel>
+                      <toolTip>Override the panel pixel size</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__image_size">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel image size</guiLabel>
+                      <toolTip>Override the panel image size</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__trusted_range">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel trusted range</guiLabel>
+                      <toolTip>Override the panel trusted range</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__thickness">
+                    <className>CFloat</className>
+                    <qualifiers>
+                      <guiLabel>Panel thickness</guiLabel>
+                      <toolTip>Override the panel thickness</toolTip>
+                      <guiDefinition/>
+                      <default>None</default>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__material">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel material</guiLabel>
+                      <toolTip>Override the panel material</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__fast_axis">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel fast axis direction</guiLabel>
+                      <toolTip>Override the panel fast axis. Requires slow_axis and origin.</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__slow_axis">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel slow axis direction</guiLabel>
+                      <toolTip>Override the panel slow axis. Requires fast_axis and origin.</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__origin">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel origin vector</guiLabel>
+                      <toolTip>Override the panel origin. Requires fast_axis and slow_axis.</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__panel__parallax_correction">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Enable parallax correction</guiLabel>
+                      <toolTip>Enable parallax correction. By default in overwrite mode, the value of None does nothing.</toolTip>
+                      <guiDefinition/>
+                      <enumerators>True,False,None</enumerators>
+                      <default>None</default>
+                      <onlyEnumerators>True</onlyEnumerators>
+                    </qualifiers>
+                  </content>
+                </container>
+                <container id="xia2__settings__input__geometry__detector__hierarchy">
+                  <qualifiers>
+                    <guiDefinition>
+                      <expertLevel>2</expertLevel>
+                    </guiDefinition>
+                  </qualifiers>
+                  <content id="xia2__settings__input__geometry__detector__hierarchy__name">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>group name</guiLabel>
+                      <toolTip>Override the group name</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__hierarchy__fast_axis">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel fast axis direction</guiLabel>
+                      <toolTip>Override the panel fast axis. Requires slow_axis and origin.</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__hierarchy__slow_axis">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel slow axis direction</guiLabel>
+                      <toolTip>Override the panel slow axis. Requires fast_axis and origin.</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <content id="xia2__settings__input__geometry__detector__hierarchy__origin">
+                    <className>CString</className>
+                    <qualifiers>
+                      <guiLabel>Panel origin vector</guiLabel>
+                      <toolTip>Override the panel origin. Requires fast_axis and slow_axis.</toolTip>
+                      <guiDefinition/>
+                    </qualifiers>
+                  </content>
+                  <container id="xia2__settings__input__geometry__detector__hierarchy__group">
+                    <qualifiers>
+                      <guiDefinition>
+                        <multiple>True</multiple>
+                      </guiDefinition>
+                    </qualifiers>
+                    <content id="xia2__settings__input__geometry__detector__hierarchy__group__id">
+                      <className>CString</className>
+                      <qualifiers>
+                        <guiLabel>Group ID</guiLabel>
+                        <toolTip>The group identifier specifying the place in the hierarchy</toolTip>
+                        <guiDefinition/>
+                      </qualifiers>
+                    </content>
+                    <content id="xia2__settings__input__geometry__detector__hierarchy__group__name">
+                      <className>CString</className>
+                      <qualifiers>
+                        <guiLabel>Group name</guiLabel>
+                        <toolTip>Override the group name</toolTip>
+                        <guiDefinition/>
+                      </qualifiers>
+                    </content>
+                    <content id="xia2__settings__input__geometry__detector__hierarchy__group__fast_axis">
+                      <className>CString</className>
+                      <qualifiers>
+                        <guiLabel>Group fast axis direction</guiLabel>
+                        <toolTip>Override the group fast axis. Requires slow_axis and origin.</toolTip>
+                        <guiDefinition/>
+                      </qualifiers>
+                    </content>
+                    <content id="xia2__settings__input__geometry__detector__hierarchy__group__slow_axis">
+                      <className>CString</className>
+                      <qualifiers>
+                        <guiLabel>Group slow axis direction</guiLabel>
+                        <toolTip>Override the group slow axis. Requires fast_axis and origin.</toolTip>
+                        <guiDefinition/>
+                      </qualifiers>
+                    </content>
+                    <content id="xia2__settings__input__geometry__detector__hierarchy__group__origin">
+                      <className>CString</className>
+                      <qualifiers>
+                        <guiLabel>Group origin vector</guiLabel>
+                        <toolTip>Override the group origin. Requires fast_axis and slow_axis.</toolTip>
+                        <guiDefinition/>
+                      </qualifiers>
+                    </content>
+                    <content id="xia2__settings__input__geometry__detector__hierarchy__group__panel">
+                      <className>CInt</className>
+                      <qualifiers>
+                        <guiLabel>Panel ID</guiLabel>
+                        <toolTip>The panel id</toolTip>
+                        <guiDefinition>
+                          <multiple>True</multiple>
+                        </guiDefinition>
+                        <default>None</default>
+                      </qualifiers>
+                    </content>
+                  </container>
+                </container>
+                <content id="xia2__settings__input__geometry__detector__mosflm_beam_centre">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Beam centre coordinates (mm, mm) using the Mosflm convention</guiLabel>
+                    <toolTip>Override the beam centre from the image headers, following  the mosflm convention.</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__detector__distance">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>Detector distance</guiLabel>
+                    <toolTip>The detector distance (used when mosflm_beam_centre is set)</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__detector__fast_slow_beam_centre">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Beam centre coordinates (px fast, px slow, [panel id])</guiLabel>
+                    <toolTip>Override the beam centre from the image headers. The first two values are the fast and slow pixel coordinate. If the third is supplied it specifies a panel number.</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__detector__slow_fast_beam_centre">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Beam centre coordinates (px slow, px fast, [panel id])</guiLabel>
+                    <toolTip>Alternative to fast_slow_beam_centre in which the coordinates are given in order (px slow, px fast, [panel id]). If fast_slow_beam_centre is set it will take priority over any values set here.</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+              </container>
+              <container id="xia2__settings__input__geometry__goniometer">
+                <qualifiers>
+                  <guiLabel>Goniometer overrides</guiLabel>
+                  <guiDefinition>
+                    <expertLevel>1</expertLevel>
+                  </guiDefinition>
+                </qualifiers>
+                <content id="xia2__settings__input__geometry__goniometer__axis">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Goniometer axis</guiLabel>
+                    <toolTip>Override the axis for a single axis goniometer. Equivalent to providing a single 3D vector to 'axes'.</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__goniometer__axes">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Goniometer axes</guiLabel>
+                    <toolTip>Override the goniometer axes. Axes must be provided in the order crystal-to-goniometer, i.e. for a Kappa goniometer phi,kappa,omega</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__goniometer__angles">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Goniometer angles</guiLabel>
+                    <toolTip>Override the goniometer angles. Axes must be provided in the order crystal-to-goniometer, i.e. for a Kappa goniometer phi,kappa,omega</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__goniometer__names">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>The axis names</guiLabel>
+                    <toolTip>The multi axis goniometer axis names</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__goniometer__scan_axis">
+                  <className>CInt</className>
+                  <qualifiers>
+                    <guiLabel>The scan axis</guiLabel>
+                    <toolTip>The scan axis</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__goniometer__fixed_rotation">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Fixed rotation matrix</guiLabel>
+                    <toolTip>Override the fixed rotation matrix</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__goniometer__setting_rotation">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Setting rotation matrix</guiLabel>
+                    <toolTip>Override the setting rotation matrix</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__goniometer__invert_rotation_axis">
+                  <className>CBoolean</className>
+                  <qualifiers>
+                    <guiLabel>Invert rotation axis</guiLabel>
+                    <toolTip>Invert the rotation axis</toolTip>
+                    <guiDefinition/>
+                    <default>False</default>
+                  </qualifiers>
+                </content>
+              </container>
+              <container id="xia2__settings__input__geometry__scan">
+                <qualifiers>
+                  <guiLabel>Scan overrides</guiLabel>
+                  <guiDefinition>
+                    <expertLevel>1</expertLevel>
+                  </guiDefinition>
+                </qualifiers>
+                <content id="xia2__settings__input__geometry__scan__image_range">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Image range</guiLabel>
+                    <toolTip>Override the image range</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__scan__extrapolate_scan">
+                  <className>CBoolean</className>
+                  <qualifiers>
+                    <guiLabel>Extrapolate scan</guiLabel>
+                    <toolTip>When overriding the image range, extrapolate exposure and epoch information from existing images</toolTip>
+                    <guiDefinition/>
+                    <default>False</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__scan__oscillation">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Oscillation</guiLabel>
+                    <toolTip>Override the image oscillation</toolTip>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__scan__batch_offset">
+                  <className>CInt</className>
+                  <qualifiers>
+                    <guiLabel>Batch offset</guiLabel>
+                    <toolTip>Override the batch offset</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                    <min>0</min>
+                  </qualifiers>
+                </content>
+              </container>
+              <content id="xia2__settings__input__geometry__convert_stills_to_sequences">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <guiLabel>Convert stills into sequences</guiLabel>
+                  <toolTip>When overriding the scan, convert stills into sequences</toolTip>
+                  <guiDefinition/>
+                  <default>False</default>
+                </qualifiers>
+              </content>
+              <content id="xia2__settings__input__geometry__convert_sequences_to_stills">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <guiLabel>Convert sequences into stills</guiLabel>
+                  <toolTip>When overriding the scan, convert sequences into stills</toolTip>
+                  <guiDefinition/>
+                  <default>False</default>
+                </qualifiers>
+              </content>
+            </container>
+            <container id="xia2__settings__input__format">
+              <qualifiers>
+                <toolTip>Options to pass to the Format class</toolTip>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+              <content id="xia2__settings__input__format__dynamic_shadowing">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>dynamic_shadowing</guiLabel>
+                  <toolTip>Enable dynamic shadowing</toolTip>
+                  <guiDefinition/>
+                  <enumerators>True,False,Auto</enumerators>
+                  <default>Auto</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+              <content id="xia2__settings__input__format__multi_panel">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <guiLabel>multi_panel</guiLabel>
+                  <toolTip>Enable a multi-panel detector model. (Not supported by all detector formats)</toolTip>
+                  <guiDefinition/>
+                  <default>False</default>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <container id="xia2__settings__sweep">
+            <qualifiers>
+              <guiLabel>xia2 sweep</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+            <content id="xia2__settings__sweep__id">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Id</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__sweep__range">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Range</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__sweep__exclude">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Exclude</guiLabel>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="xia2__settings__scale">
+            <qualifiers>
+              <guiLabel>Scaling</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+            <content id="xia2__settings__scale__directory">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>xia2 scale directory</guiLabel>
+                <guiDefinition/>
+                <default>Auto</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__free_fraction">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>free_fraction</guiLabel>
+                <toolTip>Fraction of free reflections</toolTip>
+                <guiDefinition/>
+                <default>0.05</default>
+                <min>0.0</min>
+                <max>1.0</max>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__free_total">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>free_total</guiLabel>
+                <toolTip>Total number of free reflections</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__freer_file">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>freer_file</guiLabel>
+                <toolTip>Copy freer flags from this file</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__reference_reflection_file">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>reference_reflection_file</guiLabel>
+                <toolTip>Reference file for testing of alternative indexing schemes</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__reference_experiment_file">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>reference_experiment_file</guiLabel>
+                <toolTip>Reference models.expt for testing of alternative indexing schemes</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__model">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Scaling models to apply</guiLabel>
+                <guiDefinition/>
+                <default>*decay *modulation *absorption partiality</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__scales">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Smoothed or batch scaling</guiLabel>
+                <guiDefinition/>
+                <enumerators>rotation,batch</enumerators>
+                <default>rotation</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__scale__two_theta_refine">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Run dials.two_theta_refine</guiLabel>
+                <toolTip>Run dials.two_theta_refine to refine the unit cell and obtain  estimated standard uncertainties on the cell parameters.  Only relevant to DIALS pipeline.</toolTip>
+                <guiDefinition/>
+                <default>True</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="xia2__settings__space_group">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Space group</guiLabel>
+              <toolTip>Provide a target space group to the indexing program</toolTip>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__unit_cell">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Unit cell (requires the space group to be set)</guiLabel>
+              <toolTip>Provide a target unit cell to the indexing program</toolTip>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <container id="xia2__settings__resolution">
+            <qualifiers>
+              <guiLabel>Resolution</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="xia2__settings__resolution__keep_all_reflections">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Keep all data (default for small molecule mode)</guiLabel>
+                <toolTip>Keep all data regardless of resolution criteria</toolTip>
+                <guiDefinition/>
+                <enumerators>True,False,Auto</enumerators>
+                <default>Auto</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__d_max">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Low resolution cutoff</guiLabel>
+                <toolTip>Low resolution cutoff.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__d_min">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>High resolution cutoff</guiLabel>
+                <toolTip>High resolution cutoff.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__rmerge">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Outer shell Rmerge</guiLabel>
+                <toolTip>Maximum value of Rmerge in the outer resolution shell</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__completeness">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Outer shell completeness</guiLabel>
+                <toolTip>Minimum completeness in the outer resolution shell</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__cc_ref">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Outer shell CCref</guiLabel>
+                <toolTip>Minimum value of CC vs reference data set in the outer resolution shell</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>0.1</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__cc_half">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Outer shell CC&#189;</guiLabel>
+                <toolTip>Minimum value of CC&#189; in the outer resolution shell</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>0.3</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__cc_half_method">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>CC&#189; method</guiLabel>
+                <guiDefinition/>
+                <enumerators>half_dataset,sigma_tau</enumerators>
+                <default>half_dataset</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__cc_half_significance_level">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>CC&#189; significance level</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>0.1</default>
+                <min>0</min>
+                <max>1</max>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__cc_half_fit">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>CC&#189; fit</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>polynomial,tanh</enumerators>
+                <default>tanh</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__isigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Outer shell unmerged &amp;lt;I/sigI&amp;gt;</guiLabel>
+                <toolTip>Minimum value of the unmerged &amp;lt;I/sigI&amp;gt; in the outer resolution shell</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__misigma">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Outer shell merged &amp;lt;I/sigI&amp;gt;</guiLabel>
+                <toolTip>Minimum value of the merged &amp;lt;I/sigI&amp;gt; in the outer resolution shell</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__i_mean_over_sigma_mean">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Outer shell unmerged &amp;lt;I&amp;gt;/&amp;lt;sigI&amp;gt;</guiLabel>
+                <toolTip>Minimum value of the unmerged &amp;lt;I&amp;gt;/&amp;lt;sigI&amp;gt; in the outer resolution shell</toolTip>
+                <guiDefinition>
+                  <expertLevel>2</expertLevel>
+                </guiDefinition>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__nbins">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of resolution bins.</guiLabel>
+                <toolTip>Maximum number of resolution bins to use for estimation of resolution limit.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>100</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__reflections_per_bin">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Minimum number of reflections per bin</guiLabel>
+                <toolTip>Minimum number of reflections per bin.</toolTip>
+                <guiDefinition/>
+                <default>10</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__binning_method">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Equal-volume or equal #ref binning.</guiLabel>
+                <toolTip>Use equal-volume bins or bins with approximately equal numbers of reflections per bin.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>counting_sorted,volume</enumerators>
+                <default>counting_sorted</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__anomalous">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Anomalous</guiLabel>
+                <toolTip>Keep anomalous pairs separate in merging statistics</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__labels">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Labels</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__space_group">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Space group</guiLabel>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__reference">
+              <className>CDataFile</className>
+              <qualifiers>
+                <guiLabel>Reference</guiLabel>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__resolution__emax">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Maximum normalised intensity</guiLabel>
+                <toolTip>Reject reflections with normalised intensities E^2 &amp;gt; emax^2</toolTip>
+                <guiDefinition/>
+                <default>4.0</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="xia2__settings__unify_setting">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Unify crystal orientations</guiLabel>
+              <toolTip>For one crystal, multiple orientations, unify U matrix</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__trust_beam_centre">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Trust beam centre</guiLabel>
+              <toolTip>Whether or not to trust the beam centre in the image header.  If false, then the DIALS indexer will attempt to find a better beam  centre during indexing.</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__wavelength_tolerance">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Wavelength tolerance</guiLabel>
+              <toolTip>Tolerance for accepting two different wavelengths as the same wavelength.</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>5e-05</default>
+              <min>0.0</min>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__read_all_image_headers">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Read all image headers</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__detector_distance">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Detector distance</guiLabel>
+              <toolTip>Distance between sample and detector (mm)</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>None</default>
+              <min>0.0</min>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__show_template">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Show template</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__untrusted_rectangle_indexing">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Untrusted rectangle for indexing</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+                <multiple>True</multiple>
+              </guiDefinition>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__xds_check_cell_deviation">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Check cell deviation in XDS IDXREF</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__use_brehm_diederichs">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Brehm-Diederichs</guiLabel>
+              <toolTip>Use the Brehm-Diederichs algorithm to resolve an indexing  ambiguity.  See: W. Brehm and K. Diederichs, Acta Cryst. (2014). D70, 101-109. )</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <container id="xia2__settings__integration">
+            <qualifiers>
+              <guiLabel>Integration</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+            <content id="xia2__settings__integration__profile_fitting">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Use profile fitting</guiLabel>
+                <toolTip>Use profile fitting not summation integration, default yes</toolTip>
+                <guiDefinition/>
+                <default>True</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__integration__exclude_ice_regions">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Exclude ice regions</guiLabel>
+                <toolTip>Exclude measurements from regions which are typically where  ice rings land</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="xia2__settings__developmental">
+            <qualifiers>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+            <content id="xia2__settings__developmental__continue_from_previous_job">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>continue_from_previous_job</guiLabel>
+                <toolTip>If xia2.json file is present from a previous xia2 job then  continue scaling from the previous integration results.</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__developmental__use_dials_spotfinder">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>use_dials_spotfinder</guiLabel>
+                <toolTip>This feature requires the dials project to be installed, and  is not currently intended for general use. Use at your peril!</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__developmental__pointless_tolerance">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>pointless_tolerance</guiLabel>
+                <toolTip>Tolerance to use in POINTLESS for comparison of data sets</toolTip>
+                <guiDefinition/>
+                <default>0.0</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__developmental__detector_id">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>detector_id</guiLabel>
+                <toolTip>Override detector serial number information</toolTip>
+                <guiDefinition/>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="xia2__settings__multi_sweep_indexing">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>multi_sweep_indexing</guiLabel>
+              <toolTip>Index all sweeps together rather than combining individual results  (requires dials indexer)</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>True,False,Auto</enumerators>
+              <default>Auto</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__multi_sweep_refinement">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>multi_sweep_refinement</guiLabel>
+              <toolTip>Refine all sweeps together, restraining unit cell parameters to their  median, rather than refining sweeps individually (requires dials  refiner).  If this is set to True, multi_sweep_indexing will also be  set to True.</toolTip>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>True,False,Auto</enumerators>
+              <default>Auto</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__remove_blanks">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>remove_blanks</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__integrate_p1">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Integrate in P1</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__reintegrate_correct_lattice">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Reintegrate using a corrected lattice</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__lattice_rejection">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>Reject lattice if constraints increase RMSD</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>True</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__lattice_rejection_threshold">
+            <className>CFloat</className>
+            <qualifiers>
+              <guiLabel>Threshold for lattice rejection</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <default>1.5</default>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__indexer">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>indexer</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>xds,xdsii,dials</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__refiner">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>refiner</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>xds,dials</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__integrater">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>integrater</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>xdsr,xds,dials</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <content id="xia2__settings__scaler">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>scaler</guiLabel>
+              <guiDefinition>
+                <expertLevel>2</expertLevel>
+              </guiDefinition>
+              <enumerators>ccp4a,xdsa,dials</enumerators>
+              <default>None</default>
+              <onlyEnumerators>True</onlyEnumerators>
+            </qualifiers>
+          </content>
+          <container id="xia2__settings__merging_statistics">
+            <qualifiers>
+              <guiLabel>Merging statistics</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+            <content id="xia2__settings__merging_statistics__source">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>Software to calculate merging statistics</guiLabel>
+                <toolTip>Use AIMLESS or cctbx for calculation of merging statistics</toolTip>
+                <guiDefinition/>
+                <enumerators>aimless,cctbx</enumerators>
+                <default>cctbx</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__merging_statistics__n_bins">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of bins</guiLabel>
+                <guiDefinition/>
+                <default>20</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__merging_statistics__use_internal_variance">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Use internal variance</guiLabel>
+                <toolTip>Use internal variance of the data in the calculation of the  merged sigmas.</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__merging_statistics__eliminate_sys_absent">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Eliminate systematic absences before calculation</guiLabel>
+                <toolTip>Eliminate systematically absent reflections before computation  of merging statistics.</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+          </container>
+          <content id="xia2__settings__verbose">
+            <className>CBoolean</className>
+            <qualifiers>
+              <guiLabel>verbose</guiLabel>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+              <default>False</default>
+            </qualifiers>
+          </content>
+          <container id="xia2__settings__multiprocessing">
+            <qualifiers>
+              <guiLabel>Multiprocessing</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="xia2__settings__multiprocessing__mode">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>mode</guiLabel>
+                <toolTip>Whether to process each sweep in serial (using n processes per  sweep) or to process sweeps in parallel (using 1 process per  sweep).</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>serial,parallel</enumerators>
+                <default>serial</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__multiprocessing__nproc">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>nproc</guiLabel>
+                <toolTip>The number of processors to use per job.</toolTip>
+                <guiDefinition>
+                  <expertLevel>0</expertLevel>
+                </guiDefinition>
+                <default>Auto</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__multiprocessing__njob">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>njob</guiLabel>
+                <toolTip>The number of sweeps to process simultaneously.</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default>Auto</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__multiprocessing__type">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>type</guiLabel>
+                <toolTip>How to run the parallel processing jobs, e.g. over a cluster</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <enumerators>simple,qsub</enumerators>
+                <default>simple</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__multiprocessing__qsub_command">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>qsub_command</guiLabel>
+                <toolTip>The command to use to submit qsub jobs</toolTip>
+                <guiDefinition>
+                  <expertLevel>1</expertLevel>
+                </guiDefinition>
+                <default/>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="xia2__settings__report">
+            <qualifiers>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+            <content id="xia2__settings__report__d_min">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>d_min</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__d_max">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>d_max</guiLabel>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0</min>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__resolution_bins">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>resolution_bins</guiLabel>
+                <guiDefinition/>
+                <default>20</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__anomalous">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>anomalous</guiLabel>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__use_internal_variance">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Use internal variance</guiLabel>
+                <toolTip>Use internal variance of the data in the calculation of the merged sigmas</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__eliminate_sys_absent">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>Eliminate systematic absences before calculation</guiLabel>
+                <toolTip>Eliminate systematically absent reflections before computation of merging statistics.</toolTip>
+                <guiDefinition/>
+                <default>False</default>
+              </qualifiers>
+            </content>
+            <container id="xia2__settings__report__range">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="xia2__settings__report__range__width">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>width</guiLabel>
+                  <guiDefinition/>
+                  <default>1.0</default>
+                  <min>0</min>
+                </qualifiers>
+              </content>
+              <content id="xia2__settings__report__range__min">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>min</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                  <min>0</min>
+                </qualifiers>
+              </content>
+              <content id="xia2__settings__report__range__max">
+                <className>CFloat</className>
+                <qualifiers>
+                  <guiLabel>max</guiLabel>
+                  <guiDefinition/>
+                  <default>None</default>
+                  <min>0</min>
+                </qualifiers>
+              </content>
+            </container>
+            <content id="xia2__settings__report__cc_half_significance_level">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>cc_half_significance_level</guiLabel>
+                <guiDefinition/>
+                <default>0.01</default>
+                <min>0</min>
+                <max>1</max>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__cc_half_method">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>cc_half_method</guiLabel>
+                <guiDefinition/>
+                <enumerators>half_dataset,sigma_tau</enumerators>
+                <default>half_dataset</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__chef_min_completeness">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>chef_min_completeness</guiLabel>
+                <toolTip>Minimum value of completeness in outer resolution shell used to  determine suitable resolution cutoff for CHEF analysis</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0</min>
+                <max>1</max>
+              </qualifiers>
+            </content>
+            <container id="xia2__settings__report__dose">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="xia2__settings__report__dose__remove_gaps">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <guiLabel>remove_gaps</guiLabel>
+                  <guiDefinition/>
+                  <default>True</default>
+                </qualifiers>
+              </content>
+              <container id="xia2__settings__report__dose__batch">
+                <qualifiers>
+                  <guiDefinition>
+                    <multiple>True</multiple>
+                  </guiDefinition>
+                </qualifiers>
+                <content id="xia2__settings__report__dose__batch__range">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>Range</guiLabel>
+                    <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__report__dose__batch__dose_start">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>Dose start</guiLabel>
+                    <guiDefinition/>
+                    <default>None</default>
+                    <min>0</min>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__report__dose__batch__dose_step">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>Dose step</guiLabel>
+                    <guiDefinition/>
+                    <default>None</default>
+                    <min>0</min>
+                  </qualifiers>
+                </content>
+              </container>
+            </container>
+            <content id="xia2__settings__report__xtriage_analysis">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>xtriage_analysis</guiLabel>
+                <guiDefinition/>
+                <default>True</default>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__report__include_radiation_damage">
+              <className>CBoolean</className>
+              <qualifiers>
+                <guiLabel>include_radiation_damage</guiLabel>
+                <guiDefinition/>
+                <default>True</default>
+              </qualifiers>
+            </content>
+            <container id="xia2__settings__report__batch">
+              <qualifiers>
+                <guiDefinition>
+                  <multiple>True</multiple>
+                </guiDefinition>
+              </qualifiers>
+              <content id="xia2__settings__report__batch__id">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Id</guiLabel>
+                  <guiDefinition/>
+                </qualifiers>
+              </content>
+              <content id="xia2__settings__report__batch__range">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>Range</guiLabel>
+                  <guiDefinition/>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+          <container id="xia2__settings__symmetry">
+            <qualifiers>
+              <guiLabel>symmetry</guiLabel>
+              <guiDefinition/>
+            </qualifiers>
+            <content id="xia2__settings__symmetry__chirality">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>chirality</guiLabel>
+                <guiDefinition/>
+                <enumerators>chiral,nonchiral,centrosymmetric</enumerators>
+                <default>None</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+            <content id="xia2__settings__symmetry__program">
+              <className>CString</className>
+              <qualifiers>
+                <guiLabel>program</guiLabel>
+                <guiDefinition/>
+                <enumerators>pointless,dials</enumerators>
+                <default>pointless</default>
+                <onlyEnumerators>True</onlyEnumerators>
+              </qualifiers>
+            </content>
+          </container>
+          <container id="xia2__settings__output">
+            <qualifiers>
+              <guiDefinition/>
+            </qualifiers>
+            <container id="xia2__settings__output__mmcif">
+              <qualifiers>
+                <guiDefinition/>
+              </qualifiers>
+              <content id="xia2__settings__output__mmcif__pdb_version">
+                <className>CString</className>
+                <qualifiers>
+                  <guiLabel>pdb_version</guiLabel>
+                  <toolTip>This controls which pdb mmcif dictionary version the output mmcif file should comply with. v5_next adds support for recording unmerged data as well as additional scan metadata and statistics, however writing can be slow for large datasets.</toolTip>
+                  <guiDefinition>
+                    <expertLevel>2</expertLevel>
+                  </guiDefinition>
+                  <enumerators>v5,v5_next</enumerators>
+                  <default>v5_next</default>
+                  <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+              </content>
+            </container>
+          </container>
+        </container>
+      </container>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

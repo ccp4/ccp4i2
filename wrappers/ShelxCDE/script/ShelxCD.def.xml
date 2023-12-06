@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment/>
+        <hostName>mnmacpro.ncl.ac.uk</hostName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.4</ccp4iVersion>
+        <pluginName>ShelxCD</pluginName>
+        <creationTime>11:06 21/Nov/14</creationTime>
+        <pluginTitle>ShelxCD</pluginTitle>
+        <jobNumber/>
+    </ccp4i2_header>
+    <ccp4i2_body id="ShelxCD">
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>wrappers/ShelxCDE/script</relPath>
+                <baseName>ShelxCDEBase.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+        <container id="outputData">
+            <content id="FA">
+                <className>CShelxFADataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id='XYZOUT'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <subType>4</subType>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CExpPhasPerformance</className>
+            </content>
+        </container>
+        <container id='controlParameters'>
+            <content id='SFAC'>
+                <className>CString</className>
+                <qualifiers>
+                    <default>SE</default>
+                </qualifiers>
+            </content>
+            <content id='NTRY'>
+                <className>CInt</className>
+            </content>
+            <content id='MIND'>
+                <className>CFloatRange</className>
+            </content>
+            <content id='FIND'>
+                <className>CInt</className>
+                <qualifiers>
+                    <default>4</default>
+                </qualifiers>
+            </content>
+            <content id='RIPW'>
+                <className>CFloat</className>
+                <qualifiers>
+                    <minimum>0.</minimum>
+                    <maximum>1.</maximum>
+                </qualifiers>
+            </content>
+            <content id='DSCA'>
+                <className>CFloat</className>
+                <qualifiers>
+                    <minimum>0.</minimum>
+                    <maximum>1.</maximum>
+                </qualifiers>
+            </content>
+            <content id='ASCA'>
+                <className>CFloat</className>
+                <qualifiers>
+                    <minimum>0.</minimum>
+                    <maximum>1.</maximum>
+                </qualifiers>
+            </content>
+            <content id='SEED'>
+                <className>CInt</className>
+                <qualifiers>
+                    <minimum>0.</minimum>
+                    <maximum>1.</maximum>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

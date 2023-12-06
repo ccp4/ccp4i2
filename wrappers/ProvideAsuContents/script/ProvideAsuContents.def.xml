@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <hostName>Lizs-Air.home</hostName>
+    <userId>lizp</userId>
+    <ccp4iVersion>0.0.5</ccp4iVersion>
+    <pluginName>ProvideAsuContents</pluginName>
+    <creationTime>15:36 24/Nov/16</creationTime>
+  </ccp4i2_header>
+  <ccp4i2_body id="ProvideAsuContents">
+    <container id="inputData">
+     <content id="ASUCONTENTIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+	  <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+              <fromPreviousJob>True</fromPreviousJob>
+        </qualifiers>
+      </content>
+      <content id="ASU_CONTENT">
+        <className>CAsuContentSeqList</className>
+        <qualifiers/>
+      </content>
+      <qualifiers/>
+    </container>
+    <container id="controlParameters"/>
+     <container id="outputData">
+     <content id="ASUCONTENTFILE">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+	  <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

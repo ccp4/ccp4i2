@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>PARAMS</function>
+    <userId>mdw</userId>
+    <creationTime>12:54 26/Jun/12</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>pointless</pluginName>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <inputData>
+      <UNMERGEDFILES>
+       <item>
+        <file>
+         <project>CCP4I2</project>
+         <baseName>brap_ip_6A.mtz</baseName>
+         <relPath>wrappers/pointless/test_data</relPath>
+        </file>
+       </item>
+      </UNMERGEDFILES>
+    </inputData>
+    <controlParameters>
+      <MODE>LAUE</MODE>
+      <WRITE_HKLOUT>True</WRITE_HKLOUT>
+      <SET_SETTING>SYMMETRY-BASED</SET_SETTING>
+      <USE_RESOLUTION_CUTOFF>RESOLUTION</USE_RESOLUTION_CUTOFF>
+      <RESOLUTION_RANGE>
+         <start>30.0</start>
+         <end>1.5</end>
+      </RESOLUTION_RANGE>
+    </controlParameters>
+  </ccp4i2_body>
+</ccp4i2>

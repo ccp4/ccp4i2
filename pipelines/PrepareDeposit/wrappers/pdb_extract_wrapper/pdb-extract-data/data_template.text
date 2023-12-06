@@ -1,0 +1,462 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		    THE DATA_TEMPLATE.TEXT FILE	FOR X-RAY		
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			  NOTES AND REMINDER
+The data template file contains data entries for unique chemical sequences 
+present in the structure and other non-electronically captured information. 
+
+PLEASE CHECK CATEGORIES 1 & 2: Before proceeding any further, make necessary 
+corrections here so that all information in these categories are complete 
+and correct.
+
+You may choose to fill in CATEGORIES (3-19) either here or later in ADIT.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			GUIDELINES FOR USING THIS FILE
+  1. Only strings included between the 'lesser than' and 'greater than' 
+     signs (<.....>) will be parsed for evaluation by the program.
+     NEVER change the data item names inside of the brackets.
+
+  2. All alphanumeric values or strings that you entered in the different 
+     categories should be within double-quotations. Blank spaces or carriage 
+     returns within a pair of double quotes are ignored by the program. 
+     
+  3. All the input text CAN NOT contain double quotes or left or right of 
+     the 'less than' and 'greater than' signs.
+     
+  4. If more groups are needed, Same number of data items should be added.  
+   
+  5. The items marked by '!' are manditory.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~START INPUT DATA BELOW~~~~~~~~~~~~~~~~~~~~~~~
+
+================CATEGORY 1:   Crystallographic Data=======================
+Enter crystallographic data
+
+ 
+================CATEGORY 2:   Sequence Information =======================
+Enter one letter sequence for each polymeric entity in asymmetric unit
+
+--------------------------------------------------------------------------
+			  SOME DEFINITIONS
+     An ENTITY is defined as any unique molecule present in the asymmetric 
+     unit. Each unique biological polymer (protein or nucleic acids) in the 
+     structure is considered an entity. Thus, if there are five copies of 
+     a single protein in the asymmetric unit, the molecular entity is still 
+     only one. Water and non-polymers like ions, ligands and sugars are 
+     also entities. 
+
+     Here we only consider the sequences of polymeric entities (protein or 
+     nucleic acid).  
+
+	        GUIDELINES FOR COMPLETING THIS CATEGORY
+      * In a PDB or mmCIF format file, all residues of a single polymeric 
+      entity should have one chain ID. Multiple copies of the same entity 
+      should each be assigned a unique chain ID. The multiple chain IDs 
+      should be separated by commas as 'A,B,C,...'. If incorrect chain IDs 
+      are used the entity groups extracted by this program will not be 
+      correct. To avoid this, make necessary corrections in the PDB or mmCIF 
+      file used to generate the data_template file and regenerate the 
+      data_template.text file. Alternatively, edit the extracted sequence 
+      in this file to correctly represent the sequence and chain IDs of each 
+      polymeric entity.  
+
+      * In addition to chain IDs, this program uses distance geometry to 
+      asses if there are any breaks in the polymer sequence. These breaks 
+      may occur due to missing residues (not included in the model due to 
+      missing electron density) or due to poor geometry. Four question marks 
+      '????' are used to denote these chain breaks. Replace these question 
+      marks with the sequence of residues missing from the coordinates. Also 
+      add any residues missing from the N- and/or C-termini here.
+
+      * If there are non-standard residues in the coordinates, this program 
+      lists them according to the three letter code used in the coordinate
+      file as (ABC). If all the residues in your sequence are nonstandard, 
+      check and edit the sequence manually to represent it correctly in this 
+      file. 
+
+      * If any residue was modeled as Ala or Gly due to lack of the side-chain 
+      density, the sequence extracted here will represent them as A or G 
+      respectively. Correct this to the original sequence that was present in 
+      the crystal.
+----------------------------------------------------------------------------
+
+	Below is the one letter chemical sequence extracted from your PDB 
+	coordinate file. The molecular entities are grouped and listed 
+	together. 
+
+PLEASE CHECK THE SEQUENCE of each entity carefully and modify it, as necessary.
+Make sure that you REVIEW THE FOLLOWING:  
+   * chain breaks due to missing residues, 
+   * missing residues in the N- and/or C-termini, 
+   * non-standard residues and 
+   * cases of residues modeled as Ala or Gly due to missing side-chain density.
+
+
+================CATEGORY 3:   Contact Authors=============================
+Enter information about the contact authors.
+    Note:  PI information must be given.
+         
+   
+1.  Information about the Principal investigator (PI). 
+
+<contact_author_PI_id = "1 ">           !(must be given 1)
+<contact_author_PI_salutation = " ">     ( Dr./Prof./Mr./Mrs./Ms.)
+<contact_author_PI_first_name = " ">      !(e.g. John)
+<contact_author_PI_last_name = " ">        !(e.g. Rodgers)
+<contact_author_PI_middle_name = " ">         
+<contact_author_PI_role = "principal investigator/group leader">  !(or responsible scientist)
+<contact_author_PI_organization_type = "academic">  !(or commercial/government/other)
+<contact_author_PI_email = " ">        !(e.g.   name@host.domain.country)      
+<contact_author_PI_address = " ">            !(e.g. 610 Taylor road)
+<contact_author_PI_city = " ">               !(e.g. Piscataway)
+<contact_author_PI_State_or_Province = " ">   !(e.g.  New Jersey)
+<contact_author_PI_Zip_Code = " ">           !(e.g.  08864)
+<contact_author_PI_Country = " ">          !(e.g.  UNITED STATES)
+<contact_author_PI_fax_number = " ">
+<contact_author_PI_phone_numer = " ">
+
+2. Information about other contact authors
+
+<contact_author_id = " ">       (integer: e.g. 2,3,4..)
+<contact_author_salutation = " ">   
+<contact_author_first_name = " ">      
+<contact_author_last_name = " ">       
+<contact_author_middle_name = " ">         
+<contact_author_role = " ">    
+<contact_author_organization_type = " ">  
+<contact_author_email = " ">             
+<contact_author_address = " ">            
+<contact_author_city = " ">              
+<contact_author_State_or_Province = " ">   
+<contact_author_Zip_Code = " ">           
+<contact_author_Country = " ">          
+<contact_author_fax_number = " ">
+<contact_author_phone_numer = " ">
+
+
+...(add more if needed)...
+
+================CATEGORY 4:   Structure Genomics=========================
+If it is the structure genomics project, give the information
+
+<SG_project_id = " 1">  
+<SG_project_name = " ">        (e.g. PSI, Protein Structure Initiative)
+<full_name_of_SG_center = " ">   (e.g. Berkeley Structural Genomics Center)
+
+
+================CATEGORY 5:   Release Status==============================
+Enter release status for the coordinates,structure_factor, and sequence
+
+   Status should be chosen from one of the following:
+* for coordinate & structure_factor
+  (RELEASE NOW, HOLD FOR PUBLICATION,  HOLD FOR 8 WEEKS, 
+   HOLD FOR 6 MONTHS, HOLD FOR 1 YEAR)
+
+* for sequence (give either RELEASE NOW or  HOLD FOR RELEASE)
+
+
+<Release_status_for_coordinates = " ">      !(e.g. release now)
+<Release_status_for_structure_factor = " ">
+<Release_status_for_sequence = " ">     
+
+================CATEGORY 6:   Title=======================================
+Enter the title for the structure
+
+<structure_title = " ">     !(e.g. Crystal Structure Analysis of the B-DNA)
+<structure_details = " ">  
+
+
+================CATEGORY 7: Authors of Structure============================
+Enter authors of the deposited structures (e.g. Surname, F.M.) 
+
+<structure_author_name = " ">  !(manditory)
+<structure_author_name = " ">
+<structure_author_name = " ">
+<structure_author_name = " ">
+...add more if needed...
+
+
+================CATEGORY 8:   Citation Authors============================
+Enter author names for the publications associated with this deposition.
+
+      The primary citation is the article in which the deposited coordinates 
+      were first reported. Other related citations may also be provided.
+
+1. For the primary citation
+<primary_citation_author_name = " ">    (e.g. Surname, F.M.) 
+<primary_citation_author_name = " ">
+<primary_citation_author_name = " ">
+<primary_citation_author_name = " ">
+...add more if needed...
+
+2. For other related citations  (if applicable)
+<citation_author_id = " ">    (e.g. 1, 2 ..)
+<citation_author_name = " ">
+<citation_author_name = " ">
+<citation_author_name = " ">
+<citation_author_name = " ">
+...add more if needed...
+
+
+...(add more other citations if needed)...
+
+================CATEGORY 9:   Citation Article============================
+Enter citation article (journal, title, year, volume, page)  
+
+      If the citation has not yet been published, use 'To be published' 
+      for the category 'journal_abbrev' and leave pages and volume blank. 
+
+1. For primary citation
+<primary_citation_id = "primary">     
+<primary_citation_journal_abbrev = " ">     (e.g. to be published)
+<primary_citation_title = " ">   
+<primary_citation_year = " ">
+<primary_citation_journal_volume = " "> 
+<primary_citation_page_first = " ">
+<primary_citation_page_last = " ">
+
+2. For other related citation (if applicable)
+<citation_id = "1 ">               (e.g. 1, 2, 3 ...)
+<citation_journal_abbrev = " ">
+<citation_title = " ">
+<citation_year = " ">
+<citation_journal_volume = " "> 
+<citation_page_first = " ">
+<citation_page_last = " ">
+
+
+...(add more citations if needed)...
+
+
+================CATEGORY 10:   Molecule Names==============================
+Enter the names of the molecules (entities) that are in the asymmetric unit
+ 
+NOTE: The number of molecular names should be the same as CATEGORY 2 !
+      The name of molecule should be obtained from the appropriate 
+      sequence database reference, if available. Otherwise the gene name or
+      other common name of the entity may be used. 
+      e.g. HIV-1 integrase for protein 
+           RNA Hammerhead Ribozyme for RNA 
+
+<molecule_name = " ">    !(entity 1)
+<molecule_name = " ">    (entity 2)
+
+...(add more if needed)...
+
+
+================CATEGORY 11:   Molecule Details============================
+Enter additional information about each entity, if known. (optional)
+
+      Additional information would include details such as fragment name 
+      (if applicable), mutation, and E.C.number.
+
+1. For entity 1
+<Molecular_entity_id = "1 ">       (e.g. 1, 2, ...)
+<Fragment_name = " ">             (e.g. ligand binding domain, hairpin)
+<Specific_mutation = " ">         (e.g. C280S)
+<Enzyme_Comission_number = " ">   (if known: e.g. 2.7.7.7)
+
+2. For entity 2
+<Molecular_entity_id = " ">       (e.g.  2, 3,...)
+<Fragment_name = " ">   
+<Specific_mutation = " ">      
+<Enzyme_Comission_number = " "> 
+
+...(add more if needed)...
+
+================CATEGORY 12:   Genetically Manipulated Source=============
+Enter data in the genetically manipulated source category 
+
+      If the biomolecule has been genetically manipulated, describe its 
+      source and expression system here. 
+
+1. For entity 1
+<Manipulated_entity_id = "1 ">               !(e.g. 1, 2, ...)
+<Source_organism_scientific_name = " ">      !(e.g. Homo sapiens)
+<Source_organism_gene = " ">                 (e.g. RPOD, ALKA...)
+<Source_organism_strain = " ">               (e.g. BH10 ISOLATE, K-12...)
+<Expression_system_scientific_name = " ">    (e.g. Escherichia coli)
+<Expression_system_strain = " ">	     (e.g. BL21(DE3))
+<Expression_system_vector_type = " ">	     (e.g. plasmid)
+<Expression_system_plasmid_name = " ">       (e.g. pET26)
+<Manipulated_source_details = " ">           (any other relevant information)
+
+2. For entity 2
+<Manipulated_entity_id = "  ">              (e.g.  2,3, ...)
+<Source_organism_scientific_name = " ">    
+<Source_organism_gene = " ">     
+<Source_organism_strain = " ">               
+<Expression_system_scientific_name = " ">  
+<Expression_system_strain = " ">	     
+<Expression_system_vector_type = " ">	     
+<Expression_system_plasmid_name = " ">     
+<Manipulated_source_details = " ">        
+
+
+...(add more if needed)...
+
+================CATEGORY 13:   Natural Source=============================
+Enter data in the natural source category  (if applicable)
+
+    If the biomolecule was derived from a natural source, describe it here.
+      
+
+1. For entity 1
+<natural_source_entity_id = " ">          (e.g. 1, 2, ...)
+<natural_source_scientific_name = " ">    (e.g. Homo sapiens)
+<natural_source_organism_strain = " ">    (e.g. DH5a , BMH 71-18)
+<natural_source_details = " ">            (e.g. organ, tissue, cell ..)
+
+
+2. For entity 2
+<natural_source_entity_id = " ">    
+<natural_source_scientific_name = " "> 
+<natural_source_organism_strain = " ">    
+<natural_source_details = " ">   
+
+
+...(add more if needed)...
+
+================CATEGORY 14:  Synthetic Source=============================
+If the biomolecule has not been genetically manipulated or synthesized, 
+describe its source here. 
+
+1. For entity 1
+<synthetic_source_entity_id = " ">          (e.g. 1, 2, ...)
+<synthetic_source_description = " ">      (if known)
+
+2. For entity 2
+<synthetic_source_entity_id = " ">         (e.g.  2,3, ...)
+<synthetic_source_description = " ">     
+
+...(add more if needed)...
+
+
+================CATEGORY 15:   Keywords===================================
+Enter a list of keywords that describe important features of the deposited
+structure.  
+
+      For example, beta barrel, protein-DNA complex, double helix, 
+      hydrolase, structural genomics etc. 
+
+<structure_keywords = " ">  !(e.g. beta barrel)
+
+================CATEGORY 16:   Biological Assembly========================
+Enter data in the biological assembly category (if applicable)
+
+      Biological assembly describes the functional unit(s) present in the
+      structure. There may be part of a biological assembly, one or more 
+      than one biological assemblies in the asymmetric unit.
+      Case 1
+      * If the asymmetric unit is the same as the biological assembly
+	nothing special needs to be noted here.
+      Case 2
+      * If the asymmetric unit does not contain a complete biological unit. 
+	Please provide symmetry operations including translations required 
+	to build the biological unit.
+	(example:
+	The biological assembly is a hexamer generated from the dimer
+	in the asymmetric unit by the operations:  -y, x-y-1, z-1 and 
+	-x+y, -x-1, z-l.)
+      Case 3
+      * If the asymmetric unit has multiple biological units
+	Please specify how to group the contents of the asymmetric unit into 
+	biological units.
+	(example:
+	The biological unit is a dimer. There are 2 biological units in the 
+	asymmetric unit (chains A & B and chains C & D).
+
+<biological_assembly = "biological unit is the same as asym. ">  (unit 1)
+
+....(add more if needed)....
+
+================CATEGORY 17:   Methods and Conditions=====================
+Enter the crystallization conditions for each crystal
+
+1. For crystal 1:				
+<crystal_number = "1 ">	           (e.g. 1, 2, ...)
+<crystallization_method = " ">      (e.g. vapor diffusion, hanging drop) 
+<crystallization_pH = " ">          (e.g. 7.5 ...)
+<crystallization_temperature = " "> (e.g. 298) (in Kelvin) 
+<crystallization_details = " ">  (e.g. PEG 4000, NaCl etc.)
+
+...(add more cyrstals if needed)...
+
+================CATEGORY 18:   Crystal Property===========================
+Enter solvent content, Matthews coefficient
+      These values were calculated based on the sequence as shown in 
+      CATEGORY 2. If there are missing residues, you need to add the
+      missing residues and re-run the program to get accurate values.
+      (The command to re-run is 'extract -sol data_template.text')
+
+1. For crystal 1:
+<crystals_number = " 1 ">                  (e.g. 1, 2, ...)
+<crystals_solvent_content = " ">         (e.g. 63.7 ) 
+<crystals_matthews_coefficient = " ">    (e.g. 2.5 ...)
+<crystals_mosaicity = " ">    (e.g. 0.5 ...)
+
+...(add more cyrstals if needed)...
+
+================CATEGORY 19:   Radiation Source (experiment)============
+Enter the details of the source of radiation, the X-ray generator, 
+and the wavelength for each diffraction.
+
+1. For experiment 1:
+<radiation_experiment = "1 ">      !(e.g. 1, 2, ...)
+<radiation_source = " ">           !(e.g. SYNCHROTRON, ROTATING ANODE ...)
+<radiation_source_type = " ">      !(e.g. NSLS BEAMLINE X8C ...)
+<radiation_wavelengths= " ">       (e.g. 1.502 ...)
+<radiation_detector = " ">         (e.g. CCD/AREA DETECTOR/IMAGE PLATE ...)
+<radiation_detector_type= " ">     (e.g. SIEMENS-NICOLET/RIGAKU RAXIS ...)
+<radiation_detector_details = " ">    (e.g. mirrors...)
+<data_collection_date = " ">             (e.g. 2004-11-27)
+<data_collection_temperature = " ">      (e.g. 100 for crystal  1:)
+<data_collection_protocol= " ">          (e.g. SINGLE WAVELENGTH, MAD, ...)
+<data_collection_monochromator= " ">     (e.g. GRAPHITE, Ni FILTER ...)
+
+2. For experiment 2:
+
+<radiation_experiment = "  ">      (e.g.  2,3, ...)
+<radiation_source = " ">      
+<radiation_source_type = " ">      
+<radiation_wavelengths= " ">       
+<radiation_detector = " ">     
+<radiation_detector_type= " ">     
+<radiation_detector_details = " ">    
+<data_collection_data = " ">           
+<data_collection_temperature = " ">      
+<data_collection_protocol= " ">          
+<data_collection_monochromator= " ">          
+
+
+....(add more if needed)....
+
+=====================================END==================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

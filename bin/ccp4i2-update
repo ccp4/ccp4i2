@@ -1,0 +1,3 @@
+#!/bin/sh
+CCP4="$(cd "$(dirname "$0")/.." && pwd)"
+exec $CCP4/libexec/python2.7 $CCP4/share/ccp4i2/core/CCP4Update.py "$@" "$0"

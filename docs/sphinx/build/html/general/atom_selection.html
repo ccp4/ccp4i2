@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#00020a">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>CCP4i2 — Atom selection &#8212; CCP4i2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/contentui.css" />
+    <link rel="stylesheet" type="text/css" href="https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/contentui.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#005BBB data-md-color-accent=yellow>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" id="__gitlab"><path fill="currentColor" d="M93.667 473.347l90.684-279.097H2.983l90.684 279.097z" transform="translate(156.198 1.16)"/><path fill="currentColor" d="M221.333 473.345L130.649 194.25H3.557l217.776 279.095z" transform="translate(28.531 1.16)" opacity=".7"/><path fill="currentColor" d="M32 195.155L4.441 279.97a18.773 18.773 0 0 0 6.821 20.99l238.514 173.29L32 195.155z" transform="translate(.089 .256)" opacity=".5"/><path fill="currentColor" d="M2.667-84.844h127.092L75.14-252.942c-2.811-8.649-15.047-8.649-17.856 0L2.667-84.844z" transform="translate(29.422 280.256)"/><path fill="currentColor" d="M2.667 473.345L93.351 194.25h127.092L2.667 473.345z" transform="translate(247.198 1.16)" opacity=".7"/><path fill="currentColor" d="M221.334 195.155l27.559 84.815a18.772 18.772 0 0 1-6.821 20.99L3.557 474.25l217.777-279.095z" transform="translate(246.307 .256)" opacity=".5"/><path fill="currentColor" d="M130.667-84.844H3.575l54.618-168.098c2.811-8.649 15.047-8.649 17.856 0l54.618 168.098z" transform="translate(336.974 280.256)"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#general/atom_selection" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="CCP4i2  documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CCP4i2  documentation</span>
+          <span class="md-header-nav__topic"> CCP4i2 — Atom selection </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">CCP4i2  documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="CCP4i2 documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="CCP4i2 documentation">CCP4i2  documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#general-atom-selection--page-root" class="md-nav__link">CCP4i2 — Atom selection</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#coordinate-ids" class="md-nav__link">Coordinate IDs</a>
+        </li>
+        <li class="md-nav__item"><a href="#selection-operators" class="md-nav__link">Selection Operators</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#examples-of-selection-commands" class="md-nav__link">Examples of Selection Commands</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/general/atom_selection.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="ccp4i2-atom-selection">
+<h1 id="general-atom-selection--page-root">CCP4i2 — Atom selection<a class="headerlink" href="#general-atom-selection--page-root" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="CCP4i1Projects.html">CCP4i projects</a></p>
+<p><a class="reference external" href="data_files.html">Experimental data</a></p>
+<p><a class="reference external" href="model_data.html">Model data</a></p>
+<p><a class="reference external" href="atom_selection.html">Atom selection</a></p>
+<p><a class="reference external" href="servers.html">Servers</a></p>
+<div class="content docutils container">
+<p class="rubric" id="contents">Contents</p>
+<p><a class="reference external" href="#cids">Coordinate Ids</a>
+<a class="reference external" href="#selection_operators">Selection operators</a>
+<a class="reference external" href="#examples">Examples of selection commands</a></p>
+</div>
+<section id="coordinate-ids">
+<h2 id="coordinate-ids">Coordinate IDs<a class="headerlink" href="#coordinate-ids" title="Permalink to this heading">¶</a></h2>
+<p>A coordinate ID is an text string that has the following format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">mdl</span><span class="o">/</span><span class="n">chn</span><span class="o">/</span><span class="n">seq</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">ic</span><span class="o">/</span><span class="n">atm</span><span class="p">[</span><span class="n">elm</span><span class="p">]:</span><span class="n">aloc</span>
+</pre></div>
+</div>
+<p>where</p>
+<table>
+<tbody>
+<tr class="row-odd"><td><p><strong>Item</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>mdl</p></td>
+<td><p>the number of the model (usually an NMR model)</p></td>
+</tr>
+<tr class="row-odd"><td><p>chn</p></td>
+<td><p>chain ID</p></td>
+</tr>
+<tr class="row-even"><td><p>seq</p></td>
+<td><p>residue sequence number</p></td>
+</tr>
+<tr class="row-odd"><td><p>res</p></td>
+<td><p>residue name</p></td>
+</tr>
+<tr class="row-even"><td><p>ic</p></td>
+<td><p>residue insertion code</p></td>
+</tr>
+<tr class="row-odd"><td><p>atm</p></td>
+<td><p>atom name</p></td>
+</tr>
+<tr class="row-even"><td><p>elm</p></td>
+<td><p>chemical element ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>aloc</p></td>
+<td><p>alternative location indicator</p></td>
+</tr>
+</tbody>
+</table>
+<p>The residue name and atom element type are usually redundant, that is
+they are not essential to uniquely identify an atom, and do not need to
+be included when entering a CID. But note that all spaces in the
+coordinate ID are ignored and this means that certain atom names will be
+interpreted correctly only if the chemical element name is supplied
+(compare Calcium CA[CA] and Carbon in alpha-position CA[C]).</p>
+<p>Any item in the coordinate ID may be replaced by a wildcard “*”, which
+means an indefinite value for that item. The wildcard value is
+automatically implied for any missing item except the chain ID,
+insertion code and alternative location indicator:</p>
+<ul class="simple">
+<li><p>A missing chain ID is interpreted as an empty ID “” if there is a
+slash “/” after it. In all other cases, the missing chain ID is
+interpreted as a wildcard “*”.</p></li>
+<li><p>A missing insertion code is interpreted as a wildcard “*” if the
+residue sequence number is not specified or set to a wildcard. In all
+other cases, a missing insertion code is interpreted as “” (‘no
+insertion code’).</p></li>
+<li><p>A missing alternative location indicator is defaulted to a wildcard
+“*” if no atom name or chemical element name is given. If any value
+for atom and/or chemical element name is given , even though a
+wildcard, then a missing alternative location indicator is defaulted
+to “” (‘no alternative location indicator’).</p></li>
+</ul>
+<p>A coordinate ID may be incomplete. Below are the rules for
+interpretation of incomplete IDs. Curling brackets {..} denote parts of
+an ID string that may be omitted as a whole:</p>
+<ol class="arabic simple">
+<li><p>If the ID starts with slash “/” then it is interpreted as /mdl { /chn
+{ /seq(res).ic { /atm[elm]:aloc }}}</p></li>
+<li><p>If the ID starts with a letter: chn { /seq(res).ic { /atm[elm]:aloc
+}}</p></li>
+<li><p>If ID starts with a (possibly negative) number, bracket “(” or dot
+“.”: seq(res).ic { /atm[elm]:aloc }</p></li>
+<li><p>If none of the previous cases apply but the ID string contains square
+bracket “[” or colon “:”, it is interpreted as atm[elm]:aloc</p></li>
+</ol>
+<p>Below are examples of valid coordinate IDs:</p>
+<table>
+<tbody>
+<tr class="row-odd"><td><p><strong>Coordinate ID</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>/1/A/33(SER).B/CA[C].A</p></td>
+<td><p>model 1, chain A, residue SER with
+sequence number 33 and insertion code B,
+C-alpha atom in alternative location A.</p></td>
+</tr>
+<tr class="row-odd"><td><p>/1/A/<a href="#id1"><span class="problematic" id="id2">*</span></a>(SER).*</p></td>
+<td><p>any SER residue in chain A, model 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>/1/A/(SER)</p></td>
+<td><p>any SER residue with no insertion code in
+chain A, model 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>/1//(SER)</p></td>
+<td><p>any SER residue with no insertion code in
+chain without a chain ID, model 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>/1/A/<em>.</em>/CA[C]</p></td>
+<td><p>any C-alpha atom with no alternative
+location indicator in chain A, model 1, in
+residues with any sequence number and
+insertion code.</p></td>
+</tr>
+<tr class="row-odd"><td><p>/1/A/<a href="#id3"><span class="problematic" id="id4">*</span></a>/CA[C]</p></td>
+<td><p>any C-alpha atom with no alternative
+location indicator in chain A, model 1, in
+residues with any sequence number and no
+insertion code.</p></td>
+</tr>
+<tr class="row-even"><td><p>A/<a href="#id5"><span class="problematic" id="id6">*</span></a>/CA</p></td>
+<td><p>any C-alpha or Calcium atom with no
+alternative location indicator in chain A
+of any model, in residues with any
+sequence number and no insertion code.</p></td>
+</tr>
+<tr class="row-odd"><td><p>CA[C]</p></td>
+<td><p>any C-alpha atom with no alternative
+location indicator in any chain, any
+model, in residues with any sequence
+number and no insertion code.</p></td>
+</tr>
+<tr class="row-even"><td><p>CA</p></td>
+<td><p>any atom of chain CA with no alternative
+location indicator, in any model, in
+residues with any sequence number and no
+insertion code.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br/></div>
+</div>
+<p>The following coordinate IDs are incorrect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>   <span class="o">/</span><span class="n">A</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="n">CA</span><span class="p">[</span><span class="n">C</span><span class="p">]</span>      <span class="n">stating</span> <span class="k">with</span> <span class="n">a</span> <span class="n">slash</span> <span class="n">implies</span> <span class="n">that</span> <span class="n">the</span> <span class="n">model</span> <span class="n">number</span> <span class="n">will</span> <span class="n">be</span> <span class="n">given</span>
+<span class="mf">2.</span>   <span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">CG</span><span class="p">[</span><span class="n">C</span><span class="p">]</span>         <span class="n">the</span> <span class="n">residue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="mf">3.</span>   <span class="o">/-</span><span class="mi">15</span>             <span class="n">stating</span> <span class="k">with</span> <span class="n">a</span> <span class="n">slash</span> <span class="n">implies</span> <span class="n">that</span> <span class="n">the</span> <span class="n">model</span> <span class="n">number</span> <span class="n">will</span> <span class="n">be</span> <span class="n">given</span>
+<span class="mf">4.</span>   <span class="o">*/*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">.*/*</span><span class="p">[</span><span class="o">*</span><span class="p">]:</span><span class="o">*</span>
+</pre></div>
+</div>
+</section>
+<section id="selection-operators">
+<h2 id="selection-operators">Selection Operators<a class="headerlink" href="#selection-operators" title="Permalink to this heading">¶</a></h2>
+<p>Complex selection commands are built up from CIDs, aliases and commands
+connected by the operators</p>
+<table>
+<tbody>
+<tr class="row-odd"><td><p><em>a</em><strong>or</strong><em>b</em></p></td>
+<td><p>select all atoms defined by <em>a</em> and <em>b</em></p></td>
+</tr>
+<tr class="row-even"><td><p><em>a</em><strong>and</strong><em>b</em></p></td>
+<td><p>select only the atoms in both <em>a</em> and <em>b</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>not</strong><em>a</em></p></td>
+<td><p>select atoms that are not in <em>a</em></p></td>
+</tr>
+<tr class="row-even"><td><p><em>a</em><strong>xor</strong><em>b</em></p></td>
+<td><p>select all atoms that are in <em>a</em> or <em>b</em> but
+not in both</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>a</em><strong>excl</strong><em>b</em></p></td>
+<td><p>select the atoms that are in <em>a</em> but exclude
+those in <em>b</em>. This is equivalent to ‘and not’.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The selection components can also be grouped by using curly brace. Note
+that curly brace are used to be distinct from the brackets used to
+denote residue types in the CID.</p>
+<section id="examples-of-selection-commands">
+<h3 id="examples-of-selection-commands">Examples of Selection Commands<a class="headerlink" href="#examples-of-selection-commands" title="Permalink to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line"><br/></div>
+<div class="line"><strong>(GLU,ASP)/(O) and neighb (HIS)/NE2,ND1 5</strong></div>
+<div class="line">Select oxygen atoms in glutamic acid or aspartic acid residues within
+5A of the ND1 or NE2 of a histidine residue</div>
+<div class="line"><strong>{ /CA,N,C,O and {A/10-25 or A/35-40} } or (MTX)</strong></div>
+<div class="line">Select the main chain atoms for two given ranges of residues and any
+residue with residue name MTX</div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2020, CCP4.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.2.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

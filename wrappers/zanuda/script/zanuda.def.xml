@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginTitle>Zanuda</pluginTitle>
+        <pluginName>zanuda</pluginName>
+        <userId>andrey.lebedev@stfc.ac.uk</userId>
+    </ccp4i2_header>
+    <ccp4i2_body id="zanuda">
+        <container id="inputData">
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <ifAtomSelection>True</ifAtomSelection>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="AVERAGE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+            </content>
+            <content id="ABCDOUT">
+                <className>CPhsDataFile</className>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CRefinementPerformance</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

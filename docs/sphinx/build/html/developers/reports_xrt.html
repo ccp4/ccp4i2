@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#00020a">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>CCP4I2 Generating Reports using XRT &#8212; CCP4i2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/contentui.css" />
+    <link rel="stylesheet" type="text/css" href="https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/contentui.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CCP4I2 Developers: Project Based Testing" href="project_based_testing.html" />
+    <link rel="prev" title="Pimple File Format" href="pimple.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#005BBB data-md-color-accent=yellow>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" id="__gitlab"><path fill="currentColor" d="M93.667 473.347l90.684-279.097H2.983l90.684 279.097z" transform="translate(156.198 1.16)"/><path fill="currentColor" d="M221.333 473.345L130.649 194.25H3.557l217.776 279.095z" transform="translate(28.531 1.16)" opacity=".7"/><path fill="currentColor" d="M32 195.155L4.441 279.97a18.773 18.773 0 0 0 6.821 20.99l238.514 173.29L32 195.155z" transform="translate(.089 .256)" opacity=".5"/><path fill="currentColor" d="M2.667-84.844h127.092L75.14-252.942c-2.811-8.649-15.047-8.649-17.856 0L2.667-84.844z" transform="translate(29.422 280.256)"/><path fill="currentColor" d="M2.667 473.345L93.351 194.25h127.092L2.667 473.345z" transform="translate(247.198 1.16)" opacity=".7"/><path fill="currentColor" d="M221.334 195.155l27.559 84.815a18.772 18.772 0 0 1-6.821 20.99L3.557 474.25l217.777-279.095z" transform="translate(246.307 .256)" opacity=".5"/><path fill="currentColor" d="M130.667-84.844H3.575l54.618-168.098c2.811-8.649 15.047-8.649 17.856 0l54.618 168.098z" transform="translate(336.974 280.256)"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#developers/reports_xrt" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="CCP4i2  documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CCP4i2  documentation</span>
+          <span class="md-header-nav__topic"> CCP4I2 Generating Reports using XRT </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">CCP4i2  documentation</a></li>
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">Developer Notes</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="CCP4i2 documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="CCP4i2 documentation">CCP4i2  documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/ccp4i2/rstdocs" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__gitlab" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#developers-reports-xrt--page-root" class="md-nav__link">CCP4I2 Generating Reports using XRT</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#introduction" class="md-nav__link">Introduction</a>
+        </li>
+        <li class="md-nav__item"><a href="#container-tags-report-fold-if-ifnot-and-loop" class="md-nav__link">Container tags: <report>, <fold>, <if>, <ifnot> and <loop></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#report" class="md-nav__link"><report></a>
+        </li>
+        <li class="md-nav__item"><a href="#fold" class="md-nav__link"><fold></a>
+        </li>
+        <li class="md-nav__item"><a href="#if" class="md-nav__link"><if></a>
+        </li>
+        <li class="md-nav__item"><a href="#ifnot" class="md-nav__link"><ifnot></a>
+        </li>
+        <li class="md-nav__item"><a href="#loop" class="md-nav__link"><loop></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#content-tags-text-copy-table-graph-status-picture-launcher-help" class="md-nav__link">Content tags: <text>, <copy>, <table>, <graph>, <status>, <picture>, <launcher>, <help></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#text" class="md-nav__link"><text></a>
+        </li>
+        <li class="md-nav__item"><a href="#copy" class="md-nav__link"><copy></a>
+        </li>
+        <li class="md-nav__item"><a href="#table" class="md-nav__link"><table></a>
+        </li>
+        <li class="md-nav__item"><a href="#graph" class="md-nav__link"><graph></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#title" class="md-nav__link"><title></a>
+        </li>
+        <li class="md-nav__item"><a href="#data" class="md-nav__link"><data></a>
+        </li>
+        <li class="md-nav__item"><a href="#table-1" class="md-nav__link"><table></a>
+        </li>
+        <li class="md-nav__item"><a href="#plot" class="md-nav__link"><plot></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#picture" class="md-nav__link"><picture></a>
+        </li>
+        <li class="md-nav__item"><a href="#launch" class="md-nav__link"><launch></a>
+        </li>
+        <li class="md-nav__item"><a href="#help" class="md-nav__link"><help></a>
+        </li>
+        <li class="md-nav__item"><a href="#inputdata-outputdata-and-jobdetails" class="md-nav__link"><inputData>, <outputData> and <jobDetails</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#other-tags" class="md-nav__link">Other tags</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#insertxrt" class="md-nav__link"><insertXrt></a>
+        </li>
+        <li class="md-nav__item"><a href="#comment" class="md-nav__link"><comment></a>
+        </li>
+        <li class="md-nav__item"><a href="#drilldown" class="md-nav__link"><drillDown></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#testing-a-report-template" class="md-nav__link">Testing A Report Template</a>
+        </li>
+        <li class="md-nav__item"><a href="#appendix-a-the-database-data-accessible-from-an-xrt-file" class="md-nav__link">Appendix A - The Database data accessible from an XRT file</a>
+        </li>
+        <li class="md-nav__item"><a href="#appendix-b-the-ccp4mg-scene-file" class="md-nav__link">Appendix B - The CCP4mg scene file</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/developers/reports_xrt.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="ccp4i2-generating-reports-using-xrt">
+<h1 id="developers-reports-xrt--page-root">CCP4I2 Generating Reports using XRT<a class="headerlink" href="#developers-reports-xrt--page-root" title="Permalink to this heading">¶</a></h1>
+<p><strong>This document describes using the XRT mechanism to generate reports -
+the</strong><a class="reference external" href="./reports.html">Python api</a><strong>is now the preferred method.</strong></p>
+<p>The report generator is a work-in-progress - please let Liz know about
+any features that you need or any holes in the (acknowledged to be
+sketchy) documentation.</p>
+<section id="introduction">
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The report generator tool (CCP4ReportGenerator.py) expects two input
+files:</p>
+<ol class="arabic simple">
+<li><p>Either an <strong>xrt</strong> report template file or a Python script which
+defines the layout of the final report</p></li>
+<li><p>One or more xml data files output by either a script or a program
+which provide the data that is substituted into the report. These
+files must be valid xml with unique paths to the required data but
+otherwise there is no restriction on the format.</p></li>
+</ol>
+<p>From these the report generator will create an html report file (in
+principle it could create reports in alternative formats). But note that
+the report may contain Qt widgets that can only be displayed in the
+CCP4i2 browser. The report generator is run automatically within the
+CCP4i2 interface when a job completes. Some extra features such as
+input/output data and job status are added to the report automatically
+so need not be specified explicitly in the report template. The same
+template mechanism can be used to produce ‘real time’ reports while the
+job is running.</p>
+<div class="line-block">
+<div class="line">A task developer needs to write the template file as:</div>
+<div class="line">$CCP4I2/tasks/<em>mytask</em>/<em>mytask</em>.xrt or</div>
+<div class="line">$CCP4I2/tasks/<em>mytask</em>/<em>mytask</em>.running.xrt (for a ‘real-time’ updated
+report)</div>
+</div>
+<p>Presently the best example xrt is in the buccaneer_build_refine task. To
+understand the xrt file you need to be familiar with XPATH (see the
+<a class="reference external" href="http://www.w3schools.com/xpath/default.asp">w3schools tutorial</a>)
+which is used to reference the data in the XML files. A common attribute
+for elements of the xrt is ‘select’ whose value should be an XPATH to an
+element in the program xml. The text of this element is then substituted
+into the report. An alternative source of data is the CCP4i2 database
+which contains the jobs input/output files and other data that is listed
+below in <a class="reference external" href="appendix%20a">Appendix A</a>. This data is accessed using a
+‘database’ attribute whose value should be an xpath-style reference to
+the data outlined in the appendix. As with the select attribute the
+value from the database is substituted into the report.</p>
+<p>XRT files are constructed from two types of tags: container tags which
+may contain any other container or content tags, and content tags which
+may only contain specified elements. The top level tag of every XRT file
+is the &lt;report&gt; container.</p>
+</section>
+<section id="container-tags-report-fold-if-ifnot-and-loop">
+<h2 id="container-tags-report-fold-if-ifnot-and-loop">Container tags: &lt;report&gt;, &lt;fold&gt;, &lt;if&gt;, &lt;ifnot&gt; and &lt;loop&gt;<a class="headerlink" href="#container-tags-report-fold-if-ifnot-and-loop" title="Permalink to this heading">¶</a></h2>
+<section id="report">
+<h3 id="report">&lt;report&gt;<a class="headerlink" href="#report" title="Permalink to this heading">¶</a></h3>
+<p>This is the top level tag of a report document. It may contain other
+container tags and content tags.</p>
+</section>
+<section id="fold">
+<h3 id="fold">&lt;fold&gt;<a class="headerlink" href="#fold" title="Permalink to this heading">¶</a></h3>
+<p>This tag allows a detail section to be added whose content is hidden
+until a ‘more detail’ button is clicked. It may contain other container
+tags (including other folds) and content tags.</p>
+<table id="id2">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>label</strong></p></td>
+<td><p><em>Show details</em></p></td>
+<td><p>Label to appear on fold describing fold contents.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="if">
+<h3 id="if">&lt;if&gt;<a class="headerlink" href="#if" title="Permalink to this heading">¶</a></h3>
+<p>Only act on the contents of the ‘if’ container if the ‘select’ element
+in the program xml contains the text ‘True’.</p>
+<table id="id3">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>select</strong></p></td>
+<td><p>Path of xml data element which can be ‘True’ or ‘False’.</p></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a class="reference external" href="http://www.w3schools.com/xpath/default.asp">w3schools
+tutorial</a> to explain path
+syntax.</p>
+</section>
+<section id="ifnot">
+<h3 id="ifnot">&lt;ifnot&gt;<a class="headerlink" href="#ifnot" title="Permalink to this heading">¶</a></h3>
+<p>Only act on the contents of the ‘if’ block if the ‘select’ element in
+the program xml contains the text ‘False’.</p>
+<table id="id4">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>select</strong></p></td>
+<td><p>Path of xml data element which can be ‘True’ or ‘False’.</p></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a class="reference external" href="http://www.w3schools.com/xpath/default.asp">w3schools
+tutorial</a> to explain path
+syntax.</p>
+</section>
+<section id="loop">
+<h3 id="loop">&lt;loop&gt;<a class="headerlink" href="#loop" title="Permalink to this heading">¶</a></h3>
+<p>Apply the same processing (i.e. the xrt within the loop block) to all
+elements found by applying the ‘select’ criteria to the data file.</p>
+<table id="id5">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>select</strong></p></td>
+<td><p>Path of xml data elements.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The files $CCP4I2/test/data/test_report_loops.xrt and
+$CCP4I2/test/data/test_report_loops.xml demonstrate this and can be run
+in the <em>ccp4py</em> interpreter by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="kn">from</span> <span class="nn">report.CCP4ReportParser</span> <span class="kn">import</span> <span class="n">test</span>
+<span class="n">prompt</span><span class="o">&gt;</span> <span class="n">test</span><span class="p">(</span><span class="s1">'test/data/test_report_loops.xrt'</span><span class="p">,</span><span class="s1">'test/data/test_report_loops.xml'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting file, <em>report.html</em> is placed in your current working
+directory.</p>
+</section>
+</section>
+<section id="content-tags-text-copy-table-graph-status-picture-launcher-help">
+<h2 id="content-tags-text-copy-table-graph-status-picture-launcher-help">Content tags: &lt;text&gt;, &lt;copy&gt;, &lt;table&gt;, &lt;graph&gt;, &lt;status&gt;, &lt;picture&gt;, &lt;launcher&gt;, &lt;help&gt;<a class="headerlink" href="#content-tags-text-copy-table-graph-status-picture-launcher-help" title="Permalink to this heading">¶</a></h2>
+<section id="text">
+<h3 id="text">&lt;text&gt;<a class="headerlink" href="#text" title="Permalink to this heading">¶</a></h3>
+<p>The text tag is used to add text to a report. The text may come from one
+of two sources - it may be included in the body of the tag (e.g.
+&lt;text&gt;Job title:&lt;text&gt;), or it may be extracted from the task XML file
+by specifying an XPATH in the select attribute (e.g. &lt;text
+select=”//job”/&gt;).</p>
+<table id="id6">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>if</strong></p></td>
+<td></td>
+<td><p>Name of parameter in the XML which must be True
+for text to be output</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>select</strong></p></td>
+<td></td>
+<td><p>Path of xml data element from which to source
+the text</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>tag.text</strong></p></td>
+<td></td>
+<td><p>Text explicitly specified in the XRT</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="copy">
+<h3 id="copy">&lt;copy&gt;<a class="headerlink" href="#copy" title="Permalink to this heading">¶</a></h3>
+<p>Copy block of XML directly from the data file. The block should be valid
+html.</p>
+<table id="id7">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>select</strong></p></td>
+<td></td>
+<td><p>Path of xml data element from which to source the
+text to be copied</p></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a class="reference external" href="http://www.w3schools.com/xpath/default.asp">w3schools
+tutorial</a> to explain path
+syntax.</p>
+</section>
+<section id="table">
+<h3 id="table">&lt;table&gt;<a class="headerlink" href="#table" title="Permalink to this heading">¶</a></h3>
+<p>The table tag inserts a table into the report. The table layout and
+headers are specified in the XRT report file, the values are extracted
+from the task XML.The table element has &lt;data&gt; sub-elements which
+specify the column(/row) data.The table element can take two attributes,
+transpose changes the orientation of the table, and select specifies an
+XPATH expression which specifies the elements containing row data to be
+selected. Both are optional. Normally the select element will be
+specified and returns a list of XML elements from the task XML, each of
+which contains all the information for a single table row. Occasionally
+the data in the task XML may not be in a suitable form for this, in
+which case the attribute is omitted and the &lt; &lt;data&gt; select attributes
+used on their own. The risk of using this approach is that there is now
+no guarantee that the columns are the same length.&lt;table&gt; &lt;data&gt; Table
+data elements are used to specify column(/row) data. The data element
+can take four attributes: title, subtitle, expr and select. The title
+attribute gives the column header. The subtitle attribute allows tables
+with nested headers. The select attribute specifies an xpath with
+selects the data to be displayed. If a row element has been selected in
+the &lt;table&gt; tag, then this should specify a unique element within that
+row element. If no row element has been selected in the &lt;table&gt; tag, the
+select should return a list of elements which will become the column
+values. In the latter form there is no guarantee columns will be of the
+same length.The expr tag allow a python expression to be applied to the
+value before display.See example below. &lt;data&gt; with no select but
+containing a list of &lt;value&gt; elements should be implemented to allow
+lists of row labels, for example.</p>
+<table id="id8">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>select</strong></p></td>
+<td><p>Path to XML file data</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>transpose</strong></p></td>
+<td><p>If this attribute is set then table is horizontal</p></td>
+</tr>
+</tbody>
+</table>
+<table id="id9">
+<caption><span class="caption-text"><strong>Data Element Attributes</strong></span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>title</strong></p></td>
+<td></td>
+<td><p>Text to appear in table</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>subtitle</strong></p></td>
+<td></td>
+<td><p>Text to appear in table</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>select</strong></p></td>
+<td></td>
+<td><p>Path to data item releative to the table select
+attribute value</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>expr</strong></p></td>
+<td></td>
+<td><p>??</p></td>
+</tr>
+</tbody>
+</table>
+<p>This example selects data from a refmac task XML file and produces a
+table as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">table</span> <span class="n">select</span><span class="o">=</span><span class="s2">"//Overall_stats/stats_vs_cycle/new_cycle"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">data</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Cycle"</span>    <span class="n">select</span><span class="o">=</span><span class="s2">"cycle"</span>    <span class="n">expr</span><span class="o">=</span><span class="s2">"int(x)-1"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">data</span> <span class="n">title</span><span class="o">=</span><span class="s2">"R-factor"</span> <span class="n">select</span><span class="o">=</span><span class="s2">"r_factor"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">data</span> <span class="n">title</span><span class="o">=</span><span class="s2">"R-free"</span>   <span class="n">select</span><span class="o">=</span><span class="s2">"r_free"</span>   <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">data</span> <span class="n">title</span><span class="o">=</span><span class="s2">"RMS deviations"</span> <span class="n">subtitle</span><span class="o">=</span><span class="s2">"Bond"</span>   <span class="n">select</span><span class="o">=</span><span class="s2">"rmsBOND"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">data</span>   <span class="n">subtitle</span><span class="o">=</span><span class="s2">"Angle"</span>  <span class="n">select</span><span class="o">=</span><span class="s2">"rmsANGLE"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">data</span><span class="o">&gt;</span> <span class="n">subtitle</span><span class="o">=</span><span class="s2">"Chiral"</span> <span class="n">select</span><span class="o">=</span><span class="s2">"rmsCHIRAL"</span> <span class="o">/&gt;&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="graph">
+<h3 id="graph">&lt;graph&gt;<a class="headerlink" href="#graph" title="Permalink to this heading">¶</a></h3>
+<p>This is an interface to the <strong>pimple</strong> graph display program which will
+be shown inline within the report. <em>pimple</em> can display multiple plots
+in one window with two combo-boxes to allow selection of the current
+plot. The left-hand combo-box will select a data table and the
+right-hand box will select between views on that table. The <em>graph</em>
+block described here can only specify one data table with, optionally,
+multiple views specified by the <em>plot</em> block. Multiple <em>graph</em> blocks
+can be grouped in a <em>graphgroup</em> block to be displayed in the same
+<em>pimple</em> instance with the <em>title</em> attributes from each graph apperaring
+in the left-hand combo-box.</p>
+<p>The <em>graph</em> element can have a <em>select</em> attribute that gives the xpath
+for a base element in the xml from which subsequent xpath selections are
+made.</p>
+<p>The <em>graph</em> element has four possible sub-elements:</p>
+<section id="title">
+<h4 id="title">&lt;title&gt;<a class="headerlink" href="#title" title="Permalink to this heading">¶</a></h4>
+<p>The graph title which will appear in the left-hand combo-box in <em>pimple</em></p>
+</section>
+<section id="data">
+<h4 id="data">&lt;data&gt;<a class="headerlink" href="#data" title="Permalink to this heading">¶</a></h4>
+<p>These elements work the same as the <em>data</em> sub-elements of <em>table</em> to
+extract data that is dispersed throughout the xml file.</p>
+</section>
+<section id="table-1">
+<span id="id1"></span><h4 id="table-1">&lt;table&gt;<a class="headerlink" href="#table-1" title="Permalink to this heading">¶</a></h4>
+<p>An alternative means to extract a table from the xml file if the data is
+present in a format acceptable for the <em>CCP4Table</em> element in <em>pimple</em>
+input (i.e. as rows of space separated data values). This element should
+have a <em>select</em> attribute that gives the xpath of an xml element
+containing a table.</p>
+</section>
+<section id="plot">
+<h4 id="plot">&lt;plot&gt;<a class="headerlink" href="#plot" title="Permalink to this heading">¶</a></h4>
+<p>This block contains the plotting directives for <em>pimple</em>. The <em>plot</em>
+block of the xrt is copied straight to the output for processing by
+<em>pimple</em> except for any plot elements with <em>select</em> attributes: for
+these the text from the element in the data xml specified by the search
+xpath is copied into the text of the <em>plot</em> element and the select
+attribute is deleted.</p>
+<p>It is also possible for the top-level <em>plot</em> element to have a <em>select</em>
+attribute which gives the xpath to a block of plot directives in the
+xml. In this case the plot directives will be taken from the xml; but,
+note, this abuses the principle that scientific data comes from the xml
+and presentation directives are in the xrt.</p>
+<p>There can be multiple <em>plot</em> blocks within one <em>graph</em> element - this
+implies that multiple views of the same data table are possible and are
+listed in the right-hand combo-box in <em>pimple</em>.</p>
+</section>
+</section>
+<section id="picture">
+<h3 id="picture">&lt;picture&gt;<a class="headerlink" href="#picture" title="Permalink to this heading">¶</a></h3>
+<p>Will insert a picture in the report with buttons to launch either CCP4mg
+or Coot with the same view. The picture is generated by CCP4mg which
+runs in background without appearing on the computer screen. CCP4mg
+needs a <em>scene.xml</em> file to specify what it is to display and save as a
+picture. The scene file specifies which data files (either coordinates
+or maps) are to be loaded and how they should be drawn. The drawing
+specification can be either a <em>simple scene</em> or generated using the
+CCP4mg Picture Wizard. Many other aspects of the display can also be
+specified using CCP4mg’s usual XML. The template for the scene.xml file
+can be incorporated directly iton the xrt file or (probably better)
+provided in a separate file that is incorporated using the <em>filename</em>
+attribute of the <a class="reference external" href="insertXrt">&lt;insertXrt&gt;</a> tag. Typically some
+parameters such as filenames need to be substituted into the scene.xml
+template and this should be done using <em>database</em> or <em>select</em> attributes
+to specify the source of the substituted data.</p>
+<p>A simple example is in the <em>buccaneer.xrt</em> where a picture element uses
+an <em>xrtInsert</em> element to specify a separate xrt file which contains the
+template for a CCP4mg scene file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;xrt:picture label="Final structure" &gt;
+&lt;xrtInsert filename=$CCP4I2/tasks/buccaneer/buccaneer.scene.xrt/&gt;
+&lt;/xrt:picture&gt;
+</pre></div>
+</div>
+<p>The contents of the CCP4mg scene file are explained in <a class="reference external" href="appendix%20b">Appendix
+B</a>.</p>
+<table id="id10">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p>template</p></td>
+<td></td>
+<td><p>Name of CCP4mg picture definition file template
+(see notes above)</p></td>
+</tr>
+<tr class="row-even"><td><p>label</p></td>
+<td></td>
+<td><p>label to appear by picture</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="launch">
+<h3 id="launch">&lt;launch&gt;<a class="headerlink" href="#launch" title="Permalink to this heading">¶</a></h3>
+<p>Insert a button in the report to launch another viewer. Currently
+supported CCP4mg and Coot. The initial view in CCP4mg can be set by
+specifying a <em>pictureDefinitionFile</em> attribute (see notes on &lt;picture&gt;
+tag).</p>
+<table id="id11">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>exe</strong></p></td>
+<td></td>
+<td><p>Name of program to launch
+(ccp4mg/coot)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>label</strong></p></td>
+<td></td>
+<td><p>Label to appear on launch
+button</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>pictureDefinitionFile</strong></p></td>
+<td></td>
+<td><p>Only relevant for ccp4mg -
+specify picture definition
+file name</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ccp4_data_id</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="help">
+<h3 id="help">&lt;help&gt;<a class="headerlink" href="#help" title="Permalink to this heading">¶</a></h3>
+<p>This puts a <em>Help</em> link by tables, graphs etc. and is highly
+recommended! The <em>ref</em> attribute gives the link reference which can be a
+file path starting with an environment variable (eg $CCP4I2) and the
+appropriate full path will be substituted into the html.</p>
+<table id="id12">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p>label</p></td>
+<td><p>Text for help link</p></td>
+</tr>
+<tr class="row-even"><td><p>ref</p></td>
+<td><p>Link reference for help</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="inputdata-outputdata-and-jobdetails">
+<h3 id="inputdata-outputdata-and-jobdetails">&lt;inputData&gt;, &lt;outputData&gt; and &lt;jobDetails<a class="headerlink" href="#inputdata-outputdata-and-jobdetails" title="Permalink to this heading">¶</a></h3>
+<p>These are usually set automatically by the report generator and need not
+be in the XRT file.</p>
+</section>
+</section>
+<section id="other-tags">
+<h2 id="other-tags">Other tags<a class="headerlink" href="#other-tags" title="Permalink to this heading">¶</a></h2>
+<section id="insertxrt">
+<h3 id="insertxrt">&lt;insertXrt&gt;<a class="headerlink" href="#insertxrt" title="Permalink to this heading">¶</a></h3>
+<p>This provides a mechanism to copy fragments of xrt code generated by the
+program or script into the xrt template. Or to insert standard fragments
+of from any specified file. The copying is done in the report generator
+as part of a pre-processor step. The <em>select</em> attribute should be used
+to specify an element in the program xml file that contains one or more
+xrt elements that are copied into the xrt replacing the <em>insertXrt</em>
+element. Note that the ‘top’ level element specified by <em>select</em> is not
+copied.</p>
+<p>Alternatively the <em>filename</em> attribute should give the full path name of
+a file to be inserted. This path may begin with the ‘environment
+variable’ $CCP4I2 to specify the ccp4i2 directory.</p>
+<table id="id13">
+<caption><span class="caption-text">Attributes</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>select</strong></p></td>
+<td></td>
+<td><p>Path of element in program output to be
+inserted in the report template specification</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>filename</strong></p></td>
+<td></td>
+<td><p>Full path name for an XML file whose contents
+will be incorporated into the xrt script.</p></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a class="reference external" href="http://www.w3schools.com/xpath/default.asp">w3schools
+tutorial</a> to explain path
+syntax. Note that the xrt in the program output xml must specify
+namespaces so, for example, to insert a plot specification the program
+xml will be</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">plotDefinition</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">plot</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">xrt</span><span class="o">=</span><span class="s2">"http://www.ccp4.ac.uk/xrt"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Completeness</span> <span class="n">by</span> <span class="n">cycle</span>
+<span class="o">....</span>
+<span class="o">&lt;/</span><span class="n">plot</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">plotDefinition</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>and the xrt file will contain..</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xrt</span><span class="p">:</span><span class="n">insertXrt</span> <span class="n">select</span><span class="o">=</span><span class="s2">"plotDefinition"</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="comment">
+<h3 id="comment">&lt;comment&gt;<a class="headerlink" href="#comment" title="Permalink to this heading">¶</a></h3>
+<p>The enclosed comment text will not be interpreted into the report.</p>
+</section>
+<section id="drilldown">
+<h3 id="drilldown">&lt;drillDown&gt;<a class="headerlink" href="#drilldown" title="Permalink to this heading">¶</a></h3>
+<p>Handling for drill down to reports from sub-jobs is pending. Probably
+will be handled automatically.</p>
+</section>
+</section>
+<section id="testing-a-report-template">
+<h2 id="testing-a-report-template">Testing A Report Template<a class="headerlink" href="#testing-a-report-template" title="Permalink to this heading">¶</a></h2>
+<p>There is a simple script $CCP4I2/bin/makeReport that can be used to test
+a template. The console command is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">makeReport</span> <span class="n">xrtFileName</span> <span class="n">xmlFileName</span> <span class="p">[</span><span class="o">-</span><span class="n">j</span> <span class="n">jobId</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">outputFileName</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The jobId allows the report generator to access the database for extra
+info without which some of the features will be missing. The jobId is
+not the same as the job number seen on the gui. A test value can be
+found as described below. <em>-p</em> list the resultant file to console.</p>
+<p>Alternatively the report generator can be run from the <a class="reference external" href="./introduction.html#console">i2 Python
+console</a> with the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">report</span> <span class="kn">import</span> <span class="n">CCP4ReportParser</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">CCP4ReportParser</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">xrtfile</span><span class="p">,</span><span class="n">xmldatafile</span><span class="p">,</span><span class="n">jobId</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will list the report to the terminal and write it to <em>report.html</em>
+in the running directory. The <em>jobId</em> parameter is used to retrieve
+information from the database. The best way to get this is to run a job
+of the appropriate task from the gui and then look in the meta data at
+the top of the params.xml file.</p>
+</section>
+<section id="appendix-a-the-database-data-accessible-from-an-xrt-file">
+<h2 id="appendix-a-the-database-data-accessible-from-an-xrt-file">Appendix A - The Database data accessible from an XRT file<a class="headerlink" href="#appendix-a-the-database-data-accessible-from-an-xrt-file" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span> <span class="o">/</span> <span class="n">XYZIN</span>
+          <span class="o">/</span> <span class="n">HKLIN</span>
+          <span class="o">/</span> <span class="n">XYZOUT</span>
+          <span class="o">/</span> <span class="n">HKLOUT</span>
+          <span class="n">etc</span>
+<span class="n">runtime</span>
+<span class="n">status</span>
+<span class="n">taskname</span>
+<span class="n">jobid</span>
+<span class="n">jobnumber</span>
+<span class="n">projectid</span>
+<span class="n">projectname</span>
+<span class="n">tasktitle</span>
+<span class="n">fileroot</span>
+<span class="n">descendentjobs</span>
+</pre></div>
+</div>
+</section>
+<section id="appendix-b-the-ccp4mg-scene-file">
+<h2 id="appendix-b-the-ccp4mg-scene-file">Appendix B - The CCP4mg scene file<a class="headerlink" href="#appendix-b-the-ccp4mg-scene-file" title="Permalink to this heading">¶</a></h2>
+<p>NB this will only work with recent nightly build versions of CCP4mg
+(post 16th Oct 2012).</p>
+<p>A simple example of scene template:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">scene</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">data</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">MolData</span> <span class="nb">id</span><span class="o">=</span><span class="s1">'id1'</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">filename</span> <span class="n">database</span><span class="o">=</span><span class="s2">"filenames/XYZOUT"</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">MolData</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">data</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">wizard</span><span class="o">&gt;&lt;</span><span class="n">template</span><span class="o">&gt;</span><span class="n">ribbons</span><span class="p">:</span><span class="n">colour</span> <span class="n">chains</span><span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">parameters</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">MolData1</span><span class="o">&gt;</span><span class="n">id1</span><span class="o">&lt;/</span><span class="n">MolData1</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">parameters</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">wizard</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">scene</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This template requires only one peice of substituted data - the <em>XYZOUT</em>
+file from the <em>database</em> is substituted as the filename for the
+<em>&lt;MolData&gt;&lt;filename&gt;</em> element to give the scene file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">&lt;</span><span class="n">ccp4i2_header</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">function</span><span class="o">&gt;</span><span class="n">MGSCENE</span><span class="o">&lt;/</span><span class="n">function</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">projectName</span><span class="o">&gt;</span><span class="n">s12</span><span class="o">&lt;/</span><span class="n">projectName</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">userId</span><span class="o">&gt;</span><span class="n">lizp</span><span class="o">&lt;/</span><span class="n">userId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ccp4iVersion</span><span class="o">&gt;</span><span class="mf">0.0.1</span><span class="o">&lt;/</span><span class="n">ccp4iVersion</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">jobId</span><span class="o">&gt;</span><span class="mi">66</span><span class="n">b40dd7146111e2875a3c0754185dfb</span><span class="o">&lt;/</span><span class="n">jobId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">projectId</span><span class="o">&gt;</span><span class="mi">969</span><span class="n">cdfae138111e2acd83c0754185dfb</span><span class="o">&lt;/</span><span class="n">projectId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">creationTime</span><span class="o">&gt;</span><span class="mi">14</span><span class="p">:</span><span class="mi">39</span> <span class="mi">12</span><span class="o">/</span><span class="n">Oct</span><span class="o">/</span><span class="mi">12</span><span class="o">&lt;/</span><span class="n">creationTime</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">jobNumber</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">jobNumber</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">ccp4i2_header</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">ccp4i2_body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">scene</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">data</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">MolData</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"id1"</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;/</span><span class="n">Users</span><span class="o">/</span><span class="n">lizp</span><span class="o">/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">test_projects</span><span class="o">/</span><span class="n">s12</span><span class="o">/</span><span class="n">CCP4_JOBS</span><span class="o">/</span><span class="n">job_4</span><span class="o">/</span><span class="n">XYZOUT</span><span class="o">.</span><span class="n">pdb</span><span class="o">&lt;/</span><span class="n">filename</span><span class="o">&gt;</span>
+       <span class="o">&lt;/</span><span class="n">MolData</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">data</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">wizard</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">template</span><span class="o">&gt;</span><span class="n">ribbons</span><span class="p">:</span><span class="n">colour</span> <span class="n">chains</span><span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">parameters</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">MolData1</span><span class="o">&gt;</span><span class="n">id1</span><span class="o">&lt;/</span><span class="n">MolData1</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">parameters</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">wizard</span><span class="o">&gt;</span>
+   <span class="o">&lt;/</span><span class="n">scene</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">ccp4i2_body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">ccp4</span><span class="p">:</span><span class="n">ccp4i2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This file has the standard CCP4i2 xml structure with a header containing
+metadata describing the provenance of the file. The body of the file is
+one or more <em>&lt;scene&gt;</em> elements. Each <em>&lt;scene&gt;</em> element contains a &lt;data&gt;
+block that specifies the files to be loaded and a <em>&lt;wizard&gt;</em> block that
+specifies how the data should be drawn using a CCP4mg wizard template.</p>
+<p>The &lt;data&gt; block should list the files to be loaded as <em>&lt;MolData&gt;</em> or
+<em>&lt;MapData&gt;</em> elements. These elements must have unique id attributes and
+a <em>&lt;filename&gt;</em> sub-element. Usually the actually filename will need to
+be substituted in from the filenames in the CCP4i2 database so the
+<em>database</em> attribute should be used to specify the source of the
+filename.</p>
+<p>The <em>&lt;wizard&gt;</em> element should contain a <em>&lt;template&gt;</em> sub-element that
+specifies the CCP4mg wizard template in the form <em>folder:template name</em>.
+A template can be selected from the existing wizard templates which can
+be viewed in CCP4mg or something appropriate can be created (see
+ccp4mg/help/picture_wizard.html and talk to Liz or Stuart). Picture
+wizard templates are partially a Python script which can apply some
+intelligence in setting up a display but they can also have some options
+which can be set. The options are in the <em>CHOICES</em> section of the wizard
+template file. The <em>&lt;wizard&gt;</em> sub-element <em>&lt;parameters&gt;</em> should contain
+sub-elements specifying values for the wizard ‘choices’ and particularly
+should provide values for <em>MolData</em> and <em>MapData</em> parameters which
+cross-refernce to the <em>id</em> attributes of the sub-elements of the
+<em>&lt;data&gt;</em> section. Note that although the wizard is mostly used in CCP4mg
+to setup the display of a single coordinate file it can also be used to
+specify the display of map objects and of multiple data objects.</p>
+<p>There is an alternative mechanism to specify a simple scene that does
+not use the wizard, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">scene</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">data</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">MolData</span> <span class="nb">id</span><span class="o">=</span><span class="s1">'id1'</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">filename</span> <span class="n">database</span><span class="o">=</span><span class="s2">"filenames/XYZOUT"</span><span class="o">/&gt;</span>
+       <span class="o">&lt;</span><span class="n">MolDisp</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">select</span><span class="o">&gt;</span><span class="n">peptide</span><span class="o">&lt;/</span><span class="n">select</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">colour</span><span class="o">&gt;</span><span class="n">bychain</span><span class="o">&lt;/</span><span class="n">colour</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span><span class="n">CYLINDERS</span><span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+       <span class="o">&lt;/</span><span class="n">MolDisp</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">MolData</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">MapData</span> <span class="nb">id</span><span class="o">=</span><span class="s1">'id2'</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">filename</span> <span class="n">database</span><span class="o">=</span><span class="s2">"filenames/HKLOUT"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">columns</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="mi">2</span><span class="n">FOFCWT</span> <span class="o">&lt;/</span><span class="n">F</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">PHI</span><span class="o">&gt;</span><span class="n">PH2FOFCWT</span> <span class="o">&lt;/</span><span class="n">PHI</span><span class="o">&gt;</span> <span class="o">&lt;/</span><span class="n">columns</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">difColumns</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="n">FOFCWT</span> <span class="o">&lt;/</span><span class="n">F</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">PHI</span><span class="o">&gt;</span><span class="n">PHFOFCWT</span> <span class="o">&lt;/</span><span class="n">PHI</span><span class="o">&gt;</span> <span class="o">&lt;/</span><span class="n">difColumns</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">model</span><span class="o">&gt;</span><span class="n">id1</span> <span class="o">&lt;/</span><span class="n">model</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">gridSize</span><span class="o">&gt;</span><span class="mf">0.5</span> <span class="o">&lt;/</span><span class="n">gridSize</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">contourUnits</span><span class="o">&gt;</span><span class="n">sigma</span> <span class="o">&lt;/</span><span class="n">contourUnits</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">MapDisp</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">contourLevel</span><span class="o">&gt;</span><span class="mi">3</span> <span class="o">&lt;/</span><span class="n">contourLevel</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">difference</span><span class="o">&gt;</span><span class="mi">1</span> <span class="o">&lt;/</span><span class="n">difference</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">MapDisp</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">MapData</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">data</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">scene</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <em>MolData</em> element can have one or more <em>MolDisp</em> sub-elements. Each
+<em>MolDisp</em> element should contain <em>select</em>, <em>colour</em> and <em>style</em> elements
+and can contain much more such as control of labels, visibility,
+flashing - see the CCP4mg documentation. (????). Note that a <em>select</em>
+attribute could be added to any of the elements so their values can be
+taken from the program output.</p>
+<p>Any of the aspects of CCP4mg presentation that can be controlled using
+the CCP4mg XML format can also be incorporated in the scene file.
+Probably the most useful feature is control of the view using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">centre_MolData</span><span class="o">&gt;</span><span class="n">id2</span> <span class="o">&lt;/</span><span class="n">centre_MolData</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">centre_selection</span><span class="o">&gt;</span><span class="n">A</span><span class="o">/</span><span class="mi">1170</span><span class="p">(</span><span class="n">DUP</span><span class="p">)</span> <span class="o">&lt;/</span><span class="n">centre_selection</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">orientation_auto</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">molData</span><span class="o">&gt;</span><span class="n">id2</span> <span class="o">&lt;/</span><span class="n">molData</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">selection</span><span class="o">&gt;</span><span class="n">A</span><span class="o">/</span><span class="mi">1170</span><span class="p">(</span><span class="n">DUP</span><span class="p">)</span> <span class="o">&lt;/</span><span class="n">selection</span><span class="o">&gt;</span> <span class="o">&lt;/</span><span class="n">orientation_auto</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">scale_auto</span><span class="o">&gt;</span><span class="mi">1</span> <span class="o">&lt;/</span><span class="n">scale_auto</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Here the <em>MolData</em> object and (optionally) an atom selection that will
+be the centre of the view are specified. The <em>orientation_auto</em> element
+then tells CCP4mg to try to find the best orientation to show a specied
+atom selection. <em>scale_auto</em> is a flag to CCP4mg to scale to zoom of the
+specified atom selelction rather than show all visible atoms.</p>
+<p>Alternatively the scale,orientation and centering can be specified
+explicitly. In this example variously other display parameters are set -
+these could also be used the the ‘auto’ view parameters shown above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">scale</span><span class="o">&gt;</span><span class="mf">58.0125</span>
+   <span class="o">&lt;</span><span class="n">orientation</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">q0</span><span class="o">&gt;</span><span class="mf">0.0134139428983</span> <span class="o">&lt;/</span><span class="n">q0</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">q1</span><span class="o">&gt;</span><span class="mf">0.336496398576</span> <span class="o">&lt;/</span><span class="n">q1</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">q2</span><span class="o">&gt;-</span><span class="mf">0.507403789037</span> <span class="o">&lt;/</span><span class="n">q2</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">q3</span><span class="o">&gt;-</span><span class="mf">0.793178186004</span><span class="o">/</span><span class="n">q3</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">orientation</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">centre_xyz</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">x</span><span class="o">&gt;-</span><span class="mf">23.676</span><span class="o">&lt;/</span><span class="n">x</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">y</span><span class="o">&gt;</span><span class="mf">8.538</span><span class="o">&lt;/</span><span class="n">y</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">z</span><span class="o">&gt;</span><span class="mf">5.262</span><span class="o">&lt;/</span><span class="n">z</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">centre_xyz</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">fog_enabled</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">fog_enabled</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">fog_near</span><span class="o">&gt;-</span><span class="mf">1.1</span><span class="o">&lt;/</span><span class="n">fog_near</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">fog_far</span><span class="o">&gt;</span><span class="mf">26.01</span><span class="o">&lt;/</span><span class="n">fog_far</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">slab_offset</span><span class="o">&gt;</span><span class="mf">27.5</span><span class="o">&lt;/</span><span class="n">slab_offset</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">slab_enabled</span><span class="o">&gt;</span><span class="n">false</span><span class="o">&lt;/</span><span class="n">slab_enabled</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">slab_width</span><span class="o">&gt;</span><span class="mf">55.0</span><span class="o">&lt;/</span><span class="n">slab_width</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Note that it is possible to have more than one <em>scene</em> specified in the
+file. It is intended that CCP4mg will use these either to create
+multiple pictures in one program run or, if it is opened in interactive
+mode, to create a Presentation which gives the user a choice of views.</p>
+<p>Last modified: Fri Feb 15 10:20:15 GMT 2013</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="pimple.html" title="Pimple File Format"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Pimple File Format </span>
+              </div>
+            </a>
+          
+          
+            <a href="project_based_testing.html" title="CCP4I2 Developers: Project Based Testing"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> CCP4I2 Developers: Project Based Testing </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2020, CCP4.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.2.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

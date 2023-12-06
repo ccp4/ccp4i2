@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <creationTime>16:17 20/Jul/12</creationTime>
+        <userId>jonesie</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId/>
+        <project></project>
+        <pluginName>edstats</pluginName>
+        <pluginVersion></pluginVersion>
+        <pluginTitle>Measure agreement between model and density</pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="edstats">
+
+
+
+	<container id="inputData">
+
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1,0</requiredSubType>
+		                <default><subType>1</subType></default>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+	    </content>
+
+            <content id="MAPIN1">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1</requiredSubType>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+
+            <content id="MAPIN2">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <requiredSubType>2</requiredSubType>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+
+            <content id="FPHIIN1">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>1</requiredSubType>
+                    <saveToDb>True</saveToDb>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+
+            <content id="FPHIIN2">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>2</requiredSubType>
+                    <saveToDb>True</saveToDb>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+
+            <content id="RES_LOW">
+                <className>CFloat</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <min>0.5</min>
+                    <max>300.0</max>
+                </qualifiers>
+            </content>
+
+            <content id="RES_HIGH">
+                <className>CFloat</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <min>0.4</min>
+                    <max>30.0</max>
+                </qualifiers>
+            </content>
+
+        </container>
+
+
+	<container id="outputData">
+
+            <content id="XMLOUT">
+                <className>CXmlDataFile</className>
+                <qualifiers>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+
+            <content id="COOTSCRIPTOUT">
+                <className>CCootHistoryDataFile</className>
+            </content>
+
+        </container>
+
+
+        <container id="controlParameters">
+
+            <content id="OUTPUT_PDB_FILE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+
+            <content id="MAIN_AVERAGING">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>all main-chain atoms,individual atoms</menuText>
+                    <enumerators>resi,atom</enumerators>
+                    <default>resi</default>
+                </qualifiers>
+            </content>
+
+            <content id="SIDE_AVERAGING">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>all side-chain atoms,individual atoms</menuText>
+                    <enumerators>resi,atom</enumerators>
+                    <default>resi</default>
+                </qualifiers>
+            </content>
+
+            <content id="SCALING">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="SIGMA_RZ_MINUS">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>-3.0</default>
+                    <allowUndefined>False</allowUndefined>
+                    <min>-50.0</min>
+                    <max>-0.1</max>
+                </qualifiers>
+            </content>
+
+            <content id="SIGMA_RZ_PLUS">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>3.0</default>
+                    <allowUndefined>False</allowUndefined>
+                    <min>0.1</min>
+                    <max>30.0</max>
+                </qualifiers>
+            </content>
+
+            <content id="SIGMA_RO">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>1.0</default>
+                    <allowUndefined>False</allowUndefined>
+                    <min>0.1</min>
+                    <max>300.0</max>
+                </qualifiers>
+            </content>
+
+            <content id="SCALING_TYPE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <menuText>all points in asymmetric unit,points in the bulk solvent,points in each chain</menuText>
+                    <enumerators>all,bulk,chai</enumerators>
+                    <default>chai</default>
+                </qualifiers>
+            </content>
+
+        </container>
+
+    </ccp4i2_body>
+</ccp4:ccp4i2>

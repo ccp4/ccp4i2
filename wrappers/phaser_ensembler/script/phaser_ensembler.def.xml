@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <hostName>mnlaptop.local</hostName>
+    <userId>martin</userId>
+    <ccp4iVersion>alpha_rev_70004</ccp4iVersion>
+    <pluginName>phaser_ensembler</pluginName>
+    <creationTime>11:40 02/Apr/16</creationTime>
+    <OS>MacOSX</OS>
+  </ccp4i2_header>
+  <ccp4i2_body id="phaser_ensembler">
+    <container id="inputData">
+      <content id="XYZIN_LIST">
+        <className>CList</className>
+        <qualifiers>
+          <listMinLength>2</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>False</allowUndefined>
+            <ifAtomSelection>True</ifAtomSelection>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="ALIGNIN">
+        <className>CSeqAlignDataFile</className>
+        <qualifiers>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+        </qualifiers>
+      </content>
+      <content id="OVERRIDEID">
+          <className>CFloat</className>
+          <qualifiers>
+              <default>90.0</default>
+          </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>3</subType>
+          </default>
+          <contentFlag>
+            <min>0</min>
+          </contentFlag>
+          <subType>
+            <menuText>unknown,model,homolog,fragment,heavy atoms</menuText>
+            <onlyEnumerators>True</onlyEnumerators>
+            <enumerators>0,1,2,3,4</enumerators>
+            <default>3</default>
+          </subType>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="keywords">
+      <content id="input__model">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Input model file</toolTip>
+        </qualifiers>
+      </content>
+      <content id="input__alignment">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Input alignment file</toolTip>
+        </qualifiers>
+      </content>
+      <content id="output__location">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Output directory</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="output__gui_output_dir">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Output directory</guiLabel>
+          <toolTip>Sets base output directory for Phenix GUI - not used when run from the command line.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="output__root">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Output file root</guiLabel>
+          <toolTip>Output file root</toolTip>
+        </qualifiers>
+      </content>
+      <content id="output__style">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <guiLabel>Output ensemble as</guiLabel>
+          <enumerators>merged,separate</enumerators>
+          <toolTip>Output options for ensemble</toolTip>
+          <default>merged</default>
+        </qualifiers>
+      </content>
+      <content id="output__sort">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <guiLabel>Sort models by</guiLabel>
+          <enumerators>wrmsd,input,overlap,identity,unwrmsd</enumerators>
+          <toolTip>Sort ensemble components</toolTip>
+          <default>input</default>
+        </qualifiers>
+      </content>
+      <content id="output__job_title">
+        <className>CString</className>
+        <qualifiers>
+          <toolTip>Job title in PHENIX GUI, not used on command line</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__superposition__method">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <guiLabel>Superposition algorithm</guiLabel>
+          <enumerators>gapless,gapped</enumerators>
+          <toolTip>Superposition algorithm</toolTip>
+          <default>gapless</default>
+        </qualifiers>
+      </content>
+      <content id="configuration__superposition__convergence">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.0001</default>
+          <guiLabel>Superposition RMS covergence threshold</guiLabel>
+          <toolTip>Convergence criterion for superposition</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__mapping">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <guiLabel>Residue mapping</guiLabel>
+          <enumerators>ssm,alignments,muscle,resid,multiple_alignment</enumerators>
+          <toolTip>Residue correspondence mapping</toolTip>
+          <default>ssm</default>
+        </qualifiers>
+      </content>
+      <content id="configuration__atoms">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Atoms to include in superposition</guiLabel>
+          <toolTip>Include atom in superpositions</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__clustering">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+          <guiLabel>Cutoff distance for cluster analysis</guiLabel>
+          <toolTip>Cutoff distance for cluster analysis</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__weighting__scheme">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <guiLabel>Weighting scheme</guiLabel>
+          <enumerators>unit,robust_resistant</enumerators>
+          <toolTip>Weighting scheme</toolTip>
+          <default>robust_resistant</default>
+        </qualifiers>
+      </content>
+      <content id="configuration__weighting__convergence">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.001</default>
+          <guiLabel>Convergence criterion for weight iteration</guiLabel>
+          <toolTip>Convergence criterion for weight iteration</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__weighting__incremental_damping_factor">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.5</default>
+          <toolTip>Damping factor in recovery cycle</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__weighting__max_damping_factor">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>3.34</default>
+          <toolTip>Quit recovery if cumulative damping factor is above</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__weighting__robust_resistant__critical">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>9.0</default>
+          <guiLabel>Robust resistant rms weighting term</guiLabel>
+          <toolTip>tolerance</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__trim">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>Trim residues deviating more than threshold</guiLabel>
+          <toolTip>Trim differing loops</toolTip>
+        </qualifiers>
+      </content>
+      <content id="configuration__trimming__threshold">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>3.0</default>
+          <guiLabel>Trimming threshold</guiLabel>
+          <toolTip>Max position RMSD for inclusion</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

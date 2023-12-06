@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Gamma Xe Sad Phasing</title>
+	<link rel="stylesheet" href="../../docs/ccp4i2.css">
+        <style>
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+        </style>
+</head>
+
+<body>
+
+<h2>Programs</h2>
+<p>
+The CRANK pipeline:<br/>
+(ShelxC, ShelxD, SFTools, Ecalc, REFMAC5, Peakmax, Parrot, Buccaneer)
+</p>
+
+<h2>Scenario</h2>
+<p>
+Adapter proteins of the AP2 complex select membrane protein cargo for capture into vesicles. The gamma adapter binds to peptide motifs on, amongst others, the EGF receptor, resulting in receptor internalization and recycling.
+Recognition of the cytoplasmic tail of EGFR is mediated by the ear domain, which was crystallized and into which xenon atoms have been introduced by pressurization of the crystals prior to crash cooling. A SAD dataset was collected on a home source from these crystals.
+</p>
+
+<h2>Data location</h2>
+<p>
+Data for this tutorial can be downloaded into a new CCP4i2 project using the Utilities menu:
+Utilities-&gt;Download test data‑&gt;gamma. Files are then available in a subdirectory of your project’s top directory
+</p>
+
+<h2>Task 1: Run CRANK to solve the structure</h2>
+<img height="450" alt="Crank pipeline" src="Figure1.png"/>
+
+<h2>Task location</h2>
+<p>
+All you need to provide is the SAD data, a sequence file, and the identity of the anomalous scatterer.
+</p>
+<img height="100" alt="Crank pipeline location" src="Figure2.png"/>
+
+<h2>Task 2: Run the CRANK pipeline part way ...</h2>.
+<img height="100" alt="Run the Crank pipeline partway" src="Figure3.png"/>
+
+<h2>Task 3: ... and pick up with other tools</h2>
+<img height="100" alt="Other tools - density modification, model building" src="Figure4.png"/>
+<p>
+The autobuild task crashes because the FreeR set that comes out of the CRANK pipeline is not quite complete. To generate a truly complete Free R set, you will need to use the CCP4i2 FreeR set (or load one in that wou have created another way !)
+</p>
+<img height="100" alt="Other tools Free-R" src="Figure5.png"/>
+</p>
+</body>
+</html>
+  

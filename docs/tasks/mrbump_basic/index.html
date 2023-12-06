@@ -1,0 +1,74 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Automated Molecular Replacement from target sequence</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>The Automated Molecular Replacement (MR) task is designed to deal with relatively straight forward MR cases. It runs the MrBUMP pipeline and performs the following steps:
+      <ul>
+      <li>Search for suitable homologues using a sequence-based search (Phmmer)
+      <li>Preparation of the MR search models using the Sculptor program to process the found homologues
+      <li>Molecular replacement using the search models in the Phaser program
+      <li>Refinement of the MR solution using Refmac5 to assess the likelihood of success
+      </ul>
+      </p>
+      <h2>Input</h2>
+      <img src="mrbump_basic_task_1.png">
+      <p>The input to the program should be the <i>AU content</i>
+      containing the expected sequences, the experimental reflection
+      details (F, SIGF) and the Free R set <b class="img-ref">(1)</b>
+      There is a <i>Select chains</i> option on the <i>Crystal
+      content</i> icon menu that gives you the option to
+      select/deselect the sequences to be input to <i>MrBump</i>.</p>
+      <p>The user can select the number of monomers to search for or allow the program to calculate this automatically <b class="img-ref">(2)</b></p>
+      <br/>
+      <h2>Options</h2>
+      <img src="mrbump_basic_task_2.png">
+      <p>Options will appear here shortly</p>
+      <br/>
+
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <img src="mrbump_basic_task_4.png">
+      <p>The output of the program comprises of the sequence-based search results and the results of molecular replacement and refinement.
+         The first section details the search results. It lists the known PDB chains and their alignment to the target sequence. The MR results section
+         gives a table of results for each of the search models in molecular replacement. The results include the Phaser LLG and TFZ scores, the 
+         refinement R values (R/Rfree) and the SHELXE correlation coefficient (CC) between the c-alpha trace and the experimental data. Note that SHELXE
+         is only used where the data is 2.4 Angstroms or better.
+      </p>
+      <p>When the job has completed the user has the following options:
+      <ul>
+      <li>Perform further refinement of the molecular replacememt solution model
+      <li>Carry out automated model building into the map resulting from molecular replacement
+      <li>Proceed to manual model building in Coot
+      </ul>
+      </p>
+      <h2>Has molecular repalcement worked?</h2>
+      <img src="mrbump_basic_task_3.png">
+      <p>
+      The user should view the model in Coot as a first step when the program finishes. Checking the quality of the correlation between the electron density
+      and the positioned molecular replacement search model by eye is one of the best ways to assess whether or not the molecular replacement solution is correct. 
+      Look also at the difference map density. Positive difference map may indicate parts of the target structure that are missing in the search model e.g.
+      side chains, missing residues at the termini and missing component molecules of the target structure. 
+      </p>
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

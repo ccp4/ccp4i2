@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link rel="stylesheet" type="text/css" href="../task.css"><title>Data reduction</title></head><body>
+<dl class="tabs">
+ <dt> <input checked="checked" name="tabs" id="tab1" type="radio"> <label for="tab1">Input</label>
+  <div id="tab-content1" class="tab-content">
+    The Data Reduction task takes reflection intensities from an
+integration program such as Mosflm, XDS or DIALS, and converts them to
+scaled merged intensities and structure amplitudes. This consists of a
+number of stages
+<br/><br/>
+<ol>
+  <li>&#8226; Read one or more input files,&nbsp; combining them and
+putting them on a consistent indexing scheme if necessary (program
+POINTLESS)</li>
+  <li>&#8226; Determine the crystal symmetry, ie the Laue group and if possible
+the space group, by inspecting the internal symmetry of the intensities
+(program POINTLESS)</li>
+  <li>&#8226; Scale together symmetry-related reflections (program AIMLESS)</li>
+  <li>&#8226; Examine the intensity statistics to detect twinning, and generate amplitudes (F) from intensities (I) (program CTRUNCATE)</li>
+  <li>&#8226; Generate or extend a set of FreeR reflections for later use in refinement
+  </li>
+</ol>
+<br/><br/>
+Detailed documentation for individual programs is available here: <a href="http://www.ccp4.ac.uk/dist/html/pointless.html">POINTLESS</a>, <a href="http://www.ccp4.ac.uk/dist/html/aimless.html">AIMLESS</a>, <a href="http://www.ccp4.ac.uk/dist/html/ctruncate.html">CTRUNCATE</a>
+    <h2>Input</h2>
+    <figure><img src="aimless_pipe_task_1.png"><figcaption> Figure 1: Main input</figcaption></figure>
+    <h3>Reflection input</h3>
+    <p>Input
+reflection files are specified here, either from earlier jobs, or from
+outside the GUI. They should contain unmerged reflections, ie the
+output from an integration program <b class="img-ref">(1.1)</b>
+Click "Show list" to allow input of multiple files. File formats
+recognised are: unmerged MTZ, from Mosflm or DIALS; files from XDS,
+XDS_ASCII.HKL (scaled) or INTEGRATE.HKL (unscaled); .raw files from
+SAINT (Bruker); Scalepack files (.sca); and ShelX files. The last two
+cannot be properly scaled by AIMLESS as they lack diffraction geometry
+information. </p>
+    
+    <p>Each file must be identified by a crystal name and dataset name:
+these should be short and not include spaces, and must be set here if
+they haven't been set by the integration program. <b class="img-ref">(1.2) </b>They
+are used to identify the dataset in later structure solution tasks (as
+/crystal/dataset/). Files with the same dataset name will be merged
+into a single output dataset: different dataset names (eg for MAD data)
+will lead to multiple output sets. Parts of the data may be omitted
+either by specifying batch ranges for exclusion <b class="img-ref">(</b><b class="img-ref">1.</b><b class="img-ref">3)</b>, or by setting resolution limits <b class="img-ref">(</b><b class="img-ref">1.</b><b class="img-ref">4)</b>.
+Typically you would do that after running the task first and inspecting
+the output. It is often useful to integrate the images to slightly
+higher resolution than you think the pattern extends to, then cut back
+the resolution following a first run of Aimless. And parts of the data
+showing serious radiation damage may be omitted, provided that
+completeness is not compromised.&nbsp; </p>    
+    <p>The default option is to try to determine the Laue group (the
+rotational point group), and if possible the space group. However if
+you know the space group you can specify it explicitly, selecting the
+option from the pull-down menu <b class="img-ref">(</b><b class="img-ref">1.</b><b class="img-ref">5)</b>. The space group may also be set by giving a reference file with the correct space group <b class="img-ref">(</b><b class="img-ref">1.</b><b class="img-ref">6)</b>.
+The reference file is also used to resolve indexing ambiguities in
+space groups where there are non-equivalent but valid alternative
+indexings (the same cases where merohedral or pseudo-merohedral
+twinning is possible). The reference file may be a previous isomorphous
+dataset (intensities or Fs), or atomic coordinates from which structure
+factors are calculated. If multiple input files are given, then if
+necessary they will be checked for consistent indexing, against the
+reference data if given, or against the first file. </p>
+
+
+<p>The last item on this page can be used to specify a pre-existing FreeR set
+for adoption and extension, provided it is compatible. If this is not
+given a new FreeR set is generated, but you should use the same set for
+all isomorphous datasets in a project <b class="img-ref">(</b><b class="img-ref">1.</b><b class="img-ref">7)</b></p>
+
+<h2>Options</h2>
+    <figure><img src="aimless_pipe_task_2.png">
+	    <figcaption> Figure 2: Important options </figcaption></figure>
+    
+    <p>This page (and the next one) set various options which are not usually required. The first pull-down <b class="img-ref">(2.1)</b>
+allows you to override the default of IUCr standard settings for
+primitive orthorhombic and centred monoclinic spacegroups: this
+convention sets a&lt;b&lt;c for all primitive orthorhombic, eg it
+allows P 2<sub>1</sub> 2 2<sub>1</sub> rather than the "reference" setting P 2<sub>1</sub> 2<sub>1</sub>
+2, and also chooses the alternative I2 in place of C2 if it gives a
+smaller &#946; angle. The default is recommended. The second
+pull-down <b class="img-ref">(2.2)</b> allows more detailed
+specification of the scaling model: options other than the default
+open additional panes (see eg <b class="img-ref">(3.4)</b>) to set the
+interval on crystal rotation angle Phi for the scaling. You can also
+change the criteria for outlier rejection 
+<b class="img-ref">(3.5)</b>, and define 'Runs' explicitly by batch range
+<b class="img-ref">(3.6)</b>, to override the automatic setting.<br/> 
+    </p>
+    <figure><img src="aimless_pipe_task_3.png">
+	    <figcaption> Figure 3: Important options expanded </figcaption></figure>
+<h3>Additional options</h3>
+    <p>The third pane offers further
+options, again ones you will not normally need to change. The most
+useful is probably the option to change parameters for the optimisation
+of the estimated sigma(I) (see Results page) <b class="img-ref">(4.8)</b> 
+The pull-down allows you to have the same "correction" factors for all
+runs, which may be more suitable than the default if you have many
+short runs. The refinement may also be stabilised if needed by fixing
+the sdB parameters.
+</p><p>The <i>Selection of intensities</i> panel <b class="img-ref">(4.7)</b>
+offers the option to accept overloaded observations, ie those where
+the detector was saturated in the centre of the spot, but it was still
+possible to get an estimate of the intensity by profile-fitting the
+spot edges, even though these estimates will be relatively
+inaccurate. Accepting these observations may allow you to rescue
+datasets when too many strong low resolution spots were
+saturated. This is unlikely to be a problem with 
+fine-sliced pixel detector data.
+</p><p>The option to <i>accept observations on the edge of the tile or
+detector</i> <b class="img-ref">(4.7)</b> may be used to increase the
+completeness of a dataset collected on a tiled detector, where a
+significant number of spots fall into the gaps between tiles. This is
+a problem in low symmetry space groups such as P1.
+</p>
+    <figure><img src="aimless_pipe_task_4.png">
+	    <figcaption> Figure 4: Additional options</figcaption></figure>
+    <br/>
+    </div>
+  </dt>
+  <dt>
+  <input name="tabs" id="tab2" type="radio"> <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+	  The output from this task is quite detailed, and some of it is
+only relevant if there are problems. You can drill down to the details
+of the process, much of presented as graphs. Based on the output, you
+need to make some judgements about your data. <br/><br/>
+&#8226; What is the real resolution? Should you cut the high-resolution data?<br/>
+&#8226; Are there bad batches (individual bad batches or ranges of batches)?<br/>
+&#8226; Was the radiation damage such that you should exclude the later parts?<br/>
+&#8226; Is there any apparent anomalous signal?<br/>
+&#8226; Is the outlier detection working well?<br/>
+&#8226; What is the overall quality of the dataset?<br/>
+&#8226; How does it compare to other datasets for this project?<br/>
+
+<p>Contents of the report description<br/>
+<a href="#key_summary">1. Key Summary</a><br/>
+<a href="#overall_summary">2. Overall Summary</a><br/>
+<a href="./symmetry.html">3. Details of symmetry determination</a><br/>
+<a href="./scaling_and_merging.html">4. Details of scaling and merging</a><br/>
+</p>
+<br/>
+<p>
+<a name="key_summary"></a>
+<h2>The report: key summary</h2>
+    <figure><img src="aimless_pipe_report_1.png">
+	    <figcaption> Figure 1: Report headlines</figcaption></figure>
+<p>
+The report is divided into sections, and clicking in the top line 
+<b class="img-ref">(1.1)</b> will jump to the selected part of the
+report. The first section <b class="img-ref">(1.2)</b> summarises the
+main conclusions from the task: (a) choice of space group, and the
+confidence in this choice; (b) key statistics from merging, merging
+R-factors, I/sigma(I), CC(1/2) etc; (c) any indications of
+translational NCS or twinning.
+</p>
+<br/>
+<a name="overall_summary"></a>
+<h3>Overall summary</h3>
+  <div>
+    <figure><img src="aimless_pipe_report_2.png">
+	    <figcaption> Figure 2: Main summary</figcaption></figure>
+ 
+<p>The Key summary is followed by the Overall summary tables and graphs. Panel 
+<b class="img-ref">(2.1)</b> shows more detail of the space group
+determination. It may be worth looking a finer details later in the
+report, particularly if the confidence is low.
+Panel <b class="img-ref">(2.2)</b> is the classic "Table 1" suitable
+(more or less) for inclusion in a publication. The "Download" button
+writes this table as a CSV file which can be imported into word
+processing programs. 
+Panel <b class="img-ref">(2.3)</b> shows the L-test for twinning.
+Panel <b class="img-ref">(2.4)</b> shows the main graphs of statistics
+against resolution, which illustrate where a resolution cutoff might
+be applied, and also whether a significant anomalous signal is
+present.
+The example shown has strong data to the edge of collection (red line
+of CC(1/2) values), and a strong anomalous signal extending over much of
+the resolution range. Note that placing the mouse over the graphs
+brings up a brief description (yellow box). Other graphs can by
+accessed from the pull-down menu at the top, and a seperate graph
+window can be created using the arrow icon at the top right (this
+gives access to all graphs from the task).
+Panel <b class="img-ref">(2.5)</b> shows graphs against "Batch
+number", ie image number within each Run or sweep of data. These
+graphs can be used to assess whether later parts of the data are
+suffer from serious radiation damage, and whether they may be omitted
+without losing too much completeness.
+</p>
+<h3>Space group determination</h3>
+<p>
+Remember that the space group is only a hypothesis until the structure
+is satisfactory solved and refined. 
+<a href="./symmetry.html">Details of symmetry determination are here</a><br/>
+</p>
+<h3>Scaling and merging</h3>
+<p>
+<a href="./scaling_and_merging.html">Details of the results of scaling
+    and merging are here</a><br/>
+</p>
+</p>
+    </div>
+  </dt>
+</dl>
+
+</body></html>

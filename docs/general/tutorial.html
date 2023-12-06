@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>Brief Tutorial</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+<style type="text/css">
+h2 {
+    color:#0077aa;
+    font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Sans-Serif;
+}
+p {
+    font-size: 18px;
+}
+li {
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<table class="banner">
+<tr>
+<!--<td rowspan="2" width="200" ><img src="../ccp4i2.png" alt="CCP4 web logo"/></td>-->
+<td><img width=75 src="ccp4i2.png" alt="CCP4 web logo"/></td>
+<td class="logohead">CCP4i2 &mdash; Brief tutorial</td>
+</tr>
+</table>
+
+
+<table class="navigationBar"><tr>
+<!--<th><a href="welcome.html">Welcome page</a></th> -->
+<th><a href="tutorial.html">Brief tutorial</a></th> 
+<th><a href="data_files.html">Experimental data</a></th>
+<th><a href="model_data.html">Model data</a></th> 
+<th><a href="atom_selection.html">Atom selection</a></th> 
+<!-- <th><a href="customisation.html">Customisation</a></th>  -->
+</tr></table>
+
+<a name="projects"/><h2>Creating and Managing Projects</h2>
+
+<p>The CCP4 interface requires you to group your work into projects. There are no rules on what goes into one project but, as a guideline, one project would usually result in one structure. Corresponding to each project is a directory that contains all the files associated with project.
+By default, the directory for a new project is created in the master <i>CCP4I2_PROJECTS</i> directory (in your home area) and given the same name as the project but you have the option to create or use a different directory.  Please do not move the project directory or any of the files, except using tools in the <i>Project Manager</i> window, otherwise CCP4i2 will then be unable to find them! The earlier CCP4i had a database file for each project kept in the project directory but the new CCP4i2, by default,  has one database for all of the projects of one user.  CCP4i2 maintains the database (and other important data) in a profile directory usually called .CCP4I2 in your home area.</p>
+<p>It is possible to order projects in an hierarchy - this is new in CCP4i2 - do this by drag-and-dropping the projects in <i>Project Manager</i> window. Note that if you do change the logical heirachy of projects in CCP4i2 the project directories are not moved. CCP4i2 does not allow you to create project directories within other project directories as this complicates managing the project. </p>
+<p>Starting CCP4i2 for the first time you should see a web browser page with options for <a href="./welcome.html">creating a project</a>. Follow these to create either a <i>General</i> project or a specific project.  Follow the instructions and you should then see a project window for that project.</p>
+<!-- <h3>What are Tasks and Jobs?</h3> -->
+
+
+<a name="project_windows"/><h2>Project Windows</h2>
+<p>On the left side of the window is a list of jobs and on the right is a view of one selected job. To open a new job click the <b>Task menu</b> button from the toolbar and select a task from the list that appears on the right-hand side (double click a line in the list). </p>
+
+<h2>The Task </h2>
+<p>The task frame on the right hand side of the project window has three tabs:
+<ul>
+  <li><b>Input</b>: Fuller options for task input. Most tasks will have multiple tabs including <b>Input data</b>. If you prefer the 'old style' folder layout to tabs then this can be set in the <b>Preferences</b>.</li>
+  <li><b>Results</b>: A task report appears when the job completes. If there is no report available then a log file or error diagnostic may appear.</li>
+  <li><b>Comments</b>:A place for you to add any comments on the job.</li>
+  </ul>
+
+<h2>Entering data for a job</h2>
+ <p>Most tasks only require you to select the appropriate input data and they can then run with reasonable default parameters. The quick way to select input data is selecting the previous job to 'follow from'. The task input will be set as the output from that job, or if there is no appropriate output then the input or the output from preceding jobs.  To select a file you can:
+  <ul><li>Select from the drop down list of appropriate data from preceding jobs</li>
+  <li>Click <b>Browse files</b> to use a file browser</li>
+  <li>Drag a file icon from the job list or a job report onto the file icon</li>
+  <li>Drag a job icon from the job list onto the file icon</li>
+  </ul>
+  <p>If input data is missing or invalid this is indicated by a red border to the data widget. Click the <b>Run</b> or <b>Save</b> button to run the task. There is a warning message if data is missing or invalid.</p>
+  
+<h2>The <b>Follow from</b> facility</h2>
+<p>You will frequently want to take the data output by one job directly into the next task. Typically this data will be experimental data or a model.  To make this easier the interface to each task has a <b>Follow from</b> option which allows you to choose which preceding job to take data from. If the <i>follow from</i> job has not output any data of the appropriate type then CCP4i2 will search back through the input to the <i>follow from</i> job and preceding jobs to find data of the appropriate type. The selected data is then displayed in the interface and you can change the individual items of data independently if necessary.</p>
+
+
+<h2>The Job list</h2>
+  <p>The job list shows a job number and name with an icon indicating its current status (pending, running, failed, finished). A job be opened to show sub-jobs and output files. A right mouse click on the job list will give a context menu with options to Delete, Clone or View a job or View, Edit label or Export a file. If you wish to re-run a job then you should clone it - all the data and parameters that you have set will be copied into the new task.</p>
+  <p>The next column in the job list shows the 'follow from' job as green up-arrows. By default the data output by this job is input to the next opened job. The 'follow from' status can be changed by right mouse clicking the green arrow or dots and selecting the new status from the menu. The subsequent columns in the table are the job rating and summary that you may have entered in the <b>Status</b> frame.</p>
+
+<h2>The Project directory</h2>
+  <p>This is an alternative view to the job list. It is a standard directory and file listing of the project directory where there is one directory (called job_<i>n</i>) for each job. This is most useful for trouble-shooting - ideally users should not need to do this!</p>
+
+
+<a name="profile"/><h2>The Profile directory</h2>
+<p>CCP4i2 maintains a directory in your home area which contains your personal data and preferences.  Particularly it contains the database for all of your projects and so should be treated with care and backed up! On Linux and Mac systems the profile directory is .CCP4I2 (<i>dot</i>CCP4I2) in your home area and on Windows it is CCP4I2 (no dot) in ??.</p>
+<p>On Linux and Macs it is possible to set an alternative profile directory in the environment variable CCP4_LOCAL_HOME. This may be most useful in a workshop situation where multiple users have the same account. The users will have to start CCP4i2 from the command line with something like:
+<pre>
+prompt> CCP4_LOCAL_HOME="/whereever/master_dir/my_dir" ccp4i2
+</pre>
+<p>where each user has their own <i>my_dir</i> in a <i>master_dir</i>.</p>
+
+<a name="running"/><h2>Running jobs and processes</h2>
+<p>A CCP4i2 job is started immediately when you click the <i>Run</i>
+button on the toolbar. A 'Running man' icon and gold colouring on the
+<i>Job list</i> indicate that the job is running. For long-running
+tasks intermediate 'running' reports are displayed and you may also see <i>sub-tasks</i> and intermediate data files listed in the <i>Job list</i>. The job is run as
+a separate, background process that is also called 'ccp4i2' and this
+may start one or more processes running CCP4 programs. When the
+background process finishes it updates the CCP4i2 database with the
+job status (usually 'Finished' or 'Failed'). The graphical CCP4i2
+window regularly checks the job status in the database and will update the 'Job list' when the job finishes.</p>
+<p>The <i>Utilities</i> menu item <i>List running jobs and processes</i> will list all of the jobs that are running according to the CCP4i2 database and for each job will show the 'ccp4i2' background process and any program processes that are 'children' of the ccp4i2 process.  If no 'ccp4i2' process is listed for a job then it appears that the job has failed without updating it's database status and it is recommended that you use the <i>Mark as failed</i> button to correct the database.</p>
+<p>This tool also lists processes running on another <a href="./servers.html">server</a> machine via the <i>Run remote</i> button.</p>
+
+</body>
+</html>

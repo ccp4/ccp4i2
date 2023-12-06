@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>kovoleg</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>morda_i2</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:42 23/Dec/12</creationTime>
+        <pluginTitle>MoRDA pipeline</pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="morda_i2">
+        <container id="inputData">
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>Reflection intensities or structure factor amplitudes</toolTip>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <toolTip>Free R set corresponding to the reflection data.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="ASUIN">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <selectionMode>0</selectionMode>
+                </qualifiers>
+            </content>
+            <content id="ALTSG">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <toolTip>Check alternative space groups belonging
+                        to the same Laue class</toolTip>
+                </qualifiers>
+            </content>
+            <content id="NSTRUCT">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>3</default>
+                    <min>1</min>
+                    <max>30</max>
+                    <toolTip>Number of PDB entries to derive search models from</toolTip>
+                </qualifiers>
+            </content>
+            <content id="NCPU">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>1</default>
+                    <min>1</min>
+                    <max>8</max>
+                    <toolTip>Number of CPUs for parallel refinement</toolTip>
+                </qualifiers>
+            </content>
+            <content id="MOCK_PAUSE">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0</min>
+                    <charWidth>4</charWidth>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="CHECK_PAUSE">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0</min>
+                    <charWidth>4</charWidth>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="MOCK_DIR">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <isDirectory>True</isDirectory>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <toolTip>Use existing working directory for rerun
+                        and for testing this interface</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <subType>1</subType>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <subType>1</subType>
+                        <contentFlag>1</contentFlag>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <subType>2</subType>
+                        <contentFlag>1</contentFlag>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CRefinementPerformance</className>
+                <qualifiers/>
+            </content>
+            <content id="COOTSCRIPTOUT">
+                <className>CCootHistoryDataFile</className>
+                <saveToDb>True</saveToDb>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

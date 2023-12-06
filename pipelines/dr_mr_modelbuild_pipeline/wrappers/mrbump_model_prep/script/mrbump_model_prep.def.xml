@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <ccp4iVersion>0.0.4</ccp4iVersion>
+    <pluginName>mrbump_model_prep</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="mrbump_model_prep">
+    <container id="inputData">
+            <content id="SEARCH_AFDB">
+              <className>CBoolean</className>
+              <qualifiers>
+                  <default>True</default>
+              </qualifiers>
+            </content>
+            <content id="SEARCH_PDB">
+              <className>CBoolean</className>
+              <qualifiers>
+                  <default>True</default>
+              </qualifiers>
+            </content>
+      <content id="ASUIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <selectionMode>1</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+      </content>
+            <content id="AFDBLEVEL">
+              <className>CInt</className>
+              <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>0,10,20,30,40,50,60,70,80,90</enumerators>
+                  <menuText>0,10,20,30,40,50,60,70,80,90</menuText>
+                  <default>50</default>
+              </qualifiers>
+            </content>
+            <content id="REDUNDANCYLEVEL">
+              <className>CInt</className>
+              <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>50,70,90,95,100,110</enumerators>
+                  <menuText>50,70,90,95,100,All</menuText>
+                  <default>95</default>
+              </qualifiers>
+            </content>
+            <content id="MRMAX">
+              <className>CInt</className>
+              <qualifiers>
+                  <default>10</default>
+              </qualifiers>
+            </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+	  <default><subType>1</subType></default>
+	  <subType>1</subType>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

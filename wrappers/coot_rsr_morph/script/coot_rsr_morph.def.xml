@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>stuart</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>coot_rsr_morph</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>08:53 07/Oct/21</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="coot_rsr_morph">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="FPHIIN">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>1</requiredSubType>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+           <content id="LOCAL_RADIUS">
+              <className>CFloat</className>
+              <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>False</onlyEnumerators>
+                  <enumerators>4.2,5,6,7</enumerators>
+                  <menuText>4.2,5,6,7</menuText>
+                  <default>4.2</default>
+              </qualifiers>
+           </content>
+           <content id="GM_ALPHA">
+              <className>CFloat</className>
+              <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>False</onlyEnumerators>
+                  <enumerators>1,0.5,0.3,0.2,0.1,0.05,0.03,0.01</enumerators>
+                  <menuText>1,0.5,0.3,0.2,0.1,0.05,0.03,0.01</menuText>
+                  <default>0.05</default>
+              </qualifiers>
+           </content>
+           <content id="BLUR_B_FACTOR">
+              <className>CFloat</className>
+              <qualifiers>
+                  <allowUndefined>False</allowUndefined>
+                  <onlyEnumerators>False</onlyEnumerators>
+                  <enumerators>20,40,60,80,100,150,200,300,400,600</enumerators>
+                  <menuText>20,40,60,80,100,150,200,300,400,600</menuText>
+                  <default>80</default>
+              </qualifiers>
+           </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <subType>1</subType>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>mdw</userId>
+    <creationTime>13:15 30/Sep/11</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>chainsaw</pluginName>
+    <pluginTitle>CHAINSAW: edit models for molecular replacement</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="chainsaw">
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <ifAtomSelection>True</ifAtomSelection>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+	  <requiredSubType>2,1,0</requiredSubType>
+        </qualifiers>
+      </content>
+      <content id="ALIGNIN">
+        <className>CSeqAlignDataFile</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+	  <requiredSequences>2</requiredSequences>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+	 <qualifiers>
+	    <default><subType>2</subType></default>
+            <subType>2</subType>
+            <saveToDb>True</saveToDb>
+	  </qualifiers>
+      </content>
+      <content id="NO_DELETED">
+        <className>CInt</className>
+      </content>
+      <content id="NO_CONSERVED">
+        <className>CInt</className>
+      </content>
+      <content id="NO_MUTATED">
+        <className>CInt</className>
+      </content>
+      <content id="NUMRES_MODEL">
+        <className>CInt</className>
+      </content>
+      <content id="SEQID">
+        <className>CFloat</className>
+      </content>
+       <content id="PERFORMANCE">
+	  <className>CAtomCountPerformance</className>
+      </content>
+    </container>
+    <container id="controlParameters">
+       <content id="TARGETINDEX">
+          <className>CInt</className>
+          <qualifiers>
+	    <onlyEnumerators>True</onlyEnumerators>
+          </qualifiers>
+      </content>
+      <content id="MODE">
+        <className>CString</className>
+        <qualifiers>
+          <enumerators>MIXS,MIXA,MAXI</enumerators>
+          <onlyEnumerators>1</onlyEnumerators>
+	  <default>MIXS</default>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

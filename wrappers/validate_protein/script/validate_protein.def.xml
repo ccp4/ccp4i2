@@ -1,0 +1,97 @@
+<?xml version='1.0'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>validate_protein</pluginName>
+        <userId>wjr510</userId>
+        <creationTime>12:00 01/May/20</creationTime>
+        <ccp4iVersion>0.1</ccp4iVersion>
+        <pluginName>validate_protein</pluginName>
+        <pluginTitle>Analyse Model Quality</pluginTitle>
+        <pluginVersion></pluginVersion>
+    </ccp4i2_header>
+
+    <ccp4i2_body>
+        <container id="inputData">
+            <content id="F_SIGF_1">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <requiredContentFlag>1,2,3,4</requiredContentFlag>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+
+            <content id="XYZIN_1">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1,0</requiredSubType>
+                    <default><subType>1</subType></default>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+
+            <content id="F_SIGF_2">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <requiredContentFlag>1,2,3,4</requiredContentFlag>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+
+            <content id="XYZIN_2">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <requiredSubType>1,0</requiredSubType>
+                    <default><subType>1</subType></default>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="outputData">
+            <content id="COOTSCRIPTOUT">
+                <className>CCootHistoryDataFile</className>
+                <qualifiers>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="controlParameters">
+            <content id="DO_IRIS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="DO_BFACT">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="DO_RAMA">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="DO_MOLPROBITY">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+        </container>
+
+    </ccp4i2_body>
+</ccp4i2>

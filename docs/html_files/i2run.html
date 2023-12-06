@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.16: http://docutils.sourceforge.net/" />
+<title>i2run</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="i2run">
+<h1 class="title">i2run</h1>
+
+<p>i2run is a mechanism for running CCP4i2 tasks and pipelines from the command line.
+Tasks can be run so that they are recorded into a user's project database, recorded into <em>some other</em> database or executed without reference to a database</p>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#why-would-i-use-i2run" id="id1">Why would I use i2run ?</a></li>
+<li><a class="reference internal" href="#i-m-interested-show-me-how-easy-it-is" id="id2">I'm interested...show me how easy it is</a></li>
+<li><a class="reference internal" href="#but-why-not-just-run-e-g-refmac" id="id3">But why not just run (e.g.) <em>refmac</em> ?</a></li>
+<li><a class="reference internal" href="#column-labels" id="id4">Column labels</a></li>
+<li><a class="reference internal" href="#keywords-for-a-task" id="id5">Keywords for a task</a></li>
+<li><a class="reference internal" href="#exotic-dataobject-types" id="id6">Exotic dataobject types</a></li>
+<li><a class="reference internal" href="#specifying-file-inputs" id="id7">Specifying file inputs</a></li>
+<li><a class="reference internal" href="#coordinates-and-selections" id="id8">Coordinates and selections</a></li>
+<li><a class="reference internal" href="#asymmetric-unit-content-files" id="id9">Asymmetric unit content files</a></li>
+</ul>
+</div>
+<div class="section" id="why-would-i-use-i2run">
+<h1><a class="toc-backref" href="#id1">Why would I use i2run ?</a></h1>
+<p>A few scenarios</p>
+<ul class="simple">
+<li>Because you're in a hurry and can't be bothered to fire up CCP4i2</li>
+<li>Because you want to automate and do the same things many times</li>
+<li>Because you want to use the CCP4i2 database from a third party program (e.g. coot ?)</li>
+</ul>
+</div>
+<div class="section" id="i-m-interested-show-me-how-easy-it-is">
+<h1><a class="toc-backref" href="#id2">I'm interested...show me how easy it is</a></h1>
+<p>Thank you.
+Here is text that will run <em>refmac</em>, capturing the output in a (pre-existing) project called &quot;GammaDemo&quot; in your CCP4i2 database</p>
+<pre class="code literal-block">
+i2run prosmart_refmac \
+     --F_SIGF $CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+     --XYZIN $CCP4/share/ccp4i2/demo_data/gamma/gamma_model.pdb \
+     --projectName GammaDemo
+</pre>
+<p>To create a new project (<em>e.g. GammaDemo3</em> ) to run your job, you will additionally have to specify a directory where the project should be created</p>
+<pre class="code literal-block">
+i2run prosmart_refmac \
+     --F_SIGF $CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+     --XYZIN $CCP4/share/ccp4i2/demo_data/gamma/gamma_model.pdb \
+     --projectName GammaDemo3 \
+     --projectPath /Users/martin/CCP4I2_PROJECTS/GammaDemo3
+</pre>
+</div>
+<div class="section" id="but-why-not-just-run-e-g-refmac">
+<h1><a class="toc-backref" href="#id3">But why not just run (e.g.) <em>refmac</em> ?</a></h1>
+<p><strong>*SO*</strong> many reasons.</p>
+<p><strong>Firstly</strong> because the prosmart_refmac pipeline allows you to do much more.  In the same command line you can, for example, provide a reference PDB to which prosmart restraints will be calculated, and trivially add waters afterwards</p>
+<pre class="code literal-block">
+# Generate some mdm2 data
+i2run aimless_pipe \
+    --UNMERGEDFILES \
+        crystalName=hg7 \
+        dataset=DS1 \
+        file=$CCP4/share/ccp4i2/demo_data/mdm2/mdm2_unmerged.mtz \
+    --projectName hg7 \
+    --projectPath /Users/martin/CCP4I2_PROJECTS/hg7
+
+#Re-refine 4hg7.pdb, removing waters from start model, restrained against MDM2 for 4qo4.pdb
+i2run prosmart_refmac \
+    --F_SIGF fileUse=&quot;-1.HKLOUT[0]&quot; \
+    --XYZIN \
+        fullPath=$CCP4/share/ccp4i2/demo_data/mdm2/4hg7.pdb \
+        selection/text=&quot;not (HOH)&quot; \
+    --prosmartProtein.TOGGLE True\
+    --prosmartProtein.REFERENCE_MODELS \
+        fullPath=$CCP4/share/ccp4i2/demo_data/mdm2/4qo4.cif \
+    --projectName hg7
+</pre>
+<p><strong>Secondly</strong> because your job is now organised without book keeping: one command line has sorted out how to store and name the output files so that they can readily be reused.</p>
+</div>
+<div class="section" id="column-labels">
+<h1><a class="toc-backref" href="#id4">Column labels</a></h1>
+<p>Okay, so what if I want to run a job using an input MTZ file that does not use the standard mtz column labels used by CCP4i2 ?</p>
+<p>Well, we've got your back.  For example, if observed reflection data are stored in an MTZ file with  non canonical column labels, you just add a &quot;columnLabels=&quot; subdirective in the readily understood clipper syntax. In this case you specify the path to the input reflection file using the &quot;fullPath=&quot; directive</p>
+<pre class="code literal-block">
+i2run phaser_simple \
+    --F_SIGF \
+        fullPath=$CCP4/share/ccp4i2/demo_data/beta_blip/beta_blip_P3221.mtz \
+        columnLabels=&quot;/*/*/[Fobs,Sigma]&quot; \
+    --F_OR_I F \
+    --XYZIN \
+        $CCP4/share/ccp4i2/demo_data/beta_blip/beta.pdb \
+    --projectName BetaBlip
+</pre>
+<p><em>N.B.</em> The phaser task normally expects to find a set of intensities to use, unless the &quot;F_OR_I&quot; input parameter is set to the value &quot;F&quot;</p>
+</div>
+<div class="section" id="keywords-for-a-task">
+<h1><a class="toc-backref" href="#id5">Keywords for a task</a></h1>
+<p>To find the keyword options available for a particular task or pipeline, simply issue an i2run command, specifying the name of the pipeline and giving the &quot;-h&quot; flag</p>
+<pre class="code literal-block">
+i2run prosmart_refmac -h
+</pre>
+</div>
+<div class="section" id="exotic-dataobject-types">
+<h1><a class="toc-backref" href="#id6">Exotic dataobject types</a></h1>
+<p>CCP4i2 uses some special data classes, which present a challenge to specifying on the command line.  An example is the CEnsemble data structure which represents one or more models, each formed of one or more related sets of coordinate, to be used in moleculr replacement.  i2run handles these challenges by using subdirectives to address the different elements of the underlying data structure.  While hard to say, this is relatively easy to illustrate.  Here is an i2run command which specifies a set of ensembles to use in the phaser expert task to solve beta blip</p>
+<pre class="code literal-block">
+i2run phaser_pipeline \
+    --F_SIGF \
+        fullPath=$CCP4/share/ccp4i2/demo_data/beta_blip/beta_blip_P3221.mtz \
+        columnLabels=&quot;/*/*/[Fobs,Sigma]&quot; \
+    --ENSEMBLES \
+        use=True \
+        pdbItemList/identity_to_target=0.9 \
+        pdbItemList/structure=$CCP4/share/ccp4i2/demo_data/beta_blip/beta.pdb \
+    --ENSEMBLES \
+        use=True \
+        pdbItemList/identity_to_target=0.9 \
+        pdbItemList/structure=$CCP4/share/ccp4i2/demo_data/beta_blip/blip.pdb \
+    --RUNREFMAC False \
+    --F_OR_I F \
+    --RESOLUTION_HIGH 3.0 \
+    --ASUFILE \
+        seqFile=$CCP4/share/ccp4i2/demo_data/beta_blip/beta.seq \
+        seqFile=$CCP4/share/ccp4i2/demo_data/beta_blip/blip.seq \
+    --projectName BetaBlip
+</pre>
+</div>
+<div class="section" id="specifying-file-inputs">
+<h1><a class="toc-backref" href="#id7">Specifying file inputs</a></h1>
+<p>We have already introduced the option of specifying input files by their full path, <em>e.g.</em></p>
+<pre class="code literal-block">
+i2run coordinate_selector \
+    --XYZIN fullPath=$CCP4/share/ccp4i2/demo_data/CDK1CyclinBCKS2/1jst.pdb \
+    --projectName CDK1CyclinBCKS2
+</pre>
+<p>or more succinctly:</p>
+<pre class="code literal-block">
+i2run coordinate_selector \
+    --XYZIN $CCP4/share/ccp4i2/demo_data/CDK1CyclinBCKS2/1jst.pdb \
+    --projectName CDK1CyclinBCKS2
+</pre>
+<p>But it is also possible to use a file that already exists within the database by using a reference to a job number and parameter name where it was created/used with the syntax <em>jobNumber</em>. <em>paramName</em> :</p>
+<pre class="code literal-block">
+i2run coordinate_selector \
+    --XYZIN fileUse=1.XYZIN \
+    --projectName CDK1CyclinBCKS2
+</pre>
+<p>A <em>negative</em> jobNumber indicates a <em>relative</em> job number, <em>e.g.</em> a jobNumber of -1 refers to the previous job in the project</p>
+<p>If the file was an element of an output list (as is the case for tasks which can produce multiple outputs, such as multiple datasets output from AIMLESS), then you can use array-style indexing to specify which element to choose:</p>
+<pre class="code literal-block">
+i2run import_merged \
+    --HKLIN fullPath=$CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+    --projectName GammaDemo
+
+i2run aimless_pipe --UNMERGEDFILES \
+    crystalName=Nat1 dataset=DS1 file=$CCP4/share/ccp4i2/demo_data/gamma/gamma_native.mtz \
+    --projectName GammaDemo
+
+i2run shelx \
+    --SHELXCDE True \
+    --ATOM_TYPE Xe \
+    --EXPTYPE SIRAS \
+    --NATIVE True \
+    --F_SIGFanom fileUse=&quot;-2.OBSOUT&quot; \
+    --F_SIGFnative fileUse=&quot;-1.HKLOUT[0]&quot; \
+    --SEQIN seqFile=$CCP4/share/ccp4i2/demo_data/gamma/gamma.pir \
+    --USER_MBREF_BIGCYC True \
+    --MBREF_BIGCYC 2 \
+    --projectName GammaDemo
+</pre>
+<p>Or by using the files database UUID, which may be discovered by inspecting the database entry of the file in an interactive CCP4i2 session</p>
+</div>
+<div class="section" id="coordinates-and-selections">
+<h1><a class="toc-backref" href="#id8">Coordinates and selections</a></h1>
+<p>A subset of CCP4i2 tasks (<em>e.g.</em> list) allow for the task to run on a specified subset of an input coordinate file.  To specify this subset on the command line use the &quot;selection/text=&quot; subdirective on a coordinate file specification. Selections are provided in the mmdb syntax:</p>
+<pre class="code literal-block">
+i2run coordinate_selector \
+    --XYZIN \
+        fileUse=1.XYZIN \
+        selection/text=&quot;A/&quot; \
+    --projectName CDK1CyclinBCKS2
+</pre>
+</div>
+<div class="section" id="asymmetric-unit-content-files">
+<h1><a class="toc-backref" href="#id9">Asymmetric unit content files</a></h1>
+<p>Several CCP4i2 tasks (<em>e.g.</em> phaser, buccaneer, parrot) use a special file (file.asucontent.xml) to specify the expected contents of the asymmetric unit. These files can be created by a dedicated task using i2run...</p>
+<pre class="code literal-block">
+i2run ProvideAsuContents \
+    --ASU_CONTENT \
+        description=Beta-lactamase \
+        sequence=HPETLVKVKDAEDQLGARVGYIELDLNSGKILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTDGMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPNDERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKSGAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW \
+        source/baseName=beta.seq \
+        source/relPath=$CCP4/share/ccp4i2/demo_data/beta_blip \
+        nCopies=1 \
+        polymerType=PROTEIN \
+        name=Beta-lactamase
+</pre>
+<p>...and subsequently referenced in another task</p>
+<p>Alternatively, i2run provides a mechanism to generate them &quot;on the fly&quot; in tasks that use them:</p>
+<pre class="code literal-block">
+i2run parrot\
+    --F_SIGF fullPath=$CCP4/share/ccp4i2/demo_data/gamma/merged_intensities_Xe.mtz \
+    --ABCD fullPath=$CCP4/share/ccp4i2/demo_data/gamma/initial_phases.mtz \
+    --ASUIN \
+        seqFile=$CCP4/share/ccp4i2/demo_data/gamma/gamma.pir \
+    --projectName GammaDemo
+</pre>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>memn</userId>
+    <creationTime>17:32 18/May/12</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>csymmatch</pluginName>
+    <pluginTitle>Csymmatch - find best symmetry and origin to match structure to reference</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="csymmatch">
+    <container id="inputData">
+      <content id="XYZIN_QUERY">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_TARGET">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="ORIGIN_HAND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="CONNECTIVITY_RADIUS">
+          <className>CFloat</className>
+          <qualifiers>
+          </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>
