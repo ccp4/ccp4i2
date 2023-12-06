@@ -1,0 +1,292 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TPW     TPW      "2-{4-[(4-AMINO-2-METHYLPYRIMIDIN-5-YL)METHYL]-3-METHYLTHIOPHEN-2-YL}ETHYL TRIHYDROGEN DIPHOSPHATE"     NON-POLYMER     43     26     .     
+#
+data_comp_TPW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TPW     C2A     C       CH3     0       68.541      -5.174      -3.604      
+TPW     C35     C       CH2     0       74.171      -4.285      -3.350      
+TPW     C2      C       CR15    0       75.816      -5.737      -2.106      
+TPW     S1      S       S2      0       76.349      -6.018      -0.550      
+TPW     C5      C       CR5     0       75.349      -4.906      0.204       
+TPW     C4      C       CR5     0       74.595      -4.293      -0.768      
+TPW     C4A     C       CH3     0       73.574      -3.224      -0.509      
+TPW     C5A     C       CH2     0       75.391      -4.699      1.679       
+TPW     C5B     C       CH2     0       75.576      -5.974      2.470       
+TPW     O5G     O       O2      0       75.190      -5.729      3.847       
+TPW     P1      P       P       0       73.882      -6.437      4.454       
+TPW     O11     O       O2      0       74.341      -7.974      4.479       
+TPW     O12     O       OP      -1      72.759      -6.275      3.482       
+TPW     O13     O       O       0       73.696      -5.958      5.856       
+TPW     P2      P       P       0       75.487      -8.755      5.304       
+TPW     O21     O       OP      -1      76.795      -8.116      4.906       
+TPW     O22     O       O       0       75.160      -8.553      6.763       
+TPW     O23     O       OP      -1      75.392      -10.200     4.881       
+TPW     "N1'"   N       NRD6    0       70.454      -3.692      -3.390      
+TPW     "C2'"   C       CR6     0       70.018      -4.952      -3.539      
+TPW     "N3'"   N       NRD6    0       70.819      -6.023      -3.634      
+TPW     "C4'"   C       CR6     0       72.151      -5.849      -3.579      
+TPW     "N4'"   N       NT3     1       73.038      -7.012      -3.681      
+TPW     "C5'"   C       CR6     0       72.680      -4.545      -3.421      
+TPW     "C6'"   C       CR16    0       71.780      -3.497      -3.333      
+TPW     C3      C       CR5     0       74.846      -4.767      -2.106      
+TPW     H2A1    H       H       0       68.353      -6.126      -3.653      
+TPW     H2A2    H       H       0       68.182      -4.734      -4.391      
+TPW     H2A3    H       H       0       68.123      -4.804      -2.809      
+TPW     H351    H       H       0       74.326      -3.321      -3.431      
+TPW     H352    H       H       0       74.596      -4.715      -4.121      
+TPW     H2      H       H       0       76.160      -6.204      -2.848      
+TPW     H4A1    H       H       0       73.614      -2.553      -1.210      
+TPW     H4A2    H       H       0       73.750      -2.797      0.344       
+TPW     H4A3    H       H       0       72.686      -3.616      -0.493      
+TPW     H5A1    H       H       0       74.560      -4.274      1.961       
+TPW     H5A2    H       H       0       76.119      -4.087      1.889       
+TPW     H5B1    H       H       0       76.515      -6.252      2.437       
+TPW     H5B2    H       H       0       75.027      -6.690      2.086       
+TPW     "H4'1"  H       H       0       73.657      -6.883      -4.321      
+TPW     "H4'2"  H       H       0       72.563      -7.748      -3.894      
+TPW     H1      H       H       0       73.448      -7.160      -2.894      
+TPW     "H6'"   H       H       0       72.106      -2.622      -3.227      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TPW          C2          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+TPW          S1          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+TPW          C5          C4      DOUBLE       y     1.362  0.0156     1.362  0.0156
+TPW          C4         C4A      SINGLE       n     1.499  0.0100     1.499  0.0100
+TPW          C5         C5A      SINGLE       n     1.486  0.0100     1.486  0.0100
+TPW         C5A         C5B      SINGLE       n     1.505  0.0199     1.505  0.0199
+TPW         C5B         O5G      SINGLE       n     1.447  0.0162     1.447  0.0162
+TPW         O5G          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+TPW          P1         O11      SINGLE       n     1.604  0.0133     1.604  0.0133
+TPW          P1         O12      SINGLE       n     1.493  0.0122     1.493  0.0122
+TPW          P1         O13      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TPW         O11          P2      SINGLE       n     1.614  0.0178     1.614  0.0178
+TPW          P2         O21      SINGLE       n     1.509  0.0200     1.509  0.0200
+TPW          P2         O22      DOUBLE       n     1.509  0.0200     1.509  0.0200
+TPW          P2         O23      SINGLE       n     1.509  0.0200     1.509  0.0200
+TPW         C2A       "C2'"      SINGLE       n     1.494  0.0103     1.494  0.0103
+TPW       "N1'"       "C2'"      DOUBLE       y     1.335  0.0101     1.335  0.0101
+TPW       "C2'"       "N3'"      SINGLE       y     1.333  0.0107     1.333  0.0107
+TPW       "N3'"       "C4'"      DOUBLE       y     1.340  0.0100     1.340  0.0100
+TPW       "C4'"       "N4'"      SINGLE       n     1.463  0.0146     1.463  0.0146
+TPW         C35       "C5'"      SINGLE       n     1.512  0.0100     1.512  0.0100
+TPW       "C4'"       "C5'"      SINGLE       y     1.404  0.0200     1.404  0.0200
+TPW       "N1'"       "C6'"      SINGLE       y     1.335  0.0118     1.335  0.0118
+TPW       "C5'"       "C6'"      DOUBLE       y     1.382  0.0100     1.382  0.0100
+TPW         C35          C3      SINGLE       n     1.494  0.0100     1.494  0.0100
+TPW          C2          C3      DOUBLE       y     1.359  0.0200     1.359  0.0200
+TPW          C4          C3      SINGLE       y     1.398  0.0200     1.398  0.0200
+TPW         C2A        H2A1      SINGLE       n     1.089  0.0100     0.971  0.0138
+TPW         C2A        H2A2      SINGLE       n     1.089  0.0100     0.971  0.0138
+TPW         C2A        H2A3      SINGLE       n     1.089  0.0100     0.971  0.0138
+TPW         C35        H351      SINGLE       n     1.089  0.0100     0.980  0.0139
+TPW         C35        H352      SINGLE       n     1.089  0.0100     0.980  0.0139
+TPW          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0200
+TPW         C4A        H4A1      SINGLE       n     1.089  0.0100     0.971  0.0172
+TPW         C4A        H4A2      SINGLE       n     1.089  0.0100     0.971  0.0172
+TPW         C4A        H4A3      SINGLE       n     1.089  0.0100     0.971  0.0172
+TPW         C5A        H5A1      SINGLE       n     1.089  0.0100     0.974  0.0100
+TPW         C5A        H5A2      SINGLE       n     1.089  0.0100     0.974  0.0100
+TPW         C5B        H5B1      SINGLE       n     1.089  0.0100     0.980  0.0143
+TPW         C5B        H5B2      SINGLE       n     1.089  0.0100     0.980  0.0143
+TPW       "N4'"      "H4'1"      SINGLE       n     1.036  0.0160     0.901  0.0200
+TPW       "N4'"      "H4'2"      SINGLE       n     1.036  0.0160     0.901  0.0200
+TPW       "N4'"          H1      SINGLE       n     1.036  0.0160     0.901  0.0200
+TPW       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.940  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TPW       "C2'"         C2A        H2A1     109.546    1.50
+TPW       "C2'"         C2A        H2A2     109.546    1.50
+TPW       "C2'"         C2A        H2A3     109.546    1.50
+TPW        H2A1         C2A        H2A2     109.397    1.50
+TPW        H2A1         C2A        H2A3     109.397    1.50
+TPW        H2A2         C2A        H2A3     109.397    1.50
+TPW       "C5'"         C35          C3     113.996    2.95
+TPW       "C5'"         C35        H351     108.789    1.50
+TPW       "C5'"         C35        H352     108.789    1.50
+TPW          C3         C35        H351     108.768    1.50
+TPW          C3         C35        H352     108.768    1.50
+TPW        H351         C35        H352     107.838    1.50
+TPW          S1          C2          C3     108.317    3.00
+TPW          S1          C2          H2     123.404    3.00
+TPW          C3          C2          H2     128.280    2.51
+TPW          C2          S1          C5     108.317    3.00
+TPW          S1          C5          C4     108.317    3.00
+TPW          S1          C5         C5A     120.128    3.00
+TPW          C4          C5         C5A     131.555    3.00
+TPW          C5          C4         C4A     128.553    2.46
+TPW          C5          C4          C3     108.105    2.27
+TPW         C4A          C4          C3     123.342    2.29
+TPW          C4         C4A        H4A1     109.729    1.50
+TPW          C4         C4A        H4A2     109.729    1.50
+TPW          C4         C4A        H4A3     109.729    1.50
+TPW        H4A1         C4A        H4A2     109.190    1.68
+TPW        H4A1         C4A        H4A3     109.190    1.68
+TPW        H4A2         C4A        H4A3     109.190    1.68
+TPW          C5         C5A         C5B     110.747    2.16
+TPW          C5         C5A        H5A1     108.883    1.50
+TPW          C5         C5A        H5A2     108.883    1.50
+TPW         C5B         C5A        H5A1     109.160    1.50
+TPW         C5B         C5A        H5A2     109.160    1.50
+TPW        H5A1         C5A        H5A2     107.724    1.50
+TPW         C5A         C5B         O5G     108.926    2.01
+TPW         C5A         C5B        H5B1     109.702    1.50
+TPW         C5A         C5B        H5B2     109.702    1.50
+TPW         O5G         C5B        H5B1     109.739    1.50
+TPW         O5G         C5B        H5B2     109.739    1.50
+TPW        H5B1         C5B        H5B2     108.319    1.50
+TPW         C5B         O5G          P1     119.251    1.51
+TPW         O5G          P1         O11     101.065    1.97
+TPW         O5G          P1         O12     107.912    2.57
+TPW         O5G          P1         O13     107.912    2.57
+TPW         O11          P1         O12     108.816    2.14
+TPW         O11          P1         O13     108.816    2.14
+TPW         O12          P1         O13     118.411    2.35
+TPW          P1         O11          P2     132.584    3.00
+TPW         O11          P2         O21     105.965    2.38
+TPW         O11          P2         O22     105.965    2.38
+TPW         O11          P2         O23     105.965    2.38
+TPW         O21          P2         O22     112.716    1.50
+TPW         O21          P2         O23     112.716    1.50
+TPW         O22          P2         O23     112.716    1.50
+TPW       "C2'"       "N1'"       "C6'"     116.248    1.65
+TPW         C2A       "C2'"       "N1'"     118.328    1.50
+TPW         C2A       "C2'"       "N3'"     118.117    1.52
+TPW       "N1'"       "C2'"       "N3'"     123.555    1.50
+TPW       "C2'"       "N3'"       "C4'"     118.144    1.50
+TPW       "N3'"       "C4'"       "N4'"     119.589    3.00
+TPW       "N3'"       "C4'"       "C5'"     120.590    1.50
+TPW       "N4'"       "C4'"       "C5'"     119.821    1.50
+TPW       "C4'"       "N4'"      "H4'1"     109.838    2.46
+TPW       "C4'"       "N4'"      "H4'2"     109.838    2.46
+TPW       "C4'"       "N4'"          H1     109.838    2.46
+TPW      "H4'1"       "N4'"      "H4'2"     108.799    3.00
+TPW      "H4'1"       "N4'"          H1     108.799    3.00
+TPW      "H4'2"       "N4'"          H1     108.799    3.00
+TPW         C35       "C5'"       "C4'"     120.769    1.50
+TPW         C35       "C5'"       "C6'"     120.070    1.50
+TPW       "C4'"       "C5'"       "C6'"     119.161    1.50
+TPW       "N1'"       "C6'"       "C5'"     122.303    1.50
+TPW       "N1'"       "C6'"       "H6'"     118.871    1.50
+TPW       "C5'"       "C6'"       "H6'"     118.826    1.50
+TPW         C35          C3          C2     127.404    2.99
+TPW         C35          C3          C4     125.650    1.59
+TPW          C2          C3          C4     106.946    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TPW            sp2_sp3_13       "N1'"       "C2'"         C2A        H2A1     150.000    10.0     6
+TPW            sp3_sp3_17          P2         O11          P1         O5G     -60.000    10.0     3
+TPW            sp3_sp3_20          P1         O11          P2         O21     -60.000    10.0     3
+TPW       const_sp2_sp2_2         C2A       "C2'"       "N1'"       "C6'"     180.000     5.0     2
+TPW              const_27       "C5'"       "C6'"       "N1'"       "C2'"       0.000    10.0     2
+TPW       const_sp2_sp2_4         C2A       "C2'"       "N3'"       "C4'"     180.000     5.0     2
+TPW            sp2_sp3_26       "C4'"       "C5'"         C35          C3     -90.000    10.0     6
+TPW            sp2_sp3_32          C2          C3         C35       "C5'"     -90.000    10.0     6
+TPW       const_sp2_sp2_6       "N4'"       "C4'"       "N3'"       "C2'"     180.000     5.0     2
+TPW            sp2_sp3_19       "N3'"       "C4'"       "N4'"      "H4'1"     150.000    10.0     6
+TPW              const_10       "N4'"       "C4'"       "C5'"         C35       0.000    10.0     2
+TPW              const_13         C35       "C5'"       "C6'"       "N1'"     180.000    10.0     2
+TPW              const_30          S1          C2          C3         C35     180.000    10.0     2
+TPW              const_15          C3          C2          S1          C5       0.000    10.0     2
+TPW              const_18         C5A          C5          S1          C2     180.000    10.0     2
+TPW              const_22         C4A          C4          C5         C5A       0.000    10.0     2
+TPW             sp2_sp3_8          S1          C5         C5A         C5B     -90.000    10.0     6
+TPW              const_26         C35          C3          C4         C4A       0.000    10.0     2
+TPW             sp2_sp3_1          C5          C4         C4A        H4A1     150.000    10.0     6
+TPW             sp3_sp3_1          C5         C5A         C5B         O5G     180.000    10.0     3
+TPW            sp3_sp3_10         C5A         C5B         O5G          P1     180.000    10.0     3
+TPW            sp3_sp3_13         C5B         O5G          P1         O11     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TPW    chir_1    P1    O11    O5G    O12    both
+TPW    chir_2    P2    O11    O21    O23    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TPW    plan-1       "C2'"   0.020
+TPW    plan-1         C2A   0.020
+TPW    plan-1         C35   0.020
+TPW    plan-1       "C4'"   0.020
+TPW    plan-1       "C5'"   0.020
+TPW    plan-1       "C6'"   0.020
+TPW    plan-1       "H6'"   0.020
+TPW    plan-1       "N1'"   0.020
+TPW    plan-1       "N3'"   0.020
+TPW    plan-1       "N4'"   0.020
+TPW    plan-2          C2   0.020
+TPW    plan-2          C3   0.020
+TPW    plan-2         C35   0.020
+TPW    plan-2          C4   0.020
+TPW    plan-2         C4A   0.020
+TPW    plan-2          C5   0.020
+TPW    plan-2         C5A   0.020
+TPW    plan-2          H2   0.020
+TPW    plan-2          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TPW           SMILES              ACDLabs 10.04                                                                                                          O=P(O)(O)OP(=O)(O)OCCc1scc(c1C)Cc2c(nc(nc2)C)N
+TPW SMILES_CANONICAL               CACTVS 3.341                                                                                                     Cc1ncc(Cc2csc(CCO[P@](O)(=O)O[P](O)(O)=O)c2C)c(N)n1
+TPW           SMILES               CACTVS 3.341                                                                                                      Cc1ncc(Cc2csc(CCO[P](O)(=O)O[P](O)(O)=O)c2C)c(N)n1
+TPW SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                        Cc1c(csc1CCO[P@@](=O)(O)OP(=O)(O)O)Cc2cnc(nc2N)C
+TPW           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                            Cc1c(csc1CCOP(=O)(O)OP(=O)(O)O)Cc2cnc(nc2N)C
+TPW            InChI                InChI  1.03 InChI=1S/C13H19N3O7P2S/c1-8-11(5-10-6-15-9(2)16-13(10)14)7-26-12(8)3-4-22-25(20,21)23-24(17,18)19/h6-7H,3-5H2,1-2H3,(H,20,21)(H2,14,15,16)(H2,17,18,19)
+TPW         InChIKey                InChI  1.03                                                                                                                             IOGGWTLVIZLGGZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TPW acedrg               243         "dictionary generator"                  
+TPW acedrg_database      11          "data source"                           
+TPW rdkit                2017.03.2   "Chemoinformatics tool"
+TPW refmac5              5.8.0238    "optimization tool"                     

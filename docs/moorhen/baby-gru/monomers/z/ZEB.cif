@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZEB     ZEB      4-HYDROXY-3,4-DIHYDRO-ZEBULARINE     NON-POLYMER     31     17     .     
+#
+data_comp_ZEB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZEB     N1      N       NR6     0       35.390      48.957      8.800       
+ZEB     C2      C       CR6     0       36.258      48.143      8.090       
+ZEB     O2      O       O       0       37.475      48.300      8.131       
+ZEB     N3      N       NR6     0       35.729      47.167      7.338       
+ZEB     C4      C       CH1     0       34.302      46.898      7.141       
+ZEB     O4      O       OH1     0       33.963      47.018      5.778       
+ZEB     C5      C       CR16    0       33.447      47.812      7.953       
+ZEB     C6      C       CR16    0       34.020      48.894      8.608       
+ZEB     "C1'"   C       CH1     0       35.991      49.945      9.760       
+ZEB     "C2'"   C       CH1     0       36.070      51.346      9.164       
+ZEB     "O2'"   O       OH1     0       37.249      51.495      8.386       
+ZEB     "C3'"   C       CH1     0       36.038      52.254      10.397      
+ZEB     "O3'"   O       OH1     0       37.333      52.563      10.900      
+ZEB     "C4'"   C       CH1     0       35.234      51.425      11.413      
+ZEB     "O4'"   O       O2      0       35.159      50.076      10.886      
+ZEB     "C5'"   C       CH2     0       33.831      51.928      11.668      
+ZEB     "O5'"   O       OH1     0       33.052      51.916      10.480      
+ZEB     HN3     H       H       0       36.297      46.634      6.921       
+ZEB     H4      H       H       0       34.102      45.976      7.430       
+ZEB     HO4     H       H       0       33.189      46.636      5.651       
+ZEB     H5      H       H       0       32.514      47.651      8.020       
+ZEB     H6      H       H       0       33.474      49.597      8.914       
+ZEB     "H1'"   H       H       0       36.883      49.647      10.052      
+ZEB     "H2'"   H       H       0       35.275      51.520      8.604       
+ZEB     HO2     H       H       0       37.271      52.279      8.062       
+ZEB     "H3'"   H       H       0       35.551      53.091      10.181      
+ZEB     HO3     H       H       0       37.754      51.842      11.054      
+ZEB     "H4'"   H       H       0       35.718      51.399      12.267      
+ZEB     "H5'1"  H       H       0       33.873      52.843      12.019      
+ZEB     "H5'2"  H       H       0       33.400      51.360      12.343      
+ZEB     HO5     H       H       0       32.265      52.176      10.663      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZEB          N1          C2      SINGLE       n     1.371  0.0114     1.371  0.0114
+ZEB          N1          C6      SINGLE       n     1.374  0.0156     1.374  0.0156
+ZEB          N1       "C1'"      SINGLE       n     1.492  0.0128     1.492  0.0128
+ZEB          C2          O2      DOUBLE       n     1.226  0.0110     1.226  0.0110
+ZEB          C2          N3      SINGLE       n     1.335  0.0100     1.335  0.0100
+ZEB          N3          C4      SINGLE       n     1.462  0.0120     1.462  0.0120
+ZEB          C4          O4      SINGLE       n     1.410  0.0124     1.410  0.0124
+ZEB          C4          C5      SINGLE       n     1.492  0.0100     1.492  0.0100
+ZEB          C5          C6      DOUBLE       n     1.390  0.0200     1.390  0.0200
+ZEB       "C1'"       "C2'"      SINGLE       n     1.527  0.0119     1.527  0.0119
+ZEB       "C1'"       "O4'"      SINGLE       n     1.406  0.0103     1.406  0.0103
+ZEB       "C2'"       "O2'"      SINGLE       n     1.420  0.0122     1.420  0.0122
+ZEB       "C2'"       "C3'"      SINGLE       n     1.530  0.0134     1.530  0.0134
+ZEB       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+ZEB       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+ZEB       "C4'"       "O4'"      SINGLE       n     1.449  0.0100     1.449  0.0100
+ZEB       "C4'"       "C5'"      SINGLE       n     1.511  0.0177     1.511  0.0177
+ZEB       "C5'"       "O5'"      SINGLE       n     1.421  0.0131     1.421  0.0131
+ZEB          N3         HN3      SINGLE       n     1.016  0.0100     0.882  0.0200
+ZEB          C4          H4      SINGLE       n     1.089  0.0100     0.987  0.0200
+ZEB          O4         HO4      SINGLE       n     0.970  0.0120     0.872  0.0200
+ZEB          C5          H5      SINGLE       n     1.082  0.0130     0.949  0.0200
+ZEB          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0198
+ZEB       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.986  0.0200
+ZEB       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.988  0.0200
+ZEB       "O2'"         HO2      SINGLE       n     0.970  0.0120     0.849  0.0200
+ZEB       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+ZEB       "O3'"         HO3      SINGLE       n     0.970  0.0120     0.849  0.0200
+ZEB       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZEB       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZEB       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZEB       "O5'"         HO5      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZEB          C2          N1          C6     121.570    1.50
+ZEB          C2          N1       "C1'"     116.211    1.50
+ZEB          C6          N1       "C1'"     122.219    1.78
+ZEB          N1          C2          O2     121.723    1.50
+ZEB          N1          C2          N3     116.374    2.84
+ZEB          O2          C2          N3     121.903    1.50
+ZEB          C2          N3          C4     123.393    2.69
+ZEB          C2          N3         HN3     117.465    2.07
+ZEB          C4          N3         HN3     119.142    2.75
+ZEB          N3          C4          O4     110.342    2.34
+ZEB          N3          C4          C5     111.725    2.77
+ZEB          N3          C4          H4     109.078    1.50
+ZEB          O4          C4          C5     109.527    2.40
+ZEB          O4          C4          H4     108.134    1.50
+ZEB          C5          C4          H4     106.710    3.00
+ZEB          C4          O4         HO4     108.419    2.12
+ZEB          C4          C5          C6     121.749    3.00
+ZEB          C4          C5          H5     118.548    2.18
+ZEB          C6          C5          H5     119.703    1.50
+ZEB          N1          C6          C5     120.586    1.66
+ZEB          N1          C6          H6     119.562    1.50
+ZEB          C5          C6          H6     119.852    1.50
+ZEB          N1       "C1'"       "C2'"     112.110    1.66
+ZEB          N1       "C1'"       "O4'"     108.278    1.50
+ZEB          N1       "C1'"       "H1'"     109.209    1.50
+ZEB       "C2'"       "C1'"       "O4'"     106.204    2.50
+ZEB       "C2'"       "C1'"       "H1'"     109.914    1.68
+ZEB       "O4'"       "C1'"       "H1'"     109.395    1.50
+ZEB       "C1'"       "C2'"       "O2'"     111.164    2.38
+ZEB       "C1'"       "C2'"       "C3'"     104.443    2.26
+ZEB       "C1'"       "C2'"       "H2'"     110.518    1.74
+ZEB       "O2'"       "C2'"       "C3'"     112.463    2.73
+ZEB       "O2'"       "C2'"       "H2'"     110.259    1.63
+ZEB       "C3'"       "C2'"       "H2'"     110.255    2.04
+ZEB       "C2'"       "O2'"         HO2     109.104    3.00
+ZEB       "C2'"       "C3'"       "O3'"     112.463    2.73
+ZEB       "C2'"       "C3'"       "C4'"     102.352    1.50
+ZEB       "C2'"       "C3'"       "H3'"     110.255    2.04
+ZEB       "O3'"       "C3'"       "C4'"     111.281    2.46
+ZEB       "O3'"       "C3'"       "H3'"     110.380    1.67
+ZEB       "C4'"       "C3'"       "H3'"     110.452    2.54
+ZEB       "C3'"       "O3'"         HO3     108.744    3.00
+ZEB       "C3'"       "C4'"       "O4'"     105.508    1.50
+ZEB       "C3'"       "C4'"       "C5'"     114.598    1.97
+ZEB       "C3'"       "C4'"       "H4'"     109.363    1.86
+ZEB       "O4'"       "C4'"       "C5'"     108.948    1.50
+ZEB       "O4'"       "C4'"       "H4'"     108.642    1.50
+ZEB       "C5'"       "C4'"       "H4'"     109.037    1.87
+ZEB       "C1'"       "O4'"       "C4'"     109.926    1.50
+ZEB       "C4'"       "C5'"       "O5'"     111.279    1.98
+ZEB       "C4'"       "C5'"      "H5'1"     109.326    2.00
+ZEB       "C4'"       "C5'"      "H5'2"     109.326    2.00
+ZEB       "O5'"       "C5'"      "H5'1"     109.280    1.50
+ZEB       "O5'"       "C5'"      "H5'2"     109.280    1.50
+ZEB      "H5'1"       "C5'"      "H5'2"     108.248    2.26
+ZEB       "C5'"       "O5'"         HO5     109.007    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZEB             sp2_sp2_3          O2          C2          N1          C6     180.000     5.0     2
+ZEB            sp2_sp2_13          C5          C6          N1          C2       0.000     5.0     2
+ZEB            sp2_sp3_13          C2          N1       "C1'"       "C2'"     150.000    10.0     6
+ZEB            sp3_sp3_40       "C2'"       "C3'"       "O3'"         HO3     180.000    10.0     3
+ZEB            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+ZEB            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+ZEB            sp3_sp3_43       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+ZEB            sp3_sp3_52       "C4'"       "C5'"       "O5'"         HO5     180.000    10.0     3
+ZEB             sp2_sp2_7          O2          C2          N3          C4     180.000     5.0     2
+ZEB             sp2_sp3_2          C2          N3          C4          O4     120.000    10.0     6
+ZEB            sp3_sp3_31          N3          C4          O4         HO4     180.000    10.0     3
+ZEB             sp2_sp3_8          C6          C5          C4          O4     120.000    10.0     6
+ZEB             sp2_sp2_9          C4          C5          C6          N1       0.000     5.0     2
+ZEB            sp3_sp3_35          N1       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+ZEB             sp3_sp3_5          N1       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+ZEB            sp3_sp3_37       "C1'"       "C2'"       "O2'"         HO2     180.000    10.0     3
+ZEB            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZEB    chir_1    C4    O4    N3    C5    negative
+ZEB    chir_2    "C1'"    "O4'"    N1    "C2'"    negative
+ZEB    chir_3    "C2'"    "O2'"    "C1'"    "C3'"    negative
+ZEB    chir_4    "C3'"    "O3'"    "C4'"    "C2'"    positive
+ZEB    chir_5    "C4'"    "O4'"    "C3'"    "C5'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZEB    plan-1       "C1'"   0.020
+ZEB    plan-1          C2   0.020
+ZEB    plan-1          C6   0.020
+ZEB    plan-1          N1   0.020
+ZEB    plan-2          C2   0.020
+ZEB    plan-2          N1   0.020
+ZEB    plan-2          N3   0.020
+ZEB    plan-2          O2   0.020
+ZEB    plan-3          C2   0.020
+ZEB    plan-3          C4   0.020
+ZEB    plan-3         HN3   0.020
+ZEB    plan-3          N3   0.020
+ZEB    plan-4          C4   0.020
+ZEB    plan-4          C5   0.020
+ZEB    plan-4          C6   0.020
+ZEB    plan-4          H5   0.020
+ZEB    plan-5          C5   0.020
+ZEB    plan-5          C6   0.020
+ZEB    plan-5          H6   0.020
+ZEB    plan-5          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZEB           SMILES              ACDLabs 10.04                                                                                          O=C1NC(O)C=CN1C2OC(C(O)C2O)CO
+ZEB SMILES_CANONICAL               CACTVS 3.341                                                                    OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N2C=C[C@@H](O)NC2=O
+ZEB           SMILES               CACTVS 3.341                                                                           OC[CH]1O[CH]([CH](O)[CH]1O)N2C=C[CH](O)NC2=O
+ZEB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                   C1=CN(C(=O)N[C@@H]1O)C2[C@@H]([C@@H]([C@H](O2)CO)O)O
+ZEB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      C1=CN(C(=O)NC1O)C2C(C(C(O2)CO)O)O
+ZEB            InChI                InChI  1.03 InChI=1S/C9H14N2O6/c12-3-4-6(14)7(15)8(17-4)11-2-1-5(13)10-9(11)16/h1-2,4-8,12-15H,3H2,(H,10,16)/t4-,5-,6-,7-,8-/m1/s1
+ZEB         InChIKey                InChI  1.03                                                                                            LUOTYVSEHPPZEM-FMDGEEDCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZEB acedrg               243         "dictionary generator"                  
+ZEB acedrg_database      11          "data source"                           
+ZEB rdkit                2017.03.2   "Chemoinformatics tool"
+ZEB refmac5              5.8.0238    "optimization tool"                     

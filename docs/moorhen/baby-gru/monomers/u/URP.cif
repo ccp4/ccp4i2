@@ -1,0 +1,153 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+URP     URP      N-(AMINOCARBONYL)-BETA-ALANINE     NON-POLYMER     16     9     .     
+#
+data_comp_URP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+URP     O2      O       O       0       43.505      46.527      58.141      
+URP     C2      C       C       0       42.513      47.279      58.096      
+URP     N3      N       NH2     0       42.306      48.062      57.020      
+URP     N1      N       NH1     0       41.658      47.324      59.140      
+URP     C6      C       CH2     0       40.419      48.097      59.212      
+URP     C5      C       CH2     0       40.607      49.436      59.899      
+URP     C4      C       C       0       41.488      50.426      59.157      
+URP     O42     O       OC      -1      40.935      51.302      58.463      
+URP     O41     O       O       0       42.725      50.319      59.276      
+URP     HN31    H       H       0       41.633      48.613      56.936      
+URP     HN32    H       H       0       42.887      48.013      56.358      
+URP     HN1     H       H       0       41.871      46.844      59.838      
+URP     H61     H       H       0       39.757      47.579      59.717      
+URP     H62     H       H       0       40.054      48.239      58.316      
+URP     H51     H       H       0       40.994      49.283      60.780      
+URP     H52     H       H       0       39.732      49.845      60.031      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+URP          O2          C2      DOUBLE       n     1.243  0.0179     1.243  0.0179
+URP          C2          N3      SINGLE       n     1.334  0.0157     1.334  0.0157
+URP          C2          N1      SINGLE       n     1.341  0.0100     1.341  0.0100
+URP          N1          C6      SINGLE       n     1.458  0.0100     1.458  0.0100
+URP          C6          C5      SINGLE       n     1.515  0.0100     1.515  0.0100
+URP          C5          C4      SINGLE       n     1.519  0.0109     1.519  0.0109
+URP          C4         O42      SINGLE       n     1.247  0.0187     1.247  0.0187
+URP          C4         O41      DOUBLE       n     1.247  0.0187     1.247  0.0187
+URP          N3        HN31      SINGLE       n     1.016  0.0100     0.881  0.0200
+URP          N3        HN32      SINGLE       n     1.016  0.0100     0.881  0.0200
+URP          N1         HN1      SINGLE       n     1.016  0.0100     0.872  0.0200
+URP          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0159
+URP          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0159
+URP          C5         H51      SINGLE       n     1.089  0.0100     0.975  0.0162
+URP          C5         H52      SINGLE       n     1.089  0.0100     0.975  0.0162
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+URP          O2          C2          N3     122.449    1.81
+URP          O2          C2          N1     121.174    1.50
+URP          N3          C2          N1     116.376    1.50
+URP          C2          N3        HN31     119.809    2.97
+URP          C2          N3        HN32     119.809    2.97
+URP        HN31          N3        HN32     120.382    2.62
+URP          C2          N1          C6     122.784    1.50
+URP          C2          N1         HN1     118.086    1.50
+URP          C6          N1         HN1     119.130    1.50
+URP          N1          C6          C5     112.257    1.50
+URP          N1          C6         H61     109.194    1.50
+URP          N1          C6         H62     109.194    1.50
+URP          C5          C6         H61     109.149    1.50
+URP          C5          C6         H62     109.149    1.50
+URP         H61          C6         H62     107.877    1.50
+URP          C6          C5          C4     114.481    1.97
+URP          C6          C5         H51     108.953    1.50
+URP          C6          C5         H52     108.953    1.50
+URP          C4          C5         H51     108.506    1.50
+URP          C4          C5         H52     108.506    1.50
+URP         H51          C5         H52     107.647    1.50
+URP          C5          C4         O42     118.187    1.50
+URP          C5          C4         O41     118.187    1.50
+URP         O42          C4         O41     123.626    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+URP             sp2_sp2_3          O2          C2          N3        HN31       0.000     5.0     2
+URP             sp2_sp2_7          O2          C2          N1          C6       0.000     5.0     2
+URP             sp2_sp3_2          C2          N1          C6          C5     120.000    10.0     6
+URP             sp3_sp3_1          C4          C5          C6          N1     180.000    10.0     3
+URP             sp2_sp3_8         O42          C4          C5          C6     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+URP    plan-1          C2   0.020
+URP    plan-1          N1   0.020
+URP    plan-1          N3   0.020
+URP    plan-1          O2   0.020
+URP    plan-2          C2   0.020
+URP    plan-2        HN31   0.020
+URP    plan-2        HN32   0.020
+URP    plan-2          N3   0.020
+URP    plan-3          C2   0.020
+URP    plan-3          C6   0.020
+URP    plan-3         HN1   0.020
+URP    plan-3          N1   0.020
+URP    plan-4          C4   0.020
+URP    plan-4          C5   0.020
+URP    plan-4         O41   0.020
+URP    plan-4         O42   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+URP           SMILES              ACDLabs 10.04                                               O=C(O)CCNC(=O)N
+URP SMILES_CANONICAL               CACTVS 3.341                                               NC(=O)NCCC(O)=O
+URP           SMILES               CACTVS 3.341                                               NC(=O)NCCC(O)=O
+URP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             C(CNC(=O)N)C(=O)O
+URP           SMILES "OpenEye OEToolkits" 1.5.0                                             C(CNC(=O)N)C(=O)O
+URP            InChI                InChI  1.03 InChI=1S/C4H8N2O3/c5-4(9)6-2-1-3(7)8/h1-2H2,(H,7,8)(H3,5,6,9)
+URP         InChIKey                InChI  1.03                                   JSJWCHRYRHKBBW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+URP acedrg               243         "dictionary generator"                  
+URP acedrg_database      11          "data source"                           
+URP rdkit                2017.03.2   "Chemoinformatics tool"
+URP refmac5              5.8.0238    "optimization tool"                     

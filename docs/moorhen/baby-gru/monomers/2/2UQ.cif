@@ -1,0 +1,238 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2UQ     2UQ      N-benzyl-2-[(Z)-iminomethyl]pyrimidine-5-carboxamide     NON-POLYMER     30     18     .     
+#
+data_comp_2UQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2UQ     C1      C       CR6     0       -24.551     50.253      38.710      
+2UQ     C2      C       CR16    0       -23.235     50.202      39.144      
+2UQ     C11     C       CR6     0       -27.019     46.456      39.098      
+2UQ     C12     C       C1      0       -21.613     52.786      37.150      
+2UQ     C14     C       CR16    0       -26.921     45.949      40.388      
+2UQ     C15     C       CR16    0       -26.468     44.653      40.605      
+2UQ     C16     C       CR16    0       -26.111     43.855      39.537      
+2UQ     C17     C       CR16    0       -26.204     44.347      38.253      
+2UQ     C18     C       CR16    0       -26.656     45.642      38.031      
+2UQ     N3      N       NRD6    0       -22.281     51.010      38.650      
+2UQ     C4      C       CR6     0       -22.652     51.888      37.708      
+2UQ     N5      N       NRD6    0       -23.895     52.015      37.227      
+2UQ     C6      C       CR16    0       -24.835     51.199      37.735      
+2UQ     C7      C       C       0       -25.594     49.340      39.284      
+2UQ     O8      O       O       0       -25.645     49.151      40.500      
+2UQ     N9      N       NH1     0       -26.439     48.758      38.424      
+2UQ     C10     C       CH2     0       -27.509     47.861      38.852      
+2UQ     N13     N       NH1     0       -20.454     52.980      37.744      
+2UQ     H1      H       H       0       -22.999     49.577      39.808      
+2UQ     H2      H       H       0       -21.806     53.227      36.344      
+2UQ     H3      H       H       0       -27.164     46.489      41.123      
+2UQ     H4      H       H       0       -26.405     44.319      41.486      
+2UQ     H5      H       H       0       -25.803     42.975      39.686      
+2UQ     H6      H       H       0       -25.960     43.803      37.521      
+2UQ     H7      H       H       0       -26.717     45.972      37.149      
+2UQ     H8      H       H       0       -25.717     51.268      37.412      
+2UQ     H9      H       H       0       -26.348     48.903      37.565      
+2UQ     H10     H       H       0       -27.922     48.209      39.670      
+2UQ     H11     H       H       0       -28.200     47.838      38.158      
+2UQ     H12     H       H       0       -19.953     53.566      37.315      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2UQ          N5          C6      DOUBLE       y     1.339  0.0120     1.339  0.0120
+2UQ          C4          N5      SINGLE       y     1.334  0.0100     1.334  0.0100
+2UQ          C1          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+2UQ         C17         C18      DOUBLE       y     1.386  0.0100     1.386  0.0100
+2UQ         C11         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+2UQ         C16         C17      SINGLE       y     1.374  0.0127     1.374  0.0127
+2UQ          N9         C10      SINGLE       n     1.458  0.0100     1.458  0.0100
+2UQ          C7          N9      SINGLE       n     1.334  0.0100     1.334  0.0100
+2UQ         C11         C10      SINGLE       n     1.508  0.0100     1.508  0.0100
+2UQ         C11         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+2UQ         C12          C4      SINGLE       n     1.478  0.0200     1.478  0.0200
+2UQ         C12         N13      DOUBLE       n     1.316  0.0100     1.316  0.0100
+2UQ         C15         C16      DOUBLE       y     1.376  0.0124     1.376  0.0124
+2UQ          N3          C4      DOUBLE       y     1.334  0.0100     1.334  0.0100
+2UQ          C1          C7      SINGLE       n     1.498  0.0100     1.498  0.0100
+2UQ          C1          C2      DOUBLE       y     1.384  0.0100     1.384  0.0100
+2UQ         C14         C15      SINGLE       y     1.386  0.0100     1.386  0.0100
+2UQ          C7          O8      DOUBLE       n     1.230  0.0114     1.230  0.0114
+2UQ          C2          N3      SINGLE       y     1.339  0.0120     1.339  0.0120
+2UQ          C2          H1      SINGLE       n     1.082  0.0130     0.942  0.0105
+2UQ         C12          H2      SINGLE       n     1.082  0.0130     0.939  0.0187
+2UQ         C14          H3      SINGLE       n     1.082  0.0130     0.944  0.0174
+2UQ         C15          H4      SINGLE       n     1.082  0.0130     0.944  0.0175
+2UQ         C16          H5      SINGLE       n     1.082  0.0130     0.944  0.0161
+2UQ         C17          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+2UQ         C18          H7      SINGLE       n     1.082  0.0130     0.944  0.0174
+2UQ          C6          H8      SINGLE       n     1.082  0.0130     0.942  0.0105
+2UQ          N9          H9      SINGLE       n     1.016  0.0100     0.875  0.0200
+2UQ         C10         H10      SINGLE       n     1.089  0.0100     0.980  0.0169
+2UQ         C10         H11      SINGLE       n     1.089  0.0100     0.980  0.0169
+2UQ         N13         H12      SINGLE       n     1.016  0.0100     0.882  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2UQ          C6          C1          C7     121.405    2.73
+2UQ          C6          C1          C2     117.191    1.64
+2UQ          C7          C1          C2     121.405    2.73
+2UQ          C1          C2          N3     122.525    1.50
+2UQ          C1          C2          H1     118.837    1.50
+2UQ          N3          C2          H1     118.638    1.50
+2UQ         C18         C11         C10     120.710    1.50
+2UQ         C18         C11         C14     118.580    1.50
+2UQ         C10         C11         C14     120.710    1.50
+2UQ          C4         C12         N13     121.588    2.97
+2UQ          C4         C12          H2     118.176    1.99
+2UQ         N13         C12          H2     120.236    1.50
+2UQ         C11         C14         C15     120.442    1.50
+2UQ         C11         C14          H3     119.742    1.50
+2UQ         C15         C14          H3     119.815    1.50
+2UQ         C16         C15         C14     120.273    1.50
+2UQ         C16         C15          H4     119.909    1.50
+2UQ         C14         C15          H4     119.818    1.50
+2UQ         C17         C16         C15     119.997    1.50
+2UQ         C17         C16          H5     119.998    1.50
+2UQ         C15         C16          H5     119.998    1.50
+2UQ         C18         C17         C16     120.273    1.50
+2UQ         C18         C17          H6     119.818    1.50
+2UQ         C16         C17          H6     119.909    1.50
+2UQ         C17         C18         C11     120.442    1.50
+2UQ         C17         C18          H7     119.815    1.50
+2UQ         C11         C18          H7     119.742    1.50
+2UQ          C4          N3          C2     116.490    1.50
+2UQ          N5          C4         C12     117.610    1.65
+2UQ          N5          C4          N3     124.779    1.50
+2UQ         C12          C4          N3     117.610    1.65
+2UQ          C6          N5          C4     116.490    1.50
+2UQ          N5          C6          C1     122.525    1.50
+2UQ          N5          C6          H8     118.638    1.50
+2UQ          C1          C6          H8     118.837    1.50
+2UQ          N9          C7          C1     116.724    1.50
+2UQ          N9          C7          O8     122.397    1.50
+2UQ          C1          C7          O8     120.879    1.50
+2UQ         C10          N9          C7     121.850    1.50
+2UQ         C10          N9          H9     118.637    1.50
+2UQ          C7          N9          H9     119.513    1.50
+2UQ          N9         C10         C11     112.551    1.55
+2UQ          N9         C10         H10     109.133    1.50
+2UQ          N9         C10         H11     109.133    1.50
+2UQ         C11         C10         H10     109.073    1.50
+2UQ         C11         C10         H11     109.073    1.50
+2UQ         H10         C10         H11     107.860    1.50
+2UQ         C12         N13         H12     112.238    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2UQ              const_39          C7          C1          C2          N3     180.000    10.0     2
+2UQ              const_23          C7          C1          C6          N5     180.000    10.0     2
+2UQ            sp2_sp2_11          C6          C1          C7          N9     180.000     5.0     2
+2UQ              const_28         C12          C4          N5          C6     180.000    10.0     2
+2UQ              const_25          C1          C6          N5          C4       0.000    10.0     2
+2UQ             sp2_sp2_3          O8          C7          N9         C10       0.000     5.0     2
+2UQ             sp2_sp3_2          C7          N9         C10         C11     120.000    10.0     6
+2UQ              const_31          C1          C2          N3          C4       0.000    10.0     2
+2UQ             sp2_sp3_8         C18         C11         C10          N9     -90.000    10.0     6
+2UQ              const_35         C10         C11         C14         C15     180.000    10.0     2
+2UQ       const_sp2_sp2_3         C10         C11         C18         C17     180.000     5.0     2
+2UQ             sp2_sp2_5         N13         C12          C4          N5     180.000     5.0     2
+2UQ             sp2_sp2_9          C4         C12         N13         H12     180.000     5.0     2
+2UQ              const_17         C11         C14         C15         C16       0.000    10.0     2
+2UQ              const_13         C14         C15         C16         C17       0.000    10.0     2
+2UQ       const_sp2_sp2_9         C15         C16         C17         C18       0.000     5.0     2
+2UQ       const_sp2_sp2_5         C16         C17         C18         C11       0.000     5.0     2
+2UQ              const_30         C12          C4          N3          C2     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2UQ    plan-1          C1   0.020
+2UQ    plan-1         C12   0.020
+2UQ    plan-1          C2   0.020
+2UQ    plan-1          C4   0.020
+2UQ    plan-1          C6   0.020
+2UQ    plan-1          C7   0.020
+2UQ    plan-1          H1   0.020
+2UQ    plan-1          H8   0.020
+2UQ    plan-1          N3   0.020
+2UQ    plan-1          N5   0.020
+2UQ    plan-2         C10   0.020
+2UQ    plan-2         C11   0.020
+2UQ    plan-2         C14   0.020
+2UQ    plan-2         C15   0.020
+2UQ    plan-2         C16   0.020
+2UQ    plan-2         C17   0.020
+2UQ    plan-2         C18   0.020
+2UQ    plan-2          H3   0.020
+2UQ    plan-2          H4   0.020
+2UQ    plan-2          H5   0.020
+2UQ    plan-2          H6   0.020
+2UQ    plan-2          H7   0.020
+2UQ    plan-3         C12   0.020
+2UQ    plan-3          C4   0.020
+2UQ    plan-3          H2   0.020
+2UQ    plan-3         N13   0.020
+2UQ    plan-4          C1   0.020
+2UQ    plan-4          C7   0.020
+2UQ    plan-4          N9   0.020
+2UQ    plan-4          O8   0.020
+2UQ    plan-5         C10   0.020
+2UQ    plan-5          C7   0.020
+2UQ    plan-5          H9   0.020
+2UQ    plan-5          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2UQ           SMILES              ACDLabs 12.01                                                                         O=C(c1cnc(nc1)C=[N@H])NCc2ccccc2
+2UQ            InChI                InChI  1.03 InChI=1S/C13H12N4O/c14-6-12-15-8-11(9-16-12)13(18)17-7-10-4-2-1-3-5-10/h1-6,8-9,14H,7H2,(H,17,18)/b14-6+
+2UQ         InChIKey                InChI  1.03                                                                              LOHVEJATQLMRBB-MKMNVTDBSA-N
+2UQ SMILES_CANONICAL               CACTVS 3.385                                                                             N=Cc1ncc(cn1)C(=O)NCc2ccccc2
+2UQ           SMILES               CACTVS 3.385                                                                             N=Cc1ncc(cn1)C(=O)NCc2ccccc2
+2UQ SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                      "[H]/N=C/c1ncc(cn1)C(=O)NCc2ccccc2"
+2UQ           SMILES "OpenEye OEToolkits" 1.9.2                                                                           c1ccc(cc1)CNC(=O)c2cnc(nc2)C=N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2UQ acedrg               243         "dictionary generator"                  
+2UQ acedrg_database      11          "data source"                           
+2UQ rdkit                2017.03.2   "Chemoinformatics tool"
+2UQ refmac5              5.8.0238    "optimization tool"                     

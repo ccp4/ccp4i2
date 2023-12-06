@@ -1,0 +1,185 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BPE     BPE      (2S)-2-AMINO-3-[(3-AMINOPROPYL)SULFANYL]PROPAN-1-OL     NON-POLYMER     26     10     .     
+#
+data_comp_BPE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BPE     N       N       NT2     0       5.479       49.900      15.045      
+BPE     CA      C       CH1     0       4.304       49.215      15.619      
+BPE     CB      C       CH2     0       4.352       47.708      15.354      
+BPE     SG      S       S2      0       5.781       46.850      16.056      
+BPE     C05     C       CH2     0       5.610       45.190      15.359      
+BPE     C       C       CH2     0       4.155       49.499      17.116      
+BPE     O       O       OH1     0       5.382       49.346      17.811      
+BPE     C08     C       CH2     0       6.172       45.049      13.947      
+BPE     C09     C       CH2     0       5.945       43.662      13.364      
+BPE     N10     N       NT2     0       6.405       43.534      11.978      
+BPE     HN1     H       H       0       6.217       49.622      15.453      
+BPE     HN2     H       H       0       5.556       49.693      14.184      
+BPE     HA      H       H       0       3.497       49.576      15.169      
+BPE     HB1     H       H       0       4.350       47.558      14.384      
+BPE     HB2     H       H       0       3.538       47.297      15.715      
+BPE     H051    H       H       0       4.659       44.952      15.344      
+BPE     H052    H       H       0       6.071       44.553      15.945      
+BPE     H1      H       H       0       3.490       48.886      17.496      
+BPE     H2      H       H       0       3.826       50.415      17.239      
+BPE     HO      H       H       0       5.563       48.521      17.859      
+BPE     H081    H       H       0       7.134       45.233      13.964      
+BPE     H082    H       H       0       5.747       45.712      13.364      
+BPE     H091    H       H       0       4.989       43.452      13.399      
+BPE     H092    H       H       0       6.416       43.002      13.914      
+BPE     H101    H       H       0       6.446       42.680      11.736      
+BPE     H102    H       H       0       7.220       43.874      11.882      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BPE           N          CA      SINGLE       n     1.476  0.0134     1.476  0.0134
+BPE          CA          CB      SINGLE       n     1.531  0.0108     1.531  0.0108
+BPE          CA           C      SINGLE       n     1.530  0.0118     1.530  0.0118
+BPE          CB          SG      SINGLE       n     1.809  0.0113     1.809  0.0113
+BPE          SG         C05      SINGLE       n     1.809  0.0200     1.809  0.0200
+BPE         C05         C08      SINGLE       n     1.526  0.0100     1.526  0.0100
+BPE           C           O      SINGLE       n     1.417  0.0200     1.417  0.0200
+BPE         C08         C09      SINGLE       n     1.522  0.0137     1.522  0.0137
+BPE         C09         N10      SINGLE       n     1.466  0.0117     1.466  0.0117
+BPE           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+BPE           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+BPE          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0135
+BPE          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0122
+BPE          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0122
+BPE         C05        H051      SINGLE       n     1.089  0.0100     0.981  0.0122
+BPE         C05        H052      SINGLE       n     1.089  0.0100     0.981  0.0122
+BPE           C          H1      SINGLE       n     1.089  0.0100     0.981  0.0174
+BPE           C          H2      SINGLE       n     1.089  0.0100     0.981  0.0174
+BPE           O          HO      SINGLE       n     0.970  0.0120     0.846  0.0200
+BPE         C08        H081      SINGLE       n     1.089  0.0100     0.980  0.0123
+BPE         C08        H082      SINGLE       n     1.089  0.0100     0.980  0.0123
+BPE         C09        H091      SINGLE       n     1.089  0.0100     0.979  0.0106
+BPE         C09        H092      SINGLE       n     1.089  0.0100     0.979  0.0106
+BPE         N10        H101      SINGLE       n     1.036  0.0160     0.888  0.0200
+BPE         N10        H102      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BPE          CA           N         HN1     109.715    3.00
+BPE          CA           N         HN2     109.715    3.00
+BPE         HN1           N         HN2     107.559    3.00
+BPE           N          CA          CB     111.883    2.59
+BPE           N          CA           C     111.883    2.59
+BPE           N          CA          HA     107.944    1.55
+BPE          CB          CA           C     110.734    1.73
+BPE          CB          CA          HA     108.078    1.50
+BPE           C          CA          HA     107.627    1.50
+BPE          CA          CB          SG     115.567    1.72
+BPE          CA          CB         HB1     109.297    1.50
+BPE          CA          CB         HB2     109.297    1.50
+BPE          SG          CB         HB1     108.759    1.50
+BPE          SG          CB         HB2     108.759    1.50
+BPE         HB1          CB         HB2     107.812    1.50
+BPE          CB          SG         C05     102.177    1.97
+BPE          SG         C05         C08     114.134    1.50
+BPE          SG         C05        H051     108.801    1.50
+BPE          SG         C05        H052     108.801    1.50
+BPE         C08         C05        H051     108.754    1.50
+BPE         C08         C05        H052     108.754    1.50
+BPE        H051         C05        H052     107.939    1.50
+BPE          CA           C           O     111.903    1.66
+BPE          CA           C          H1     109.343    1.50
+BPE          CA           C          H2     109.343    1.50
+BPE           O           C          H1     109.411    1.50
+BPE           O           C          H2     109.411    1.50
+BPE          H1           C          H2     108.070    1.50
+BPE           C           O          HO     108.529    2.94
+BPE         C05         C08         C09     112.461    1.52
+BPE         C05         C08        H081     109.064    1.50
+BPE         C05         C08        H082     109.064    1.50
+BPE         C09         C08        H081     108.805    1.50
+BPE         C09         C08        H082     108.805    1.50
+BPE        H081         C08        H082     107.937    1.50
+BPE         C08         C09         N10     113.282    2.68
+BPE         C08         C09        H091     109.099    1.50
+BPE         C08         C09        H092     109.099    1.50
+BPE         N10         C09        H091     108.763    1.50
+BPE         N10         C09        H092     108.763    1.50
+BPE        H091         C09        H092     107.806    1.50
+BPE         C09         N10        H101     110.839    3.00
+BPE         C09         N10        H102     110.839    3.00
+BPE        H101         N10        H102     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BPE             sp3_sp3_1          CB          CA           N         HN1     180.000    10.0     3
+BPE             sp3_sp3_7           N          CA          CB          SG     180.000    10.0     3
+BPE            sp3_sp3_16           O           C          CA           N     180.000    10.0     3
+BPE            sp3_sp3_25          CA          CB          SG         C05     180.000    10.0     3
+BPE            sp3_sp3_28         C08         C05          SG          CB     180.000    10.0     3
+BPE            sp3_sp3_31          SG         C05         C08         C09     180.000    10.0     3
+BPE            sp3_sp3_40          CA           C           O          HO     180.000    10.0     3
+BPE            sp3_sp3_43         C05         C08         C09         N10     180.000    10.0     3
+BPE            sp3_sp3_52         C08         C09         N10        H101     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BPE    chir_1    CA    N    CB    C    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BPE           SMILES              ACDLabs 10.04                                                       OCC(N)CSCCCN
+BPE SMILES_CANONICAL               CACTVS 3.341                                                   NCCCSC[C@H](N)CO
+BPE           SMILES               CACTVS 3.341                                                    NCCCSC[CH](N)CO
+BPE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                C(CN)CSC[C@@H](CO)N
+BPE           SMILES "OpenEye OEToolkits" 1.5.0                                                     C(CN)CSCC(CO)N
+BPE            InChI                InChI  1.03 InChI=1S/C6H16N2OS/c7-2-1-3-10-5-6(8)4-9/h6,9H,1-5,7-8H2/t6-/m1/s1
+BPE         InChIKey                InChI  1.03                                        RYOVYWMBACBGOD-ZCFIWIBFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BPE acedrg               243         "dictionary generator"                  
+BPE acedrg_database      11          "data source"                           
+BPE rdkit                2017.03.2   "Chemoinformatics tool"
+BPE refmac5              5.8.0238    "optimization tool"                     

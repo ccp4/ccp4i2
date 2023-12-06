@@ -1,0 +1,333 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LIR     LIR      2-[(3S)-3-AMINOPIPERIDIN-1-YL]-1-(2-CYANOBENZYL)-5-METHYL-4,6-DIOXO-3,4,5,6-TETRAHYDROPYRROLO[3,4-D]IMIDAZOL-1-IUM     NON-POLYMER     48     27     .     
+#
+data_comp_LIR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LIR     C4      C       CR5     0       19.046      39.905      -78.356     
+LIR     C7      C       CR5     0       15.663      38.532      -78.518     
+LIR     N12     N       NT      0       14.510      37.892      -78.105     
+LIR     C13     C       CH2     0       14.070      36.598      -78.640     
+LIR     C15     C       CH2     0       11.818      36.992      -77.542     
+LIR     C17     C       CH2     0       13.895      38.209      -76.810     
+LIR     C20     C       CR6     0       15.555      39.010      -82.249     
+LIR     C21     C       CR16    0       15.506      40.046      -83.183     
+LIR     C22     C       CR16    0       16.054      39.899      -84.451     
+LIR     C24     C       CR16    0       16.709      37.660      -83.913     
+LIR     C26     C       CSP     0       16.242      36.680      -81.723     
+LIR     C1      C       CR5     0       18.139      40.378      -80.451     
+LIR     C2      C       CR55    0       17.167      39.650      -79.682     
+LIR     C3      C       CR55    0       17.693      39.364      -78.444     
+LIR     N5      N       NT      0       19.168      40.669      -79.530     
+LIR     N6      N       NR5     1       15.892      39.136      -79.760     
+LIR     N8      N       NT1     0       16.770      38.672      -77.700     
+LIR     O9      O       O       0       18.156      40.715      -81.619     
+LIR     O10     O       O       0       19.914      39.784      -77.513     
+LIR     C11     C       CH3     0       20.374      41.429      -79.854     
+LIR     C14     C       CH1     0       12.538      36.598      -78.831     
+LIR     C16     C       CH2     0       12.387      38.287      -76.964     
+LIR     N18     N       NT2     0       12.054      35.296      -79.313     
+LIR     C19     C       CH2     0       14.943      39.200      -80.875     
+LIR     C23     C       CR16    0       16.652      38.705      -84.810     
+LIR     C25     C       CR6     0       16.164      37.794      -82.634     
+LIR     N27     N       NSP     0       16.301      35.767      -81.029     
+LIR     H131    H       H       0       14.508      36.429      -79.500     
+LIR     H132    H       H       0       14.324      35.883      -78.019     
+LIR     H151    H       H       0       11.914      36.266      -76.880     
+LIR     H152    H       H       0       10.856      37.109      -77.729     
+LIR     H171    H       H       0       14.236      39.059      -76.482     
+LIR     H172    H       H       0       14.125      37.519      -76.164     
+LIR     H21     H       H       0       15.102      40.865      -82.946     
+LIR     H22     H       H       0       16.016      40.613      -85.067     
+LIR     H24     H       H       0       17.118      36.851      -84.165     
+LIR     HN8     H       H       0       16.858      38.367      -76.861     
+LIR     H111    H       H       0       20.187      42.045      -80.580     
+LIR     H112    H       H       0       21.079      40.819      -80.122     
+LIR     H113    H       H       0       20.660      41.929      -79.074     
+LIR     H14     H       H       0       12.316      37.276      -79.514     
+LIR     H161    H       H       0       11.977      38.461      -76.084     
+LIR     H162    H       H       0       12.157      39.039      -77.560     
+LIR     H181    H       H       0       12.171      34.677      -78.685     
+LIR     H182    H       H       0       12.506      35.054      -80.039     
+LIR     H191    H       H       0       14.258      38.514      -80.743     
+LIR     H192    H       H       0       14.494      40.070      -80.845     
+LIR     H23     H       H       0       17.023      38.604      -85.673     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LIR          C4          N5      SINGLE       n     1.400  0.0142     1.400  0.0142
+LIR          C4          C3      SINGLE       n     1.472  0.0200     1.472  0.0200
+LIR          C4         O10      DOUBLE       n     1.215  0.0150     1.215  0.0150
+LIR          C7          N6      DOUBLE       y     1.385  0.0135     1.385  0.0135
+LIR          C7         N12      SINGLE       n     1.376  0.0181     1.376  0.0181
+LIR          C7          N8      SINGLE       y     1.378  0.0111     1.378  0.0111
+LIR         N12         C13      SINGLE       n     1.466  0.0100     1.466  0.0100
+LIR         N12         C17      SINGLE       n     1.466  0.0100     1.466  0.0100
+LIR         C13         C14      SINGLE       n     1.538  0.0178     1.538  0.0178
+LIR         C15         C14      SINGLE       n     1.527  0.0100     1.527  0.0100
+LIR         C15         C16      SINGLE       n     1.526  0.0100     1.526  0.0100
+LIR         C17         C16      SINGLE       n     1.516  0.0100     1.516  0.0100
+LIR         C20         C21      DOUBLE       y     1.391  0.0103     1.391  0.0103
+LIR         C20         C25      SINGLE       y     1.406  0.0100     1.406  0.0100
+LIR         C20         C19      SINGLE       n     1.512  0.0100     1.512  0.0100
+LIR         C21         C22      SINGLE       y     1.387  0.0100     1.387  0.0100
+LIR         C22         C23      DOUBLE       y     1.381  0.0100     1.381  0.0100
+LIR         C24         C23      SINGLE       y     1.375  0.0100     1.375  0.0100
+LIR         C24         C25      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LIR         C26         C25      SINGLE       n     1.440  0.0102     1.440  0.0102
+LIR         C26         N27      TRIPLE       n     1.149  0.0200     1.149  0.0200
+LIR          C1          O9      DOUBLE       n     1.215  0.0150     1.215  0.0150
+LIR          C1          C2      SINGLE       n     1.432  0.0200     1.432  0.0200
+LIR          C1          N5      SINGLE       n     1.400  0.0142     1.400  0.0142
+LIR          C2          N6      SINGLE       y     1.374  0.0119     1.374  0.0119
+LIR          C2          C3      DOUBLE       y     1.419  0.0200     1.419  0.0200
+LIR          C3          N8      SINGLE       y     1.378  0.0111     1.378  0.0111
+LIR          N5         C11      SINGLE       n     1.460  0.0106     1.460  0.0106
+LIR          N6         C19      SINGLE       n     1.461  0.0100     1.461  0.0100
+LIR         C14         N18      SINGLE       n     1.470  0.0107     1.470  0.0107
+LIR         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0161
+LIR         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0161
+LIR         C15        H151      SINGLE       n     1.089  0.0100     0.987  0.0100
+LIR         C15        H152      SINGLE       n     1.089  0.0100     0.987  0.0100
+LIR         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0104
+LIR         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0104
+LIR         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0173
+LIR         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0175
+LIR         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0168
+LIR          N8         HN8      SINGLE       n     1.016  0.0100     0.897  0.0200
+LIR         C11        H111      SINGLE       n     1.089  0.0100     0.970  0.0148
+LIR         C11        H112      SINGLE       n     1.089  0.0100     0.970  0.0148
+LIR         C11        H113      SINGLE       n     1.089  0.0100     0.970  0.0148
+LIR         C14         H14      SINGLE       n     1.089  0.0100     0.988  0.0199
+LIR         C16        H161      SINGLE       n     1.089  0.0100     0.987  0.0100
+LIR         C16        H162      SINGLE       n     1.089  0.0100     0.987  0.0100
+LIR         N18        H181      SINGLE       n     1.036  0.0160     0.889  0.0200
+LIR         N18        H182      SINGLE       n     1.036  0.0160     0.889  0.0200
+LIR         C19        H191      SINGLE       n     1.089  0.0100     0.979  0.0157
+LIR         C19        H192      SINGLE       n     1.089  0.0100     0.979  0.0157
+LIR         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0150
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LIR          N5          C4          C3     104.720    1.75
+LIR          N5          C4         O10     124.032    1.50
+LIR          C3          C4         O10     131.248    1.81
+LIR          N6          C7         N12     125.704    2.55
+LIR          N6          C7          N8     110.128    1.50
+LIR         N12          C7          N8     124.168    3.00
+LIR          C7         N12         C13     118.347    3.00
+LIR          C7         N12         C17     118.347    3.00
+LIR         C13         N12         C17     112.404    1.50
+LIR         N12         C13         C14     110.258    1.51
+LIR         N12         C13        H131     109.476    1.50
+LIR         N12         C13        H132     109.476    1.50
+LIR         C14         C13        H131     109.558    1.50
+LIR         C14         C13        H132     109.558    1.50
+LIR        H131         C13        H132     108.194    1.50
+LIR         C14         C15         C16     110.796    1.50
+LIR         C14         C15        H151     109.341    1.50
+LIR         C14         C15        H152     109.341    1.50
+LIR         C16         C15        H151     109.588    1.50
+LIR         C16         C15        H152     109.588    1.50
+LIR        H151         C15        H152     108.076    1.50
+LIR         N12         C17         C16     109.770    1.50
+LIR         N12         C17        H171     109.476    1.50
+LIR         N12         C17        H172     109.476    1.50
+LIR         C16         C17        H171     109.818    1.50
+LIR         C16         C17        H172     109.818    1.50
+LIR        H171         C17        H172     108.201    1.50
+LIR         C21         C20         C25     118.587    1.50
+LIR         C21         C20         C19     120.560    1.50
+LIR         C25         C20         C19     120.853    1.50
+LIR         C20         C21         C22     121.207    1.50
+LIR         C20         C21         H21     119.310    1.50
+LIR         C22         C21         H21     119.482    1.50
+LIR         C21         C22         C23     120.184    1.50
+LIR         C21         C22         H22     119.863    1.50
+LIR         C23         C22         H22     119.953    1.50
+LIR         C23         C24         C25     119.982    1.50
+LIR         C23         C24         H24     119.943    1.50
+LIR         C25         C24         H24     120.075    1.50
+LIR         C25         C26         N27     177.968    1.50
+LIR          O9          C1          C2     131.248    1.81
+LIR          O9          C1          N5     124.032    1.50
+LIR          C2          C1          N5     104.720    1.75
+LIR          C1          C2          N6     138.289    1.50
+LIR          C1          C2          C3     110.146    2.11
+LIR          N6          C2          C3     111.565    1.50
+LIR          C4          C3          C2     110.152    2.11
+LIR          C4          C3          N8     138.024    1.50
+LIR          C2          C3          N8     111.824    1.50
+LIR          C4          N5          C1     109.577    2.83
+LIR          C4          N5         C11     121.946    3.00
+LIR          C1          N5         C11     121.946    3.00
+LIR          C7          N6          C2     106.844    1.50
+LIR          C7          N6         C19     126.377    2.00
+LIR          C2          N6         C19     126.779    2.04
+LIR          C7          N8          C3     108.518    2.27
+LIR          C7          N8         HN8     123.637    3.00
+LIR          C3          N8         HN8     124.642    3.00
+LIR          N5         C11        H111     109.525    1.50
+LIR          N5         C11        H112     109.525    1.50
+LIR          N5         C11        H113     109.525    1.50
+LIR        H111         C11        H112     109.462    1.50
+LIR        H111         C11        H113     109.462    1.50
+LIR        H112         C11        H113     109.462    1.50
+LIR         C13         C14         C15     111.124    1.57
+LIR         C13         C14         N18     111.865    2.42
+LIR         C13         C14         H14     108.170    1.50
+LIR         C15         C14         N18     110.671    1.99
+LIR         C15         C14         H14     107.655    1.50
+LIR         N18         C14         H14     108.113    1.50
+LIR         C15         C16         C17     111.236    1.50
+LIR         C15         C16        H161     109.460    1.50
+LIR         C15         C16        H162     109.460    1.50
+LIR         C17         C16        H161     109.462    1.50
+LIR         C17         C16        H162     109.462    1.50
+LIR        H161         C16        H162     108.022    1.50
+LIR         C14         N18        H181     109.984    3.00
+LIR         C14         N18        H182     109.984    3.00
+LIR        H181         N18        H182     108.673    3.00
+LIR         C20         C19          N6     113.290    1.50
+LIR         C20         C19        H191     109.047    1.50
+LIR         C20         C19        H192     109.047    1.50
+LIR          N6         C19        H191     108.834    1.50
+LIR          N6         C19        H192     108.834    1.50
+LIR        H191         C19        H192     107.891    1.50
+LIR         C22         C23         C24     120.184    1.50
+LIR         C22         C23         H23     119.953    1.50
+LIR         C24         C23         H23     119.863    1.50
+LIR         C20         C25         C24     119.856    1.50
+LIR         C20         C25         C26     120.186    1.54
+LIR         C24         C25         C26     119.958    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LIR            sp2_sp2_14          C2          C3          C4         O10     180.000     5.0     2
+LIR             sp2_sp2_4         O10          C4          N5         C11       0.000     5.0     2
+LIR           other_tor_1         N27         C26         C25         C20      90.000    10.0     1
+LIR            sp2_sp2_12          O9          C1          C2          N6       0.000     5.0     2
+LIR             sp2_sp2_8          O9          C1          N5         C11       0.000     5.0     2
+LIR       const_sp2_sp2_1          C1          C2          C3          C4       0.000     5.0     2
+LIR              const_32          C1          C2          N6         C19       0.000    10.0     2
+LIR              const_35          C4          C3          N8          C7     180.000    10.0     2
+LIR            sp2_sp3_19          C4          N5         C11        H111     150.000    10.0     6
+LIR            sp2_sp3_26          C7          N6         C19         C20     -90.000    10.0     6
+LIR              const_28         N12          C7          N6         C19       0.000    10.0     2
+LIR              const_37          N6          C7          N8          C3       0.000    10.0     2
+LIR            sp2_sp2_17          N6          C7         N12         C13     180.000     5.0     2
+LIR            sp3_sp3_37         C13         C14         N18        H181     180.000    10.0     3
+LIR             sp2_sp3_4          C7         N12         C13         C14     180.000    10.0     6
+LIR            sp2_sp3_10          C7         N12         C17         C16     180.000    10.0     6
+LIR             sp3_sp3_2         N12         C13         C14         N18      60.000    10.0     3
+LIR            sp3_sp3_13         N18         C14         C15         C16     -60.000    10.0     3
+LIR            sp3_sp3_19         C14         C15         C16         C17     -60.000    10.0     3
+LIR            sp3_sp3_28         C15         C16         C17         N12      60.000    10.0     3
+LIR            sp2_sp3_14         C21         C20         C19          N6     -90.000    10.0     6
+LIR              const_44         C19         C20         C25         C26       0.000    10.0     2
+LIR       const_sp2_sp2_7         C19         C20         C21         C22     180.000     5.0     2
+LIR       const_sp2_sp2_9         C20         C21         C22         C23       0.000     5.0     2
+LIR              const_13         C21         C22         C23         C24       0.000    10.0     2
+LIR              const_17         C22         C23         C24         C25       0.000    10.0     2
+LIR              const_22         C23         C24         C25         C26     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LIR    chir_1    C14    N18    C13    C15    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LIR    plan-1          C1   0.020
+LIR    plan-1         C19   0.020
+LIR    plan-1          C2   0.020
+LIR    plan-1          C3   0.020
+LIR    plan-1          C4   0.020
+LIR    plan-1          C7   0.020
+LIR    plan-1         HN8   0.020
+LIR    plan-1         N12   0.020
+LIR    plan-1          N6   0.020
+LIR    plan-1          N8   0.020
+LIR    plan-2         C19   0.020
+LIR    plan-2         C20   0.020
+LIR    plan-2         C21   0.020
+LIR    plan-2         C22   0.020
+LIR    plan-2         C23   0.020
+LIR    plan-2         C24   0.020
+LIR    plan-2         C25   0.020
+LIR    plan-2         C26   0.020
+LIR    plan-2         H21   0.020
+LIR    plan-2         H22   0.020
+LIR    plan-2         H23   0.020
+LIR    plan-2         H24   0.020
+LIR    plan-3          C3   0.020
+LIR    plan-3          C4   0.020
+LIR    plan-3          N5   0.020
+LIR    plan-3         O10   0.020
+LIR    plan-4          C1   0.020
+LIR    plan-4          C2   0.020
+LIR    plan-4          N5   0.020
+LIR    plan-4          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LIR           SMILES              ACDLabs 10.04                                                                                                         N#Cc1ccccc1C[n+]2c(nc3c2C(=O)N(C3=O)C)N4CCCC(N)C4
+LIR SMILES_CANONICAL               CACTVS 3.341                                                                                                  CN1C(=O)c2[nH]c(N3CCC[C@H](N)C3)[n+](Cc4ccccc4C#N)c2C1=O
+LIR           SMILES               CACTVS 3.341                                                                                                   CN1C(=O)c2[nH]c(N3CCC[CH](N)C3)[n+](Cc4ccccc4C#N)c2C1=O
+LIR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                               CN1C(=O)c2c([n+](c([nH]2)N3CCC[C@@H](C3)N)Cc4ccccc4C#N)C1=O
+LIR           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    CN1C(=O)c2c([n+](c([nH]2)N3CCCC(C3)N)Cc4ccccc4C#N)C1=O
+LIR            InChI                InChI  1.03 InChI=1S/C19H20N6O2/c1-23-17(26)15-16(18(23)27)25(10-13-6-3-2-5-12(13)9-20)19(22-15)24-8-4-7-14(21)11-24/h2-3,5-6,14H,4,7-8,10-11,21H2,1H3/p+1/t14-/m0/s1
+LIR         InChIKey                InChI  1.03                                                                                                                               WVRGIUWTFUXDGX-AWEZNQCLSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LIR acedrg               243         "dictionary generator"                  
+LIR acedrg_database      11          "data source"                           
+LIR rdkit                2017.03.2   "Chemoinformatics tool"
+LIR refmac5              5.8.0238    "optimization tool"                     

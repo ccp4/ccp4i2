@@ -1,0 +1,420 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZBS     ZBS      2-phenyl-~{N}-[5-[(1~{S},3~{S})-3-[5-(2-phenylethanoylamino)-1,3,4-thiadiazol-2-yl]cyclohexyl]-1,3,4-thiadiazol-2-yl]ethanamide     NON-POLYMER     62     36     .     
+#
+data_comp_ZBS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZBS     C01     C       CR16    0       -0.805      -5.180      76.870      
+ZBS     C02     C       CR16    0       -0.558      -4.612      75.636      
+ZBS     C03     C       CR16    0       -0.159      -5.408      74.584      
+ZBS     C04     C       CR16    0       -0.005      -6.777      74.763      
+ZBS     C05     C       CR6     0       -0.250      -7.365      75.999      
+ZBS     C06     C       CR16    0       -0.652      -6.550      77.051      
+ZBS     C07     C       CH2     0       -0.082      -8.854      76.192      
+ZBS     C08     C       C       0       1.201       -9.210      76.918      
+ZBS     C09     C       CR5     0       3.656       -8.968      76.711      
+ZBS     C10     C       CR5     0       5.807       -9.087      77.875      
+ZBS     C11     C       CH1     0       6.887       -9.112      78.916      
+ZBS     C12     C       CH2     0       8.163       -9.808      78.427      
+ZBS     C13     C       CH2     0       9.013       -8.923      77.513      
+ZBS     C14     C       CH2     0       9.306       -7.570      78.157      
+ZBS     C15     C       CH1     0       8.025       -6.851      78.541      
+ZBS     C16     C       CH2     0       7.185       -7.715      79.488      
+ZBS     C17     C       CR5     0       8.316       -5.515      79.147      
+ZBS     C18     C       CR5     0       8.485       -3.139      79.707      
+ZBS     C19     C       C       0       7.883       -0.809      79.047      
+ZBS     C20     C       CH2     0       7.963       0.607       79.581      
+ZBS     C21     C       CR6     0       6.967       0.856       80.690      
+ZBS     C22     C       CR16    0       5.601       0.817       80.437      
+ZBS     C23     C       CR16    0       4.682       1.048       81.454      
+ZBS     C24     C       CR16    0       5.119       1.322       82.734      
+ZBS     C25     C       CR16    0       6.471       1.365       83.000      
+ZBS     C26     C       CR16    0       7.391       1.135       81.984      
+ZBS     N01     N       NH1     0       2.354       -8.845      76.279      
+ZBS     N02     N       NRD5    0       5.910       -9.276      76.600      
+ZBS     N03     N       NRD5    0       4.677       -9.200      75.914      
+ZBS     N04     N       NRD5    0       9.114       -3.935      80.552      
+ZBS     N05     N       NRD5    0       9.007       -5.304      80.217      
+ZBS     N06     N       NH1     0       8.460       -1.763      79.839      
+ZBS     O01     O       O       0       1.179       -9.805      77.995      
+ZBS     O02     O       O       0       7.339       -1.052      77.970      
+ZBS     S01     S       S2      0       4.208       -8.832      78.278      
+ZBS     S02     S       S2      0       7.775       -4.073      78.515      
+ZBS     H1      H       H       0       -1.078      -4.638      77.592      
+ZBS     H2      H       H       0       -0.662      -3.682      75.514      
+ZBS     H3      H       H       0       0.011       -5.022      73.739      
+ZBS     H4      H       H       0       0.268       -7.315      74.038      
+ZBS     H5      H       H       0       -0.822      -6.932      77.897      
+ZBS     H6      H       H       0       -0.084      -9.295      75.320      
+ZBS     H7      H       H       0       -0.840      -9.198      76.704      
+ZBS     H8      H       H       0       6.545       -9.655      79.670      
+ZBS     H9      H       H       0       8.701       -10.070     79.209      
+ZBS     H10     H       H       0       7.917       -10.628     77.943      
+ZBS     H11     H       H       0       8.546       -8.783      76.660      
+ZBS     H12     H       H       0       9.864       -9.380      77.319      
+ZBS     H13     H       H       0       9.815       -7.011      77.527      
+ZBS     H14     H       H       0       9.856       -7.703      78.962      
+ZBS     H15     H       H       0       7.499       -6.709      77.714      
+ZBS     H16     H       H       0       7.666       -7.816      80.337      
+ZBS     H17     H       H       0       6.340       -7.255      79.676      
+ZBS     H18     H       H       0       7.790       1.231       78.849      
+ZBS     H19     H       H       0       8.868       0.775       79.910      
+ZBS     H20     H       H       0       5.294       0.630       79.564      
+ZBS     H21     H       H       0       3.757       1.017       81.268      
+ZBS     H22     H       H       0       4.495       1.478       83.424      
+ZBS     H23     H       H       0       6.773       1.553       83.874      
+ZBS     H24     H       H       0       8.315       1.167       82.176      
+ZBS     H25     H       H       0       2.275       -8.499      75.475      
+ZBS     H26     H       H       0       8.884       -1.469      80.551      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZBS         C03         C04      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C04         C05      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C02         C03      SINGLE       y     1.374  0.0127     1.374  0.0127
+ZBS         N02         N03      SINGLE       y     1.395  0.0133     1.395  0.0133
+ZBS         C09         N03      DOUBLE       y     1.301  0.0200     1.301  0.0200
+ZBS         C09         N01      SINGLE       n     1.367  0.0190     1.367  0.0190
+ZBS         C08         N01      SINGLE       n     1.357  0.0146     1.357  0.0146
+ZBS         C05         C07      SINGLE       n     1.510  0.0100     1.510  0.0100
+ZBS         C07         C08      SINGLE       n     1.514  0.0100     1.514  0.0100
+ZBS         C05         C06      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C01         C02      DOUBLE       y     1.376  0.0124     1.376  0.0124
+ZBS         C10         N02      DOUBLE       y     1.287  0.0105     1.287  0.0105
+ZBS         C09         S01      SINGLE       y     1.695  0.0200     1.695  0.0200
+ZBS         C01         C06      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C08         O01      DOUBLE       n     1.230  0.0104     1.230  0.0104
+ZBS         C12         C13      SINGLE       n     1.527  0.0107     1.527  0.0107
+ZBS         C13         C14      SINGLE       n     1.527  0.0107     1.527  0.0107
+ZBS         C10         S01      SINGLE       y     1.695  0.0200     1.695  0.0200
+ZBS         C10         C11      SINGLE       n     1.496  0.0100     1.496  0.0100
+ZBS         C11         C12      SINGLE       n     1.518  0.0168     1.518  0.0168
+ZBS         C14         C15      SINGLE       n     1.518  0.0168     1.518  0.0168
+ZBS         C15         C16      SINGLE       n     1.531  0.0127     1.531  0.0127
+ZBS         C15         C17      SINGLE       n     1.496  0.0100     1.496  0.0100
+ZBS         C11         C16      SINGLE       n     1.531  0.0127     1.531  0.0127
+ZBS         C19         O02      DOUBLE       n     1.230  0.0104     1.230  0.0104
+ZBS         C17         S02      SINGLE       y     1.695  0.0200     1.695  0.0200
+ZBS         C18         S02      SINGLE       y     1.695  0.0200     1.695  0.0200
+ZBS         C17         N05      DOUBLE       y     1.287  0.0105     1.287  0.0105
+ZBS         C22         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C21         C22      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C23         C24      SINGLE       y     1.376  0.0124     1.376  0.0124
+ZBS         C19         C20      SINGLE       n     1.514  0.0100     1.514  0.0100
+ZBS         C19         N06      SINGLE       n     1.357  0.0146     1.357  0.0146
+ZBS         C20         C21      SINGLE       n     1.510  0.0100     1.510  0.0100
+ZBS         C18         N06      SINGLE       n     1.367  0.0190     1.367  0.0190
+ZBS         C18         N04      DOUBLE       y     1.301  0.0200     1.301  0.0200
+ZBS         N04         N05      SINGLE       y     1.395  0.0133     1.395  0.0133
+ZBS         C21         C26      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C24         C25      DOUBLE       y     1.374  0.0127     1.374  0.0127
+ZBS         C25         C26      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZBS         C01          H1      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZBS         C02          H2      SINGLE       n     1.082  0.0130     0.944  0.0161
+ZBS         C03          H3      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZBS         C04          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZBS         C06          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZBS         C07          H6      SINGLE       n     1.089  0.0100     0.977  0.0143
+ZBS         C07          H7      SINGLE       n     1.089  0.0100     0.977  0.0143
+ZBS         C11          H8      SINGLE       n     1.089  0.0100     0.990  0.0127
+ZBS         C12          H9      SINGLE       n     1.089  0.0100     0.984  0.0137
+ZBS         C12         H10      SINGLE       n     1.089  0.0100     0.984  0.0137
+ZBS         C13         H11      SINGLE       n     1.089  0.0100     0.985  0.0200
+ZBS         C13         H12      SINGLE       n     1.089  0.0100     0.985  0.0200
+ZBS         C14         H13      SINGLE       n     1.089  0.0100     0.984  0.0137
+ZBS         C14         H14      SINGLE       n     1.089  0.0100     0.984  0.0137
+ZBS         C15         H15      SINGLE       n     1.089  0.0100     0.990  0.0127
+ZBS         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZBS         C16         H17      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZBS         C20         H18      SINGLE       n     1.089  0.0100     0.977  0.0143
+ZBS         C20         H19      SINGLE       n     1.089  0.0100     0.977  0.0143
+ZBS         C22         H20      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZBS         C23         H21      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZBS         C24         H22      SINGLE       n     1.082  0.0130     0.944  0.0161
+ZBS         C25         H23      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZBS         C26         H24      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZBS         N01         H25      SINGLE       n     1.016  0.0100     0.878  0.0200
+ZBS         N06         H26      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZBS         C02         C01         C06     120.325    1.50
+ZBS         C02         C01          H1     119.883    1.50
+ZBS         C06         C01          H1     119.792    1.50
+ZBS         C03         C02         C01     120.043    1.50
+ZBS         C03         C02          H2     119.979    1.50
+ZBS         C01         C02          H2     119.979    1.50
+ZBS         C04         C03         C02     120.325    1.50
+ZBS         C04         C03          H3     119.792    1.50
+ZBS         C02         C03          H3     119.883    1.50
+ZBS         C03         C04         C05     120.624    1.50
+ZBS         C03         C04          H4     119.786    1.50
+ZBS         C05         C04          H4     119.591    1.50
+ZBS         C04         C05         C07     120.970    1.50
+ZBS         C04         C05         C06     118.060    1.50
+ZBS         C07         C05         C06     120.970    1.50
+ZBS         C05         C06         C01     120.624    1.50
+ZBS         C05         C06          H5     119.591    1.50
+ZBS         C01         C06          H5     119.786    1.50
+ZBS         C05         C07         C08     111.650    2.25
+ZBS         C05         C07          H6     109.288    1.50
+ZBS         C05         C07          H7     109.288    1.50
+ZBS         C08         C07          H6     109.007    1.50
+ZBS         C08         C07          H7     109.007    1.50
+ZBS          H6         C07          H7     108.049    1.50
+ZBS         N01         C08         C07     114.956    1.58
+ZBS         N01         C08         O01     123.014    1.50
+ZBS         C07         C08         O01     122.030    1.50
+ZBS         N03         C09         N01     126.983    3.00
+ZBS         N03         C09         S01     108.386    3.00
+ZBS         N01         C09         S01     124.631    3.00
+ZBS         N02         C10         S01     108.386    3.00
+ZBS         N02         C10         C11     127.686    3.00
+ZBS         S01         C10         C11     123.929    3.00
+ZBS         C10         C11         C12     111.427    1.75
+ZBS         C10         C11         C16     111.427    1.75
+ZBS         C10         C11          H8     107.961    1.50
+ZBS         C12         C11         C16     110.119    1.94
+ZBS         C12         C11          H8     107.498    1.50
+ZBS         C16         C11          H8     107.498    1.50
+ZBS         C13         C12         C11     111.361    1.50
+ZBS         C13         C12          H9     109.398    1.50
+ZBS         C13         C12         H10     109.398    1.50
+ZBS         C11         C12          H9     109.230    1.50
+ZBS         C11         C12         H10     109.230    1.50
+ZBS          H9         C12         H10     108.131    1.50
+ZBS         C12         C13         C14     111.169    1.50
+ZBS         C12         C13         H11     109.435    1.50
+ZBS         C12         C13         H12     109.435    1.50
+ZBS         C14         C13         H11     109.435    1.50
+ZBS         C14         C13         H12     109.435    1.50
+ZBS         H11         C13         H12     108.036    1.50
+ZBS         C13         C14         C15     111.361    1.50
+ZBS         C13         C14         H13     109.398    1.50
+ZBS         C13         C14         H14     109.398    1.50
+ZBS         C15         C14         H13     109.230    1.50
+ZBS         C15         C14         H14     109.230    1.50
+ZBS         H13         C14         H14     108.131    1.50
+ZBS         C14         C15         C16     110.119    1.94
+ZBS         C14         C15         C17     111.427    1.75
+ZBS         C14         C15         H15     107.498    1.50
+ZBS         C16         C15         C17     111.427    1.75
+ZBS         C16         C15         H15     107.498    1.50
+ZBS         C17         C15         H15     107.961    1.50
+ZBS         C15         C16         C11     111.124    1.57
+ZBS         C15         C16         H16     109.230    1.50
+ZBS         C15         C16         H17     109.230    1.50
+ZBS         C11         C16         H16     109.230    1.50
+ZBS         C11         C16         H17     109.230    1.50
+ZBS         H16         C16         H17     108.019    1.50
+ZBS         C15         C17         S02     123.929    3.00
+ZBS         C15         C17         N05     127.686    3.00
+ZBS         S02         C17         N05     108.386    3.00
+ZBS         S02         C18         N06     124.631    3.00
+ZBS         S02         C18         N04     108.386    3.00
+ZBS         N06         C18         N04     126.983    3.00
+ZBS         O02         C19         C20     122.030    1.50
+ZBS         O02         C19         N06     123.014    1.50
+ZBS         C20         C19         N06     114.956    1.58
+ZBS         C19         C20         C21     111.650    2.25
+ZBS         C19         C20         H18     109.007    1.50
+ZBS         C19         C20         H19     109.007    1.50
+ZBS         C21         C20         H18     109.288    1.50
+ZBS         C21         C20         H19     109.288    1.50
+ZBS         H18         C20         H19     108.049    1.50
+ZBS         C22         C21         C20     120.970    1.50
+ZBS         C22         C21         C26     118.060    1.50
+ZBS         C20         C21         C26     120.970    1.50
+ZBS         C23         C22         C21     120.624    1.50
+ZBS         C23         C22         H20     119.786    1.50
+ZBS         C21         C22         H20     119.591    1.50
+ZBS         C22         C23         C24     120.325    1.50
+ZBS         C22         C23         H21     119.792    1.50
+ZBS         C24         C23         H21     119.883    1.50
+ZBS         C23         C24         C25     120.043    1.50
+ZBS         C23         C24         H22     119.979    1.50
+ZBS         C25         C24         H22     119.979    1.50
+ZBS         C24         C25         C26     120.325    1.50
+ZBS         C24         C25         H23     119.883    1.50
+ZBS         C26         C25         H23     119.792    1.50
+ZBS         C21         C26         C25     120.624    1.50
+ZBS         C21         C26         H24     119.591    1.50
+ZBS         C25         C26         H24     119.786    1.50
+ZBS         C09         N01         C08     124.962    2.96
+ZBS         C09         N01         H25     117.165    2.70
+ZBS         C08         N01         H25     117.873    2.44
+ZBS         N03         N02         C10     107.560    1.50
+ZBS         N02         N03         C09     107.283    1.50
+ZBS         C18         N04         N05     107.283    1.50
+ZBS         C17         N05         N04     107.560    1.50
+ZBS         C19         N06         C18     124.962    2.96
+ZBS         C19         N06         H26     117.873    2.44
+ZBS         C18         N06         H26     117.165    2.70
+ZBS         C09         S01         C10     108.386    3.00
+ZBS         C17         S02         C18     108.386    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZBS       const_sp2_sp2_1         C06         C01         C02         C03       0.000     5.0     2
+ZBS              const_57         C02         C01         C06         C05       0.000    10.0     2
+ZBS             sp3_sp3_4         C10         C11         C12         C13     -60.000    10.0     3
+ZBS            sp3_sp3_49         C10         C11         C16         C15      60.000    10.0     3
+ZBS            sp3_sp3_10         C11         C12         C13         C14     -60.000    10.0     3
+ZBS            sp3_sp3_19         C12         C13         C14         C15      60.000    10.0     3
+ZBS            sp3_sp3_28         C13         C14         C15         C16     -60.000    10.0     3
+ZBS            sp3_sp3_37         C14         C15         C16         C11      60.000    10.0     3
+ZBS            sp2_sp3_19         S02         C17         C15         C14     150.000    10.0     6
+ZBS              const_62         C15         C17         N05         N04     180.000    10.0     2
+ZBS              const_29         C15         C17         S02         C18     180.000    10.0     2
+ZBS              const_33         N06         C18         N04         N05     180.000    10.0     2
+ZBS            sp2_sp2_13         S02         C18         N06         C19     180.000     5.0     2
+ZBS              const_31         N06         C18         S02         C17     180.000    10.0     2
+ZBS            sp2_sp3_26         O02         C19         C20         C21     120.000    10.0     6
+ZBS            sp2_sp2_11         O02         C19         N06         C18       0.000     5.0     2
+ZBS            sp2_sp3_32         C22         C21         C20         C19     -90.000    10.0     6
+ZBS       const_sp2_sp2_5         C01         C02         C03         C04       0.000     5.0     2
+ZBS              const_37         C20         C21         C22         C23     180.000    10.0     2
+ZBS              const_65         C20         C21         C26         C25     180.000    10.0     2
+ZBS              const_39         C21         C22         C23         C24       0.000    10.0     2
+ZBS              const_43         C22         C23         C24         C25       0.000    10.0     2
+ZBS              const_47         C23         C24         C25         C26       0.000    10.0     2
+ZBS              const_51         C24         C25         C26         C21       0.000    10.0     2
+ZBS              const_23         C10         N02         N03         C09       0.000    10.0     2
+ZBS              const_34         C18         N04         N05         C17       0.000    10.0     2
+ZBS       const_sp2_sp2_9         C02         C03         C04         C05       0.000     5.0     2
+ZBS              const_14         C03         C04         C05         C07     180.000    10.0     2
+ZBS              const_19         C07         C05         C06         C01     180.000    10.0     2
+ZBS             sp2_sp3_2         C04         C05         C07         C08     -90.000    10.0     6
+ZBS             sp2_sp3_8         N01         C08         C07         C05     120.000    10.0     6
+ZBS             sp2_sp2_5         C07         C08         N01         C09     180.000     5.0     2
+ZBS             sp2_sp2_1         N03         C09         N01         C08     180.000     5.0     2
+ZBS              const_22         N01         C09         N03         N02     180.000    10.0     2
+ZBS              const_56         N01         C09         S01         C10     180.000    10.0     2
+ZBS            sp2_sp3_13         N02         C10         C11         C12     150.000    10.0     6
+ZBS              const_24         S01         C10         N02         N03       0.000    10.0     2
+ZBS              const_26         N02         C10         S01         C09       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZBS    chir_1    C11    C10    C16    C12    positive
+ZBS    chir_2    C15    C17    C16    C14    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZBS    plan-1         C01   0.020
+ZBS    plan-1         C02   0.020
+ZBS    plan-1         C03   0.020
+ZBS    plan-1         C04   0.020
+ZBS    plan-1         C05   0.020
+ZBS    plan-1         C06   0.020
+ZBS    plan-1         C07   0.020
+ZBS    plan-1          H1   0.020
+ZBS    plan-1          H2   0.020
+ZBS    plan-1          H3   0.020
+ZBS    plan-1          H4   0.020
+ZBS    plan-1          H5   0.020
+ZBS    plan-2         C15   0.020
+ZBS    plan-2         C17   0.020
+ZBS    plan-2         C18   0.020
+ZBS    plan-2         N04   0.020
+ZBS    plan-2         N05   0.020
+ZBS    plan-2         N06   0.020
+ZBS    plan-2         S02   0.020
+ZBS    plan-3         C20   0.020
+ZBS    plan-3         C21   0.020
+ZBS    plan-3         C22   0.020
+ZBS    plan-3         C23   0.020
+ZBS    plan-3         C24   0.020
+ZBS    plan-3         C25   0.020
+ZBS    plan-3         C26   0.020
+ZBS    plan-3         H20   0.020
+ZBS    plan-3         H21   0.020
+ZBS    plan-3         H22   0.020
+ZBS    plan-3         H23   0.020
+ZBS    plan-3         H24   0.020
+ZBS    plan-4         C09   0.020
+ZBS    plan-4         C10   0.020
+ZBS    plan-4         C11   0.020
+ZBS    plan-4         N01   0.020
+ZBS    plan-4         N02   0.020
+ZBS    plan-4         N03   0.020
+ZBS    plan-4         S01   0.020
+ZBS    plan-5         C07   0.020
+ZBS    plan-5         C08   0.020
+ZBS    plan-5         N01   0.020
+ZBS    plan-5         O01   0.020
+ZBS    plan-6         C19   0.020
+ZBS    plan-6         C20   0.020
+ZBS    plan-6         N06   0.020
+ZBS    plan-6         O02   0.020
+ZBS    plan-7         C08   0.020
+ZBS    plan-7         C09   0.020
+ZBS    plan-7         H25   0.020
+ZBS    plan-7         N01   0.020
+ZBS    plan-8         C18   0.020
+ZBS    plan-8         C19   0.020
+ZBS    plan-8         H26   0.020
+ZBS    plan-8         N06   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZBS            InChI                InChI  1.03 InChI=1S/C26H26N6O2S2/c33-21(14-17-8-3-1-4-9-17)27-25-31-29-23(35-25)19-12-7-13-20(16-19)24-30-32-26(36-24)28-22(34)15-18-10-5-2-6-11-18/h1-6,8-11,19-20H,7,12-16H2,(H,27,31,33)(H,28,32,34)/t19-,20-/m0/s1
+ZBS         InChIKey                InChI  1.03                                                                                                                                                                                 CZRVPWLXPUBTMI-PMACEKPBSA-N
+ZBS SMILES_CANONICAL               CACTVS 3.385                                                                                                                                         O=C(Cc1ccccc1)Nc2sc(nn2)[C@H]3CCC[C@@H](C3)c4sc(NC(=O)Cc5ccccc5)nn4
+ZBS           SMILES               CACTVS 3.385                                                                                                                                            O=C(Cc1ccccc1)Nc2sc(nn2)[CH]3CCC[CH](C3)c4sc(NC(=O)Cc5ccccc5)nn4
+ZBS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                                                                       c1ccc(cc1)CC(=O)Nc2nnc(s2)[C@H]3CCC[C@@H](C3)c4nnc(s4)NC(=O)Cc5ccccc5
+ZBS           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                                                                c1ccc(cc1)CC(=O)Nc2nnc(s2)C3CCCC(C3)c4nnc(s4)NC(=O)Cc5ccccc5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZBS acedrg               243         "dictionary generator"                  
+ZBS acedrg_database      11          "data source"                           
+ZBS rdkit                2017.03.2   "Chemoinformatics tool"
+ZBS refmac5              5.8.0238    "optimization tool"                     

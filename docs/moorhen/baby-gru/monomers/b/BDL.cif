@@ -1,0 +1,305 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BDL     BDL      N-(biphenyl-4-ylsulfonyl)-D-leucine     NON-POLYMER     44     24     .     
+#
+data_comp_BDL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BDL     O4      O       O       0       -3.201      -1.841      -4.935      
+BDL     C15     C       C       0       -2.745      -2.577      -4.036      
+BDL     O3      O       OC      -1      -3.389      -3.466      -3.441      
+BDL     C17     C       CH1     0       -1.269      -2.364      -3.641      
+BDL     C16     C       CH2     0       -1.132      -2.330      -2.109      
+BDL     C14     C       CH1     0       0.284       -2.141      -1.563      
+BDL     C18     C       CH3     0       0.823       -0.759      -1.903      
+BDL     C13     C       CH3     0       0.314       -2.368      -0.060      
+BDL     N1      N       NT1     0       -0.329      -3.311      -4.266      
+BDL     S1      S       S3      0       -0.508      -4.925      -4.285      
+BDL     O1      O       O       0       0.749       -5.459      -4.711      
+BDL     O2      O       O       0       -1.028      -5.316      -3.011      
+BDL     C7      C       CR6     0       -1.696      -5.335      -5.522      
+BDL     C5      C       CR16    0       -1.504      -4.905      -6.828      
+BDL     C3      C       CR16    0       -2.438      -5.225      -7.804      
+BDL     C6      C       CR16    0       -2.819      -6.085      -5.195      
+BDL     C4      C       CR16    0       -3.746      -6.400      -6.177      
+BDL     C1      C       CR6     0       -3.578      -5.979      -7.501      
+BDL     C2      C       CR6     0       -4.579      -6.320      -8.545      
+BDL     C9      C       CR16    0       -5.942      -6.109      -8.330      
+BDL     C12     C       CR16    0       -6.878      -6.430      -9.305      
+BDL     C11     C       CR16    0       -6.469      -6.967      -10.510     
+BDL     C10     C       CR16    0       -5.126      -7.184      -10.742     
+BDL     C8      C       CR16    0       -4.187      -6.865      -9.769      
+BDL     H17     H       H       0       -1.021      -1.462      -3.964      
+BDL     H16     H       H       0       -1.492      -3.159      -1.738      
+BDL     H16A    H       H       0       -1.687      -1.599      -1.770      
+BDL     H14     H       H       0       0.874       -2.813      -1.984      
+BDL     H18     H       H       0       1.662       -0.613      -1.433      
+BDL     H18A    H       H       0       0.178       -0.083      -1.630      
+BDL     H18B    H       H       0       0.973       -0.695      -2.862      
+BDL     H13     H       H       0       0.023       -3.275      0.138       
+BDL     H13A    H       H       0       -0.281      -1.734      0.377       
+BDL     H13B    H       H       0       1.221       -2.240      0.270       
+BDL     HN1     H       H       0       -0.003      -3.036      -5.010      
+BDL     H5      H       H       0       -0.748      -4.399      -7.051      
+BDL     H3      H       H       0       -2.301      -4.929      -8.686      
+BDL     H6      H       H       0       -2.955      -6.379      -4.316      
+BDL     H4      H       H       0       -4.505      -6.907      -5.947      
+BDL     H9      H       H       0       -6.231      -5.742      -7.509      
+BDL     H12     H       H       0       -7.795      -6.280      -9.143      
+BDL     H11     H       H       0       -7.105      -7.184      -11.172     
+BDL     H10     H       H       0       -4.844      -7.551      -11.564     
+BDL     H8      H       H       0       -3.270      -7.017      -9.937      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BDL          O4         C15      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BDL         C15          O3      SINGLE       n     1.247  0.0187     1.247  0.0187
+BDL         C15         C17      SINGLE       n     1.539  0.0100     1.539  0.0100
+BDL         C17         C16      SINGLE       n     1.530  0.0137     1.530  0.0137
+BDL         C17          N1      SINGLE       n     1.467  0.0100     1.467  0.0100
+BDL         C16         C14      SINGLE       n     1.528  0.0105     1.528  0.0105
+BDL         C14         C18      SINGLE       n     1.521  0.0151     1.521  0.0151
+BDL         C14         C13      SINGLE       n     1.521  0.0151     1.521  0.0151
+BDL          N1          S1      SINGLE       n     1.617  0.0119     1.617  0.0119
+BDL          S1          O1      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BDL          S1          O2      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BDL          S1          C7      SINGLE       n     1.762  0.0100     1.762  0.0100
+BDL          C7          C5      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BDL          C7          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+BDL          C5          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+BDL          C3          C1      DOUBLE       y     1.396  0.0111     1.396  0.0111
+BDL          C6          C4      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BDL          C4          C1      SINGLE       y     1.396  0.0111     1.396  0.0111
+BDL          C1          C2      SINGLE       n     1.486  0.0100     1.486  0.0100
+BDL          C2          C9      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BDL          C2          C8      SINGLE       y     1.392  0.0100     1.392  0.0100
+BDL          C9         C12      SINGLE       y     1.386  0.0100     1.386  0.0100
+BDL         C12         C11      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BDL         C11         C10      SINGLE       y     1.376  0.0114     1.376  0.0114
+BDL         C10          C8      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BDL         C17         H17      SINGLE       n     1.089  0.0100     0.990  0.0200
+BDL         C16         H16      SINGLE       n     1.089  0.0100     0.978  0.0119
+BDL         C16        H16A      SINGLE       n     1.089  0.0100     0.978  0.0119
+BDL         C14         H14      SINGLE       n     1.089  0.0100     0.989  0.0162
+BDL         C18         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+BDL         C18        H18A      SINGLE       n     1.089  0.0100     0.973  0.0146
+BDL         C18        H18B      SINGLE       n     1.089  0.0100     0.973  0.0146
+BDL         C13         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+BDL         C13        H13A      SINGLE       n     1.089  0.0100     0.973  0.0146
+BDL         C13        H13B      SINGLE       n     1.089  0.0100     0.973  0.0146
+BDL          N1         HN1      SINGLE       n     1.036  0.0160     0.857  0.0200
+BDL          C5          H5      SINGLE       n     1.082  0.0130     0.937  0.0111
+BDL          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0100
+BDL          C6          H6      SINGLE       n     1.082  0.0130     0.937  0.0111
+BDL          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0100
+BDL          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0170
+BDL         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0180
+BDL         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0161
+BDL         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0180
+BDL          C8          H8      SINGLE       n     1.082  0.0130     0.945  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BDL          O4         C15          O3     125.548    1.50
+BDL          O4         C15         C17     117.226    1.56
+BDL          O3         C15         C17     117.226    1.56
+BDL         C15         C17         C16     110.328    1.98
+BDL         C15         C17          N1     113.481    2.07
+BDL         C15         C17         H17     108.169    1.50
+BDL         C16         C17          N1     109.731    2.61
+BDL         C16         C17         H17     108.223    1.50
+BDL          N1         C17         H17     108.676    1.50
+BDL         C17         C16         C14     115.132    1.50
+BDL         C17         C16         H16     108.562    1.50
+BDL         C17         C16        H16A     108.562    1.50
+BDL         C14         C16         H16     108.478    1.50
+BDL         C14         C16        H16A     108.478    1.50
+BDL         H16         C16        H16A     107.542    1.50
+BDL         C16         C14         C18     110.880    1.50
+BDL         C16         C14         C13     110.880    1.50
+BDL         C16         C14         H14     108.053    1.50
+BDL         C18         C14         C13     110.507    1.50
+BDL         C18         C14         H14     108.052    1.50
+BDL         C13         C14         H14     108.052    1.50
+BDL         C14         C18         H18     109.488    1.50
+BDL         C14         C18        H18A     109.488    1.50
+BDL         C14         C18        H18B     109.488    1.50
+BDL         H18         C18        H18A     109.411    1.50
+BDL         H18         C18        H18B     109.411    1.50
+BDL        H18A         C18        H18B     109.411    1.50
+BDL         C14         C13         H13     109.488    1.50
+BDL         C14         C13        H13A     109.488    1.50
+BDL         C14         C13        H13B     109.488    1.50
+BDL         H13         C13        H13A     109.411    1.50
+BDL         H13         C13        H13B     109.411    1.50
+BDL        H13A         C13        H13B     109.411    1.50
+BDL         C17          N1          S1     120.490    1.71
+BDL         C17          N1         HN1     114.792    3.00
+BDL          S1          N1         HN1     111.495    3.00
+BDL          N1          S1          O1     106.820    1.50
+BDL          N1          S1          O2     106.820    1.50
+BDL          N1          S1          C7     107.708    1.50
+BDL          O1          S1          O2     119.599    1.50
+BDL          O1          S1          C7     107.960    1.50
+BDL          O2          S1          C7     107.960    1.50
+BDL          S1          C7          C5     119.846    1.50
+BDL          S1          C7          C6     119.846    1.50
+BDL          C5          C7          C6     120.309    1.50
+BDL          C7          C5          C3     119.669    1.50
+BDL          C7          C5          H5     120.281    1.50
+BDL          C3          C5          H5     120.049    1.50
+BDL          C5          C3          C1     121.317    1.50
+BDL          C5          C3          H3     119.287    1.50
+BDL          C1          C3          H3     119.396    1.50
+BDL          C7          C6          C4     119.669    1.50
+BDL          C7          C6          H6     120.281    1.50
+BDL          C4          C6          H6     120.049    1.50
+BDL          C6          C4          C1     121.317    1.50
+BDL          C6          C4          H4     119.287    1.50
+BDL          C1          C4          H4     119.396    1.50
+BDL          C3          C1          C4     117.719    1.50
+BDL          C3          C1          C2     121.141    1.50
+BDL          C4          C1          C2     121.141    1.50
+BDL          C1          C2          C9     121.096    1.50
+BDL          C1          C2          C8     121.096    1.50
+BDL          C9          C2          C8     117.808    1.50
+BDL          C2          C9         C12     120.887    1.50
+BDL          C2          C9          H9     119.477    1.50
+BDL         C12          C9          H9     119.636    1.50
+BDL          C9         C12         C11     120.251    1.50
+BDL          C9         C12         H12     119.823    1.50
+BDL         C11         C12         H12     119.926    1.50
+BDL         C12         C11         C10     119.915    1.50
+BDL         C12         C11         H11     120.043    1.50
+BDL         C10         C11         H11     120.043    1.50
+BDL         C11         C10          C8     120.251    1.50
+BDL         C11         C10         H10     119.926    1.50
+BDL          C8         C10         H10     119.823    1.50
+BDL          C2          C8         C10     120.887    1.50
+BDL          C2          C8          H8     119.477    1.50
+BDL         C10          C8          H8     119.636    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BDL              const_22          C3          C5          C7          S1     180.000    10.0     2
+BDL              const_42          C4          C6          C7          S1     180.000    10.0     2
+BDL              const_25          C1          C3          C5          C7       0.000    10.0     2
+BDL              const_29          C4          C1          C3          C5       0.000    10.0     2
+BDL              const_37          C1          C4          C6          C7       0.000    10.0     2
+BDL              const_33          C3          C1          C4          C6       0.000    10.0     2
+BDL             sp2_sp2_1          C3          C1          C2          C9     180.000     5.0     2
+BDL       const_sp2_sp2_3          C1          C2          C9         C12     180.000     5.0     2
+BDL              const_47          C1          C2          C8         C10     180.000    10.0     2
+BDL       const_sp2_sp2_5         C11         C12          C9          C2       0.000     5.0     2
+BDL             sp2_sp3_1          O4         C15         C17         C16       0.000    10.0     6
+BDL       const_sp2_sp2_9         C10         C11         C12          C9       0.000     5.0     2
+BDL              const_13          C8         C10         C11         C12       0.000    10.0     2
+BDL              const_17         C11         C10          C8          C2       0.000    10.0     2
+BDL             sp3_sp3_1         C14         C16         C17         C15     180.000    10.0     3
+BDL            sp3_sp3_10         C15         C17          N1          S1     180.000    10.0     3
+BDL            sp3_sp3_19         C18         C14         C16         C17      60.000    10.0     3
+BDL            sp3_sp3_25         C16         C14         C18         H18     180.000    10.0     3
+BDL            sp3_sp3_35         H13         C13         C14         C16     -60.000    10.0     3
+BDL            sp3_sp3_47         C17          N1          S1          O1     180.000    10.0     3
+BDL             sp2_sp3_9          C5          C7          S1          N1      30.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BDL    chir_1    C17    N1    C15    C16    negative
+BDL    chir_2    C14    C16    C18    C13    both
+BDL    chir_3    S1    O1    O2    N1    both
+BDL    chir_4    N1    S1    C17    HN1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BDL    plan-1          C1   0.020
+BDL    plan-1          C2   0.020
+BDL    plan-1          C3   0.020
+BDL    plan-1          C4   0.020
+BDL    plan-1          C5   0.020
+BDL    plan-1          C6   0.020
+BDL    plan-1          C7   0.020
+BDL    plan-1          H3   0.020
+BDL    plan-1          H4   0.020
+BDL    plan-1          H5   0.020
+BDL    plan-1          H6   0.020
+BDL    plan-1          S1   0.020
+BDL    plan-2          C1   0.020
+BDL    plan-2         C10   0.020
+BDL    plan-2         C11   0.020
+BDL    plan-2         C12   0.020
+BDL    plan-2          C2   0.020
+BDL    plan-2          C8   0.020
+BDL    plan-2          C9   0.020
+BDL    plan-2         H10   0.020
+BDL    plan-2         H11   0.020
+BDL    plan-2         H12   0.020
+BDL    plan-2          H8   0.020
+BDL    plan-2          H9   0.020
+BDL    plan-3         C15   0.020
+BDL    plan-3         C17   0.020
+BDL    plan-3          O3   0.020
+BDL    plan-3          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BDL           SMILES              ACDLabs 10.04                                                                                               O=C(O)C(NS(=O)(=O)c2ccc(c1ccccc1)cc2)CC(C)C
+BDL SMILES_CANONICAL               CACTVS 3.341                                                                                        CC(C)C[C@@H](N[S](=O)(=O)c1ccc(cc1)c2ccccc2)C(O)=O
+BDL           SMILES               CACTVS 3.341                                                                                          CC(C)C[CH](N[S](=O)(=O)c1ccc(cc1)c2ccccc2)C(O)=O
+BDL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           CC(C)C[C@H](C(=O)O)NS(=O)(=O)c1ccc(cc1)c2ccccc2
+BDL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                               CC(C)CC(C(=O)O)NS(=O)(=O)c1ccc(cc1)c2ccccc2
+BDL            InChI                InChI  1.03 InChI=1S/C18H21NO4S/c1-13(2)12-17(18(20)21)19-24(22,23)16-10-8-15(9-11-16)14-6-4-3-5-7-14/h3-11,13,17,19H,12H2,1-2H3,(H,20,21)/t17-/m1/s1
+BDL         InChIKey                InChI  1.03                                                                                                               FBSVJQQVDISETN-QGZVFWFLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BDL acedrg               243         "dictionary generator"                  
+BDL acedrg_database      11          "data source"                           
+BDL rdkit                2017.03.2   "Chemoinformatics tool"
+BDL refmac5              5.8.0238    "optimization tool"                     

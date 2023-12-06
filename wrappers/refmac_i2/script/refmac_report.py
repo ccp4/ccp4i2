@@ -304,8 +304,11 @@ class refmac_report(Report):
             if "title" in tableNode.attrib and "resln" in tableNode.attrib["title"]:
                 plots = tableNode.findall("./plot")
                 for plot in plots:
-                    plot.append(etree.fromstring('<xscale>oneoversqrt</xscale>'))
-        
+                    if isinstance(plot, etree.Element):
+                        plot.append(etree.fromstring('<xscale>oneoversqrt</xscale>'))
+                    else:
+                        from lxml import etree as lxmlEtree
+                        plot.append(lxmlEtree.fromstring('<xscale>oneoversqrt</xscale>'))
         graphTableList = self.xmlnode.findall('SmartieGraphs/CCP4ApplicationOutput/CCP4Table')
         gallery = reportFold.addObjectGallery(height='300px',contentWidth='420px',tableWidth='360px',style='float:left;width:800px;')
         

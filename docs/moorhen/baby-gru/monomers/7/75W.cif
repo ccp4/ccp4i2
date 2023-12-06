@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+75W     75W      4-[(E)-diazenyl]benzene-1-sulfonamide     NON-POLYMER     19     12     .     
+#
+data_comp_75W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+75W     C4      C       CR6     0       16.015      3.041       16.151      
+75W     C5      C       CR16    0       17.330      3.486       16.168      
+75W     C6      C       CR16    0       17.716      4.544       15.362      
+75W     N12     N       NH1     0       16.560      6.680       12.798      
+75W     N11     N       N       0       17.271      6.256       13.732      
+75W     C1      C       CR6     0       16.789      5.166       14.528      
+75W     C2      C       CR16    0       15.468      4.716       14.516      
+75W     C3      C       CR16    0       15.086      3.657       15.323      
+75W     S18     S       S3      0       15.516      1.690       17.177      
+75W     O9      O       O       0       16.482      1.551       18.226      
+75W     O10     O       O       0       14.144      1.902       17.531      
+75W     N8      N       NT2     0       15.573      0.346       16.305      
+75W     H1      H       H       0       17.963      3.072       16.724      
+75W     H2      H       H       0       18.607      4.846       15.375      
+75W     H3      H       H       0       16.732      7.476       12.434      
+75W     H4      H       H       0       14.835      5.131       13.958      
+75W     H5      H       H       0       14.196      3.358       15.308      
+75W     H6      H       H       0       14.872      0.236       15.803      
+75W     H7      H       H       0       15.824      -0.347      16.765      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+75W         N12         N11      DOUBLE       n     1.244  0.0200     1.244  0.0200
+75W         N11          C1      SINGLE       n     1.430  0.0100     1.430  0.0100
+75W          C1          C2      DOUBLE       y     1.389  0.0100     1.389  0.0100
+75W          C6          C1      SINGLE       y     1.389  0.0100     1.389  0.0100
+75W          C2          C3      SINGLE       y     1.382  0.0100     1.382  0.0100
+75W          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+75W          C4          C3      DOUBLE       y     1.385  0.0100     1.385  0.0100
+75W          C4          C5      SINGLE       y     1.385  0.0100     1.385  0.0100
+75W          C4         S18      SINGLE       n     1.766  0.0100     1.766  0.0100
+75W         S18          N8      SINGLE       n     1.603  0.0110     1.603  0.0110
+75W         S18         O10      DOUBLE       n     1.433  0.0100     1.433  0.0100
+75W         S18          O9      DOUBLE       n     1.433  0.0100     1.433  0.0100
+75W          C5          H1      SINGLE       n     1.082  0.0130     0.939  0.0155
+75W          C6          H2      SINGLE       n     1.082  0.0130     0.941  0.0200
+75W         N12          H3      SINGLE       n     1.016  0.0100     0.891  0.0200
+75W          C2          H4      SINGLE       n     1.082  0.0130     0.941  0.0200
+75W          C3          H5      SINGLE       n     1.082  0.0130     0.939  0.0155
+75W          N8          H6      SINGLE       n     1.036  0.0160     0.869  0.0200
+75W          N8          H7      SINGLE       n     1.036  0.0160     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+75W          C3          C4          C5     120.410    1.50
+75W          C3          C4         S18     119.795    1.50
+75W          C5          C4         S18     119.795    1.50
+75W          C6          C5          C4     120.015    1.50
+75W          C6          C5          H1     119.847    1.50
+75W          C4          C5          H1     120.138    1.50
+75W          C1          C6          C5     119.893    1.50
+75W          C1          C6          H2     119.895    1.50
+75W          C5          C6          H2     120.212    1.50
+75W         N11         N12          H3     120.000    3.00
+75W         N12         N11          C1     116.738    1.75
+75W         N11          C1          C2     120.113    3.00
+75W         N11          C1          C6     120.113    3.00
+75W          C2          C1          C6     119.773    1.50
+75W          C1          C2          C3     119.893    1.50
+75W          C1          C2          H4     119.895    1.50
+75W          C3          C2          H4     120.212    1.50
+75W          C2          C3          C4     120.015    1.50
+75W          C2          C3          H5     119.847    1.50
+75W          C4          C3          H5     120.138    1.50
+75W          C4         S18          N8     108.480    1.50
+75W          C4         S18         O10     107.472    1.50
+75W          C4         S18          O9     107.472    1.50
+75W          N8         S18         O10     107.154    1.50
+75W          N8         S18          O9     107.154    1.50
+75W         O10         S18          O9     118.954    1.50
+75W         S18          N8          H6     113.070    3.00
+75W         S18          N8          H7     113.070    3.00
+75W          H6          N8          H7     115.993    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+75W              const_23         S18          C4          C5          C6     180.000    10.0     2
+75W       const_sp2_sp2_2          C2          C3          C4         S18     180.000     5.0     2
+75W             sp2_sp3_3          C3          C4         S18          N8      30.000    10.0     6
+75W              const_17          C4          C5          C6          C1       0.000    10.0     2
+75W              const_15         N11          C1          C6          C5     180.000    10.0     2
+75W             sp2_sp2_1          C1         N11         N12          H3     180.000     5.0     2
+75W             sp2_sp2_2          C2          C1         N11         N12     180.000     5.0     2
+75W              const_11         N11          C1          C2          C3     180.000    10.0     2
+75W       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+75W             sp3_sp3_2          H6          N8         S18         O10     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+75W    chir_1    S18    O10    O9    N8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+75W    plan-1          C1   0.020
+75W    plan-1          C2   0.020
+75W    plan-1          C3   0.020
+75W    plan-1          C4   0.020
+75W    plan-1          C5   0.020
+75W    plan-1          C6   0.020
+75W    plan-1          H1   0.020
+75W    plan-1          H2   0.020
+75W    plan-1          H4   0.020
+75W    plan-1          H5   0.020
+75W    plan-1         N11   0.020
+75W    plan-1         S18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+75W           SMILES              ACDLabs 12.01                                                  c1(S(=O)(=O)N)ccc(/N=N)cc1
+75W            InChI                InChI  1.03 InChI=1S/C6H7N3O2S/c7-9-5-1-3-6(4-2-5)12(8,10)11/h1-4,7H,(H2,8,10,11)/b9-7+
+75W         InChIKey                InChI  1.03                                                 UNIHIQDMSWDAQH-VQHVLOKHSA-N
+75W SMILES_CANONICAL               CACTVS 3.385                                                   N[S](=O)(=O)c1ccc(cc1)N=N
+75W           SMILES               CACTVS 3.385                                                   N[S](=O)(=O)c1ccc(cc1)N=N
+75W SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                              "[H]/N=N/c1ccc(cc1)S(=O)(=O)N"
+75W           SMILES "OpenEye OEToolkits" 2.0.5                                                     c1cc(ccc1N=N)S(=O)(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+75W acedrg               243         "dictionary generator"                  
+75W acedrg_database      11          "data source"                           
+75W rdkit                2017.03.2   "Chemoinformatics tool"
+75W refmac5              5.8.0238    "optimization tool"                     

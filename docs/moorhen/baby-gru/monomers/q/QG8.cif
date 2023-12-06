@@ -1,0 +1,631 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+QG8     QG8      "METHYL ((S)-1-(2-([1,1'-BIPHENYL]-4-YLMETHYL)-2-(3-((3S,4S)-3-BENZYL-4-HYDROXY-1-((1S,2R)-2-HYDROXY-2,3-DIHYDRO-1H-INDEN-1-YL)-2-OXOPYRROLIDIN-3-YL)PROPYL)HYDRAZINYL)-3,3-DIMETHYL-1-OXOBUTAN-2-YL)CARBAMATE"     NON-POLYMER     106     54     .     
+#
+data_comp_QG8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+QG8     C1      C       CR5     0       10.914      23.738      6.171       
+QG8     O2      O       O       0       10.920      22.719      6.865       
+QG8     C3      C       CT      0       12.064      24.197      5.282       
+QG8     C4      C       CH1     0       11.679      25.674      4.942       
+QG8     C5      C       CH2     0       10.166      25.733      5.121       
+QG8     N6      N       NT      0       9.873       24.634      6.059       
+QG8     C7      C       CH1     0       8.716       24.656      6.955       
+QG8     C8      C       CR56    0       8.744       25.830      7.906       
+QG8     C9      C       CR56    0       7.768       26.759      7.571       
+QG8     C10     C       CH2     0       6.997       26.292      6.364       
+QG8     C11     C       CH1     0       7.332       24.805      6.267       
+QG8     O12     O       OH1     0       7.370       24.395      4.909       
+QG8     C13     C       CR16    0       7.619       27.926      8.320       
+QG8     C14     C       CR16    0       8.461       28.141      9.401       
+QG8     C15     C       CR16    0       9.435       27.214      9.734       
+QG8     C16     C       CR16    0       9.587       26.049      8.988       
+QG8     O17     O       OH1     0       12.275      26.638      5.798       
+QG8     C18     C       CH2     0       14.666      24.546      5.483       
+QG8     C19     C       CH2     0       15.869      24.512      6.415       
+QG8     C20     C       CH2     0       13.362      24.052      6.111       
+QG8     C21     C       CH2     0       12.170      23.289      4.050       
+QG8     C22     C       CR6     0       10.943      23.195      3.168       
+QG8     C23     C       CR16    0       9.975       22.221      3.393       
+QG8     C24     C       CR16    0       8.853       22.136      2.578       
+QG8     C25     C       CR16    0       8.693       23.012      1.523       
+QG8     C26     C       CR16    0       9.650       23.975      1.283       
+QG8     C27     C       CR16    0       10.773      24.065      2.096       
+QG8     C28     C       CR6     0       17.197      18.011      10.789      
+QG8     C29     C       CR6     0       17.179      19.332      10.109      
+QG8     C30     C       CR16    0       18.135      19.661      9.148       
+QG8     C31     C       CR16    0       18.115      20.893      8.509       
+QG8     C32     C       CR6     0       17.146      21.840      8.814       
+QG8     C33     C       CR16    0       16.185      21.516      9.762       
+QG8     C34     C       CR16    0       16.202      20.284      10.402      
+QG8     C35     C       CH2     0       17.118      23.172      8.104       
+QG8     N36     N       NT      0       16.158      23.188      6.983       
+QG8     N37     N       NH1     0       16.574      22.301      5.959       
+QG8     C38     C       C       0       15.982      21.115      5.815       
+QG8     C39     C       CH1     0       16.571      20.155      4.770       
+QG8     N40     N       NH1     0       16.825      18.875      5.426       
+QG8     C41     C       C       0       18.026      18.257      5.399       
+QG8     O42     O       O2      0       17.959      17.096      6.078       
+QG8     C43     C       CH3     0       19.209      16.535      6.538       
+QG8     O44     O       O       0       19.015      18.674      4.835       
+QG8     C45     C       CT      0       15.715      19.988      3.471       
+QG8     C46     C       CH3     0       16.415      19.013      2.517       
+QG8     C47     C       CH3     0       14.312      19.442      3.766       
+QG8     C48     C       CH3     0       15.572      21.337      2.756       
+QG8     O49     O       O       0       15.020      20.769      6.495       
+QG8     C50     C       CR16    0       17.108      17.914      12.179      
+QG8     C51     C       CR16    0       17.123      16.676      12.810      
+QG8     C52     C       CR16    0       17.224      15.518      12.067      
+QG8     C53     C       CR16    0       17.311      15.592      10.691      
+QG8     C54     C       CR16    0       17.296      16.828      10.056      
+QG8     H4      H       H       0       11.922      25.872      4.004       
+QG8     H5      H       H       0       9.707       25.593      4.268       
+QG8     H5A     H       H       0       9.890       26.598      5.489       
+QG8     H7      H       H       0       8.706       23.824      7.486       
+QG8     H10     H       H       0       6.036       26.427      6.486       
+QG8     H10A    H       H       0       7.281       26.768      5.558       
+QG8     H11     H       H       0       6.655       24.275      6.749       
+QG8     HO12    H       H       0       6.588       24.445      4.582       
+QG8     H13     H       H       0       6.955       28.557      8.091       
+QG8     H14     H       H       0       8.370       28.927      9.916       
+QG8     H15     H       H       0       10.000      27.374      10.473      
+QG8     H16     H       H       0       10.250      25.414      9.213       
+QG8     HO17    H       H       0       12.147      27.413      5.477       
+QG8     H18     H       H       0       14.867      23.995      4.698       
+QG8     H18A    H       H       0       14.540      25.466      5.171       
+QG8     H19     H       H       0       15.715      25.141      7.150       
+QG8     H19A    H       H       0       16.659      24.818      5.923       
+QG8     H20     H       H       0       13.475      23.102      6.325       
+QG8     H20A    H       H       0       13.237      24.522      6.963       
+QG8     H21     H       H       0       12.403      22.374      4.350       
+QG8     H21A    H       H       0       12.920      23.604      3.487       
+QG8     H23     H       H       0       10.076      21.620      4.114       
+QG8     H24     H       H       0       8.200       21.476      2.744       
+QG8     H25     H       H       0       7.932       22.952      0.969       
+QG8     H26     H       H       0       9.543       24.576      0.562       
+QG8     H27     H       H       0       11.422      24.729      1.926       
+QG8     H30     H       H       0       18.806      19.036      8.929       
+QG8     H31     H       H       0       18.773      21.092      7.863       
+QG8     H33     H       H       0       15.514      22.143      9.978       
+QG8     H34     H       H       0       15.543      20.088      11.047      
+QG8     H35     H       H       0       18.015      23.375      7.760       
+QG8     H35A    H       H       0       16.877      23.874      8.745       
+QG8     HN37    H       H       0       17.216      22.543      5.423       
+QG8     H39     H       H       0       17.437      20.531      4.476       
+QG8     HN40    H       H       0       16.165      18.497      5.862       
+QG8     H43     H       H       0       19.691      17.197      7.060       
+QG8     H43A    H       H       0       19.745      16.270      5.774       
+QG8     H43B    H       H       0       19.028      15.758      7.090       
+QG8     H46     H       H       0       15.969      19.022      1.652       
+QG8     H46A    H       H       0       16.378      18.113      2.886       
+QG8     H46B    H       H       0       17.344      19.278      2.405       
+QG8     H47     H       H       0       13.781      20.122      4.214       
+QG8     H47A    H       H       0       14.378      18.657      4.336       
+QG8     H47B    H       H       0       13.878      19.196      2.931       
+QG8     H48     H       H       0       15.197      21.200      1.869       
+QG8     H48A    H       H       0       16.446      21.756      2.675       
+QG8     H48B    H       H       0       14.982      21.919      3.265       
+QG8     H50     H       H       0       17.039      18.702      12.696      
+QG8     H51     H       H       0       17.063      16.629      13.750      
+QG8     H52     H       H       0       17.233      14.678      12.497      
+QG8     H53     H       H       0       17.380      14.803      10.180      
+QG8     H54     H       H       0       17.356      16.869      9.114       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+QG8          C1          O2      DOUBLE       n     1.231  0.0121     1.231  0.0121
+QG8          C1          C3      SINGLE       n     1.517  0.0171     1.517  0.0171
+QG8          C1          N6      SINGLE       n     1.365  0.0200     1.365  0.0200
+QG8          C3          C4      SINGLE       n     1.553  0.0175     1.553  0.0175
+QG8          C3         C20      SINGLE       n     1.541  0.0100     1.541  0.0100
+QG8          C3         C21      SINGLE       n     1.525  0.0124     1.525  0.0124
+QG8          C4          C5      SINGLE       n     1.524  0.0100     1.524  0.0100
+QG8          C4         O17      SINGLE       n     1.419  0.0101     1.419  0.0101
+QG8          C5          N6      SINGLE       n     1.472  0.0100     1.472  0.0100
+QG8          N6          C7      SINGLE       n     1.458  0.0100     1.458  0.0100
+QG8          C7          C8      SINGLE       n     1.512  0.0100     1.512  0.0100
+QG8          C7         C11      SINGLE       n     1.549  0.0100     1.549  0.0100
+QG8          C8          C9      DOUBLE       y     1.386  0.0100     1.386  0.0100
+QG8          C8         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+QG8          C9         C10      SINGLE       n     1.506  0.0100     1.506  0.0100
+QG8          C9         C13      SINGLE       y     1.390  0.0100     1.390  0.0100
+QG8         C10         C11      SINGLE       n     1.525  0.0138     1.525  0.0138
+QG8         C11         O12      SINGLE       n     1.418  0.0100     1.418  0.0100
+QG8         C13         C14      DOUBLE       y     1.384  0.0100     1.384  0.0100
+QG8         C14         C15      SINGLE       y     1.382  0.0104     1.382  0.0104
+QG8         C15         C16      DOUBLE       y     1.389  0.0100     1.389  0.0100
+QG8         C18         C19      SINGLE       n     1.521  0.0115     1.521  0.0115
+QG8         C18         C20      SINGLE       n     1.524  0.0148     1.524  0.0148
+QG8         C19         N36      SINGLE       n     1.468  0.0100     1.468  0.0100
+QG8         C21         C22      SINGLE       n     1.512  0.0100     1.512  0.0100
+QG8         C22         C23      DOUBLE       y     1.387  0.0100     1.387  0.0100
+QG8         C22         C27      SINGLE       y     1.387  0.0100     1.387  0.0100
+QG8         C23         C24      SINGLE       y     1.386  0.0100     1.386  0.0100
+QG8         C24         C25      DOUBLE       y     1.376  0.0124     1.376  0.0124
+QG8         C25         C26      SINGLE       y     1.374  0.0127     1.374  0.0127
+QG8         C26         C27      DOUBLE       y     1.386  0.0100     1.386  0.0100
+QG8         C28         C29      SINGLE       n     1.486  0.0100     1.486  0.0100
+QG8         C28         C50      DOUBLE       y     1.392  0.0100     1.392  0.0100
+QG8         C28         C54      SINGLE       y     1.392  0.0100     1.392  0.0100
+QG8         C29         C30      DOUBLE       y     1.391  0.0104     1.391  0.0104
+QG8         C29         C34      SINGLE       y     1.391  0.0104     1.391  0.0104
+QG8         C30         C31      SINGLE       y     1.385  0.0100     1.385  0.0100
+QG8         C31         C32      DOUBLE       y     1.385  0.0100     1.385  0.0100
+QG8         C32         C33      SINGLE       y     1.385  0.0100     1.385  0.0100
+QG8         C32         C35      SINGLE       n     1.509  0.0100     1.509  0.0100
+QG8         C33         C34      DOUBLE       y     1.385  0.0100     1.385  0.0100
+QG8         C35         N36      SINGLE       n     1.474  0.0100     1.474  0.0100
+QG8         N36         N37      SINGLE       n     1.413  0.0100     1.413  0.0100
+QG8         N37         C38      SINGLE       n     1.328  0.0100     1.328  0.0100
+QG8         C38         C39      SINGLE       n     1.532  0.0100     1.532  0.0100
+QG8         C38         O49      DOUBLE       n     1.226  0.0101     1.226  0.0101
+QG8         C39         N40      SINGLE       n     1.453  0.0114     1.453  0.0114
+QG8         C39         C45      SINGLE       n     1.559  0.0100     1.559  0.0100
+QG8         N40         C41      SINGLE       n     1.344  0.0100     1.344  0.0100
+QG8         C41         O42      SINGLE       n     1.342  0.0100     1.342  0.0100
+QG8         C41         O44      DOUBLE       n     1.210  0.0102     1.210  0.0102
+QG8         O42         C43      SINGLE       n     1.443  0.0101     1.443  0.0101
+QG8         C45         C46      SINGLE       n     1.531  0.0109     1.531  0.0109
+QG8         C45         C47      SINGLE       n     1.531  0.0109     1.531  0.0109
+QG8         C45         C48      SINGLE       n     1.531  0.0109     1.531  0.0109
+QG8         C50         C51      SINGLE       y     1.386  0.0100     1.386  0.0100
+QG8         C51         C52      DOUBLE       y     1.376  0.0114     1.376  0.0114
+QG8         C52         C53      SINGLE       y     1.376  0.0124     1.376  0.0124
+QG8         C53         C54      DOUBLE       y     1.386  0.0100     1.386  0.0100
+QG8          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0200
+QG8          C5          H5      SINGLE       n     1.089  0.0100     0.980  0.0177
+QG8          C5         H5A      SINGLE       n     1.089  0.0100     0.980  0.0177
+QG8          C7          H7      SINGLE       n     1.089  0.0100     0.987  0.0160
+QG8         C10         H10      SINGLE       n     1.089  0.0100     0.978  0.0117
+QG8         C10        H10A      SINGLE       n     1.089  0.0100     0.978  0.0117
+QG8         C11         H11      SINGLE       n     1.089  0.0100     0.985  0.0130
+QG8         O12        HO12      SINGLE       n     0.970  0.0120     0.849  0.0200
+QG8         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0145
+QG8         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0193
+QG8         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0193
+QG8         C16         H16      SINGLE       n     1.082  0.0130     0.945  0.0141
+QG8         O17        HO17      SINGLE       n     0.970  0.0120     0.849  0.0200
+QG8         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0160
+QG8         C18        H18A      SINGLE       n     1.089  0.0100     0.981  0.0160
+QG8         C19         H19      SINGLE       n     1.089  0.0100     0.980  0.0143
+QG8         C19        H19A      SINGLE       n     1.089  0.0100     0.980  0.0143
+QG8         C20         H20      SINGLE       n     1.089  0.0100     0.981  0.0178
+QG8         C20        H20A      SINGLE       n     1.089  0.0100     0.981  0.0178
+QG8         C21         H21      SINGLE       n     1.089  0.0100     0.991  0.0200
+QG8         C21        H21A      SINGLE       n     1.089  0.0100     0.991  0.0200
+QG8         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0174
+QG8         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0175
+QG8         C25         H25      SINGLE       n     1.082  0.0130     0.944  0.0161
+QG8         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0175
+QG8         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0174
+QG8         C30         H30      SINGLE       n     1.082  0.0130     0.943  0.0170
+QG8         C31         H31      SINGLE       n     1.082  0.0130     0.943  0.0173
+QG8         C33         H33      SINGLE       n     1.082  0.0130     0.943  0.0173
+QG8         C34         H34      SINGLE       n     1.082  0.0130     0.943  0.0170
+QG8         C35         H35      SINGLE       n     1.089  0.0100     0.981  0.0172
+QG8         C35        H35A      SINGLE       n     1.089  0.0100     0.981  0.0172
+QG8         N37        HN37      SINGLE       n     1.016  0.0100     0.871  0.0200
+QG8         C39         H39      SINGLE       n     1.089  0.0100     0.991  0.0200
+QG8         N40        HN40      SINGLE       n     1.016  0.0100     0.875  0.0200
+QG8         C43         H43      SINGLE       n     1.089  0.0100     0.970  0.0175
+QG8         C43        H43A      SINGLE       n     1.089  0.0100     0.970  0.0175
+QG8         C43        H43B      SINGLE       n     1.089  0.0100     0.970  0.0175
+QG8         C46         H46      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C46        H46A      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C46        H46B      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C47         H47      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C47        H47A      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C47        H47B      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C48         H48      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C48        H48A      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C48        H48B      SINGLE       n     1.089  0.0100     0.973  0.0146
+QG8         C50         H50      SINGLE       n     1.082  0.0130     0.945  0.0170
+QG8         C51         H51      SINGLE       n     1.082  0.0130     0.943  0.0180
+QG8         C52         H52      SINGLE       n     1.082  0.0130     0.944  0.0161
+QG8         C53         H53      SINGLE       n     1.082  0.0130     0.943  0.0180
+QG8         C54         H54      SINGLE       n     1.082  0.0130     0.945  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+QG8          O2          C1          C3     125.452    1.50
+QG8          O2          C1          N6     126.186    1.50
+QG8          C3          C1          N6     108.361    1.65
+QG8          C1          C3          C4     104.009    1.83
+QG8          C1          C3         C20     111.539    2.78
+QG8          C1          C3         C21     111.539    2.78
+QG8          C4          C3         C20     113.745    2.48
+QG8          C4          C3         C21     113.745    2.48
+QG8         C20          C3         C21     111.127    1.91
+QG8          C3          C4          C5     104.443    2.26
+QG8          C3          C4         O17     110.722    2.96
+QG8          C3          C4          H4     110.604    2.27
+QG8          C5          C4         O17     110.916    2.22
+QG8          C5          C4          H4     110.749    1.50
+QG8         O17          C4          H4     110.259    1.63
+QG8          C4          C5          N6     103.104    2.01
+QG8          C4          C5          H5     111.050    1.50
+QG8          C4          C5         H5A     111.050    1.50
+QG8          N6          C5          H5     110.883    1.50
+QG8          N6          C5         H5A     110.883    1.50
+QG8          H5          C5         H5A     109.055    1.50
+QG8          C1          N6          C5     111.258    2.32
+QG8          C1          N6          C7     122.782    2.34
+QG8          C5          N6          C7     118.949    3.00
+QG8          N6          C7          C8     113.808    2.85
+QG8          N6          C7         C11     111.896    2.64
+QG8          N6          C7          H7     109.262    1.50
+QG8          C8          C7         C11     103.611    1.51
+QG8          C8          C7          H7     109.442    1.50
+QG8         C11          C7          H7     109.187    1.50
+QG8          C7          C8          C9     111.431    1.50
+QG8          C7          C8         C16     128.314    1.50
+QG8          C9          C8         C16     120.256    1.50
+QG8          C8          C9         C10     110.538    1.50
+QG8          C8          C9         C13     120.201    1.50
+QG8         C10          C9         C13     129.261    1.50
+QG8          C9         C10         C11     103.576    1.50
+QG8          C9         C10         H10     111.220    1.50
+QG8          C9         C10        H10A     111.220    1.50
+QG8         C11         C10         H10     111.015    1.50
+QG8         C11         C10        H10A     111.015    1.50
+QG8         H10         C10        H10A     108.845    1.50
+QG8          C7         C11         C10     104.443    2.26
+QG8          C7         C11         O12     109.854    2.33
+QG8          C7         C11         H11     110.927    1.64
+QG8         C10         C11         O12     110.702    2.65
+QG8         C10         C11         H11     110.656    1.50
+QG8         O12         C11         H11     110.259    1.63
+QG8         C11         O12        HO12     109.104    3.00
+QG8          C9         C13         C14     118.848    1.50
+QG8          C9         C13         H13     120.306    1.50
+QG8         C14         C13         H13     120.846    1.50
+QG8         C13         C14         C15     120.877    1.50
+QG8         C13         C14         H14     119.602    1.50
+QG8         C15         C14         H14     119.521    1.50
+QG8         C14         C15         C16     120.877    1.50
+QG8         C14         C15         H15     119.521    1.50
+QG8         C16         C15         H15     119.602    1.50
+QG8          C8         C16         C15     118.943    1.50
+QG8          C8         C16         H16     120.343    1.50
+QG8         C15         C16         H16     120.714    1.50
+QG8          C4         O17        HO17     109.104    3.00
+QG8         C19         C18         C20     115.316    2.54
+QG8         C19         C18         H18     108.805    1.50
+QG8         C19         C18        H18A     108.805    1.50
+QG8         C20         C18         H18     108.816    1.50
+QG8         C20         C18        H18A     108.816    1.50
+QG8         H18         C18        H18A     107.738    1.50
+QG8         C18         C19         N36     114.414    1.50
+QG8         C18         C19         H19     109.099    1.50
+QG8         C18         C19        H19A     109.099    1.50
+QG8         N36         C19         H19     108.783    1.50
+QG8         N36         C19        H19A     108.783    1.50
+QG8         H19         C19        H19A     107.873    1.50
+QG8          C3         C20         C18     116.520    1.50
+QG8          C3         C20         H20     108.247    1.50
+QG8          C3         C20        H20A     108.247    1.50
+QG8         C18         C20         H20     108.506    1.50
+QG8         C18         C20        H20A     108.506    1.50
+QG8         H20         C20        H20A     107.412    1.50
+QG8          C3         C21         C22     113.066    2.20
+QG8          C3         C21         H21     109.253    1.50
+QG8          C3         C21        H21A     109.253    1.50
+QG8         C22         C21         H21     108.712    1.50
+QG8         C22         C21        H21A     108.712    1.50
+QG8         H21         C21        H21A     107.306    1.50
+QG8         C21         C22         C23     120.843    1.50
+QG8         C21         C22         C27     120.843    1.50
+QG8         C23         C22         C27     118.314    1.50
+QG8         C22         C23         C24     120.452    1.50
+QG8         C22         C23         H23     119.704    1.50
+QG8         C24         C23         H23     119.844    1.50
+QG8         C23         C24         C25     120.355    1.50
+QG8         C23         C24         H24     119.777    1.50
+QG8         C25         C24         H24     119.868    1.50
+QG8         C24         C25         C26     120.073    1.50
+QG8         C24         C25         H25     119.964    1.50
+QG8         C26         C25         H25     119.964    1.50
+QG8         C25         C26         C27     120.355    1.50
+QG8         C25         C26         H26     119.868    1.50
+QG8         C27         C26         H26     119.777    1.50
+QG8         C22         C27         C26     120.452    1.50
+QG8         C22         C27         H27     119.704    1.50
+QG8         C26         C27         H27     119.844    1.50
+QG8         C29         C28         C50     121.096    1.50
+QG8         C29         C28         C54     121.096    1.50
+QG8         C50         C28         C54     117.808    1.50
+QG8         C28         C29         C30     121.186    1.50
+QG8         C28         C29         C34     121.186    1.50
+QG8         C30         C29         C34     117.628    1.50
+QG8         C29         C30         C31     121.128    1.50
+QG8         C29         C30         H30     119.445    1.50
+QG8         C31         C30         H30     119.429    1.50
+QG8         C30         C31         C32     120.894    1.50
+QG8         C30         C31         H31     119.525    1.50
+QG8         C32         C31         H31     119.581    1.50
+QG8         C31         C32         C33     118.328    1.50
+QG8         C31         C32         C35     120.835    1.50
+QG8         C33         C32         C35     120.835    1.50
+QG8         C32         C33         C34     120.894    1.50
+QG8         C32         C33         H33     119.581    1.50
+QG8         C34         C33         H33     119.525    1.50
+QG8         C29         C34         C33     121.128    1.50
+QG8         C29         C34         H34     119.445    1.50
+QG8         C33         C34         H34     119.429    1.50
+QG8         C32         C35         N36     112.075    1.86
+QG8         C32         C35         H35     109.172    1.50
+QG8         C32         C35        H35A     109.172    1.50
+QG8         N36         C35         H35     108.951    1.50
+QG8         N36         C35        H35A     108.951    1.50
+QG8         H35         C35        H35A     107.748    1.50
+QG8         C19         N36         C35     114.848    2.03
+QG8         C19         N36         N37     109.794    1.50
+QG8         C35         N36         N37     110.229    1.50
+QG8         N36         N37         C38     119.838    1.50
+QG8         N36         N37        HN37     120.234    2.39
+QG8         C38         N37        HN37     119.928    2.41
+QG8         N37         C38         C39     116.713    1.50
+QG8         N37         C38         O49     122.893    1.50
+QG8         C39         C38         O49     120.394    1.50
+QG8         C38         C39         N40     111.106    2.53
+QG8         C38         C39         C45     111.511    2.91
+QG8         C38         C39         H39     108.061    1.50
+QG8         N40         C39         C45     111.308    2.28
+QG8         N40         C39         H39     108.161    1.50
+QG8         C45         C39         H39     106.840    1.50
+QG8         C39         N40         C41     120.995    1.63
+QG8         C39         N40        HN40     119.380    1.92
+QG8         C41         N40        HN40     119.625    2.20
+QG8         N40         C41         O42     110.248    1.50
+QG8         N40         C41         O44     124.782    1.50
+QG8         O42         C41         O44     124.970    1.50
+QG8         C41         O42         C43     115.328    1.50
+QG8         O42         C43         H43     109.384    1.50
+QG8         O42         C43        H43A     109.384    1.50
+QG8         O42         C43        H43B     109.384    1.50
+QG8         H43         C43        H43A     109.532    1.53
+QG8         H43         C43        H43B     109.532    1.53
+QG8        H43A         C43        H43B     109.532    1.53
+QG8         C39         C45         C46     109.638    1.92
+QG8         C39         C45         C47     109.638    1.92
+QG8         C39         C45         C48     109.638    1.92
+QG8         C46         C45         C47     108.477    1.50
+QG8         C46         C45         C48     108.477    1.50
+QG8         C47         C45         C48     108.477    1.50
+QG8         C45         C46         H46     109.547    1.50
+QG8         C45         C46        H46A     109.547    1.50
+QG8         C45         C46        H46B     109.547    1.50
+QG8         H46         C46        H46A     109.377    1.50
+QG8         H46         C46        H46B     109.377    1.50
+QG8        H46A         C46        H46B     109.377    1.50
+QG8         C45         C47         H47     109.547    1.50
+QG8         C45         C47        H47A     109.547    1.50
+QG8         C45         C47        H47B     109.547    1.50
+QG8         H47         C47        H47A     109.377    1.50
+QG8         H47         C47        H47B     109.377    1.50
+QG8        H47A         C47        H47B     109.377    1.50
+QG8         C45         C48         H48     109.547    1.50
+QG8         C45         C48        H48A     109.547    1.50
+QG8         C45         C48        H48B     109.547    1.50
+QG8         H48         C48        H48A     109.377    1.50
+QG8         H48         C48        H48B     109.377    1.50
+QG8        H48A         C48        H48B     109.377    1.50
+QG8         C28         C50         C51     120.887    1.50
+QG8         C28         C50         H50     119.477    1.50
+QG8         C51         C50         H50     119.636    1.50
+QG8         C50         C51         C52     120.251    1.50
+QG8         C50         C51         H51     119.823    1.50
+QG8         C52         C51         H51     119.926    1.50
+QG8         C51         C52         C53     119.915    1.50
+QG8         C51         C52         H52     120.043    1.50
+QG8         C53         C52         H52     120.043    1.50
+QG8         C52         C53         C54     120.251    1.50
+QG8         C52         C53         H53     119.926    1.50
+QG8         C54         C53         H53     119.823    1.50
+QG8         C28         C54         C53     120.887    1.50
+QG8         C28         C54         H54     119.477    1.50
+QG8         C53         C54         H54     119.636    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+QG8            sp2_sp3_17          O2          C1          C3         C20     -60.000    10.0     6
+QG8             sp2_sp2_3          O2          C1          N6          C5     180.000     5.0     2
+QG8            sp3_sp3_58          C7         C11         O12        HO12     180.000    10.0     3
+QG8       const_sp2_sp2_9          C9         C13         C14         C15       0.000     5.0     2
+QG8              const_13         C13         C14         C15         C16       0.000    10.0     2
+QG8              const_17         C14         C15         C16          C8       0.000    10.0     2
+QG8            sp3_sp3_61         C20         C18         C19         N36     180.000    10.0     3
+QG8            sp3_sp3_70         C19         C18         C20          C3     180.000    10.0     3
+QG8            sp3_sp3_79         C18         C19         N36         C35     180.000    10.0     3
+QG8            sp2_sp3_32         C23         C22         C21          C3     -90.000    10.0     6
+QG8              const_23         C21         C22         C23         C24     180.000    10.0     2
+QG8              const_87         C21         C22         C27         C26     180.000    10.0     2
+QG8              const_25         C22         C23         C24         C25       0.000    10.0     2
+QG8              const_29         C23         C24         C25         C26       0.000    10.0     2
+QG8              const_33         C24         C25         C26         C27       0.000    10.0     2
+QG8              const_37         C25         C26         C27         C22       0.000    10.0     2
+QG8             sp2_sp2_5         C50         C28         C29         C30     180.000     5.0     2
+QG8              const_43         C29         C28         C50         C51     180.000    10.0     2
+QG8              const_91         C29         C28         C54         C53     180.000    10.0     2
+QG8              const_63         C28         C29         C30         C31     180.000    10.0     2
+QG8              const_95         C28         C29         C34         C33     180.000    10.0     2
+QG8              const_65         C29         C30         C31         C32       0.000    10.0     2
+QG8            sp3_sp3_30         C18         C20          C3         C21      60.000    10.0     3
+QG8            sp3_sp3_39         C22         C21          C3         C20      60.000    10.0     3
+QG8            sp3_sp3_14         C20          C3          C4         O17     -60.000    10.0     3
+QG8              const_70         C30         C31         C32         C35     180.000    10.0     2
+QG8              const_75         C35         C32         C33         C34     180.000    10.0     2
+QG8            sp2_sp3_38         C31         C32         C35         N36     -90.000    10.0     6
+QG8              const_77         C32         C33         C34         C29       0.000    10.0     2
+QG8            sp3_sp3_85         C32         C35         N36         C19     180.000    10.0     3
+QG8            sp2_sp3_43         C38         N37         N36         C19       0.000    10.0     6
+QG8             sp2_sp2_9         C39         C38         N37         N36     180.000     5.0     2
+QG8            sp2_sp3_47         N37         C38         C39         N40       0.000    10.0     6
+QG8            sp2_sp3_53         C41         N40         C39         C38       0.000    10.0     6
+QG8            sp3_sp3_92         C38         C39         C45         C46     -60.000    10.0     3
+QG8            sp2_sp2_13         O42         C41         N40         C39     180.000     5.0     2
+QG8            sp3_sp3_46          C3          C4         O17        HO17     180.000    10.0     3
+QG8            sp3_sp3_22         O17          C4          C5          N6     -60.000    10.0     3
+QG8            sp2_sp2_17         N40         C41         O42         C43     180.000     5.0     2
+QG8           sp3_sp3_101         H43         C43         O42         C41     -60.000    10.0     3
+QG8           sp3_sp3_104         C39         C45         C46         H46     180.000    10.0     3
+QG8           sp3_sp3_116         C39         C45         C47         H47      60.000    10.0     3
+QG8           sp3_sp3_122         C39         C45         C48         H48     180.000    10.0     3
+QG8              const_45         C28         C50         C51         C52       0.000    10.0     2
+QG8            sp2_sp3_19          C1          N6          C5          C4       0.000    10.0     6
+QG8              const_49         C50         C51         C52         C53       0.000    10.0     2
+QG8              const_53         C51         C52         C53         C54       0.000    10.0     2
+QG8              const_57         C52         C53         C54         C28       0.000    10.0     2
+QG8            sp2_sp3_25          C1          N6          C7          C8     150.000    10.0     6
+QG8            sp3_sp3_53         O12         C11          C7          N6     180.000    10.0     3
+QG8             sp2_sp3_2          C9          C8          C7          N6     120.000    10.0     6
+QG8              const_82         C15         C16          C8          C7     180.000    10.0     2
+QG8       const_sp2_sp2_1          C7          C8          C9         C10       0.000     5.0     2
+QG8       const_sp2_sp2_5         C14         C13          C9          C8       0.000     5.0     2
+QG8             sp2_sp3_7          C8          C9         C10         C11       0.000    10.0     6
+QG8             sp3_sp3_2          C9         C10         C11         O12      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+QG8    chir_1    C3    C1    C4    C21    positive
+QG8    chir_2    C4    O17    C5    C3    positive
+QG8    chir_3    C7    N6    C11    C8    positive
+QG8    chir_4    C11    O12    C7    C10    negative
+QG8    chir_5    N36    N37    C35    C19    negative
+QG8    chir_6    C39    N40    C38    C45    positive
+QG8    chir_7    C45    C39    C46    C47    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+QG8    plan-1         C10   0.020
+QG8    plan-1         C13   0.020
+QG8    plan-1         C14   0.020
+QG8    plan-1         C15   0.020
+QG8    plan-1         C16   0.020
+QG8    plan-1          C7   0.020
+QG8    plan-1          C8   0.020
+QG8    plan-1          C9   0.020
+QG8    plan-1         H13   0.020
+QG8    plan-1         H14   0.020
+QG8    plan-1         H15   0.020
+QG8    plan-1         H16   0.020
+QG8    plan-2         C21   0.020
+QG8    plan-2         C22   0.020
+QG8    plan-2         C23   0.020
+QG8    plan-2         C24   0.020
+QG8    plan-2         C25   0.020
+QG8    plan-2         C26   0.020
+QG8    plan-2         C27   0.020
+QG8    plan-2         H23   0.020
+QG8    plan-2         H24   0.020
+QG8    plan-2         H25   0.020
+QG8    plan-2         H26   0.020
+QG8    plan-2         H27   0.020
+QG8    plan-3         C28   0.020
+QG8    plan-3         C29   0.020
+QG8    plan-3         C50   0.020
+QG8    plan-3         C51   0.020
+QG8    plan-3         C52   0.020
+QG8    plan-3         C53   0.020
+QG8    plan-3         C54   0.020
+QG8    plan-3         H50   0.020
+QG8    plan-3         H51   0.020
+QG8    plan-3         H52   0.020
+QG8    plan-3         H53   0.020
+QG8    plan-3         H54   0.020
+QG8    plan-4         C28   0.020
+QG8    plan-4         C29   0.020
+QG8    plan-4         C30   0.020
+QG8    plan-4         C31   0.020
+QG8    plan-4         C32   0.020
+QG8    plan-4         C33   0.020
+QG8    plan-4         C34   0.020
+QG8    plan-4         C35   0.020
+QG8    plan-4         H30   0.020
+QG8    plan-4         H31   0.020
+QG8    plan-4         H33   0.020
+QG8    plan-4         H34   0.020
+QG8    plan-5          C1   0.020
+QG8    plan-5          C3   0.020
+QG8    plan-5          N6   0.020
+QG8    plan-5          O2   0.020
+QG8    plan-6         C38   0.020
+QG8    plan-6        HN37   0.020
+QG8    plan-6         N36   0.020
+QG8    plan-6         N37   0.020
+QG8    plan-7         C38   0.020
+QG8    plan-7         C39   0.020
+QG8    plan-7         N37   0.020
+QG8    plan-7         O49   0.020
+QG8    plan-8         C39   0.020
+QG8    plan-8         C41   0.020
+QG8    plan-8        HN40   0.020
+QG8    plan-8         N40   0.020
+QG8    plan-9         C41   0.020
+QG8    plan-9         N40   0.020
+QG8    plan-9         O42   0.020
+QG8    plan-9         O44   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+QG8            InChI                InChI  1.03 InChI=1S/C44H52N4O6/c1-43(2,3)39(45-42(53)54-4)40(51)46-47(28-31-20-22-33(23-21-31)32-16-9-6-10-17-32)25-13-24-44(27-30-14-7-5-8-15-30)37(50)29-48(41(44)52)38-35-19-12-11-18-34(35)26-36(38)49/h5-12,14-23,36-39,49-50H,13,24-29H2,1-4H3,(H,45,53)(H,46,51)/t36-,37-,38+,39-,44+/m1/s1
+QG8         InChIKey                InChI  1.03                                                                                                                                                                                                                                                             YNPGDSJLNVNNFA-MIYQMFTLSA-N
+QG8           SMILES              ACDLabs 12.01                                                                                                                                                                                             O=C(OC)NC(C(=O)NN(Cc2ccc(c1ccccc1)cc2)CCCC5(C(=O)N(C4c3c(cccc3)CC4O)CC5O)Cc6ccccc6)C(C)(C)C
+QG8 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                         COC(=O)N[C@H](C(=O)NN(CCC[C@]1(Cc2ccccc2)[C@H](O)CN([C@@H]3[C@H](O)Cc4ccccc34)C1=O)Cc5ccc(cc5)c6ccccc6)C(C)(C)C
+QG8           SMILES               CACTVS 3.370                                                                                                                                                                               COC(=O)N[CH](C(=O)NN(CCC[C]1(Cc2ccccc2)[CH](O)CN([CH]3[CH](O)Cc4ccccc34)C1=O)Cc5ccc(cc5)c6ccccc6)C(C)(C)C
+QG8 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                                                         CC(C)(C)[C@@H](C(=O)NN(CCC[C@@]1([C@@H](CN(C1=O)[C@H]2c3ccccc3C[C@H]2O)O)Cc4ccccc4)Cc5ccc(cc5)c6ccccc6)NC(=O)OC
+QG8           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                               CC(C)(C)C(C(=O)NN(CCCC1(C(CN(C1=O)C2c3ccccc3CC2O)O)Cc4ccccc4)Cc5ccc(cc5)c6ccccc6)NC(=O)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+QG8 acedrg               243         "dictionary generator"                  
+QG8 acedrg_database      11          "data source"                           
+QG8 rdkit                2017.03.2   "Chemoinformatics tool"
+QG8 refmac5              5.8.0238    "optimization tool"                     

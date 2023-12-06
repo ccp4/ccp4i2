@@ -1,0 +1,289 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HLO     HLO      1-[({2,4-BIS[(E)-(HYDROXYIMINO)METHYL]PYRIDINIUM-1-YL}METHOXY)METHYL]-4-CARBAMOYLPYRIDINIUM     NON-POLYMER     41     24     .     
+#
+data_comp_HLO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HLO     O3      O       O       0       39.507      20.576      9.077       
+HLO     C14     C       C       0       38.638      20.591      9.963       
+HLO     N4      N       NH2     0       38.877      20.152      11.192      
+HLO     C11     C       CR6     0       37.269      21.119      9.651       
+HLO     C10     C       CR16    0       36.740      22.190      10.369      
+HLO     C9      C       CR16    0       35.473      22.673      10.076      
+HLO     N3      N       NR6     1       34.711      22.107      9.068       
+HLO     C13     C       CR16    0       35.235      21.041      8.357       
+HLO     C12     C       CR16    0       36.500      20.548      8.639       
+HLO     C8      C       CH2     0       33.366      22.620      8.763       
+HLO     O2      O       O2      0       32.345      21.915      9.465       
+HLO     C7      C       CH2     0       31.023      22.310      9.103       
+HLO     N2      N       NR6     1       29.987      21.481      9.749       
+HLO     C2      C       CR6     0       29.856      20.120      9.429       
+HLO     C1      C       C1      0       30.730      19.473      8.454       
+HLO     N1      N       N       0       30.558      19.629      7.204       
+HLO     O1      O       OH1     0       31.757      20.055      6.585       
+HLO     C3      C       CR16    0       28.868      19.363      10.056      
+HLO     C4      C       CR6     0       28.017      19.946      10.994      
+HLO     C5      C       CR16    0       28.162      21.299      11.297      
+HLO     C6      C       CR16    0       29.146      22.050      10.672      
+HLO     C22     C       C1      0       26.979      19.151      11.649      
+HLO     N5      N       N       0       27.220      17.992      12.115      
+HLO     O4      O       OH1     0       26.585      17.805      13.367      
+HLO     H4N1    H       H       0       39.682      19.832      11.404      
+HLO     H4N2    H       H       0       38.240      20.170      11.816      
+HLO     H10     H       H       0       37.240      22.594      11.060      
+HLO     H9      H       H       0       35.122      23.398      10.566      
+HLO     H13     H       H       0       34.721      20.650      7.670       
+HLO     H12     H       H       0       36.835      19.822      8.137       
+HLO     H8C1    H       H       0       33.213      22.538      7.798       
+HLO     H8C2    H       H       0       33.327      23.569      9.004       
+HLO     H7C1    H       H       0       30.917      22.240      8.131       
+HLO     H7C2    H       H       0       30.892      23.247      9.358       
+HLO     H1      H       H       0       31.433      18.932      8.762       
+HLO     HA      H       H       0       31.893      19.891      5.751       
+HLO     H3      H       H       0       28.773      18.448      9.847       
+HLO     H5      H       H       0       27.594      21.711      11.929      
+HLO     H6      H       H       0       29.240      22.964      10.883      
+HLO     H22     H       H       0       26.110      19.510      11.721      
+HLO     H4      H       H       0       26.342      17.017      13.612      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HLO          O3         C14      DOUBLE       n     1.241  0.0105     1.241  0.0105
+HLO         C14          N4      SINGLE       n     1.326  0.0100     1.326  0.0100
+HLO         C14         C11      SINGLE       n     1.500  0.0100     1.500  0.0100
+HLO         C11         C10      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HLO         C11         C12      SINGLE       y     1.389  0.0100     1.389  0.0100
+HLO         C10          C9      SINGLE       y     1.384  0.0100     1.384  0.0100
+HLO          C9          N3      DOUBLE       y     1.378  0.0177     1.378  0.0177
+HLO          N3         C13      SINGLE       y     1.378  0.0177     1.378  0.0177
+HLO          N3          C8      SINGLE       n     1.471  0.0100     1.471  0.0100
+HLO         C13         C12      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HLO          C8          O2      SINGLE       n     1.424  0.0132     1.424  0.0132
+HLO          O2          C7      SINGLE       n     1.424  0.0132     1.424  0.0132
+HLO          C7          N2      SINGLE       n     1.471  0.0100     1.471  0.0100
+HLO          N2          C2      DOUBLE       y     1.390  0.0144     1.390  0.0144
+HLO          N2          C6      SINGLE       y     1.367  0.0113     1.367  0.0113
+HLO          C2          C1      SINGLE       n     1.459  0.0115     1.459  0.0115
+HLO          C2          C3      SINGLE       y     1.390  0.0100     1.390  0.0100
+HLO          C1          N1      DOUBLE       n     1.271  0.0108     1.271  0.0108
+HLO          N1          O1      SINGLE       n     1.415  0.0195     1.415  0.0195
+HLO          C3          C4      DOUBLE       y     1.390  0.0100     1.390  0.0100
+HLO          C4          C5      SINGLE       y     1.390  0.0103     1.390  0.0103
+HLO          C4         C22      SINGLE       n     1.462  0.0100     1.462  0.0100
+HLO          C5          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HLO         C22          N5      DOUBLE       n     1.271  0.0112     1.271  0.0112
+HLO          N5          O4      SINGLE       n     1.415  0.0195     1.415  0.0195
+HLO          N4        H4N1      SINGLE       n     1.016  0.0100     0.891  0.0200
+HLO          N4        H4N2      SINGLE       n     1.016  0.0100     0.891  0.0200
+HLO         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0103
+HLO          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0169
+HLO         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0169
+HLO         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0103
+HLO          C8        H8C1      SINGLE       n     1.089  0.0100     0.980  0.0156
+HLO          C8        H8C2      SINGLE       n     1.089  0.0100     0.980  0.0156
+HLO          C7        H7C1      SINGLE       n     1.089  0.0100     0.980  0.0156
+HLO          C7        H7C2      SINGLE       n     1.089  0.0100     0.980  0.0156
+HLO          C1          H1      SINGLE       n     1.082  0.0130     0.939  0.0187
+HLO          O1          HA      SINGLE       n     0.966  0.0059     0.861  0.0200
+HLO          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0184
+HLO          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0103
+HLO          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0169
+HLO         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0164
+HLO          O4          H4      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HLO          O3         C14          N4     122.155    1.50
+HLO          O3         C14         C11     119.820    1.50
+HLO          N4         C14         C11     118.026    1.50
+HLO         C14          N4        H4N1     120.236    2.75
+HLO         C14          N4        H4N2     120.236    2.75
+HLO        H4N1          N4        H4N2     119.529    2.83
+HLO         C14         C11         C10     121.072    2.63
+HLO         C14         C11         C12     121.072    2.63
+HLO         C10         C11         C12     117.856    1.50
+HLO         C11         C10          C9     120.165    1.50
+HLO         C11         C10         H10     120.451    1.50
+HLO          C9         C10         H10     119.384    1.50
+HLO         C10          C9          N3     121.303    1.50
+HLO         C10          C9          H9     119.708    1.50
+HLO          N3          C9          H9     118.989    1.50
+HLO          C9          N3         C13     119.206    1.50
+HLO          C9          N3          C8     120.397    1.50
+HLO         C13          N3          C8     120.397    1.50
+HLO          N3         C13         C12     121.303    1.50
+HLO          N3         C13         H13     118.989    1.50
+HLO         C12         C13         H13     119.708    1.50
+HLO         C11         C12         C13     120.165    1.50
+HLO         C11         C12         H12     120.451    1.50
+HLO         C13         C12         H12     119.384    1.50
+HLO          N3          C8          O2     112.798    1.50
+HLO          N3          C8        H8C1     108.793    1.53
+HLO          N3          C8        H8C2     108.793    1.53
+HLO          O2          C8        H8C1     109.309    1.50
+HLO          O2          C8        H8C2     109.309    1.50
+HLO        H8C1          C8        H8C2     108.663    1.50
+HLO          C8          O2          C7     112.777    1.57
+HLO          O2          C7          N2     112.798    1.50
+HLO          O2          C7        H7C1     109.309    1.50
+HLO          O2          C7        H7C2     109.309    1.50
+HLO          N2          C7        H7C1     108.793    1.53
+HLO          N2          C7        H7C2     108.793    1.53
+HLO        H7C1          C7        H7C2     108.663    1.50
+HLO          C7          N2          C2     119.722    1.83
+HLO          C7          N2          C6     119.455    1.50
+HLO          C2          N2          C6     120.823    1.50
+HLO          N2          C2          C1     118.908    3.00
+HLO          N2          C2          C3     119.959    1.50
+HLO          C1          C2          C3     121.133    1.88
+HLO          C2          C1          N1     121.354    1.50
+HLO          C2          C1          H1     118.981    1.50
+HLO          N1          C1          H1     119.665    1.50
+HLO          C1          N1          O1     110.625    1.59
+HLO          N1          O1          HA     120.000    3.00
+HLO          C2          C3          C4     119.588    1.81
+HLO          C2          C3          H3     120.361    1.50
+HLO          C4          C3          H3     120.051    1.50
+HLO          C3          C4          C5     118.691    1.50
+HLO          C3          C4         C22     120.655    1.50
+HLO          C5          C4         C22     120.655    1.50
+HLO          C4          C5          C6     119.901    1.50
+HLO          C4          C5          H5     120.502    1.50
+HLO          C6          C5          H5     119.597    1.50
+HLO          N2          C6          C5     121.039    1.50
+HLO          N2          C6          H6     119.121    1.50
+HLO          C5          C6          H6     119.840    1.50
+HLO          C4         C22          N5     121.486    1.50
+HLO          C4         C22         H22     118.935    1.50
+HLO          N5         C22         H22     119.578    1.50
+HLO         C22          N5          O4     110.625    1.59
+HLO          N5          O4          H4     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HLO             sp3_sp3_4          N2          C7          O2          C8     180.000    10.0     3
+HLO             sp2_sp3_8          C2          N2          C7          O2     -90.000    10.0     6
+HLO              const_24          C1          C2          N2          C7       0.000    10.0     2
+HLO              const_46          C5          C6          N2          C7     180.000    10.0     2
+HLO             sp2_sp2_9          N1          C1          C2          N2     180.000     5.0     2
+HLO              const_27          C1          C2          C3          C4     180.000    10.0     2
+HLO            sp2_sp2_13          C2          C1          N1          O1     180.000     5.0     2
+HLO            sp2_sp2_15          C1          N1          O1          HA     180.000     5.0     2
+HLO              const_30          C2          C3          C4         C22     180.000    10.0     2
+HLO              const_35         C22          C4          C5          C6     180.000    10.0     2
+HLO            sp2_sp2_16          N5         C22          C4          C3     180.000     5.0     2
+HLO              const_37          C4          C5          C6          N2       0.000    10.0     2
+HLO             sp2_sp2_3          O3         C14          N4        H4N1       0.000     5.0     2
+HLO             sp2_sp2_6         C10         C11         C14          O3       0.000     5.0     2
+HLO            sp2_sp2_20          C4         C22          N5          O4     180.000     5.0     2
+HLO            sp2_sp2_22         C22          N5          O4          H4     180.000     5.0     2
+HLO       const_sp2_sp2_2          C9         C10         C11         C14     180.000     5.0     2
+HLO              const_43         C14         C11         C12         C13     180.000    10.0     2
+HLO       const_sp2_sp2_5         C11         C10          C9          N3       0.000     5.0     2
+HLO              const_10         C10          C9          N3          C8     180.000    10.0     2
+HLO              const_14         C12         C13          N3          C8     180.000    10.0     2
+HLO             sp2_sp3_2          C9          N3          C8          O2     -90.000    10.0     6
+HLO              const_17         C11         C12         C13          N3       0.000    10.0     2
+HLO             sp3_sp3_1          N3          C8          O2          C7     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HLO    plan-1          C1   0.020
+HLO    plan-1          C2   0.020
+HLO    plan-1         C22   0.020
+HLO    plan-1          C3   0.020
+HLO    plan-1          C4   0.020
+HLO    plan-1          C5   0.020
+HLO    plan-1          C6   0.020
+HLO    plan-1          C7   0.020
+HLO    plan-1          H3   0.020
+HLO    plan-1          H5   0.020
+HLO    plan-1          H6   0.020
+HLO    plan-1          N2   0.020
+HLO    plan-2         C10   0.020
+HLO    plan-2         C11   0.020
+HLO    plan-2         C12   0.020
+HLO    plan-2         C13   0.020
+HLO    plan-2         C14   0.020
+HLO    plan-2          C8   0.020
+HLO    plan-2          C9   0.020
+HLO    plan-2         H10   0.020
+HLO    plan-2         H12   0.020
+HLO    plan-2         H13   0.020
+HLO    plan-2          H9   0.020
+HLO    plan-2          N3   0.020
+HLO    plan-3         C11   0.020
+HLO    plan-3         C14   0.020
+HLO    plan-3          N4   0.020
+HLO    plan-3          O3   0.020
+HLO    plan-4         C14   0.020
+HLO    plan-4        H4N1   0.020
+HLO    plan-4        H4N2   0.020
+HLO    plan-4          N4   0.020
+HLO    plan-5          C1   0.020
+HLO    plan-5          C2   0.020
+HLO    plan-5          H1   0.020
+HLO    plan-5          N1   0.020
+HLO    plan-6         C22   0.020
+HLO    plan-6          C4   0.020
+HLO    plan-6         H22   0.020
+HLO    plan-6          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HLO           SMILES              ACDLabs 10.04                                                                               O=C(N)c1cc[n+](cc1)COC[n+]2ccc(cc2\C=N\O)\C=N\O
+HLO SMILES_CANONICAL               CACTVS 3.341                                                                               NC(=O)c1cc[n+](COC[n+]2ccc(\C=N\O)cc2\C=N\O)cc1
+HLO           SMILES               CACTVS 3.341                                                                                   NC(=O)c1cc[n+](COC[n+]2ccc(C=NO)cc2C=NO)cc1
+HLO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               c1c[n+](ccc1C(=O)N)COC[n+]2ccc(cc2\C=N\O)\C=N\O
+HLO           SMILES "OpenEye OEToolkits" 1.5.0                                                                                   c1c[n+](ccc1C(=O)N)COC[n+]2ccc(cc2C=NO)C=NO
+HLO            InChI                InChI  1.03 InChI=1S/C15H15N5O4/c16-15(21)13-2-4-19(5-3-13)10-24-11-20-6-1-12(8-17-22)7-14(20)9-18-23/h1-9H,10-11H2,(H2-,16,21,22,23)/p+2
+HLO         InChIKey                InChI  1.03                                                                                                   SODKCPHRJDOHMI-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HLO acedrg               243         "dictionary generator"                  
+HLO acedrg_database      11          "data source"                           
+HLO rdkit                2017.03.2   "Chemoinformatics tool"
+HLO refmac5              5.8.0238    "optimization tool"                     

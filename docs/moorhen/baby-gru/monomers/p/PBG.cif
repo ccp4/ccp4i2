@@ -1,0 +1,211 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PBG     PBG      "3-[5-(AMINOMETHYL)-4-(CARBOXYMETHYL)-1H-PYRROL-3-YL]PROPANOIC ACID"     NON-POLYMER     28     16     .     
+#
+data_comp_PBG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PBG     CHA     C       CH2     0       33.199      73.806      60.723      
+PBG     C1A     C       CR5     0       33.074      73.474      59.274      
+PBG     C2A     C       CR5     0       32.361      74.134      58.297      
+PBG     C3A     C       CR5     0       32.551      73.445      57.090      
+PBG     C4A     C       CR15    0       33.381      72.374      57.361      
+PBG     NA      N       NR5     0       33.695      72.397      58.688      
+PBG     C5A     C       CH2     0       31.530      75.369      58.495      
+PBG     C6A     C       C       0       32.298      76.673      58.292      
+PBG     O1A     O       O       0       33.434      76.763      58.800      
+PBG     O2A     O       OC      -1      31.733      77.568      57.638      
+PBG     C7A     C       CH2     0       31.966      73.799      55.755      
+PBG     C8A     C       CH2     0       30.618      73.133      55.500      
+PBG     C9A     C       C       0       29.951      73.525      54.190      
+PBG     O3A     O       O       0       30.609      74.168      53.345      
+PBG     O4A     O       OC      -1      28.765      73.181      54.016      
+PBG     N1      N       NT2     0       33.980      72.841      61.505      
+PBG     HHA2    H       H       0       32.303      73.860      61.118      
+PBG     HHA1    H       H       0       33.625      74.685      60.815      
+PBG     H4A1    H       H       0       33.683      71.732      56.738      
+PBG     HA      H       H       0       34.215      71.813      59.105      
+PBG     H5A2    H       H       0       31.160      75.360      59.405      
+PBG     H5A1    H       H       0       30.775      75.349      57.867      
+PBG     H7A2    H       H       0       32.595      73.532      55.053      
+PBG     H7A1    H       H       0       31.860      74.772      55.701      
+PBG     H8A2    H       H       0       30.003      73.354      56.235      
+PBG     H8A1    H       H       0       30.734      72.156      55.504      
+PBG     H12     H       H       0       34.004      73.186      62.341      
+PBG     H11     H       H       0       34.819      72.895      61.169      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PBG         CHA         C1A      SINGLE       n     1.490  0.0100     1.490  0.0100
+PBG         CHA          N1      SINGLE       n     1.467  0.0144     1.467  0.0144
+PBG         C1A         C2A      DOUBLE       y     1.374  0.0200     1.374  0.0200
+PBG         C1A          NA      SINGLE       y     1.373  0.0100     1.373  0.0100
+PBG         C2A         C3A      SINGLE       y     1.398  0.0200     1.398  0.0200
+PBG         C2A         C5A      SINGLE       n     1.500  0.0100     1.500  0.0100
+PBG         C3A         C4A      DOUBLE       y     1.383  0.0100     1.383  0.0100
+PBG         C3A         C7A      SINGLE       n     1.500  0.0100     1.500  0.0100
+PBG         C4A          NA      SINGLE       y     1.366  0.0167     1.366  0.0167
+PBG         C5A         C6A      SINGLE       n     1.525  0.0126     1.525  0.0126
+PBG         C6A         O1A      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PBG         C6A         O2A      SINGLE       n     1.244  0.0200     1.244  0.0200
+PBG         C7A         C8A      SINGLE       n     1.524  0.0100     1.524  0.0100
+PBG         C8A         C9A      SINGLE       n     1.519  0.0109     1.519  0.0109
+PBG         C9A         O3A      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PBG         C9A         O4A      SINGLE       n     1.247  0.0187     1.247  0.0187
+PBG         CHA        HHA2      SINGLE       n     1.089  0.0100     0.981  0.0105
+PBG         CHA        HHA1      SINGLE       n     1.089  0.0100     0.981  0.0105
+PBG         C4A        H4A1      SINGLE       n     1.082  0.0130     0.944  0.0100
+PBG          NA          HA      SINGLE       n     1.016  0.0100     0.887  0.0200
+PBG         C5A        H5A2      SINGLE       n     1.089  0.0100     0.983  0.0200
+PBG         C5A        H5A1      SINGLE       n     1.089  0.0100     0.983  0.0200
+PBG         C7A        H7A2      SINGLE       n     1.089  0.0100     0.980  0.0120
+PBG         C7A        H7A1      SINGLE       n     1.089  0.0100     0.980  0.0120
+PBG         C8A        H8A2      SINGLE       n     1.089  0.0100     0.983  0.0139
+PBG         C8A        H8A1      SINGLE       n     1.089  0.0100     0.983  0.0139
+PBG          N1         H12      SINGLE       n     1.036  0.0160     0.905  0.0200
+PBG          N1         H11      SINGLE       n     1.036  0.0160     0.905  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PBG         C1A         CHA          N1     112.622    2.07
+PBG         C1A         CHA        HHA2     108.975    1.50
+PBG         C1A         CHA        HHA1     108.975    1.50
+PBG          N1         CHA        HHA2     107.542    2.93
+PBG          N1         CHA        HHA1     107.542    2.93
+PBG        HHA2         CHA        HHA1     107.966    1.50
+PBG         CHA         C1A         C2A     129.308    1.59
+PBG         CHA         C1A          NA     122.892    1.73
+PBG         C2A         C1A          NA     107.800    1.50
+PBG         C1A         C2A         C3A     107.386    1.50
+PBG         C1A         C2A         C5A     126.307    1.59
+PBG         C3A         C2A         C5A     126.307    1.59
+PBG         C2A         C3A         C4A     107.076    1.50
+PBG         C2A         C3A         C7A     126.407    1.51
+PBG         C4A         C3A         C7A     126.517    1.50
+PBG         C3A         C4A          NA     108.609    1.50
+PBG         C3A         C4A        H4A1     125.994    1.50
+PBG          NA         C4A        H4A1     125.397    1.50
+PBG         C1A          NA         C4A     109.130    1.50
+PBG         C1A          NA          HA     125.104    1.79
+PBG         C4A          NA          HA     125.766    1.50
+PBG         C2A         C5A         C6A     112.079    2.81
+PBG         C2A         C5A        H5A2     108.919    1.50
+PBG         C2A         C5A        H5A1     108.919    1.50
+PBG         C6A         C5A        H5A2     108.731    1.50
+PBG         C6A         C5A        H5A1     108.731    1.50
+PBG        H5A2         C5A        H5A1     107.730    1.50
+PBG         C5A         C6A         O1A     117.315    1.72
+PBG         C5A         C6A         O2A     117.315    1.72
+PBG         O1A         C6A         O2A     125.371    1.75
+PBG         C3A         C7A         C8A     113.075    2.06
+PBG         C3A         C7A        H7A2     108.985    1.50
+PBG         C3A         C7A        H7A1     108.985    1.50
+PBG         C8A         C7A        H7A2     109.247    1.50
+PBG         C8A         C7A        H7A1     109.247    1.50
+PBG        H7A2         C7A        H7A1     107.581    1.50
+PBG         C7A         C8A         C9A     113.936    1.58
+PBG         C7A         C8A        H8A2     109.544    1.50
+PBG         C7A         C8A        H8A1     109.544    1.50
+PBG         C9A         C8A        H8A2     108.416    1.50
+PBG         C9A         C8A        H8A1     108.416    1.50
+PBG        H8A2         C8A        H8A1     107.356    1.50
+PBG         C8A         C9A         O3A     118.187    1.67
+PBG         C8A         C9A         O4A     118.187    1.67
+PBG         O3A         C9A         O4A     123.625    1.50
+PBG         CHA          N1         H12     104.789    3.00
+PBG         CHA          N1         H11     104.789    3.00
+PBG         H12          N1         H11     107.163    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PBG             sp2_sp3_2         C2A         C1A         CHA          N1     -90.000    10.0     6
+PBG             sp3_sp3_1         C1A         CHA          N1         H12     180.000    10.0     3
+PBG             sp3_sp3_7         C3A         C7A         C8A         C9A     180.000    10.0     3
+PBG            sp2_sp3_26         O3A         C9A         C8A         C7A     120.000    10.0     6
+PBG       const_sp2_sp2_4         CHA         C1A         C2A         C5A       0.000     5.0     2
+PBG              const_19         CHA         C1A          NA         C4A     180.000    10.0     2
+PBG       const_sp2_sp2_8         C5A         C2A         C3A         C7A       0.000     5.0     2
+PBG             sp2_sp3_8         C1A         C2A         C5A         C6A     -90.000    10.0     6
+PBG            sp2_sp3_14         C2A         C3A         C7A         C8A     -90.000    10.0     6
+PBG              const_11         C7A         C3A         C4A          NA     180.000    10.0     2
+PBG              const_13         C3A         C4A          NA         C1A       0.000    10.0     2
+PBG            sp2_sp3_20         O1A         C6A         C5A         C2A     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PBG    plan-1         C1A   0.020
+PBG    plan-1         C2A   0.020
+PBG    plan-1         C3A   0.020
+PBG    plan-1         C4A   0.020
+PBG    plan-1         C5A   0.020
+PBG    plan-1         C7A   0.020
+PBG    plan-1         CHA   0.020
+PBG    plan-1        H4A1   0.020
+PBG    plan-1          HA   0.020
+PBG    plan-1          NA   0.020
+PBG    plan-2         C5A   0.020
+PBG    plan-2         C6A   0.020
+PBG    plan-2         O1A   0.020
+PBG    plan-2         O2A   0.020
+PBG    plan-3         C8A   0.020
+PBG    plan-3         C9A   0.020
+PBG    plan-3         O3A   0.020
+PBG    plan-3         O4A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PBG           SMILES              ACDLabs 10.04                                                                     O=C(O)CCc1c(c(nc1)CN)CC(=O)O
+PBG SMILES_CANONICAL               CACTVS 3.341                                                                    NCc1[nH]cc(CCC(O)=O)c1CC(O)=O
+PBG           SMILES               CACTVS 3.341                                                                    NCc1[nH]cc(CCC(O)=O)c1CC(O)=O
+PBG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                c1c(c(c([nH]1)CN)CC(=O)O)CCC(=O)O
+PBG           SMILES "OpenEye OEToolkits" 1.5.0                                                                c1c(c(c([nH]1)CN)CC(=O)O)CCC(=O)O
+PBG            InChI                InChI  1.03 InChI=1S/C10H14N2O4/c11-4-8-7(3-10(15)16)6(5-12-8)1-2-9(13)14/h5,12H,1-4,11H2,(H,13,14)(H,15,16)
+PBG         InChIKey                InChI  1.03                                                                      QSHWIQZFGQKFMA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PBG acedrg               243         "dictionary generator"                  
+PBG acedrg_database      11          "data source"                           
+PBG rdkit                2017.03.2   "Chemoinformatics tool"
+PBG refmac5              5.8.0238    "optimization tool"                     

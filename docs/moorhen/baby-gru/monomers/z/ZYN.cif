@@ -1,0 +1,358 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZYN     ZYN      6-(3-chloro-4-fluorobenzyl)-4-hydroxy-N,N-dimethyl-2-(1-methylethyl)-3,5-dioxo-2,3,5,6,7,8-hexahydro-2,6-naphthyridine-1-carboxamide     NON-POLYMER     53     30     .     
+#
+data_comp_ZYN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZYN     CAA     C       CH3     0       -38.173     27.205      -18.690     
+ZYN     CAB     C       CH3     0       -35.656     26.836      -18.961     
+ZYN     CAC     C       CH3     0       -36.445     27.802      -24.186     
+ZYN     CAD     C       CH3     0       -34.721     28.702      -22.682     
+ZYN     OAE     O       O       0       -38.318     28.590      -22.315     
+ZYN     OAF     O       O       0       -36.223     34.000      -18.860     
+ZYN     OAG     O       O       0       -36.326     29.215      -17.315     
+ZYN     OAH     O       OH1     0       -35.953     31.901      -17.398     
+ZYN     FAI     F       F       0       -41.151     37.526      -20.978     
+ZYN     CLAJ    CL      CL      0       -39.388     38.413      -18.805     
+ZYN     CAK     C       CR16    0       -39.595     36.131      -22.073     
+ZYN     CAL     C       CR16    0       -38.315     35.594      -22.129     
+ZYN     CAM     C       CR16    0       -37.704     36.788      -20.149     
+ZYN     CAN     C       CH2     0       -36.739     31.836      -22.256     
+ZYN     CAO     C       CH2     0       -35.829     33.044      -22.296     
+ZYN     CAP     C       CH2     0       -35.975     35.317      -21.250     
+ZYN     CAQ     C       C       0       -37.141     28.876      -22.101     
+ZYN     CAR     C       CR6     0       -36.159     33.299      -19.880     
+ZYN     CAS     C       CR6     0       -39.907     36.993      -21.047     
+ZYN     CAT     C       CR6     0       -37.358     35.918      -21.176     
+ZYN     CAU     C       CR6     0       -38.979     37.325      -20.090     
+ZYN     CAV     C       CR6     0       -36.239     31.169      -18.530     
+ZYN     CAW     C       CR66    0       -36.633     31.087      -20.947     
+ZYN     CAX     C       CR66    0       -36.344     31.825      -19.783     
+ZYN     CAY     C       CR6     0       -36.822     29.691      -20.877     
+ZYN     CAZ     C       CR6     0       -36.419     29.784      -18.421     
+ZYN     CBA     C       CH1     0       -36.907     27.541      -19.462     
+ZYN     NBB     N       N       0       -36.146     28.495      -22.934     
+ZYN     NBC     N       NR6     0       -35.990     33.855      -21.077     
+ZYN     NBD     N       NR6     0       -36.711     29.033      -19.604     
+ZYN     HAA     H       H       0       -38.731     28.000      -18.617     
+ZYN     HAAA    H       H       0       -37.945     26.889      -17.799     
+ZYN     HAAB    H       H       0       -38.663     26.511      -19.163     
+ZYN     HAB     H       H       0       -34.872     27.365      -19.191     
+ZYN     HABA    H       H       0       -35.589     25.961      -19.381     
+ZYN     HABB    H       H       0       -35.700     26.728      -17.996     
+ZYN     HAC     H       H       0       -37.277     28.129      -24.564     
+ZYN     HACA    H       H       0       -36.524     26.849      -24.016     
+ZYN     HACB    H       H       0       -35.729     27.953      -24.826     
+ZYN     HAD     H       H       0       -34.547     28.790      -21.733     
+ZYN     HADA    H       H       0       -34.427     29.509      -23.137     
+ZYN     HADB    H       H       0       -34.217     27.944      -23.023     
+ZYN     HOAH    H       H       0       -36.391     31.758      -16.671     
+ZYN     HAK     H       H       0       -40.241     35.912      -22.722     
+ZYN     HAL     H       H       0       -38.092     35.002      -22.828     
+ZYN     HAM     H       H       0       -37.067     37.010      -19.499     
+ZYN     HAN     H       H       0       -37.667     32.125      -22.385     
+ZYN     HANA    H       H       0       -36.504     31.244      -22.998     
+ZYN     HAO     H       H       0       -34.899     32.753      -22.368     
+ZYN     HAOA    H       H       0       -36.040     33.582      -23.084     
+ZYN     HAP     H       H       0       -35.406     35.720      -20.555     
+ZYN     HAPA    H       H       0       -35.576     35.540      -22.123     
+ZYN     HBA     H       H       0       -37.056     27.180      -20.369     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZYN         CAA         CBA      SINGLE       n     1.516  0.0116     1.516  0.0116
+ZYN         CAB         CBA      SINGLE       n     1.516  0.0116     1.516  0.0116
+ZYN         CAC         NBB      SINGLE       n     1.456  0.0100     1.456  0.0100
+ZYN         CAD         NBB      SINGLE       n     1.456  0.0100     1.456  0.0100
+ZYN         OAE         CAQ      DOUBLE       n     1.228  0.0115     1.228  0.0115
+ZYN         OAF         CAR      DOUBLE       n     1.237  0.0100     1.237  0.0100
+ZYN         OAG         CAZ      DOUBLE       n     1.242  0.0172     1.242  0.0172
+ZYN         OAH         CAV      SINGLE       n     1.374  0.0155     1.374  0.0155
+ZYN         FAI         CAS      SINGLE       n     1.355  0.0100     1.355  0.0100
+ZYN        CLAJ         CAU      SINGLE       n     1.732  0.0100     1.732  0.0100
+ZYN         CAK         CAL      DOUBLE       y     1.386  0.0101     1.386  0.0101
+ZYN         CAK         CAS      SINGLE       y     1.373  0.0103     1.373  0.0103
+ZYN         CAL         CAT      SINGLE       y     1.385  0.0100     1.385  0.0100
+ZYN         CAM         CAT      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ZYN         CAM         CAU      SINGLE       y     1.380  0.0100     1.380  0.0100
+ZYN         CAN         CAO      SINGLE       n     1.512  0.0100     1.512  0.0100
+ZYN         CAN         CAW      SINGLE       n     1.505  0.0100     1.505  0.0100
+ZYN         CAO         NBC      SINGLE       n     1.469  0.0100     1.469  0.0100
+ZYN         CAP         CAT      SINGLE       n     1.509  0.0100     1.509  0.0100
+ZYN         CAP         NBC      SINGLE       n     1.467  0.0100     1.467  0.0100
+ZYN         CAQ         CAY      SINGLE       n     1.482  0.0193     1.482  0.0193
+ZYN         CAQ         NBB      SINGLE       n     1.343  0.0100     1.343  0.0100
+ZYN         CAR         CAX      SINGLE       n     1.480  0.0112     1.480  0.0112
+ZYN         CAR         NBC      SINGLE       n     1.304  0.0200     1.304  0.0200
+ZYN         CAS         CAU      DOUBLE       y     1.369  0.0120     1.369  0.0120
+ZYN         CAV         CAX      DOUBLE       y     1.412  0.0100     1.412  0.0100
+ZYN         CAV         CAZ      SINGLE       y     1.392  0.0181     1.392  0.0181
+ZYN         CAW         CAX      SINGLE       y     1.400  0.0100     1.400  0.0100
+ZYN         CAW         CAY      DOUBLE       y     1.401  0.0100     1.401  0.0100
+ZYN         CAY         NBD      SINGLE       y     1.398  0.0187     1.398  0.0187
+ZYN         CAZ         NBD      SINGLE       y     1.396  0.0200     1.396  0.0200
+ZYN         CBA         NBD      SINGLE       n     1.500  0.0100     1.500  0.0100
+ZYN         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+ZYN         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+ZYN         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+ZYN         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+ZYN         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0146
+ZYN         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0146
+ZYN         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0181
+ZYN         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0181
+ZYN         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0181
+ZYN         CAD         HAD      SINGLE       n     1.089  0.0100     0.971  0.0181
+ZYN         CAD        HADA      SINGLE       n     1.089  0.0100     0.971  0.0181
+ZYN         CAD        HADB      SINGLE       n     1.089  0.0100     0.971  0.0181
+ZYN         OAH        HOAH      SINGLE       n     0.966  0.0059     0.861  0.0200
+ZYN         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0159
+ZYN         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZYN         CAM         HAM      SINGLE       n     1.082  0.0130     0.937  0.0118
+ZYN         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0175
+ZYN         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0175
+ZYN         CAO         HAO      SINGLE       n     1.089  0.0100     0.977  0.0156
+ZYN         CAO        HAOA      SINGLE       n     1.089  0.0100     0.977  0.0156
+ZYN         CAP         HAP      SINGLE       n     1.089  0.0100     0.985  0.0126
+ZYN         CAP        HAPA      SINGLE       n     1.089  0.0100     0.985  0.0126
+ZYN         CBA         HBA      SINGLE       n     1.089  0.0100     0.989  0.0101
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZYN         CBA         CAA         HAA     109.469    1.50
+ZYN         CBA         CAA        HAAA     109.469    1.50
+ZYN         CBA         CAA        HAAB     109.469    1.50
+ZYN         HAA         CAA        HAAA     109.472    1.50
+ZYN         HAA         CAA        HAAB     109.472    1.50
+ZYN        HAAA         CAA        HAAB     109.472    1.50
+ZYN         CBA         CAB         HAB     109.469    1.50
+ZYN         CBA         CAB        HABA     109.469    1.50
+ZYN         CBA         CAB        HABB     109.469    1.50
+ZYN         HAB         CAB        HABA     109.472    1.50
+ZYN         HAB         CAB        HABB     109.472    1.50
+ZYN        HABA         CAB        HABB     109.472    1.50
+ZYN         NBB         CAC         HAC     109.764    1.77
+ZYN         NBB         CAC        HACA     109.764    1.77
+ZYN         NBB         CAC        HACB     109.764    1.77
+ZYN         HAC         CAC        HACA     109.408    1.50
+ZYN         HAC         CAC        HACB     109.408    1.50
+ZYN        HACA         CAC        HACB     109.408    1.50
+ZYN         NBB         CAD         HAD     109.764    1.77
+ZYN         NBB         CAD        HADA     109.764    1.77
+ZYN         NBB         CAD        HADB     109.764    1.77
+ZYN         HAD         CAD        HADA     109.408    1.50
+ZYN         HAD         CAD        HADB     109.408    1.50
+ZYN        HADA         CAD        HADB     109.408    1.50
+ZYN         CAV         OAH        HOAH     120.000    3.00
+ZYN         CAL         CAK         CAS     118.865    1.50
+ZYN         CAL         CAK         HAK     120.926    1.50
+ZYN         CAS         CAK         HAK     120.209    1.50
+ZYN         CAK         CAL         CAT     121.098    1.50
+ZYN         CAK         CAL         HAL     119.395    1.50
+ZYN         CAT         CAL         HAL     119.507    1.50
+ZYN         CAT         CAM         CAU     119.949    1.50
+ZYN         CAT         CAM         HAM     119.487    1.50
+ZYN         CAU         CAM         HAM     120.564    1.50
+ZYN         CAO         CAN         CAW     111.407    1.50
+ZYN         CAO         CAN         HAN     109.435    1.50
+ZYN         CAO         CAN        HANA     109.435    1.50
+ZYN         CAW         CAN         HAN     109.223    1.50
+ZYN         CAW         CAN        HANA     109.223    1.50
+ZYN         HAN         CAN        HANA     107.965    1.50
+ZYN         CAN         CAO         NBC     110.160    1.50
+ZYN         CAN         CAO         HAO     109.593    1.50
+ZYN         CAN         CAO        HAOA     109.593    1.50
+ZYN         NBC         CAO         HAO     109.161    1.50
+ZYN         NBC         CAO        HAOA     109.161    1.50
+ZYN         HAO         CAO        HAOA     108.037    1.50
+ZYN         CAT         CAP         NBC     113.155    1.55
+ZYN         CAT         CAP         HAP     109.108    1.50
+ZYN         CAT         CAP        HAPA     109.108    1.50
+ZYN         NBC         CAP         HAP     108.887    1.50
+ZYN         NBC         CAP        HAPA     108.887    1.50
+ZYN         HAP         CAP        HAPA     107.841    1.50
+ZYN         OAE         CAQ         CAY     119.885    1.52
+ZYN         OAE         CAQ         NBB     122.099    1.50
+ZYN         CAY         CAQ         NBB     118.017    1.65
+ZYN         OAF         CAR         CAX     120.366    1.50
+ZYN         OAF         CAR         NBC     120.604    1.50
+ZYN         CAX         CAR         NBC     119.030    2.21
+ZYN         FAI         CAS         CAK     119.336    1.50
+ZYN         FAI         CAS         CAU     119.177    1.50
+ZYN         CAK         CAS         CAU     121.487    1.50
+ZYN         CAL         CAT         CAM     118.733    1.50
+ZYN         CAL         CAT         CAP     120.626    1.50
+ZYN         CAM         CAT         CAP     120.642    1.50
+ZYN        CLAJ         CAU         CAM     119.539    1.50
+ZYN        CLAJ         CAU         CAS     120.593    1.50
+ZYN         CAM         CAU         CAS     119.868    1.50
+ZYN         OAH         CAV         CAX     118.364    2.42
+ZYN         OAH         CAV         CAZ     121.244    3.00
+ZYN         CAX         CAV         CAZ     120.393    1.50
+ZYN         CAN         CAW         CAX     118.811    1.58
+ZYN         CAN         CAW         CAY     121.054    1.94
+ZYN         CAX         CAW         CAY     120.135    1.61
+ZYN         CAR         CAX         CAV     120.190    1.85
+ZYN         CAR         CAX         CAW     119.600    1.50
+ZYN         CAV         CAX         CAW     120.210    1.50
+ZYN         CAQ         CAY         CAW     122.745    2.29
+ZYN         CAQ         CAY         NBD     117.920    3.00
+ZYN         CAW         CAY         NBD     119.335    1.50
+ZYN         OAG         CAZ         CAV     122.528    1.97
+ZYN         OAG         CAZ         NBD     119.182    1.50
+ZYN         CAV         CAZ         NBD     118.290    1.50
+ZYN         CAA         CBA         CAB     113.672    1.50
+ZYN         CAA         CBA         NBD     111.534    1.50
+ZYN         CAA         CBA         HBA     106.434    1.50
+ZYN         CAB         CBA         NBD     111.534    1.50
+ZYN         CAB         CBA         HBA     106.434    1.50
+ZYN         NBD         CBA         HBA     106.471    1.50
+ZYN         CAC         NBB         CAD     116.225    1.50
+ZYN         CAC         NBB         CAQ     121.887    2.91
+ZYN         CAD         NBB         CAQ     121.887    2.91
+ZYN         CAO         NBC         CAP     116.376    1.50
+ZYN         CAO         NBC         CAR     123.105    2.23
+ZYN         CAP         NBC         CAR     120.519    1.66
+ZYN         CAY         NBD         CAZ     121.638    1.50
+ZYN         CAY         NBD         CBA     120.746    1.50
+ZYN         CAZ         NBD         CBA     117.616    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZYN            sp3_sp3_11         HAA         CAA         CBA         CAB     -60.000    10.0     3
+ZYN       const_sp2_sp2_1         CAS         CAK         CAL         CAT       0.000     5.0     2
+ZYN              const_42         CAL         CAK         CAS         FAI     180.000    10.0     2
+ZYN       const_sp2_sp2_6         CAK         CAL         CAT         CAP     180.000     5.0     2
+ZYN              const_10         CAU         CAM         CAT         CAP     180.000    10.0     2
+ZYN              const_14         CAT         CAM         CAU        CLAJ     180.000    10.0     2
+ZYN             sp3_sp3_1         CAW         CAN         CAO         NBC      60.000    10.0     3
+ZYN            sp2_sp3_19         CAX         CAW         CAN         CAO       0.000    10.0     6
+ZYN             sp2_sp3_4         CAP         NBC         CAO         CAN     180.000    10.0     6
+ZYN            sp2_sp3_26         CAL         CAT         CAP         NBC     -90.000    10.0     6
+ZYN            sp2_sp3_32         CAO         NBC         CAP         CAT     -90.000    10.0     6
+ZYN            sp2_sp2_13         OAE         CAQ         CAY         CAW       0.000     5.0     2
+ZYN            sp2_sp2_17         OAE         CAQ         NBB         CAC       0.000     5.0     2
+ZYN             sp2_sp2_8         OAF         CAR         CAX         CAV       0.000     5.0     2
+ZYN             sp2_sp2_4         OAF         CAR         NBC         CAP       0.000     5.0     2
+ZYN              const_20         FAI         CAS         CAU        CLAJ       0.000    10.0     2
+ZYN            sp3_sp3_19         HAB         CAB         CBA         CAA     180.000    10.0     3
+ZYN              const_28         OAH         CAV         CAX         CAR       0.000    10.0     2
+ZYN              const_48         OAH         CAV         CAZ         OAG       0.000    10.0     2
+ZYN              const_21         CAN         CAW         CAX         CAR       0.000    10.0     2
+ZYN              const_32         CAN         CAW         CAY         CAQ       0.000    10.0     2
+ZYN              const_36         CAQ         CAY         NBD         CBA       0.000    10.0     2
+ZYN              const_40         OAG         CAZ         NBD         CBA       0.000    10.0     2
+ZYN            sp2_sp3_38         CAY         NBD         CBA         CAA     -90.000    10.0     6
+ZYN             sp2_sp3_7         CAD         NBB         CAC         HAC       0.000    10.0     6
+ZYN            sp2_sp3_13         CAC         NBB         CAD         HAD       0.000    10.0     6
+ZYN             sp2_sp2_9         CAX         CAV         OAH        HOAH     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZYN    chir_1    CBA    NBD    CAA    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZYN    plan-1         CAK   0.020
+ZYN    plan-1         CAL   0.020
+ZYN    plan-1         CAM   0.020
+ZYN    plan-1         CAP   0.020
+ZYN    plan-1         CAS   0.020
+ZYN    plan-1         CAT   0.020
+ZYN    plan-1         CAU   0.020
+ZYN    plan-1        CLAJ   0.020
+ZYN    plan-1         FAI   0.020
+ZYN    plan-1         HAK   0.020
+ZYN    plan-1         HAL   0.020
+ZYN    plan-1         HAM   0.020
+ZYN    plan-2         CAN   0.020
+ZYN    plan-2         CAQ   0.020
+ZYN    plan-2         CAR   0.020
+ZYN    plan-2         CAV   0.020
+ZYN    plan-2         CAW   0.020
+ZYN    plan-2         CAX   0.020
+ZYN    plan-2         CAY   0.020
+ZYN    plan-2         CAZ   0.020
+ZYN    plan-2         CBA   0.020
+ZYN    plan-2         NBD   0.020
+ZYN    plan-2         OAG   0.020
+ZYN    plan-2         OAH   0.020
+ZYN    plan-3         CAQ   0.020
+ZYN    plan-3         CAY   0.020
+ZYN    plan-3         NBB   0.020
+ZYN    plan-3         OAE   0.020
+ZYN    plan-4         CAR   0.020
+ZYN    plan-4         CAX   0.020
+ZYN    plan-4         NBC   0.020
+ZYN    plan-4         OAF   0.020
+ZYN    plan-5         CAC   0.020
+ZYN    plan-5         CAD   0.020
+ZYN    plan-5         CAQ   0.020
+ZYN    plan-5         NBB   0.020
+ZYN    plan-6         CAO   0.020
+ZYN    plan-6         CAP   0.020
+ZYN    plan-6         CAR   0.020
+ZYN    plan-6         NBC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZYN           SMILES              ACDLabs 12.01                                                                                   Fc1ccc(cc1Cl)CN3C(=O)C2=C(O)C(=O)N(C(=C2CC3)C(=O)N(C)C)C(C)C
+ZYN SMILES_CANONICAL               CACTVS 3.370                                                                                   CC(C)N1C(=O)C(=C2C(=O)N(CCC2=C1C(=O)N(C)C)Cc3ccc(F)c(Cl)c3)O
+ZYN           SMILES               CACTVS 3.370                                                                                   CC(C)N1C(=O)C(=C2C(=O)N(CCC2=C1C(=O)N(C)C)Cc3ccc(F)c(Cl)c3)O
+ZYN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                   CC(C)N1C(=C2CCN(C(=O)C2=C(C1=O)O)Cc3ccc(c(c3)Cl)F)C(=O)N(C)C
+ZYN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                   CC(C)N1C(=C2CCN(C(=O)C2=C(C1=O)O)Cc3ccc(c(c3)Cl)F)C(=O)N(C)C
+ZYN            InChI                InChI  1.03 InChI=1S/C21H23ClFN3O4/c1-11(2)26-17(20(29)24(3)4)13-7-8-25(19(28)16(13)18(27)21(26)30)10-12-5-6-15(23)14(22)9-12/h5-6,9,11,27H,7-8,10H2,1-4H3
+ZYN         InChIKey                InChI  1.03                                                                                                                    HFCJYZIWLQSWGP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZYN acedrg               243         "dictionary generator"                  
+ZYN acedrg_database      11          "data source"                           
+ZYN rdkit                2017.03.2   "Chemoinformatics tool"
+ZYN refmac5              5.8.0238    "optimization tool"                     

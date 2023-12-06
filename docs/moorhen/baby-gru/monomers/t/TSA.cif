@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TSA     TSA      "8-HYDROXY-2-OXA-BICYCLO[3.3.1]NON-6-ENE-3,5-DICARBOXYLIC ACID"     NON-POLYMER     26     16     .     
+#
+data_comp_TSA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TSA     C1      C       CT      0       27.512      17.677      49.875      
+TSA     C2      C       CR16    0       27.425      18.500      51.149      
+TSA     C3      C       CR16    0       26.625      18.153      52.156      
+TSA     C4      C       CH1     0       25.758      16.930      52.144      
+TSA     O5      O       OH1     0       24.397      17.340      52.307      
+TSA     C5      C       CH1     0       25.899      16.077      50.868      
+TSA     C6      C       CH2     0       26.174      16.942      49.647      
+TSA     O7      O       O2      0       26.880      15.026      51.010      
+TSA     C8      C       CH1     0       28.272      15.423      50.995      
+TSA     C9      C       CH2     0       28.585      16.575      50.016      
+TSA     C10     C       C       0       27.906      18.622      48.736      
+TSA     O1      O       O       0       27.151      18.844      47.833      
+TSA     O2      O       OC      -1      28.981      19.147      48.747      
+TSA     C11     C       C       0       28.731      15.643      52.444      
+TSA     O3      O       O       0       29.387      16.606      52.769      
+TSA     O4      O       OC      -1      28.424      14.816      53.269      
+TSA     H2      H       H       0       27.960      19.277      51.230      
+TSA     H3      H       H       0       26.600      18.709      52.925      
+TSA     H4      H       H       0       25.998      16.372      52.924      
+TSA     HO5     H       H       0       24.147      17.787      51.617      
+TSA     H5      H       H       0       25.028      15.649      50.718      
+TSA     H61     H       H       0       25.452      17.593      49.521      
+TSA     H62     H       H       0       26.233      16.385      48.842      
+TSA     H8      H       H       0       28.791      14.640      50.674      
+TSA     H91     H       H       0       29.420      16.998      50.281      
+TSA     H92     H       H       0       28.731      16.189      49.132      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TSA          C1          C2      SINGLE       n     1.516  0.0100     1.516  0.0100
+TSA          C1          C6      SINGLE       n     1.545  0.0100     1.545  0.0100
+TSA          C1          C9      SINGLE       n     1.544  0.0100     1.544  0.0100
+TSA          C1         C10      SINGLE       n     1.528  0.0100     1.528  0.0100
+TSA          C2          C3      DOUBLE       n     1.326  0.0200     1.326  0.0200
+TSA          C3          C4      SINGLE       n     1.496  0.0106     1.496  0.0106
+TSA          C4          O5      SINGLE       n     1.429  0.0100     1.429  0.0100
+TSA          C4          C5      SINGLE       n     1.527  0.0144     1.527  0.0144
+TSA          C5          C6      SINGLE       n     1.518  0.0129     1.518  0.0129
+TSA          C5          O7      SINGLE       n     1.436  0.0100     1.436  0.0100
+TSA          O7          C8      SINGLE       n     1.434  0.0100     1.434  0.0100
+TSA          C8          C9      SINGLE       n     1.524  0.0144     1.524  0.0144
+TSA          C8         C11      SINGLE       n     1.518  0.0174     1.518  0.0174
+TSA         C10          O1      DOUBLE       n     1.195  0.0200     1.195  0.0200
+TSA         C10          O2      SINGLE       n     1.195  0.0200     1.195  0.0200
+TSA         C11          O3      DOUBLE       n     1.207  0.0200     1.207  0.0200
+TSA         C11          O4      SINGLE       n     1.207  0.0200     1.207  0.0200
+TSA          C2          H2      SINGLE       n     1.082  0.0130     0.946  0.0200
+TSA          C3          H3      SINGLE       n     1.082  0.0130     0.949  0.0200
+TSA          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0126
+TSA          O5         HO5      SINGLE       n     0.970  0.0120     0.858  0.0200
+TSA          C5          H5      SINGLE       n     1.089  0.0100     0.982  0.0200
+TSA          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0200
+TSA          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0200
+TSA          C8          H8      SINGLE       n     1.089  0.0100     0.993  0.0179
+TSA          C9         H91      SINGLE       n     1.089  0.0100     0.975  0.0200
+TSA          C9         H92      SINGLE       n     1.089  0.0100     0.975  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TSA          C2          C1          C6     110.086    2.10
+TSA          C2          C1          C9     109.537    2.44
+TSA          C2          C1         C10     107.277    2.52
+TSA          C6          C1          C9     110.815    2.54
+TSA          C6          C1         C10     111.942    3.00
+TSA          C9          C1         C10     108.627    2.73
+TSA          C1          C2          C3     122.341    3.00
+TSA          C1          C2          H2     118.573    1.50
+TSA          C3          C2          H2     119.086    1.50
+TSA          C2          C3          C4     123.552    1.68
+TSA          C2          C3          H3     118.420    1.50
+TSA          C4          C3          H3     118.028    1.50
+TSA          C3          C4          O5     109.059    1.87
+TSA          C3          C4          C5     112.233    2.39
+TSA          C3          C4          H4     108.457    1.50
+TSA          O5          C4          C5     110.017    1.54
+TSA          O5          C4          H4     108.171    1.50
+TSA          C5          C4          H4     109.184    2.31
+TSA          C4          O5         HO5     108.920    2.67
+TSA          C4          C5          C6     110.815    2.54
+TSA          C4          C5          O7     108.633    2.64
+TSA          C4          C5          H5     108.124    1.50
+TSA          C6          C5          O7     110.709    1.50
+TSA          C6          C5          H5     109.253    1.91
+TSA          O7          C5          H5     109.178    1.50
+TSA          C1          C6          C5     110.307    3.00
+TSA          C1          C6         H61     109.861    1.50
+TSA          C1          C6         H62     109.861    1.50
+TSA          C5          C6         H61     110.332    1.50
+TSA          C5          C6         H62     110.332    1.50
+TSA         H61          C6         H62     108.394    1.50
+TSA          C5          O7          C8     109.029    1.55
+TSA          O7          C8          C9     110.031    1.50
+TSA          O7          C8         C11     107.807    2.54
+TSA          O7          C8          H8     109.067    1.50
+TSA          C9          C8         C11     111.056    2.52
+TSA          C9          C8          H8     108.455    1.50
+TSA         C11          C8          H8     107.668    1.59
+TSA          C1          C9          C8     112.392    2.23
+TSA          C1          C9         H91     108.678    1.50
+TSA          C1          C9         H92     108.678    1.50
+TSA          C8          C9         H91     109.342    1.50
+TSA          C8          C9         H92     109.342    1.50
+TSA         H91          C9         H92     107.853    1.50
+TSA          C1         C10          O1     119.986    2.51
+TSA          C1         C10          O2     119.986    2.51
+TSA          O1         C10          O2     120.027    1.50
+TSA          C8         C11          O3     119.643    2.54
+TSA          C8         C11          O4     119.643    2.54
+TSA          O3         C11          O4     120.713    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TSA             sp2_sp3_3          C3          C2          C1         C10    -120.000    10.0     6
+TSA            sp2_sp3_13          O1         C10          C1          C2       0.000    10.0     6
+TSA            sp3_sp3_25         C10          C1          C6          C5     180.000    10.0     3
+TSA            sp3_sp3_49         C10          C1          C9          C8     -60.000    10.0     3
+TSA             sp2_sp2_1          C1          C2          C3          C4       0.000     5.0     2
+TSA             sp2_sp3_8          C2          C3          C4          O5     120.000    10.0     6
+TSA            sp3_sp3_52          C3          C4          O5         HO5     180.000    10.0     3
+TSA             sp3_sp3_4          O5          C4          C5          C6     180.000    10.0     3
+TSA            sp3_sp3_10          C4          C5          C6          C1      60.000    10.0     3
+TSA            sp3_sp3_29          C4          C5          O7          C8     -60.000    10.0     3
+TSA            sp3_sp3_32         C11          C8          O7          C5     180.000    10.0     3
+TSA            sp2_sp3_19          O3         C11          C8          O7       0.000    10.0     6
+TSA            sp3_sp3_37         C11          C8          C9          C1     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TSA    chir_1    C1    C10    C2    C9    positive
+TSA    chir_2    C4    O5    C5    C3    negative
+TSA    chir_3    C5    O7    C4    C6    negative
+TSA    chir_4    C8    O7    C11    C9    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TSA    plan-1          C1   0.020
+TSA    plan-1          C2   0.020
+TSA    plan-1          C3   0.020
+TSA    plan-1          H2   0.020
+TSA    plan-2          C2   0.020
+TSA    plan-2          C3   0.020
+TSA    plan-2          C4   0.020
+TSA    plan-2          H3   0.020
+TSA    plan-3          C1   0.020
+TSA    plan-3         C10   0.020
+TSA    plan-3          O1   0.020
+TSA    plan-3          O2   0.020
+TSA    plan-4         C11   0.020
+TSA    plan-4          C8   0.020
+TSA    plan-4          O3   0.020
+TSA    plan-4          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TSA           SMILES              ACDLabs 10.04                                                                                        O=C(O)C1OC2C(O)C=CC(C(=O)O)(C1)C2
+TSA SMILES_CANONICAL               CACTVS 3.341                                                                        O[C@@H]1C=C[C@@]2(C[C@H]1O[C@@H](C2)C(O)=O)C(O)=O
+TSA           SMILES               CACTVS 3.341                                                                               O[CH]1C=C[C]2(C[CH]1O[CH](C2)C(O)=O)C(O)=O
+TSA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                       C1[C@@H]2[C@@H](C=C[C@]1(C[C@H](O2)C(=O)O)C(=O)O)O
+TSA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                        C1C2C(C=CC1(CC(O2)C(=O)O)C(=O)O)O
+TSA            InChI                InChI  1.03 InChI=1S/C10H12O6/c11-5-1-2-10(9(14)15)3-6(5)16-7(4-10)8(12)13/h1-2,5-7,11H,3-4H2,(H,12,13)(H,14,15)/t5-,6-,7+,10+/m1/s1
+TSA         InChIKey                InChI  1.03                                                                                              KRZHNRULRHECRF-JQCUSGDOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TSA acedrg               243         "dictionary generator"                  
+TSA acedrg_database      11          "data source"                           
+TSA rdkit                2017.03.2   "Chemoinformatics tool"
+TSA refmac5              5.8.0238    "optimization tool"                     

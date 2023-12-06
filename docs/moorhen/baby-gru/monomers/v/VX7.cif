@@ -1,0 +1,369 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VX7     VX7      N-(2,4-di-tert-butyl-5-hydroxyphenyl)-4-oxo-1,4-dihydroquinoline-3-carboxamide     NON-POLYMER     57     29     .     
+#
+data_comp_VX7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VX7     O24     O       O       0       150.715     182.733     172.714     
+VX7     C23     C       CR6     0       151.339     182.014     171.892     
+VX7     C22     C       CR66    0       152.051     180.809     172.327     
+VX7     C21     C       CR16    0       152.055     180.414     173.681     
+VX7     C20     C       CR16    0       152.725     179.281     174.068     
+VX7     C19     C       CR16    0       153.413     178.506     173.116     
+VX7     C18     C       CR16    0       153.425     178.869     171.791     
+VX7     C17     C       CR66    0       152.744     180.023     171.384     
+VX7     N16     N       NR6     0       152.744     180.405     170.053     
+VX7     C15     C       CR16    0       152.112     181.498     169.609     
+VX7     C14     C       CR6     0       151.412     182.322     170.472     
+VX7     C12     C       C       0       150.730     183.521     169.879     
+VX7     O13     O       O       0       150.077     183.417     168.845     
+VX7     N11     N       NT1     0       150.862     184.693     170.551     
+VX7     C10     C       CR6     0       150.471     185.968     170.031     
+VX7     C09     C       CR16    0       151.257     186.503     169.009     
+VX7     C08     C       CR6     0       150.939     187.737     168.454     
+VX7     O25     O       OH1     0       151.801     188.134     167.458     
+VX7     C07     C       CR6     0       149.821     188.475     168.909     
+VX7     C26     C       CT      0       149.466     189.855     168.287     
+VX7     C28     C       CH3     0       150.624     190.846     168.474     
+VX7     C29     C       CH3     0       148.219     190.505     168.912     
+VX7     C27     C       CH3     0       149.187     189.712     166.784     
+VX7     C06     C       CR16    0       149.054     187.907     169.938     
+VX7     C05     C       CR6     0       149.341     186.656     170.527     
+VX7     C02     C       CT      0       148.409     186.135     171.669     
+VX7     C03     C       CH3     0       147.198     187.022     172.013     
+VX7     C04     C       CH3     0       147.852     184.746     171.308     
+VX7     C01     C       CH3     0       149.230     186.010     172.962     
+VX7     H1      H       H       0       151.597     180.927     174.323     
+VX7     H2      H       H       0       152.725     179.021     174.976     
+VX7     H3      H       H       0       153.871     177.731     173.389     
+VX7     H4      H       H       0       153.888     178.344     171.160     
+VX7     H29     H       H       0       153.180     179.911     169.463     
+VX7     H5      H       H       0       152.146     181.709     168.691     
+VX7     H7      H       H       0       151.486     184.740     171.183     
+VX7     H8      H       H       0       152.006     186.028     168.691     
+VX7     H9      H       H       0       151.919     187.636     166.766     
+VX7     H10     H       H       0       150.930     190.817     169.397     
+VX7     H11     H       H       0       150.324     191.747     168.263     
+VX7     H12     H       H       0       151.361     190.611     167.886     
+VX7     H13     H       H       0       148.364     190.649     169.863     
+VX7     H14     H       H       0       147.447     189.928     168.782     
+VX7     H15     H       H       0       148.049     191.362     168.484     
+VX7     H16     H       H       0       148.583     188.964     166.636     
+VX7     H17     H       H       0       150.017     189.554     166.305     
+VX7     H18     H       H       0       148.776     190.527     166.446     
+VX7     H19     H       H       0       148.313     188.385     170.247     
+VX7     H20     H       H       0       146.634     187.127     171.227     
+VX7     H21     H       H       0       147.505     187.895     172.314     
+VX7     H22     H       H       0       146.679     186.609     172.725     
+VX7     H23     H       H       0       147.694     184.698     170.348     
+VX7     H24     H       H       0       147.013     184.588     171.776     
+VX7     H25     H       H       0       148.486     184.055     171.562     
+VX7     H26     H       H       0       149.688     186.850     173.136     
+VX7     H27     H       H       0       149.888     185.301     172.872     
+VX7     H28     H       H       0       148.641     185.805     173.708     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VX7         C26         C27      SINGLE       n     1.532  0.0112     1.532  0.0112
+VX7         C08         O25      SINGLE       n     1.374  0.0155     1.374  0.0155
+VX7         C26         C28      SINGLE       n     1.532  0.0112     1.532  0.0112
+VX7         C07         C26      SINGLE       n     1.540  0.0100     1.540  0.0100
+VX7         C26         C29      SINGLE       n     1.532  0.0112     1.532  0.0112
+VX7         C12         O13      DOUBLE       n     1.226  0.0100     1.226  0.0100
+VX7         C08         C07      SINGLE       y     1.407  0.0100     1.407  0.0100
+VX7         C09         C08      DOUBLE       y     1.389  0.0100     1.389  0.0100
+VX7         C07         C06      DOUBLE       y     1.391  0.0100     1.391  0.0100
+VX7         C10         C09      SINGLE       y     1.395  0.0130     1.395  0.0130
+VX7         N16         C15      SINGLE       y     1.332  0.0100     1.332  0.0100
+VX7         C15         C14      DOUBLE       y     1.367  0.0157     1.367  0.0157
+VX7         C14         C12      SINGLE       n     1.497  0.0106     1.497  0.0106
+VX7         C12         N11      SINGLE       n     1.353  0.0106     1.353  0.0106
+VX7         C06         C05      SINGLE       y     1.399  0.0100     1.399  0.0100
+VX7         C17         N16      SINGLE       y     1.381  0.0100     1.381  0.0100
+VX7         N11         C10      SINGLE       n     1.428  0.0100     1.428  0.0100
+VX7         C10         C05      DOUBLE       y     1.405  0.0100     1.405  0.0100
+VX7         C23         C14      SINGLE       y     1.442  0.0166     1.442  0.0166
+VX7         C05         C02      SINGLE       n     1.547  0.0107     1.547  0.0107
+VX7         C02         C04      SINGLE       n     1.532  0.0112     1.532  0.0112
+VX7         C18         C17      SINGLE       y     1.397  0.0100     1.397  0.0100
+VX7         C22         C17      DOUBLE       y     1.407  0.0100     1.407  0.0100
+VX7         C02         C03      SINGLE       n     1.532  0.0112     1.532  0.0112
+VX7         C02         C01      SINGLE       n     1.532  0.0112     1.532  0.0112
+VX7         C23         C22      SINGLE       y     1.458  0.0149     1.458  0.0149
+VX7         O24         C23      DOUBLE       n     1.255  0.0147     1.255  0.0147
+VX7         C19         C18      DOUBLE       y     1.370  0.0100     1.370  0.0100
+VX7         C22         C21      SINGLE       y     1.405  0.0100     1.405  0.0100
+VX7         C20         C19      SINGLE       y     1.401  0.0132     1.401  0.0132
+VX7         C21         C20      DOUBLE       y     1.369  0.0100     1.369  0.0100
+VX7         C21          H1      SINGLE       n     1.082  0.0130     0.942  0.0200
+VX7         C20          H2      SINGLE       n     1.082  0.0130     0.944  0.0184
+VX7         C19          H3      SINGLE       n     1.082  0.0130     0.941  0.0176
+VX7         C18          H4      SINGLE       n     1.082  0.0130     0.942  0.0168
+VX7         N16         H29      SINGLE       n     1.016  0.0100     0.884  0.0200
+VX7         C15          H5      SINGLE       n     1.082  0.0130     0.942  0.0109
+VX7         N11          H7      SINGLE       n     1.016  0.0100     0.889  0.0200
+VX7         C09          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+VX7         O25          H9      SINGLE       n     0.966  0.0059     0.861  0.0200
+VX7         C28         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C28         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C28         H12      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C29         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C29         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C29         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C27         H16      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C27         H17      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C27         H18      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C06         H19      SINGLE       n     1.082  0.0130     0.944  0.0155
+VX7         C03         H20      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C03         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C03         H22      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C04         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C04         H24      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C04         H25      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C01         H26      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C01         H27      SINGLE       n     1.089  0.0100     0.973  0.0141
+VX7         C01         H28      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VX7         C14         C23         C22     116.842    1.50
+VX7         C14         C23         O24     122.832    1.50
+VX7         C22         C23         O24     120.326    1.50
+VX7         C17         C22         C23     121.327    1.50
+VX7         C17         C22         C21     119.176    1.50
+VX7         C23         C22         C21     119.496    1.50
+VX7         C22         C21         C20     120.607    1.50
+VX7         C22         C21          H1     119.644    1.50
+VX7         C20         C21          H1     119.749    1.50
+VX7         C19         C20         C21     120.228    1.50
+VX7         C19         C20          H2     119.858    1.50
+VX7         C21         C20          H2     119.914    1.50
+VX7         C18         C19         C20     120.624    1.50
+VX7         C18         C19          H3     119.615    1.50
+VX7         C20         C19          H3     119.762    1.50
+VX7         C17         C18         C19     119.309    1.50
+VX7         C17         C18          H4     120.354    1.50
+VX7         C19         C18          H4     120.336    1.50
+VX7         N16         C17         C18     120.050    1.50
+VX7         N16         C17         C22     119.896    1.50
+VX7         C18         C17         C22     120.055    1.50
+VX7         C15         N16         C17     122.164    1.50
+VX7         C15         N16         H29     118.520    2.17
+VX7         C17         N16         H29     119.316    1.72
+VX7         N16         C15         C14     119.234    3.00
+VX7         N16         C15          H5     120.481    1.50
+VX7         C14         C15          H5     120.285    1.50
+VX7         C15         C14         C12     117.442    2.75
+VX7         C15         C14         C23     120.537    1.50
+VX7         C12         C14         C23     122.021    1.50
+VX7         O13         C12         C14     120.962    1.50
+VX7         O13         C12         N11     122.977    1.50
+VX7         C14         C12         N11     116.075    1.52
+VX7         C12         N11         C10     124.197    1.50
+VX7         C12         N11          H7     117.531    2.83
+VX7         C10         N11          H7     116.738    3.00
+VX7         C09         C10         N11     120.080    2.51
+VX7         C09         C10         C05     120.824    1.78
+VX7         N11         C10         C05     119.096    1.50
+VX7         C08         C09         C10     119.889    1.50
+VX7         C08         C09          H8     119.755    1.50
+VX7         C10         C09          H8     120.355    1.50
+VX7         O25         C08         C07     119.547    3.00
+VX7         O25         C08         C09     119.547    3.00
+VX7         C07         C08         C09     120.906    1.50
+VX7         C08         O25          H9     120.000    3.00
+VX7         C26         C07         C08     121.222    1.50
+VX7         C26         C07         C06     120.564    1.50
+VX7         C08         C07         C06     118.214    1.50
+VX7         C27         C26         C28     108.339    1.50
+VX7         C27         C26         C07     110.727    1.50
+VX7         C27         C26         C29     108.339    1.50
+VX7         C28         C26         C07     110.727    1.50
+VX7         C28         C26         C29     108.339    1.50
+VX7         C07         C26         C29     110.727    1.50
+VX7         C26         C28         H10     109.561    1.50
+VX7         C26         C28         H11     109.561    1.50
+VX7         C26         C28         H12     109.561    1.50
+VX7         H10         C28         H11     109.375    1.50
+VX7         H10         C28         H12     109.375    1.50
+VX7         H11         C28         H12     109.375    1.50
+VX7         C26         C29         H13     109.561    1.50
+VX7         C26         C29         H14     109.561    1.50
+VX7         C26         C29         H15     109.561    1.50
+VX7         H13         C29         H14     109.375    1.50
+VX7         H13         C29         H15     109.375    1.50
+VX7         H14         C29         H15     109.375    1.50
+VX7         C26         C27         H16     109.561    1.50
+VX7         C26         C27         H17     109.561    1.50
+VX7         C26         C27         H18     109.561    1.50
+VX7         H16         C27         H17     109.375    1.50
+VX7         H16         C27         H18     109.375    1.50
+VX7         H17         C27         H18     109.375    1.50
+VX7         C07         C06         C05     121.993    1.50
+VX7         C07         C06         H19     118.858    1.50
+VX7         C05         C06         H19     119.148    1.50
+VX7         C06         C05         C10     118.173    1.50
+VX7         C06         C05         C02     116.579    2.05
+VX7         C10         C05         C02     125.247    2.09
+VX7         C05         C02         C04     111.142    2.49
+VX7         C05         C02         C03     111.142    2.49
+VX7         C05         C02         C01     111.142    2.49
+VX7         C04         C02         C03     108.339    1.50
+VX7         C04         C02         C01     108.339    1.50
+VX7         C03         C02         C01     108.339    1.50
+VX7         C02         C03         H20     109.561    1.50
+VX7         C02         C03         H21     109.561    1.50
+VX7         C02         C03         H22     109.561    1.50
+VX7         H20         C03         H21     109.375    1.50
+VX7         H20         C03         H22     109.375    1.50
+VX7         H21         C03         H22     109.375    1.50
+VX7         C02         C04         H23     109.561    1.50
+VX7         C02         C04         H24     109.561    1.50
+VX7         C02         C04         H25     109.561    1.50
+VX7         H23         C04         H24     109.375    1.50
+VX7         H23         C04         H25     109.375    1.50
+VX7         H24         C04         H25     109.375    1.50
+VX7         C02         C01         H26     109.561    1.50
+VX7         C02         C01         H27     109.561    1.50
+VX7         C02         C01         H28     109.561    1.50
+VX7         H26         C01         H27     109.375    1.50
+VX7         H26         C01         H28     109.375    1.50
+VX7         H27         C01         H28     109.375    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VX7             sp2_sp2_5         O13         C12         C14         C15       0.000     5.0     2
+VX7             sp2_sp2_9         O13         C12         N11         C10       0.000     5.0     2
+VX7            sp2_sp2_11         C09         C10         N11         C12     180.000     5.0     2
+VX7       const_sp2_sp2_2         C08         C09         C10         N11     180.000     5.0     2
+VX7              const_60         C02         C05         C10         N11       0.000    10.0     2
+VX7       const_sp2_sp2_7         O25         C08         C09         C10     180.000     5.0     2
+VX7             sp2_sp2_1         C07         C08         O25          H9     180.000     5.0     2
+VX7              const_12         C26         C07         C08         O25       0.000    10.0     2
+VX7             sp2_sp3_2         C08         C07         C26         C27     -90.000    10.0     6
+VX7              const_14         C05         C06         C07         C26     180.000    10.0     2
+VX7            sp3_sp3_10         C27         C26         C28         H10     180.000    10.0     3
+VX7            sp3_sp3_22         C27         C26         C29         H13      60.000    10.0     3
+VX7             sp3_sp3_4         C28         C26         C27         H16      60.000    10.0     3
+VX7              const_24         C12         C14         C23         O24       0.000    10.0     2
+VX7              const_62         C17         C22         C23         O24     180.000    10.0     2
+VX7              const_19         C02         C05         C06         C07     180.000    10.0     2
+VX7             sp2_sp3_8         C06         C05         C02         C04     -90.000    10.0     6
+VX7            sp3_sp3_37         C04         C02         C03         H20     180.000    10.0     3
+VX7            sp3_sp3_31         C03         C02         C04         H23      60.000    10.0     3
+VX7            sp3_sp3_47         H26         C01         C02         C04     -60.000    10.0     3
+VX7              const_65         C20         C21         C22         C17       0.000    10.0     2
+VX7              const_37         N16         C17         C22         C23       0.000    10.0     2
+VX7              const_53         C19         C20         C21         C22       0.000    10.0     2
+VX7              const_49         C18         C19         C20         C21       0.000    10.0     2
+VX7              const_45         C17         C18         C19         C20       0.000    10.0     2
+VX7              const_43         N16         C17         C18         C19     180.000    10.0     2
+VX7              const_35         C18         C17         N16         C15     180.000    10.0     2
+VX7              const_29         C14         C15         N16         C17       0.000    10.0     2
+VX7              const_27         C12         C14         C15         N16     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VX7    chir_1    C26    C07    C27    C28    both
+VX7    chir_2    C02    C05    C04    C03    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VX7    plan-1         C12   0.020
+VX7    plan-1         C14   0.020
+VX7    plan-1         C15   0.020
+VX7    plan-1         C17   0.020
+VX7    plan-1         C18   0.020
+VX7    plan-1         C19   0.020
+VX7    plan-1         C20   0.020
+VX7    plan-1         C21   0.020
+VX7    plan-1         C22   0.020
+VX7    plan-1         C23   0.020
+VX7    plan-1          H1   0.020
+VX7    plan-1          H2   0.020
+VX7    plan-1         H29   0.020
+VX7    plan-1          H3   0.020
+VX7    plan-1          H4   0.020
+VX7    plan-1          H5   0.020
+VX7    plan-1         N16   0.020
+VX7    plan-1         O24   0.020
+VX7    plan-2         C02   0.020
+VX7    plan-2         C05   0.020
+VX7    plan-2         C06   0.020
+VX7    plan-2         C07   0.020
+VX7    plan-2         C08   0.020
+VX7    plan-2         C09   0.020
+VX7    plan-2         C10   0.020
+VX7    plan-2         C26   0.020
+VX7    plan-2         H19   0.020
+VX7    plan-2          H8   0.020
+VX7    plan-2         N11   0.020
+VX7    plan-2         O25   0.020
+VX7    plan-3         C12   0.020
+VX7    plan-3         C14   0.020
+VX7    plan-3         N11   0.020
+VX7    plan-3         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VX7           SMILES              ACDLabs 12.01                                                                                         O=C2c1ccccc1NC=C2C(Nc3c(cc(c(c3)O)C(C)(C)C)C(C)(C)C)=O
+VX7            InChI                InChI  1.03 InChI=1S/C24H28N2O3/c1-23(2,3)16-11-17(24(4,5)6)20(27)12-19(16)26-22(29)15-13-25-18-10-8-7-9-14(18)21(15)28/h7-13,27H,1-6H3,(H,25,28)(H,26,29)
+VX7         InChIKey                InChI  1.03                                                                                                                    PURKAOJPTOLRMP-UHFFFAOYSA-N
+VX7 SMILES_CANONICAL               CACTVS 3.385                                                                                           CC(C)(C)c1cc(c(NC(=O)C2=CNc3ccccc3C2=O)cc1O)C(C)(C)C
+VX7           SMILES               CACTVS 3.385                                                                                           CC(C)(C)c1cc(c(NC(=O)C2=CNc3ccccc3C2=O)cc1O)C(C)(C)C
+VX7 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                           CC(C)(C)c1cc(c(cc1NC(=O)C2=CNc3ccccc3C2=O)O)C(C)(C)C
+VX7           SMILES "OpenEye OEToolkits" 2.0.7                                                                                           CC(C)(C)c1cc(c(cc1NC(=O)C2=CNc3ccccc3C2=O)O)C(C)(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VX7 acedrg               243         "dictionary generator"                  
+VX7 acedrg_database      11          "data source"                           
+VX7 rdkit                2017.03.2   "Chemoinformatics tool"
+VX7 refmac5              5.8.0238    "optimization tool"                     

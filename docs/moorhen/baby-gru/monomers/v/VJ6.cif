@@ -1,0 +1,487 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VJ6     VJ6      valerjesomycin     NON-POLYMER     81     40     .     
+#
+data_comp_VJ6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VJ6     C1      C       C       0       35.474      2.347       55.240      
+VJ6     N1      N       NH1     0       35.548      3.459       54.482      
+VJ6     O1      O       O       0       35.534      1.251       54.687      
+VJ6     C2      C       C       0       35.329      2.436       56.744      
+VJ6     N2      N       NH2     0       38.474      10.262      59.549      
+VJ6     O2      O       O2      0       37.182      5.870       59.884      
+VJ6     C3      C       C1      0       35.482      3.598       57.390      
+VJ6     N3      N       NH2     0       39.130      4.949       60.327      
+VJ6     O3      O       O2      0       37.117      8.568       59.168      
+VJ6     C4      C       CH2     0       35.209      3.937       58.826      
+VJ6     O4      O       O       0       36.493      10.223      60.617      
+VJ6     C5      C       CH2     0       34.949      5.439       59.049      
+VJ6     O5      O       O2      0       29.982      9.354       58.361      
+VJ6     C6      C       CH1     0       36.167      6.357       58.940      
+VJ6     O6      O       O2      0       29.855      6.594       59.049      
+VJ6     C7      C       CH1     0       35.887      7.811       59.347      
+VJ6     O7      O       O       0       38.959      6.258       58.505      
+VJ6     C8      C       C       0       34.758      8.461       58.566      
+VJ6     O8      O       O2      0       34.283      7.829       52.726      
+VJ6     C9      C       C1      0       33.599      8.757       59.152      
+VJ6     O9      O       O2      0       31.015      5.620       56.661      
+VJ6     C10     C       CH1     0       32.376      9.409       58.555      
+VJ6     C11     C       CH1     0       31.098      8.649       58.928      
+VJ6     C12     C       CH1     0       31.027      7.190       58.473      
+VJ6     C13     C       CH2     0       30.932      7.002       56.971      
+VJ6     C14     C       CH3     0       28.955      9.702       59.281      
+VJ6     C15     C       CH2     0       30.996      5.337       55.265      
+VJ6     C16     C       CR6     0       32.386      5.433       54.680      
+VJ6     C17     C       CR16    0       32.771      6.560       53.959      
+VJ6     C18     C       CR6     0       34.047      6.667       53.420      
+VJ6     C19     C       CR16    0       34.960      5.627       53.594      
+VJ6     C20     C       CR6     0       34.589      4.490       54.313      
+VJ6     C21     C       CR16    0       33.305      4.402       54.854      
+VJ6     C22     C       CH3     0       35.065      1.140       57.405      
+VJ6     C23     C       C       0       38.464      5.728       59.483      
+VJ6     C24     C       C       0       37.295      9.728       59.845      
+VJ6     C25     C       CH3     0       35.053      8.736       57.115      
+VJ6     C26     C       CH3     0       32.318      10.877      58.976      
+VJ6     C27     C       CH3     0       30.062      5.951       60.302      
+VJ6     C28     C       CH3     0       35.620      8.209       52.401      
+VJ6     H1      H       H       0       36.293      3.549       54.029      
+VJ6     H2      H       H       0       38.716      11.025      59.925      
+VJ6     H3      H       H       0       39.023      9.865       58.978      
+VJ6     H4      H       H       0       35.840      4.310       56.887      
+VJ6     H5      H       H       0       39.989      4.791       60.191      
+VJ6     H6      H       H       0       38.727      4.586       61.028      
+VJ6     H7      H       H       0       35.972      3.651       59.375      
+VJ6     H8      H       H       0       34.421      3.433       59.128      
+VJ6     H9      H       H       0       34.554      5.556       59.938      
+VJ6     H10     H       H       0       34.282      5.729       58.392      
+VJ6     H11     H       H       0       36.512      6.341       58.014      
+VJ6     H12     H       H       0       35.644      7.812       60.306      
+VJ6     H13     H       H       0       33.526      8.527       60.066      
+VJ6     H14     H       H       0       32.452      9.383       57.570      
+VJ6     H15     H       H       0       31.024      8.663       59.922      
+VJ6     H16     H       H       0       31.830      6.711       58.804      
+VJ6     H17     H       H       0       30.078      7.353       56.642      
+VJ6     H18     H       H       0       31.662      7.481       56.526      
+VJ6     H19     H       H       0       28.215      10.107      58.800      
+VJ6     H20     H       H       0       29.304      10.334      59.930      
+VJ6     H21     H       H       0       28.646      8.904       59.739      
+VJ6     H22     H       H       0       30.399      5.964       54.803      
+VJ6     H23     H       H       0       30.647      4.432       55.127      
+VJ6     H24     H       H       0       32.155      7.266       53.834      
+VJ6     H25     H       H       0       35.826      5.687       53.231      
+VJ6     H26     H       H       0       33.054      3.637       55.342      
+VJ6     H27     H       H       0       34.921      1.271       58.352      
+VJ6     H28     H       H       0       35.824      0.551       57.276      
+VJ6     H29     H       H       0       34.275      0.734       57.016      
+VJ6     H30     H       H       0       35.893      8.321       56.861      
+VJ6     H31     H       H       0       35.114      9.695       56.974      
+VJ6     H32     H       H       0       34.339      8.375       56.566      
+VJ6     H33     H       H       0       33.204      11.185      59.237      
+VJ6     H34     H       H       0       31.709      10.981      59.728      
+VJ6     H35     H       H       0       32.001      11.417      58.231      
+VJ6     H36     H       H       0       29.207      5.672       60.667      
+VJ6     H37     H       H       0       30.490      6.569       60.917      
+VJ6     H38     H       H       0       30.630      5.174       60.177      
+VJ6     H39     H       H       0       35.984      7.585       51.752      
+VJ6     H40     H       H       0       36.166      8.199       53.204      
+VJ6     H41     H       H       0       35.617      9.104       52.023      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VJ6          O8         C28      SINGLE       n     1.424  0.0117     1.424  0.0117
+VJ6          O8         C18      SINGLE       n     1.369  0.0100     1.369  0.0100
+VJ6         C18         C19      SINGLE       y     1.387  0.0100     1.387  0.0100
+VJ6         C19         C20      DOUBLE       y     1.389  0.0100     1.389  0.0100
+VJ6         C17         C18      DOUBLE       y     1.386  0.0100     1.386  0.0100
+VJ6          N1         C20      SINGLE       n     1.413  0.0100     1.413  0.0100
+VJ6          C1          N1      SINGLE       n     1.343  0.0113     1.343  0.0113
+VJ6         C20         C21      SINGLE       y     1.391  0.0100     1.391  0.0100
+VJ6         C16         C17      SINGLE       y     1.389  0.0100     1.389  0.0100
+VJ6          C1          O1      DOUBLE       n     1.228  0.0122     1.228  0.0122
+VJ6         C16         C21      DOUBLE       y     1.390  0.0100     1.390  0.0100
+VJ6         C15         C16      SINGLE       n     1.511  0.0100     1.511  0.0100
+VJ6          C1          C2      SINGLE       n     1.502  0.0129     1.502  0.0129
+VJ6          O9         C15      SINGLE       n     1.420  0.0118     1.420  0.0118
+VJ6          C2         C22      SINGLE       n     1.466  0.0200     1.466  0.0200
+VJ6          C2          C3      DOUBLE       n     1.333  0.0100     1.333  0.0100
+VJ6          O9         C13      SINGLE       n     1.416  0.0100     1.416  0.0100
+VJ6          C8         C25      SINGLE       n     1.499  0.0156     1.499  0.0156
+VJ6         C12         C13      SINGLE       n     1.516  0.0100     1.516  0.0100
+VJ6          C3          C4      SINGLE       n     1.498  0.0166     1.498  0.0166
+VJ6          O5         C14      SINGLE       n     1.417  0.0200     1.417  0.0200
+VJ6          O5         C11      SINGLE       n     1.433  0.0100     1.433  0.0100
+VJ6         C10         C26      SINGLE       n     1.521  0.0173     1.521  0.0173
+VJ6         C10         C11      SINGLE       n     1.529  0.0116     1.529  0.0116
+VJ6          C9         C10      SINGLE       n     1.505  0.0113     1.505  0.0113
+VJ6          O7         C23      DOUBLE       n     1.217  0.0100     1.217  0.0100
+VJ6          C8          C9      DOUBLE       n     1.329  0.0100     1.329  0.0100
+VJ6          C7          C8      SINGLE       n     1.513  0.0100     1.513  0.0100
+VJ6          C4          C5      SINGLE       n     1.533  0.0200     1.533  0.0200
+VJ6         C11         C12      SINGLE       n     1.526  0.0100     1.526  0.0100
+VJ6          O6         C12      SINGLE       n     1.434  0.0100     1.434  0.0100
+VJ6          C5          C6      SINGLE       n     1.523  0.0126     1.523  0.0126
+VJ6          C6          C7      SINGLE       n     1.531  0.0100     1.531  0.0100
+VJ6          O2          C6      SINGLE       n     1.459  0.0134     1.459  0.0134
+VJ6          O6         C27      SINGLE       n     1.417  0.0200     1.417  0.0200
+VJ6          O3          C7      SINGLE       n     1.446  0.0137     1.446  0.0137
+VJ6          O3         C24      SINGLE       n     1.346  0.0121     1.346  0.0121
+VJ6          O2         C23      SINGLE       n     1.344  0.0106     1.344  0.0106
+VJ6          N3         C23      SINGLE       n     1.326  0.0100     1.326  0.0100
+VJ6          N2         C24      SINGLE       n     1.326  0.0100     1.326  0.0100
+VJ6          O4         C24      DOUBLE       n     1.217  0.0100     1.217  0.0100
+VJ6          N1          H1      SINGLE       n     1.016  0.0100     0.876  0.0200
+VJ6          N2          H2      SINGLE       n     1.016  0.0100     0.884  0.0200
+VJ6          N2          H3      SINGLE       n     1.016  0.0100     0.884  0.0200
+VJ6          C3          H4      SINGLE       n     1.082  0.0130     0.943  0.0181
+VJ6          N3          H5      SINGLE       n     1.016  0.0100     0.884  0.0200
+VJ6          N3          H6      SINGLE       n     1.016  0.0100     0.884  0.0200
+VJ6          C4          H7      SINGLE       n     1.089  0.0100     0.983  0.0180
+VJ6          C4          H8      SINGLE       n     1.089  0.0100     0.983  0.0180
+VJ6          C5          H9      SINGLE       n     1.089  0.0100     0.980  0.0160
+VJ6          C5         H10      SINGLE       n     1.089  0.0100     0.980  0.0160
+VJ6          C6         H11      SINGLE       n     1.089  0.0100     0.989  0.0161
+VJ6          C7         H12      SINGLE       n     1.089  0.0100     0.989  0.0134
+VJ6          C9         H13      SINGLE       n     1.082  0.0130     0.945  0.0200
+VJ6         C10         H14      SINGLE       n     1.089  0.0100     0.990  0.0142
+VJ6         C11         H15      SINGLE       n     1.089  0.0100     0.995  0.0200
+VJ6         C12         H16      SINGLE       n     1.089  0.0100     0.992  0.0184
+VJ6         C13         H17      SINGLE       n     1.089  0.0100     0.981  0.0174
+VJ6         C13         H18      SINGLE       n     1.089  0.0100     0.981  0.0174
+VJ6         C14         H19      SINGLE       n     1.089  0.0100     0.971  0.0146
+VJ6         C14         H20      SINGLE       n     1.089  0.0100     0.971  0.0146
+VJ6         C14         H21      SINGLE       n     1.089  0.0100     0.971  0.0146
+VJ6         C15         H22      SINGLE       n     1.089  0.0100     0.980  0.0180
+VJ6         C15         H23      SINGLE       n     1.089  0.0100     0.980  0.0180
+VJ6         C17         H24      SINGLE       n     1.082  0.0130     0.945  0.0164
+VJ6         C19         H25      SINGLE       n     1.082  0.0130     0.942  0.0154
+VJ6         C21         H26      SINGLE       n     1.082  0.0130     0.942  0.0139
+VJ6         C22         H27      SINGLE       n     1.089  0.0100     0.969  0.0177
+VJ6         C22         H28      SINGLE       n     1.089  0.0100     0.969  0.0177
+VJ6         C22         H29      SINGLE       n     1.089  0.0100     0.969  0.0177
+VJ6         C25         H30      SINGLE       n     1.089  0.0100     0.971  0.0140
+VJ6         C25         H31      SINGLE       n     1.089  0.0100     0.971  0.0140
+VJ6         C25         H32      SINGLE       n     1.089  0.0100     0.971  0.0140
+VJ6         C26         H33      SINGLE       n     1.089  0.0100     0.973  0.0141
+VJ6         C26         H34      SINGLE       n     1.089  0.0100     0.973  0.0141
+VJ6         C26         H35      SINGLE       n     1.089  0.0100     0.973  0.0141
+VJ6         C27         H36      SINGLE       n     1.089  0.0100     0.971  0.0146
+VJ6         C27         H37      SINGLE       n     1.089  0.0100     0.971  0.0146
+VJ6         C27         H38      SINGLE       n     1.089  0.0100     0.971  0.0146
+VJ6         C28         H39      SINGLE       n     1.089  0.0100     0.971  0.0157
+VJ6         C28         H40      SINGLE       n     1.089  0.0100     0.971  0.0157
+VJ6         C28         H41      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VJ6          N1          C1          O1     120.900    1.88
+VJ6          N1          C1          C2     118.570    3.00
+VJ6          O1          C1          C2     120.530    1.50
+VJ6         C20          N1          C1     127.679    1.81
+VJ6         C20          N1          H1     115.915    1.69
+VJ6          C1          N1          H1     116.406    2.52
+VJ6          C1          C2         C22     115.201    2.33
+VJ6          C1          C2          C3     120.385    1.50
+VJ6         C22          C2          C3     124.414    1.98
+VJ6         C24          N2          H2     119.996    2.41
+VJ6         C24          N2          H3     119.996    2.41
+VJ6          H2          N2          H3     120.007    3.00
+VJ6          C6          O2         C23     116.876    1.50
+VJ6          C2          C3          C4     128.965    1.52
+VJ6          C2          C3          H4     115.943    1.82
+VJ6          C4          C3          H4     115.092    1.60
+VJ6         C23          N3          H5     119.996    2.41
+VJ6         C23          N3          H6     119.996    2.41
+VJ6          H5          N3          H6     120.007    3.00
+VJ6          C7          O3         C24     116.135    1.74
+VJ6          C3          C4          C5     113.132    2.43
+VJ6          C3          C4          H7     109.181    1.50
+VJ6          C3          C4          H8     109.181    1.50
+VJ6          C5          C4          H7     109.184    1.50
+VJ6          C5          C4          H8     109.184    1.50
+VJ6          H7          C4          H8     107.922    1.50
+VJ6          C4          C5          C6     114.669    1.86
+VJ6          C4          C5          H9     108.461    1.50
+VJ6          C4          C5         H10     108.461    1.50
+VJ6          C6          C5          H9     108.405    1.50
+VJ6          C6          C5         H10     108.405    1.50
+VJ6          H9          C5         H10     107.428    1.50
+VJ6         C14          O5         C11     114.005    1.50
+VJ6          C5          C6          C7     111.094    2.85
+VJ6          C5          C6          O2     107.570    1.96
+VJ6          C5          C6         H11     109.375    1.50
+VJ6          C7          C6          O2     106.537    2.37
+VJ6          C7          C6         H11     108.238    1.72
+VJ6          O2          C6         H11     109.221    1.50
+VJ6         C12          O6         C27     114.005    1.50
+VJ6          C8          C7          C6     111.511    2.91
+VJ6          C8          C7          O3     110.354    2.51
+VJ6          C8          C7         H12     108.257    1.50
+VJ6          C6          C7          O3     107.993    1.63
+VJ6          C6          C7         H12     108.687    1.50
+VJ6          O3          C7         H12     109.237    1.50
+VJ6         C25          C8          C9     123.714    1.50
+VJ6         C25          C8          C7     115.084    2.59
+VJ6          C9          C8          C7     121.203    1.50
+VJ6         C28          O8         C18     117.529    1.50
+VJ6         C10          C9          C8     127.910    1.50
+VJ6         C10          C9         H13     116.117    1.76
+VJ6          C8          C9         H13     115.973    1.50
+VJ6         C15          O9         C13     112.738    1.50
+VJ6         C26         C10         C11     112.124    1.77
+VJ6         C26         C10          C9     109.853    1.50
+VJ6         C26         C10         H14     108.191    1.50
+VJ6         C11         C10          C9     111.475    2.22
+VJ6         C11         C10         H14     107.398    1.50
+VJ6          C9         C10         H14     108.422    1.50
+VJ6          O5         C11         C10     108.156    1.61
+VJ6          O5         C11         C12     108.584    2.08
+VJ6          O5         C11         H15     108.915    1.50
+VJ6         C10         C11         C12     115.018    1.61
+VJ6         C10         C11         H15     107.902    1.50
+VJ6         C12         C11         H15     108.450    1.83
+VJ6         C13         C12         C11     113.761    1.50
+VJ6         C13         C12          O6     108.081    2.47
+VJ6         C13         C12         H16     108.998    1.50
+VJ6         C11         C12          O6     108.584    2.08
+VJ6         C11         C12         H16     108.450    1.83
+VJ6          O6         C12         H16     108.915    1.50
+VJ6          O9         C13         C12     109.289    2.60
+VJ6          O9         C13         H17     108.933    2.42
+VJ6          O9         C13         H18     108.933    2.42
+VJ6         C12         C13         H17     109.856    1.50
+VJ6         C12         C13         H18     109.856    1.50
+VJ6         H17         C13         H18     108.601    1.50
+VJ6          O5         C14         H19     109.461    1.50
+VJ6          O5         C14         H20     109.461    1.50
+VJ6          O5         C14         H21     109.461    1.50
+VJ6         H19         C14         H20     109.532    1.53
+VJ6         H19         C14         H21     109.532    1.53
+VJ6         H20         C14         H21     109.532    1.53
+VJ6         C16         C15          O9     110.921    2.08
+VJ6         C16         C15         H22     109.785    1.50
+VJ6         C16         C15         H23     109.785    1.50
+VJ6          O9         C15         H22     109.541    1.50
+VJ6          O9         C15         H23     109.541    1.50
+VJ6         H22         C15         H23     108.275    1.50
+VJ6         C17         C16         C21     118.723    1.50
+VJ6         C17         C16         C15     120.181    1.52
+VJ6         C21         C16         C15     121.096    1.72
+VJ6         C18         C17         C16     120.912    1.50
+VJ6         C18         C17         H24     119.411    1.50
+VJ6         C16         C17         H24     119.677    1.50
+VJ6          O8         C18         C19     119.960    3.00
+VJ6          O8         C18         C17     120.051    3.00
+VJ6         C19         C18         C17     119.989    1.50
+VJ6         C18         C19         C20     119.425    1.50
+VJ6         C18         C19         H25     120.331    1.50
+VJ6         C20         C19         H25     120.244    1.50
+VJ6         C19         C20          N1     119.300    3.00
+VJ6         C19         C20         C21     120.326    2.01
+VJ6          N1         C20         C21     120.374    3.00
+VJ6         C20         C21         C16     120.625    1.50
+VJ6         C20         C21         H26     119.459    1.50
+VJ6         C16         C21         H26     119.916    1.50
+VJ6          C2         C22         H27     109.464    1.50
+VJ6          C2         C22         H28     109.464    1.50
+VJ6          C2         C22         H29     109.464    1.50
+VJ6         H27         C22         H28     109.342    1.50
+VJ6         H27         C22         H29     109.342    1.50
+VJ6         H28         C22         H29     109.342    1.50
+VJ6          O7         C23          O2     124.504    1.50
+VJ6          O7         C23          N3     124.940    1.50
+VJ6          O2         C23          N3     110.556    1.50
+VJ6          O3         C24          N2     110.556    1.50
+VJ6          O3         C24          O4     124.504    1.50
+VJ6          N2         C24          O4     124.940    1.50
+VJ6          C8         C25         H30     109.466    1.50
+VJ6          C8         C25         H31     109.466    1.50
+VJ6          C8         C25         H32     109.466    1.50
+VJ6         H30         C25         H31     109.342    1.50
+VJ6         H30         C25         H32     109.342    1.50
+VJ6         H31         C25         H32     109.342    1.50
+VJ6         C10         C26         H33     109.820    1.50
+VJ6         C10         C26         H34     109.820    1.50
+VJ6         C10         C26         H35     109.820    1.50
+VJ6         H33         C26         H34     109.411    1.50
+VJ6         H33         C26         H35     109.411    1.50
+VJ6         H34         C26         H35     109.411    1.50
+VJ6          O6         C27         H36     109.461    1.50
+VJ6          O6         C27         H37     109.461    1.50
+VJ6          O6         C27         H38     109.461    1.50
+VJ6         H36         C27         H37     109.532    1.53
+VJ6         H36         C27         H38     109.532    1.53
+VJ6         H37         C27         H38     109.532    1.53
+VJ6          O8         C28         H39     109.428    1.50
+VJ6          O8         C28         H40     109.428    1.50
+VJ6          O8         C28         H41     109.428    1.50
+VJ6         H39         C28         H40     109.509    1.50
+VJ6         H39         C28         H41     109.509    1.50
+VJ6         H40         C28         H41     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VJ6             sp2_sp2_9          O1          C1          N1         C20       0.000     5.0     2
+VJ6            sp2_sp2_12          N1          C1          C2         C22       0.000     5.0     2
+VJ6            sp3_sp3_65          C4          C5          C6          C7     180.000    10.0     3
+VJ6            sp3_sp3_23         C10         C11          O5         C14     180.000    10.0     3
+VJ6            sp3_sp3_20         H19         C14          O5         C11     180.000    10.0     3
+VJ6            sp3_sp3_74          C5          C6          C7          C8     180.000    10.0     3
+VJ6            sp3_sp3_62         C13         C12          O6         C27     180.000    10.0     3
+VJ6            sp3_sp3_86         H36         C27          O6         C12     180.000    10.0     3
+VJ6            sp2_sp3_31         C25          C8          C7          C6       0.000    10.0     6
+VJ6            sp2_sp2_21         C25          C8          C9         C10       0.000     5.0     2
+VJ6            sp2_sp3_13          C9          C8         C25         H30       0.000    10.0     6
+VJ6             sp2_sp2_1         C19         C18          O8         C28     180.000     5.0     2
+VJ6             sp3_sp3_2         H39         C28          O8         C18     -60.000    10.0     3
+VJ6            sp2_sp3_25          C8          C9         C10         C26       0.000    10.0     6
+VJ6             sp2_sp2_3         C19         C20          N1          C1     180.000     5.0     2
+VJ6             sp3_sp3_8         C12         C13          O9         C15     180.000    10.0     3
+VJ6             sp3_sp3_5         C16         C15          O9         C13     180.000    10.0     3
+VJ6            sp3_sp3_35         C26         C10         C11          O5     180.000    10.0     3
+VJ6            sp3_sp3_26         C11         C10         C26         H33     180.000    10.0     3
+VJ6            sp3_sp3_53          O5         C11         C12         C13     180.000    10.0     3
+VJ6            sp3_sp3_11         C11         C12         C13          O9     180.000    10.0     3
+VJ6             sp2_sp3_2         C17         C16         C15          O9     -90.000    10.0     6
+VJ6       const_sp2_sp2_3         C15         C16         C17         C18     180.000     5.0     2
+VJ6              const_23         C15         C16         C21         C20     180.000    10.0     2
+VJ6       const_sp2_sp2_6         C16         C17         C18          O8     180.000     5.0     2
+VJ6              const_11          O8         C18         C19         C20     180.000    10.0     2
+VJ6              const_14         C18         C19         C20          N1     180.000    10.0     2
+VJ6              const_19          N1         C20         C21         C16     180.000    10.0     2
+VJ6             sp2_sp3_7          C1          C2         C22         H27       0.000    10.0     6
+VJ6            sp2_sp2_17          C1          C2          C3          C4       0.000     5.0     2
+VJ6            sp2_sp2_31          O3         C24          N2          H2     180.000     5.0     2
+VJ6            sp3_sp3_83          C5          C6          O2         C23     180.000    10.0     3
+VJ6            sp2_sp2_25          O7         C23          O2          C6     180.000     5.0     2
+VJ6            sp2_sp3_20          C2          C3          C4          C5     120.000    10.0     6
+VJ6            sp2_sp2_29          O7         C23          N3          H5       0.000     5.0     2
+VJ6            sp3_sp3_89          C8          C7          O3         C24     180.000    10.0     3
+VJ6            sp2_sp2_23          N2         C24          O3          C7     180.000     5.0     2
+VJ6            sp3_sp3_44          C3          C4          C5          C6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VJ6    chir_1    C6    O2    C7    C5    positive
+VJ6    chir_2    C7    O3    C6    C8    positive
+VJ6    chir_3    C10    C11    C9    C26    positive
+VJ6    chir_4    C11    O5    C12    C10    negative
+VJ6    chir_5    C12    O6    C11    C13    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VJ6    plan-1         C15   0.020
+VJ6    plan-1         C16   0.020
+VJ6    plan-1         C17   0.020
+VJ6    plan-1         C18   0.020
+VJ6    plan-1         C19   0.020
+VJ6    plan-1         C20   0.020
+VJ6    plan-1         C21   0.020
+VJ6    plan-1         H24   0.020
+VJ6    plan-1         H25   0.020
+VJ6    plan-1         H26   0.020
+VJ6    plan-1          N1   0.020
+VJ6    plan-1          O8   0.020
+VJ6    plan-2          C1   0.020
+VJ6    plan-2          C2   0.020
+VJ6    plan-2          N1   0.020
+VJ6    plan-2          O1   0.020
+VJ6    plan-3          C1   0.020
+VJ6    plan-3         C20   0.020
+VJ6    plan-3          H1   0.020
+VJ6    plan-3          N1   0.020
+VJ6    plan-4          C1   0.020
+VJ6    plan-4          C2   0.020
+VJ6    plan-4         C22   0.020
+VJ6    plan-4          C3   0.020
+VJ6    plan-5         C24   0.020
+VJ6    plan-5          H2   0.020
+VJ6    plan-5          H3   0.020
+VJ6    plan-5          N2   0.020
+VJ6    plan-6          C2   0.020
+VJ6    plan-6          C3   0.020
+VJ6    plan-6          C4   0.020
+VJ6    plan-6          H4   0.020
+VJ6    plan-7         C23   0.020
+VJ6    plan-7          H5   0.020
+VJ6    plan-7          H6   0.020
+VJ6    plan-7          N3   0.020
+VJ6    plan-8         C25   0.020
+VJ6    plan-8          C7   0.020
+VJ6    plan-8          C8   0.020
+VJ6    plan-8          C9   0.020
+VJ6    plan-9         C10   0.020
+VJ6    plan-9          C8   0.020
+VJ6    plan-9          C9   0.020
+VJ6    plan-9         H13   0.020
+VJ6   plan-10         C23   0.020
+VJ6   plan-10          N3   0.020
+VJ6   plan-10          O2   0.020
+VJ6   plan-10          O7   0.020
+VJ6   plan-11         C24   0.020
+VJ6   plan-11          N2   0.020
+VJ6   plan-11          O3   0.020
+VJ6   plan-11          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VJ6           SMILES              ACDLabs 12.01                                                                                                                                                                                 O=C2Nc1cc(cc(OC)c1)COCC(OC)C(OC)C(C=C(C(OC(=O)N)C(OC(=O)N)CCC=C2C)C)C
+VJ6            InChI                InChI  1.03 InChI=1S/C28H41N3O9/c1-16-8-7-9-22(39-27(29)33)25(40-28(30)34)18(3)10-17(2)24(37-6)23(36-5)15-38-14-19-11-20(31-26(16)32)13-21(12-19)35-4/h8,10-13,17,22-25H,7,9,14-15H2,1-6H3,(H2,29,33)(H2,30,34)(H,31,32)/b16-8+,18-10+/t17-,22-,23-,24+,25-/m0/s1
+VJ6         InChIKey                InChI  1.03                                                                                                                                                                                                                           JUJODNDJFVYZOZ-HJVOAZHASA-N
+VJ6 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                        CO[C@H]1COCc2cc(NC(=O)\C(=C\CC[C@H](OC(N)=O)[C@@H](OC(N)=O)\C(=C\[C@H](C)[C@H]1OC)C)C)cc(OC)c2
+VJ6           SMILES               CACTVS 3.370                                                                                                                                                                  CO[CH]1COCc2cc(NC(=O)C(=CCC[CH](OC(N)=O)[CH](OC(N)=O)C(=C[CH](C)[CH]1OC)C)C)cc(OC)c2
+VJ6 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                    C[C@H]1/C=C(/[C@@H]([C@H](CC/C=C(/C(=O)Nc2cc(cc(c2)OC)COC[C@@H]([C@@H]1OC)OC)\C)OC(=O)N)OC(=O)N)\C
+VJ6           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                 CC1C=C(C(C(CCC=C(C(=O)Nc2cc(cc(c2)OC)COCC(C1OC)OC)C)OC(=O)N)OC(=O)N)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VJ6 acedrg               243         "dictionary generator"                  
+VJ6 acedrg_database      11          "data source"                           
+VJ6 rdkit                2017.03.2   "Chemoinformatics tool"
+VJ6 refmac5              5.8.0238    "optimization tool"                     

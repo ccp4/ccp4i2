@@ -1,0 +1,253 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NUY     NUY      "[4-(propan-2-yl)piperazin-1-yl](thiophen-2-yl)methanone"     NON-POLYMER     34     16     .     
+#
+data_comp_NUY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NUY     N1      N       NT      0       50.519      -9.351      -6.480      
+NUY     C4      C       CH2     0       50.800      -10.705     -6.978      
+NUY     C5      C       CH2     0       50.003      -11.029     -8.225      
+NUY     C6      C       CH2     0       49.943      -8.695      -8.792      
+NUY     C7      C       CH2     0       50.753      -8.377      -7.553      
+NUY     C8      C       C       0       50.763      -10.305     -10.518     
+NUY     C10     C       CR15    0       51.210      -12.443     -11.854     
+NUY     C1      C       CH3     0       51.144      -7.591      -4.763      
+NUY     C11     C       CR15    0       52.192      -13.493     -11.881     
+NUY     C12     C       CR15    0       53.149      -13.306     -10.936     
+NUY     C2      C       CH1     0       51.246      -9.047      -5.213      
+NUY     C3      C       CH3     0       50.850      -10.001     -4.090      
+NUY     C9      C       CR5     0       51.475      -11.526     -10.885     
+NUY     N2      N       NR6     0       50.288      -10.039     -9.271      
+NUY     O1      O       O       0       50.681      -9.455      -11.402     
+NUY     S1      S       S2      0       52.869      -11.919     -10.061     
+NUY     H2      H       H       0       51.754      -10.783     -7.176      
+NUY     H3      H       H       0       50.581      -11.364     -6.291      
+NUY     H4      H       H       0       49.049      -11.013     -8.012      
+NUY     H5      H       H       0       50.228      -11.929     -8.532      
+NUY     H6      H       H       0       50.127      -8.026      -9.479      
+NUY     H7      H       H       0       48.990      -8.658      -8.577      
+NUY     H8      H       H       0       51.704      -8.371      -7.782      
+NUY     H9      H       H       0       50.511      -7.481      -7.249      
+NUY     H10     H       H       0       50.470      -12.402     -12.436     
+NUY     H11     H       H       0       50.234      -7.273      -4.892      
+NUY     H12     H       H       0       51.754      -7.043      -5.289      
+NUY     H13     H       H       0       51.382      -7.513      -3.824      
+NUY     H14     H       H       0       52.168      -14.218     -12.481     
+NUY     H15     H       H       0       53.893      -13.856     -10.759     
+NUY     H16     H       H       0       52.201      -9.218      -5.412      
+NUY     H17     H       H       0       49.906      -10.220     -4.168      
+NUY     H18     H       H       0       51.014      -9.590      -3.224      
+NUY     H19     H       H       0       51.376      -10.817     -4.158      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NUY         C10         C11      SINGLE       y     1.413  0.0154     1.413  0.0154
+NUY         C11         C12      DOUBLE       y     1.343  0.0200     1.343  0.0200
+NUY         C10          C9      DOUBLE       y     1.352  0.0140     1.352  0.0140
+NUY          C8          O1      DOUBLE       n     1.228  0.0115     1.228  0.0115
+NUY         C12          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+NUY          C8          C9      SINGLE       n     1.454  0.0200     1.454  0.0200
+NUY          C9          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+NUY          C8          N2      SINGLE       n     1.343  0.0147     1.343  0.0147
+NUY          C6          N2      SINGLE       n     1.466  0.0100     1.466  0.0100
+NUY          C5          N2      SINGLE       n     1.466  0.0100     1.466  0.0100
+NUY          C6          C7      SINGLE       n     1.512  0.0100     1.512  0.0100
+NUY          C4          C5      SINGLE       n     1.512  0.0100     1.512  0.0100
+NUY          N1          C7      SINGLE       n     1.460  0.0100     1.460  0.0100
+NUY          N1          C4      SINGLE       n     1.460  0.0100     1.460  0.0100
+NUY          N1          C2      SINGLE       n     1.480  0.0100     1.480  0.0100
+NUY          C1          C2      SINGLE       n     1.516  0.0148     1.516  0.0148
+NUY          C2          C3      SINGLE       n     1.516  0.0148     1.516  0.0148
+NUY          C4          H2      SINGLE       n     1.089  0.0100     0.978  0.0109
+NUY          C4          H3      SINGLE       n     1.089  0.0100     0.978  0.0109
+NUY          C5          H4      SINGLE       n     1.089  0.0100     0.978  0.0161
+NUY          C5          H5      SINGLE       n     1.089  0.0100     0.978  0.0161
+NUY          C6          H6      SINGLE       n     1.089  0.0100     0.978  0.0161
+NUY          C6          H7      SINGLE       n     1.089  0.0100     0.978  0.0161
+NUY          C7          H8      SINGLE       n     1.089  0.0100     0.978  0.0109
+NUY          C7          H9      SINGLE       n     1.089  0.0100     0.978  0.0109
+NUY         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0154
+NUY          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+NUY          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+NUY          C1         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+NUY         C11         H14      SINGLE       n     1.082  0.0130     0.942  0.0153
+NUY         C12         H15      SINGLE       n     1.082  0.0130     0.942  0.0200
+NUY          C2         H16      SINGLE       n     1.089  0.0100     0.991  0.0164
+NUY          C3         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+NUY          C3         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+NUY          C3         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NUY          C7          N1          C4     109.128    1.50
+NUY          C7          N1          C2     111.960    2.41
+NUY          C4          N1          C2     111.960    2.41
+NUY          C5          C4          N1     110.745    1.50
+NUY          C5          C4          H2     109.532    1.50
+NUY          C5          C4          H3     109.532    1.50
+NUY          N1          C4          H2     109.490    1.50
+NUY          N1          C4          H3     109.490    1.50
+NUY          H2          C4          H3     108.187    1.50
+NUY          N2          C5          C4     110.222    1.50
+NUY          N2          C5          H4     109.599    1.50
+NUY          N2          C5          H5     109.599    1.50
+NUY          C4          C5          H4     109.532    1.50
+NUY          C4          C5          H5     109.532    1.50
+NUY          H4          C5          H5     108.187    1.50
+NUY          N2          C6          C7     110.222    1.50
+NUY          N2          C6          H6     109.599    1.50
+NUY          N2          C6          H7     109.599    1.50
+NUY          C7          C6          H6     109.532    1.50
+NUY          C7          C6          H7     109.532    1.50
+NUY          H6          C6          H7     108.187    1.50
+NUY          C6          C7          N1     110.745    1.50
+NUY          C6          C7          H8     109.532    1.50
+NUY          C6          C7          H9     109.532    1.50
+NUY          N1          C7          H8     109.490    1.50
+NUY          N1          C7          H9     109.490    1.50
+NUY          H8          C7          H9     108.187    1.50
+NUY          O1          C8          C9     118.122    1.72
+NUY          O1          C8          N2     120.147    1.50
+NUY          C9          C8          N2     121.731    3.00
+NUY         C11         C10          C9     107.620    1.50
+NUY         C11         C10         H10     125.837    1.50
+NUY          C9         C10         H10     126.542    1.56
+NUY          C2          C1         H11     109.626    1.50
+NUY          C2          C1         H12     109.626    1.50
+NUY          C2          C1         H13     109.626    1.50
+NUY         H11          C1         H12     109.406    1.50
+NUY         H11          C1         H13     109.406    1.50
+NUY         H12          C1         H13     109.406    1.50
+NUY         C10         C11         C12     107.373    1.50
+NUY         C10         C11         H14     125.949    1.50
+NUY         C12         C11         H14     126.679    1.50
+NUY         C11         C12          S1     108.336    3.00
+NUY         C11         C12         H15     128.460    2.40
+NUY          S1         C12         H15     123.204    3.00
+NUY          N1          C2          C1     111.668    2.75
+NUY          N1          C2          C3     111.668    2.75
+NUY          N1          C2         H16     106.953    1.98
+NUY          C1          C2          C3     112.462    1.51
+NUY          C1          C2         H16     107.768    1.50
+NUY          C3          C2         H16     107.768    1.50
+NUY          C2          C3         H17     109.626    1.50
+NUY          C2          C3         H18     109.626    1.50
+NUY          C2          C3         H19     109.626    1.50
+NUY         H17          C3         H18     109.406    1.50
+NUY         H17          C3         H19     109.406    1.50
+NUY         H18          C3         H19     109.406    1.50
+NUY         C10          C9          C8     131.864    3.00
+NUY         C10          C9          S1     108.336    3.00
+NUY          C8          C9          S1     119.801    3.00
+NUY          C8          N2          C6     123.368    3.00
+NUY          C8          N2          C5     123.368    3.00
+NUY          C6          N2          C5     113.263    1.50
+NUY         C12          S1          C9     108.336    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NUY            sp3_sp3_26          C5          C4          N1          C2     -60.000    10.0     3
+NUY            sp3_sp3_34          C1          C2          N1          C7     180.000    10.0     3
+NUY             sp3_sp3_2          C6          C7          N1          C2     180.000    10.0     3
+NUY            sp3_sp3_46          C1          C2          C3         H17     180.000    10.0     3
+NUY              const_12          C8          C9          S1         C12     180.000    10.0     2
+NUY            sp3_sp3_16          N1          C4          C5          N2      60.000    10.0     3
+NUY            sp2_sp3_10          C8          N2          C5          C4     180.000    10.0     6
+NUY             sp2_sp3_4          C8          N2          C6          C7     180.000    10.0     6
+NUY             sp3_sp3_7          N2          C6          C7          N1     -60.000    10.0     3
+NUY             sp2_sp2_3          O1          C8          C9         C10       0.000     5.0     2
+NUY             sp2_sp2_7          O1          C8          N2          C6       0.000     5.0     2
+NUY              const_14         C11         C10          C9          C8     180.000    10.0     2
+NUY       const_sp2_sp2_1          C9         C10         C11         C12       0.000     5.0     2
+NUY            sp3_sp3_38         H11          C1          C2          C3     -60.000    10.0     3
+NUY       const_sp2_sp2_5         C10         C11         C12          S1       0.000     5.0     2
+NUY       const_sp2_sp2_9         C11         C12          S1          C9       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NUY    chir_1    N1    C2    C7    C4    both
+NUY    chir_2    C2    N1    C1    C3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NUY    plan-1         C10   0.020
+NUY    plan-1         C11   0.020
+NUY    plan-1         C12   0.020
+NUY    plan-1          C8   0.020
+NUY    plan-1          C9   0.020
+NUY    plan-1         H10   0.020
+NUY    plan-1         H14   0.020
+NUY    plan-1         H15   0.020
+NUY    plan-1          S1   0.020
+NUY    plan-2          C8   0.020
+NUY    plan-2          C9   0.020
+NUY    plan-2          N2   0.020
+NUY    plan-2          O1   0.020
+NUY    plan-3          C5   0.020
+NUY    plan-3          C6   0.020
+NUY    plan-3          C8   0.020
+NUY    plan-3          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NUY           SMILES              ACDLabs 12.01                                                            N1(C(C)C)CCN(CC1)C(c2cccs2)=O
+NUY            InChI                InChI  1.03 InChI=1S/C12H18N2OS/c1-10(2)13-5-7-14(8-6-13)12(15)11-4-3-9-16-11/h3-4,9-10H,5-8H2,1-2H3
+NUY         InChIKey                InChI  1.03                                                              ZEVVAPJSMUTCRY-UHFFFAOYSA-N
+NUY SMILES_CANONICAL               CACTVS 3.385                                                              CC(C)N1CCN(CC1)C(=O)c2sccc2
+NUY           SMILES               CACTVS 3.385                                                              CC(C)N1CCN(CC1)C(=O)c2sccc2
+NUY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                              CC(C)N1CCN(CC1)C(=O)c2cccs2
+NUY           SMILES "OpenEye OEToolkits" 2.0.6                                                              CC(C)N1CCN(CC1)C(=O)c2cccs2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NUY acedrg               243         "dictionary generator"                  
+NUY acedrg_database      11          "data source"                           
+NUY rdkit                2017.03.2   "Chemoinformatics tool"
+NUY refmac5              5.8.0238    "optimization tool"                     

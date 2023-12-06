@@ -1,0 +1,180 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1SQ     1SQ      ISOQUINOLIN-1-AMINE     NON-POLYMER     19     11     .     
+#
+data_comp_1SQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1SQ     N1      N       NH2     0       66.961      48.974      5.887       
+1SQ     C2      C       CR6     0       67.698      48.976      7.010       
+1SQ     N3      N       NRD6    0       68.490      50.037      7.221       
+1SQ     C4      C       CR16    0       69.254      50.101      8.326       
+1SQ     C5      C       CR16    0       69.283      49.129      9.280       
+1SQ     C6      C       CR66    0       68.471      47.978      9.121       
+1SQ     C7      C       CR16    0       68.448      46.926      10.072      
+1SQ     C8      C       CR16    0       67.654      45.835      9.884       
+1SQ     C9      C       CR16    0       66.840      45.734      8.739       
+1SQ     C10     C       CR16    0       66.835      46.730      7.799       
+1SQ     C11     C       CR66    0       67.652      47.885      7.960       
+1SQ     HN11    H       H       0       66.575      49.719      5.615       
+1SQ     HN12    H       H       0       66.878      48.236      5.417       
+1SQ     H4      H       H       0       69.810      50.881      8.443       
+1SQ     H5      H       H       0       69.850      49.220      10.058      
+1SQ     H7      H       H       0       68.990      46.985      10.843      
+1SQ     H8      H       H       0       67.649      45.143      10.526      
+1SQ     H9      H       H       0       66.294      44.974      8.619       
+1SQ     H10     H       H       0       66.286      46.648      7.040       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1SQ          N1          C2      SINGLE       n     1.341  0.0100     1.341  0.0100
+1SQ          C2          N3      DOUBLE       y     1.335  0.0100     1.335  0.0100
+1SQ          C2         C11      SINGLE       y     1.443  0.0100     1.443  0.0100
+1SQ          N3          C4      SINGLE       y     1.335  0.0118     1.335  0.0118
+1SQ          C4          C5      DOUBLE       y     1.358  0.0100     1.358  0.0100
+1SQ          C5          C6      SINGLE       y     1.415  0.0105     1.415  0.0105
+1SQ          C6         C11      DOUBLE       y     1.421  0.0102     1.421  0.0102
+1SQ          C6          C7      SINGLE       y     1.415  0.0105     1.415  0.0105
+1SQ          C7          C8      DOUBLE       y     1.358  0.0118     1.358  0.0118
+1SQ          C8          C9      SINGLE       y     1.402  0.0131     1.402  0.0131
+1SQ          C9         C10      DOUBLE       y     1.363  0.0129     1.363  0.0129
+1SQ         C10         C11      SINGLE       y     1.418  0.0111     1.418  0.0111
+1SQ          N1        HN11      SINGLE       n     1.016  0.0100     0.880  0.0200
+1SQ          N1        HN12      SINGLE       n     1.016  0.0100     0.880  0.0200
+1SQ          C4          H4      SINGLE       n     1.082  0.0130     0.965  0.0200
+1SQ          C5          H5      SINGLE       n     1.082  0.0130     0.967  0.0200
+1SQ          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0192
+1SQ          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0184
+1SQ          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0184
+1SQ         C10         H10      SINGLE       n     1.082  0.0130     0.940  0.0117
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1SQ          C2          N1        HN11     119.848    1.50
+1SQ          C2          N1        HN12     119.848    1.50
+1SQ        HN11          N1        HN12     120.304    1.50
+1SQ          N1          C2          N3     117.778    1.50
+1SQ          N1          C2         C11     121.046    1.50
+1SQ          N3          C2         C11     121.175    1.50
+1SQ          C2          N3          C4     118.391    1.50
+1SQ          N3          C4          C5     122.699    1.50
+1SQ          N3          C4          H4     118.185    1.50
+1SQ          C5          C4          H4     119.116    1.51
+1SQ          C4          C5          C6     119.266    1.50
+1SQ          C4          C5          H5     120.529    1.50
+1SQ          C6          C5          H5     120.205    1.50
+1SQ          C5          C6         C11     119.005    1.50
+1SQ          C5          C6          C7     121.871    1.50
+1SQ         C11          C6          C7     119.124    1.50
+1SQ          C6          C7          C8     120.860    1.50
+1SQ          C6          C7          H7     119.456    1.50
+1SQ          C8          C7          H7     119.684    1.50
+1SQ          C7          C8          C9     120.263    1.50
+1SQ          C7          C8          H8     119.896    1.50
+1SQ          C9          C8          H8     119.840    1.50
+1SQ          C8          C9         C10     120.263    1.50
+1SQ          C8          C9          H9     119.840    1.50
+1SQ         C10          C9          H9     119.896    1.50
+1SQ          C9         C10         C11     120.618    1.50
+1SQ          C9         C10         H10     119.790    1.50
+1SQ         C11         C10         H10     119.592    1.50
+1SQ          C2         C11          C6     119.462    1.50
+1SQ          C2         C11         C10     121.665    1.72
+1SQ          C6         C11         C10     118.872    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1SQ             sp2_sp2_3          N3          C2          N1        HN11       0.000     5.0     2
+1SQ              const_34          C6         C11          C2          N1     180.000    10.0     2
+1SQ              const_22          N1          C2          N3          C4     180.000    10.0     2
+1SQ              const_23          C5          C4          N3          C2       0.000    10.0     2
+1SQ              const_25          N3          C4          C5          C6       0.000    10.0     2
+1SQ              const_29          C4          C5          C6         C11       0.000    10.0     2
+1SQ       const_sp2_sp2_1          C2         C11          C6          C5       0.000     5.0     2
+1SQ              const_39          C5          C6          C7          C8     180.000    10.0     2
+1SQ              const_17          C6          C7          C8          C9       0.000    10.0     2
+1SQ              const_13          C7          C8          C9         C10       0.000    10.0     2
+1SQ       const_sp2_sp2_9         C11         C10          C9          C8       0.000     5.0     2
+1SQ       const_sp2_sp2_6          C9         C10         C11          C2     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1SQ    plan-1         C10   0.020
+1SQ    plan-1         C11   0.020
+1SQ    plan-1          C2   0.020
+1SQ    plan-1          C4   0.020
+1SQ    plan-1          C5   0.020
+1SQ    plan-1          C6   0.020
+1SQ    plan-1          C7   0.020
+1SQ    plan-1          C8   0.020
+1SQ    plan-1          C9   0.020
+1SQ    plan-1         H10   0.020
+1SQ    plan-1          H4   0.020
+1SQ    plan-1          H5   0.020
+1SQ    plan-1          H7   0.020
+1SQ    plan-1          H8   0.020
+1SQ    plan-1          H9   0.020
+1SQ    plan-1          N1   0.020
+1SQ    plan-1          N3   0.020
+1SQ    plan-2          C2   0.020
+1SQ    plan-2        HN11   0.020
+1SQ    plan-2        HN12   0.020
+1SQ    plan-2          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1SQ           SMILES              ACDLabs 10.04                                           n1c(c2c(cc1)cccc2)N
+1SQ SMILES_CANONICAL               CACTVS 3.341                                               Nc1nccc2ccccc12
+1SQ           SMILES               CACTVS 3.341                                               Nc1nccc2ccccc12
+1SQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             c1ccc2c(c1)ccnc2N
+1SQ           SMILES "OpenEye OEToolkits" 1.5.0                                             c1ccc2c(c1)ccnc2N
+1SQ            InChI                InChI  1.03 InChI=1S/C9H8N2/c10-9-8-4-2-1-3-7(8)5-6-11-9/h1-6H,(H2,10,11)
+1SQ         InChIKey                InChI  1.03                                   OSILBMSORKFRTB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1SQ acedrg               243         "dictionary generator"                  
+1SQ acedrg_database      11          "data source"                           
+1SQ rdkit                2017.03.2   "Chemoinformatics tool"
+1SQ refmac5              5.8.0238    "optimization tool"                     

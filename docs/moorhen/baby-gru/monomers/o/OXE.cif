@@ -1,0 +1,163 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OXE     OXE      ORTHO-XYLENE     NON-POLYMER     18     8     .     
+#
+data_comp_OXE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OXE     C1      C       CR6     0       27.207      7.482       4.493       
+OXE     C2      C       CR6     0       27.612      6.927       3.254       
+OXE     C3      C       CR16    0       27.278      5.608       2.972       
+OXE     C4      C       CR16    0       26.565      4.834       3.872       
+OXE     C5      C       CR16    0       26.171      5.375       5.077       
+OXE     C6      C       CR16    0       26.492      6.687       5.380       
+OXE     "C1'"   C       CH3     0       27.541      8.915       4.859       
+OXE     "C2'"   C       CH3     0       28.394      7.744       2.245       
+OXE     H3      H       H       0       27.545      5.233       2.150       
+OXE     H4      H       H       0       26.349      3.940       3.659       
+OXE     H5      H       H       0       25.685      4.852       5.695       
+OXE     H6      H       H       0       26.220      7.050       6.206       
+OXE     "H1'1"  H       H       0       27.180      9.125       5.736       
+OXE     "H1'2"  H       H       0       27.154      9.516       4.201       
+OXE     "H1'3"  H       H       0       28.505      9.031       4.872       
+OXE     "H2'1"  H       H       0       27.874      8.521       1.983       
+OXE     "H2'2"  H       H       0       28.584      7.206       1.459       
+OXE     "H2'3"  H       H       0       29.230      8.037       2.643       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OXE          C1          C2      DOUBLE       y     1.402  0.0160     1.402  0.0160
+OXE          C1          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+OXE          C1       "C1'"      SINGLE       n     1.510  0.0199     1.510  0.0199
+OXE          C2          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+OXE          C2       "C2'"      SINGLE       n     1.510  0.0199     1.510  0.0199
+OXE          C3          C4      DOUBLE       y     1.381  0.0104     1.381  0.0104
+OXE          C4          C5      SINGLE       y     1.375  0.0129     1.375  0.0129
+OXE          C5          C6      DOUBLE       y     1.381  0.0104     1.381  0.0104
+OXE          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0167
+OXE          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0175
+OXE          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+OXE          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0167
+OXE       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.971  0.0135
+OXE       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.971  0.0135
+OXE       "C1'"      "H1'3"      SINGLE       n     1.089  0.0100     0.971  0.0135
+OXE       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.971  0.0135
+OXE       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.971  0.0135
+OXE       "C2'"      "H2'3"      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OXE          C2          C1          C6     118.594    1.50
+OXE          C2          C1       "C1'"     121.327    1.50
+OXE          C6          C1       "C1'"     120.079    1.50
+OXE          C1          C2          C3     118.594    1.50
+OXE          C1          C2       "C2'"     121.327    1.50
+OXE          C3          C2       "C2'"     120.079    1.50
+OXE          C2          C3          C4     121.419    1.50
+OXE          C2          C3          H3     119.056    1.50
+OXE          C4          C3          H3     119.525    1.50
+OXE          C3          C4          C5     119.987    1.50
+OXE          C3          C4          H4     119.961    1.50
+OXE          C5          C4          H4     120.052    1.50
+OXE          C4          C5          C6     119.987    1.50
+OXE          C4          C5          H5     120.052    1.50
+OXE          C6          C5          H5     119.961    1.50
+OXE          C1          C6          C5     121.419    1.50
+OXE          C1          C6          H6     119.056    1.50
+OXE          C5          C6          H6     119.525    1.50
+OXE          C1       "C1'"      "H1'1"     109.545    1.50
+OXE          C1       "C1'"      "H1'2"     109.545    1.50
+OXE          C1       "C1'"      "H1'3"     109.545    1.50
+OXE      "H1'1"       "C1'"      "H1'2"     109.348    1.50
+OXE      "H1'1"       "C1'"      "H1'3"     109.348    1.50
+OXE      "H1'2"       "C1'"      "H1'3"     109.348    1.50
+OXE          C2       "C2'"      "H2'1"     109.545    1.50
+OXE          C2       "C2'"      "H2'2"     109.545    1.50
+OXE          C2       "C2'"      "H2'3"     109.545    1.50
+OXE      "H2'1"       "C2'"      "H2'2"     109.348    1.50
+OXE      "H2'1"       "C2'"      "H2'3"     109.348    1.50
+OXE      "H2'2"       "C2'"      "H2'3"     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OXE       const_sp2_sp2_4       "C1'"          C1          C2       "C2'"       0.000     5.0     2
+OXE              const_23       "C1'"          C1          C6          C5     180.000    10.0     2
+OXE             sp2_sp3_1          C2          C1       "C1'"      "H1'1"     150.000    10.0     6
+OXE       const_sp2_sp2_7       "C2'"          C2          C3          C4     180.000     5.0     2
+OXE             sp2_sp3_7          C1          C2       "C2'"      "H2'1"     150.000    10.0     6
+OXE       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+OXE              const_13          C3          C4          C5          C6       0.000    10.0     2
+OXE              const_17          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OXE    plan-1          C1   0.020
+OXE    plan-1       "C1'"   0.020
+OXE    plan-1          C2   0.020
+OXE    plan-1       "C2'"   0.020
+OXE    plan-1          C3   0.020
+OXE    plan-1          C4   0.020
+OXE    plan-1          C5   0.020
+OXE    plan-1          C6   0.020
+OXE    plan-1          H3   0.020
+OXE    plan-1          H4   0.020
+OXE    plan-1          H5   0.020
+OXE    plan-1          H6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OXE           SMILES              ACDLabs 10.04                                  c1cccc(c1C)C
+OXE SMILES_CANONICAL               CACTVS 3.341                                    Cc1ccccc1C
+OXE           SMILES               CACTVS 3.341                                    Cc1ccccc1C
+OXE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    Cc1ccccc1C
+OXE           SMILES "OpenEye OEToolkits" 1.5.0                                    Cc1ccccc1C
+OXE            InChI                InChI  1.03 InChI=1S/C8H10/c1-7-5-3-4-6-8(7)2/h3-6H,1-2H3
+OXE         InChIKey                InChI  1.03                   CTQNGGLPUBDAKN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OXE acedrg               243         "dictionary generator"                  
+OXE acedrg_database      11          "data source"                           
+OXE rdkit                2017.03.2   "Chemoinformatics tool"
+OXE refmac5              5.8.0238    "optimization tool"                     

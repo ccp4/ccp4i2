@@ -1,0 +1,275 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IBK     IBK      N-isobutyl-2-{[5-(thiophen-2-yl)-1,2-oxazol-3-yl]methoxy}acetamide     NON-POLYMER     38     20     .     
+#
+data_comp_IBK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IBK     CAA     C       CH3     0       -24.517     54.430      14.046      
+IBK     CAB     C       CH3     0       -26.471     55.523      15.215      
+IBK     OAC     O       O       0       -25.467     54.001      10.653      
+IBK     CAD     C       CR15    0       -36.183     52.822      9.720       
+IBK     CAE     C       CR15    0       -36.190     51.468      9.821       
+IBK     CAF     C       CR15    0       -34.845     53.342      9.635       
+IBK     CAG     C       CR15    0       -31.613     53.475      9.469       
+IBK     CAH     C       CH2     0       -26.120     55.857      12.738      
+IBK     CAI     C       CH2     0       -27.466     52.755      10.944      
+IBK     CAJ     C       CH2     0       -29.024     53.682      9.360       
+IBK     NAK     N       NRD5    0       -30.358     51.651      9.642       
+IBK     NAL     N       NH1     0       -26.876     54.692      12.293      
+IBK     OAM     O       O2      0       -27.880     52.852      9.583       
+IBK     OAN     O       O2      0       -31.725     51.300      9.729       
+IBK     SAO     S       S2      0       -34.644     50.852      9.813       
+IBK     CAP     C       C       0       -26.509     53.883      11.296      
+IBK     CAQ     C       CR5     0       -30.320     52.946      9.491       
+IBK     CAR     C       CR5     0       -32.461     52.432      9.620       
+IBK     CAS     C       CR5     0       -33.898     52.339      9.677       
+IBK     CAT     C       CH1     0       -25.449     55.634      14.088      
+IBK     HAA     H       H       0       -24.009     54.443      13.215      
+IBK     HAAA    H       H       0       -25.038     53.610      14.093      
+IBK     HAAB    H       H       0       -23.903     54.469      14.800      
+IBK     HAB     H       H       0       -27.372     55.547      14.849      
+IBK     HABA    H       H       0       -26.354     56.268      15.830      
+IBK     HABB    H       H       0       -26.344     54.687      15.698      
+IBK     HAD     H       H       0       -36.956     53.360      9.706       
+IBK     HAE     H       H       0       -36.942     50.905      9.889       
+IBK     HAF     H       H       0       -34.646     54.260      9.559       
+IBK     HAG     H       H       0       -31.851     54.382      9.371       
+IBK     HAH     H       H       0       -26.731     56.621      12.817      
+IBK     HAHA    H       H       0       -25.431     56.082      12.078      
+IBK     HAI     H       H       0       -27.013     51.888      11.081      
+IBK     HAIA    H       H       0       -28.258     52.779      11.535      
+IBK     HAJ     H       H       0       -28.962     54.058      8.457       
+IBK     HAJA    H       H       0       -29.013     54.428      9.997       
+IBK     HNAL    H       H       0       -27.619     54.520      12.716      
+IBK     HAT     H       H       0       -24.899     56.437      14.256      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IBK         CAA         CAT      SINGLE       n     1.520  0.0129     1.520  0.0129
+IBK         CAB         CAT      SINGLE       n     1.520  0.0129     1.520  0.0129
+IBK         OAC         CAP      DOUBLE       n     1.229  0.0102     1.229  0.0102
+IBK         CAD         CAE      DOUBLE       y     1.343  0.0200     1.343  0.0200
+IBK         CAD         CAF      SINGLE       y     1.413  0.0154     1.413  0.0154
+IBK         CAE         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+IBK         CAF         CAS      DOUBLE       y     1.363  0.0200     1.363  0.0200
+IBK         CAG         CAQ      SINGLE       y     1.397  0.0103     1.397  0.0103
+IBK         CAG         CAR      DOUBLE       y     1.353  0.0115     1.353  0.0115
+IBK         CAH         NAL      SINGLE       n     1.455  0.0100     1.455  0.0100
+IBK         CAH         CAT      SINGLE       n     1.519  0.0156     1.519  0.0156
+IBK         CAI         OAM      SINGLE       n     1.417  0.0171     1.417  0.0171
+IBK         CAI         CAP      SINGLE       n     1.515  0.0136     1.515  0.0136
+IBK         CAJ         OAM      SINGLE       n     1.425  0.0124     1.425  0.0124
+IBK         CAJ         CAQ      SINGLE       n     1.494  0.0100     1.494  0.0100
+IBK         NAK         OAN      SINGLE       y     1.414  0.0100     1.414  0.0100
+IBK         NAK         CAQ      DOUBLE       y     1.303  0.0100     1.303  0.0100
+IBK         NAL         CAP      SINGLE       n     1.329  0.0100     1.329  0.0100
+IBK         OAN         CAR      SINGLE       y     1.354  0.0100     1.354  0.0100
+IBK         SAO         CAS      SINGLE       y     1.695  0.0200     1.695  0.0200
+IBK         CAR         CAS      SINGLE       n     1.440  0.0100     1.440  0.0100
+IBK         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBK         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBK         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBK         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBK         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBK         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBK         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0153
+IBK         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0200
+IBK         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0154
+IBK         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0154
+IBK         CAH         HAH      SINGLE       n     1.089  0.0100     0.981  0.0152
+IBK         CAH        HAHA      SINGLE       n     1.089  0.0100     0.981  0.0152
+IBK         CAI         HAI      SINGLE       n     1.089  0.0100     0.988  0.0200
+IBK         CAI        HAIA      SINGLE       n     1.089  0.0100     0.988  0.0200
+IBK         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.980  0.0156
+IBK         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.980  0.0156
+IBK         NAL        HNAL      SINGLE       n     1.016  0.0100     0.872  0.0200
+IBK         CAT         HAT      SINGLE       n     1.089  0.0100     0.988  0.0114
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IBK         CAT         CAA         HAA     109.450    1.50
+IBK         CAT         CAA        HAAA     109.450    1.50
+IBK         CAT         CAA        HAAB     109.450    1.50
+IBK         HAA         CAA        HAAA     109.411    1.50
+IBK         HAA         CAA        HAAB     109.411    1.50
+IBK        HAAA         CAA        HAAB     109.411    1.50
+IBK         CAT         CAB         HAB     109.450    1.50
+IBK         CAT         CAB        HABA     109.450    1.50
+IBK         CAT         CAB        HABB     109.450    1.50
+IBK         HAB         CAB        HABA     109.411    1.50
+IBK         HAB         CAB        HABB     109.411    1.50
+IBK        HABA         CAB        HABB     109.411    1.50
+IBK         CAE         CAD         CAF     107.395    1.50
+IBK         CAE         CAD         HAD     126.667    1.50
+IBK         CAF         CAD         HAD     125.937    1.50
+IBK         CAD         CAE         SAO     108.358    3.00
+IBK         CAD         CAE         HAE     128.449    2.40
+IBK         SAO         CAE         HAE     123.193    3.00
+IBK         CAD         CAF         CAS     107.531    1.50
+IBK         CAD         CAF         HAF     125.850    1.50
+IBK         CAS         CAF         HAF     126.619    1.50
+IBK         CAQ         CAG         CAR     106.431    1.50
+IBK         CAQ         CAG         HAG     126.920    1.50
+IBK         CAR         CAG         HAG     126.649    1.50
+IBK         NAL         CAH         CAT     111.308    2.28
+IBK         NAL         CAH         HAH     109.102    1.50
+IBK         NAL         CAH        HAHA     109.102    1.50
+IBK         CAT         CAH         HAH     108.710    1.50
+IBK         CAT         CAH        HAHA     108.710    1.50
+IBK         HAH         CAH        HAHA     108.781    2.12
+IBK         OAM         CAI         CAP     110.619    2.78
+IBK         OAM         CAI         HAI     109.284    1.50
+IBK         OAM         CAI        HAIA     109.284    1.50
+IBK         CAP         CAI         HAI     109.605    1.50
+IBK         CAP         CAI        HAIA     109.605    1.50
+IBK         HAI         CAI        HAIA     108.100    1.50
+IBK         OAM         CAJ         CAQ     111.380    2.66
+IBK         OAM         CAJ         HAJ     109.041    1.50
+IBK         OAM         CAJ        HAJA     109.041    1.50
+IBK         CAQ         CAJ         HAJ     109.578    1.50
+IBK         CAQ         CAJ        HAJA     109.578    1.50
+IBK         HAJ         CAJ        HAJA     108.481    1.50
+IBK         OAN         NAK         CAQ     106.192    1.50
+IBK         CAH         NAL         CAP     123.042    1.80
+IBK         CAH         NAL        HNAL     118.305    1.83
+IBK         CAP         NAL        HNAL     118.653    2.34
+IBK         CAI         OAM         CAJ     112.777    1.57
+IBK         NAK         OAN         CAR     108.271    1.50
+IBK         CAE         SAO         CAS     108.358    3.00
+IBK         OAC         CAP         CAI     119.970    1.50
+IBK         OAC         CAP         NAL     124.100    1.50
+IBK         CAI         CAP         NAL     115.930    1.50
+IBK         CAG         CAQ         CAJ     128.861    2.09
+IBK         CAG         CAQ         NAK     110.542    1.50
+IBK         CAJ         CAQ         NAK     120.598    2.23
+IBK         CAG         CAR         OAN     108.564    1.50
+IBK         CAG         CAR         CAS     133.493    2.30
+IBK         OAN         CAR         CAS     117.943    1.70
+IBK         CAF         CAS         SAO     108.358    3.00
+IBK         CAF         CAS         CAR     131.892    2.30
+IBK         SAO         CAS         CAR     119.750    3.00
+IBK         CAA         CAT         CAB     110.933    1.50
+IBK         CAA         CAT         CAH     110.892    1.69
+IBK         CAA         CAT         HAT     108.132    1.50
+IBK         CAB         CAT         CAH     110.892    1.69
+IBK         CAB         CAT         HAT     108.132    1.50
+IBK         CAH         CAT         HAT     106.498    1.73
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IBK             sp3_sp3_2         HAA         CAA         CAT         CAB     -60.000    10.0     3
+IBK              const_19         CAQ         NAK         OAN         CAR       0.000    10.0     2
+IBK              const_18         CAJ         CAQ         NAK         OAN     180.000    10.0     2
+IBK             sp2_sp2_3         OAC         CAP         NAL         CAH       0.000     5.0     2
+IBK              const_20         CAG         CAR         OAN         NAK       0.000    10.0     2
+IBK       const_sp2_sp2_7         CAF         CAS         SAO         CAE       0.000     5.0     2
+IBK             sp2_sp2_5         CAG         CAR         CAS         CAF     180.000     5.0     2
+IBK            sp3_sp3_10         HAB         CAB         CAT         CAA     180.000    10.0     3
+IBK       const_sp2_sp2_1         CAF         CAD         CAE         SAO       0.000     5.0     2
+IBK              const_22         CAE         CAD         CAF         CAS       0.000    10.0     2
+IBK       const_sp2_sp2_5         CAD         CAE         SAO         CAS       0.000     5.0     2
+IBK       const_sp2_sp2_9         CAD         CAF         CAS         SAO       0.000     5.0     2
+IBK              const_14         CAR         CAG         CAQ         CAJ     180.000    10.0     2
+IBK              const_26         CAQ         CAG         CAR         OAN       0.000    10.0     2
+IBK             sp2_sp3_2         CAP         NAL         CAH         CAT     120.000    10.0     6
+IBK            sp3_sp3_20         NAL         CAH         CAT         CAA     -60.000    10.0     3
+IBK            sp3_sp3_28         CAP         CAI         OAM         CAJ     180.000    10.0     3
+IBK             sp2_sp3_8         OAC         CAP         CAI         OAM     120.000    10.0     6
+IBK            sp3_sp3_31         CAQ         CAJ         OAM         CAI     180.000    10.0     3
+IBK            sp2_sp3_14         CAG         CAQ         CAJ         OAM     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IBK    chir_1    CAT    CAH    CAA    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IBK    plan-1         CAG   0.020
+IBK    plan-1         CAJ   0.020
+IBK    plan-1         CAQ   0.020
+IBK    plan-1         CAR   0.020
+IBK    plan-1         CAS   0.020
+IBK    plan-1         HAG   0.020
+IBK    plan-1         NAK   0.020
+IBK    plan-1         OAN   0.020
+IBK    plan-2         CAD   0.020
+IBK    plan-2         CAE   0.020
+IBK    plan-2         CAF   0.020
+IBK    plan-2         CAR   0.020
+IBK    plan-2         CAS   0.020
+IBK    plan-2         HAD   0.020
+IBK    plan-2         HAE   0.020
+IBK    plan-2         HAF   0.020
+IBK    plan-2         SAO   0.020
+IBK    plan-3         CAH   0.020
+IBK    plan-3         CAP   0.020
+IBK    plan-3        HNAL   0.020
+IBK    plan-3         NAL   0.020
+IBK    plan-4         CAI   0.020
+IBK    plan-4         CAP   0.020
+IBK    plan-4         NAL   0.020
+IBK    plan-4         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IBK           SMILES              ACDLabs 12.01                                                                               O=C(NCC(C)C)COCc2noc(c1sccc1)c2
+IBK            InChI                InChI  1.03 InChI=1S/C14H18N2O3S/c1-10(2)7-15-14(17)9-18-8-11-6-12(19-16-11)13-4-3-5-20-13/h3-6,10H,7-9H2,1-2H3,(H,15,17)
+IBK         InChIKey                InChI  1.03                                                                                   UJFGIBAYRIRNOV-UHFFFAOYSA-N
+IBK SMILES_CANONICAL               CACTVS 3.385                                                                               CC(C)CNC(=O)COCc1cc(on1)c2sccc2
+IBK           SMILES               CACTVS 3.385                                                                               CC(C)CNC(=O)COCc1cc(on1)c2sccc2
+IBK SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                               CC(C)CNC(=O)COCc1cc(on1)c2cccs2
+IBK           SMILES "OpenEye OEToolkits" 1.9.2                                                                               CC(C)CNC(=O)COCc1cc(on1)c2cccs2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IBK acedrg               243         "dictionary generator"                  
+IBK acedrg_database      11          "data source"                           
+IBK rdkit                2017.03.2   "Chemoinformatics tool"
+IBK refmac5              5.8.0238    "optimization tool"                     

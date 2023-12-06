@@ -1,0 +1,326 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CFX     CFX      CEFOXITIN     NON-POLYMER     44     28     .     
+#
+data_comp_CFX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CFX     C4      C       C       0       3.686       -1.663      -0.826      
+CFX     O5      O       O       0       3.114       -2.665      -1.179      
+CFX     N1      N       NR6     0       3.260       -0.452      -0.378      
+CFX     C2      C       CH1     0       4.570       0.095       0.004       
+CFX     S8      S       S2      0       4.730       1.749       -0.686      
+CFX     C9      C       CH2     0       3.243       2.355       0.155       
+CFX     C10     C       CR6     0       1.985       1.520       -0.010      
+CFX     C11     C       CR6     0       2.017       0.192       -0.301      
+CFX     C15     C       CH2     0       0.675       2.293       0.132       
+CFX     C12     C       C       0       0.763       -0.618      -0.613      
+CFX     O13     O       O       0       0.182       -0.355      -1.649      
+CFX     O14     O       OC      -1      0.441       -1.466      0.198       
+CFX     C3      C       CT      0       5.143       -1.173      -0.775      
+CFX     O16     O       O2      0       5.950       -1.968      0.062       
+CFX     C17     C       CH3     0       7.239       -1.494      0.470       
+CFX     N18     N       NH1     0       5.785       -0.973      -2.056      
+CFX     C19     C       C       0       6.089       -1.946      -2.924      
+CFX     O21     O       O       0       5.925       -3.145      -2.684      
+CFX     C20     C       CH2     0       6.616       -1.489      -4.273      
+CFX     C23     C       CR5     0       5.511       -1.170      -5.217      
+CFX     S24     S       S2      0       4.594       0.193       -4.949      
+CFX     C25     C       CR15    0       3.608       -0.039      -6.273      
+CFX     C26     C       CR15    0       3.947       -1.163      -6.958      
+CFX     C27     C       CR15    0       5.063       -1.837      -6.347      
+CFX     O30     O       O2      0       0.811       3.412       1.052       
+CFX     C31     C       C       0       -0.218      4.286       1.103       
+CFX     O32     O       O       0       -1.394      3.970       1.112       
+CFX     N33     N       NH2     0       0.226       5.536       1.157       
+CFX     HC2     H       H       0       4.737       0.061       0.976       
+CFX     HC91    H       H       0       3.059       3.248       -0.193      
+CFX     HC92    H       H       0       3.432       2.425       1.110       
+CFX     H151    H       H       0       -0.029      1.705       0.487       
+CFX     H152    H       H       0       0.386       2.617       -0.752      
+CFX     H171    H       H       0       7.654       -2.152      1.052       
+CFX     H172    H       H       0       7.144       -0.656      0.952       
+CFX     H173    H       H       0       7.801       -1.357      -0.310      
+CFX     H18     H       H       0       5.992       -0.099      -2.277      
+CFX     H201    H       H       0       7.172       -2.196      -4.659      
+CFX     H202    H       H       0       7.179       -0.696      -4.155      
+CFX     H25     H       H       0       2.915       0.565       -6.477      
+CFX     H26     H       H       0       3.512       -1.467      -7.735      
+CFX     H27     H       H       0       5.441       -2.634      -6.679      
+CFX     H331    H       H       0       -0.352      6.204       1.193       
+CFX     H332    H       H       0       1.094       5.711       1.159       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CFX          C4          O5      DOUBLE       n     1.206  0.0100     1.206  0.0100
+CFX          C4          N1      SINGLE       n     1.365  0.0100     1.365  0.0100
+CFX          C4          C3      SINGLE       n     1.529  0.0117     1.529  0.0117
+CFX          N1          C2      SINGLE       n     1.481  0.0116     1.481  0.0116
+CFX          N1         C11      SINGLE       n     1.391  0.0200     1.391  0.0200
+CFX          C2          S8      SINGLE       n     1.802  0.0179     1.802  0.0179
+CFX          C2          C3      SINGLE       n     1.567  0.0200     1.567  0.0200
+CFX          S8          C9      SINGLE       n     1.809  0.0100     1.809  0.0100
+CFX          C9         C10      SINGLE       n     1.511  0.0100     1.511  0.0100
+CFX         C10         C11      DOUBLE       n     1.350  0.0104     1.350  0.0104
+CFX         C10         C15      SINGLE       n     1.504  0.0200     1.504  0.0200
+CFX         C11         C12      SINGLE       n     1.523  0.0100     1.523  0.0100
+CFX         C15         O30      SINGLE       n     1.449  0.0132     1.449  0.0132
+CFX         C12         O13      DOUBLE       n     1.217  0.0200     1.217  0.0200
+CFX         C12         O14      SINGLE       n     1.217  0.0200     1.217  0.0200
+CFX          C3         O16      SINGLE       n     1.399  0.0200     1.399  0.0200
+CFX          C3         N18      SINGLE       n     1.444  0.0104     1.444  0.0104
+CFX         O16         C17      SINGLE       n     1.431  0.0100     1.431  0.0100
+CFX         N18         C19      SINGLE       n     1.334  0.0104     1.334  0.0104
+CFX         C19         O21      DOUBLE       n     1.232  0.0104     1.232  0.0104
+CFX         C19         C20      SINGLE       n     1.517  0.0109     1.517  0.0109
+CFX         C20         C23      SINGLE       n     1.488  0.0103     1.488  0.0103
+CFX         C23         S24      SINGLE       y     1.695  0.0200     1.695  0.0200
+CFX         C23         C27      DOUBLE       y     1.373  0.0200     1.373  0.0200
+CFX         S24         C25      SINGLE       y     1.695  0.0200     1.695  0.0200
+CFX         C25         C26      DOUBLE       y     1.343  0.0200     1.343  0.0200
+CFX         C26         C27      SINGLE       y     1.417  0.0151     1.417  0.0151
+CFX         O30         C31      SINGLE       n     1.346  0.0121     1.346  0.0121
+CFX         C31         O32      DOUBLE       n     1.217  0.0100     1.217  0.0100
+CFX         C31         N33      SINGLE       n     1.326  0.0100     1.326  0.0100
+CFX          C2         HC2      SINGLE       n     1.089  0.0100     0.987  0.0200
+CFX          C9        HC91      SINGLE       n     1.089  0.0100     0.977  0.0200
+CFX          C9        HC92      SINGLE       n     1.089  0.0100     0.977  0.0200
+CFX         C15        H151      SINGLE       n     1.089  0.0100     0.984  0.0105
+CFX         C15        H152      SINGLE       n     1.089  0.0100     0.984  0.0105
+CFX         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0146
+CFX         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0146
+CFX         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0146
+CFX         N18         H18      SINGLE       n     1.016  0.0100     0.924  0.0200
+CFX         C20        H201      SINGLE       n     1.089  0.0100     0.979  0.0162
+CFX         C20        H202      SINGLE       n     1.089  0.0100     0.979  0.0162
+CFX         C25         H25      SINGLE       n     1.082  0.0130     0.942  0.0200
+CFX         C26         H26      SINGLE       n     1.082  0.0130     0.942  0.0153
+CFX         C27         H27      SINGLE       n     1.082  0.0130     0.942  0.0153
+CFX         N33        H331      SINGLE       n     1.016  0.0100     0.884  0.0200
+CFX         N33        H332      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CFX          O5          C4          N1     132.313    1.50
+CFX          O5          C4          C3     135.351    1.93
+CFX          N1          C4          C3      92.336    1.50
+CFX          C4          N1          C2     103.712    1.50
+CFX          C4          N1         C11     128.144    3.00
+CFX          C2          N1         C11     128.144    3.00
+CFX          N1          C2          S8     110.093    1.50
+CFX          N1          C2          C3      86.454    1.50
+CFX          N1          C2         HC2     112.385    1.96
+CFX          S8          C2          C3     114.924    3.00
+CFX          S8          C2         HC2     112.470    1.50
+CFX          C3          C2         HC2     111.449    2.50
+CFX          C2          S8          C9      93.417    1.50
+CFX          S8          C9         C10     111.860    2.17
+CFX          S8          C9        HC91     108.091    2.47
+CFX          S8          C9        HC92     108.091    2.47
+CFX         C10          C9        HC91     107.577    1.77
+CFX         C10          C9        HC92     107.577    1.77
+CFX        HC91          C9        HC92     108.277    2.15
+CFX          C9         C10         C11     122.147    3.00
+CFX          C9         C10         C15     116.181    2.44
+CFX         C11         C10         C15     121.672    2.28
+CFX          N1         C11         C10     119.701    3.00
+CFX          N1         C11         C12     119.701    3.00
+CFX         C10         C11         C12     120.597    2.59
+CFX         C10         C15         O30     108.923    2.04
+CFX         C10         C15        H151     109.571    1.50
+CFX         C10         C15        H152     109.571    1.50
+CFX         O30         C15        H151     109.039    2.57
+CFX         O30         C15        H152     109.039    2.57
+CFX        H151         C15        H152     108.062    1.50
+CFX         C11         C12         O13     116.863    1.50
+CFX         C11         C12         O14     116.862    1.50
+CFX         O13         C12         O14     126.271    1.50
+CFX          C4          C3          C2      85.405    1.50
+CFX          C4          C3         O16     114.770    3.00
+CFX          C4          C3         N18     117.475    2.03
+CFX          C2          C3         O16     111.645    3.00
+CFX          C2          C3         N18     119.511    1.50
+CFX         O16          C3         N18     109.471    3.00
+CFX          C3         O16         C17     114.955    3.00
+CFX         O16         C17        H171     109.520    1.50
+CFX         O16         C17        H172     109.520    1.50
+CFX         O16         C17        H173     109.520    1.50
+CFX        H171         C17        H172     109.427    1.50
+CFX        H171         C17        H173     109.427    1.50
+CFX        H172         C17        H173     109.427    1.50
+CFX          C3         N18         C19     122.239    2.50
+CFX          C3         N18         H18     118.874    2.80
+CFX         C19         N18         H18     118.888    2.01
+CFX         N18         C19         O21     122.779    1.50
+CFX         N18         C19         C20     115.668    1.65
+CFX         O21         C19         C20     121.553    1.50
+CFX         C19         C20         C23     112.079    2.81
+CFX         C19         C20        H201     109.162    1.50
+CFX         C19         C20        H202     109.162    1.50
+CFX         C23         C20        H201     108.978    1.50
+CFX         C23         C20        H202     108.978    1.50
+CFX        H201         C20        H202     107.730    1.50
+CFX         C20         C23         S24     119.849    3.00
+CFX         C20         C23         C27     131.838    2.45
+CFX         S24         C23         C27     108.313    3.00
+CFX         C23         S24         C25     108.313    3.00
+CFX         S24         C25         C26     108.313    3.00
+CFX         S24         C25         H25     123.215    3.00
+CFX         C26         C25         H25     128.471    2.40
+CFX         C25         C26         C27     107.351    1.50
+CFX         C25         C26         H26     126.690    1.50
+CFX         C27         C26         H26     125.960    1.50
+CFX         C23         C27         C26     107.709    1.50
+CFX         C23         C27         H27     126.392    1.50
+CFX         C26         C27         H27     125.900    1.50
+CFX         C15         O30         C31     115.707    1.50
+CFX         O30         C31         O32     124.504    1.50
+CFX         O30         C31         N33     110.556    1.50
+CFX         O32         C31         N33     124.940    1.50
+CFX         C31         N33        H331     119.996    2.41
+CFX         C31         N33        H332     119.996    2.41
+CFX        H331         N33        H332     120.007    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CFX            sp2_sp3_17          O5          C4          C3         O16     -60.000    10.0     6
+CFX             sp2_sp2_7          O5          C4          N1          C2     180.000     5.0     2
+CFX            sp3_sp3_21         N18          C3         O16         C17     -60.000    10.0     3
+CFX            sp2_sp3_27         C19         N18          C3         O16    -120.000    10.0     6
+CFX            sp3_sp3_22        H171         C17         O16          C3     180.000    10.0     3
+CFX            sp2_sp2_19         O21         C19         N18          C3       0.000     5.0     2
+CFX            sp2_sp3_32         N18         C19         C20         C23     120.000    10.0     6
+CFX            sp2_sp3_38         S24         C23         C20         C19     -90.000    10.0     6
+CFX       const_sp2_sp2_2         C20         C23         S24         C25     180.000     5.0     2
+CFX              const_15         C20         C23         C27         C26     180.000    10.0     2
+CFX       const_sp2_sp2_3         C26         C25         S24         C23       0.000     5.0     2
+CFX       const_sp2_sp2_5         S24         C25         C26         C27       0.000     5.0     2
+CFX       const_sp2_sp2_9         C25         C26         C27         C23       0.000     5.0     2
+CFX            sp2_sp2_21         O32         C31         O30         C15     180.000     5.0     2
+CFX            sp2_sp2_23         O30         C31         N33        H331     180.000     5.0     2
+CFX             sp2_sp3_2          C4          N1          C2          S8     120.000    10.0     6
+CFX            sp2_sp2_12         C12         C11          N1          C4       0.000     5.0     2
+CFX             sp3_sp3_8          N1          C2          C3         O16     180.000    10.0     3
+CFX             sp3_sp3_1          N1          C2          S8          C9     -60.000    10.0     3
+CFX             sp3_sp3_4         C10          C9          S8          C2      60.000    10.0     3
+CFX            sp2_sp3_10         C15         C10          C9          S8     180.000    10.0     6
+CFX             sp2_sp2_4         C15         C10         C11         C12       0.000     5.0     2
+CFX            sp2_sp3_20          C9         C10         C15         O30     -90.000    10.0     6
+CFX            sp2_sp2_13          N1         C11         C12         O13     180.000     5.0     2
+CFX            sp3_sp3_16         C10         C15         O30         C31     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CFX    chir_1    C2    S8    N1    C3    negative
+CFX    chir_2    C3    O16    N18    C2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CFX    plan-1         C20   0.020
+CFX    plan-1         C23   0.020
+CFX    plan-1         C25   0.020
+CFX    plan-1         C26   0.020
+CFX    plan-1         C27   0.020
+CFX    plan-1         H25   0.020
+CFX    plan-1         H26   0.020
+CFX    plan-1         H27   0.020
+CFX    plan-1         S24   0.020
+CFX    plan-2          C3   0.020
+CFX    plan-2          C4   0.020
+CFX    plan-2          N1   0.020
+CFX    plan-2          O5   0.020
+CFX    plan-3         C11   0.020
+CFX    plan-3          C2   0.020
+CFX    plan-3          C4   0.020
+CFX    plan-3          N1   0.020
+CFX    plan-4         C10   0.020
+CFX    plan-4         C11   0.020
+CFX    plan-4         C15   0.020
+CFX    plan-4          C9   0.020
+CFX    plan-5         C10   0.020
+CFX    plan-5         C11   0.020
+CFX    plan-5         C12   0.020
+CFX    plan-5          N1   0.020
+CFX    plan-6         C11   0.020
+CFX    plan-6         C12   0.020
+CFX    plan-6         O13   0.020
+CFX    plan-6         O14   0.020
+CFX    plan-7         C19   0.020
+CFX    plan-7          C3   0.020
+CFX    plan-7         H18   0.020
+CFX    plan-7         N18   0.020
+CFX    plan-8         C19   0.020
+CFX    plan-8         C20   0.020
+CFX    plan-8         N18   0.020
+CFX    plan-8         O21   0.020
+CFX    plan-9         C31   0.020
+CFX    plan-9         N33   0.020
+CFX    plan-9         O30   0.020
+CFX    plan-9         O32   0.020
+CFX   plan-10         C31   0.020
+CFX   plan-10        H331   0.020
+CFX   plan-10        H332   0.020
+CFX   plan-10         N33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CFX           SMILES              ACDLabs 10.04                                                                                                                      O=C2N1C(=C(CSC1C2(OC)NC(=O)Cc3sccc3)COC(=O)N)C(=O)O
+CFX SMILES_CANONICAL               CACTVS 3.341                                                                                                               CO[C@]1(NC(=O)Cc2sccc2)[C@H]3SCC(=C(N3C1=O)C(O)=O)COC(N)=O
+CFX           SMILES               CACTVS 3.341                                                                                                                 CO[C]1(NC(=O)Cc2sccc2)[CH]3SCC(=C(N3C1=O)C(O)=O)COC(N)=O
+CFX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                           CO[C@@]1([C@@H]2N(C1=O)C(=C(CS2)COC(=O)N)C(=O)O)NC(=O)Cc3cccs3
+CFX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                    COC1(C2N(C1=O)C(=C(CS2)COC(=O)N)C(=O)O)NC(=O)Cc3cccs3
+CFX            InChI                InChI  1.03 InChI=1S/C16H17N3O7S2/c1-25-16(18-10(20)5-9-3-2-4-27-9)13(23)19-11(12(21)22)8(6-26-15(17)24)7-28-14(16)19/h2-4,14H,5-7H2,1H3,(H2,17,24)(H,18,20)(H,21,22)/t14-,16+/m1/s1
+CFX         InChIKey                InChI  1.03                                                                                                                                              WZOZEZRFJCJXNZ-ZBFHGGJFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CFX acedrg               243         "dictionary generator"                  
+CFX acedrg_database      11          "data source"                           
+CFX rdkit                2017.03.2   "Chemoinformatics tool"
+CFX refmac5              5.8.0238    "optimization tool"                     

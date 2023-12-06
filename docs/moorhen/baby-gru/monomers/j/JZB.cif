@@ -1,0 +1,392 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JZB     JZB      "(5E,9E,11E)-13-chloro-14,16-dihydroxy-3,4,7,8-tetrahydro-1H-2-benzoxacyclotetradecine-1,11(12H)-dione 11-[O-(2-oxo-2-piperidin-1-ylethyl)oxime]"     NON-POLYMER     62     33     .     
+#
+data_comp_JZB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JZB     CL      CL      CL      0       70.259      12.982      22.869      
+JZB     C1      C       CR16    0       66.478      12.417      23.979      
+JZB     N1      N       N       0       72.409      10.490      24.109      
+JZB     O1      O       O2      0       67.855      9.146       26.627      
+JZB     C2      C       CR6     0       67.615      12.820      23.289      
+JZB     N2      N       NR6     0       74.772      14.079      24.771      
+JZB     O2      O       O       0       67.917      10.943      27.973      
+JZB     C3      C       CR6     0       68.873      12.450      23.767      
+JZB     O3      O       OH1     0       67.480      13.576      22.148      
+JZB     C4      C       CR6     0       69.030      11.678      24.928      
+JZB     O4      O       OH1     0       65.446      11.284      25.771      
+JZB     C5      C       CR6     0       67.869      11.267      25.625      
+JZB     O5      O       O2      0       73.018      11.677      24.589      
+JZB     C6      C       CR6     0       66.607      11.654      25.131      
+JZB     O6      O       O       0       76.060      12.429      25.663      
+JZB     C7      C       CH2     0       70.418      11.298      25.412      
+JZB     C8      C       C       0       67.888      10.459      26.870      
+JZB     C9      C       C       0       71.198      10.325      24.525      
+JZB     C10     C       C1      0       70.567      9.140       24.103      
+JZB     C11     C       CH2     0       68.287      8.253       27.694      
+JZB     C12     C       CH2     0       68.275      6.845       27.168      
+JZB     C13     C       C1      0       69.328      6.593       26.140      
+JZB     C14     C       C1      0       69.127      6.121       24.937      
+JZB     C15     C       CH2     0       70.186      5.885       23.905      
+JZB     C16     C       C1      0       71.015      8.185       23.285      
+JZB     C17     C       CH2     0       70.237      6.975       22.851      
+JZB     C18     C       CH2     0       74.393      11.682      24.185      
+JZB     C19     C       C       0       75.147      12.784      24.914      
+JZB     C20     C       CH2     0       73.838      14.618      23.770      
+JZB     C21     C       CH2     0       72.634      15.248      24.447      
+JZB     C22     C       CH2     0       73.059      16.330      25.427      
+JZB     C23     C       CH2     0       74.091      15.786      26.403      
+JZB     C24     C       CH2     0       75.254      15.141      25.670      
+JZB     H1      H       H       0       65.625      12.663      23.662      
+JZB     HO3     H       H       0       68.028      13.470      21.492      
+JZB     HO4     H       H       0       65.221      11.666      26.509      
+JZB     H7      H       H       0       70.352      10.903      26.298      
+JZB     H7A     H       H       0       70.932      12.117      25.512      
+JZB     H10     H       H       0       69.708      8.989       24.462      
+JZB     H11     H       H       0       67.681      8.318       28.461      
+JZB     H11A    H       H       0       69.194      8.484       27.988      
+JZB     H12     H       H       0       67.388      6.670       26.782      
+JZB     H12A    H       H       0       68.402      6.233       27.927      
+JZB     H13     H       H       0       70.220      6.792       26.382      
+JZB     H14     H       H       0       68.238      5.911       24.695      
+JZB     H15     H       H       0       70.017      5.026       23.469      
+JZB     H15A    H       H       0       71.056      5.830       24.351      
+JZB     H16     H       H       0       71.890      8.267       22.946      
+JZB     H17     H       H       0       69.323      7.250       22.630      
+JZB     H17A    H       H       0       70.645      6.613       22.038      
+JZB     H18     H       H       0       74.450      11.819      23.215      
+JZB     H18A    H       H       0       74.798      10.812      24.392      
+JZB     H20     H       H       0       74.301      15.300      23.234      
+JZB     H20A    H       H       0       73.537      13.912      23.160      
+JZB     H21     H       H       0       72.128      14.554      24.925      
+JZB     H21A    H       H       0       72.043      15.638      23.764      
+JZB     H22     H       H       0       72.276      16.653      25.921      
+JZB     H22A    H       H       0       73.440      17.088      24.934      
+JZB     H23     H       H       0       73.667      15.121      26.990      
+JZB     H23A    H       H       0       74.427      16.518      26.966      
+JZB     H24     H       H       0       75.723      15.823      25.140      
+JZB     H24A    H       H       0       75.888      14.777      26.325      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JZB          CL          C3      SINGLE       n     1.733  0.0100     1.733  0.0100
+JZB          C1          C2      DOUBLE       y     1.388  0.0100     1.388  0.0100
+JZB          C1          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+JZB          N1          O5      SINGLE       n     1.414  0.0128     1.414  0.0128
+JZB          N1          C9      DOUBLE       n     1.284  0.0100     1.284  0.0100
+JZB          O1          C8      SINGLE       n     1.332  0.0117     1.332  0.0117
+JZB          O1         C11      SINGLE       n     1.455  0.0100     1.455  0.0100
+JZB          C2          C3      SINGLE       y     1.392  0.0100     1.392  0.0100
+JZB          C2          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+JZB          N2         C19      SINGLE       n     1.345  0.0100     1.345  0.0100
+JZB          N2         C20      SINGLE       n     1.465  0.0108     1.465  0.0108
+JZB          N2         C24      SINGLE       n     1.465  0.0108     1.465  0.0108
+JZB          O2          C8      DOUBLE       n     1.204  0.0101     1.204  0.0101
+JZB          C3          C4      DOUBLE       y     1.393  0.0104     1.393  0.0104
+JZB          C4          C5      SINGLE       y     1.405  0.0100     1.405  0.0100
+JZB          C4          C7      SINGLE       n     1.509  0.0116     1.509  0.0116
+JZB          O4          C6      SINGLE       n     1.374  0.0155     1.374  0.0155
+JZB          C5          C6      DOUBLE       y     1.404  0.0100     1.404  0.0100
+JZB          C5          C8      SINGLE       n     1.480  0.0117     1.480  0.0117
+JZB          O5         C18      SINGLE       n     1.432  0.0122     1.432  0.0122
+JZB          O6         C19      DOUBLE       n     1.232  0.0100     1.232  0.0100
+JZB          C7          C9      SINGLE       n     1.502  0.0200     1.502  0.0200
+JZB          C9         C10      SINGLE       n     1.382  0.0200     1.382  0.0200
+JZB         C10         C16      DOUBLE       n     1.326  0.0157     1.326  0.0157
+JZB         C11         C12      SINGLE       n     1.504  0.0200     1.504  0.0200
+JZB         C12         C13      SINGLE       n     1.494  0.0122     1.494  0.0122
+JZB         C13         C14      DOUBLE       n     1.308  0.0200     1.308  0.0200
+JZB         C14         C15      SINGLE       n     1.498  0.0156     1.498  0.0156
+JZB         C15         C17      SINGLE       n     1.516  0.0200     1.516  0.0200
+JZB         C16         C17      SINGLE       n     1.502  0.0131     1.502  0.0131
+JZB         C18         C19      SINGLE       n     1.511  0.0187     1.511  0.0187
+JZB         C20         C21      SINGLE       n     1.516  0.0108     1.516  0.0108
+JZB         C21         C22      SINGLE       n     1.519  0.0104     1.519  0.0104
+JZB         C22         C23      SINGLE       n     1.519  0.0104     1.519  0.0104
+JZB         C23         C24      SINGLE       n     1.516  0.0108     1.516  0.0108
+JZB          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0179
+JZB          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+JZB          O4         HO4      SINGLE       n     0.966  0.0059     0.861  0.0200
+JZB          C7          H7      SINGLE       n     1.089  0.0100     0.974  0.0135
+JZB          C7         H7A      SINGLE       n     1.089  0.0100     0.974  0.0135
+JZB         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0200
+JZB         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0143
+JZB         C11        H11A      SINGLE       n     1.089  0.0100     0.980  0.0143
+JZB         C12         H12      SINGLE       n     1.089  0.0100     0.983  0.0195
+JZB         C12        H12A      SINGLE       n     1.089  0.0100     0.983  0.0195
+JZB         C13         H13      SINGLE       n     1.082  0.0130     0.945  0.0200
+JZB         C14         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+JZB         C15         H15      SINGLE       n     1.089  0.0100     0.979  0.0159
+JZB         C15        H15A      SINGLE       n     1.089  0.0100     0.979  0.0159
+JZB         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0181
+JZB         C17         H17      SINGLE       n     1.089  0.0100     0.979  0.0159
+JZB         C17        H17A      SINGLE       n     1.089  0.0100     0.979  0.0159
+JZB         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0132
+JZB         C18        H18A      SINGLE       n     1.089  0.0100     0.981  0.0132
+JZB         C20         H20      SINGLE       n     1.089  0.0100     0.983  0.0130
+JZB         C20        H20A      SINGLE       n     1.089  0.0100     0.983  0.0130
+JZB         C21         H21      SINGLE       n     1.089  0.0100     0.983  0.0130
+JZB         C21        H21A      SINGLE       n     1.089  0.0100     0.983  0.0130
+JZB         C22         H22      SINGLE       n     1.089  0.0100     0.981  0.0121
+JZB         C22        H22A      SINGLE       n     1.089  0.0100     0.981  0.0121
+JZB         C23         H23      SINGLE       n     1.089  0.0100     0.983  0.0130
+JZB         C23        H23A      SINGLE       n     1.089  0.0100     0.983  0.0130
+JZB         C24         H24      SINGLE       n     1.089  0.0100     0.983  0.0130
+JZB         C24        H24A      SINGLE       n     1.089  0.0100     0.983  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JZB          C2          C1          C6     119.511    1.50
+JZB          C2          C1          H1     119.902    1.50
+JZB          C6          C1          H1     120.588    1.50
+JZB          O5          N1          C9     110.625    1.59
+JZB          C8          O1         C11     116.428    1.50
+JZB          C1          C2          C3     118.927    1.50
+JZB          C1          C2          O3     120.537    3.00
+JZB          C3          C2          O3     120.537    3.00
+JZB         C19          N2         C20     123.176    3.00
+JZB         C19          N2         C24     123.176    3.00
+JZB         C20          N2         C24     113.647    1.50
+JZB          CL          C3          C2     118.534    1.50
+JZB          CL          C3          C4     119.567    1.50
+JZB          C2          C3          C4     121.899    1.50
+JZB          C2          O3         HO3     120.000    3.00
+JZB          C3          C4          C5     118.950    1.50
+JZB          C3          C4          C7     120.755    1.50
+JZB          C5          C4          C7     120.295    2.00
+JZB          C6          O4         HO4     120.000    3.00
+JZB          C4          C5          C6     119.155    1.50
+JZB          C4          C5          C8     122.666    2.16
+JZB          C6          C5          C8     118.179    1.50
+JZB          N1          O5         C18     107.729    1.50
+JZB          C1          C6          O4     119.221    3.00
+JZB          C1          C6          C5     121.559    1.50
+JZB          O4          C6          C5     119.221    3.00
+JZB          C4          C7          C9     114.984    3.00
+JZB          C4          C7          H7     108.957    1.50
+JZB          C4          C7         H7A     108.957    1.50
+JZB          C9          C7          H7     108.750    1.50
+JZB          C9          C7         H7A     108.750    1.50
+JZB          H7          C7         H7A     107.729    1.50
+JZB          O1          C8          O2     123.625    1.50
+JZB          O1          C8          C5     112.441    1.50
+JZB          O2          C8          C5     123.934    1.50
+JZB          N1          C9          C7     121.801    3.00
+JZB          N1          C9         C10     115.748    2.98
+JZB          C7          C9         C10     122.451    3.00
+JZB          C9         C10         C16     125.263    3.00
+JZB          C9         C10         H10     116.518    1.62
+JZB         C16         C10         H10     118.219    2.29
+JZB          O1         C11         C12     107.073    2.51
+JZB          O1         C11         H11     109.987    1.50
+JZB          O1         C11        H11A     109.987    1.50
+JZB         C12         C11         H11     108.754    2.29
+JZB         C12         C11        H11A     108.754    2.29
+JZB         H11         C11        H11A     108.375    1.50
+JZB         C11         C12         C13     112.884    1.50
+JZB         C11         C12         H12     107.835    1.50
+JZB         C11         C12        H12A     107.835    1.50
+JZB         C13         C12         H12     109.195    1.50
+JZB         C13         C12        H12A     109.195    1.50
+JZB         H12         C12        H12A     107.703    1.50
+JZB         C12         C13         C14     125.765    1.50
+JZB         C12         C13         H13     116.977    1.54
+JZB         C14         C13         H13     117.266    2.16
+JZB         C13         C14         C15     125.684    3.00
+JZB         C13         C14         H14     117.310    2.16
+JZB         C15         C14         H14     117.007    1.61
+JZB         C14         C15         C17     112.930    2.60
+JZB         C14         C15         H15     108.886    1.50
+JZB         C14         C15        H15A     108.886    1.50
+JZB         C17         C15         H15     109.125    1.50
+JZB         C17         C15        H15A     109.125    1.50
+JZB         H15         C15        H15A     107.922    1.50
+JZB         C10         C16         C17     125.879    2.56
+JZB         C10         C16         H16     117.170    2.02
+JZB         C17         C16         H16     116.963    1.61
+JZB         C15         C17         C16     112.930    2.60
+JZB         C15         C17         H17     109.125    1.50
+JZB         C15         C17        H17A     109.125    1.50
+JZB         C16         C17         H17     108.886    1.50
+JZB         C16         C17        H17A     108.886    1.50
+JZB         H17         C17        H17A     107.922    1.50
+JZB          O5         C18         C19     110.354    2.51
+JZB          O5         C18         H18     109.216    1.50
+JZB          O5         C18        H18A     109.216    1.50
+JZB         C19         C18         H18     109.705    1.50
+JZB         C19         C18        H18A     109.705    1.50
+JZB         H18         C18        H18A     107.985    1.50
+JZB          N2         C19          O6     123.078    1.50
+JZB          N2         C19         C18     117.476    2.03
+JZB          O6         C19         C18     119.446    1.84
+JZB          N2         C20         C21     110.568    1.50
+JZB          N2         C20         H20     109.413    1.50
+JZB          N2         C20        H20A     109.413    1.50
+JZB         C21         C20         H20     109.566    1.50
+JZB         C21         C20        H20A     109.566    1.50
+JZB         H20         C20        H20A     108.159    1.50
+JZB         C20         C21         C22     111.021    1.50
+JZB         C20         C21         H21     109.380    1.50
+JZB         C20         C21        H21A     109.380    1.50
+JZB         C22         C21         H21     109.453    1.50
+JZB         C22         C21        H21A     109.453    1.50
+JZB         H21         C21        H21A     108.022    1.50
+JZB         C21         C22         C23     110.168    1.50
+JZB         C21         C22         H22     109.613    1.50
+JZB         C21         C22        H22A     109.613    1.50
+JZB         C23         C22         H22     109.613    1.50
+JZB         C23         C22        H22A     109.613    1.50
+JZB         H22         C22        H22A     108.036    1.50
+JZB         C22         C23         C24     111.021    1.50
+JZB         C22         C23         H23     109.453    1.50
+JZB         C22         C23        H23A     109.453    1.50
+JZB         C24         C23         H23     109.380    1.50
+JZB         C24         C23        H23A     109.380    1.50
+JZB         H23         C23        H23A     108.022    1.50
+JZB          N2         C24         C23     110.568    1.50
+JZB          N2         C24         H24     109.413    1.50
+JZB          N2         C24        H24A     109.413    1.50
+JZB         C23         C24         H24     109.566    1.50
+JZB         C23         C24        H24A     109.566    1.50
+JZB         H24         C24        H24A     108.159    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JZB            sp2_sp2_12          C1          C6          O4         HO4     180.000     5.0     2
+JZB              const_20          C8          C5          C6          O4       0.000    10.0     2
+JZB            sp2_sp2_14          C4          C5          C8          O1     180.000     5.0     2
+JZB            sp3_sp3_40         C19         C18          O5          N1     180.000    10.0     3
+JZB            sp2_sp3_20          N1          C9          C7          C4     120.000    10.0     6
+JZB            sp2_sp2_19         C16         C10          C9          N1       0.000     5.0     2
+JZB            sp2_sp2_22          C9         C10         C16         C17     180.000     5.0     2
+JZB            sp3_sp3_43          O1         C11         C12         C13     180.000    10.0     3
+JZB              const_22          C2          C1          C6          O4     180.000    10.0     2
+JZB       const_sp2_sp2_2          C6          C1          C2          O3     180.000     5.0     2
+JZB            sp2_sp3_26         C14         C13         C12         C11     120.000    10.0     6
+JZB            sp2_sp2_26         C12         C13         C14         C15     180.000     5.0     2
+JZB            sp2_sp3_32         C13         C14         C15         C17     120.000    10.0     6
+JZB            sp3_sp3_52         C14         C15         C17         C16     180.000    10.0     3
+JZB            sp2_sp3_38         C10         C16         C17         C15     120.000    10.0     6
+JZB            sp2_sp3_47          O6         C19         C18          O5     -60.000    10.0     6
+JZB             sp3_sp3_1          N2         C20         C21         C22     -60.000    10.0     3
+JZB            sp3_sp3_10         C20         C21         C22         C23      60.000    10.0     3
+JZB             sp2_sp2_1          C9          N1          O5         C18     180.000     5.0     2
+JZB             sp2_sp2_2          C7          C9          N1          O5     180.000     5.0     2
+JZB            sp3_sp3_19         C21         C22         C23         C24     -60.000    10.0     3
+JZB            sp3_sp3_28         C22         C23         C24          N2      60.000    10.0     3
+JZB             sp2_sp2_4          O2          C8          O1         C11     180.000     5.0     2
+JZB            sp3_sp3_37         C12         C11          O1          C8     180.000    10.0     3
+JZB       const_sp2_sp2_8          O3          C2          C3          CL       0.000     5.0     2
+JZB             sp2_sp2_6          C1          C2          O3         HO3     180.000     5.0     2
+JZB            sp2_sp2_10          O6         C19          N2         C20       0.000     5.0     2
+JZB             sp2_sp3_4         C19          N2         C20         C21     180.000    10.0     6
+JZB            sp2_sp3_10         C19          N2         C24         C23     180.000    10.0     6
+JZB              const_12          CL          C3          C4          C7       0.000    10.0     2
+JZB              const_16          C7          C4          C5          C8       0.000    10.0     2
+JZB            sp2_sp3_14          C3          C4          C7          C9     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JZB    plan-1          C1   0.020
+JZB    plan-1          C2   0.020
+JZB    plan-1          C3   0.020
+JZB    plan-1          C4   0.020
+JZB    plan-1          C5   0.020
+JZB    plan-1          C6   0.020
+JZB    plan-1          C7   0.020
+JZB    plan-1          C8   0.020
+JZB    plan-1          CL   0.020
+JZB    plan-1          H1   0.020
+JZB    plan-1          O3   0.020
+JZB    plan-1          O4   0.020
+JZB    plan-2         C19   0.020
+JZB    plan-2         C20   0.020
+JZB    plan-2         C24   0.020
+JZB    plan-2          N2   0.020
+JZB    plan-3          C5   0.020
+JZB    plan-3          C8   0.020
+JZB    plan-3          O1   0.020
+JZB    plan-3          O2   0.020
+JZB    plan-4         C10   0.020
+JZB    plan-4          C7   0.020
+JZB    plan-4          C9   0.020
+JZB    plan-4          N1   0.020
+JZB    plan-5         C10   0.020
+JZB    plan-5         C16   0.020
+JZB    plan-5          C9   0.020
+JZB    plan-5         H10   0.020
+JZB    plan-6         C12   0.020
+JZB    plan-6         C13   0.020
+JZB    plan-6         C14   0.020
+JZB    plan-6         H13   0.020
+JZB    plan-7         C13   0.020
+JZB    plan-7         C14   0.020
+JZB    plan-7         C15   0.020
+JZB    plan-7         H14   0.020
+JZB    plan-8         C10   0.020
+JZB    plan-8         C16   0.020
+JZB    plan-8         C17   0.020
+JZB    plan-8         H16   0.020
+JZB    plan-9         C18   0.020
+JZB    plan-9         C19   0.020
+JZB    plan-9          N2   0.020
+JZB    plan-9          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JZB           SMILES              ACDLabs 11.02                                                                                                                               O=C2OCCC=CCCC=C\C(=N\OCC(=O)N1CCCCC1)Cc3c2c(O)cc(O)c3Cl
+JZB SMILES_CANONICAL               CACTVS 3.352                                                                                                                            Oc1cc(O)c2C(=O)OCC\C=C\CC/C=C/C(Cc2c1Cl)=N/OCC(=O)N3CCCCC3
+JZB           SMILES               CACTVS 3.352                                                                                                                                 Oc1cc(O)c2C(=O)OCCC=CCCC=CC(Cc2c1Cl)=NOCC(=O)N3CCCCC3
+JZB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                         c1c(c2c(c(c1O)Cl)C/C(=N\OCC(=O)N3CCCCC3)/C=C/CC/C=C/CCOC2=O)O
+JZB           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                               c1c(c2c(c(c1O)Cl)CC(=NOCC(=O)N3CCCCC3)C=CCCC=CCCOC2=O)O
+JZB            InChI                InChI  1.03 InChI=1S/C24H29ClN2O6/c25-23-18-14-17(26-33-16-21(30)27-11-7-5-8-12-27)10-6-3-1-2-4-9-13-32-24(31)22(18)19(28)15-20(23)29/h2,4,6,10,15,28-29H,1,3,5,7-9,11-14,16H2/b4-2+,10-6+,26-17-
+JZB         InChIKey                InChI  1.03                                                                                                                                                           XNRNAVTUUGISQH-VCKBHWIVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JZB acedrg               243         "dictionary generator"                  
+JZB acedrg_database      11          "data source"                           
+JZB rdkit                2017.03.2   "Chemoinformatics tool"
+JZB refmac5              5.8.0238    "optimization tool"                     

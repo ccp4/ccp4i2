@@ -1,0 +1,504 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AFH     AFH      "ADENOSINE-5'-DIPHOSPHATE-2-DEOXY-2-FLUORO HEPTOSE"     NON-POLYMER     64     40     .     
+#
+data_comp_AFH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AFH     N9      N       NT      0       46.571      11.642      5.226       
+AFH     C8      C       CR15    0       46.636      10.322      4.831       
+AFH     N7      N       NRD5    0       47.030      9.523       5.795       
+AFH     C5      C       CR56    0       47.221      10.358      6.889       
+AFH     C6      C       CR6     0       47.635      10.114      8.217       
+AFH     N6      N       NH2     0       47.942      8.908       8.684       
+AFH     N1      N       NRD6    0       47.721      11.180      9.054       
+AFH     C2      C       CR16    0       47.410      12.397      8.577       
+AFH     N3      N       NRD6    0       47.011      12.742      7.352       
+AFH     C4      C       CR56    0       46.936      11.666      6.547       
+AFH     C1D     C       CH1     0       46.163      12.805      4.423       
+AFH     C2D     C       CH1     0       46.742      12.853      3.007       
+AFH     "O2'"   O       OH1     0       47.917      13.635      2.958       
+AFH     C3D     C       CH1     0       45.583      13.454      2.203       
+AFH     C4D     C       CH1     0       44.364      12.852      2.911       
+AFH     O4D     O       O2      0       44.758      12.764      4.303       
+AFH     O3D     O       OH1     0       45.556      14.877      2.232       
+AFH     C5D     C       CH2     0       43.928      11.486      2.440       
+AFH     O5D     O       O2      0       43.321      11.597      1.128       
+AFH     PA      P       P       0       42.562      10.321      0.518       
+AFH     O1A     O       O       0       42.193      10.597      -0.902      
+AFH     O2A     O       OP      -1      41.484      9.890       1.457       
+AFH     O3A     O       O2      0       43.734      9.226       0.542       
+AFH     PB      P       P       0       43.835      7.720       -0.001      
+AFH     O1B     O       O       0       43.058      7.606       -1.270      
+AFH     O2B     O       OP      -1      45.270      7.308       -0.023      
+AFH     O3B     O       O2      0       43.078      6.908       1.159       
+AFH     "C1'"   C       CH1     0       42.385      5.713       0.911       
+AFH     "C2'"   C       CH1     0       42.272      4.949       2.213       
+AFH     "C3'"   C       CH1     0       41.450      3.683       2.048       
+AFH     "C4'"   C       CH1     0       40.110      4.016       1.396       
+AFH     "C5'"   C       CH1     0       40.324      4.803       0.096       
+AFH     "C6'"   C       CH1     0       39.041      5.258       -0.591      
+AFH     "C7'"   C       CH2     0       39.287      6.011       -1.891      
+AFH     F       F       F       0       43.563      4.596       2.647       
+AFH     "O3'"   O       OH1     0       41.241      3.093       3.328       
+AFH     "O4'"   O       OH1     0       39.409      2.811       1.103       
+AFH     "O5'"   O       O2      0       41.099      5.990       0.381       
+AFH     "O6'"   O       OH1     0       38.273      6.079       0.294       
+AFH     "O7'"   O       OH1     0       40.038      5.226       -2.813      
+AFH     H8      H       H       0       46.435      10.017      3.963       
+AFH     HN61    H       H       0       47.676      8.671       9.486       
+AFH     HN62    H       H       0       48.408      8.355       8.188       
+AFH     H2      H       H       0       47.485      13.107      9.196       
+AFH     H1D     H       H       0       46.423      13.628      4.894       
+AFH     H2D     H       H       0       46.943      11.940      2.677       
+AFH     "HO2'"  H       H       0       47.726      14.450      3.107       
+AFH     H3D     H       H       0       45.617      13.134      1.264       
+AFH     H4D     H       H       0       43.602      13.464      2.831       
+AFH     HO3A    H       H       0       45.436      15.154      3.026       
+AFH     "H5'1"  H       H       0       43.277      11.107      3.081       
+AFH     "H5'2"  H       H       0       44.713      10.885      2.399       
+AFH     "H1'"   H       H       0       42.893      5.170       0.258       
+AFH     "H2'"   H       H       0       41.848      5.533       2.899       
+AFH     "H3'"   H       H       0       41.951      3.045       1.463       
+AFH     "H4'"   H       H       0       39.575      4.555       2.025       
+AFH     "H5'"   H       H       0       40.833      4.235       -0.533      
+AFH     "H6'"   H       H       0       38.501      4.451       -0.806      
+AFH     "H7'1"  H       H       0       39.771      6.849       -1.705      
+AFH     "H7'2"  H       H       0       38.421      6.247       -2.299      
+AFH     "HO3'"  H       H       0       41.967      2.782       3.615       
+AFH     "HO4'"  H       H       0       39.181      2.435       1.820       
+AFH     "HO6'"  H       H       0       38.724      6.769       0.498       
+AFH     "HO7'"  H       H       0       39.602      4.538       -3.039      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AFH          N9          C8      SINGLE       y     1.372  0.0200     1.372  0.0200
+AFH          N9          C4      SINGLE       y     1.372  0.0100     1.372  0.0100
+AFH          N9         C1D      SINGLE       n     1.458  0.0200     1.458  0.0200
+AFH          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+AFH          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+AFH          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+AFH          C5          C4      DOUBLE       y     1.381  0.0100     1.381  0.0100
+AFH          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+AFH          C6          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+AFH          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+AFH          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+AFH          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+AFH         C1D         C2D      SINGLE       n     1.525  0.0100     1.525  0.0100
+AFH         C1D         O4D      SINGLE       n     1.409  0.0100     1.409  0.0100
+AFH         C2D       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+AFH         C2D         C3D      SINGLE       n     1.531  0.0100     1.531  0.0100
+AFH         C3D         C4D      SINGLE       n     1.535  0.0100     1.535  0.0100
+AFH         C3D         O3D      SINGLE       n     1.422  0.0100     1.422  0.0100
+AFH         C4D         O4D      SINGLE       n     1.451  0.0100     1.451  0.0100
+AFH         C4D         C5D      SINGLE       n     1.509  0.0100     1.509  0.0100
+AFH         C5D         O5D      SINGLE       n     1.450  0.0166     1.450  0.0166
+AFH         O5D          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+AFH          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+AFH          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+AFH          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+AFH         O3A          PB      SINGLE       n     1.604  0.0133     1.604  0.0133
+AFH          PB         O1B      DOUBLE       n     1.493  0.0122     1.493  0.0122
+AFH          PB         O2B      SINGLE       n     1.493  0.0122     1.493  0.0122
+AFH          PB         O3B      SINGLE       n     1.604  0.0133     1.604  0.0133
+AFH         O3B       "C1'"      SINGLE       n     1.403  0.0143     1.403  0.0143
+AFH       "C1'"       "C2'"      SINGLE       n     1.513  0.0105     1.513  0.0105
+AFH       "C1'"       "O5'"      SINGLE       n     1.417  0.0109     1.417  0.0109
+AFH       "C2'"       "C3'"      SINGLE       n     1.516  0.0122     1.516  0.0122
+AFH       "C2'"           F      SINGLE       n     1.407  0.0100     1.407  0.0100
+AFH       "C3'"       "C4'"      SINGLE       n     1.524  0.0100     1.524  0.0100
+AFH       "C3'"       "O3'"      SINGLE       n     1.425  0.0100     1.425  0.0100
+AFH       "C4'"       "C5'"      SINGLE       n     1.524  0.0192     1.524  0.0192
+AFH       "C4'"       "O4'"      SINGLE       n     1.425  0.0167     1.425  0.0167
+AFH       "C5'"       "C6'"      SINGLE       n     1.521  0.0100     1.521  0.0100
+AFH       "C5'"       "O5'"      SINGLE       n     1.439  0.0172     1.439  0.0172
+AFH       "C6'"       "C7'"      SINGLE       n     1.520  0.0100     1.520  0.0100
+AFH       "C6'"       "O6'"      SINGLE       n     1.430  0.0100     1.430  0.0100
+AFH       "C7'"       "O7'"      SINGLE       n     1.424  0.0100     1.424  0.0100
+AFH          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+AFH          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+AFH          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+AFH          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+AFH         C1D         H1D      SINGLE       n     1.089  0.0100     0.984  0.0200
+AFH         C2D         H2D      SINGLE       n     1.089  0.0100     0.994  0.0200
+AFH       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+AFH         C3D         H3D      SINGLE       n     1.089  0.0100     0.992  0.0200
+AFH         C4D         H4D      SINGLE       n     1.089  0.0100     0.981  0.0200
+AFH         O3D        HO3A      SINGLE       n     0.970  0.0120     0.849  0.0200
+AFH         C5D      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+AFH         C5D      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+AFH       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.989  0.0153
+AFH       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.996  0.0142
+AFH       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     1.000  0.0100
+AFH       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.986  0.0150
+AFH       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.989  0.0172
+AFH       "C6'"       "H6'"      SINGLE       n     1.089  0.0100     0.995  0.0157
+AFH       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.986  0.0100
+AFH       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.986  0.0100
+AFH       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+AFH       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+AFH       "O6'"      "HO6'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+AFH       "O7'"      "HO7'"      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AFH          C8          N9          C4     107.594    1.50
+AFH          C8          N9         C1D     126.078    2.46
+AFH          C4          N9         C1D     125.158    1.54
+AFH          N9          C8          N7     112.130    1.94
+AFH          N9          C8          H8     124.701    2.19
+AFH          N7          C8          H8     123.170    1.50
+AFH          C8          N7          C5     103.927    1.50
+AFH          N7          C5          C6     132.145    1.50
+AFH          N7          C5          C4     110.588    1.50
+AFH          C6          C5          C4     117.267    1.50
+AFH          C5          C6          N6     123.792    1.50
+AFH          C5          C6          N1     117.409    1.50
+AFH          N6          C6          N1     118.799    1.50
+AFH          C6          N6        HN61     119.723    1.50
+AFH          C6          N6        HN62     119.723    1.50
+AFH        HN61          N6        HN62     120.554    1.88
+AFH          C6          N1          C2     118.521    1.50
+AFH          N1          C2          N3     129.332    1.50
+AFH          N1          C2          H2     115.313    1.50
+AFH          N3          C2          H2     115.355    1.50
+AFH          C2          N3          C4     110.982    1.50
+AFH          N9          C4          C5     107.666    1.69
+AFH          N9          C4          N3     125.845    1.50
+AFH          C5          C4          N3     126.489    1.50
+AFH          N9         C1D         C2D     113.752    2.20
+AFH          N9         C1D         O4D     108.167    1.51
+AFH          N9         C1D         H1D     109.246    1.50
+AFH         C2D         C1D         O4D     106.047    1.50
+AFH         C2D         C1D         H1D     109.015    1.50
+AFH         O4D         C1D         H1D     109.807    1.50
+AFH         C1D         C2D       "O2'"     111.715    2.69
+AFH         C1D         C2D         C3D     101.239    1.50
+AFH         C1D         C2D         H2D     110.636    1.70
+AFH       "O2'"         C2D         C3D     112.782    2.45
+AFH       "O2'"         C2D         H2D     110.448    1.97
+AFH         C3D         C2D         H2D     110.596    1.51
+AFH         C2D       "O2'"      "HO2'"     109.103    2.13
+AFH         C2D         C3D         C4D     102.602    1.50
+AFH         C2D         C3D         O3D     111.581    2.83
+AFH         C2D         C3D         H3D     110.504    1.75
+AFH         C4D         C3D         O3D     111.281    2.46
+AFH         C4D         C3D         H3D     110.452    2.54
+AFH         O3D         C3D         H3D     110.380    1.67
+AFH         C3D         C4D         O4D     105.388    1.50
+AFH         C3D         C4D         C5D     116.008    1.52
+AFH         C3D         C4D         H4D     109.363    1.86
+AFH         O4D         C4D         C5D     109.123    1.50
+AFH         O4D         C4D         H4D     108.947    1.50
+AFH         C5D         C4D         H4D     108.268    1.50
+AFH         C1D         O4D         C4D     109.903    1.50
+AFH         C3D         O3D        HO3A     108.744    3.00
+AFH         C4D         C5D         O5D     109.342    1.50
+AFH         C4D         C5D      "H5'1"     109.624    1.50
+AFH         C4D         C5D      "H5'2"     109.624    1.50
+AFH         O5D         C5D      "H5'1"     109.845    1.50
+AFH         O5D         C5D      "H5'2"     109.845    1.50
+AFH      "H5'1"         C5D      "H5'2"     108.472    1.50
+AFH         C5D         O5D          PA     118.553    2.41
+AFH         O5D          PA         O1A     109.410    1.50
+AFH         O5D          PA         O2A     109.410    1.50
+AFH         O5D          PA         O3A     101.065    1.97
+AFH         O1A          PA         O2A     118.411    2.35
+AFH         O1A          PA         O3A     108.816    2.14
+AFH         O2A          PA         O3A     108.816    2.14
+AFH          PA         O3A          PB     132.542    3.00
+AFH         O3A          PB         O1B     108.570    2.41
+AFH         O3A          PB         O2B     108.570    2.41
+AFH         O3A          PB         O3B     101.077    2.30
+AFH         O1B          PB         O2B     116.964    2.85
+AFH         O1B          PB         O3B     108.530    2.45
+AFH         O2B          PB         O3B     108.530    2.45
+AFH          PB         O3B       "C1'"     122.306    2.63
+AFH         O3B       "C1'"       "C2'"     108.151    1.50
+AFH         O3B       "C1'"       "O5'"     110.394    2.23
+AFH         O3B       "C1'"       "H1'"     109.322    1.50
+AFH       "C2'"       "C1'"       "O5'"     110.957    1.50
+AFH       "C2'"       "C1'"       "H1'"     109.463    1.54
+AFH       "O5'"       "C1'"       "H1'"     109.272    1.61
+AFH       "C1'"       "C2'"       "C3'"     111.702    1.88
+AFH       "C1'"       "C2'"           F     108.720    1.50
+AFH       "C1'"       "C2'"       "H2'"     109.061    1.50
+AFH       "C3'"       "C2'"           F     108.540    1.50
+AFH       "C3'"       "C2'"       "H2'"     109.320    1.50
+AFH           F       "C2'"       "H2'"     108.822    1.50
+AFH       "C2'"       "C3'"       "C4'"     109.179    1.50
+AFH       "C2'"       "C3'"       "O3'"     109.025    1.70
+AFH       "C2'"       "C3'"       "H3'"     108.821    1.50
+AFH       "C4'"       "C3'"       "O3'"     110.081    2.02
+AFH       "C4'"       "C3'"       "H3'"     109.166    1.50
+AFH       "O3'"       "C3'"       "H3'"     109.481    1.50
+AFH       "C3'"       "C4'"       "C5'"     110.072    1.92
+AFH       "C3'"       "C4'"       "O4'"     110.081    2.02
+AFH       "C3'"       "C4'"       "H4'"     109.166    1.50
+AFH       "C5'"       "C4'"       "O4'"     109.153    2.02
+AFH       "C5'"       "C4'"       "H4'"     109.550    1.50
+AFH       "O4'"       "C4'"       "H4'"     109.194    1.50
+AFH       "C4'"       "C5'"       "C6'"     114.498    1.50
+AFH       "C4'"       "C5'"       "O5'"     109.378    1.54
+AFH       "C4'"       "C5'"       "H5'"     108.898    1.50
+AFH       "C6'"       "C5'"       "O5'"     106.618    1.87
+AFH       "C6'"       "C5'"       "H5'"     108.632    1.50
+AFH       "O5'"       "C5'"       "H5'"     108.995    1.50
+AFH       "C5'"       "C6'"       "C7'"     112.146    1.54
+AFH       "C5'"       "C6'"       "O6'"     109.970    1.76
+AFH       "C5'"       "C6'"       "H6'"     108.382    1.50
+AFH       "C7'"       "C6'"       "O6'"     109.862    1.84
+AFH       "C7'"       "C6'"       "H6'"     108.098    1.50
+AFH       "O6'"       "C6'"       "H6'"     108.207    1.50
+AFH       "C6'"       "C7'"       "O7'"     110.825    1.74
+AFH       "C6'"       "C7'"      "H7'1"     109.580    1.50
+AFH       "C6'"       "C7'"      "H7'2"     109.580    1.50
+AFH       "O7'"       "C7'"      "H7'1"     109.469    1.50
+AFH       "O7'"       "C7'"      "H7'2"     109.469    1.50
+AFH      "H7'1"       "C7'"      "H7'2"     108.056    1.50
+AFH       "C3'"       "O3'"      "HO3'"     109.454    1.50
+AFH       "C4'"       "O4'"      "HO4'"     109.564    3.00
+AFH       "C1'"       "O5'"       "C5'"     113.152    1.70
+AFH       "C6'"       "O6'"      "HO6'"     108.522    3.00
+AFH       "C7'"       "O7'"      "HO7'"     110.424    1.97
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AFH                   nu0       "C5'"       "O5'"       "C1'"       "C2'"     -65.978    10.0     3
+AFH                   nu1       "O5'"       "C1'"       "C2'"       "C3'"      58.413    10.0     3
+AFH                   nu2       "C1'"       "C2'"       "C3'"       "C4'"     -51.403    10.0     3
+AFH                   nu3       "C2'"       "C3'"       "C4'"       "C5'"      50.401    10.0     3
+AFH                   nu4       "C3'"       "C4'"       "C5'"       "O5'"     -56.965    10.0     3
+AFH                   nu5       "C4'"       "C5'"       "O5'"       "C1'"      65.447    10.0     3
+AFH            sp3_sp3_40         O4D         C1D         C2D         C3D      60.000    10.0     3
+AFH            sp3_sp3_41         O4D         C1D         C2D       "O2'"     180.000    10.0     3
+AFH            sp3_sp3_42         O4D         C1D         C2D         H2D     -60.000    10.0     3
+AFH            sp3_sp3_43          N9         C1D         C2D         C3D     -60.000    10.0     3
+AFH            sp3_sp3_44          N9         C1D         C2D       "O2'"      60.000    10.0     3
+AFH            sp3_sp3_45          N9         C1D         C2D         H2D     180.000    10.0     3
+AFH            sp3_sp3_46         H1D         C1D         C2D         C3D     180.000    10.0     3
+AFH            sp3_sp3_47         H1D         C1D         C2D       "O2'"     -60.000    10.0     3
+AFH            sp3_sp3_48         H1D         C1D         C2D         H2D      60.000    10.0     3
+AFH            sp3_sp3_49         C1D         C2D         C3D         C4D     -60.000    10.0     3
+AFH            sp3_sp3_50         C1D         C2D         C3D         O3D      60.000    10.0     3
+AFH            sp3_sp3_51         C1D         C2D         C3D         H3D     180.000    10.0     3
+AFH            sp3_sp3_52       "O2'"         C2D         C3D         C4D     180.000    10.0     3
+AFH            sp3_sp3_53       "O2'"         C2D         C3D         O3D     -60.000    10.0     3
+AFH            sp3_sp3_54       "O2'"         C2D         C3D         H3D      60.000    10.0     3
+AFH            sp3_sp3_55         H2D         C2D         C3D         C4D      60.000    10.0     3
+AFH            sp3_sp3_56         H2D         C2D         C3D         O3D     180.000    10.0     3
+AFH            sp3_sp3_57         H2D         C2D         C3D         H3D     -60.000    10.0     3
+AFH            sp3_sp3_58         C2D         C3D         C4D         O4D      60.000    10.0     3
+AFH            sp3_sp3_59         C2D         C3D         C4D         C5D     180.000    10.0     3
+AFH            sp3_sp3_60         C2D         C3D         C4D         H4D     -60.000    10.0     3
+AFH            sp3_sp3_61         O3D         C3D         C4D         O4D     -60.000    10.0     3
+AFH            sp3_sp3_62         O3D         C3D         C4D         C5D      60.000    10.0     3
+AFH            sp3_sp3_63         O3D         C3D         C4D         H4D     180.000    10.0     3
+AFH            sp3_sp3_64         H3D         C3D         C4D         O4D     180.000    10.0     3
+AFH            sp3_sp3_65         H3D         C3D         C4D         C5D     -60.000    10.0     3
+AFH            sp3_sp3_66         H3D         C3D         C4D         H4D      60.000    10.0     3
+AFH            sp3_sp3_67         C3D         C4D         O4D         C1D     -60.000    10.0     3
+AFH            sp3_sp3_68         C5D         C4D         O4D         C1D     180.000    10.0     3
+AFH            sp3_sp3_69         H4D         C4D         O4D         C1D      60.000    10.0     3
+AFH       const_sp2_sp2_1          C4          C5          C6          N1       0.000     5.0     2
+AFH       const_sp2_sp2_2          C4          C5          C6          N6     180.000     5.0     2
+AFH       const_sp2_sp2_3          N7          C5          C6          N1     180.000     5.0     2
+AFH       const_sp2_sp2_4          N7          C5          C6          N6       0.000     5.0     2
+AFH       const_sp2_sp2_5          C5          C6          N1          C2       0.000     5.0     2
+AFH       const_sp2_sp2_6          N6          C6          N1          C2     180.000     5.0     2
+AFH       const_sp2_sp2_7          N3          C2          N1          C6       0.000     5.0     2
+AFH       const_sp2_sp2_8          H2          C2          N1          C6     180.000     5.0     2
+AFH       const_sp2_sp2_9          N1          C2          N3          C4       0.000     5.0     2
+AFH              const_10          H2          C2          N3          C4     180.000    10.0     2
+AFH              const_11          C5          C4          N3          C2       0.000    10.0     2
+AFH              const_12          N9          C4          N3          C2     180.000    10.0     2
+AFH              const_13          N7          C8          N9          C4       0.000    10.0     2
+AFH              const_14          N7          C8          N9         C1D     180.000    10.0     2
+AFH              const_15          H8          C8          N9          C4     180.000    10.0     2
+AFH              const_16          H8          C8          N9         C1D       0.000    10.0     2
+AFH              const_17          N9          C8          N7          C5       0.000    10.0     2
+AFH              const_18          H8          C8          N7          C5     180.000    10.0     2
+AFH              const_19          C4          C5          N7          C8       0.000    10.0     2
+AFH              const_20          C6          C5          N7          C8     180.000    10.0     2
+AFH              const_21          N9          C4          C5          N7       0.000    10.0     2
+AFH              const_22          N9          C4          C5          C6     180.000    10.0     2
+AFH              const_23          N3          C4          C5          N7     180.000    10.0     2
+AFH              const_24          N3          C4          C5          C6       0.000    10.0     2
+AFH              const_25          C5          C4          N9          C8       0.000    10.0     2
+AFH              const_26          C5          C4          N9         C1D     180.000    10.0     2
+AFH              const_27          N3          C4          N9          C8     180.000    10.0     2
+AFH              const_28          N3          C4          N9         C1D       0.000    10.0     2
+AFH             sp2_sp3_1          C8          N9         C1D         C2D     150.000    10.0     6
+AFH             sp2_sp3_2          C8          N9         C1D         O4D     -90.000    10.0     6
+AFH             sp2_sp3_3          C8          N9         C1D         H1D      30.000    10.0     6
+AFH             sp2_sp3_4          C4          N9         C1D         C2D     -30.000    10.0     6
+AFH             sp2_sp3_5          C4          N9         C1D         O4D      90.000    10.0     6
+AFH             sp2_sp3_6          C4          N9         C1D         H1D    -150.000    10.0     6
+AFH             sp2_sp2_1          C5          C6          N6        HN61     180.000     5.0     2
+AFH             sp2_sp2_2          C5          C6          N6        HN62       0.000     5.0     2
+AFH             sp2_sp2_3          N1          C6          N6        HN61       0.000     5.0     2
+AFH             sp2_sp2_4          N1          C6          N6        HN62     180.000     5.0     2
+AFH            sp3_sp3_70         C2D         C1D         O4D         C4D     180.000    10.0     3
+AFH            sp3_sp3_71          N9         C1D         O4D         C4D      60.000    10.0     3
+AFH            sp3_sp3_72         H1D         C1D         O4D         C4D     -60.000    10.0     3
+AFH            sp3_sp3_73         C1D         C2D       "O2'"      "HO2'"     180.000    10.0     3
+AFH            sp3_sp3_74         C3D         C2D       "O2'"      "HO2'"      60.000    10.0     3
+AFH            sp3_sp3_75         H2D         C2D       "O2'"      "HO2'"     -60.000    10.0     3
+AFH            sp3_sp3_76         C2D         C3D         O3D        HO3A     180.000    10.0     3
+AFH            sp3_sp3_77         C4D         C3D         O3D        HO3A      60.000    10.0     3
+AFH            sp3_sp3_78         H3D         C3D         O3D        HO3A     -60.000    10.0     3
+AFH            sp3_sp3_79         C3D         C4D         C5D         O5D     180.000    10.0     3
+AFH            sp3_sp3_80         C3D         C4D         C5D      "H5'1"     -60.000    10.0     3
+AFH            sp3_sp3_81         C3D         C4D         C5D      "H5'2"      60.000    10.0     3
+AFH            sp3_sp3_82         O4D         C4D         C5D         O5D      60.000    10.0     3
+AFH            sp3_sp3_83         O4D         C4D         C5D      "H5'1"     180.000    10.0     3
+AFH            sp3_sp3_84         O4D         C4D         C5D      "H5'2"     -60.000    10.0     3
+AFH            sp3_sp3_85         H4D         C4D         C5D         O5D     -60.000    10.0     3
+AFH            sp3_sp3_86         H4D         C4D         C5D      "H5'1"      60.000    10.0     3
+AFH            sp3_sp3_87         H4D         C4D         C5D      "H5'2"     180.000    10.0     3
+AFH            sp3_sp3_88         C4D         C5D         O5D          PA     180.000    10.0     3
+AFH            sp3_sp3_89      "H5'1"         C5D         O5D          PA      60.000    10.0     3
+AFH            sp3_sp3_90      "H5'2"         C5D         O5D          PA     -60.000    10.0     3
+AFH            sp3_sp3_91         C5D         O5D          PA         O3A     180.000    10.0     3
+AFH            sp3_sp3_92         C5D         O5D          PA         O2A     -60.000    10.0     3
+AFH            sp3_sp3_93         C5D         O5D          PA         O1A      60.000    10.0     3
+AFH            sp3_sp3_94          PB         O3A          PA         O2A     180.000    10.0     3
+AFH            sp3_sp3_95          PB         O3A          PA         O5D     -60.000    10.0     3
+AFH            sp3_sp3_96          PB         O3A          PA         O1A      60.000    10.0     3
+AFH            sp3_sp3_97          PA         O3A          PB         O2B     180.000    10.0     3
+AFH            sp3_sp3_98          PA         O3A          PB         O3B     -60.000    10.0     3
+AFH            sp3_sp3_99          PA         O3A          PB         O1B      60.000    10.0     3
+AFH           sp3_sp3_100       "C1'"         O3B          PB         O3A     180.000    10.0     3
+AFH           sp3_sp3_101       "C1'"         O3B          PB         O2B     -60.000    10.0     3
+AFH           sp3_sp3_102       "C1'"         O3B          PB         O1B      60.000    10.0     3
+AFH           sp3_sp3_103       "C2'"       "C1'"         O3B          PB     180.000    10.0     3
+AFH           sp3_sp3_104       "O5'"       "C1'"         O3B          PB      60.000    10.0     3
+AFH           sp3_sp3_105       "H1'"       "C1'"         O3B          PB     -60.000    10.0     3
+AFH           sp3_sp3_109       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+AFH           sp3_sp3_110       "C4'"       "C3'"       "O3'"      "HO3'"      60.000    10.0     3
+AFH           sp3_sp3_111       "H3'"       "C3'"       "O3'"      "HO3'"     -60.000    10.0     3
+AFH           sp3_sp3_112       "C3'"       "C4'"       "O4'"      "HO4'"     180.000    10.0     3
+AFH           sp3_sp3_113       "C5'"       "C4'"       "O4'"      "HO4'"      60.000    10.0     3
+AFH           sp3_sp3_114       "H4'"       "C4'"       "O4'"      "HO4'"     -60.000    10.0     3
+AFH           sp3_sp3_115       "C4'"       "C5'"       "C6'"       "C7'"     180.000    10.0     3
+AFH           sp3_sp3_116       "C4'"       "C5'"       "C6'"       "O6'"     -60.000    10.0     3
+AFH           sp3_sp3_117       "C4'"       "C5'"       "C6'"       "H6'"      60.000    10.0     3
+AFH           sp3_sp3_118       "O5'"       "C5'"       "C6'"       "C7'"      60.000    10.0     3
+AFH           sp3_sp3_119       "O5'"       "C5'"       "C6'"       "O6'"     180.000    10.0     3
+AFH           sp3_sp3_120       "O5'"       "C5'"       "C6'"       "H6'"     -60.000    10.0     3
+AFH           sp3_sp3_121       "H5'"       "C5'"       "C6'"       "C7'"     -60.000    10.0     3
+AFH           sp3_sp3_122       "H5'"       "C5'"       "C6'"       "O6'"      60.000    10.0     3
+AFH           sp3_sp3_123       "H5'"       "C5'"       "C6'"       "H6'"     180.000    10.0     3
+AFH           sp3_sp3_124       "C5'"       "C6'"       "C7'"       "O7'"     180.000    10.0     3
+AFH           sp3_sp3_125       "C5'"       "C6'"       "C7'"      "H7'1"     -60.000    10.0     3
+AFH           sp3_sp3_126       "C5'"       "C6'"       "C7'"      "H7'2"      60.000    10.0     3
+AFH           sp3_sp3_127       "O6'"       "C6'"       "C7'"       "O7'"      60.000    10.0     3
+AFH           sp3_sp3_128       "O6'"       "C6'"       "C7'"      "H7'1"     180.000    10.0     3
+AFH           sp3_sp3_129       "O6'"       "C6'"       "C7'"      "H7'2"     -60.000    10.0     3
+AFH           sp3_sp3_130       "H6'"       "C6'"       "C7'"       "O7'"     -60.000    10.0     3
+AFH           sp3_sp3_131       "H6'"       "C6'"       "C7'"      "H7'1"      60.000    10.0     3
+AFH           sp3_sp3_132       "H6'"       "C6'"       "C7'"      "H7'2"     180.000    10.0     3
+AFH           sp3_sp3_133       "C5'"       "C6'"       "O6'"      "HO6'"     180.000    10.0     3
+AFH           sp3_sp3_134       "C7'"       "C6'"       "O6'"      "HO6'"      60.000    10.0     3
+AFH           sp3_sp3_135       "H6'"       "C6'"       "O6'"      "HO6'"     -60.000    10.0     3
+AFH           sp3_sp3_136       "C6'"       "C7'"       "O7'"      "HO7'"     180.000    10.0     3
+AFH           sp3_sp3_137      "H7'1"       "C7'"       "O7'"      "HO7'"      60.000    10.0     3
+AFH           sp3_sp3_138      "H7'2"       "C7'"       "O7'"      "HO7'"     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AFH    chir_1    C1D    O4D    N9    C2D    negative
+AFH    chir_2    C2D    "O2'"    C1D    C3D    negative
+AFH    chir_3    C3D    O3D    C4D    C2D    positive
+AFH    chir_4    C4D    O4D    C3D    C5D    negative
+AFH    chir_5    PA    O3A    O5D    O2A    both
+AFH    chir_6    PB    O3A    O3B    O2B    both
+AFH    chir_7    "C1'"    O3B    "O5'"    "C2'"    positive
+AFH    chir_8    "C2'"    F    "C1'"    "C3'"    negative
+AFH    chir_9    "C3'"    "O3'"    "C2'"    "C4'"    positive
+AFH    chir_10    "C4'"    "O4'"    "C5'"    "C3'"    positive
+AFH    chir_11    "C5'"    "O5'"    "C4'"    "C6'"    negative
+AFH    chir_12    "C6'"    "O6'"    "C5'"    "C7'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AFH    plan-1         C1D   0.020
+AFH    plan-1          C2   0.020
+AFH    plan-1          C4   0.020
+AFH    plan-1          C5   0.020
+AFH    plan-1          C6   0.020
+AFH    plan-1          C8   0.020
+AFH    plan-1          H2   0.020
+AFH    plan-1          H8   0.020
+AFH    plan-1          N1   0.020
+AFH    plan-1          N3   0.020
+AFH    plan-1          N6   0.020
+AFH    plan-1          N7   0.020
+AFH    plan-1          N9   0.020
+AFH    plan-2          C6   0.020
+AFH    plan-2        HN61   0.020
+AFH    plan-2        HN62   0.020
+AFH    plan-2          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AFH           SMILES              ACDLabs 10.04                                                                                                                                                                                 O=P(OC1OC(C(O)C(O)C1F)C(O)CO)(O)OP(=O)(O)OCC4OC(n2c3ncnc(N)c3nc2)C(O)C4O
+AFH SMILES_CANONICAL               CACTVS 3.341                                                                                                                             Nc1ncnc2n(cnc12)[C@@H]3O[C@H](CO[P@@](O)(=O)O[P@](O)(=O)O[C@@H]4O[C@H]([C@@H](O)CO)[C@@H](O)[C@H](O)[C@H]4F)[C@@H](O)[C@H]3O
+AFH           SMILES               CACTVS 3.341                                                                                                                                               Nc1ncnc2n(cnc12)[CH]3O[CH](CO[P](O)(=O)O[P](O)(=O)O[CH]4O[CH]([CH](O)CO)[CH](O)[CH](O)[CH]4F)[CH](O)[CH]3O
+AFH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                      c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO[P@](=O)(O)O[P@@](=O)(O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)[C@H](CO)O)O)O)F)O)O)N
+AFH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                         c1nc(c2c(n1)n(cn2)C3C(C(C(O3)COP(=O)(O)OP(=O)(O)OC4C(C(C(C(O4)C(CO)O)O)O)F)O)O)N
+AFH            InChI                InChI  1.03 InChI=1S/C17H26FN5O15P2/c18-7-10(27)11(28)13(5(25)1-24)36-17(7)37-40(32,33)38-39(30,31)34-2-6-9(26)12(29)16(35-6)23-4-22-8-14(19)20-3-21-15(8)23/h3-7,9-13,16-17,24-29H,1-2H2,(H,30,31)(H,32,33)(H2,19,20,21)/t5-,6+,7+,9+,10+,11-,12+,13+,16+,17-/m0/s1
+AFH         InChIKey                InChI  1.03                                                                                                                                                                                                                              SUPCMUQXGKOKIM-FJBXLJLUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AFH acedrg               243         "dictionary generator"                  
+AFH acedrg_database      11          "data source"                           
+AFH rdkit                2017.03.2   "Chemoinformatics tool"
+AFH refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,350 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TQT     TQT      6-(OCTAHYDRO-1H-INDOL-1-YLMETHYL)DECAHYDROQUINAZOLINE-2,4-DIAMINE     NON-POLYMER     56     22     .     
+#
+data_comp_TQT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TQT     "C2'"   C       CH1     0       27.304      12.533      -4.769      
+TQT     "C4'"   C       CH1     0       27.004      13.270      -2.426      
+TQT     C4B     C       CH1     0       28.526      13.459      -2.223      
+TQT     "C6'"   C       CH1     0       30.324      15.048      -1.301      
+TQT     "C7'"   C       CH2     0       31.239      14.203      -2.187      
+TQT     C8B     C       CH1     0       29.346      13.151      -3.495      
+TQT     "C9'"   C       CH2     0       30.561      14.769      0.173       
+TQT     "C'0"   C       CH2     0       32.369      16.414      0.701       
+TQT     "C'1"   C       CH1     0       32.330      14.302      1.890       
+TQT     "C'2"   C       CH2     0       32.663      12.821      1.777       
+TQT     "C'3"   C       CH2     0       33.946      12.633      0.967       
+TQT     "C'4"   C       CH2     0       35.130      13.335      1.611       
+TQT     "C'5"   C       CH2     0       34.870      14.822      1.743       
+TQT     "C'6"   C       CH1     0       33.514      15.153      2.370       
+TQT     "C'7"   C       CH2     0       33.030      16.566      2.065       
+TQT     "N1'"   N       NT1     0       28.522      13.362      -4.698      
+TQT     "N2'"   N       NT2     0       27.593      11.281      -5.472      
+TQT     "N3'"   N       NT1     0       26.720      12.245      -3.445      
+TQT     "N4'"   N       NT3     1       26.277      12.908      -1.172      
+TQT     "C5'"   C       CH2     0       28.854      14.853      -1.686      
+TQT     "C8'"   C       CH2     0       30.644      13.955      -3.569      
+TQT     "N'0"   N       NT      0       31.946      14.983      0.642       
+TQT     "H2'"   H       H       0       26.631      13.026      -5.297      
+TQT     "H4'"   H       H       0       26.642      14.133      -2.746      
+TQT     H4B     H       H       0       28.810      12.819      -1.529      
+TQT     "H6'"   H       H       0       30.548      15.996      -1.462      
+TQT     "H7'1"  H       H       0       31.405      13.343      -1.751      
+TQT     "H7'2"  H       H       0       32.099      14.659      -2.285      
+TQT     "H8'"   H       H       0       29.591      12.199      -3.449      
+TQT     "H9'1"  H       H       0       30.314      13.839      0.356       
+TQT     "H9'2"  H       H       0       29.965      15.338      0.701       
+TQT     "H'01"  H       H       0       31.612      16.997      0.611       
+TQT     "H'02"  H       H       0       32.985      16.607      -0.010      
+TQT     "H'1"   H       H       0       31.595      14.404      2.521       
+TQT     "H'21"  H       H       0       32.779      12.447      2.670       
+TQT     "H'22"  H       H       0       31.926      12.357      1.338       
+TQT     "H'31"  H       H       0       33.813      12.985      0.070       
+TQT     "H'32"  H       H       0       34.139      11.682      0.890       
+TQT     "H'41"  H       H       0       35.934      13.189      1.064       
+TQT     "H'42"  H       H       0       35.293      12.950      2.501       
+TQT     "H'51"  H       H       0       34.918      15.239      0.850       
+TQT     "H'52"  H       H       0       35.578      15.226      2.298       
+TQT     "H'6"   H       H       0       33.580      15.048      3.356       
+TQT     "H'71"  H       H       0       33.777      17.198      2.029       
+TQT     "H'72"  H       H       0       32.387      16.875      2.738       
+TQT     "H1'"   H       H       0       28.300      14.214      -4.777      
+TQT     "H2'1"  H       H       0       27.597      11.380      -6.354      
+TQT     "H2'2"  H       H       0       28.365      10.921      -5.221      
+TQT     "H3'"   H       H       0       25.842      12.156      -3.536      
+TQT     "H4'1"  H       H       0       26.430      12.034      -0.980      
+TQT     "H4'2"  H       H       0       25.389      13.045      -1.293      
+TQT     H1      H       H       0       26.578      13.427      -0.492      
+TQT     "H5'1"  H       H       0       28.294      15.028      -0.898      
+TQT     "H5'2"  H       H       0       28.618      15.520      -2.369      
+TQT     "H8'1"  H       H       0       31.294      13.469      -4.113      
+TQT     "H8'2"  H       H       0       30.474      14.813      -4.006      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TQT       "C2'"       "N1'"      SINGLE       n     1.472  0.0106     1.472  0.0106
+TQT       "C2'"       "N2'"      SINGLE       n     1.463  0.0200     1.463  0.0200
+TQT       "C2'"       "N3'"      SINGLE       n     1.472  0.0106     1.472  0.0106
+TQT       "C4'"         C4B      SINGLE       n     1.543  0.0113     1.543  0.0113
+TQT       "C4'"       "N3'"      SINGLE       n     1.472  0.0100     1.472  0.0100
+TQT       "C4'"       "N4'"      SINGLE       n     1.494  0.0104     1.494  0.0104
+TQT         C4B         C8B      SINGLE       n     1.534  0.0133     1.534  0.0133
+TQT         C4B       "C5'"      SINGLE       n     1.528  0.0100     1.528  0.0100
+TQT       "C6'"       "C7'"      SINGLE       n     1.524  0.0100     1.524  0.0100
+TQT       "C6'"       "C9'"      SINGLE       n     1.517  0.0106     1.517  0.0106
+TQT       "C6'"       "C5'"      SINGLE       n     1.528  0.0100     1.528  0.0100
+TQT       "C7'"       "C8'"      SINGLE       n     1.523  0.0100     1.523  0.0100
+TQT         C8B       "N1'"      SINGLE       n     1.468  0.0153     1.468  0.0153
+TQT         C8B       "C8'"      SINGLE       n     1.526  0.0100     1.526  0.0100
+TQT       "C9'"       "N'0"      SINGLE       n     1.469  0.0192     1.469  0.0192
+TQT       "C'0"       "C'7"      SINGLE       n     1.523  0.0114     1.523  0.0114
+TQT       "C'0"       "N'0"      SINGLE       n     1.485  0.0160     1.485  0.0160
+TQT       "C'1"       "C'2"      SINGLE       n     1.519  0.0100     1.519  0.0100
+TQT       "C'1"       "C'6"      SINGLE       n     1.529  0.0143     1.529  0.0143
+TQT       "C'1"       "N'0"      SINGLE       n     1.472  0.0101     1.472  0.0101
+TQT       "C'2"       "C'3"      SINGLE       n     1.528  0.0134     1.528  0.0134
+TQT       "C'3"       "C'4"      SINGLE       n     1.521  0.0112     1.521  0.0112
+TQT       "C'4"       "C'5"      SINGLE       n     1.515  0.0100     1.515  0.0100
+TQT       "C'5"       "C'6"      SINGLE       n     1.527  0.0100     1.527  0.0100
+TQT       "C'6"       "C'7"      SINGLE       n     1.526  0.0100     1.526  0.0100
+TQT       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.988  0.0159
+TQT       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.989  0.0126
+TQT         C4B         H4B      SINGLE       n     1.089  0.0100     0.985  0.0177
+TQT       "C6'"       "H6'"      SINGLE       n     1.089  0.0100     0.988  0.0159
+TQT       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.978  0.0105
+TQT       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.978  0.0105
+TQT         C8B       "H8'"      SINGLE       n     1.089  0.0100     0.984  0.0154
+TQT       "C9'"      "H9'1"      SINGLE       n     1.089  0.0100     0.979  0.0150
+TQT       "C9'"      "H9'2"      SINGLE       n     1.089  0.0100     0.979  0.0150
+TQT       "C'0"      "H'01"      SINGLE       n     1.089  0.0100     0.960  0.0100
+TQT       "C'0"      "H'02"      SINGLE       n     1.089  0.0100     0.960  0.0100
+TQT       "C'1"       "H'1"      SINGLE       n     1.089  0.0100     0.975  0.0177
+TQT       "C'2"      "H'21"      SINGLE       n     1.089  0.0100     0.975  0.0100
+TQT       "C'2"      "H'22"      SINGLE       n     1.089  0.0100     0.975  0.0100
+TQT       "C'3"      "H'31"      SINGLE       n     1.089  0.0100     0.973  0.0143
+TQT       "C'3"      "H'32"      SINGLE       n     1.089  0.0100     0.973  0.0143
+TQT       "C'4"      "H'41"      SINGLE       n     1.089  0.0100     0.983  0.0200
+TQT       "C'4"      "H'42"      SINGLE       n     1.089  0.0100     0.983  0.0200
+TQT       "C'5"      "H'51"      SINGLE       n     1.089  0.0100     0.986  0.0100
+TQT       "C'5"      "H'52"      SINGLE       n     1.089  0.0100     0.986  0.0100
+TQT       "C'6"       "H'6"      SINGLE       n     1.089  0.0100     0.994  0.0200
+TQT       "C'7"      "H'71"      SINGLE       n     1.089  0.0100     0.980  0.0187
+TQT       "C'7"      "H'72"      SINGLE       n     1.089  0.0100     0.980  0.0187
+TQT       "N1'"       "H1'"      SINGLE       n     1.036  0.0160     0.883  0.0200
+TQT       "N2'"      "H2'1"      SINGLE       n     1.036  0.0160     0.888  0.0200
+TQT       "N2'"      "H2'2"      SINGLE       n     1.036  0.0160     0.888  0.0200
+TQT       "N3'"       "H3'"      SINGLE       n     1.036  0.0160     0.887  0.0200
+TQT       "N4'"      "H4'1"      SINGLE       n     1.036  0.0160     0.907  0.0200
+TQT       "N4'"      "H4'2"      SINGLE       n     1.036  0.0160     0.907  0.0200
+TQT       "N4'"          H1      SINGLE       n     1.036  0.0160     0.907  0.0200
+TQT       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.983  0.0187
+TQT       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.983  0.0187
+TQT       "C8'"      "H8'1"      SINGLE       n     1.089  0.0100     0.977  0.0131
+TQT       "C8'"      "H8'2"      SINGLE       n     1.089  0.0100     0.977  0.0131
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TQT       "N1'"       "C2'"       "N2'"     109.471    3.00
+TQT       "N1'"       "C2'"       "N3'"     110.592    2.20
+TQT       "N1'"       "C2'"       "H2'"     107.509    1.71
+TQT       "N2'"       "C2'"       "N3'"     109.471    3.00
+TQT       "N2'"       "C2'"       "H2'"     107.382    1.55
+TQT       "N3'"       "C2'"       "H2'"     107.509    1.71
+TQT         C4B       "C4'"       "N3'"     111.135    2.25
+TQT         C4B       "C4'"       "N4'"     113.919    2.78
+TQT         C4B       "C4'"       "H4'"     107.590    2.08
+TQT       "N3'"       "C4'"       "N4'"     109.471    3.00
+TQT       "N3'"       "C4'"       "H4'"     108.758    1.84
+TQT       "N4'"       "C4'"       "H4'"     108.032    1.50
+TQT       "C4'"         C4B         C8B     110.815    2.54
+TQT       "C4'"         C4B       "C5'"     111.641    1.54
+TQT       "C4'"         C4B         H4B     107.440    1.50
+TQT         C8B         C4B       "C5'"     110.159    1.50
+TQT         C8B         C4B         H4B     107.403    1.50
+TQT       "C5'"         C4B         H4B     106.468    1.50
+TQT       "C7'"       "C6'"       "C9'"     111.656    1.74
+TQT       "C7'"       "C6'"       "C5'"     109.566    1.50
+TQT       "C7'"       "C6'"       "H6'"     107.583    1.50
+TQT       "C9'"       "C6'"       "C5'"     111.634    1.50
+TQT       "C9'"       "C6'"       "H6'"     107.349    1.50
+TQT       "C5'"       "C6'"       "H6'"     107.516    1.50
+TQT       "C6'"       "C7'"       "C8'"     111.158    1.50
+TQT       "C6'"       "C7'"      "H7'1"     109.162    1.50
+TQT       "C6'"       "C7'"      "H7'2"     109.162    1.50
+TQT       "C8'"       "C7'"      "H7'1"     109.297    1.50
+TQT       "C8'"       "C7'"      "H7'2"     109.297    1.50
+TQT      "H7'1"       "C7'"      "H7'2"     107.870    1.50
+TQT         C4B         C8B       "N1'"     109.557    2.37
+TQT         C4B         C8B       "C8'"     111.422    1.50
+TQT         C4B         C8B       "H8'"     107.280    1.50
+TQT       "N1'"         C8B       "C8'"     111.642    1.50
+TQT       "N1'"         C8B       "H8'"     109.224    1.74
+TQT       "C8'"         C8B       "H8'"     108.024    1.50
+TQT       "C6'"       "C9'"       "N'0"     114.579    2.37
+TQT       "C6'"       "C9'"      "H9'1"     108.944    1.50
+TQT       "C6'"       "C9'"      "H9'2"     108.944    1.50
+TQT       "N'0"       "C9'"      "H9'1"     108.800    1.50
+TQT       "N'0"       "C9'"      "H9'2"     108.800    1.50
+TQT      "H9'1"       "C9'"      "H9'2"     107.814    1.50
+TQT       "C'7"       "C'0"       "N'0"     104.230    1.50
+TQT       "C'7"       "C'0"      "H'01"     111.745    1.50
+TQT       "C'7"       "C'0"      "H'02"     111.745    1.50
+TQT       "N'0"       "C'0"      "H'01"     110.462    1.50
+TQT       "N'0"       "C'0"      "H'02"     110.462    1.50
+TQT      "H'01"       "C'0"      "H'02"     108.643    1.50
+TQT       "C'2"       "C'1"       "C'6"     112.103    1.50
+TQT       "C'2"       "C'1"       "N'0"     116.757    2.20
+TQT       "C'2"       "C'1"       "H'1"     109.546    1.50
+TQT       "C'6"       "C'1"       "N'0"     102.147    1.66
+TQT       "C'6"       "C'1"       "H'1"     109.744    1.50
+TQT       "N'0"       "C'1"       "H'1"     110.071    2.31
+TQT       "C'1"       "C'2"       "C'3"     108.169    2.11
+TQT       "C'1"       "C'2"      "H'21"     109.490    1.50
+TQT       "C'1"       "C'2"      "H'22"     109.490    1.50
+TQT       "C'3"       "C'2"      "H'21"     109.922    1.50
+TQT       "C'3"       "C'2"      "H'22"     109.922    1.50
+TQT      "H'21"       "C'2"      "H'22"     108.781    1.50
+TQT       "C'2"       "C'3"       "C'4"     112.353    1.62
+TQT       "C'2"       "C'3"      "H'31"     109.134    1.50
+TQT       "C'2"       "C'3"      "H'32"     109.134    1.50
+TQT       "C'4"       "C'3"      "H'31"     109.248    1.50
+TQT       "C'4"       "C'3"      "H'32"     109.248    1.50
+TQT      "H'31"       "C'3"      "H'32"     107.912    1.50
+TQT       "C'3"       "C'4"       "C'5"     111.151    1.50
+TQT       "C'3"       "C'4"      "H'41"     109.248    1.50
+TQT       "C'3"       "C'4"      "H'42"     109.248    1.50
+TQT       "C'5"       "C'4"      "H'41"     109.398    1.50
+TQT       "C'5"       "C'4"      "H'42"     109.398    1.50
+TQT      "H'41"       "C'4"      "H'42"     107.912    1.50
+TQT       "C'4"       "C'5"       "C'6"     112.837    1.53
+TQT       "C'4"       "C'5"      "H'51"     109.314    1.50
+TQT       "C'4"       "C'5"      "H'52"     109.314    1.50
+TQT       "C'6"       "C'5"      "H'51"     108.671    1.50
+TQT       "C'6"       "C'5"      "H'52"     108.671    1.50
+TQT      "H'51"       "C'5"      "H'52"     107.731    1.50
+TQT       "C'1"       "C'6"       "C'5"     113.975    1.50
+TQT       "C'1"       "C'6"       "C'7"     102.810    1.50
+TQT       "C'1"       "C'6"       "H'6"     107.705    1.50
+TQT       "C'5"       "C'6"       "C'7"     114.331    2.79
+TQT       "C'5"       "C'6"       "H'6"     109.023    1.68
+TQT       "C'7"       "C'6"       "H'6"     108.514    1.92
+TQT       "C'0"       "C'7"       "C'6"     102.983    1.50
+TQT       "C'0"       "C'7"      "H'71"     111.155    1.50
+TQT       "C'0"       "C'7"      "H'72"     111.155    1.50
+TQT       "C'6"       "C'7"      "H'71"     111.186    2.09
+TQT       "C'6"       "C'7"      "H'72"     111.186    2.09
+TQT      "H'71"       "C'7"      "H'72"     108.735    1.77
+TQT       "C2'"       "N1'"         C8B     113.000    2.48
+TQT       "C2'"       "N1'"       "H1'"     108.849    3.00
+TQT         C8B       "N1'"       "H1'"     110.380    1.50
+TQT       "C2'"       "N2'"      "H2'1"     112.476    3.00
+TQT       "C2'"       "N2'"      "H2'2"     112.476    3.00
+TQT      "H2'1"       "N2'"      "H2'2"     108.768    3.00
+TQT       "C2'"       "N3'"       "C4'"     111.782    3.00
+TQT       "C2'"       "N3'"       "H3'"     108.849    3.00
+TQT       "C4'"       "N3'"       "H3'"     109.637    3.00
+TQT       "C4'"       "N4'"      "H4'1"     108.740    2.04
+TQT       "C4'"       "N4'"      "H4'2"     108.740    2.04
+TQT       "C4'"       "N4'"          H1     108.740    2.04
+TQT      "H4'1"       "N4'"      "H4'2"     109.052    2.59
+TQT      "H4'1"       "N4'"          H1     109.052    2.59
+TQT      "H4'2"       "N4'"          H1     109.052    2.59
+TQT         C4B       "C5'"       "C6'"     114.078    1.50
+TQT         C4B       "C5'"      "H5'1"     109.132    1.50
+TQT         C4B       "C5'"      "H5'2"     109.132    1.50
+TQT       "C6'"       "C5'"      "H5'1"     108.851    1.50
+TQT       "C6'"       "C5'"      "H5'2"     108.851    1.50
+TQT      "H5'1"       "C5'"      "H5'2"     107.974    1.50
+TQT       "C7'"       "C8'"         C8B     110.909    1.50
+TQT       "C7'"       "C8'"      "H8'1"     109.018    1.50
+TQT       "C7'"       "C8'"      "H8'2"     109.018    1.50
+TQT         C8B       "C8'"      "H8'1"     109.281    1.50
+TQT         C8B       "C8'"      "H8'2"     109.281    1.50
+TQT      "H8'1"       "C8'"      "H8'2"     107.709    1.50
+TQT       "C9'"       "N'0"       "C'0"     114.047    1.80
+TQT       "C9'"       "N'0"       "C'1"     117.049    1.50
+TQT       "C'0"       "N'0"       "C'1"     108.315    2.49
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TQT            sp3_sp3_81       "N2'"       "C2'"       "N1'"         C8B     -60.000    10.0     3
+TQT           sp3_sp3_151       "N1'"       "C2'"       "N2'"      "H2'1"     180.000    10.0     3
+TQT           sp3_sp3_159       "N2'"       "C2'"       "N3'"       "C4'"      60.000    10.0     3
+TQT            sp3_sp3_52       "C'2"       "C'3"       "C'4"       "C'5"      60.000    10.0     3
+TQT            sp3_sp3_61       "C'3"       "C'4"       "C'5"       "C'6"     -60.000    10.0     3
+TQT            sp3_sp3_70       "C'4"       "C'5"       "C'6"       "C'1"      60.000    10.0     3
+TQT            sp3_sp3_10       "C'1"       "C'6"       "C'7"       "C'0"     -60.000    10.0     3
+TQT           sp3_sp3_111       "N4'"       "C4'"       "N3'"       "C2'"     -60.000    10.0     3
+TQT           sp3_sp3_163         C4B       "C4'"       "N4'"      "H4'1"     180.000    10.0     3
+TQT           sp3_sp3_103       "N4'"       "C4'"         C4B         C8B     180.000    10.0     3
+TQT           sp3_sp3_175       "C4'"         C4B       "C5'"       "C6'"      60.000    10.0     3
+TQT            sp3_sp3_91       "C4'"         C4B         C8B       "N1'"      60.000    10.0     3
+TQT           sp3_sp3_143         C4B       "C5'"       "C6'"       "C9'"     180.000    10.0     3
+TQT           sp3_sp3_136       "C9'"       "C6'"       "C7'"       "C8'"     180.000    10.0     3
+TQT           sp3_sp3_181       "C7'"       "C6'"       "C9'"       "N'0"     180.000    10.0     3
+TQT           sp3_sp3_124       "C6'"       "C7'"       "C8'"         C8B      60.000    10.0     3
+TQT            sp3_sp3_85         C4B         C8B       "N1'"       "C2'"     -60.000    10.0     3
+TQT           sp3_sp3_115       "C7'"       "C8'"         C8B         C4B     -60.000    10.0     3
+TQT           sp3_sp3_190       "C6'"       "C9'"       "N'0"       "C'0"     180.000    10.0     3
+TQT             sp3_sp3_1       "N'0"       "C'0"       "C'7"       "C'6"      60.000    10.0     3
+TQT           sp3_sp3_197       "C'7"       "C'0"       "N'0"       "C9'"     -60.000    10.0     3
+TQT            sp3_sp3_19       "C'2"       "C'1"       "C'6"       "C'5"      60.000    10.0     3
+TQT            sp3_sp3_31       "C'2"       "C'1"       "N'0"       "C9'"     -60.000    10.0     3
+TQT            sp3_sp3_34       "C'6"       "C'1"       "C'2"       "C'3"      60.000    10.0     3
+TQT            sp3_sp3_43       "C'1"       "C'2"       "C'3"       "C'4"     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TQT    chir_1    "C2'"    "N3'"    "N1'"    "N2'"    negative
+TQT    chir_2    "C4'"    "N3'"    "N4'"    C4B    negative
+TQT    chir_3    C4B    "C4'"    C8B    "C5'"    negative
+TQT    chir_4    "C6'"    "C9'"    "C5'"    "C7'"    positive
+TQT    chir_5    C8B    "N1'"    C4B    "C8'"    positive
+TQT    chir_6    "C'1"    "N'0"    "C'6"    "C'2"    positive
+TQT    chir_7    "C'6"    "C'1"    "C'7"    "C'5"    positive
+TQT    chir_8    "N'0"    "C'1"    "C9'"    "C'0"    negative
+TQT    chir_9    "N1'"    "C2'"    C8B    "H1'"    both
+TQT    chir_10    "N3'"    "C2'"    "C4'"    "H3'"    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TQT           SMILES              ACDLabs 10.04                                                                                                                    NC2NC1CCC(CC1C(N)N2)CN4C3CCCCC3CC4
+TQT SMILES_CANONICAL               CACTVS 3.341                                                                                     N[C@H]1N[C@@H](N)[C@@H]2C[C@H](CC[C@@H]2N1)CN3CC[C@H]4CCCC[C@H]34
+TQT           SMILES               CACTVS 3.341                                                                                               N[CH]1N[CH](N)[CH]2C[CH](CC[CH]2N1)CN3CC[CH]4CCCC[CH]34
+TQT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                            C1CCC2C(C1)CCN2C[C@H]3CCC4C(C3)C(NC(N4)N)N
+TQT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                C1CCC2C(C1)CCN2CC3CCC4C(C3)C(NC(N4)N)N
+TQT            InChI                InChI  1.03 InChI=1S/C17H33N5/c18-16-13-9-11(5-6-14(13)20-17(19)21-16)10-22-8-7-12-3-1-2-4-15(12)22/h11-17,20-21H,1-10,18-19H2/t11-,12+,13+,14-,15-,16+,17+/m0/s1
+TQT         InChIKey                InChI  1.03                                                                                                                           HDQIGGQUKAQTGU-SZTTVXCBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TQT acedrg               243         "dictionary generator"                  
+TQT acedrg_database      11          "data source"                           
+TQT rdkit                2017.03.2   "Chemoinformatics tool"
+TQT refmac5              5.8.0238    "optimization tool"                     

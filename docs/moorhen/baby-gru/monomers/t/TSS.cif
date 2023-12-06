@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TSS     TSS      2-(1H-INDOL-3-YL)ETHANAMINE     NON-POLYMER     24     12     .     
+#
+data_comp_TSS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TSS     N1      N       NT2     0       4.994       -1.895      40.784      
+TSS     CA      C       CH2     0       5.632       -1.266      39.627      
+TSS     CB      C       CH2     0       7.008       -1.852      39.347      
+TSS     CG      C       CR5     0       7.663       -1.253      38.140      
+TSS     CD1     C       CR15    0       8.113       0.026       37.984      
+TSS     NE1     N       NR5     0       8.653       0.194       36.737      
+TSS     CE2     C       CR56    0       8.562       -0.987      36.048      
+TSS     CD2     C       CR56    0       7.942       -1.929      36.901      
+TSS     CZ2     C       CR16    0       8.971       -1.312      34.752      
+TSS     CH2     C       CR16    0       8.746       -2.603      34.321      
+TSS     CZ3     C       CR16    0       8.134       -3.553      35.146      
+TSS     CE3     C       CR16    0       7.730       -3.232      36.426      
+TSS     HN11    H       H       0       4.456       -1.315      41.187      
+TSS     HN12    H       H       0       4.492       -2.579      40.520      
+TSS     HA1     H       H       0       5.718       -0.302      39.792      
+TSS     HA2     H       H       0       5.061       -1.391      38.838      
+TSS     HB1     H       H       0       6.921       -2.815      39.218      
+TSS     HB2     H       H       0       7.577       -1.706      40.124      
+TSS     HD1     H       H       0       8.063       0.704       38.640      
+TSS     HE1     H       H       0       8.999       0.939       36.430      
+TSS     HZ2     H       H       0       9.383       -0.673      34.196      
+TSS     HH2     H       H       0       9.011       -2.849      33.452      
+TSS     HZ3     H       H       0       7.995       -4.428      34.820      
+TSS     HE3     H       H       0       7.318       -3.879      36.976      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TSS          N1          CA      SINGLE       n     1.464  0.0200     1.464  0.0200
+TSS          CA          CB      SINGLE       n     1.521  0.0163     1.521  0.0163
+TSS          CB          CG      SINGLE       n     1.498  0.0100     1.498  0.0100
+TSS          CG         CD1      DOUBLE       y     1.365  0.0100     1.365  0.0100
+TSS          CG         CD2      SINGLE       y     1.439  0.0100     1.439  0.0100
+TSS         CD1         NE1      SINGLE       y     1.369  0.0100     1.369  0.0100
+TSS         NE1         CE2      SINGLE       y     1.370  0.0100     1.370  0.0100
+TSS         CE2         CD2      DOUBLE       y     1.411  0.0100     1.411  0.0100
+TSS         CE2         CZ2      SINGLE       y     1.394  0.0100     1.394  0.0100
+TSS         CD2         CE3      SINGLE       y     1.399  0.0100     1.399  0.0100
+TSS         CZ2         CH2      DOUBLE       y     1.376  0.0100     1.376  0.0100
+TSS         CH2         CZ3      SINGLE       y     1.395  0.0112     1.395  0.0112
+TSS         CZ3         CE3      DOUBLE       y     1.377  0.0100     1.377  0.0100
+TSS          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+TSS          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+TSS          CA         HA1      SINGLE       n     1.089  0.0100     0.982  0.0143
+TSS          CA         HA2      SINGLE       n     1.089  0.0100     0.982  0.0143
+TSS          CB         HB1      SINGLE       n     1.089  0.0100     0.975  0.0155
+TSS          CB         HB2      SINGLE       n     1.089  0.0100     0.975  0.0155
+TSS         CD1         HD1      SINGLE       n     1.082  0.0130     0.945  0.0191
+TSS         NE1         HE1      SINGLE       n     1.016  0.0100     0.877  0.0200
+TSS         CZ2         HZ2      SINGLE       n     1.082  0.0130     0.942  0.0188
+TSS         CH2         HH2      SINGLE       n     1.082  0.0130     0.941  0.0181
+TSS         CZ3         HZ3      SINGLE       n     1.082  0.0130     0.944  0.0181
+TSS         CE3         HE3      SINGLE       n     1.082  0.0130     0.944  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TSS          CA          N1        HN11     109.962    3.00
+TSS          CA          N1        HN12     109.962    3.00
+TSS        HN11          N1        HN12     107.243    3.00
+TSS          N1          CA          CB     111.320    2.66
+TSS          N1          CA         HA1     108.870    1.50
+TSS          N1          CA         HA2     108.870    1.50
+TSS          CB          CA         HA1     109.046    1.50
+TSS          CB          CA         HA2     109.046    1.50
+TSS         HA1          CA         HA2     107.873    1.50
+TSS          CA          CB          CG     113.007    2.12
+TSS          CA          CB         HB1     108.920    1.50
+TSS          CA          CB         HB2     108.920    1.50
+TSS          CG          CB         HB1     109.159    1.50
+TSS          CG          CB         HB2     109.159    1.50
+TSS         HB1          CB         HB2     107.768    1.50
+TSS          CB          CG         CD1     127.676    1.50
+TSS          CB          CG         CD2     126.212    1.50
+TSS         CD1          CG         CD2     106.112    1.50
+TSS          CG         CD1         NE1     110.404    1.50
+TSS          CG         CD1         HD1     125.159    1.59
+TSS         NE1         CD1         HD1     124.437    1.50
+TSS         CD1         NE1         CE2     109.042    1.50
+TSS         CD1         NE1         HE1     125.328    1.77
+TSS         CE2         NE1         HE1     125.630    1.60
+TSS         NE1         CE2         CD2     107.455    1.50
+TSS         NE1         CE2         CZ2     130.294    1.50
+TSS         CD2         CE2         CZ2     122.250    1.50
+TSS          CG         CD2         CE2     106.987    1.50
+TSS          CG         CD2         CE3     134.307    1.50
+TSS         CE2         CD2         CE3     118.706    1.50
+TSS         CE2         CZ2         CH2     117.385    1.50
+TSS         CE2         CZ2         HZ2     121.137    1.50
+TSS         CH2         CZ2         HZ2     121.477    1.50
+TSS         CZ2         CH2         CZ3     121.628    1.50
+TSS         CZ2         CH2         HH2     119.132    1.50
+TSS         CZ3         CH2         HH2     119.240    1.50
+TSS         CH2         CZ3         CE3     121.212    1.50
+TSS         CH2         CZ3         HZ3     119.316    1.50
+TSS         CE3         CZ3         HZ3     119.471    1.50
+TSS         CD2         CE3         CZ3     118.817    1.50
+TSS         CD2         CE3         HE3     120.505    1.50
+TSS         CZ3         CE3         HE3     120.678    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TSS             sp3_sp3_1          CB          CA          N1        HN11     180.000    10.0     3
+TSS              const_21         CD2         CE3         CZ3         CH2       0.000    10.0     2
+TSS             sp3_sp3_7          N1          CA          CB          CG     180.000    10.0     3
+TSS             sp2_sp3_2         CD1          CG          CB          CA     -90.000    10.0     6
+TSS       const_sp2_sp2_2         NE1         CD1          CG          CB     180.000     5.0     2
+TSS              const_34         CE2         CD2          CG          CB     180.000    10.0     2
+TSS       const_sp2_sp2_5          CG         CD1         NE1         CE2       0.000     5.0     2
+TSS       const_sp2_sp2_9         CD2         CE2         NE1         CD1       0.000     5.0     2
+TSS              const_13          CG         CD2         CE2         NE1       0.000    10.0     2
+TSS              const_39         NE1         CE2         CZ2         CH2     180.000    10.0     2
+TSS              const_19          CG         CD2         CE3         CZ3     180.000    10.0     2
+TSS              const_29         CZ3         CH2         CZ2         CE2       0.000    10.0     2
+TSS              const_25         CZ2         CH2         CZ3         CE3       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TSS    plan-1          CB   0.020
+TSS    plan-1         CD1   0.020
+TSS    plan-1         CD2   0.020
+TSS    plan-1         CE2   0.020
+TSS    plan-1         CE3   0.020
+TSS    plan-1          CG   0.020
+TSS    plan-1         CH2   0.020
+TSS    plan-1         CZ2   0.020
+TSS    plan-1         CZ3   0.020
+TSS    plan-1         HD1   0.020
+TSS    plan-1         HE1   0.020
+TSS    plan-1         HE3   0.020
+TSS    plan-1         HH2   0.020
+TSS    plan-1         HZ2   0.020
+TSS    plan-1         HZ3   0.020
+TSS    plan-1         NE1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TSS           SMILES              ACDLabs 10.04                                                     c1cccc2c1c(cn2)CCN
+TSS SMILES_CANONICAL               CACTVS 3.341                                                    NCCc1c[nH]c2ccccc12
+TSS           SMILES               CACTVS 3.341                                                    NCCc1c[nH]c2ccccc12
+TSS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                c1ccc2c(c1)c(c[nH]2)CCN
+TSS           SMILES "OpenEye OEToolkits" 1.5.0                                                c1ccc2c(c1)c(c[nH]2)CCN
+TSS            InChI                InChI  1.03 InChI=1S/C10H12N2/c11-6-5-8-7-12-10-4-2-1-3-9(8)10/h1-4,7,12H,5-6,11H2
+TSS         InChIKey                InChI  1.03                                            APJYDQYYACXCRM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TSS acedrg               243         "dictionary generator"                  
+TSS acedrg_database      11          "data source"                           
+TSS rdkit                2017.03.2   "Chemoinformatics tool"
+TSS refmac5              5.8.0238    "optimization tool"                     

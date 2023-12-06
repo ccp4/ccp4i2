@@ -1,0 +1,212 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8MZ     8MZ      5-(2-azanyl-1,3-thiazol-4-yl)-1,3-dihydrobenzimidazol-2-one     NON-POLYMER     24     16     .     
+#
+data_comp_8MZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8MZ     C4      C       CR16    0       139.174     -1.696      1.019       
+8MZ     C5      C       CR6     0       140.462     -1.705      1.557       
+8MZ     C6      C       CR5     0       141.620     -1.331      0.729       
+8MZ     N1      N       NH2     0       143.004     -1.467      -2.559      
+8MZ     C7      C       CR15    0       142.775     -0.659      1.093       
+8MZ     C8      C       CR5     0       142.736     -1.277      -1.272      
+8MZ     N2      N       NR5     0       136.732     -2.146      1.602       
+8MZ     C9      C       CR5     0       136.109     -2.545      2.750       
+8MZ     N3      N       NR5     0       137.067     -2.708      3.711       
+8MZ     O       O       O       0       134.896     -2.726      2.895       
+8MZ     C2      C       CR56    0       138.309     -2.411      3.171       
+8MZ     C1      C       CR16    0       139.586     -2.416      3.706       
+8MZ     C3      C       CR56    0       138.095     -2.055      1.834       
+8MZ     C       C       CR16    0       140.650     -2.062      2.895       
+8MZ     N       N       NRD5    0       141.604     -1.688      -0.629      
+8MZ     S       S       S2      0       143.773     -0.491      -0.229      
+8MZ     H1      H       H       0       139.045     -1.455      0.123       
+8MZ     H2      H       H       0       143.817     -1.334      -2.861      
+8MZ     H3      H       H       0       142.366     -1.725      -3.104      
+8MZ     H4      H       H       0       143.012     -0.325      1.941       
+8MZ     H5      H       H       0       136.314     -1.976      0.837       
+8MZ     H6      H       H       0       136.902     -2.965      4.545       
+8MZ     H7      H       H       0       139.731     -2.655      4.601       
+8MZ     H8      H       H       0       141.514     -2.065      3.253       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8MZ          N1          C8      SINGLE       n     1.328  0.0105     1.328  0.0105
+8MZ          C8           N      DOUBLE       y     1.354  0.0165     1.354  0.0165
+8MZ          C8           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+8MZ          C6           N      SINGLE       y     1.391  0.0109     1.391  0.0109
+8MZ          C7           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+8MZ          C6          C7      DOUBLE       y     1.371  0.0200     1.371  0.0200
+8MZ          C5          C6      SINGLE       n     1.469  0.0100     1.469  0.0100
+8MZ          C4          C5      DOUBLE       y     1.391  0.0100     1.391  0.0100
+8MZ          C4          C3      SINGLE       y     1.396  0.0200     1.396  0.0200
+8MZ          N2          C3      SINGLE       y     1.386  0.0100     1.386  0.0100
+8MZ          N2          C9      SINGLE       y     1.366  0.0100     1.366  0.0100
+8MZ          C5           C      SINGLE       y     1.391  0.0100     1.391  0.0100
+8MZ          C2          C3      DOUBLE       y     1.399  0.0100     1.399  0.0100
+8MZ          C9           O      DOUBLE       n     1.235  0.0131     1.235  0.0131
+8MZ          C9          N3      SINGLE       y     1.366  0.0100     1.366  0.0100
+8MZ          C1           C      DOUBLE       y     1.378  0.0100     1.378  0.0100
+8MZ          N3          C2      SINGLE       y     1.386  0.0100     1.386  0.0100
+8MZ          C2          C1      SINGLE       y     1.381  0.0100     1.381  0.0100
+8MZ          C4          H1      SINGLE       n     1.082  0.0130     0.937  0.0100
+8MZ          N1          H2      SINGLE       n     1.016  0.0100     0.877  0.0200
+8MZ          N1          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+8MZ          C7          H4      SINGLE       n     1.082  0.0130     0.942  0.0200
+8MZ          N2          H5      SINGLE       n     1.016  0.0100     0.888  0.0200
+8MZ          N3          H6      SINGLE       n     1.016  0.0100     0.888  0.0200
+8MZ          C1          H7      SINGLE       n     1.082  0.0130     0.937  0.0100
+8MZ           C          H8      SINGLE       n     1.082  0.0130     0.935  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8MZ          C5          C4          C3     119.537    1.58
+8MZ          C5          C4          H1     119.382    1.50
+8MZ          C3          C4          H1     121.080    1.50
+8MZ          C6          C5          C4     120.122    1.61
+8MZ          C6          C5           C     120.175    1.50
+8MZ          C4          C5           C     119.704    1.64
+8MZ           N          C6          C7     108.547    1.50
+8MZ           N          C6          C5     118.641    1.50
+8MZ          C7          C6          C5     132.812    2.57
+8MZ          C8          N1          H2     119.811    1.50
+8MZ          C8          N1          H3     119.811    1.50
+8MZ          H2          N1          H3     120.377    1.82
+8MZ           S          C7          C6     108.623    3.00
+8MZ           S          C7          H4     122.728    3.00
+8MZ          C6          C7          H4     128.649    2.15
+8MZ          N1          C8           N     126.619    2.12
+8MZ          N1          C8           S     124.759    3.00
+8MZ           N          C8           S     108.623    3.00
+8MZ          C3          N2          C9     109.304    1.50
+8MZ          C3          N2          H5     126.361    1.53
+8MZ          C9          N2          H5     124.335    1.80
+8MZ          N2          C9           O     126.001    1.50
+8MZ          N2          C9          N3     107.997    1.50
+8MZ           O          C9          N3     126.001    1.50
+8MZ          C9          N3          C2     109.304    1.50
+8MZ          C9          N3          H6     124.335    1.80
+8MZ          C2          N3          H6     126.361    1.53
+8MZ          C3          C2          N3     106.697    1.50
+8MZ          C3          C2          C1     121.105    1.50
+8MZ          N3          C2          C1     132.198    1.50
+8MZ           C          C1          C2     118.007    1.50
+8MZ           C          C1          H7     120.788    1.50
+8MZ          C2          C1          H7     121.205    1.50
+8MZ          C4          C3          N2     132.198    1.50
+8MZ          C4          C3          C2     121.105    1.50
+8MZ          N2          C3          C2     106.697    1.50
+8MZ          C5           C          C1     120.543    1.50
+8MZ          C5           C          H8     119.911    1.50
+8MZ          C1           C          H8     119.546    1.50
+8MZ          C8           N          C6     105.585    1.50
+8MZ          C8           S          C7     108.623    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8MZ       const_sp2_sp2_2          C3          C4          C5          C6     180.000     5.0     2
+8MZ              const_47          N2          C3          C4          C5     180.000    10.0     2
+8MZ              const_13           C          C1          C2          C3       0.000    10.0     2
+8MZ              const_18          N3          C2          C3          C4     180.000    10.0     2
+8MZ       const_sp2_sp2_9          C5           C          C1          C2       0.000     5.0     2
+8MZ       const_sp2_sp2_6          C1           C          C5          C6     180.000     5.0     2
+8MZ             sp2_sp2_6          C4          C5          C6           N       0.000     5.0     2
+8MZ              const_33          C7          C6           N          C8       0.000    10.0     2
+8MZ              const_41           N          C6          C7           S       0.000    10.0     2
+8MZ             sp2_sp2_1           N          C8          N1          H2     180.000     5.0     2
+8MZ              const_39          C6          C7           S          C8       0.000    10.0     2
+8MZ              const_36          N1          C8           N          C6     180.000    10.0     2
+8MZ              const_38          N1          C8           S          C7     180.000    10.0     2
+8MZ              const_23          C4          C3          N2          C9     180.000    10.0     2
+8MZ              const_51           O          C9          N2          C3     180.000    10.0     2
+8MZ              const_31           O          C9          N3          C2     180.000    10.0     2
+8MZ              const_25          C3          C2          N3          C9       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8MZ    plan-1           C   0.020
+8MZ    plan-1          C1   0.020
+8MZ    plan-1          C2   0.020
+8MZ    plan-1          C3   0.020
+8MZ    plan-1          C4   0.020
+8MZ    plan-1          C5   0.020
+8MZ    plan-1          C6   0.020
+8MZ    plan-1          C9   0.020
+8MZ    plan-1          H1   0.020
+8MZ    plan-1          H5   0.020
+8MZ    plan-1          H6   0.020
+8MZ    plan-1          H7   0.020
+8MZ    plan-1          H8   0.020
+8MZ    plan-1          N2   0.020
+8MZ    plan-1          N3   0.020
+8MZ    plan-1           O   0.020
+8MZ    plan-2          C5   0.020
+8MZ    plan-2          C6   0.020
+8MZ    plan-2          C7   0.020
+8MZ    plan-2          C8   0.020
+8MZ    plan-2          H4   0.020
+8MZ    plan-2           N   0.020
+8MZ    plan-2          N1   0.020
+8MZ    plan-2           S   0.020
+8MZ    plan-3          C8   0.020
+8MZ    plan-3          H2   0.020
+8MZ    plan-3          H3   0.020
+8MZ    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8MZ            InChI                InChI  1.03 InChI=1S/C10H8N4OS/c11-9-12-8(4-16-9)5-1-2-6-7(3-5)14-10(15)13-6/h1-4H,(H2,11,12)(H2,13,14,15)
+8MZ         InChIKey                InChI  1.03                                                                    GQXIAVAXNQYTNM-UHFFFAOYSA-N
+8MZ SMILES_CANONICAL               CACTVS 3.385                                                                    Nc1scc(n1)c2ccc3NC(=O)Nc3c2
+8MZ           SMILES               CACTVS 3.385                                                                    Nc1scc(n1)c2ccc3NC(=O)Nc3c2
+8MZ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                  c1cc2c(cc1c3csc(n3)N)NC(=O)N2
+8MZ           SMILES "OpenEye OEToolkits" 2.0.6                                                                  c1cc2c(cc1c3csc(n3)N)NC(=O)N2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8MZ acedrg               243         "dictionary generator"                  
+8MZ acedrg_database      11          "data source"                           
+8MZ rdkit                2017.03.2   "Chemoinformatics tool"
+8MZ refmac5              5.8.0238    "optimization tool"                     

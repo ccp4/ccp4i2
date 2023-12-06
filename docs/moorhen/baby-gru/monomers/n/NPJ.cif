@@ -1,0 +1,421 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NPJ     NPJ      "4-NITROPHENYL 4-O-ALPHA-D-GLUCOPYRANOSYL-ALPHA-D-GALACTOPYRANOSIDE"     NON-POLYMER     57     32     .     
+#
+data_comp_NPJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NPJ     C1A     C       CH1     0       36.961      53.912      1.357       
+NPJ     C2A     C       CH1     0       38.159      54.516      0.630       
+NPJ     C3A     C       CH1     0       39.278      53.493      0.487       
+NPJ     C4A     C       CH1     0       39.643      52.900      1.839       
+NPJ     C5A     C       CH1     0       38.399      52.304      2.498       
+NPJ     C6A     C       CH2     0       38.653      51.799      3.901       
+NPJ     O1A     O       O2      0       36.343      52.949      0.527       
+NPJ     O2A     O       OH1     0       37.761      55.011      -0.646      
+NPJ     O3A     O       OH1     0       40.420      54.113      -0.104      
+NPJ     O4A     O       OH1     0       40.633      51.885      1.678       
+NPJ     O5A     O       O2      0       37.364      53.322      2.600       
+NPJ     O6A     O       OH1     0       37.466      51.267      4.488       
+NPJ     C1B     C       CH1     0       32.494      51.863      -0.702      
+NPJ     C2B     C       CH1     0       32.826      53.353      -0.708      
+NPJ     C3B     C       CH1     0       34.337      53.561      -0.636      
+NPJ     C4B     C       CH1     0       34.912      52.809      0.557       
+NPJ     C5B     C       CH1     0       34.539      51.331      0.478       
+NPJ     C6B     C       CH2     0       34.979      50.535      1.686       
+NPJ     O1B     O       O2      0       32.935      51.310      -1.937      
+NPJ     O2B     O       OH1     0       32.284      53.973      -1.872      
+NPJ     O3B     O       OH1     0       34.622      54.958      -0.544      
+NPJ     O5B     O       O2      0       33.092      51.200      0.402       
+NPJ     O6B     O       OH1     0       34.594      49.165      1.579       
+NPJ     C1C     C       CR6     0       32.377      47.378      -3.101      
+NPJ     C2C     C       CR16    0       31.670      47.817      -1.983      
+NPJ     C3C     C       CR16    0       31.828      49.125      -1.563      
+NPJ     C4C     C       CR6     0       32.688      49.980      -2.250      
+NPJ     C5C     C       CR16    0       33.385      49.530      -3.365      
+NPJ     C6C     C       CR16    0       33.237      48.225      -3.799      
+NPJ     N1C     N       N       1       32.215      46.001      -3.551      
+NPJ     O2C     O       OC      -1      31.755      45.808      -4.666      
+NPJ     O3C     O       O       0       32.546      45.102      -2.794      
+NPJ     H1A     H       H       0       36.314      54.640      1.551       
+NPJ     H2A     H       H       0       38.499      55.273      1.164       
+NPJ     H3A     H       H       0       38.969      52.763      -0.107      
+NPJ     H4A     H       H       0       40.004      53.614      2.416       
+NPJ     H5A     H       H       0       38.071      51.559      1.942       
+NPJ     H6A1    H       H       0       38.986      52.535      4.456       
+NPJ     H6A2    H       H       0       39.340      51.101      3.877       
+NPJ     HO2A    H       H       0       38.396      55.450      -0.982      
+NPJ     HO3A    H       H       0       40.982      53.519      -0.300      
+NPJ     HO4A    H       H       0       40.342      51.268      1.185       
+NPJ     HO6A    H       H       0       37.211      50.590      4.046       
+NPJ     H1B     H       H       0       31.513      51.775      -0.626      
+NPJ     H2B     H       H       0       32.418      53.776      0.085       
+NPJ     H3B     H       H       0       34.747      53.209      -1.466      
+NPJ     H4B     H       H       0       34.548      53.196      1.401       
+NPJ     H5B     H       H       0       34.946      50.938      -0.331      
+NPJ     H6B1    H       H       0       34.578      50.921      2.493       
+NPJ     H6B2    H       H       0       35.951      50.589      1.774       
+NPJ     HO2B    H       H       0       32.380      54.806      -1.811      
+NPJ     HO3B    H       H       0       34.296      55.264      0.169       
+NPJ     HO6B    H       H       0       33.748      49.108      1.572       
+NPJ     H2C     H       H       0       31.091      47.237      -1.519      
+NPJ     H3C     H       H       0       31.353      49.427      -0.808      
+NPJ     H5C     H       H       0       33.963      50.112      -3.828      
+NPJ     H6C     H       H       0       33.711      47.920      -4.553      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NPJ         C1A         C2A      SINGLE       n     1.522  0.0111     1.522  0.0111
+NPJ         C1A         O1A      SINGLE       n     1.406  0.0135     1.406  0.0135
+NPJ         C1A         O5A      SINGLE       n     1.422  0.0169     1.422  0.0169
+NPJ         C2A         C3A      SINGLE       n     1.519  0.0200     1.519  0.0200
+NPJ         C2A         O2A      SINGLE       n     1.425  0.0112     1.425  0.0112
+NPJ         C3A         C4A      SINGLE       n     1.520  0.0158     1.520  0.0158
+NPJ         C3A         O3A      SINGLE       n     1.427  0.0138     1.427  0.0138
+NPJ         C4A         C5A      SINGLE       n     1.524  0.0200     1.524  0.0200
+NPJ         C4A         O4A      SINGLE       n     1.425  0.0176     1.425  0.0176
+NPJ         C5A         C6A      SINGLE       n     1.511  0.0142     1.511  0.0142
+NPJ         C5A         O5A      SINGLE       n     1.440  0.0195     1.440  0.0195
+NPJ         C6A         O6A      SINGLE       n     1.426  0.0200     1.426  0.0200
+NPJ         O1A         C4B      SINGLE       n     1.434  0.0104     1.434  0.0104
+NPJ         C1B         C2B      SINGLE       n     1.520  0.0127     1.520  0.0127
+NPJ         C1B         O1B      SINGLE       n     1.413  0.0141     1.413  0.0141
+NPJ         C1B         O5B      SINGLE       n     1.413  0.0112     1.413  0.0112
+NPJ         C2B         C3B      SINGLE       n     1.519  0.0200     1.519  0.0200
+NPJ         C2B         O2B      SINGLE       n     1.425  0.0112     1.425  0.0112
+NPJ         C3B         C4B      SINGLE       n     1.522  0.0126     1.522  0.0126
+NPJ         C3B         O3B      SINGLE       n     1.427  0.0138     1.427  0.0138
+NPJ         C4B         C5B      SINGLE       n     1.526  0.0115     1.526  0.0115
+NPJ         C5B         C6B      SINGLE       n     1.511  0.0142     1.511  0.0142
+NPJ         C5B         O5B      SINGLE       n     1.440  0.0195     1.440  0.0195
+NPJ         C6B         O6B      SINGLE       n     1.426  0.0200     1.426  0.0200
+NPJ         O1B         C4C      SINGLE       n     1.383  0.0100     1.383  0.0100
+NPJ         C1C         C2C      DOUBLE       y     1.393  0.0100     1.393  0.0100
+NPJ         C1C         C6C      SINGLE       y     1.393  0.0100     1.393  0.0100
+NPJ         C1C         N1C      SINGLE       n     1.457  0.0200     1.457  0.0200
+NPJ         C2C         C3C      SINGLE       y     1.379  0.0100     1.379  0.0100
+NPJ         C3C         C4C      DOUBLE       y     1.384  0.0107     1.384  0.0107
+NPJ         C4C         C5C      SINGLE       y     1.384  0.0107     1.384  0.0107
+NPJ         C5C         C6C      DOUBLE       y     1.379  0.0100     1.379  0.0100
+NPJ         N1C         O2C      SINGLE       n     1.221  0.0162     1.221  0.0162
+NPJ         N1C         O3C      DOUBLE       n     1.221  0.0162     1.221  0.0162
+NPJ         C1A         H1A      SINGLE       n     1.089  0.0100     0.992  0.0127
+NPJ         C2A         H2A      SINGLE       n     1.089  0.0100     0.987  0.0140
+NPJ         C3A         H3A      SINGLE       n     1.089  0.0100     0.991  0.0121
+NPJ         C4A         H4A      SINGLE       n     1.089  0.0100     0.986  0.0131
+NPJ         C5A         H5A      SINGLE       n     1.089  0.0100     0.988  0.0182
+NPJ         C6A        H6A1      SINGLE       n     1.089  0.0100     0.980  0.0184
+NPJ         C6A        H6A2      SINGLE       n     1.089  0.0100     0.980  0.0184
+NPJ         O2A        HO2A      SINGLE       n     0.970  0.0120     0.841  0.0200
+NPJ         O3A        HO3A      SINGLE       n     0.970  0.0120     0.841  0.0200
+NPJ         O4A        HO4A      SINGLE       n     0.970  0.0120     0.841  0.0200
+NPJ         O6A        HO6A      SINGLE       n     0.970  0.0120     0.848  0.0200
+NPJ         C1B         H1B      SINGLE       n     1.089  0.0100     0.988  0.0176
+NPJ         C2B         H2B      SINGLE       n     1.089  0.0100     0.987  0.0140
+NPJ         C3B         H3B      SINGLE       n     1.089  0.0100     0.991  0.0121
+NPJ         C4B         H4B      SINGLE       n     1.089  0.0100     0.997  0.0100
+NPJ         C5B         H5B      SINGLE       n     1.089  0.0100     0.988  0.0182
+NPJ         C6B        H6B1      SINGLE       n     1.089  0.0100     0.980  0.0184
+NPJ         C6B        H6B2      SINGLE       n     1.089  0.0100     0.980  0.0184
+NPJ         O2B        HO2B      SINGLE       n     0.970  0.0120     0.841  0.0200
+NPJ         O3B        HO3B      SINGLE       n     0.970  0.0120     0.841  0.0200
+NPJ         O6B        HO6B      SINGLE       n     0.970  0.0120     0.848  0.0200
+NPJ         C2C         H2C      SINGLE       n     1.082  0.0130     0.941  0.0200
+NPJ         C3C         H3C      SINGLE       n     1.082  0.0130     0.942  0.0151
+NPJ         C5C         H5C      SINGLE       n     1.082  0.0130     0.942  0.0151
+NPJ         C6C         H6C      SINGLE       n     1.082  0.0130     0.941  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NPJ         C2A         C1A         O1A     108.782    1.93
+NPJ         C2A         C1A         O5A     110.316    1.50
+NPJ         C2A         C1A         H1A     109.438    1.50
+NPJ         O1A         C1A         O5A     110.157    1.98
+NPJ         O1A         C1A         H1A     109.369    1.50
+NPJ         O5A         C1A         H1A     109.132    1.50
+NPJ         C1A         C2A         C3A     109.880    1.85
+NPJ         C1A         C2A         O2A     109.907    1.90
+NPJ         C1A         C2A         H2A     108.647    1.50
+NPJ         C3A         C2A         O2A     111.053    2.62
+NPJ         C3A         C2A         H2A     108.505    1.50
+NPJ         O2A         C2A         H2A     108.551    1.50
+NPJ         C2A         C3A         C4A     110.687    1.67
+NPJ         C2A         C3A         O3A     109.587    2.09
+NPJ         C2A         C3A         H3A     108.712    1.50
+NPJ         C4A         C3A         O3A     110.243    1.88
+NPJ         C4A         C3A         H3A     108.653    1.50
+NPJ         O3A         C3A         H3A     108.767    1.50
+NPJ         C3A         C4A         C5A     110.272    1.76
+NPJ         C3A         C4A         O4A     110.101    1.97
+NPJ         C3A         C4A         H4A     109.032    1.50
+NPJ         C5A         C4A         O4A     109.072    2.07
+NPJ         C5A         C4A         H4A     109.223    1.50
+NPJ         O4A         C4A         H4A     109.194    1.50
+NPJ         C4A         C5A         C6A     112.996    1.59
+NPJ         C4A         C5A         O5A     109.140    1.86
+NPJ         C4A         C5A         H5A     108.960    1.50
+NPJ         C6A         C5A         O5A     106.879    1.50
+NPJ         C6A         C5A         H5A     109.269    1.50
+NPJ         O5A         C5A         H5A     109.134    1.50
+NPJ         C5A         C6A         O6A     111.299    2.09
+NPJ         C5A         C6A        H6A1     109.363    1.50
+NPJ         C5A         C6A        H6A2     109.363    1.50
+NPJ         O6A         C6A        H6A1     109.265    1.50
+NPJ         O6A         C6A        H6A2     109.265    1.50
+NPJ        H6A1         C6A        H6A2     108.155    1.50
+NPJ         C1A         O1A         C4B     117.488    1.88
+NPJ         C2A         O2A        HO2A     109.126    2.06
+NPJ         C3A         O3A        HO3A     108.895    2.41
+NPJ         C4A         O4A        HO4A     109.564    3.00
+NPJ         C1A         O5A         C5A     113.300    1.50
+NPJ         C6A         O6A        HO6A     109.472    2.41
+NPJ         C2B         C1B         O1B     107.183    1.59
+NPJ         C2B         C1B         O5B     110.721    1.50
+NPJ         C2B         C1B         H1B     110.801    3.00
+NPJ         O1B         C1B         O5B     108.706    2.22
+NPJ         O1B         C1B         H1B     110.170    1.50
+NPJ         O5B         C1B         H1B     109.832    2.64
+NPJ         C1B         C2B         C3B     109.210    1.50
+NPJ         C1B         C2B         O2B     109.900    1.63
+NPJ         C1B         C2B         H2B     109.317    1.50
+NPJ         C3B         C2B         O2B     111.053    2.62
+NPJ         C3B         C2B         H2B     108.505    1.50
+NPJ         O2B         C2B         H2B     108.551    1.50
+NPJ         C2B         C3B         C4B     110.047    1.50
+NPJ         C2B         C3B         O3B     109.587    2.09
+NPJ         C2B         C3B         H3B     108.712    1.50
+NPJ         C4B         C3B         O3B     110.741    1.50
+NPJ         C4B         C3B         H3B     109.015    1.50
+NPJ         O3B         C3B         H3B     108.767    1.50
+NPJ         O1A         C4B         C3B     108.105    2.53
+NPJ         O1A         C4B         C5B     109.005    2.24
+NPJ         O1A         C4B         H4B     109.684    1.50
+NPJ         C3B         C4B         C5B     110.928    1.50
+NPJ         C3B         C4B         H4B     109.617    1.50
+NPJ         C5B         C4B         H4B     109.688    1.50
+NPJ         C4B         C5B         C6B     113.430    1.57
+NPJ         C4B         C5B         O5B     109.386    1.50
+NPJ         C4B         C5B         H5B     109.100    1.50
+NPJ         C6B         C5B         O5B     106.879    1.50
+NPJ         C6B         C5B         H5B     109.269    1.50
+NPJ         O5B         C5B         H5B     109.134    1.50
+NPJ         C5B         C6B         O6B     111.299    2.09
+NPJ         C5B         C6B        H6B1     109.363    1.50
+NPJ         C5B         C6B        H6B2     109.363    1.50
+NPJ         O6B         C6B        H6B1     109.265    1.50
+NPJ         O6B         C6B        H6B2     109.265    1.50
+NPJ        H6B1         C6B        H6B2     108.155    1.50
+NPJ         C1B         O1B         C4C     117.683    1.50
+NPJ         C2B         O2B        HO2B     109.126    2.06
+NPJ         C3B         O3B        HO3B     108.895    2.41
+NPJ         C1B         O5B         C5B     112.137    1.50
+NPJ         C6B         O6B        HO6B     109.472    2.41
+NPJ         C2C         C1C         C6C     122.228    1.50
+NPJ         C2C         C1C         N1C     118.886    1.50
+NPJ         C6C         C1C         N1C     118.886    1.50
+NPJ         C1C         C2C         C3C     118.967    1.50
+NPJ         C1C         C2C         H2C     120.877    1.50
+NPJ         C3C         C2C         H2C     120.156    1.50
+NPJ         C2C         C3C         C4C     119.604    1.50
+NPJ         C2C         C3C         H3C     119.973    1.50
+NPJ         C4C         C3C         H3C     120.423    1.50
+NPJ         O1B         C4C         C3C     119.685    3.00
+NPJ         O1B         C4C         C5C     119.685    3.00
+NPJ         C3C         C4C         C5C     120.630    1.50
+NPJ         C4C         C5C         C6C     119.604    1.50
+NPJ         C4C         C5C         H5C     120.423    1.50
+NPJ         C6C         C5C         H5C     119.973    1.50
+NPJ         C1C         C6C         C5C     118.967    1.50
+NPJ         C1C         C6C         H6C     120.877    1.50
+NPJ         C5C         C6C         H6C     120.156    1.50
+NPJ         C1C         N1C         O2C     118.257    1.50
+NPJ         C1C         N1C         O3C     118.257    1.50
+NPJ         O2C         N1C         O3C     123.486    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NPJ                  nu0A         C5A         O5A         C1A         C2A     -60.042    10.0     3
+NPJ                  nu1A         O5A         C1A         C2A         C3A      53.786    10.0     3
+NPJ                  nu2A         C1A         C2A         C3A         C4A     -51.301    10.0     3
+NPJ                  nu3A         C2A         C3A         C4A         C5A      53.392    10.0     3
+NPJ                  nu4A         C3A         C4A         C5A         O5A     -59.063    10.0     3
+NPJ                  nu5A         C4A         C5A         O5A         C1A      63.182    10.0     3
+NPJ                  nu0B         C5B         O5B         C1B         C2B     -63.509    10.0     3
+NPJ                  nu1B         O5B         C1B         C2B         C3B      56.045    10.0     3
+NPJ                  nu2B         C1B         C2B         C3B         C4B     -50.847    10.0     3
+NPJ                  nu3B         C2B         C3B         C4B         C5B      50.710    10.0     3
+NPJ                  nu4B         C3B         C4B         C5B         O5B     -56.728    10.0     3
+NPJ                  nu5B         C4B         C5B         O5B         C1B      64.321    10.0     3
+NPJ       const_sp2_sp2_1         C6C         C1C         C2C         C3C       0.000     5.0     2
+NPJ       const_sp2_sp2_2         C6C         C1C         C2C         H2C     180.000     5.0     2
+NPJ       const_sp2_sp2_3         N1C         C1C         C2C         C3C     180.000     5.0     2
+NPJ       const_sp2_sp2_4         N1C         C1C         C2C         H2C       0.000     5.0     2
+NPJ       const_sp2_sp2_5         C1C         C2C         C3C         C4C       0.000     5.0     2
+NPJ       const_sp2_sp2_6         C1C         C2C         C3C         H3C     180.000     5.0     2
+NPJ       const_sp2_sp2_7         H2C         C2C         C3C         C4C     180.000     5.0     2
+NPJ       const_sp2_sp2_8         H2C         C2C         C3C         H3C       0.000     5.0     2
+NPJ       const_sp2_sp2_9         C2C         C3C         C4C         C5C       0.000     5.0     2
+NPJ              const_10         C2C         C3C         C4C         O1B     180.000    10.0     2
+NPJ              const_11         H3C         C3C         C4C         C5C     180.000    10.0     2
+NPJ              const_12         H3C         C3C         C4C         O1B       0.000    10.0     2
+NPJ              const_13         C3C         C4C         C5C         C6C       0.000    10.0     2
+NPJ              const_14         C3C         C4C         C5C         H5C     180.000    10.0     2
+NPJ              const_15         O1B         C4C         C5C         C6C     180.000    10.0     2
+NPJ              const_16         O1B         C4C         C5C         H5C       0.000    10.0     2
+NPJ              const_17         C4C         C5C         C6C         C1C       0.000    10.0     2
+NPJ              const_18         C4C         C5C         C6C         H6C     180.000    10.0     2
+NPJ              const_19         H5C         C5C         C6C         C1C     180.000    10.0     2
+NPJ              const_20         H5C         C5C         C6C         H6C       0.000    10.0     2
+NPJ            sp3_sp3_79         C2A         C1A         O1A         C4B     180.000    10.0     3
+NPJ            sp3_sp3_80         O5A         C1A         O1A         C4B      60.000    10.0     3
+NPJ            sp3_sp3_81         H1A         C1A         O1A         C4B     -60.000    10.0     3
+NPJ            sp3_sp3_85         C1A         C2A         O2A        HO2A     180.000    10.0     3
+NPJ            sp3_sp3_86         C3A         C2A         O2A        HO2A      60.000    10.0     3
+NPJ            sp3_sp3_87         H2A         C2A         O2A        HO2A     -60.000    10.0     3
+NPJ            sp3_sp3_88         C2A         C3A         O3A        HO3A     180.000    10.0     3
+NPJ            sp3_sp3_89         C4A         C3A         O3A        HO3A      60.000    10.0     3
+NPJ            sp3_sp3_90         H3A         C3A         O3A        HO3A     -60.000    10.0     3
+NPJ            sp3_sp3_91         C3A         C4A         O4A        HO4A     180.000    10.0     3
+NPJ            sp3_sp3_92         C5A         C4A         O4A        HO4A      60.000    10.0     3
+NPJ            sp3_sp3_93         H4A         C4A         O4A        HO4A     -60.000    10.0     3
+NPJ            sp3_sp3_94         C4A         C5A         C6A         O6A     180.000    10.0     3
+NPJ            sp3_sp3_95         C4A         C5A         C6A        H6A1     -60.000    10.0     3
+NPJ            sp3_sp3_96         C4A         C5A         C6A        H6A2      60.000    10.0     3
+NPJ            sp3_sp3_97         O5A         C5A         C6A         O6A      60.000    10.0     3
+NPJ            sp3_sp3_98         O5A         C5A         C6A        H6A1     180.000    10.0     3
+NPJ            sp3_sp3_99         O5A         C5A         C6A        H6A2     -60.000    10.0     3
+NPJ           sp3_sp3_100         H5A         C5A         C6A         O6A     -60.000    10.0     3
+NPJ           sp3_sp3_101         H5A         C5A         C6A        H6A1      60.000    10.0     3
+NPJ           sp3_sp3_102         H5A         C5A         C6A        H6A2     180.000    10.0     3
+NPJ           sp3_sp3_103         C5A         C6A         O6A        HO6A     180.000    10.0     3
+NPJ           sp3_sp3_104        H6A1         C6A         O6A        HO6A      60.000    10.0     3
+NPJ           sp3_sp3_105        H6A2         C6A         O6A        HO6A     -60.000    10.0     3
+NPJ           sp3_sp3_106         C3B         C4B         O1A         C1A     180.000    10.0     3
+NPJ           sp3_sp3_107         C5B         C4B         O1A         C1A      60.000    10.0     3
+NPJ           sp3_sp3_108         H4B         C4B         O1A         C1A     -60.000    10.0     3
+NPJ           sp3_sp3_109         C2B         C1B         O1B         C4C     180.000    10.0     3
+NPJ           sp3_sp3_110         O5B         C1B         O1B         C4C     -60.000    10.0     3
+NPJ           sp3_sp3_111         H1B         C1B         O1B         C4C      60.000    10.0     3
+NPJ           sp3_sp3_115         C1B         C2B         O2B        HO2B     180.000    10.0     3
+NPJ           sp3_sp3_116         C3B         C2B         O2B        HO2B      60.000    10.0     3
+NPJ           sp3_sp3_117         H2B         C2B         O2B        HO2B     -60.000    10.0     3
+NPJ           sp3_sp3_118         C2B         C3B         O3B        HO3B     180.000    10.0     3
+NPJ           sp3_sp3_119         C4B         C3B         O3B        HO3B      60.000    10.0     3
+NPJ           sp3_sp3_120         H3B         C3B         O3B        HO3B     -60.000    10.0     3
+NPJ           sp3_sp3_121         C4B         C5B         C6B         O6B     180.000    10.0     3
+NPJ           sp3_sp3_122         C4B         C5B         C6B        H6B1     -60.000    10.0     3
+NPJ           sp3_sp3_123         C4B         C5B         C6B        H6B2      60.000    10.0     3
+NPJ           sp3_sp3_124         O5B         C5B         C6B         O6B      60.000    10.0     3
+NPJ           sp3_sp3_125         O5B         C5B         C6B        H6B1     180.000    10.0     3
+NPJ           sp3_sp3_126         O5B         C5B         C6B        H6B2     -60.000    10.0     3
+NPJ           sp3_sp3_127         H5B         C5B         C6B         O6B     -60.000    10.0     3
+NPJ           sp3_sp3_128         H5B         C5B         C6B        H6B1      60.000    10.0     3
+NPJ           sp3_sp3_129         H5B         C5B         C6B        H6B2     180.000    10.0     3
+NPJ           sp3_sp3_130         C5B         C6B         O6B        HO6B     180.000    10.0     3
+NPJ           sp3_sp3_131        H6B1         C6B         O6B        HO6B      60.000    10.0     3
+NPJ           sp3_sp3_132        H6B2         C6B         O6B        HO6B     -60.000    10.0     3
+NPJ             sp2_sp2_1         C3C         C4C         O1B         C1B     180.000     5.0     2
+NPJ             sp2_sp2_2         C5C         C4C         O1B         C1B       0.000     5.0     2
+NPJ              const_21         C2C         C1C         C6C         C5C       0.000    10.0     2
+NPJ              const_22         C2C         C1C         C6C         H6C     180.000    10.0     2
+NPJ              const_23         N1C         C1C         C6C         C5C     180.000    10.0     2
+NPJ              const_24         N1C         C1C         C6C         H6C       0.000    10.0     2
+NPJ             sp2_sp2_3         C2C         C1C         N1C         O2C     180.000     5.0     2
+NPJ             sp2_sp2_4         C2C         C1C         N1C         O3C       0.000     5.0     2
+NPJ             sp2_sp2_5         C6C         C1C         N1C         O2C       0.000     5.0     2
+NPJ             sp2_sp2_6         C6C         C1C         N1C         O3C     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NPJ    chir_1    C1A    O1A    O5A    C2A    negative
+NPJ    chir_2    C2A    O2A    C1A    C3A    negative
+NPJ    chir_3    C3A    O3A    C2A    C4A    positive
+NPJ    chir_4    C4A    O4A    C5A    C3A    positive
+NPJ    chir_5    C5A    O5A    C4A    C6A    negative
+NPJ    chir_6    C1B    O1B    O5B    C2B    negative
+NPJ    chir_7    C2B    O2B    C1B    C3B    negative
+NPJ    chir_8    C3B    O3B    C4B    C2B    negative
+NPJ    chir_9    C4B    O1A    C5B    C3B    positive
+NPJ    chir_10    C5B    O5B    C4B    C6B    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NPJ    plan-1         C1C   0.020
+NPJ    plan-1         C2C   0.020
+NPJ    plan-1         C3C   0.020
+NPJ    plan-1         C4C   0.020
+NPJ    plan-1         C5C   0.020
+NPJ    plan-1         C6C   0.020
+NPJ    plan-1         H2C   0.020
+NPJ    plan-1         H3C   0.020
+NPJ    plan-1         H5C   0.020
+NPJ    plan-1         H6C   0.020
+NPJ    plan-1         N1C   0.020
+NPJ    plan-1         O1B   0.020
+NPJ    plan-2         C1C   0.020
+NPJ    plan-2         N1C   0.020
+NPJ    plan-2         O2C   0.020
+NPJ    plan-2         O3C   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NPJ           SMILES              ACDLabs 10.04                                                                                                                         "[O-][N+](=O)c3ccc(OC2OC(C(OC1OC(CO)C(O)C(O)C1O)C(O)C2O)CO)cc3"
+NPJ SMILES_CANONICAL               CACTVS 3.341                                                                               OC[C@H]1O[C@H](O[C@H]2[C@H](O)[C@@H](O)[C@H](O[C@@H]2CO)Oc3ccc(cc3)[N+]([O-])=O)[C@H](O)[C@@H](O)[C@@H]1O
+NPJ           SMILES               CACTVS 3.341                                                                                             OC[CH]1O[CH](O[CH]2[CH](O)[CH](O)[CH](O[CH]2CO)Oc3ccc(cc3)[N+]([O-])=O)[CH](O)[CH](O)[CH]1O
+NPJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         c1cc(ccc1[N+](=O)[O-])O[C@@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CO)O[C@@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O)O)O
+NPJ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                       c1cc(ccc1[N+](=O)[O-])OC2C(C(C(C(O2)CO)OC3C(C(C(C(O3)CO)O)O)O)O)O
+NPJ            InChI                InChI  1.03 InChI=1S/C18H25NO13/c20-5-9-11(22)12(23)14(25)18(30-9)32-16-10(6-21)31-17(15(26)13(16)24)29-8-3-1-7(2-4-8)19(27)28/h1-4,9-18,20-26H,5-6H2/t9-,10-,11-,12+,13-,14-,15-,16-,17+,18-/m1/s1
+NPJ         InChIKey                InChI  1.03                                                                                                                                                             IAYJZWFYUSNIPN-LTHBGAKLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NPJ acedrg               243         "dictionary generator"                  
+NPJ acedrg_database      11          "data source"                           
+NPJ rdkit                2017.03.2   "Chemoinformatics tool"
+NPJ refmac5              5.8.0238    "optimization tool"                     

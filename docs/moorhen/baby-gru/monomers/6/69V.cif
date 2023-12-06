@@ -1,0 +1,423 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+69V     69V      2-phenyl-N-{5-[4-({5-[(phenylacetyl)amino]-1,3,4-thiadiazol-2-yl}oxy)piperidin-1-yl]-1,3,4-thiadiazol-2-yl}acetamide     NON-POLYMER     62     37     .     
+#
+data_comp_69V
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+69V     N12     N       NH1     0       121.064     159.785     44.069      
+69V     C13     C       C       0       121.794     160.615     44.868      
+69V     C15     C       CR6     0       120.394     162.565     44.032      
+69V     C17     C       CR16    0       120.333     163.573     41.836      
+69V     C20     C       CR16    0       119.008     162.671     44.084      
+69V     C26     C       CR5     0       110.858     160.738     40.790      
+69V     C28     C       C       0       108.962     162.301     40.492      
+69V     C01     C       CH2     0       116.045     158.105     41.417      
+69V     C02     C       CH2     0       114.744     158.085     40.640      
+69V     N03     N       NR6     0       113.590     158.146     41.550      
+69V     C04     C       CH2     0       113.624     157.190     42.669      
+69V     C05     C       CH2     0       114.837     156.272     42.639      
+69V     C06     C       CH1     0       116.143     157.022     42.477      
+69V     O07     O       O2      0       116.471     157.582     43.792      
+69V     C08     C       CR5     0       117.597     158.265     44.126      
+69V     N09     N       NRD5    0       117.740     158.951     45.211      
+69V     N10     N       NRD5    0       119.005     159.571     45.313      
+69V     C11     C       CR5     0       119.786     159.323     44.280      
+69V     C14     C       CH2     0       121.169     161.962     45.182      
+69V     C16     C       CR16    0       121.047     163.021     42.892      
+69V     C18     C       CR16    0       118.958     163.672     41.905      
+69V     C19     C       CR16    0       118.296     163.222     43.026      
+69V     O21     O       O       0       122.896     160.300     45.312      
+69V     S22     S       S2      0       118.982     158.347     43.198      
+69V     C23     C       CR5     0       112.502     159.013     41.445      
+69V     N24     N       NRD5    0       111.456     159.089     42.252      
+69V     N25     N       NRD5    0       110.517     160.077     41.878      
+69V     N27     N       NH1     0       110.174     161.759     40.161      
+69V     C29     C       CH2     0       108.497     163.449     39.617      
+69V     C30     C       CR6     0       108.927     164.787     40.169      
+69V     C31     C       CR16    0       110.194     165.294     39.906      
+69V     C32     C       CR16    0       110.586     166.526     40.415      
+69V     C33     C       CR16    0       109.716     167.265     41.191      
+69V     C34     C       CR16    0       108.456     166.776     41.460      
+69V     C35     C       CR16    0       108.062     165.544     40.952      
+69V     O36     O       O       0       108.274     161.899     41.431      
+69V     S37     S       S2      0       112.317     160.156     40.238      
+69V     H1      H       H       0       121.455     159.509     43.332      
+69V     H2      H       H       0       120.790     163.880     41.069      
+69V     H3      H       H       0       118.546     162.365     44.848      
+69V     H4      H       H       0       116.791     158.000     40.791      
+69V     H5      H       H       0       116.141     158.982     41.843      
+69V     H6      H       H       0       114.731     158.844     40.032      
+69V     H7      H       H       0       114.697     157.275     40.102      
+69V     H8      H       H       0       112.817     156.647     42.647      
+69V     H9      H       H       0       113.623     157.684     43.508      
+69V     H10     H       H       0       114.742     155.630     41.904      
+69V     H11     H       H       0       114.869     155.760     43.474      
+69V     H12     H       H       0       116.849     156.383     42.217      
+69V     H13     H       H       0       121.879     162.580     45.442      
+69V     H14     H       H       0       120.572     161.857     45.949      
+69V     H15     H       H       0       121.988     162.957     42.838      
+69V     H16     H       H       0       118.473     164.047     41.186      
+69V     H17     H       H       0       117.355     163.289     43.077      
+69V     H18     H       H       0       110.588     162.097     39.463      
+69V     H19     H       H       0       107.522     163.425     39.556      
+69V     H20     H       H       0       108.857     163.338     38.716      
+69V     H21     H       H       0       110.794     164.794     39.376      
+69V     H22     H       H       0       111.450     166.858     40.229      
+69V     H23     H       H       0       109.983     168.102     41.536      
+69V     H24     H       H       0       107.858     167.279     41.990      
+69V     H25     H       H       0       107.197     165.215     41.140      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+69V         C31         C32      DOUBLE       y     1.386  0.0100     1.386  0.0100
+69V         C32         C33      SINGLE       y     1.376  0.0124     1.376  0.0124
+69V         C30         C31      SINGLE       y     1.386  0.0100     1.386  0.0100
+69V         C33         C34      DOUBLE       y     1.374  0.0127     1.374  0.0127
+69V         C29         C30      SINGLE       n     1.510  0.0100     1.510  0.0100
+69V         C30         C35      DOUBLE       y     1.386  0.0100     1.386  0.0100
+69V         C28         C29      SINGLE       n     1.514  0.0100     1.514  0.0100
+69V         C26         S37      SINGLE       y     1.695  0.0200     1.695  0.0200
+69V         C23         S37      SINGLE       y     1.695  0.0200     1.695  0.0200
+69V         C28         N27      SINGLE       n     1.357  0.0146     1.357  0.0146
+69V         C26         N27      SINGLE       n     1.367  0.0190     1.367  0.0190
+69V         C01         C02      SINGLE       n     1.512  0.0167     1.512  0.0167
+69V         C02         N03      SINGLE       n     1.464  0.0109     1.464  0.0109
+69V         C28         O36      DOUBLE       n     1.230  0.0104     1.230  0.0104
+69V         C26         N25      DOUBLE       y     1.301  0.0200     1.301  0.0200
+69V         C34         C35      SINGLE       y     1.386  0.0100     1.386  0.0100
+69V         C01         C06      SINGLE       n     1.511  0.0126     1.511  0.0126
+69V         N03         C23      SINGLE       n     1.374  0.0200     1.374  0.0200
+69V         C23         N24      DOUBLE       y     1.301  0.0200     1.301  0.0200
+69V         N03         C04      SINGLE       n     1.464  0.0109     1.464  0.0109
+69V         N24         N25      SINGLE       y     1.395  0.0133     1.395  0.0133
+69V         C05         C06      SINGLE       n     1.511  0.0126     1.511  0.0126
+69V         C06         O07      SINGLE       n     1.459  0.0155     1.459  0.0155
+69V         C04         C05      SINGLE       n     1.512  0.0167     1.512  0.0167
+69V         C08         S22      SINGLE       y     1.695  0.0200     1.695  0.0200
+69V         C11         S22      SINGLE       y     1.695  0.0200     1.695  0.0200
+69V         O07         C08      SINGLE       n     1.349  0.0200     1.349  0.0200
+69V         C08         N09      DOUBLE       y     1.288  0.0100     1.288  0.0100
+69V         N12         C11      SINGLE       n     1.367  0.0190     1.367  0.0190
+69V         N12         C13      SINGLE       n     1.357  0.0146     1.357  0.0146
+69V         N10         C11      DOUBLE       y     1.301  0.0200     1.301  0.0200
+69V         C13         O21      DOUBLE       n     1.230  0.0104     1.230  0.0104
+69V         C13         C14      SINGLE       n     1.514  0.0100     1.514  0.0100
+69V         C17         C16      DOUBLE       y     1.386  0.0100     1.386  0.0100
+69V         C17         C18      SINGLE       y     1.376  0.0124     1.376  0.0124
+69V         C15         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+69V         N09         N10      SINGLE       y     1.395  0.0133     1.395  0.0133
+69V         C18         C19      DOUBLE       y     1.374  0.0127     1.374  0.0127
+69V         C15         C14      SINGLE       n     1.510  0.0100     1.510  0.0100
+69V         C15         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+69V         C20         C19      SINGLE       y     1.386  0.0100     1.386  0.0100
+69V         N12          H1      SINGLE       n     1.016  0.0100     0.878  0.0200
+69V         C17          H2      SINGLE       n     1.082  0.0130     0.944  0.0175
+69V         C20          H3      SINGLE       n     1.082  0.0130     0.944  0.0174
+69V         C01          H4      SINGLE       n     1.089  0.0100     0.980  0.0102
+69V         C01          H5      SINGLE       n     1.089  0.0100     0.980  0.0102
+69V         C02          H6      SINGLE       n     1.089  0.0100     0.973  0.0104
+69V         C02          H7      SINGLE       n     1.089  0.0100     0.973  0.0104
+69V         C04          H8      SINGLE       n     1.089  0.0100     0.973  0.0104
+69V         C04          H9      SINGLE       n     1.089  0.0100     0.973  0.0104
+69V         C05         H10      SINGLE       n     1.089  0.0100     0.980  0.0102
+69V         C05         H11      SINGLE       n     1.089  0.0100     0.980  0.0102
+69V         C06         H12      SINGLE       n     1.089  0.0100     0.987  0.0166
+69V         C14         H13      SINGLE       n     1.089  0.0100     0.977  0.0143
+69V         C14         H14      SINGLE       n     1.089  0.0100     0.977  0.0143
+69V         C16         H15      SINGLE       n     1.082  0.0130     0.944  0.0174
+69V         C18         H16      SINGLE       n     1.082  0.0130     0.944  0.0161
+69V         C19         H17      SINGLE       n     1.082  0.0130     0.944  0.0175
+69V         N27         H18      SINGLE       n     1.016  0.0100     0.878  0.0200
+69V         C29         H19      SINGLE       n     1.089  0.0100     0.977  0.0143
+69V         C29         H20      SINGLE       n     1.089  0.0100     0.977  0.0143
+69V         C31         H21      SINGLE       n     1.082  0.0130     0.944  0.0174
+69V         C32         H22      SINGLE       n     1.082  0.0130     0.944  0.0175
+69V         C33         H23      SINGLE       n     1.082  0.0130     0.944  0.0161
+69V         C34         H24      SINGLE       n     1.082  0.0130     0.944  0.0175
+69V         C35         H25      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+69V         C11         N12         C13     124.962    2.96
+69V         C11         N12          H1     117.165    2.70
+69V         C13         N12          H1     117.873    2.44
+69V         N12         C13         O21     123.014    1.50
+69V         N12         C13         C14     114.956    1.58
+69V         O21         C13         C14     122.030    1.50
+69V         C16         C15         C14     120.970    1.50
+69V         C16         C15         C20     118.060    1.50
+69V         C14         C15         C20     120.970    1.50
+69V         C16         C17         C18     120.325    1.50
+69V         C16         C17          H2     119.792    1.50
+69V         C18         C17          H2     119.883    1.50
+69V         C15         C20         C19     120.624    1.50
+69V         C15         C20          H3     119.591    1.50
+69V         C19         C20          H3     119.786    1.50
+69V         S37         C26         N27     124.604    3.00
+69V         S37         C26         N25     108.441    3.00
+69V         N27         C26         N25     126.955    3.00
+69V         C29         C28         N27     114.956    1.58
+69V         C29         C28         O36     122.030    1.50
+69V         N27         C28         O36     123.014    1.50
+69V         C02         C01         C06     111.671    2.54
+69V         C02         C01          H4     109.491    1.50
+69V         C02         C01          H5     109.491    1.50
+69V         C06         C01          H4     109.270    1.50
+69V         C06         C01          H5     109.270    1.50
+69V          H4         C01          H5     108.000    1.50
+69V         C01         C02         N03     110.569    1.50
+69V         C01         C02          H6     109.565    1.50
+69V         C01         C02          H7     109.565    1.50
+69V         N03         C02          H6     109.654    1.50
+69V         N03         C02          H7     109.654    1.50
+69V          H6         C02          H7     108.201    1.50
+69V         C02         N03         C23     123.234    3.00
+69V         C02         N03         C04     113.533    1.57
+69V         C23         N03         C04     123.234    3.00
+69V         N03         C04         C05     110.569    1.50
+69V         N03         C04          H8     109.654    1.50
+69V         N03         C04          H9     109.654    1.50
+69V         C05         C04          H8     109.565    1.50
+69V         C05         C04          H9     109.565    1.50
+69V          H8         C04          H9     108.201    1.50
+69V         C06         C05         C04     111.671    2.54
+69V         C06         C05         H10     109.270    1.50
+69V         C06         C05         H11     109.270    1.50
+69V         C04         C05         H10     109.491    1.50
+69V         C04         C05         H11     109.491    1.50
+69V         H10         C05         H11     108.000    1.50
+69V         C01         C06         C05     110.953    1.50
+69V         C01         C06         O07     108.636    2.58
+69V         C01         C06         H12     109.129    1.50
+69V         C05         C06         O07     108.636    2.58
+69V         C05         C06         H12     109.129    1.50
+69V         O07         C06         H12     109.196    2.19
+69V         C06         O07         C08     120.000    3.00
+69V         S22         C08         O07     123.833    3.00
+69V         S22         C08         N09     108.464    3.00
+69V         O07         C08         N09     127.702    3.00
+69V         C08         N09         N10     107.246    1.50
+69V         C11         N10         N09     107.362    1.50
+69V         S22         C11         N12     124.592    3.00
+69V         S22         C11         N10     108.464    3.00
+69V         N12         C11         N10     126.943    3.00
+69V         C13         C14         C15     111.650    2.25
+69V         C13         C14         H13     109.007    1.50
+69V         C13         C14         H14     109.007    1.50
+69V         C15         C14         H13     109.288    1.50
+69V         C15         C14         H14     109.288    1.50
+69V         H13         C14         H14     108.049    1.50
+69V         C17         C16         C15     120.624    1.50
+69V         C17         C16         H15     119.786    1.50
+69V         C15         C16         H15     119.591    1.50
+69V         C17         C18         C19     120.043    1.50
+69V         C17         C18         H16     119.979    1.50
+69V         C19         C18         H16     119.979    1.50
+69V         C18         C19         C20     120.325    1.50
+69V         C18         C19         H17     119.883    1.50
+69V         C20         C19         H17     119.792    1.50
+69V         C08         S22         C11     108.464    3.00
+69V         S37         C23         N03     122.208    3.00
+69V         S37         C23         N24     108.441    3.00
+69V         N03         C23         N24     129.351    1.97
+69V         C23         N24         N25     107.338    1.50
+69V         C26         N25         N24     107.338    1.50
+69V         C28         N27         C26     124.962    2.96
+69V         C28         N27         H18     117.873    2.44
+69V         C26         N27         H18     117.165    2.70
+69V         C30         C29         C28     111.650    2.25
+69V         C30         C29         H19     109.288    1.50
+69V         C30         C29         H20     109.288    1.50
+69V         C28         C29         H19     109.007    1.50
+69V         C28         C29         H20     109.007    1.50
+69V         H19         C29         H20     108.049    1.50
+69V         C31         C30         C29     120.970    1.50
+69V         C31         C30         C35     118.060    1.50
+69V         C29         C30         C35     120.970    1.50
+69V         C32         C31         C30     120.624    1.50
+69V         C32         C31         H21     119.786    1.50
+69V         C30         C31         H21     119.591    1.50
+69V         C31         C32         C33     120.325    1.50
+69V         C31         C32         H22     119.792    1.50
+69V         C33         C32         H22     119.883    1.50
+69V         C32         C33         C34     120.043    1.50
+69V         C32         C33         H23     119.979    1.50
+69V         C34         C33         H23     119.979    1.50
+69V         C33         C34         C35     120.325    1.50
+69V         C33         C34         H24     119.883    1.50
+69V         C35         C34         H24     119.792    1.50
+69V         C30         C35         C34     120.624    1.50
+69V         C30         C35         H25     119.591    1.50
+69V         C34         C35         H25     119.786    1.50
+69V         C26         S37         C23     108.441    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+69V            sp2_sp2_21         O21         C13         N12         C11       0.000     5.0     2
+69V            sp2_sp2_15         S22         C11         N12         C13     180.000     5.0     2
+69V            sp3_sp3_10         N03         C04         C05         C06     -60.000    10.0     3
+69V            sp3_sp3_20         C04         C05         C06         O07     180.000    10.0     3
+69V            sp3_sp3_37         C01         C06         O07         C08     180.000    10.0     3
+69V            sp2_sp2_13         S22         C08         O07         C06     180.000     5.0     2
+69V              const_62         O07         C08         N09         N10     180.000    10.0     2
+69V       const_sp2_sp2_2         O07         C08         S22         C11     180.000     5.0     2
+69V       const_sp2_sp2_7         C08         N09         N10         C11       0.000     5.0     2
+69V       const_sp2_sp2_6         N12         C11         N10         N09     180.000     5.0     2
+69V       const_sp2_sp2_4         N12         C11         S22         C08     180.000     5.0     2
+69V            sp2_sp3_26         N12         C13         C14         C15     120.000    10.0     6
+69V              const_20         C17         C18         C19         C20       0.000    10.0     2
+69V              const_32         S37         C23         N24         N25       0.000    10.0     2
+69V              const_31         N03         C23         S37         C26     180.000    10.0     2
+69V              const_34         C23         N24         N25         C26       0.000    10.0     2
+69V            sp2_sp3_14         C31         C30         C29         C28     -90.000    10.0     6
+69V              const_37         C29         C30         C31         C32     180.000    10.0     2
+69V              const_57         C29         C30         C35         C34     180.000    10.0     2
+69V            sp2_sp3_32         C16         C15         C14         C13     -90.000    10.0     6
+69V              const_10         C14         C15         C16         C17     180.000    10.0     2
+69V              const_65         C14         C15         C20         C19     180.000    10.0     2
+69V              const_39         C30         C31         C32         C33       0.000    10.0     2
+69V              const_43         C31         C32         C33         C34       0.000    10.0     2
+69V              const_47         C32         C33         C34         C35       0.000    10.0     2
+69V              const_51         C33         C34         C35         C30       0.000    10.0     2
+69V              const_12         C15         C16         C17         C18       0.000    10.0     2
+69V              const_16         C16         C17         C18         C19       0.000    10.0     2
+69V              const_24         C18         C19         C20         C15       0.000    10.0     2
+69V              const_60         N27         C26         N25         N24     180.000    10.0     2
+69V             sp2_sp2_5         S37         C26         N27         C28     180.000     5.0     2
+69V              const_29         N27         C26         S37         C23     180.000    10.0     2
+69V             sp2_sp2_1         C29         C28         N27         C26     180.000     5.0     2
+69V            sp2_sp3_20         N27         C28         C29         C30     120.000    10.0     6
+69V            sp3_sp3_30         C02         C01         C06         O07      60.000    10.0     3
+69V             sp3_sp3_1         C06         C01         C02         N03      60.000    10.0     3
+69V             sp2_sp3_4         C23         N03         C02         C01     180.000    10.0     6
+69V             sp2_sp3_7         C02         N03         C04         C05       0.000    10.0     6
+69V             sp2_sp2_9         S37         C23         N03         C02     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+69V    chir_1    C06    O07    C01    C05    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+69V    plan-1         C08   0.020
+69V    plan-1         C11   0.020
+69V    plan-1         N09   0.020
+69V    plan-1         N10   0.020
+69V    plan-1         N12   0.020
+69V    plan-1         O07   0.020
+69V    plan-1         S22   0.020
+69V    plan-2         C14   0.020
+69V    plan-2         C15   0.020
+69V    plan-2         C16   0.020
+69V    plan-2         C17   0.020
+69V    plan-2         C18   0.020
+69V    plan-2         C19   0.020
+69V    plan-2         C20   0.020
+69V    plan-2         H15   0.020
+69V    plan-2         H16   0.020
+69V    plan-2         H17   0.020
+69V    plan-2          H2   0.020
+69V    plan-2          H3   0.020
+69V    plan-3         C23   0.020
+69V    plan-3         C26   0.020
+69V    plan-3         N03   0.020
+69V    plan-3         N24   0.020
+69V    plan-3         N25   0.020
+69V    plan-3         N27   0.020
+69V    plan-3         S37   0.020
+69V    plan-4         C29   0.020
+69V    plan-4         C30   0.020
+69V    plan-4         C31   0.020
+69V    plan-4         C32   0.020
+69V    plan-4         C33   0.020
+69V    plan-4         C34   0.020
+69V    plan-4         C35   0.020
+69V    plan-4         H21   0.020
+69V    plan-4         H22   0.020
+69V    plan-4         H23   0.020
+69V    plan-4         H24   0.020
+69V    plan-4         H25   0.020
+69V    plan-5         C11   0.020
+69V    plan-5         C13   0.020
+69V    plan-5          H1   0.020
+69V    plan-5         N12   0.020
+69V    plan-6         C13   0.020
+69V    plan-6         C14   0.020
+69V    plan-6         N12   0.020
+69V    plan-6         O21   0.020
+69V    plan-7         C28   0.020
+69V    plan-7         C29   0.020
+69V    plan-7         N27   0.020
+69V    plan-7         O36   0.020
+69V    plan-8         C02   0.020
+69V    plan-8         C04   0.020
+69V    plan-8         C23   0.020
+69V    plan-8         N03   0.020
+69V    plan-9         C26   0.020
+69V    plan-9         C28   0.020
+69V    plan-9         H18   0.020
+69V    plan-9         N27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+69V           SMILES              ACDLabs 12.01                                                                                                                          N(c4nnc(OC1CCN(CC1)c3nnc(NC(=O)Cc2ccccc2)s3)s4)C(Cc5ccccc5)=O
+69V            InChI                InChI  1.03 InChI=1S/C25H25N7O3S2/c33-20(15-17-7-3-1-4-8-17)26-22-28-30-24(36-22)32-13-11-19(12-14-32)35-25-31-29-23(37-25)27-21(34)16-18-9-5-2-6-10-18/h1-10,19H,11-16H2,(H,26,28,33)(H,27,29,34)
+69V         InChIKey                InChI  1.03                                                                                                                                                            BAGWZESOKRULGY-UHFFFAOYSA-N
+69V SMILES_CANONICAL               CACTVS 3.385                                                                                                                            O=C(Cc1ccccc1)Nc2sc(OC3CCN(CC3)c4sc(NC(=O)Cc5ccccc5)nn4)nn2
+69V           SMILES               CACTVS 3.385                                                                                                                            O=C(Cc1ccccc1)Nc2sc(OC3CCN(CC3)c4sc(NC(=O)Cc5ccccc5)nn4)nn2
+69V SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                          c1ccc(cc1)CC(=O)Nc2nnc(s2)N3CCC(CC3)Oc4nnc(s4)NC(=O)Cc5ccccc5
+69V           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                          c1ccc(cc1)CC(=O)Nc2nnc(s2)N3CCC(CC3)Oc4nnc(s4)NC(=O)Cc5ccccc5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+69V acedrg               243         "dictionary generator"                  
+69V acedrg_database      11          "data source"                           
+69V rdkit                2017.03.2   "Chemoinformatics tool"
+69V refmac5              5.8.0238    "optimization tool"                     

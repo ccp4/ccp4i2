@@ -1,0 +1,516 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LIQ     LIQ      N-{(1S)-2-({(1S,2R)-1-(3,5-DIFLUOROBENZYL)-3-[(3-ETHYLBENZYL)AMINO]-2-HYDROXYPROPYL}AMINO)-2-OXO-1-[(PENTYLSULFONYL)METHYL]ETHYL}NICOTINAMIDE     NON-POLYMER     87     45     .     
+#
+data_comp_LIQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LIQ     C7      C       CH2     0       9.144       -2.082      18.443      
+LIQ     C10     C       CH1     0       13.113      -3.352      17.659      
+LIQ     N12     N       NH1     0       14.331      -4.726      16.021      
+LIQ     C13     C       CH1     0       14.911      -5.913      15.401      
+LIQ     C15     C       CR6     0       12.785      -6.134      14.013      
+LIQ     C17     C       CR6     0       10.702      -5.009      13.694      
+LIQ     C20     C       CR16    0       12.074      -7.277      14.360      
+LIQ     C21     C       CH1     0       16.444      -5.778      15.351      
+LIQ     C22     C       CH2     0       17.049      -5.479      16.714      
+LIQ     C24     C       CH2     0       19.184      -4.877      17.762      
+LIQ     C26     C       CR16    0       18.994      -6.486      19.693      
+LIQ     C28     C       CH2     0       18.890      -8.218      21.541      
+LIQ     C1      C       CH2     0       7.172       -2.857      15.203      
+LIQ     C1A     C       CH3     0       7.018       -2.178      13.864      
+LIQ     C2      C       CH2     0       8.234       -2.240      16.076      
+LIQ     C3      C       CH2     0       8.411       -2.931      17.409      
+LIQ     S8      S       S3      0       10.875      -1.796      18.131      
+LIQ     O1      O       O       0       11.006      -1.016      16.938      
+LIQ     O2      O       O       0       11.447      -1.263      19.331      
+LIQ     C9      C       CH2     0       11.593      -3.400      17.837      
+LIQ     C11     C       C       0       13.637      -4.707      17.170      
+LIQ     O3      O       O       0       13.404      -5.707      17.848      
+LIQ     C14     C       CH2     0       14.297      -6.138      14.010      
+LIQ     C16     C       CR16    0       12.080      -4.984      13.678      
+LIQ     C18     C       CR16    0       9.968       -6.122      14.029      
+LIQ     C19     C       CR6     0       10.695      -7.241      14.358      
+LIQ     O4      O       OH1     0       17.002      -6.986      14.833      
+LIQ     N23     N       NT1     0       18.512      -5.639      16.719      
+LIQ     C25     C       CR6     0       18.712      -5.236      19.151      
+LIQ     C27     C       CR6     0       18.564      -6.850      20.972      
+LIQ     C29     C       CR16    0       17.829      -5.925      21.705      
+LIQ     C30     C       CR16    0       17.534      -4.678      21.179      
+LIQ     C31     C       CR16    0       17.970      -4.335      19.909      
+LIQ     C32     C       CH3     0       18.210      -9.355      20.821      
+LIQ     N40     N       NH1     0       13.778      -2.995      18.909      
+LIQ     C41     C       C       0       14.538      -1.898      19.066      
+LIQ     O5      O       O       0       14.798      -1.119      18.147      
+LIQ     F19     F       F       0       10.017      -8.366      14.697      
+LIQ     F17     F       F       0       10.030      -3.878      13.361      
+LIQ     C43     C       CR6     0       15.060      -1.615      20.441      
+LIQ     C45     C       CR16    0       16.379      -1.225      20.638      
+LIQ     N44     N       NRD6    0       16.903      -0.955      21.842      
+LIQ     C46     C       CR16    0       16.093      -1.064      22.906      
+LIQ     C47     C       CR16    0       14.766      -1.438      22.812      
+LIQ     C48     C       CR16    0       14.243      -1.712      21.561      
+LIQ     H71     H       H       0       9.056       -2.515      19.312      
+LIQ     H72     H       H       0       8.696       -1.218      18.505      
+LIQ     H10     H       H       0       13.318      -2.678      16.974      
+LIQ     HN12    H       H       0       14.461      -3.979      15.590      
+LIQ     H13     H       H       0       14.705      -6.697      15.957      
+LIQ     H20     H       H       0       12.539      -8.084      14.598      
+LIQ     H21     H       H       0       16.675      -5.036      14.733      
+LIQ     H221    H       H       0       16.653      -6.085      17.375      
+LIQ     H222    H       H       0       16.821      -4.561      16.971      
+LIQ     H241    H       H       0       19.032      -3.920      17.606      
+LIQ     H242    H       H       0       20.150      -5.039      17.702      
+LIQ     H26     H       H       0       19.492      -7.103      19.187      
+LIQ     H281    H       H       0       18.628      -8.241      22.486      
+LIQ     H282    H       H       0       19.861      -8.353      21.498      
+LIQ     H11     H       H       0       7.395       -3.802      15.057      
+LIQ     H12     H       H       0       6.313       -2.822      15.678      
+LIQ     H1A1    H       H       0       6.422       -2.702      13.300      
+LIQ     H1A2    H       H       0       7.888       -2.104      13.434      
+LIQ     H1A3    H       H       0       6.643       -1.289      13.990      
+LIQ     H21A    H       H       0       8.003       -1.299      16.233      
+LIQ     H22     H       H       0       9.085       -2.261      15.592      
+LIQ     H31A    H       H       0       7.524       -3.160      17.761      
+LIQ     H32     H       H       0       8.895       -3.770      17.269      
+LIQ     H91     H       H       0       11.384      -3.992      18.590      
+LIQ     H92     H       H       0       11.199      -3.787      17.028      
+LIQ     H141    H       H       0       14.609      -7.000      13.659      
+LIQ     H142    H       H       0       14.616      -5.435      13.404      
+LIQ     H16     H       H       0       12.550      -4.181      13.436      
+LIQ     H18     H       H       0       9.024       -6.118      14.034      
+LIQ     HO4     H       H       0       17.694      -6.808      14.376      
+LIQ     HN23    H       H       0       18.839      -5.365      15.937      
+LIQ     H29     H       H       0       17.528      -6.150      22.571      
+LIQ     H30     H       H       0       17.034      -4.059      21.688      
+LIQ     H31     H       H       0       17.765      -3.484      19.557      
+LIQ     H321    H       H       0       18.480      -10.200     21.220      
+LIQ     H322    H       H       0       18.466      -9.345      19.883      
+LIQ     H323    H       H       0       17.246      -9.256      20.895      
+LIQ     HN40    H       H       0       13.682      -3.543      19.582      
+LIQ     H45     H       H       0       16.937      -1.153      19.891      
+LIQ     H46     H       H       0       16.449      -0.876      23.757      
+LIQ     H47     H       H       0       14.229      -1.504      23.583      
+LIQ     H48     H       H       0       13.343      -1.971      21.472      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LIQ          C7          C3      SINGLE       n     1.516  0.0200     1.516  0.0200
+LIQ          C7          S8      SINGLE       n     1.779  0.0100     1.779  0.0100
+LIQ         C10          C9      SINGLE       n     1.530  0.0104     1.530  0.0104
+LIQ         C10         C11      SINGLE       n     1.528  0.0129     1.528  0.0129
+LIQ         C10         N40      SINGLE       n     1.456  0.0100     1.456  0.0100
+LIQ         N12         C13      SINGLE       n     1.455  0.0100     1.455  0.0100
+LIQ         N12         C11      SINGLE       n     1.337  0.0102     1.337  0.0102
+LIQ         C13         C21      SINGLE       n     1.538  0.0100     1.538  0.0100
+LIQ         C13         C14      SINGLE       n     1.536  0.0100     1.536  0.0100
+LIQ         C15         C20      DOUBLE       y     1.385  0.0109     1.385  0.0109
+LIQ         C15         C14      SINGLE       n     1.512  0.0103     1.512  0.0103
+LIQ         C15         C16      SINGLE       y     1.385  0.0109     1.385  0.0109
+LIQ         C17         C16      DOUBLE       y     1.375  0.0100     1.375  0.0100
+LIQ         C17         C18      SINGLE       y     1.371  0.0101     1.371  0.0101
+LIQ         C17         F17      SINGLE       n     1.357  0.0100     1.357  0.0100
+LIQ         C20         C19      SINGLE       y     1.375  0.0100     1.375  0.0100
+LIQ         C21         C22      SINGLE       n     1.519  0.0100     1.519  0.0100
+LIQ         C21          O4      SINGLE       n     1.424  0.0199     1.424  0.0199
+LIQ         C22         N23      SINGLE       n     1.465  0.0137     1.465  0.0137
+LIQ         C24         N23      SINGLE       n     1.454  0.0100     1.454  0.0100
+LIQ         C24         C25      SINGLE       n     1.509  0.0100     1.509  0.0100
+LIQ         C26         C25      DOUBLE       y     1.388  0.0100     1.388  0.0100
+LIQ         C26         C27      SINGLE       y     1.394  0.0100     1.394  0.0100
+LIQ         C28         C27      SINGLE       n     1.516  0.0145     1.516  0.0145
+LIQ         C28         C32      SINGLE       n     1.508  0.0200     1.508  0.0200
+LIQ          C1         C1A      SINGLE       n     1.510  0.0200     1.510  0.0200
+LIQ          C1          C2      SINGLE       n     1.507  0.0200     1.507  0.0200
+LIQ          C2          C3      SINGLE       n     1.510  0.0200     1.510  0.0200
+LIQ          S8          O1      DOUBLE       n     1.432  0.0100     1.432  0.0100
+LIQ          S8          O2      DOUBLE       n     1.432  0.0100     1.432  0.0100
+LIQ          S8          C9      SINGLE       n     1.780  0.0100     1.780  0.0100
+LIQ         C11          O3      DOUBLE       n     1.229  0.0102     1.229  0.0102
+LIQ         C18         C19      DOUBLE       y     1.371  0.0101     1.371  0.0101
+LIQ         C19         F19      SINGLE       n     1.357  0.0100     1.357  0.0100
+LIQ         C25         C31      SINGLE       y     1.389  0.0100     1.389  0.0100
+LIQ         C27         C29      DOUBLE       y     1.385  0.0110     1.385  0.0110
+LIQ         C29         C30      SINGLE       y     1.382  0.0100     1.382  0.0100
+LIQ         C30         C31      DOUBLE       y     1.382  0.0100     1.382  0.0100
+LIQ         N40         C41      SINGLE       n     1.337  0.0101     1.337  0.0101
+LIQ         C41          O5      DOUBLE       n     1.230  0.0114     1.230  0.0114
+LIQ         C41         C43      SINGLE       n     1.495  0.0100     1.495  0.0100
+LIQ         C43         C45      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LIQ         C43         C48      SINGLE       y     1.385  0.0100     1.385  0.0100
+LIQ         C45         N44      SINGLE       y     1.337  0.0100     1.337  0.0100
+LIQ         N44         C46      DOUBLE       y     1.336  0.0134     1.336  0.0134
+LIQ         C46         C47      SINGLE       y     1.374  0.0152     1.374  0.0152
+LIQ         C47         C48      DOUBLE       y     1.379  0.0104     1.379  0.0104
+LIQ          C7         H71      SINGLE       n     1.089  0.0100     0.975  0.0200
+LIQ          C7         H72      SINGLE       n     1.089  0.0100     0.975  0.0200
+LIQ         C10         H10      SINGLE       n     1.089  0.0100     0.983  0.0100
+LIQ         N12        HN12      SINGLE       n     1.016  0.0100     0.872  0.0200
+LIQ         C13         H13      SINGLE       n     1.089  0.0100     0.984  0.0181
+LIQ         C20         H20      SINGLE       n     1.082  0.0130     0.961  0.0200
+LIQ         C21         H21      SINGLE       n     1.089  0.0100     0.992  0.0184
+LIQ         C22        H221      SINGLE       n     1.089  0.0100     0.980  0.0143
+LIQ         C22        H222      SINGLE       n     1.089  0.0100     0.980  0.0143
+LIQ         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0172
+LIQ         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0172
+LIQ         C26         H26      SINGLE       n     1.082  0.0130     0.941  0.0156
+LIQ         C28        H281      SINGLE       n     1.089  0.0100     0.981  0.0138
+LIQ         C28        H282      SINGLE       n     1.089  0.0100     0.981  0.0138
+LIQ          C1         H11      SINGLE       n     1.089  0.0100     0.982  0.0155
+LIQ          C1         H12      SINGLE       n     1.089  0.0100     0.982  0.0155
+LIQ         C1A        H1A1      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIQ         C1A        H1A2      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIQ         C1A        H1A3      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIQ          C2        H21A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIQ          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIQ          C3        H31A      SINGLE       n     1.089  0.0100     0.981  0.0160
+LIQ          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0160
+LIQ          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0160
+LIQ          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0160
+LIQ         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0150
+LIQ         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0150
+LIQ         C16         H16      SINGLE       n     1.082  0.0130     0.961  0.0200
+LIQ         C18         H18      SINGLE       n     1.082  0.0130     0.945  0.0182
+LIQ          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+LIQ         N23        HN23      SINGLE       n     1.036  0.0160     0.890  0.0200
+LIQ         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0174
+LIQ         C30         H30      SINGLE       n     1.082  0.0130     0.945  0.0132
+LIQ         C31         H31      SINGLE       n     1.082  0.0130     0.944  0.0174
+LIQ         C32        H321      SINGLE       n     1.089  0.0100     0.972  0.0140
+LIQ         C32        H322      SINGLE       n     1.089  0.0100     0.972  0.0140
+LIQ         C32        H323      SINGLE       n     1.089  0.0100     0.972  0.0140
+LIQ         N40        HN40      SINGLE       n     1.016  0.0100     0.872  0.0200
+LIQ         C45         H45      SINGLE       n     1.082  0.0130     0.935  0.0100
+LIQ         C46         H46      SINGLE       n     1.082  0.0130     0.942  0.0166
+LIQ         C47         H47      SINGLE       n     1.082  0.0130     0.942  0.0155
+LIQ         C48         H48      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LIQ          C3          C7          S8     111.256    2.92
+LIQ          C3          C7         H71     109.242    1.50
+LIQ          C3          C7         H72     109.242    1.50
+LIQ          S8          C7         H71     109.377    1.50
+LIQ          S8          C7         H72     109.377    1.50
+LIQ         H71          C7         H72     108.043    1.50
+LIQ          C9         C10         C11     110.376    1.58
+LIQ          C9         C10         N40     110.958    1.58
+LIQ          C9         C10         H10     108.224    1.50
+LIQ         C11         C10         N40     110.342    2.62
+LIQ         C11         C10         H10     107.555    1.50
+LIQ         N40         C10         H10     108.209    1.50
+LIQ         C13         N12         C11     123.632    1.63
+LIQ         C13         N12        HN12     117.489    3.00
+LIQ         C11         N12        HN12     118.879    1.83
+LIQ         N12         C13         C21     109.748    1.50
+LIQ         N12         C13         C14     110.274    1.50
+LIQ         N12         C13         H13     108.194    1.50
+LIQ         C21         C13         C14     112.266    1.50
+LIQ         C21         C13         H13     107.639    1.50
+LIQ         C14         C13         H13     108.431    1.50
+LIQ         C20         C15         C14     120.740    1.50
+LIQ         C20         C15         C16     118.521    1.50
+LIQ         C14         C15         C16     120.740    1.50
+LIQ         C16         C17         C18     123.548    1.50
+LIQ         C16         C17         F17     118.460    1.50
+LIQ         C18         C17         F17     117.992    1.50
+LIQ         C15         C20         C19     119.254    1.50
+LIQ         C15         C20         H20     120.307    1.50
+LIQ         C19         C20         H20     120.439    1.50
+LIQ         C13         C21         C22     112.581    1.77
+LIQ         C13         C21          O4     109.040    1.72
+LIQ         C13         C21         H21     108.500    1.50
+LIQ         C22         C21          O4     109.290    2.07
+LIQ         C22         C21         H21     108.552    1.50
+LIQ          O4         C21         H21     108.183    1.96
+LIQ         C21         C22         N23     110.916    1.50
+LIQ         C21         C22        H221     109.093    1.50
+LIQ         C21         C22        H222     109.093    1.50
+LIQ         N23         C22        H221     109.402    1.50
+LIQ         N23         C22        H222     109.402    1.50
+LIQ        H221         C22        H222     107.997    1.50
+LIQ         N23         C24         C25     112.480    1.50
+LIQ         N23         C24        H241     108.965    1.50
+LIQ         N23         C24        H242     108.965    1.50
+LIQ         C25         C24        H241     109.073    1.50
+LIQ         C25         C24        H242     109.073    1.50
+LIQ        H241         C24        H242     107.860    1.50
+LIQ         C25         C26         C27     121.932    1.50
+LIQ         C25         C26         H26     119.118    1.50
+LIQ         C27         C26         H26     118.950    1.50
+LIQ         C27         C28         C32     114.128    2.82
+LIQ         C27         C28        H281     108.725    1.50
+LIQ         C27         C28        H282     108.725    1.50
+LIQ         C32         C28        H281     108.760    1.50
+LIQ         C32         C28        H282     108.760    1.50
+LIQ        H281         C28        H282     107.696    1.50
+LIQ         C1A          C1          C2     113.719    3.00
+LIQ         C1A          C1         H11     108.918    1.50
+LIQ         C1A          C1         H12     108.918    1.50
+LIQ          C2          C1         H11     108.758    1.50
+LIQ          C2          C1         H12     108.758    1.50
+LIQ         H11          C1         H12     107.763    1.50
+LIQ          C1         C1A        H1A1     109.554    1.50
+LIQ          C1         C1A        H1A2     109.554    1.50
+LIQ          C1         C1A        H1A3     109.554    1.50
+LIQ        H1A1         C1A        H1A2     109.380    1.50
+LIQ        H1A1         C1A        H1A3     109.380    1.50
+LIQ        H1A2         C1A        H1A3     109.380    1.50
+LIQ          C1          C2          C3     114.121    1.50
+LIQ          C1          C2        H21A     108.653    1.50
+LIQ          C1          C2         H22     108.653    1.50
+LIQ          C3          C2        H21A     108.891    1.50
+LIQ          C3          C2         H22     108.891    1.50
+LIQ        H21A          C2         H22     107.646    1.50
+LIQ          C7          C3          C2     112.811    1.58
+LIQ          C7          C3        H31A     109.334    1.50
+LIQ          C7          C3         H32     109.334    1.50
+LIQ          C2          C3        H31A     108.963    1.50
+LIQ          C2          C3         H32     108.963    1.50
+LIQ        H31A          C3         H32     107.852    1.50
+LIQ          C7          S8          O1     108.322    1.50
+LIQ          C7          S8          O2     108.322    1.50
+LIQ          C7          S8          C9     104.827    1.50
+LIQ          O1          S8          O2     117.685    1.50
+LIQ          O1          S8          C9     108.322    1.50
+LIQ          O2          S8          C9     108.322    1.50
+LIQ         C10          C9          S8     111.256    2.92
+LIQ         C10          C9         H91     108.621    1.50
+LIQ         C10          C9         H92     108.621    1.50
+LIQ          S8          C9         H91     109.377    1.50
+LIQ          S8          C9         H92     109.377    1.50
+LIQ         H91          C9         H92     108.043    1.50
+LIQ         C10         C11         N12     116.884    1.50
+LIQ         C10         C11          O3     119.494    1.50
+LIQ         N12         C11          O3     123.622    1.50
+LIQ         C13         C14         C15     113.215    1.50
+LIQ         C13         C14        H141     108.892    1.50
+LIQ         C13         C14        H142     108.892    1.50
+LIQ         C15         C14        H141     108.862    1.50
+LIQ         C15         C14        H142     108.862    1.50
+LIQ        H141         C14        H142     107.782    1.50
+LIQ         C15         C16         C17     119.254    1.50
+LIQ         C15         C16         H16     120.307    1.50
+LIQ         C17         C16         H16     120.439    1.50
+LIQ         C17         C18         C19     115.874    1.50
+LIQ         C17         C18         H18     122.063    1.50
+LIQ         C19         C18         H18     122.063    1.50
+LIQ         C20         C19         C18     123.548    1.50
+LIQ         C20         C19         F19     118.460    1.50
+LIQ         C18         C19         F19     117.992    1.50
+LIQ         C21          O4         HO4     109.265    3.00
+LIQ         C22         N23         C24     112.912    1.50
+LIQ         C22         N23        HN23     108.280    3.00
+LIQ         C24         N23        HN23     107.963    3.00
+LIQ         C24         C25         C26     120.564    1.50
+LIQ         C24         C25         C31     120.702    1.50
+LIQ         C26         C25         C31     118.734    1.50
+LIQ         C26         C27         C28     121.039    1.50
+LIQ         C26         C27         C29     118.128    1.50
+LIQ         C28         C27         C29     120.833    1.50
+LIQ         C27         C29         C30     120.578    1.50
+LIQ         C27         C29         H29     119.614    1.50
+LIQ         C30         C29         H29     119.809    1.50
+LIQ         C29         C30         C31     120.183    1.50
+LIQ         C29         C30         H30     119.907    1.50
+LIQ         C31         C30         H30     119.907    1.50
+LIQ         C25         C31         C30     120.449    1.50
+LIQ         C25         C31         H31     119.739    1.50
+LIQ         C30         C31         H31     119.812    1.50
+LIQ         C28         C32        H321     109.522    1.50
+LIQ         C28         C32        H322     109.522    1.50
+LIQ         C28         C32        H323     109.522    1.50
+LIQ        H321         C32        H322     109.417    1.50
+LIQ        H321         C32        H323     109.417    1.50
+LIQ        H322         C32        H323     109.417    1.50
+LIQ         C10         N40         C41     121.852    1.50
+LIQ         C10         N40        HN40     118.788    1.91
+LIQ         C41         N40        HN40     119.360    1.94
+LIQ         N40         C41          O5     122.534    1.50
+LIQ         N40         C41         C43     116.906    1.50
+LIQ          O5         C41         C43     120.561    1.50
+LIQ         C41         C43         C45     121.182    2.06
+LIQ         C41         C43         C48     121.026    1.87
+LIQ         C45         C43         C48     117.792    1.50
+LIQ         C43         C45         N44     123.770    1.50
+LIQ         C43         C45         H45     118.321    1.50
+LIQ         N44         C45         H45     117.909    1.50
+LIQ         C45         N44         C46     117.118    1.50
+LIQ         N44         C46         C47     123.378    1.50
+LIQ         N44         C46         H46     118.084    1.50
+LIQ         C47         C46         H46     118.538    1.50
+LIQ         C46         C47         C48     118.619    1.50
+LIQ         C46         C47         H47     120.685    1.50
+LIQ         C48         C47         H47     120.697    1.50
+LIQ         C43         C48         C47     119.324    1.50
+LIQ         C43         C48         H48     120.435    1.50
+LIQ         C47         C48         H48     120.242    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LIQ             sp3_sp3_1          C2          C3          C7          S8     180.000    10.0     3
+LIQ            sp3_sp3_10          C3          C7          S8          O1     180.000    10.0     3
+LIQ              const_23         C24         C25         C26         C27     180.000    10.0     2
+LIQ              const_62         C25         C26         C27         C28     180.000    10.0     2
+LIQ            sp2_sp3_32         C26         C27         C28         C32     -90.000    10.0     6
+LIQ            sp3_sp3_70         C27         C28         C32        H321     180.000    10.0     3
+LIQ            sp3_sp3_79          C2          C1         C1A        H1A1     180.000    10.0     3
+LIQ            sp3_sp3_88         C1A          C1          C2          C3     180.000    10.0     3
+LIQ            sp3_sp3_97          C1          C2          C3          C7     180.000    10.0     3
+LIQ           sp3_sp3_108         C10          C9          S8          C7      60.000    10.0     3
+LIQ            sp3_sp3_19         C11         C10          C9          S8     180.000    10.0     3
+LIQ             sp2_sp3_1         N12         C11         C10          C9       0.000    10.0     6
+LIQ             sp2_sp3_7         C41         N40         C10          C9       0.000    10.0     6
+LIQ              const_10         C17         C18         C19         F19     180.000    10.0     2
+LIQ              const_27         C24         C25         C31         C30     180.000    10.0     2
+LIQ              const_39         C28         C27         C29         C30     180.000    10.0     2
+LIQ             sp2_sp2_1         C10         C11         N12         C13     180.000     5.0     2
+LIQ            sp2_sp3_13         C11         N12         C13         C21       0.000    10.0     6
+LIQ              const_33         C27         C29         C30         C31       0.000    10.0     2
+LIQ              const_29         C29         C30         C31         C25       0.000    10.0     2
+LIQ             sp2_sp2_7          O5         C41         N40         C10       0.000     5.0     2
+LIQ             sp2_sp2_9         N40         C41         C43         C45     180.000     5.0     2
+LIQ              const_43         C41         C43         C45         N44     180.000    10.0     2
+LIQ              const_67         C41         C43         C48         C47     180.000    10.0     2
+LIQ            sp3_sp3_37         N12         C13         C14         C15     180.000    10.0     3
+LIQ            sp3_sp3_28         N12         C13         C21         C22     180.000    10.0     3
+LIQ              const_45         C43         C45         N44         C46       0.000    10.0     2
+LIQ              const_47         C47         C46         N44         C45       0.000    10.0     2
+LIQ              const_49         N44         C46         C47         C48       0.000    10.0     2
+LIQ              const_53         C46         C47         C48         C43       0.000    10.0     2
+LIQ            sp2_sp3_20         C20         C15         C14         C13     -90.000    10.0     6
+LIQ              const_59         C14         C15         C16         C17     180.000    10.0     2
+LIQ       const_sp2_sp2_3         C14         C15         C20         C19     180.000     5.0     2
+LIQ              const_18         C15         C16         C17         F17     180.000    10.0     2
+LIQ              const_15         F17         C17         C18         C19     180.000    10.0     2
+LIQ       const_sp2_sp2_7         F19         C19         C20         C15     180.000     5.0     2
+LIQ            sp3_sp3_55         C13         C21          O4         HO4     180.000    10.0     3
+LIQ            sp3_sp3_46         C13         C21         C22         N23     180.000    10.0     3
+LIQ            sp3_sp3_59         C21         C22         N23         C24     -60.000    10.0     3
+LIQ            sp3_sp3_64         C25         C24         N23         C22     180.000    10.0     3
+LIQ            sp2_sp3_26         C26         C25         C24         N23     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LIQ    chir_1    C10    N40    C9    C11    positive
+LIQ    chir_2    C13    N12    C21    C14    positive
+LIQ    chir_3    C21    O4    C13    C22    negative
+LIQ    chir_4    S8    O1    O2    C9    both
+LIQ    chir_5    N23    C22    C24    HN23    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LIQ    plan-1         C24   0.020
+LIQ    plan-1         C25   0.020
+LIQ    plan-1         C26   0.020
+LIQ    plan-1         C27   0.020
+LIQ    plan-1         C28   0.020
+LIQ    plan-1         C29   0.020
+LIQ    plan-1         C30   0.020
+LIQ    plan-1         C31   0.020
+LIQ    plan-1         H26   0.020
+LIQ    plan-1         H29   0.020
+LIQ    plan-1         H30   0.020
+LIQ    plan-1         H31   0.020
+LIQ    plan-2         C14   0.020
+LIQ    plan-2         C15   0.020
+LIQ    plan-2         C16   0.020
+LIQ    plan-2         C17   0.020
+LIQ    plan-2         C18   0.020
+LIQ    plan-2         C19   0.020
+LIQ    plan-2         C20   0.020
+LIQ    plan-2         F17   0.020
+LIQ    plan-2         F19   0.020
+LIQ    plan-2         H16   0.020
+LIQ    plan-2         H18   0.020
+LIQ    plan-2         H20   0.020
+LIQ    plan-3         C41   0.020
+LIQ    plan-3         C43   0.020
+LIQ    plan-3         C45   0.020
+LIQ    plan-3         C46   0.020
+LIQ    plan-3         C47   0.020
+LIQ    plan-3         C48   0.020
+LIQ    plan-3         H45   0.020
+LIQ    plan-3         H46   0.020
+LIQ    plan-3         H47   0.020
+LIQ    plan-3         H48   0.020
+LIQ    plan-3         N44   0.020
+LIQ    plan-4         C11   0.020
+LIQ    plan-4         C13   0.020
+LIQ    plan-4        HN12   0.020
+LIQ    plan-4         N12   0.020
+LIQ    plan-5         C10   0.020
+LIQ    plan-5         C11   0.020
+LIQ    plan-5         N12   0.020
+LIQ    plan-5          O3   0.020
+LIQ    plan-6         C10   0.020
+LIQ    plan-6         C41   0.020
+LIQ    plan-6        HN40   0.020
+LIQ    plan-6         N40   0.020
+LIQ    plan-7         C41   0.020
+LIQ    plan-7         C43   0.020
+LIQ    plan-7         N40   0.020
+LIQ    plan-7          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LIQ           SMILES              ACDLabs 10.04                                                                                                                                                                                    O=C(NC(C(=O)NC(Cc1cc(F)cc(F)c1)C(O)CNCc2cccc(c2)CC)CS(=O)(=O)CCCCC)c3cccnc3
+LIQ SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                    CCCCC[S](=O)(=O)C[C@@H](NC(=O)c1cccnc1)C(=O)N[C@@H](Cc2cc(F)cc(F)c2)[C@H](O)CNCc3cccc(CC)c3
+LIQ           SMILES               CACTVS 3.341                                                                                                                                                                         CCCCC[S](=O)(=O)C[CH](NC(=O)c1cccnc1)C(=O)N[CH](Cc2cc(F)cc(F)c2)[CH](O)CNCc3cccc(CC)c3
+LIQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                      CCCCCS(=O)(=O)C[C@H](C(=O)N[C@@H](Cc1cc(cc(c1)F)F)[C@@H](CNCc2cccc(c2)CC)O)NC(=O)c3cccnc3
+LIQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                    CCCCCS(=O)(=O)CC(C(=O)NC(Cc1cc(cc(c1)F)F)C(CNCc2cccc(c2)CC)O)NC(=O)c3cccnc3
+LIQ            InChI                InChI  1.03 InChI=1S/C33H42F2N4O5S/c1-3-5-6-13-45(43,44)22-30(39-32(41)26-11-8-12-36-20-26)33(42)38-29(17-25-15-27(34)18-28(35)16-25)31(40)21-37-19-24-10-7-9-23(4-2)14-24/h7-12,14-16,18,20,29-31,37,40H,3-6,13,17,19,21-22H2,1-2H3,(H,38,42)(H,39,41)/t29-,30+,31+/m0/s1
+LIQ         InChIKey                InChI  1.03                                                                                                                                                                                                                                    IOTPZWJUHSYLHJ-OJDZSJEKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LIQ acedrg               243         "dictionary generator"                  
+LIQ acedrg_database      11          "data source"                           
+LIQ rdkit                2017.03.2   "Chemoinformatics tool"
+LIQ refmac5              5.8.0238    "optimization tool"                     

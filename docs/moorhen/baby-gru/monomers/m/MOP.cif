@@ -1,0 +1,165 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MOP     MOP      4-METHYLPENTANAL     NON-POLYMER     19     7     .     
+#
+data_comp_MOP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MOP     C1      C       C1      0       1.336       3.187       10.667      
+MOP     O1      O       O       0       1.008       4.259       10.261      
+MOP     C2      C       CH2     0       0.943       1.875       10.081      
+MOP     C3      C       CH2     0       1.473       1.620       8.673       
+MOP     C4      C       CH1     0       2.989       1.479       8.556       
+MOP     C5      C       CH3     0       3.431       1.508       7.101       
+MOP     CM4     C       CH3     0       3.489       0.211       9.234       
+MOP     H1      H       H       0       1.895       3.168       11.427      
+MOP     H21     H       H       0       -0.037      1.826       10.057      
+MOP     H22     H       H       0       1.257       1.159       10.673      
+MOP     H31     H       H       0       1.189       2.357       8.093       
+MOP     H32     H       H       0       1.063       0.800       8.327       
+MOP     H4      H       H       0       3.405       2.251       9.013       
+MOP     H51     H       H       0       4.402       1.467       7.055       
+MOP     H52     H       H       0       3.122       2.330       6.683       
+MOP     H53     H       H       0       3.053       0.744       6.631       
+MOP     HM41    H       H       0       2.943       -0.544      8.953       
+MOP     HM42    H       H       0       3.429       0.312       10.200      
+MOP     HM43    H       H       0       4.416       0.051       8.984       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MOP          C1          O1      DOUBLE       n     1.192  0.0200     1.192  0.0200
+MOP          C1          C2      SINGLE       n     1.490  0.0115     1.490  0.0115
+MOP          C2          C3      SINGLE       n     1.520  0.0200     1.520  0.0200
+MOP          C3          C4      SINGLE       n     1.522  0.0177     1.522  0.0177
+MOP          C4          C5      SINGLE       n     1.521  0.0151     1.521  0.0151
+MOP          C4         CM4      SINGLE       n     1.521  0.0151     1.521  0.0151
+MOP          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0105
+MOP          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+MOP          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+MOP          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+MOP          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+MOP          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0162
+MOP          C5         H51      SINGLE       n     1.089  0.0100     0.973  0.0146
+MOP          C5         H52      SINGLE       n     1.089  0.0100     0.973  0.0146
+MOP          C5         H53      SINGLE       n     1.089  0.0100     0.973  0.0146
+MOP         CM4        HM41      SINGLE       n     1.089  0.0100     0.973  0.0146
+MOP         CM4        HM42      SINGLE       n     1.089  0.0100     0.973  0.0146
+MOP         CM4        HM43      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MOP          O1          C1          C2     125.770    1.96
+MOP          O1          C1          H1     117.130    1.50
+MOP          C2          C1          H1     117.100    1.50
+MOP          C1          C2          C3     114.504    2.22
+MOP          C1          C2         H21     108.942    1.50
+MOP          C1          C2         H22     108.942    1.50
+MOP          C3          C2         H21     108.844    1.50
+MOP          C3          C2         H22     108.844    1.50
+MOP         H21          C2         H22     107.705    1.50
+MOP          C2          C3          C4     114.688    1.50
+MOP          C2          C3         H31     108.915    1.50
+MOP          C2          C3         H32     108.915    1.50
+MOP          C4          C3         H31     108.407    1.50
+MOP          C4          C3         H32     108.407    1.50
+MOP         H31          C3         H32     107.657    1.50
+MOP          C3          C4          C5     111.368    1.50
+MOP          C3          C4         CM4     111.368    1.50
+MOP          C3          C4          H4     107.933    1.50
+MOP          C5          C4         CM4     110.507    1.50
+MOP          C5          C4          H4     108.052    1.50
+MOP         CM4          C4          H4     108.052    1.50
+MOP          C4          C5         H51     109.488    1.50
+MOP          C4          C5         H52     109.488    1.50
+MOP          C4          C5         H53     109.488    1.50
+MOP         H51          C5         H52     109.411    1.50
+MOP         H51          C5         H53     109.411    1.50
+MOP         H52          C5         H53     109.411    1.50
+MOP          C4         CM4        HM41     109.488    1.50
+MOP          C4         CM4        HM42     109.488    1.50
+MOP          C4         CM4        HM43     109.488    1.50
+MOP        HM41         CM4        HM42     109.411    1.50
+MOP        HM41         CM4        HM43     109.411    1.50
+MOP        HM42         CM4        HM43     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MOP             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+MOP             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+MOP            sp3_sp3_11          C2          C3          C4          C5     -60.000    10.0     3
+MOP            sp3_sp3_19          C3          C4          C5         H51     180.000    10.0     3
+MOP            sp3_sp3_31          C3          C4         CM4        HM41      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MOP    chir_1    C4    C3    C5    CM4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MOP    plan-1          C1   0.020
+MOP    plan-1          C2   0.020
+MOP    plan-1          H1   0.020
+MOP    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MOP           SMILES              ACDLabs 10.04                                       O=CCCC(C)C
+MOP SMILES_CANONICAL               CACTVS 3.341                                       CC(C)CCC=O
+MOP           SMILES               CACTVS 3.341                                       CC(C)CCC=O
+MOP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                       CC(C)CCC=O
+MOP           SMILES "OpenEye OEToolkits" 1.5.0                                       CC(C)CCC=O
+MOP            InChI                InChI  1.03 InChI=1S/C6H12O/c1-6(2)4-3-5-7/h5-6H,3-4H2,1-2H3
+MOP         InChIKey                InChI  1.03                      JGEGJYXHCFUMJF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MOP acedrg               243         "dictionary generator"                  
+MOP acedrg_database      11          "data source"                           
+MOP rdkit                2017.03.2   "Chemoinformatics tool"
+MOP refmac5              5.8.0238    "optimization tool"                     

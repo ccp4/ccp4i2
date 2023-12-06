@@ -1,0 +1,337 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TMS     TMS      N-PROPYL-4-[(E)-2-(3,4,5-TRIMETHOXY-PHENYL)-VINYL]-BENZAMIDE     NON-POLYMER     52     27     .     
+#
+data_comp_TMS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TMS     C1      C       C1      0       -6.604      3.135       8.312       
+TMS     O20     O       O2      0       -11.200     -0.837      7.417       
+TMS     C20     C       CH3     0       -10.476     -2.021      7.754       
+TMS     O21     O       O2      0       -12.370     1.071       5.891       
+TMS     C21     C       CH3     0       -12.410     0.023       4.918       
+TMS     O22     O       O2      0       -11.270     3.470       5.576       
+TMS     C22     C       CH3     0       -10.764     4.781       5.323       
+TMS     C2      C       C1      0       -7.483      2.156       8.520       
+TMS     C3      C       CR6     0       -5.474      3.507       9.175       
+TMS     C4      C       CR6     0       -8.750      1.910       7.810       
+TMS     C5      C       CR16    0       -5.479      3.295       10.557      
+TMS     C6      C       CR16    0       -4.340      4.104       8.620       
+TMS     C7      C       CR16    0       -9.351      0.657       7.956       
+TMS     C8      C       CR16    0       -9.378      2.878       7.018       
+TMS     C9      C       CR16    0       -4.400      3.660       11.347      
+TMS     C10     C       CR16    0       -3.259      4.470       9.404       
+TMS     C11     C       CR6     0       -10.539     0.360       7.320       
+TMS     C12     C       CR6     0       -10.570     2.601       6.376       
+TMS     C13     C       CR6     0       -3.271      4.245       10.778      
+TMS     C14     C       CR6     0       -11.160     1.331       6.511       
+TMS     C15     C       C       0       -2.085      4.669       11.602      
+TMS     N1      N       NH1     0       -1.636      3.823       12.537      
+TMS     C16     C       CH2     0       -0.557      4.187       13.448      
+TMS     O1      O       O       0       -1.570      5.772       11.417      
+TMS     C17     C       CH2     0       -0.345      3.153       14.538      
+TMS     C18     C       CH2     0       0.517       1.990       14.097      
+TMS     O2      O       OH1     0       -0.130      1.202       13.113      
+TMS     HE2     H       H       0       -6.706      3.640       7.518       
+TMS     HGA     H       H       0       -10.236     -1.994      8.695       
+TMS     HGB     H       H       0       -9.669      -2.077      7.214       
+TMS     HGC     H       H       0       -11.032     -2.798      7.584       
+TMS     H1A     H       H       0       -12.860     -0.750      5.300       
+TMS     H1B     H       H       0       -11.509     -0.226      4.653       
+TMS     H1C     H       H       0       -12.903     0.327       4.138       
+TMS     HFA     H       H       0       -9.890      4.717       4.905       
+TMS     HFB     H       H       0       -10.688     5.267       6.161       
+TMS     HFC     H       H       0       -11.371     5.253       4.730       
+TMS     HE3     H       H       0       -7.268      1.540       9.207       
+TMS     HC4     H       H       0       -6.230      2.895       10.960      
+TMS     HC5     H       H       0       -4.311      4.259       7.692       
+TMS     HB6     H       H       0       -8.932      0.007       8.492       
+TMS     HB7     H       H       0       -8.978      3.723       6.919       
+TMS     HD8     H       H       0       -4.428      3.504       12.275      
+TMS     HD9     H       H       0       -2.508      4.870       9.002       
+TMS     H1      H       H       0       -1.985      3.024       12.600      
+TMS     HJB     H       H       0       -0.766      5.051       13.864      
+TMS     HJA     H       H       0       0.273       4.291       12.936      
+TMS     HKA     H       H       0       -1.219      2.815       14.830      
+TMS     HKB     H       H       0       0.075       3.590       15.309      
+TMS     HLB     H       H       0       0.727       1.428       14.873      
+TMS     HLA     H       H       0       1.362       2.331       13.733      
+TMS     HO2     H       H       0       0.370       0.548       12.920      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TMS          C1          C2      DOUBLE       n     1.326  0.0177     1.326  0.0177
+TMS          C1          C3      SINGLE       n     1.468  0.0100     1.468  0.0100
+TMS         O20         C20      SINGLE       n     1.424  0.0117     1.424  0.0117
+TMS         O20         C11      SINGLE       n     1.366  0.0100     1.366  0.0100
+TMS         O21         C21      SINGLE       n     1.424  0.0117     1.424  0.0117
+TMS         O21         C14      SINGLE       n     1.377  0.0100     1.377  0.0100
+TMS         O22         C22      SINGLE       n     1.424  0.0117     1.424  0.0117
+TMS         O22         C12      SINGLE       n     1.366  0.0100     1.366  0.0100
+TMS          C2          C4      SINGLE       n     1.470  0.0100     1.470  0.0100
+TMS          C3          C5      DOUBLE       y     1.393  0.0100     1.393  0.0100
+TMS          C3          C6      SINGLE       y     1.393  0.0100     1.393  0.0100
+TMS          C4          C7      DOUBLE       y     1.396  0.0100     1.396  0.0100
+TMS          C4          C8      SINGLE       y     1.396  0.0100     1.396  0.0100
+TMS          C5          C9      SINGLE       y     1.382  0.0100     1.382  0.0100
+TMS          C6         C10      DOUBLE       y     1.382  0.0100     1.382  0.0100
+TMS          C7         C11      SINGLE       y     1.374  0.0100     1.374  0.0100
+TMS          C8         C12      DOUBLE       y     1.374  0.0100     1.374  0.0100
+TMS          C9         C13      DOUBLE       y     1.389  0.0100     1.389  0.0100
+TMS         C10         C13      SINGLE       y     1.389  0.0100     1.389  0.0100
+TMS         C11         C14      DOUBLE       y     1.397  0.0100     1.397  0.0100
+TMS         C12         C14      SINGLE       y     1.397  0.0100     1.397  0.0100
+TMS         C13         C15      SINGLE       n     1.502  0.0100     1.502  0.0100
+TMS         C15          N1      SINGLE       n     1.333  0.0111     1.333  0.0111
+TMS         C15          O1      DOUBLE       n     1.230  0.0114     1.230  0.0114
+TMS          N1         C16      SINGLE       n     1.455  0.0100     1.455  0.0100
+TMS         C16         C17      SINGLE       n     1.517  0.0100     1.517  0.0100
+TMS         C17         C18      SINGLE       n     1.513  0.0100     1.513  0.0100
+TMS         C18          O2      SINGLE       n     1.417  0.0200     1.417  0.0200
+TMS          C1         HE2      SINGLE       n     1.082  0.0130     0.948  0.0200
+TMS         C20         HGA      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C20         HGB      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C20         HGC      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C21         H1A      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C21         H1B      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C21         H1C      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C22         HFA      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C22         HFB      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS         C22         HFC      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMS          C2         HE3      SINGLE       n     1.082  0.0130     0.948  0.0200
+TMS          C5         HC4      SINGLE       n     1.082  0.0130     0.941  0.0168
+TMS          C6         HC5      SINGLE       n     1.082  0.0130     0.941  0.0168
+TMS          C7         HB6      SINGLE       n     1.082  0.0130     0.941  0.0168
+TMS          C8         HB7      SINGLE       n     1.082  0.0130     0.941  0.0168
+TMS          C9         HD8      SINGLE       n     1.082  0.0130     0.941  0.0168
+TMS         C10         HD9      SINGLE       n     1.082  0.0130     0.941  0.0168
+TMS          N1          H1      SINGLE       n     1.016  0.0100     0.873  0.0200
+TMS         C16         HJB      SINGLE       n     1.089  0.0100     0.981  0.0152
+TMS         C16         HJA      SINGLE       n     1.089  0.0100     0.981  0.0152
+TMS         C17         HKA      SINGLE       n     1.089  0.0100     0.981  0.0122
+TMS         C17         HKB      SINGLE       n     1.089  0.0100     0.981  0.0122
+TMS         C18         HLB      SINGLE       n     1.089  0.0100     0.981  0.0174
+TMS         C18         HLA      SINGLE       n     1.089  0.0100     0.981  0.0174
+TMS          O2         HO2      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TMS          C2          C1          C3     126.568    1.76
+TMS          C2          C1         HE2     116.867    1.50
+TMS          C3          C1         HE2     116.565    1.50
+TMS         C20         O20         C11     117.276    1.50
+TMS         O20         C20         HGA     109.428    1.50
+TMS         O20         C20         HGB     109.428    1.50
+TMS         O20         C20         HGC     109.428    1.50
+TMS         HGA         C20         HGB     109.509    1.50
+TMS         HGA         C20         HGC     109.509    1.50
+TMS         HGB         C20         HGC     109.509    1.50
+TMS         C21         O21         C14     114.431    1.50
+TMS         O21         C21         H1A     109.428    1.50
+TMS         O21         C21         H1B     109.428    1.50
+TMS         O21         C21         H1C     109.428    1.50
+TMS         H1A         C21         H1B     109.509    1.50
+TMS         H1A         C21         H1C     109.509    1.50
+TMS         H1B         C21         H1C     109.509    1.50
+TMS         C22         O22         C12     117.276    1.50
+TMS         O22         C22         HFA     109.428    1.50
+TMS         O22         C22         HFB     109.428    1.50
+TMS         O22         C22         HFC     109.428    1.50
+TMS         HFA         C22         HFB     109.509    1.50
+TMS         HFA         C22         HFC     109.509    1.50
+TMS         HFB         C22         HFC     109.509    1.50
+TMS          C1          C2          C4     126.568    1.76
+TMS          C1          C2         HE3     116.867    1.50
+TMS          C4          C2         HE3     116.565    1.50
+TMS          C1          C3          C5     121.174    2.07
+TMS          C1          C3          C6     121.174    2.07
+TMS          C5          C3          C6     117.653    1.50
+TMS          C2          C4          C7     120.233    2.21
+TMS          C2          C4          C8     120.233    2.21
+TMS          C7          C4          C8     119.535    1.50
+TMS          C3          C5          C9     121.204    1.50
+TMS          C3          C5         HC4     119.304    1.50
+TMS          C9          C5         HC4     119.492    1.50
+TMS          C3          C6         C10     121.204    1.50
+TMS          C3          C6         HC5     119.304    1.50
+TMS         C10          C6         HC5     119.492    1.50
+TMS          C4          C7         C11     120.482    1.50
+TMS          C4          C7         HB6     119.798    1.50
+TMS         C11          C7         HB6     119.719    1.50
+TMS          C4          C8         C12     120.482    1.50
+TMS          C4          C8         HB7     119.798    1.50
+TMS         C12          C8         HB7     119.719    1.50
+TMS          C5          C9         C13     120.503    1.50
+TMS          C5          C9         HD8     119.651    1.50
+TMS         C13          C9         HD8     119.846    1.50
+TMS          C6         C10         C13     120.503    1.50
+TMS          C6         C10         HD9     119.651    1.50
+TMS         C13         C10         HD9     119.846    1.50
+TMS         O20         C11          C7     124.786    1.50
+TMS         O20         C11         C14     115.231    1.50
+TMS          C7         C11         C14     119.983    1.50
+TMS         O22         C12          C8     124.786    1.50
+TMS         O22         C12         C14     115.231    1.50
+TMS          C8         C12         C14     119.983    1.50
+TMS          C9         C13         C10     118.933    1.50
+TMS          C9         C13         C15     120.534    2.80
+TMS         C10         C13         C15     120.534    2.80
+TMS         O21         C14         C11     120.233    1.50
+TMS         O21         C14         C12     120.233    1.50
+TMS         C11         C14         C12     119.535    1.50
+TMS         C13         C15          N1     116.868    1.50
+TMS         C13         C15          O1     120.968    1.50
+TMS          N1         C15          O1     122.164    1.50
+TMS         C15          N1         C16     121.796    1.50
+TMS         C15          N1          H1     119.379    1.77
+TMS         C16          N1          H1     118.813    1.50
+TMS          N1         C16         C17     111.491    1.50
+TMS          N1         C16         HJB     109.020    1.50
+TMS          N1         C16         HJA     109.020    1.50
+TMS         C17         C16         HJB     109.069    1.50
+TMS         C17         C16         HJA     109.069    1.50
+TMS         HJB         C16         HJA     107.877    1.50
+TMS         C16         C17         C18     113.087    1.51
+TMS         C16         C17         HKA     108.901    1.50
+TMS         C16         C17         HKB     108.901    1.50
+TMS         C18         C17         HKA     109.317    1.50
+TMS         C18         C17         HKB     109.317    1.50
+TMS         HKA         C17         HKB     107.717    1.50
+TMS         C17         C18          O2     111.826    2.06
+TMS         C17         C18         HLB     109.435    1.50
+TMS         C17         C18         HLA     109.435    1.50
+TMS          O2         C18         HLB     109.258    1.50
+TMS          O2         C18         HLA     109.258    1.50
+TMS         HLB         C18         HLA     108.120    1.50
+TMS         C18          O2         HO2     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TMS             sp2_sp2_1          C3          C1          C2          C4     180.000     5.0     2
+TMS             sp2_sp2_5          C2          C1          C3          C5     180.000     5.0     2
+TMS       const_sp2_sp2_5          C3          C5          C9         C13       0.000     5.0     2
+TMS              const_17         C13         C10          C6          C3       0.000    10.0     2
+TMS              const_27         O20         C11          C7          C4     180.000    10.0     2
+TMS              const_39         O22         C12          C8          C4     180.000    10.0     2
+TMS              const_11         C15         C13          C9          C5     180.000    10.0     2
+TMS              const_14          C6         C10         C13         C15     180.000    10.0     2
+TMS              const_32         O20         C11         C14         O21       0.000    10.0     2
+TMS              const_36         O22         C12         C14         O21       0.000    10.0     2
+TMS            sp2_sp2_19          C9         C13         C15          N1     180.000     5.0     2
+TMS             sp2_sp2_9          C7         C11         O20         C20     180.000     5.0     2
+TMS             sp3_sp3_2         HGA         C20         O20         C11     -60.000    10.0     3
+TMS            sp2_sp2_25          O1         C15          N1         C16       0.000     5.0     2
+TMS             sp2_sp3_2         C15          N1         C16         C17     120.000    10.0     6
+TMS            sp3_sp3_13          N1         C16         C17         C18     180.000    10.0     3
+TMS            sp3_sp3_22         C16         C17         C18          O2     180.000    10.0     3
+TMS            sp3_sp3_31         C17         C18          O2         HO2     180.000    10.0     3
+TMS            sp2_sp2_11         C11         C14         O21         C21     180.000     5.0     2
+TMS             sp3_sp3_6         H1A         C21         O21         C14     -60.000    10.0     3
+TMS            sp2_sp2_13          C8         C12         O22         C22     180.000     5.0     2
+TMS            sp3_sp3_10         HFA         C22         O22         C12     -60.000    10.0     3
+TMS            sp2_sp2_15          C1          C2          C4          C7     180.000     5.0     2
+TMS       const_sp2_sp2_3          C1          C3          C5          C9     180.000     5.0     2
+TMS              const_43          C1          C3          C6         C10     180.000    10.0     2
+TMS              const_23          C2          C4          C7         C11     180.000    10.0     2
+TMS              const_47          C2          C4          C8         C12     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TMS    plan-1          C1   0.020
+TMS    plan-1         C10   0.020
+TMS    plan-1         C13   0.020
+TMS    plan-1         C15   0.020
+TMS    plan-1          C3   0.020
+TMS    plan-1          C5   0.020
+TMS    plan-1          C6   0.020
+TMS    plan-1          C9   0.020
+TMS    plan-1         HC4   0.020
+TMS    plan-1         HC5   0.020
+TMS    plan-1         HD8   0.020
+TMS    plan-1         HD9   0.020
+TMS    plan-2         C11   0.020
+TMS    plan-2         C12   0.020
+TMS    plan-2         C14   0.020
+TMS    plan-2          C2   0.020
+TMS    plan-2          C4   0.020
+TMS    plan-2          C7   0.020
+TMS    plan-2          C8   0.020
+TMS    plan-2         HB6   0.020
+TMS    plan-2         HB7   0.020
+TMS    plan-2         O20   0.020
+TMS    plan-2         O21   0.020
+TMS    plan-2         O22   0.020
+TMS    plan-3          C1   0.020
+TMS    plan-3          C2   0.020
+TMS    plan-3          C3   0.020
+TMS    plan-3         HE2   0.020
+TMS    plan-4          C1   0.020
+TMS    plan-4          C2   0.020
+TMS    plan-4          C4   0.020
+TMS    plan-4         HE3   0.020
+TMS    plan-5         C13   0.020
+TMS    plan-5         C15   0.020
+TMS    plan-5          N1   0.020
+TMS    plan-5          O1   0.020
+TMS    plan-6         C15   0.020
+TMS    plan-6         C16   0.020
+TMS    plan-6          H1   0.020
+TMS    plan-6          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TMS           SMILES              ACDLabs 10.04                                                                                                     O=C(NCCCO)c1ccc(cc1)\C=C\c2cc(OC)c(OC)c(OC)c2
+TMS SMILES_CANONICAL               CACTVS 3.341                                                                                                       COc1cc(/C=C/c2ccc(cc2)C(=O)NCCCO)cc(OC)c1OC
+TMS           SMILES               CACTVS 3.341                                                                                                         COc1cc(C=Cc2ccc(cc2)C(=O)NCCCO)cc(OC)c1OC
+TMS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                       COc1cc(cc(c1OC)OC)\C=C\c2ccc(cc2)C(=O)NCCCO
+TMS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         COc1cc(cc(c1OC)OC)C=Cc2ccc(cc2)C(=O)NCCCO
+TMS            InChI                InChI  1.03 InChI=1S/C21H25NO5/c1-25-18-13-16(14-19(26-2)20(18)27-3)6-5-15-7-9-17(10-8-15)21(24)22-11-4-12-23/h5-10,13-14,23H,4,11-12H2,1-3H3,(H,22,24)/b6-5+
+TMS         InChIKey                InChI  1.03                                                                                                                       SQVJHGZFSPTRKL-AATRIKPKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TMS acedrg               243         "dictionary generator"                  
+TMS acedrg_database      11          "data source"                           
+TMS rdkit                2017.03.2   "Chemoinformatics tool"
+TMS refmac5              5.8.0238    "optimization tool"                     

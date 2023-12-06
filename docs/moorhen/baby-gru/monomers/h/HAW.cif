@@ -1,0 +1,421 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HAW     HAW      2-[[8-(1-methylindol-6-yl)quinoxalin-6-yl]amino]-~{N}-(pyrimidin-5-ylmethyl)benzenesulfonamide     NON-POLYMER     61     38     .     
+#
+data_comp_HAW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HAW     CAH     C       CR16    0       92.077      50.806      268.567     
+HAW     CAI     C       CR56    0       92.266      51.827      269.491     
+HAW     NAT     N       NT      0       91.421      52.355      270.437     
+HAW     CAU     C       CH3     0       90.041      51.932      270.695     
+HAW     CAS     C       CR15    0       92.092      53.370      271.118     
+HAW     CAR     C       CR15    0       93.348      53.494      270.621     
+HAW     CAJ     C       CR56    0       93.493      52.524      269.580     
+HAW     CAK     C       CR16    0       94.539      52.173      268.712     
+HAW     CAL     C       CR16    0       94.341      51.166      267.794     
+HAW     CAG     C       CR6     0       93.117      50.456      267.708     
+HAW     CAC     C       CR6     0       92.935      49.364      266.698     
+HAW     CAB     C       CR16    0       91.820      49.384      265.876     
+HAW     CAD     C       CR66    0       93.879      48.293      266.546     
+HAW     NAP     N       NRD6    0       94.997      48.229      267.343     
+HAW     CAO     C       CR16    0       95.829      47.226      267.154     
+HAW     CAN     C       CR16    0       95.599      46.235      266.185     
+HAW     NAM     N       NRD6    0       94.541      46.248      265.400     
+HAW     CAE     C       CR66    0       93.653      47.287      265.568     
+HAW     CAF     C       CR16    0       92.508      47.358      264.755     
+HAW     CAA     C       CR6     0       91.602      48.390      264.907     
+HAW     NAQ     N       NH1     0       90.440      48.450      264.103     
+HAW     CAV     C       CR6     0       89.802      47.374      263.450     
+HAW     CBA     C       CR16    0       90.233      47.000      262.165     
+HAW     CAZ     C       CR16    0       89.632      45.940      261.514     
+HAW     CAY     C       CR16    0       88.614      45.237      262.123     
+HAW     CAX     C       CR16    0       88.185      45.590      263.395     
+HAW     CAW     C       CR6     0       88.772      46.653      264.076     
+HAW     SBB     S       S3      0       88.145      47.023      265.699     
+HAW     OBC     O       O       0       86.743      46.737      265.696     
+HAW     OBD     O       O       0       88.588      48.338      266.046     
+HAW     NBE     N       NT1     0       88.824      46.003      266.753     
+HAW     CBF     C       CH2     0       90.279      46.020      266.934     
+HAW     CBG     C       CR6     0       90.766      45.096      268.024     
+HAW     CBH     C       CR16    0       91.580      44.017      267.737     
+HAW     NBI     N       NRD6    0       92.028      43.195      268.699     
+HAW     CBJ     C       CR16    0       91.650      43.489      269.943     
+HAW     NBK     N       NRD6    0       90.878      44.506      270.326     
+HAW     CBL     C       CR16    0       90.441      45.315      269.347     
+HAW     H1      H       H       0       91.259      50.352      268.517     
+HAW     H2      H       H       0       89.583      52.618      271.201     
+HAW     H3      H       H       0       90.045      51.107      271.199     
+HAW     H4      H       H       0       89.584      51.794      269.853     
+HAW     H5      H       H       0       91.726      53.877      271.806     
+HAW     H6      H       H       0       94.001      54.105      270.908     
+HAW     H7      H       H       0       95.361      52.627      268.757     
+HAW     H8      H       H       0       95.048      50.934      267.216     
+HAW     H9      H       H       0       91.198      50.085      265.972     
+HAW     H10     H       H       0       96.612      47.173      267.699     
+HAW     H11     H       H       0       96.231      45.524      266.088     
+HAW     H12     H       H       0       92.358      46.692      264.114     
+HAW     H13     H       H       0       90.078      49.234      263.998     
+HAW     H14     H       H       0       90.927      47.477      261.746     
+HAW     H15     H       H       0       89.921      45.697      260.649     
+HAW     H16     H       H       0       88.207      44.517      261.677     
+HAW     H17     H       H       0       87.490      45.105      263.803     
+HAW     H18     H       H       0       88.337      45.911      267.487     
+HAW     H19     H       H       0       90.561      46.926      267.148     
+HAW     H20     H       H       0       90.700      45.767      266.095     
+HAW     H21     H       H       0       91.820      43.850      266.843     
+HAW     H22     H       H       0       91.961      42.914      270.626     
+HAW     H23     H       H       0       89.893      46.047      269.567     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HAW         CAZ         CAY      SINGLE       y     1.377  0.0100     1.377  0.0100
+HAW         CBA         CAZ      DOUBLE       y     1.380  0.0100     1.380  0.0100
+HAW         CAY         CAX      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HAW         CAV         CBA      SINGLE       y     1.398  0.0145     1.398  0.0145
+HAW         CAX         CAW      SINGLE       y     1.387  0.0100     1.387  0.0100
+HAW         CAV         CAW      DOUBLE       y     1.397  0.0100     1.397  0.0100
+HAW         NAQ         CAV      SINGLE       n     1.400  0.0200     1.400  0.0200
+HAW         CAW         SBB      SINGLE       n     1.774  0.0103     1.774  0.0103
+HAW         CAA         NAQ      SINGLE       n     1.400  0.0200     1.400  0.0200
+HAW         SBB         OBC      DOUBLE       n     1.431  0.0100     1.431  0.0100
+HAW         CAF         CAA      SINGLE       y     1.368  0.0156     1.368  0.0156
+HAW         CAE         CAF      DOUBLE       y     1.406  0.0100     1.406  0.0100
+HAW         CAB         CAA      DOUBLE       y     1.394  0.0127     1.394  0.0127
+HAW         NAM         CAE      SINGLE       y     1.373  0.0100     1.373  0.0100
+HAW         CAN         NAM      DOUBLE       y     1.314  0.0100     1.314  0.0100
+HAW         SBB         OBD      DOUBLE       n     1.431  0.0100     1.431  0.0100
+HAW         SBB         NBE      SINGLE       n     1.615  0.0100     1.615  0.0100
+HAW         CAD         CAE      SINGLE       y     1.414  0.0129     1.414  0.0129
+HAW         CAO         CAN      SINGLE       y     1.399  0.0149     1.399  0.0149
+HAW         CAC         CAB      SINGLE       y     1.375  0.0116     1.375  0.0116
+HAW         CAC         CAD      DOUBLE       y     1.429  0.0100     1.429  0.0100
+HAW         CAD         NAP      SINGLE       y     1.369  0.0100     1.369  0.0100
+HAW         CAG         CAC      SINGLE       n     1.493  0.0100     1.493  0.0100
+HAW         NAP         CAO      DOUBLE       y     1.314  0.0100     1.314  0.0100
+HAW         CAL         CAG      SINGLE       y     1.412  0.0100     1.412  0.0100
+HAW         CAK         CAL      DOUBLE       y     1.373  0.0102     1.373  0.0102
+HAW         NBE         CBF      SINGLE       n     1.466  0.0100     1.466  0.0100
+HAW         CBF         CBG      SINGLE       n     1.509  0.0100     1.509  0.0100
+HAW         CAH         CAG      DOUBLE       y     1.383  0.0142     1.383  0.0142
+HAW         CAJ         CAK      SINGLE       y     1.401  0.0100     1.401  0.0100
+HAW         CBG         CBH      DOUBLE       y     1.380  0.0100     1.380  0.0100
+HAW         CBG         CBL      SINGLE       y     1.380  0.0100     1.380  0.0100
+HAW         CBH         NBI      SINGLE       y     1.339  0.0102     1.339  0.0102
+HAW         CAH         CAI      SINGLE       y     1.387  0.0100     1.387  0.0100
+HAW         CAI         CAJ      DOUBLE       y     1.412  0.0100     1.412  0.0100
+HAW         CAR         CAJ      SINGLE       y     1.431  0.0170     1.431  0.0170
+HAW         CAI         NAT      SINGLE       y     1.373  0.0128     1.373  0.0128
+HAW         NBK         CBL      DOUBLE       y     1.339  0.0102     1.339  0.0102
+HAW         CAS         CAR      DOUBLE       y     1.356  0.0149     1.356  0.0149
+HAW         NBI         CBJ      DOUBLE       y     1.326  0.0100     1.326  0.0100
+HAW         CBJ         NBK      SINGLE       y     1.326  0.0100     1.326  0.0100
+HAW         NAT         CAS      SINGLE       y     1.393  0.0183     1.393  0.0183
+HAW         NAT         CAU      SINGLE       n     1.466  0.0103     1.466  0.0103
+HAW         CAH          H1      SINGLE       n     1.082  0.0130     0.937  0.0100
+HAW         CAU          H2      SINGLE       n     1.089  0.0100     0.968  0.0155
+HAW         CAU          H3      SINGLE       n     1.089  0.0100     0.968  0.0155
+HAW         CAU          H4      SINGLE       n     1.089  0.0100     0.968  0.0155
+HAW         CAS          H5      SINGLE       n     1.082  0.0130     0.930  0.0100
+HAW         CAR          H6      SINGLE       n     1.082  0.0130     0.939  0.0147
+HAW         CAK          H7      SINGLE       n     1.082  0.0130     0.940  0.0143
+HAW         CAL          H8      SINGLE       n     1.082  0.0130     0.943  0.0145
+HAW         CAB          H9      SINGLE       n     1.082  0.0130     0.942  0.0177
+HAW         CAO         H10      SINGLE       n     1.082  0.0130     0.956  0.0200
+HAW         CAN         H11      SINGLE       n     1.082  0.0130     0.956  0.0200
+HAW         CAF         H12      SINGLE       n     1.082  0.0130     0.936  0.0106
+HAW         NAQ         H13      SINGLE       n     1.016  0.0100     0.870  0.0200
+HAW         CBA         H14      SINGLE       n     1.082  0.0130     0.941  0.0200
+HAW         CAZ         H15      SINGLE       n     1.082  0.0130     0.943  0.0172
+HAW         CAY         H16      SINGLE       n     1.082  0.0130     0.940  0.0176
+HAW         CAX         H17      SINGLE       n     1.082  0.0130     0.941  0.0197
+HAW         NBE         H18      SINGLE       n     1.036  0.0160     0.885  0.0200
+HAW         CBF         H19      SINGLE       n     1.089  0.0100     0.973  0.0100
+HAW         CBF         H20      SINGLE       n     1.089  0.0100     0.973  0.0100
+HAW         CBH         H21      SINGLE       n     1.082  0.0130     0.940  0.0200
+HAW         CBJ         H22      SINGLE       n     1.082  0.0130     0.946  0.0200
+HAW         CBL         H23      SINGLE       n     1.082  0.0130     0.940  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HAW         CAG         CAH         CAI     119.538    1.50
+HAW         CAG         CAH          H1     119.747    1.50
+HAW         CAI         CAH          H1     120.715    1.50
+HAW         CAH         CAI         CAJ     121.585    1.50
+HAW         CAH         CAI         NAT     130.663    1.50
+HAW         CAJ         CAI         NAT     107.752    1.50
+HAW         CAI         NAT         CAS     108.355    1.50
+HAW         CAI         NAT         CAU     125.484    1.50
+HAW         CAS         NAT         CAU     123.896    2.52
+HAW         NAT         CAU          H2     109.479    1.50
+HAW         NAT         CAU          H3     109.479    1.50
+HAW         NAT         CAU          H4     109.479    1.50
+HAW          H2         CAU          H3     109.427    1.50
+HAW          H2         CAU          H4     109.427    1.50
+HAW          H3         CAU          H4     109.427    1.50
+HAW         CAR         CAS         NAT     109.638    1.50
+HAW         CAR         CAS          H5     125.842    1.50
+HAW         NAT         CAS          H5     124.520    1.74
+HAW         CAJ         CAR         CAS     107.637    1.50
+HAW         CAJ         CAR          H6     126.229    1.50
+HAW         CAS         CAR          H6     126.135    1.50
+HAW         CAK         CAJ         CAI     118.954    1.50
+HAW         CAK         CAJ         CAR     133.902    1.50
+HAW         CAI         CAJ         CAR     107.144    1.50
+HAW         CAL         CAK         CAJ     118.928    1.50
+HAW         CAL         CAK          H7     120.898    1.50
+HAW         CAJ         CAK          H7     120.174    1.50
+HAW         CAG         CAL         CAK     121.733    1.50
+HAW         CAG         CAL          H8     119.244    1.50
+HAW         CAK         CAL          H8     119.023    1.50
+HAW         CAC         CAG         CAL     120.458    1.50
+HAW         CAC         CAG         CAH     120.281    1.56
+HAW         CAL         CAG         CAH     119.261    1.50
+HAW         CAB         CAC         CAD     118.961    1.50
+HAW         CAB         CAC         CAG     119.692    1.96
+HAW         CAD         CAC         CAG     121.347    1.50
+HAW         CAA         CAB         CAC     120.368    1.81
+HAW         CAA         CAB          H9     120.402    1.50
+HAW         CAC         CAB          H9     119.230    1.50
+HAW         CAE         CAD         CAC     120.632    1.50
+HAW         CAE         CAD         NAP     120.570    1.50
+HAW         CAC         CAD         NAP     118.799    1.50
+HAW         CAD         NAP         CAO     117.586    1.50
+HAW         CAN         CAO         NAP     122.537    1.50
+HAW         CAN         CAO         H10     119.010    1.71
+HAW         NAP         CAO         H10     118.452    1.50
+HAW         NAM         CAN         CAO     122.537    1.50
+HAW         NAM         CAN         H11     118.452    1.50
+HAW         CAO         CAN         H11     119.010    1.71
+HAW         CAE         NAM         CAN     116.200    1.50
+HAW         CAF         CAE         NAM     119.435    1.50
+HAW         CAF         CAE         CAD     119.995    1.50
+HAW         NAM         CAE         CAD     120.570    1.50
+HAW         CAA         CAF         CAE     120.380    1.50
+HAW         CAA         CAF         H12     119.837    1.50
+HAW         CAE         CAF         H12     119.783    1.50
+HAW         NAQ         CAA         CAF     120.094    2.92
+HAW         NAQ         CAA         CAB     120.240    2.70
+HAW         CAF         CAA         CAB     119.665    2.03
+HAW         CAV         NAQ         CAA     126.603    2.45
+HAW         CAV         NAQ         H13     116.699    2.39
+HAW         CAA         NAQ         H13     116.699    2.39
+HAW         CBA         CAV         CAW     119.260    2.34
+HAW         CBA         CAV         NAQ     121.217    2.70
+HAW         CAW         CAV         NAQ     119.523    1.50
+HAW         CAZ         CBA         CAV     120.079    1.50
+HAW         CAZ         CBA         H14     119.959    1.50
+HAW         CAV         CBA         H14     119.963    1.50
+HAW         CAY         CAZ         CBA     120.509    1.50
+HAW         CAY         CAZ         H15     119.887    1.50
+HAW         CBA         CAZ         H15     119.604    1.50
+HAW         CAZ         CAY         CAX     120.318    1.50
+HAW         CAZ         CAY         H16     119.942    1.50
+HAW         CAX         CAY         H16     119.740    1.50
+HAW         CAY         CAX         CAW     120.487    1.50
+HAW         CAY         CAX         H17     120.046    1.50
+HAW         CAW         CAX         H17     119.466    1.50
+HAW         CAX         CAW         CAV     119.346    1.50
+HAW         CAX         CAW         SBB     117.718    1.50
+HAW         CAV         CAW         SBB     122.936    1.78
+HAW         CAW         SBB         OBC     107.245    1.50
+HAW         CAW         SBB         OBD     107.245    1.50
+HAW         CAW         SBB         NBE     107.851    1.50
+HAW         OBC         SBB         OBD     119.599    1.50
+HAW         OBC         SBB         NBE     106.713    1.50
+HAW         OBD         SBB         NBE     106.713    1.50
+HAW         SBB         NBE         CBF     119.493    1.52
+HAW         SBB         NBE         H18     112.217    2.38
+HAW         CBF         NBE         H18     115.981    2.86
+HAW         NBE         CBF         CBG     112.211    1.75
+HAW         NBE         CBF         H19     109.162    1.50
+HAW         NBE         CBF         H20     109.162    1.50
+HAW         CBG         CBF         H19     109.005    1.50
+HAW         CBG         CBF         H20     109.005    1.50
+HAW         H19         CBF         H20     107.884    1.50
+HAW         CBF         CBG         CBH     120.382    1.50
+HAW         CBF         CBG         CBL     120.382    1.50
+HAW         CBH         CBG         CBL     119.236    1.50
+HAW         CBG         CBH         NBI     122.378    1.50
+HAW         CBG         CBH         H21     118.683    1.50
+HAW         NBI         CBH         H21     118.939    1.50
+HAW         CBH         NBI         CBJ     114.991    1.50
+HAW         NBI         CBJ         NBK     126.025    1.50
+HAW         NBI         CBJ         H22     116.988    1.50
+HAW         NBK         CBJ         H22     116.988    1.50
+HAW         CBL         NBK         CBJ     114.991    1.50
+HAW         CBG         CBL         NBK     122.378    1.50
+HAW         CBG         CBL         H23     118.683    1.50
+HAW         NBK         CBL         H23     118.939    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HAW             const_109         CAG         CAH         CAI         CAJ       0.000    10.0     2
+HAW              const_33         CAC         CAG         CAH         CAI     180.000    10.0     2
+HAW       const_sp2_sp2_1         CAA         CAB         CAC         CAD       0.000     5.0     2
+HAW              const_99         CAB         CAC         CAD         CAE       0.000    10.0     2
+HAW       const_sp2_sp2_7         NAQ         CAA         CAB         CAC     180.000     5.0     2
+HAW             const_103         CAE         CAD         NAP         CAO       0.000    10.0     2
+HAW              const_17         CAC         CAD         CAE         CAF       0.000    10.0     2
+HAW              const_29         CAN         CAO         NAP         CAD       0.000    10.0     2
+HAW              const_25         NAM         CAN         CAO         NAP       0.000    10.0     2
+HAW              const_23         CAO         CAN         NAM         CAE       0.000    10.0     2
+HAW              const_22         CAF         CAE         NAM         CAN     180.000    10.0     2
+HAW              const_15         NAM         CAE         CAF         CAA     180.000    10.0     2
+HAW              const_11         NAQ         CAA         CAF         CAE     180.000    10.0     2
+HAW             sp2_sp2_5         CAF         CAA         NAQ         CAV     180.000     5.0     2
+HAW             const_116         CAH         CAI         NAT         CAU       0.000    10.0     2
+HAW              const_47         CAH         CAI         CAJ         CAK       0.000    10.0     2
+HAW             sp2_sp2_1         CBA         CAV         NAQ         CAA     180.000     5.0     2
+HAW              const_65         NAQ         CAV         CBA         CAZ     180.000    10.0     2
+HAW              const_98         NAQ         CAV         CAW         SBB       0.000    10.0     2
+HAW              const_67         CAY         CAZ         CBA         CAV       0.000    10.0     2
+HAW              const_71         CAX         CAY         CAZ         CBA       0.000    10.0     2
+HAW              const_75         CAW         CAX         CAY         CAZ       0.000    10.0     2
+HAW              const_81         SBB         CAW         CAX         CAY     180.000    10.0     2
+HAW             sp2_sp3_1         CAX         CAW         SBB         OBC     150.000    10.0     6
+HAW             sp3_sp3_5         CBF         NBE         SBB         OBC     180.000    10.0     3
+HAW            sp2_sp3_13         CAI         NAT         CAU          H2     150.000    10.0     6
+HAW              const_60         CAR         CAS         NAT         CAU     180.000    10.0     2
+HAW             sp3_sp3_7         CBG         CBF         NBE         SBB     180.000    10.0     3
+HAW             sp2_sp3_8         CBH         CBG         CBF         NBE     -90.000    10.0     6
+HAW              const_85         CBF         CBG         CBH         NBI     180.000    10.0     2
+HAW             const_107         CBF         CBG         CBL         NBK     180.000    10.0     2
+HAW              const_87         CBG         CBH         NBI         CBJ       0.000    10.0     2
+HAW              const_89         NBK         CBJ         NBI         CBH       0.000    10.0     2
+HAW              const_91         NBI         CBJ         NBK         CBL       0.000    10.0     2
+HAW              const_93         CBG         CBL         NBK         CBJ       0.000    10.0     2
+HAW              const_55         CAJ         CAR         CAS         NAT       0.000    10.0     2
+HAW              const_53         CAK         CAJ         CAR         CAS     180.000    10.0     2
+HAW              const_43         CAI         CAJ         CAK         CAL       0.000    10.0     2
+HAW              const_39         CAJ         CAK         CAL         CAG       0.000    10.0     2
+HAW              const_37         CAC         CAG         CAL         CAK     180.000    10.0     2
+HAW             sp2_sp2_9         CAB         CAC         CAG         CAL     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HAW    chir_1    SBB    OBC    OBD    NBE    both
+HAW    chir_2    NBE    SBB    CBF    H18    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HAW    plan-1         CAC   0.020
+HAW    plan-1         CAG   0.020
+HAW    plan-1         CAH   0.020
+HAW    plan-1         CAI   0.020
+HAW    plan-1         CAJ   0.020
+HAW    plan-1         CAK   0.020
+HAW    plan-1         CAL   0.020
+HAW    plan-1         CAR   0.020
+HAW    plan-1         CAS   0.020
+HAW    plan-1         CAU   0.020
+HAW    plan-1          H1   0.020
+HAW    plan-1          H5   0.020
+HAW    plan-1          H6   0.020
+HAW    plan-1          H7   0.020
+HAW    plan-1          H8   0.020
+HAW    plan-1         NAT   0.020
+HAW    plan-2         CAA   0.020
+HAW    plan-2         CAB   0.020
+HAW    plan-2         CAC   0.020
+HAW    plan-2         CAD   0.020
+HAW    plan-2         CAE   0.020
+HAW    plan-2         CAF   0.020
+HAW    plan-2         CAG   0.020
+HAW    plan-2         CAN   0.020
+HAW    plan-2         CAO   0.020
+HAW    plan-2         H10   0.020
+HAW    plan-2         H11   0.020
+HAW    plan-2         H12   0.020
+HAW    plan-2          H9   0.020
+HAW    plan-2         NAM   0.020
+HAW    plan-2         NAP   0.020
+HAW    plan-2         NAQ   0.020
+HAW    plan-3         CAV   0.020
+HAW    plan-3         CAW   0.020
+HAW    plan-3         CAX   0.020
+HAW    plan-3         CAY   0.020
+HAW    plan-3         CAZ   0.020
+HAW    plan-3         CBA   0.020
+HAW    plan-3         H14   0.020
+HAW    plan-3         H15   0.020
+HAW    plan-3         H16   0.020
+HAW    plan-3         H17   0.020
+HAW    plan-3         NAQ   0.020
+HAW    plan-3         SBB   0.020
+HAW    plan-4         CBF   0.020
+HAW    plan-4         CBG   0.020
+HAW    plan-4         CBH   0.020
+HAW    plan-4         CBJ   0.020
+HAW    plan-4         CBL   0.020
+HAW    plan-4         H21   0.020
+HAW    plan-4         H22   0.020
+HAW    plan-4         H23   0.020
+HAW    plan-4         NBI   0.020
+HAW    plan-4         NBK   0.020
+HAW    plan-5         CAA   0.020
+HAW    plan-5         CAV   0.020
+HAW    plan-5         H13   0.020
+HAW    plan-5         NAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HAW            InChI                InChI  1.03 InChI=1S/C28H23N7O2S/c1-35-11-8-20-6-7-21(12-26(20)35)23-13-22(14-25-28(23)32-10-9-31-25)34-24-4-2-3-5-27(24)38(36,37)33-17-19-15-29-18-30-16-19/h2-16,18,33-34H,17H2,1H3
+HAW         InChIKey                InChI  1.03                                                                                                                                               FHKKLQIBTXYWGR-UHFFFAOYSA-N
+HAW SMILES_CANONICAL               CACTVS 3.385                                                                                                            Cn1ccc2ccc(cc12)c3cc(Nc4ccccc4[S](=O)(=O)NCc5cncnc5)cc6nccnc36
+HAW           SMILES               CACTVS 3.385                                                                                                            Cn1ccc2ccc(cc12)c3cc(Nc4ccccc4[S](=O)(=O)NCc5cncnc5)cc6nccnc36
+HAW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                              Cn1ccc2c1cc(cc2)c3cc(cc4c3nccn4)Nc5ccccc5S(=O)(=O)NCc6cncnc6
+HAW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                              Cn1ccc2c1cc(cc2)c3cc(cc4c3nccn4)Nc5ccccc5S(=O)(=O)NCc6cncnc6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HAW acedrg               243         "dictionary generator"                  
+HAW acedrg_database      11          "data source"                           
+HAW rdkit                2017.03.2   "Chemoinformatics tool"
+HAW refmac5              5.8.0238    "optimization tool"                     

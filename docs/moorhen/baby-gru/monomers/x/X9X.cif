@@ -1,0 +1,188 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+X9X     X9X      D-allitol     NON-POLYMER     26     12     .     
+#
+data_comp_X9X
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+X9X     OAA     O       OH1     0       0.592       16.160      10.348      
+X9X     CAG     C       CH2     0       1.121       15.466      11.475      
+X9X     CAI     C       CH1     0       2.539       14.988      11.226      
+X9X     OAC     O       OH1     0       2.488       13.862      10.348      
+X9X     CAK     C       CH1     0       3.448       16.072      10.627      
+X9X     OAE     O       OH1     0       3.182       17.332      11.249      
+X9X     CAL     C       CH1     0       4.957       15.817      10.787      
+X9X     OAF     O       OH1     0       5.270       15.618      12.166      
+X9X     CAJ     C       CH1     0       5.518       14.642      9.974       
+X9X     OAD     O       OH1     0       5.076       13.394      10.513      
+X9X     CAH     C       CH2     0       5.166       14.714      8.502       
+X9X     OAB     O       OH1     0       6.043       13.908      7.719       
+X9X     H1      H       H       0       -0.252      16.166      10.413      
+X9X     H2      H       H       0       0.548       14.686      11.673      
+X9X     H3      H       H       0       1.110       16.063      12.263      
+X9X     H4      H       H       0       2.917       14.689      12.104      
+X9X     H5      H       H       0       2.199       13.173      10.749      
+X9X     H6      H       H       0       3.236       16.157      9.663       
+X9X     H7      H       H       0       2.675       17.792      10.747      
+X9X     H8      H       H       0       5.432       16.636      10.491      
+X9X     H9      H       H       0       5.166       16.353      12.576      
+X9X     H10     H       H       0       6.520       14.669      10.041      
+X9X     H11     H       H       0       5.335       13.298      11.315      
+X9X     H12     H       H       0       5.227       15.652      8.198       
+X9X     H13     H       H       0       4.237       14.405      8.373       
+X9X     H14     H       H       0       5.893       13.096      7.903       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+X9X         CAH         OAB      SINGLE       n     1.425  0.0100     1.425  0.0100
+X9X         CAJ         CAH      SINGLE       n     1.514  0.0100     1.514  0.0100
+X9X         CAJ         OAD      SINGLE       n     1.429  0.0100     1.429  0.0100
+X9X         CAL         CAJ      SINGLE       n     1.530  0.0100     1.530  0.0100
+X9X         OAA         CAG      SINGLE       n     1.425  0.0100     1.425  0.0100
+X9X         CAI         OAC      SINGLE       n     1.429  0.0100     1.429  0.0100
+X9X         CAK         CAL      SINGLE       n     1.531  0.0100     1.531  0.0100
+X9X         CAI         CAK      SINGLE       n     1.530  0.0100     1.530  0.0100
+X9X         CAK         OAE      SINGLE       n     1.424  0.0199     1.424  0.0199
+X9X         CAL         OAF      SINGLE       n     1.424  0.0199     1.424  0.0199
+X9X         CAG         CAI      SINGLE       n     1.514  0.0100     1.514  0.0100
+X9X         OAA          H1      SINGLE       n     0.970  0.0120     0.846  0.0200
+X9X         CAG          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+X9X         CAG          H3      SINGLE       n     1.089  0.0100     0.988  0.0200
+X9X         CAI          H4      SINGLE       n     1.089  0.0100     1.004  0.0200
+X9X         OAC          H5      SINGLE       n     0.970  0.0120     0.848  0.0200
+X9X         CAK          H6      SINGLE       n     1.089  0.0100     0.992  0.0184
+X9X         OAE          H7      SINGLE       n     0.970  0.0120     0.848  0.0200
+X9X         CAL          H8      SINGLE       n     1.089  0.0100     0.992  0.0184
+X9X         OAF          H9      SINGLE       n     0.970  0.0120     0.848  0.0200
+X9X         CAJ         H10      SINGLE       n     1.089  0.0100     1.004  0.0200
+X9X         OAD         H11      SINGLE       n     0.970  0.0120     0.848  0.0200
+X9X         CAH         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+X9X         CAH         H13      SINGLE       n     1.089  0.0100     0.988  0.0200
+X9X         OAB         H14      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+X9X         CAG         OAA          H1     108.280    3.00
+X9X         OAA         CAG         CAI     111.364    1.50
+X9X         OAA         CAG          H2     109.268    1.50
+X9X         OAA         CAG          H3     109.268    1.50
+X9X         CAI         CAG          H2     109.234    1.50
+X9X         CAI         CAG          H3     109.234    1.50
+X9X          H2         CAG          H3     108.313    1.50
+X9X         OAC         CAI         CAK     109.549    1.85
+X9X         OAC         CAI         CAG     109.623    1.60
+X9X         OAC         CAI          H4     108.591    1.50
+X9X         CAK         CAI         CAG     112.159    1.50
+X9X         CAK         CAI          H4     108.777    1.50
+X9X         CAG         CAI          H4     107.986    1.50
+X9X         CAI         OAC          H5     111.202    3.00
+X9X         CAL         CAK         CAI     112.413    1.50
+X9X         CAL         CAK         OAE     109.024    2.24
+X9X         CAL         CAK          H6     108.569    1.50
+X9X         CAI         CAK         OAE     109.164    1.97
+X9X         CAI         CAK          H6     108.336    1.50
+X9X         OAE         CAK          H6     108.243    1.50
+X9X         CAK         OAE          H7     108.564    3.00
+X9X         CAJ         CAL         CAK     112.413    1.50
+X9X         CAJ         CAL         OAF     109.164    1.97
+X9X         CAJ         CAL          H8     108.336    1.50
+X9X         CAK         CAL         OAF     109.024    2.24
+X9X         CAK         CAL          H8     108.569    1.50
+X9X         OAF         CAL          H8     108.243    1.50
+X9X         CAL         OAF          H9     108.564    3.00
+X9X         CAH         CAJ         OAD     109.623    1.60
+X9X         CAH         CAJ         CAL     112.159    1.50
+X9X         CAH         CAJ         H10     107.986    1.50
+X9X         OAD         CAJ         CAL     109.549    1.85
+X9X         OAD         CAJ         H10     108.591    1.50
+X9X         CAL         CAJ         H10     108.777    1.50
+X9X         CAJ         OAD         H11     111.202    3.00
+X9X         OAB         CAH         CAJ     111.364    1.50
+X9X         OAB         CAH         H12     109.268    1.50
+X9X         OAB         CAH         H13     109.268    1.50
+X9X         CAJ         CAH         H12     109.234    1.50
+X9X         CAJ         CAH         H13     109.234    1.50
+X9X         H12         CAH         H13     108.313    1.50
+X9X         CAH         OAB         H14     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+X9X            sp3_sp3_25         CAI         CAG         OAA          H1     180.000    10.0     3
+X9X             sp3_sp3_1         CAJ         CAH         OAB         H14     180.000    10.0     3
+X9X            sp3_sp3_55         OAA         CAG         CAI         OAC     180.000    10.0     3
+X9X            sp3_sp3_28         CAK         CAI         OAC          H5     180.000    10.0     3
+X9X            sp3_sp3_40         OAC         CAI         CAK         CAL     180.000    10.0     3
+X9X            sp3_sp3_49         CAL         CAK         OAE          H7     180.000    10.0     3
+X9X            sp3_sp3_31         CAI         CAK         CAL         CAJ     180.000    10.0     3
+X9X            sp3_sp3_52         CAJ         CAL         OAF          H9     180.000    10.0     3
+X9X            sp3_sp3_16         CAH         CAJ         CAL         CAK     180.000    10.0     3
+X9X             sp3_sp3_4         OAB         CAH         CAJ         OAD     180.000    10.0     3
+X9X            sp3_sp3_13         CAH         CAJ         OAD         H11     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+X9X    chir_1    CAI    OAC    CAK    CAG    negative
+X9X    chir_2    CAK    OAE    CAL    CAI    negative
+X9X    chir_3    CAL    OAF    CAK    CAJ    positive
+X9X    chir_4    CAJ    OAD    CAL    CAH    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+X9X           SMILES              ACDLabs 12.01                                                   OC(C(O)CO)C(O)C(O)CO
+X9X            InChI                InChI  1.03 InChI=1S/C6H14O6/c7-1-3(9)5(11)6(12)4(10)2-8/h3-12H,1-2H2/t3-,4+,5-,6+
+X9X         InChIKey                InChI  1.03                                            FBPFZTCFMRRESA-FBXFSONDSA-N
+X9X SMILES_CANONICAL               CACTVS 3.385                               OC[C@@H](O)[C@@H](O)[C@@H](O)[C@@H](O)CO
+X9X           SMILES               CACTVS 3.385                                       OC[CH](O)[CH](O)[CH](O)[CH](O)CO
+X9X SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                 C([C@H]([C@H]([C@H]([C@H](CO)O)O)O)O)O
+X9X           SMILES "OpenEye OEToolkits" 1.9.2                                                 C(C(C(C(C(CO)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+X9X acedrg               243         "dictionary generator"                  
+X9X acedrg_database      11          "data source"                           
+X9X rdkit                2017.03.2   "Chemoinformatics tool"
+X9X refmac5              5.8.0238    "optimization tool"                     

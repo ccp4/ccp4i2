@@ -1,0 +1,235 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EFX     EFX      "3-(3-methoxycarbonylphenyl)benzoic acid"     NON-POLYMER     30     19     .     
+#
+data_comp_EFX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EFX     C       C       C       0       95.555      254.537     4.838       
+EFX     O       O       OC      -1      96.563      255.047     5.358       
+EFX     C1      C       CR6     0       95.234      253.115     5.185       
+EFX     C10     C       CR16    0       97.766      247.586     4.575       
+EFX     C11     C       CR16    0       96.776      248.551     4.665       
+EFX     C12     C       CR16    0       94.650      250.472     5.828       
+EFX     C13     C       CR16    0       93.664      251.442     5.914       
+EFX     C14     C       CR16    0       93.953      252.759     5.594       
+EFX     C2      C       CR16    0       96.218      252.133     5.101       
+EFX     C3      C       CR6     0       95.947      250.796     5.422       
+EFX     C4      C       CR6     0       97.006      249.758     5.327       
+EFX     C5      C       CR16    0       98.270      249.964     5.897       
+EFX     C6      C       CR6     0       99.279      249.002     5.811       
+EFX     C7      C       C       0       100.627     249.209     6.416       
+EFX     C8      C       CH3     0       102.134     250.836     7.299       
+EFX     C9      C       CR16    0       99.009      247.809     5.144       
+EFX     O1      O       O       0       94.796      255.129     4.049       
+EFX     O2      O       O2      0       100.953     250.502     6.526       
+EFX     O3      O       O       0       101.352     248.308     6.760       
+EFX     H6      H       H       0       97.593      246.775     4.123       
+EFX     H7      H       H       0       95.932      248.390     4.272       
+EFX     H8      H       H       0       94.443      249.577     6.048       
+EFX     H9      H       H       0       92.793      251.205     6.191       
+EFX     H10     H       H       0       93.280      253.414     5.654       
+EFX     H       H       H       0       97.087      252.373     4.825       
+EFX     H1      H       H       0       98.439      250.774     6.347       
+EFX     H3      H       H       0       102.924     250.514     6.836       
+EFX     H4      H       H       0       102.081     250.423     8.176       
+EFX     H2      H       H       0       102.189     251.799     7.400       
+EFX     H5      H       H       0       99.675      247.147     5.077       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EFX           C          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+EFX         C10         C11      DOUBLE       y     1.382  0.0100     1.382  0.0100
+EFX         C10          C9      SINGLE       y     1.382  0.0100     1.382  0.0100
+EFX         C11          C4      SINGLE       y     1.393  0.0100     1.393  0.0100
+EFX           C          C1      SINGLE       n     1.498  0.0200     1.498  0.0200
+EFX           C           O      SINGLE       n     1.244  0.0200     1.244  0.0200
+EFX          C6          C9      DOUBLE       y     1.388  0.0100     1.388  0.0100
+EFX          C1         C14      DOUBLE       y     1.388  0.0100     1.388  0.0100
+EFX         C13         C14      SINGLE       y     1.382  0.0100     1.382  0.0100
+EFX          C1          C2      SINGLE       y     1.390  0.0100     1.390  0.0100
+EFX         C12         C13      DOUBLE       y     1.382  0.0100     1.382  0.0100
+EFX          C2          C3      DOUBLE       y     1.392  0.0160     1.392  0.0160
+EFX          C3          C4      SINGLE       n     1.485  0.0100     1.485  0.0100
+EFX         C12          C3      SINGLE       y     1.393  0.0100     1.393  0.0100
+EFX          C4          C5      DOUBLE       y     1.392  0.0160     1.392  0.0160
+EFX          C5          C6      SINGLE       y     1.390  0.0100     1.390  0.0100
+EFX          C6          C7      SINGLE       n     1.487  0.0100     1.487  0.0100
+EFX          C7          O3      DOUBLE       n     1.204  0.0101     1.204  0.0101
+EFX          C7          O2      SINGLE       n     1.332  0.0114     1.332  0.0114
+EFX          C8          O2      SINGLE       n     1.448  0.0100     1.448  0.0100
+EFX         C10          H6      SINGLE       n     1.082  0.0130     0.944  0.0134
+EFX         C11          H7      SINGLE       n     1.082  0.0130     0.945  0.0170
+EFX         C12          H8      SINGLE       n     1.082  0.0130     0.945  0.0170
+EFX         C13          H9      SINGLE       n     1.082  0.0130     0.944  0.0134
+EFX         C14         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+EFX          C2           H      SINGLE       n     1.082  0.0130     0.943  0.0197
+EFX          C5          H1      SINGLE       n     1.082  0.0130     0.943  0.0197
+EFX          C8          H3      SINGLE       n     1.089  0.0100     0.970  0.0175
+EFX          C8          H4      SINGLE       n     1.089  0.0100     0.970  0.0175
+EFX          C8          H2      SINGLE       n     1.089  0.0100     0.970  0.0175
+EFX          C9          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EFX          O1           C          C1     117.791    1.50
+EFX          O1           C           O     124.418    1.50
+EFX          C1           C           O     117.791    1.50
+EFX           C          C1         C14     120.387    1.50
+EFX           C          C1          C2     120.219    1.50
+EFX         C14          C1          C2     119.394    1.50
+EFX         C11         C10          C9     120.046    1.50
+EFX         C11         C10          H6     119.971    1.50
+EFX          C9         C10          H6     119.983    1.50
+EFX         C10         C11          C4     121.012    1.50
+EFX         C10         C11          H7     119.574    1.50
+EFX          C4         C11          H7     119.415    1.50
+EFX         C13         C12          C3     121.012    1.50
+EFX         C13         C12          H8     119.574    1.50
+EFX          C3         C12          H8     119.415    1.50
+EFX         C14         C13         C12     120.046    1.50
+EFX         C14         C13          H9     119.983    1.50
+EFX         C12         C13          H9     119.971    1.50
+EFX          C1         C14         C13     120.273    1.50
+EFX          C1         C14         H10     119.914    1.50
+EFX         C13         C14         H10     119.813    1.50
+EFX          C1          C2          C3     121.499    1.50
+EFX          C1          C2           H     119.298    1.50
+EFX          C3          C2           H     119.203    1.50
+EFX          C2          C3          C4     120.978    1.50
+EFX          C2          C3         C12     117.776    1.50
+EFX          C4          C3         C12     121.246    1.50
+EFX         C11          C4          C3     121.246    1.50
+EFX         C11          C4          C5     117.776    1.50
+EFX          C3          C4          C5     120.978    1.50
+EFX          C4          C5          C6     121.499    1.50
+EFX          C4          C5          H1     119.203    1.50
+EFX          C6          C5          H1     119.298    1.50
+EFX          C9          C6          C5     119.394    1.50
+EFX          C9          C6          C7     120.147    2.12
+EFX          C5          C6          C7     120.458    2.55
+EFX          C6          C7          O3     124.373    1.50
+EFX          C6          C7          O2     112.291    1.50
+EFX          O3          C7          O2     123.352    1.50
+EFX          O2          C8          H3     109.389    1.50
+EFX          O2          C8          H4     109.389    1.50
+EFX          O2          C8          H2     109.389    1.50
+EFX          H3          C8          H4     109.532    1.53
+EFX          H3          C8          H2     109.532    1.53
+EFX          H4          C8          H2     109.532    1.53
+EFX         C10          C9          C6     120.273    1.50
+EFX         C10          C9          H5     119.813    1.50
+EFX          C6          C9          H5     119.914    1.50
+EFX          C7          O2          C8     115.869    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EFX             sp2_sp2_1          O1           C          C1         C14     180.000     5.0     2
+EFX       const_sp2_sp2_9         C11          C4          C5          C6       0.000     5.0     2
+EFX              const_14          C4          C5          C6          C7     180.000    10.0     2
+EFX            sp2_sp2_10          C9          C6          C7          O3       0.000     5.0     2
+EFX              const_19          C7          C6          C9         C10     180.000    10.0     2
+EFX            sp2_sp2_14          O3          C7          O2          C8       0.000     5.0     2
+EFX             sp3_sp3_2          H3          C8          O2          C7     -60.000    10.0     3
+EFX              const_23           C          C1         C14         C13     180.000    10.0     2
+EFX              const_47           C          C1          C2          C3     180.000    10.0     2
+EFX              const_41         C11         C10          C9          C6       0.000    10.0     2
+EFX       const_sp2_sp2_1          C9         C10         C11          C4       0.000     5.0     2
+EFX       const_sp2_sp2_6         C10         C11          C4          C3     180.000     5.0     2
+EFX              const_29          C3         C12         C13         C14       0.000    10.0     2
+EFX              const_33         C13         C12          C3          C2       0.000    10.0     2
+EFX              const_25         C12         C13         C14          C1       0.000    10.0     2
+EFX              const_38          C1          C2          C3          C4     180.000    10.0     2
+EFX             sp2_sp2_5          C2          C3          C4         C11     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EFX    plan-1         C10   0.020
+EFX    plan-1         C11   0.020
+EFX    plan-1          C3   0.020
+EFX    plan-1          C4   0.020
+EFX    plan-1          C5   0.020
+EFX    plan-1          C6   0.020
+EFX    plan-1          C7   0.020
+EFX    plan-1          C9   0.020
+EFX    plan-1          H1   0.020
+EFX    plan-1          H5   0.020
+EFX    plan-1          H6   0.020
+EFX    plan-1          H7   0.020
+EFX    plan-2           C   0.020
+EFX    plan-2          C1   0.020
+EFX    plan-2         C12   0.020
+EFX    plan-2         C13   0.020
+EFX    plan-2         C14   0.020
+EFX    plan-2          C2   0.020
+EFX    plan-2          C3   0.020
+EFX    plan-2          C4   0.020
+EFX    plan-2           H   0.020
+EFX    plan-2         H10   0.020
+EFX    plan-2          H8   0.020
+EFX    plan-2          H9   0.020
+EFX    plan-3           C   0.020
+EFX    plan-3          C1   0.020
+EFX    plan-3           O   0.020
+EFX    plan-3          O1   0.020
+EFX    plan-4          C6   0.020
+EFX    plan-4          C7   0.020
+EFX    plan-4          O2   0.020
+EFX    plan-4          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EFX            InChI                InChI  1.03 InChI=1S/C15H12O4/c1-19-15(18)13-7-3-5-11(9-13)10-4-2-6-12(8-10)14(16)17/h2-9H,1H3,(H,16,17)
+EFX         InChIKey                InChI  1.03                                                                  CJWQBLCGSMIQJV-UHFFFAOYSA-N
+EFX SMILES_CANONICAL               CACTVS 3.385                                                            COC(=O)c1cccc(c1)c2cccc(c2)C(O)=O
+EFX           SMILES               CACTVS 3.385                                                            COC(=O)c1cccc(c1)c2cccc(c2)C(O)=O
+EFX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                            COC(=O)c1cccc(c1)c2cccc(c2)C(=O)O
+EFX           SMILES "OpenEye OEToolkits" 2.0.6                                                            COC(=O)c1cccc(c1)c2cccc(c2)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EFX acedrg               243         "dictionary generator"                  
+EFX acedrg_database      11          "data source"                           
+EFX rdkit                2017.03.2   "Chemoinformatics tool"
+EFX refmac5              5.8.0238    "optimization tool"                     

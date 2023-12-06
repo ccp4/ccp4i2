@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BIA     BIA      "1-(3,4,DIHYDROXY-5-NITROPHENYL)-3-{4-[3-(TRIFLUOROMETHYL) PHENYL] PIPERAZIN-1-YL}PROPAN-1-ONE"     NON-POLYMER     51     31     .     
+#
+data_comp_BIA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BIA     N2      N       NT      0       -31.043     57.994      52.311      
+BIA     C3      C       CR16    0       -26.363     61.060      52.231      
+BIA     C4      C       CR16    0       -32.045     58.441      50.109      
+BIA     O5      O       OH1     0       -27.129     60.229      48.726      
+BIA     C6      C       C       0       -25.879     59.642      54.242      
+BIA     C7      C       CR6     0       -26.669     61.217      50.884      
+BIA     O8      O       O       0       -25.064     60.382      54.765      
+BIA     O9      O       OH1     0       -26.818     62.480      50.364      
+BIA     C10     C       CR16    0       -33.016     58.159      49.162      
+BIA     C11     C       CR6     0       -26.203     59.777      52.788      
+BIA     C12     C       CH2     0       -29.307     57.195      53.841      
+BIA     N14     N       N       1       -26.820     57.603      49.813      
+BIA     C16     C       CH2     0       -29.945     59.510      53.897      
+BIA     O17     O       O       0       -27.876     57.430      49.223      
+BIA     O18     O       OC      -1      -25.888     56.816      49.765      
+BIA     C19     C       CR16    0       -26.356     58.659      51.973      
+BIA     C21     C       CH2     0       -30.607     59.373      52.544      
+BIA     C22     C       CH2     0       -26.567     58.578      55.080      
+BIA     N23     N       NT      0       -28.812     58.573      54.014      
+BIA     C24     C       CR6     0       -33.948     56.466      50.583      
+BIA     C25     C       CH2     0       -29.950     57.034      52.480      
+BIA     C26     C       CR16    0       -32.986     56.739      51.548      
+BIA     C27     C       CH2     0       -28.063     58.742      55.275      
+BIA     C28     C       CR6     0       -26.667     58.808      50.621      
+BIA     C31     C       CR6     0       -32.019     57.730      51.326      
+BIA     C32     C       CR6     0       -26.826     60.089      50.060      
+BIA     C33     C       CT      0       -34.973     55.408      50.847      
+BIA     F37     F       F       0       -35.455     54.850      49.739      
+BIA     F38     F       F       0       -34.508     54.396      51.576      
+BIA     F39     F       F       0       -36.029     55.873      51.507      
+BIA     C37     C       CR16    0       -33.972     57.178      49.388      
+BIA     H3      H       H       0       -26.260     61.820      52.776      
+BIA     H4      H       H       0       -31.406     59.107      49.939      
+BIA     H5      H       H       0       -26.650     59.831      48.131      
+BIA     H9      H       H       0       -26.520     62.660      49.576      
+BIA     H10     H       H       0       -33.026     58.641      48.352      
+BIA     H121    H       H       0       -29.964     56.992      54.537      
+BIA     H122    H       H       0       -28.564     56.566      53.928      
+BIA     H161    H       H       0       -30.597     59.325      54.601      
+BIA     H162    H       H       0       -29.626     60.428      54.009      
+BIA     H19     H       H       0       -26.256     57.794      52.332      
+BIA     H211    H       H       0       -29.974     59.638      51.844      
+BIA     H212    H       H       0       -31.380     59.974      52.498      
+BIA     H221    H       H       0       -26.137     58.565      55.969      
+BIA     H222    H       H       0       -26.397     57.699      54.666      
+BIA     H251    H       H       0       -29.277     57.178      51.782      
+BIA     H252    H       H       0       -30.295     56.121      52.389      
+BIA     H26     H       H       0       -32.979     56.258      52.353      
+BIA     H271    H       H       0       -28.239     59.629      55.644      
+BIA     H272    H       H       0       -28.375     58.083      55.927      
+BIA     H37     H       H       0       -34.625     57.001      48.729      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BIA          N2         C21      SINGLE       n     1.461  0.0100     1.461  0.0100
+BIA          N2         C25      SINGLE       n     1.461  0.0100     1.461  0.0100
+BIA          N2         C31      SINGLE       n     1.405  0.0150     1.405  0.0150
+BIA          C3          C7      DOUBLE       y     1.381  0.0147     1.381  0.0147
+BIA          C3         C11      SINGLE       y     1.403  0.0100     1.403  0.0100
+BIA          C4         C10      DOUBLE       y     1.381  0.0100     1.381  0.0100
+BIA          C4         C31      SINGLE       y     1.404  0.0100     1.404  0.0100
+BIA          O5         C32      SINGLE       n     1.374  0.0155     1.374  0.0155
+BIA          C6          O8      DOUBLE       n     1.218  0.0120     1.218  0.0120
+BIA          C6         C11      SINGLE       n     1.493  0.0100     1.493  0.0100
+BIA          C6         C22      SINGLE       n     1.516  0.0100     1.516  0.0100
+BIA          C7          O9      SINGLE       n     1.374  0.0155     1.374  0.0155
+BIA          C7         C32      SINGLE       y     1.402  0.0100     1.402  0.0100
+BIA         C10         C37      SINGLE       y     1.380  0.0131     1.380  0.0131
+BIA         C11         C19      DOUBLE       y     1.388  0.0100     1.388  0.0100
+BIA         C12         N23      SINGLE       n     1.469  0.0137     1.469  0.0137
+BIA         C12         C25      SINGLE       n     1.511  0.0100     1.511  0.0100
+BIA         N14         O17      DOUBLE       n     1.221  0.0162     1.221  0.0162
+BIA         N14         O18      SINGLE       n     1.221  0.0162     1.221  0.0162
+BIA         N14         C28      SINGLE       n     1.457  0.0200     1.457  0.0200
+BIA         C16         C21      SINGLE       n     1.511  0.0100     1.511  0.0100
+BIA         C16         N23      SINGLE       n     1.469  0.0137     1.469  0.0137
+BIA         C19         C28      SINGLE       y     1.392  0.0104     1.392  0.0104
+BIA         C22         C27      SINGLE       n     1.515  0.0126     1.515  0.0126
+BIA         N23         C27      SINGLE       n     1.468  0.0141     1.468  0.0141
+BIA         C24         C26      SINGLE       y     1.385  0.0100     1.385  0.0100
+BIA         C24         C33      SINGLE       n     1.491  0.0100     1.491  0.0100
+BIA         C24         C37      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BIA         C26         C31      DOUBLE       y     1.401  0.0100     1.401  0.0100
+BIA         C28         C32      DOUBLE       y     1.404  0.0100     1.404  0.0100
+BIA         C33         F37      SINGLE       n     1.329  0.0183     1.329  0.0183
+BIA         C33         F38      SINGLE       n     1.329  0.0183     1.329  0.0183
+BIA         C33         F39      SINGLE       n     1.329  0.0183     1.329  0.0183
+BIA          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+BIA          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0146
+BIA          O5          H5      SINGLE       n     0.966  0.0059     0.861  0.0200
+BIA          O9          H9      SINGLE       n     0.966  0.0059     0.861  0.0200
+BIA         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0185
+BIA         C12        H121      SINGLE       n     1.089  0.0100     0.978  0.0109
+BIA         C12        H122      SINGLE       n     1.089  0.0100     0.978  0.0109
+BIA         C16        H161      SINGLE       n     1.089  0.0100     0.978  0.0109
+BIA         C16        H162      SINGLE       n     1.089  0.0100     0.978  0.0109
+BIA         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0184
+BIA         C21        H211      SINGLE       n     1.089  0.0100     0.980  0.0187
+BIA         C21        H212      SINGLE       n     1.089  0.0100     0.980  0.0187
+BIA         C22        H221      SINGLE       n     1.089  0.0100     0.987  0.0100
+BIA         C22        H222      SINGLE       n     1.089  0.0100     0.987  0.0100
+BIA         C25        H251      SINGLE       n     1.089  0.0100     0.980  0.0187
+BIA         C25        H252      SINGLE       n     1.089  0.0100     0.980  0.0187
+BIA         C26         H26      SINGLE       n     1.082  0.0130     0.938  0.0110
+BIA         C27        H271      SINGLE       n     1.089  0.0100     0.977  0.0100
+BIA         C27        H272      SINGLE       n     1.089  0.0100     0.977  0.0100
+BIA         C37         H37      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BIA         C21          N2         C25     110.693    1.50
+BIA         C21          N2         C31     116.983    1.81
+BIA         C25          N2         C31     116.983    1.81
+BIA          C7          C3         C11     120.418    1.50
+BIA          C7          C3          H3     119.766    1.50
+BIA         C11          C3          H3     119.815    1.50
+BIA         C10          C4         C31     119.616    1.50
+BIA         C10          C4          H4     120.359    1.50
+BIA         C31          C4          H4     120.025    1.50
+BIA         C32          O5          H5     120.000    3.00
+BIA          O8          C6         C11     120.853    1.50
+BIA          O8          C6         C22     119.807    1.50
+BIA         C11          C6         C22     119.340    1.50
+BIA          C3          C7          O9     120.028    3.00
+BIA          C3          C7         C32     119.943    1.50
+BIA          O9          C7         C32     120.028    3.00
+BIA          C7          O9          H9     120.000    3.00
+BIA          C4         C10         C37     120.132    1.50
+BIA          C4         C10         H10     119.817    1.50
+BIA         C37         C10         H10     120.051    1.50
+BIA          C3         C11          C6     119.815    2.20
+BIA          C3         C11         C19     119.338    1.50
+BIA          C6         C11         C19     120.847    2.23
+BIA         N23         C12         C25     110.815    1.50
+BIA         N23         C12        H121     109.491    1.50
+BIA         N23         C12        H122     109.491    1.50
+BIA         C25         C12        H121     109.482    1.50
+BIA         C25         C12        H122     109.482    1.50
+BIA        H121         C12        H122     108.187    1.50
+BIA         O17         N14         O18     123.383    1.50
+BIA         O17         N14         C28     118.308    1.50
+BIA         O18         N14         C28     118.308    1.50
+BIA         C21         C16         N23     110.815    1.50
+BIA         C21         C16        H161     109.482    1.50
+BIA         C21         C16        H162     109.482    1.50
+BIA         N23         C16        H161     109.491    1.50
+BIA         N23         C16        H162     109.491    1.50
+BIA        H161         C16        H162     108.187    1.50
+BIA         C11         C19         C28     120.365    1.50
+BIA         C11         C19         H19     120.023    1.50
+BIA         C28         C19         H19     119.612    1.50
+BIA          N2         C21         C16     110.635    1.50
+BIA          N2         C21        H211     109.558    1.50
+BIA          N2         C21        H212     109.558    1.50
+BIA         C16         C21        H211     109.514    1.50
+BIA         C16         C21        H212     109.514    1.50
+BIA        H211         C21        H212     108.196    1.50
+BIA          C6         C22         C27     115.650    1.53
+BIA          C6         C22        H221     108.359    1.50
+BIA          C6         C22        H222     108.359    1.50
+BIA         C27         C22        H221     108.904    1.50
+BIA         C27         C22        H222     108.904    1.50
+BIA        H221         C22        H222     107.418    1.50
+BIA         C12         N23         C16     108.582    1.50
+BIA         C12         N23         C27     110.623    1.50
+BIA         C16         N23         C27     110.623    1.50
+BIA         C26         C24         C33     118.995    1.50
+BIA         C26         C24         C37     121.449    1.50
+BIA         C33         C24         C37     119.556    1.50
+BIA          N2         C25         C12     110.635    1.50
+BIA          N2         C25        H251     109.558    1.50
+BIA          N2         C25        H252     109.558    1.50
+BIA         C12         C25        H251     109.514    1.50
+BIA         C12         C25        H252     109.514    1.50
+BIA        H251         C25        H252     108.196    1.50
+BIA         C24         C26         C31     120.727    1.50
+BIA         C24         C26         H26     119.416    1.50
+BIA         C31         C26         H26     119.858    1.50
+BIA         C22         C27         N23     112.194    1.50
+BIA         C22         C27        H271     109.150    1.50
+BIA         C22         C27        H272     109.150    1.50
+BIA         N23         C27        H271     108.728    1.50
+BIA         N23         C27        H272     108.728    1.50
+BIA        H271         C27        H272     107.831    1.50
+BIA         N14         C28         C19     118.090    1.50
+BIA         N14         C28         C32     121.083    1.50
+BIA         C19         C28         C32     120.827    1.59
+BIA          N2         C31          C4     120.235    1.50
+BIA          N2         C31         C26     120.513    1.50
+BIA          C4         C31         C26     119.252    2.20
+BIA          O5         C32          C7     120.446    3.00
+BIA          O5         C32         C28     120.446    3.00
+BIA          C7         C32         C28     119.109    1.50
+BIA         C24         C33         F37     112.813    1.50
+BIA         C24         C33         F38     112.813    1.50
+BIA         C24         C33         F39     112.813    1.50
+BIA         F37         C33         F38     105.974    1.50
+BIA         F37         C33         F39     105.974    1.50
+BIA         F38         C33         F39     105.974    1.50
+BIA         C10         C37         C24     118.825    1.50
+BIA         C10         C37         H37     120.368    1.50
+BIA         C24         C37         H37     120.807    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BIA             sp2_sp3_1         C25          N2         C21         C16       0.000    10.0     6
+BIA             sp2_sp3_7         C21          N2         C25         C12       0.000    10.0     6
+BIA             sp2_sp2_1          C4         C31          N2         C21     180.000     5.0     2
+BIA            sp3_sp3_17         C25         C12         N23         C27      60.000    10.0     3
+BIA            sp3_sp3_22         N23         C12         C25          N2      60.000    10.0     3
+BIA            sp2_sp2_13         C19         C28         N14         O17     180.000     5.0     2
+BIA             sp3_sp3_1         N23         C16         C21          N2     -60.000    10.0     3
+BIA            sp3_sp3_11         C21         C16         N23         C27     180.000    10.0     3
+BIA              const_34         C11         C19         C28         N14     180.000    10.0     2
+BIA            sp3_sp3_31          C6         C22         C27         N23     180.000    10.0     3
+BIA            sp3_sp3_41         C22         C27         N23         C12     -60.000    10.0     3
+BIA              const_15         C33         C24         C26         C31     180.000    10.0     2
+BIA            sp2_sp3_19         C26         C24         C33         F37     150.000    10.0     6
+BIA              const_11         C33         C24         C37         C10     180.000    10.0     2
+BIA              const_22         C11          C3          C7          O9     180.000    10.0     2
+BIA              const_43          C6         C11          C3          C7     180.000    10.0     2
+BIA              const_18         C24         C26         C31          N2     180.000    10.0     2
+BIA              const_32         N14         C28         C32          O5       0.000    10.0     2
+BIA              const_47          N2         C31          C4         C10     180.000    10.0     2
+BIA       const_sp2_sp2_1         C37         C10          C4         C31       0.000     5.0     2
+BIA             sp2_sp2_5          C7         C32          O5          H5     180.000     5.0     2
+BIA            sp2_sp3_14          O8          C6         C22         C27     120.000    10.0     6
+BIA             sp2_sp2_8          C3         C11          C6          O8       0.000     5.0     2
+BIA              const_28          O5         C32          C7          O9       0.000    10.0     2
+BIA            sp2_sp2_11          C3          C7          O9          H9     180.000     5.0     2
+BIA       const_sp2_sp2_5          C4         C10         C37         C24       0.000     5.0     2
+BIA              const_39          C6         C11         C19         C28     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BIA    chir_1    N23    C12    C16    C27    both
+BIA    chir_2    C33    F37    F38    F39    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BIA    plan-1         C11   0.020
+BIA    plan-1         C19   0.020
+BIA    plan-1         C28   0.020
+BIA    plan-1          C3   0.020
+BIA    plan-1         C32   0.020
+BIA    plan-1          C6   0.020
+BIA    plan-1          C7   0.020
+BIA    plan-1         H19   0.020
+BIA    plan-1          H3   0.020
+BIA    plan-1         N14   0.020
+BIA    plan-1          O5   0.020
+BIA    plan-1          O9   0.020
+BIA    plan-2         C10   0.020
+BIA    plan-2         C24   0.020
+BIA    plan-2         C26   0.020
+BIA    plan-2         C31   0.020
+BIA    plan-2         C33   0.020
+BIA    plan-2         C37   0.020
+BIA    plan-2          C4   0.020
+BIA    plan-2         H10   0.020
+BIA    plan-2         H26   0.020
+BIA    plan-2         H37   0.020
+BIA    plan-2          H4   0.020
+BIA    plan-2          N2   0.020
+BIA    plan-3         C11   0.020
+BIA    plan-3         C22   0.020
+BIA    plan-3          C6   0.020
+BIA    plan-3          O8   0.020
+BIA    plan-4         C28   0.020
+BIA    plan-4         N14   0.020
+BIA    plan-4         O17   0.020
+BIA    plan-4         O18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BIA           SMILES              ACDLabs 10.04                                                                           "[O-][N+](=O)c3c(O)c(O)cc(C(=O)CCN2CCN(c1cc(ccc1)C(F)(F)F)CC2)c3"
+BIA SMILES_CANONICAL               CACTVS 3.341                                                                               Oc1cc(cc(c1O)[N+]([O-])=O)C(=O)CCN2CCN(CC2)c3cccc(c3)C(F)(F)F
+BIA           SMILES               CACTVS 3.341                                                                               Oc1cc(cc(c1O)[N+]([O-])=O)C(=O)CCN2CCN(CC2)c3cccc(c3)C(F)(F)F
+BIA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           c1cc(cc(c1)N2CCN(CC2)CCC(=O)c3cc(c(c(c3)O)O)[N+](=O)[O-])C(F)(F)F
+BIA           SMILES "OpenEye OEToolkits" 1.5.0                                                                           c1cc(cc(c1)N2CCN(CC2)CCC(=O)c3cc(c(c(c3)O)O)[N+](=O)[O-])C(F)(F)F
+BIA            InChI                InChI  1.03 InChI=1S/C20H20F3N3O5/c21-20(22,23)14-2-1-3-15(12-14)25-8-6-24(7-9-25)5-4-17(27)13-10-16(26(30)31)19(29)18(28)11-13/h1-3,10-12,28-29H,4-9H2
+BIA         InChIKey                InChI  1.03                                                                                                                 KVIVJQWOYSWCCZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BIA acedrg               243         "dictionary generator"                  
+BIA acedrg_database      11          "data source"                           
+BIA rdkit                2017.03.2   "Chemoinformatics tool"
+BIA refmac5              5.8.0238    "optimization tool"                     

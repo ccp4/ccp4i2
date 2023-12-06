@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+N23     N23      N-[2-(2-methyl-1H-indol-3-yl)ethyl]thiophene-2-carboxamide     NON-POLYMER     36     20     .     
+#
+data_comp_N23
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+N23     CAO     C       CH3     0       1.184       14.382      37.910      
+N23     CAB     C       CR5     0       0.297       15.139      36.980      
+N23     NAA     N       NR5     0       -0.238      14.534      35.859      
+N23     CAE     C       CR56    0       -1.015      15.435      35.173      
+N23     CAR     C       CR16    0       -1.749      15.287      33.995      
+N23     CAT     C       CR16    0       -2.443      16.388      33.537      
+N23     CAS     C       CR16    0       -2.416      17.606      34.223      
+N23     CAQ     C       CR16    0       -1.689      17.752      35.388      
+N23     CAD     C       CR56    0       -0.969      16.651      35.884      
+N23     CAC     C       CR5     0       -0.129      16.432      37.028      
+N23     CAN     C       CH2     0       0.212       17.453      38.075      
+N23     CAP     C       CH2     0       -0.809      17.523      39.195      
+N23     NAM     N       NH1     0       -0.429      18.488      40.223      
+N23     CAG     C       C       0       0.461       18.300      41.208      
+N23     OAK     O       O       0       0.741       19.204      41.995      
+N23     CAF     C       CR5     0       1.099       16.984      41.364      
+N23     CAI     C       CR15    0       0.593       15.809      41.826      
+N23     CAL     C       CR15    0       1.579       14.763      41.823      
+N23     CAJ     C       CR15    0       2.779       15.210      41.370      
+N23     SAH     S       S2      0       2.708       16.824      40.968      
+N23     HAO     H       H       0       1.394       14.928      38.680      
+N23     HAOA    H       H       0       2.004       14.144      37.452      
+N23     HAOB    H       H       0       0.734       13.576      38.201      
+N23     HNAA    H       H       0       -0.099      13.693      35.623      
+N23     HAR     H       H       0       -1.768      14.467      33.532      
+N23     HAT     H       H       0       -2.947      16.317      32.746      
+N23     HAS     H       H       0       -2.902      18.340      33.882      
+N23     HAQ     H       H       0       -1.675      18.578      35.845      
+N23     HAN     H       H       0       0.274       18.329      37.653      
+N23     HANA    H       H       0       1.084       17.243      38.453      
+N23     HAP     H       H       0       -0.920      16.638      39.593      
+N23     HAPA    H       H       0       -1.672      17.790      38.819      
+N23     HNAM    H       H       0       -0.831      19.263      40.181      
+N23     HAI     H       H       0       -0.299      15.687      42.105      
+N23     HAL     H       H       0       1.408       13.880      42.103      
+N23     HAJ     H       H       0       3.576       14.715      41.278      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+N23         CAO         CAB      SINGLE       n     1.491  0.0100     1.491  0.0100
+N23         CAB         NAA      SINGLE       y     1.380  0.0100     1.380  0.0100
+N23         CAB         CAC      DOUBLE       y     1.360  0.0105     1.360  0.0105
+N23         NAA         CAE      SINGLE       y     1.374  0.0100     1.374  0.0100
+N23         CAE         CAR      DOUBLE       y     1.393  0.0100     1.393  0.0100
+N23         CAE         CAD      SINGLE       y     1.408  0.0100     1.408  0.0100
+N23         CAR         CAT      SINGLE       y     1.376  0.0100     1.376  0.0100
+N23         CAT         CAS      DOUBLE       y     1.394  0.0106     1.394  0.0106
+N23         CAS         CAQ      SINGLE       y     1.377  0.0100     1.377  0.0100
+N23         CAQ         CAD      DOUBLE       y     1.402  0.0100     1.402  0.0100
+N23         CAD         CAC      SINGLE       y     1.437  0.0100     1.437  0.0100
+N23         CAC         CAN      SINGLE       n     1.501  0.0123     1.501  0.0123
+N23         CAN         CAP      SINGLE       n     1.515  0.0200     1.515  0.0200
+N23         CAP         NAM      SINGLE       n     1.457  0.0100     1.457  0.0100
+N23         NAM         CAG      SINGLE       n     1.333  0.0106     1.333  0.0106
+N23         CAG         OAK      DOUBLE       n     1.231  0.0100     1.231  0.0100
+N23         CAG         CAF      SINGLE       n     1.467  0.0127     1.467  0.0127
+N23         CAF         CAI      DOUBLE       y     1.352  0.0140     1.352  0.0140
+N23         CAF         SAH      SINGLE       y     1.695  0.0200     1.695  0.0200
+N23         CAI         CAL      SINGLE       y     1.413  0.0154     1.413  0.0154
+N23         CAL         CAJ      DOUBLE       y     1.343  0.0200     1.343  0.0200
+N23         CAJ         SAH      SINGLE       y     1.695  0.0200     1.695  0.0200
+N23         CAO         HAO      SINGLE       n     1.089  0.0100     0.968  0.0138
+N23         CAO        HAOA      SINGLE       n     1.089  0.0100     0.968  0.0138
+N23         CAO        HAOB      SINGLE       n     1.089  0.0100     0.968  0.0138
+N23         NAA        HNAA      SINGLE       n     1.016  0.0100     0.884  0.0200
+N23         CAR         HAR      SINGLE       n     1.082  0.0130     0.942  0.0188
+N23         CAT         HAT      SINGLE       n     1.082  0.0130     0.941  0.0181
+N23         CAS         HAS      SINGLE       n     1.082  0.0130     0.944  0.0181
+N23         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.944  0.0200
+N23         CAN         HAN      SINGLE       n     1.089  0.0100     0.975  0.0155
+N23         CAN        HANA      SINGLE       n     1.089  0.0100     0.975  0.0155
+N23         CAP         HAP      SINGLE       n     1.089  0.0100     0.979  0.0200
+N23         CAP        HAPA      SINGLE       n     1.089  0.0100     0.979  0.0200
+N23         NAM        HNAM      SINGLE       n     1.016  0.0100     0.873  0.0200
+N23         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0154
+N23         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0153
+N23         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+N23         CAB         CAO         HAO     109.473    1.50
+N23         CAB         CAO        HAOA     109.473    1.50
+N23         CAB         CAO        HAOB     109.473    1.50
+N23         HAO         CAO        HAOA     109.354    1.50
+N23         HAO         CAO        HAOB     109.354    1.50
+N23        HAOA         CAO        HAOB     109.354    1.50
+N23         CAO         CAB         NAA     121.392    1.50
+N23         CAO         CAB         CAC     129.985    1.50
+N23         NAA         CAB         CAC     108.624    1.50
+N23         CAB         NAA         CAE     109.549    1.50
+N23         CAB         NAA        HNAA     125.042    1.50
+N23         CAE         NAA        HNAA     125.409    1.50
+N23         NAA         CAE         CAR     130.324    1.50
+N23         NAA         CAE         CAD     107.425    1.50
+N23         CAR         CAE         CAD     122.250    1.50
+N23         CAE         CAR         CAT     117.385    1.50
+N23         CAE         CAR         HAR     121.137    1.50
+N23         CAT         CAR         HAR     121.477    1.50
+N23         CAR         CAT         CAS     121.628    1.50
+N23         CAR         CAT         HAT     119.132    1.50
+N23         CAS         CAT         HAT     119.240    1.50
+N23         CAT         CAS         CAQ     121.212    1.50
+N23         CAT         CAS         HAS     119.316    1.50
+N23         CAQ         CAS         HAS     119.471    1.50
+N23         CAS         CAQ         CAD     118.817    1.50
+N23         CAS         CAQ         HAQ     120.678    1.50
+N23         CAD         CAQ         HAQ     120.505    1.50
+N23         CAE         CAD         CAQ     118.706    1.50
+N23         CAE         CAD         CAC     106.986    1.50
+N23         CAQ         CAD         CAC     134.308    1.50
+N23         CAB         CAC         CAD     107.416    1.50
+N23         CAB         CAC         CAN     126.415    1.83
+N23         CAD         CAC         CAN     126.169    1.63
+N23         CAC         CAN         CAP     113.007    2.12
+N23         CAC         CAN         HAN     108.962    1.50
+N23         CAC         CAN        HANA     108.962    1.50
+N23         CAP         CAN         HAN     108.844    1.50
+N23         CAP         CAN        HANA     108.844    1.50
+N23         HAN         CAN        HANA     107.768    1.50
+N23         CAN         CAP         NAM     111.870    1.57
+N23         CAN         CAP         HAP     109.274    1.50
+N23         CAN         CAP        HAPA     109.274    1.50
+N23         NAM         CAP         HAP     109.052    1.50
+N23         NAM         CAP        HAPA     109.052    1.50
+N23         HAP         CAP        HAPA     109.011    2.70
+N23         CAP         NAM         CAG     122.324    2.29
+N23         CAP         NAM        HNAM     118.411    1.89
+N23         CAG         NAM        HNAM     119.281    1.50
+N23         NAM         CAG         OAK     122.159    1.50
+N23         NAM         CAG         CAF     116.796    1.69
+N23         OAK         CAG         CAF     121.045    1.72
+N23         CAG         CAF         CAI     131.864    3.00
+N23         CAG         CAF         SAH     119.801    3.00
+N23         CAI         CAF         SAH     108.336    3.00
+N23         CAF         CAI         CAL     107.620    1.50
+N23         CAF         CAI         HAI     126.542    1.56
+N23         CAL         CAI         HAI     125.837    1.50
+N23         CAI         CAL         CAJ     107.373    1.50
+N23         CAI         CAL         HAL     125.949    1.50
+N23         CAJ         CAL         HAL     126.679    1.50
+N23         CAL         CAJ         SAH     108.336    3.00
+N23         CAL         CAJ         HAJ     128.460    2.40
+N23         SAH         CAJ         HAJ     123.204    3.00
+N23         CAF         SAH         CAJ     108.336    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+N23             sp2_sp3_1         NAA         CAB         CAO         HAO     150.000    10.0     6
+N23             sp3_sp3_1         CAC         CAN         CAP         NAM     180.000    10.0     3
+N23            sp2_sp3_14         CAG         NAM         CAP         CAN     120.000    10.0     6
+N23             sp2_sp2_3         OAK         CAG         NAM         CAP       0.000     5.0     2
+N23             sp2_sp2_5         CAI         CAF         CAG         NAM     180.000     5.0     2
+N23              const_39         CAG         CAF         CAI         CAL     180.000    10.0     2
+N23              const_56         CAG         CAF         SAH         CAJ     180.000    10.0     2
+N23              const_41         CAF         CAI         CAL         CAJ       0.000    10.0     2
+N23              const_45         SAH         CAJ         CAL         CAI       0.000    10.0     2
+N23              const_49         CAL         CAJ         SAH         CAF       0.000    10.0     2
+N23       const_sp2_sp2_3         CAO         CAB         NAA         CAE     180.000     5.0     2
+N23              const_54         CAO         CAB         CAC         CAN       0.000    10.0     2
+N23       const_sp2_sp2_7         CAR         CAE         NAA         CAB     180.000     5.0     2
+N23              const_19         NAA         CAE         CAR         CAT     180.000    10.0     2
+N23              const_10         CAQ         CAD         CAE         NAA     180.000    10.0     2
+N23              const_21         CAE         CAR         CAT         CAS       0.000    10.0     2
+N23              const_25         CAQ         CAS         CAT         CAR       0.000    10.0     2
+N23              const_29         CAD         CAQ         CAS         CAT       0.000    10.0     2
+N23              const_33         CAE         CAD         CAQ         CAS       0.000    10.0     2
+N23              const_15         CAN         CAC         CAD         CAE     180.000    10.0     2
+N23             sp2_sp3_8         CAB         CAC         CAN         CAP     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+N23    plan-1         CAB   0.020
+N23    plan-1         CAC   0.020
+N23    plan-1         CAD   0.020
+N23    plan-1         CAE   0.020
+N23    plan-1         CAN   0.020
+N23    plan-1         CAO   0.020
+N23    plan-1         CAQ   0.020
+N23    plan-1         CAR   0.020
+N23    plan-1         CAS   0.020
+N23    plan-1         CAT   0.020
+N23    plan-1         HAQ   0.020
+N23    plan-1         HAR   0.020
+N23    plan-1         HAS   0.020
+N23    plan-1         HAT   0.020
+N23    plan-1        HNAA   0.020
+N23    plan-1         NAA   0.020
+N23    plan-2         CAF   0.020
+N23    plan-2         CAG   0.020
+N23    plan-2         CAI   0.020
+N23    plan-2         CAJ   0.020
+N23    plan-2         CAL   0.020
+N23    plan-2         HAI   0.020
+N23    plan-2         HAJ   0.020
+N23    plan-2         HAL   0.020
+N23    plan-2         SAH   0.020
+N23    plan-3         CAG   0.020
+N23    plan-3         CAP   0.020
+N23    plan-3        HNAM   0.020
+N23    plan-3         NAM   0.020
+N23    plan-4         CAF   0.020
+N23    plan-4         CAG   0.020
+N23    plan-4         NAM   0.020
+N23    plan-4         OAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+N23           SMILES              ACDLabs 10.04                                                                                    O=C(NCCc2c1ccccc1nc2C)c3sccc3
+N23 SMILES_CANONICAL               CACTVS 3.341                                                                                 Cc1[nH]c2ccccc2c1CCNC(=O)c3sccc3
+N23           SMILES               CACTVS 3.341                                                                                 Cc1[nH]c2ccccc2c1CCNC(=O)c3sccc3
+N23 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               Cc1c(c2ccccc2[nH]1)CCNC(=O)c3cccs3
+N23           SMILES "OpenEye OEToolkits" 1.5.0                                                                               Cc1c(c2ccccc2[nH]1)CCNC(=O)c3cccs3
+N23            InChI                InChI  1.03 InChI=1S/C16H16N2OS/c1-11-12(13-5-2-3-6-14(13)18-11)8-9-17-16(19)15-7-4-10-20-15/h2-7,10,18H,8-9H2,1H3,(H,17,19)
+N23         InChIKey                InChI  1.03                                                                                      ACAKNPKRLPMONU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+N23 acedrg               243         "dictionary generator"                  
+N23 acedrg_database      11          "data source"                           
+N23 rdkit                2017.03.2   "Chemoinformatics tool"
+N23 refmac5              5.8.0238    "optimization tool"                     

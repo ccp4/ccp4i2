@@ -1,0 +1,148 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MHW     MHW      "3-HYDROXYPICOLINIC ACID"     NON-POLYMER     14     10     .     
+#
+data_comp_MHW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MHW     N       N       NRD6    0       -21.240     22.520      -24.124     
+MHW     CA      C       CR6     0       -21.717     23.672      -23.628     
+MHW     C       C       C       0       -23.176     23.691      -23.214     
+MHW     O       O       O       0       -23.877     24.627      -23.639     
+MHW     CB      C       CR6     0       -20.883     24.830      -23.498     
+MHW     OG1     O       OH1     0       -21.370     26.011      -22.991     
+MHW     CG2     C       CR16    0       -19.553     24.735      -23.901     
+MHW     CD      C       CR16    0       -19.091     23.545      -24.404     
+MHW     CE      C       CR16    0       -19.963     22.469      -24.498     
+MHW     OXT     O       OC      -1      -23.571     22.770      -22.477     
+MHW     HG1     H       H       0       -20.844     26.553      -22.576     
+MHW     HG2     H       H       0       -18.982     25.481      -23.827     
+MHW     HD      H       H       0       -18.193     23.462      -24.682     
+MHW     HE      H       H       0       -19.635     21.653      -24.846     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MHW           N          CA      DOUBLE       y     1.339  0.0100     1.339  0.0100
+MHW           N          CE      SINGLE       y     1.328  0.0100     1.328  0.0100
+MHW          CA           C      SINGLE       n     1.516  0.0106     1.516  0.0106
+MHW          CA          CB      SINGLE       y     1.420  0.0200     1.420  0.0200
+MHW           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+MHW           C         OXT      SINGLE       n     1.244  0.0200     1.244  0.0200
+MHW          CB         OG1      SINGLE       n     1.374  0.0155     1.374  0.0155
+MHW          CB         CG2      DOUBLE       y     1.390  0.0100     1.390  0.0100
+MHW         CG2          CD      SINGLE       y     1.368  0.0100     1.368  0.0100
+MHW          CD          CE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+MHW         OG1         HG1      SINGLE       n     0.966  0.0059     0.861  0.0200
+MHW         CG2         HG2      SINGLE       n     1.082  0.0130     0.942  0.0157
+MHW          CD          HD      SINGLE       n     1.082  0.0130     0.944  0.0200
+MHW          CE          HE      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MHW          CA           N          CE     118.230    1.50
+MHW           N          CA           C     116.955    1.50
+MHW           N          CA          CB     121.763    1.50
+MHW           C          CA          CB     121.282    1.50
+MHW          CA           C           O     117.267    1.50
+MHW          CA           C         OXT     117.267    1.50
+MHW           O           C         OXT     125.466    1.50
+MHW          CA          CB         OG1     120.532    3.00
+MHW          CA          CB         CG2     118.935    1.50
+MHW         OG1          CB         CG2     120.532    3.00
+MHW          CB         OG1         HG1     120.000    3.00
+MHW          CB         CG2          CD     118.846    1.50
+MHW          CB         CG2         HG2     120.248    1.50
+MHW          CD         CG2         HG2     120.906    1.50
+MHW         CG2          CD          CE     118.836    1.50
+MHW         CG2          CD          HD     120.437    1.50
+MHW          CE          CD          HD     120.722    1.50
+MHW           N          CE          CD     123.395    1.50
+MHW           N          CE          HE     118.055    1.50
+MHW          CD          CE          HE     118.550    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MHW       const_sp2_sp2_2           C          CA           N          CE     180.000     5.0     2
+MHW              const_19          CD          CE           N          CA       0.000    10.0     2
+MHW             sp2_sp2_2           O           C          CA           N       0.000     5.0     2
+MHW       const_sp2_sp2_6           C          CA          CB         OG1       0.000     5.0     2
+MHW             sp2_sp2_5          CA          CB         OG1         HG1     180.000     5.0     2
+MHW       const_sp2_sp2_9         OG1          CB         CG2          CD     180.000     5.0     2
+MHW              const_11          CE          CD         CG2          CB       0.000    10.0     2
+MHW              const_15         CG2          CD          CE           N       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MHW    plan-1           C   0.020
+MHW    plan-1          CA   0.020
+MHW    plan-1          CB   0.020
+MHW    plan-1          CD   0.020
+MHW    plan-1          CE   0.020
+MHW    plan-1         CG2   0.020
+MHW    plan-1          HD   0.020
+MHW    plan-1          HE   0.020
+MHW    plan-1         HG2   0.020
+MHW    plan-1           N   0.020
+MHW    plan-1         OG1   0.020
+MHW    plan-2           C   0.020
+MHW    plan-2          CA   0.020
+MHW    plan-2           O   0.020
+MHW    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MHW           SMILES              ACDLabs 10.04                                           O=C(O)c1ncccc1O
+MHW SMILES_CANONICAL               CACTVS 3.352                                           OC(=O)c1ncccc1O
+MHW           SMILES               CACTVS 3.352                                           OC(=O)c1ncccc1O
+MHW SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                       c1cc(c(nc1)C(=O)O)O
+MHW           SMILES "OpenEye OEToolkits" 1.6.1                                       c1cc(c(nc1)C(=O)O)O
+MHW            InChI                InChI  1.03 InChI=1S/C6H5NO3/c8-4-2-1-3-7-5(4)6(9)10/h1-3,8H,(H,9,10)
+MHW         InChIKey                InChI  1.03                               BRARRAHGNDUELT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MHW acedrg               243         "dictionary generator"                  
+MHW acedrg_database      11          "data source"                           
+MHW rdkit                2017.03.2   "Chemoinformatics tool"
+MHW refmac5              5.8.0238    "optimization tool"                     

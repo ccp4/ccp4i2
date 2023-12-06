@@ -1,0 +1,384 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AZJ     AZJ      "ethyl 6-{4-[(benzylsulfonyl)carbamoyl]piperidin-1-yl}-5-cyano-2-methylpyridine-3-carboxylate"     NON-POLYMER     59     33     .     
+#
+data_comp_AZJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AZJ     CAA     C       CH3     0       16.978      94.735      55.906      
+AZJ     CAB     C       CH3     0       13.001      99.793      55.278      
+AZJ     NAC     N       NSP     0       17.919      98.840      50.588      
+AZJ     OAD     O       O       0       19.392      103.626     49.630      
+AZJ     OAE     O       O       0       13.312      96.716      55.289      
+AZJ     OAF     O       O       0       18.497      105.350     45.785      
+AZJ     OAG     O       O       0       19.929      105.871     47.717      
+AZJ     CAH     C       CSP     0       17.074      98.981      51.354      
+AZJ     CAI     C       CR16    0       17.959      99.986      45.850      
+AZJ     CAJ     C       CR16    0       17.882      101.039     44.963      
+AZJ     CAK     C       CR16    0       18.769      100.084     46.961      
+AZJ     CAL     C       CR16    0       18.617      102.196     45.187      
+AZJ     CAM     C       CR16    0       19.505      101.240     47.189      
+AZJ     CAN     C       CR16    0       15.739      98.108      53.212      
+AZJ     CAO     C       CH2     0       15.563      95.160      55.857      
+AZJ     CAP     C       CH2     0       17.286      103.235     51.463      
+AZJ     CAQ     C       CH2     0       16.553      101.934     49.463      
+AZJ     CAR     C       CH2     0       16.042      102.769     52.200      
+AZJ     CAS     C       CH2     0       15.323      101.476     50.234      
+AZJ     CAT     C       CH2     0       20.232      103.563     46.546      
+AZJ     NAU     N       NRD6    0       14.378      100.534     53.434      
+AZJ     NAV     N       NH1     0       18.015      104.331     47.978      
+AZJ     OAW     O       O2      0       15.516      96.612      55.677      
+AZJ     CAX     C       C       0       18.251      103.768     49.177      
+AZJ     CAY     C       C       0       14.428      97.129      55.098      
+AZJ     CAZ     C       CR6     0       14.081      99.517      54.266      
+AZJ     CBA     C       CR6     0       19.437      102.306     46.302      
+AZJ     CBB     C       CR6     0       16.049      99.159      52.351      
+AZJ     CBC     C       CR6     0       14.756      98.266      54.183      
+AZJ     CBD     C       CR6     0       15.328      100.394     52.493      
+AZJ     CBE     C       CH1     0       17.026      103.305     49.954      
+AZJ     NBF     N       NR6     0       15.572      101.477     51.682      
+AZJ     SBG     S       S3      0       19.161      104.925     46.974      
+AZJ     H1      H       H       0       17.040      93.861      56.326      
+AZJ     H2      H       H       0       17.494      95.377      56.420      
+AZJ     H3      H       H       0       17.333      94.684      55.004      
+AZJ     H4      H       H       0       12.246      99.204      55.115      
+AZJ     H5      H       H       0       12.709      100.716     55.206      
+AZJ     H6      H       H       0       13.346      99.634      56.172      
+AZJ     H7      H       H       0       17.459      99.200      45.696      
+AZJ     H8      H       H       0       17.328      100.974     44.202      
+AZJ     H9      H       H       0       18.823      99.364      47.570      
+AZJ     H10     H       H       0       18.559      102.913     44.576      
+AZJ     H11     H       H       0       20.057      101.299     47.952      
+AZJ     H12     H       H       0       16.201      97.283      53.138      
+AZJ     H13     H       H       0       15.112      94.916      56.693      
+AZJ     H14     H       H       0       15.106      94.708      55.116      
+AZJ     H15     H       H       0       17.551      104.120     51.790      
+AZJ     H16     H       H       0       18.022      102.615     51.641      
+AZJ     H17     H       H       0       16.341      101.985     48.508      
+AZJ     H18     H       H       0       17.274      101.281     49.577      
+AZJ     H19     H       H       0       16.244      102.685     53.157      
+AZJ     H20     H       H       0       15.332      103.437     52.095      
+AZJ     H21     H       H       0       15.077      100.571     49.945      
+AZJ     H22     H       H       0       14.572      102.076     50.035      
+AZJ     H23     H       H       0       20.737      103.792     45.742      
+AZJ     H24     H       H       0       20.871      103.415     47.271      
+AZJ     H25     H       H       0       17.189      104.385     47.697      
+AZJ     H26     H       H       0       16.299      103.957     49.799      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AZJ         CAI         CAJ      DOUBLE       y     1.374  0.0127     1.374  0.0127
+AZJ         CAJ         CAL      SINGLE       y     1.386  0.0100     1.386  0.0100
+AZJ         CAI         CAK      SINGLE       y     1.374  0.0127     1.374  0.0127
+AZJ         CAL         CBA      DOUBLE       y     1.383  0.0114     1.383  0.0114
+AZJ         CAK         CAM      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AZJ         CAM         CBA      SINGLE       y     1.383  0.0114     1.383  0.0114
+AZJ         CAT         CBA      SINGLE       n     1.506  0.0100     1.506  0.0100
+AZJ         CAT         SBG      SINGLE       n     1.784  0.0100     1.784  0.0100
+AZJ         OAF         SBG      DOUBLE       n     1.427  0.0100     1.427  0.0100
+AZJ         OAG         SBG      DOUBLE       n     1.427  0.0100     1.427  0.0100
+AZJ         NAV         SBG      SINGLE       n     1.630  0.0157     1.630  0.0157
+AZJ         NAV         CAX      SINGLE       n     1.341  0.0100     1.341  0.0100
+AZJ         OAD         CAX      DOUBLE       n     1.234  0.0100     1.234  0.0100
+AZJ         CAX         CBE      SINGLE       n     1.520  0.0100     1.520  0.0100
+AZJ         CAQ         CBE      SINGLE       n     1.531  0.0100     1.531  0.0100
+AZJ         CAP         CBE      SINGLE       n     1.531  0.0100     1.531  0.0100
+AZJ         CAQ         CAS      SINGLE       n     1.516  0.0167     1.516  0.0167
+AZJ         CAS         NBF      SINGLE       n     1.465  0.0100     1.465  0.0100
+AZJ         CAP         CAR      SINGLE       n     1.516  0.0167     1.516  0.0167
+AZJ         CAR         NBF      SINGLE       n     1.465  0.0100     1.465  0.0100
+AZJ         CBD         NBF      SINGLE       n     1.364  0.0191     1.364  0.0191
+AZJ         NAC         CAH      TRIPLE       n     1.149  0.0200     1.149  0.0200
+AZJ         CAH         CBB      SINGLE       n     1.440  0.0102     1.440  0.0102
+AZJ         CBB         CBD      SINGLE       y     1.425  0.0142     1.425  0.0142
+AZJ         NAU         CBD      DOUBLE       y     1.339  0.0118     1.339  0.0118
+AZJ         CAN         CBB      DOUBLE       y     1.390  0.0116     1.390  0.0116
+AZJ         NAU         CAZ      SINGLE       y     1.342  0.0100     1.342  0.0100
+AZJ         CAN         CBC      SINGLE       y     1.388  0.0100     1.388  0.0100
+AZJ         CAZ         CBC      DOUBLE       y     1.405  0.0169     1.405  0.0169
+AZJ         CAB         CAZ      SINGLE       n     1.504  0.0100     1.504  0.0100
+AZJ         CAY         CBC      SINGLE       n     1.493  0.0100     1.493  0.0100
+AZJ         OAW         CAY      SINGLE       n     1.332  0.0117     1.332  0.0117
+AZJ         OAE         CAY      DOUBLE       n     1.204  0.0101     1.204  0.0101
+AZJ         CAO         OAW      SINGLE       n     1.458  0.0149     1.458  0.0149
+AZJ         CAA         CAO      SINGLE       n     1.478  0.0200     1.478  0.0200
+AZJ         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0156
+AZJ         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0156
+AZJ         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0156
+AZJ         CAB          H4      SINGLE       n     1.089  0.0100     0.971  0.0138
+AZJ         CAB          H5      SINGLE       n     1.089  0.0100     0.971  0.0138
+AZJ         CAB          H6      SINGLE       n     1.089  0.0100     0.971  0.0138
+AZJ         CAI          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+AZJ         CAJ          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+AZJ         CAK          H9      SINGLE       n     1.082  0.0130     0.944  0.0175
+AZJ         CAL         H10      SINGLE       n     1.082  0.0130     0.944  0.0174
+AZJ         CAM         H11      SINGLE       n     1.082  0.0130     0.944  0.0174
+AZJ         CAN         H12      SINGLE       n     1.082  0.0130     0.948  0.0147
+AZJ         CAO         H13      SINGLE       n     1.089  0.0100     0.980  0.0148
+AZJ         CAO         H14      SINGLE       n     1.089  0.0100     0.980  0.0148
+AZJ         CAP         H15      SINGLE       n     1.089  0.0100     0.979  0.0136
+AZJ         CAP         H16      SINGLE       n     1.089  0.0100     0.979  0.0136
+AZJ         CAQ         H17      SINGLE       n     1.089  0.0100     0.979  0.0136
+AZJ         CAQ         H18      SINGLE       n     1.089  0.0100     0.979  0.0136
+AZJ         CAR         H19      SINGLE       n     1.089  0.0100     0.981  0.0110
+AZJ         CAR         H20      SINGLE       n     1.089  0.0100     0.981  0.0110
+AZJ         CAS         H21      SINGLE       n     1.089  0.0100     0.981  0.0110
+AZJ         CAS         H22      SINGLE       n     1.089  0.0100     0.981  0.0110
+AZJ         CAT         H23      SINGLE       n     1.089  0.0100     0.977  0.0139
+AZJ         CAT         H24      SINGLE       n     1.089  0.0100     0.977  0.0139
+AZJ         NAV         H25      SINGLE       n     1.016  0.0100     0.873  0.0200
+AZJ         CBE         H26      SINGLE       n     1.089  0.0100     0.988  0.0115
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AZJ         CAO         CAA          H1     109.517    1.50
+AZJ         CAO         CAA          H2     109.517    1.50
+AZJ         CAO         CAA          H3     109.517    1.50
+AZJ          H1         CAA          H2     109.410    1.50
+AZJ          H1         CAA          H3     109.410    1.50
+AZJ          H2         CAA          H3     109.410    1.50
+AZJ         CAZ         CAB          H4     109.472    1.50
+AZJ         CAZ         CAB          H5     109.472    1.50
+AZJ         CAZ         CAB          H6     109.472    1.50
+AZJ          H4         CAB          H5     109.339    1.66
+AZJ          H4         CAB          H6     109.339    1.66
+AZJ          H5         CAB          H6     109.339    1.66
+AZJ         NAC         CAH         CBB     177.968    1.50
+AZJ         CAJ         CAI         CAK     119.999    1.50
+AZJ         CAJ         CAI          H7     119.998    1.50
+AZJ         CAK         CAI          H7     119.998    1.50
+AZJ         CAI         CAJ         CAL     120.277    1.50
+AZJ         CAI         CAJ          H8     119.907    1.50
+AZJ         CAL         CAJ          H8     119.816    1.50
+AZJ         CAI         CAK         CAM     120.277    1.50
+AZJ         CAI         CAK          H9     119.907    1.50
+AZJ         CAM         CAK          H9     119.816    1.50
+AZJ         CAJ         CAL         CBA     120.413    1.50
+AZJ         CAJ         CAL         H10     119.794    1.50
+AZJ         CBA         CAL         H10     119.793    1.50
+AZJ         CAK         CAM         CBA     120.413    1.50
+AZJ         CAK         CAM         H11     119.794    1.50
+AZJ         CBA         CAM         H11     119.793    1.50
+AZJ         CBB         CAN         CBC     120.110    1.50
+AZJ         CBB         CAN         H12     120.055    1.50
+AZJ         CBC         CAN         H12     119.836    1.50
+AZJ         OAW         CAO         CAA     108.242    2.13
+AZJ         OAW         CAO         H13     109.800    1.89
+AZJ         OAW         CAO         H14     109.800    1.89
+AZJ         CAA         CAO         H13     110.009    1.50
+AZJ         CAA         CAO         H14     110.009    1.50
+AZJ         H13         CAO         H14     108.453    1.50
+AZJ         CBE         CAP         CAR     111.123    1.86
+AZJ         CBE         CAP         H15     109.367    1.50
+AZJ         CBE         CAP         H16     109.367    1.50
+AZJ         CAR         CAP         H15     109.561    1.50
+AZJ         CAR         CAP         H16     109.561    1.50
+AZJ         H15         CAP         H16     107.890    1.50
+AZJ         CBE         CAQ         CAS     111.123    1.86
+AZJ         CBE         CAQ         H17     109.367    1.50
+AZJ         CBE         CAQ         H18     109.367    1.50
+AZJ         CAS         CAQ         H17     109.561    1.50
+AZJ         CAS         CAQ         H18     109.561    1.50
+AZJ         H17         CAQ         H18     107.890    1.50
+AZJ         CAP         CAR         NBF     110.478    1.50
+AZJ         CAP         CAR         H19     109.381    1.50
+AZJ         CAP         CAR         H20     109.381    1.50
+AZJ         NBF         CAR         H19     109.264    1.50
+AZJ         NBF         CAR         H20     109.264    1.50
+AZJ         H19         CAR         H20     108.202    1.50
+AZJ         CAQ         CAS         NBF     110.478    1.50
+AZJ         CAQ         CAS         H21     109.381    1.50
+AZJ         CAQ         CAS         H22     109.381    1.50
+AZJ         NBF         CAS         H21     109.264    1.50
+AZJ         NBF         CAS         H22     109.264    1.50
+AZJ         H21         CAS         H22     108.202    1.50
+AZJ         CBA         CAT         SBG     110.831    1.74
+AZJ         CBA         CAT         H23     109.751    1.50
+AZJ         CBA         CAT         H24     109.751    1.50
+AZJ         SBG         CAT         H23     109.386    1.50
+AZJ         SBG         CAT         H24     109.386    1.50
+AZJ         H23         CAT         H24     108.075    1.50
+AZJ         CBD         NAU         CAZ     119.038    1.50
+AZJ         SBG         NAV         CAX     122.813    2.63
+AZJ         SBG         NAV         H25     118.125    2.40
+AZJ         CAX         NAV         H25     119.063    2.48
+AZJ         CAY         OAW         CAO     116.490    1.50
+AZJ         NAV         CAX         OAD     122.379    1.55
+AZJ         NAV         CAX         CBE     116.355    2.17
+AZJ         OAD         CAX         CBE     121.266    1.50
+AZJ         CBC         CAY         OAW     112.182    1.50
+AZJ         CBC         CAY         OAE     124.275    1.50
+AZJ         OAW         CAY         OAE     123.544    1.50
+AZJ         NAU         CAZ         CBC     121.573    1.50
+AZJ         NAU         CAZ         CAB     116.277    1.50
+AZJ         CBC         CAZ         CAB     122.149    1.50
+AZJ         CAL         CBA         CAM     118.626    1.50
+AZJ         CAL         CBA         CAT     120.687    1.50
+AZJ         CAM         CBA         CAT     120.687    1.50
+AZJ         CAH         CBB         CBD     120.403    2.59
+AZJ         CAH         CBB         CAN     120.295    1.50
+AZJ         CBD         CBB         CAN     119.302    1.50
+AZJ         CAN         CBC         CAZ     118.969    1.50
+AZJ         CAN         CBC         CAY     120.090    1.89
+AZJ         CAZ         CBC         CAY     120.941    1.80
+AZJ         NBF         CBD         CBB     120.930    1.50
+AZJ         NBF         CBD         NAU     118.063    1.50
+AZJ         CBB         CBD         NAU     121.008    1.50
+AZJ         CAX         CBE         CAQ     110.678    1.86
+AZJ         CAX         CBE         CAP     110.678    1.86
+AZJ         CAX         CBE         H26     108.301    1.50
+AZJ         CAQ         CBE         CAP     109.803    1.50
+AZJ         CAQ         CBE         H26     108.539    1.50
+AZJ         CAP         CBE         H26     108.539    1.50
+AZJ         CAS         NBF         CAR     113.410    1.54
+AZJ         CAS         NBF         CBD     123.295    1.63
+AZJ         CAR         NBF         CBD     123.295    1.63
+AZJ         CAT         SBG         OAF     107.875    1.50
+AZJ         CAT         SBG         OAG     107.875    1.50
+AZJ         CAT         SBG         NAV     106.086    1.77
+AZJ         OAF         SBG         OAG     119.199    1.50
+AZJ         OAF         SBG         NAV     107.140    1.97
+AZJ         OAG         SBG         NAV     107.140    1.97
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AZJ            sp3_sp3_49          H1         CAA         CAO         OAW     180.000    10.0     3
+AZJ              const_17         CAI         CAK         CAM         CBA       0.000    10.0     2
+AZJ              const_10         CAJ         CAL         CBA         CAT     180.000    10.0     2
+AZJ              const_14         CAK         CAM         CBA         CAT     180.000    10.0     2
+AZJ              const_22         CBC         CAN         CBB         CAH     180.000    10.0     2
+AZJ              const_42         CBB         CAN         CBC         CAY     180.000    10.0     2
+AZJ            sp3_sp3_46         CAA         CAO         OAW         CAY     180.000    10.0     3
+AZJ            sp3_sp3_37         CBE         CAP         CAR         NBF     180.000    10.0     3
+AZJ             sp3_sp3_2         CAR         CAP         CBE         CAX     180.000    10.0     3
+AZJ            sp3_sp3_19         CBE         CAQ         CAS         NBF      60.000    10.0     3
+AZJ            sp3_sp3_12         CAS         CAQ         CBE         CAX     180.000    10.0     3
+AZJ             sp2_sp3_7         CAS         NBF         CAR         CAP       0.000    10.0     6
+AZJ             sp2_sp3_1         CAR         NBF         CAS         CAQ       0.000    10.0     6
+AZJ            sp2_sp3_14         CAL         CBA         CAT         SBG     -90.000    10.0     6
+AZJ            sp3_sp3_28         CBA         CAT         SBG         OAF     180.000    10.0     3
+AZJ            sp2_sp3_31         NAU         CAZ         CAB          H4     150.000    10.0     6
+AZJ              const_32         CAB         CAZ         NAU         CBD     180.000    10.0     2
+AZJ              const_30         NBF         CBD         NAU         CAZ     180.000    10.0     2
+AZJ             sp2_sp2_3         OAD         CAX         NAV         SBG       0.000     5.0     2
+AZJ            sp2_sp3_21         CAX         NAV         SBG         CAT    -120.000    10.0     6
+AZJ            sp2_sp2_14         OAE         CAY         OAW         CAO       0.000     5.0     2
+AZJ            sp2_sp3_26         NAV         CAX         CBE         CAQ     120.000    10.0     6
+AZJ             sp2_sp2_9         OAW         CAY         CBC         CAN     180.000     5.0     2
+AZJ              const_36         CAB         CAZ         CBC         CAY       0.000    10.0     2
+AZJ              const_28         CAH         CBB         CBD         NBF       0.000    10.0     2
+AZJ             sp2_sp2_5         CBB         CBD         NBF         CAS     180.000     5.0     2
+AZJ           other_tor_1         NAC         CAH         CBB         CBD      90.000    10.0     1
+AZJ              const_37         CAJ         CAI         CAK         CAM       0.000    10.0     2
+AZJ       const_sp2_sp2_1         CAK         CAI         CAJ         CAL       0.000     5.0     2
+AZJ       const_sp2_sp2_5         CAI         CAJ         CAL         CBA       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AZJ    chir_1    CBE    CAX    CAQ    CAP    both
+AZJ    chir_2    SBG    OAF    OAG    NAV    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AZJ    plan-1         CAI   0.020
+AZJ    plan-1         CAJ   0.020
+AZJ    plan-1         CAK   0.020
+AZJ    plan-1         CAL   0.020
+AZJ    plan-1         CAM   0.020
+AZJ    plan-1         CAT   0.020
+AZJ    plan-1         CBA   0.020
+AZJ    plan-1         H10   0.020
+AZJ    plan-1         H11   0.020
+AZJ    plan-1          H7   0.020
+AZJ    plan-1          H8   0.020
+AZJ    plan-1          H9   0.020
+AZJ    plan-2         CAB   0.020
+AZJ    plan-2         CAH   0.020
+AZJ    plan-2         CAN   0.020
+AZJ    plan-2         CAY   0.020
+AZJ    plan-2         CAZ   0.020
+AZJ    plan-2         CBB   0.020
+AZJ    plan-2         CBC   0.020
+AZJ    plan-2         CBD   0.020
+AZJ    plan-2         H12   0.020
+AZJ    plan-2         NAU   0.020
+AZJ    plan-2         NBF   0.020
+AZJ    plan-3         CAX   0.020
+AZJ    plan-3         H25   0.020
+AZJ    plan-3         NAV   0.020
+AZJ    plan-3         SBG   0.020
+AZJ    plan-4         CAX   0.020
+AZJ    plan-4         CBE   0.020
+AZJ    plan-4         NAV   0.020
+AZJ    plan-4         OAD   0.020
+AZJ    plan-5         CAY   0.020
+AZJ    plan-5         CBC   0.020
+AZJ    plan-5         OAE   0.020
+AZJ    plan-5         OAW   0.020
+AZJ    plan-6         CAR   0.020
+AZJ    plan-6         CAS   0.020
+AZJ    plan-6         CBD   0.020
+AZJ    plan-6         NBF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AZJ           SMILES              ACDLabs 12.01                                                                                                       O=S(=O)(NC(=O)C2CCN(c1nc(c(C(=O)OCC)cc1C#N)C)CC2)Cc3ccccc3
+AZJ            InChI                InChI  1.03 InChI=1S/C23H26N4O5S/c1-3-32-23(29)20-13-19(14-24)21(25-16(20)2)27-11-9-18(10-12-27)22(28)26-33(30,31)15-17-7-5-4-6-8-17/h4-8,13,18H,3,9-12,15H2,1-2H3,(H,26,28)
+AZJ         InChIKey                InChI  1.03                                                                                                                                      NEMHKCNXXRQYRF-UHFFFAOYSA-N
+AZJ SMILES_CANONICAL               CACTVS 3.385                                                                                                     CCOC(=O)c1cc(C#N)c(nc1C)N2CCC(CC2)C(=O)N[S](=O)(=O)Cc3ccccc3
+AZJ           SMILES               CACTVS 3.385                                                                                                     CCOC(=O)c1cc(C#N)c(nc1C)N2CCC(CC2)C(=O)N[S](=O)(=O)Cc3ccccc3
+AZJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                       CCOC(=O)c1cc(c(nc1C)N2CCC(CC2)C(=O)NS(=O)(=O)Cc3ccccc3)C#N
+AZJ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                       CCOC(=O)c1cc(c(nc1C)N2CCC(CC2)C(=O)NS(=O)(=O)Cc3ccccc3)C#N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AZJ acedrg               243         "dictionary generator"                  
+AZJ acedrg_database      11          "data source"                           
+AZJ rdkit                2017.03.2   "Chemoinformatics tool"
+AZJ refmac5              5.8.0238    "optimization tool"                     

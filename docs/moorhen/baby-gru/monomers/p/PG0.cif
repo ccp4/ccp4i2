@@ -1,0 +1,151 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PG0     PG0      2-(2-METHOXYETHOXY)ETHANOL     NON-POLYMER     20     8     .     
+#
+data_comp_PG0
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PG0     C5      C       CH3     0       25.546      3.875       19.647      
+PG0     O2      O       O2      0       25.308      2.476       19.680      
+PG0     C4      C       CH2     0       25.934      1.722       18.652      
+PG0     C3      C       CH2     0       27.293      1.269       19.089      
+PG0     O1      O       O2      0       27.858      0.429       18.086      
+PG0     C2      C       CH2     0       29.207      0.046       18.344      
+PG0     C1      C       CH2     0       30.145      1.034       17.723      
+PG0     OTT     O       OH1     0       31.489      0.596       17.766      
+PG0     H51     H       H       0       25.153      4.288       20.432      
+PG0     H52     H       H       0       25.144      4.253       18.847      
+PG0     H53     H       H       0       26.503      4.041       19.638      
+PG0     H41     H       H       0       26.015      2.268       17.838      
+PG0     H42     H       H       0       25.381      0.940       18.439      
+PG0     H31     H       H       0       27.220      0.774       19.934      
+PG0     H32     H       H       0       27.871      2.049       19.236      
+PG0     H21     H       H       0       29.372      -0.845      17.967      
+PG0     H22     H       H       0       29.368      0.000       19.313      
+PG0     H11     H       H       0       30.072      1.889       18.196      
+PG0     H12     H       H       0       29.886      1.180       16.789      
+PG0     HTT     H       H       0       31.746      0.559       18.571      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PG0          C5          O2      SINGLE       n     1.415  0.0200     1.415  0.0200
+PG0          O2          C4      SINGLE       n     1.414  0.0200     1.414  0.0200
+PG0          C4          C3      SINGLE       n     1.496  0.0200     1.496  0.0200
+PG0          C3          O1      SINGLE       n     1.423  0.0106     1.423  0.0106
+PG0          O1          C2      SINGLE       n     1.423  0.0106     1.423  0.0106
+PG0          C2          C1      SINGLE       n     1.496  0.0200     1.496  0.0200
+PG0          C1         OTT      SINGLE       n     1.414  0.0200     1.414  0.0200
+PG0          C5         H51      SINGLE       n     1.089  0.0100     0.971  0.0146
+PG0          C5         H52      SINGLE       n     1.089  0.0100     0.971  0.0146
+PG0          C5         H53      SINGLE       n     1.089  0.0100     0.971  0.0146
+PG0          C4         H41      SINGLE       n     1.089  0.0100     0.982  0.0175
+PG0          C4         H42      SINGLE       n     1.089  0.0100     0.982  0.0175
+PG0          C3         H31      SINGLE       n     1.089  0.0100     0.982  0.0175
+PG0          C3         H32      SINGLE       n     1.089  0.0100     0.982  0.0175
+PG0          C2         H21      SINGLE       n     1.089  0.0100     0.982  0.0175
+PG0          C2         H22      SINGLE       n     1.089  0.0100     0.982  0.0175
+PG0          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0144
+PG0          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0144
+PG0         OTT         HTT      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PG0          O2          C5         H51     109.470    1.50
+PG0          O2          C5         H52     109.470    1.50
+PG0          O2          C5         H53     109.470    1.50
+PG0         H51          C5         H52     109.532    1.53
+PG0         H51          C5         H53     109.532    1.53
+PG0         H52          C5         H53     109.532    1.53
+PG0          C5          O2          C4     112.505    3.00
+PG0          O2          C4          C3     110.646    3.00
+PG0          O2          C4         H41     109.622    1.50
+PG0          O2          C4         H42     109.622    1.50
+PG0          C3          C4         H41     109.729    1.50
+PG0          C3          C4         H42     109.729    1.50
+PG0         H41          C4         H42     108.274    1.50
+PG0          C4          C3          O1     109.613    1.74
+PG0          C4          C3         H31     109.729    1.50
+PG0          C4          C3         H32     109.729    1.50
+PG0          O1          C3         H31     109.691    1.50
+PG0          O1          C3         H32     109.691    1.50
+PG0         H31          C3         H32     108.274    1.50
+PG0          C3          O1          C2     112.795    1.50
+PG0          O1          C2          C1     109.904    1.68
+PG0          O1          C2         H21     109.691    1.50
+PG0          O1          C2         H22     109.691    1.50
+PG0          C1          C2         H21     109.795    1.50
+PG0          C1          C2         H22     109.795    1.50
+PG0         H21          C2         H22     108.274    1.50
+PG0          C2          C1         OTT     112.284    1.56
+PG0          C2          C1         H11     109.198    1.50
+PG0          C2          C1         H12     109.198    1.50
+PG0         OTT          C1         H11     109.012    1.50
+PG0         OTT          C1         H12     109.012    1.50
+PG0         H11          C1         H12     108.093    1.50
+PG0          C1         OTT         HTT     109.347    1.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PG0             sp3_sp3_1         H51          C5          O2          C4     180.000    10.0     3
+PG0             sp3_sp3_4          C3          C4          O2          C5     180.000    10.0     3
+PG0             sp3_sp3_7          O1          C3          C4          O2     180.000    10.0     3
+PG0            sp3_sp3_16          C4          C3          O1          C2     180.000    10.0     3
+PG0            sp3_sp3_19          C1          C2          O1          C3     180.000    10.0     3
+PG0            sp3_sp3_22         OTT          C1          C2          O1     180.000    10.0     3
+PG0            sp3_sp3_31          C2          C1         OTT         HTT     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PG0           SMILES              ACDLabs 10.04                                        OCCOCCOC
+PG0 SMILES_CANONICAL               CACTVS 3.341                                        COCCOCCO
+PG0           SMILES               CACTVS 3.341                                        COCCOCCO
+PG0 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        COCCOCCO
+PG0           SMILES "OpenEye OEToolkits" 1.5.0                                        COCCOCCO
+PG0            InChI                InChI  1.03 InChI=1S/C5H12O3/c1-7-4-5-8-3-2-6/h6H,2-5H2,1H3
+PG0         InChIKey                InChI  1.03                     SBASXUCJHJRPEV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PG0 acedrg               243         "dictionary generator"                  
+PG0 acedrg_database      11          "data source"                           
+PG0 rdkit                2017.03.2   "Chemoinformatics tool"
+PG0 refmac5              5.8.0238    "optimization tool"                     

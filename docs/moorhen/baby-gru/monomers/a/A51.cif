@@ -1,0 +1,213 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A51     A51      (3E)-3-[(phenylamino)methylidene]dihydrofuran-2(3H)-one     NON-POLYMER     25     14     .     
+#
+data_comp_A51
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A51     C1      C       CH2     0       -4.415      34.549      47.451      
+A51     C2      C       CH2     0       -3.370      35.131      48.387      
+A51     C3      C       CR5     0       -2.358      35.715      47.448      
+A51     C4      C       CR5     0       -2.811      35.479      46.073      
+A51     O5      O       O2      0       -4.002      34.811      46.094      
+A51     O6      O       O       0       -2.289      35.783      45.015      
+A51     C7      C       C1      0       -1.155      36.378      47.715      
+A51     N8      N       NH1     0       -0.681      36.561      48.977      
+A51     C9      C       CR6     0       0.580       37.103      49.338      
+A51     C10     C       CR16    0       1.719       36.860      48.580      
+A51     C11     C       CR16    0       2.937       37.404      48.966      
+A51     C12     C       CR16    0       3.028       38.182      50.102      
+A51     C13     C       CR16    0       1.899       38.421      50.858      
+A51     C14     C       CR16    0       0.674       37.884      50.482      
+A51     H1      H       H       0       -4.497      33.583      47.587      
+A51     H1A     H       H       0       -5.288      34.963      47.612      
+A51     H2      H       H       0       -3.754      35.823      48.964      
+A51     H2A     H       H       0       -2.968      34.437      48.949      
+A51     H7      H       H       0       -0.661      36.710      46.984      
+A51     HN8     H       H       0       -1.236      36.314      49.681      
+A51     H10     H       H       0       1.666       36.329      47.803      
+A51     H11     H       H       0       3.707       37.238      48.447      
+A51     H12     H       H       0       3.858       38.550      50.361      
+A51     H13     H       H       0       1.956       38.953      51.634      
+A51     H14     H       H       0       -0.094      38.051      51.003      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A51          C1          C2      SINGLE       n     1.517  0.0200     1.517  0.0200
+A51          C1          O5      SINGLE       n     1.442  0.0100     1.442  0.0100
+A51          C2          C3      SINGLE       n     1.499  0.0100     1.499  0.0100
+A51          C3          C4      SINGLE       n     1.470  0.0200     1.470  0.0200
+A51          C3          C7      DOUBLE       n     1.392  0.0200     1.392  0.0200
+A51          C4          O5      SINGLE       n     1.366  0.0200     1.366  0.0200
+A51          C4          O6      DOUBLE       n     1.218  0.0109     1.218  0.0109
+A51          C7          N8      SINGLE       n     1.351  0.0200     1.351  0.0200
+A51          N8          C9      SINGLE       n     1.417  0.0100     1.417  0.0100
+A51          C9         C10      DOUBLE       y     1.385  0.0100     1.385  0.0100
+A51          C9         C14      SINGLE       y     1.385  0.0100     1.385  0.0100
+A51         C10         C11      SINGLE       y     1.385  0.0100     1.385  0.0100
+A51         C11         C12      DOUBLE       y     1.376  0.0124     1.376  0.0124
+A51         C12         C13      SINGLE       y     1.376  0.0112     1.376  0.0112
+A51         C13         C14      DOUBLE       y     1.385  0.0100     1.385  0.0100
+A51          C1          H1      SINGLE       n     1.089  0.0100     0.979  0.0103
+A51          C1         H1A      SINGLE       n     1.089  0.0100     0.979  0.0103
+A51          C2          H2      SINGLE       n     1.089  0.0100     0.979  0.0103
+A51          C2         H2A      SINGLE       n     1.089  0.0100     0.979  0.0103
+A51          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+A51          N8         HN8      SINGLE       n     1.016  0.0100     0.930  0.0200
+A51         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0178
+A51         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0172
+A51         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0161
+A51         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0172
+A51         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A51          C2          C1          O5     107.503    1.50
+A51          C2          C1          H1     110.445    1.50
+A51          C2          C1         H1A     110.445    1.50
+A51          O5          C1          H1     109.230    2.87
+A51          O5          C1         H1A     109.230    2.87
+A51          H1          C1         H1A     108.637    1.50
+A51          C1          C2          C3     102.800    1.50
+A51          C1          C2          H2     111.169    1.50
+A51          C1          C2         H2A     111.169    1.50
+A51          C3          C2          H2     110.804    1.50
+A51          C3          C2         H2A     110.804    1.50
+A51          H2          C2         H2A     108.690    1.50
+A51          C2          C3          C4     109.007    1.50
+A51          C2          C3          C7     128.710    3.00
+A51          C4          C3          C7     122.283    2.80
+A51          C3          C4          O5     109.513    1.50
+A51          C3          C4          O6     129.928    1.50
+A51          O5          C4          O6     120.560    1.80
+A51          C1          O5          C4     110.156    1.50
+A51          C3          C7          N8     120.889    3.00
+A51          C3          C7          H7     119.257    1.97
+A51          N8          C7          H7     119.854    1.50
+A51          C7          N8          C9     126.070    2.40
+A51          C7          N8         HN8     117.174    1.50
+A51          C9          N8         HN8     116.757    1.67
+A51          N8          C9         C10     120.302    2.57
+A51          N8          C9         C14     120.302    2.57
+A51         C10          C9         C14     119.396    1.50
+A51          C9         C10         C11     119.830    1.50
+A51          C9         C10         H10     120.019    1.50
+A51         C11         C10         H10     120.151    1.50
+A51         C10         C11         C12     120.518    1.50
+A51         C10         C11         H11     119.600    1.50
+A51         C12         C11         H11     119.882    1.50
+A51         C11         C12         C13     119.909    1.50
+A51         C11         C12         H12     120.046    1.50
+A51         C13         C12         H12     120.046    1.50
+A51         C12         C13         C14     120.518    1.50
+A51         C12         C13         H13     119.882    1.50
+A51         C14         C13         H13     119.600    1.50
+A51          C9         C14         C13     119.830    1.50
+A51          C9         C14         H14     120.019    1.50
+A51         C13         C14         H14     120.151    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A51             sp3_sp3_1          O5          C1          C2          C3      60.000    10.0     3
+A51            sp3_sp3_10          C2          C1          O5          C4      60.000    10.0     3
+A51       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+A51              const_13         C11         C12         C13         C14       0.000    10.0     2
+A51              const_17         C12         C13         C14          C9       0.000    10.0     2
+A51             sp2_sp3_4          C7          C3          C2          C1     180.000    10.0     6
+A51             sp2_sp2_4          C7          C3          C4          O6       0.000     5.0     2
+A51             sp2_sp2_7          C2          C3          C7          N8     180.000     5.0     2
+A51             sp2_sp2_6          O6          C4          O5          C1     180.000     5.0     2
+A51            sp2_sp2_11          C3          C7          N8          C9     180.000     5.0     2
+A51            sp2_sp2_15         C10          C9          N8          C7     180.000     5.0     2
+A51              const_22         C13         C14          C9          N8     180.000    10.0     2
+A51       const_sp2_sp2_2         C11         C10          C9          N8     180.000     5.0     2
+A51       const_sp2_sp2_5          C9         C10         C11         C12       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A51    plan-1         C10   0.020
+A51    plan-1         C11   0.020
+A51    plan-1         C12   0.020
+A51    plan-1         C13   0.020
+A51    plan-1         C14   0.020
+A51    plan-1          C9   0.020
+A51    plan-1         H10   0.020
+A51    plan-1         H11   0.020
+A51    plan-1         H12   0.020
+A51    plan-1         H13   0.020
+A51    plan-1         H14   0.020
+A51    plan-1          N8   0.020
+A51    plan-2          C2   0.020
+A51    plan-2          C3   0.020
+A51    plan-2          C4   0.020
+A51    plan-2          C7   0.020
+A51    plan-3          C3   0.020
+A51    plan-3          C4   0.020
+A51    plan-3          O5   0.020
+A51    plan-3          O6   0.020
+A51    plan-4          C3   0.020
+A51    plan-4          C7   0.020
+A51    plan-4          H7   0.020
+A51    plan-4          N8   0.020
+A51    plan-5          C7   0.020
+A51    plan-5          C9   0.020
+A51    plan-5         HN8   0.020
+A51    plan-5          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A51           SMILES              ACDLabs 10.04                                                           O=C/2OCCC\2=C\Nc1ccccc1
+A51 SMILES_CANONICAL               CACTVS 3.341                                                            O=C1OCC\C1=C/Nc2ccccc2
+A51           SMILES               CACTVS 3.341                                                              O=C1OCCC1=CNc2ccccc2
+A51 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)N\C=C\2/CCOC2=O
+A51           SMILES "OpenEye OEToolkits" 1.5.0                                                            c1ccc(cc1)NC=C2CCOC2=O
+A51            InChI                InChI  1.03 InChI=1S/C11H11NO2/c13-11-9(6-7-14-11)8-12-10-4-2-1-3-5-10/h1-5,8,12H,6-7H2/b9-8+
+A51         InChIKey                InChI  1.03                                                       BKXNPYSVWOVZGX-CMDGGOBGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A51 acedrg               243         "dictionary generator"                  
+A51 acedrg_database      11          "data source"                           
+A51 rdkit                2017.03.2   "Chemoinformatics tool"
+A51 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,503 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HTV     HTV      "1-O-{6-chloro-5-[4-(1-hydroxycyclobutyl)phenyl]-1H-indole-3-carbonyl}-beta-D-glucopyranuronic acid"     NON-POLYMER     59     36     .     
+#
+data_comp_HTV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HTV     C4      C       CR16    0       49.197      -81.767     -38.207     
+HTV     C7      C       CR6     0       46.179      -79.904     -39.525     
+HTV     C6      C       CR6     0       47.296      -80.880     -39.402     
+HTV     C9      C       CR56    0       43.805      -79.463     -39.498     
+HTV     C13     C       CR15    0       41.870      -78.312     -39.619     
+HTV     C20     C       CH1     0       37.893      -83.012     -41.022     
+HTV     C21     C       C       0       37.283      -82.987     -42.420     
+HTV     C8      C       CR16    0       44.869      -80.363     -39.381     
+HTV     C18     C       CH1     0       37.547      -82.881     -38.545     
+HTV     C16     C       CH1     0       39.530      -81.889     -39.710     
+HTV     C19     C       CH1     0       36.848      -82.946     -39.898     
+HTV     C1      C       CR16    0       47.491      -81.869     -40.366     
+HTV     C2      C       CR16    0       48.513      -82.781     -40.257     
+HTV     C3      C       CR6     0       49.398      -82.747     -39.179     
+HTV     C5      C       CR16    0       48.171      -80.857     -38.315     
+HTV     C10     C       CR56    0       44.081      -78.108     -39.765     
+HTV     C11     C       CR16    0       45.387      -77.641     -39.915     
+HTV     C12     C       CR6     0       46.424      -78.551     -39.794     
+HTV     CL1     CL      CL      0       48.049      -77.968     -39.983     
+HTV     N1      N       NR5     0       42.881      -77.442     -39.832     
+HTV     C14     C       CR5     0       42.369      -79.575     -39.412     
+HTV     C15     C       C       0       41.597      -80.783     -39.143     
+HTV     O1      O       O       0       42.005      -81.694     -38.457     
+HTV     O2      O       O2      0       40.379      -80.736     -39.731     
+HTV     C17     C       CH1     0       38.590      -81.766     -38.514     
+HTV     O3      O       O2      0       38.793      -81.906     -40.920     
+HTV     O4      O       OC      -1      36.085      -82.918     -42.570     
+HTV     O5      O       O       0       38.016      -83.042     -43.377     
+HTV     O6      O       OH1     0       36.015      -84.108     -39.957     
+HTV     O7      O       OH1     0       36.591      -82.668     -37.507     
+HTV     O8      O       OH1     0       39.316      -81.804     -37.287     
+HTV     C22     C       CT      0       50.524      -83.754     -39.049     
+HTV     C23     C       CH2     0       51.896      -83.184     -38.630     
+HTV     C24     C       CH2     0       52.564      -83.931     -39.785     
+HTV     C25     C       CH2     0       51.187      -84.321     -40.323     
+HTV     O9      O       OH1     0       50.114      -84.785     -38.161     
+HTV     H1      H       H       0       49.774      -81.721     -37.465     
+HTV     H2      H       H       0       40.957      -78.083     -39.619     
+HTV     H3      H       H       0       38.409      -83.849     -40.936     
+HTV     H4      H       H       0       44.705      -81.274     -39.202     
+HTV     H5      H       H       0       38.004      -83.745     -38.384     
+HTV     H6      H       H       0       40.059      -82.719     -39.638     
+HTV     H7      H       H       0       36.287      -82.140     -40.006     
+HTV     H8      H       H       0       46.911      -81.912     -41.108     
+HTV     H9      H       H       0       48.618      -83.433     -40.927     
+HTV     H10     H       H       0       48.064      -80.200     -37.648     
+HTV     H11     H       H       0       45.557      -76.742     -40.091     
+HTV     H12     H       H       0       42.784      -76.585     -39.988     
+HTV     H13     H       H       0       38.121      -80.899     -38.572     
+HTV     H15     H       H       0       35.383      -84.030     -39.406     
+HTV     H16     H       H       0       36.964      -82.793     -36.764     
+HTV     H17     H       H       0       39.732      -82.534     -37.231     
+HTV     H18     H       H       0       51.960      -82.239     -38.697     
+HTV     H19     H       H       0       52.180      -83.472     -37.771     
+HTV     H20     H       H       0       53.105      -84.686     -39.504     
+HTV     H21     H       H       0       53.069      -83.356     -40.382     
+HTV     H22     H       H       0       50.951      -83.870     -41.125     
+HTV     H23     H       H       0       51.068      -85.258     -40.427     
+HTV     H24     H       H       0       49.556      -85.302     -38.563     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HTV         C21          O5      DOUBLE       n     1.207  0.0200     1.207  0.0200
+HTV         C21          O4      SINGLE       n     1.207  0.0200     1.207  0.0200
+HTV         C20         C21      SINGLE       n     1.518  0.0174     1.518  0.0174
+HTV         C20          O3      SINGLE       n     1.426  0.0100     1.426  0.0100
+HTV         C20         C19      SINGLE       n     1.533  0.0100     1.533  0.0100
+HTV         C16          O3      SINGLE       n     1.414  0.0104     1.414  0.0104
+HTV         C24         C25      SINGLE       n     1.530  0.0135     1.530  0.0135
+HTV         C22         C25      SINGLE       n     1.539  0.0184     1.539  0.0184
+HTV          C1          C2      DOUBLE       y     1.371  0.0100     1.371  0.0100
+HTV          C6          C1      SINGLE       y     1.392  0.0100     1.392  0.0100
+HTV          C2          C3      SINGLE       y     1.389  0.0100     1.389  0.0100
+HTV         C19          O6      SINGLE       n     1.431  0.0107     1.431  0.0107
+HTV         C18         C19      SINGLE       n     1.523  0.0100     1.523  0.0100
+HTV         C13          N1      SINGLE       y     1.350  0.0100     1.350  0.0100
+HTV         C13         C14      DOUBLE       y     1.373  0.0100     1.373  0.0100
+HTV         C10          N1      SINGLE       y     1.373  0.0100     1.373  0.0100
+HTV         C16          O2      SINGLE       n     1.418  0.0165     1.418  0.0165
+HTV         C15          O2      SINGLE       n     1.345  0.0116     1.345  0.0116
+HTV          C9         C14      SINGLE       y     1.444  0.0100     1.444  0.0100
+HTV         C14         C15      SINGLE       n     1.456  0.0123     1.456  0.0123
+HTV          C9         C10      DOUBLE       y     1.408  0.0100     1.408  0.0100
+HTV         C10         C11      SINGLE       y     1.392  0.0100     1.392  0.0100
+HTV         C16         C17      SINGLE       n     1.523  0.0100     1.523  0.0100
+HTV          C9          C8      SINGLE       y     1.397  0.0100     1.397  0.0100
+HTV         C15          O1      DOUBLE       n     1.208  0.0142     1.208  0.0142
+HTV         C11         C12      DOUBLE       y     1.378  0.0110     1.378  0.0110
+HTV         C23         C24      SINGLE       n     1.530  0.0135     1.530  0.0135
+HTV          C7          C8      DOUBLE       y     1.391  0.0108     1.391  0.0108
+HTV          C7         C12      SINGLE       y     1.392  0.0100     1.392  0.0100
+HTV         C12         CL1      SINGLE       n     1.734  0.0137     1.734  0.0137
+HTV          C7          C6      SINGLE       n     1.487  0.0100     1.487  0.0100
+HTV          C6          C5      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HTV          C3         C22      SINGLE       n     1.512  0.0113     1.512  0.0113
+HTV          C4          C3      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HTV         C22         C23      SINGLE       n     1.539  0.0184     1.539  0.0184
+HTV         C22          O9      SINGLE       n     1.422  0.0100     1.422  0.0100
+HTV         C18         C17      SINGLE       n     1.520  0.0200     1.520  0.0200
+HTV         C18          O7      SINGLE       n     1.427  0.0125     1.427  0.0125
+HTV         C17          O8      SINGLE       n     1.425  0.0112     1.425  0.0112
+HTV          C4          C5      SINGLE       y     1.371  0.0100     1.371  0.0100
+HTV          C4          H1      SINGLE       n     1.082  0.0130     0.941  0.0163
+HTV         C13          H2      SINGLE       n     1.082  0.0130     0.942  0.0200
+HTV         C20          H3      SINGLE       n     1.089  0.0100     0.986  0.0200
+HTV          C8          H4      SINGLE       n     1.082  0.0130     0.943  0.0168
+HTV         C18          H5      SINGLE       n     1.089  0.0100     0.990  0.0140
+HTV         C16          H6      SINGLE       n     1.089  0.0100     0.986  0.0200
+HTV         C19          H7      SINGLE       n     1.089  0.0100     0.988  0.0151
+HTV          C1          H8      SINGLE       n     1.082  0.0130     0.943  0.0170
+HTV          C2          H9      SINGLE       n     1.082  0.0130     0.941  0.0163
+HTV          C5         H10      SINGLE       n     1.082  0.0130     0.943  0.0170
+HTV         C11         H11      SINGLE       n     1.082  0.0130     0.932  0.0200
+HTV          N1         H12      SINGLE       n     1.016  0.0100     0.876  0.0200
+HTV         C17         H13      SINGLE       n     1.089  0.0100     0.987  0.0140
+HTV          O6         H15      SINGLE       n     0.970  0.0120     0.841  0.0200
+HTV          O7         H16      SINGLE       n     0.970  0.0120     0.841  0.0200
+HTV          O8         H17      SINGLE       n     0.970  0.0120     0.841  0.0200
+HTV         C23         H18      SINGLE       n     1.089  0.0100     0.950  0.0100
+HTV         C23         H19      SINGLE       n     1.089  0.0100     0.950  0.0100
+HTV         C24         H20      SINGLE       n     1.089  0.0100     0.970  0.0100
+HTV         C24         H21      SINGLE       n     1.089  0.0100     0.970  0.0100
+HTV         C25         H22      SINGLE       n     1.089  0.0100     0.950  0.0100
+HTV         C25         H23      SINGLE       n     1.089  0.0100     0.950  0.0100
+HTV          O9         H24      SINGLE       n     0.970  0.0120     0.860  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HTV          C3          C4          C5     120.962    1.50
+HTV          C3          C4          H1     119.525    1.50
+HTV          C5          C4          H1     119.513    1.50
+HTV          C8          C7         C12     119.975    1.64
+HTV          C8          C7          C6     119.841    1.77
+HTV         C12          C7          C6     120.184    1.63
+HTV          C1          C6          C7     121.179    1.52
+HTV          C1          C6          C5     117.642    1.50
+HTV          C7          C6          C5     121.179    1.52
+HTV         C14          C9         C10     106.212    1.50
+HTV         C14          C9          C8     133.970    1.50
+HTV         C10          C9          C8     119.817    1.50
+HTV          N1         C13         C14     110.075    1.50
+HTV          N1         C13          H2     124.739    1.50
+HTV         C14         C13          H2     125.186    1.50
+HTV         C21         C20          O3     107.807    2.54
+HTV         C21         C20         C19     111.056    2.52
+HTV         C21         C20          H3     107.668    1.59
+HTV          O3         C20         C19     109.645    1.79
+HTV          O3         C20          H3     108.284    2.17
+HTV         C19         C20          H3     109.094    1.50
+HTV          O5         C21          O4     120.713    1.50
+HTV          O5         C21         C20     119.643    2.54
+HTV          O4         C21         C20     119.643    2.54
+HTV          C9          C8          C7     119.806    1.50
+HTV          C9          C8          H4     120.229    1.50
+HTV          C7          C8          H4     119.965    1.50
+HTV         C19         C18         C17     110.687    1.67
+HTV         C19         C18          O7     110.243    1.88
+HTV         C19         C18          H5     108.653    1.50
+HTV         C17         C18          O7     109.587    2.09
+HTV         C17         C18          H5     108.712    1.50
+HTV          O7         C18          H5     108.767    1.50
+HTV          O3         C16          O2     108.251    2.85
+HTV          O3         C16         C17     110.404    1.50
+HTV          O3         C16          H6     109.385    1.50
+HTV          O2         C16         C17     107.145    1.78
+HTV          O2         C16          H6     109.769    1.50
+HTV         C17         C16          H6     109.511    1.50
+HTV         C20         C19          O6     109.410    1.87
+HTV         C20         C19         C18     109.795    1.50
+HTV         C20         C19          H7     110.070    1.50
+HTV          O6         C19         C18     110.101    1.97
+HTV          O6         C19          H7     109.194    1.50
+HTV         C18         C19          H7     109.032    1.50
+HTV          C2          C1          C6     121.167    1.50
+HTV          C2          C1          H8     119.380    1.50
+HTV          C6          C1          H8     119.445    1.50
+HTV          C1          C2          C3     120.962    1.50
+HTV          C1          C2          H9     119.513    1.50
+HTV          C3          C2          H9     119.525    1.50
+HTV          C2          C3         C22     120.941    1.85
+HTV          C2          C3          C4     118.118    1.50
+HTV         C22          C3          C4     120.941    1.85
+HTV          C6          C5          C4     121.167    1.50
+HTV          C6          C5         H10     119.445    1.50
+HTV          C4          C5         H10     119.380    1.50
+HTV          N1         C10          C9     107.635    1.50
+HTV          N1         C10         C11     130.202    1.50
+HTV          C9         C10         C11     122.162    1.50
+HTV         C10         C11         C12     117.425    1.50
+HTV         C10         C11         H11     121.296    1.50
+HTV         C12         C11         H11     121.279    1.50
+HTV         C11         C12          C7     120.814    1.50
+HTV         C11         C12         CL1     119.019    1.50
+HTV          C7         C12         CL1     120.167    1.50
+HTV         C13          N1         C10     109.223    1.50
+HTV         C13          N1         H12     125.237    1.77
+HTV         C10          N1         H12     125.539    1.60
+HTV         C13         C14          C9     106.855    1.50
+HTV         C13         C14         C15     126.138    1.72
+HTV          C9         C14         C15     127.007    2.31
+HTV          O2         C15         C14     111.501    1.50
+HTV          O2         C15          O1     123.926    1.66
+HTV         C14         C15          O1     124.573    1.92
+HTV         C16          O2         C15     116.772    1.50
+HTV         C16         C17         C18     110.084    1.50
+HTV         C16         C17          O8     110.083    1.70
+HTV         C16         C17         H13     108.545    1.50
+HTV         C18         C17          O8     111.053    2.62
+HTV         C18         C17         H13     108.505    1.50
+HTV          O8         C17         H13     108.551    1.50
+HTV         C20          O3         C16     111.559    2.21
+HTV         C19          O6         H15     109.564    3.00
+HTV         C18          O7         H16     108.895    2.41
+HTV         C17          O8         H17     109.126    2.06
+HTV         C25         C22          C3     117.816    3.00
+HTV         C25         C22         C23      89.015    2.00
+HTV         C25         C22          O9     114.801    3.00
+HTV          C3         C22         C23     117.816    3.00
+HTV          C3         C22          O9     110.448    1.94
+HTV         C23         C22          O9     114.801    3.00
+HTV         C24         C23         C22      89.015    2.00
+HTV         C24         C23         H18     114.223    1.78
+HTV         C24         C23         H19     114.223    1.78
+HTV         C22         C23         H18     114.329    2.60
+HTV         C22         C23         H19     114.329    2.60
+HTV         H18         C23         H19     110.546    1.50
+HTV         C25         C24         C23      89.467    1.50
+HTV         C25         C24         H20     114.223    1.78
+HTV         C25         C24         H21     114.223    1.78
+HTV         C23         C24         H20     114.223    1.78
+HTV         C23         C24         H21     114.223    1.78
+HTV         H20         C24         H21     110.794    1.50
+HTV         C24         C25         C22      89.015    2.00
+HTV         C24         C25         H22     114.223    1.78
+HTV         C24         C25         H23     114.223    1.78
+HTV         C22         C25         H22     114.329    2.60
+HTV         C22         C25         H23     114.329    2.60
+HTV         H22         C25         H23     110.546    1.50
+HTV         C22          O9         H24     109.317    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HTV                   nu0         C20          O3         C16         C17     -65.591    10.0     3
+HTV                   nu1          O3         C16         C17         C18      58.094    10.0     3
+HTV                   nu2         C16         C17         C18         C19     -51.153    10.0     3
+HTV                   nu3         C17         C18         C19         C20      50.597    10.0     3
+HTV                   nu4         C18         C19         C20          O3     -57.035    10.0     3
+HTV                   nu5         C19         C20          O3         C16      64.973    10.0     3
+HTV       const_sp2_sp2_1         C12          C7          C8          C9       0.000     5.0     2
+HTV       const_sp2_sp2_2         C12          C7          C8          H4     180.000     5.0     2
+HTV       const_sp2_sp2_3          C6          C7          C8          C9     180.000     5.0     2
+HTV       const_sp2_sp2_4          C6          C7          C8          H4       0.000     5.0     2
+HTV       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+HTV       const_sp2_sp2_6          C7          C8          C9         C14     180.000     5.0     2
+HTV       const_sp2_sp2_7          H4          C8          C9         C10     180.000     5.0     2
+HTV       const_sp2_sp2_8          H4          C8          C9         C14       0.000     5.0     2
+HTV       const_sp2_sp2_9          N1         C10          C9         C14       0.000     5.0     2
+HTV              const_10          N1         C10          C9          C8     180.000    10.0     2
+HTV              const_11         C11         C10          C9         C14     180.000    10.0     2
+HTV              const_12         C11         C10          C9          C8       0.000    10.0     2
+HTV              const_13          C9         C10         C11         C12       0.000    10.0     2
+HTV              const_14          C9         C10         C11         H11     180.000    10.0     2
+HTV              const_15          N1         C10         C11         C12     180.000    10.0     2
+HTV              const_16          N1         C10         C11         H11       0.000    10.0     2
+HTV              const_17         C10         C11         C12          C7       0.000    10.0     2
+HTV              const_18         C10         C11         C12         CL1     180.000    10.0     2
+HTV              const_19         H11         C11         C12          C7     180.000    10.0     2
+HTV              const_20         H11         C11         C12         CL1       0.000    10.0     2
+HTV              const_21         C13         C14          C9         C10       0.000    10.0     2
+HTV              const_22         C13         C14          C9          C8     180.000    10.0     2
+HTV              const_23         C15         C14          C9         C10     180.000    10.0     2
+HTV              const_24         C15         C14          C9          C8       0.000    10.0     2
+HTV              const_25          N1         C13         C14          C9       0.000    10.0     2
+HTV              const_26          N1         C13         C14         C15     180.000    10.0     2
+HTV              const_27          H2         C13         C14          C9     180.000    10.0     2
+HTV              const_28          H2         C13         C14         C15       0.000    10.0     2
+HTV              const_29         C14         C13          N1         C10       0.000    10.0     2
+HTV              const_30         C14         C13          N1         H12     180.000    10.0     2
+HTV              const_31          H2         C13          N1         C10     180.000    10.0     2
+HTV              const_32          H2         C13          N1         H12       0.000    10.0     2
+HTV              const_33          C9         C10          N1         C13       0.000    10.0     2
+HTV              const_34          C9         C10          N1         H12     180.000    10.0     2
+HTV              const_35         C11         C10          N1         C13     180.000    10.0     2
+HTV              const_36         C11         C10          N1         H12       0.000    10.0     2
+HTV              const_37          C2          C3          C4          C5       0.000    10.0     2
+HTV              const_38          C2          C3          C4          H1     180.000    10.0     2
+HTV              const_39         C22          C3          C4          C5     180.000    10.0     2
+HTV              const_40         C22          C3          C4          H1       0.000    10.0     2
+HTV              const_41          C1          C2          C3          C4       0.000    10.0     2
+HTV              const_42          C1          C2          C3         C22     180.000    10.0     2
+HTV              const_43          H9          C2          C3          C4     180.000    10.0     2
+HTV              const_44          H9          C2          C3         C22       0.000    10.0     2
+HTV              const_45          C6          C1          C2          C3       0.000    10.0     2
+HTV              const_46          C6          C1          C2          H9     180.000    10.0     2
+HTV              const_47          H8          C1          C2          C3     180.000    10.0     2
+HTV              const_48          H8          C1          C2          H9       0.000    10.0     2
+HTV              const_49          C2          C1          C6          C5       0.000    10.0     2
+HTV              const_50          C2          C1          C6          C7     180.000    10.0     2
+HTV              const_51          H8          C1          C6          C5     180.000    10.0     2
+HTV              const_52          H8          C1          C6          C7       0.000    10.0     2
+HTV              const_53          C4          C5          C6          C1       0.000    10.0     2
+HTV              const_54          C4          C5          C6          C7     180.000    10.0     2
+HTV              const_55         H10          C5          C6          C1     180.000    10.0     2
+HTV              const_56         H10          C5          C6          C7       0.000    10.0     2
+HTV            sp3_sp3_34         C23         C22         C25         C24      60.000    10.0     3
+HTV            sp3_sp3_35         C23         C22         C25         H22     180.000    10.0     3
+HTV            sp3_sp3_36         C23         C22         C25         H23     -60.000    10.0     3
+HTV            sp3_sp3_37          C3         C22         C25         C24     -60.000    10.0     3
+HTV            sp3_sp3_38          C3         C22         C25         H22      60.000    10.0     3
+HTV            sp3_sp3_39          C3         C22         C25         H23     180.000    10.0     3
+HTV            sp3_sp3_40          O9         C22         C25         C24     180.000    10.0     3
+HTV            sp3_sp3_41          O9         C22         C25         H22     -60.000    10.0     3
+HTV            sp3_sp3_42          O9         C22         C25         H23      60.000    10.0     3
+HTV            sp3_sp3_43         C23         C24         C25         C22     -60.000    10.0     3
+HTV            sp3_sp3_44         C23         C24         C25         H22      60.000    10.0     3
+HTV            sp3_sp3_45         C23         C24         C25         H23     180.000    10.0     3
+HTV            sp3_sp3_46         H20         C24         C25         C22     180.000    10.0     3
+HTV            sp3_sp3_47         H20         C24         C25         H22     -60.000    10.0     3
+HTV            sp3_sp3_48         H20         C24         C25         H23      60.000    10.0     3
+HTV            sp3_sp3_49         H21         C24         C25         C22      60.000    10.0     3
+HTV            sp3_sp3_50         H21         C24         C25         H22     180.000    10.0     3
+HTV            sp3_sp3_51         H21         C24         C25         H23     -60.000    10.0     3
+HTV            sp3_sp3_52         C22         C23         C24         C25      60.000    10.0     3
+HTV            sp3_sp3_53         C22         C23         C24         H20     180.000    10.0     3
+HTV            sp3_sp3_54         C22         C23         C24         H21     -60.000    10.0     3
+HTV            sp3_sp3_55         H18         C23         C24         C25     -60.000    10.0     3
+HTV            sp3_sp3_56         H18         C23         C24         H20      60.000    10.0     3
+HTV            sp3_sp3_57         H18         C23         C24         H21     180.000    10.0     3
+HTV            sp3_sp3_58         H19         C23         C24         C25     180.000    10.0     3
+HTV            sp3_sp3_59         H19         C23         C24         H20     -60.000    10.0     3
+HTV            sp3_sp3_60         H19         C23         C24         H21      60.000    10.0     3
+HTV             sp2_sp3_1          O5         C21         C20          O3       0.000    10.0     6
+HTV             sp2_sp3_2          O5         C21         C20         C19     120.000    10.0     6
+HTV             sp2_sp3_3          O5         C21         C20          H3    -120.000    10.0     6
+HTV             sp2_sp3_4          O4         C21         C20          O3     180.000    10.0     6
+HTV             sp2_sp3_5          O4         C21         C20         C19     -60.000    10.0     6
+HTV             sp2_sp3_6          O4         C21         C20          H3      60.000    10.0     6
+HTV            sp3_sp3_70         C20         C19          O6         H15     180.000    10.0     3
+HTV            sp3_sp3_71         C18         C19          O6         H15      60.000    10.0     3
+HTV            sp3_sp3_72          H7         C19          O6         H15     -60.000    10.0     3
+HTV            sp3_sp3_73          O3         C16          O2         C15     180.000    10.0     3
+HTV            sp3_sp3_74         C17         C16          O2         C15     -60.000    10.0     3
+HTV            sp3_sp3_75          H6         C16          O2         C15      60.000    10.0     3
+HTV             sp2_sp2_1         C14         C15          O2         C16     180.000     5.0     2
+HTV             sp2_sp2_2          O1         C15          O2         C16       0.000     5.0     2
+HTV             sp2_sp2_3         C13         C14         C15          O2     180.000     5.0     2
+HTV             sp2_sp2_4         C13         C14         C15          O1       0.000     5.0     2
+HTV             sp2_sp2_5          C9         C14         C15          O2       0.000     5.0     2
+HTV             sp2_sp2_6          C9         C14         C15          O1     180.000     5.0     2
+HTV              const_57         C11         C12          C7          C8       0.000    10.0     2
+HTV              const_58         C11         C12          C7          C6     180.000    10.0     2
+HTV              const_59         CL1         C12          C7          C8     180.000    10.0     2
+HTV              const_60         CL1         C12          C7          C6       0.000    10.0     2
+HTV             sp2_sp2_7          C1          C6          C7          C8     180.000     5.0     2
+HTV             sp2_sp2_8          C1          C6          C7         C12       0.000     5.0     2
+HTV             sp2_sp2_9          C5          C6          C7          C8       0.000     5.0     2
+HTV            sp2_sp2_10          C5          C6          C7         C12     180.000     5.0     2
+HTV             sp2_sp3_7          C2          C3         C22          O9     150.000    10.0     6
+HTV             sp2_sp3_8          C2          C3         C22         C25     -90.000    10.0     6
+HTV             sp2_sp3_9          C2          C3         C22         C23      30.000    10.0     6
+HTV            sp2_sp3_10          C4          C3         C22          O9     -30.000    10.0     6
+HTV            sp2_sp3_11          C4          C3         C22         C25      90.000    10.0     6
+HTV            sp2_sp3_12          C4          C3         C22         C23    -150.000    10.0     6
+HTV            sp3_sp3_76         C25         C22         C23         C24     180.000    10.0     3
+HTV            sp3_sp3_77         C25         C22         C23         H18     -60.000    10.0     3
+HTV            sp3_sp3_78         C25         C22         C23         H19      60.000    10.0     3
+HTV            sp3_sp3_79          O9         C22         C23         C24      60.000    10.0     3
+HTV            sp3_sp3_80          O9         C22         C23         H18     180.000    10.0     3
+HTV            sp3_sp3_81          O9         C22         C23         H19     -60.000    10.0     3
+HTV            sp3_sp3_82          C3         C22         C23         C24     -60.000    10.0     3
+HTV            sp3_sp3_83          C3         C22         C23         H18      60.000    10.0     3
+HTV            sp3_sp3_84          C3         C22         C23         H19     180.000    10.0     3
+HTV            sp3_sp3_85         C25         C22          O9         H24     180.000    10.0     3
+HTV            sp3_sp3_86          C3         C22          O9         H24      60.000    10.0     3
+HTV            sp3_sp3_87         C23         C22          O9         H24     -60.000    10.0     3
+HTV            sp3_sp3_88         C19         C18          O7         H16     180.000    10.0     3
+HTV            sp3_sp3_89         C17         C18          O7         H16      60.000    10.0     3
+HTV            sp3_sp3_90          H5         C18          O7         H16     -60.000    10.0     3
+HTV            sp3_sp3_91         C16         C17          O8         H17     180.000    10.0     3
+HTV            sp3_sp3_92         C18         C17          O8         H17      60.000    10.0     3
+HTV            sp3_sp3_93         H13         C17          O8         H17     -60.000    10.0     3
+HTV              const_61          C3          C4          C5          C6       0.000    10.0     2
+HTV              const_62          C3          C4          C5         H10     180.000    10.0     2
+HTV              const_63          H1          C4          C5          C6     180.000    10.0     2
+HTV              const_64          H1          C4          C5         H10       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HTV    chir_1    C20    O3    C21    C19    positive
+HTV    chir_2    C18    O7    C17    C19    positive
+HTV    chir_3    C16    O2    O3    C17    positive
+HTV    chir_4    C19    O6    C20    C18    positive
+HTV    chir_5    C17    O8    C16    C18    negative
+HTV    chir_6    C22    O9    C3    C25    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HTV    plan-1         C10   0.020
+HTV    plan-1         C11   0.020
+HTV    plan-1         C12   0.020
+HTV    plan-1         C13   0.020
+HTV    plan-1         C14   0.020
+HTV    plan-1         C15   0.020
+HTV    plan-1          C6   0.020
+HTV    plan-1          C7   0.020
+HTV    plan-1          C8   0.020
+HTV    plan-1          C9   0.020
+HTV    plan-1         CL1   0.020
+HTV    plan-1         H11   0.020
+HTV    plan-1         H12   0.020
+HTV    plan-1          H2   0.020
+HTV    plan-1          H4   0.020
+HTV    plan-1          N1   0.020
+HTV    plan-2          C1   0.020
+HTV    plan-2          C2   0.020
+HTV    plan-2         C22   0.020
+HTV    plan-2          C3   0.020
+HTV    plan-2          C4   0.020
+HTV    plan-2          C5   0.020
+HTV    plan-2          C6   0.020
+HTV    plan-2          C7   0.020
+HTV    plan-2          H1   0.020
+HTV    plan-2         H10   0.020
+HTV    plan-2          H8   0.020
+HTV    plan-2          H9   0.020
+HTV    plan-3         C20   0.020
+HTV    plan-3         C21   0.020
+HTV    plan-3          O4   0.020
+HTV    plan-3          O5   0.020
+HTV    plan-4         C14   0.020
+HTV    plan-4         C15   0.020
+HTV    plan-4          O1   0.020
+HTV    plan-4          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HTV           SMILES              ACDLabs 12.01                                                                                                                                             c4c(ccc(c1cc2c(cc1Cl)ncc2C(=O)OC3C(C(O)C(C(O3)C(O)=O)O)O)c4)C5(CCC5)O
+HTV            InChI                InChI  1.03 InChI=1S/C25H24ClNO9/c26-16-9-17-14(8-13(16)11-2-4-12(5-3-11)25(34)6-1-7-25)15(10-27-17)23(33)36-24-20(30)18(28)19(29)21(35-24)22(31)32/h2-5,8-10,18-21,24,27-30,34H,1,6-7H2,(H,31,32)/t18-,19-,20+,21-,24-/m0/s1
+HTV         InChIKey                InChI  1.03                                                                                                                                                                                       LTLTUJCGZGVBTO-DCIKREJASA-N
+HTV SMILES_CANONICAL               CACTVS 3.385                                                                                                                    O[C@@H]1[C@@H](O)[C@@H](O[C@@H]([C@H]1O)C(O)=O)OC(=O)c2c[nH]c3cc(Cl)c(cc23)c4ccc(cc4)C5(O)CCC5
+HTV           SMILES               CACTVS 3.385                                                                                                                             O[CH]1[CH](O)[CH](O[CH]([CH]1O)C(O)=O)OC(=O)c2c[nH]c3cc(Cl)c(cc23)c4ccc(cc4)C5(O)CCC5
+HTV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                      c1cc(ccc1c2cc3c(cc2Cl)[nH]cc3C(=O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)C(=O)O)O)O)O)C5(CCC5)O
+HTV           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                            c1cc(ccc1c2cc3c(cc2Cl)[nH]cc3C(=O)OC4C(C(C(C(O4)C(=O)O)O)O)O)C5(CCC5)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HTV acedrg               243         "dictionary generator"                  
+HTV acedrg_database      11          "data source"                           
+HTV rdkit                2017.03.2   "Chemoinformatics tool"
+HTV refmac5              5.8.0238    "optimization tool"                     

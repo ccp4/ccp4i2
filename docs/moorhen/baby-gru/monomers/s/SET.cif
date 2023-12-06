@@ -1,0 +1,150 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SET     SET      AMINOSERINE     NON-POLYMER     15     7     .     
+#
+data_comp_SET
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SET     N       N       NT2     0       26.880      25.371      -1.511      
+SET     CA      C       CH1     0       26.566      25.847      -2.859      
+SET     CB      C       CH2     0       27.233      27.191      -3.145      
+SET     OG      O       OH1     0       26.719      27.765      -4.338      
+SET     NT      N       NH2     0       26.033      24.332      -4.686      
+SET     C       C       C       0       26.988      24.815      -3.901      
+SET     O       O       O       0       28.165      24.468      -3.981      
+SET     H       H       H       0       27.774      25.304      -1.417      
+SET     H2      H       H       0       26.587      25.972      -0.905      
+SET     HA      H       H       0       25.587      25.976      -2.919      
+SET     HB2     H       H       0       28.205      27.066      -3.235      
+SET     HB3     H       H       0       27.073      27.805      -2.393      
+SET     HG      H       H       0       27.202      28.428      -4.546      
+SET     HNT1    H       H       0       26.244      23.731      -5.300      
+SET     HNT2    H       H       0       25.192      24.594      -4.612      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SET           N          CA      SINGLE       n     1.463  0.0141     1.463  0.0141
+SET          CA          CB      SINGLE       n     1.527  0.0103     1.527  0.0103
+SET          CA           C      SINGLE       n     1.524  0.0100     1.524  0.0100
+SET          CB          OG      SINGLE       n     1.420  0.0140     1.420  0.0140
+SET          NT           C      SINGLE       n     1.325  0.0100     1.325  0.0100
+SET           C           O      DOUBLE       n     1.230  0.0100     1.230  0.0100
+SET           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+SET           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+SET          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+SET          CB         HB2      SINGLE       n     1.089  0.0100     0.984  0.0200
+SET          CB         HB3      SINGLE       n     1.089  0.0100     0.984  0.0200
+SET          OG          HG      SINGLE       n     0.970  0.0120     0.846  0.0200
+SET          NT        HNT1      SINGLE       n     1.016  0.0100     0.884  0.0200
+SET          NT        HNT2      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SET          CA           N           H     109.453    3.00
+SET          CA           N          H2     109.453    3.00
+SET           H           N          H2     107.559    3.00
+SET           N          CA          CB     111.883    2.59
+SET           N          CA           C     110.875    2.17
+SET           N          CA          HA     108.372    1.54
+SET          CB          CA           C     110.161    1.50
+SET          CB          CA          HA     107.990    1.50
+SET           C          CA          HA     108.061    1.50
+SET          CA          CB          OG     110.751    1.63
+SET          CA          CB         HB2     109.674    1.50
+SET          CA          CB         HB3     109.674    1.50
+SET          OG          CB         HB2     109.411    1.50
+SET          OG          CB         HB3     109.411    1.50
+SET         HB2          CB         HB3     108.070    1.50
+SET          CB          OG          HG     108.529    2.94
+SET           C          NT        HNT1     120.017    3.00
+SET           C          NT        HNT2     120.017    3.00
+SET        HNT1          NT        HNT2     119.966    2.38
+SET          CA           C          NT     115.746    1.60
+SET          CA           C           O     120.522    1.50
+SET          NT           C           O     123.732    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SET             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+SET             sp3_sp3_7           N          CA          CB          OG     180.000    10.0     3
+SET             sp2_sp3_1          NT           C          CA           N       0.000    10.0     6
+SET            sp3_sp3_16          CA          CB          OG          HG     180.000    10.0     3
+SET             sp2_sp2_1          CA           C          NT        HNT1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SET    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SET    plan-1           C   0.020
+SET    plan-1        HNT1   0.020
+SET    plan-1        HNT2   0.020
+SET    plan-1          NT   0.020
+SET    plan-2           C   0.020
+SET    plan-2          CA   0.020
+SET    plan-2          NT   0.020
+SET    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SET           SMILES              ACDLabs 10.04                                                    O=C(N)C(N)CO
+SET SMILES_CANONICAL               CACTVS 3.341                                               N[C@@H](CO)C(N)=O
+SET           SMILES               CACTVS 3.341                                                 N[CH](CO)C(N)=O
+SET SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             C([C@@H](C(=O)N)N)O
+SET           SMILES "OpenEye OEToolkits" 1.5.0                                                  C(C(C(=O)N)N)O
+SET            InChI                InChI  1.03 InChI=1S/C3H8N2O2/c4-2(1-6)3(5)7/h2,6H,1,4H2,(H2,5,7)/t2-/m0/s1
+SET         InChIKey                InChI  1.03                                     MGOGKPMIZGEGOZ-REOHCLBHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SET acedrg               243         "dictionary generator"                  
+SET acedrg_database      11          "data source"                           
+SET rdkit                2017.03.2   "Chemoinformatics tool"
+SET refmac5              5.8.0238    "optimization tool"                     

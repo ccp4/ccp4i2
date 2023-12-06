@@ -1,0 +1,343 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EAH     EAH      "(5S,7E,9E,11Z,14Z)-5-hydroxyicosa-7,9,11,14-tetraenoic acid"     NON-POLYMER     54     23     .     
+#
+data_comp_EAH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EAH     O1      O       O       0       -12.391     -4.991      7.684       
+EAH     C1      C       C       0       -13.292     -5.661      7.140       
+EAH     O2      O       OC      -1      -14.131     -6.331      7.775       
+EAH     C2      C       CH2     0       -13.373     -5.660      5.623       
+EAH     C3      C       CH2     0       -14.422     -4.756      5.053       
+EAH     C4      C       CH2     0       -14.032     -3.288      5.076       
+EAH     C5      C       CH1     0       -15.030     -2.341      4.431       
+EAH     O3      O       OH1     0       -15.030     -2.529      3.015       
+EAH     C6      C       CH2     0       -14.770     -0.868      4.716       
+EAH     C7      C       C1      0       -15.840     0.040       4.190       
+EAH     C8      C       C1      0       -15.697     0.891       3.175       
+EAH     C9      C       C1      0       -16.702     1.771       2.640       
+EAH     C10     C       C1      0       -16.556     2.663       1.583       
+EAH     C11     C       C1      0       -17.568     3.545       1.039       
+EAH     C12     C       C1      0       -17.442     4.404       0.036       
+EAH     C13     C       CH2     0       -16.189     4.647       -0.758      
+EAH     C14     C       C1      0       -15.130     5.387       0.006       
+EAH     C15     C       C1      0       -13.863     5.539       -0.349      
+EAH     C16     C       CH2     0       -13.186     5.018       -1.581      
+EAH     C17     C       CH2     0       -12.190     3.937       -1.295      
+EAH     C18     C       CH2     0       -12.806     2.619       -0.857      
+EAH     C19     C       CH2     0       -11.827     1.476       -0.770      
+EAH     C20     C       CH3     0       -10.866     1.588       0.389       
+EAH     H2      H       H       0       -13.549     -6.577      5.323       
+EAH     H2A     H       H       0       -12.499     -5.395      5.266       
+EAH     H3      H       H       0       -15.254     -4.867      5.560       
+EAH     H3A     H       H       0       -14.603     -5.017      4.126       
+EAH     H4      H       H       0       -13.170     -3.187      4.619       
+EAH     H4A     H       H       0       -13.903     -3.014      6.009       
+EAH     H5      H       H       0       -15.937     -2.562      4.778       
+EAH     HO3     H       H       0       -15.823     -2.451      2.723       
+EAH     H6      H       H       0       -13.910     -0.612      4.321       
+EAH     H6A     H       H       0       -14.691     -0.738      5.685       
+EAH     H7      H       H       0       -16.683     0.008       4.611       
+EAH     H8      H       H       0       -14.853     0.927       2.757       
+EAH     H9      H       H       0       -17.550     1.740       3.050       
+EAH     H10     H       H       0       -15.705     2.694       1.179       
+EAH     H11     H       H       0       -18.413     3.495       1.454       
+EAH     H12     H       H       0       -18.198     4.909       -0.207      
+EAH     H13     H       H       0       -16.416     5.158       -1.570      
+EAH     H13A    H       H       0       -15.824     3.782       -1.058      
+EAH     H14     H       H       0       -15.397     5.784       0.823       
+EAH     H15     H       H       0       -13.323     6.036       0.246       
+EAH     H16     H       H       0       -12.724     5.762       -2.027      
+EAH     H16A    H       H       0       -13.862     4.670       -2.202      
+EAH     H17     H       H       0       -11.582     4.247       -0.592      
+EAH     H17A    H       H       0       -11.656     3.780       -2.101      
+EAH     H18     H       H       0       -13.515     2.377       -1.490      
+EAH     H18A    H       H       0       -13.222     2.743       0.023       
+EAH     H19     H       H       0       -11.313     1.437       -1.606      
+EAH     H19A    H       H       0       -12.329     0.636       -0.687      
+EAH     H20     H       H       0       -10.290     0.804       0.411       
+EAH     H20A    H       H       0       -11.366     1.645       1.222       
+EAH     H20B    H       H       0       -10.321     2.387       0.285       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EAH          O1          C1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EAH          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+EAH          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+EAH          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+EAH          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+EAH          C4          C5      SINGLE       n     1.520  0.0169     1.520  0.0169
+EAH          C5          C6      SINGLE       n     1.522  0.0138     1.522  0.0138
+EAH          C5          O3      SINGLE       n     1.426  0.0179     1.426  0.0179
+EAH          C6          C7      SINGLE       n     1.498  0.0152     1.498  0.0152
+EAH          C7          C8      DOUBLE       n     1.332  0.0144     1.332  0.0144
+EAH          C8          C9      SINGLE       n     1.439  0.0200     1.439  0.0200
+EAH          C9         C10      DOUBLE       n     1.391  0.0200     1.391  0.0200
+EAH         C10         C11      SINGLE       n     1.445  0.0200     1.445  0.0200
+EAH         C11         C12      DOUBLE       n     1.325  0.0117     1.325  0.0117
+EAH         C12         C13      SINGLE       n     1.501  0.0200     1.501  0.0200
+EAH         C13         C14      SINGLE       n     1.498  0.0200     1.498  0.0200
+EAH         C14         C15      DOUBLE       n     1.320  0.0157     1.320  0.0157
+EAH         C15         C16      SINGLE       n     1.497  0.0127     1.497  0.0127
+EAH         C16         C17      SINGLE       n     1.497  0.0200     1.497  0.0200
+EAH         C17         C18      SINGLE       n     1.519  0.0164     1.519  0.0164
+EAH         C18         C19      SINGLE       n     1.507  0.0200     1.507  0.0200
+EAH         C19         C20      SINGLE       n     1.510  0.0200     1.510  0.0200
+EAH          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+EAH          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0185
+EAH          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+EAH          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+EAH          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0160
+EAH          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0160
+EAH          C5          H5      SINGLE       n     1.089  0.0100     0.995  0.0200
+EAH          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+EAH          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0185
+EAH          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0185
+EAH          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0181
+EAH          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0200
+EAH          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0196
+EAH         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0196
+EAH         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0200
+EAH         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0174
+EAH         C13         H13      SINGLE       n     1.089  0.0100     0.986  0.0100
+EAH         C13        H13A      SINGLE       n     1.089  0.0100     0.986  0.0100
+EAH         C14         H14      SINGLE       n     1.082  0.0130     0.947  0.0200
+EAH         C15         H15      SINGLE       n     1.082  0.0130     0.945  0.0200
+EAH         C16         H16      SINGLE       n     1.089  0.0100     0.983  0.0180
+EAH         C16        H16A      SINGLE       n     1.089  0.0100     0.983  0.0180
+EAH         C17         H17      SINGLE       n     1.089  0.0100     0.980  0.0160
+EAH         C17        H17A      SINGLE       n     1.089  0.0100     0.980  0.0160
+EAH         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+EAH         C18        H18A      SINGLE       n     1.089  0.0100     0.981  0.0163
+EAH         C19         H19      SINGLE       n     1.089  0.0100     0.982  0.0155
+EAH         C19        H19A      SINGLE       n     1.089  0.0100     0.982  0.0155
+EAH         C20         H20      SINGLE       n     1.089  0.0100     0.973  0.0157
+EAH         C20        H20A      SINGLE       n     1.089  0.0100     0.973  0.0157
+EAH         C20        H20B      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EAH          O1          C1          O2     123.571    1.50
+EAH          O1          C1          C2     118.214    1.64
+EAH          O2          C1          C2     118.214    1.64
+EAH          C1          C2          C3     114.612    2.19
+EAH          C1          C2          H2     108.404    1.50
+EAH          C1          C2         H2A     108.404    1.50
+EAH          C3          C2          H2     108.815    1.50
+EAH          C3          C2         H2A     108.815    1.50
+EAH          H2          C2         H2A     107.521    1.50
+EAH          C2          C3          C4     113.314    2.25
+EAH          C2          C3          H3     109.164    1.50
+EAH          C2          C3         H3A     109.164    1.50
+EAH          C4          C3          H3     108.597    1.50
+EAH          C4          C3         H3A     108.597    1.50
+EAH          H3          C3         H3A     107.646    1.50
+EAH          C3          C4          C5     115.351    1.65
+EAH          C3          C4          H4     108.572    1.50
+EAH          C3          C4         H4A     108.572    1.50
+EAH          C5          C4          H4     108.478    1.50
+EAH          C5          C4         H4A     108.478    1.50
+EAH          H4          C4         H4A     107.428    1.50
+EAH          C4          C5          C6     114.304    1.50
+EAH          C4          C5          O3     109.904    2.15
+EAH          C4          C5          H5     108.124    1.50
+EAH          C6          C5          O3     107.868    2.29
+EAH          C6          C5          H5     107.674    2.07
+EAH          O3          C5          H5     108.270    1.50
+EAH          C5          O3         HO3     108.921    2.24
+EAH          C5          C6          C7     113.751    2.05
+EAH          C5          C6          H6     109.404    1.50
+EAH          C5          C6         H6A     109.404    1.50
+EAH          C7          C6          H6     109.879    2.65
+EAH          C7          C6         H6A     109.879    2.65
+EAH          H6          C6         H6A     107.440    1.74
+EAH          C6          C7          C8     125.367    2.56
+EAH          C6          C7          H7     117.448    1.96
+EAH          C8          C7          H7     117.184    1.50
+EAH          C7          C8          C9     126.726    2.74
+EAH          C7          C8          H8     117.302    1.50
+EAH          C9          C8          H8     115.972    1.85
+EAH          C8          C9         C10     127.252    3.00
+EAH          C8          C9          H9     116.374    1.85
+EAH         C10          C9          H9     116.374    1.85
+EAH          C9         C10         C11     127.252    3.00
+EAH          C9         C10         H10     116.374    1.85
+EAH         C11         C10         H10     116.374    1.85
+EAH         C10         C11         C12     126.726    2.74
+EAH         C10         C11         H11     115.972    1.85
+EAH         C12         C11         H11     117.302    1.50
+EAH         C11         C12         C13     124.903    3.00
+EAH         C11         C12         H12     118.143    1.50
+EAH         C13         C12         H12     116.953    1.62
+EAH         C12         C13         C14     114.535    3.00
+EAH         C12         C13         H13     109.415    1.72
+EAH         C12         C13        H13A     109.415    1.72
+EAH         C14         C13         H13     109.415    1.72
+EAH         C14         C13        H13A     109.415    1.72
+EAH         H13         C13        H13A     107.005    1.50
+EAH         C13         C14         C15     125.699    1.66
+EAH         C13         C14         H14     116.773    1.62
+EAH         C15         C14         H14     117.527    2.16
+EAH         C14         C15         C16     125.684    3.00
+EAH         C14         C15         H15     117.310    2.16
+EAH         C16         C15         H15     117.007    1.61
+EAH         C15         C16         C17     113.226    1.94
+EAH         C15         C16         H16     108.886    1.50
+EAH         C15         C16        H16A     108.886    1.50
+EAH         C17         C16         H16     108.819    1.50
+EAH         C17         C16        H16A     108.819    1.50
+EAH         H16         C16        H16A     107.922    1.50
+EAH         C16         C17         C18     114.266    1.80
+EAH         C16         C17         H17     108.805    1.50
+EAH         C16         C17        H17A     108.805    1.50
+EAH         C18         C17         H17     108.698    1.50
+EAH         C18         C17        H17A     108.698    1.50
+EAH         H17         C17        H17A     107.646    1.50
+EAH         C17         C18         C19     114.362    3.00
+EAH         C17         C18         H18     108.698    1.50
+EAH         C17         C18        H18A     108.698    1.50
+EAH         C19         C18         H18     108.653    1.50
+EAH         C19         C18        H18A     108.653    1.50
+EAH         H18         C18        H18A     107.646    1.50
+EAH         C18         C19         C20     113.719    3.00
+EAH         C18         C19         H19     108.758    1.50
+EAH         C18         C19        H19A     108.758    1.50
+EAH         C20         C19         H19     108.918    1.50
+EAH         C20         C19        H19A     108.918    1.50
+EAH         H19         C19        H19A     107.763    1.50
+EAH         C19         C20         H20     109.554    1.50
+EAH         C19         C20        H20A     109.554    1.50
+EAH         C19         C20        H20B     109.554    1.50
+EAH         H20         C20        H20A     109.380    1.50
+EAH         H20         C20        H20B     109.380    1.50
+EAH        H20A         C20        H20B     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EAH             sp2_sp2_5          C7          C8          C9         C10     180.000     5.0     2
+EAH             sp2_sp2_9         C11         C10          C9          C8     180.000     5.0     2
+EAH            sp2_sp2_13          C9         C10         C11         C12     180.000     5.0     2
+EAH            sp2_sp2_17         C10         C11         C12         C13     180.000     5.0     2
+EAH            sp2_sp3_14         C11         C12         C13         C14     120.000    10.0     6
+EAH            sp2_sp3_20         C15         C14         C13         C12     120.000    10.0     6
+EAH            sp2_sp2_21         C13         C14         C15         C16     180.000     5.0     2
+EAH            sp2_sp3_26         C14         C15         C16         C17     120.000    10.0     6
+EAH            sp3_sp3_40         C15         C16         C17         C18     180.000    10.0     3
+EAH            sp3_sp3_49         C16         C17         C18         C19     180.000    10.0     3
+EAH             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+EAH            sp3_sp3_58         C17         C18         C19         C20     180.000    10.0     3
+EAH            sp3_sp3_67         C18         C19         C20         H20     180.000    10.0     3
+EAH             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+EAH            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+EAH            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+EAH            sp3_sp3_37          C4          C5          O3         HO3     180.000    10.0     3
+EAH            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+EAH             sp2_sp3_8          C8          C7          C6          C5     120.000    10.0     6
+EAH             sp2_sp2_1          C6          C7          C8          C9     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EAH    chir_1    C5    O3    C6    C4    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EAH    plan-1          C1   0.020
+EAH    plan-1          C2   0.020
+EAH    plan-1          O1   0.020
+EAH    plan-1          O2   0.020
+EAH    plan-2          C6   0.020
+EAH    plan-2          C7   0.020
+EAH    plan-2          C8   0.020
+EAH    plan-2          H7   0.020
+EAH    plan-3          C7   0.020
+EAH    plan-3          C8   0.020
+EAH    plan-3          C9   0.020
+EAH    plan-3          H8   0.020
+EAH    plan-4         C10   0.020
+EAH    plan-4          C8   0.020
+EAH    plan-4          C9   0.020
+EAH    plan-4          H9   0.020
+EAH    plan-5         C10   0.020
+EAH    plan-5         C11   0.020
+EAH    plan-5          C9   0.020
+EAH    plan-5         H10   0.020
+EAH    plan-6         C10   0.020
+EAH    plan-6         C11   0.020
+EAH    plan-6         C12   0.020
+EAH    plan-6         H11   0.020
+EAH    plan-7         C11   0.020
+EAH    plan-7         C12   0.020
+EAH    plan-7         C13   0.020
+EAH    plan-7         H12   0.020
+EAH    plan-8         C13   0.020
+EAH    plan-8         C14   0.020
+EAH    plan-8         C15   0.020
+EAH    plan-8         H14   0.020
+EAH    plan-9         C14   0.020
+EAH    plan-9         C15   0.020
+EAH    plan-9         C16   0.020
+EAH    plan-9         H15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EAH           SMILES              ACDLabs 10.04                                                                                                                           O=C(O)CCCC(O)C/C=C/C=C/C=C\C\C=C/CCCCC
+EAH SMILES_CANONICAL               CACTVS 3.341                                                                                                                      CCCCC\C=C/C/C=C\C=C\C=C\C[C@@H](O)CCCC(O)=O
+EAH           SMILES               CACTVS 3.341                                                                                                                              CCCCCC=CCC=CC=CC=CC[CH](O)CCCC(O)=O
+EAH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                        CCCCC\C=C/C\C=C/C=C/C=CC[C@H](CCCC(=O)O)O
+EAH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                 CCCCCC=CCC=CC=CC=CCC(CCCC(=O)O)O
+EAH            InChI                InChI  1.03 InChI=1S/C20H32O3/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-16-19(21)17-15-18-20(22)23/h6-7,9-14,19,21H,2-5,8,15-18H2,1H3,(H,22,23)/b7-6-,10-9-,12-11+,14-13+/t19-/m1/s1
+EAH         InChIKey                InChI  1.03                                                                                                                                      DVGDBDLZYCUGNU-LBIUVHPXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EAH acedrg               243         "dictionary generator"                  
+EAH acedrg_database      11          "data source"                           
+EAH rdkit                2017.03.2   "Chemoinformatics tool"
+EAH refmac5              5.8.0238    "optimization tool"                     

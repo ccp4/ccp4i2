@@ -1,0 +1,274 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AEN     AEN      5-(1-SULFONAPHTHYL)-ACETYLAMINO-ETHYLAMINE     NON-POLYMER     37     21     .     
+#
+data_comp_AEN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AEN     C1      C       CR6     0       14.713      9.929       31.414      
+AEN     C2      C       CR16    0       13.886      10.582      30.535      
+AEN     C3      C       CR16    0       14.218      10.675      29.172      
+AEN     C4      C       CR16    0       15.366      10.119      28.699      
+AEN     C5      C       CR6     0       17.485      8.836       29.082      
+AEN     C6      C       CR16    0       18.322      8.171       29.959      
+AEN     C7      C       CR16    0       17.997      8.075       31.322      
+AEN     C8      C       CR16    0       16.851      8.629       31.809      
+AEN     C9      C       CR66    0       15.939      9.324       30.959      
+AEN     C10     C       CR66    0       16.261      9.428       29.562      
+AEN     "C1'"   C       CH3     0       17.094      13.446      27.798      
+AEN     "C2'"   C       C       0       17.982      12.364      28.331      
+AEN     "O2'"   O       O       0       18.033      12.129      29.537      
+AEN     "N3'"   N       NH1     0       18.712      11.680      27.435      
+AEN     "C4'"   C       CH2     0       19.625      10.589      27.760      
+AEN     "C5'"   C       CH2     0       19.128      9.253       27.248      
+AEN     "N6'"   N       NH1     0       17.815      8.910       27.767      
+AEN     S       S       S3      0       14.208      9.867       33.104      
+AEN     O1S     O       O       0       14.145      8.497       33.499      
+AEN     O2S     O       O       0       13.049      10.682      33.284      
+AEN     O3S     O       OH1     0       15.360      10.558      33.901      
+AEN     H2      H       H       0       13.093      10.971      30.839      
+AEN     H3      H       H       0       13.644      11.123      28.586      
+AEN     H4      H       H       0       15.566      10.194      27.781      
+AEN     H6      H       H       0       19.122      7.779       29.643      
+AEN     H7      H       H       0       18.584      7.619       31.909      
+AEN     H8      H       H       0       16.666      8.546       32.720      
+AEN     "H1'1"  H       H       0       17.032      13.385      26.831      
+AEN     "H1'2"  H       H       0       17.457      14.313      28.042      
+AEN     "H1'3"  H       H       0       16.206      13.353      28.180      
+AEN     "HN'3"  H       H       0       18.648      11.897      26.593      
+AEN     "H4'1"  H       H       0       19.758      10.535      28.727      
+AEN     "H4'2"  H       H       0       20.496      10.776      27.354      
+AEN     "H5'1"  H       H       0       19.769      8.554       27.500      
+AEN     "H5'2"  H       H       0       19.089      9.282       26.268      
+AEN     "HN'6"  H       H       0       17.212      8.701       27.162      
+AEN     HOS3    H       H       0       15.049      10.823      34.727      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AEN          C1          C2      DOUBLE       y     1.367  0.0100     1.367  0.0100
+AEN          C1          C9      SINGLE       y     1.430  0.0100     1.430  0.0100
+AEN          C1           S      SINGLE       n     1.757  0.0115     1.757  0.0115
+AEN          C2          C3      SINGLE       y     1.405  0.0100     1.405  0.0100
+AEN          C3          C4      DOUBLE       y     1.360  0.0100     1.360  0.0100
+AEN          C4         C10      SINGLE       y     1.416  0.0100     1.416  0.0100
+AEN          C5          C6      SINGLE       y     1.377  0.0136     1.377  0.0136
+AEN          C5         C10      DOUBLE       y     1.433  0.0100     1.433  0.0100
+AEN          C5       "N6'"      SINGLE       n     1.353  0.0100     1.353  0.0100
+AEN          C6          C7      DOUBLE       y     1.403  0.0100     1.403  0.0100
+AEN          C7          C8      SINGLE       y     1.361  0.0100     1.361  0.0100
+AEN          C8          C9      DOUBLE       y     1.420  0.0100     1.420  0.0100
+AEN          C9         C10      SINGLE       y     1.426  0.0100     1.426  0.0100
+AEN       "C1'"       "C2'"      SINGLE       n     1.495  0.0100     1.495  0.0100
+AEN       "C2'"       "O2'"      DOUBLE       n     1.229  0.0102     1.229  0.0102
+AEN       "C2'"       "N3'"      SINGLE       n     1.336  0.0105     1.336  0.0105
+AEN       "N3'"       "C4'"      SINGLE       n     1.456  0.0100     1.456  0.0100
+AEN       "C4'"       "C5'"      SINGLE       n     1.513  0.0106     1.513  0.0106
+AEN       "C5'"       "N6'"      SINGLE       n     1.450  0.0100     1.450  0.0100
+AEN           S         O1S      DOUBLE       n     1.429  0.0123     1.429  0.0123
+AEN           S         O2S      DOUBLE       n     1.429  0.0123     1.429  0.0123
+AEN           S         O3S      SINGLE       n     1.565  0.0200     1.565  0.0200
+AEN          C2          H2      SINGLE       n     1.082  0.0130     0.935  0.0100
+AEN          C3          H3      SINGLE       n     1.082  0.0130     0.935  0.0125
+AEN          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0128
+AEN          C6          H6      SINGLE       n     1.082  0.0130     0.946  0.0200
+AEN          C7          H7      SINGLE       n     1.082  0.0130     0.947  0.0200
+AEN          C8          H8      SINGLE       n     1.082  0.0130     0.935  0.0116
+AEN       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.971  0.0140
+AEN       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.971  0.0140
+AEN       "C1'"      "H1'3"      SINGLE       n     1.089  0.0100     0.971  0.0140
+AEN       "N3'"      "HN'3"      SINGLE       n     1.016  0.0100     0.872  0.0200
+AEN       "C4'"      "H4'1"      SINGLE       n     1.089  0.0100     0.979  0.0148
+AEN       "C4'"      "H4'2"      SINGLE       n     1.089  0.0100     0.979  0.0148
+AEN       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.981  0.0128
+AEN       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.981  0.0128
+AEN       "N6'"      "HN'6"      SINGLE       n     1.016  0.0100     0.880  0.0200
+AEN         O3S        HOS3      SINGLE       n     0.970  0.0120     0.921  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AEN          C2          C1          C9     121.114    1.50
+AEN          C2          C1           S     117.474    1.50
+AEN          C9          C1           S     121.411    1.50
+AEN          C1          C2          C3     120.423    1.50
+AEN          C1          C2          H2     119.792    1.50
+AEN          C3          C2          H2     119.787    1.50
+AEN          C2          C3          C4     120.497    1.50
+AEN          C2          C3          H3     119.706    1.50
+AEN          C4          C3          H3     119.797    1.50
+AEN          C3          C4         C10     120.962    1.50
+AEN          C3          C4          H4     119.546    1.50
+AEN         C10          C4          H4     119.492    1.50
+AEN          C6          C5         C10     120.622    1.50
+AEN          C6          C5       "N6'"     120.281    1.50
+AEN         C10          C5       "N6'"     119.096    1.59
+AEN          C5          C6          C7     120.371    1.50
+AEN          C5          C6          H6     119.874    1.50
+AEN          C7          C6          H6     119.755    1.50
+AEN          C6          C7          C8     120.496    1.50
+AEN          C6          C7          H7     119.617    1.50
+AEN          C8          C7          H7     119.887    1.50
+AEN          C7          C8          C9     120.791    1.50
+AEN          C7          C8          H8     119.638    1.50
+AEN          C9          C8          H8     119.571    1.50
+AEN          C1          C9          C8     123.684    1.50
+AEN          C1          C9         C10     117.723    1.50
+AEN          C8          C9         C10     118.593    1.50
+AEN          C4         C10          C5     121.595    1.55
+AEN          C4         C10          C9     119.278    1.50
+AEN          C5         C10          C9     119.126    1.50
+AEN       "C2'"       "C1'"      "H1'1"     109.678    1.50
+AEN       "C2'"       "C1'"      "H1'2"     109.678    1.50
+AEN       "C2'"       "C1'"      "H1'3"     109.678    1.50
+AEN      "H1'1"       "C1'"      "H1'2"     109.365    1.50
+AEN      "H1'1"       "C1'"      "H1'3"     109.365    1.50
+AEN      "H1'2"       "C1'"      "H1'3"     109.365    1.50
+AEN       "C1'"       "C2'"       "O2'"     121.938    1.50
+AEN       "C1'"       "C2'"       "N3'"     116.326    1.50
+AEN       "O2'"       "C2'"       "N3'"     121.744    1.50
+AEN       "C2'"       "N3'"       "C4'"     122.919    1.80
+AEN       "C2'"       "N3'"      "HN'3"     118.633    1.50
+AEN       "C4'"       "N3'"      "HN'3"     118.449    2.02
+AEN       "N3'"       "C4'"       "C5'"     112.253    1.69
+AEN       "N3'"       "C4'"      "H4'1"     109.265    1.50
+AEN       "N3'"       "C4'"      "H4'2"     109.265    1.50
+AEN       "C5'"       "C4'"      "H4'1"     109.208    1.50
+AEN       "C5'"       "C4'"      "H4'2"     109.208    1.50
+AEN      "H4'1"       "C4'"      "H4'2"     107.909    1.50
+AEN       "C4'"       "C5'"       "N6'"     110.288    1.90
+AEN       "C4'"       "C5'"      "H5'1"     109.233    1.50
+AEN       "C4'"       "C5'"      "H5'2"     109.233    1.50
+AEN       "N6'"       "C5'"      "H5'1"     109.375    1.50
+AEN       "N6'"       "C5'"      "H5'2"     109.375    1.50
+AEN      "H5'1"       "C5'"      "H5'2"     108.000    1.50
+AEN          C5       "N6'"       "C5'"     123.877    1.80
+AEN          C5       "N6'"      "HN'6"     119.814    1.94
+AEN       "C5'"       "N6'"      "HN'6"     116.318    1.50
+AEN          C1           S         O1S     109.613    1.50
+AEN          C1           S         O2S     109.613    1.50
+AEN          C1           S         O3S     106.633    1.50
+AEN         O1S           S         O2S     119.954    1.50
+AEN         O1S           S         O3S     110.900    2.56
+AEN         O2S           S         O3S     110.900    2.56
+AEN           S         O3S        HOS3     109.599    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AEN       const_sp2_sp2_3           S          C1          C2          C3     180.000     5.0     2
+AEN             sp2_sp3_1          C2          C1           S         O1S     150.000    10.0     6
+AEN              const_40           S          C1          C9          C8       0.000    10.0     2
+AEN             sp2_sp3_7       "O2'"       "C2'"       "C1'"      "H1'1"       0.000    10.0     6
+AEN             sp2_sp2_5       "C1'"       "C2'"       "N3'"       "C4'"     180.000     5.0     2
+AEN            sp2_sp3_14       "C2'"       "N3'"       "C4'"       "C5'"     120.000    10.0     6
+AEN             sp3_sp3_1       "N3'"       "C4'"       "C5'"       "N6'"     180.000    10.0     3
+AEN            sp2_sp3_20          C5       "N6'"       "C5'"       "C4'"     120.000    10.0     6
+AEN            sp3_sp3_11        HOS3         O3S           S         O1S     -60.000    10.0     3
+AEN       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+AEN       const_sp2_sp2_9          C2          C3          C4         C10       0.000     5.0     2
+AEN              const_15          C5         C10          C4          C3     180.000    10.0     2
+AEN             sp2_sp2_1          C6          C5       "N6'"       "C5'"     180.000     5.0     2
+AEN              const_23       "N6'"          C5          C6          C7     180.000    10.0     2
+AEN              const_44          C4         C10          C5       "N6'"       0.000    10.0     2
+AEN              const_25          C5          C6          C7          C8       0.000    10.0     2
+AEN              const_29          C6          C7          C8          C9       0.000    10.0     2
+AEN              const_34          C7          C8          C9          C1     180.000    10.0     2
+AEN              const_17          C4         C10          C9          C1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AEN    chir_1    S    O1S    O2S    O3S    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AEN    plan-1          C1   0.020
+AEN    plan-1         C10   0.020
+AEN    plan-1          C2   0.020
+AEN    plan-1          C3   0.020
+AEN    plan-1          C4   0.020
+AEN    plan-1          C5   0.020
+AEN    plan-1          C6   0.020
+AEN    plan-1          C7   0.020
+AEN    plan-1          C8   0.020
+AEN    plan-1          C9   0.020
+AEN    plan-1          H2   0.020
+AEN    plan-1          H3   0.020
+AEN    plan-1          H4   0.020
+AEN    plan-1          H6   0.020
+AEN    plan-1          H7   0.020
+AEN    plan-1          H8   0.020
+AEN    plan-1       "N6'"   0.020
+AEN    plan-1           S   0.020
+AEN    plan-2       "C1'"   0.020
+AEN    plan-2       "C2'"   0.020
+AEN    plan-2       "N3'"   0.020
+AEN    plan-2       "O2'"   0.020
+AEN    plan-3       "C2'"   0.020
+AEN    plan-3       "C4'"   0.020
+AEN    plan-3      "HN'3"   0.020
+AEN    plan-3       "N3'"   0.020
+AEN    plan-4          C5   0.020
+AEN    plan-4       "C5'"   0.020
+AEN    plan-4      "HN'6"   0.020
+AEN    plan-4       "N6'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AEN           SMILES              ACDLabs 10.04                                                                                         O=S(=O)(O)c1cccc2c1cccc2NCCNC(=O)C
+AEN SMILES_CANONICAL               CACTVS 3.341                                                                                       CC(=O)NCCNc1cccc2c1cccc2[S](O)(=O)=O
+AEN           SMILES               CACTVS 3.341                                                                                       CC(=O)NCCNc1cccc2c1cccc2[S](O)(=O)=O
+AEN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                         CC(=O)NCCNc1cccc2c1cccc2S(=O)(=O)O
+AEN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                         CC(=O)NCCNc1cccc2c1cccc2S(=O)(=O)O
+AEN            InChI                InChI  1.03 InChI=1S/C14H16N2O4S/c1-10(17)15-8-9-16-13-6-2-5-12-11(13)4-3-7-14(12)21(18,19)20/h2-7,16H,8-9H2,1H3,(H,15,17)(H,18,19,20)
+AEN         InChIKey                InChI  1.03                                                                                                FBZFLXJHAMMUQM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AEN acedrg               243         "dictionary generator"                  
+AEN acedrg_database      11          "data source"                           
+AEN rdkit                2017.03.2   "Chemoinformatics tool"
+AEN refmac5              5.8.0238    "optimization tool"                     

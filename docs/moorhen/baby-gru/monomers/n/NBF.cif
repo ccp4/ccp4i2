@@ -1,0 +1,260 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NBF     NBF      "[(2-ETHOXY-1-NAPHTHOYL)AMINO]METHYLBORONIC ACID"     NON-POLYMER     36     20     .     
+#
+data_comp_NBF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NBF     C25     C       CH3     0       12.191      14.170      37.863      
+NBF     C24     C       CH2     0       11.986      12.685      37.921      
+NBF     O23     O       O2      0       12.526      12.111      36.722      
+NBF     C15     C       CR6     0       13.881      11.985      36.577      
+NBF     C13     C       CR6     0       14.465      10.822      37.085      
+NBF     C11     C       C       0       13.608      9.775       37.767      
+NBF     O12     O       O       0       13.800      9.513       38.955      
+NBF     N10     N       NH1     0       12.640      9.207       37.044      
+NBF     C7      C       CH2     0       11.687      8.271       37.611      
+NBF     B       B       B       0       10.529      7.974       36.589      
+NBF     O1      O       OH1     0       10.339      6.711       36.125      
+NBF     O2      O       OH1     0       9.718       8.979       36.170      
+NBF     C14     C       CR66    0       15.903      10.635      36.955      
+NBF     C16     C       CR66    0       16.662      11.652      36.305      
+NBF     C18     C       CR16    0       18.065      11.499      36.162      
+NBF     C20     C       CR16    0       18.699      10.393      36.637      
+NBF     C22     C       CR16    0       17.964      9.382       37.280      
+NBF     C17     C       CR16    0       16.609      9.500       37.433      
+NBF     C19     C       CR16    0       16.005      12.804      35.810      
+NBF     C21     C       CR16    0       14.661      12.973      35.934      
+NBF     H251    H       H       0       11.587      14.605      38.486      
+NBF     H252    H       H       0       12.011      14.489      36.964      
+NBF     H253    H       H       0       13.108      14.381      38.103      
+NBF     H241    H       H       0       11.031      12.480      37.987      
+NBF     H242    H       H       0       12.438      12.312      38.705      
+NBF     H10     H       H       0       12.571      9.398       36.194      
+NBF     H71     H       H       0       11.311      8.650       38.433      
+NBF     H72     H       H       0       12.149      7.439       37.842      
+NBF     HO1     H       H       0       9.556       6.431       36.285      
+NBF     HO2     H       H       0       8.900       8.768       36.225      
+NBF     H18     H       H       0       18.564      12.174      35.731      
+NBF     H20     H       H       0       19.633      10.304      36.535      
+NBF     H22     H       H       0       18.408      8.616       37.608      
+NBF     H17     H       H       0       16.139      8.809       37.868      
+NBF     H19     H       H       0       16.511      13.472      35.382      
+NBF     H21     H       H       0       14.253      13.752      35.595      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NBF         C25         C24      SINGLE       n     1.498  0.0164     1.498  0.0164
+NBF         C24         O23      SINGLE       n     1.432  0.0104     1.432  0.0104
+NBF         O23         C15      SINGLE       n     1.366  0.0100     1.366  0.0100
+NBF         C15         C13      DOUBLE       y     1.388  0.0110     1.388  0.0110
+NBF         C15         C21      SINGLE       y     1.410  0.0100     1.410  0.0100
+NBF         C13         C11      SINGLE       n     1.511  0.0100     1.511  0.0100
+NBF         C13         C14      SINGLE       y     1.440  0.0136     1.440  0.0136
+NBF         C11         O12      DOUBLE       n     1.230  0.0114     1.230  0.0114
+NBF         C11         N10      SINGLE       n     1.332  0.0109     1.332  0.0109
+NBF         N10          C7      SINGLE       n     1.449  0.0122     1.449  0.0122
+NBF          C7           B      SINGLE       n     1.573  0.0200     1.573  0.0200
+NBF           B          O1      SINGLE       n     1.358  0.0116     1.358  0.0116
+NBF           B          O2      SINGLE       n     1.358  0.0116     1.358  0.0116
+NBF         C14         C16      DOUBLE       y     1.418  0.0100     1.418  0.0100
+NBF         C14         C17      SINGLE       y     1.412  0.0100     1.412  0.0100
+NBF         C16         C18      SINGLE       y     1.415  0.0100     1.415  0.0100
+NBF         C16         C19      SINGLE       y     1.414  0.0100     1.414  0.0100
+NBF         C18         C20      DOUBLE       y     1.358  0.0118     1.358  0.0118
+NBF         C20         C22      SINGLE       y     1.402  0.0131     1.402  0.0131
+NBF         C22         C17      DOUBLE       y     1.365  0.0100     1.365  0.0100
+NBF         C19         C21      DOUBLE       y     1.357  0.0100     1.357  0.0100
+NBF         C25        H251      SINGLE       n     1.089  0.0100     0.971  0.0156
+NBF         C25        H252      SINGLE       n     1.089  0.0100     0.971  0.0156
+NBF         C25        H253      SINGLE       n     1.089  0.0100     0.971  0.0156
+NBF         C24        H241      SINGLE       n     1.089  0.0100     0.979  0.0127
+NBF         C24        H242      SINGLE       n     1.089  0.0100     0.979  0.0127
+NBF         N10         H10      SINGLE       n     1.016  0.0100     0.873  0.0200
+NBF          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0132
+NBF          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0132
+NBF          O1         HO1      SINGLE       n     0.970  0.0120     0.847  0.0200
+NBF          O2         HO2      SINGLE       n     0.970  0.0120     0.847  0.0200
+NBF         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0192
+NBF         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0184
+NBF         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0184
+NBF         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0160
+NBF         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0145
+NBF         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NBF         C24         C25        H251     109.553    1.50
+NBF         C24         C25        H252     109.553    1.50
+NBF         C24         C25        H253     109.553    1.50
+NBF        H251         C25        H252     109.410    1.50
+NBF        H251         C25        H253     109.410    1.50
+NBF        H252         C25        H253     109.410    1.50
+NBF         C25         C24         O23     107.613    1.50
+NBF         C25         C24        H241     110.271    1.50
+NBF         C25         C24        H242     110.271    1.50
+NBF         O23         C24        H241     110.040    1.50
+NBF         O23         C24        H242     110.040    1.50
+NBF        H241         C24        H242     108.599    1.50
+NBF         C24         O23         C15     119.030    1.50
+NBF         O23         C15         C13     116.098    1.50
+NBF         O23         C15         C21     122.926    1.50
+NBF         C13         C15         C21     120.976    1.50
+NBF         C15         C13         C11     120.856    2.27
+NBF         C15         C13         C14     119.720    1.50
+NBF         C11         C13         C14     119.423    1.94
+NBF         C13         C11         O12     120.214    2.07
+NBF         C13         C11         N10     117.197    2.27
+NBF         O12         C11         N10     122.589    1.50
+NBF         C11         N10          C7     121.662    2.06
+NBF         C11         N10         H10     119.488    1.82
+NBF          C7         N10         H10     118.849    1.99
+NBF         N10          C7           B     109.471    3.00
+NBF         N10          C7         H71     108.905    1.50
+NBF         N10          C7         H72     108.905    1.50
+NBF           B          C7         H71     109.347    1.86
+NBF           B          C7         H72     109.347    1.86
+NBF         H71          C7         H72     107.863    1.50
+NBF          C7           B          O1     120.001    3.00
+NBF          C7           B          O2     120.000    3.00
+NBF          O1           B          O2     119.998    3.00
+NBF           B          O1         HO1     111.858    3.00
+NBF           B          O2         HO2     111.858    3.00
+NBF         C13         C14         C16     119.065    1.50
+NBF         C13         C14         C17     123.321    1.50
+NBF         C16         C14         C17     117.614    1.50
+NBF         C14         C16         C18     119.337    1.50
+NBF         C14         C16         C19     119.377    1.50
+NBF         C18         C16         C19     121.286    1.50
+NBF         C16         C18         C20     120.989    1.50
+NBF         C16         C18         H18     119.396    1.50
+NBF         C20         C18         H18     119.624    1.50
+NBF         C18         C20         C22     120.402    1.50
+NBF         C18         C20         H20     119.827    1.50
+NBF         C22         C20         H20     119.771    1.50
+NBF         C20         C22         C17     120.402    1.50
+NBF         C20         C22         H22     119.771    1.50
+NBF         C17         C22         H22     119.827    1.50
+NBF         C14         C17         C22     121.247    1.50
+NBF         C14         C17         H17     119.258    1.50
+NBF         C22         C17         H17     119.494    1.50
+NBF         C16         C19         C21     121.511    1.50
+NBF         C16         C19         H19     119.274    1.50
+NBF         C21         C19         H19     119.215    1.50
+NBF         C15         C21         C19     119.352    1.50
+NBF         C15         C21         H21     120.472    1.50
+NBF         C19         C21         H21     120.176    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NBF             sp3_sp3_1         O23         C24         C25        H251     180.000    10.0     3
+NBF              const_10         C13         C14         C16         C18     180.000    10.0     2
+NBF              const_43         C13         C14         C17         C22     180.000    10.0     2
+NBF              const_21         C14         C16         C18         C20       0.000    10.0     2
+NBF              const_13         C14         C16         C19         C21       0.000    10.0     2
+NBF              const_25         C16         C18         C20         C22       0.000    10.0     2
+NBF              const_29         C18         C20         C22         C17       0.000    10.0     2
+NBF              const_33         C14         C17         C22         C20       0.000    10.0     2
+NBF              const_17         C16         C19         C21         C15       0.000    10.0     2
+NBF            sp3_sp3_10         C25         C24         O23         C15     180.000    10.0     3
+NBF             sp2_sp2_1         C13         C15         O23         C24     180.000     5.0     2
+NBF              const_39         O23         C15         C21         C19     180.000    10.0     2
+NBF       const_sp2_sp2_4         C11         C13         C15         O23       0.000     5.0     2
+NBF       const_sp2_sp2_7         C11         C13         C14         C16     180.000     5.0     2
+NBF             sp2_sp2_5         O12         C11         C13         C15       0.000     5.0     2
+NBF             sp2_sp2_9         O12         C11         N10          C7       0.000     5.0     2
+NBF             sp2_sp3_2         C11         N10          C7           B     120.000    10.0     6
+NBF            sp3_sp3_13          O1           B          C7         N10     180.000    10.0     3
+NBF            sp3_sp3_19          C7           B          O1         HO1     180.000    10.0     3
+NBF            sp3_sp3_21          C7           B          O2         HO2     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NBF    plan-1         C11   0.020
+NBF    plan-1         C13   0.020
+NBF    plan-1         C14   0.020
+NBF    plan-1         C15   0.020
+NBF    plan-1         C16   0.020
+NBF    plan-1         C17   0.020
+NBF    plan-1         C18   0.020
+NBF    plan-1         C19   0.020
+NBF    plan-1         C20   0.020
+NBF    plan-1         C21   0.020
+NBF    plan-1         C22   0.020
+NBF    plan-1         H17   0.020
+NBF    plan-1         H18   0.020
+NBF    plan-1         H19   0.020
+NBF    plan-1         H20   0.020
+NBF    plan-1         H21   0.020
+NBF    plan-1         H22   0.020
+NBF    plan-1         O23   0.020
+NBF    plan-2         C11   0.020
+NBF    plan-2         C13   0.020
+NBF    plan-2         N10   0.020
+NBF    plan-2         O12   0.020
+NBF    plan-3         C11   0.020
+NBF    plan-3          C7   0.020
+NBF    plan-3         H10   0.020
+NBF    plan-3         N10   0.020
+NBF    plan-4           B   0.020
+NBF    plan-4          C7   0.020
+NBF    plan-4          O1   0.020
+NBF    plan-4          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NBF           SMILES              ACDLabs 10.04                                                                               O=C(c1c2c(ccc1OCC)cccc2)NCB(O)O
+NBF SMILES_CANONICAL               CACTVS 3.341                                                                                 CCOc1ccc2ccccc2c1C(=O)NCB(O)O
+NBF           SMILES               CACTVS 3.341                                                                                 CCOc1ccc2ccccc2c1C(=O)NCB(O)O
+NBF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               B(CNC(=O)c1c2ccccc2ccc1OCC)(O)O
+NBF           SMILES "OpenEye OEToolkits" 1.5.0                                                                               B(CNC(=O)c1c2ccccc2ccc1OCC)(O)O
+NBF            InChI                InChI  1.03 InChI=1S/C14H16BNO4/c1-2-20-12-8-7-10-5-3-4-6-11(10)13(12)14(17)16-9-15(18)19/h3-8,18-19H,2,9H2,1H3,(H,16,17)
+NBF         InChIKey                InChI  1.03                                                                                   VGXJNGVFESCMME-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NBF acedrg               243         "dictionary generator"                  
+NBF acedrg_database      11          "data source"                           
+NBF rdkit                2017.03.2   "Chemoinformatics tool"
+NBF refmac5              5.8.0238    "optimization tool"                     

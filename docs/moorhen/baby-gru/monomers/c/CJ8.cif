@@ -1,0 +1,248 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CJ8     CJ8      "(2~{R},3~{R})-2,3-bis(oxidanyl)-~{N},~{N}'-dipropyl-butanediamide"     NON-POLYMER     36     16     .     
+#
+data_comp_CJ8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CJ8     CAC     C       CH3     0       30.250      11.154      -31.799     
+CJ8     CAA     C       CH2     0       31.412      11.587      -32.668     
+CJ8     CAB     C       CH2     0       30.952      12.381      -33.870     
+CJ8     NAD     N       NH1     0       30.371      13.666      -33.491     
+CJ8     CAE     C       C       0       29.112      14.034      -33.721     
+CJ8     OAN     O       O       0       28.293      13.325      -34.304     
+CJ8     CAF     C       CH1     0       28.683      15.414      -33.230     
+CJ8     OAM     O       OH1     0       27.330      15.385      -32.825     
+CJ8     CAG     C       CH1     0       28.891      16.466      -34.328     
+CJ8     OAP     O       OH1     0       28.052      16.195      -35.432     
+CJ8     CAH     C       C       0       28.614      17.881      -33.826     
+CJ8     OAO     O       O       0       28.120      18.059      -32.713     
+CJ8     NAI     N       NH1     0       28.924      18.878      -34.648     
+CJ8     CAJ     C       CH2     0       28.710      20.285      -34.335     
+CJ8     CAK     C       CH2     0       29.723      20.818      -33.348     
+CJ8     CAL     C       CH3     0       29.485      22.279      -33.030     
+CJ8     H1      H       H       0       30.576      10.592      -31.075     
+CJ8     H2      H       H       0       29.612      10.651      -32.336     
+CJ8     H3      H       H       0       29.811      11.938      -31.427     
+CJ8     H4      H       H       0       31.900      10.795      -32.974     
+CJ8     H5      H       H       0       32.027      12.135      -32.137     
+CJ8     H6      H       H       0       30.296      11.852      -34.372     
+CJ8     H7      H       H       0       31.719      12.542      -34.460     
+CJ8     H8      H       H       0       30.900      14.233      -33.090     
+CJ8     H9      H       H       0       29.238      15.653      -32.455     
+CJ8     H10     H       H       0       27.294      15.002      -32.069     
+CJ8     H11     H       H       0       29.829      16.429      -34.621     
+CJ8     H12     H       H       0       28.501      15.766      -36.011     
+CJ8     H13     H       H       0       29.277      18.684      -35.423     
+CJ8     H14     H       H       0       27.807      20.399      -33.966     
+CJ8     H15     H       H       0       28.763      20.807      -35.164     
+CJ8     H16     H       H       0       30.623      20.710      -33.721     
+CJ8     H17     H       H       0       29.673      20.295      -32.521     
+CJ8     H18     H       H       0       30.171      22.595      -32.417     
+CJ8     H19     H       H       0       28.610      22.385      -32.618     
+CJ8     H20     H       H       0       29.521      22.801      -33.851     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CJ8         CAG         OAP      SINGLE       n     1.412  0.0100     1.412  0.0100
+CJ8         NAI         CAJ      SINGLE       n     1.456  0.0109     1.456  0.0109
+CJ8         CAH         NAI      SINGLE       n     1.326  0.0100     1.326  0.0100
+CJ8         CAG         CAH      SINGLE       n     1.523  0.0100     1.523  0.0100
+CJ8         CAF         CAG      SINGLE       n     1.532  0.0100     1.532  0.0100
+CJ8         CAJ         CAK      SINGLE       n     1.512  0.0180     1.512  0.0180
+CJ8         CAK         CAL      SINGLE       n     1.514  0.0200     1.514  0.0200
+CJ8         CAE         OAN      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CJ8         CAH         OAO      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CJ8         CAB         NAD      SINGLE       n     1.456  0.0109     1.456  0.0109
+CJ8         CAA         CAB      SINGLE       n     1.512  0.0180     1.512  0.0180
+CJ8         CAF         OAM      SINGLE       n     1.412  0.0100     1.412  0.0100
+CJ8         NAD         CAE      SINGLE       n     1.326  0.0100     1.326  0.0100
+CJ8         CAE         CAF      SINGLE       n     1.523  0.0100     1.523  0.0100
+CJ8         CAC         CAA      SINGLE       n     1.514  0.0200     1.514  0.0200
+CJ8         CAC          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+CJ8         CAC          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+CJ8         CAC          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+CJ8         CAA          H4      SINGLE       n     1.089  0.0100     0.980  0.0144
+CJ8         CAA          H5      SINGLE       n     1.089  0.0100     0.980  0.0144
+CJ8         CAB          H6      SINGLE       n     1.089  0.0100     0.981  0.0152
+CJ8         CAB          H7      SINGLE       n     1.089  0.0100     0.981  0.0152
+CJ8         NAD          H8      SINGLE       n     1.016  0.0100     0.872  0.0200
+CJ8         CAF          H9      SINGLE       n     1.089  0.0100     0.982  0.0200
+CJ8         OAM         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+CJ8         CAG         H11      SINGLE       n     1.089  0.0100     0.982  0.0200
+CJ8         OAP         H12      SINGLE       n     0.970  0.0120     0.848  0.0200
+CJ8         NAI         H13      SINGLE       n     1.016  0.0100     0.872  0.0200
+CJ8         CAJ         H14      SINGLE       n     1.089  0.0100     0.981  0.0152
+CJ8         CAJ         H15      SINGLE       n     1.089  0.0100     0.981  0.0152
+CJ8         CAK         H16      SINGLE       n     1.089  0.0100     0.980  0.0144
+CJ8         CAK         H17      SINGLE       n     1.089  0.0100     0.980  0.0144
+CJ8         CAL         H18      SINGLE       n     1.089  0.0100     0.973  0.0157
+CJ8         CAL         H19      SINGLE       n     1.089  0.0100     0.973  0.0157
+CJ8         CAL         H20      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CJ8         CAA         CAC          H1     109.531    1.50
+CJ8         CAA         CAC          H2     109.531    1.50
+CJ8         CAA         CAC          H3     109.531    1.50
+CJ8          H1         CAC          H2     109.380    1.50
+CJ8          H1         CAC          H3     109.380    1.50
+CJ8          H2         CAC          H3     109.380    1.50
+CJ8         CAB         CAA         CAC     111.934    1.50
+CJ8         CAB         CAA          H4     109.217    1.50
+CJ8         CAB         CAA          H5     109.217    1.50
+CJ8         CAC         CAA          H4     109.408    1.50
+CJ8         CAC         CAA          H5     109.408    1.50
+CJ8          H4         CAA          H5     108.070    1.50
+CJ8         NAD         CAB         CAA     112.309    1.89
+CJ8         NAD         CAB          H6     108.979    1.50
+CJ8         NAD         CAB          H7     108.979    1.50
+CJ8         CAA         CAB          H6     109.216    1.50
+CJ8         CAA         CAB          H7     109.216    1.50
+CJ8          H6         CAB          H7     107.877    1.50
+CJ8         CAB         NAD         CAE     122.964    1.80
+CJ8         CAB         NAD          H8     118.351    1.90
+CJ8         CAE         NAD          H8     118.685    1.94
+CJ8         OAN         CAE         NAD     122.985    1.50
+CJ8         OAN         CAE         CAF     119.851    1.78
+CJ8         NAD         CAE         CAF     117.147    1.50
+CJ8         CAG         CAF         OAM     110.596    1.64
+CJ8         CAG         CAF         CAE     110.588    1.82
+CJ8         CAG         CAF          H9     108.995    1.50
+CJ8         OAM         CAF         CAE     109.850    1.55
+CJ8         OAM         CAF          H9     109.523    2.04
+CJ8         CAE         CAF          H9     108.529    1.70
+CJ8         CAF         OAM         H10     107.477    3.00
+CJ8         OAP         CAG         CAH     109.850    1.55
+CJ8         OAP         CAG         CAF     110.596    1.64
+CJ8         OAP         CAG         H11     109.523    2.04
+CJ8         CAH         CAG         CAF     110.588    1.82
+CJ8         CAH         CAG         H11     108.529    1.70
+CJ8         CAF         CAG         H11     108.995    1.50
+CJ8         CAG         OAP         H12     107.477    3.00
+CJ8         NAI         CAH         CAG     117.155    1.50
+CJ8         NAI         CAH         OAO     122.977    1.50
+CJ8         CAG         CAH         OAO     119.851    1.78
+CJ8         CAJ         NAI         CAH     122.964    1.80
+CJ8         CAJ         NAI         H13     118.351    1.90
+CJ8         CAH         NAI         H13     118.685    1.94
+CJ8         NAI         CAJ         CAK     112.309    1.89
+CJ8         NAI         CAJ         H14     108.979    1.50
+CJ8         NAI         CAJ         H15     108.979    1.50
+CJ8         CAK         CAJ         H14     109.216    1.50
+CJ8         CAK         CAJ         H15     109.216    1.50
+CJ8         H14         CAJ         H15     107.877    1.50
+CJ8         CAJ         CAK         CAL     111.934    1.50
+CJ8         CAJ         CAK         H16     109.217    1.50
+CJ8         CAJ         CAK         H17     109.217    1.50
+CJ8         CAL         CAK         H16     109.408    1.50
+CJ8         CAL         CAK         H17     109.408    1.50
+CJ8         H16         CAK         H17     108.070    1.50
+CJ8         CAK         CAL         H18     109.531    1.50
+CJ8         CAK         CAL         H19     109.531    1.50
+CJ8         CAK         CAL         H20     109.531    1.50
+CJ8         H18         CAL         H19     109.380    1.50
+CJ8         H18         CAL         H20     109.380    1.50
+CJ8         H19         CAL         H20     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CJ8            sp3_sp3_43         CAB         CAA         CAC          H1     180.000    10.0     3
+CJ8             sp2_sp2_1         CAG         CAH         NAI         CAJ     180.000     5.0     2
+CJ8             sp2_sp3_2         CAH         NAI         CAJ         CAK     120.000    10.0     6
+CJ8            sp3_sp3_13         NAI         CAJ         CAK         CAL     180.000    10.0     3
+CJ8            sp3_sp3_22         CAJ         CAK         CAL         H18     180.000    10.0     3
+CJ8            sp3_sp3_31         CAC         CAA         CAB         NAD     180.000    10.0     3
+CJ8            sp2_sp3_14         CAE         NAD         CAB         CAA     120.000    10.0     6
+CJ8             sp2_sp2_7         OAN         CAE         NAD         CAB       0.000     5.0     2
+CJ8            sp2_sp3_19         OAN         CAE         CAF         CAG       0.000    10.0     6
+CJ8            sp3_sp3_40         CAG         CAF         OAM         H10     180.000    10.0     3
+CJ8             sp3_sp3_4         OAM         CAF         CAG         OAP     180.000    10.0     3
+CJ8             sp2_sp3_7         NAI         CAH         CAG         OAP       0.000    10.0     6
+CJ8             sp3_sp3_1         CAH         CAG         OAP         H12     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CJ8    chir_1    CAF    OAM    CAE    CAG    negative
+CJ8    chir_2    CAG    OAP    CAH    CAF    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CJ8    plan-1         CAB   0.020
+CJ8    plan-1         CAE   0.020
+CJ8    plan-1          H8   0.020
+CJ8    plan-1         NAD   0.020
+CJ8    plan-2         CAE   0.020
+CJ8    plan-2         CAF   0.020
+CJ8    plan-2         NAD   0.020
+CJ8    plan-2         OAN   0.020
+CJ8    plan-3         CAG   0.020
+CJ8    plan-3         CAH   0.020
+CJ8    plan-3         NAI   0.020
+CJ8    plan-3         OAO   0.020
+CJ8    plan-4         CAH   0.020
+CJ8    plan-4         CAJ   0.020
+CJ8    plan-4         H13   0.020
+CJ8    plan-4         NAI   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CJ8            InChI                InChI  1.03 InChI=1S/C10H20N2O4/c1-3-5-11-9(15)7(13)8(14)10(16)12-6-4-2/h7-8,13-14H,3-6H2,1-2H3,(H,11,15)(H,12,16)/t7-,8-/m1/s1
+CJ8         InChIKey                InChI  1.03                                                                                         GCNAACQQQUCOMO-HTQZYQBOSA-N
+CJ8 SMILES_CANONICAL               CACTVS 3.385                                                                                 CCCNC(=O)[C@H](O)[C@@H](O)C(=O)NCCC
+CJ8           SMILES               CACTVS 3.385                                                                                    CCCNC(=O)[CH](O)[CH](O)C(=O)NCCC
+CJ8 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                 CCCNC(=O)[C@@H]([C@H](C(=O)NCCC)O)O
+CJ8           SMILES "OpenEye OEToolkits" 2.0.6                                                                                          CCCNC(=O)C(C(C(=O)NCCC)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CJ8 acedrg               243         "dictionary generator"                  
+CJ8 acedrg_database      11          "data source"                           
+CJ8 rdkit                2017.03.2   "Chemoinformatics tool"
+CJ8 refmac5              5.8.0238    "optimization tool"                     

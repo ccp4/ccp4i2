@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KOH     KOH      "3-[2-chloranyl-4-(1~{H}-imidazol-2-yl)phenoxy]propanoic acid"     NON-POLYMER     28     18     .     
+#
+data_comp_KOH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KOH     N1      N       NR5     0       22.644      -27.509     10.323      
+KOH     C2      C       CR15    0       23.026      -28.809     10.548      
+KOH     C3      C       CR15    0       22.837      -29.459     9.389       
+KOH     N4      N       NRD5    0       22.344      -28.604     8.434       
+KOH     C5      C       CR5     0       22.237      -27.422     9.029       
+KOH     C6      C       CR6     0       21.745      -26.206     8.370       
+KOH     C7      C       CR16    0       21.481      -25.044     9.099       
+KOH     C8      C       CR16    0       21.015      -23.895     8.481       
+KOH     C9      C       CR16    0       21.522      -26.182     6.992       
+KOH     C10     C       CR6     0       21.056      -25.036     6.375       
+KOH     CL1     CL      CL      0       20.798      -25.056     4.658       
+KOH     C12     C       CR6     0       20.794      -23.874     7.107       
+KOH     O13     O       O2      0       20.334      -22.790     6.409       
+KOH     C14     C       CH2     0       18.920      -22.673     6.169       
+KOH     C15     C       CH2     0       18.290      -22.057     7.401       
+KOH     C16     C       C       0       18.811      -20.668     7.727       
+KOH     O17     O       OC      -1      18.183      -19.685     7.286       
+KOH     O18     O       O       0       19.841      -20.573     8.423       
+KOH     H1      H       H       0       22.658      -26.852     10.898      
+KOH     H2      H       H       0       23.355      -29.156     11.368      
+KOH     H3      H       H       0       23.013      -30.372     9.238       
+KOH     H5      H       H       0       21.621      -25.034     10.025      
+KOH     H6      H       H       0       20.844      -23.127     8.989       
+KOH     H7      H       H       0       21.690      -26.944     6.486       
+KOH     H8      H       H       0       18.531      -23.558     5.991       
+KOH     H9      H       H       0       18.761      -22.104     5.385       
+KOH     H10     H       H       0       18.453      -22.642     8.171       
+KOH     H11     H       H       0       17.321      -22.000     7.261       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KOH         C10         CL1      SINGLE       n     1.735  0.0100     1.735  0.0100
+KOH         O13         C14      SINGLE       n     1.436  0.0106     1.436  0.0106
+KOH         C12         O13      SINGLE       n     1.367  0.0103     1.367  0.0103
+KOH         C14         C15      SINGLE       n     1.511  0.0134     1.511  0.0134
+KOH         C10         C12      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KOH          C9         C10      SINGLE       y     1.379  0.0110     1.379  0.0110
+KOH          C8         C12      SINGLE       y     1.388  0.0100     1.388  0.0100
+KOH          C6          C9      DOUBLE       y     1.390  0.0100     1.390  0.0100
+KOH         C15         C16      SINGLE       n     1.519  0.0109     1.519  0.0109
+KOH         C16         O18      DOUBLE       n     1.247  0.0187     1.247  0.0187
+KOH          C7          C8      DOUBLE       y     1.382  0.0100     1.382  0.0100
+KOH         C16         O17      SINGLE       n     1.247  0.0187     1.247  0.0187
+KOH          C6          C7      SINGLE       y     1.391  0.0100     1.391  0.0100
+KOH          C5          C6      SINGLE       n     1.463  0.0100     1.463  0.0100
+KOH          N4          C5      DOUBLE       y     1.327  0.0100     1.327  0.0100
+KOH          C3          N4      SINGLE       y     1.374  0.0100     1.374  0.0100
+KOH          N1          C5      SINGLE       y     1.357  0.0100     1.357  0.0100
+KOH          C2          C3      DOUBLE       y     1.342  0.0105     1.342  0.0105
+KOH          N1          C2      SINGLE       y     1.373  0.0100     1.373  0.0100
+KOH          N1          H1      SINGLE       n     1.016  0.0100     0.874  0.0100
+KOH          C2          H2      SINGLE       n     1.082  0.0130     0.949  0.0200
+KOH          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0172
+KOH          C7          H5      SINGLE       n     1.082  0.0130     0.938  0.0131
+KOH          C8          H6      SINGLE       n     1.082  0.0130     0.937  0.0135
+KOH          C9          H7      SINGLE       n     1.082  0.0130     0.930  0.0100
+KOH         C14          H8      SINGLE       n     1.089  0.0100     0.982  0.0152
+KOH         C14          H9      SINGLE       n     1.089  0.0100     0.982  0.0152
+KOH         C15         H10      SINGLE       n     1.089  0.0100     0.981  0.0185
+KOH         C15         H11      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KOH          C5          N1          C2     107.256    1.50
+KOH          C5          N1          H1     125.175    1.50
+KOH          C2          N1          H1     127.569    2.77
+KOH          C3          C2          N1     105.879    1.50
+KOH          C3          C2          H2     128.237    2.17
+KOH          N1          C2          H2     125.885    2.64
+KOH          N4          C3          C2     110.331    1.50
+KOH          N4          C3          H3     124.032    1.88
+KOH          C2          C3          H3     125.637    1.50
+KOH          C5          N4          C3     105.486    1.50
+KOH          C6          C5          N4     124.303    1.55
+KOH          C6          C5          N1     124.649    1.57
+KOH          N4          C5          N1     111.048    1.50
+KOH          C9          C6          C7     118.889    1.50
+KOH          C9          C6          C5     120.394    2.31
+KOH          C7          C6          C5     120.717    1.50
+KOH          C8          C7          C6     121.170    1.50
+KOH          C8          C7          H5     119.255    1.50
+KOH          C6          C7          H5     119.575    1.50
+KOH         C12          C8          C7     119.936    1.50
+KOH         C12          C8          H6     119.902    1.50
+KOH          C7          C8          H6     120.162    1.50
+KOH         C10          C9          C6     120.302    1.50
+KOH         C10          C9          H7     120.185    1.50
+KOH          C6          C9          H7     119.513    1.50
+KOH         CL1         C10         C12     119.419    1.50
+KOH         CL1         C10          C9     119.261    1.50
+KOH         C12         C10          C9     121.320    1.50
+KOH         O13         C12         C10     116.412    1.50
+KOH         O13         C12          C8     125.205    1.50
+KOH         C10         C12          C8     118.382    1.50
+KOH         C14         O13         C12     117.464    1.77
+KOH         O13         C14         C15     106.661    1.50
+KOH         O13         C14          H8     109.943    1.50
+KOH         O13         C14          H9     109.943    1.50
+KOH         C15         C14          H8     110.439    1.50
+KOH         C15         C14          H9     110.439    1.50
+KOH          H8         C14          H9     108.474    1.50
+KOH         C14         C15         C16     111.511    2.91
+KOH         C14         C15         H10     108.585    1.50
+KOH         C14         C15         H11     108.585    1.50
+KOH         C16         C15         H10     108.416    1.50
+KOH         C16         C15         H11     108.416    1.50
+KOH         H10         C15         H11     108.097    1.58
+KOH         C15         C16         O18     118.187    1.67
+KOH         C15         C16         O17     118.187    1.67
+KOH         O18         C16         O17     123.625    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KOH              const_37          C3          C2          N1          C5       0.000    10.0     2
+KOH              const_23          C6          C5          N1          C2     180.000    10.0     2
+KOH             sp2_sp2_1         C10         C12         O13         C14     180.000     5.0     2
+KOH             sp3_sp3_1         C15         C14         O13         C12     180.000    10.0     3
+KOH             sp3_sp3_4         O13         C14         C15         C16     180.000    10.0     3
+KOH             sp2_sp3_2         O18         C16         C15         C14     120.000    10.0     6
+KOH              const_29          N1          C2          C3          N4       0.000    10.0     2
+KOH              const_27          C2          C3          N4          C5       0.000    10.0     2
+KOH              const_26          C6          C5          N4          C3     180.000    10.0     2
+KOH             sp2_sp2_5          N4          C5          C6          C9       0.000     5.0     2
+KOH              const_33          C9          C6          C7          C8       0.000    10.0     2
+KOH       const_sp2_sp2_1          C7          C6          C9         C10       0.000     5.0     2
+KOH              const_17          C6          C7          C8         C12       0.000    10.0     2
+KOH              const_15         O13         C12          C8          C7     180.000    10.0     2
+KOH       const_sp2_sp2_7         CL1         C10          C9          C6     180.000     5.0     2
+KOH              const_12         CL1         C10         C12         O13       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KOH    plan-1          C2   0.020
+KOH    plan-1          C3   0.020
+KOH    plan-1          C5   0.020
+KOH    plan-1          C6   0.020
+KOH    plan-1          H1   0.020
+KOH    plan-1          H2   0.020
+KOH    plan-1          H3   0.020
+KOH    plan-1          N1   0.020
+KOH    plan-1          N4   0.020
+KOH    plan-2         C10   0.020
+KOH    plan-2         C12   0.020
+KOH    plan-2          C5   0.020
+KOH    plan-2          C6   0.020
+KOH    plan-2          C7   0.020
+KOH    plan-2          C8   0.020
+KOH    plan-2          C9   0.020
+KOH    plan-2         CL1   0.020
+KOH    plan-2          H5   0.020
+KOH    plan-2          H6   0.020
+KOH    plan-2          H7   0.020
+KOH    plan-2         O13   0.020
+KOH    plan-3         C15   0.020
+KOH    plan-3         C16   0.020
+KOH    plan-3         O17   0.020
+KOH    plan-3         O18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KOH            InChI                InChI  1.03 InChI=1S/C12H11ClN2O3/c13-9-7-8(12-14-4-5-15-12)1-2-10(9)18-6-3-11(16)17/h1-2,4-5,7H,3,6H2,(H,14,15)(H,16,17)
+KOH         InChIKey                InChI  1.03                                                                                   JDFUCVHWLSVLIA-UHFFFAOYSA-N
+KOH SMILES_CANONICAL               CACTVS 3.385                                                                               OC(=O)CCOc1ccc(cc1Cl)c2[nH]ccn2
+KOH           SMILES               CACTVS 3.385                                                                               OC(=O)CCOc1ccc(cc1Cl)c2[nH]ccn2
+KOH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                             c1cc(c(cc1c2[nH]ccn2)Cl)OCCC(=O)O
+KOH           SMILES "OpenEye OEToolkits" 2.0.5                                                                             c1cc(c(cc1c2[nH]ccn2)Cl)OCCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KOH acedrg               243         "dictionary generator"                  
+KOH acedrg_database      11          "data source"                           
+KOH rdkit                2017.03.2   "Chemoinformatics tool"
+KOH refmac5              5.8.0238    "optimization tool"                     

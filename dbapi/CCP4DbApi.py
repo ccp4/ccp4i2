@@ -920,7 +920,7 @@ class CDbApi(CObject):
                 try:
                     # MN added check_same_thread=False....A SERIOUS FIXME IF WE DEVELOP WEB ACCESS TO PROJECT DATA
                     self._conn = sqlite3.connect(
-                        self._fileName, 5.0, 1, check_same_thread=False)
+                        self._fileName, 5.0, 1, check_same_thread=True)
                 except Exception as e:
                     raise CException(self.__class__, 101,
                                      self._fileName+'\nError:'+str(e))
@@ -3338,7 +3338,6 @@ TaskTitle TEXT );''')
 
     def getJobInfo(self, jobId=None, mode='all', projectName=None, jobNumber=None, returnType=None):
         # Retrieves details for one job
-
         if jobId is None:
             jobId = self.getJobId(projectName=projectName, jobNumber=jobNumber)
 

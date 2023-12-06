@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LM5     LM5      (3S,4R,5S)-N-benzyl-3,4-dihydroxy-5-methyl-D-prolinamide     NON-POLYMER     36     18     .     
+#
+data_comp_LM5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LM5     CAN     C       CR16    0       -28.500     -18.250     -17.700     
+LM5     CAO     C       CR16    0       -28.231     -18.780     -18.956     
+LM5     CAP     C       CR16    0       -28.045     -20.139     -19.111     
+LM5     CAQ     C       CR16    0       -28.128     -20.971     -18.015     
+LM5     CAR     C       CR16    0       -28.397     -20.446     -16.757     
+LM5     CAM     C       CR6     0       -28.590     -19.080     -16.588     
+LM5     CAL     C       CH2     0       -28.876     -18.512     -15.220     
+LM5     N1      N       NH1     0       -27.701     -18.523     -14.352     
+LM5     C       C       C       0       -26.683     -17.674     -14.522     
+LM5     O       O       O       0       -26.682     -16.759     -15.347     
+LM5     CA      C       CH1     0       -25.453     -17.933     -13.656     
+LM5     N       N       NT1     0       -24.899     -16.682     -13.113     
+LM5     CD1     C       CH1     0       -23.456     -16.556     -13.406     
+LM5     CAF     C       CH3     0       -22.669     -15.870     -12.299     
+LM5     CG      C       CH1     0       -23.046     -18.010     -13.704     
+LM5     OD2     O       OH1     0       -22.771     -18.744     -12.518     
+LM5     CB      C       CH1     0       -24.289     -18.521     -14.454     
+LM5     OG      O       OH1     0       -24.400     -19.938     -14.459     
+LM5     H1      H       H       0       -28.626     -17.320     -17.601     
+LM5     H2      H       H       0       -28.175     -18.208     -19.705     
+LM5     H3      H       H       0       -27.863     -20.498     -19.964     
+LM5     H4      H       H       0       -28.002     -21.901     -18.118     
+LM5     H5      H       H       0       -28.452     -21.021     -16.011     
+LM5     H6      H       H       0       -29.585     -19.040     -14.798     
+LM5     H7      H       H       0       -29.201     -17.592     -15.311     
+LM5     H20     H       H       0       -27.684     -19.110     -13.706     
+LM5     H9      H       H       0       -25.679     -18.539     -12.907     
+LM5     H10     H       H       0       -25.067     -16.652     -12.238     
+LM5     H12     H       H       0       -23.359     -16.022     -14.234     
+LM5     H13     H       H       0       -21.740     -16.151     -12.342     
+LM5     H14     H       H       0       -23.036     -16.111     -11.433     
+LM5     H15     H       H       0       -22.719     -14.907     -12.414     
+LM5     H16     H       H       0       -22.264     -18.025     -14.310     
+LM5     H17     H       H       0       -22.753     -19.574     -12.706     
+LM5     H18     H       H       0       -24.288     -18.171     -15.374     
+LM5     H19     H       H       0       -23.715     -20.261     -14.843     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LM5         CAN         CAO      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LM5         CAN         CAM      SINGLE       y     1.386  0.0100     1.386  0.0100
+LM5         CAO         CAP      SINGLE       y     1.376  0.0124     1.376  0.0124
+LM5         CAP         CAQ      DOUBLE       y     1.374  0.0127     1.374  0.0127
+LM5         CAQ         CAR      SINGLE       y     1.386  0.0100     1.386  0.0100
+LM5         CAR         CAM      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LM5         CAM         CAL      SINGLE       n     1.508  0.0100     1.508  0.0100
+LM5         CAL          N1      SINGLE       n     1.455  0.0191     1.455  0.0191
+LM5          N1           C      SINGLE       n     1.332  0.0100     1.332  0.0100
+LM5           C           O      DOUBLE       n     1.231  0.0100     1.231  0.0100
+LM5           C          CA      SINGLE       n     1.523  0.0117     1.523  0.0117
+LM5          CA           N      SINGLE       n     1.468  0.0148     1.468  0.0148
+LM5          CA          CB      SINGLE       n     1.528  0.0159     1.528  0.0159
+LM5           N         CD1      SINGLE       n     1.475  0.0100     1.475  0.0100
+LM5         CD1         CAF      SINGLE       n     1.520  0.0100     1.520  0.0100
+LM5         CD1          CG      SINGLE       n     1.539  0.0102     1.539  0.0102
+LM5          CG         OD2      SINGLE       n     1.421  0.0100     1.421  0.0100
+LM5          CG          CB      SINGLE       n     1.540  0.0100     1.540  0.0100
+LM5          CB          OG      SINGLE       n     1.420  0.0119     1.420  0.0119
+LM5         CAN          H1      SINGLE       n     1.082  0.0130     0.944  0.0174
+LM5         CAO          H2      SINGLE       n     1.082  0.0130     0.944  0.0175
+LM5         CAP          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+LM5         CAQ          H4      SINGLE       n     1.082  0.0130     0.944  0.0175
+LM5         CAR          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+LM5         CAL          H6      SINGLE       n     1.089  0.0100     0.980  0.0169
+LM5         CAL          H7      SINGLE       n     1.089  0.0100     0.980  0.0169
+LM5          N1         H20      SINGLE       n     1.016  0.0100     0.873  0.0200
+LM5          CA          H9      SINGLE       n     1.089  0.0100     0.990  0.0121
+LM5           N         H10      SINGLE       n     1.036  0.0160     0.890  0.0200
+LM5         CD1         H12      SINGLE       n     1.089  0.0100     0.990  0.0135
+LM5         CAF         H13      SINGLE       n     1.089  0.0100     0.971  0.0169
+LM5         CAF         H14      SINGLE       n     1.089  0.0100     0.971  0.0169
+LM5         CAF         H15      SINGLE       n     1.089  0.0100     0.971  0.0169
+LM5          CG         H16      SINGLE       n     1.089  0.0100     0.990  0.0168
+LM5         OD2         H17      SINGLE       n     0.970  0.0120     0.849  0.0200
+LM5          CB         H18      SINGLE       n     1.089  0.0100     0.984  0.0200
+LM5          OG         H19      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LM5         CAO         CAN         CAM     120.442    1.50
+LM5         CAO         CAN          H1     119.815    1.50
+LM5         CAM         CAN          H1     119.742    1.50
+LM5         CAN         CAO         CAP     120.273    1.50
+LM5         CAN         CAO          H2     119.818    1.50
+LM5         CAP         CAO          H2     119.909    1.50
+LM5         CAO         CAP         CAQ     119.997    1.50
+LM5         CAO         CAP          H3     119.998    1.50
+LM5         CAQ         CAP          H3     119.998    1.50
+LM5         CAP         CAQ         CAR     120.273    1.50
+LM5         CAP         CAQ          H4     119.909    1.50
+LM5         CAR         CAQ          H4     119.818    1.50
+LM5         CAQ         CAR         CAM     120.442    1.50
+LM5         CAQ         CAR          H5     119.815    1.50
+LM5         CAM         CAR          H5     119.742    1.50
+LM5         CAN         CAM         CAR     118.580    1.50
+LM5         CAN         CAM         CAL     120.710    1.50
+LM5         CAR         CAM         CAL     120.710    1.50
+LM5         CAM         CAL          N1     113.086    1.80
+LM5         CAM         CAL          H6     109.073    1.50
+LM5         CAM         CAL          H7     109.073    1.50
+LM5          N1         CAL          H6     108.896    1.50
+LM5          N1         CAL          H7     108.896    1.50
+LM5          H6         CAL          H7     107.860    1.50
+LM5         CAL          N1           C     121.597    1.50
+LM5         CAL          N1         H20     118.764    2.16
+LM5           C          N1         H20     119.639    3.00
+LM5          N1           C           O     123.724    1.50
+LM5          N1           C          CA     115.088    1.50
+LM5           O           C          CA     121.188    1.50
+LM5           C          CA           N     111.420    2.45
+LM5           C          CA          CB     112.424    2.46
+LM5           C          CA          H9     109.935    1.50
+LM5           N          CA          CB     103.104    2.01
+LM5           N          CA          H9     109.296    1.50
+LM5          CB          CA          H9     109.475    1.50
+LM5          CA           N         CD1     109.056    3.00
+LM5          CA           N         H10     109.307    3.00
+LM5         CD1           N         H10     110.078    2.70
+LM5           N         CD1         CAF     111.633    2.37
+LM5           N         CD1          CG     103.104    2.01
+LM5           N         CD1         H12     108.836    1.79
+LM5         CAF         CD1          CG     116.281    2.92
+LM5         CAF         CD1         H12     109.109    1.50
+LM5          CG         CD1         H12     109.485    1.57
+LM5         CD1         CAF         H13     109.537    1.50
+LM5         CD1         CAF         H14     109.537    1.50
+LM5         CD1         CAF         H15     109.537    1.50
+LM5         H13         CAF         H14     109.421    1.50
+LM5         H13         CAF         H15     109.421    1.50
+LM5         H14         CAF         H15     109.421    1.50
+LM5         CD1          CG         OD2     111.549    2.36
+LM5         CD1          CG          CB     103.086    2.24
+LM5         CD1          CG         H16     109.851    1.50
+LM5         OD2          CG          CB     111.828    2.48
+LM5         OD2          CG         H16     110.147    1.64
+LM5          CB          CG         H16     109.344    1.50
+LM5          CG         OD2         H17     108.584    1.68
+LM5          CA          CB          CG     104.443    2.26
+LM5          CA          CB          OG     108.501    1.50
+LM5          CA          CB         H18     110.061    1.50
+LM5          CG          CB          OG     111.828    2.48
+LM5          CG          CB         H18     109.344    1.50
+LM5          OG          CB         H18     110.147    1.64
+LM5          CB          OG         H19     108.584    1.68
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LM5       const_sp2_sp2_1         CAM         CAN         CAO         CAP       0.000     5.0     2
+LM5              const_23         CAL         CAM         CAN         CAO     180.000    10.0     2
+LM5             sp3_sp3_3           C          CA           N         CD1     -60.000    10.0     3
+LM5            sp3_sp3_35           C          CA          CB          OG     180.000    10.0     3
+LM5             sp3_sp3_9         CAF         CD1           N          CA     180.000    10.0     3
+LM5            sp3_sp3_40         H13         CAF         CD1           N     180.000    10.0     3
+LM5            sp3_sp3_17         CAF         CD1          CG         OD2      60.000    10.0     3
+LM5            sp3_sp3_49         CD1          CG         OD2         H17     180.000    10.0     3
+LM5            sp3_sp3_26          OG          CB          CG         OD2     -60.000    10.0     3
+LM5            sp3_sp3_52          CA          CB          OG         H19     180.000    10.0     3
+LM5       const_sp2_sp2_5         CAN         CAO         CAP         CAQ       0.000     5.0     2
+LM5       const_sp2_sp2_9         CAO         CAP         CAQ         CAR       0.000     5.0     2
+LM5              const_13         CAP         CAQ         CAR         CAM       0.000    10.0     2
+LM5              const_19         CAL         CAM         CAR         CAQ     180.000    10.0     2
+LM5             sp2_sp3_2         CAN         CAM         CAL          N1     -90.000    10.0     6
+LM5             sp2_sp3_8           C          N1         CAL         CAM     120.000    10.0     6
+LM5             sp2_sp2_3           O           C          N1         CAL       0.000     5.0     2
+LM5            sp2_sp3_13          N1           C          CA           N       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LM5    chir_1    CA    N    C    CB    negative
+LM5    chir_2    CD1    N    CG    CAF    positive
+LM5    chir_3    CG    OD2    CB    CD1    negative
+LM5    chir_4    CB    OG    CG    CA    positive
+LM5    chir_5    N    CA    CD1    H10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LM5    plan-1         CAL   0.020
+LM5    plan-1         CAM   0.020
+LM5    plan-1         CAN   0.020
+LM5    plan-1         CAO   0.020
+LM5    plan-1         CAP   0.020
+LM5    plan-1         CAQ   0.020
+LM5    plan-1         CAR   0.020
+LM5    plan-1          H1   0.020
+LM5    plan-1          H2   0.020
+LM5    plan-1          H3   0.020
+LM5    plan-1          H4   0.020
+LM5    plan-1          H5   0.020
+LM5    plan-2           C   0.020
+LM5    plan-2         CAL   0.020
+LM5    plan-2         H20   0.020
+LM5    plan-2          N1   0.020
+LM5    plan-3           C   0.020
+LM5    plan-3          CA   0.020
+LM5    plan-3          N1   0.020
+LM5    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LM5           SMILES              ACDLabs 12.01                                                                                                     O=C(NCc1ccccc1)C2NC(C)C(O)C2O
+LM5            InChI                InChI  1.03 InChI=1S/C13H18N2O3/c1-8-11(16)12(17)10(15-8)13(18)14-7-9-5-3-2-4-6-9/h2-6,8,10-12,15-17H,7H2,1H3,(H,14,18)/t8-,10+,11+,12-/m0/s1
+LM5         InChIKey                InChI  1.03                                                                                                       RJAKCSBNEIOVPB-GMNPVEAJSA-N
+LM5 SMILES_CANONICAL               CACTVS 3.370                                                                                   C[C@@H]1N[C@H]([C@H](O)[C@@H]1O)C(=O)NCc2ccccc2
+LM5           SMILES               CACTVS 3.370                                                                                         C[CH]1N[CH]([CH](O)[CH]1O)C(=O)NCc2ccccc2
+LM5 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                  C[C@H]1[C@H]([C@H]([C@@H](N1)C(=O)NCc2ccccc2)O)O
+LM5           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                   CC1C(C(C(N1)C(=O)NCc2ccccc2)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LM5 acedrg               243         "dictionary generator"                  
+LM5 acedrg_database      11          "data source"                           
+LM5 rdkit                2017.03.2   "Chemoinformatics tool"
+LM5 refmac5              5.8.0238    "optimization tool"                     

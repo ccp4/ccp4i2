@@ -1,0 +1,275 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CRP     CRP      ((1RS,3SR)-2,2-DICHLORO-N-[(R)-1-(4-CHLOROPHENYL)ETHYL]-1-ETHYL-3-METHYLCYCLOPROPANECARBOXAMIDE     NON-POLYMER     38     20     .     
+#
+data_comp_CRP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CRP     CL0     CL      CL      0       27.128      42.518      24.192      
+CRP     "C1'"   C       CR6     0       30.130      39.495      22.665      
+CRP     "C2'"   C       CR16    0       29.642      40.498      21.836      
+CRP     "C3'"   C       CR16    0       28.718      41.433      22.300      
+CRP     "C4'"   C       CR6     0       28.281      41.353      23.604      
+CRP     "C5'"   C       CR16    0       28.741      40.370      24.451      
+CRP     "C6'"   C       CR16    0       29.663      39.441      23.972      
+CRP     "C7'"   C       CH1     0       31.129      38.472      22.155      
+CRP     "C8'"   C       CH3     0       32.524      38.659      22.749      
+CRP     N       N       NH1     0       30.642      37.107      22.407      
+CRP     C       C       C       0       29.680      36.522      21.676      
+CRP     O       O       O       0       29.082      37.096      20.775      
+CRP     C1      C       CT      0       29.311      35.091      22.036      
+CRP     C2      C       CT      0       29.570      34.029      20.987      
+CRP     C3      C       CH1     0       30.425      34.075      22.203      
+CRP     C4      C       CH3     0       30.451      32.941      23.200      
+CRP     C5      C       CH2     0       28.100      35.041      22.945      
+CRP     C6      C       CH3     0       28.370      35.586      24.336      
+CRP     CL1     CL      CL      0       30.268      34.476      19.438      
+CRP     CL2     CL      CL      0       28.432      32.709      20.773      
+CRP     "H2'"   H       H       0       29.942      40.550      20.944      
+CRP     "H3'"   H       H       0       28.397      42.109      21.732      
+CRP     "H5'"   H       H       0       28.436      40.325      25.338      
+CRP     "H6'"   H       H       0       29.981      38.766      24.550      
+CRP     "H7'"   H       H       0       31.206      38.585      21.175      
+CRP     "H8'1"  H       H       0       32.928      37.792      22.928      
+CRP     "H8'2"  H       H       0       32.468      39.165      23.578      
+CRP     "H8'3"  H       H       0       33.081      39.144      22.114      
+CRP     HN      H       H       0       30.977      36.666      23.088      
+CRP     H3      H       H       0       31.315      34.479      22.047      
+CRP     H41     H       H       0       30.883      32.168      22.809      
+CRP     H42     H       H       0       29.554      32.695      23.461      
+CRP     H43     H       H       0       30.944      33.207      23.989      
+CRP     H51     H       H       0       27.784      34.122      23.033      
+CRP     H52     H       H       0       27.375      35.561      22.545      
+CRP     H61     H       H       0       29.329      35.653      24.491      
+CRP     H62     H       H       0       27.980      34.989      24.997      
+CRP     H63     H       H       0       27.968      36.468      24.422      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CRP         CL0       "C4'"      SINGLE       n     1.741  0.0100     1.741  0.0100
+CRP       "C1'"       "C2'"      DOUBLE       y     1.385  0.0100     1.385  0.0100
+CRP       "C1'"       "C6'"      SINGLE       y     1.385  0.0100     1.385  0.0100
+CRP       "C1'"       "C7'"      SINGLE       n     1.516  0.0100     1.516  0.0100
+CRP       "C2'"       "C3'"      SINGLE       y     1.380  0.0199     1.380  0.0199
+CRP       "C3'"       "C4'"      DOUBLE       y     1.373  0.0107     1.373  0.0107
+CRP       "C4'"       "C5'"      SINGLE       y     1.373  0.0107     1.373  0.0107
+CRP       "C5'"       "C6'"      DOUBLE       y     1.380  0.0199     1.380  0.0199
+CRP       "C7'"       "C8'"      SINGLE       n     1.524  0.0100     1.524  0.0100
+CRP       "C7'"           N      SINGLE       n     1.467  0.0100     1.467  0.0100
+CRP           N           C      SINGLE       n     1.336  0.0102     1.336  0.0102
+CRP           C           O      DOUBLE       n     1.223  0.0100     1.223  0.0100
+CRP           C          C1      SINGLE       n     1.517  0.0100     1.517  0.0100
+CRP          C1          C2      SINGLE       n     1.511  0.0100     1.511  0.0100
+CRP          C1          C3      SINGLE       n     1.515  0.0100     1.515  0.0100
+CRP          C1          C5      SINGLE       n     1.509  0.0117     1.509  0.0117
+CRP          C2          C3      SINGLE       n     1.486  0.0133     1.486  0.0133
+CRP          C2         CL1      SINGLE       n     1.755  0.0117     1.755  0.0117
+CRP          C2         CL2      SINGLE       n     1.755  0.0117     1.755  0.0117
+CRP          C3          C4      SINGLE       n     1.508  0.0109     1.508  0.0109
+CRP          C5          C6      SINGLE       n     1.514  0.0116     1.514  0.0116
+CRP       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.943  0.0173
+CRP       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.939  0.0176
+CRP       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.939  0.0176
+CRP       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.943  0.0173
+CRP       "C7'"       "H7'"      SINGLE       n     1.089  0.0100     0.990  0.0152
+CRP       "C8'"      "H8'1"      SINGLE       n     1.089  0.0100     0.973  0.0168
+CRP       "C8'"      "H8'2"      SINGLE       n     1.089  0.0100     0.973  0.0168
+CRP       "C8'"      "H8'3"      SINGLE       n     1.089  0.0100     0.973  0.0168
+CRP           N          HN      SINGLE       n     1.016  0.0100     0.876  0.0200
+CRP          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0124
+CRP          C4         H41      SINGLE       n     1.089  0.0100     0.968  0.0175
+CRP          C4         H42      SINGLE       n     1.089  0.0100     0.968  0.0175
+CRP          C4         H43      SINGLE       n     1.089  0.0100     0.968  0.0175
+CRP          C5         H51      SINGLE       n     1.089  0.0100     0.978  0.0129
+CRP          C5         H52      SINGLE       n     1.089  0.0100     0.978  0.0129
+CRP          C6         H61      SINGLE       n     1.089  0.0100     0.973  0.0146
+CRP          C6         H62      SINGLE       n     1.089  0.0100     0.973  0.0146
+CRP          C6         H63      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CRP       "C2'"       "C1'"       "C6'"     118.357    1.50
+CRP       "C2'"       "C1'"       "C7'"     120.822    1.50
+CRP       "C6'"       "C1'"       "C7'"     120.822    1.50
+CRP       "C1'"       "C2'"       "C3'"     121.157    1.50
+CRP       "C1'"       "C2'"       "H2'"     119.483    1.50
+CRP       "C3'"       "C2'"       "H2'"     119.360    1.50
+CRP       "C2'"       "C3'"       "C4'"     119.036    1.50
+CRP       "C2'"       "C3'"       "H3'"     120.510    1.50
+CRP       "C4'"       "C3'"       "H3'"     120.454    1.50
+CRP         CL0       "C4'"       "C3'"     119.372    1.50
+CRP         CL0       "C4'"       "C5'"     119.382    1.50
+CRP       "C3'"       "C4'"       "C5'"     121.257    1.50
+CRP       "C4'"       "C5'"       "C6'"     119.036    1.50
+CRP       "C4'"       "C5'"       "H5'"     120.454    1.50
+CRP       "C6'"       "C5'"       "H5'"     120.510    1.50
+CRP       "C1'"       "C6'"       "C5'"     121.157    1.50
+CRP       "C1'"       "C6'"       "H6'"     119.483    1.50
+CRP       "C5'"       "C6'"       "H6'"     119.360    1.50
+CRP       "C1'"       "C7'"       "C8'"     112.423    1.50
+CRP       "C1'"       "C7'"           N     111.449    1.67
+CRP       "C1'"       "C7'"       "H7'"     107.970    1.50
+CRP       "C8'"       "C7'"           N     109.251    1.50
+CRP       "C8'"       "C7'"       "H7'"     108.141    1.50
+CRP           N       "C7'"       "H7'"     107.647    1.50
+CRP       "C7'"       "C8'"      "H8'1"     109.526    1.50
+CRP       "C7'"       "C8'"      "H8'2"     109.526    1.50
+CRP       "C7'"       "C8'"      "H8'3"     109.526    1.50
+CRP      "H8'1"       "C8'"      "H8'2"     109.407    1.50
+CRP      "H8'1"       "C8'"      "H8'3"     109.407    1.50
+CRP      "H8'2"       "C8'"      "H8'3"     109.407    1.50
+CRP       "C7'"           N           C     123.019    1.62
+CRP       "C7'"           N          HN     119.165    2.66
+CRP           C           N          HN     117.816    3.00
+CRP           N           C           O     123.254    1.50
+CRP           N           C          C1     115.890    1.71
+CRP           O           C          C1     120.855    1.50
+CRP           C          C1          C2     117.915    2.54
+CRP           C          C1          C3     118.746    2.87
+CRP           C          C1          C5     115.320    2.21
+CRP          C2          C1          C3      60.077    2.22
+CRP          C2          C1          C5     120.272    3.00
+CRP          C3          C1          C5     119.906    1.50
+CRP          C1          C2          C3      60.077    2.22
+CRP          C1          C2         CL1     119.216    1.50
+CRP          C1          C2         CL2     119.216    1.50
+CRP          C3          C2         CL1     119.089    1.50
+CRP          C3          C2         CL2     119.089    1.50
+CRP         CL1          C2         CL2     110.326    1.50
+CRP          C1          C3          C2      60.077    2.22
+CRP          C1          C3          C4     124.800    1.83
+CRP          C1          C3          H3     112.061    1.50
+CRP          C2          C3          C4     121.918    1.50
+CRP          C2          C3          H3     114.076    1.50
+CRP          C4          C3          H3     113.983    1.50
+CRP          C3          C4         H41     110.543    1.70
+CRP          C3          C4         H42     110.543    1.70
+CRP          C3          C4         H43     110.543    1.70
+CRP         H41          C4         H42     109.208    1.50
+CRP         H41          C4         H43     109.208    1.50
+CRP         H42          C4         H43     109.208    1.50
+CRP          C1          C5          C6     112.357    1.50
+CRP          C1          C5         H51     109.582    1.50
+CRP          C1          C5         H52     109.582    1.50
+CRP          C6          C5         H51     108.857    1.50
+CRP          C6          C5         H52     108.857    1.50
+CRP         H51          C5         H52     107.657    1.50
+CRP          C5          C6         H61     109.564    1.50
+CRP          C5          C6         H62     109.564    1.50
+CRP          C5          C6         H63     109.564    1.50
+CRP         H61          C6         H62     109.440    1.50
+CRP         H61          C6         H63     109.440    1.50
+CRP         H62          C6         H63     109.440    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CRP            sp2_sp3_15           N           C          C1          C5    -120.000    10.0     6
+CRP             sp3_sp3_2           C          C1          C2         CL1     180.000    10.0     3
+CRP            sp3_sp3_32          C2          C1          C3          C4     180.000    10.0     3
+CRP            sp3_sp3_40          C2          C1          C5          C6      60.000    10.0     3
+CRP            sp3_sp3_12         CL1          C2          C3          H3     180.000    10.0     3
+CRP            sp3_sp3_49          C2          C3          C4         H41      60.000    10.0     3
+CRP            sp3_sp3_58         H51          C5          C6         H61      60.000    10.0     3
+CRP       const_sp2_sp2_3       "C7'"       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+CRP             sp2_sp3_1       "C2'"       "C1'"       "C7'"       "C8'"     150.000    10.0     6
+CRP             sp2_sp3_3       "C2'"       "C1'"       "C7'"       "H7'"      30.000    10.0     6
+CRP       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+CRP              const_10       "C2'"       "C3'"       "C4'"         CL0     180.000    10.0     2
+CRP              const_15         CL0       "C4'"       "C5'"       "C6'"     180.000    10.0     2
+CRP              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+CRP            sp3_sp3_24           N       "C7'"       "C8'"      "H8'3"     -60.000    10.0     3
+CRP            sp2_sp3_10          HN           N       "C7'"       "C1'"     180.000    10.0     6
+CRP            sp2_sp3_13           N           C          C1          C2       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CRP    chir_1    "C7'"    N    "C1'"    "C8'"    negative
+CRP    chir_2    C1    C2    C    C3    positive
+CRP    chir_3    C2    CL1    CL2    C1    both
+CRP    chir_4    C3    C2    C1    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CRP    plan-1       "C1'"   0.020
+CRP    plan-1       "C2'"   0.020
+CRP    plan-1       "C3'"   0.020
+CRP    plan-1       "C4'"   0.020
+CRP    plan-1       "C5'"   0.020
+CRP    plan-1       "C6'"   0.020
+CRP    plan-1       "C7'"   0.020
+CRP    plan-1         CL0   0.020
+CRP    plan-1       "H2'"   0.020
+CRP    plan-1       "H3'"   0.020
+CRP    plan-1       "H5'"   0.020
+CRP    plan-1       "H6'"   0.020
+CRP    plan-2           C   0.020
+CRP    plan-2       "C7'"   0.020
+CRP    plan-2          HN   0.020
+CRP    plan-2           N   0.020
+CRP    plan-3           C   0.020
+CRP    plan-3          C1   0.020
+CRP    plan-3           N   0.020
+CRP    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CRP           SMILES              ACDLabs 10.04                                                                                    O=C(NC(c1ccc(Cl)cc1)C)C2(CC)C(C)C2(Cl)Cl
+CRP SMILES_CANONICAL               CACTVS 3.341                                                                        CC[C@]1([C@@H](C)C1(Cl)Cl)C(=O)N[C@H](C)c2ccc(Cl)cc2
+CRP           SMILES               CACTVS 3.341                                                                            CC[C]1([CH](C)C1(Cl)Cl)C(=O)N[CH](C)c2ccc(Cl)cc2
+CRP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         CC[C@]1([C@H](C1(Cl)Cl)C)C(=O)N[C@H](C)c2ccc(cc2)Cl
+CRP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                    CCC1(C(C1(Cl)Cl)C)C(=O)NC(C)c2ccc(cc2)Cl
+CRP            InChI                InChI  1.03 InChI=1S/C15H18Cl3NO/c1-4-14(10(3)15(14,17)18)13(20)19-9(2)11-5-7-12(16)8-6-11/h5-10H,4H2,1-3H3,(H,19,20)/t9-,10-,14+/m1/s1
+CRP         InChIKey                InChI  1.03                                                                                                 RXDMAYSSBPYBFW-RULNRJAQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CRP acedrg               243         "dictionary generator"                  
+CRP acedrg_database      11          "data source"                           
+CRP rdkit                2017.03.2   "Chemoinformatics tool"
+CRP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,248 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+29O     29O      "N,N',N''-benzene-1,3,5-triyltris(2-bromoacetamide)"     NON-POLYMER     33     21     .     
+#
+data_comp_29O
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+29O     C1      C       CR6     0       -1.058      -0.801      -0.093      
+29O     C2      C       CR16    0       0.212       -1.339      0.155       
+29O     C3      C       CR6     0       1.355       -0.545      -0.009      
+29O     C4      C       CR16    0       1.227       0.789       -0.419      
+29O     C5      C       CR6     0       -0.043      1.329       -0.667      
+29O     C6      C       CR16    0       -1.185      0.532       -0.506      
+29O     N1      N       NH1     0       -2.216      -1.598      0.069       
+29O     N2      N       NH1     0       -0.147      2.677       -1.086      
+29O     C7      C       C       0       -0.979      3.635       -0.616      
+29O     C8      C       C       0       -2.571      -2.338      1.146       
+29O     C9      C       CH2     0       -3.679      -3.329      0.912       
+29O     O1      O       O       0       -2.048      -2.230      2.248       
+29O     O2      O       O       0       -1.577      3.555       0.450       
+29O     C10     C       CH2     0       -1.131      4.845       -1.498      
+29O     N3      N       NH1     0       2.631       -1.102      0.247       
+29O     C11     C       C       0       3.723       -1.078      -0.552      
+29O     O3      O       O       0       3.691       -0.781      -1.739      
+29O     C12     C       CH2     0       5.020       -1.452      0.116       
+29O     BR1     BR      BR      0       -3.157      -4.638      -0.415      
+29O     BR2     BR      BR      0       -1.895      4.354       -3.208      
+29O     BR3     BR      BR      0       5.414       -0.245      1.578       
+29O     H1      H       H       0       0.298       -2.239      0.434       
+29O     H2      H       H       0       1.998       1.325       -0.530      
+29O     H3      H       H       0       -2.042      0.895       -0.674      
+29O     H4      H       H       0       -2.767      -1.603      -0.611      
+29O     H5      H       H       0       0.402       2.914       -1.725      
+29O     H6      H       H       0       -4.482      -2.852      0.606       
+29O     H7      H       H       0       -3.895      -3.782      1.756       
+29O     H9      H       H       0       -0.252      5.259       -1.637      
+29O     H10     H       H       0       -1.712      5.502       -1.054      
+29O     H12     H       H       0       2.712       -1.516      1.014       
+29O     H13     H       H       0       5.747       -1.418      -0.544      
+29O     H14     H       H       0       4.957       -2.371      0.455       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+29O         C11         C12      SINGLE       n     1.503  0.0158     1.503  0.0158
+29O          C7          O2      DOUBLE       n     1.223  0.0143     1.223  0.0143
+29O          N3         C11      SINGLE       n     1.350  0.0120     1.350  0.0120
+29O         C11          O3      DOUBLE       n     1.223  0.0143     1.223  0.0143
+29O          C3          N3      SINGLE       n     1.414  0.0100     1.414  0.0100
+29O          C7         C10      SINGLE       n     1.503  0.0158     1.503  0.0158
+29O          N2          C7      SINGLE       n     1.350  0.0120     1.350  0.0120
+29O          C3          C4      DOUBLE       y     1.398  0.0100     1.398  0.0100
+29O          C4          C5      SINGLE       y     1.398  0.0100     1.398  0.0100
+29O          C2          C3      SINGLE       y     1.398  0.0100     1.398  0.0100
+29O          C5          N2      SINGLE       n     1.414  0.0100     1.414  0.0100
+29O          C5          C6      DOUBLE       y     1.398  0.0100     1.398  0.0100
+29O          C1          C2      DOUBLE       y     1.398  0.0100     1.398  0.0100
+29O          C1          C6      SINGLE       y     1.398  0.0100     1.398  0.0100
+29O          C1          N1      SINGLE       n     1.414  0.0100     1.414  0.0100
+29O          C8          O1      DOUBLE       n     1.223  0.0143     1.223  0.0143
+29O          N1          C8      SINGLE       n     1.350  0.0120     1.350  0.0120
+29O          C8          C9      SINGLE       n     1.503  0.0158     1.503  0.0158
+29O          C9         BR1      SINGLE       n     1.936  0.0184     1.936  0.0184
+29O         C10         BR2      SINGLE       n     1.936  0.0184     1.936  0.0184
+29O         C12         BR3      SINGLE       n     1.936  0.0184     1.936  0.0184
+29O          C2          H1      SINGLE       n     1.082  0.0130     0.946  0.0200
+29O          C4          H2      SINGLE       n     1.082  0.0130     0.946  0.0200
+29O          C6          H3      SINGLE       n     1.082  0.0130     0.946  0.0200
+29O          N1          H4      SINGLE       n     1.016  0.0100     0.874  0.0200
+29O          N2          H5      SINGLE       n     1.016  0.0100     0.874  0.0200
+29O          C9          H6      SINGLE       n     1.089  0.0100     0.982  0.0104
+29O          C9          H7      SINGLE       n     1.089  0.0100     0.982  0.0104
+29O         C10          H9      SINGLE       n     1.089  0.0100     0.982  0.0104
+29O         C10         H10      SINGLE       n     1.089  0.0100     0.982  0.0104
+29O          N3         H12      SINGLE       n     1.016  0.0100     0.874  0.0200
+29O         C12         H13      SINGLE       n     1.089  0.0100     0.982  0.0104
+29O         C12         H14      SINGLE       n     1.089  0.0100     0.982  0.0104
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+29O          C2          C1          C6     119.980    1.50
+29O          C2          C1          N1     120.010    3.00
+29O          C6          C1          N1     120.010    3.00
+29O          C3          C2          C1     120.020    1.50
+29O          C3          C2          H1     119.990    1.50
+29O          C1          C2          H1     119.990    1.50
+29O          N3          C3          C4     120.010    3.00
+29O          N3          C3          C2     120.010    3.00
+29O          C4          C3          C2     119.980    1.50
+29O          C3          C4          C5     120.020    1.50
+29O          C3          C4          H2     119.990    1.50
+29O          C5          C4          H2     119.990    1.50
+29O          C4          C5          N2     120.010    3.00
+29O          C4          C5          C6     119.980    1.50
+29O          N2          C5          C6     120.010    3.00
+29O          C5          C6          C1     120.020    1.50
+29O          C5          C6          H3     119.990    1.50
+29O          C1          C6          H3     119.990    1.50
+29O          C1          N1          C8     127.405    2.00
+29O          C1          N1          H4     115.908    1.69
+29O          C8          N1          H4     116.687    1.78
+29O          C7          N2          C5     127.405    2.00
+29O          C7          N2          H5     116.687    1.78
+29O          C5          N2          H5     115.908    1.69
+29O          O2          C7         C10     121.274    1.91
+29O          O2          C7          N2     123.621    1.50
+29O         C10          C7          N2     115.105    1.50
+29O          O1          C8          N1     123.621    1.50
+29O          O1          C8          C9     121.274    1.91
+29O          N1          C8          C9     115.105    1.50
+29O          C8          C9         BR1     110.727    2.84
+29O          C8          C9          H6     109.378    1.50
+29O          C8          C9          H7     109.378    1.50
+29O         BR1          C9          H6     109.637    1.50
+29O         BR1          C9          H7     109.637    1.50
+29O          H6          C9          H7     108.179    1.50
+29O          C7         C10         BR2     110.727    2.84
+29O          C7         C10          H9     109.378    1.50
+29O          C7         C10         H10     109.378    1.50
+29O         BR2         C10          H9     109.637    1.50
+29O         BR2         C10         H10     109.637    1.50
+29O          H9         C10         H10     108.179    1.50
+29O         C11          N3          C3     127.405    2.00
+29O         C11          N3         H12     116.687    1.78
+29O          C3          N3         H12     115.908    1.69
+29O         C12         C11          N3     115.105    1.50
+29O         C12         C11          O3     121.274    1.91
+29O          N3         C11          O3     123.621    1.50
+29O         C11         C12         BR3     110.727    2.84
+29O         C11         C12         H13     109.378    1.50
+29O         C11         C12         H14     109.378    1.50
+29O         BR3         C12         H13     109.637    1.50
+29O         BR3         C12         H14     109.637    1.50
+29O         H13         C12         H14     108.179    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+29O       const_sp2_sp2_3          N1          C1          C2          C3     180.000     5.0     2
+29O              const_23          N1          C1          C6          C5     180.000    10.0     2
+29O            sp2_sp2_17          C2          C1          N1          C8     180.000     5.0     2
+29O             sp2_sp2_1         C12         C11          N3          C3     180.000     5.0     2
+29O             sp2_sp3_2          N3         C11         C12         BR3     120.000    10.0     6
+29O       const_sp2_sp2_6          C1          C2          C3          N3     180.000     5.0     2
+29O             sp2_sp2_5          C4          C3          N3         C11     180.000     5.0     2
+29O              const_11          N3          C3          C4          C5     180.000    10.0     2
+29O              const_14          C3          C4          C5          N2     180.000    10.0     2
+29O              const_19          N2          C5          C6          C1     180.000    10.0     2
+29O            sp2_sp2_13          C4          C5          N2          C7     180.000     5.0     2
+29O            sp2_sp2_23          O1          C8          N1          C1       0.000     5.0     2
+29O            sp2_sp2_11          O2          C7          N2          C5       0.000     5.0     2
+29O             sp2_sp3_8          O2          C7         C10         BR2     120.000    10.0     6
+29O            sp2_sp3_14          O1          C8          C9         BR1     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+29O    plan-1          C1   0.020
+29O    plan-1          C2   0.020
+29O    plan-1          C3   0.020
+29O    plan-1          C4   0.020
+29O    plan-1          C5   0.020
+29O    plan-1          C6   0.020
+29O    plan-1          H1   0.020
+29O    plan-1          H2   0.020
+29O    plan-1          H3   0.020
+29O    plan-1          N1   0.020
+29O    plan-1          N2   0.020
+29O    plan-1          N3   0.020
+29O    plan-2          C1   0.020
+29O    plan-2          C8   0.020
+29O    plan-2          H4   0.020
+29O    plan-2          N1   0.020
+29O    plan-3          C5   0.020
+29O    plan-3          C7   0.020
+29O    plan-3          H5   0.020
+29O    plan-3          N2   0.020
+29O    plan-4         C10   0.020
+29O    plan-4          C7   0.020
+29O    plan-4          N2   0.020
+29O    plan-4          O2   0.020
+29O    plan-5          C8   0.020
+29O    plan-5          C9   0.020
+29O    plan-5          N1   0.020
+29O    plan-5          O1   0.020
+29O    plan-6         C11   0.020
+29O    plan-6          C3   0.020
+29O    plan-6         H12   0.020
+29O    plan-6          N3   0.020
+29O    plan-7         C11   0.020
+29O    plan-7         C12   0.020
+29O    plan-7          N3   0.020
+29O    plan-7          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+29O           SMILES              ACDLabs 12.01                                                                                 O=C(Nc1cc(cc(c1)NC(=O)CBr)NC(=O)CBr)CBr
+29O            InChI                InChI  1.03 InChI=1S/C12H12Br3N3O3/c13-4-10(19)16-7-1-8(17-11(20)5-14)3-9(2-7)18-12(21)6-15/h1-3H,4-6H2,(H,16,19)(H,17,20)(H,18,21)
+29O         InChIKey                InChI  1.03                                                                                             ZGENBODMIMDNJM-UHFFFAOYSA-N
+29O SMILES_CANONICAL               CACTVS 3.385                                                                                 BrCC(=O)Nc1cc(NC(=O)CBr)cc(NC(=O)CBr)c1
+29O           SMILES               CACTVS 3.385                                                                                 BrCC(=O)Nc1cc(NC(=O)CBr)cc(NC(=O)CBr)c1
+29O SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                 c1c(cc(cc1NC(=O)CBr)NC(=O)CBr)NC(=O)CBr
+29O           SMILES "OpenEye OEToolkits" 1.7.6                                                                                 c1c(cc(cc1NC(=O)CBr)NC(=O)CBr)NC(=O)CBr
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+29O acedrg               243         "dictionary generator"                  
+29O acedrg_database      11          "data source"                           
+29O rdkit                2017.03.2   "Chemoinformatics tool"
+29O refmac5              5.8.0238    "optimization tool"                     

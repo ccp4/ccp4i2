@@ -1,0 +1,406 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FUV     FUV      (5aR,9aR)-2-chloro-11-(4-beta-D-glucopyranuronosylpiperazin-1-yl)-5a,6,9,9a-tetrahydrodibenzo[b,f][1,4]oxazepine     NON-POLYMER     61     34     .     
+#
+data_comp_FUV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FUV     C10     C       C       0       25.674      -81.141     -12.610     
+FUV     C15     C       CH2     0       20.306      -84.682     -12.221     
+FUV     C14     C       CH2     0       21.553      -83.853     -11.997     
+FUV     C02     C       CH1     0       23.802      -81.021     -9.228      
+FUV     C03     C       CH1     0       22.643      -81.898     -9.688      
+FUV     C05     C       CH1     0       22.298      -81.596     -11.147     
+FUV     C07     C       CH1     0       24.547      -80.903     -11.619     
+FUV     C08     C       CH1     0       24.994      -81.157     -10.169     
+FUV     C17     C       CH2     0       19.126      -82.700     -12.958     
+FUV     C18     C       CH2     0       20.380      -81.880     -12.732     
+FUV     C19     C       C       0       19.139      -84.717     -14.484     
+FUV     C21     C       CH1     0       17.496      -85.143     -16.263     
+FUV     C22     C       CH1     0       17.097      -86.547     -15.789     
+FUV     C24     C       CR6     0       19.561      -87.019     -15.421     
+FUV     C25     C       CR6     0       20.045      -85.748     -15.053     
+FUV     C26     C       CR16    0       21.399      -85.455     -15.275     
+FUV     C27     C       CR6     0       22.232      -86.404     -15.811     
+FUV     C29     C       CR16    0       21.757      -87.661     -16.158     
+FUV     C30     C       CR16    0       20.429      -87.967     -15.962     
+FUV     C31     C       CH2     0       16.569      -87.366     -16.984     
+FUV     C32     C       CR16    0       15.596      -86.588     -17.809     
+FUV     C33     C       CR16    0       15.460      -85.277     -17.732     
+FUV     C34     C       CH2     0       16.249      -84.419     -16.792     
+FUV     N13     N       NT      0       21.197      -82.463     -11.653     
+FUV     N16     N       NR6     0       19.478      -84.088     -13.278     
+FUV     N20     N       N       0       18.072      -84.348     -15.171     
+FUV     O01     O       OH1     0       24.184      -81.382     -7.902      
+FUV     O04     O       OH1     0       21.499      -81.671     -8.863      
+FUV     O06     O       O2      0       23.462      -81.771     -11.970     
+FUV     O09     O       OH1     0       26.008      -80.213     -9.807      
+FUV     O11     O       O       0       26.166      -82.240     -12.701     
+FUV     O12     O       OC      -1      26.068      -80.230     -13.297     
+FUV     O23     O       O2      0       18.229      -87.285     -15.202     
+FUV     CL1     CL      CL      0       23.914      -86.026     -16.064     
+FUV     H1      H       H       0       20.561      -85.594     -12.457     
+FUV     H2      H       H       0       19.791      -84.715     -11.390     
+FUV     H3      H       H       0       22.084      -84.254     -11.264     
+FUV     H4      H       H       0       22.103      -83.863     -12.819     
+FUV     H5      H       H       0       23.510      -80.076     -9.226      
+FUV     H6      H       H       0       22.908      -82.846     -9.606      
+FUV     H7      H       H       0       22.020      -80.649     -11.208     
+FUV     H8      H       H       0       24.254      -79.969     -11.712     
+FUV     H9      H       H       0       25.362      -82.070     -10.087     
+FUV     H10     H       H       0       18.612      -82.303     -13.688     
+FUV     H11     H       H       0       18.578      -82.681     -12.149     
+FUV     H12     H       H       0       20.125      -80.954     -12.495     
+FUV     H13     H       H       0       20.909      -81.851     -13.568     
+FUV     H15     H       H       0       18.151      -85.216     -17.003     
+FUV     H16     H       H       0       16.384      -86.472     -15.112     
+FUV     H17     H       H       0       21.736      -84.609     -15.044     
+FUV     H18     H       H       0       22.338      -88.301     -16.526     
+FUV     H19     H       H       0       20.110      -88.817     -16.196     
+FUV     H20     H       H       0       16.137      -88.169     -16.649     
+FUV     H21     H       H       0       17.320      -87.634     -17.539     
+FUV     H22     H       H       0       15.048      -87.062     -18.421     
+FUV     H23     H       H       0       14.830      -84.855     -18.300     
+FUV     H24     H       H       0       16.531      -83.601     -17.247     
+FUV     H25     H       H       0       15.690      -84.161     -16.031     
+FUV     H30     H       H       0       24.719      -80.804     -7.606      
+FUV     H31     H       H       0       21.262      -80.865     -8.918      
+FUV     H32     H       H       0       25.716      -79.427     -9.879      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FUV         C10         C07      SINGLE       n     1.518  0.0174     1.518  0.0174
+FUV         C10         O11      DOUBLE       n     1.207  0.0200     1.207  0.0200
+FUV         C10         O12      SINGLE       n     1.207  0.0200     1.207  0.0200
+FUV         C15         C14      SINGLE       n     1.512  0.0100     1.512  0.0100
+FUV         C15         N16      SINGLE       n     1.463  0.0100     1.463  0.0100
+FUV         C14         N13      SINGLE       n     1.462  0.0169     1.462  0.0169
+FUV         C02         C03      SINGLE       n     1.521  0.0165     1.521  0.0165
+FUV         C02         C08      SINGLE       n     1.523  0.0100     1.523  0.0100
+FUV         C02         O01      SINGLE       n     1.427  0.0125     1.427  0.0125
+FUV         C03         C05      SINGLE       n     1.527  0.0100     1.527  0.0100
+FUV         C03         O04      SINGLE       n     1.428  0.0123     1.428  0.0123
+FUV         C05         N13      SINGLE       n     1.472  0.0200     1.472  0.0200
+FUV         C05         O06      SINGLE       n     1.430  0.0137     1.430  0.0137
+FUV         C07         C08      SINGLE       n     1.535  0.0100     1.535  0.0100
+FUV         C07         O06      SINGLE       n     1.431  0.0100     1.431  0.0100
+FUV         C08         O09      SINGLE       n     1.431  0.0107     1.431  0.0107
+FUV         C17         C18      SINGLE       n     1.512  0.0100     1.512  0.0100
+FUV         C17         N16      SINGLE       n     1.463  0.0100     1.463  0.0100
+FUV         C18         N13      SINGLE       n     1.462  0.0169     1.462  0.0169
+FUV         C19         C25      SINGLE       n     1.483  0.0108     1.483  0.0108
+FUV         C19         N16      SINGLE       n     1.372  0.0200     1.372  0.0200
+FUV         C19         N20      DOUBLE       n     1.302  0.0200     1.302  0.0200
+FUV         C21         C22      SINGLE       n     1.522  0.0128     1.522  0.0128
+FUV         C21         C34      SINGLE       n     1.529  0.0165     1.529  0.0165
+FUV         C21         N20      SINGLE       n     1.464  0.0100     1.464  0.0100
+FUV         C22         C31      SINGLE       n     1.535  0.0160     1.535  0.0160
+FUV         C22         O23      SINGLE       n     1.459  0.0155     1.459  0.0155
+FUV         C24         C25      SINGLE       y     1.405  0.0115     1.405  0.0115
+FUV         C24         C30      DOUBLE       y     1.390  0.0100     1.390  0.0100
+FUV         C24         O23      SINGLE       n     1.372  0.0135     1.372  0.0135
+FUV         C25         C26      DOUBLE       y     1.399  0.0102     1.399  0.0102
+FUV         C26         C27      SINGLE       y     1.369  0.0100     1.369  0.0100
+FUV         C27         C29      DOUBLE       y     1.384  0.0100     1.384  0.0100
+FUV         C27         CL1      SINGLE       n     1.742  0.0100     1.742  0.0100
+FUV         C29         C30      SINGLE       y     1.373  0.0100     1.373  0.0100
+FUV         C31         C32      SINGLE       n     1.490  0.0135     1.490  0.0135
+FUV         C32         C33      DOUBLE       n     1.319  0.0100     1.319  0.0100
+FUV         C33         C34      SINGLE       n     1.495  0.0100     1.495  0.0100
+FUV         C15          H1      SINGLE       n     1.089  0.0100     0.978  0.0161
+FUV         C15          H2      SINGLE       n     1.089  0.0100     0.978  0.0161
+FUV         C14          H3      SINGLE       n     1.089  0.0100     0.990  0.0100
+FUV         C14          H4      SINGLE       n     1.089  0.0100     0.990  0.0100
+FUV         C02          H5      SINGLE       n     1.089  0.0100     0.990  0.0140
+FUV         C03          H6      SINGLE       n     1.089  0.0100     0.989  0.0181
+FUV         C05          H7      SINGLE       n     1.089  0.0100     0.988  0.0174
+FUV         C07          H8      SINGLE       n     1.089  0.0100     0.983  0.0200
+FUV         C08          H9      SINGLE       n     1.089  0.0100     0.988  0.0151
+FUV         C17         H10      SINGLE       n     1.089  0.0100     0.978  0.0161
+FUV         C17         H11      SINGLE       n     1.089  0.0100     0.978  0.0161
+FUV         C18         H12      SINGLE       n     1.089  0.0100     0.990  0.0100
+FUV         C18         H13      SINGLE       n     1.089  0.0100     0.990  0.0100
+FUV         C21         H15      SINGLE       n     1.089  0.0100     0.990  0.0142
+FUV         C22         H16      SINGLE       n     1.089  0.0100     0.987  0.0182
+FUV         C26         H17      SINGLE       n     1.082  0.0130     0.940  0.0137
+FUV         C29         H18      SINGLE       n     1.082  0.0130     0.939  0.0186
+FUV         C30         H19      SINGLE       n     1.082  0.0130     0.937  0.0135
+FUV         C31         H20      SINGLE       n     1.089  0.0100     0.972  0.0100
+FUV         C31         H21      SINGLE       n     1.089  0.0100     0.972  0.0100
+FUV         C32         H22      SINGLE       n     1.082  0.0130     0.948  0.0200
+FUV         C33         H23      SINGLE       n     1.082  0.0130     0.948  0.0200
+FUV         C34         H24      SINGLE       n     1.089  0.0100     0.978  0.0152
+FUV         C34         H25      SINGLE       n     1.089  0.0100     0.978  0.0152
+FUV         O01         H30      SINGLE       n     0.970  0.0120     0.841  0.0200
+FUV         O04         H31      SINGLE       n     0.970  0.0120     0.841  0.0200
+FUV         O09         H32      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FUV         C07         C10         O11     119.643    2.54
+FUV         C07         C10         O12     119.643    2.54
+FUV         O11         C10         O12     120.713    1.50
+FUV         C14         C15         N16     110.222    1.50
+FUV         C14         C15          H1     109.068    1.50
+FUV         C14         C15          H2     109.068    1.50
+FUV         N16         C15          H1     109.247    1.50
+FUV         N16         C15          H2     109.247    1.50
+FUV          H1         C15          H2     108.187    1.50
+FUV         C15         C14         N13     110.660    1.50
+FUV         C15         C14          H3     109.674    1.50
+FUV         C15         C14          H4     109.674    1.50
+FUV         N13         C14          H3     109.790    1.50
+FUV         N13         C14          H4     109.790    1.50
+FUV          H3         C14          H4     108.439    1.50
+FUV         C03         C02         C08     110.796    1.54
+FUV         C03         C02         O01     110.081    2.02
+FUV         C03         C02          H5     109.166    1.50
+FUV         C08         C02         O01     110.243    1.88
+FUV         C08         C02          H5     108.653    1.50
+FUV         O01         C02          H5     108.767    1.50
+FUV         C02         C03         C05     110.477    1.50
+FUV         C02         C03         O04     110.081    2.02
+FUV         C02         C03          H6     109.166    1.50
+FUV         C05         C03         O04     109.806    1.87
+FUV         C05         C03          H6     109.279    1.50
+FUV         O04         C03          H6     108.790    1.50
+FUV         C03         C05         N13     111.834    3.00
+FUV         C03         C05         O06     109.837    1.50
+FUV         C03         C05          H7     108.718    1.50
+FUV         N13         C05         O06     108.041    2.21
+FUV         N13         C05          H7     109.302    1.50
+FUV         O06         C05          H7     108.370    1.50
+FUV         C10         C07         C08     111.056    2.52
+FUV         C10         C07         O06     107.807    2.54
+FUV         C10         C07          H8     107.668    1.59
+FUV         C08         C07         O06     109.645    1.79
+FUV         C08         C07          H8     109.094    1.50
+FUV         O06         C07          H8     108.284    2.17
+FUV         C02         C08         C07     109.795    1.50
+FUV         C02         C08         O09     110.101    1.97
+FUV         C02         C08          H9     109.032    1.50
+FUV         C07         C08         O09     109.410    1.87
+FUV         C07         C08          H9     110.070    1.50
+FUV         O09         C08          H9     109.194    1.50
+FUV         C18         C17         N16     110.222    1.50
+FUV         C18         C17         H10     109.068    1.50
+FUV         C18         C17         H11     109.068    1.50
+FUV         N16         C17         H10     109.247    1.50
+FUV         N16         C17         H11     109.247    1.50
+FUV         H10         C17         H11     108.187    1.50
+FUV         C17         C18         N13     110.660    1.50
+FUV         C17         C18         H12     109.674    1.50
+FUV         C17         C18         H13     109.674    1.50
+FUV         N13         C18         H12     109.790    1.50
+FUV         N13         C18         H13     109.790    1.50
+FUV         H12         C18         H13     108.439    1.50
+FUV         C25         C19         N16     118.432    1.50
+FUV         C25         C19         N20     121.089    3.00
+FUV         N16         C19         N20     120.479    3.00
+FUV         C22         C21         C34     109.659    1.50
+FUV         C22         C21         N20     109.814    1.50
+FUV         C22         C21         H15     109.240    1.50
+FUV         C34         C21         N20     109.292    1.59
+FUV         C34         C21         H15     109.300    1.50
+FUV         N20         C21         H15     109.296    1.50
+FUV         C21         C22         C31     109.659    1.50
+FUV         C21         C22         O23     107.184    1.79
+FUV         C21         C22         H16     109.567    1.50
+FUV         C31         C22         O23     108.078    1.99
+FUV         C31         C22         H16     109.453    2.12
+FUV         O23         C22         H16     109.196    2.19
+FUV         C25         C24         C30     120.243    1.50
+FUV         C25         C24         O23     117.953    2.24
+FUV         C30         C24         O23     121.804    3.00
+FUV         C19         C25         C24     121.477    1.68
+FUV         C19         C25         C26     119.895    1.50
+FUV         C24         C25         C26     118.628    1.50
+FUV         C25         C26         C27     120.340    1.50
+FUV         C25         C26         H17     119.694    1.50
+FUV         C27         C26         H17     119.965    1.50
+FUV         C26         C27         C29     121.218    1.50
+FUV         C26         C27         CL1     119.485    1.50
+FUV         C29         C27         CL1     119.298    1.50
+FUV         C27         C29         C30     119.526    1.50
+FUV         C27         C29         H18     120.315    1.50
+FUV         C30         C29         H18     120.159    1.50
+FUV         C24         C30         C29     120.044    1.50
+FUV         C24         C30         H19     120.209    1.50
+FUV         C29         C30         H19     119.747    1.50
+FUV         C22         C31         C32     111.730    1.50
+FUV         C22         C31         H20     108.743    1.50
+FUV         C22         C31         H21     108.743    1.50
+FUV         C32         C31         H20     109.241    1.50
+FUV         C32         C31         H21     109.241    1.50
+FUV         H20         C31         H21     108.051    1.50
+FUV         C31         C32         C33     123.732    1.50
+FUV         C31         C32         H22     118.054    1.50
+FUV         C33         C32         H22     118.214    1.50
+FUV         C32         C33         C34     123.732    1.50
+FUV         C32         C33         H23     118.214    1.50
+FUV         C34         C33         H23     118.054    1.50
+FUV         C21         C34         C33     111.730    1.50
+FUV         C21         C34         H24     108.813    1.50
+FUV         C21         C34         H25     108.813    1.50
+FUV         C33         C34         H24     109.941    1.50
+FUV         C33         C34         H25     109.941    1.50
+FUV         H24         C34         H25     108.033    1.87
+FUV         C14         N13         C05     114.235    2.58
+FUV         C14         N13         C18     109.234    1.57
+FUV         C05         N13         C18     114.235    2.58
+FUV         C15         N16         C17     113.012    1.50
+FUV         C15         N16         C19     123.504    1.96
+FUV         C17         N16         C19     123.504    1.96
+FUV         C19         N20         C21     121.086    1.50
+FUV         C02         O01         H30     108.895    2.41
+FUV         C03         O04         H31     109.099    3.00
+FUV         C05         O06         C07     111.559    2.21
+FUV         C08         O09         H32     109.564    3.00
+FUV         C22         O23         C24     118.328    2.49
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FUV            sp2_sp3_19         O11         C10         C07         C08       0.000    10.0     6
+FUV             sp2_sp2_7         N20         C19         C25         C24       0.000     5.0     2
+FUV            sp2_sp2_11         N20         C19         N16         C15       0.000     5.0     2
+FUV            sp2_sp2_13         C25         C19         N20         C21     180.000     5.0     2
+FUV            sp3_sp3_68         N20         C21         C22         O23      60.000    10.0     3
+FUV           sp3_sp3_109         N20         C21         C34         C33      60.000    10.0     3
+FUV            sp2_sp3_31         C19         N20         C21         C22       0.000    10.0     6
+FUV            sp3_sp3_76         O23         C22         C31         C32     180.000    10.0     3
+FUV           sp3_sp3_115         C21         C22         O23         C24     180.000    10.0     3
+FUV       const_sp2_sp2_4         O23         C24         C25         C19       0.000     5.0     2
+FUV              const_23         O23         C24         C30         C29     180.000    10.0     2
+FUV            sp2_sp2_15         C25         C24         O23         C22     180.000     5.0     2
+FUV       const_sp2_sp2_7         C19         C25         C26         C27     180.000     5.0     2
+FUV              const_10         C25         C26         C27         CL1     180.000    10.0     2
+FUV              const_15         CL1         C27         C29         C30     180.000    10.0     2
+FUV              const_17         C27         C29         C30         C24       0.000    10.0     2
+FUV             sp2_sp3_7         C33         C32         C31         C22       0.000    10.0     6
+FUV            sp3_sp3_34         N13         C14         C15         N16      60.000    10.0     3
+FUV            sp2_sp3_28         C19         N16         C15         C14     180.000    10.0     6
+FUV             sp2_sp2_1         C31         C32         C33         C34       0.000     5.0     2
+FUV            sp2_sp3_13         C32         C33         C34         C21       0.000    10.0     6
+FUV            sp3_sp3_44         C15         C14         N13         C05      60.000    10.0     3
+FUV            sp3_sp3_91         C03         C02         O01         H30     180.000    10.0     3
+FUV             sp3_sp3_5         O01         C02         C03         O04     -60.000    10.0     3
+FUV            sp3_sp3_86         O01         C02         C08         O09     180.000    10.0     3
+FUV            sp3_sp3_94         C02         C03         O04         H31     180.000    10.0     3
+FUV            sp3_sp3_14         O04         C03         C05         N13     180.000    10.0     3
+FUV            sp3_sp3_98         C03         C05         N13         C14     -60.000    10.0     3
+FUV            sp3_sp3_19         C03         C05         O06         C07      60.000    10.0     3
+FUV            sp3_sp3_23         C10         C07         O06         C05      60.000    10.0     3
+FUV            sp3_sp3_29         C10         C07         C08         O09     -60.000    10.0     3
+FUV           sp3_sp3_103         C02         C08         O09         H32     180.000    10.0     3
+FUV             sp2_sp3_4         C19         N16         C17         C18     180.000    10.0     6
+FUV            sp3_sp3_55         N16         C17         C18         N13     -60.000    10.0     3
+FUV            sp3_sp3_49         C17         C18         N13         C14      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FUV    chir_1    C02    O01    C03    C08    positive
+FUV    chir_2    C03    O04    C05    C02    negative
+FUV    chir_3    C05    O06    N13    C03    negative
+FUV    chir_4    C07    O06    C10    C08    positive
+FUV    chir_5    C08    O09    C07    C02    positive
+FUV    chir_6    C21    N20    C22    C34    negative
+FUV    chir_7    C22    O23    C21    C31    negative
+FUV    chir_8    N13    C05    C14    C18    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FUV    plan-1         C19   0.020
+FUV    plan-1         C24   0.020
+FUV    plan-1         C25   0.020
+FUV    plan-1         C26   0.020
+FUV    plan-1         C27   0.020
+FUV    plan-1         C29   0.020
+FUV    plan-1         C30   0.020
+FUV    plan-1         CL1   0.020
+FUV    plan-1         H17   0.020
+FUV    plan-1         H18   0.020
+FUV    plan-1         H19   0.020
+FUV    plan-1         O23   0.020
+FUV    plan-2         C07   0.020
+FUV    plan-2         C10   0.020
+FUV    plan-2         O11   0.020
+FUV    plan-2         O12   0.020
+FUV    plan-3         C19   0.020
+FUV    plan-3         C25   0.020
+FUV    plan-3         N16   0.020
+FUV    plan-3         N20   0.020
+FUV    plan-4         C31   0.020
+FUV    plan-4         C32   0.020
+FUV    plan-4         C33   0.020
+FUV    plan-4         H22   0.020
+FUV    plan-5         C32   0.020
+FUV    plan-5         C33   0.020
+FUV    plan-5         C34   0.020
+FUV    plan-5         H23   0.020
+FUV    plan-6         C15   0.020
+FUV    plan-6         C17   0.020
+FUV    plan-6         C19   0.020
+FUV    plan-6         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FUV           SMILES              ACDLabs 12.01                                                                                                                                                     C(C5C(C(C(C(N1CCN(CC1)C=4c2c(ccc(c2)Cl)OC3C(CC=CC3)N=4)O5)O)O)O)(=O)O
+FUV            InChI                InChI  1.03 InChI=1S/C23H28ClN3O7/c24-12-5-6-15-13(11-12)21(25-14-3-1-2-4-16(14)33-15)26-7-9-27(10-8-26)22-19(30)17(28)18(29)20(34-22)23(31)32/h1-2,5-6,11,14,16-20,22,28-30H,3-4,7-10H2,(H,31,32)/t14-,16-,17+,18+,19-,20+,22-/m1/s1
+FUV         InChIKey                InChI  1.03                                                                                                                                                                                               OXNRDDVCZKYHOL-IBISMJPWSA-N
+FUV SMILES_CANONICAL               CACTVS 3.385                                                                                                                             O[C@@H]1[C@@H](O)[C@@H](O[C@@H]([C@H]1O)C(O)=O)N2CCN(CC2)C3=N[C@@H]4CC=CC[C@H]4Oc5ccc(Cl)cc35
+FUV           SMILES               CACTVS 3.385                                                                                                                                         O[CH]1[CH](O)[CH](O[CH]([CH]1O)C(O)=O)N2CCN(CC2)C3=N[CH]4CC=CC[CH]4Oc5ccc(Cl)cc35
+FUV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                           c1cc2c(cc1Cl)C(=N[C@@H]3CC=CC[C@H]3O2)N4CCN(CC4)[C@H]5[C@@H]([C@H]([C@@H]([C@H](O5)C(=O)O)O)O)O
+FUV           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                          c1cc2c(cc1Cl)C(=NC3CC=CCC3O2)N4CCN(CC4)C5C(C(C(C(O5)C(=O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FUV acedrg               243         "dictionary generator"                  
+FUV acedrg_database      11          "data source"                           
+FUV rdkit                2017.03.2   "Chemoinformatics tool"
+FUV refmac5              5.8.0238    "optimization tool"                     

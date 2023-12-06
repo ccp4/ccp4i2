@@ -1,0 +1,236 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PXX     PXX      N-1,10-phenanthrolin-5-ylacetamide     NON-POLYMER     29     18     .     
+#
+data_comp_PXX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PXX     CAA     C       CH3     0       -18.185     11.815      -7.977      
+PXX     CAM     C       C       0       -18.841     12.213      -9.270      
+PXX     OAB     O       O       0       -19.892     11.697      -9.639      
+PXX     NAL     N       NH1     0       -18.188     13.168      -9.977      
+PXX     CAN     C       CR6     0       -18.702     13.960      -11.028     
+PXX     CAP     C       CR66    0       -18.063     13.910      -12.315     
+PXX     CAH     C       CR16    0       -16.928     13.095      -12.596     
+PXX     CAD     C       CR16    0       -16.387     13.110      -13.846     
+PXX     CAF     C       CR16    0       -16.971     13.936      -14.827     
+PXX     NAK     N       NRD6    0       -18.027     14.710      -14.612     
+PXX     CAR     C       CR66    0       -18.579     14.707      -13.369     
+PXX     CAQ     C       CR66    0       -19.736     15.553      -13.126     
+PXX     NAJ     N       NRD6    0       -20.218     16.312      -14.150     
+PXX     CAE     C       CR16    0       -21.275     17.079      -13.912     
+PXX     CAC     C       CR16    0       -21.923     17.152      -12.665     
+PXX     CAG     C       CR16    0       -21.445     16.395      -11.639     
+PXX     CAO     C       CR66    0       -20.326     15.564      -11.838     
+PXX     CAI     C       CR16    0       -19.780     14.753      -10.810     
+PXX     HAA     H       H       0       -18.831     11.363      -7.411      
+PXX     HAAA    H       H       0       -17.856     12.608      -7.522      
+PXX     HAAB    H       H       0       -17.442     11.218      -8.161      
+PXX     HNAL    H       H       0       -17.352     13.315      -9.764      
+PXX     HAH     H       H       0       -16.553     12.551      -11.928     
+PXX     HAD     H       H       0       -15.637     12.579      -14.053     
+PXX     HAF     H       H       0       -16.591     13.940      -15.690     
+PXX     HAE     H       H       0       -21.608     17.604      -14.621     
+PXX     HAC     H       H       0       -22.671     17.712      -12.544     
+PXX     HAG     H       H       0       -21.860     16.425      -10.794     
+PXX     HAI     H       H       0       -20.176     14.764      -9.958      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PXX         CAA         CAM      SINGLE       n     1.501  0.0141     1.501  0.0141
+PXX         CAM         OAB      DOUBLE       n     1.226  0.0169     1.226  0.0169
+PXX         CAM         NAL      SINGLE       n     1.353  0.0109     1.353  0.0109
+PXX         NAL         CAN      SINGLE       n     1.410  0.0118     1.410  0.0118
+PXX         CAN         CAP      DOUBLE       y     1.430  0.0122     1.430  0.0122
+PXX         CAN         CAI      SINGLE       y     1.350  0.0132     1.350  0.0132
+PXX         CAP         CAH      SINGLE       y     1.418  0.0111     1.418  0.0111
+PXX         CAP         CAR      SINGLE       y     1.411  0.0100     1.411  0.0100
+PXX         CAH         CAD      DOUBLE       y     1.359  0.0100     1.359  0.0100
+PXX         CAD         CAF      SINGLE       y     1.406  0.0100     1.406  0.0100
+PXX         CAF         NAK      DOUBLE       y     1.324  0.0100     1.324  0.0100
+PXX         NAK         CAR      SINGLE       y     1.355  0.0100     1.355  0.0100
+PXX         CAR         CAQ      DOUBLE       y     1.448  0.0100     1.448  0.0100
+PXX         CAQ         NAJ      SINGLE       y     1.358  0.0100     1.358  0.0100
+PXX         CAQ         CAO      SINGLE       y     1.408  0.0100     1.408  0.0100
+PXX         NAJ         CAE      DOUBLE       y     1.324  0.0100     1.324  0.0100
+PXX         CAE         CAC      SINGLE       y     1.406  0.0100     1.406  0.0100
+PXX         CAC         CAG      DOUBLE       y     1.358  0.0112     1.358  0.0112
+PXX         CAG         CAO      SINGLE       y     1.403  0.0100     1.403  0.0100
+PXX         CAO         CAI      DOUBLE       y     1.415  0.0107     1.415  0.0107
+PXX         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0140
+PXX         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0140
+PXX         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0140
+PXX         NAL        HNAL      SINGLE       n     1.016  0.0100     0.874  0.0200
+PXX         CAH         HAH      SINGLE       n     1.082  0.0130     0.940  0.0117
+PXX         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0187
+PXX         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0200
+PXX         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0200
+PXX         CAC         HAC      SINGLE       n     1.082  0.0130     0.942  0.0187
+PXX         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0169
+PXX         CAI         HAI      SINGLE       n     1.082  0.0130     0.939  0.0105
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PXX         CAM         CAA         HAA     109.546    1.50
+PXX         CAM         CAA        HAAA     109.546    1.50
+PXX         CAM         CAA        HAAB     109.546    1.50
+PXX         HAA         CAA        HAAA     109.365    1.50
+PXX         HAA         CAA        HAAB     109.365    1.50
+PXX        HAAA         CAA        HAAB     109.365    1.50
+PXX         CAA         CAM         OAB     121.692    1.50
+PXX         CAA         CAM         NAL     114.946    1.50
+PXX         OAB         CAM         NAL     123.362    1.50
+PXX         CAM         NAL         CAN     126.711    2.38
+PXX         CAM         NAL        HNAL     116.692    1.78
+PXX         CAN         NAL        HNAL     116.597    2.56
+PXX         NAL         CAN         CAP     118.285    1.50
+PXX         NAL         CAN         CAI     120.318    1.50
+PXX         CAP         CAN         CAI     121.388    1.50
+PXX         CAN         CAP         CAH     122.644    1.55
+PXX         CAN         CAP         CAR     119.274    1.50
+PXX         CAH         CAP         CAR     118.081    1.50
+PXX         CAP         CAH         CAD     119.100    1.50
+PXX         CAP         CAH         HAH     120.523    1.50
+PXX         CAD         CAH         HAH     120.377    1.50
+PXX         CAH         CAD         CAF     118.774    1.50
+PXX         CAH         CAD         HAD     120.753    1.50
+PXX         CAF         CAD         HAD     120.473    1.50
+PXX         CAD         CAF         NAK     124.053    1.50
+PXX         CAD         CAF         HAF     118.169    1.50
+PXX         NAK         CAF         HAF     117.778    1.50
+PXX         CAF         NAK         CAR     117.492    1.50
+PXX         CAP         CAR         NAK     122.500    1.50
+PXX         CAP         CAR         CAQ     119.605    1.50
+PXX         NAK         CAR         CAQ     117.895    1.50
+PXX         CAR         CAQ         NAJ     118.407    1.50
+PXX         CAR         CAQ         CAO     119.354    1.50
+PXX         NAJ         CAQ         CAO     122.239    1.50
+PXX         CAQ         NAJ         CAE     117.536    1.50
+PXX         NAJ         CAE         CAC     124.097    1.50
+PXX         NAJ         CAE         HAE     117.756    1.50
+PXX         CAC         CAE         HAE     118.147    1.50
+PXX         CAE         CAC         CAG     118.813    1.50
+PXX         CAE         CAC         HAC     120.456    1.50
+PXX         CAG         CAC         HAC     120.736    1.50
+PXX         CAC         CAG         CAO     119.791    1.50
+PXX         CAC         CAG         HAG     120.264    1.50
+PXX         CAO         CAG         HAG     119.945    1.50
+PXX         CAQ         CAO         CAG     117.519    1.50
+PXX         CAQ         CAO         CAI     119.272    1.50
+PXX         CAG         CAO         CAI     123.209    1.50
+PXX         CAN         CAI         CAO     121.107    1.50
+PXX         CAN         CAI         HAI     119.454    1.50
+PXX         CAO         CAI         HAI     119.438    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PXX             sp2_sp3_1         OAB         CAM         CAA         HAA       0.000    10.0     6
+PXX              const_43         NAJ         CAQ         CAR         CAP     180.000    10.0     2
+PXX       const_sp2_sp2_2         CAR         CAQ         NAJ         CAE     180.000     5.0     2
+PXX              const_46         CAG         CAO         CAQ         CAR     180.000    10.0     2
+PXX       const_sp2_sp2_3         CAC         CAE         NAJ         CAQ       0.000     5.0     2
+PXX       const_sp2_sp2_5         CAG         CAC         CAE         NAJ       0.000     5.0     2
+PXX       const_sp2_sp2_9         CAE         CAC         CAG         CAO       0.000     5.0     2
+PXX              const_13         CAC         CAG         CAO         CAQ       0.000    10.0     2
+PXX              const_49         CAN         CAI         CAO         CAQ       0.000    10.0     2
+PXX             sp2_sp2_1         CAA         CAM         NAL         CAN     180.000     5.0     2
+PXX             sp2_sp2_5         CAP         CAN         NAL         CAM     180.000     5.0     2
+PXX              const_54         CAO         CAI         CAN         NAL     180.000    10.0     2
+PXX              const_36         NAL         CAN         CAP         CAH       0.000    10.0     2
+PXX              const_38         CAN         CAP         CAR         NAK     180.000    10.0     2
+PXX              const_18         CAD         CAH         CAP         CAN     180.000    10.0     2
+PXX              const_21         CAF         CAD         CAH         CAP       0.000    10.0     2
+PXX              const_25         CAH         CAD         CAF         NAK       0.000    10.0     2
+PXX              const_29         CAD         CAF         NAK         CAR       0.000    10.0     2
+PXX              const_31         CAP         CAR         NAK         CAF       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PXX    plan-1         CAC   0.020
+PXX    plan-1         CAD   0.020
+PXX    plan-1         CAE   0.020
+PXX    plan-1         CAF   0.020
+PXX    plan-1         CAG   0.020
+PXX    plan-1         CAH   0.020
+PXX    plan-1         CAI   0.020
+PXX    plan-1         CAN   0.020
+PXX    plan-1         CAO   0.020
+PXX    plan-1         CAP   0.020
+PXX    plan-1         CAQ   0.020
+PXX    plan-1         CAR   0.020
+PXX    plan-1         HAC   0.020
+PXX    plan-1         HAD   0.020
+PXX    plan-1         HAE   0.020
+PXX    plan-1         HAF   0.020
+PXX    plan-1         HAG   0.020
+PXX    plan-1         HAH   0.020
+PXX    plan-1         HAI   0.020
+PXX    plan-1         NAJ   0.020
+PXX    plan-1         NAK   0.020
+PXX    plan-1         NAL   0.020
+PXX    plan-2         CAA   0.020
+PXX    plan-2         CAM   0.020
+PXX    plan-2         NAL   0.020
+PXX    plan-2         OAB   0.020
+PXX    plan-3         CAM   0.020
+PXX    plan-3         CAN   0.020
+PXX    plan-3        HNAL   0.020
+PXX    plan-3         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PXX           SMILES              ACDLabs 10.04                                                                   O=C(Nc2cc1cccnc1c3ncccc23)C
+PXX SMILES_CANONICAL               CACTVS 3.341                                                                   CC(=O)Nc1cc2cccnc2c3ncccc13
+PXX           SMILES               CACTVS 3.341                                                                   CC(=O)Nc1cc2cccnc2c3ncccc13
+PXX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                   CC(=O)Nc1cc2cccnc2c3c1cccn3
+PXX           SMILES "OpenEye OEToolkits" 1.5.0                                                                   CC(=O)Nc1cc2cccnc2c3c1cccn3
+PXX            InChI                InChI  1.03 InChI=1S/C14H11N3O/c1-9(18)17-12-8-10-4-2-6-15-13(10)14-11(12)5-3-7-16-14/h2-8H,1H3,(H,17,18)
+PXX         InChIKey                InChI  1.03                                                                   AAJXINSCZMZERD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PXX acedrg               243         "dictionary generator"                  
+PXX acedrg_database      11          "data source"                           
+PXX rdkit                2017.03.2   "Chemoinformatics tool"
+PXX refmac5              5.8.0238    "optimization tool"                     

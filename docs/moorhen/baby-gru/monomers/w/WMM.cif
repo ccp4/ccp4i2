@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WMM     WMM      N-phenyl-4-[(4H-1,2,4-triazol-3-ylsulfanyl)methyl]-1,3-thiazol-2-amine     NON-POLYMER     30     19     .     
+#
+data_comp_WMM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WMM     C17     C       CR16    0       14.307      12.433      23.313      
+WMM     C16     C       CR16    0       14.171      13.775      23.607      
+WMM     C18     C       CR16    0       13.452      11.842      22.405      
+WMM     C15     C       CR16    0       13.180      14.532      22.996      
+WMM     C19     C       CR16    0       12.455      12.588      21.789      
+WMM     C4      C       CR15    0       11.062      14.975      17.653      
+WMM     C10     C       CR15    0       8.057       11.687      14.889      
+WMM     C14     C       CR6     0       12.316      13.944      22.076      
+WMM     C3      C       CR5     0       9.929       15.420      18.217      
+WMM     C8      C       CR5     0       7.821       13.176      16.449      
+WMM     C1      C       CR5     0       11.034      14.880      20.135      
+WMM     C6      C       CH2     0       8.777       15.931      17.425      
+WMM     N11     N       NRD5    0       8.380       11.116      16.017      
+WMM     N2      N       NRD5    0       9.898       15.374      19.614      
+WMM     N12     N       NRD5    0       8.231       12.066      17.022      
+WMM     N9      N       NR5     0       7.708       12.957      15.126      
+WMM     N13     N       NH1     0       11.313      14.713      21.469      
+WMM     S5      S       S2      0       12.088      14.502      18.885      
+WMM     S7      S       S2      0       7.470       14.696      17.228      
+WMM     H1      H       H       0       14.982      11.922      23.730      
+WMM     H2      H       H       0       14.754      14.182      24.226      
+WMM     H3      H       H       0       13.542      10.926      22.202      
+WMM     H4      H       H       0       13.093      15.448      23.202      
+WMM     H5      H       H       0       11.876      12.178      21.169      
+WMM     H6      H       H       0       11.292      14.919      16.742      
+WMM     H7      H       H       0       8.064       11.280      14.038      
+WMM     H8      H       H       0       9.088       16.208      16.537      
+WMM     H9      H       H       0       8.402       16.721      17.868      
+WMM     H10     H       H       0       7.447       13.559      14.529      
+WMM     H11     H       H       0       10.781      15.156      22.018      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WMM         C10          N9      SINGLE       y     1.338  0.0142     1.338  0.0142
+WMM         C10         N11      DOUBLE       y     1.304  0.0100     1.304  0.0100
+WMM          C8          N9      SINGLE       y     1.347  0.0155     1.347  0.0155
+WMM         N11         N12      SINGLE       y     1.391  0.0117     1.391  0.0117
+WMM          C8         N12      DOUBLE       y     1.315  0.0133     1.315  0.0133
+WMM          C8          S7      SINGLE       n     1.744  0.0119     1.744  0.0119
+WMM          C6          S7      SINGLE       n     1.809  0.0191     1.809  0.0191
+WMM          C3          C6      SINGLE       n     1.489  0.0100     1.489  0.0100
+WMM          C4          C3      DOUBLE       y     1.339  0.0100     1.339  0.0100
+WMM          C4          S5      SINGLE       y     1.695  0.0200     1.695  0.0200
+WMM          C3          N2      SINGLE       y     1.386  0.0126     1.386  0.0126
+WMM          C1          S5      SINGLE       y     1.695  0.0200     1.695  0.0200
+WMM          C1          N2      DOUBLE       y     1.335  0.0145     1.335  0.0145
+WMM          C1         N13      SINGLE       n     1.367  0.0190     1.367  0.0190
+WMM         C14         N13      SINGLE       n     1.397  0.0200     1.397  0.0200
+WMM         C19         C14      DOUBLE       y     1.389  0.0100     1.389  0.0100
+WMM         C18         C19      SINGLE       y     1.385  0.0100     1.385  0.0100
+WMM         C15         C14      SINGLE       y     1.389  0.0100     1.389  0.0100
+WMM         C17         C18      DOUBLE       y     1.376  0.0112     1.376  0.0112
+WMM         C16         C15      DOUBLE       y     1.385  0.0100     1.385  0.0100
+WMM         C17         C16      SINGLE       y     1.376  0.0124     1.376  0.0124
+WMM         C17          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+WMM         C16          H2      SINGLE       n     1.082  0.0130     0.943  0.0172
+WMM         C18          H3      SINGLE       n     1.082  0.0130     0.943  0.0172
+WMM         C15          H4      SINGLE       n     1.082  0.0130     0.943  0.0178
+WMM         C19          H5      SINGLE       n     1.082  0.0130     0.943  0.0178
+WMM          C4          H6      SINGLE       n     1.082  0.0130     0.942  0.0200
+WMM         C10          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+WMM          C6          H8      SINGLE       n     1.089  0.0100     0.980  0.0156
+WMM          C6          H9      SINGLE       n     1.089  0.0100     0.980  0.0156
+WMM          N9         H10      SINGLE       n     1.016  0.0100     0.887  0.0200
+WMM         N13         H11      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WMM         C18         C17         C16     119.907    1.50
+WMM         C18         C17          H1     120.046    1.50
+WMM         C16         C17          H1     120.046    1.50
+WMM         C15         C16         C17     120.516    1.50
+WMM         C15         C16          H2     119.601    1.50
+WMM         C17         C16          H2     119.883    1.50
+WMM         C19         C18         C17     120.516    1.50
+WMM         C19         C18          H3     119.601    1.50
+WMM         C17         C18          H3     119.883    1.50
+WMM         C14         C15         C16     120.086    1.50
+WMM         C14         C15          H4     119.876    1.50
+WMM         C16         C15          H4     120.038    1.50
+WMM         C14         C19         C18     120.086    1.50
+WMM         C14         C19          H5     119.876    1.50
+WMM         C18         C19          H5     120.038    1.50
+WMM          C3          C4          S5     108.031    3.00
+WMM          C3          C4          H6     129.154    2.00
+WMM          S5          C4          H6     122.815    3.00
+WMM          N9         C10         N11     108.808    1.88
+WMM          N9         C10          H7     124.997    1.50
+WMM         N11         C10          H7     126.196    1.50
+WMM         N13         C14         C19     120.555    2.40
+WMM         N13         C14         C15     120.555    2.40
+WMM         C19         C14         C15     118.889    1.50
+WMM          C6          C3          C4     128.069    3.00
+WMM          C6          C3          N2     123.164    1.50
+WMM          C4          C3          N2     108.767    2.56
+WMM          N9          C8         N12     108.808    1.88
+WMM          N9          C8          S7     124.194    2.05
+WMM         N12          C8          S7     126.998    3.00
+WMM          S5          C1          N2     108.031    3.00
+WMM          S5          C1         N13     122.984    3.00
+WMM          N2          C1         N13     128.984    3.00
+WMM          S7          C6          C3     112.759    2.27
+WMM          S7          C6          H8     109.066    1.50
+WMM          S7          C6          H9     109.066    1.50
+WMM          C3          C6          H8     109.564    1.50
+WMM          C3          C6          H9     109.564    1.50
+WMM          H8          C6          H9     107.811    1.50
+WMM         C10         N11         N12     107.142    1.50
+WMM          C3          N2          C1     107.139    1.65
+WMM         N11         N12          C8     107.228    1.58
+WMM         C10          N9          C8     108.015    2.04
+WMM         C10          N9         H10     126.902    2.70
+WMM          C8          N9         H10     125.083    3.00
+WMM          C1         N13         C14     126.633    3.00
+WMM          C1         N13         H11     116.554    2.70
+WMM         C14         N13         H11     116.813    2.03
+WMM          C4          S5          C1     108.031    3.00
+WMM          C8          S7          C6     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WMM              const_46         C15         C16         C17         C18       0.000    10.0     2
+WMM              const_12         C16         C17         C18         C19       0.000    10.0     2
+WMM              const_39         N13          C1          N2          C3     180.000    10.0     2
+WMM             sp2_sp2_3          S5          C1         N13         C14     180.000     5.0     2
+WMM              const_41         N13          C1          S5          C4     180.000    10.0     2
+WMM             sp3_sp3_1          C3          C6          S7          C8     180.000    10.0     3
+WMM              const_11         C10         N11         N12          C8       0.000    10.0     2
+WMM              const_28         C14         C15         C16         C17       0.000    10.0     2
+WMM              const_16         C17         C18         C19         C14       0.000    10.0     2
+WMM              const_26         N13         C14         C15         C16     180.000    10.0     2
+WMM              const_22         N13         C14         C19         C18     180.000    10.0     2
+WMM              const_44          C3          C4          S5          C1       0.000    10.0     2
+WMM              const_34          C6          C3          C4          S5     180.000    10.0     2
+WMM              const_42          N9         C10         N11         N12       0.000    10.0     2
+WMM       const_sp2_sp2_1         N11         C10          N9          C8       0.000     5.0     2
+WMM             sp2_sp2_7         C19         C14         N13          C1     180.000     5.0     2
+WMM             sp2_sp3_2          C4          C3          C6          S7     -90.000    10.0     6
+WMM              const_37          C6          C3          N2          C1     180.000    10.0     2
+WMM              const_10          S7          C8         N12         N11     180.000    10.0     2
+WMM       const_sp2_sp2_7          S7          C8          N9         C10     180.000     5.0     2
+WMM             sp2_sp2_1          N9          C8          S7          C6     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WMM    plan-1         C14   0.020
+WMM    plan-1         C15   0.020
+WMM    plan-1         C16   0.020
+WMM    plan-1         C17   0.020
+WMM    plan-1         C18   0.020
+WMM    plan-1         C19   0.020
+WMM    plan-1          H1   0.020
+WMM    plan-1          H2   0.020
+WMM    plan-1          H3   0.020
+WMM    plan-1          H4   0.020
+WMM    plan-1          H5   0.020
+WMM    plan-1         N13   0.020
+WMM    plan-2          C1   0.020
+WMM    plan-2          C3   0.020
+WMM    plan-2          C4   0.020
+WMM    plan-2          C6   0.020
+WMM    plan-2          H6   0.020
+WMM    plan-2         N13   0.020
+WMM    plan-2          N2   0.020
+WMM    plan-2          S5   0.020
+WMM    plan-3         C10   0.020
+WMM    plan-3          C8   0.020
+WMM    plan-3         H10   0.020
+WMM    plan-3          H7   0.020
+WMM    plan-3         N11   0.020
+WMM    plan-3         N12   0.020
+WMM    plan-3          N9   0.020
+WMM    plan-3          S7   0.020
+WMM    plan-4          C1   0.020
+WMM    plan-4         C14   0.020
+WMM    plan-4         H11   0.020
+WMM    plan-4         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WMM           SMILES              ACDLabs 12.01                                                                                      n1c(csc1Nc2ccccc2)CSc3nncn3
+WMM            InChI                InChI  1.03 InChI=1S/C12H11N5S2/c1-2-4-9(5-3-1)15-12-16-10(7-19-12)6-18-11-13-8-14-17-11/h1-5,7-8H,6H2,(H,15,16)(H,13,14,17)
+WMM         InChIKey                InChI  1.03                                                                                      WLZCMHNSPJKOQN-UHFFFAOYSA-N
+WMM SMILES_CANONICAL               CACTVS 3.370                                                                                 C(Sc1[nH]cnn1)c2csc(Nc3ccccc3)n2
+WMM           SMILES               CACTVS 3.370                                                                                 C(Sc1[nH]cnn1)c2csc(Nc3ccccc3)n2
+WMM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                 c1ccc(cc1)Nc2nc(cs2)CSc3[nH]cnn3
+WMM           SMILES "OpenEye OEToolkits" 1.7.6                                                                                 c1ccc(cc1)Nc2nc(cs2)CSc3[nH]cnn3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WMM acedrg               243         "dictionary generator"                  
+WMM acedrg_database      11          "data source"                           
+WMM rdkit                2017.03.2   "Chemoinformatics tool"
+WMM refmac5              5.8.0238    "optimization tool"                     

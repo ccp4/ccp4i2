@@ -1,0 +1,207 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JFM     JFM      N-(2-phenylethyl)methanesulfonamide     NON-POLYMER     26     13     .     
+#
+data_comp_JFM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JFM     C10     C       CR16    0       -27.285     20.663      12.034      
+JFM     C13     C       CR16    0       -25.394     18.685      11.667      
+JFM     C01     C       CH3     0       -20.226     21.691      10.278      
+JFM     S02     S       S3      0       -21.221     22.121      8.896       
+JFM     O03     O       O       0       -21.826     23.392      9.167       
+JFM     O04     O       O       0       -20.420     21.974      7.716       
+JFM     N05     N       NT1     0       -22.418     21.032      8.796       
+JFM     C06     C       CH2     0       -23.429     20.995      9.861       
+JFM     C07     C       CH2     0       -24.426     19.867      9.655       
+JFM     C08     C       CR6     0       -25.417     19.765      10.792      
+JFM     C09     C       CR16    0       -26.374     20.754      10.989      
+JFM     C11     C       CR16    0       -27.250     19.584      12.893      
+JFM     C12     C       CR16    0       -26.306     18.596      12.711      
+JFM     H101    H       H       0       -27.930     21.342      12.155      
+JFM     H131    H       H       0       -24.751     18.004      11.550      
+JFM     H011    H       H       0       -20.773     21.682      11.078      
+JFM     H012    H       H       0       -19.517     22.344      10.378      
+JFM     H013    H       H       0       -19.842     20.813      10.136      
+JFM     H051    H       H       0       -22.720     20.997      8.008       
+JFM     H061    H       H       0       -23.905     21.840      9.882       
+JFM     H062    H       H       0       -22.989     20.879      10.717      
+JFM     H071    H       H       0       -23.938     19.021      9.570       
+JFM     H072    H       H       0       -24.911     20.020      8.816       
+JFM     H091    H       H       0       -26.404     21.495      10.405      
+JFM     H111    H       H       0       -27.869     19.523      13.603      
+JFM     H121    H       H       0       -26.279     17.857      13.298      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JFM         S02         O04      DOUBLE       n     1.434  0.0100     1.434  0.0100
+JFM         S02         N05      SINGLE       n     1.621  0.0100     1.621  0.0100
+JFM         N05         C06      SINGLE       n     1.468  0.0120     1.468  0.0120
+JFM         S02         O03      DOUBLE       n     1.434  0.0100     1.434  0.0100
+JFM         C01         S02      SINGLE       n     1.756  0.0100     1.756  0.0100
+JFM         C06         C07      SINGLE       n     1.520  0.0200     1.520  0.0200
+JFM         C07         C08      SINGLE       n     1.511  0.0100     1.511  0.0100
+JFM         C08         C09      SINGLE       y     1.385  0.0111     1.385  0.0111
+JFM         C10         C09      DOUBLE       y     1.386  0.0100     1.386  0.0100
+JFM         C13         C08      DOUBLE       y     1.385  0.0111     1.385  0.0111
+JFM         C10         C11      SINGLE       y     1.376  0.0124     1.376  0.0124
+JFM         C13         C12      SINGLE       y     1.386  0.0100     1.386  0.0100
+JFM         C11         C12      DOUBLE       y     1.374  0.0127     1.374  0.0127
+JFM         C10        H101      SINGLE       n     1.082  0.0130     0.944  0.0175
+JFM         C13        H131      SINGLE       n     1.082  0.0130     0.944  0.0174
+JFM         C01        H011      SINGLE       n     1.089  0.0100     0.969  0.0154
+JFM         C01        H012      SINGLE       n     1.089  0.0100     0.969  0.0154
+JFM         C01        H013      SINGLE       n     1.089  0.0100     0.969  0.0154
+JFM         N05        H051      SINGLE       n     1.036  0.0160     0.844  0.0200
+JFM         C06        H061      SINGLE       n     1.089  0.0100     0.970  0.0100
+JFM         C06        H062      SINGLE       n     1.089  0.0100     0.970  0.0100
+JFM         C07        H071      SINGLE       n     1.089  0.0100     0.981  0.0158
+JFM         C07        H072      SINGLE       n     1.089  0.0100     0.981  0.0158
+JFM         C09        H091      SINGLE       n     1.082  0.0130     0.944  0.0174
+JFM         C11        H111      SINGLE       n     1.082  0.0130     0.944  0.0161
+JFM         C12        H121      SINGLE       n     1.082  0.0130     0.944  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JFM         C09         C10         C11     120.325    1.50
+JFM         C09         C10        H101     119.792    1.50
+JFM         C11         C10        H101     119.883    1.50
+JFM         C08         C13         C12     120.624    1.50
+JFM         C08         C13        H131     119.591    1.50
+JFM         C12         C13        H131     119.786    1.50
+JFM         S02         C01        H011     109.353    1.50
+JFM         S02         C01        H012     109.353    1.50
+JFM         S02         C01        H013     109.353    1.50
+JFM        H011         C01        H012     109.614    1.50
+JFM        H011         C01        H013     109.614    1.50
+JFM        H012         C01        H013     109.614    1.50
+JFM         O04         S02         N05     107.132    1.50
+JFM         O04         S02         O03     118.941    1.50
+JFM         O04         S02         C01     107.962    1.50
+JFM         N05         S02         O03     107.132    1.50
+JFM         N05         S02         C01     107.597    1.50
+JFM         O03         S02         C01     107.962    1.50
+JFM         S02         N05         C06     118.476    1.50
+JFM         S02         N05        H051     110.455    1.50
+JFM         C06         N05        H051     115.465    3.00
+JFM         N05         C06         C07     111.644    2.18
+JFM         N05         C06        H061     109.289    1.50
+JFM         N05         C06        H062     109.289    1.50
+JFM         C07         C06        H061     109.149    1.50
+JFM         C07         C06        H062     109.149    1.50
+JFM        H061         C06        H062     107.873    1.50
+JFM         C06         C07         C08     112.597    2.54
+JFM         C06         C07        H071     108.999    1.50
+JFM         C06         C07        H072     108.999    1.50
+JFM         C08         C07        H071     109.239    1.50
+JFM         C08         C07        H072     109.239    1.50
+JFM        H071         C07        H072     107.823    1.50
+JFM         C07         C08         C09     120.970    1.50
+JFM         C07         C08         C13     120.970    1.50
+JFM         C09         C08         C13     118.060    1.50
+JFM         C08         C09         C10     120.624    1.50
+JFM         C08         C09        H091     119.591    1.50
+JFM         C10         C09        H091     119.786    1.50
+JFM         C10         C11         C12     120.043    1.50
+JFM         C10         C11        H111     119.979    1.50
+JFM         C12         C11        H111     119.979    1.50
+JFM         C13         C12         C11     120.325    1.50
+JFM         C13         C12        H121     119.792    1.50
+JFM         C11         C12        H121     119.883    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JFM       const_sp2_sp2_1         C08         C09         C10         C11       0.000     5.0     2
+JFM              const_21         C09         C10         C11         C12       0.000    10.0     2
+JFM              const_17         C10         C11         C12         C13       0.000    10.0     2
+JFM              const_13         C11         C12         C13         C08       0.000    10.0     2
+JFM              const_11         C07         C08         C13         C12     180.000    10.0     2
+JFM            sp3_sp3_13        H011         C01         S02         O04     180.000    10.0     3
+JFM             sp3_sp3_5         C06         N05         S02         O04     180.000    10.0     3
+JFM             sp3_sp3_7         C07         C06         N05         S02     180.000    10.0     3
+JFM            sp3_sp3_22         N05         C06         C07         C08     180.000    10.0     3
+JFM             sp2_sp3_2         C09         C08         C07         C06     -90.000    10.0     6
+JFM       const_sp2_sp2_7         C07         C08         C09         C10     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JFM    chir_1    S02    O04    O03    N05    both
+JFM    chir_2    N05    S02    C06    H051    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JFM    plan-1         C07   0.020
+JFM    plan-1         C08   0.020
+JFM    plan-1         C09   0.020
+JFM    plan-1         C10   0.020
+JFM    plan-1         C11   0.020
+JFM    plan-1         C12   0.020
+JFM    plan-1         C13   0.020
+JFM    plan-1        H091   0.020
+JFM    plan-1        H101   0.020
+JFM    plan-1        H111   0.020
+JFM    plan-1        H121   0.020
+JFM    plan-1        H131   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JFM           SMILES              ACDLabs 12.01                                                c1cccc(CCNS(C)(=O)=O)c1
+JFM            InChI                InChI  1.03 InChI=1S/C9H13NO2S/c1-13(11,12)10-8-7-9-5-3-2-4-6-9/h2-6,10H,7-8H2,1H3
+JFM         InChIKey                InChI  1.03                                            JGDDFCYMSLNOGJ-UHFFFAOYSA-N
+JFM SMILES_CANONICAL               CACTVS 3.385                                                C[S](=O)(=O)NCCc1ccccc1
+JFM           SMILES               CACTVS 3.385                                                C[S](=O)(=O)NCCc1ccccc1
+JFM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                  CS(=O)(=O)NCCc1ccccc1
+JFM           SMILES "OpenEye OEToolkits" 2.0.6                                                  CS(=O)(=O)NCCc1ccccc1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JFM acedrg               243         "dictionary generator"                  
+JFM acedrg_database      11          "data source"                           
+JFM rdkit                2017.03.2   "Chemoinformatics tool"
+JFM refmac5              5.8.0238    "optimization tool"                     

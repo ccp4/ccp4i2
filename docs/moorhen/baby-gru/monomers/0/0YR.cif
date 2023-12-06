@@ -1,0 +1,185 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0YR     0YR      (2R,3R,4R)-N,2,3,4,5-pentakis(oxidanyl)pentanamide     NON-POLYMER     23     12     .     
+#
+data_comp_0YR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0YR     CAG     C       CH2     0       -22.559     -7.475      -116.385    
+0YR     NAH     N       NH1     0       -21.369     -10.426     -121.296    
+0YR     CAI     C       C       0       -20.866     -10.535     -120.076    
+0YR     CAJ     C       CH1     0       -21.488     -7.707      -117.432    
+0YR     CAK     C       CH1     0       -20.628     -9.244      -119.305    
+0YR     CAL     C       CH1     0       -21.664     -9.032      -118.200    
+0YR     OAB     O       OH1     0       -22.619     -8.546      -115.446    
+0YR     OAD     O       OH1     0       -20.206     -7.684      -116.800    
+0YR     OAF     O       OH1     0       -22.975     -9.080      -118.769    
+0YR     OAE     O       OH1     0       -19.327     -9.271      -118.733    
+0YR     OAA     O       O       0       -20.589     -11.612     -119.549    
+0YR     OAC     O       OH1     0       -21.592     -11.561     -122.068    
+0YR     H1      H       H       0       -23.437     -7.379      -116.827    
+0YR     H2      H       H       0       -22.363     -6.635      -115.904    
+0YR     H3      H       H       0       -21.579     -9.656      -121.655    
+0YR     H4      H       H       0       -21.531     -6.949      -118.088    
+0YR     H5      H       H       0       -20.685     -8.484      -119.934    
+0YR     H6      H       H       0       -21.577     -9.784      -117.552    
+0YR     H7      H       H       0       -23.191     -8.349      -114.855    
+0YR     H8      H       H       0       -20.024     -6.911      -116.504    
+0YR     H9      H       H       0       -23.495     -9.487      -118.236    
+0YR     H10     H       H       0       -19.025     -8.479      -118.726    
+0YR     H11     H       H       0       -22.314     -11.945     -121.780    
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0YR         NAH         OAC      SINGLE       n     1.389  0.0110     1.389  0.0110
+0YR         NAH         CAI      SINGLE       n     1.322  0.0100     1.322  0.0100
+0YR         CAI         OAA      DOUBLE       n     1.229  0.0102     1.229  0.0102
+0YR         CAI         CAK      SINGLE       n     1.519  0.0108     1.519  0.0108
+0YR         CAK         OAE      SINGLE       n     1.419  0.0162     1.419  0.0162
+0YR         CAK         CAL      SINGLE       n     1.528  0.0100     1.528  0.0100
+0YR         CAL         OAF      SINGLE       n     1.429  0.0100     1.429  0.0100
+0YR         CAJ         CAL      SINGLE       n     1.534  0.0163     1.534  0.0163
+0YR         CAJ         OAD      SINGLE       n     1.429  0.0100     1.429  0.0100
+0YR         CAG         CAJ      SINGLE       n     1.514  0.0100     1.514  0.0100
+0YR         CAG         OAB      SINGLE       n     1.425  0.0100     1.425  0.0100
+0YR         CAG          H1      SINGLE       n     1.089  0.0100     0.988  0.0200
+0YR         CAG          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+0YR         NAH          H3      SINGLE       n     1.016  0.0100     0.875  0.0200
+0YR         CAJ          H4      SINGLE       n     1.089  0.0100     1.004  0.0200
+0YR         CAK          H5      SINGLE       n     1.089  0.0100     0.988  0.0129
+0YR         CAL          H6      SINGLE       n     1.089  0.0100     0.996  0.0200
+0YR         OAB          H7      SINGLE       n     0.970  0.0120     0.846  0.0200
+0YR         OAD          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+0YR         OAF          H9      SINGLE       n     0.970  0.0120     0.848  0.0200
+0YR         OAE         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+0YR         OAC         H11      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0YR         CAJ         CAG         OAB     111.364    1.50
+0YR         CAJ         CAG          H1     109.234    1.50
+0YR         CAJ         CAG          H2     109.234    1.50
+0YR         OAB         CAG          H1     109.268    1.50
+0YR         OAB         CAG          H2     109.268    1.50
+0YR          H1         CAG          H2     108.313    1.50
+0YR         OAC         NAH         CAI     120.051    1.50
+0YR         OAC         NAH          H3     117.829    2.59
+0YR         CAI         NAH          H3     122.120    2.48
+0YR         NAH         CAI         OAA     123.680    1.50
+0YR         NAH         CAI         CAK     116.336    1.98
+0YR         OAA         CAI         CAK     119.984    1.78
+0YR         CAL         CAJ         OAD     109.549    1.85
+0YR         CAL         CAJ         CAG     112.159    1.50
+0YR         CAL         CAJ          H4     108.777    1.50
+0YR         OAD         CAJ         CAG     109.623    1.60
+0YR         OAD         CAJ          H4     108.591    1.50
+0YR         CAG         CAJ          H4     107.986    1.50
+0YR         CAI         CAK         OAE     109.850    1.55
+0YR         CAI         CAK         CAL     111.873    1.69
+0YR         CAI         CAK          H5     108.529    1.70
+0YR         OAE         CAK         CAL     109.434    2.40
+0YR         OAE         CAK          H5     109.523    2.04
+0YR         CAL         CAK          H5     108.687    1.50
+0YR         CAK         CAL         OAF     109.317    1.50
+0YR         CAK         CAL         CAJ     113.756    1.69
+0YR         CAK         CAL          H6     108.238    1.72
+0YR         OAF         CAL         CAJ     109.164    1.97
+0YR         OAF         CAL          H6     108.243    1.50
+0YR         CAJ         CAL          H6     108.336    1.50
+0YR         CAG         OAB          H7     108.280    3.00
+0YR         CAJ         OAD          H8     111.202    3.00
+0YR         CAL         OAF          H9     108.564    3.00
+0YR         CAK         OAE         H10     107.477    3.00
+0YR         NAH         OAC         H11     108.051    2.18
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0YR            sp3_sp3_28         OAB         CAG         CAJ         CAL     180.000    10.0     3
+0YR            sp3_sp3_37         CAJ         CAG         OAB          H7     180.000    10.0     3
+0YR             sp2_sp2_3         OAA         CAI         NAH         OAC       0.000     5.0     2
+0YR             sp2_sp3_3         NAH         CAI         CAK         OAE       0.000    10.0     6
+0YR            sp3_sp3_16         OAD         CAJ         CAL         CAK     180.000    10.0     3
+0YR            sp3_sp3_25         CAL         CAJ         OAD          H8     180.000    10.0     3
+0YR             sp3_sp3_4         CAI         CAK         CAL         OAF     180.000    10.0     3
+0YR             sp3_sp3_1         CAI         CAK         OAE         H10     180.000    10.0     3
+0YR            sp3_sp3_13         CAK         CAL         OAF          H9     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+0YR    chir_1    CAJ    OAD    CAL    CAG    negative
+0YR    chir_2    CAK    OAE    CAI    CAL    negative
+0YR    chir_3    CAL    OAF    CAK    CAJ    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0YR    plan-1         CAI   0.020
+0YR    plan-1          H3   0.020
+0YR    plan-1         NAH   0.020
+0YR    plan-1         OAC   0.020
+0YR    plan-2         CAI   0.020
+0YR    plan-2         CAK   0.020
+0YR    plan-2         NAH   0.020
+0YR    plan-2         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0YR           SMILES              ACDLabs 12.01                                                                    O=C(NO)C(O)C(O)C(O)CO
+0YR            InChI                InChI  1.03 InChI=1S/C5H11NO6/c7-1-2(8)3(9)4(10)5(11)6-12/h2-4,7-10,12H,1H2,(H,6,11)/t2-,3-,4-/m1/s1
+0YR         InChIKey                InChI  1.03                                                              AGVYHANDLPZRFS-BXXZVTAOSA-N
+0YR SMILES_CANONICAL               CACTVS 3.370                                                     OC[C@@H](O)[C@@H](O)[C@@H](O)C(=O)NO
+0YR           SMILES               CACTVS 3.370                                                           OC[CH](O)[CH](O)[CH](O)C(=O)NO
+0YR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                      C([C@H]([C@H]([C@H](C(=O)NO)O)O)O)O
+0YR           SMILES "OpenEye OEToolkits" 1.7.6                                                                  C(C(C(C(C(=O)NO)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0YR acedrg               243         "dictionary generator"                  
+0YR acedrg_database      11          "data source"                           
+0YR rdkit                2017.03.2   "Chemoinformatics tool"
+0YR refmac5              5.8.0238    "optimization tool"                     

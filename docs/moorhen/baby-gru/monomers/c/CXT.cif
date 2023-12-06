@@ -1,0 +1,774 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CXT     CXT      Carboxyatractyloside     NON-POLYMER     94     51     .     
+#
+data_comp_CXT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CXT     C1      C       CH1     0       20.405      30.213      -14.885     
+CXT     O1      O       O2      0       19.852      30.948      -15.980     
+CXT     S1      S       S3      0       22.541      33.684      -12.027     
+CXT     C2      C       CH1     0       21.633      30.948      -14.355     
+CXT     O2      O       O2      0       20.779      28.924      -15.306     
+CXT     S2      S       S3      0       20.629      35.730      -15.156     
+CXT     C3      C       CH1     0       21.225      32.350      -13.921     
+CXT     O3      O       O2      0       22.171      30.249      -13.209     
+CXT     C4      C       CH1     0       20.568      33.095      -15.079     
+CXT     O4      O       O2      0       22.438      33.093      -13.507     
+CXT     C5      C       CH1     0       19.392      32.275      -15.622     
+CXT     O5      O       O2      0       20.065      34.393      -14.574     
+CXT     C6      C       CH2     0       18.760      32.871      -16.860     
+CXT     O6      O       O       0       21.374      34.520      -11.851     
+CXT     C7      C       C       0       23.486      29.997      -13.109     
+CXT     O7      O       O       0       23.778      34.432      -11.993     
+CXT     C8      C       CH2     0       23.794      29.138      -11.903     
+CXT     O8      O       OS      -1      22.551      32.537      -11.147     
+CXT     C9      C       CH1     0       24.309      27.751      -12.279     
+CXT     O9      O       O       0       22.020      35.749      -14.902     
+CXT     C10     C       CH3     0       24.871      27.016      -11.062     
+CXT     O10     O       OH1     0       19.981      36.850      -14.311     
+CXT     C11     C       CH3     0       23.222      26.929      -12.963     
+CXT     O11     O       O       0       20.149      35.854      -16.481     
+CXT     O12     O       OH1     0       19.682      32.942      -17.946     
+CXT     O13     O       O       0       24.318      30.410      -13.867     
+CXT     C21     C       CH2     0       20.060      27.097      -16.718     
+CXT     O21     O       OH1     0       20.036      21.185      -18.471     
+CXT     C22     C       CH1     0       19.714      27.960      -15.510     
+CXT     O22     O       OC      -1      16.846      27.792      -14.185     
+CXT     C23     C       CH2     0       19.557      27.133      -14.246     
+CXT     O23     O       O       0       16.099      25.871      -14.572     
+CXT     C24     C       CT      0       18.469      26.033      -14.391     
+CXT     O24     O       OC      -1      17.905      25.532      -12.123     
+CXT     C25     C       CH1     0       18.835      25.173      -15.656     
+CXT     O25     O       O       0       19.365      24.301      -13.004     
+CXT     C26     C       CH2     0       17.990      23.911      -15.881     
+CXT     C27     C       CH2     0       18.740      22.940      -16.779     
+CXT     C28     C       CT      0       19.120      23.509      -18.151     
+CXT     C29     C       CH1     0       19.716      24.949      -18.025     
+CXT     C30     C       CT      0       19.043      25.959      -17.007     
+CXT     C31     C       CH2     0       20.030      25.526      -19.435     
+CXT     C32     C       CH2     0       19.106      25.115      -20.596     
+CXT     C33     C       CH1     0       18.603      23.663      -20.470     
+CXT     C34     C       CH2     0       17.921      23.483      -19.121     
+CXT     C35     C       CH1     0       20.092      22.542      -18.881     
+CXT     C36     C       CR5     0       19.769      22.704      -20.355     
+CXT     C37     C       C       0       17.045      26.610      -14.392     
+CXT     C38     C       C       0       18.581      25.227      -13.089     
+CXT     C39     C       CH3     0       17.754      26.602      -17.567     
+CXT     C40     C       C2      0       20.404      22.108      -21.341     
+CXT     H1      H       H       0       19.726      30.143      -14.165     
+CXT     H2      H       H       0       22.302      31.015      -15.080     
+CXT     H3      H       H       0       20.586      32.286      -13.168     
+CXT     H4      H       H       0       21.235      33.238      -15.795     
+CXT     H5      H       H       0       18.706      32.197      -14.915     
+CXT     H6      H       H       0       18.433      33.772      -16.655     
+CXT     H6A     H       H       0       17.992      32.324      -17.126     
+CXT     H8      H       H       0       22.985      29.041      -11.355     
+CXT     H8A     H       H       0       24.471      29.594      -11.359     
+CXT     H9      H       H       0       25.047      27.876      -12.926     
+CXT     H10     H       H       0       24.991      27.636      -10.322     
+CXT     H10A    H       H       0       25.732      26.624      -11.292     
+CXT     H10B    H       H       0       24.260      26.309      -10.790     
+CXT     HO10    H       H       0       19.154      36.916      -14.489     
+CXT     H11     H       H       0       22.377      27.051      -12.495     
+CXT     H11A    H       H       0       23.465      25.987      -12.950     
+CXT     H11B    H       H       0       23.125      27.221      -13.886     
+CXT     HO12    H       H       0       19.918      32.158      -18.169     
+CXT     H21     H       H       0       20.118      27.675      -17.502     
+CXT     H21A    H       H       0       20.943      26.705      -16.574     
+CXT     HO21    H       H       0       19.288      20.860      -18.679     
+CXT     H22     H       H       0       18.871      28.442      -15.689     
+CXT     H23     H       H       0       19.327      27.724      -13.497     
+CXT     H23A    H       H       0       20.417      26.707      -14.039     
+CXT     H25     H       H       0       19.734      24.816      -15.470     
+CXT     H26     H       H       0       17.801      23.476      -15.029     
+CXT     H26A    H       H       0       17.139      24.142      -16.294     
+CXT     H27     H       H       0       18.183      22.149      -16.908     
+CXT     H27A    H       H       0       19.553      22.654      -16.321     
+CXT     H29     H       H       0       20.610      24.790      -17.640     
+CXT     H31     H       H       0       20.941      25.263      -19.671     
+CXT     H31A    H       H       0       20.023      26.501      -19.390     
+CXT     H32     H       H       0       19.596      25.211      -21.441     
+CXT     H32A    H       H       0       18.336      25.721      -20.626     
+CXT     H33     H       H       0       18.006      23.419      -21.219     
+CXT     H34     H       H       0       17.444      22.623      -19.072     
+CXT     H34A    H       H       0       17.289      24.212      -18.932     
+CXT     H35     H       H       0       21.024      22.845      -18.748     
+CXT     H39     H       H       0       16.973      26.195      -17.156     
+CXT     H39A    H       H       0       17.706      26.468      -18.526     
+CXT     H39B    H       H       0       17.744      27.559      -17.386     
+CXT     H40     H       H       0       20.142      22.262      -22.232     
+CXT     H40A    H       H       0       21.121      21.527      -21.158     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CXT          C1          O1      SINGLE       n     1.422  0.0169     1.422  0.0169
+CXT          C1          O2      SINGLE       n     1.406  0.0135     1.406  0.0135
+CXT          C1          C2      SINGLE       n     1.525  0.0100     1.525  0.0100
+CXT          O1          C5      SINGLE       n     1.440  0.0195     1.440  0.0195
+CXT          S1          O4      SINGLE       n     1.592  0.0200     1.592  0.0200
+CXT          S1          O7      DOUBLE       n     1.446  0.0158     1.446  0.0158
+CXT          S1          O6      DOUBLE       n     1.446  0.0158     1.446  0.0158
+CXT          S1          O8      SINGLE       n     1.446  0.0158     1.446  0.0158
+CXT          C2          C3      SINGLE       n     1.522  0.0100     1.522  0.0100
+CXT          C2          O3      SINGLE       n     1.441  0.0100     1.441  0.0100
+CXT          O2         C22      SINGLE       n     1.450  0.0100     1.450  0.0100
+CXT          S2         O11      DOUBLE       n     1.415  0.0132     1.415  0.0132
+CXT          S2          O9      DOUBLE       n     1.415  0.0132     1.415  0.0132
+CXT          S2          O5      SINGLE       n     1.559  0.0172     1.559  0.0172
+CXT          S2         O10      SINGLE       n     1.545  0.0200     1.545  0.0200
+CXT          C3          C4      SINGLE       n     1.522  0.0154     1.522  0.0154
+CXT          C3          O4      SINGLE       n     1.480  0.0100     1.480  0.0100
+CXT          O3          C7      SINGLE       n     1.329  0.0153     1.329  0.0153
+CXT          C4          C5      SINGLE       n     1.525  0.0186     1.525  0.0186
+CXT          C4          O5      SINGLE       n     1.480  0.0100     1.480  0.0100
+CXT          C5          C6      SINGLE       n     1.511  0.0142     1.511  0.0142
+CXT          C6         O12      SINGLE       n     1.426  0.0200     1.426  0.0200
+CXT          C7         O13      DOUBLE       n     1.197  0.0100     1.197  0.0100
+CXT          C7          C8      SINGLE       n     1.504  0.0200     1.504  0.0200
+CXT          C8          C9      SINGLE       n     1.518  0.0159     1.518  0.0159
+CXT          C9         C11      SINGLE       n     1.519  0.0152     1.519  0.0152
+CXT          C9         C10      SINGLE       n     1.519  0.0152     1.519  0.0152
+CXT         C21         C30      SINGLE       n     1.543  0.0100     1.543  0.0100
+CXT         C21         C22      SINGLE       n     1.520  0.0100     1.520  0.0100
+CXT         O21         C35      SINGLE       n     1.415  0.0119     1.415  0.0119
+CXT         C22         C23      SINGLE       n     1.516  0.0122     1.516  0.0122
+CXT         O22         C37      SINGLE       n     1.213  0.0200     1.213  0.0200
+CXT         C23         C24      SINGLE       n     1.550  0.0100     1.550  0.0100
+CXT         O23         C37      DOUBLE       n     1.213  0.0200     1.213  0.0200
+CXT         C24         C25      SINGLE       n     1.559  0.0100     1.559  0.0100
+CXT         C24         C37      SINGLE       n     1.528  0.0100     1.528  0.0100
+CXT         C24         C38      SINGLE       n     1.528  0.0100     1.528  0.0100
+CXT         O24         C38      SINGLE       n     1.213  0.0200     1.213  0.0200
+CXT         C25         C30      SINGLE       n     1.558  0.0127     1.558  0.0127
+CXT         C25         C26      SINGLE       n     1.530  0.0100     1.530  0.0100
+CXT         O25         C38      DOUBLE       n     1.213  0.0200     1.213  0.0200
+CXT         C26         C27      SINGLE       n     1.520  0.0100     1.520  0.0100
+CXT         C27         C28      SINGLE       n     1.525  0.0125     1.525  0.0125
+CXT         C28         C34      SINGLE       n     1.540  0.0100     1.540  0.0100
+CXT         C28         C35      SINGLE       n     1.543  0.0111     1.543  0.0111
+CXT         C28         C29      SINGLE       n     1.550  0.0100     1.550  0.0100
+CXT         C29         C31      SINGLE       n     1.541  0.0123     1.541  0.0123
+CXT         C29         C30      SINGLE       n     1.568  0.0100     1.568  0.0100
+CXT         C30         C39      SINGLE       n     1.537  0.0100     1.537  0.0100
+CXT         C31         C32      SINGLE       n     1.536  0.0100     1.536  0.0100
+CXT         C32         C33      SINGLE       n     1.541  0.0100     1.541  0.0100
+CXT         C33         C36      SINGLE       n     1.516  0.0100     1.516  0.0100
+CXT         C33         C34      SINGLE       n     1.523  0.0100     1.523  0.0100
+CXT         C35         C36      SINGLE       n     1.516  0.0102     1.516  0.0102
+CXT         C36         C40      DOUBLE       n     1.316  0.0100     1.316  0.0100
+CXT          C1          H1      SINGLE       n     1.089  0.0100     0.992  0.0127
+CXT          C2          H2      SINGLE       n     1.089  0.0100     0.989  0.0151
+CXT          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0181
+CXT          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0181
+CXT          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0182
+CXT          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0184
+CXT          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0184
+CXT          C8          H8      SINGLE       n     1.089  0.0100     0.981  0.0185
+CXT          C8         H8A      SINGLE       n     1.089  0.0100     0.981  0.0185
+CXT          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0148
+CXT         C10         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+CXT         C10        H10A      SINGLE       n     1.089  0.0100     0.973  0.0146
+CXT         C10        H10B      SINGLE       n     1.089  0.0100     0.973  0.0146
+CXT         O10        HO10      SINGLE       n     0.970  0.0120     0.848  0.0200
+CXT         C11         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+CXT         C11        H11A      SINGLE       n     1.089  0.0100     0.973  0.0146
+CXT         C11        H11B      SINGLE       n     1.089  0.0100     0.973  0.0146
+CXT         O12        HO12      SINGLE       n     0.970  0.0120     0.848  0.0200
+CXT         C21         H21      SINGLE       n     1.089  0.0100     0.977  0.0100
+CXT         C21        H21A      SINGLE       n     1.089  0.0100     0.977  0.0100
+CXT         O21        HO21      SINGLE       n     0.970  0.0120     0.839  0.0200
+CXT         C22         H22      SINGLE       n     1.089  0.0100     0.992  0.0200
+CXT         C23         H23      SINGLE       n     1.089  0.0100     0.981  0.0161
+CXT         C23        H23A      SINGLE       n     1.089  0.0100     0.981  0.0161
+CXT         C25         H25      SINGLE       n     1.089  0.0100     0.985  0.0100
+CXT         C26         H26      SINGLE       n     1.089  0.0100     0.975  0.0100
+CXT         C26        H26A      SINGLE       n     1.089  0.0100     0.975  0.0100
+CXT         C27         H27      SINGLE       n     1.089  0.0100     0.976  0.0100
+CXT         C27        H27A      SINGLE       n     1.089  0.0100     0.976  0.0100
+CXT         C29         H29      SINGLE       n     1.089  0.0100     0.986  0.0100
+CXT         C31         H31      SINGLE       n     1.089  0.0100     0.977  0.0101
+CXT         C31        H31A      SINGLE       n     1.089  0.0100     0.977  0.0101
+CXT         C32         H32      SINGLE       n     1.089  0.0100     0.981  0.0104
+CXT         C32        H32A      SINGLE       n     1.089  0.0100     0.981  0.0104
+CXT         C33         H33      SINGLE       n     1.089  0.0100     0.988  0.0102
+CXT         C34         H34      SINGLE       n     1.089  0.0100     0.984  0.0107
+CXT         C34        H34A      SINGLE       n     1.089  0.0100     0.984  0.0107
+CXT         C35         H35      SINGLE       n     1.089  0.0100     0.989  0.0175
+CXT         C39         H39      SINGLE       n     1.089  0.0100     0.978  0.0200
+CXT         C39        H39A      SINGLE       n     1.089  0.0100     0.978  0.0200
+CXT         C39        H39B      SINGLE       n     1.089  0.0100     0.978  0.0200
+CXT         C40         H40      SINGLE       n     1.082  0.0130     0.941  0.0162
+CXT         C40        H40A      SINGLE       n     1.082  0.0130     0.941  0.0162
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CXT          O1          C1          O2     110.157    1.98
+CXT          O1          C1          C2     109.080    1.50
+CXT          O1          C1          H1     109.132    1.50
+CXT          O2          C1          C2     108.732    1.74
+CXT          O2          C1          H1     109.369    1.50
+CXT          C2          C1          H1     109.431    1.50
+CXT          C1          O1          C5     113.300    1.50
+CXT          O4          S1          O7     105.111    2.79
+CXT          O4          S1          O6     105.111    2.79
+CXT          O4          S1          O8     105.111    2.79
+CXT          O7          S1          O6     112.746    1.50
+CXT          O7          S1          O8     112.746    1.50
+CXT          O6          S1          O8     112.746    1.50
+CXT          C1          C2          C3     110.229    1.69
+CXT          C1          C2          O3     109.953    1.50
+CXT          C1          C2          H2     109.198    1.50
+CXT          C3          C2          O3     108.122    1.78
+CXT          C3          C2          H2     109.166    1.50
+CXT          O3          C2          H2     109.859    1.50
+CXT          C1          O2         C22     117.169    1.96
+CXT         O11          S2          O9     120.446    2.66
+CXT         O11          S2          O5     107.694    2.77
+CXT         O11          S2         O10     108.202    2.22
+CXT          O9          S2          O5     107.694    2.77
+CXT          O9          S2         O10     108.202    2.22
+CXT          O5          S2         O10     105.911    3.00
+CXT          C2          C3          C4     110.796    1.54
+CXT          C2          C3          O4     107.426    2.20
+CXT          C2          C3          H3     109.166    1.50
+CXT          C4          C3          O4     107.426    2.20
+CXT          C4          C3          H3     109.166    1.50
+CXT          O4          C3          H3     109.284    1.99
+CXT          C2          O3          C7     117.672    1.50
+CXT          C3          C4          C5     110.316    1.64
+CXT          C3          C4          O5     107.426    2.20
+CXT          C3          C4          H4     109.166    1.50
+CXT          C5          C4          O5     108.486    2.35
+CXT          C5          C4          H4     109.550    1.50
+CXT          O5          C4          H4     109.284    1.99
+CXT          S1          O4          C3     119.421    1.50
+CXT          O1          C5          C4     109.378    1.54
+CXT          O1          C5          C6     106.879    1.50
+CXT          O1          C5          H5     109.134    1.50
+CXT          C4          C5          C6     113.127    1.52
+CXT          C4          C5          H5     108.898    1.50
+CXT          C6          C5          H5     109.269    1.50
+CXT          S2          O5          C4     119.421    1.50
+CXT          C5          C6         O12     111.299    2.09
+CXT          C5          C6          H6     109.363    1.50
+CXT          C5          C6         H6A     109.363    1.50
+CXT         O12          C6          H6     109.265    1.50
+CXT         O12          C6         H6A     109.265    1.50
+CXT          H6          C6         H6A     108.155    1.50
+CXT          O3          C7         O13     123.338    1.50
+CXT          O3          C7          C8     111.751    1.83
+CXT         O13          C7          C8     124.911    1.57
+CXT          C7          C8          C9     111.933    1.50
+CXT          C7          C8          H8     108.762    1.50
+CXT          C7          C8         H8A     108.762    1.50
+CXT          C9          C8          H8     108.689    1.50
+CXT          C9          C8         H8A     108.689    1.50
+CXT          H8          C8         H8A     107.639    1.50
+CXT          C8          C9         C11     110.659    1.50
+CXT          C8          C9         C10     110.659    1.50
+CXT          C8          C9          H9     107.526    1.50
+CXT         C11          C9         C10     110.507    1.50
+CXT         C11          C9          H9     108.052    1.50
+CXT         C10          C9          H9     108.052    1.50
+CXT          C9         C10         H10     109.488    1.50
+CXT          C9         C10        H10A     109.488    1.50
+CXT          C9         C10        H10B     109.488    1.50
+CXT         H10         C10        H10A     109.411    1.50
+CXT         H10         C10        H10B     109.411    1.50
+CXT        H10A         C10        H10B     109.411    1.50
+CXT          S2         O10        HO10     110.510    2.27
+CXT          C9         C11         H11     109.488    1.50
+CXT          C9         C11        H11A     109.488    1.50
+CXT          C9         C11        H11B     109.488    1.50
+CXT         H11         C11        H11A     109.411    1.50
+CXT         H11         C11        H11B     109.411    1.50
+CXT        H11A         C11        H11B     109.411    1.50
+CXT          C6         O12        HO12     109.472    2.41
+CXT         C30         C21         C22     112.436    1.50
+CXT         C30         C21         H21     108.776    1.50
+CXT         C30         C21        H21A     108.776    1.50
+CXT         C22         C21         H21     109.050    1.50
+CXT         C22         C21        H21A     109.050    1.50
+CXT         H21         C21        H21A     107.845    1.50
+CXT         C35         O21        HO21     109.027    1.50
+CXT          O2         C22         C21     109.262    2.57
+CXT          O2         C22         C23     109.852    2.33
+CXT          O2         C22         H22     109.532    1.50
+CXT         C21         C22         C23     110.924    1.50
+CXT         C21         C22         H22     108.993    1.50
+CXT         C23         C22         H22     109.129    1.50
+CXT         C22         C23         C24     111.124    1.57
+CXT         C22         C23         H23     109.270    1.50
+CXT         C22         C23        H23A     109.270    1.50
+CXT         C24         C23         H23     109.056    1.50
+CXT         C24         C23        H23A     109.056    1.50
+CXT         H23         C23        H23A     108.019    1.50
+CXT         C23         C24         C25     112.392    2.23
+CXT         C23         C24         C37     111.056    2.52
+CXT         C23         C24         C38     111.056    2.52
+CXT         C25         C24         C37     111.722    2.84
+CXT         C25         C24         C38     111.722    2.84
+CXT         C37         C24         C38     107.436    1.96
+CXT         C24         C25         C30     110.815    2.54
+CXT         C24         C25         C26     112.399    2.36
+CXT         C24         C25         H25     107.046    1.70
+CXT         C30         C25         C26     111.227    1.50
+CXT         C30         C25         H25     104.260    1.50
+CXT         C26         C25         H25     104.108    1.50
+CXT         C25         C26         C27     110.445    2.41
+CXT         C25         C26         H26     109.659    1.50
+CXT         C25         C26        H26A     109.659    1.50
+CXT         C27         C26         H26     109.618    1.50
+CXT         C27         C26        H26A     109.618    1.50
+CXT         H26         C26        H26A     108.163    1.50
+CXT         C26         C27         C28     113.511    1.50
+CXT         C26         C27         H27     108.864    1.50
+CXT         C26         C27        H27A     108.864    1.50
+CXT         C28         C27         H27     108.877    1.50
+CXT         C28         C27        H27A     108.877    1.50
+CXT         H27         C27        H27A     107.716    1.50
+CXT         C27         C28         C34     112.035    1.57
+CXT         C27         C28         C35     112.212    2.79
+CXT         C27         C28         C29     110.672    1.50
+CXT         C34         C28         C35     100.930    1.69
+CXT         C34         C28         C29     109.996    2.18
+CXT         C35         C28         C29     112.236    3.00
+CXT         C28         C29         C31     109.999    1.50
+CXT         C28         C29         C30     116.600    1.50
+CXT         C28         C29         H29     104.767    1.50
+CXT         C31         C29         C30     114.491    1.50
+CXT         C31         C29         H29     104.732    1.50
+CXT         C30         C29         H29     104.775    1.50
+CXT         C21         C30         C25     107.834    1.50
+CXT         C21         C30         C29     107.632    1.50
+CXT         C21         C30         C39     107.816    1.50
+CXT         C25         C30         C29     107.405    1.50
+CXT         C25         C30         C39     112.577    1.50
+CXT         C29         C30         C39     113.026    1.50
+CXT         C29         C31         C32     116.306    1.50
+CXT         C29         C31         H31     108.605    1.50
+CXT         C29         C31        H31A     108.605    1.50
+CXT         C32         C31         H31     108.433    1.50
+CXT         C32         C31        H31A     108.433    1.50
+CXT         H31         C31        H31A     107.478    1.50
+CXT         C31         C32         C33     111.789    1.50
+CXT         C31         C32         H32     109.090    1.50
+CXT         C31         C32        H32A     109.090    1.50
+CXT         C33         C32         H32     109.151    1.50
+CXT         C33         C32        H32A     109.151    1.50
+CXT         H32         C32        H32A     108.009    1.50
+CXT         C32         C33         C36     110.672    1.50
+CXT         C32         C33         C34     108.592    1.50
+CXT         C32         C33         H33     111.726    1.50
+CXT         C36         C33         C34     102.289    1.50
+CXT         C36         C33         H33     111.627    1.50
+CXT         C34         C33         H33     111.958    1.50
+CXT         C28         C34         C33     101.689    1.50
+CXT         C28         C34         H34     111.161    1.50
+CXT         C28         C34        H34A     111.161    1.50
+CXT         C33         C34         H34     111.665    1.50
+CXT         C33         C34        H34A     111.665    1.50
+CXT         H34         C34        H34A     109.334    1.50
+CXT         O21         C35         C28     113.624    3.00
+CXT         O21         C35         C36     114.155    1.77
+CXT         O21         C35         H35     108.499    1.50
+CXT         C28         C35         C36     104.693    1.50
+CXT         C28         C35         H35     110.449    1.50
+CXT         C36         C35         H35     108.660    1.50
+CXT         C33         C36         C35     107.881    1.50
+CXT         C33         C36         C40     126.904    1.50
+CXT         C35         C36         C40     125.215    1.50
+CXT         O22         C37         O23     120.713    1.50
+CXT         O22         C37         C24     119.643    2.54
+CXT         O23         C37         C24     119.643    2.54
+CXT         C24         C38         O24     119.643    2.54
+CXT         C24         C38         O25     119.643    2.54
+CXT         O24         C38         O25     120.713    1.50
+CXT         C30         C39         H39     109.470    1.50
+CXT         C30         C39        H39A     109.470    1.50
+CXT         C30         C39        H39B     109.470    1.50
+CXT         H39         C39        H39A     109.398    1.50
+CXT         H39         C39        H39B     109.398    1.50
+CXT        H39A         C39        H39B     109.398    1.50
+CXT         C36         C40         H40     120.062    1.50
+CXT         C36         C40        H40A     120.063    1.50
+CXT         H40         C40        H40A     119.875    1.57
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CXT                   nu0          C5          O1          C1          C2     -66.046    10.0     3
+CXT                   nu1          O1          C1          C2          C3      59.790    10.0     3
+CXT                   nu2          C1          C2          C3          C4     -52.864    10.0     3
+CXT                   nu3          C2          C3          C4          C5      50.687    10.0     3
+CXT                   nu4          C3          C4          C5          O1     -56.259    10.0     3
+CXT                   nu5          C4          C5          O1          C1      64.682    10.0     3
+CXT            sp3_sp3_34         C22         C21         C30         C25      60.000    10.0     3
+CXT            sp3_sp3_35         C22         C21         C30         C29     180.000    10.0     3
+CXT            sp3_sp3_36         C22         C21         C30         C39     -60.000    10.0     3
+CXT            sp3_sp3_37         H21         C21         C30         C25     -60.000    10.0     3
+CXT            sp3_sp3_38         H21         C21         C30         C29      60.000    10.0     3
+CXT            sp3_sp3_39         H21         C21         C30         C39     180.000    10.0     3
+CXT            sp3_sp3_40        H21A         C21         C30         C25     180.000    10.0     3
+CXT            sp3_sp3_41        H21A         C21         C30         C29     -60.000    10.0     3
+CXT            sp3_sp3_42        H21A         C21         C30         C39      60.000    10.0     3
+CXT            sp3_sp3_43         C24         C25         C30         C21     -60.000    10.0     3
+CXT            sp3_sp3_44         C24         C25         C30         C29      60.000    10.0     3
+CXT            sp3_sp3_45         C24         C25         C30         C39     180.000    10.0     3
+CXT            sp3_sp3_46         C26         C25         C30         C21     180.000    10.0     3
+CXT            sp3_sp3_47         C26         C25         C30         C29     -60.000    10.0     3
+CXT            sp3_sp3_48         C26         C25         C30         C39      60.000    10.0     3
+CXT            sp3_sp3_49         H25         C25         C30         C21      60.000    10.0     3
+CXT            sp3_sp3_50         H25         C25         C30         C29     180.000    10.0     3
+CXT            sp3_sp3_51         H25         C25         C30         C39     -60.000    10.0     3
+CXT            sp3_sp3_52         C23         C24         C25         C30      60.000    10.0     3
+CXT            sp3_sp3_53         C23         C24         C25         C26     180.000    10.0     3
+CXT            sp3_sp3_54         C23         C24         C25         H25     -60.000    10.0     3
+CXT            sp3_sp3_55         C38         C24         C25         C30     -60.000    10.0     3
+CXT            sp3_sp3_56         C38         C24         C25         C26      60.000    10.0     3
+CXT            sp3_sp3_57         C38         C24         C25         H25     180.000    10.0     3
+CXT            sp3_sp3_58         C37         C24         C25         C30     180.000    10.0     3
+CXT            sp3_sp3_59         C37         C24         C25         C26     -60.000    10.0     3
+CXT            sp3_sp3_60         C37         C24         C25         H25      60.000    10.0     3
+CXT            sp3_sp3_61         C22         C23         C24         C25     -60.000    10.0     3
+CXT            sp3_sp3_62         C22         C23         C24         C37      60.000    10.0     3
+CXT            sp3_sp3_63         C22         C23         C24         C38     180.000    10.0     3
+CXT            sp3_sp3_64         H23         C23         C24         C25     180.000    10.0     3
+CXT            sp3_sp3_65         H23         C23         C24         C37     -60.000    10.0     3
+CXT            sp3_sp3_66         H23         C23         C24         C38      60.000    10.0     3
+CXT            sp3_sp3_67        H23A         C23         C24         C25      60.000    10.0     3
+CXT            sp3_sp3_68        H23A         C23         C24         C37     180.000    10.0     3
+CXT            sp3_sp3_69        H23A         C23         C24         C38     -60.000    10.0     3
+CXT            sp3_sp3_70         C21         C22         C23         C24      60.000    10.0     3
+CXT            sp3_sp3_71         C21         C22         C23         H23     180.000    10.0     3
+CXT            sp3_sp3_72         C21         C22         C23        H23A     -60.000    10.0     3
+CXT            sp3_sp3_73          O2         C22         C23         C24     -60.000    10.0     3
+CXT            sp3_sp3_74          O2         C22         C23         H23      60.000    10.0     3
+CXT            sp3_sp3_75          O2         C22         C23        H23A     180.000    10.0     3
+CXT            sp3_sp3_76         H22         C22         C23         C24     180.000    10.0     3
+CXT            sp3_sp3_77         H22         C22         C23         H23     -60.000    10.0     3
+CXT            sp3_sp3_78         H22         C22         C23        H23A      60.000    10.0     3
+CXT            sp3_sp3_79         C28         C29         C30         C25     -60.000    10.0     3
+CXT            sp3_sp3_80         C28         C29         C30         C21      60.000    10.0     3
+CXT            sp3_sp3_81         C28         C29         C30         C39     180.000    10.0     3
+CXT            sp3_sp3_82         C31         C29         C30         C25     180.000    10.0     3
+CXT            sp3_sp3_83         C31         C29         C30         C21     -60.000    10.0     3
+CXT            sp3_sp3_84         C31         C29         C30         C39      60.000    10.0     3
+CXT            sp3_sp3_85         H29         C29         C30         C25      60.000    10.0     3
+CXT            sp3_sp3_86         H29         C29         C30         C21     180.000    10.0     3
+CXT            sp3_sp3_87         H29         C29         C30         C39     -60.000    10.0     3
+CXT            sp3_sp3_88         C27         C28         C29         C30      60.000    10.0     3
+CXT            sp3_sp3_89         C27         C28         C29         C31     180.000    10.0     3
+CXT            sp3_sp3_90         C27         C28         C29         H29     -60.000    10.0     3
+CXT            sp3_sp3_91         C34         C28         C29         C30     -60.000    10.0     3
+CXT            sp3_sp3_92         C34         C28         C29         C31      60.000    10.0     3
+CXT            sp3_sp3_93         C34         C28         C29         H29     180.000    10.0     3
+CXT            sp3_sp3_94         C35         C28         C29         C30     180.000    10.0     3
+CXT            sp3_sp3_95         C35         C28         C29         C31     -60.000    10.0     3
+CXT            sp3_sp3_96         C35         C28         C29         H29      60.000    10.0     3
+CXT            sp3_sp3_97         C26         C27         C28         C29     -60.000    10.0     3
+CXT            sp3_sp3_98         C26         C27         C28         C34      60.000    10.0     3
+CXT            sp3_sp3_99         C26         C27         C28         C35     180.000    10.0     3
+CXT           sp3_sp3_100         H27         C27         C28         C29     180.000    10.0     3
+CXT           sp3_sp3_101         H27         C27         C28         C34     -60.000    10.0     3
+CXT           sp3_sp3_102         H27         C27         C28         C35      60.000    10.0     3
+CXT           sp3_sp3_103        H27A         C27         C28         C29      60.000    10.0     3
+CXT           sp3_sp3_104        H27A         C27         C28         C34     180.000    10.0     3
+CXT           sp3_sp3_105        H27A         C27         C28         C35     -60.000    10.0     3
+CXT           sp3_sp3_106         C25         C26         C27         C28      60.000    10.0     3
+CXT           sp3_sp3_107         C25         C26         C27         H27     180.000    10.0     3
+CXT           sp3_sp3_108         C25         C26         C27        H27A     -60.000    10.0     3
+CXT           sp3_sp3_109         H26         C26         C27         C28     -60.000    10.0     3
+CXT           sp3_sp3_110         H26         C26         C27         H27      60.000    10.0     3
+CXT           sp3_sp3_111         H26         C26         C27        H27A     180.000    10.0     3
+CXT           sp3_sp3_112        H26A         C26         C27         C28     180.000    10.0     3
+CXT           sp3_sp3_113        H26A         C26         C27         H27     -60.000    10.0     3
+CXT           sp3_sp3_114        H26A         C26         C27        H27A      60.000    10.0     3
+CXT           sp3_sp3_115         C35         C28         C34         C33      60.000    10.0     3
+CXT           sp3_sp3_116         C35         C28         C34         H34     180.000    10.0     3
+CXT           sp3_sp3_117         C35         C28         C34        H34A     -60.000    10.0     3
+CXT           sp3_sp3_118         C27         C28         C34         C33     -60.000    10.0     3
+CXT           sp3_sp3_119         C27         C28         C34         H34      60.000    10.0     3
+CXT           sp3_sp3_120         C27         C28         C34        H34A     180.000    10.0     3
+CXT           sp3_sp3_121         C29         C28         C34         C33     180.000    10.0     3
+CXT           sp3_sp3_122         C29         C28         C34         H34     -60.000    10.0     3
+CXT           sp3_sp3_123         C29         C28         C34        H34A      60.000    10.0     3
+CXT           sp3_sp3_124         C32         C33         C34         C28     -60.000    10.0     3
+CXT           sp3_sp3_125         C32         C33         C34         H34      60.000    10.0     3
+CXT           sp3_sp3_126         C32         C33         C34        H34A     180.000    10.0     3
+CXT           sp3_sp3_127         C36         C33         C34         C28     180.000    10.0     3
+CXT           sp3_sp3_128         C36         C33         C34         H34     -60.000    10.0     3
+CXT           sp3_sp3_129         C36         C33         C34        H34A      60.000    10.0     3
+CXT           sp3_sp3_130         H33         C33         C34         C28      60.000    10.0     3
+CXT           sp3_sp3_131         H33         C33         C34         H34     180.000    10.0     3
+CXT           sp3_sp3_132         H33         C33         C34        H34A     -60.000    10.0     3
+CXT           sp3_sp3_133         C31         C32         C33         C34      60.000    10.0     3
+CXT           sp3_sp3_134         C31         C32         C33         C36     180.000    10.0     3
+CXT           sp3_sp3_135         C31         C32         C33         H33     -60.000    10.0     3
+CXT           sp3_sp3_136         H32         C32         C33         C34     -60.000    10.0     3
+CXT           sp3_sp3_137         H32         C32         C33         C36      60.000    10.0     3
+CXT           sp3_sp3_138         H32         C32         C33         H33     180.000    10.0     3
+CXT           sp3_sp3_139        H32A         C32         C33         C34     180.000    10.0     3
+CXT           sp3_sp3_140        H32A         C32         C33         C36     -60.000    10.0     3
+CXT           sp3_sp3_141        H32A         C32         C33         H33      60.000    10.0     3
+CXT           sp3_sp3_142         C29         C31         C32         C33     -60.000    10.0     3
+CXT           sp3_sp3_143         C29         C31         C32         H32      60.000    10.0     3
+CXT           sp3_sp3_144         C29         C31         C32        H32A     180.000    10.0     3
+CXT           sp3_sp3_145         H31         C31         C32         C33     180.000    10.0     3
+CXT           sp3_sp3_146         H31         C31         C32         H32     -60.000    10.0     3
+CXT           sp3_sp3_147         H31         C31         C32        H32A      60.000    10.0     3
+CXT           sp3_sp3_148        H31A         C31         C32         C33      60.000    10.0     3
+CXT           sp3_sp3_149        H31A         C31         C32         H32     180.000    10.0     3
+CXT           sp3_sp3_150        H31A         C31         C32        H32A     -60.000    10.0     3
+CXT           sp3_sp3_151         C28         C29         C31         C32      60.000    10.0     3
+CXT           sp3_sp3_152         C28         C29         C31         H31     180.000    10.0     3
+CXT           sp3_sp3_153         C28         C29         C31        H31A     -60.000    10.0     3
+CXT           sp3_sp3_154         C30         C29         C31         C32     -60.000    10.0     3
+CXT           sp3_sp3_155         C30         C29         C31         H31      60.000    10.0     3
+CXT           sp3_sp3_156         C30         C29         C31        H31A     180.000    10.0     3
+CXT           sp3_sp3_157         H29         C29         C31         C32     180.000    10.0     3
+CXT           sp3_sp3_158         H29         C29         C31         H31     -60.000    10.0     3
+CXT           sp3_sp3_159         H29         C29         C31        H31A      60.000    10.0     3
+CXT             sp2_sp3_1         C35         C36         C33         C34       0.000    10.0     6
+CXT             sp2_sp3_2         C35         C36         C33         C32     120.000    10.0     6
+CXT             sp2_sp3_3         C35         C36         C33         H33    -120.000    10.0     6
+CXT             sp2_sp3_4         C40         C36         C33         C34     180.000    10.0     6
+CXT             sp2_sp3_5         C40         C36         C33         C32     -60.000    10.0     6
+CXT             sp2_sp3_6         C40         C36         C33         H33      60.000    10.0     6
+CXT             sp2_sp3_7         C33         C36         C35         C28       0.000    10.0     6
+CXT             sp2_sp3_8         C33         C36         C35         O21     120.000    10.0     6
+CXT             sp2_sp3_9         C33         C36         C35         H35    -120.000    10.0     6
+CXT            sp2_sp3_10         C40         C36         C35         C28     180.000    10.0     6
+CXT            sp2_sp3_11         C40         C36         C35         O21     -60.000    10.0     6
+CXT            sp2_sp3_12         C40         C36         C35         H35      60.000    10.0     6
+CXT           sp3_sp3_160          O1          C1          O2         C22     180.000    10.0     3
+CXT           sp3_sp3_161          C2          C1          O2         C22      60.000    10.0     3
+CXT           sp3_sp3_162          H1          C1          O2         C22     -60.000    10.0     3
+CXT           sp3_sp3_172          C3          O4          S1          O6     180.000    10.0     3
+CXT           sp3_sp3_173          C3          O4          S1          O7     -60.000    10.0     3
+CXT           sp3_sp3_174          C3          O4          S1          O8      60.000    10.0     3
+CXT           sp3_sp3_175          C1          C2          O3          C7     180.000    10.0     3
+CXT           sp3_sp3_176          C3          C2          O3          C7     -60.000    10.0     3
+CXT           sp3_sp3_177          H2          C2          O3          C7      60.000    10.0     3
+CXT           sp3_sp3_178         C21         C22          O2          C1     180.000    10.0     3
+CXT           sp3_sp3_179         C23         C22          O2          C1      60.000    10.0     3
+CXT           sp3_sp3_180         H22         C22          O2          C1     -60.000    10.0     3
+CXT           sp3_sp3_181          C4          O5          S2          O9     180.000    10.0     3
+CXT           sp3_sp3_182          C4          O5          S2         O11     -60.000    10.0     3
+CXT           sp3_sp3_183          C4          O5          S2         O10      60.000    10.0     3
+CXT           sp3_sp3_184        HO10         O10          S2         O11     180.000    10.0     3
+CXT           sp3_sp3_185        HO10         O10          S2          O9     -60.000    10.0     3
+CXT           sp3_sp3_186        HO10         O10          S2          O5      60.000    10.0     3
+CXT           sp3_sp3_187          C2          C3          O4          S1     180.000    10.0     3
+CXT           sp3_sp3_188          C4          C3          O4          S1      60.000    10.0     3
+CXT           sp3_sp3_189          H3          C3          O4          S1     -60.000    10.0     3
+CXT             sp2_sp2_1         O13          C7          O3          C2     180.000     5.0     2
+CXT             sp2_sp2_2          C8          C7          O3          C2       0.000     5.0     2
+CXT           sp3_sp3_190          C3          C4          O5          S2     180.000    10.0     3
+CXT           sp3_sp3_191          C5          C4          O5          S2      60.000    10.0     3
+CXT           sp3_sp3_192          H4          C4          O5          S2     -60.000    10.0     3
+CXT           sp3_sp3_193          O1          C5          C6         O12     180.000    10.0     3
+CXT           sp3_sp3_194          O1          C5          C6          H6     -60.000    10.0     3
+CXT           sp3_sp3_195          O1          C5          C6         H6A      60.000    10.0     3
+CXT           sp3_sp3_196          C4          C5          C6         O12      60.000    10.0     3
+CXT           sp3_sp3_197          C4          C5          C6          H6     180.000    10.0     3
+CXT           sp3_sp3_198          C4          C5          C6         H6A     -60.000    10.0     3
+CXT           sp3_sp3_199          H5          C5          C6         O12     -60.000    10.0     3
+CXT           sp3_sp3_200          H5          C5          C6          H6      60.000    10.0     3
+CXT           sp3_sp3_201          H5          C5          C6         H6A     180.000    10.0     3
+CXT           sp3_sp3_202          C5          C6         O12        HO12     180.000    10.0     3
+CXT           sp3_sp3_203          H6          C6         O12        HO12      60.000    10.0     3
+CXT           sp3_sp3_204         H6A          C6         O12        HO12     -60.000    10.0     3
+CXT            sp2_sp3_13          O3          C7          C8          H8       0.000    10.0     6
+CXT            sp2_sp3_14          O3          C7          C8          C9     120.000    10.0     6
+CXT            sp2_sp3_15          O3          C7          C8         H8A    -120.000    10.0     6
+CXT            sp2_sp3_16         O13          C7          C8          H8     180.000    10.0     6
+CXT            sp2_sp3_17         O13          C7          C8          C9     -60.000    10.0     6
+CXT            sp2_sp3_18         O13          C7          C8         H8A      60.000    10.0     6
+CXT           sp3_sp3_205          C7          C8          C9         C10     180.000    10.0     3
+CXT           sp3_sp3_206          C7          C8          C9         C11     -60.000    10.0     3
+CXT           sp3_sp3_207          C7          C8          C9          H9      60.000    10.0     3
+CXT           sp3_sp3_208          H8          C8          C9         C10      60.000    10.0     3
+CXT           sp3_sp3_209          H8          C8          C9         C11     180.000    10.0     3
+CXT           sp3_sp3_210          H8          C8          C9          H9     -60.000    10.0     3
+CXT           sp3_sp3_211         H8A          C8          C9         C10     -60.000    10.0     3
+CXT           sp3_sp3_212         H8A          C8          C9         C11      60.000    10.0     3
+CXT           sp3_sp3_213         H8A          C8          C9          H9     180.000    10.0     3
+CXT           sp3_sp3_214         H11         C11          C9          C8     180.000    10.0     3
+CXT           sp3_sp3_215         H11         C11          C9         C10     -60.000    10.0     3
+CXT           sp3_sp3_216         H11         C11          C9          H9      60.000    10.0     3
+CXT           sp3_sp3_217        H11A         C11          C9          C8      60.000    10.0     3
+CXT           sp3_sp3_218        H11A         C11          C9         C10     180.000    10.0     3
+CXT           sp3_sp3_219        H11A         C11          C9          H9     -60.000    10.0     3
+CXT           sp3_sp3_220        H11B         C11          C9          C8     -60.000    10.0     3
+CXT           sp3_sp3_221        H11B         C11          C9         C10      60.000    10.0     3
+CXT           sp3_sp3_222        H11B         C11          C9          H9     180.000    10.0     3
+CXT           sp3_sp3_223         H10         C10          C9         C11     180.000    10.0     3
+CXT           sp3_sp3_224         H10         C10          C9          C8     -60.000    10.0     3
+CXT           sp3_sp3_225         H10         C10          C9          H9      60.000    10.0     3
+CXT           sp3_sp3_226        H10A         C10          C9         C11      60.000    10.0     3
+CXT           sp3_sp3_227        H10A         C10          C9          C8     180.000    10.0     3
+CXT           sp3_sp3_228        H10A         C10          C9          H9     -60.000    10.0     3
+CXT           sp3_sp3_229        H10B         C10          C9         C11     -60.000    10.0     3
+CXT           sp3_sp3_230        H10B         C10          C9          C8      60.000    10.0     3
+CXT           sp3_sp3_231        H10B         C10          C9          H9     180.000    10.0     3
+CXT           sp3_sp3_232         C30         C21         C22         C23     180.000    10.0     3
+CXT           sp3_sp3_233         C30         C21         C22          O2     -60.000    10.0     3
+CXT           sp3_sp3_234         C30         C21         C22         H22      60.000    10.0     3
+CXT           sp3_sp3_235         H21         C21         C22         C23      60.000    10.0     3
+CXT           sp3_sp3_236         H21         C21         C22          O2     180.000    10.0     3
+CXT           sp3_sp3_237         H21         C21         C22         H22     -60.000    10.0     3
+CXT           sp3_sp3_238        H21A         C21         C22         C23     -60.000    10.0     3
+CXT           sp3_sp3_239        H21A         C21         C22          O2      60.000    10.0     3
+CXT           sp3_sp3_240        H21A         C21         C22         H22     180.000    10.0     3
+CXT           sp3_sp3_241         C28         C35         O21        HO21     180.000    10.0     3
+CXT           sp3_sp3_242         C36         C35         O21        HO21      60.000    10.0     3
+CXT           sp3_sp3_243         H35         C35         O21        HO21     -60.000    10.0     3
+CXT            sp2_sp3_19         O22         C37         C24         C25       0.000    10.0     6
+CXT            sp2_sp3_20         O22         C37         C24         C38     120.000    10.0     6
+CXT            sp2_sp3_21         O22         C37         C24         C23    -120.000    10.0     6
+CXT            sp2_sp3_22         O23         C37         C24         C25     180.000    10.0     6
+CXT            sp2_sp3_23         O23         C37         C24         C38     -60.000    10.0     6
+CXT            sp2_sp3_24         O23         C37         C24         C23      60.000    10.0     6
+CXT            sp2_sp3_25         O24         C38         C24         C37       0.000    10.0     6
+CXT            sp2_sp3_26         O24         C38         C24         C25     120.000    10.0     6
+CXT            sp2_sp3_27         O24         C38         C24         C23    -120.000    10.0     6
+CXT            sp2_sp3_28         O25         C38         C24         C37     180.000    10.0     6
+CXT            sp2_sp3_29         O25         C38         C24         C25     -60.000    10.0     6
+CXT            sp2_sp3_30         O25         C38         C24         C23      60.000    10.0     6
+CXT           sp3_sp3_244         C30         C25         C26         C27     180.000    10.0     3
+CXT           sp3_sp3_245         C30         C25         C26         H26     -60.000    10.0     3
+CXT           sp3_sp3_246         C30         C25         C26        H26A      60.000    10.0     3
+CXT           sp3_sp3_247         C24         C25         C26         C27      60.000    10.0     3
+CXT           sp3_sp3_248         C24         C25         C26         H26     180.000    10.0     3
+CXT           sp3_sp3_249         C24         C25         C26        H26A     -60.000    10.0     3
+CXT           sp3_sp3_250         H25         C25         C26         C27     -60.000    10.0     3
+CXT           sp3_sp3_251         H25         C25         C26         H26      60.000    10.0     3
+CXT           sp3_sp3_252         H25         C25         C26        H26A     180.000    10.0     3
+CXT           sp3_sp3_253         C34         C28         C35         C36     180.000    10.0     3
+CXT           sp3_sp3_254         C34         C28         C35         O21     -60.000    10.0     3
+CXT           sp3_sp3_255         C34         C28         C35         H35      60.000    10.0     3
+CXT           sp3_sp3_256         C27         C28         C35         C36      60.000    10.0     3
+CXT           sp3_sp3_257         C27         C28         C35         O21     180.000    10.0     3
+CXT           sp3_sp3_258         C27         C28         C35         H35     -60.000    10.0     3
+CXT           sp3_sp3_259         C29         C28         C35         C36     -60.000    10.0     3
+CXT           sp3_sp3_260         C29         C28         C35         O21      60.000    10.0     3
+CXT           sp3_sp3_261         C29         C28         C35         H35     180.000    10.0     3
+CXT           sp3_sp3_262         C21         C30         C39         H39     180.000    10.0     3
+CXT           sp3_sp3_263         C21         C30         C39        H39A     -60.000    10.0     3
+CXT           sp3_sp3_264         C21         C30         C39        H39B      60.000    10.0     3
+CXT           sp3_sp3_265         C25         C30         C39         H39      60.000    10.0     3
+CXT           sp3_sp3_266         C25         C30         C39        H39A     180.000    10.0     3
+CXT           sp3_sp3_267         C25         C30         C39        H39B     -60.000    10.0     3
+CXT           sp3_sp3_268         C29         C30         C39         H39     -60.000    10.0     3
+CXT           sp3_sp3_269         C29         C30         C39        H39A      60.000    10.0     3
+CXT           sp3_sp3_270         C29         C30         C39        H39B     180.000    10.0     3
+CXT             sp2_sp2_3         C33         C36         C40         H40     180.000     5.0     2
+CXT             sp2_sp2_4         C33         C36         C40        H40A       0.000     5.0     2
+CXT             sp2_sp2_5         C35         C36         C40         H40       0.000     5.0     2
+CXT             sp2_sp2_6         C35         C36         C40        H40A     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CXT    chir_1    C1    O1    O2    C2    negative
+CXT    chir_2    S1    O7    O6    O4    both
+CXT    chir_3    C2    O3    C1    C3    negative
+CXT    chir_4    S2    O11    O9    O5    both
+CXT    chir_5    C3    O4    C4    C2    negative
+CXT    chir_6    C4    O5    C3    C5    negative
+CXT    chir_7    C5    O1    C4    C6    negative
+CXT    chir_8    C9    C8    C11    C10    both
+CXT    chir_9    C22    O2    C23    C21    positive
+CXT    chir_10    C24    C37    C38    C25    both
+CXT    chir_11    C25    C24    C30    C26    positive
+CXT    chir_12    C28    C35    C29    C34    negative
+CXT    chir_13    C29    C28    C30    C31    positive
+CXT    chir_14    C30    C25    C29    C21    positive
+CXT    chir_15    C33    C36    C34    C32    negative
+CXT    chir_16    C35    O21    C28    C36    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CXT    plan-1          C7   0.020
+CXT    plan-1          C8   0.020
+CXT    plan-1         O13   0.020
+CXT    plan-1          O3   0.020
+CXT    plan-2         C33   0.020
+CXT    plan-2         C35   0.020
+CXT    plan-2         C36   0.020
+CXT    plan-2         C40   0.020
+CXT    plan-3         C24   0.020
+CXT    plan-3         C37   0.020
+CXT    plan-3         O22   0.020
+CXT    plan-3         O23   0.020
+CXT    plan-4         C24   0.020
+CXT    plan-4         C38   0.020
+CXT    plan-4         O24   0.020
+CXT    plan-4         O25   0.020
+CXT    plan-5         C36   0.020
+CXT    plan-5         C40   0.020
+CXT    plan-5         H40   0.020
+CXT    plan-5        H40A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CXT           SMILES              ACDLabs 12.01                                                                                                                                                                                                                         O=C(O)C4(C(=O)O)C5CCC12CC(/C(=C)C1O)CCC2C5(CC(OC3OC(C(OS(=O)(=O)O)C(OS(=O)(=O)O)C3OC(=O)CC(C)C)CO)C4)C
+CXT            InChI                InChI  1.03 InChI=1S/C31H46O18S2/c1-14(2)9-21(33)47-24-23(49-51(42,43)44)22(48-50(39,40)41)18(13-32)46-26(24)45-17-11-29(4)19-6-5-16-10-30(19,25(34)15(16)3)8-7-20(29)31(12-17,27(35)36)28(37)38/h14,16-20,22-26,32,34H,3,5-13H2,1-2,4H3,(H,35,36)(H,37,38)(H,39,40,41)(H,42,43,44)/t16-,17+,18-,19+,20+,22-,23+,24-,25+,26-,29+,30-/m1/s1
+CXT         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                    AQFATIOBERWBDY-LNQSNDDKSA-N
+CXT SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                CC(C)CC(=O)O[C@H]1[C@H](O[C@H]2C[C@@]3(C)[C@@H]4CC[C@@H]5C[C@@]4(CC[C@@H]3C(C2)(C(O)=O)C(O)=O)[C@@H](O)C5=C)O[C@H](CO)[C@@H](O[S](O)(=O)=O)[C@@H]1O[S](O)(=O)=O
+CXT           SMILES               CACTVS 3.385                                                                                                                                                                                    CC(C)CC(=O)O[CH]1[CH](O[CH]2C[C]3(C)[CH]4CC[CH]5C[C]4(CC[CH]3C(C2)(C(O)=O)C(O)=O)[CH](O)C5=C)O[CH](CO)[CH](O[S](O)(=O)=O)[CH]1O[S](O)(=O)=O
+CXT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                      CC(C)CC(=O)O[C@@H]1[C@H]([C@@H]([C@H](O[C@H]1O[C@H]2C[C@]3([C@@H]4CC[C@@H]5C[C@@]4(CC[C@@H]3C(C2)(C(=O)O)C(=O)O)[C@H](C5=C)O)C)CO)OS(=O)(=O)O)OS(=O)(=O)O
+CXT           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                          CC(C)CC(=O)OC1C(C(C(OC1OC2CC3(C4CCC5CC4(CCC3C(C2)(C(=O)O)C(=O)O)C(C5=C)O)C)CO)OS(=O)(=O)O)OS(=O)(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CXT acedrg               243         "dictionary generator"                  
+CXT acedrg_database      11          "data source"                           
+CXT rdkit                2017.03.2   "Chemoinformatics tool"
+CXT refmac5              5.8.0238    "optimization tool"                     

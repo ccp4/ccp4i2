@@ -1,0 +1,673 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+POV     POV      "(2S)-3-(hexadecanoyloxy)-2-[(9Z)-octadec-9-enoyloxy]propyl 2-(trimethylammonio)ethyl phosphate"     NON-POLYMER     134     52     .     
+#
+data_comp_POV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+POV     N       N       NT      1       88.524      59.810      75.416      
+POV     P       P       P       0       88.213      60.191      80.008      
+POV     C1      C       CH2     0       86.573      62.153      79.208      
+POV     C2      C       CH1     0       87.539      63.184      78.666      
+POV     C3      C       CH2     0       87.912      64.246      79.678      
+POV     C210    C       C1      0       78.463      67.070      70.449      
+POV     C310    C       CH2     0       78.521      64.232      77.338      
+POV     C11     C       CH2     0       88.660      58.778      77.804      
+POV     O11     O       O2      0       87.160      61.374      80.296      
+POV     C211    C       CH2     0       78.820      66.818      69.016      
+POV     C311    C       CH2     0       77.063      63.980      77.663      
+POV     C12     C       CH2     0       89.257      59.675      76.742      
+POV     O12     O       O2      0       87.719      59.518      78.634      
+POV     C212    C       CH2     0       77.636      66.749      68.091      
+POV     C312    C       CH2     0       76.290      63.225      76.600      
+POV     C13     C       CH3     0       88.555      58.523      74.655      
+POV     O13     O       OP      -1      89.566      60.810      79.781      
+POV     C213    C       CH2     0       76.569      65.722      68.456      
+POV     C313    C       CH2     0       75.948      64.029      75.360      
+POV     C14     C       CH3     0       87.103      60.223      75.629      
+POV     O14     O       O       0       88.040      59.166      81.094      
+POV     C214    C       CH2     0       77.074      64.307      68.621      
+POV     C314    C       CH2     0       76.834      63.754      74.168      
+POV     C15     C       CH3     0       89.206      60.858      74.599      
+POV     C215    C       CH2     0       75.984      63.271      68.747      
+POV     C315    C       CH2     0       76.717      64.769      73.059      
+POV     C216    C       CH2     0       76.485      61.868      68.988      
+POV     C316    C       CH3     0       75.358      64.797      72.398      
+POV     C217    C       CH2     0       76.959      61.607      70.395      
+POV     C218    C       CH3     0       77.363      60.173      70.641      
+POV     C21     C       C       0       87.630      64.321      76.517      
+POV     O21     O       O2      0       86.889      63.802      77.516      
+POV     C22     C       CH2     0       86.883      64.358      75.209      
+POV     O22     O       O       0       88.757      64.727      76.652      
+POV     C23     C       CH2     0       85.487      64.901      75.323      
+POV     C24     C       CH2     0       84.879      65.255      73.978      
+POV     C25     C       CH2     0       83.418      65.625      74.043      
+POV     C26     C       CH2     0       82.782      65.864      72.698      
+POV     C27     C       CH2     0       81.325      66.304      72.760      
+POV     C28     C       CH2     0       80.689      66.475      71.416      
+POV     C29     C       C1      0       79.261      66.922      71.478      
+POV     C31     C       C       0       86.818      66.014      80.860      
+POV     O31     O       O2      0       86.774      65.119      79.871      
+POV     C32     C       CH2     0       85.529      66.796      80.967      
+POV     O32     O       O       0       87.774      66.193      81.573      
+POV     C33     C       CH2     0       84.276      65.956      80.911      
+POV     C34     C       CH2     0       83.656      65.908      79.522      
+POV     C35     C       CH2     0       82.557      64.885      79.363      
+POV     C36     C       CH2     0       81.971      64.815      77.972      
+POV     C37     C       CH2     0       81.154      66.025      77.578      
+POV     C38     C       CH2     0       80.258      65.817      76.373      
+POV     C39     C       CH2     0       78.801      65.573      76.698      
+POV     H1      H       H       0       86.290      61.559      78.483      
+POV     H1A     H       H       0       85.775      62.610      79.548      
+POV     H2      H       H       0       88.363      62.723      78.371      
+POV     H3      H       H       0       88.678      64.773      79.354      
+POV     H3A     H       H       0       88.160      63.827      80.534      
+POV     H210    H       H       0       77.582      67.363      70.626      
+POV     H310    H       H       0       78.840      63.526      76.737      
+POV     H31A    H       H       0       79.039      64.168      78.168      
+POV     H11     H       H       0       89.385      58.415      78.366      
+POV     H11A    H       H       0       88.197      58.019      77.381      
+POV     H211    H       H       0       79.319      65.973      68.956      
+POV     H21A    H       H       0       79.415      67.538      68.709      
+POV     H311    H       H       0       76.622      64.842      77.821      
+POV     H31B    H       H       0       77.017      63.470      78.500      
+POV     H12     H       H       0       89.348      60.570      77.123      
+POV     H12A    H       H       0       90.159      59.353      76.550      
+POV     H212    H       H       0       77.960      66.548      67.188      
+POV     H21B    H       H       0       77.215      67.633      68.060      
+POV     H312    H       H       0       75.454      62.900      76.998      
+POV     H31C    H       H       0       76.811      62.437      76.332      
+POV     H13     H       H       0       88.173      58.663      73.775      
+POV     H13A    H       H       0       88.039      57.855      75.128      
+POV     H13B    H       H       0       89.474      58.228      74.569      
+POV     H213    H       H       0       75.883      65.726      67.755      
+POV     H21C    H       H       0       76.136      65.999      69.291      
+POV     H313    H       H       0       76.001      64.984      75.575      
+POV     H31D    H       H       0       75.020      63.835      75.110      
+POV     H14     H       H       0       86.701      60.437      74.774      
+POV     H14A    H       H       0       87.083      61.002      76.204      
+POV     H14B    H       H       0       86.614      59.497      76.045      
+POV     H214    H       H       0       77.639      64.265      69.421      
+POV     H21D    H       H       0       77.635      64.081      67.848      
+POV     H314    H       H       0       76.611      62.869      73.808      
+POV     H31E    H       H       0       77.767      63.725      74.469      
+POV     H15     H       H       0       88.768      60.929      73.737      
+POV     H15A    H       H       0       90.134      60.608      74.476      
+POV     H15B    H       H       0       89.153      61.707      75.063      
+POV     H215    H       H       0       75.448      63.277      67.924      
+POV     H21E    H       H       0       75.393      63.526      69.487      
+POV     H315    H       H       0       77.397      64.572      72.378      
+POV     H31F    H       H       0       76.910      65.659      73.425      
+POV     H216    H       H       0       77.225      61.689      68.369      
+POV     H21F    H       H       0       75.764      61.237      68.778      
+POV     H316    H       H       0       75.395      65.355      71.602      
+POV     H31G    H       H       0       74.702      65.161      73.017      
+POV     H31H    H       H       0       75.100      63.893      72.146      
+POV     H217    H       H       0       76.240      61.846      71.019      
+POV     H21G    H       H       0       77.726      62.190      70.583      
+POV     H218    H       H       0       77.672      60.074      71.558      
+POV     H21H    H       H       0       78.080      59.927      70.030      
+POV     H21J    H       H       0       76.599      59.589      70.493      
+POV     H22     H       H       0       86.840      63.449      74.842      
+POV     H22A    H       H       0       87.386      64.910      74.572      
+POV     H23     H       H       0       85.496      65.703      75.886      
+POV     H23A    H       H       0       84.916      64.235      75.760      
+POV     H24     H       H       0       84.984      64.489      73.374      
+POV     H24A    H       H       0       85.378      66.008      73.595      
+POV     H25     H       H       0       83.322      66.437      74.586      
+POV     H25A    H       H       0       82.931      64.905      74.498      
+POV     H26     H       H       0       82.838      65.038      72.173      
+POV     H26A    H       H       0       83.298      66.552      72.225      
+POV     H27     H       H       0       81.273      67.154      73.245      
+POV     H27A    H       H       0       80.817      65.639      73.269      
+POV     H28     H       H       0       80.733      65.619      70.935      
+POV     H28A    H       H       0       81.206      67.135      70.904      
+POV     H29     H       H       0       78.907      67.113      72.333      
+POV     H32     H       H       0       85.502      67.457      80.242      
+POV     H32A    H       H       0       85.535      67.293      81.813      
+POV     H33     H       H       0       83.616      66.324      81.535      
+POV     H33A    H       H       0       84.477      65.041      81.200      
+POV     H34     H       H       0       84.361      65.715      78.869      
+POV     H34A    H       H       0       83.293      66.795      79.312      
+POV     H35     H       H       0       81.839      65.094      79.998      
+POV     H35A    H       H       0       82.914      64.002      79.599      
+POV     H36     H       H       0       81.402      64.018      77.911      
+POV     H36A    H       H       0       82.703      64.707      77.328      
+POV     H37     H       H       0       81.768      66.766      77.385      
+POV     H37A    H       H       0       80.601      66.292      78.343      
+POV     H38     H       H       0       80.595      65.054      75.857      
+POV     H38A    H       H       0       80.319      66.611      75.799      
+POV     H39     H       H       0       78.488      66.281      77.301      
+POV     H39A    H       H       0       78.281      65.639      75.870      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+POV           N         C12      SINGLE       n     1.516  0.0100     1.516  0.0100
+POV           N         C13      SINGLE       n     1.488  0.0165     1.488  0.0165
+POV           N         C14      SINGLE       n     1.488  0.0165     1.488  0.0165
+POV           N         C15      SINGLE       n     1.488  0.0165     1.488  0.0165
+POV           P         O11      SINGLE       n     1.606  0.0100     1.606  0.0100
+POV           P         O12      SINGLE       n     1.606  0.0100     1.606  0.0100
+POV           P         O13      SINGLE       n     1.504  0.0115     1.504  0.0115
+POV           P         O14      DOUBLE       n     1.504  0.0115     1.504  0.0115
+POV          C1          C2      SINGLE       n     1.512  0.0104     1.512  0.0104
+POV          C1         O11      SINGLE       n     1.454  0.0165     1.454  0.0165
+POV          C2          C3      SINGLE       n     1.512  0.0104     1.512  0.0104
+POV          C2         O21      SINGLE       n     1.454  0.0123     1.454  0.0123
+POV          C3         O31      SINGLE       n     1.444  0.0100     1.444  0.0100
+POV        C210        C211      SINGLE       n     1.497  0.0127     1.497  0.0127
+POV        C210         C29      DOUBLE       n     1.308  0.0200     1.308  0.0200
+POV        C310        C311      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV        C310         C39      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV         C11         C12      SINGLE       n     1.509  0.0100     1.509  0.0100
+POV         C11         O12      SINGLE       n     1.454  0.0165     1.454  0.0165
+POV        C211        C212      SINGLE       n     1.497  0.0200     1.497  0.0200
+POV        C311        C312      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV        C212        C213      SINGLE       n     1.519  0.0164     1.519  0.0164
+POV        C312        C313      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV        C213        C214      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV        C313        C314      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV        C214        C215      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV        C314        C315      SINGLE       n     1.507  0.0200     1.507  0.0200
+POV        C215        C216      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV        C315        C316      SINGLE       n     1.510  0.0200     1.510  0.0200
+POV        C216        C217      SINGLE       n     1.507  0.0200     1.507  0.0200
+POV        C217        C218      SINGLE       n     1.510  0.0200     1.510  0.0200
+POV         C21         O21      SINGLE       n     1.342  0.0131     1.342  0.0131
+POV         C21         C22      SINGLE       n     1.503  0.0174     1.503  0.0174
+POV         C21         O22      DOUBLE       n     1.203  0.0150     1.203  0.0150
+POV         C22         C23      SINGLE       n     1.497  0.0200     1.497  0.0200
+POV         C23         C24      SINGLE       n     1.519  0.0164     1.519  0.0164
+POV         C24         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV         C25         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV         C26         C27      SINGLE       n     1.523  0.0117     1.523  0.0117
+POV         C27         C28      SINGLE       n     1.497  0.0200     1.497  0.0200
+POV         C28         C29      SINGLE       n     1.497  0.0127     1.497  0.0127
+POV         C31         O31      SINGLE       n     1.329  0.0116     1.329  0.0116
+POV         C31         C32      SINGLE       n     1.503  0.0174     1.503  0.0174
+POV         C31         O32      DOUBLE       n     1.203  0.0150     1.203  0.0150
+POV         C32         C33      SINGLE       n     1.497  0.0200     1.497  0.0200
+POV         C33         C34      SINGLE       n     1.519  0.0164     1.519  0.0164
+POV         C34         C35      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV         C35         C36      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV         C36         C37      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV         C37         C38      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV         C38         C39      SINGLE       n     1.509  0.0200     1.509  0.0200
+POV          C1          H1      SINGLE       n     1.089  0.0100     0.980  0.0146
+POV          C1         H1A      SINGLE       n     1.089  0.0100     0.980  0.0146
+POV          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0148
+POV          C3          H3      SINGLE       n     1.089  0.0100     0.985  0.0188
+POV          C3         H3A      SINGLE       n     1.089  0.0100     0.985  0.0188
+POV        C210        H210      SINGLE       n     1.082  0.0130     0.945  0.0200
+POV        C310        H310      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C310        H31A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C11         H11      SINGLE       n     1.089  0.0100     0.986  0.0100
+POV         C11        H11A      SINGLE       n     1.089  0.0100     0.986  0.0100
+POV        C211        H211      SINGLE       n     1.089  0.0100     0.983  0.0180
+POV        C211        H21A      SINGLE       n     1.089  0.0100     0.983  0.0180
+POV        C311        H311      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C311        H31B      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C12         H12      SINGLE       n     1.089  0.0100     0.977  0.0167
+POV         C12        H12A      SINGLE       n     1.089  0.0100     0.977  0.0167
+POV        C212        H212      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV        C212        H21B      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV        C312        H312      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C312        H31C      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C13         H13      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV         C13        H13A      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV         C13        H13B      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV        C213        H213      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C213        H21C      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C313        H313      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C313        H31D      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C14         H14      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV         C14        H14A      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV         C14        H14B      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV        C214        H214      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C214        H21D      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C314        H314      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C314        H31E      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C15         H15      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV         C15        H15A      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV         C15        H15B      SINGLE       n     1.089  0.0100     0.969  0.0145
+POV        C215        H215      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C215        H21E      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C315        H315      SINGLE       n     1.089  0.0100     0.982  0.0155
+POV        C315        H31F      SINGLE       n     1.089  0.0100     0.982  0.0155
+POV        C216        H216      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C216        H21F      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV        C316        H316      SINGLE       n     1.089  0.0100     0.973  0.0157
+POV        C316        H31G      SINGLE       n     1.089  0.0100     0.973  0.0157
+POV        C316        H31H      SINGLE       n     1.089  0.0100     0.973  0.0157
+POV        C217        H217      SINGLE       n     1.089  0.0100     0.982  0.0155
+POV        C217        H21G      SINGLE       n     1.089  0.0100     0.982  0.0155
+POV        C218        H218      SINGLE       n     1.089  0.0100     0.973  0.0157
+POV        C218        H21H      SINGLE       n     1.089  0.0100     0.973  0.0157
+POV        C218        H21J      SINGLE       n     1.089  0.0100     0.973  0.0157
+POV         C22         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+POV         C22        H22A      SINGLE       n     1.089  0.0100     0.981  0.0185
+POV         C23         H23      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV         C23        H23A      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV         C24         H24      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C24        H24A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C25         H25      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C25        H25A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C26         H26      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C26        H26A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C27         H27      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV         C27        H27A      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV         C28         H28      SINGLE       n     1.089  0.0100     0.983  0.0180
+POV         C28        H28A      SINGLE       n     1.089  0.0100     0.983  0.0180
+POV         C29         H29      SINGLE       n     1.082  0.0130     0.945  0.0200
+POV         C32         H32      SINGLE       n     1.089  0.0100     0.981  0.0185
+POV         C32        H32A      SINGLE       n     1.089  0.0100     0.981  0.0185
+POV         C33         H33      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV         C33        H33A      SINGLE       n     1.089  0.0100     0.980  0.0160
+POV         C34         H34      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C34        H34A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C35         H35      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C35        H35A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C36         H36      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C36        H36A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C37         H37      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C37        H37A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C38         H38      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C38        H38A      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C39         H39      SINGLE       n     1.089  0.0100     0.981  0.0163
+POV         C39        H39A      SINGLE       n     1.089  0.0100     0.981  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+POV         C12           N         C13     109.961    1.74
+POV         C12           N         C14     109.961    1.74
+POV         C12           N         C15     109.961    1.74
+POV         C13           N         C14     109.041    1.50
+POV         C13           N         C15     109.041    1.50
+POV         C14           N         C15     109.041    1.50
+POV         O11           P         O12     102.789    2.10
+POV         O11           P         O13     107.777    3.00
+POV         O11           P         O14     107.777    3.00
+POV         O12           P         O13     107.777    3.00
+POV         O12           P         O14     107.777    3.00
+POV         O13           P         O14     119.782    1.83
+POV          C2          C1         O11     109.438    2.56
+POV          C2          C1          H1     109.582    1.50
+POV          C2          C1         H1A     109.582    1.50
+POV         O11          C1          H1     109.393    1.91
+POV         O11          C1         H1A     109.393    1.91
+POV          H1          C1         H1A     108.319    1.50
+POV          C1          C2          C3     113.504    1.50
+POV          C1          C2         O21     109.042    2.74
+POV          C1          C2          H2     108.656    1.50
+POV          C3          C2         O21     109.042    2.74
+POV          C3          C2          H2     108.656    1.50
+POV         O21          C2          H2     109.221    1.50
+POV          C2          C3         O31     108.641    1.70
+POV          C2          C3          H3     110.376    1.50
+POV          C2          C3         H3A     110.376    1.50
+POV         O31          C3          H3     109.514    1.50
+POV         O31          C3         H3A     109.514    1.50
+POV          H3          C3         H3A     108.601    1.50
+POV        C211        C210         C29     125.684    3.00
+POV        C211        C210        H210     117.007    1.61
+POV         C29        C210        H210     117.310    2.16
+POV        C311        C310         C39     114.243    1.69
+POV        C311        C310        H310     108.698    1.50
+POV        C311        C310        H31A     108.698    1.50
+POV         C39        C310        H310     108.698    1.50
+POV         C39        C310        H31A     108.698    1.50
+POV        H310        C310        H31A     107.646    1.50
+POV         C12         C11         O12     109.379    2.50
+POV         C12         C11         H11     109.175    1.50
+POV         C12         C11        H11A     109.175    1.50
+POV         O12         C11         H11     109.451    1.50
+POV         O12         C11        H11A     109.451    1.50
+POV         H11         C11        H11A     107.889    1.50
+POV           P         O11          C1     119.251    1.51
+POV        C210        C211        C212     113.226    1.94
+POV        C210        C211        H211     108.886    1.50
+POV        C210        C211        H21A     108.886    1.50
+POV        C212        C211        H211     108.819    1.50
+POV        C212        C211        H21A     108.819    1.50
+POV        H211        C211        H21A     107.922    1.50
+POV        C310        C311        C312     114.243    1.69
+POV        C310        C311        H311     108.698    1.50
+POV        C310        C311        H31B     108.698    1.50
+POV        C312        C311        H311     108.698    1.50
+POV        C312        C311        H31B     108.698    1.50
+POV        H311        C311        H31B     107.646    1.50
+POV           N         C12         C11     115.936    1.50
+POV           N         C12         H12     107.825    1.61
+POV           N         C12        H12A     107.825    1.61
+POV         C11         C12         H12     108.150    1.50
+POV         C11         C12        H12A     108.150    1.50
+POV         H12         C12        H12A     107.359    1.69
+POV           P         O12         C11     119.251    1.51
+POV        C211        C212        C213     114.266    1.80
+POV        C211        C212        H212     108.805    1.50
+POV        C211        C212        H21B     108.805    1.50
+POV        C213        C212        H212     108.698    1.50
+POV        C213        C212        H21B     108.698    1.50
+POV        H212        C212        H21B     107.646    1.50
+POV        C311        C312        C313     114.243    1.69
+POV        C311        C312        H312     108.698    1.50
+POV        C311        C312        H31C     108.698    1.50
+POV        C313        C312        H312     108.698    1.50
+POV        C313        C312        H31C     108.698    1.50
+POV        H312        C312        H31C     107.646    1.50
+POV           N         C13         H13     108.994    1.50
+POV           N         C13        H13A     108.994    1.50
+POV           N         C13        H13B     108.994    1.50
+POV         H13         C13        H13A     109.693    1.55
+POV         H13         C13        H13B     109.693    1.55
+POV        H13A         C13        H13B     109.693    1.55
+POV        C212        C213        C214     114.243    1.69
+POV        C212        C213        H213     108.698    1.50
+POV        C212        C213        H21C     108.698    1.50
+POV        C214        C213        H213     108.698    1.50
+POV        C214        C213        H21C     108.698    1.50
+POV        H213        C213        H21C     107.646    1.50
+POV        C312        C313        C314     114.243    1.69
+POV        C312        C313        H313     108.698    1.50
+POV        C312        C313        H31D     108.698    1.50
+POV        C314        C313        H313     108.698    1.50
+POV        C314        C313        H31D     108.698    1.50
+POV        H313        C313        H31D     107.646    1.50
+POV           N         C14         H14     108.994    1.50
+POV           N         C14        H14A     108.994    1.50
+POV           N         C14        H14B     108.994    1.50
+POV         H14         C14        H14A     109.693    1.55
+POV         H14         C14        H14B     109.693    1.55
+POV        H14A         C14        H14B     109.693    1.55
+POV        C213        C214        C215     114.243    1.69
+POV        C213        C214        H214     108.698    1.50
+POV        C213        C214        H21D     108.698    1.50
+POV        C215        C214        H214     108.698    1.50
+POV        C215        C214        H21D     108.698    1.50
+POV        H214        C214        H21D     107.646    1.50
+POV        C313        C314        C315     114.362    3.00
+POV        C313        C314        H314     108.698    1.50
+POV        C313        C314        H31E     108.698    1.50
+POV        C315        C314        H314     108.653    1.50
+POV        C315        C314        H31E     108.653    1.50
+POV        H314        C314        H31E     107.646    1.50
+POV           N         C15         H15     108.994    1.50
+POV           N         C15        H15A     108.994    1.50
+POV           N         C15        H15B     108.994    1.50
+POV         H15         C15        H15A     109.693    1.55
+POV         H15         C15        H15B     109.693    1.55
+POV        H15A         C15        H15B     109.693    1.55
+POV        C214        C215        C216     114.243    1.69
+POV        C214        C215        H215     108.698    1.50
+POV        C214        C215        H21E     108.698    1.50
+POV        C216        C215        H215     108.698    1.50
+POV        C216        C215        H21E     108.698    1.50
+POV        H215        C215        H21E     107.646    1.50
+POV        C314        C315        C316     113.719    3.00
+POV        C314        C315        H315     108.758    1.50
+POV        C314        C315        H31F     108.758    1.50
+POV        C316        C315        H315     108.918    1.50
+POV        C316        C315        H31F     108.918    1.50
+POV        H315        C315        H31F     107.763    1.50
+POV        C215        C216        C217     114.362    3.00
+POV        C215        C216        H216     108.698    1.50
+POV        C215        C216        H21F     108.698    1.50
+POV        C217        C216        H216     108.653    1.50
+POV        C217        C216        H21F     108.653    1.50
+POV        H216        C216        H21F     107.646    1.50
+POV        C315        C316        H316     109.554    1.50
+POV        C315        C316        H31G     109.554    1.50
+POV        C315        C316        H31H     109.554    1.50
+POV        H316        C316        H31G     109.380    1.50
+POV        H316        C316        H31H     109.380    1.50
+POV        H31G        C316        H31H     109.380    1.50
+POV        C216        C217        C218     113.719    3.00
+POV        C216        C217        H217     108.758    1.50
+POV        C216        C217        H21G     108.758    1.50
+POV        C218        C217        H217     108.918    1.50
+POV        C218        C217        H21G     108.918    1.50
+POV        H217        C217        H21G     107.763    1.50
+POV        C217        C218        H218     109.554    1.50
+POV        C217        C218        H21H     109.554    1.50
+POV        C217        C218        H21J     109.554    1.50
+POV        H218        C218        H21H     109.380    1.50
+POV        H218        C218        H21J     109.380    1.50
+POV        H21H        C218        H21J     109.380    1.50
+POV         O21         C21         C22     113.008    3.00
+POV         O21         C21         O22     122.278    2.43
+POV         C22         C21         O22     124.714    2.71
+POV          C2         O21         C21     117.944    1.50
+POV         C21         C22         C23     113.365    1.50
+POV         C21         C22         H22     108.883    1.50
+POV         C21         C22        H22A     108.883    1.50
+POV         C23         C22         H22     108.815    1.50
+POV         C23         C22        H22A     108.815    1.50
+POV         H22         C22        H22A     107.521    1.50
+POV         C22         C23         C24     112.553    1.50
+POV         C22         C23         H23     109.164    1.50
+POV         C22         C23        H23A     109.164    1.50
+POV         C24         C23         H23     108.698    1.50
+POV         C24         C23        H23A     108.698    1.50
+POV         H23         C23        H23A     107.646    1.50
+POV         C23         C24         C25     114.243    1.69
+POV         C23         C24         H24     108.698    1.50
+POV         C23         C24        H24A     108.698    1.50
+POV         C25         C24         H24     108.698    1.50
+POV         C25         C24        H24A     108.698    1.50
+POV         H24         C24        H24A     107.646    1.50
+POV         C24         C25         C26     114.243    1.69
+POV         C24         C25         H25     108.698    1.50
+POV         C24         C25        H25A     108.698    1.50
+POV         C26         C25         H25     108.698    1.50
+POV         C26         C25        H25A     108.698    1.50
+POV         H25         C25        H25A     107.646    1.50
+POV         C25         C26         C27     114.243    1.69
+POV         C25         C26         H26     108.698    1.50
+POV         C25         C26        H26A     108.698    1.50
+POV         C27         C26         H26     108.698    1.50
+POV         C27         C26        H26A     108.698    1.50
+POV         H26         C26        H26A     107.646    1.50
+POV         C26         C27         C28     114.266    1.80
+POV         C26         C27         H27     108.698    1.50
+POV         C26         C27        H27A     108.698    1.50
+POV         C28         C27         H27     108.805    1.50
+POV         C28         C27        H27A     108.805    1.50
+POV         H27         C27        H27A     107.646    1.50
+POV         C27         C28         C29     113.226    1.94
+POV         C27         C28         H28     108.819    1.50
+POV         C27         C28        H28A     108.819    1.50
+POV         C29         C28         H28     108.886    1.50
+POV         C29         C28        H28A     108.886    1.50
+POV         H28         C28        H28A     107.922    1.50
+POV        C210         C29         C28     125.684    3.00
+POV        C210         C29         H29     117.310    2.16
+POV         C28         C29         H29     117.007    1.61
+POV         O31         C31         C32     111.516    1.50
+POV         O31         C31         O32     123.233    1.50
+POV         C32         C31         O32     125.251    2.71
+POV          C3         O31         C31     116.187    1.50
+POV         C31         C32         C33     113.365    1.50
+POV         C31         C32         H32     108.883    1.50
+POV         C31         C32        H32A     108.883    1.50
+POV         C33         C32         H32     108.815    1.50
+POV         C33         C32        H32A     108.815    1.50
+POV         H32         C32        H32A     107.521    1.50
+POV         C32         C33         C34     112.553    1.50
+POV         C32         C33         H33     109.164    1.50
+POV         C32         C33        H33A     109.164    1.50
+POV         C34         C33         H33     108.698    1.50
+POV         C34         C33        H33A     108.698    1.50
+POV         H33         C33        H33A     107.646    1.50
+POV         C33         C34         C35     114.243    1.69
+POV         C33         C34         H34     108.698    1.50
+POV         C33         C34        H34A     108.698    1.50
+POV         C35         C34         H34     108.698    1.50
+POV         C35         C34        H34A     108.698    1.50
+POV         H34         C34        H34A     107.646    1.50
+POV         C34         C35         C36     114.243    1.69
+POV         C34         C35         H35     108.698    1.50
+POV         C34         C35        H35A     108.698    1.50
+POV         C36         C35         H35     108.698    1.50
+POV         C36         C35        H35A     108.698    1.50
+POV         H35         C35        H35A     107.646    1.50
+POV         C35         C36         C37     114.243    1.69
+POV         C35         C36         H36     108.698    1.50
+POV         C35         C36        H36A     108.698    1.50
+POV         C37         C36         H36     108.698    1.50
+POV         C37         C36        H36A     108.698    1.50
+POV         H36         C36        H36A     107.646    1.50
+POV         C36         C37         C38     114.243    1.69
+POV         C36         C37         H37     108.698    1.50
+POV         C36         C37        H37A     108.698    1.50
+POV         C38         C37         H37     108.698    1.50
+POV         C38         C37        H37A     108.698    1.50
+POV         H37         C37        H37A     107.646    1.50
+POV         C37         C38         C39     114.243    1.69
+POV         C37         C38         H38     108.698    1.50
+POV         C37         C38        H38A     108.698    1.50
+POV         C39         C38         H38     108.698    1.50
+POV         C39         C38        H38A     108.698    1.50
+POV         H38         C38        H38A     107.646    1.50
+POV        C310         C39         C38     114.243    1.69
+POV        C310         C39         H39     108.698    1.50
+POV        C310         C39        H39A     108.698    1.50
+POV         C38         C39         H39     108.698    1.50
+POV         C38         C39        H39A     108.698    1.50
+POV         H39         C39        H39A     107.646    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+POV             sp3_sp3_1         C11         C12           N         C13     180.000    10.0     3
+POV            sp3_sp3_10         H13         C13           N         C12     180.000    10.0     3
+POV            sp3_sp3_19         H14         C14           N         C12     180.000    10.0     3
+POV            sp3_sp3_28         H15         C15           N         C12     180.000    10.0     3
+POV           sp3_sp3_109        C310        C311        C312        C313     180.000    10.0     3
+POV           sp3_sp3_118        C211        C212        C213        C214     180.000    10.0     3
+POV           sp3_sp3_127        C311        C312        C313        C314     180.000    10.0     3
+POV           sp3_sp3_136        C212        C213        C214        C215     180.000    10.0     3
+POV           sp3_sp3_145        C312        C313        C314        C315     180.000    10.0     3
+POV            sp3_sp3_40         C11         O12           P         O11     180.000    10.0     3
+POV            sp3_sp3_38          C1         O11           P         O12     -60.000    10.0     3
+POV           sp3_sp3_154        C213        C214        C215        C216     180.000    10.0     3
+POV           sp3_sp3_163        C313        C314        C315        C316     180.000    10.0     3
+POV           sp3_sp3_172        C214        C215        C216        C217     180.000    10.0     3
+POV           sp3_sp3_181        C314        C315        C316        H316     180.000    10.0     3
+POV           sp3_sp3_190        C215        C216        C217        C218     180.000    10.0     3
+POV           sp3_sp3_199        C216        C217        C218        H218     180.000    10.0     3
+POV            sp3_sp3_43         O11          C1          C2          C3     180.000    10.0     3
+POV            sp3_sp3_52          C2          C1         O11           P     180.000    10.0     3
+POV             sp2_sp2_5         C22         C21         O21          C2     180.000     5.0     2
+POV             sp2_sp3_8         O21         C21         C22         C23     120.000    10.0     6
+POV           sp3_sp3_208         C21         C22         C23         C24     180.000    10.0     3
+POV           sp3_sp3_217         C22         C23         C24         C25     180.000    10.0     3
+POV           sp3_sp3_226         C23         C24         C25         C26     180.000    10.0     3
+POV           sp3_sp3_235         C24         C25         C26         C27     180.000    10.0     3
+POV           sp3_sp3_244         C25         C26         C27         C28     180.000    10.0     3
+POV           sp3_sp3_253         C26         C27         C28         C29     180.000    10.0     3
+POV            sp2_sp3_14        C210         C29         C28         C27     120.000    10.0     6
+POV            sp3_sp3_64          C1          C2         O21         C21     180.000    10.0     3
+POV            sp3_sp3_55          C1          C2          C3         O31     180.000    10.0     3
+POV             sp2_sp2_7         C32         C31         O31          C3     180.000     5.0     2
+POV            sp2_sp3_20         O31         C31         C32         C33     120.000    10.0     6
+POV           sp3_sp3_262         C31         C32         C33         C34     180.000    10.0     3
+POV           sp3_sp3_271         C32         C33         C34         C35     180.000    10.0     3
+POV           sp3_sp3_280         C33         C34         C35         C36     180.000    10.0     3
+POV           sp3_sp3_289         C34         C35         C36         C37     180.000    10.0     3
+POV           sp3_sp3_298         C35         C36         C37         C38     180.000    10.0     3
+POV           sp3_sp3_307         C36         C37         C38         C39     180.000    10.0     3
+POV            sp3_sp3_67          C2          C3         O31         C31     180.000    10.0     3
+POV           sp3_sp3_316         C37         C38         C39        C310     180.000    10.0     3
+POV             sp2_sp2_1        C211        C210         C29         C28     180.000     5.0     2
+POV             sp2_sp3_2         C29        C210        C211        C212     120.000    10.0     6
+POV            sp3_sp3_70         C39        C310        C311        C312     180.000    10.0     3
+POV            sp3_sp3_79        C311        C310         C39         C38     180.000    10.0     3
+POV            sp3_sp3_88         O12         C11         C12           N     180.000    10.0     3
+POV            sp3_sp3_97         C12         C11         O12           P     180.000    10.0     3
+POV           sp3_sp3_100        C210        C211        C212        C213     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+POV    chir_1    P    O11    O12    O13    both
+POV    chir_2    C2    O21    C1    C3    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+POV    plan-1        C210   0.020
+POV    plan-1        C211   0.020
+POV    plan-1         C29   0.020
+POV    plan-1        H210   0.020
+POV    plan-2         C21   0.020
+POV    plan-2         C22   0.020
+POV    plan-2         O21   0.020
+POV    plan-2         O22   0.020
+POV    plan-3        C210   0.020
+POV    plan-3         C28   0.020
+POV    plan-3         C29   0.020
+POV    plan-3         H29   0.020
+POV    plan-4         C31   0.020
+POV    plan-4         C32   0.020
+POV    plan-4         O31   0.020
+POV    plan-4         O32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+POV           SMILES              ACDLabs 12.01                                                                                                                                           O=C(OCC(OC(=O)CCCCCCC\C=C/CCCCCCCC)COP([O-])(=O)OCC[N+](C)(C)C)CCCCCCCCCCCCCCC
+POV SMILES_CANONICAL               CACTVS 3.370                                                                                                                                    CCCCCCCCCCCCCCCC(=O)OC[C@@H](CO[P]([O-])(=O)OCC[N+](C)(C)C)OC(=O)CCCCCCC\C=C/CCCCCCCC
+POV           SMILES               CACTVS 3.370                                                                                                                                        CCCCCCCCCCCCCCCC(=O)OC[CH](CO[P]([O-])(=O)OCC[N+](C)(C)C)OC(=O)CCCCCCCC=CCCCCCCCC
+POV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                   CCCCCCCCCCCCCCCC(=O)OC[C@@H](CO[P@](=O)([O-])OCC[N+](C)(C)C)OC(=O)CCCCCCC/C=C\CCCCCCCC
+POV           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                             CCCCCCCCCCCCCCCC(=O)OCC(COP(=O)([O-])OCC[N+](C)(C)C)OC(=O)CCCCCCCC=CCCCCCCCC
+POV            InChI                InChI  1.03 InChI=1S/C42H82NO8P/c1-6-8-10-12-14-16-18-20-21-23-25-27-29-31-33-35-42(45)51-40(39-50-52(46,47)49-37-36-43(3,4)5)38-48-41(44)34-32-30-28-26-24-22-19-17-15-13-11-9-7-2/h20-21,40H,6-19,22-39H2,1-5H3/b21-20-/t40-/m0/s1
+POV         InChIKey                InChI  1.03                                                                                                                                                                                              WTJKGGKOPKCXLL-PFDVCBLKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+POV acedrg               243         "dictionary generator"                  
+POV acedrg_database      11          "data source"                           
+POV rdkit                2017.03.2   "Chemoinformatics tool"
+POV refmac5              5.8.0238    "optimization tool"                     

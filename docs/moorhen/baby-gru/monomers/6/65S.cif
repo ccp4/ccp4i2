@@ -1,0 +1,116 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+65S     65S      "3-fluoro-2-oxopropanoic acid"     NON-POLYMER     9     7     .     
+#
+data_comp_65S
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+65S     O01     O       OC      -1      48.072      -112.071    63.284      
+65S     C02     C       C       0       48.747      -111.267    62.637      
+65S     C03     C       C       0       48.800      -111.396    61.326      
+65S     C04     C       CH2     0       48.059      -112.497    60.598      
+65S     F05     F       F       0       48.450      -113.702    60.997      
+65S     O06     O       O       0       49.465      -110.614    60.638      
+65S     O07     O       O       0       49.368      -110.351    63.187      
+65S     H2      H       H       0       48.222      -112.425    59.643      
+65S     H3      H       H       0       47.106      -112.414    60.768      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+65S         C03         C04      SINGLE       n     1.507  0.0192     1.507  0.0192
+65S         C04         F05      SINGLE       n     1.328  0.0174     1.328  0.0174
+65S         C03         O06      DOUBLE       n     1.230  0.0184     1.230  0.0184
+65S         C02         C03      SINGLE       n     1.299  0.0200     1.299  0.0200
+65S         C02         O07      DOUBLE       n     1.230  0.0200     1.230  0.0200
+65S         O01         C02      SINGLE       n     1.230  0.0200     1.230  0.0200
+65S         C04          H2      SINGLE       n     1.089  0.0100     0.971  0.0145
+65S         C04          H3      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+65S         C03         C02         O07     118.654    3.00
+65S         C03         C02         O01     118.654    3.00
+65S         O07         C02         O01     122.692    1.63
+65S         C04         C03         O06     118.804    2.48
+65S         C04         C03         C02     121.556    3.00
+65S         O06         C03         C02     119.640    3.00
+65S         C03         C04         F05     111.868    1.62
+65S         C03         C04          H2     109.553    1.50
+65S         C03         C04          H3     109.553    1.50
+65S         F05         C04          H2     108.415    2.17
+65S         F05         C04          H3     108.415    2.17
+65S          H2         C04          H3     109.375    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+65S             sp2_sp2_1         O07         C02         C03         C04     180.000     5.0     2
+65S             sp2_sp3_2         O06         C03         C04         F05     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+65S    plan-1         C02   0.020
+65S    plan-1         C03   0.020
+65S    plan-1         O01   0.020
+65S    plan-1         O07   0.020
+65S    plan-2         C02   0.020
+65S    plan-2         C03   0.020
+65S    plan-2         C04   0.020
+65S    plan-2         O06   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+65S           SMILES              ACDLabs 12.01                                OC(=O)C(CF)=O
+65S            InChI                InChI  1.03 InChI=1S/C3H3FO3/c4-1-2(5)3(6)7/h1H2,(H,6,7)
+65S         InChIKey                InChI  1.03                  CXABZTLXNODUTD-UHFFFAOYSA-N
+65S SMILES_CANONICAL               CACTVS 3.385                                OC(=O)C(=O)CF
+65S           SMILES               CACTVS 3.385                                OC(=O)C(=O)CF
+65S SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                              C(C(=O)C(=O)O)F
+65S           SMILES "OpenEye OEToolkits" 2.0.4                              C(C(=O)C(=O)O)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+65S acedrg               243         "dictionary generator"                  
+65S acedrg_database      11          "data source"                           
+65S rdkit                2017.03.2   "Chemoinformatics tool"
+65S refmac5              5.8.0238    "optimization tool"                     

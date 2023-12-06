@@ -1,0 +1,141 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PAH     PAH      "PHOSPHONOACETOHYDROXAMIC ACID"     NON-POLYMER     13     9     .     
+#
+data_comp_PAH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PAH     C1      C       CH2     0       46.298      -6.907      23.449      
+PAH     C2      C       C       0       47.272      -7.155      24.566      
+PAH     N3      N       NH1     0       46.845      -7.933      25.545      
+PAH     O3      O       OH1     0       47.669      -8.222      26.627      
+PAH     O2      O       O       0       48.397      -6.649      24.543      
+PAH     O1P     O       O       0       45.416      -9.430      23.160      
+PAH     O2P     O       OP      -1      47.435      -8.765      21.878      
+PAH     O3P     O       OP      -1      45.204      -7.909      21.210      
+PAH     P       P       P       0       46.074      -8.341      22.358      
+PAH     H11     H       H       0       46.613      -6.156      22.914      
+PAH     H12     H       H       0       45.432      -6.670      23.831      
+PAH     HN3     H       H       0       46.043      -8.287      25.546      
+PAH     HO3     H       H       0       48.239      -8.825      26.377      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PAH          C1          C2      SINGLE       n     1.501  0.0164     1.501  0.0164
+PAH          C1           P      SINGLE       n     1.816  0.0200     1.816  0.0200
+PAH          C2          N3      SINGLE       n     1.320  0.0103     1.320  0.0103
+PAH          C2          O2      DOUBLE       n     1.232  0.0104     1.232  0.0104
+PAH          N3          O3      SINGLE       n     1.389  0.0110     1.389  0.0110
+PAH         O1P           P      DOUBLE       n     1.505  0.0200     1.505  0.0200
+PAH         O2P           P      SINGLE       n     1.505  0.0200     1.505  0.0200
+PAH         O3P           P      SINGLE       n     1.505  0.0200     1.505  0.0200
+PAH          C1         H11      SINGLE       n     1.089  0.0100     0.975  0.0200
+PAH          C1         H12      SINGLE       n     1.089  0.0100     0.975  0.0200
+PAH          N3         HN3      SINGLE       n     1.016  0.0100     0.875  0.0200
+PAH          O3         HO3      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PAH          C2          C1           P     113.247    3.00
+PAH          C2          C1         H11     108.973    1.50
+PAH          C2          C1         H12     108.973    1.50
+PAH           P          C1         H11     108.528    1.50
+PAH           P          C1         H12     108.528    1.50
+PAH         H11          C1         H12     108.296    2.31
+PAH          C1          C2          N3     115.873    1.98
+PAH          C1          C2          O2     120.976    1.52
+PAH          N3          C2          O2     123.151    1.50
+PAH          C2          N3          O3     120.051    1.50
+PAH          C2          N3         HN3     122.120    2.48
+PAH          O3          N3         HN3     117.829    2.59
+PAH          N3          O3         HO3     108.051    2.18
+PAH          C1           P         O1P     110.326    3.00
+PAH          C1           P         O2P     110.326    3.00
+PAH          C1           P         O3P     110.326    3.00
+PAH         O1P           P         O2P     111.786    1.50
+PAH         O1P           P         O3P     111.786    1.50
+PAH         O2P           P         O3P     111.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PAH             sp2_sp3_2          N3          C2          C1           P     120.000    10.0     6
+PAH             sp3_sp3_3          C2          C1           P         O1P      60.000    10.0     3
+PAH             sp2_sp2_1          C1          C2          N3          O3     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PAH    chir_1    P    O2P    O3P    O1P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PAH    plan-1          C1   0.020
+PAH    plan-1          C2   0.020
+PAH    plan-1          N3   0.020
+PAH    plan-1          O2   0.020
+PAH    plan-2          C2   0.020
+PAH    plan-2         HN3   0.020
+PAH    plan-2          N3   0.020
+PAH    plan-2          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PAH           SMILES              ACDLabs 10.04                                              O=C(NO)CP(=O)(O)O
+PAH SMILES_CANONICAL               CACTVS 3.341                                            ONC(=O)C[P](O)(O)=O
+PAH           SMILES               CACTVS 3.341                                            ONC(=O)C[P](O)(O)=O
+PAH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            C(C(=O)NO)P(=O)(O)O
+PAH           SMILES "OpenEye OEToolkits" 1.5.0                                            C(C(=O)NO)P(=O)(O)O
+PAH            InChI                InChI  1.03 InChI=1S/C2H6NO5P/c4-2(3-5)1-9(6,7)8/h5H,1H2,(H,3,4)(H2,6,7,8)
+PAH         InChIKey                InChI  1.03                                    LDKRAXXVBWHMRH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PAH acedrg               243         "dictionary generator"                  
+PAH acedrg_database      11          "data source"                           
+PAH rdkit                2017.03.2   "Chemoinformatics tool"
+PAH refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MRI     MRI      2-[2,4-bis(oxidanyl)phenyl]-3,5,7-tris(oxidanyl)chromen-4-one     NON-POLYMER     32     22     .     
+#
+data_comp_MRI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MRI     OAB     O       OH1     0       -20.798     2.191       -11.057     
+MRI     CAM     C       CR6     0       -21.970     2.777       -10.641     
+MRI     CAN     C       CR6     0       -23.081     2.874       -11.556     
+MRI     OAD     O       O       0       -22.982     2.428       -12.728     
+MRI     CAI     C       CR66    0       -24.300     3.511       -11.044     
+MRI     CAO     C       CR6     0       -25.485     3.688       -11.809     
+MRI     OAC     O       OH1     0       -25.516     3.246       -13.110     
+MRI     CAS     C       CR16    0       -26.594     4.296       -11.260     
+MRI     CAR     C       CR6     0       -26.553     4.746       -9.928      
+MRI     OAF     O       OH1     0       -27.664     5.351       -9.390      
+MRI     CAP     C       CR16    0       -25.414     4.592       -9.144      
+MRI     CAJ     C       CR66    0       -24.315     3.978       -9.722      
+MRI     OAA     O       O2      0       -23.216     3.846       -8.918      
+MRI     CAK     C       CR6     0       -22.057     3.255       -9.361      
+MRI     CAL     C       CR6     0       -21.018     3.238       -8.297      
+MRI     CAT     C       CR16    0       -20.542     4.444       -7.767      
+MRI     CAV     C       CR16    0       -19.575     4.453       -6.780      
+MRI     CAW     C       CR6     0       -19.057     3.247       -6.296      
+MRI     OAG     O       OH1     0       -18.096     3.259       -5.314      
+MRI     CAU     C       CR16    0       -19.509     2.041       -6.805      
+MRI     CAQ     C       CR6     0       -20.484     2.034       -7.800      
+MRI     OAE     O       OH1     0       -20.913     0.820       -8.284      
+MRI     H1      H       H       0       -20.060     2.635       -11.028     
+MRI     H2      H       H       0       -25.520     2.401       -13.278     
+MRI     H3      H       H       0       -27.382     4.410       -11.780     
+MRI     H4      H       H       0       -27.573     6.006       -8.838      
+MRI     H5      H       H       0       -25.391     4.895       -8.252      
+MRI     H6      H       H       0       -20.883     5.249       -8.085      
+MRI     H7      H       H       0       -19.265     5.271       -6.431      
+MRI     H8      H       H       0       -17.501     3.882       -5.302      
+MRI     H9      H       H       0       -19.163     1.230       -6.481      
+MRI     H10     H       H       0       -21.041     0.162       -7.744      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MRI         CAO         OAC      SINGLE       n     1.374  0.0155     1.374  0.0155
+MRI         CAN         OAD      DOUBLE       n     1.257  0.0115     1.257  0.0115
+MRI         CAO         CAS      SINGLE       y     1.374  0.0100     1.374  0.0100
+MRI         CAI         CAO      DOUBLE       y     1.416  0.0100     1.416  0.0100
+MRI         CAN         CAI      SINGLE       y     1.460  0.0141     1.460  0.0141
+MRI         CAM         CAN      SINGLE       y     1.439  0.0100     1.439  0.0100
+MRI         CAS         CAR      DOUBLE       y     1.402  0.0106     1.402  0.0106
+MRI         OAB         CAM      SINGLE       n     1.374  0.0155     1.374  0.0155
+MRI         CAI         CAJ      SINGLE       y     1.397  0.0100     1.397  0.0100
+MRI         CAM         CAK      DOUBLE       y     1.364  0.0100     1.364  0.0100
+MRI         CAR         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+MRI         CAR         CAP      SINGLE       y     1.388  0.0100     1.388  0.0100
+MRI         CAP         CAJ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MRI         CAJ         OAA      SINGLE       y     1.365  0.0100     1.365  0.0100
+MRI         OAA         CAK      SINGLE       y     1.370  0.0100     1.370  0.0100
+MRI         CAK         CAL      SINGLE       n     1.486  0.0100     1.486  0.0100
+MRI         CAQ         OAE      SINGLE       n     1.374  0.0155     1.374  0.0155
+MRI         CAL         CAQ      SINGLE       y     1.403  0.0100     1.403  0.0100
+MRI         CAL         CAT      DOUBLE       y     1.396  0.0107     1.396  0.0107
+MRI         CAU         CAQ      DOUBLE       y     1.389  0.0100     1.389  0.0100
+MRI         CAT         CAV      SINGLE       y     1.379  0.0100     1.379  0.0100
+MRI         CAW         CAU      SINGLE       y     1.382  0.0100     1.382  0.0100
+MRI         CAV         CAW      DOUBLE       y     1.396  0.0100     1.396  0.0100
+MRI         CAW         OAG      SINGLE       n     1.374  0.0155     1.374  0.0155
+MRI         OAB          H1      SINGLE       n     0.966  0.0059     0.861  0.0200
+MRI         OAC          H2      SINGLE       n     0.966  0.0059     0.861  0.0200
+MRI         CAS          H3      SINGLE       n     1.082  0.0130     0.951  0.0200
+MRI         OAF          H4      SINGLE       n     0.966  0.0059     0.861  0.0200
+MRI         CAP          H5      SINGLE       n     1.082  0.0130     0.942  0.0200
+MRI         CAT          H6      SINGLE       n     1.082  0.0130     0.930  0.0100
+MRI         CAV          H7      SINGLE       n     1.082  0.0130     0.941  0.0179
+MRI         OAG          H8      SINGLE       n     0.966  0.0059     0.861  0.0200
+MRI         CAU          H9      SINGLE       n     1.082  0.0130     0.939  0.0167
+MRI         OAE         H10      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MRI         CAM         OAB          H1     120.000    3.00
+MRI         CAN         CAM         OAB     119.263    3.00
+MRI         CAN         CAM         CAK     121.475    1.50
+MRI         OAB         CAM         CAK     119.263    3.00
+MRI         OAD         CAN         CAI     122.800    1.50
+MRI         OAD         CAN         CAM     120.416    1.50
+MRI         CAI         CAN         CAM     116.791    1.50
+MRI         CAO         CAI         CAN     123.003    1.50
+MRI         CAO         CAI         CAJ     117.346    1.50
+MRI         CAN         CAI         CAJ     119.651    1.50
+MRI         OAC         CAO         CAS     121.363    3.00
+MRI         OAC         CAO         CAI     118.127    2.50
+MRI         CAS         CAO         CAI     120.510    1.50
+MRI         CAO         OAC          H2     120.000    3.00
+MRI         CAO         CAS         CAR     119.275    1.50
+MRI         CAO         CAS          H3     120.291    1.50
+MRI         CAR         CAS          H3     120.434    1.50
+MRI         CAS         CAR         OAF     119.313    3.00
+MRI         CAS         CAR         CAP     121.375    1.50
+MRI         OAF         CAR         CAP     119.313    3.00
+MRI         CAR         OAF          H4     120.000    3.00
+MRI         CAR         CAP         CAJ     117.805    1.50
+MRI         CAR         CAP          H5     121.115    1.50
+MRI         CAJ         CAP          H5     121.079    1.50
+MRI         CAI         CAJ         CAP     123.689    1.50
+MRI         CAI         CAJ         OAA     120.892    1.50
+MRI         CAP         CAJ         OAA     115.419    1.51
+MRI         CAJ         OAA         CAK     121.184    1.50
+MRI         CAM         CAK         OAA     120.007    1.50
+MRI         CAM         CAK         CAL     128.561    1.50
+MRI         OAA         CAK         CAL     111.432    1.50
+MRI         CAK         CAL         CAQ     121.532    1.52
+MRI         CAK         CAL         CAT     120.170    1.50
+MRI         CAQ         CAL         CAT     118.298    1.50
+MRI         CAL         CAT         CAV     120.735    1.50
+MRI         CAL         CAT          H6     119.575    1.50
+MRI         CAV         CAT          H6     119.690    1.50
+MRI         CAT         CAV         CAW     120.089    1.50
+MRI         CAT         CAV          H7     120.000    1.50
+MRI         CAW         CAV          H7     119.911    1.50
+MRI         CAU         CAW         CAV     120.394    1.50
+MRI         CAU         CAW         OAG     119.803    3.00
+MRI         CAV         CAW         OAG     119.803    3.00
+MRI         CAW         OAG          H8     120.000    3.00
+MRI         CAQ         CAU         CAW     119.589    1.50
+MRI         CAQ         CAU          H9     120.056    1.50
+MRI         CAW         CAU          H9     120.355    1.50
+MRI         OAE         CAQ         CAL     119.553    3.00
+MRI         OAE         CAQ         CAU     119.553    3.00
+MRI         CAL         CAQ         CAU     120.895    1.50
+MRI         CAQ         OAE         H10     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MRI             sp2_sp2_3         CAN         CAM         OAB          H1     180.000     5.0     2
+MRI              const_33         CAI         CAJ         CAP         CAR       0.000    10.0     2
+MRI              const_13         CAI         CAJ         OAA         CAK       0.000    10.0     2
+MRI              const_15         CAM         CAK         OAA         CAJ       0.000    10.0     2
+MRI             sp2_sp2_7         CAM         CAK         CAL         CAQ     180.000     5.0     2
+MRI              const_63         CAK         CAL         CAT         CAV     180.000    10.0     2
+MRI              const_40         CAK         CAL         CAQ         OAE       0.000    10.0     2
+MRI              const_53         CAL         CAT         CAV         CAW       0.000    10.0     2
+MRI              const_50         CAT         CAV         CAW         OAG     180.000    10.0     2
+MRI            sp2_sp2_13         CAU         CAW         OAG          H8     180.000     5.0     2
+MRI              const_46         CAQ         CAU         CAW         OAG     180.000    10.0     2
+MRI              const_43         OAE         CAQ         CAU         CAW     180.000    10.0     2
+MRI              const_58         OAA         CAK         CAM         OAB     180.000    10.0     2
+MRI       const_sp2_sp2_4         OAB         CAM         CAN         OAD       0.000     5.0     2
+MRI            sp2_sp2_11         CAL         CAQ         OAE         H10     180.000     5.0     2
+MRI       const_sp2_sp2_8         CAO         CAI         CAN         OAD       0.000     5.0     2
+MRI       const_sp2_sp2_9         CAO         CAI         CAJ         CAP       0.000     5.0     2
+MRI              const_20         CAN         CAI         CAO         OAC       0.000    10.0     2
+MRI             sp2_sp2_1         CAS         CAO         OAC          H2     180.000     5.0     2
+MRI              const_23         OAC         CAO         CAS         CAR     180.000    10.0     2
+MRI              const_27         OAF         CAR         CAS         CAO     180.000    10.0     2
+MRI              const_30         CAJ         CAP         CAR         OAF     180.000    10.0     2
+MRI             sp2_sp2_5         CAS         CAR         OAF          H4     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MRI    plan-1         CAI   0.020
+MRI    plan-1         CAJ   0.020
+MRI    plan-1         CAK   0.020
+MRI    plan-1         CAL   0.020
+MRI    plan-1         CAM   0.020
+MRI    plan-1         CAN   0.020
+MRI    plan-1         CAO   0.020
+MRI    plan-1         CAP   0.020
+MRI    plan-1         CAR   0.020
+MRI    plan-1         CAS   0.020
+MRI    plan-1          H3   0.020
+MRI    plan-1          H5   0.020
+MRI    plan-1         OAA   0.020
+MRI    plan-1         OAB   0.020
+MRI    plan-1         OAC   0.020
+MRI    plan-1         OAD   0.020
+MRI    plan-1         OAF   0.020
+MRI    plan-2         CAK   0.020
+MRI    plan-2         CAL   0.020
+MRI    plan-2         CAQ   0.020
+MRI    plan-2         CAT   0.020
+MRI    plan-2         CAU   0.020
+MRI    plan-2         CAV   0.020
+MRI    plan-2         CAW   0.020
+MRI    plan-2          H6   0.020
+MRI    plan-2          H7   0.020
+MRI    plan-2          H9   0.020
+MRI    plan-2         OAE   0.020
+MRI    plan-2         OAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MRI            InChI                InChI  1.03 InChI=1S/C15H10O7/c16-6-1-2-8(9(18)3-6)15-14(21)13(20)12-10(19)4-7(17)5-11(12)22-15/h1-5,16-19,21H
+MRI         InChIKey                InChI  1.03                                                                        YXOLAZRVSSWPPT-UHFFFAOYSA-N
+MRI SMILES_CANONICAL               CACTVS 3.385                                                         Oc1ccc(c(O)c1)C2=C(O)C(=O)c3c(O)cc(O)cc3O2
+MRI           SMILES               CACTVS 3.385                                                         Oc1ccc(c(O)c1)C2=C(O)C(=O)c3c(O)cc(O)cc3O2
+MRI SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                         c1cc(c(cc1O)O)C2=C(C(=O)c3c(cc(cc3O2)O)O)O
+MRI           SMILES "OpenEye OEToolkits" 1.9.2                                                         c1cc(c(cc1O)O)C2=C(C(=O)c3c(cc(cc3O2)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MRI acedrg               243         "dictionary generator"                  
+MRI acedrg_database      11          "data source"                           
+MRI rdkit                2017.03.2   "Chemoinformatics tool"
+MRI refmac5              5.8.0238    "optimization tool"                     

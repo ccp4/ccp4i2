@@ -1,0 +1,296 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MEI     MEI      "(2E,4E)-11-METHOXY-3,7,11-TRIMETHYLDODECA-2,4-DIENOIC ACID"     NON-POLYMER     46     19     .     
+#
+data_comp_MEI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MEI     C1      C       CH3     0       46.676      -8.542      32.548      
+MEI     O1      O       O2      0       46.670      -9.334      31.358      
+MEI     C2      C       CT      0       47.370      -10.597     31.228      
+MEI     C3      C       CH3     0       46.546      -11.643     31.972      
+MEI     C4      C       CH3     0       48.765      -10.466     31.829      
+MEI     C5      C       CH2     0       47.441      -10.927     29.730      
+MEI     C6      C       CH2     0       48.363      -10.091     28.837      
+MEI     C7      C       CH2     0       48.032      -8.616      28.673      
+MEI     C8      C       CH1     0       46.617      -8.275      28.165      
+MEI     C9      C       CH3     0       46.321      -8.954      26.829      
+MEI     C10     C       CH2     0       46.416      -6.764      28.083      
+MEI     C11     C       C1      0       46.168      -6.099      29.407      
+MEI     C12     C       C1      0       45.034      -5.603      29.905      
+MEI     C13     C       C       0       43.681      -5.750      29.466      
+MEI     C14     C       CH3     0       42.704      -4.722      29.942      
+MEI     C15     C       C1      0       43.222      -6.874      28.749      
+MEI     C16     C       C       0       41.906      -7.112      28.061      
+MEI     O2      O       OC      -1      41.071      -6.209      28.023      
+MEI     O3      O       O       0       41.725      -8.221      27.560      
+MEI     H11A    H       H       0       45.916      -7.938      32.537      
+MEI     H12A    H       H       0       47.497      -8.025      32.589      
+MEI     H13     H       H       0       46.618      -9.119      33.327      
+MEI     H31     H       H       0       46.158      -12.270     31.338      
+MEI     H32     H       H       0       45.830      -11.211     32.467      
+MEI     H33     H       H       0       47.113      -12.132     32.593      
+MEI     H41     H       H       0       49.320      -11.202     31.521      
+MEI     H42     H       H       0       48.710      -10.488     32.799      
+MEI     H43     H       H       0       49.161      -9.624      31.549      
+MEI     H51     H       H       0       46.532      -10.866     29.366      
+MEI     H52     H       H       0       47.721      -11.863     29.644      
+MEI     H61     H       H       0       48.372      -10.499     27.946      
+MEI     H62     H       H       0       49.277      -10.158     29.184      
+MEI     H71     H       H       0       48.679      -8.229      28.046      
+MEI     H72     H       H       0       48.164      -8.173      29.537      
+MEI     H8      H       H       0       45.978      -8.626      28.832      
+MEI     H91     H       H       0       45.701      -8.416      26.306      
+MEI     H92     H       H       0       45.925      -9.827      26.991      
+MEI     H93     H       H       0       47.148      -9.066      26.329      
+MEI     H101    H       H       0       45.663      -6.569      27.489      
+MEI     H102    H       H       0       47.218      -6.367      27.681      
+MEI     H11     H       H       0       46.923      -6.022      29.968      
+MEI     H12     H       H       0       45.147      -5.080      30.682      
+MEI     H141    H       H       0       41.936      -5.163      30.333      
+MEI     H142    H       H       0       42.415      -4.180      29.192      
+MEI     H143    H       H       0       43.115      -4.151      30.608      
+MEI     H15     H       H       0       43.826      -7.595      28.718      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MEI          C1          O1      SINGLE       n     1.417  0.0200     1.417  0.0200
+MEI          O1          C2      SINGLE       n     1.445  0.0116     1.445  0.0116
+MEI          C2          C3      SINGLE       n     1.520  0.0101     1.520  0.0101
+MEI          C2          C4      SINGLE       n     1.520  0.0101     1.520  0.0101
+MEI          C2          C5      SINGLE       n     1.531  0.0100     1.531  0.0100
+MEI          C5          C6      SINGLE       n     1.527  0.0105     1.527  0.0105
+MEI          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+MEI          C7          C8      SINGLE       n     1.539  0.0100     1.539  0.0100
+MEI          C8          C9      SINGLE       n     1.521  0.0135     1.521  0.0135
+MEI          C8         C10      SINGLE       n     1.522  0.0132     1.522  0.0132
+MEI         C10         C11      SINGLE       n     1.498  0.0152     1.498  0.0152
+MEI         C11         C12      DOUBLE       n     1.331  0.0100     1.331  0.0100
+MEI         C12         C13      SINGLE       n     1.408  0.0200     1.408  0.0200
+MEI         C13         C14      SINGLE       n     1.483  0.0200     1.483  0.0200
+MEI         C13         C15      DOUBLE       n     1.392  0.0200     1.392  0.0200
+MEI         C15         C16      SINGLE       n     1.492  0.0200     1.492  0.0200
+MEI         C16          O2      SINGLE       n     1.230  0.0200     1.230  0.0200
+MEI         C16          O3      DOUBLE       n     1.230  0.0200     1.230  0.0200
+MEI          C1        H11A      SINGLE       n     1.089  0.0100     0.971  0.0146
+MEI          C1        H12A      SINGLE       n     1.089  0.0100     0.971  0.0146
+MEI          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0146
+MEI          C3         H31      SINGLE       n     1.089  0.0100     0.972  0.0148
+MEI          C3         H32      SINGLE       n     1.089  0.0100     0.972  0.0148
+MEI          C3         H33      SINGLE       n     1.089  0.0100     0.972  0.0148
+MEI          C4         H41      SINGLE       n     1.089  0.0100     0.972  0.0148
+MEI          C4         H42      SINGLE       n     1.089  0.0100     0.972  0.0148
+MEI          C4         H43      SINGLE       n     1.089  0.0100     0.972  0.0148
+MEI          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0160
+MEI          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0160
+MEI          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+MEI          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+MEI          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0160
+MEI          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0160
+MEI          C8          H8      SINGLE       n     1.089  0.0100     0.989  0.0175
+MEI          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0146
+MEI          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0146
+MEI          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0146
+MEI         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0185
+MEI         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0185
+MEI         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0181
+MEI         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0200
+MEI         C14        H141      SINGLE       n     1.089  0.0100     0.969  0.0177
+MEI         C14        H142      SINGLE       n     1.089  0.0100     0.969  0.0177
+MEI         C14        H143      SINGLE       n     1.089  0.0100     0.969  0.0177
+MEI         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0196
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MEI          O1          C1        H11A     109.488    1.50
+MEI          O1          C1        H12A     109.488    1.50
+MEI          O1          C1         H13     109.488    1.50
+MEI        H11A          C1        H12A     109.532    1.53
+MEI        H11A          C1         H13     109.532    1.53
+MEI        H12A          C1         H13     109.532    1.53
+MEI          C1          O1          C2     118.218    2.45
+MEI          O1          C2          C3     107.859    3.00
+MEI          O1          C2          C4     107.859    3.00
+MEI          O1          C2          C5     109.562    3.00
+MEI          C3          C2          C4     111.521    1.50
+MEI          C3          C2          C5     111.652    1.50
+MEI          C4          C2          C5     111.652    1.50
+MEI          C2          C3         H31     109.489    1.50
+MEI          C2          C3         H32     109.489    1.50
+MEI          C2          C3         H33     109.489    1.50
+MEI         H31          C3         H32     109.441    1.50
+MEI         H31          C3         H33     109.441    1.50
+MEI         H32          C3         H33     109.441    1.50
+MEI          C2          C4         H41     109.489    1.50
+MEI          C2          C4         H42     109.489    1.50
+MEI          C2          C4         H43     109.489    1.50
+MEI         H41          C4         H42     109.441    1.50
+MEI         H41          C4         H43     109.441    1.50
+MEI         H42          C4         H43     109.441    1.50
+MEI          C2          C5          C6     116.288    1.50
+MEI          C2          C5         H51     108.201    1.50
+MEI          C2          C5         H52     108.201    1.50
+MEI          C6          C5         H51     108.123    1.50
+MEI          C6          C5         H52     108.123    1.50
+MEI         H51          C5         H52     107.452    1.50
+MEI          C5          C6          C7     114.183    2.57
+MEI          C5          C6         H61     108.962    1.50
+MEI          C5          C6         H62     108.962    1.50
+MEI          C7          C6         H61     108.762    1.50
+MEI          C7          C6         H62     108.762    1.50
+MEI         H61          C6         H62     107.646    1.50
+MEI          C6          C7          C8     115.586    1.50
+MEI          C6          C7         H71     108.469    1.50
+MEI          C6          C7         H72     108.469    1.50
+MEI          C8          C7         H71     108.410    1.50
+MEI          C8          C7         H72     108.410    1.50
+MEI         H71          C7         H72     107.657    1.50
+MEI          C7          C8          C9     111.605    1.50
+MEI          C7          C8         C10     111.724    1.61
+MEI          C7          C8          H8     107.002    1.69
+MEI          C9          C8         C10     110.532    1.50
+MEI          C9          C8          H8     108.064    1.50
+MEI         C10          C8          H8     107.885    1.50
+MEI          C8          C9         H91     109.656    1.50
+MEI          C8          C9         H92     109.656    1.50
+MEI          C8          C9         H93     109.656    1.50
+MEI         H91          C9         H92     109.411    1.50
+MEI         H91          C9         H93     109.411    1.50
+MEI         H92          C9         H93     109.411    1.50
+MEI          C8         C10         C11     113.813    2.40
+MEI          C8         C10        H101     108.639    1.50
+MEI          C8         C10        H102     108.639    1.50
+MEI         C11         C10        H101     108.801    1.50
+MEI         C11         C10        H102     108.801    1.50
+MEI        H101         C10        H102     107.820    1.50
+MEI         C10         C11         C12     125.994    2.56
+MEI         C10         C11         H11     116.727    1.70
+MEI         C12         C11         H11     117.279    2.02
+MEI         C11         C12         C13     125.259    3.00
+MEI         C11         C12         H12     118.518    2.29
+MEI         C13         C12         H12     116.222    1.50
+MEI         C12         C13         C14     117.135    1.50
+MEI         C12         C13         C15     122.650    3.00
+MEI         C14         C13         C15     120.215    3.00
+MEI         C13         C14        H141     109.517    1.50
+MEI         C13         C14        H142     109.517    1.50
+MEI         C13         C14        H143     109.517    1.50
+MEI        H141         C14        H142     109.342    1.50
+MEI        H141         C14        H143     109.342    1.50
+MEI        H142         C14        H143     109.342    1.50
+MEI         C13         C15         C16     125.527    3.00
+MEI         C13         C15         H15     116.544    1.81
+MEI         C16         C15         H15     117.929    1.95
+MEI         C15         C16          O2     118.064    1.74
+MEI         C15         C16          O3     118.060    1.74
+MEI          O2         C16          O3     123.870    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MEI             sp3_sp3_1        H11A          C1          O1          C2     180.000    10.0     3
+MEI             sp2_sp3_2         C12         C11         C10          C8     120.000    10.0     6
+MEI             sp2_sp2_1         C10         C11         C12         C13     180.000     5.0     2
+MEI             sp2_sp2_6         C11         C12         C13         C14       0.000     5.0     2
+MEI             sp2_sp3_7         C12         C13         C14        H141       0.000    10.0     6
+MEI            sp2_sp2_11         C12         C13         C15         C16       0.000     5.0     2
+MEI            sp2_sp2_13         C13         C15         C16          O2     180.000     5.0     2
+MEI             sp3_sp3_4          C3          C2          O1          C1     180.000    10.0     3
+MEI            sp3_sp3_10          O1          C2          C3         H31      60.000    10.0     3
+MEI            sp3_sp3_16          O1          C2          C4         H41     180.000    10.0     3
+MEI            sp3_sp3_25          O1          C2          C5          C6     180.000    10.0     3
+MEI            sp3_sp3_34          C2          C5          C6          C7     180.000    10.0     3
+MEI            sp3_sp3_43          C5          C6          C7          C8     180.000    10.0     3
+MEI            sp3_sp3_52          C6          C7          C8          C9     180.000    10.0     3
+MEI            sp3_sp3_70         C11         C10          C8          C7     180.000    10.0     3
+MEI            sp3_sp3_61          C7          C8          C9         H91     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MEI    chir_1    C2    O1    C5    C3    both
+MEI    chir_2    C8    C10    C7    C9    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MEI    plan-1         C10   0.020
+MEI    plan-1         C11   0.020
+MEI    plan-1         C12   0.020
+MEI    plan-1         H11   0.020
+MEI    plan-2         C11   0.020
+MEI    plan-2         C12   0.020
+MEI    plan-2         C13   0.020
+MEI    plan-2         H12   0.020
+MEI    plan-3         C12   0.020
+MEI    plan-3         C13   0.020
+MEI    plan-3         C14   0.020
+MEI    plan-3         C15   0.020
+MEI    plan-4         C13   0.020
+MEI    plan-4         C15   0.020
+MEI    plan-4         C16   0.020
+MEI    plan-4         H15   0.020
+MEI    plan-5         C15   0.020
+MEI    plan-5         C16   0.020
+MEI    plan-5          O2   0.020
+MEI    plan-5          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MEI           SMILES              ACDLabs 10.04                                                                                                O=C(O)\C=C(\C=C\CC(CCCC(OC)(C)C)C)C
+MEI SMILES_CANONICAL               CACTVS 3.341                                                                                            COC(C)(C)CCC[C@H](C)C\C=C\C(C)=C\C(O)=O
+MEI           SMILES               CACTVS 3.341                                                                                                COC(C)(C)CCC[CH](C)CC=CC(C)=CC(O)=O
+MEI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                          C[C@@H](CCCC(C)(C)OC)C\C=C\C(=C\C(=O)O)\C
+MEI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                   CC(CCCC(C)(C)OC)CC=CC(=CC(=O)O)C
+MEI            InChI                InChI  1.03 InChI=1S/C16H28O3/c1-13(10-7-11-16(3,4)19-5)8-6-9-14(2)12-15(17)18/h6,9,12-13H,7-8,10-11H2,1-5H3,(H,17,18)/b9-6+,14-12+/t13-/m1/s1
+MEI         InChIKey                InChI  1.03                                                                                                        MNYBEULOKRVZKY-ATCPXPEISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MEI acedrg               243         "dictionary generator"                  
+MEI acedrg_database      11          "data source"                           
+MEI rdkit                2017.03.2   "Chemoinformatics tool"
+MEI refmac5              5.8.0238    "optimization tool"                     

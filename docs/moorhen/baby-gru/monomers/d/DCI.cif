@@ -1,0 +1,156 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DCI     DCI      2-METHYL-BUTYLAMINE     NON-POLYMER     19     6     .     
+#
+data_comp_DCI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DCI     N       N       NT2     0       3.403       36.460      12.412      
+DCI     CA      C       CH2     0       3.354       37.805      12.992      
+DCI     CB      C       CH1     0       3.635       38.912      11.963      
+DCI     CG1     C       CH2     0       3.732       40.282      12.640      
+DCI     CG2     C       CH3     0       2.594       38.909      10.844      
+DCI     CD1     C       CH3     0       4.328       41.376      11.777      
+DCI     HN1     H       H       0       3.485       35.855      13.057      
+DCI     HN2     H       H       0       4.112       36.379      11.884      
+DCI     HA1     H       H       0       4.016       37.865      13.712      
+DCI     HA2     H       H       0       2.467       37.953      13.382      
+DCI     HB      H       H       0       4.515       38.722      11.552      
+DCI     HG11    H       H       0       4.280       40.190      13.449      
+DCI     HG12    H       H       0       2.832       40.556      12.918      
+DCI     HG21    H       H       0       2.188       39.790      10.765      
+DCI     HG22    H       H       0       1.901       38.254      11.039      
+DCI     HG23    H       H       0       3.026       38.678      10.003      
+DCI     HD1     H       H       0       3.672       42.083      11.650      
+DCI     HD2     H       H       0       4.580       41.012      10.910      
+DCI     HD3     H       H       0       5.117       41.742      12.214      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DCI           N          CA      SINGLE       n     1.464  0.0200     1.464  0.0200
+DCI          CA          CB      SINGLE       n     1.536  0.0107     1.536  0.0107
+DCI          CB         CG1      SINGLE       n     1.524  0.0181     1.524  0.0181
+DCI          CB         CG2      SINGLE       n     1.521  0.0151     1.521  0.0151
+DCI         CG1         CD1      SINGLE       n     1.511  0.0200     1.511  0.0200
+DCI           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+DCI           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+DCI          CA         HA1      SINGLE       n     1.089  0.0100     0.980  0.0143
+DCI          CA         HA2      SINGLE       n     1.089  0.0100     0.980  0.0143
+DCI          CB          HB      SINGLE       n     1.089  0.0100     0.989  0.0162
+DCI         CG1        HG11      SINGLE       n     1.089  0.0100     0.981  0.0160
+DCI         CG1        HG12      SINGLE       n     1.089  0.0100     0.981  0.0160
+DCI         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0146
+DCI         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0146
+DCI         CG2        HG23      SINGLE       n     1.089  0.0100     0.973  0.0146
+DCI         CD1         HD1      SINGLE       n     1.089  0.0100     0.973  0.0157
+DCI         CD1         HD2      SINGLE       n     1.089  0.0100     0.973  0.0157
+DCI         CD1         HD3      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DCI          CA           N         HN1     109.962    3.00
+DCI          CA           N         HN2     109.962    3.00
+DCI         HN1           N         HN2     107.243    3.00
+DCI           N          CA          CB     111.883    2.59
+DCI           N          CA         HA1     108.870    1.50
+DCI           N          CA         HA2     108.870    1.50
+DCI          CB          CA         HA1     108.663    1.50
+DCI          CB          CA         HA2     108.663    1.50
+DCI         HA1          CA         HA2     107.873    1.50
+DCI          CA          CB         CG1     111.363    1.77
+DCI          CA          CB         CG2     110.627    2.32
+DCI          CA          CB          HB     107.960    1.50
+DCI         CG1          CB         CG2     111.118    1.50
+DCI         CG1          CB          HB     107.675    1.50
+DCI         CG2          CB          HB     107.863    1.50
+DCI          CB         CG1         CD1     114.215    1.50
+DCI          CB         CG1        HG11     108.471    1.50
+DCI          CB         CG1        HG12     108.471    1.50
+DCI         CD1         CG1        HG11     108.717    1.50
+DCI         CD1         CG1        HG12     108.717    1.50
+DCI        HG11         CG1        HG12     107.862    1.50
+DCI          CB         CG2        HG21     109.474    1.50
+DCI          CB         CG2        HG22     109.474    1.50
+DCI          CB         CG2        HG23     109.474    1.50
+DCI        HG21         CG2        HG22     109.411    1.50
+DCI        HG21         CG2        HG23     109.411    1.50
+DCI        HG22         CG2        HG23     109.411    1.50
+DCI         CG1         CD1         HD1     109.566    1.50
+DCI         CG1         CD1         HD2     109.566    1.50
+DCI         CG1         CD1         HD3     109.566    1.50
+DCI         HD1         CD1         HD2     109.380    1.50
+DCI         HD1         CD1         HD3     109.380    1.50
+DCI         HD2         CD1         HD3     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DCI             sp3_sp3_1          CB          CA           N         HN1     180.000    10.0     3
+DCI             sp3_sp3_7           N          CA          CB         CG1     180.000    10.0     3
+DCI            sp3_sp3_16          CA          CB         CG1         CD1     180.000    10.0     3
+DCI            sp3_sp3_25          CA          CB         CG2        HG21     180.000    10.0     3
+DCI            sp3_sp3_34         HD1         CD1         CG1          CB     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DCI    chir_1    CB    CA    CG1    CG2    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DCI           SMILES              ACDLabs 10.04                                                 NCC(C)CC
+DCI SMILES_CANONICAL               CACTVS 3.341                                             CC[C@H](C)CN
+DCI           SMILES               CACTVS 3.341                                              CC[CH](C)CN
+DCI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             CC[C@H](C)CN
+DCI           SMILES "OpenEye OEToolkits" 1.5.0                                                 CCC(C)CN
+DCI            InChI                InChI  1.03 InChI=1S/C5H13N/c1-3-5(2)4-6/h5H,3-4,6H2,1-2H3/t5-/m0/s1
+DCI         InChIKey                InChI  1.03                              VJROPLWGFCORRM-YFKPBYRVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DCI acedrg               243         "dictionary generator"                  
+DCI acedrg_database      11          "data source"                           
+DCI rdkit                2017.03.2   "Chemoinformatics tool"
+DCI refmac5              5.8.0238    "optimization tool"                     

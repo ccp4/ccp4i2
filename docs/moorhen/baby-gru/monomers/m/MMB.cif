@@ -1,0 +1,382 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MMB     MMB      "(2R,3E)-2-{4-[(5-METHYL-2-PHENYL-1,3-OXAZOL-4-YL)METHOXY]BENZYL}-3-(PROPOXYIMINO)BUTANOIC ACID"     NON-POLYMER     59     32     .     
+#
+data_comp_MMB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MMB     C1      C       CH2     0       -4.546      25.715      20.698      
+MMB     C2      C       CH1     0       -5.041      25.197      19.326      
+MMB     C4      C       C       0       -4.223      25.673      18.118      
+MMB     C6      C       C       0       -6.515      25.617      19.170      
+MMB     O2      O       OC      -1      -7.373      24.717      19.157      
+MMB     O3      O       O       0       -6.771      26.832      19.065      
+MMB     C7      C       CR6     0       -3.089      25.436      20.981      
+MMB     C8      C       CR16    0       -2.152      26.462      20.982      
+MMB     C9      C       CR16    0       -0.808      26.218      21.227      
+MMB     C10     C       CR6     0       -0.378      24.922      21.480      
+MMB     C11     C       CR16    0       -1.299      23.879      21.482      
+MMB     C12     C       CR16    0       -2.639      24.145      21.229      
+MMB     O4      O       O2      0       0.962       24.708      21.714      
+MMB     C13     C       CH2     0       1.691       23.843      20.803      
+MMB     C14     C       CR5     0       1.290       24.043      19.385      
+MMB     C15     C       CR5     0       1.680       25.022      18.513      
+MMB     O5      O       O2      0       1.041       24.797      17.312      
+MMB     C3      C       CR5     0       0.284       23.681      17.522      
+MMB     N1      N       NRD5    0       0.405       23.208      18.736      
+MMB     C16     C       CR16    0       -2.065      21.493      15.589      
+MMB     C17     C       CR16    0       -1.283      21.993      16.617      
+MMB     C18     C       CR6     0       -0.538      23.157      16.432      
+MMB     C19     C       CR16    0       -0.596      23.805      15.199      
+MMB     C20     C       CR16    0       -1.382      23.294      14.179      
+MMB     C21     C       CR16    0       -2.115      22.141      14.372      
+MMB     C26     C       CH2     0       -1.594      27.678      17.468      
+MMB     C28     C       CH3     0       0.415       28.866      16.556      
+MMB     C29     C       CH2     0       -0.678      27.857      16.301      
+MMB     C32     C       CH3     0       -4.212      24.736      16.947      
+MMB     N4      N       N       0       -3.637      26.815      18.135      
+MMB     O1      O       O2      0       -2.788      27.018      17.029      
+MMB     C5      C       CH3     0       2.598       26.177      18.641      
+MMB     H11A    H       H       0       -5.087      25.299      21.401      
+MMB     H12A    H       H       0       -4.696      26.683      20.742      
+MMB     H2      H       H       0       -5.015      24.216      19.358      
+MMB     H8      H       H       0       -2.433      27.345      20.810      
+MMB     H9      H       H       0       -0.189      26.930      21.225      
+MMB     H11     H       H       0       -1.014      22.996      21.649      
+MMB     H12     H       H       0       -3.257      23.433      21.231      
+MMB     H131    H       H       0       1.533       22.901      21.052      
+MMB     H132    H       H       0       2.658       24.019      20.891      
+MMB     H16     H       H       0       -2.565      20.705      15.722      
+MMB     H17     H       H       0       -1.257      21.542      17.444      
+MMB     H19     H       H       0       -0.101      24.593      15.054      
+MMB     H20     H       H       0       -1.415      23.738      13.348      
+MMB     H21     H       H       0       -2.649      21.797      13.674      
+MMB     H261    H       H       0       -1.817      28.549      17.849      
+MMB     H262    H       H       0       -1.151      27.146      18.156      
+MMB     H281    H       H       0       0.938       28.992      15.746      
+MMB     H282    H       H       0       0.995       28.546      17.269      
+MMB     H283    H       H       0       0.019       29.715      16.820      
+MMB     H291    H       H       0       -1.206      28.145      15.525      
+MMB     H292    H       H       0       -0.271      26.991      16.083      
+MMB     H321    H       H       0       -4.836      24.005      17.099      
+MMB     H322    H       H       0       -3.317      24.374      16.827      
+MMB     H323    H       H       0       -4.476      25.215      16.142      
+MMB     H51     H       H       0       2.547       26.722      17.839      
+MMB     H52     H       H       0       3.508       25.858      18.756      
+MMB     H53     H       H       0       2.343       26.711      19.411      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MMB          C1          C2      SINGLE       n     1.544  0.0100     1.544  0.0100
+MMB          C1          C7      SINGLE       n     1.509  0.0100     1.509  0.0100
+MMB          C2          C4      SINGLE       n     1.520  0.0170     1.520  0.0170
+MMB          C2          C6      SINGLE       n     1.539  0.0100     1.539  0.0100
+MMB          C4         C32      SINGLE       n     1.496  0.0100     1.496  0.0100
+MMB          C4          N4      DOUBLE       n     1.278  0.0100     1.278  0.0100
+MMB          C6          O3      DOUBLE       n     1.244  0.0200     1.244  0.0200
+MMB          C6          O2      SINGLE       n     1.244  0.0200     1.244  0.0200
+MMB          C7          C8      DOUBLE       y     1.385  0.0110     1.385  0.0110
+MMB          C7         C12      SINGLE       y     1.385  0.0110     1.385  0.0110
+MMB          C8          C9      SINGLE       y     1.385  0.0100     1.385  0.0100
+MMB          C9         C10      DOUBLE       y     1.386  0.0109     1.386  0.0109
+MMB         C10          O4      SINGLE       n     1.375  0.0100     1.375  0.0100
+MMB         C10         C11      SINGLE       y     1.386  0.0109     1.386  0.0109
+MMB         C11         C12      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MMB          O4         C13      SINGLE       n     1.448  0.0100     1.448  0.0100
+MMB         C13         C14      SINGLE       n     1.485  0.0100     1.485  0.0100
+MMB         C14          N1      SINGLE       y     1.377  0.0100     1.377  0.0100
+MMB         C14         C15      DOUBLE       y     1.367  0.0200     1.367  0.0200
+MMB         C15          O5      SINGLE       y     1.380  0.0100     1.380  0.0100
+MMB         C15          C5      SINGLE       n     1.481  0.0100     1.481  0.0100
+MMB          O5          C3      SINGLE       y     1.364  0.0100     1.364  0.0100
+MMB          C3         C18      SINGLE       n     1.458  0.0100     1.458  0.0100
+MMB          C3          N1      DOUBLE       y     1.305  0.0182     1.305  0.0182
+MMB         C16         C21      DOUBLE       y     1.376  0.0114     1.376  0.0114
+MMB         C16         C17      SINGLE       y     1.382  0.0100     1.382  0.0100
+MMB         C17         C18      DOUBLE       y     1.388  0.0100     1.388  0.0100
+MMB         C18         C19      SINGLE       y     1.388  0.0100     1.388  0.0100
+MMB         C19         C20      DOUBLE       y     1.382  0.0100     1.382  0.0100
+MMB         C20         C21      SINGLE       y     1.376  0.0114     1.376  0.0114
+MMB         C26         C29      SINGLE       n     1.493  0.0200     1.493  0.0200
+MMB         C26          O1      SINGLE       n     1.431  0.0100     1.431  0.0100
+MMB         C28         C29      SINGLE       n     1.508  0.0200     1.508  0.0200
+MMB          N4          O1      SINGLE       n     1.405  0.0130     1.405  0.0130
+MMB          C1        H11A      SINGLE       n     1.089  0.0100     0.980  0.0143
+MMB          C1        H12A      SINGLE       n     1.089  0.0100     0.980  0.0143
+MMB          C2          H2      SINGLE       n     1.089  0.0100     0.982  0.0200
+MMB          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0173
+MMB          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0169
+MMB         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0169
+MMB         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+MMB         C13        H131      SINGLE       n     1.089  0.0100     0.987  0.0141
+MMB         C13        H132      SINGLE       n     1.089  0.0100     0.987  0.0141
+MMB         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0180
+MMB         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0200
+MMB         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0200
+MMB         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0180
+MMB         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0161
+MMB         C26        H261      SINGLE       n     1.089  0.0100     0.976  0.0100
+MMB         C26        H262      SINGLE       n     1.089  0.0100     0.976  0.0100
+MMB         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0157
+MMB         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0157
+MMB         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0157
+MMB         C29        H291      SINGLE       n     1.089  0.0100     0.981  0.0133
+MMB         C29        H292      SINGLE       n     1.089  0.0100     0.981  0.0133
+MMB         C32        H321      SINGLE       n     1.089  0.0100     0.973  0.0132
+MMB         C32        H322      SINGLE       n     1.089  0.0100     0.973  0.0132
+MMB         C32        H323      SINGLE       n     1.089  0.0100     0.973  0.0132
+MMB          C5         H51      SINGLE       n     1.089  0.0100     0.971  0.0130
+MMB          C5         H52      SINGLE       n     1.089  0.0100     0.971  0.0130
+MMB          C5         H53      SINGLE       n     1.089  0.0100     0.971  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MMB          C2          C1          C7     114.106    2.08
+MMB          C2          C1        H11A     108.654    1.50
+MMB          C2          C1        H12A     108.654    1.50
+MMB          C7          C1        H11A     108.738    1.50
+MMB          C7          C1        H12A     108.738    1.50
+MMB        H11A          C1        H12A     107.709    1.50
+MMB          C1          C2          C4     111.511    2.91
+MMB          C1          C2          C6     108.756    3.00
+MMB          C1          C2          H2     108.292    1.50
+MMB          C4          C2          C6     111.575    3.00
+MMB          C4          C2          H2     109.227    1.50
+MMB          C6          C2          H2     108.186    1.50
+MMB          C2          C4         C32     116.155    2.45
+MMB          C2          C4          N4     122.048    3.00
+MMB         C32          C4          N4     121.797    3.00
+MMB          C2          C6          O3     117.800    1.60
+MMB          C2          C6          O2     117.800    1.60
+MMB          O3          C6          O2     124.400    1.50
+MMB          C1          C7          C8     121.080    1.50
+MMB          C1          C7         C12     121.080    1.50
+MMB          C8          C7         C12     117.841    1.50
+MMB          C7          C8          C9     121.479    1.50
+MMB          C7          C8          H8     119.314    1.50
+MMB          C9          C8          H8     119.207    1.50
+MMB          C8          C9         C10     119.690    1.50
+MMB          C8          C9          H9     120.174    1.50
+MMB         C10          C9          H9     120.137    1.50
+MMB          C9         C10          O4     120.089    3.00
+MMB          C9         C10         C11     119.823    1.50
+MMB          O4         C10         C11     120.089    3.00
+MMB         C10         C11         C12     119.690    1.50
+MMB         C10         C11         H11     120.137    1.50
+MMB         C12         C11         H11     120.174    1.50
+MMB          C7         C12         C11     121.479    1.50
+MMB          C7         C12         H12     119.314    1.50
+MMB         C11         C12         H12     119.207    1.50
+MMB         C10          O4         C13     116.656    1.50
+MMB          O4         C13         C14     109.288    2.36
+MMB          O4         C13        H131     109.897    1.50
+MMB          O4         C13        H132     109.897    1.50
+MMB         C14         C13        H131     109.578    1.50
+MMB         C14         C13        H132     109.578    1.50
+MMB        H131         C13        H132     108.298    1.50
+MMB         C13         C14          N1     123.425    1.50
+MMB         C13         C14         C15     128.331    3.00
+MMB          N1         C14         C15     108.244    2.56
+MMB         C14         C15          O5     108.055    1.50
+MMB         C14         C15          C5     132.554    3.00
+MMB          O5         C15          C5     119.391    1.50
+MMB         C15          O5          C3     105.190    1.50
+MMB          O5          C3         C18     118.418    1.50
+MMB          O5          C3          N1     113.312    1.50
+MMB         C18          C3          N1     128.270    2.88
+MMB         C14          N1          C3     105.200    1.50
+MMB         C21         C16         C17     120.378    1.50
+MMB         C21         C16         H16     119.912    1.50
+MMB         C17         C16         H16     119.710    1.50
+MMB         C16         C17         C18     119.959    1.50
+MMB         C16         C17         H17     119.980    1.50
+MMB         C18         C17         H17     120.062    1.50
+MMB          C3         C18         C17     120.304    1.50
+MMB          C3         C18         C19     120.304    1.50
+MMB         C17         C18         C19     119.392    1.50
+MMB         C18         C19         C20     119.959    1.50
+MMB         C18         C19         H19     120.062    1.50
+MMB         C20         C19         H19     119.980    1.50
+MMB         C19         C20         C21     120.378    1.50
+MMB         C19         C20         H20     119.710    1.50
+MMB         C21         C20         H20     119.912    1.50
+MMB         C16         C21         C20     119.934    1.50
+MMB         C16         C21         H21     120.033    1.50
+MMB         C20         C21         H21     120.033    1.50
+MMB         C29         C26          O1     108.643    2.28
+MMB         C29         C26        H261     109.787    1.50
+MMB         C29         C26        H262     109.787    1.50
+MMB          O1         C26        H261     109.850    1.50
+MMB          O1         C26        H262     109.850    1.50
+MMB        H261         C26        H262     108.308    1.50
+MMB         C29         C28        H281     109.599    1.50
+MMB         C29         C28        H282     109.599    1.50
+MMB         C29         C28        H283     109.599    1.50
+MMB        H281         C28        H282     109.380    1.50
+MMB        H281         C28        H283     109.380    1.50
+MMB        H282         C28        H283     109.380    1.50
+MMB         C26         C29         C28     113.106    3.00
+MMB         C26         C29        H291     108.802    1.50
+MMB         C26         C29        H292     108.802    1.50
+MMB         C28         C29        H291     109.194    1.50
+MMB         C28         C29        H292     109.194    1.50
+MMB        H291         C29        H292     107.894    1.50
+MMB          C4         C32        H321     109.649    1.50
+MMB          C4         C32        H322     109.649    1.50
+MMB          C4         C32        H323     109.649    1.50
+MMB        H321         C32        H322     109.402    1.50
+MMB        H321         C32        H323     109.402    1.50
+MMB        H322         C32        H323     109.402    1.50
+MMB          C4          N4          O1     110.949    1.50
+MMB         C26          O1          N4     108.987    1.50
+MMB         C15          C5         H51     109.455    1.50
+MMB         C15          C5         H52     109.455    1.50
+MMB         C15          C5         H53     109.455    1.50
+MMB         H51          C5         H52     109.377    1.50
+MMB         H51          C5         H53     109.377    1.50
+MMB         H52          C5         H53     109.377    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MMB             sp3_sp3_1          C7          C1          C2          C4     180.000    10.0     3
+MMB             sp2_sp3_2          C8          C7          C1          C2     -90.000    10.0     6
+MMB              const_17         C10         C11         C12          C7       0.000    10.0     2
+MMB            sp3_sp3_10         C14         C13          O4         C10     180.000    10.0     3
+MMB            sp2_sp3_26          N1         C14         C13          O4     -90.000    10.0     6
+MMB              const_56         C13         C14         C15          C5       0.000    10.0     2
+MMB              const_22         C13         C14          N1          C3     180.000    10.0     2
+MMB              const_28          C5         C15          O5          C3     180.000    10.0     2
+MMB            sp2_sp3_31         C14         C15          C5         H51     150.000    10.0     6
+MMB              const_26         C18          C3          O5         C15     180.000    10.0     2
+MMB              const_23          O5          C3          N1         C14       0.000    10.0     2
+MMB             sp2_sp2_5         C17         C18          C3          O5     180.000     5.0     2
+MMB              const_57         C21         C16         C17         C18       0.000    10.0     2
+MMB              const_29         C17         C16         C21         C20       0.000    10.0     2
+MMB             sp2_sp3_7         C32          C4          C2          C1       0.000    10.0     6
+MMB            sp2_sp3_13          O3          C6          C2          C1       0.000    10.0     6
+MMB              const_46         C16         C17         C18          C3     180.000    10.0     2
+MMB              const_43          C3         C18         C19         C20     180.000    10.0     2
+MMB              const_37         C18         C19         C20         C21       0.000    10.0     2
+MMB              const_33         C19         C20         C21         C16       0.000    10.0     2
+MMB            sp3_sp3_13          O1         C26         C29         C28     180.000    10.0     3
+MMB            sp3_sp3_22         C29         C26          O1          N4     180.000    10.0     3
+MMB            sp3_sp3_25        H281         C28         C29         C26     180.000    10.0     3
+MMB             sp2_sp2_9          C4          N4          O1         C26     180.000     5.0     2
+MMB            sp2_sp3_19          C2          C4         C32        H321       0.000    10.0     6
+MMB             sp2_sp2_1          C2          C4          N4          O1     180.000     5.0     2
+MMB              const_50         C11         C12          C7          C1     180.000    10.0     2
+MMB       const_sp2_sp2_3          C1          C7          C8          C9     180.000     5.0     2
+MMB       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+MMB              const_11          O4         C10          C9          C8     180.000    10.0     2
+MMB              const_15          O4         C10         C11         C12     180.000    10.0     2
+MMB             sp2_sp2_3          C9         C10          O4         C13     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MMB    chir_1    C2    C6    C4    C1    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MMB    plan-1          C1   0.020
+MMB    plan-1         C10   0.020
+MMB    plan-1         C11   0.020
+MMB    plan-1         C12   0.020
+MMB    plan-1          C7   0.020
+MMB    plan-1          C8   0.020
+MMB    plan-1          C9   0.020
+MMB    plan-1         H11   0.020
+MMB    plan-1         H12   0.020
+MMB    plan-1          H8   0.020
+MMB    plan-1          H9   0.020
+MMB    plan-1          O4   0.020
+MMB    plan-2         C13   0.020
+MMB    plan-2         C14   0.020
+MMB    plan-2         C15   0.020
+MMB    plan-2         C18   0.020
+MMB    plan-2          C3   0.020
+MMB    plan-2          C5   0.020
+MMB    plan-2          N1   0.020
+MMB    plan-2          O5   0.020
+MMB    plan-3         C16   0.020
+MMB    plan-3         C17   0.020
+MMB    plan-3         C18   0.020
+MMB    plan-3         C19   0.020
+MMB    plan-3         C20   0.020
+MMB    plan-3         C21   0.020
+MMB    plan-3          C3   0.020
+MMB    plan-3         H16   0.020
+MMB    plan-3         H17   0.020
+MMB    plan-3         H19   0.020
+MMB    plan-3         H20   0.020
+MMB    plan-3         H21   0.020
+MMB    plan-4          C2   0.020
+MMB    plan-4         C32   0.020
+MMB    plan-4          C4   0.020
+MMB    plan-4          N4   0.020
+MMB    plan-5          C2   0.020
+MMB    plan-5          C6   0.020
+MMB    plan-5          O2   0.020
+MMB    plan-5          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MMB           SMILES              ACDLabs 10.04                                                                                                                        O=C(O)C(C(=N\OCCC)\C)Cc3ccc(OCc1nc(oc1C)c2ccccc2)cc3
+MMB SMILES_CANONICAL               CACTVS 3.341                                                                                                                   CCCO/N=C(C)/[C@@H](Cc1ccc(OCc2nc(oc2C)c3ccccc3)cc1)C(O)=O
+MMB           SMILES               CACTVS 3.341                                                                                                                       CCCON=C(C)[CH](Cc1ccc(OCc2nc(oc2C)c3ccccc3)cc1)C(O)=O
+MMB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                CCCO/N=C(\C)/[C@@H](Cc1ccc(cc1)OCc2c(oc(n2)c3ccccc3)C)C(=O)O
+MMB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                        CCCON=C(C)C(Cc1ccc(cc1)OCc2c(oc(n2)c3ccccc3)C)C(=O)O
+MMB            InChI                InChI  1.03 InChI=1S/C25H28N2O5/c1-4-14-31-27-17(2)22(25(28)29)15-19-10-12-21(13-11-19)30-16-23-18(3)32-24(26-23)20-8-6-5-7-9-20/h5-13,22H,4,14-16H2,1-3H3,(H,28,29)/b27-17+/t22-/m1/s1
+MMB         InChIKey                InChI  1.03                                                                                                                                                 YAWURVGPVQWWHE-UJUJBVAOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MMB acedrg               243         "dictionary generator"                  
+MMB acedrg_database      11          "data source"                           
+MMB rdkit                2017.03.2   "Chemoinformatics tool"
+MMB refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,292 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EPK     EPK      3-ethyl-2-(propan-2-ylamino)-7-(pyridin-3-yl)thieno[3,2-d]pyrimidin-4(3H)-one     NON-POLYMER     40     22     .     
+#
+data_comp_EPK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EPK     C1      C       CR56    0       -45.815     25.060      -0.664      
+EPK     C2      C       CR56    0       -46.103     26.187      -1.462      
+EPK     C3      C       CR6     0       -43.841     26.719      -1.634      
+EPK     N1      N       NR6     0       -43.491     25.607      -0.844      
+EPK     N2      N       NRD6    0       -45.107     26.996      -1.939      
+EPK     C4      C       CR6     0       -44.495     24.743      -0.339      
+EPK     C5      C       CR5     0       -47.520     26.335      -1.684      
+EPK     S1      S       S2      0       -47.235     24.285      -0.248      
+EPK     C6      C       CR15    0       -48.262     25.329      -1.051      
+EPK     N3      N       NH1     0       -42.868     27.521      -2.123      
+EPK     O1      O       O       0       -44.172     23.776      0.349       
+EPK     C7      C       CR6     0       -48.114     27.429      -2.473      
+EPK     N4      N       NRD6    0       -48.318     29.799      -2.900      
+EPK     C8      C       CH2     0       -42.079     25.274      -0.497      
+EPK     C9      C       CR16    0       -47.796     28.756      -2.204      
+EPK     C10     C       CH1     0       -43.057     28.942      -2.463      
+EPK     C11     C       CR16    0       -49.186     29.520      -3.886      
+EPK     C12     C       CR16    0       -49.021     27.180      -3.501      
+EPK     C13     C       CH3     0       -41.420     24.427      -1.554      
+EPK     C14     C       CH3     0       -43.456     29.735      -1.236      
+EPK     C15     C       CH3     0       -41.804     29.493      -3.108      
+EPK     C16     C       CR16    0       -49.564     28.235      -4.219      
+EPK     H1      H       H       0       -49.197     25.210      -1.045      
+EPK     H2      H       H       0       -42.085     27.186      -2.305      
+EPK     H3      H       H       0       -42.047     24.807      0.357       
+EPK     H4      H       H       0       -41.573     26.097      -0.381      
+EPK     H5      H       H       0       -47.182     28.941      -1.509      
+EPK     H6      H       H       0       -43.786     29.001      -3.118      
+EPK     H7      H       H       0       -49.553     30.239      -4.372      
+EPK     H8      H       H       0       -49.260     26.294      -3.706      
+EPK     H9      H       H       0       -40.504     24.237      -1.295      
+EPK     H10     H       H       0       -41.422     24.901      -2.401      
+EPK     H11     H       H       0       -41.905     23.592      -1.653      
+EPK     H12     H       H       0       -43.106     29.303      -0.438      
+EPK     H13     H       H       0       -44.426     29.779      -1.179      
+EPK     H14     H       H       0       -43.098     30.639      -1.297      
+EPK     H15     H       H       0       -41.978     30.389      -3.444      
+EPK     H16     H       H       0       -41.538     28.918      -3.847      
+EPK     H17     H       H       0       -41.087     29.527      -2.452      
+EPK     H18     H       H       0       -50.176     28.076      -4.917      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EPK         C11         C16      SINGLE       y     1.374  0.0152     1.374  0.0152
+EPK          N4         C11      DOUBLE       y     1.336  0.0134     1.336  0.0134
+EPK         C12         C16      DOUBLE       y     1.376  0.0200     1.376  0.0200
+EPK          N4          C9      SINGLE       y     1.340  0.0198     1.340  0.0198
+EPK         C10         C15      SINGLE       n     1.512  0.0108     1.512  0.0108
+EPK          C7         C12      SINGLE       y     1.391  0.0100     1.391  0.0100
+EPK          C7          C9      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EPK          N3         C10      SINGLE       n     1.468  0.0100     1.468  0.0100
+EPK         C10         C14      SINGLE       n     1.512  0.0108     1.512  0.0108
+EPK          C5          C7      SINGLE       n     1.473  0.0100     1.473  0.0100
+EPK          C3          N3      SINGLE       n     1.342  0.0119     1.342  0.0119
+EPK          C3          N2      DOUBLE       y     1.323  0.0142     1.323  0.0142
+EPK          C2          N2      SINGLE       y     1.369  0.0100     1.369  0.0100
+EPK          C2          C5      SINGLE       y     1.408  0.0200     1.408  0.0200
+EPK          C5          C6      DOUBLE       y     1.389  0.0200     1.389  0.0200
+EPK          C8         C13      SINGLE       n     1.506  0.0134     1.506  0.0134
+EPK          C3          N1      SINGLE       y     1.394  0.0100     1.394  0.0100
+EPK          C1          C2      DOUBLE       y     1.399  0.0200     1.399  0.0200
+EPK          S1          C6      SINGLE       y     1.695  0.0200     1.695  0.0200
+EPK          N1          C8      SINGLE       n     1.483  0.0100     1.483  0.0100
+EPK          N1          C4      SINGLE       y     1.404  0.0100     1.404  0.0100
+EPK          C1          C4      SINGLE       y     1.386  0.0172     1.386  0.0172
+EPK          C1          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+EPK          C4          O1      DOUBLE       n     1.229  0.0100     1.229  0.0100
+EPK          C6          H1      SINGLE       n     1.082  0.0130     0.942  0.0200
+EPK          N3          H2      SINGLE       n     1.016  0.0100     0.873  0.0200
+EPK          C8          H3      SINGLE       n     1.089  0.0100     0.975  0.0200
+EPK          C8          H4      SINGLE       n     1.089  0.0100     0.975  0.0200
+EPK          C9          H5      SINGLE       n     1.082  0.0130     0.945  0.0181
+EPK         C10          H6      SINGLE       n     1.089  0.0100     0.982  0.0100
+EPK         C11          H7      SINGLE       n     1.082  0.0130     0.942  0.0166
+EPK         C12          H8      SINGLE       n     1.082  0.0130     0.940  0.0143
+EPK         C13          H9      SINGLE       n     1.089  0.0100     0.971  0.0200
+EPK         C13         H10      SINGLE       n     1.089  0.0100     0.971  0.0200
+EPK         C13         H11      SINGLE       n     1.089  0.0100     0.971  0.0200
+EPK         C14         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPK         C14         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPK         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPK         C15         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPK         C15         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPK         C15         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPK         C16         H18      SINGLE       n     1.082  0.0130     0.942  0.0155
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EPK          C2          C1          C4     120.764    1.92
+EPK          C2          C1          S1     108.118    3.00
+EPK          C4          C1          S1     131.118    3.00
+EPK          N2          C2          C5     128.761    1.77
+EPK          N2          C2          C1     123.444    1.50
+EPK          C5          C2          C1     107.794    1.50
+EPK          N3          C3          N2     120.082    1.50
+EPK          N3          C3          N1     117.659    1.50
+EPK          N2          C3          N1     122.259    1.50
+EPK          C3          N1          C8     122.671    1.50
+EPK          C3          N1          C4     120.729    1.50
+EPK          C8          N1          C4     116.600    1.50
+EPK          C3          N2          C2     117.090    2.40
+EPK          N1          C4          C1     115.713    1.50
+EPK          N1          C4          O1     118.540    1.50
+EPK          C1          C4          O1     125.747    1.50
+EPK          C7          C5          C2     126.124    3.00
+EPK          C7          C5          C6     126.024    2.56
+EPK          C2          C5          C6     107.852    1.50
+EPK          C6          S1          C1     108.118    3.00
+EPK          C5          C6          S1     108.118    3.00
+EPK          C5          C6          H1     129.136    3.00
+EPK          S1          C6          H1     122.746    3.00
+EPK         C10          N3          C3     122.381    2.30
+EPK         C10          N3          H2     117.891    2.52
+EPK          C3          N3          H2     119.728    1.68
+EPK         C12          C7          C9     117.837    1.50
+EPK         C12          C7          C5     121.251    1.50
+EPK          C9          C7          C5     120.912    1.60
+EPK         C11          N4          C9     116.952    1.50
+EPK         C13          C8          N1     112.051    1.50
+EPK         C13          C8          H3     109.451    1.50
+EPK         C13          C8          H4     109.451    1.50
+EPK          N1          C8          H3     108.980    1.50
+EPK          N1          C8          H4     108.980    1.50
+EPK          H3          C8          H4     107.920    1.92
+EPK          N4          C9          C7     122.727    1.50
+EPK          N4          C9          H5     118.555    1.50
+EPK          C7          C9          H5     118.718    1.50
+EPK         C15         C10          N3     109.840    1.50
+EPK         C15         C10         C14     111.689    1.50
+EPK         C15         C10          H6     108.432    1.50
+EPK          N3         C10         C14     109.840    1.50
+EPK          N3         C10          H6     107.866    1.50
+EPK         C14         C10          H6     108.432    1.50
+EPK         C16         C11          N4     123.203    1.50
+EPK         C16         C11          H7     118.626    1.50
+EPK          N4         C11          H7     118.171    1.50
+EPK         C16         C12          C7     120.425    1.50
+EPK         C16         C12          H8     120.126    1.50
+EPK          C7         C12          H8     119.449    1.50
+EPK          C8         C13          H9     109.639    1.67
+EPK          C8         C13         H10     109.639    1.67
+EPK          C8         C13         H11     109.639    1.67
+EPK          H9         C13         H10     109.243    2.31
+EPK          H9         C13         H11     109.243    2.31
+EPK         H10         C13         H11     109.243    2.31
+EPK         C10         C14         H12     109.585    1.50
+EPK         C10         C14         H13     109.585    1.50
+EPK         C10         C14         H14     109.585    1.50
+EPK         H12         C14         H13     109.386    1.50
+EPK         H12         C14         H14     109.386    1.50
+EPK         H13         C14         H14     109.386    1.50
+EPK         C10         C15         H15     109.585    1.50
+EPK         C10         C15         H16     109.585    1.50
+EPK         C10         C15         H17     109.585    1.50
+EPK         H15         C15         H16     109.386    1.50
+EPK         H15         C15         H17     109.386    1.50
+EPK         H16         C15         H17     109.386    1.50
+EPK         C11         C16         C12     118.856    1.50
+EPK         C11         C16         H18     120.659    1.50
+EPK         C12         C16         H18     120.485    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EPK              const_17          C4          C1          C2          N2       0.000    10.0     2
+EPK              const_48          C2          C1          C4          O1     180.000    10.0     2
+EPK              const_51          C2          C1          S1          C6       0.000    10.0     2
+EPK              const_43         C12          C7          C9          N4       0.000    10.0     2
+EPK       const_sp2_sp2_1         C16         C12          C7          C9       0.000     5.0     2
+EPK              const_15          C7          C9          N4         C11       0.000    10.0     2
+EPK              const_13         C16         C11          N4          C9       0.000    10.0     2
+EPK            sp3_sp3_19          H9         C13          C8          N1     180.000    10.0     3
+EPK            sp3_sp3_10         C15         C10         C14         H12     180.000    10.0     3
+EPK             sp3_sp3_1          N3         C10         C15         H15     180.000    10.0     3
+EPK       const_sp2_sp2_9          N4         C11         C16         C12       0.000     5.0     2
+EPK       const_sp2_sp2_5          C7         C12         C16         C11       0.000     5.0     2
+EPK              const_22          C5          C2          N2          C3     180.000    10.0     2
+EPK              const_36          N2          C2          C5          C7       0.000    10.0     2
+EPK              const_28          N3          C3          N1          C8       0.000    10.0     2
+EPK              const_24          N3          C3          N2          C2     180.000    10.0     2
+EPK             sp2_sp2_7          N2          C3          N3         C10       0.000     5.0     2
+EPK             sp2_sp3_8          C3          N1          C8         C13     -90.000    10.0     6
+EPK              const_32          O1          C4          N1          C8       0.000    10.0     2
+EPK             sp2_sp2_1          C2          C5          C7         C12     180.000     5.0     2
+EPK              const_39          C7          C5          C6          S1     180.000    10.0     2
+EPK              const_41          C5          C6          S1          C1       0.000    10.0     2
+EPK             sp2_sp3_2          C3          N3         C10         C15     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EPK    chir_1    C10    N3    C15    C14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EPK    plan-1          C1   0.020
+EPK    plan-1          C2   0.020
+EPK    plan-1          C3   0.020
+EPK    plan-1          C4   0.020
+EPK    plan-1          C5   0.020
+EPK    plan-1          C6   0.020
+EPK    plan-1          C7   0.020
+EPK    plan-1          C8   0.020
+EPK    plan-1          H1   0.020
+EPK    plan-1          N1   0.020
+EPK    plan-1          N2   0.020
+EPK    plan-1          N3   0.020
+EPK    plan-1          O1   0.020
+EPK    plan-1          S1   0.020
+EPK    plan-2         C11   0.020
+EPK    plan-2         C12   0.020
+EPK    plan-2         C16   0.020
+EPK    plan-2          C5   0.020
+EPK    plan-2          C7   0.020
+EPK    plan-2          C9   0.020
+EPK    plan-2         H18   0.020
+EPK    plan-2          H5   0.020
+EPK    plan-2          H7   0.020
+EPK    plan-2          H8   0.020
+EPK    plan-2          N4   0.020
+EPK    plan-3         C10   0.020
+EPK    plan-3          C3   0.020
+EPK    plan-3          H2   0.020
+EPK    plan-3          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EPK           SMILES              ACDLabs 12.01                                                                              O=C1c2scc(c2N=C(N1CC)NC(C)C)c3cccnc3
+EPK            InChI                InChI  1.03 InChI=1S/C16H18N4OS/c1-4-20-15(21)14-13(19-16(20)18-10(2)3)12(9-22-14)11-6-5-7-17-8-11/h5-10H,4H2,1-3H3,(H,18,19)
+EPK         InChIKey                InChI  1.03                                                                                       TZXUAKHZPAHOMA-UHFFFAOYSA-N
+EPK SMILES_CANONICAL               CACTVS 3.385                                                                              CCN1C(=O)c2scc(c3cccnc3)c2N=C1NC(C)C
+EPK           SMILES               CACTVS 3.385                                                                              CCN1C(=O)c2scc(c3cccnc3)c2N=C1NC(C)C
+EPK SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                            CCN1C(=O)c2c(c(cs2)c3cccnc3)N=C1NC(C)C
+EPK           SMILES "OpenEye OEToolkits" 1.9.2                                                                            CCN1C(=O)c2c(c(cs2)c3cccnc3)N=C1NC(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EPK acedrg               243         "dictionary generator"                  
+EPK acedrg_database      11          "data source"                           
+EPK rdkit                2017.03.2   "Chemoinformatics tool"
+EPK refmac5              5.8.0238    "optimization tool"                     

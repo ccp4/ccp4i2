@@ -1,0 +1,950 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+03F     03F      (9Z)-N-[(2S,3R,4E)-1-(beta-D-glucopyranosyloxy)-3-hydroxyoctadec-4-en-2-yl]octadec-9-enamide     NON-POLYMER     130     51     .     
+#
+data_comp_03F
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+03F     C1      C       CH2     0       32.014      23.586      -3.055      
+03F     C2      C       CH1     0       30.778      24.034      -3.812      
+03F     N2      N       NH1     0       29.765      24.543      -2.893      
+03F     C3      C       CH1     0       30.171      22.924      -4.697      
+03F     O3      O       OH1     0       31.147      22.356      -5.560      
+03F     C4      C       C1      0       29.039      23.479      -5.505      
+03F     C5      C       C1      0       27.789      23.466      -5.151      
+03F     C6      C       CH2     0       26.659      24.075      -5.920      
+03F     C7      C       CH2     0       26.843      25.544      -6.180      
+03F     C8      C       CH2     0       25.558      26.355      -6.178      
+03F     C9      C       CH2     0       25.763      27.835      -6.388      
+03F     C10     C       CH2     0       24.572      28.685      -6.021      
+03F     C11     C       CH2     0       23.376      28.499      -6.923      
+03F     C12     C       CH2     0       22.253      29.473      -6.671      
+03F     C13     C       CH2     0       21.466      29.197      -5.414      
+03F     C14     C       CH2     0       20.330      30.160      -5.171      
+03F     C15     C       CH2     0       19.478      29.823      -3.973      
+03F     C16     C       CH2     0       18.434      30.861      -3.643      
+03F     C17     C       CH2     0       17.485      30.459      -2.541      
+03F     C18     C       CH3     0       16.410      29.482      -2.964      
+03F     C1A     C       CH1     0       32.887      21.814      -1.711      
+03F     O1A     O       O2      0       31.752      22.388      -2.299      
+03F     C2A     C       CH1     0       32.444      20.868      -0.601      
+03F     O2A     O       OH1     0       31.757      21.592      0.416       
+03F     C3A     C       CH1     0       33.650      20.130      -0.025      
+03F     O3A     O       OH1     0       33.205      19.150      0.911       
+03F     C4A     C       CH1     0       34.471      19.469      -1.128      
+03F     O4A     O       OH1     0       35.674      18.928      -0.582      
+03F     O5A     O       OH1     0       35.799      20.839      -4.416      
+03F     C5M     C       CH1     0       34.819      20.487      -2.220      
+03F     C6A     C       CH2     0       35.507      19.865      -3.415      
+03F     O6A     O       O2      0       33.603      21.103      -2.708      
+03F     CAA     C       C       0       29.481      25.841      -2.679      
+03F     OAA     O       O       0       30.088      26.754      -3.236      
+03F     CAB     C       CH2     0       28.350      26.131      -1.712      
+03F     CAC     C       CH2     0       27.004      26.132      -2.372      
+03F     CAD     C       CH2     0       25.869      26.514      -1.437      
+03F     CAE     C       CH2     0       24.503      26.518      -2.082      
+03F     CAF     C       CH2     0       23.381      26.891      -1.144      
+03F     CAG     C       CH2     0       21.988      26.791      -1.751      
+03F     CAH     C       CH2     0       20.895      27.260      -0.841      
+03F     CAI     C       C1      0       19.517      26.981      -1.356      
+03F     CAJ     C       C1      0       18.402      27.248      -0.722      
+03F     CAK     C       CH2     0       18.306      27.880      0.632       
+03F     CAL     C       CH2     0       16.902      28.159      1.072       
+03F     CAM     C       CH2     0       16.806      28.788      2.451       
+03F     CAN     C       CH2     0       15.398      29.066      2.916       
+03F     CAO     C       CH2     0       15.316      29.685      4.290       
+03F     CAP     C       CH2     0       13.912      29.966      4.764       
+03F     CAQ     C       CH2     0       13.838      30.587      6.138       
+03F     CAR     C       CH3     0       12.434      30.874      6.624       
+03F     H1A     H       H       0       32.297      24.297      -2.444      
+03F     H1      H       H       0       32.743      23.422      -3.688      
+03F     H2      H       H       0       31.041      24.765      -4.422      
+03F     HN2     H       H       0       29.305      23.936      -2.466      
+03F     H3      H       H       0       29.820      22.213      -4.108      
+03F     HO3     H       H       0       31.500      22.967      -6.032      
+03F     H4      H       H       0       29.260      23.885      -6.329      
+03F     H5      H       H       0       27.573      23.053      -4.328      
+03F     H6A     H       H       0       25.824      23.940      -5.418      
+03F     H6      H       H       0       26.572      23.609      -6.781      
+03F     H7      H       H       0       27.281      25.656      -7.049      
+03F     H7A     H       H       0       27.444      25.914      -5.498      
+03F     H8A     H       H       0       25.102      26.219      -5.320      
+03F     H8      H       H       0       24.970      26.014      -6.885      
+03F     H9      H       H       0       25.982      27.991      -7.332      
+03F     H9A     H       H       0       26.533      28.125      -5.853      
+03F     H10     H       H       0       24.840      29.628      -6.045      
+03F     H10A    H       H       0       24.307      28.474      -5.100      
+03F     H11A    H       H       0       23.033      27.587      -6.806      
+03F     H11     H       H       0       23.668      28.589      -7.855      
+03F     H12A    H       H       0       21.641      29.453      -7.437      
+03F     H12     H       H       0       22.629      30.378      -6.614      
+03F     H13     H       H       0       22.076      29.230      -4.646      
+03F     H13A    H       H       0       21.101      28.288      -5.465      
+03F     H14     H       H       0       19.758      30.180      -5.968      
+03F     H14A    H       H       0       20.702      31.060      -5.050      
+03F     H15A    H       H       0       20.063      29.707      -3.194      
+03F     H15     H       H       0       19.029      28.967      -4.137      
+03F     H16     H       H       0       17.913      31.052      -4.452      
+03F     H16A    H       H       0       18.888      31.690      -3.380      
+03F     H17     H       H       0       17.054      31.269      -2.189      
+03F     H17A    H       H       0       18.005      30.059      -1.811      
+03F     H18A    H       H       0       16.611      29.134      -3.851      
+03F     H18B    H       H       0       15.549      29.935      -2.983      
+03F     H18     H       H       0       16.373      28.745      -2.330      
+03F     H1AA    H       H       0       33.457      22.507      -1.336      
+03F     H2A     H       H       0       31.824      20.202      -0.985      
+03F     HO2A    H       H       0       31.431      21.049      0.969       
+03F     H3A     H       H       0       34.224      20.784      0.448       
+03F     HO3A    H       H       0       33.872      18.845      1.324       
+03F     H4A     H       H       0       33.941      18.739      -1.525      
+03F     HO4A    H       H       0       36.143      19.540      -0.244      
+03F     HO5A    H       H       0       36.349      21.406      -4.108      
+03F     H5M     H       H       0       35.403      21.184      -1.834      
+03F     H6AA    H       H       0       36.341      19.441      -3.126      
+03F     H6AB    H       H       0       34.929      19.172      -3.797      
+03F     HAB     H       H       0       28.502      27.009      -1.300      
+03F     HABA    H       H       0       28.356      25.460      -0.997      
+03F     HACA    H       H       0       26.828      25.238      -2.734      
+03F     HAC     H       H       0       27.020      26.761      -3.124      
+03F     HAD     H       H       0       26.048      27.408      -1.076      
+03F     HADA    H       H       0       25.858      25.886      -0.684      
+03F     HAEA    H       H       0       24.324      25.625      -2.447      
+03F     HAE     H       H       0       24.510      27.151      -2.832      
+03F     HAF     H       H       0       23.523      27.811      -0.835      
+03F     HAFA    H       H       0       23.422      26.306      -0.357      
+03F     HAG     H       H       0       21.817      25.858      -1.996      
+03F     HAGA    H       H       0       21.964      27.324      -2.574      
+03F     HAHA    H       H       0       20.992      28.228      -0.704      
+03F     HAH     H       H       0       21.002      26.820      0.032       
+03F     HAI     H       H       0       19.448      26.579      -2.209      
+03F     HAJ     H       H       0       17.591      27.024      -1.152      
+03F     HAK     H       H       0       18.807      28.725      0.624       
+03F     HAKA    H       H       0       18.730      27.285      1.290       
+03F     HAL     H       H       0       16.398      27.319      1.072       
+03F     HALA    H       H       0       16.480      28.759      0.422       
+03F     HAMA    H       H       0       17.307      29.631      2.447       
+03F     HAM     H       H       0       17.237      28.190      3.099       
+03F     HAN     H       H       0       14.894      28.224      2.919       
+03F     HANA    H       H       0       14.967      29.669      2.273       
+03F     HAOA    H       H       0       15.821      30.526      4.286       
+03F     HAO     H       H       0       15.749      29.082      4.931       
+03F     HAP     H       H       0       13.407      29.125      4.772       
+03F     HAPA    H       H       0       13.478      30.569      4.123       
+03F     HAQA    H       H       0       14.346      31.427      6.129       
+03F     HAQ     H       H       0       14.276      29.984      6.777       
+03F     HARA    H       H       0       11.789      30.610      5.945       
+03F     H1AR    H       H       0       12.341      31.825      6.805       
+03F     HAR     H       H       0       12.265      30.373      7.441       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+03F          C1          C2      SINGLE       n     1.515  0.0117     1.515  0.0117
+03F          C1         O1A      SINGLE       n     1.439  0.0100     1.439  0.0100
+03F          C2          C3      SINGLE       n     1.538  0.0159     1.538  0.0159
+03F          C2          N2      SINGLE       n     1.455  0.0100     1.455  0.0100
+03F          N2         CAA      SINGLE       n     1.339  0.0121     1.339  0.0121
+03F          C3          O3      SINGLE       n     1.419  0.0162     1.419  0.0162
+03F          C3          C4      SINGLE       n     1.497  0.0113     1.497  0.0113
+03F          C4          C5      DOUBLE       n     1.299  0.0200     1.299  0.0200
+03F          C5          C6      SINGLE       n     1.497  0.0127     1.497  0.0127
+03F          C6          C7      SINGLE       n     1.497  0.0200     1.497  0.0200
+03F          C7          C8      SINGLE       n     1.519  0.0164     1.519  0.0164
+03F          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+03F         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+03F         C1A         O1A      SINGLE       n     1.399  0.0118     1.399  0.0118
+03F         C1A         O6A      SINGLE       n     1.415  0.0124     1.415  0.0124
+03F         C1A         C2A      SINGLE       n     1.523  0.0106     1.523  0.0106
+03F         C2A         O2A      SINGLE       n     1.425  0.0112     1.425  0.0112
+03F         C2A         C3A      SINGLE       n     1.519  0.0200     1.519  0.0200
+03F         C3A         C4A      SINGLE       n     1.520  0.0158     1.520  0.0158
+03F         C3A         O3A      SINGLE       n     1.427  0.0138     1.427  0.0138
+03F         C4A         C5M      SINGLE       n     1.524  0.0200     1.524  0.0200
+03F         C4A         O4A      SINGLE       n     1.425  0.0176     1.425  0.0176
+03F         O5A         C6A      SINGLE       n     1.426  0.0200     1.426  0.0200
+03F         C5M         O6A      SINGLE       n     1.440  0.0195     1.440  0.0195
+03F         C5M         C6A      SINGLE       n     1.511  0.0142     1.511  0.0142
+03F         CAA         OAA      DOUBLE       n     1.229  0.0102     1.229  0.0102
+03F         CAA         CAB      SINGLE       n     1.514  0.0100     1.514  0.0100
+03F         CAB         CAC      SINGLE       n     1.497  0.0200     1.497  0.0200
+03F         CAC         CAD      SINGLE       n     1.519  0.0164     1.519  0.0164
+03F         CAD         CAE      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         CAE         CAF      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         CAF         CAG      SINGLE       n     1.523  0.0117     1.523  0.0117
+03F         CAG         CAH      SINGLE       n     1.497  0.0200     1.497  0.0200
+03F         CAH         CAI      SINGLE       n     1.497  0.0127     1.497  0.0127
+03F         CAI         CAJ      DOUBLE       n     1.308  0.0200     1.308  0.0200
+03F         CAJ         CAK      SINGLE       n     1.497  0.0127     1.497  0.0127
+03F         CAK         CAL      SINGLE       n     1.497  0.0200     1.497  0.0200
+03F         CAL         CAM      SINGLE       n     1.519  0.0164     1.519  0.0164
+03F         CAM         CAN      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         CAN         CAO      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         CAO         CAP      SINGLE       n     1.509  0.0200     1.509  0.0200
+03F         CAP         CAQ      SINGLE       n     1.507  0.0200     1.507  0.0200
+03F         CAQ         CAR      SINGLE       n     1.510  0.0200     1.510  0.0200
+03F          C1         H1A      SINGLE       n     1.089  0.0100     0.979  0.0200
+03F          C1          H1      SINGLE       n     1.089  0.0100     0.979  0.0200
+03F          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0127
+03F          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+03F          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0129
+03F          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+03F          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+03F          C5          H5      SINGLE       n     1.082  0.0130     0.945  0.0200
+03F          C6         H6A      SINGLE       n     1.089  0.0100     0.983  0.0180
+03F          C6          H6      SINGLE       n     1.089  0.0100     0.983  0.0180
+03F          C7          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F          C7         H7A      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F          C8         H8A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F          C8          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F          C9          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F          C9         H9A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C10        H10A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C14         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C14        H14A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         C17         H17      SINGLE       n     1.089  0.0100     0.982  0.0155
+03F         C17        H17A      SINGLE       n     1.089  0.0100     0.982  0.0155
+03F         C18        H18A      SINGLE       n     1.089  0.0100     0.973  0.0157
+03F         C18        H18B      SINGLE       n     1.089  0.0100     0.973  0.0157
+03F         C18         H18      SINGLE       n     1.089  0.0100     0.973  0.0157
+03F         C1A        H1AA      SINGLE       n     1.089  0.0100     0.971  0.0193
+03F         C2A         H2A      SINGLE       n     1.089  0.0100     0.987  0.0140
+03F         O2A        HO2A      SINGLE       n     0.970  0.0120     0.841  0.0200
+03F         C3A         H3A      SINGLE       n     1.089  0.0100     0.991  0.0121
+03F         O3A        HO3A      SINGLE       n     0.970  0.0120     0.841  0.0200
+03F         C4A         H4A      SINGLE       n     1.089  0.0100     0.986  0.0131
+03F         O4A        HO4A      SINGLE       n     0.970  0.0120     0.841  0.0200
+03F         O5A        HO5A      SINGLE       n     0.970  0.0120     0.848  0.0200
+03F         C5M         H5M      SINGLE       n     1.089  0.0100     0.988  0.0182
+03F         C6A        H6AA      SINGLE       n     1.089  0.0100     0.980  0.0184
+03F         C6A        H6AB      SINGLE       n     1.089  0.0100     0.980  0.0184
+03F         CAB         HAB      SINGLE       n     1.089  0.0100     0.981  0.0185
+03F         CAB        HABA      SINGLE       n     1.089  0.0100     0.981  0.0185
+03F         CAC        HACA      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F         CAC         HAC      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F         CAD         HAD      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAD        HADA      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAE        HAEA      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAE         HAE      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAF         HAF      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAF        HAFA      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAG         HAG      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F         CAG        HAGA      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F         CAH        HAHA      SINGLE       n     1.089  0.0100     0.983  0.0180
+03F         CAH         HAH      SINGLE       n     1.089  0.0100     0.983  0.0180
+03F         CAI         HAI      SINGLE       n     1.082  0.0130     0.945  0.0200
+03F         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0200
+03F         CAK         HAK      SINGLE       n     1.089  0.0100     0.983  0.0180
+03F         CAK        HAKA      SINGLE       n     1.089  0.0100     0.983  0.0180
+03F         CAL         HAL      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F         CAL        HALA      SINGLE       n     1.089  0.0100     0.980  0.0160
+03F         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAP         HAP      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAP        HAPA      SINGLE       n     1.089  0.0100     0.981  0.0163
+03F         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.982  0.0155
+03F         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.982  0.0155
+03F         CAR        HARA      SINGLE       n     1.089  0.0100     0.973  0.0157
+03F         CAR        H1AR      SINGLE       n     1.089  0.0100     0.973  0.0157
+03F         CAR         HAR      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+03F          C2          C1         O1A     109.482    3.00
+03F          C2          C1         H1A     109.865    1.50
+03F          C2          C1          H1     109.865    1.50
+03F         O1A          C1         H1A     109.586    1.50
+03F         O1A          C1          H1     109.586    1.50
+03F         H1A          C1          H1     108.500    1.50
+03F          C1          C2          C3     111.094    2.85
+03F          C1          C2          N2     111.308    2.28
+03F          C1          C2          H2     108.763    1.50
+03F          C3          C2          N2     111.308    2.28
+03F          C3          C2          H2     107.549    1.55
+03F          N2          C2          H2     108.194    1.50
+03F          C2          N2         CAA     123.741    1.63
+03F          C2          N2         HN2     117.592    3.00
+03F         CAA          N2         HN2     118.656    1.50
+03F          C2          C3          O3     110.423    2.15
+03F          C2          C3          C4     111.511    2.91
+03F          C2          C3          H3     108.277    1.50
+03F          O3          C3          C4     109.951    2.10
+03F          O3          C3          H3     108.675    1.50
+03F          C4          C3          H3     108.883    1.50
+03F          C3          O3         HO3     108.894    3.00
+03F          C3          C4          C5     125.212    1.80
+03F          C3          C4          H4     116.945    1.63
+03F          C5          C4          H4     117.843    1.50
+03F          C4          C5          C6     125.662    2.06
+03F          C4          C5          H5     117.471    1.50
+03F          C6          C5          H5     116.866    1.61
+03F          C5          C6          C7     113.226    1.94
+03F          C5          C6         H6A     108.886    1.50
+03F          C5          C6          H6     108.886    1.50
+03F          C7          C6         H6A     108.819    1.50
+03F          C7          C6          H6     108.819    1.50
+03F         H6A          C6          H6     107.922    1.50
+03F          C6          C7          C8     114.266    1.80
+03F          C6          C7          H7     108.805    1.50
+03F          C6          C7         H7A     108.805    1.50
+03F          C8          C7          H7     108.698    1.50
+03F          C8          C7         H7A     108.698    1.50
+03F          H7          C7         H7A     107.646    1.50
+03F          C7          C8          C9     114.243    1.69
+03F          C7          C8         H8A     108.698    1.50
+03F          C7          C8          H8     108.698    1.50
+03F          C9          C8         H8A     108.698    1.50
+03F          C9          C8          H8     108.698    1.50
+03F         H8A          C8          H8     107.646    1.50
+03F          C8          C9         C10     114.243    1.69
+03F          C8          C9          H9     108.698    1.50
+03F          C8          C9         H9A     108.698    1.50
+03F         C10          C9          H9     108.698    1.50
+03F         C10          C9         H9A     108.698    1.50
+03F          H9          C9         H9A     107.646    1.50
+03F          C9         C10         C11     114.243    1.69
+03F          C9         C10         H10     108.698    1.50
+03F          C9         C10        H10A     108.698    1.50
+03F         C11         C10         H10     108.698    1.50
+03F         C11         C10        H10A     108.698    1.50
+03F         H10         C10        H10A     107.646    1.50
+03F         C10         C11         C12     114.243    1.69
+03F         C10         C11        H11A     108.698    1.50
+03F         C10         C11         H11     108.698    1.50
+03F         C12         C11        H11A     108.698    1.50
+03F         C12         C11         H11     108.698    1.50
+03F        H11A         C11         H11     107.646    1.50
+03F         C11         C12         C13     114.243    1.69
+03F         C11         C12        H12A     108.698    1.50
+03F         C11         C12         H12     108.698    1.50
+03F         C13         C12        H12A     108.698    1.50
+03F         C13         C12         H12     108.698    1.50
+03F        H12A         C12         H12     107.646    1.50
+03F         C12         C13         C14     114.243    1.69
+03F         C12         C13         H13     108.698    1.50
+03F         C12         C13        H13A     108.698    1.50
+03F         C14         C13         H13     108.698    1.50
+03F         C14         C13        H13A     108.698    1.50
+03F         H13         C13        H13A     107.646    1.50
+03F         C13         C14         C15     114.243    1.69
+03F         C13         C14         H14     108.698    1.50
+03F         C13         C14        H14A     108.698    1.50
+03F         C15         C14         H14     108.698    1.50
+03F         C15         C14        H14A     108.698    1.50
+03F         H14         C14        H14A     107.646    1.50
+03F         C14         C15         C16     114.243    1.69
+03F         C14         C15        H15A     108.698    1.50
+03F         C14         C15         H15     108.698    1.50
+03F         C16         C15        H15A     108.698    1.50
+03F         C16         C15         H15     108.698    1.50
+03F        H15A         C15         H15     107.646    1.50
+03F         C15         C16         C17     114.362    3.00
+03F         C15         C16         H16     108.698    1.50
+03F         C15         C16        H16A     108.698    1.50
+03F         C17         C16         H16     108.653    1.50
+03F         C17         C16        H16A     108.653    1.50
+03F         H16         C16        H16A     107.646    1.50
+03F         C16         C17         C18     113.719    3.00
+03F         C16         C17         H17     108.758    1.50
+03F         C16         C17        H17A     108.758    1.50
+03F         C18         C17         H17     108.918    1.50
+03F         C18         C17        H17A     108.918    1.50
+03F         H17         C17        H17A     107.763    1.50
+03F         C17         C18        H18A     109.554    1.50
+03F         C17         C18        H18B     109.554    1.50
+03F         C17         C18         H18     109.554    1.50
+03F        H18A         C18        H18B     109.380    1.50
+03F        H18A         C18         H18     109.380    1.50
+03F        H18B         C18         H18     109.380    1.50
+03F         O1A         C1A         O6A     108.518    1.66
+03F         O1A         C1A         C2A     108.855    1.50
+03F         O1A         C1A        H1AA     109.834    1.50
+03F         O6A         C1A         C2A     110.404    1.50
+03F         O6A         C1A        H1AA     109.385    1.50
+03F         C2A         C1A        H1AA     109.511    1.50
+03F          C1         O1A         C1A     113.687    1.50
+03F         C1A         C2A         O2A     110.083    1.70
+03F         C1A         C2A         C3A     110.084    1.50
+03F         C1A         C2A         H2A     108.545    1.50
+03F         O2A         C2A         C3A     111.053    2.62
+03F         O2A         C2A         H2A     108.551    1.50
+03F         C3A         C2A         H2A     108.505    1.50
+03F         C2A         O2A        HO2A     109.126    2.06
+03F         C2A         C3A         C4A     110.687    1.67
+03F         C2A         C3A         O3A     109.587    2.09
+03F         C2A         C3A         H3A     108.712    1.50
+03F         C4A         C3A         O3A     110.243    1.88
+03F         C4A         C3A         H3A     108.653    1.50
+03F         O3A         C3A         H3A     108.767    1.50
+03F         C3A         O3A        HO3A     108.895    2.41
+03F         C3A         C4A         C5M     110.272    1.76
+03F         C3A         C4A         O4A     110.101    1.97
+03F         C3A         C4A         H4A     109.032    1.50
+03F         C5M         C4A         O4A     109.072    2.07
+03F         C5M         C4A         H4A     109.223    1.50
+03F         O4A         C4A         H4A     109.194    1.50
+03F         C4A         O4A        HO4A     109.564    3.00
+03F         C6A         O5A        HO5A     109.472    2.41
+03F         C4A         C5M         O6A     109.140    1.86
+03F         C4A         C5M         C6A     112.996    1.59
+03F         C4A         C5M         H5M     108.960    1.50
+03F         O6A         C5M         C6A     106.879    1.50
+03F         O6A         C5M         H5M     109.134    1.50
+03F         C6A         C5M         H5M     109.269    1.50
+03F         O5A         C6A         C5M     111.299    2.09
+03F         O5A         C6A        H6AA     109.265    1.50
+03F         O5A         C6A        H6AB     109.265    1.50
+03F         C5M         C6A        H6AA     109.363    1.50
+03F         C5M         C6A        H6AB     109.363    1.50
+03F        H6AA         C6A        H6AB     108.155    1.50
+03F         C1A         O6A         C5M     112.999    1.58
+03F          N2         CAA         OAA     122.033    1.50
+03F          N2         CAA         CAB     116.136    1.50
+03F         OAA         CAA         CAB     121.831    1.50
+03F         CAA         CAB         CAC     112.836    1.50
+03F         CAA         CAB         HAB     108.930    1.50
+03F         CAA         CAB        HABA     108.930    1.50
+03F         CAC         CAB         HAB     108.897    1.50
+03F         CAC         CAB        HABA     108.897    1.50
+03F         HAB         CAB        HABA     107.846    1.50
+03F         CAB         CAC         CAD     113.472    1.51
+03F         CAB         CAC        HACA     108.795    1.50
+03F         CAB         CAC         HAC     108.795    1.50
+03F         CAD         CAC        HACA     108.698    1.50
+03F         CAD         CAC         HAC     108.698    1.50
+03F        HACA         CAC         HAC     107.646    1.50
+03F         CAC         CAD         CAE     114.243    1.69
+03F         CAC         CAD         HAD     108.698    1.50
+03F         CAC         CAD        HADA     108.698    1.50
+03F         CAE         CAD         HAD     108.698    1.50
+03F         CAE         CAD        HADA     108.698    1.50
+03F         HAD         CAD        HADA     107.646    1.50
+03F         CAD         CAE         CAF     114.243    1.69
+03F         CAD         CAE        HAEA     108.698    1.50
+03F         CAD         CAE         HAE     108.698    1.50
+03F         CAF         CAE        HAEA     108.698    1.50
+03F         CAF         CAE         HAE     108.698    1.50
+03F        HAEA         CAE         HAE     107.646    1.50
+03F         CAE         CAF         CAG     114.243    1.69
+03F         CAE         CAF         HAF     108.698    1.50
+03F         CAE         CAF        HAFA     108.698    1.50
+03F         CAG         CAF         HAF     108.698    1.50
+03F         CAG         CAF        HAFA     108.698    1.50
+03F         HAF         CAF        HAFA     107.646    1.50
+03F         CAF         CAG         CAH     114.266    1.80
+03F         CAF         CAG         HAG     108.698    1.50
+03F         CAF         CAG        HAGA     108.698    1.50
+03F         CAH         CAG         HAG     108.805    1.50
+03F         CAH         CAG        HAGA     108.805    1.50
+03F         HAG         CAG        HAGA     107.646    1.50
+03F         CAG         CAH         CAI     113.226    1.94
+03F         CAG         CAH        HAHA     108.819    1.50
+03F         CAG         CAH         HAH     108.819    1.50
+03F         CAI         CAH        HAHA     108.886    1.50
+03F         CAI         CAH         HAH     108.886    1.50
+03F        HAHA         CAH         HAH     107.922    1.50
+03F         CAH         CAI         CAJ     125.684    3.00
+03F         CAH         CAI         HAI     117.007    1.61
+03F         CAJ         CAI         HAI     117.310    2.16
+03F         CAI         CAJ         CAK     125.684    3.00
+03F         CAI         CAJ         HAJ     117.310    2.16
+03F         CAK         CAJ         HAJ     117.007    1.61
+03F         CAJ         CAK         CAL     113.226    1.94
+03F         CAJ         CAK         HAK     108.886    1.50
+03F         CAJ         CAK        HAKA     108.886    1.50
+03F         CAL         CAK         HAK     108.819    1.50
+03F         CAL         CAK        HAKA     108.819    1.50
+03F         HAK         CAK        HAKA     107.922    1.50
+03F         CAK         CAL         CAM     114.266    1.80
+03F         CAK         CAL         HAL     108.805    1.50
+03F         CAK         CAL        HALA     108.805    1.50
+03F         CAM         CAL         HAL     108.698    1.50
+03F         CAM         CAL        HALA     108.698    1.50
+03F         HAL         CAL        HALA     107.646    1.50
+03F         CAL         CAM         CAN     114.243    1.69
+03F         CAL         CAM        HAMA     108.698    1.50
+03F         CAL         CAM         HAM     108.698    1.50
+03F         CAN         CAM        HAMA     108.698    1.50
+03F         CAN         CAM         HAM     108.698    1.50
+03F        HAMA         CAM         HAM     107.646    1.50
+03F         CAM         CAN         CAO     114.243    1.69
+03F         CAM         CAN         HAN     108.698    1.50
+03F         CAM         CAN        HANA     108.698    1.50
+03F         CAO         CAN         HAN     108.698    1.50
+03F         CAO         CAN        HANA     108.698    1.50
+03F         HAN         CAN        HANA     107.646    1.50
+03F         CAN         CAO         CAP     114.243    1.69
+03F         CAN         CAO        HAOA     108.698    1.50
+03F         CAN         CAO         HAO     108.698    1.50
+03F         CAP         CAO        HAOA     108.698    1.50
+03F         CAP         CAO         HAO     108.698    1.50
+03F        HAOA         CAO         HAO     107.646    1.50
+03F         CAO         CAP         CAQ     114.362    3.00
+03F         CAO         CAP         HAP     108.698    1.50
+03F         CAO         CAP        HAPA     108.698    1.50
+03F         CAQ         CAP         HAP     108.653    1.50
+03F         CAQ         CAP        HAPA     108.653    1.50
+03F         HAP         CAP        HAPA     107.646    1.50
+03F         CAP         CAQ         CAR     113.719    3.00
+03F         CAP         CAQ        HAQA     108.758    1.50
+03F         CAP         CAQ         HAQ     108.758    1.50
+03F         CAR         CAQ        HAQA     108.918    1.50
+03F         CAR         CAQ         HAQ     108.918    1.50
+03F        HAQA         CAQ         HAQ     107.763    1.50
+03F         CAQ         CAR        HARA     109.554    1.50
+03F         CAQ         CAR        H1AR     109.554    1.50
+03F         CAQ         CAR         HAR     109.554    1.50
+03F        HARA         CAR        H1AR     109.380    1.50
+03F        HARA         CAR         HAR     109.380    1.50
+03F        H1AR         CAR         HAR     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+03F                   nu0         C5M         O6A         C1A         C2A     -65.923    10.0     3
+03F                   nu1         O6A         C1A         C2A         C3A      58.305    10.0     3
+03F                   nu2         C1A         C2A         C3A         C4A     -51.156    10.0     3
+03F                   nu3         C2A         C3A         C4A         C5M      50.255    10.0     3
+03F                   nu4         C3A         C4A         C5M         O6A     -57.151    10.0     3
+03F                   nu5         C4A         C5M         O6A         C1A      65.686    10.0     3
+03F            sp3_sp3_34         O1A          C1          C2          C3     180.000    10.0     3
+03F            sp3_sp3_35         O1A          C1          C2          N2     -60.000    10.0     3
+03F            sp3_sp3_36         O1A          C1          C2          H2      60.000    10.0     3
+03F            sp3_sp3_37         H1A          C1          C2          C3      60.000    10.0     3
+03F            sp3_sp3_38         H1A          C1          C2          N2     180.000    10.0     3
+03F            sp3_sp3_39         H1A          C1          C2          H2     -60.000    10.0     3
+03F            sp3_sp3_40          H1          C1          C2          C3     -60.000    10.0     3
+03F            sp3_sp3_41          H1          C1          C2          N2      60.000    10.0     3
+03F            sp3_sp3_42          H1          C1          C2          H2     180.000    10.0     3
+03F            sp3_sp3_43          C2          C1         O1A         C1A     180.000    10.0     3
+03F            sp3_sp3_44         H1A          C1         O1A         C1A      60.000    10.0     3
+03F            sp3_sp3_45          H1          C1         O1A         C1A     -60.000    10.0     3
+03F            sp3_sp3_46          C1          C2          C3          O3     180.000    10.0     3
+03F            sp3_sp3_47          C1          C2          C3          C4     -60.000    10.0     3
+03F            sp3_sp3_48          C1          C2          C3          H3      60.000    10.0     3
+03F            sp3_sp3_49          N2          C2          C3          O3      60.000    10.0     3
+03F            sp3_sp3_50          N2          C2          C3          C4     180.000    10.0     3
+03F            sp3_sp3_51          N2          C2          C3          H3     -60.000    10.0     3
+03F            sp3_sp3_52          H2          C2          C3          O3     -60.000    10.0     3
+03F            sp3_sp3_53          H2          C2          C3          C4      60.000    10.0     3
+03F            sp3_sp3_54          H2          C2          C3          H3     180.000    10.0     3
+03F             sp2_sp3_1         CAA          N2          C2          C1       0.000    10.0     6
+03F             sp2_sp3_2         CAA          N2          C2          C3     120.000    10.0     6
+03F             sp2_sp3_3         CAA          N2          C2          H2    -120.000    10.0     6
+03F             sp2_sp3_4         HN2          N2          C2          C1     180.000    10.0     6
+03F             sp2_sp3_5         HN2          N2          C2          C3     -60.000    10.0     6
+03F             sp2_sp3_6         HN2          N2          C2          H2      60.000    10.0     6
+03F             sp2_sp2_1         CAB         CAA          N2          C2     180.000     5.0     2
+03F             sp2_sp2_2         CAB         CAA          N2         HN2       0.000     5.0     2
+03F             sp2_sp2_3         OAA         CAA          N2          C2       0.000     5.0     2
+03F             sp2_sp2_4         OAA         CAA          N2         HN2     180.000     5.0     2
+03F            sp3_sp3_55          C2          C3          O3         HO3     180.000    10.0     3
+03F            sp3_sp3_56          C4          C3          O3         HO3      60.000    10.0     3
+03F            sp3_sp3_57          H3          C3          O3         HO3     -60.000    10.0     3
+03F             sp2_sp3_7          C5          C4          C3          C2       0.000    10.0     6
+03F             sp2_sp3_8          C5          C4          C3          O3     120.000    10.0     6
+03F             sp2_sp3_9          C5          C4          C3          H3    -120.000    10.0     6
+03F            sp2_sp3_10          H4          C4          C3          C2     180.000    10.0     6
+03F            sp2_sp3_11          H4          C4          C3          O3     -60.000    10.0     6
+03F            sp2_sp3_12          H4          C4          C3          H3      60.000    10.0     6
+03F             sp2_sp2_5          C3          C4          C5          C6     180.000     5.0     2
+03F             sp2_sp2_6          C3          C4          C5          H5       0.000     5.0     2
+03F             sp2_sp2_7          H4          C4          C5          C6       0.000     5.0     2
+03F             sp2_sp2_8          H4          C4          C5          H5     180.000     5.0     2
+03F            sp2_sp3_13          C4          C5          C6         H6A       0.000    10.0     6
+03F            sp2_sp3_14          C4          C5          C6          C7     120.000    10.0     6
+03F            sp2_sp3_15          C4          C5          C6          H6    -120.000    10.0     6
+03F            sp2_sp3_16          H5          C5          C6         H6A     180.000    10.0     6
+03F            sp2_sp3_17          H5          C5          C6          C7     -60.000    10.0     6
+03F            sp2_sp3_18          H5          C5          C6          H6      60.000    10.0     6
+03F            sp3_sp3_58          C5          C6          C7          C8     180.000    10.0     3
+03F            sp3_sp3_59          C5          C6          C7          H7     -60.000    10.0     3
+03F            sp3_sp3_60          C5          C6          C7         H7A      60.000    10.0     3
+03F            sp3_sp3_61         H6A          C6          C7          C8      60.000    10.0     3
+03F            sp3_sp3_62         H6A          C6          C7          H7     180.000    10.0     3
+03F            sp3_sp3_63         H6A          C6          C7         H7A     -60.000    10.0     3
+03F            sp3_sp3_64          H6          C6          C7          C8     -60.000    10.0     3
+03F            sp3_sp3_65          H6          C6          C7          H7      60.000    10.0     3
+03F            sp3_sp3_66          H6          C6          C7         H7A     180.000    10.0     3
+03F            sp3_sp3_67          C6          C7          C8          C9     180.000    10.0     3
+03F            sp3_sp3_68          C6          C7          C8         H8A     -60.000    10.0     3
+03F            sp3_sp3_69          C6          C7          C8          H8      60.000    10.0     3
+03F            sp3_sp3_70          H7          C7          C8          C9      60.000    10.0     3
+03F            sp3_sp3_71          H7          C7          C8         H8A     180.000    10.0     3
+03F            sp3_sp3_72          H7          C7          C8          H8     -60.000    10.0     3
+03F            sp3_sp3_73         H7A          C7          C8          C9     -60.000    10.0     3
+03F            sp3_sp3_74         H7A          C7          C8         H8A      60.000    10.0     3
+03F            sp3_sp3_75         H7A          C7          C8          H8     180.000    10.0     3
+03F            sp3_sp3_76          C7          C8          C9         C10     180.000    10.0     3
+03F            sp3_sp3_77          C7          C8          C9          H9     -60.000    10.0     3
+03F            sp3_sp3_78          C7          C8          C9         H9A      60.000    10.0     3
+03F            sp3_sp3_79         H8A          C8          C9         C10      60.000    10.0     3
+03F            sp3_sp3_80         H8A          C8          C9          H9     180.000    10.0     3
+03F            sp3_sp3_81         H8A          C8          C9         H9A     -60.000    10.0     3
+03F            sp3_sp3_82          H8          C8          C9         C10     -60.000    10.0     3
+03F            sp3_sp3_83          H8          C8          C9          H9      60.000    10.0     3
+03F            sp3_sp3_84          H8          C8          C9         H9A     180.000    10.0     3
+03F            sp3_sp3_85         C11         C10          C9          C8     180.000    10.0     3
+03F            sp3_sp3_86         C11         C10          C9          H9     -60.000    10.0     3
+03F            sp3_sp3_87         C11         C10          C9         H9A      60.000    10.0     3
+03F            sp3_sp3_88         H10         C10          C9          C8      60.000    10.0     3
+03F            sp3_sp3_89         H10         C10          C9          H9     180.000    10.0     3
+03F            sp3_sp3_90         H10         C10          C9         H9A     -60.000    10.0     3
+03F            sp3_sp3_91        H10A         C10          C9          C8     -60.000    10.0     3
+03F            sp3_sp3_92        H10A         C10          C9          H9      60.000    10.0     3
+03F            sp3_sp3_93        H10A         C10          C9         H9A     180.000    10.0     3
+03F            sp3_sp3_94          C9         C10         C11         C12     180.000    10.0     3
+03F            sp3_sp3_95          C9         C10         C11        H11A     -60.000    10.0     3
+03F            sp3_sp3_96          C9         C10         C11         H11      60.000    10.0     3
+03F            sp3_sp3_97         H10         C10         C11         C12      60.000    10.0     3
+03F            sp3_sp3_98         H10         C10         C11        H11A     180.000    10.0     3
+03F            sp3_sp3_99         H10         C10         C11         H11     -60.000    10.0     3
+03F           sp3_sp3_100        H10A         C10         C11         C12     -60.000    10.0     3
+03F           sp3_sp3_101        H10A         C10         C11        H11A      60.000    10.0     3
+03F           sp3_sp3_102        H10A         C10         C11         H11     180.000    10.0     3
+03F           sp3_sp3_103         C10         C11         C12         C13     180.000    10.0     3
+03F           sp3_sp3_104         C10         C11         C12        H12A     -60.000    10.0     3
+03F           sp3_sp3_105         C10         C11         C12         H12      60.000    10.0     3
+03F           sp3_sp3_106        H11A         C11         C12         C13      60.000    10.0     3
+03F           sp3_sp3_107        H11A         C11         C12        H12A     180.000    10.0     3
+03F           sp3_sp3_108        H11A         C11         C12         H12     -60.000    10.0     3
+03F           sp3_sp3_109         H11         C11         C12         C13     -60.000    10.0     3
+03F           sp3_sp3_110         H11         C11         C12        H12A      60.000    10.0     3
+03F           sp3_sp3_111         H11         C11         C12         H12     180.000    10.0     3
+03F           sp3_sp3_112         C11         C12         C13         C14     180.000    10.0     3
+03F           sp3_sp3_113         C11         C12         C13         H13     -60.000    10.0     3
+03F           sp3_sp3_114         C11         C12         C13        H13A      60.000    10.0     3
+03F           sp3_sp3_115        H12A         C12         C13         C14      60.000    10.0     3
+03F           sp3_sp3_116        H12A         C12         C13         H13     180.000    10.0     3
+03F           sp3_sp3_117        H12A         C12         C13        H13A     -60.000    10.0     3
+03F           sp3_sp3_118         H12         C12         C13         C14     -60.000    10.0     3
+03F           sp3_sp3_119         H12         C12         C13         H13      60.000    10.0     3
+03F           sp3_sp3_120         H12         C12         C13        H13A     180.000    10.0     3
+03F           sp3_sp3_121         C12         C13         C14         C15     180.000    10.0     3
+03F           sp3_sp3_122         C12         C13         C14         H14     -60.000    10.0     3
+03F           sp3_sp3_123         C12         C13         C14        H14A      60.000    10.0     3
+03F           sp3_sp3_124         H13         C13         C14         C15      60.000    10.0     3
+03F           sp3_sp3_125         H13         C13         C14         H14     180.000    10.0     3
+03F           sp3_sp3_126         H13         C13         C14        H14A     -60.000    10.0     3
+03F           sp3_sp3_127        H13A         C13         C14         C15     -60.000    10.0     3
+03F           sp3_sp3_128        H13A         C13         C14         H14      60.000    10.0     3
+03F           sp3_sp3_129        H13A         C13         C14        H14A     180.000    10.0     3
+03F           sp3_sp3_130         C13         C14         C15         C16     180.000    10.0     3
+03F           sp3_sp3_131         C13         C14         C15        H15A     -60.000    10.0     3
+03F           sp3_sp3_132         C13         C14         C15         H15      60.000    10.0     3
+03F           sp3_sp3_133         H14         C14         C15         C16      60.000    10.0     3
+03F           sp3_sp3_134         H14         C14         C15        H15A     180.000    10.0     3
+03F           sp3_sp3_135         H14         C14         C15         H15     -60.000    10.0     3
+03F           sp3_sp3_136        H14A         C14         C15         C16     -60.000    10.0     3
+03F           sp3_sp3_137        H14A         C14         C15        H15A      60.000    10.0     3
+03F           sp3_sp3_138        H14A         C14         C15         H15     180.000    10.0     3
+03F           sp3_sp3_139         C14         C15         C16         C17     180.000    10.0     3
+03F           sp3_sp3_140         C14         C15         C16         H16     -60.000    10.0     3
+03F           sp3_sp3_141         C14         C15         C16        H16A      60.000    10.0     3
+03F           sp3_sp3_142        H15A         C15         C16         C17      60.000    10.0     3
+03F           sp3_sp3_143        H15A         C15         C16         H16     180.000    10.0     3
+03F           sp3_sp3_144        H15A         C15         C16        H16A     -60.000    10.0     3
+03F           sp3_sp3_145         H15         C15         C16         C17     -60.000    10.0     3
+03F           sp3_sp3_146         H15         C15         C16         H16      60.000    10.0     3
+03F           sp3_sp3_147         H15         C15         C16        H16A     180.000    10.0     3
+03F           sp3_sp3_148         C15         C16         C17         C18     180.000    10.0     3
+03F           sp3_sp3_149         C15         C16         C17         H17     -60.000    10.0     3
+03F           sp3_sp3_150         C15         C16         C17        H17A      60.000    10.0     3
+03F           sp3_sp3_151         H16         C16         C17         C18      60.000    10.0     3
+03F           sp3_sp3_152         H16         C16         C17         H17     180.000    10.0     3
+03F           sp3_sp3_153         H16         C16         C17        H17A     -60.000    10.0     3
+03F           sp3_sp3_154        H16A         C16         C17         C18     -60.000    10.0     3
+03F           sp3_sp3_155        H16A         C16         C17         H17      60.000    10.0     3
+03F           sp3_sp3_156        H16A         C16         C17        H17A     180.000    10.0     3
+03F           sp3_sp3_157         C16         C17         C18        H18A     180.000    10.0     3
+03F           sp3_sp3_158         C16         C17         C18        H18B     -60.000    10.0     3
+03F           sp3_sp3_159         C16         C17         C18         H18      60.000    10.0     3
+03F           sp3_sp3_160         H17         C17         C18        H18A      60.000    10.0     3
+03F           sp3_sp3_161         H17         C17         C18        H18B     180.000    10.0     3
+03F           sp3_sp3_162         H17         C17         C18         H18     -60.000    10.0     3
+03F           sp3_sp3_163        H17A         C17         C18        H18A     -60.000    10.0     3
+03F           sp3_sp3_164        H17A         C17         C18        H18B      60.000    10.0     3
+03F           sp3_sp3_165        H17A         C17         C18         H18     180.000    10.0     3
+03F           sp3_sp3_166         O6A         C1A         O1A          C1     180.000    10.0     3
+03F           sp3_sp3_167         C2A         C1A         O1A          C1      60.000    10.0     3
+03F           sp3_sp3_168        H1AA         C1A         O1A          C1     -60.000    10.0     3
+03F           sp3_sp3_178         C1A         C2A         O2A        HO2A     180.000    10.0     3
+03F           sp3_sp3_179         C3A         C2A         O2A        HO2A      60.000    10.0     3
+03F           sp3_sp3_180         H2A         C2A         O2A        HO2A     -60.000    10.0     3
+03F           sp3_sp3_181         C2A         C3A         O3A        HO3A     180.000    10.0     3
+03F           sp3_sp3_182         C4A         C3A         O3A        HO3A      60.000    10.0     3
+03F           sp3_sp3_183         H3A         C3A         O3A        HO3A     -60.000    10.0     3
+03F           sp3_sp3_184         C3A         C4A         O4A        HO4A     180.000    10.0     3
+03F           sp3_sp3_185         C5M         C4A         O4A        HO4A      60.000    10.0     3
+03F           sp3_sp3_186         H4A         C4A         O4A        HO4A     -60.000    10.0     3
+03F           sp3_sp3_187         C5M         C6A         O5A        HO5A     180.000    10.0     3
+03F           sp3_sp3_188        H6AA         C6A         O5A        HO5A      60.000    10.0     3
+03F           sp3_sp3_189        H6AB         C6A         O5A        HO5A     -60.000    10.0     3
+03F           sp3_sp3_190         C4A         C5M         C6A         O5A     180.000    10.0     3
+03F           sp3_sp3_191         C4A         C5M         C6A        H6AA     -60.000    10.0     3
+03F           sp3_sp3_192         C4A         C5M         C6A        H6AB      60.000    10.0     3
+03F           sp3_sp3_193         O6A         C5M         C6A         O5A      60.000    10.0     3
+03F           sp3_sp3_194         O6A         C5M         C6A        H6AA     180.000    10.0     3
+03F           sp3_sp3_195         O6A         C5M         C6A        H6AB     -60.000    10.0     3
+03F           sp3_sp3_196         H5M         C5M         C6A         O5A     -60.000    10.0     3
+03F           sp3_sp3_197         H5M         C5M         C6A        H6AA      60.000    10.0     3
+03F           sp3_sp3_198         H5M         C5M         C6A        H6AB     180.000    10.0     3
+03F            sp2_sp3_19          N2         CAA         CAB         HAB       0.000    10.0     6
+03F            sp2_sp3_20          N2         CAA         CAB         CAC     120.000    10.0     6
+03F            sp2_sp3_21          N2         CAA         CAB        HABA    -120.000    10.0     6
+03F            sp2_sp3_22         OAA         CAA         CAB         HAB     180.000    10.0     6
+03F            sp2_sp3_23         OAA         CAA         CAB         CAC     -60.000    10.0     6
+03F            sp2_sp3_24         OAA         CAA         CAB        HABA      60.000    10.0     6
+03F           sp3_sp3_199         CAA         CAB         CAC         CAD     180.000    10.0     3
+03F           sp3_sp3_200         CAA         CAB         CAC        HACA     -60.000    10.0     3
+03F           sp3_sp3_201         CAA         CAB         CAC         HAC      60.000    10.0     3
+03F           sp3_sp3_202         HAB         CAB         CAC         CAD      60.000    10.0     3
+03F           sp3_sp3_203         HAB         CAB         CAC        HACA     180.000    10.0     3
+03F           sp3_sp3_204         HAB         CAB         CAC         HAC     -60.000    10.0     3
+03F           sp3_sp3_205        HABA         CAB         CAC         CAD     -60.000    10.0     3
+03F           sp3_sp3_206        HABA         CAB         CAC        HACA      60.000    10.0     3
+03F           sp3_sp3_207        HABA         CAB         CAC         HAC     180.000    10.0     3
+03F           sp3_sp3_208         CAB         CAC         CAD         CAE     180.000    10.0     3
+03F           sp3_sp3_209         CAB         CAC         CAD         HAD     -60.000    10.0     3
+03F           sp3_sp3_210         CAB         CAC         CAD        HADA      60.000    10.0     3
+03F           sp3_sp3_211        HACA         CAC         CAD         CAE      60.000    10.0     3
+03F           sp3_sp3_212        HACA         CAC         CAD         HAD     180.000    10.0     3
+03F           sp3_sp3_213        HACA         CAC         CAD        HADA     -60.000    10.0     3
+03F           sp3_sp3_214         HAC         CAC         CAD         CAE     -60.000    10.0     3
+03F           sp3_sp3_215         HAC         CAC         CAD         HAD      60.000    10.0     3
+03F           sp3_sp3_216         HAC         CAC         CAD        HADA     180.000    10.0     3
+03F           sp3_sp3_217         CAC         CAD         CAE         CAF     180.000    10.0     3
+03F           sp3_sp3_218         CAC         CAD         CAE        HAEA     -60.000    10.0     3
+03F           sp3_sp3_219         CAC         CAD         CAE         HAE      60.000    10.0     3
+03F           sp3_sp3_220         HAD         CAD         CAE         CAF      60.000    10.0     3
+03F           sp3_sp3_221         HAD         CAD         CAE        HAEA     180.000    10.0     3
+03F           sp3_sp3_222         HAD         CAD         CAE         HAE     -60.000    10.0     3
+03F           sp3_sp3_223        HADA         CAD         CAE         CAF     -60.000    10.0     3
+03F           sp3_sp3_224        HADA         CAD         CAE        HAEA      60.000    10.0     3
+03F           sp3_sp3_225        HADA         CAD         CAE         HAE     180.000    10.0     3
+03F           sp3_sp3_226         CAD         CAE         CAF         CAG     180.000    10.0     3
+03F           sp3_sp3_227         CAD         CAE         CAF         HAF     -60.000    10.0     3
+03F           sp3_sp3_228         CAD         CAE         CAF        HAFA      60.000    10.0     3
+03F           sp3_sp3_229        HAEA         CAE         CAF         CAG      60.000    10.0     3
+03F           sp3_sp3_230        HAEA         CAE         CAF         HAF     180.000    10.0     3
+03F           sp3_sp3_231        HAEA         CAE         CAF        HAFA     -60.000    10.0     3
+03F           sp3_sp3_232         HAE         CAE         CAF         CAG     -60.000    10.0     3
+03F           sp3_sp3_233         HAE         CAE         CAF         HAF      60.000    10.0     3
+03F           sp3_sp3_234         HAE         CAE         CAF        HAFA     180.000    10.0     3
+03F           sp3_sp3_235         CAE         CAF         CAG         CAH     180.000    10.0     3
+03F           sp3_sp3_236         CAE         CAF         CAG         HAG     -60.000    10.0     3
+03F           sp3_sp3_237         CAE         CAF         CAG        HAGA      60.000    10.0     3
+03F           sp3_sp3_238         HAF         CAF         CAG         CAH      60.000    10.0     3
+03F           sp3_sp3_239         HAF         CAF         CAG         HAG     180.000    10.0     3
+03F           sp3_sp3_240         HAF         CAF         CAG        HAGA     -60.000    10.0     3
+03F           sp3_sp3_241        HAFA         CAF         CAG         CAH     -60.000    10.0     3
+03F           sp3_sp3_242        HAFA         CAF         CAG         HAG      60.000    10.0     3
+03F           sp3_sp3_243        HAFA         CAF         CAG        HAGA     180.000    10.0     3
+03F           sp3_sp3_244         CAF         CAG         CAH         CAI     180.000    10.0     3
+03F           sp3_sp3_245         CAF         CAG         CAH        HAHA     -60.000    10.0     3
+03F           sp3_sp3_246         CAF         CAG         CAH         HAH      60.000    10.0     3
+03F           sp3_sp3_247         HAG         CAG         CAH         CAI      60.000    10.0     3
+03F           sp3_sp3_248         HAG         CAG         CAH        HAHA     180.000    10.0     3
+03F           sp3_sp3_249         HAG         CAG         CAH         HAH     -60.000    10.0     3
+03F           sp3_sp3_250        HAGA         CAG         CAH         CAI     -60.000    10.0     3
+03F           sp3_sp3_251        HAGA         CAG         CAH        HAHA      60.000    10.0     3
+03F           sp3_sp3_252        HAGA         CAG         CAH         HAH     180.000    10.0     3
+03F            sp2_sp3_25         CAJ         CAI         CAH        HAHA       0.000    10.0     6
+03F            sp2_sp3_26         CAJ         CAI         CAH         CAG     120.000    10.0     6
+03F            sp2_sp3_27         CAJ         CAI         CAH         HAH    -120.000    10.0     6
+03F            sp2_sp3_28         HAI         CAI         CAH        HAHA     180.000    10.0     6
+03F            sp2_sp3_29         HAI         CAI         CAH         CAG     -60.000    10.0     6
+03F            sp2_sp3_30         HAI         CAI         CAH         HAH      60.000    10.0     6
+03F             sp2_sp2_9         CAH         CAI         CAJ         CAK     180.000     5.0     2
+03F            sp2_sp2_10         CAH         CAI         CAJ         HAJ       0.000     5.0     2
+03F            sp2_sp2_11         HAI         CAI         CAJ         CAK       0.000     5.0     2
+03F            sp2_sp2_12         HAI         CAI         CAJ         HAJ     180.000     5.0     2
+03F            sp2_sp3_31         CAI         CAJ         CAK         HAK       0.000    10.0     6
+03F            sp2_sp3_32         CAI         CAJ         CAK         CAL     120.000    10.0     6
+03F            sp2_sp3_33         CAI         CAJ         CAK        HAKA    -120.000    10.0     6
+03F            sp2_sp3_34         HAJ         CAJ         CAK         HAK     180.000    10.0     6
+03F            sp2_sp3_35         HAJ         CAJ         CAK         CAL     -60.000    10.0     6
+03F            sp2_sp3_36         HAJ         CAJ         CAK        HAKA      60.000    10.0     6
+03F           sp3_sp3_253         CAJ         CAK         CAL         CAM     180.000    10.0     3
+03F           sp3_sp3_254         CAJ         CAK         CAL         HAL     -60.000    10.0     3
+03F           sp3_sp3_255         CAJ         CAK         CAL        HALA      60.000    10.0     3
+03F           sp3_sp3_256         HAK         CAK         CAL         CAM      60.000    10.0     3
+03F           sp3_sp3_257         HAK         CAK         CAL         HAL     180.000    10.0     3
+03F           sp3_sp3_258         HAK         CAK         CAL        HALA     -60.000    10.0     3
+03F           sp3_sp3_259        HAKA         CAK         CAL         CAM     -60.000    10.0     3
+03F           sp3_sp3_260        HAKA         CAK         CAL         HAL      60.000    10.0     3
+03F           sp3_sp3_261        HAKA         CAK         CAL        HALA     180.000    10.0     3
+03F           sp3_sp3_262         CAK         CAL         CAM         CAN     180.000    10.0     3
+03F           sp3_sp3_263         CAK         CAL         CAM        HAMA     -60.000    10.0     3
+03F           sp3_sp3_264         CAK         CAL         CAM         HAM      60.000    10.0     3
+03F           sp3_sp3_265         HAL         CAL         CAM         CAN      60.000    10.0     3
+03F           sp3_sp3_266         HAL         CAL         CAM        HAMA     180.000    10.0     3
+03F           sp3_sp3_267         HAL         CAL         CAM         HAM     -60.000    10.0     3
+03F           sp3_sp3_268        HALA         CAL         CAM         CAN     -60.000    10.0     3
+03F           sp3_sp3_269        HALA         CAL         CAM        HAMA      60.000    10.0     3
+03F           sp3_sp3_270        HALA         CAL         CAM         HAM     180.000    10.0     3
+03F           sp3_sp3_271         CAL         CAM         CAN         CAO     180.000    10.0     3
+03F           sp3_sp3_272         CAL         CAM         CAN         HAN     -60.000    10.0     3
+03F           sp3_sp3_273         CAL         CAM         CAN        HANA      60.000    10.0     3
+03F           sp3_sp3_274        HAMA         CAM         CAN         CAO      60.000    10.0     3
+03F           sp3_sp3_275        HAMA         CAM         CAN         HAN     180.000    10.0     3
+03F           sp3_sp3_276        HAMA         CAM         CAN        HANA     -60.000    10.0     3
+03F           sp3_sp3_277         HAM         CAM         CAN         CAO     -60.000    10.0     3
+03F           sp3_sp3_278         HAM         CAM         CAN         HAN      60.000    10.0     3
+03F           sp3_sp3_279         HAM         CAM         CAN        HANA     180.000    10.0     3
+03F           sp3_sp3_280         CAM         CAN         CAO         CAP     180.000    10.0     3
+03F           sp3_sp3_281         CAM         CAN         CAO        HAOA     -60.000    10.0     3
+03F           sp3_sp3_282         CAM         CAN         CAO         HAO      60.000    10.0     3
+03F           sp3_sp3_283         HAN         CAN         CAO         CAP      60.000    10.0     3
+03F           sp3_sp3_284         HAN         CAN         CAO        HAOA     180.000    10.0     3
+03F           sp3_sp3_285         HAN         CAN         CAO         HAO     -60.000    10.0     3
+03F           sp3_sp3_286        HANA         CAN         CAO         CAP     -60.000    10.0     3
+03F           sp3_sp3_287        HANA         CAN         CAO        HAOA      60.000    10.0     3
+03F           sp3_sp3_288        HANA         CAN         CAO         HAO     180.000    10.0     3
+03F           sp3_sp3_289         CAN         CAO         CAP         CAQ     180.000    10.0     3
+03F           sp3_sp3_290         CAN         CAO         CAP         HAP     -60.000    10.0     3
+03F           sp3_sp3_291         CAN         CAO         CAP        HAPA      60.000    10.0     3
+03F           sp3_sp3_292        HAOA         CAO         CAP         CAQ      60.000    10.0     3
+03F           sp3_sp3_293        HAOA         CAO         CAP         HAP     180.000    10.0     3
+03F           sp3_sp3_294        HAOA         CAO         CAP        HAPA     -60.000    10.0     3
+03F           sp3_sp3_295         HAO         CAO         CAP         CAQ     -60.000    10.0     3
+03F           sp3_sp3_296         HAO         CAO         CAP         HAP      60.000    10.0     3
+03F           sp3_sp3_297         HAO         CAO         CAP        HAPA     180.000    10.0     3
+03F           sp3_sp3_298         CAO         CAP         CAQ         CAR     180.000    10.0     3
+03F           sp3_sp3_299         CAO         CAP         CAQ        HAQA     -60.000    10.0     3
+03F           sp3_sp3_300         CAO         CAP         CAQ         HAQ      60.000    10.0     3
+03F           sp3_sp3_301         HAP         CAP         CAQ         CAR      60.000    10.0     3
+03F           sp3_sp3_302         HAP         CAP         CAQ        HAQA     180.000    10.0     3
+03F           sp3_sp3_303         HAP         CAP         CAQ         HAQ     -60.000    10.0     3
+03F           sp3_sp3_304        HAPA         CAP         CAQ         CAR     -60.000    10.0     3
+03F           sp3_sp3_305        HAPA         CAP         CAQ        HAQA      60.000    10.0     3
+03F           sp3_sp3_306        HAPA         CAP         CAQ         HAQ     180.000    10.0     3
+03F           sp3_sp3_307         CAP         CAQ         CAR        HARA     180.000    10.0     3
+03F           sp3_sp3_308         CAP         CAQ         CAR        H1AR     -60.000    10.0     3
+03F           sp3_sp3_309         CAP         CAQ         CAR         HAR      60.000    10.0     3
+03F           sp3_sp3_310        HAQA         CAQ         CAR        HARA      60.000    10.0     3
+03F           sp3_sp3_311        HAQA         CAQ         CAR        H1AR     180.000    10.0     3
+03F           sp3_sp3_312        HAQA         CAQ         CAR         HAR     -60.000    10.0     3
+03F           sp3_sp3_313         HAQ         CAQ         CAR        HARA     -60.000    10.0     3
+03F           sp3_sp3_314         HAQ         CAQ         CAR        H1AR      60.000    10.0     3
+03F           sp3_sp3_315         HAQ         CAQ         CAR         HAR     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+03F    chir_1    C2    N2    C3    C1    positive
+03F    chir_2    C3    O3    C2    C4    negative
+03F    chir_3    C1A    O6A    O1A    C2A    negative
+03F    chir_4    C2A    O2A    C1A    C3A    negative
+03F    chir_5    C3A    O3A    C2A    C4A    positive
+03F    chir_6    C4A    O4A    C5M    C3A    positive
+03F    chir_7    C5M    O6A    C4A    C6A    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+03F    plan-1          C2   0.020
+03F    plan-1         CAA   0.020
+03F    plan-1         HN2   0.020
+03F    plan-1          N2   0.020
+03F    plan-2          C3   0.020
+03F    plan-2          C4   0.020
+03F    plan-2          C5   0.020
+03F    plan-2          H4   0.020
+03F    plan-3          C4   0.020
+03F    plan-3          C5   0.020
+03F    plan-3          C6   0.020
+03F    plan-3          H5   0.020
+03F    plan-4         CAA   0.020
+03F    plan-4         CAB   0.020
+03F    plan-4          N2   0.020
+03F    plan-4         OAA   0.020
+03F    plan-5         CAH   0.020
+03F    plan-5         CAI   0.020
+03F    plan-5         CAJ   0.020
+03F    plan-5         HAI   0.020
+03F    plan-6         CAI   0.020
+03F    plan-6         CAJ   0.020
+03F    plan-6         CAK   0.020
+03F    plan-6         HAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+03F           SMILES              ACDLabs 12.01                                                                                                                                                                                                                             O=C(NC(COC1OC(C(O)C(O)C1O)CO)C(O)/C=C/CCCCCCCCCCCCC)CCCCCCC\C=C/CCCCCCCC
+03F            InChI                InChI  1.03 InChI=1S/C42H79NO8/c1-3-5-7-9-11-13-15-17-18-20-22-24-26-28-30-32-38(46)43-35(34-50-42-41(49)40(48)39(47)37(33-44)51-42)36(45)31-29-27-25-23-21-19-16-14-12-10-8-6-4-2/h17-18,29,31,35-37,39-42,44-45,47-49H,3-16,19-28,30,32-34H2,1-2H3,(H,43,46)/b18-17-,31-29+/t35-,36+,37+,39+,40-,41+,42+/m0/s1
+03F         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                          MVGFIPNJBNBHNC-HVFXMTMESA-N
+03F SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                              CCCCCCCCCCCCC/C=C/[C@@H](O)[C@H](CO[C@@H]1O[C@H](CO)[C@@H](O)[C@H](O)[C@H]1O)NC(=O)CCCCCCC\C=C/CCCCCCCC
+03F           SMILES               CACTVS 3.370                                                                                                                                                                                                            CCCCCCCCCCCCCC=C[CH](O)[CH](CO[CH]1O[CH](CO)[CH](O)[CH](O)[CH]1O)NC(=O)CCCCCCCC=CCCCCCCCC
+03F SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                             CCCCCCCCCCCCC/C=C/[C@H]([C@H](CO[C@H]1[C@@H]([C@H]([C@@H]([C@H](O1)CO)O)O)O)NC(=O)CCCCCCC/C=C\CCCCCCCC)O
+03F           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                                                               CCCCCCCCCCCCCC=CC(C(COC1C(C(C(C(O1)CO)O)O)O)NC(=O)CCCCCCCC=CCCCCCCCC)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+03F acedrg               243         "dictionary generator"                  
+03F acedrg_database      11          "data source"                           
+03F rdkit                2017.03.2   "Chemoinformatics tool"
+03F refmac5              5.8.0238    "optimization tool"                     

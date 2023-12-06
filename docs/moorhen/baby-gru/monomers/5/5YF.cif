@@ -1,0 +1,303 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5YF     5YF      7-[(4-fluoranylphenoxy)methyl]-3-[(1~{S},2~{S})-2-(hydroxymethyl)cyclopropyl]-2-methyl-[1,3]thiazolo[3,2-a]pyrimidin-5-one     NON-POLYMER     42     25     .     
+#
+data_comp_5YF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5YF     C4      C       CR16    0       13.583      -13.568     -26.881     
+5YF     C14     C       CH1     0       15.867      -9.548      -27.155     
+5YF     C5      C       CR6     0       14.400      -14.603     -26.387     
+5YF     C6      C       CR56    0       16.225      -13.165     -26.182     
+5YF     C11     C       CR6     0       13.082      -15.516     -21.206     
+5YF     C7      C       CH2     0       13.866      -15.997     -26.216     
+5YF     C8      C       CR6     0       12.990      -15.840     -23.931     
+5YF     C9      C       CR16    0       11.813      -15.701     -23.199     
+5YF     C10     C       CR16    0       11.862      -15.537     -21.823     
+5YF     C12     C       CR16    0       14.259      -15.651     -21.890     
+5YF     C13     C       CR16    0       14.217      -15.816     -23.267     
+5YF     N1      N       NRD6    0       15.674      -14.404     -26.051     
+5YF     C3      C       CR6     0       14.126      -12.268     -27.028     
+5YF     F       F       F       0       13.128      -15.355     -19.855     
+5YF     O1      O       O2      0       12.781      -15.997     -25.282     
+5YF     O       O       O       0       13.468      -11.319     -27.448     
+5YF     S       S       S2      0       17.783      -12.715     -25.821     
+5YF     C1      C       CR5     0       17.599      -11.117     -26.256     
+5YF     C       C       CH3     0       18.787      -10.244     -26.104     
+5YF     N       N       NR5     0       15.497      -12.057     -26.665     
+5YF     C2      C       CR5     0       16.321      -10.871     -26.707     
+5YF     C16     C       CH1     0       15.412      -9.335      -28.581     
+5YF     C15     C       CH2     0       16.704      -8.762      -28.121     
+5YF     C17     C       CH2     0       14.291      -8.392      -28.901     
+5YF     O2      O       OH1     0       13.035      -9.067      -28.868     
+5YF     H1      H       H       0       12.684      -13.727     -27.114     
+5YF     H2      H       H       0       15.376      -9.031      -26.501     
+5YF     H3      H       H       0       14.578      -16.598     -25.908     
+5YF     H4      H       H       0       13.547      -16.330     -27.083     
+5YF     H5      H       H       0       10.982      -15.718     -23.642     
+5YF     H6      H       H       0       11.069      -15.442     -21.324     
+5YF     H7      H       H       0       15.084      -15.632     -21.436     
+5YF     H8      H       H       0       15.021      -15.909     -23.749     
+5YF     H10     H       H       0       18.502      -9.328      -25.972     
+5YF     H11     H       H       0       19.334      -10.298     -26.902     
+5YF     H12     H       H       0       19.308      -10.530     -25.339     
+5YF     H13     H       H       0       15.481      -10.124     -29.173     
+5YF     H14     H       H       0       17.523      -9.175      -28.446     
+5YF     H15     H       H       0       16.754      -7.799      -27.990     
+5YF     H16     H       H       0       14.429      -8.006      -29.792     
+5YF     H17     H       H       0       14.281      -7.657      -28.251     
+5YF     H18     H       H       0       12.833      -9.215      -28.058     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5YF         C16         C15      SINGLE       n     1.490  0.0136     1.490  0.0136
+5YF         C14         C15      SINGLE       n     1.498  0.0139     1.498  0.0139
+5YF         C16         C17      SINGLE       n     1.499  0.0100     1.499  0.0100
+5YF         C14         C16      SINGLE       n     1.507  0.0128     1.507  0.0128
+5YF          C3           O      DOUBLE       n     1.229  0.0100     1.229  0.0100
+5YF         C17          O2      SINGLE       n     1.426  0.0100     1.426  0.0100
+5YF         C14          C2      SINGLE       n     1.465  0.0100     1.465  0.0100
+5YF          C3           N      SINGLE       y     1.427  0.0100     1.427  0.0100
+5YF          C4          C3      SINGLE       y     1.416  0.0200     1.416  0.0200
+5YF          C1           C      SINGLE       n     1.481  0.0100     1.481  0.0100
+5YF           N          C2      SINGLE       y     1.392  0.0185     1.392  0.0185
+5YF          C1          C2      DOUBLE       y     1.362  0.0156     1.362  0.0156
+5YF          C6           N      SINGLE       y     1.379  0.0182     1.379  0.0182
+5YF           S          C1      SINGLE       y     1.695  0.0200     1.695  0.0200
+5YF          C4          C5      DOUBLE       y     1.407  0.0141     1.407  0.0141
+5YF          C6           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+5YF          C6          N1      DOUBLE       y     1.338  0.0200     1.338  0.0200
+5YF          C5          N1      SINGLE       y     1.324  0.0146     1.324  0.0146
+5YF          C5          C7      SINGLE       n     1.501  0.0100     1.501  0.0100
+5YF          C7          O1      SINGLE       n     1.427  0.0100     1.427  0.0100
+5YF          C8          O1      SINGLE       n     1.370  0.0100     1.370  0.0100
+5YF          C8          C9      DOUBLE       y     1.386  0.0109     1.386  0.0109
+5YF          C8         C13      SINGLE       y     1.386  0.0109     1.386  0.0109
+5YF          C9         C10      SINGLE       y     1.383  0.0100     1.383  0.0100
+5YF         C12         C13      DOUBLE       y     1.383  0.0100     1.383  0.0100
+5YF         C11         C10      DOUBLE       y     1.364  0.0130     1.364  0.0130
+5YF         C11         C12      SINGLE       y     1.364  0.0130     1.364  0.0130
+5YF         C11           F      SINGLE       n     1.361  0.0100     1.361  0.0100
+5YF          C4          H1      SINGLE       n     1.082  0.0130     0.943  0.0168
+5YF         C14          H2      SINGLE       n     1.089  0.0100     0.968  0.0200
+5YF          C7          H3      SINGLE       n     1.089  0.0100     0.982  0.0100
+5YF          C7          H4      SINGLE       n     1.089  0.0100     0.982  0.0100
+5YF          C9          H5      SINGLE       n     1.082  0.0130     0.942  0.0110
+5YF         C10          H6      SINGLE       n     1.082  0.0130     0.942  0.0131
+5YF         C12          H7      SINGLE       n     1.082  0.0130     0.942  0.0131
+5YF         C13          H8      SINGLE       n     1.082  0.0130     0.942  0.0110
+5YF           C         H10      SINGLE       n     1.089  0.0100     0.969  0.0144
+5YF           C         H11      SINGLE       n     1.089  0.0100     0.969  0.0144
+5YF           C         H12      SINGLE       n     1.089  0.0100     0.969  0.0144
+5YF         C16         H13      SINGLE       n     1.089  0.0100     0.989  0.0124
+5YF         C15         H14      SINGLE       n     1.089  0.0100     0.973  0.0200
+5YF         C15         H15      SINGLE       n     1.089  0.0100     0.973  0.0200
+5YF         C17         H16      SINGLE       n     1.089  0.0100     0.981  0.0102
+5YF         C17         H17      SINGLE       n     1.089  0.0100     0.981  0.0102
+5YF          O2         H18      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5YF          C3          C4          C5     119.890    1.50
+5YF          C3          C4          H1     119.357    1.50
+5YF          C5          C4          H1     120.752    1.50
+5YF         C15         C14         C16      59.182    1.50
+5YF         C15         C14          C2     119.528    1.50
+5YF         C15         C14          H2     115.981    1.50
+5YF         C16         C14          C2     119.528    1.50
+5YF         C16         C14          H2     114.108    1.50
+5YF          C2         C14          H2     115.379    1.50
+5YF          C4          C5          N1     122.127    1.50
+5YF          C4          C5          C7     121.455    3.00
+5YF          N1          C5          C7     116.419    1.58
+5YF           N          C6           S     108.122    3.00
+5YF           N          C6          N1     120.753    1.50
+5YF           S          C6          N1     131.125    3.00
+5YF         C10         C11         C12     123.092    1.50
+5YF         C10         C11           F     118.454    1.50
+5YF         C12         C11           F     118.454    1.50
+5YF          C5          C7          O1     109.112    2.17
+5YF          C5          C7          H3     109.851    1.50
+5YF          C5          C7          H4     109.851    1.50
+5YF          O1          C7          H3     109.906    1.50
+5YF          O1          C7          H4     109.906    1.50
+5YF          H3          C7          H4     108.353    1.50
+5YF          O1          C8          C9     119.999    3.00
+5YF          O1          C8         C13     119.999    3.00
+5YF          C9          C8         C13     120.003    1.50
+5YF          C8          C9         C10     119.674    1.50
+5YF          C8          C9          H5     120.063    1.50
+5YF         C10          C9          H5     120.263    1.50
+5YF          C9         C10         C11     118.779    1.50
+5YF          C9         C10          H6     120.536    1.50
+5YF         C11         C10          H6     120.686    1.50
+5YF         C13         C12         C11     118.779    1.50
+5YF         C13         C12          H7     120.536    1.50
+5YF         C11         C12          H7     120.686    1.50
+5YF          C8         C13         C12     119.674    1.50
+5YF          C8         C13          H8     120.063    1.50
+5YF         C12         C13          H8     120.263    1.50
+5YF          C6          N1          C5     117.821    1.50
+5YF           O          C3           N     116.943    2.08
+5YF           O          C3          C4     123.763    1.50
+5YF           N          C3          C4     119.294    1.60
+5YF          C7          O1          C8     117.988    1.50
+5YF          C1           S          C6     108.122    3.00
+5YF           C          C1          C2     131.923    3.00
+5YF           C          C1           S     119.955    3.00
+5YF          C2          C1           S     108.122    3.00
+5YF          C1           C         H10     109.576    1.50
+5YF          C1           C         H11     109.576    1.50
+5YF          C1           C         H12     109.576    1.50
+5YF         H10           C         H11     109.334    1.50
+5YF         H10           C         H12     109.334    1.50
+5YF         H11           C         H12     109.334    1.50
+5YF          C3           N          C2     131.926    1.58
+5YF          C3           N          C6     120.115    1.50
+5YF          C2           N          C6     107.959    1.65
+5YF         C14          C2           N     123.223    3.00
+5YF         C14          C2          C1     129.102    3.00
+5YF           N          C2          C1     107.675    1.50
+5YF         C15         C16         C17     118.692    1.50
+5YF         C15         C16         C14      59.855    1.50
+5YF         C15         C16         H13     115.552    1.50
+5YF         C17         C16         C14     120.272    3.00
+5YF         C17         C16         H13     115.087    1.50
+5YF         C14         C16         H13     115.531    1.50
+5YF         C16         C15         C14      60.963    1.50
+5YF         C16         C15         H14     117.752    1.50
+5YF         C16         C15         H15     117.752    1.50
+5YF         C14         C15         H14     117.297    1.50
+5YF         C14         C15         H15     117.297    1.50
+5YF         H14         C15         H15     114.868    1.50
+5YF         C16         C17          O2     110.834    1.50
+5YF         C16         C17         H16     109.853    1.50
+5YF         C16         C17         H17     109.853    1.50
+5YF          O2         C17         H16     109.512    1.50
+5YF          O2         C17         H17     109.512    1.50
+5YF         H16         C17         H17     108.049    1.50
+5YF         C17          O2         H18     108.303    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5YF              const_37           O          C3          C4          C5     180.000    10.0     2
+5YF              const_51           N          C6           S          C1       0.000    10.0     2
+5YF              const_44           S          C6          N1          C5     180.000    10.0     2
+5YF              const_36           N          C3          C4          H1     180.000    10.0     2
+5YF            sp2_sp3_10           S          C1           C         H10     -30.000    10.0     6
+5YF              const_34           C          C1           S          C6     180.000    10.0     2
+5YF              const_30           S          C1          C2         C14     180.000    10.0     2
+5YF             sp2_sp3_4          C1          C2         C14         C15     -30.000    10.0     6
+5YF            sp3_sp3_32          C2         C14         C16         C17     180.000    10.0     3
+5YF            sp3_sp3_12         C14         C15         C16         H13     180.000    10.0     3
+5YF            sp3_sp3_21         C15         C16         C17         H17      60.000    10.0     3
+5YF             sp2_sp3_1           N          C2         C14         C15     150.000    10.0     6
+5YF            sp3_sp3_20         C15         C16         C17         H16     -60.000    10.0     3
+5YF            sp2_sp3_17          N1          C5          C7          O1      90.000    10.0     6
+5YF              const_45          C4          C5          N1          C6       0.000    10.0     2
+5YF            sp2_sp3_14          C4          C5          C7          O1     -90.000    10.0     6
+5YF              const_24          N1          C6           N          C3       0.000    10.0     2
+5YF       const_sp2_sp2_2          C9         C10         C11           F     180.000     5.0     2
+5YF              const_55          C9         C10         C11           F     180.000    10.0     2
+5YF             sp2_sp2_1          C9          C8          O1          C7     180.000     5.0     2
+5YF              const_14         C12         C13          C8          O1     180.000    10.0     2
+5YF              const_54         C10         C11         C12          H7     180.000    10.0     2
+5YF              const_11          O1          C8          C9         C10     180.000    10.0     2
+5YF       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+5YF              const_17         C11         C12         C13          C8       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+5YF    chir_1    C14    C2    C16    C15    positive
+5YF    chir_2    C16    C17    C14    C15    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5YF    plan-1           C   0.020
+5YF    plan-1          C1   0.020
+5YF    plan-1         C14   0.020
+5YF    plan-1          C2   0.020
+5YF    plan-1          C3   0.020
+5YF    plan-1          C4   0.020
+5YF    plan-1          C5   0.020
+5YF    plan-1          C6   0.020
+5YF    plan-1          C7   0.020
+5YF    plan-1          H1   0.020
+5YF    plan-1           N   0.020
+5YF    plan-1          N1   0.020
+5YF    plan-1           O   0.020
+5YF    plan-1           S   0.020
+5YF    plan-2         C10   0.020
+5YF    plan-2         C11   0.020
+5YF    plan-2         C12   0.020
+5YF    plan-2         C13   0.020
+5YF    plan-2          C8   0.020
+5YF    plan-2          C9   0.020
+5YF    plan-2           F   0.020
+5YF    plan-2          H5   0.020
+5YF    plan-2          H6   0.020
+5YF    plan-2          H7   0.020
+5YF    plan-2          H8   0.020
+5YF    plan-2          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5YF            InChI                InChI  1.03 InChI=1S/C18H17FN2O3S/c1-10-17(15-6-11(15)8-22)21-16(23)7-13(20-18(21)25-10)9-24-14-4-2-12(19)3-5-14/h2-5,7,11,15,22H,6,8-9H2,1H3/t11-,15+/m1/s1
+5YF         InChIKey                InChI  1.03                                                                                                                      CJDCZVBFZVDWJU-ABAIWWIYSA-N
+5YF SMILES_CANONICAL               CACTVS 3.385                                                                                           CC1=C([C@H]2C[C@@H]2CO)N3C(=O)C=C(COc4ccc(F)cc4)N=C3S1
+5YF           SMILES               CACTVS 3.385                                                                                              CC1=C([CH]2C[CH]2CO)N3C(=O)C=C(COc4ccc(F)cc4)N=C3S1
+5YF SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                           CC1=C(N2C(=O)C=C(N=C2S1)COc3ccc(cc3)F)[C@H]4C[C@@H]4CO
+5YF           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                    CC1=C(N2C(=O)C=C(N=C2S1)COc3ccc(cc3)F)C4CC4CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5YF acedrg               243         "dictionary generator"                  
+5YF acedrg_database      11          "data source"                           
+5YF rdkit                2017.03.2   "Chemoinformatics tool"
+5YF refmac5              5.8.0238    "optimization tool"                     

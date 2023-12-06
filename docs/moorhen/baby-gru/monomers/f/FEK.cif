@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FEK     FEK      (1~{S},2~{S},3~{S})-3-fluoranyl-6-(hydroxymethyl)cyclohex-5-ene-1,2,4-triol     NON-POLYMER     23     12     .     
+#
+data_comp_FEK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FEK     OAF     O       OH1     0       11.462      -13.981     -15.872     
+FEK     CAC     C       CH1     0       10.711      -13.747     -17.066     
+FEK     CAD     C       CH1     0       10.675      -12.255     -17.408     
+FEK     OAG     O       OH1     0       11.959      -11.663     -17.183     
+FEK     CAE     C       CH1     0       9.646       -11.536     -16.557     
+FEK     FAH     F       F       0       9.663       -10.171     -16.895     
+FEK     CAA     C       CH1     0       8.247       -12.091     -16.783     
+FEK     CAB     C       CR16    0       8.240       -13.591     -16.774     
+FEK     CAI     C       CR6     0       9.328       -14.345     -16.920     
+FEK     CAJ     C       CH2     0       9.237       -15.850     -16.930     
+FEK     OAK     O       OH1     0       8.734       -16.363     -15.708     
+FEK     O1      O       OH1     0       7.359       -11.596     -15.782     
+FEK     H1      H       H       0       11.080      -13.612     -15.217     
+FEK     H2      H       H       0       11.174      -14.221     -17.800     
+FEK     H3      H       H       0       10.429      -12.146     -18.359     
+FEK     H4      H       H       0       11.975      -10.892     -17.518     
+FEK     H5      H       H       0       9.883       -11.631     -15.601     
+FEK     H6      H       H       0       7.923       -11.777     -17.663     
+FEK     H8      H       H       0       7.408       -14.033     -16.658     
+FEK     H9      H       H       0       10.123      -16.239     -17.097     
+FEK     H10     H       H       0       8.645       -16.133     -17.661     
+FEK     H11     H       H       0       8.695       -17.200     -15.772     
+FEK     H7      H       H       0       6.566       -11.725     -16.036     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FEK         CAD         OAG      SINGLE       n     1.431  0.0107     1.431  0.0107
+FEK         CAC         CAD      SINGLE       n     1.523  0.0120     1.523  0.0120
+FEK         CAD         CAE      SINGLE       n     1.512  0.0129     1.512  0.0129
+FEK         CAE         FAH      SINGLE       n     1.406  0.0100     1.406  0.0100
+FEK         CAC         CAI      SINGLE       n     1.510  0.0100     1.510  0.0100
+FEK         OAF         CAC      SINGLE       n     1.427  0.0125     1.427  0.0125
+FEK         CAI         CAJ      SINGLE       n     1.507  0.0100     1.507  0.0100
+FEK         CAJ         OAK      SINGLE       n     1.417  0.0163     1.417  0.0163
+FEK         CAB         CAI      DOUBLE       n     1.329  0.0123     1.329  0.0123
+FEK         CAE         CAA      SINGLE       n     1.520  0.0100     1.520  0.0100
+FEK         CAA         CAB      SINGLE       n     1.498  0.0100     1.498  0.0100
+FEK         CAA          O1      SINGLE       n     1.427  0.0125     1.427  0.0125
+FEK         OAF          H1      SINGLE       n     0.970  0.0120     0.843  0.0200
+FEK         CAC          H2      SINGLE       n     1.089  0.0100     0.989  0.0200
+FEK         CAD          H3      SINGLE       n     1.089  0.0100     0.988  0.0151
+FEK         OAG          H4      SINGLE       n     0.970  0.0120     0.841  0.0200
+FEK         CAE          H5      SINGLE       n     1.089  0.0100     0.990  0.0108
+FEK         CAA          H6      SINGLE       n     1.089  0.0100     0.989  0.0200
+FEK         CAB          H8      SINGLE       n     1.082  0.0130     0.949  0.0200
+FEK         CAJ          H9      SINGLE       n     1.089  0.0100     0.982  0.0119
+FEK         CAJ         H10      SINGLE       n     1.089  0.0100     0.982  0.0119
+FEK         OAK         H11      SINGLE       n     0.970  0.0120     0.841  0.0200
+FEK          O1          H7      SINGLE       n     0.970  0.0120     0.843  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FEK         CAC         OAF          H1     109.283    1.50
+FEK         CAD         CAC         CAI     111.944    1.50
+FEK         CAD         CAC         OAF     110.170    1.75
+FEK         CAD         CAC          H2     108.836    1.50
+FEK         CAI         CAC         OAF     109.627    1.79
+FEK         CAI         CAC          H2     108.621    1.50
+FEK         OAF         CAC          H2     107.721    1.50
+FEK         OAG         CAD         CAC     109.779    1.72
+FEK         OAG         CAD         CAE     109.025    1.70
+FEK         OAG         CAD          H3     109.481    1.50
+FEK         CAC         CAD         CAE     108.398    2.24
+FEK         CAC         CAD          H3     109.434    1.50
+FEK         CAE         CAD          H3     108.821    1.50
+FEK         CAD         OAG          H4     109.454    1.50
+FEK         CAD         CAE         FAH     108.540    1.50
+FEK         CAD         CAE         CAA     111.124    1.57
+FEK         CAD         CAE          H5     109.320    1.50
+FEK         FAH         CAE         CAA     109.240    1.50
+FEK         FAH         CAE          H5     108.822    1.50
+FEK         CAA         CAE          H5     109.014    1.50
+FEK         CAE         CAA         CAB     111.114    1.81
+FEK         CAE         CAA          O1     110.393    1.75
+FEK         CAE         CAA          H6     108.853    1.50
+FEK         CAB         CAA          O1     110.433    2.00
+FEK         CAB         CAA          H6     109.070    1.50
+FEK          O1         CAA          H6     108.370    1.50
+FEK         CAI         CAB         CAA     123.908    1.50
+FEK         CAI         CAB          H8     117.891    1.92
+FEK         CAA         CAB          H8     118.200    1.50
+FEK         CAC         CAI         CAJ     116.516    2.44
+FEK         CAC         CAI         CAB     121.931    1.50
+FEK         CAJ         CAI         CAB     121.553    2.28
+FEK         CAI         CAJ         OAK     112.455    1.50
+FEK         CAI         CAJ          H9     110.379    3.00
+FEK         CAI         CAJ         H10     110.379    3.00
+FEK         OAK         CAJ          H9     109.147    1.50
+FEK         OAK         CAJ         H10     109.147    1.50
+FEK          H9         CAJ         H10     107.920    1.50
+FEK         CAJ         OAK         H11     108.166    2.70
+FEK         CAA          O1          H7     108.734    2.82
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FEK            sp3_sp3_31         CAD         CAC         OAF          H1     180.000    10.0     3
+FEK             sp3_sp3_5         OAF         CAC         CAD         OAG      60.000    10.0     3
+FEK            sp2_sp3_11         CAJ         CAI         CAC         OAF     -60.000    10.0     6
+FEK            sp3_sp3_28         CAC         CAD         OAG          H4     180.000    10.0     3
+FEK            sp3_sp3_14         OAG         CAD         CAE         FAH     -60.000    10.0     3
+FEK            sp3_sp3_23          O1         CAA         CAE         FAH      60.000    10.0     3
+FEK            sp3_sp3_37         CAE         CAA          O1          H7     180.000    10.0     3
+FEK             sp2_sp3_2         CAI         CAB         CAA          O1     120.000    10.0     6
+FEK             sp2_sp2_2         CAA         CAB         CAI         CAJ     180.000     5.0     2
+FEK            sp2_sp3_14         CAC         CAI         CAJ         OAK     -90.000    10.0     6
+FEK            sp3_sp3_34         CAI         CAJ         OAK         H11     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FEK    chir_1    CAC    OAF    CAD    CAI    positive
+FEK    chir_2    CAD    OAG    CAE    CAC    positive
+FEK    chir_3    CAE    FAH    CAD    CAA    positive
+FEK    chir_4    CAA    O1    CAE    CAB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FEK    plan-1         CAA   0.020
+FEK    plan-1         CAB   0.020
+FEK    plan-1         CAI   0.020
+FEK    plan-1          H8   0.020
+FEK    plan-2         CAB   0.020
+FEK    plan-2         CAC   0.020
+FEK    plan-2         CAI   0.020
+FEK    plan-2         CAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FEK            InChI                InChI  1.03 InChI=1S/C7H11FO4/c8-5-4(10)1-3(2-9)6(11)7(5)12/h1,4-7,9-12H,2H2/t4-,5+,6+,7-/m1/s1
+FEK         InChIKey                InChI  1.03                                                         GCEFMEUYUSFIFI-JRTVQGFMSA-N
+FEK SMILES_CANONICAL               CACTVS 3.385                                             OCC1=C[C@@H](O)[C@H](F)[C@@H](O)[C@H]1O
+FEK           SMILES               CACTVS 3.385                                                   OCC1=C[CH](O)[CH](F)[CH](O)[CH]1O
+FEK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                               C1=C([C@@H]([C@@H]([C@H](C1O)F)O)O)CO
+FEK           SMILES "OpenEye OEToolkits" 2.0.6                                                             C1=C(C(C(C(C1O)F)O)O)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FEK acedrg               243         "dictionary generator"                  
+FEK acedrg_database      11          "data source"                           
+FEK rdkit                2017.03.2   "Chemoinformatics tool"
+FEK refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,148 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DTI     DTI      "3,4-DIMETHYLTHIAZOLIUM ION"     NON-POLYMER     15     7     .     
+#
+data_comp_DTI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DTI     N10     N       NR5     1       32.374      93.017      48.088      
+DTI     C9      C       CR5     0       31.494      93.768      47.270      
+DTI     S13     S       S2      0       31.217      94.633      49.585      
+DTI     C11     C       CR15    0       32.321      93.394      49.398      
+DTI     C14     C       CR15    0       30.784      94.706      47.974      
+DTI     C1      C       CH3     0       31.397      93.513      45.795      
+DTI     C5      C       CH3     0       33.243      91.957      47.590      
+DTI     H11     H       H       0       32.816      93.034      50.114      
+DTI     H14     H       H       0       30.146      95.316      47.645      
+DTI     H13     H       H       0       32.280      93.560      45.397      
+DTI     H12     H       H       0       30.825      94.182      45.387      
+DTI     H11A    H       H       0       31.020      92.632      45.642      
+DTI     H53     H       H       0       32.701      91.250      47.203      
+DTI     H52     H       H       0       33.771      91.597      48.321      
+DTI     H51     H       H       0       33.836      92.318      46.911      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DTI          C9          C1      SINGLE       n     1.499  0.0100     1.499  0.0100
+DTI          C9         C14      DOUBLE       y     1.359  0.0200     1.359  0.0200
+DTI         N10          C9      SINGLE       y     1.378  0.0200     1.378  0.0200
+DTI         N10          C5      SINGLE       n     1.457  0.0100     1.457  0.0100
+DTI         S13         C14      SINGLE       y     1.695  0.0200     1.695  0.0200
+DTI         N10         C11      DOUBLE       y     1.356  0.0144     1.356  0.0144
+DTI         S13         C11      SINGLE       y     1.695  0.0200     1.695  0.0200
+DTI         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0200
+DTI         C14         H14      SINGLE       n     1.082  0.0130     0.942  0.0200
+DTI          C1         H13      SINGLE       n     1.089  0.0100     0.970  0.0153
+DTI          C1         H12      SINGLE       n     1.089  0.0100     0.970  0.0153
+DTI          C1        H11A      SINGLE       n     1.089  0.0100     0.970  0.0153
+DTI          C5         H53      SINGLE       n     1.089  0.0100     0.971  0.0146
+DTI          C5         H52      SINGLE       n     1.089  0.0100     0.971  0.0146
+DTI          C5         H51      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DTI          C9         N10          C5     125.954    1.50
+DTI          C9         N10         C11     108.133    2.04
+DTI          C5         N10         C11     125.913    1.50
+DTI          C1          C9         C14     128.759    1.50
+DTI          C1          C9         N10     123.378    1.50
+DTI         C14          C9         N10     107.863    2.30
+DTI         C14         S13         C11     108.002    3.00
+DTI         N10         C11         S13     108.002    3.00
+DTI         N10         C11         H11     127.482    1.50
+DTI         S13         C11         H11     124.516    3.00
+DTI          C9         C14         S13     108.002    3.00
+DTI          C9         C14         H14     128.437    2.51
+DTI         S13         C14         H14     123.561    3.00
+DTI          C9          C1         H13     109.558    1.50
+DTI          C9          C1         H12     109.558    1.50
+DTI          C9          C1        H11A     109.558    1.50
+DTI         H13          C1         H12     109.354    1.50
+DTI         H13          C1        H11A     109.354    1.50
+DTI         H12          C1        H11A     109.354    1.50
+DTI         N10          C5         H53     109.484    1.50
+DTI         N10          C5         H52     109.484    1.50
+DTI         N10          C5         H51     109.484    1.50
+DTI         H53          C5         H52     109.448    1.52
+DTI         H53          C5         H51     109.448    1.52
+DTI         H52          C5         H51     109.448    1.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DTI       const_sp2_sp2_4          C1          C9         N10          C5       0.000     5.0     2
+DTI              const_14         S13         C11         N10          C5     180.000    10.0     2
+DTI             sp2_sp3_7          C9         N10          C5         H53     150.000    10.0     6
+DTI       const_sp2_sp2_6         S13         C14          C9          C1     180.000     5.0     2
+DTI             sp2_sp3_1         C14          C9          C1         H13     150.000    10.0     6
+DTI              const_11         N10         C11         S13         C14       0.000    10.0     2
+DTI       const_sp2_sp2_9          C9         C14         S13         C11       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DTI    plan-1          C1   0.020
+DTI    plan-1         C11   0.020
+DTI    plan-1         C14   0.020
+DTI    plan-1          C5   0.020
+DTI    plan-1          C9   0.020
+DTI    plan-1         H11   0.020
+DTI    plan-1         H14   0.020
+DTI    plan-1         N10   0.020
+DTI    plan-1         S13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DTI           SMILES              ACDLabs 12.01                                 s1cc([n+](c1)C)C
+DTI            InChI                InChI  1.03 InChI=1S/C5H8NS/c1-5-3-7-4-6(5)2/h3-4H,1-2H3/q+1
+DTI         InChIKey                InChI  1.03                      RHRPPNDIWVFSRX-UHFFFAOYSA-N
+DTI SMILES_CANONICAL               CACTVS 3.370                                     Cc1csc[n+]1C
+DTI           SMILES               CACTVS 3.370                                     Cc1csc[n+]1C
+DTI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                     Cc1csc[n+]1C
+DTI           SMILES "OpenEye OEToolkits" 1.7.6                                     Cc1csc[n+]1C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DTI acedrg               243         "dictionary generator"                  
+DTI acedrg_database      11          "data source"                           
+DTI rdkit                2017.03.2   "Chemoinformatics tool"
+DTI refmac5              5.8.0238    "optimization tool"                     

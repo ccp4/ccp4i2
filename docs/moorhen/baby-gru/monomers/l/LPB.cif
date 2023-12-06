@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LPB     LPB      "5-[(3S)-1,2-dithiolan-3-yl]pentanoic acid"     NON-POLYMER     25     12     .     
+#
+data_comp_LPB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LPB     O1      O       O       0       21.521      -8.645      11.034      
+LPB     O2      O       OC      -1      20.988      -10.516     12.056      
+LPB     C1      C       C       0       21.717      -9.848      11.296      
+LPB     C2      C       CH2     0       22.907      -10.538     10.653      
+LPB     C3      C       CH2     0       24.154      -10.541     11.485      
+LPB     C4      C       CH2     0       25.371      -11.073     10.747      
+LPB     C5      C       CH2     0       25.329      -12.579     10.490      
+LPB     C6      C       CH1     0       26.570      -13.180     9.854       
+LPB     C7      C       CH2     0       26.595      -14.711     9.985       
+LPB     C8      C       CH2     0       27.038      -15.320     8.689       
+LPB     S8      S       S2      0       26.160      -14.505     7.353       
+LPB     S6      S       S2      0       26.650      -12.644     8.104       
+LPB     H21     H       H       0       23.098      -10.096     9.799       
+LPB     H22     H       H       0       22.657      -11.466     10.456      
+LPB     H31     H       H       0       24.007      -11.089     12.284      
+LPB     H32     H       H       0       24.343      -9.627      11.783      
+LPB     H41     H       H       0       26.174      -10.865     11.272      
+LPB     H42     H       H       0       25.446      -10.604     9.890       
+LPB     H51     H       H       0       24.565      -12.773     9.911       
+LPB     H52     H       H       0       25.172      -13.032     11.344      
+LPB     H6      H       H       0       27.351      -12.822     10.332      
+LPB     H71     H       H       0       27.215      -14.978     10.700      
+LPB     H72     H       H       0       25.702      -15.051     10.218      
+LPB     H81     H       H       0       26.838      -16.270     8.684       
+LPB     H82     H       H       0       27.995      -15.204     8.576       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LPB          O1          C1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LPB          O2          C1      SINGLE       n     1.247  0.0187     1.247  0.0187
+LPB          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+LPB          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+LPB          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+LPB          C4          C5      SINGLE       n     1.527  0.0100     1.527  0.0100
+LPB          C5          C6      SINGLE       n     1.516  0.0200     1.516  0.0200
+LPB          C6          C7      SINGLE       n     1.522  0.0159     1.522  0.0159
+LPB          C6          S6      SINGLE       n     1.826  0.0200     1.826  0.0200
+LPB          C7          C8      SINGLE       n     1.489  0.0200     1.489  0.0200
+LPB          C8          S8      SINGLE       n     1.806  0.0200     1.806  0.0200
+LPB          S8          S6      SINGLE       n     2.085  0.0200     2.085  0.0200
+LPB          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPB          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPB          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPB          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPB          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+LPB          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+LPB          C5         H51      SINGLE       n     1.089  0.0100     0.979  0.0139
+LPB          C5         H52      SINGLE       n     1.089  0.0100     0.979  0.0139
+LPB          C6          H6      SINGLE       n     1.089  0.0100     0.983  0.0100
+LPB          C7         H71      SINGLE       n     1.089  0.0100     0.983  0.0154
+LPB          C7         H72      SINGLE       n     1.089  0.0100     0.983  0.0154
+LPB          C8         H81      SINGLE       n     1.089  0.0100     0.971  0.0192
+LPB          C8         H82      SINGLE       n     1.089  0.0100     0.971  0.0192
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LPB          O1          C1          O2     123.571    1.50
+LPB          O1          C1          C2     118.214    1.64
+LPB          O2          C1          C2     118.214    1.64
+LPB          C1          C2          C3     114.612    2.19
+LPB          C1          C2         H21     108.404    1.50
+LPB          C1          C2         H22     108.404    1.50
+LPB          C3          C2         H21     108.815    1.50
+LPB          C3          C2         H22     108.815    1.50
+LPB         H21          C2         H22     107.521    1.50
+LPB          C2          C3          C4     113.314    2.25
+LPB          C2          C3         H31     109.164    1.50
+LPB          C2          C3         H32     109.164    1.50
+LPB          C4          C3         H31     108.623    1.50
+LPB          C4          C3         H32     108.623    1.50
+LPB         H31          C3         H32     107.646    1.50
+LPB          C3          C4          C5     114.188    2.10
+LPB          C3          C4         H41     108.803    1.50
+LPB          C3          C4         H42     108.803    1.50
+LPB          C5          C4         H41     108.816    1.50
+LPB          C5          C4         H42     108.816    1.50
+LPB         H41          C4         H42     107.696    1.50
+LPB          C4          C5          C6     114.922    2.04
+LPB          C4          C5         H51     108.506    1.50
+LPB          C4          C5         H52     108.506    1.50
+LPB          C6          C5         H51     108.334    1.50
+LPB          C6          C5         H52     108.334    1.50
+LPB         H51          C5         H52     107.535    1.50
+LPB          C5          C6          C7     115.768    2.64
+LPB          C5          C6          S6     111.156    2.31
+LPB          C5          C6          H6     109.052    1.71
+LPB          C7          C6          S6     107.036    2.68
+LPB          C7          C6          H6     109.097    1.50
+LPB          S6          C6          H6     109.958    1.50
+LPB          C6          C7          C8     104.443    2.26
+LPB          C6          C7         H71     111.067    1.50
+LPB          C6          C7         H72     111.067    1.50
+LPB          C8          C7         H71     110.495    1.50
+LPB          C8          C7         H72     110.495    1.50
+LPB         H71          C7         H72     108.877    1.50
+LPB          C7          C8          S8     107.036    2.68
+LPB          C7          C8         H81     110.100    1.50
+LPB          C7          C8         H82     110.100    1.50
+LPB          S8          C8         H81     110.016    1.50
+LPB          S8          C8         H82     110.016    1.50
+LPB         H81          C8         H82     108.699    1.50
+LPB          C8          S8          S6      94.990    1.70
+LPB          C6          S6          S8      95.323    1.77
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LPB            sp3_sp3_22          C6          S6          S8          C8     -60.000    10.0     3
+LPB             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+LPB            sp3_sp3_23          C1          C2          C3          C4     180.000    10.0     3
+LPB            sp3_sp3_32          C2          C3          C4          C5     180.000    10.0     3
+LPB            sp3_sp3_41          C3          C4          C5          C6     180.000    10.0     3
+LPB            sp3_sp3_50          C4          C5          C6          C7     180.000    10.0     3
+LPB            sp3_sp3_60          C5          C6          S6          S8      60.000    10.0     3
+LPB             sp3_sp3_4          C5          C6          C7          C8     -60.000    10.0     3
+LPB            sp3_sp3_10          C6          C7          C8          S8     -60.000    10.0     3
+LPB            sp3_sp3_19          C7          C8          S8          S6      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LPB    chir_1    C6    S6    C7    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LPB    plan-1          C1   0.020
+LPB    plan-1          C2   0.020
+LPB    plan-1          O1   0.020
+LPB    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LPB           SMILES              ACDLabs 12.01                                                             O=C(O)CCCCC1SSCC1
+LPB            InChI                InChI  1.03 InChI=1S/C8H14O2S2/c9-8(10)4-2-1-3-7-5-6-11-12-7/h7H,1-6H2,(H,9,10)/t7-/m0/s1
+LPB         InChIKey                InChI  1.03                                                   AGBQKNBQESQNJD-ZETCQYMHSA-N
+LPB SMILES_CANONICAL               CACTVS 3.370                                                         OC(=O)CCCC[C@H]1CCSS1
+LPB           SMILES               CACTVS 3.370                                                          OC(=O)CCCC[CH]1CCSS1
+LPB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                         C1CSS[C@H]1CCCCC(=O)O
+LPB           SMILES "OpenEye OEToolkits" 1.7.2                                                             C1CSSC1CCCCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LPB acedrg               243         "dictionary generator"                  
+LPB acedrg_database      11          "data source"                           
+LPB rdkit                2017.03.2   "Chemoinformatics tool"
+LPB refmac5              5.8.0238    "optimization tool"                     

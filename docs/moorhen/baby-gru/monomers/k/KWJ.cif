@@ -1,0 +1,334 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KWJ     KWJ      (7R)-7-methyl-2-[(3-oxo-2,3-dihydro-1H-indazol-6-yl)amino]-5,8-di(prop-2-yn-1-yl)-7,8-dihydropteridin-6(5H)-one     NON-POLYMER     46     29     .     
+#
+data_comp_KWJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KWJ     C4      C       CR6     0       29.965      7.833       13.061      
+KWJ     C14     C       CR16    0       24.015      0.946       12.514      
+KWJ     C5      C       CH1     0       29.447      6.986       14.210      
+KWJ     C6      C       CH3     0       28.474      7.767       15.080      
+KWJ     C11     C       CR6     0       26.995      4.388       10.998      
+KWJ     C7      C       CH2     0       28.853      4.583       14.753      
+KWJ     C8      C       CSP     0       27.574      4.423       15.453      
+KWJ     C9      C       CSP     0       26.534      4.304       15.991      
+KWJ     C10     C       CR66    0       28.295      5.574       12.509      
+KWJ     C12     C       CR6     0       25.820      2.232       11.569      
+KWJ     C13     C       CR16    0       24.450      1.971       11.715      
+KWJ     N1      N       NR6     0       29.363      7.709       11.826      
+KWJ     N2      N       NR6     0       28.849      5.700       13.788      
+KWJ     C3      C       CH2     0       29.628      8.733       10.801      
+KWJ     N3      N       NRD6    0       27.522      4.502       12.235      
+KWJ     C1      C       CSP     0       31.413      7.957       9.013       
+KWJ     C2      C       CSP     0       30.609      8.309       9.798       
+KWJ     O1      O       O       0       30.866      8.636       13.280      
+KWJ     N4      N       NH1     0       26.224      3.299       10.733      
+KWJ     C15     C       CR56    0       24.959      0.154       13.185      
+KWJ     C16     C       CR5     0       24.857      -0.962      14.070      
+KWJ     O2      O       O       0       23.843      -1.524      14.475      
+KWJ     N5      N       NR5     0       26.119      -1.324      14.412      
+KWJ     N6      N       NR5     0       27.024      -0.490      13.786      
+KWJ     C17     C       CR56    0       26.332      0.425       13.028      
+KWJ     C18     C       CR16    0       26.788      1.462       12.215      
+KWJ     N7      N       NRD6    0       27.175      5.277       9.999       
+KWJ     C19     C       CR16    0       27.929      6.350       10.237      
+KWJ     C20     C       CR66    0       28.541      6.581       11.512      
+KWJ     H1      H       H       0       23.094      0.774       12.611      
+KWJ     H2      H       H       0       30.236      6.770       14.768      
+KWJ     H3      H       H       0       27.624      7.295       15.134      
+KWJ     H4      H       H       0       28.323      8.652       14.701      
+KWJ     H5      H       H       0       28.844      7.862       15.974      
+KWJ     H6      H       H       0       29.066      3.748       14.284      
+KWJ     H7      H       H       0       29.560      4.724       15.417      
+KWJ     H8      H       H       0       25.689      4.200       16.415      
+KWJ     H9      H       H       0       23.821      2.505       11.263      
+KWJ     H10     H       H       0       29.943      9.546       11.225      
+KWJ     H11     H       H       0       28.796      8.959       10.357      
+KWJ     H12     H       H       0       32.062      7.682       8.376       
+KWJ     H13     H       H       0       25.931      3.251       9.909       
+KWJ     H16     H       H       0       26.354      -1.997      14.959      
+KWJ     H17     H       H       0       27.908      -0.557      13.877      
+KWJ     H14     H       H       0       27.699      1.640       12.117      
+KWJ     H15     H       H       0       28.055      6.967       9.546       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KWJ          C1          C2      TRIPLE       n     1.177  0.0110     1.177  0.0110
+KWJ          C3          C2      SINGLE       n     1.466  0.0100     1.466  0.0100
+KWJ          N7         C19      DOUBLE       y     1.328  0.0100     1.328  0.0100
+KWJ         C11          N7      SINGLE       y     1.343  0.0119     1.343  0.0119
+KWJ         C19         C20      SINGLE       y     1.402  0.0200     1.402  0.0200
+KWJ         C11          N4      SINGLE       n     1.353  0.0130     1.353  0.0130
+KWJ         C12          N4      SINGLE       n     1.412  0.0100     1.412  0.0100
+KWJ          N1          C3      SINGLE       n     1.465  0.0100     1.465  0.0100
+KWJ         C11          N3      DOUBLE       y     1.343  0.0120     1.343  0.0120
+KWJ         C12         C13      SINGLE       y     1.395  0.0130     1.395  0.0130
+KWJ         C14         C13      DOUBLE       y     1.366  0.0100     1.366  0.0100
+KWJ         C12         C18      DOUBLE       y     1.390  0.0111     1.390  0.0111
+KWJ          N1         C20      SINGLE       n     1.414  0.0133     1.414  0.0133
+KWJ         C10         C20      DOUBLE       y     1.421  0.0200     1.421  0.0200
+KWJ          C4          N1      SINGLE       n     1.370  0.0100     1.370  0.0100
+KWJ         C14         C15      SINGLE       y     1.400  0.0100     1.400  0.0100
+KWJ         C10          N3      SINGLE       y     1.345  0.0100     1.345  0.0100
+KWJ         C10          N2      SINGLE       n     1.382  0.0200     1.382  0.0200
+KWJ         C17         C18      SINGLE       y     1.391  0.0100     1.391  0.0100
+KWJ          C4          O1      DOUBLE       n     1.225  0.0100     1.225  0.0100
+KWJ          C4          C5      SINGLE       n     1.513  0.0112     1.513  0.0112
+KWJ         C15         C17      DOUBLE       y     1.409  0.0100     1.409  0.0100
+KWJ         C15         C16      SINGLE       y     1.429  0.0113     1.429  0.0113
+KWJ          N6         C17      SINGLE       y     1.375  0.0109     1.375  0.0109
+KWJ          C5          N2      SINGLE       n     1.470  0.0142     1.470  0.0142
+KWJ          C7          N2      SINGLE       n     1.468  0.0133     1.468  0.0133
+KWJ         C16          O2      DOUBLE       n     1.228  0.0200     1.228  0.0200
+KWJ         C16          N5      SINGLE       y     1.354  0.0129     1.354  0.0129
+KWJ          C5          C6      SINGLE       n     1.517  0.0114     1.517  0.0114
+KWJ          C7          C8      SINGLE       n     1.466  0.0100     1.466  0.0100
+KWJ          N5          N6      SINGLE       y     1.373  0.0172     1.373  0.0172
+KWJ          C8          C9      TRIPLE       n     1.177  0.0110     1.177  0.0110
+KWJ         C14          H1      SINGLE       n     1.082  0.0130     0.942  0.0182
+KWJ          C5          H2      SINGLE       n     1.089  0.0100     0.991  0.0170
+KWJ          C6          H3      SINGLE       n     1.089  0.0100     0.973  0.0189
+KWJ          C6          H4      SINGLE       n     1.089  0.0100     0.973  0.0189
+KWJ          C6          H5      SINGLE       n     1.089  0.0100     0.973  0.0189
+KWJ          C7          H6      SINGLE       n     1.089  0.0100     0.981  0.0131
+KWJ          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0131
+KWJ          C9          H8      SINGLE       n     1.048  0.0100     0.950  0.0200
+KWJ         C13          H9      SINGLE       n     1.082  0.0130     0.941  0.0184
+KWJ          C3         H10      SINGLE       n     1.089  0.0100     0.970  0.0100
+KWJ          C3         H11      SINGLE       n     1.089  0.0100     0.970  0.0100
+KWJ          C1         H12      SINGLE       n     1.048  0.0100     0.950  0.0200
+KWJ          N4         H13      SINGLE       n     1.016  0.0100     0.874  0.0200
+KWJ          N5         H16      SINGLE       n     1.016  0.0100     0.898  0.0200
+KWJ          N6         H17      SINGLE       n     1.016  0.0100     0.892  0.0200
+KWJ         C18         H14      SINGLE       n     1.082  0.0130     0.934  0.0100
+KWJ         C19         H15      SINGLE       n     1.082  0.0130     0.939  0.0199
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KWJ          N1          C4          O1     121.769    1.50
+KWJ          N1          C4          C5     117.242    1.63
+KWJ          O1          C4          C5     120.978    2.03
+KWJ         C13         C14         C15     119.173    1.50
+KWJ         C13         C14          H1     120.488    1.50
+KWJ         C15         C14          H1     120.339    1.50
+KWJ          C4          C5          N2     111.615    2.21
+KWJ          C4          C5          C6     111.001    1.50
+KWJ          C4          C5          H2     107.251    2.05
+KWJ          N2          C5          C6     110.271    2.01
+KWJ          N2          C5          H2     107.027    1.50
+KWJ          C6          C5          H2     107.754    1.50
+KWJ          C5          C6          H3     109.652    1.50
+KWJ          C5          C6          H4     109.652    1.50
+KWJ          C5          C6          H5     109.652    1.50
+KWJ          H3          C6          H4     109.356    1.50
+KWJ          H3          C6          H5     109.356    1.50
+KWJ          H4          C6          H5     109.356    1.50
+KWJ          N7         C11          N4     117.522    2.95
+KWJ          N7         C11          N3     125.271    1.50
+KWJ          N4         C11          N3     117.207    2.85
+KWJ          N2          C7          C8     112.965    1.86
+KWJ          N2          C7          H6     109.204    1.50
+KWJ          N2          C7          H7     109.204    1.50
+KWJ          C8          C7          H6     108.990    1.50
+KWJ          C8          C7          H7     108.990    1.50
+KWJ          H6          C7          H7     107.179    1.50
+KWJ          C7          C8          C9     178.633    1.50
+KWJ          C8          C9          H8     179.497    1.50
+KWJ         C20         C10          N3     121.319    1.74
+KWJ         C20         C10          N2     120.685    1.50
+KWJ          N3         C10          N2     117.996    1.73
+KWJ          N4         C12         C13     119.052    2.70
+KWJ          N4         C12         C18     118.905    2.92
+KWJ         C13         C12         C18     122.043    2.27
+KWJ         C12         C13         C14     120.623    1.50
+KWJ         C12         C13          H9     119.847    1.50
+KWJ         C14         C13          H9     119.530    1.50
+KWJ          C3          N1         C20     119.179    1.56
+KWJ          C3          N1          C4     118.681    1.66
+KWJ         C20          N1          C4     122.140    1.51
+KWJ         C10          N2          C5     120.567    3.00
+KWJ         C10          N2          C7     121.191    1.56
+KWJ          C5          N2          C7     118.242    1.78
+KWJ          C2          C3          N1     112.965    1.86
+KWJ          C2          C3         H10     108.990    1.50
+KWJ          C2          C3         H11     108.990    1.50
+KWJ          N1          C3         H10     108.601    1.50
+KWJ          N1          C3         H11     108.601    1.50
+KWJ         H10          C3         H11     107.179    1.50
+KWJ         C11          N3         C10     117.457    1.50
+KWJ          C2          C1         H12     179.497    1.50
+KWJ          C1          C2          C3     178.633    1.50
+KWJ         C11          N4         C12     129.169    2.21
+KWJ         C11          N4         H13     114.658    1.60
+KWJ         C12          N4         H13     116.173    2.39
+KWJ         C14         C15         C17     119.485    1.50
+KWJ         C14         C15         C16     132.832    1.50
+KWJ         C17         C15         C16     107.683    1.50
+KWJ         C15         C16          O2     128.321    1.50
+KWJ         C15         C16          N5     107.535    1.50
+KWJ          O2         C16          N5     124.144    1.89
+KWJ         C16          N5          N6     108.763    1.50
+KWJ         C16          N5         H16     126.852    1.84
+KWJ          N6          N5         H16     124.385    2.83
+KWJ         C17          N6          N5     107.998    3.00
+KWJ         C17          N6         H17     127.487    1.82
+KWJ          N5          N6         H17     124.516    2.83
+KWJ         C18         C17         C15     121.830    1.50
+KWJ         C18         C17          N6     130.148    1.50
+KWJ         C15         C17          N6     108.022    1.50
+KWJ         C12         C18         C17     116.846    1.50
+KWJ         C12         C18         H14     121.580    1.50
+KWJ         C17         C18         H14     121.574    1.50
+KWJ         C19          N7         C11     117.282    1.50
+KWJ          N7         C19         C20     121.737    1.50
+KWJ          N7         C19         H15     119.194    1.50
+KWJ         C20         C19         H15     119.070    1.50
+KWJ         C19         C20          N1     122.308    1.55
+KWJ         C19         C20         C10     116.935    1.50
+KWJ          N1         C20         C10     120.757    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KWJ             sp2_sp2_4          O1          C4          N1          C3       0.000     5.0     2
+KWJ            sp2_sp3_17          O1          C4          C5          C6     -60.000    10.0     6
+KWJ             sp2_sp3_8         C20          N1          C3          C2     -90.000    10.0     6
+KWJ             sp2_sp2_8         C19         C20          N1          C3       0.000     5.0     2
+KWJ             sp3_sp3_1          C1          C2          C3          N1     180.000    10.0     3
+KWJ           other_tor_1         H12          C1          C2          C3     180.000    10.0     1
+KWJ              const_56         C14         C15         C16          O2       0.000    10.0     2
+KWJ              const_31         C14         C15         C17         C18       0.000    10.0     2
+KWJ              const_15         C12         C13         C14         C15       0.000    10.0     2
+KWJ              const_49         C13         C14         C15         C17       0.000    10.0     2
+KWJ              const_45          O2         C16          N5          N6     180.000    10.0     2
+KWJ              const_39         C16          N5          N6         C17       0.000    10.0     2
+KWJ              const_37         C18         C17          N6          N5     180.000    10.0     2
+KWJ              const_27         C15         C17         C18         C12       0.000    10.0     2
+KWJ       const_sp2_sp2_3         C20         C19          N7         C11       0.000     5.0     2
+KWJ       const_sp2_sp2_6          N7         C19         C20          N1     180.000     5.0     2
+KWJ             sp2_sp3_5          C7          N2          C5          C6     -60.000    10.0     6
+KWJ             sp3_sp3_4          C4          C5          C6          H3     180.000    10.0     3
+KWJ              const_48          N4         C11          N3         C10     180.000    10.0     2
+KWJ            sp2_sp2_13          N7         C11          N4         C12     180.000     5.0     2
+KWJ       const_sp2_sp2_2          N4         C11          N7         C19     180.000     5.0     2
+KWJ            sp2_sp3_20         C10          N2          C7          C8     -90.000    10.0     6
+KWJ            sp3_sp3_13          C9          C8          C7          N2     180.000    10.0     3
+KWJ           other_tor_2          C7          C8          C9          H8     180.000    10.0     1
+KWJ            sp2_sp2_10         C20         C10          N2          C7     180.000     5.0     2
+KWJ              const_13         C20         C10          N3         C11       0.000    10.0     2
+KWJ       const_sp2_sp2_9          N3         C10         C20         C19       0.000     5.0     2
+KWJ              const_21          N4         C12         C13         C14     180.000    10.0     2
+KWJ            sp2_sp2_17         C13         C12          N4         C11     180.000     5.0     2
+KWJ              const_25          N4         C12         C18         C17     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KWJ    chir_1    C5    N2    C4    C6    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KWJ    plan-1         C12   0.020
+KWJ    plan-1         C13   0.020
+KWJ    plan-1         C14   0.020
+KWJ    plan-1         C15   0.020
+KWJ    plan-1         C16   0.020
+KWJ    plan-1         C17   0.020
+KWJ    plan-1         C18   0.020
+KWJ    plan-1          H1   0.020
+KWJ    plan-1         H14   0.020
+KWJ    plan-1         H16   0.020
+KWJ    plan-1         H17   0.020
+KWJ    plan-1          H9   0.020
+KWJ    plan-1          N4   0.020
+KWJ    plan-1          N5   0.020
+KWJ    plan-1          N6   0.020
+KWJ    plan-1          O2   0.020
+KWJ    plan-2         C10   0.020
+KWJ    plan-2         C11   0.020
+KWJ    plan-2         C19   0.020
+KWJ    plan-2         C20   0.020
+KWJ    plan-2         H15   0.020
+KWJ    plan-2          N1   0.020
+KWJ    plan-2          N2   0.020
+KWJ    plan-2          N3   0.020
+KWJ    plan-2          N4   0.020
+KWJ    plan-2          N7   0.020
+KWJ    plan-3          C4   0.020
+KWJ    plan-3          C5   0.020
+KWJ    plan-3          N1   0.020
+KWJ    plan-3          O1   0.020
+KWJ    plan-4         C20   0.020
+KWJ    plan-4          C3   0.020
+KWJ    plan-4          C4   0.020
+KWJ    plan-4          N1   0.020
+KWJ    plan-5         C10   0.020
+KWJ    plan-5          C5   0.020
+KWJ    plan-5          C7   0.020
+KWJ    plan-5          N2   0.020
+KWJ    plan-6         C11   0.020
+KWJ    plan-6         C12   0.020
+KWJ    plan-6         H13   0.020
+KWJ    plan-6          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KWJ           SMILES              ACDLabs 12.01                                                                                                                         C4(=O)C(C)N(CC#C)c3nc(Nc1cc2c(cc1)C(=O)NN2)ncc3N4CC#C
+KWJ            InChI                InChI  1.03 InChI=1S/C20H17N7O2/c1-4-8-26-12(3)19(29)27(9-5-2)16-11-21-20(23-17(16)26)22-13-6-7-14-15(10-13)24-25-18(14)28/h1-2,6-7,10-12H,8-9H2,3H3,(H,21,22,23)(H2,24,25,28)/t12-/m1/s1
+KWJ         InChIKey                InChI  1.03                                                                                                                                                   GDTXGHSGLKEJJP-GFCCVEGCSA-N
+KWJ SMILES_CANONICAL               CACTVS 3.385                                                                                                                         C[C@H]1N(CC#C)c2nc(Nc3ccc4C(=O)NNc4c3)ncc2N(CC#C)C1=O
+KWJ           SMILES               CACTVS 3.385                                                                                                                          C[CH]1N(CC#C)c2nc(Nc3ccc4C(=O)NNc4c3)ncc2N(CC#C)C1=O
+KWJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                        C[C@@H]1C(=O)N(c2cnc(nc2N1CC#C)Nc3ccc4c(c3)NNC4=O)CC#C
+KWJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                             CC1C(=O)N(c2cnc(nc2N1CC#C)Nc3ccc4c(c3)NNC4=O)CC#C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KWJ acedrg               243         "dictionary generator"                  
+KWJ acedrg_database      11          "data source"                           
+KWJ rdkit                2017.03.2   "Chemoinformatics tool"
+KWJ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,375 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K55     K55      "(2S)-2-{4-butoxy-3-[({[2-fluoro-4-(trifluoromethyl)phenyl]carbonyl}amino)methyl]benzyl}butanoic acid"     NON-POLYMER     59     33     .     
+#
+data_comp_K55
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K55     O25     O       OC      -1      21.173      -1.506      34.341      
+K55     O26     O       O       0       19.939      -3.016      35.361      
+K55     C1      C       C       0       20.216      -1.834      35.074      
+K55     C2      C       CH1     0       19.328      -0.724      35.656      
+K55     C3      C       CH2     0       19.924      -0.184      36.973      
+K55     C4      C       CH3     0       21.200      0.634       36.830      
+K55     C5      C       CH2     0       19.034      0.363       34.611      
+K55     C6      C       CR6     0       18.023      1.395       35.053      
+K55     C7      C       CR16    0       16.714      1.026       35.374      
+K55     C8      C       CR6     0       15.754      1.957       35.778      
+K55     C9      C       CR6     0       16.134      3.305       35.868      
+K55     C10     C       CR16    0       17.430      3.690       35.541      
+K55     C11     C       CR16    0       18.357      2.740       35.142      
+K55     O33     O       O2      0       15.143      4.171       36.262      
+K55     C21     C       CH2     0       15.467      5.440       36.848      
+K55     C22     C       CH2     0       14.191      6.067       37.350      
+K55     C23     C       CH2     0       13.335      6.711       36.282      
+K55     C24     C       CH3     0       12.471      5.739       35.510      
+K55     C12     C       CH2     0       14.352      1.524       36.128      
+K55     N27     N       NH1     0       14.063      1.739       37.544      
+K55     C13     C       C       0       13.003      2.428       37.987      
+K55     O28     O       O       0       12.055      2.743       37.267      
+K55     C14     C       CR6     0       13.053      2.903       39.410      
+K55     C15     C       CR6     0       14.191      3.387       40.038      
+K55     C16     C       CR16    0       14.205      3.820       41.346      
+K55     C17     C       CR6     0       13.029      3.797       42.090      
+K55     C18     C       CR16    0       11.870      3.321       41.489      
+K55     C19     C       CR16    0       11.882      2.887       40.171      
+K55     C20     C       CT      0       13.023      4.263       43.515      
+K55     F29     F       F       0       15.355      3.428       39.349      
+K55     F30     F       F       0       11.851      4.761       43.899      
+K55     F31     F       F       0       13.912      5.223       43.757      
+K55     F32     F       F       0       13.300      3.287       44.373      
+K55     H2      H       H       0       18.469      -1.149      35.884      
+K55     H3      H       H       0       20.111      -0.947      37.559      
+K55     H3A     H       H       0       19.248      0.369       37.416      
+K55     H4      H       H       0       21.536      0.865       37.713      
+K55     H4A     H       H       0       21.013      1.451       36.336      
+K55     H4B     H       H       0       21.873      0.117       36.356      
+K55     H5      H       H       0       18.697      -0.070      33.798      
+K55     H5A     H       H       0       19.869      0.819       34.375      
+K55     H7      H       H       0       16.472      0.113       35.317      
+K55     H10     H       H       0       17.686      4.594       35.592      
+K55     H11     H       H       0       19.233      3.015       34.927      
+K55     H21     H       H       0       15.887      6.019       36.181      
+K55     H21A    H       H       0       16.095      5.315       37.589      
+K55     H22     H       H       0       14.419      6.752       38.014      
+K55     H22A    H       H       0       13.659      5.381       37.804      
+K55     H23     H       H       0       13.918      7.185       35.651      
+K55     H23A    H       H       0       12.753      7.379       36.707      
+K55     H24     H       H       0       11.848      6.232       34.949      
+K55     H24A    H       H       0       11.973      5.181       36.132      
+K55     H24B    H       H       0       13.033      5.177       34.950      
+K55     H12     H       H       0       14.247      0.572       35.920      
+K55     H12A    H       H       0       13.719      2.023       35.571      
+K55     HN27    H       H       0       14.607      1.374       38.126      
+K55     H16     H       H       0       15.020      4.142       41.742      
+K55     H18     H       H       0       11.061      3.291       41.973      
+K55     H19     H       H       0       11.086      2.571       39.780      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K55         O25          C1      SINGLE       n     1.247  0.0187     1.247  0.0187
+K55         O26          C1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+K55          C1          C2      SINGLE       n     1.533  0.0102     1.533  0.0102
+K55          C2          C3      SINGLE       n     1.538  0.0116     1.538  0.0116
+K55          C2          C5      SINGLE       n     1.534  0.0100     1.534  0.0100
+K55          C3          C4      SINGLE       n     1.515  0.0200     1.515  0.0200
+K55          C5          C6      SINGLE       n     1.509  0.0100     1.509  0.0100
+K55          C6          C7      DOUBLE       y     1.394  0.0100     1.394  0.0100
+K55          C6         C11      SINGLE       y     1.385  0.0110     1.385  0.0110
+K55          C7          C8      SINGLE       y     1.391  0.0100     1.391  0.0100
+K55          C8          C9      DOUBLE       y     1.396  0.0100     1.396  0.0100
+K55          C8         C12      SINGLE       n     1.504  0.0128     1.504  0.0128
+K55          C9         C10      SINGLE       y     1.385  0.0100     1.385  0.0100
+K55          C9         O33      SINGLE       n     1.368  0.0107     1.368  0.0107
+K55         C10         C11      DOUBLE       y     1.383  0.0100     1.383  0.0100
+K55         O33         C21      SINGLE       n     1.432  0.0101     1.432  0.0101
+K55         C21         C22      SINGLE       n     1.506  0.0128     1.506  0.0128
+K55         C22         C23      SINGLE       n     1.508  0.0200     1.508  0.0200
+K55         C23         C24      SINGLE       n     1.510  0.0200     1.510  0.0200
+K55         C12         N27      SINGLE       n     1.458  0.0100     1.458  0.0100
+K55         N27         C13      SINGLE       n     1.334  0.0100     1.334  0.0100
+K55         C13         O28      DOUBLE       n     1.230  0.0114     1.230  0.0114
+K55         C13         C14      SINGLE       n     1.498  0.0100     1.498  0.0100
+K55         C14         C15      DOUBLE       y     1.380  0.0133     1.380  0.0133
+K55         C14         C19      SINGLE       y     1.392  0.0100     1.392  0.0100
+K55         C15         C16      SINGLE       y     1.376  0.0100     1.376  0.0100
+K55         C15         F29      SINGLE       n     1.353  0.0100     1.353  0.0100
+K55         C16         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+K55         C17         C18      SINGLE       y     1.383  0.0100     1.383  0.0100
+K55         C17         C20      SINGLE       n     1.495  0.0100     1.495  0.0100
+K55         C18         C19      DOUBLE       y     1.383  0.0100     1.383  0.0100
+K55         C20         F30      SINGLE       n     1.329  0.0183     1.329  0.0183
+K55         C20         F31      SINGLE       n     1.329  0.0183     1.329  0.0183
+K55         C20         F32      SINGLE       n     1.329  0.0183     1.329  0.0183
+K55          C2          H2      SINGLE       n     1.089  0.0100     0.985  0.0200
+K55          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+K55          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+K55          C4          H4      SINGLE       n     1.089  0.0100     0.973  0.0157
+K55          C4         H4A      SINGLE       n     1.089  0.0100     0.973  0.0157
+K55          C4         H4B      SINGLE       n     1.089  0.0100     0.973  0.0157
+K55          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0169
+K55          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0169
+K55          C7          H7      SINGLE       n     1.082  0.0130     0.946  0.0164
+K55         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0141
+K55         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+K55         C21         H21      SINGLE       n     1.089  0.0100     0.979  0.0131
+K55         C21        H21A      SINGLE       n     1.089  0.0100     0.979  0.0131
+K55         C22         H22      SINGLE       n     1.089  0.0100     0.980  0.0166
+K55         C22        H22A      SINGLE       n     1.089  0.0100     0.980  0.0166
+K55         C23         H23      SINGLE       n     1.089  0.0100     0.982  0.0155
+K55         C23        H23A      SINGLE       n     1.089  0.0100     0.982  0.0155
+K55         C24         H24      SINGLE       n     1.089  0.0100     0.973  0.0157
+K55         C24        H24A      SINGLE       n     1.089  0.0100     0.973  0.0157
+K55         C24        H24B      SINGLE       n     1.089  0.0100     0.973  0.0157
+K55         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0169
+K55         C12        H12A      SINGLE       n     1.089  0.0100     0.980  0.0169
+K55         N27        HN27      SINGLE       n     1.016  0.0100     0.875  0.0200
+K55         C16         H16      SINGLE       n     1.082  0.0130     0.961  0.0200
+K55         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0173
+K55         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K55         O25          C1         O26     123.899    1.50
+K55         O25          C1          C2     118.051    1.50
+K55         O26          C1          C2     118.051    1.50
+K55          C1          C2          C3     110.778    2.06
+K55          C1          C2          C5     111.500    2.27
+K55          C1          C2          H2     107.706    1.93
+K55          C3          C2          C5     112.320    1.68
+K55          C3          C2          H2     107.780    1.50
+K55          C5          C2          H2     107.967    1.50
+K55          C2          C3          C4     112.999    1.85
+K55          C2          C3          H3     108.447    1.50
+K55          C2          C3         H3A     108.447    1.50
+K55          C4          C3          H3     108.717    1.50
+K55          C4          C3         H3A     108.717    1.50
+K55          H3          C3         H3A     107.862    1.50
+K55          C3          C4          H4     109.566    1.50
+K55          C3          C4         H4A     109.566    1.50
+K55          C3          C4         H4B     109.566    1.50
+K55          H4          C4         H4A     109.380    1.50
+K55          H4          C4         H4B     109.380    1.50
+K55         H4A          C4         H4B     109.380    1.50
+K55          C2          C5          C6     113.495    1.50
+K55          C2          C5          H5     108.879    1.50
+K55          C2          C5         H5A     108.879    1.50
+K55          C6          C5          H5     108.738    1.50
+K55          C6          C5         H5A     108.738    1.50
+K55          H5          C5         H5A     107.709    1.50
+K55          C5          C6          C7     120.837    1.50
+K55          C5          C6         C11     121.175    1.50
+K55          C7          C6         C11     117.988    1.50
+K55          C6          C7          C8     121.792    1.50
+K55          C6          C7          H7     119.061    1.50
+K55          C8          C7          H7     119.148    1.50
+K55          C7          C8          C9     118.013    1.50
+K55          C7          C8         C12     121.497    1.50
+K55          C9          C8         C12     120.490    1.51
+K55          C8          C9         C10     120.704    1.50
+K55          C8          C9         O33     115.691    1.50
+K55         C10          C9         O33     123.605    1.50
+K55          C9         C10         C11     119.994    1.50
+K55          C9         C10         H10     119.984    1.50
+K55         C11         C10         H10     120.023    1.50
+K55          C6         C11         C10     121.511    1.50
+K55          C6         C11         H11     119.298    1.50
+K55         C10         C11         H11     119.191    1.50
+K55          C9         O33         C21     118.290    1.50
+K55         O33         C21         C22     107.985    2.03
+K55         O33         C21         H21     109.943    1.50
+K55         O33         C21        H21A     109.943    1.50
+K55         C22         C21         H21     110.162    1.50
+K55         C22         C21        H21A     110.162    1.50
+K55         H21         C21        H21A     108.474    1.50
+K55         C21         C22         C23     113.629    3.00
+K55         C21         C22         H22     108.916    1.50
+K55         C21         C22        H22A     108.916    1.50
+K55         C23         C22         H22     108.683    1.93
+K55         C23         C22        H22A     108.683    1.93
+K55         H22         C22        H22A     107.788    1.50
+K55         C22         C23         C24     113.306    3.00
+K55         C22         C23         H23     108.835    1.50
+K55         C22         C23        H23A     108.835    1.50
+K55         C24         C23         H23     108.918    1.50
+K55         C24         C23        H23A     108.918    1.50
+K55         H23         C23        H23A     107.763    1.50
+K55         C23         C24         H24     109.554    1.50
+K55         C23         C24        H24A     109.554    1.50
+K55         C23         C24        H24B     109.554    1.50
+K55         H24         C24        H24A     109.380    1.50
+K55         H24         C24        H24B     109.380    1.50
+K55        H24A         C24        H24B     109.380    1.50
+K55          C8         C12         N27     112.746    1.93
+K55          C8         C12         H12     108.972    1.50
+K55          C8         C12        H12A     108.972    1.50
+K55         N27         C12         H12     109.133    1.50
+K55         N27         C12        H12A     109.133    1.50
+K55         H12         C12        H12A     107.860    1.50
+K55         C12         N27         C13     121.850    1.50
+K55         C12         N27        HN27     118.637    1.50
+K55         C13         N27        HN27     119.513    1.50
+K55         N27         C13         O28     122.502    1.50
+K55         N27         C13         C14     116.828    1.50
+K55         O28         C13         C14     120.670    1.50
+K55         C13         C14         C15     124.614    1.50
+K55         C13         C14         C19     118.684    1.50
+K55         C15         C14         C19     116.702    1.50
+K55         C14         C15         C16     123.276    1.50
+K55         C14         C15         F29     119.015    1.50
+K55         C16         C15         F29     117.709    1.50
+K55         C15         C16         C17     119.654    1.50
+K55         C15         C16         H16     120.686    1.50
+K55         C17         C16         H16     119.660    1.50
+K55         C16         C17         C18     119.077    1.50
+K55         C16         C17         C20     120.249    1.50
+K55         C18         C17         C20     120.673    1.50
+K55         C17         C18         C19     120.285    1.50
+K55         C17         C18         H18     120.099    1.50
+K55         C19         C18         H18     119.615    1.50
+K55         C14         C19         C18     121.006    1.50
+K55         C14         C19         H19     119.295    1.50
+K55         C18         C19         H19     119.699    1.50
+K55         C17         C20         F30     112.813    1.50
+K55         C17         C20         F31     112.813    1.50
+K55         C17         C20         F32     112.813    1.50
+K55         F30         C20         F31     105.974    1.50
+K55         F30         C20         F32     105.974    1.50
+K55         F31         C20         F32     105.974    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K55              const_14         C11         C10          C9         O33     180.000    10.0     2
+K55             sp2_sp2_1          C8          C9         O33         C21     180.000     5.0     2
+K55              const_17          C9         C10         C11          C6       0.000    10.0     2
+K55            sp3_sp3_28         C22         C21         O33          C9     180.000    10.0     3
+K55            sp3_sp3_31         O33         C21         C22         C23     180.000    10.0     3
+K55            sp3_sp3_40         C21         C22         C23         C24     180.000    10.0     3
+K55            sp3_sp3_49         C22         C23         C24         H24     180.000    10.0     3
+K55            sp2_sp3_20         C13         N27         C12          C8     120.000    10.0     6
+K55             sp2_sp2_5         O28         C13         N27         C12       0.000     5.0     2
+K55             sp2_sp2_7         N27         C13         C14         C15     180.000     5.0     2
+K55              const_24         C13         C14         C15         F29       0.000    10.0     2
+K55              const_47         C13         C14         C19         C18     180.000    10.0     2
+K55              const_27         F29         C15         C16         C17     180.000    10.0     2
+K55              const_30         C15         C16         C17         C20     180.000    10.0     2
+K55              const_35         C20         C17         C18         C19     180.000    10.0     2
+K55            sp2_sp3_25         C16         C17         C20         F30     150.000    10.0     6
+K55              const_37         C17         C18         C19         C14       0.000    10.0     2
+K55             sp2_sp3_1         O25          C1          C2          C3       0.000    10.0     6
+K55             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+K55            sp3_sp3_10          C1          C2          C5          C6     180.000    10.0     3
+K55            sp3_sp3_19          C2          C3          C4          H4     180.000    10.0     3
+K55             sp2_sp3_8          C7          C6          C5          C2     -90.000    10.0     6
+K55              const_42         C10         C11          C6          C5     180.000    10.0     2
+K55       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+K55       const_sp2_sp2_6          C6          C7          C8         C12     180.000     5.0     2
+K55              const_12         C12          C8          C9         O33       0.000    10.0     2
+K55            sp2_sp3_14          C7          C8         C12         N27     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+K55    chir_1    C2    C1    C5    C3    positive
+K55    chir_2    C20    F30    F31    F32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K55    plan-1         C10   0.020
+K55    plan-1         C11   0.020
+K55    plan-1         C12   0.020
+K55    plan-1          C5   0.020
+K55    plan-1          C6   0.020
+K55    plan-1          C7   0.020
+K55    plan-1          C8   0.020
+K55    plan-1          C9   0.020
+K55    plan-1         H10   0.020
+K55    plan-1         H11   0.020
+K55    plan-1          H7   0.020
+K55    plan-1         O33   0.020
+K55    plan-2         C13   0.020
+K55    plan-2         C14   0.020
+K55    plan-2         C15   0.020
+K55    plan-2         C16   0.020
+K55    plan-2         C17   0.020
+K55    plan-2         C18   0.020
+K55    plan-2         C19   0.020
+K55    plan-2         C20   0.020
+K55    plan-2         F29   0.020
+K55    plan-2         H16   0.020
+K55    plan-2         H18   0.020
+K55    plan-2         H19   0.020
+K55    plan-3          C1   0.020
+K55    plan-3          C2   0.020
+K55    plan-3         O25   0.020
+K55    plan-3         O26   0.020
+K55    plan-4         C12   0.020
+K55    plan-4         C13   0.020
+K55    plan-4        HN27   0.020
+K55    plan-4         N27   0.020
+K55    plan-5         C13   0.020
+K55    plan-5         C14   0.020
+K55    plan-5         N27   0.020
+K55    plan-5         O28   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K55           SMILES              ACDLabs 10.04                                                                                                                                 FC(F)(F)c1ccc(c(F)c1)C(=O)NCc2cc(ccc2OCCCC)CC(C(=O)O)CC
+K55 SMILES_CANONICAL               CACTVS 3.341                                                                                                                               CCCCOc1ccc(C[C@H](CC)C(O)=O)cc1CNC(=O)c2ccc(cc2F)C(F)(F)F
+K55           SMILES               CACTVS 3.341                                                                                                                                CCCCOc1ccc(C[CH](CC)C(O)=O)cc1CNC(=O)c2ccc(cc2F)C(F)(F)F
+K55 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                               CCCCOc1ccc(cc1CNC(=O)c2ccc(cc2F)C(F)(F)F)C[C@H](CC)C(=O)O
+K55           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                   CCCCOc1ccc(cc1CNC(=O)c2ccc(cc2F)C(F)(F)F)CC(CC)C(=O)O
+K55            InChI                InChI  1.03 InChI=1S/C24H27F4NO4/c1-3-5-10-33-21-9-6-15(11-16(4-2)23(31)32)12-17(21)14-29-22(30)19-8-7-18(13-20(19)25)24(26,27)28/h6-9,12-13,16H,3-5,10-11,14H2,1-2H3,(H,29,30)(H,31,32)/t16-/m0/s1
+K55         InChIKey                InChI  1.03                                                                                                                                                             AJSFKATVCYWKJN-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K55 acedrg               243         "dictionary generator"                  
+K55 acedrg_database      11          "data source"                           
+K55 rdkit                2017.03.2   "Chemoinformatics tool"
+K55 refmac5              5.8.0238    "optimization tool"                     

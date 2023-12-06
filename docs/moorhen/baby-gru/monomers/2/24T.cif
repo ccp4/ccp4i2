@@ -1,0 +1,142 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+24T     24T      2-AMINO-4-METHYLTHIAZOLE     NON-POLYMER     13     7     .     
+#
+data_comp_24T
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+24T     S1      S       S2      0       31.236      94.492      49.307      
+24T     C2      C       CR5     0       30.816      93.863      47.813      
+24T     N3      N       NRD5    0       31.808      93.078      47.365      
+24T     C4      C       CR5     0       32.878      93.020      48.263      
+24T     C5      C       CR15    0       32.727      93.741      49.384      
+24T     N       N       NH2     0       29.670      94.119      47.191      
+24T     CM      C       CH3     0       34.083      92.198      47.948      
+24T     H5      H       H       0       33.316      93.843      50.112      
+24T     HN1     H       H       0       29.079      94.648      47.565      
+24T     HN2     H       H       0       29.509      93.757      46.408      
+24T     HM1     H       H       0       34.864      92.589      48.372      
+24T     HM2     H       H       0       34.218      92.172      46.988      
+24T     HM3     H       H       0       33.956      91.295      48.280      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+24T          S1          C2      SINGLE       y     1.695  0.0200     1.695  0.0200
+24T          S1          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+24T          C2          N3      DOUBLE       y     1.335  0.0145     1.335  0.0145
+24T          C2           N      SINGLE       n     1.328  0.0105     1.328  0.0105
+24T          N3          C4      SINGLE       y     1.386  0.0126     1.386  0.0126
+24T          C4          C5      DOUBLE       y     1.339  0.0100     1.339  0.0100
+24T          C4          CM      SINGLE       n     1.493  0.0100     1.493  0.0100
+24T          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0200
+24T           N         HN1      SINGLE       n     1.016  0.0100     0.877  0.0200
+24T           N         HN2      SINGLE       n     1.016  0.0100     0.877  0.0200
+24T          CM         HM1      SINGLE       n     1.089  0.0100     0.970  0.0153
+24T          CM         HM2      SINGLE       n     1.089  0.0100     0.970  0.0153
+24T          CM         HM3      SINGLE       n     1.089  0.0100     0.970  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+24T          C2          S1          C5     108.031    3.00
+24T          S1          C2          N3     108.031    3.00
+24T          S1          C2           N     125.054    3.00
+24T          N3          C2           N     126.914    2.12
+24T          C2          N3          C4     107.139    1.65
+24T          N3          C4          C5     108.767    2.56
+24T          N3          C4          CM     121.649    1.50
+24T          C5          C4          CM     129.584    3.00
+24T          S1          C5          C4     108.031    3.00
+24T          S1          C5          H5     122.815    3.00
+24T          C4          C5          H5     129.154    2.00
+24T          C2           N         HN1     119.811    1.50
+24T          C2           N         HN2     119.811    1.50
+24T         HN1           N         HN2     120.377    1.82
+24T          C4          CM         HM1     109.591    1.50
+24T          C4          CM         HM2     109.591    1.50
+24T          C4          CM         HM3     109.591    1.50
+24T         HM1          CM         HM2     109.354    1.50
+24T         HM1          CM         HM3     109.354    1.50
+24T         HM2          CM         HM3     109.354    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+24T       const_sp2_sp2_2           N          C2          S1          C5     180.000     5.0     2
+24T              const_11          C4          C5          S1          C2       0.000    10.0     2
+24T       const_sp2_sp2_4           N          C2          N3          C4     180.000     5.0     2
+24T             sp2_sp2_1          S1          C2           N         HN1     180.000     5.0     2
+24T       const_sp2_sp2_6          CM          C4          N3          C2     180.000     5.0     2
+24T       const_sp2_sp2_9          CM          C4          C5          S1     180.000     5.0     2
+24T             sp2_sp3_1          N3          C4          CM         HM1     150.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+24T    plan-1          C2   0.020
+24T    plan-1          C4   0.020
+24T    plan-1          C5   0.020
+24T    plan-1          CM   0.020
+24T    plan-1          H5   0.020
+24T    plan-1           N   0.020
+24T    plan-1          N3   0.020
+24T    plan-1          S1   0.020
+24T    plan-2          C2   0.020
+24T    plan-2         HN1   0.020
+24T    plan-2         HN2   0.020
+24T    plan-2           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+24T           SMILES              ACDLabs 10.04                                        n1c(csc1N)C
+24T SMILES_CANONICAL               CACTVS 3.341                                        Cc1csc(N)n1
+24T           SMILES               CACTVS 3.341                                        Cc1csc(N)n1
+24T SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        Cc1csc(n1)N
+24T           SMILES "OpenEye OEToolkits" 1.5.0                                        Cc1csc(n1)N
+24T            InChI                InChI  1.03 InChI=1S/C4H6N2S/c1-3-2-7-4(5)6-3/h2H,1H3,(H2,5,6)
+24T         InChIKey                InChI  1.03                        OUQMXTJYCAJLGO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+24T acedrg               243         "dictionary generator"                  
+24T acedrg_database      11          "data source"                           
+24T rdkit                2017.03.2   "Chemoinformatics tool"
+24T refmac5              5.8.0238    "optimization tool"                     

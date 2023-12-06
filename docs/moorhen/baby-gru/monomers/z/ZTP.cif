@@ -1,0 +1,627 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZTP     ZTP      "(2Z,6Z,10Z,14Z,18Z,22Z,26Z)-3,7,11,15,19,23,27,31-octamethyldotriaconta-2,6,10,14,18,22,26,30-octaen-1-yl trihydrogen diphosphate"     NON-POLYMER     114     49     .     
+#
+data_comp_ZTP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZTP     C1      C       CH3     0       6.120       32.421      -18.106     
+ZTP     O1      O       O2      0       5.631       31.399      -12.867     
+ZTP     P1      P       P       0       4.159       31.001      -13.375     
+ZTP     C2      C       C       0       7.324       33.045      -18.755     
+ZTP     O2      O       O       0       3.700       29.792      -12.628     
+ZTP     P2      P       P       0       3.466       30.433      -16.182     
+ZTP     C3      C       CH3     0       7.391       32.843      -20.242     
+ZTP     O3      O       OP      -1      3.309       32.227      -13.340     
+ZTP     C4      C       C1      0       8.248       33.718      -18.080     
+ZTP     O4      O       O2      0       4.437       30.603      -14.904     
+ZTP     C5      C       CH2     0       8.303       34.032      -16.615     
+ZTP     O5      O       OP      -1      4.295       29.754      -17.245     
+ZTP     C6      C       CH2     0       7.485       35.260      -16.261     
+ZTP     O6      O       OP      -1      3.046       31.828      -16.574     
+ZTP     C7      C       C       0       7.277       35.454      -14.783     
+ZTP     O7      O       O       0       2.309       29.584      -15.715     
+ZTP     C8      C       CH3     0       5.949       34.972      -14.271     
+ZTP     C9      C       C1      0       8.212       35.994      -13.999     
+ZTP     C10     C       CH2     0       9.614       36.418      -14.336     
+ZTP     C11     C       CH2     0       10.642      35.811      -13.395     
+ZTP     C12     C       C       0       10.739      34.310      -13.476     
+ZTP     C13     C       CH3     0       9.966       33.565      -12.423     
+ZTP     C14     C       C1      0       11.466      33.704      -14.414     
+ZTP     C15     C       CH2     0       12.341      34.315      -15.469     
+ZTP     C16     C       CH2     0       12.848      33.298      -16.477     
+ZTP     C17     C       C       0       13.919      32.381      -15.947     
+ZTP     C18     C       CH3     0       13.455      30.984      -15.631     
+ZTP     C19     C       C1      0       15.181      32.779      -15.784     
+ZTP     C20     C       CH2     0       15.810      34.121      -16.057     
+ZTP     C21     C       CH2     0       16.482      34.777      -14.853     
+ZTP     C22     C       C       0       17.393      33.885      -14.049     
+ZTP     C23     C       CH3     0       18.603      33.406      -14.799     
+ZTP     C24     C       C1      0       17.144      33.559      -12.780     
+ZTP     C25     C       CH2     0       16.029      34.013      -11.883     
+ZTP     C26     C       CH2     0       14.685      33.388      -12.225     
+ZTP     C27     C       C       0       13.622      33.612      -11.181     
+ZTP     C28     C       CH3     0       13.354      35.055      -10.861     
+ZTP     C29     C       C1      0       12.959      32.607      -10.609     
+ZTP     C30     C       CH2     0       13.045      31.135      -10.891     
+ZTP     C31     C       CH2     0       12.032      30.317      -10.109     
+ZTP     C32     C       C       0       11.807      28.936      -10.662     
+ZTP     C33     C       CH3     0       12.572      27.846      -9.967      
+ZTP     C34     C       C1      0       10.994      28.722      -11.696     
+ZTP     C35     C       CH2     0       10.198      29.723      -12.481     
+ZTP     C36     C       CH2     0       9.338       29.084      -13.556     
+ZTP     C37     C       C       0       8.670       30.080      -14.467     
+ZTP     C38     C       CH3     0       9.411       30.363      -15.742     
+ZTP     C39     C       C1      0       7.512       30.665      -14.163     
+ZTP     C40     C       CH2     0       6.697       30.448      -12.922     
+ZTP     H1      H       H       0       5.895       32.900      -17.293     
+ZTP     H1A     H       H       0       6.312       31.494      -17.890     
+ZTP     H1B     H       H       0       5.366       32.457      -18.716     
+ZTP     H3      H       H       0       8.151       33.324      -20.609     
+ZTP     H3A     H       H       0       6.575       33.174      -20.652     
+ZTP     H3B     H       H       0       7.486       31.897      -20.437     
+ZTP     H4      H       H       0       8.975       34.046      -18.587     
+ZTP     H5      H       H       0       9.235       34.180      -16.354     
+ZTP     H5A     H       H       0       7.968       33.266      -16.106     
+ZTP     H6      H       H       0       6.611       35.190      -16.697     
+ZTP     H6A     H       H       0       7.929       36.052      -16.625     
+ZTP     H8      H       H       0       5.929       35.027      -13.301     
+ZTP     H8A     H       H       0       5.812       34.050      -14.543     
+ZTP     H8B     H       H       0       5.240       35.525      -14.638     
+ZTP     H9      H       H       0       7.960       36.138      -13.100     
+ZTP     H10     H       H       0       9.674       37.394      -14.282     
+ZTP     H10A    H       H       0       9.832       36.156      -15.251     
+ZTP     H11     H       H       0       10.415      36.066      -12.478     
+ZTP     H11A    H       H       0       11.519      36.198      -13.594     
+ZTP     H13     H       H       0       10.208      32.625      -12.442     
+ZTP     H13A    H       H       0       9.014       33.653      -12.593     
+ZTP     H13B    H       H       0       10.172      33.930      -11.548     
+ZTP     H14     H       H       0       11.419      32.762      -14.427     
+ZTP     H15     H       H       0       13.108      34.746      -15.039     
+ZTP     H15A    H       H       0       11.836      35.007      -15.943     
+ZTP     H16     H       H       0       13.199      33.775      -17.257     
+ZTP     H16A    H       H       0       12.091      32.760      -16.785     
+ZTP     H18     H       H       0       14.222      30.413      -15.460     
+ZTP     H18A    H       H       0       12.954      30.628      -16.382     
+ZTP     H18B    H       H       0       12.887      30.999      -14.844     
+ZTP     H19     H       H       0       15.779      32.118      -15.473     
+ZTP     H20     H       H       0       15.130      34.734      -16.398     
+ZTP     H20A    H       H       0       16.481      34.012      -16.762     
+ZTP     H21     H       H       0       15.788      35.144      -14.273     
+ZTP     H21A    H       H       0       17.008      35.538      -15.174     
+ZTP     H23     H       H       0       19.200      32.935      -14.196     
+ZTP     H23A    H       H       0       19.069      34.167      -15.183     
+ZTP     H23B    H       H       0       18.326      32.806      -15.511     
+ZTP     H24     H       H       0       17.751      32.954      -12.383     
+ZTP     H25     H       H       0       15.953      34.987      -11.939     
+ZTP     H25A    H       H       0       16.254      33.786      -10.957     
+ZTP     H26     H       H       0       14.814      32.429      -12.360     
+ZTP     H26A    H       H       0       14.370      33.760      -13.073     
+ZTP     H28     H       H       0       12.488      35.141      -10.430     
+ZTP     H28A    H       H       0       13.357      35.575      -11.681     
+ZTP     H28B    H       H       0       14.045      35.389      -10.266     
+ZTP     H29     H       H       0       12.353      32.850      -9.925      
+ZTP     H30     H       H       0       13.945      30.820      -10.669     
+ZTP     H30A    H       H       0       12.904      30.986      -11.848     
+ZTP     H31     H       H       0       11.178      30.797      -10.095     
+ZTP     H31A    H       H       0       12.338      30.241      -9.182      
+ZTP     H33     H       H       0       12.401      26.994      -10.401     
+ZTP     H33A    H       H       0       12.292      27.795      -9.038      
+ZTP     H33B    H       H       0       13.522      28.041      -10.005     
+ZTP     H34     H       H       0       10.902      27.824      -11.975     
+ZTP     H35     H       H       0       10.811      30.359      -12.902     
+ZTP     H35A    H       H       0       9.621       30.224      -11.869     
+ZTP     H36     H       H       0       8.655       28.528      -13.130     
+ZTP     H36A    H       H       0       9.900       28.491      -14.096     
+ZTP     H38     H       H       0       8.972       31.080      -16.228     
+ZTP     H38A    H       H       0       9.426       29.563      -16.293     
+ZTP     H38B    H       H       0       10.322      30.626      -15.535     
+ZTP     H39     H       H       0       7.164       31.280      -14.791     
+ZTP     H40     H       H       0       6.344       29.531      -12.917     
+ZTP     H40A    H       H       0       7.270       30.552      -12.131     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZTP          C1          C2      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP          O1         C40      SINGLE       n     1.425  0.0152     1.425  0.0152
+ZTP          O1          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+ZTP          P1          O2      DOUBLE       n     1.493  0.0122     1.493  0.0122
+ZTP          P1          O3      SINGLE       n     1.493  0.0122     1.493  0.0122
+ZTP          P1          O4      SINGLE       n     1.604  0.0133     1.604  0.0133
+ZTP          C2          C4      DOUBLE       n     1.324  0.0100     1.324  0.0100
+ZTP          C2          C3      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP          P2          O7      DOUBLE       n     1.509  0.0200     1.509  0.0200
+ZTP          P2          O4      SINGLE       n     1.614  0.0178     1.614  0.0178
+ZTP          P2          O5      SINGLE       n     1.509  0.0200     1.509  0.0200
+ZTP          P2          O6      SINGLE       n     1.509  0.0200     1.509  0.0200
+ZTP          C4          C5      SINGLE       n     1.498  0.0141     1.498  0.0141
+ZTP          C5          C6      SINGLE       n     1.516  0.0200     1.516  0.0200
+ZTP          C6          C7      SINGLE       n     1.503  0.0104     1.503  0.0104
+ZTP          C7          C8      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP          C7          C9      DOUBLE       n     1.330  0.0100     1.330  0.0100
+ZTP          C9         C10      SINGLE       n     1.498  0.0141     1.498  0.0141
+ZTP         C10         C11      SINGLE       n     1.516  0.0200     1.516  0.0200
+ZTP         C11         C12      SINGLE       n     1.503  0.0104     1.503  0.0104
+ZTP         C12         C13      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP         C12         C14      DOUBLE       n     1.330  0.0100     1.330  0.0100
+ZTP         C14         C15      SINGLE       n     1.498  0.0141     1.498  0.0141
+ZTP         C15         C16      SINGLE       n     1.516  0.0200     1.516  0.0200
+ZTP         C16         C17      SINGLE       n     1.503  0.0104     1.503  0.0104
+ZTP         C17         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP         C17         C19      DOUBLE       n     1.330  0.0100     1.330  0.0100
+ZTP         C19         C20      SINGLE       n     1.498  0.0141     1.498  0.0141
+ZTP         C20         C21      SINGLE       n     1.516  0.0200     1.516  0.0200
+ZTP         C21         C22      SINGLE       n     1.503  0.0104     1.503  0.0104
+ZTP         C22         C23      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP         C22         C24      DOUBLE       n     1.330  0.0100     1.330  0.0100
+ZTP         C24         C25      SINGLE       n     1.498  0.0141     1.498  0.0141
+ZTP         C25         C26      SINGLE       n     1.516  0.0200     1.516  0.0200
+ZTP         C26         C27      SINGLE       n     1.503  0.0104     1.503  0.0104
+ZTP         C27         C29      DOUBLE       n     1.330  0.0100     1.330  0.0100
+ZTP         C27         C28      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP         C29         C30      SINGLE       n     1.498  0.0141     1.498  0.0141
+ZTP         C30         C31      SINGLE       n     1.516  0.0200     1.516  0.0200
+ZTP         C31         C32      SINGLE       n     1.503  0.0104     1.503  0.0104
+ZTP         C32         C33      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP         C32         C34      DOUBLE       n     1.330  0.0100     1.330  0.0100
+ZTP         C34         C35      SINGLE       n     1.498  0.0141     1.498  0.0141
+ZTP         C35         C36      SINGLE       n     1.516  0.0200     1.516  0.0200
+ZTP         C36         C37      SINGLE       n     1.503  0.0104     1.503  0.0104
+ZTP         C37         C38      SINGLE       n     1.499  0.0156     1.499  0.0156
+ZTP         C37         C39      DOUBLE       n     1.329  0.0100     1.329  0.0100
+ZTP         C39         C40      SINGLE       n     1.496  0.0200     1.496  0.0200
+ZTP          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C1         H1A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C1         H1B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C3          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C3         H3A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C3         H3B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP          C5          H5      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP          C5         H5A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP          C6          H6      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP          C6         H6A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP          C8          H8      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C8         H8A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C8         H8B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP         C10         H10      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C10        H10A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C11         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C11        H11A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C13         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C13        H13A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C13        H13B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C14         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP         C15         H15      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C15        H15A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C16         H16      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C16        H16A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C18         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C18        H18A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C18        H18B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C19         H19      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP         C20         H20      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C20        H20A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C21         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C21        H21A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C23         H23      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C23        H23A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C23        H23B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C24         H24      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP         C25         H25      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C25        H25A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C26         H26      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C26        H26A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C28         H28      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C28        H28A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C28        H28B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C29         H29      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP         C30         H30      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C30        H30A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C31         H31      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C31        H31A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C33         H33      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C33        H33A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C33        H33B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C34         H34      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP         C35         H35      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C35        H35A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C36         H36      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C36        H36A      SINGLE       n     1.089  0.0100     0.979  0.0159
+ZTP         C38         H38      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C38        H38A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C38        H38B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZTP         C39         H39      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZTP         C40         H40      SINGLE       n     1.089  0.0100     0.983  0.0100
+ZTP         C40        H40A      SINGLE       n     1.089  0.0100     0.983  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZTP          C2          C1          H1     109.600    1.50
+ZTP          C2          C1         H1A     109.600    1.50
+ZTP          C2          C1         H1B     109.600    1.50
+ZTP          H1          C1         H1A     109.342    1.50
+ZTP          H1          C1         H1B     109.342    1.50
+ZTP         H1A          C1         H1B     109.342    1.50
+ZTP         C40          O1          P1     119.313    1.50
+ZTP          O1          P1          O2     107.912    2.57
+ZTP          O1          P1          O3     107.912    2.57
+ZTP          O1          P1          O4     101.065    1.97
+ZTP          O2          P1          O3     118.411    2.35
+ZTP          O2          P1          O4     108.816    2.14
+ZTP          O3          P1          O4     108.816    2.14
+ZTP          C1          C2          C4     122.691    1.63
+ZTP          C1          C2          C3     114.618    1.50
+ZTP          C4          C2          C3     122.691    1.63
+ZTP          O7          P2          O4     105.965    2.38
+ZTP          O7          P2          O5     112.716    1.50
+ZTP          O7          P2          O6     112.716    1.50
+ZTP          O4          P2          O5     105.965    2.38
+ZTP          O4          P2          O6     105.965    2.38
+ZTP          O5          P2          O6     112.716    1.50
+ZTP          C2          C3          H3     109.600    1.50
+ZTP          C2          C3         H3A     109.600    1.50
+ZTP          C2          C3         H3B     109.600    1.50
+ZTP          H3          C3         H3A     109.342    1.50
+ZTP          H3          C3         H3B     109.342    1.50
+ZTP         H3A          C3         H3B     109.342    1.50
+ZTP          C2          C4          C5     128.282    1.50
+ZTP          C2          C4          H4     116.082    1.50
+ZTP          C5          C4          H4     115.635    1.60
+ZTP          P1          O4          P2     132.584    3.00
+ZTP          C4          C5          C6     112.751    2.50
+ZTP          C4          C5          H5     109.181    1.50
+ZTP          C4          C5         H5A     109.181    1.50
+ZTP          C6          C5          H5     109.013    1.50
+ZTP          C6          C5         H5A     109.013    1.50
+ZTP          H5          C5         H5A     107.922    1.50
+ZTP          C5          C6          C7     113.520    2.62
+ZTP          C5          C6          H6     108.867    1.50
+ZTP          C5          C6         H6A     108.867    1.50
+ZTP          C7          C6          H6     108.816    1.50
+ZTP          C7          C6         H6A     108.816    1.50
+ZTP          H6          C6         H6A     107.710    1.94
+ZTP          C6          C7          C8     115.131    1.50
+ZTP          C6          C7          C9     121.188    1.50
+ZTP          C8          C7          C9     123.681    1.50
+ZTP          C7          C8          H8     109.541    1.50
+ZTP          C7          C8         H8A     109.541    1.50
+ZTP          C7          C8         H8B     109.541    1.50
+ZTP          H8          C8         H8A     109.342    1.50
+ZTP          H8          C8         H8B     109.342    1.50
+ZTP         H8A          C8         H8B     109.342    1.50
+ZTP          C7          C9         C10     128.114    1.50
+ZTP          C7          C9          H9     116.261    1.50
+ZTP         C10          C9          H9     115.635    1.60
+ZTP          C9         C10         C11     112.751    2.50
+ZTP          C9         C10         H10     109.181    1.50
+ZTP          C9         C10        H10A     109.181    1.50
+ZTP         C11         C10         H10     109.013    1.50
+ZTP         C11         C10        H10A     109.013    1.50
+ZTP         H10         C10        H10A     107.922    1.50
+ZTP         C10         C11         C12     113.520    2.62
+ZTP         C10         C11         H11     108.867    1.50
+ZTP         C10         C11        H11A     108.867    1.50
+ZTP         C12         C11         H11     108.816    1.50
+ZTP         C12         C11        H11A     108.816    1.50
+ZTP         H11         C11        H11A     107.710    1.94
+ZTP         C11         C12         C13     115.131    1.50
+ZTP         C11         C12         C14     121.188    1.50
+ZTP         C13         C12         C14     123.681    1.50
+ZTP         C12         C13         H13     109.541    1.50
+ZTP         C12         C13        H13A     109.541    1.50
+ZTP         C12         C13        H13B     109.541    1.50
+ZTP         H13         C13        H13A     109.342    1.50
+ZTP         H13         C13        H13B     109.342    1.50
+ZTP        H13A         C13        H13B     109.342    1.50
+ZTP         C12         C14         C15     128.114    1.50
+ZTP         C12         C14         H14     116.261    1.50
+ZTP         C15         C14         H14     115.635    1.60
+ZTP         C14         C15         C16     112.751    2.50
+ZTP         C14         C15         H15     109.181    1.50
+ZTP         C14         C15        H15A     109.181    1.50
+ZTP         C16         C15         H15     109.013    1.50
+ZTP         C16         C15        H15A     109.013    1.50
+ZTP         H15         C15        H15A     107.922    1.50
+ZTP         C15         C16         C17     113.520    2.62
+ZTP         C15         C16         H16     108.867    1.50
+ZTP         C15         C16        H16A     108.867    1.50
+ZTP         C17         C16         H16     108.816    1.50
+ZTP         C17         C16        H16A     108.816    1.50
+ZTP         H16         C16        H16A     107.710    1.94
+ZTP         C16         C17         C18     115.131    1.50
+ZTP         C16         C17         C19     121.188    1.50
+ZTP         C18         C17         C19     123.681    1.50
+ZTP         C17         C18         H18     109.541    1.50
+ZTP         C17         C18        H18A     109.541    1.50
+ZTP         C17         C18        H18B     109.541    1.50
+ZTP         H18         C18        H18A     109.342    1.50
+ZTP         H18         C18        H18B     109.342    1.50
+ZTP        H18A         C18        H18B     109.342    1.50
+ZTP         C17         C19         C20     128.114    1.50
+ZTP         C17         C19         H19     116.261    1.50
+ZTP         C20         C19         H19     115.635    1.60
+ZTP         C19         C20         C21     112.751    2.50
+ZTP         C19         C20         H20     109.181    1.50
+ZTP         C19         C20        H20A     109.181    1.50
+ZTP         C21         C20         H20     109.013    1.50
+ZTP         C21         C20        H20A     109.013    1.50
+ZTP         H20         C20        H20A     107.922    1.50
+ZTP         C20         C21         C22     113.520    2.62
+ZTP         C20         C21         H21     108.867    1.50
+ZTP         C20         C21        H21A     108.867    1.50
+ZTP         C22         C21         H21     108.816    1.50
+ZTP         C22         C21        H21A     108.816    1.50
+ZTP         H21         C21        H21A     107.710    1.94
+ZTP         C21         C22         C23     115.131    1.50
+ZTP         C21         C22         C24     121.188    1.50
+ZTP         C23         C22         C24     123.681    1.50
+ZTP         C22         C23         H23     109.541    1.50
+ZTP         C22         C23        H23A     109.541    1.50
+ZTP         C22         C23        H23B     109.541    1.50
+ZTP         H23         C23        H23A     109.342    1.50
+ZTP         H23         C23        H23B     109.342    1.50
+ZTP        H23A         C23        H23B     109.342    1.50
+ZTP         C22         C24         C25     128.114    1.50
+ZTP         C22         C24         H24     116.261    1.50
+ZTP         C25         C24         H24     115.635    1.60
+ZTP         C24         C25         C26     112.751    2.50
+ZTP         C24         C25         H25     109.181    1.50
+ZTP         C24         C25        H25A     109.181    1.50
+ZTP         C26         C25         H25     109.013    1.50
+ZTP         C26         C25        H25A     109.013    1.50
+ZTP         H25         C25        H25A     107.922    1.50
+ZTP         C25         C26         C27     113.520    2.62
+ZTP         C25         C26         H26     108.867    1.50
+ZTP         C25         C26        H26A     108.867    1.50
+ZTP         C27         C26         H26     108.816    1.50
+ZTP         C27         C26        H26A     108.816    1.50
+ZTP         H26         C26        H26A     107.710    1.94
+ZTP         C26         C27         C29     121.188    1.50
+ZTP         C26         C27         C28     115.131    1.50
+ZTP         C29         C27         C28     123.681    1.50
+ZTP         C27         C28         H28     109.541    1.50
+ZTP         C27         C28        H28A     109.541    1.50
+ZTP         C27         C28        H28B     109.541    1.50
+ZTP         H28         C28        H28A     109.342    1.50
+ZTP         H28         C28        H28B     109.342    1.50
+ZTP        H28A         C28        H28B     109.342    1.50
+ZTP         C27         C29         C30     128.114    1.50
+ZTP         C27         C29         H29     116.261    1.50
+ZTP         C30         C29         H29     115.635    1.60
+ZTP         C29         C30         C31     112.751    2.50
+ZTP         C29         C30         H30     109.181    1.50
+ZTP         C29         C30        H30A     109.181    1.50
+ZTP         C31         C30         H30     109.013    1.50
+ZTP         C31         C30        H30A     109.013    1.50
+ZTP         H30         C30        H30A     107.922    1.50
+ZTP         C30         C31         C32     113.520    2.62
+ZTP         C30         C31         H31     108.867    1.50
+ZTP         C30         C31        H31A     108.867    1.50
+ZTP         C32         C31         H31     108.816    1.50
+ZTP         C32         C31        H31A     108.816    1.50
+ZTP         H31         C31        H31A     107.710    1.94
+ZTP         C31         C32         C33     115.131    1.50
+ZTP         C31         C32         C34     121.188    1.50
+ZTP         C33         C32         C34     123.681    1.50
+ZTP         C32         C33         H33     109.541    1.50
+ZTP         C32         C33        H33A     109.541    1.50
+ZTP         C32         C33        H33B     109.541    1.50
+ZTP         H33         C33        H33A     109.342    1.50
+ZTP         H33         C33        H33B     109.342    1.50
+ZTP        H33A         C33        H33B     109.342    1.50
+ZTP         C32         C34         C35     128.114    1.50
+ZTP         C32         C34         H34     116.261    1.50
+ZTP         C35         C34         H34     115.635    1.60
+ZTP         C34         C35         C36     112.751    2.50
+ZTP         C34         C35         H35     109.181    1.50
+ZTP         C34         C35        H35A     109.181    1.50
+ZTP         C36         C35         H35     109.013    1.50
+ZTP         C36         C35        H35A     109.013    1.50
+ZTP         H35         C35        H35A     107.922    1.50
+ZTP         C35         C36         C37     113.520    2.62
+ZTP         C35         C36         H36     108.867    1.50
+ZTP         C35         C36        H36A     108.867    1.50
+ZTP         C37         C36         H36     108.816    1.50
+ZTP         C37         C36        H36A     108.816    1.50
+ZTP         H36         C36        H36A     107.710    1.94
+ZTP         C36         C37         C38     115.386    1.50
+ZTP         C36         C37         C39     121.607    1.82
+ZTP         C38         C37         C39     123.007    1.73
+ZTP         C37         C38         H38     109.541    1.50
+ZTP         C37         C38        H38A     109.541    1.50
+ZTP         C37         C38        H38B     109.541    1.50
+ZTP         H38         C38        H38A     109.342    1.50
+ZTP         H38         C38        H38B     109.342    1.50
+ZTP        H38A         C38        H38B     109.342    1.50
+ZTP         C37         C39         C40     124.396    3.00
+ZTP         C37         C39         H39     117.563    1.50
+ZTP         C40         C39         H39     118.040    2.26
+ZTP          O1         C40         C39     110.575    2.78
+ZTP          O1         C40         H40     110.196    2.06
+ZTP          O1         C40        H40A     110.196    2.06
+ZTP         C39         C40         H40     109.840    1.50
+ZTP         C39         C40        H40A     109.840    1.50
+ZTP         H40         C40        H40A     108.062    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZTP             sp2_sp3_1          C4          C2          C1          H1       0.000    10.0     6
+ZTP            sp3_sp3_13          C4          C5          C6          C7     180.000    10.0     3
+ZTP            sp2_sp3_20          C8          C7          C6          C5     120.000    10.0     6
+ZTP            sp2_sp3_25          C6          C7          C8          H8       0.000    10.0     6
+ZTP             sp2_sp2_5          C6          C7          C9         C10     180.000     5.0     2
+ZTP            sp2_sp3_32          C7          C9         C10         C11     120.000    10.0     6
+ZTP            sp3_sp3_22          C9         C10         C11         C12     180.000    10.0     3
+ZTP            sp2_sp3_38         C13         C12         C11         C10     120.000    10.0     6
+ZTP             sp3_sp3_6         C40          O1          P1          O2      60.000    10.0     3
+ZTP             sp3_sp3_1         C39         C40          O1          P1     180.000    10.0     3
+ZTP            sp2_sp3_43         C11         C12         C13         H13       0.000    10.0     6
+ZTP             sp2_sp2_9         C11         C12         C14         C15     180.000     5.0     2
+ZTP            sp2_sp3_50         C12         C14         C15         C16     120.000    10.0     6
+ZTP            sp3_sp3_31         C14         C15         C16         C17     180.000    10.0     3
+ZTP            sp2_sp3_56         C18         C17         C16         C15     120.000    10.0     6
+ZTP            sp2_sp3_61         C16         C17         C18         H18       0.000    10.0     6
+ZTP            sp2_sp2_13         C16         C17         C19         C20     180.000     5.0     2
+ZTP            sp2_sp3_68         C17         C19         C20         C21     120.000    10.0     6
+ZTP            sp3_sp3_40         C19         C20         C21         C22     180.000    10.0     3
+ZTP            sp2_sp3_74         C23         C22         C21         C20     120.000    10.0     6
+ZTP             sp3_sp3_8          P2          O4          P1          O1     -60.000    10.0     3
+ZTP            sp2_sp3_79         C21         C22         C23         H23       0.000    10.0     6
+ZTP            sp2_sp2_17         C21         C22         C24         C25     180.000     5.0     2
+ZTP            sp2_sp3_86         C22         C24         C25         C26     120.000    10.0     6
+ZTP            sp3_sp3_49         C24         C25         C26         C27     180.000    10.0     3
+ZTP            sp2_sp3_92         C29         C27         C26         C25     120.000    10.0     6
+ZTP            sp2_sp3_97         C26         C27         C28         H28       0.000    10.0     6
+ZTP            sp2_sp2_21         C26         C27         C29         C30     180.000     5.0     2
+ZTP           sp2_sp3_104         C27         C29         C30         C31     120.000    10.0     6
+ZTP            sp3_sp3_58         C29         C30         C31         C32     180.000    10.0     3
+ZTP           sp2_sp3_110         C33         C32         C31         C30     120.000    10.0     6
+ZTP             sp2_sp3_7          C1          C2          C3          H3       0.000    10.0     6
+ZTP             sp2_sp2_1          C1          C2          C4          C5     180.000     5.0     2
+ZTP           sp2_sp3_115         C31         C32         C33         H33       0.000    10.0     6
+ZTP            sp2_sp2_25         C31         C32         C34         C35     180.000     5.0     2
+ZTP           sp2_sp3_122         C32         C34         C35         C36     120.000    10.0     6
+ZTP            sp3_sp3_67         C34         C35         C36         C37     180.000    10.0     3
+ZTP           sp2_sp3_128         C38         C37         C36         C35     120.000    10.0     6
+ZTP           sp2_sp3_133         C36         C37         C38         H38       0.000    10.0     6
+ZTP            sp2_sp2_29         C36         C37         C39         C40     180.000     5.0     2
+ZTP           sp2_sp3_140         C37         C39         C40          O1     120.000    10.0     6
+ZTP            sp3_sp3_12          P1          O4          P2          O7      60.000    10.0     3
+ZTP            sp2_sp3_14          C2          C4          C5          C6     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZTP    chir_1    P1    O4    O1    O3    both
+ZTP    chir_2    P2    O4    O5    O6    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZTP    plan-1          C1   0.020
+ZTP    plan-1          C2   0.020
+ZTP    plan-1          C3   0.020
+ZTP    plan-1          C4   0.020
+ZTP    plan-2          C2   0.020
+ZTP    plan-2          C4   0.020
+ZTP    plan-2          C5   0.020
+ZTP    plan-2          H4   0.020
+ZTP    plan-3          C6   0.020
+ZTP    plan-3          C7   0.020
+ZTP    plan-3          C8   0.020
+ZTP    plan-3          C9   0.020
+ZTP    plan-4         C10   0.020
+ZTP    plan-4          C7   0.020
+ZTP    plan-4          C9   0.020
+ZTP    plan-4          H9   0.020
+ZTP    plan-5         C11   0.020
+ZTP    plan-5         C12   0.020
+ZTP    plan-5         C13   0.020
+ZTP    plan-5         C14   0.020
+ZTP    plan-6         C12   0.020
+ZTP    plan-6         C14   0.020
+ZTP    plan-6         C15   0.020
+ZTP    plan-6         H14   0.020
+ZTP    plan-7         C16   0.020
+ZTP    plan-7         C17   0.020
+ZTP    plan-7         C18   0.020
+ZTP    plan-7         C19   0.020
+ZTP    plan-8         C17   0.020
+ZTP    plan-8         C19   0.020
+ZTP    plan-8         C20   0.020
+ZTP    plan-8         H19   0.020
+ZTP    plan-9         C21   0.020
+ZTP    plan-9         C22   0.020
+ZTP    plan-9         C23   0.020
+ZTP    plan-9         C24   0.020
+ZTP   plan-10         C22   0.020
+ZTP   plan-10         C24   0.020
+ZTP   plan-10         C25   0.020
+ZTP   plan-10         H24   0.020
+ZTP   plan-11         C26   0.020
+ZTP   plan-11         C27   0.020
+ZTP   plan-11         C28   0.020
+ZTP   plan-11         C29   0.020
+ZTP   plan-12         C27   0.020
+ZTP   plan-12         C29   0.020
+ZTP   plan-12         C30   0.020
+ZTP   plan-12         H29   0.020
+ZTP   plan-13         C31   0.020
+ZTP   plan-13         C32   0.020
+ZTP   plan-13         C33   0.020
+ZTP   plan-13         C34   0.020
+ZTP   plan-14         C32   0.020
+ZTP   plan-14         C34   0.020
+ZTP   plan-14         C35   0.020
+ZTP   plan-14         H34   0.020
+ZTP   plan-15         C36   0.020
+ZTP   plan-15         C37   0.020
+ZTP   plan-15         C38   0.020
+ZTP   plan-15         C39   0.020
+ZTP   plan-16         C37   0.020
+ZTP   plan-16         C39   0.020
+ZTP   plan-16         C40   0.020
+ZTP   plan-16         H39   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZTP           SMILES              ACDLabs 12.01                                                                                                                                                                                                     O=P(O)(O)OP(=O)(OC/C=C(/C)CC/C=C(/C)CC/C=C(/C)CC/C=C(/C)CC/C=C(/C)CC/C=C(/C)CC/C=C(/C)CC\C=C(/C)C)O
+ZTP            InChI                InChI  1.03 InChI=1S/C40H68O7P2/c1-33(2)17-10-18-34(3)19-11-20-35(4)21-12-22-36(5)23-13-24-37(6)25-14-26-38(7)27-15-28-39(8)29-16-30-40(9)31-32-46-49(44,45)47-48(41,42)43/h17,19,21,23,25,27,29,31H,10-16,18,20,22,24,26,28,30,32H2,1-9H3,(H,44,45)(H2,41,42,43)/b34-19-,35-21-,36-23-,37-25-,38-27-,39-29-,40-31-
+ZTP         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                             IKKLDISSULFFQO-DLTKSLTJSA-N
+ZTP SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                                   CC(C)=CCC\C(C)=C/CC\C(C)=C/CC\C(C)=C/CC\C(C)=C/CC\C(C)=C/CC\C(C)=C/CC\C(C)=C/CO[P](O)(=O)O[P](O)(O)=O
+ZTP           SMILES               CACTVS 3.370                                                                                                                                                                                                                 CC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCO[P](O)(=O)O[P](O)(O)=O
+ZTP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                            CC(=CCC/C(=C\CC/C(=C\CC/C(=C\CC/C(=C\CC/C(=C\CC/C(=C\CC/C(=C\CO[P@@](=O)(O)OP(=O)(O)O)/C)/C)/C)/C)/C)/C)/C)C
+ZTP           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                                                     CC(=CCCC(=CCCC(=CCCC(=CCCC(=CCCC(=CCCC(=CCCC(=CCOP(=O)(O)OP(=O)(O)O)C)C)C)C)C)C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZTP acedrg               243         "dictionary generator"                  
+ZTP acedrg_database      11          "data source"                           
+ZTP rdkit                2017.03.2   "Chemoinformatics tool"
+ZTP refmac5              5.8.0238    "optimization tool"                     

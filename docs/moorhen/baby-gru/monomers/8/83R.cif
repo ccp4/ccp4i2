@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+83R     83R      dibenzothiophene     NON-POLYMER     21     13     .     
+#
+data_comp_83R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+83R     C6      C       CR16    0       -1.564      16.627      59.941      
+83R     C5      C       CR16    0       -0.322      17.203      59.764      
+83R     C4      C       CR56    0       2.006       17.019      56.861      
+83R     S1      S       S2      0       0.784       16.067      56.251      
+83R     C2      C       CR56    0       0.378       16.990      58.570      
+83R     C7      C       CR16    0       -2.129      15.833      58.941      
+83R     C8      C       CR16    0       -1.457      15.610      57.756      
+83R     C9      C       CR16    0       3.200       17.353      56.244      
+83R     C10     C       CR16    0       4.090       18.162      56.923      
+83R     C11     C       CR16    0       3.791       18.633      58.204      
+83R     C12     C       CR16    0       2.600       18.298      58.817      
+83R     C1      C       CR56    0       -0.211      16.189      57.580      
+83R     C3      C       CR56    0       1.682       17.479      58.148      
+83R     H2      H       H       0       -2.037      16.770      60.745      
+83R     H1      H       H       0       0.054       17.738      60.443      
+83R     H3      H       H       0       -2.977      15.447      59.076      
+83R     H4      H       H       0       -1.838      15.075      57.083      
+83R     H5      H       H       0       3.403       17.037      55.381      
+83R     H6      H       H       0       4.907       18.400      56.518      
+83R     H7      H       H       0       4.411       19.185      58.654      
+83R     H8      H       H       0       2.404       18.619      59.682      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+83R          C4          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+83R          S1          C1      SINGLE       y     1.695  0.0200     1.695  0.0200
+83R          C4          C9      SINGLE       y     1.381  0.0100     1.381  0.0100
+83R          C9         C10      DOUBLE       y     1.378  0.0108     1.378  0.0108
+83R          C4          C3      DOUBLE       y     1.395  0.0100     1.395  0.0100
+83R         C10         C11      SINGLE       y     1.395  0.0112     1.395  0.0112
+83R          C8          C1      DOUBLE       y     1.381  0.0100     1.381  0.0100
+83R          C2          C1      SINGLE       y     1.395  0.0100     1.395  0.0100
+83R          C7          C8      SINGLE       y     1.378  0.0108     1.378  0.0108
+83R          C2          C3      SINGLE       y     1.445  0.0100     1.445  0.0100
+83R         C12          C3      SINGLE       y     1.395  0.0100     1.395  0.0100
+83R         C11         C12      DOUBLE       y     1.377  0.0100     1.377  0.0100
+83R          C5          C2      DOUBLE       y     1.395  0.0100     1.395  0.0100
+83R          C6          C7      DOUBLE       y     1.395  0.0112     1.395  0.0112
+83R          C6          C5      SINGLE       y     1.377  0.0100     1.377  0.0100
+83R          C6          H2      SINGLE       n     1.082  0.0130     0.944  0.0181
+83R          C5          H1      SINGLE       n     1.082  0.0130     0.943  0.0166
+83R          C7          H3      SINGLE       n     1.082  0.0130     0.942  0.0176
+83R          C8          H4      SINGLE       n     1.082  0.0130     0.941  0.0170
+83R          C9          H5      SINGLE       n     1.082  0.0130     0.941  0.0170
+83R         C10          H6      SINGLE       n     1.082  0.0130     0.942  0.0176
+83R         C11          H7      SINGLE       n     1.082  0.0130     0.944  0.0181
+83R         C12          H8      SINGLE       n     1.082  0.0130     0.943  0.0166
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+83R          C7          C6          C5     120.763    1.50
+83R          C7          C6          H2     119.467    1.50
+83R          C5          C6          H2     119.770    1.50
+83R          C2          C5          C6     119.078    1.50
+83R          C2          C5          H1     120.405    1.50
+83R          C6          C5          H1     120.517    1.50
+83R          S1          C4          C9     130.638    3.00
+83R          S1          C4          C3     108.459    3.00
+83R          C9          C4          C3     120.903    2.16
+83R          C4          S1          C1     108.459    3.00
+83R          C1          C2          C3     107.312    1.50
+83R          C1          C2          C5     119.876    1.74
+83R          C3          C2          C5     132.812    1.50
+83R          C8          C7          C6     120.953    1.50
+83R          C8          C7          H3     119.540    1.50
+83R          C6          C7          H3     119.507    1.50
+83R          C1          C8          C7     118.427    1.50
+83R          C1          C8          H4     120.896    1.50
+83R          C7          C8          H4     120.677    1.50
+83R          C4          C9         C10     118.427    1.50
+83R          C4          C9          H5     120.896    1.50
+83R         C10          C9          H5     120.677    1.50
+83R          C9         C10         C11     120.953    1.50
+83R          C9         C10          H6     119.540    1.50
+83R         C11         C10          H6     119.507    1.50
+83R         C10         C11         C12     120.763    1.50
+83R         C10         C11          H7     119.467    1.50
+83R         C12         C11          H7     119.770    1.50
+83R          C3         C12         C11     119.078    1.50
+83R          C3         C12          H8     120.405    1.50
+83R         C11         C12          H8     120.517    1.50
+83R          S1          C1          C8     130.638    3.00
+83R          S1          C1          C2     108.459    3.00
+83R          C8          C1          C2     120.903    2.16
+83R          C4          C3          C2     107.312    1.50
+83R          C4          C3         C12     119.876    1.74
+83R          C2          C3         C12     132.812    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+83R              const_53          C2          C5          C6          C7       0.000    10.0     2
+83R              const_33          C5          C6          C7          C8       0.000    10.0     2
+83R              const_17         C11         C12          C3          C4       0.000    10.0     2
+83R              const_45          C1          C2          C5          C6       0.000    10.0     2
+83R              const_49          C2          C3          C4          S1       0.000    10.0     2
+83R              const_22          C9          C4          S1          C1     180.000    10.0     2
+83R       const_sp2_sp2_3          S1          C4          C9         C10     180.000     5.0     2
+83R              const_24          C8          C1          S1          C4     180.000    10.0     2
+83R              const_25          S1          C1          C2          C3       0.000    10.0     2
+83R              const_29          C1          C2          C3          C4       0.000    10.0     2
+83R              const_37          C6          C7          C8          C1       0.000    10.0     2
+83R              const_43          S1          C1          C8          C7     180.000    10.0     2
+83R       const_sp2_sp2_5         C11         C10          C9          C4       0.000     5.0     2
+83R       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+83R              const_13         C10         C11         C12          C3       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+83R    plan-1          C1   0.020
+83R    plan-1         C12   0.020
+83R    plan-1          C2   0.020
+83R    plan-1          C3   0.020
+83R    plan-1          C4   0.020
+83R    plan-1          C5   0.020
+83R    plan-1          C6   0.020
+83R    plan-1          C7   0.020
+83R    plan-1          C8   0.020
+83R    plan-1          C9   0.020
+83R    plan-1          H1   0.020
+83R    plan-1          H2   0.020
+83R    plan-1          H3   0.020
+83R    plan-1          H4   0.020
+83R    plan-1          S1   0.020
+83R    plan-2         C10   0.020
+83R    plan-2         C11   0.020
+83R    plan-2         C12   0.020
+83R    plan-2          C2   0.020
+83R    plan-2          C3   0.020
+83R    plan-2          C4   0.020
+83R    plan-2          C9   0.020
+83R    plan-2          H5   0.020
+83R    plan-2          H6   0.020
+83R    plan-2          H7   0.020
+83R    plan-2          H8   0.020
+83R    plan-2          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+83R            InChI                InChI  1.03 InChI=1S/C12H8S/c1-3-7-11-9(5-1)10-6-2-4-8-12(10)13-11/h1-8H
+83R         InChIKey                InChI  1.03                                  IYYZUPMFVPLQIF-UHFFFAOYSA-N
+83R SMILES_CANONICAL               CACTVS 3.385                                          s1c2ccccc2c3ccccc13
+83R           SMILES               CACTVS 3.385                                          s1c2ccccc2c3ccccc13
+83R SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                        c1ccc2c(c1)c3ccccc3s2
+83R           SMILES "OpenEye OEToolkits" 2.0.6                                        c1ccc2c(c1)c3ccccc3s2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+83R acedrg               243         "dictionary generator"                  
+83R acedrg_database      11          "data source"                           
+83R rdkit                2017.03.2   "Chemoinformatics tool"
+83R refmac5              5.8.0238    "optimization tool"                     

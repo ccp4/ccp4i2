@@ -1,0 +1,200 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+D9Z     D9Z      5-(2-chlorophenyl)-1,3,4-thiadiazole-2-sulfonamide     NON-POLYMER     22     16     .     
+#
+data_comp_D9Z
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+D9Z     O2      O       O       0       -7.180      0.538       16.964      
+D9Z     S1      S       S3      0       -5.774      0.306       17.054      
+D9Z     O1      O       O       0       -5.204      -0.023      18.323      
+D9Z     N3      N       NT2     0       -5.414      -0.880      16.043      
+D9Z     C8      C       CR5     0       -4.976      1.745       16.489      
+D9Z     S2      S       S2      0       -5.073      2.308       14.922      
+D9Z     N2      N       NRD5    0       -4.239      2.522       17.198      
+D9Z     N1      N       NRD5    0       -3.723      3.627       16.462      
+D9Z     C7      C       CR5     0       -4.103      3.634       15.217      
+D9Z     C1      C       CR6     0       -3.755      4.614       14.192      
+D9Z     C6      C       CR16    0       -2.452      4.676       13.698      
+D9Z     C2      C       CR6     0       -4.702      5.517       13.698      
+D9Z     C3      C       CR16    0       -4.357      6.452       12.726      
+D9Z     C4      C       CR16    0       -3.063      6.491       12.250      
+D9Z     C5      C       CR16    0       -2.113      5.610       12.731      
+D9Z     CL1     CL      CL      0       -6.336      5.505       14.269      
+D9Z     HN3     H       H       0       -5.282      -0.611      15.262      
+D9Z     HN3A    H       H       0       -5.924      -1.538      16.122      
+D9Z     H6      H       H       0       -1.800      4.079       14.021      
+D9Z     H3      H       H       0       -5.001      7.050       12.400      
+D9Z     H4      H       H       0       -2.828      7.121       11.594      
+D9Z     H5      H       H       0       -1.231      5.642       12.400      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+D9Z          O2          S1      DOUBLE       n     1.429  0.0100     1.429  0.0100
+D9Z          S1          O1      DOUBLE       n     1.429  0.0100     1.429  0.0100
+D9Z          S1          N3      SINGLE       n     1.600  0.0128     1.600  0.0128
+D9Z          S1          C8      SINGLE       n     1.739  0.0102     1.739  0.0102
+D9Z          C8          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+D9Z          C8          N2      DOUBLE       y     1.281  0.0100     1.281  0.0100
+D9Z          S2          C7      SINGLE       y     1.695  0.0200     1.695  0.0200
+D9Z          N2          N1      SINGLE       y     1.402  0.0152     1.402  0.0152
+D9Z          N1          C7      DOUBLE       y     1.294  0.0153     1.294  0.0153
+D9Z          C7          C1      SINGLE       n     1.458  0.0100     1.458  0.0100
+D9Z          C1          C6      DOUBLE       y     1.392  0.0100     1.392  0.0100
+D9Z          C1          C2      SINGLE       y     1.391  0.0118     1.391  0.0118
+D9Z          C6          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+D9Z          C2          C3      DOUBLE       y     1.387  0.0114     1.387  0.0114
+D9Z          C2         CL1      SINGLE       n     1.727  0.0200     1.727  0.0200
+D9Z          C3          C4      SINGLE       y     1.372  0.0132     1.372  0.0132
+D9Z          C4          C5      DOUBLE       y     1.376  0.0124     1.376  0.0124
+D9Z          N3         HN3      SINGLE       n     1.036  0.0160     0.836  0.0200
+D9Z          N3        HN3A      SINGLE       n     1.036  0.0160     0.836  0.0200
+D9Z          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0147
+D9Z          C3          H3      SINGLE       n     1.082  0.0130     0.938  0.0140
+D9Z          C4          H4      SINGLE       n     1.082  0.0130     0.939  0.0165
+D9Z          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+D9Z          O2          S1          O1     119.673    1.50
+D9Z          O2          S1          N3     108.091    1.50
+D9Z          O2          S1          C8     107.921    1.50
+D9Z          O1          S1          N3     108.091    1.50
+D9Z          O1          S1          C8     107.921    1.50
+D9Z          N3          S1          C8     109.471    3.00
+D9Z          S1          N3         HN3     112.822    3.00
+D9Z          S1          N3        HN3A     112.822    3.00
+D9Z         HN3          N3        HN3A     115.991    3.00
+D9Z          S1          C8          S2     125.122    3.00
+D9Z          S1          C8          N2     126.553    1.75
+D9Z          S2          C8          N2     108.325    3.00
+D9Z          C8          S2          C7     108.325    3.00
+D9Z          C8          N2          N1     107.463    1.50
+D9Z          N2          N1          C7     107.563    1.50
+D9Z          S2          C7          N1     108.325    3.00
+D9Z          S2          C7          C1     122.238    3.00
+D9Z          N1          C7          C1     129.438    2.91
+D9Z          C7          C1          C6     120.370    1.50
+D9Z          C7          C1          C2     120.370    1.50
+D9Z          C6          C1          C2     119.261    1.64
+D9Z          C1          C6          C5     120.301    1.50
+D9Z          C1          C6          H6     119.804    1.50
+D9Z          C5          C6          H6     119.895    1.50
+D9Z          C1          C2          C3     121.191    1.50
+D9Z          C1          C2         CL1     120.289    1.50
+D9Z          C3          C2         CL1     118.519    1.50
+D9Z          C2          C3          C4     119.145    1.50
+D9Z          C2          C3          H3     120.236    1.50
+D9Z          C4          C3          H3     120.619    1.50
+D9Z          C3          C4          C5     120.020    1.50
+D9Z          C3          C4          H4     119.869    1.50
+D9Z          C5          C4          H4     120.111    1.50
+D9Z          C6          C5          C4     120.083    1.50
+D9Z          C6          C5          H5     119.858    1.50
+D9Z          C4          C5          H5     120.059    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+D9Z       const_sp2_sp2_5          C4          C5          C6          C1       0.000     5.0     2
+D9Z              const_19         CL1          C2          C3          C4     180.000    10.0     2
+D9Z              const_13          C2          C3          C4          C5       0.000    10.0     2
+D9Z       const_sp2_sp2_9          C3          C4          C5          C6       0.000     5.0     2
+D9Z             sp3_sp3_2         HN3          N3          S1          O2     -60.000    10.0     3
+D9Z             sp2_sp3_1          S2          C8          S1          O2     150.000    10.0     6
+D9Z              const_22          S1          C8          S2          C7     180.000    10.0     2
+D9Z              const_29          S1          C8          N2          N1     180.000    10.0     2
+D9Z              const_23          N1          C7          S2          C8       0.000    10.0     2
+D9Z              const_27          C7          N1          N2          C8       0.000    10.0     2
+D9Z              const_25          S2          C7          N1          N2       0.000    10.0     2
+D9Z             sp2_sp2_1          C6          C1          C7          S2     180.000     5.0     2
+D9Z       const_sp2_sp2_3          C7          C1          C6          C5     180.000     5.0     2
+D9Z              const_33          C7          C1          C2         CL1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+D9Z    chir_1    S1    O2    O1    N3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+D9Z    plan-1          C1   0.020
+D9Z    plan-1          C2   0.020
+D9Z    plan-1          C3   0.020
+D9Z    plan-1          C4   0.020
+D9Z    plan-1          C5   0.020
+D9Z    plan-1          C6   0.020
+D9Z    plan-1          C7   0.020
+D9Z    plan-1         CL1   0.020
+D9Z    plan-1          H3   0.020
+D9Z    plan-1          H4   0.020
+D9Z    plan-1          H5   0.020
+D9Z    plan-1          H6   0.020
+D9Z    plan-2          C1   0.020
+D9Z    plan-2          C7   0.020
+D9Z    plan-2          C8   0.020
+D9Z    plan-2          N1   0.020
+D9Z    plan-2          N2   0.020
+D9Z    plan-2          S1   0.020
+D9Z    plan-2          S2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+D9Z           SMILES              ACDLabs 10.04                                                       O=S(=O)(c1nnc(s1)c2c(Cl)cccc2)N
+D9Z SMILES_CANONICAL               CACTVS 3.341                                                       N[S](=O)(=O)c1sc(nn1)c2ccccc2Cl
+D9Z           SMILES               CACTVS 3.341                                                       N[S](=O)(=O)c1sc(nn1)c2ccccc2Cl
+D9Z SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                     c1ccc(c(c1)c2nnc(s2)S(=O)(=O)N)Cl
+D9Z           SMILES "OpenEye OEToolkits" 1.5.0                                                     c1ccc(c(c1)c2nnc(s2)S(=O)(=O)N)Cl
+D9Z            InChI                InChI  1.03 InChI=1S/C8H6ClN3O2S2/c9-6-4-2-1-3-5(6)7-11-12-8(15-7)16(10,13)14/h1-4H,(H2,10,13,14)
+D9Z         InChIKey                InChI  1.03                                                           PZVGOWIIHCUHAO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+D9Z acedrg               243         "dictionary generator"                  
+D9Z acedrg_database      11          "data source"                           
+D9Z rdkit                2017.03.2   "Chemoinformatics tool"
+D9Z refmac5              5.8.0238    "optimization tool"                     

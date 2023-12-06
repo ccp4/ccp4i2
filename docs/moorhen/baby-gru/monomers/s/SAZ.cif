@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SAZ     SAZ      (1S)-N,4-DIMETHYL-N-(4-METHYLPENT-3-ENYL)CYCLOHEX-3-ENAMINIUM     NON-POLYMER     41     15     .     
+#
+data_comp_SAZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SAZ     C01     C       CH1     0       51.981      13.449      63.607      
+SAZ     C02     C       CH2     0       52.048      11.931      63.806      
+SAZ     C03     C       CH2     0       53.407      14.004      63.782      
+SAZ     C05     C       CR16    0       53.040      11.337      62.856      
+SAZ     C07     C       CH2     0       54.420      13.387      62.820      
+SAZ     C08     C       C1      0       52.551      16.147      60.431      
+SAZ     C09     C       CH2     0       51.118      15.975      60.856      
+SAZ     C10     C       CH2     0       50.964      15.328      62.219      
+SAZ     C13     C       C       0       53.229      15.542      59.460      
+SAZ     C16     C       CH3     0       52.644      14.527      58.512      
+SAZ     C17     C       CH3     0       54.685      15.819      59.208      
+SAZ     C25     C       CR6     0       54.138      11.963      62.439      
+SAZ     C26     C       CH3     0       55.148      11.300      61.545      
+SAZ     N35     N       NT1     1       51.351      13.872      62.273      
+SAZ     C36     C       CH3     0       50.198      13.020      61.822      
+SAZ     H01     H       H       0       51.413      13.825      64.329      
+SAZ     H021    H       H       0       52.333      11.734      64.734      
+SAZ     H022    H       H       0       51.162      11.514      63.672      
+SAZ     H031    H       H       0       53.703      13.831      64.702      
+SAZ     H032    H       H       0       53.400      14.976      63.653      
+SAZ     H05     H       H       0       52.874      10.463      62.534      
+SAZ     H071    H       H       0       55.307      13.428      63.230      
+SAZ     H072    H       H       0       54.448      13.926      62.005      
+SAZ     H08     H       H       0       53.039      16.784      60.930      
+SAZ     H091    H       H       0       50.637      15.435      60.193      
+SAZ     H092    H       H       0       50.693      16.863      60.887      
+SAZ     H101    H       H       0       50.029      15.414      62.496      
+SAZ     H102    H       H       0       51.503      15.831      62.860      
+SAZ     H161    H       H       0       51.827      14.155      58.876      
+SAZ     H162    H       H       0       53.283      13.809      58.373      
+SAZ     H163    H       H       0       52.452      14.953      57.660      
+SAZ     H171    H       H       0       55.040      16.395      59.904      
+SAZ     H172    H       H       0       54.788      16.256      58.347      
+SAZ     H173    H       H       0       55.178      14.982      59.203      
+SAZ     H261    H       H       0       55.840      11.935      61.304      
+SAZ     H262    H       H       0       54.710      10.983      60.741      
+SAZ     H263    H       H       0       55.549      10.550      62.009      
+SAZ     H35     H       H       0       51.989      13.751      61.640      
+SAZ     H361    H       H       0       49.717      13.482      61.119      
+SAZ     H362    H       H       0       49.609      12.867      62.576      
+SAZ     H363    H       H       0       50.542      12.183      61.475      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SAZ         C01         C02      SINGLE       n     1.526  0.0100     1.526  0.0100
+SAZ         C01         C03      SINGLE       n     1.533  0.0107     1.533  0.0107
+SAZ         C01         N35      SINGLE       n     1.523  0.0100     1.523  0.0100
+SAZ         C02         C05      SINGLE       n     1.496  0.0108     1.496  0.0108
+SAZ         C03         C07      SINGLE       n     1.521  0.0112     1.521  0.0112
+SAZ         C05         C25      DOUBLE       n     1.329  0.0123     1.329  0.0123
+SAZ         C07         C25      SINGLE       n     1.487  0.0200     1.487  0.0200
+SAZ         C08         C09      SINGLE       n     1.501  0.0100     1.501  0.0100
+SAZ         C08         C13      DOUBLE       n     1.324  0.0100     1.324  0.0100
+SAZ         C09         C10      SINGLE       n     1.510  0.0159     1.510  0.0159
+SAZ         C10         N35      SINGLE       n     1.500  0.0100     1.500  0.0100
+SAZ         C13         C16      SINGLE       n     1.499  0.0156     1.499  0.0156
+SAZ         C13         C17      SINGLE       n     1.499  0.0156     1.499  0.0156
+SAZ         C25         C26      SINGLE       n     1.502  0.0100     1.502  0.0100
+SAZ         N35         C36      SINGLE       n     1.488  0.0183     1.488  0.0183
+SAZ         C01         H01      SINGLE       n     1.089  0.0100     0.993  0.0165
+SAZ         C02        H021      SINGLE       n     1.089  0.0100     0.990  0.0139
+SAZ         C02        H022      SINGLE       n     1.089  0.0100     0.990  0.0139
+SAZ         C03        H031      SINGLE       n     1.089  0.0100     0.982  0.0142
+SAZ         C03        H032      SINGLE       n     1.089  0.0100     0.982  0.0142
+SAZ         C05         H05      SINGLE       n     1.082  0.0130     0.946  0.0100
+SAZ         C07        H071      SINGLE       n     1.089  0.0100     0.978  0.0148
+SAZ         C07        H072      SINGLE       n     1.089  0.0100     0.978  0.0148
+SAZ         C08         H08      SINGLE       n     1.082  0.0130     0.945  0.0200
+SAZ         C09        H091      SINGLE       n     1.089  0.0100     0.985  0.0177
+SAZ         C09        H092      SINGLE       n     1.089  0.0100     0.985  0.0177
+SAZ         C10        H101      SINGLE       n     1.089  0.0100     0.979  0.0152
+SAZ         C10        H102      SINGLE       n     1.089  0.0100     0.979  0.0152
+SAZ         C16        H161      SINGLE       n     1.089  0.0100     0.971  0.0140
+SAZ         C16        H162      SINGLE       n     1.089  0.0100     0.971  0.0140
+SAZ         C16        H163      SINGLE       n     1.089  0.0100     0.971  0.0140
+SAZ         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0140
+SAZ         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0140
+SAZ         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0140
+SAZ         C26        H261      SINGLE       n     1.089  0.0100     0.969  0.0158
+SAZ         C26        H262      SINGLE       n     1.089  0.0100     0.969  0.0158
+SAZ         C26        H263      SINGLE       n     1.089  0.0100     0.969  0.0158
+SAZ         N35         H35      SINGLE       n     1.036  0.0160     0.911  0.0200
+SAZ         C36        H361      SINGLE       n     1.089  0.0100     0.969  0.0145
+SAZ         C36        H362      SINGLE       n     1.089  0.0100     0.969  0.0145
+SAZ         C36        H363      SINGLE       n     1.089  0.0100     0.969  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SAZ         C02         C01         C03     109.685    1.50
+SAZ         C02         C01         N35     110.019    1.64
+SAZ         C02         C01         H01     108.255    1.50
+SAZ         C03         C01         N35     111.143    1.50
+SAZ         C03         C01         H01     108.531    1.50
+SAZ         N35         C01         H01     107.523    1.50
+SAZ         C01         C02         C05     109.488    1.50
+SAZ         C01         C02        H021     109.718    1.50
+SAZ         C01         C02        H022     109.718    1.50
+SAZ         C05         C02        H021     109.241    1.50
+SAZ         C05         C02        H022     109.241    1.50
+SAZ        H021         C02        H022     108.033    1.87
+SAZ         C01         C03         C07     112.053    1.50
+SAZ         C01         C03        H031     109.448    1.50
+SAZ         C01         C03        H032     109.448    1.50
+SAZ         C07         C03        H031     109.315    1.50
+SAZ         C07         C03        H032     109.315    1.50
+SAZ        H031         C03        H032     108.076    1.50
+SAZ         C02         C05         C25     124.312    1.50
+SAZ         C02         C05         H05     117.696    1.50
+SAZ         C25         C05         H05     117.992    1.92
+SAZ         C03         C07         C25     113.289    1.74
+SAZ         C03         C07        H071     109.292    1.50
+SAZ         C03         C07        H072     109.292    1.50
+SAZ         C25         C07        H071     109.027    1.50
+SAZ         C25         C07        H072     109.027    1.50
+SAZ        H071         C07        H072     107.973    1.50
+SAZ         C09         C08         C13     127.730    1.50
+SAZ         C09         C08         H08     116.401    1.85
+SAZ         C13         C08         H08     115.869    1.50
+SAZ         C08         C09         C10     112.952    2.17
+SAZ         C08         C09        H091     109.013    1.50
+SAZ         C08         C09        H092     109.013    1.50
+SAZ         C10         C09        H091     108.805    1.53
+SAZ         C10         C09        H092     108.805    1.53
+SAZ        H091         C09        H092     108.298    1.50
+SAZ         C09         C10         N35     113.046    1.79
+SAZ         C09         C10        H101     108.869    1.50
+SAZ         C09         C10        H102     108.869    1.50
+SAZ         N35         C10        H101     108.975    1.50
+SAZ         N35         C10        H102     108.975    1.50
+SAZ        H101         C10        H102     107.921    1.50
+SAZ         C08         C13         C16     122.691    1.63
+SAZ         C08         C13         C17     122.691    1.63
+SAZ         C16         C13         C17     114.618    1.50
+SAZ         C13         C16        H161     109.600    1.50
+SAZ         C13         C16        H162     109.600    1.50
+SAZ         C13         C16        H163     109.600    1.50
+SAZ        H161         C16        H162     109.342    1.50
+SAZ        H161         C16        H163     109.342    1.50
+SAZ        H162         C16        H163     109.342    1.50
+SAZ         C13         C17        H171     109.600    1.50
+SAZ         C13         C17        H172     109.600    1.50
+SAZ         C13         C17        H173     109.600    1.50
+SAZ        H171         C17        H172     109.342    1.50
+SAZ        H171         C17        H173     109.342    1.50
+SAZ        H172         C17        H173     109.342    1.50
+SAZ         C05         C25         C07     121.266    1.50
+SAZ         C05         C25         C26     122.456    1.51
+SAZ         C07         C25         C26     116.277    1.50
+SAZ         C25         C26        H261     109.524    1.50
+SAZ         C25         C26        H262     109.524    1.50
+SAZ         C25         C26        H263     109.524    1.50
+SAZ        H261         C26        H262     109.339    1.50
+SAZ        H261         C26        H263     109.339    1.50
+SAZ        H262         C26        H263     109.339    1.50
+SAZ         C01         N35         C10     114.317    2.62
+SAZ         C01         N35         C36     113.121    1.50
+SAZ         C01         N35         H35     106.713    1.64
+SAZ         C10         N35         C36     111.483    1.83
+SAZ         C10         N35         H35     106.775    2.75
+SAZ         C36         N35         H35     106.851    2.17
+SAZ         N35         C36        H361     108.608    1.58
+SAZ         N35         C36        H362     108.608    1.58
+SAZ         N35         C36        H363     108.608    1.58
+SAZ        H361         C36        H362     110.253    3.00
+SAZ        H361         C36        H363     110.253    3.00
+SAZ        H362         C36        H363     110.253    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SAZ             sp3_sp3_4         N35         C01         C02         C05     -60.000    10.0     3
+SAZ            sp3_sp3_28         C02         C01         N35         C10     180.000    10.0     3
+SAZ            sp3_sp3_22         N35         C01         C03         C07      60.000    10.0     3
+SAZ            sp2_sp3_31         C05         C25         C26        H261     150.000    10.0     6
+SAZ            sp3_sp3_56        H361         C36         N35         C10     -60.000    10.0     3
+SAZ             sp2_sp3_1         C25         C05         C02         C01       0.000    10.0     6
+SAZ            sp3_sp3_10         C01         C03         C07         C25      60.000    10.0     3
+SAZ             sp2_sp2_2         C02         C05         C25         C26     180.000     5.0     2
+SAZ            sp2_sp3_10         C26         C25         C07         C03     180.000    10.0     6
+SAZ            sp2_sp3_14         C13         C08         C09         C10     120.000    10.0     6
+SAZ             sp2_sp2_5         C09         C08         C13         C16     180.000     5.0     2
+SAZ            sp3_sp3_37         C08         C09         C10         N35     180.000    10.0     3
+SAZ            sp3_sp3_47         C09         C10         N35         C36     -60.000    10.0     3
+SAZ            sp2_sp3_25         C08         C13         C17        H171       0.000    10.0     6
+SAZ            sp2_sp3_19         C08         C13         C16        H161       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SAZ    chir_1    C01    N35    C02    C03    negative
+SAZ    chir_2    N35    C01    C10    C36    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SAZ    plan-1         C02   0.020
+SAZ    plan-1         C05   0.020
+SAZ    plan-1         C25   0.020
+SAZ    plan-1         H05   0.020
+SAZ    plan-2         C08   0.020
+SAZ    plan-2         C09   0.020
+SAZ    plan-2         C13   0.020
+SAZ    plan-2         H08   0.020
+SAZ    plan-3         C08   0.020
+SAZ    plan-3         C13   0.020
+SAZ    plan-3         C16   0.020
+SAZ    plan-3         C17   0.020
+SAZ    plan-4         C05   0.020
+SAZ    plan-4         C07   0.020
+SAZ    plan-4         C25   0.020
+SAZ    plan-4         C26   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SAZ           SMILES              ACDLabs 10.04                                                               C1=C(C)CCC([NH+](C)CC\C=C(/C)C)C1
+SAZ SMILES_CANONICAL               CACTVS 3.341                                                              C[NH+](CCC=C(C)C)[C@@H]1CCC(=CC1)C
+SAZ           SMILES               CACTVS 3.341                                                                C[NH+](CCC=C(C)C)[CH]1CCC(=CC1)C
+SAZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                            CC1=CC[C@@H](CC1)[N@@H+](C)CCC=C(C)C
+SAZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                   CC1=CCC(CC1)[NH+](C)CCC=C(C)C
+SAZ            InChI                InChI  1.03 InChI=1S/C14H25N/c1-12(2)6-5-11-15(4)14-9-7-13(3)8-10-14/h6-7,14H,5,8-11H2,1-4H3/p+1/t14-/m0/s1
+SAZ         InChIKey                InChI  1.03                                                                     GGPFTSMJRHEOJG-AWEZNQCLSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SAZ acedrg               243         "dictionary generator"                  
+SAZ acedrg_database      11          "data source"                           
+SAZ rdkit                2017.03.2   "Chemoinformatics tool"
+SAZ refmac5              5.8.0238    "optimization tool"                     

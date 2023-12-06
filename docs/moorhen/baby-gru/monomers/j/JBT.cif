@@ -1,0 +1,810 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JBT     JBT      "GDP-N-acetylperosamine-coenzyme A"     NON-POLYMER     146     88     .     
+#
+data_comp_JBT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JBT     O5P     O       O       0       -39.816     -25.363     -18.864     
+JBT     C5P     C       C       0       -40.540     -24.987     -19.784     
+JBT     N4P     N       NH1     0       -41.011     -23.732     -19.853     
+JBT     C3P     C       CH2     0       -40.701     -22.698     -18.875     
+JBT     C2P     C       CH2     0       -41.216     -21.325     -19.289     
+JBT     S1P     S       S2      0       -40.836     -20.037     -18.076     
+JBT     C6P     C       CH2     0       -40.935     -25.944     -20.890     
+JBT     C7P     C       CH2     0       -40.092     -25.761     -22.136     
+JBT     N8P     N       NH1     0       -40.317     -24.468     -22.772     
+JBT     C9P     C       C       0       -41.405     -24.170     -23.477     
+JBT     O9P     O       O       0       -42.268     -24.999     -23.762     
+JBT     CAP     C       CH1     0       -41.594     -22.715     -23.895     
+JBT     OAP     O       OH1     0       -42.981     -22.375     -23.824     
+JBT     CBP     C       CT      0       -41.019     -22.344     -25.278     
+JBT     CDP     C       CH3     0       -41.613     -23.241     -26.373     
+JBT     CEP     C       CH3     0       -39.497     -22.543     -25.270     
+JBT     CCP     C       CH2     0       -41.315     -20.887     -25.643     
+JBT     O6A     O       O2      0       -40.791     -20.002     -24.612     
+JBT     P2A     P       P       0       -41.227     -18.458     -24.597     
+JBT     O4A     O       O       0       -41.275     -17.960     -26.004     
+JBT     O5A     O       OP      -1      -40.367     -17.741     -23.609     
+JBT     O3A     O       O2      0       -42.721     -18.551     -24.020     
+JBT     P1A     P       P       0       -43.677     -17.471     -23.318     
+JBT     O1A     O       OP      -1      -43.293     -17.354     -21.880     
+JBT     O2A     O       O       0       -43.689     -16.231     -24.149     
+JBT     O5B     O       O2      0       -45.103     -18.200     -23.430     
+JBT     C5B     C       CH2     0       -45.724     -18.373     -24.733     
+JBT     C4B     C       CH1     0       -46.463     -19.689     -24.773     
+JBT     C3B     C       CH1     0       -47.705     -19.768     -23.899     
+JBT     O3B     O       O2      0       -48.836     -19.227     -24.591     
+JBT     P3B     P       P       0       -49.985     -18.608     -23.632     
+JBT     O9A     O       O       0       -49.414     -17.332     -23.042     
+JBT     O8A     O       OP      -1      -50.297     -19.640     -22.564     
+JBT     O7A     O       OP      -1      -51.180     -18.337     -24.527     
+JBT     C2B     C       CH1     0       -47.825     -21.278     -23.667     
+JBT     O2B     O       OH1     0       -48.511     -21.940     -24.708     
+JBT     O4B     O       O2      0       -45.601     -20.749     -24.288     
+JBT     C1B     C       CH1     0       -46.363     -21.720     -23.603     
+JBT     N9A     N       NR5     0       -45.842     -21.843     -22.245     
+JBT     C4A     C       CR56    0       -45.413     -22.989     -21.615     
+JBT     N3A     N       NRD6    0       -45.377     -24.242     -22.109     
+JBT     C2A     C       CR16    0       -44.899     -25.104     -21.212     
+JBT     C8A     C       CR15    0       -45.684     -20.831     -21.331     
+JBT     N7A     N       NRD5    0       -45.194     -21.232     -20.185     
+JBT     C5A     C       CR56    0       -45.017     -22.598     -20.347     
+JBT     C6A     C       CR6     0       -44.526     -23.602     -19.484     
+JBT     N1A     N       NRD6    0       -44.479     -24.874     -19.958     
+JBT     N6A     N       NH2     0       -44.112     -23.367     -18.241     
+JBT     O6      O       O       0       -31.732     -5.592      -24.770     
+JBT     C6      C       CR6     0       -32.412     -5.302      -23.776     
+JBT     C5      C       CR56    0       -33.631     -5.891      -23.346     
+JBT     N7      N       NRD5    0       -34.374     -6.924      -23.907     
+JBT     C8      C       CR15    0       -35.404     -7.064      -23.102     
+JBT     N1      N       NR6     0       -32.000     -4.278      -22.914     
+JBT     C2      C       CR6     0       -32.677     -3.874      -21.783     
+JBT     N2      N       NH2     0       -32.131     -2.874      -21.077     
+JBT     N3      N       NRD6    0       -33.824     -4.427      -21.377     
+JBT     C4      C       CR56    0       -34.240     -5.423      -22.202     
+JBT     N9      N       NT      0       -35.381     -6.171      -22.054     
+JBT     "C1'"   C       CH1     0       -36.360     -6.049      -20.963     
+JBT     "O4'"   O       O2      0       -36.151     -7.131      -20.082     
+JBT     "C2'"   C       CH1     0       -37.825     -6.099      -21.396     
+JBT     "O2'"   O       OH1     0       -38.330     -4.808      -21.667     
+JBT     "C3'"   C       CH1     0       -38.479     -6.764      -20.180     
+JBT     "O3'"   O       OH1     0       -38.736     -5.843      -19.127     
+JBT     "C4'"   C       CH1     0       -37.409     -7.782      -19.772     
+JBT     "C5'"   C       CH2     0       -37.455     -9.116      -20.475     
+JBT     "O5'"   O       O2      0       -38.552     -9.904      -19.947     
+JBT     P       P       P       0       -38.835     -11.354     -20.576     
+JBT     O1P     O       OP      -1      -39.989     -11.982     -19.868     
+JBT     O2P     O       O       0       -38.893     -11.247     -22.064     
+JBT     OPP     O       O2      0       -37.496     -12.137     -20.167     
+JBT     P2      P       P       0       -36.952     -12.680     -18.760     
+JBT     O3P     O       O       0       -35.477     -12.897     -18.850     
+JBT     O4P     O       OP      -1      -37.451     -11.785     -17.674     
+JBT     O1G     O       O2      0       -37.704     -14.095     -18.651     
+JBT     C1G     C       CH1     0       -37.421     -15.223     -19.444     
+JBT     O5G     O       O2      0       -37.329     -16.402     -18.656     
+JBT     C5G     C       CH1     0       -38.511     -16.777     -17.936     
+JBT     C6G     C       CH3     0       -38.132     -17.979     -17.090     
+JBT     C2G     C       CH1     0       -38.525     -15.367     -20.486     
+JBT     O2G     O       OH1     0       -38.131     -16.325     -21.465     
+JBT     C3G     C       CH1     0       -39.844     -15.783     -19.841     
+JBT     O3G     O       OH1     0       -40.809     -16.072     -20.844     
+JBT     C4G     C       CH1     0       -39.647     -17.007     -18.938     
+JBT     N4A     N       NT1     0       -40.933     -17.363     -18.309     
+JBT     C01     C       CH1     0       -41.625     -18.563     -18.810     
+JBT     C02     C       CH3     0       -43.113     -18.498     -18.533     
+JBT     H1      H       H       0       -41.535     -23.529     -20.520     
+JBT     H2      H       H       0       -39.729     -22.651     -18.755     
+JBT     H3      H       H       0       -41.101     -22.942     -18.013     
+JBT     H4      H       H       0       -42.190     -21.369     -19.411     
+JBT     H5      H       H       0       -40.813     -21.077     -20.151     
+JBT     H6      H       H       0       -41.873     -25.807     -21.108     
+JBT     H7      H       H       0       -40.838     -26.856     -20.566     
+JBT     H8      H       H       0       -40.299     -26.476     -22.773     
+JBT     H9      H       H       0       -39.145     -25.837     -21.895     
+JBT     H10     H       H       0       -39.692     -23.865     -22.690     
+JBT     H11     H       H       0       -41.122     -22.160     -23.228     
+JBT     H12     H       H       0       -43.467     -22.975     -24.177     
+JBT     H13     H       H       0       -42.583     -23.241     -26.310     
+JBT     H14     H       H       0       -41.284     -24.151     -26.273     
+JBT     H15     H       H       0       -41.350     -22.902     -27.246     
+JBT     H16     H       H       0       -39.116     -22.120     -24.481     
+JBT     H17     H       H       0       -39.111     -22.142     -26.067     
+JBT     H18     H       H       0       -39.287     -23.493     -25.257     
+JBT     H19     H       H       0       -42.280     -20.758     -25.734     
+JBT     H20     H       H       0       -40.900     -20.674     -26.503     
+JBT     H23     H       H       0       -45.034     -18.361     -25.442     
+JBT     H24     H       H       0       -46.358     -17.633     -24.902     
+JBT     H25     H       H       0       -46.709     -19.878     -25.704     
+JBT     H26     H       H       0       -47.556     -19.299     -23.046     
+JBT     H29     H       H       0       -48.278     -21.450     -22.799     
+JBT     H30     H       H       0       -49.345     -21.808     -24.619     
+JBT     H31     H       H       0       -46.276     -22.585     -24.064     
+JBT     H32     H       H       0       -44.848     -26.003     -21.498     
+JBT     H33     H       H       0       -45.905     -19.934     -21.511     
+JBT     H34     H       H       0       -43.713     -22.610     -18.052     
+JBT     H35     H       H       0       -44.242     -23.970     -17.617     
+JBT     H36     H       H       0       -36.082     -7.701      -23.245     
+JBT     H37     H       H       0       -31.234     -3.856      -23.120     
+JBT     H38     H       H       0       -32.641     -2.235      -20.760     
+JBT     H39     H       H       0       -31.266     -2.862      -20.933     
+JBT     H40     H       H       0       -36.205     -5.205      -20.483     
+JBT     H41     H       H       0       -37.939     -6.673      -22.196     
+JBT     H42     H       H       0       -38.357     -4.355      -20.949     
+JBT     H43     H       H       0       -39.315     -7.227      -20.446     
+JBT     H44     H       H       0       -39.526     -5.544      -19.212     
+JBT     H45     H       H       0       -37.458     -7.939      -18.805     
+JBT     H46     H       H       0       -36.600     -9.594      -20.335     
+JBT     H47     H       H       0       -37.579     -8.976      -21.446     
+JBT     H50     H       H       0       -36.557     -15.086     -19.907     
+JBT     H51     H       H       0       -38.769     -16.042     -17.343     
+JBT     H52     H       H       0       -38.048     -18.762     -17.657     
+JBT     H53     H       H       0       -38.819     -18.136     -16.423     
+JBT     H54     H       H       0       -37.284     -17.810     -16.646     
+JBT     H55     H       H       0       -38.649     -14.497     -20.937     
+JBT     H56     H       H       0       -38.651     -16.275     -22.124     
+JBT     H57     H       H       0       -40.180     -15.032     -19.286     
+JBT     H58     H       H       0       -41.019     -15.349     -21.220     
+JBT     H59     H       H       0       -39.362     -17.755     -19.518     
+JBT     H60     H       H       0       -40.857     -17.358     -17.416     
+JBT     H62     H       H       0       -41.499     -18.619     -19.781     
+JBT     H63     H       H       0       -43.350     -17.608     -18.220     
+JBT     H64     H       H       0       -43.351     -19.152     -17.852     
+JBT     H65     H       H       0       -43.604     -18.693     -19.351     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JBT         P3B         O9A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+JBT         P3B         O7A      SINGLE       n     1.517  0.0192     1.517  0.0192
+JBT         N3A         C2A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+JBT         C2A         N1A      SINGLE       y     1.339  0.0100     1.339  0.0100
+JBT         C4A         N3A      SINGLE       y     1.343  0.0100     1.343  0.0100
+JBT         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+JBT         P3B         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+JBT         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+JBT         O4B         C1B      SINGLE       n     1.409  0.0100     1.409  0.0100
+JBT         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+JBT         C6A         N1A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+JBT         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+JBT         C4B         C3B      SINGLE       n     1.525  0.0133     1.525  0.0133
+JBT         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+JBT         C2B         C1B      SINGLE       n     1.525  0.0100     1.525  0.0100
+JBT         N9A         C4A      SINGLE       y     1.374  0.0101     1.374  0.0101
+JBT         C4A         C5A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+JBT         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+JBT         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+JBT         P2A         O4A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+JBT         N9A         C8A      SINGLE       y     1.372  0.0100     1.372  0.0100
+JBT         C3B         C2B      SINGLE       n     1.529  0.0125     1.529  0.0125
+JBT         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+JBT         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+JBT         N7A         C5A      SINGLE       y     1.388  0.0100     1.388  0.0100
+JBT         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+JBT         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+JBT         CBP         CCP      SINGLE       n     1.526  0.0108     1.526  0.0108
+JBT         CCP         O6A      SINGLE       n     1.454  0.0165     1.454  0.0165
+JBT         CAP         CBP      SINGLE       n     1.532  0.0112     1.532  0.0112
+JBT         C8A         N7A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+JBT         P1A         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT         P2A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT         O6A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT         P2A         O5A      SINGLE       n     1.493  0.0122     1.493  0.0122
+JBT         O3A         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT         P1A         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+JBT         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+JBT         P1A         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+JBT         C9P         CAP      SINGLE       n     1.519  0.0108     1.519  0.0108
+JBT         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+JBT         N8P         C9P      SINGLE       n     1.326  0.0100     1.326  0.0100
+JBT         C7P         N8P      SINGLE       n     1.457  0.0100     1.457  0.0100
+JBT         C6P         C7P      SINGLE       n     1.513  0.0195     1.513  0.0195
+JBT         C5P         C6P      SINGLE       n     1.514  0.0100     1.514  0.0100
+JBT         O5P         C5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+JBT         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+JBT         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+JBT         C3P         C2P      SINGLE       n     1.523  0.0100     1.523  0.0100
+JBT         C2P         S1P      SINGLE       n     1.809  0.0192     1.809  0.0192
+JBT         S1P         C01      SINGLE       n     1.825  0.0100     1.825  0.0100
+JBT         C5G         C6G      SINGLE       n     1.518  0.0129     1.518  0.0129
+JBT         C2G         O2G      SINGLE       n     1.425  0.0110     1.425  0.0110
+JBT         O5G         C5G      SINGLE       n     1.429  0.0100     1.429  0.0100
+JBT         C1G         O5G      SINGLE       n     1.417  0.0109     1.417  0.0109
+JBT          O6          C6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+JBT         C5G         C4G      SINGLE       n     1.528  0.0100     1.528  0.0100
+JBT         C4G         N4A      SINGLE       n     1.468  0.0132     1.468  0.0132
+JBT         C3G         C4G      SINGLE       n     1.532  0.0100     1.532  0.0100
+JBT         N4A         C01      SINGLE       n     1.469  0.0137     1.469  0.0137
+JBT         C01         C02      SINGLE       n     1.514  0.0110     1.514  0.0110
+JBT         C1G         C2G      SINGLE       n     1.522  0.0165     1.522  0.0165
+JBT         O1G         C1G      SINGLE       n     1.403  0.0143     1.403  0.0143
+JBT         C2G         C3G      SINGLE       n     1.526  0.0100     1.526  0.0100
+JBT          C5          N7      SINGLE       y     1.390  0.0100     1.390  0.0100
+JBT          N7          C8      DOUBLE       y     1.312  0.0100     1.312  0.0100
+JBT         C3G         O3G      SINGLE       n     1.421  0.0106     1.421  0.0106
+JBT          P2         O3P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+JBT          C6          C5      SINGLE       y     1.417  0.0103     1.417  0.0103
+JBT          C6          N1      SINGLE       y     1.396  0.0107     1.396  0.0107
+JBT          C5          C4      DOUBLE       y     1.377  0.0100     1.377  0.0100
+JBT          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+JBT          P2         O1G      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+JBT         OPP          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT          P2         O4P      SINGLE       n     1.493  0.0122     1.493  0.0122
+JBT           P         OPP      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+JBT          N3          C4      SINGLE       y     1.355  0.0100     1.355  0.0100
+JBT          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+JBT          C2          N3      DOUBLE       y     1.333  0.0104     1.333  0.0104
+JBT          C2          N2      SINGLE       n     1.340  0.0101     1.340  0.0101
+JBT           P         O2P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+JBT       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+JBT       "O4'"       "C4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+JBT       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+JBT       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+JBT       "O5'"           P      SINGLE       n     1.604  0.0133     1.604  0.0133
+JBT           P         O1P      SINGLE       n     1.493  0.0122     1.493  0.0122
+JBT       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+JBT       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+JBT       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+JBT       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+JBT       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+JBT         N4P          H1      SINGLE       n     1.016  0.0100     0.872  0.0200
+JBT         C3P          H2      SINGLE       n     1.089  0.0100     0.981  0.0127
+JBT         C3P          H3      SINGLE       n     1.089  0.0100     0.981  0.0127
+JBT         C2P          H4      SINGLE       n     1.089  0.0100     0.983  0.0124
+JBT         C2P          H5      SINGLE       n     1.089  0.0100     0.983  0.0124
+JBT         C6P          H6      SINGLE       n     1.089  0.0100     0.973  0.0156
+JBT         C6P          H7      SINGLE       n     1.089  0.0100     0.973  0.0156
+JBT         C7P          H8      SINGLE       n     1.089  0.0100     0.980  0.0159
+JBT         C7P          H9      SINGLE       n     1.089  0.0100     0.980  0.0159
+JBT         N8P         H10      SINGLE       n     1.016  0.0100     0.872  0.0200
+JBT         CAP         H11      SINGLE       n     1.089  0.0100     0.988  0.0129
+JBT         OAP         H12      SINGLE       n     0.970  0.0120     0.848  0.0200
+JBT         CDP         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         CDP         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         CDP         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         CEP         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         CEP         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         CEP         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         CCP         H19      SINGLE       n     1.089  0.0100     0.978  0.0102
+JBT         CCP         H20      SINGLE       n     1.089  0.0100     0.978  0.0102
+JBT         C5B         H23      SINGLE       n     1.089  0.0100     0.989  0.0200
+JBT         C5B         H24      SINGLE       n     1.089  0.0100     0.989  0.0200
+JBT         C4B         H25      SINGLE       n     1.089  0.0100     0.981  0.0200
+JBT         C3B         H26      SINGLE       n     1.089  0.0100     0.985  0.0119
+JBT         C2B         H29      SINGLE       n     1.089  0.0100     0.994  0.0200
+JBT         O2B         H30      SINGLE       n     0.970  0.0120     0.849  0.0200
+JBT         C1B         H31      SINGLE       n     1.089  0.0100     0.984  0.0200
+JBT         C2A         H32      SINGLE       n     1.082  0.0130     0.945  0.0200
+JBT         C8A         H33      SINGLE       n     1.082  0.0130     0.942  0.0170
+JBT         N6A         H34      SINGLE       n     1.016  0.0100     0.877  0.0200
+JBT         N6A         H35      SINGLE       n     1.016  0.0100     0.877  0.0200
+JBT          C8         H36      SINGLE       n     1.082  0.0130     0.942  0.0170
+JBT          N1         H37      SINGLE       n     1.016  0.0100     0.897  0.0200
+JBT          N2         H38      SINGLE       n     1.016  0.0100     0.877  0.0200
+JBT          N2         H39      SINGLE       n     1.016  0.0100     0.877  0.0200
+JBT       "C1'"         H40      SINGLE       n     1.089  0.0100     0.984  0.0200
+JBT       "C2'"         H41      SINGLE       n     1.089  0.0100     0.994  0.0200
+JBT       "O2'"         H42      SINGLE       n     0.970  0.0120     0.849  0.0200
+JBT       "C3'"         H43      SINGLE       n     1.089  0.0100     0.992  0.0200
+JBT       "O3'"         H44      SINGLE       n     0.970  0.0120     0.849  0.0200
+JBT       "C4'"         H45      SINGLE       n     1.089  0.0100     0.981  0.0200
+JBT       "C5'"         H46      SINGLE       n     1.089  0.0100     0.989  0.0200
+JBT       "C5'"         H47      SINGLE       n     1.089  0.0100     0.989  0.0200
+JBT         C1G         H50      SINGLE       n     1.089  0.0100     0.989  0.0153
+JBT         C5G         H51      SINGLE       n     1.089  0.0100     0.979  0.0100
+JBT         C6G         H52      SINGLE       n     1.089  0.0100     0.971  0.0171
+JBT         C6G         H53      SINGLE       n     1.089  0.0100     0.971  0.0171
+JBT         C6G         H54      SINGLE       n     1.089  0.0100     0.971  0.0171
+JBT         C2G         H55      SINGLE       n     1.089  0.0100     0.987  0.0141
+JBT         O2G         H56      SINGLE       n     0.970  0.0120     0.841  0.0200
+JBT         C3G         H57      SINGLE       n     1.089  0.0100     0.992  0.0104
+JBT         O3G         H58      SINGLE       n     0.970  0.0120     0.841  0.0200
+JBT         C4G         H59      SINGLE       n     1.089  0.0100     0.988  0.0199
+JBT         N4A         H60      SINGLE       n     1.036  0.0160     0.894  0.0200
+JBT         C01         H62      SINGLE       n     1.089  0.0100     0.980  0.0100
+JBT         C02         H63      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         C02         H64      SINGLE       n     1.089  0.0100     0.973  0.0146
+JBT         C02         H65      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JBT         C6P         C5P         O5P     120.987    1.50
+JBT         C6P         C5P         N4P     117.070    1.96
+JBT         O5P         C5P         N4P     121.943    1.50
+JBT         C5P         N4P         C3P     123.437    1.80
+JBT         C5P         N4P          H1     117.862    2.10
+JBT         C3P         N4P          H1     118.700    1.83
+JBT         N4P         C3P         C2P     112.117    1.54
+JBT         N4P         C3P          H2     109.102    1.50
+JBT         N4P         C3P          H3     109.102    1.50
+JBT         C2P         C3P          H2     109.038    1.50
+JBT         C2P         C3P          H3     109.038    1.50
+JBT          H2         C3P          H3     107.995    1.50
+JBT         C3P         C2P         S1P     113.178    2.37
+JBT         C3P         C2P          H4     108.964    1.50
+JBT         C3P         C2P          H5     108.964    1.50
+JBT         S1P         C2P          H4     108.654    1.50
+JBT         S1P         C2P          H5     108.654    1.50
+JBT          H4         C2P          H5     107.807    1.50
+JBT         C2P         S1P         C01     101.840    1.86
+JBT         C7P         C6P         C5P     112.120    2.79
+JBT         C7P         C6P          H6     109.432    1.50
+JBT         C7P         C6P          H7     109.432    1.50
+JBT         C5P         C6P          H6     108.945    1.50
+JBT         C5P         C6P          H7     108.945    1.50
+JBT          H6         C6P          H7     107.745    2.07
+JBT         N8P         C7P         C6P     112.257    1.50
+JBT         N8P         C7P          H8     108.979    1.50
+JBT         N8P         C7P          H9     108.979    1.50
+JBT         C6P         C7P          H8     108.971    1.50
+JBT         C6P         C7P          H9     108.971    1.50
+JBT          H8         C7P          H9     107.877    1.50
+JBT         C9P         N8P         C7P     122.964    1.80
+JBT         C9P         N8P         H10     118.685    1.94
+JBT         C7P         N8P         H10     118.351    1.90
+JBT         O9P         C9P         CAP     119.859    1.78
+JBT         O9P         C9P         N8P     122.977    1.50
+JBT         CAP         C9P         N8P     117.147    1.50
+JBT         CBP         CAP         C9P     111.511    2.91
+JBT         CBP         CAP         OAP     109.482    3.00
+JBT         CBP         CAP         H11     107.825    1.50
+JBT         C9P         CAP         OAP     109.850    1.55
+JBT         C9P         CAP         H11     108.529    1.70
+JBT         OAP         CAP         H11     108.675    1.50
+JBT         CAP         OAP         H12     108.894    3.00
+JBT         CDP         CBP         CEP     108.765    1.50
+JBT         CDP         CBP         CCP     109.385    1.50
+JBT         CDP         CBP         CAP     109.534    1.52
+JBT         CEP         CBP         CCP     109.385    1.50
+JBT         CEP         CBP         CAP     109.534    1.52
+JBT         CCP         CBP         CAP     111.094    2.85
+JBT         CBP         CDP         H13     109.575    1.50
+JBT         CBP         CDP         H14     109.575    1.50
+JBT         CBP         CDP         H15     109.575    1.50
+JBT         H13         CDP         H14     109.377    1.50
+JBT         H13         CDP         H15     109.377    1.50
+JBT         H14         CDP         H15     109.377    1.50
+JBT         CBP         CEP         H16     109.575    1.50
+JBT         CBP         CEP         H17     109.575    1.50
+JBT         CBP         CEP         H18     109.575    1.50
+JBT         H16         CEP         H17     109.377    1.50
+JBT         H16         CEP         H18     109.377    1.50
+JBT         H17         CEP         H18     109.377    1.50
+JBT         CBP         CCP         O6A     108.435    1.69
+JBT         CBP         CCP         H19     109.473    1.50
+JBT         CBP         CCP         H20     109.473    1.50
+JBT         O6A         CCP         H19     109.739    1.50
+JBT         O6A         CCP         H20     109.739    1.50
+JBT         H19         CCP         H20     108.108    1.50
+JBT         CCP         O6A         P2A     119.251    1.51
+JBT         O4A         P2A         O3A     108.816    2.14
+JBT         O4A         P2A         O6A     107.912    2.57
+JBT         O4A         P2A         O5A     118.411    2.35
+JBT         O3A         P2A         O6A     101.065    1.97
+JBT         O3A         P2A         O5A     108.816    2.14
+JBT         O6A         P2A         O5A     107.912    2.57
+JBT         P2A         O3A         P1A     132.542    3.00
+JBT         O5B         P1A         O3A     101.065    1.97
+JBT         O5B         P1A         O2A     109.410    1.50
+JBT         O5B         P1A         O1A     109.410    1.50
+JBT         O3A         P1A         O2A     108.816    2.14
+JBT         O3A         P1A         O1A     108.816    2.14
+JBT         O2A         P1A         O1A     118.411    2.35
+JBT         C5B         O5B         P1A     118.553    2.41
+JBT         C4B         C5B         O5B     109.342    1.50
+JBT         C4B         C5B         H23     109.624    1.50
+JBT         C4B         C5B         H24     109.624    1.50
+JBT         O5B         C5B         H23     109.845    1.50
+JBT         O5B         C5B         H24     109.845    1.50
+JBT         H23         C5B         H24     108.472    1.50
+JBT         O4B         C4B         C5B     109.123    1.50
+JBT         O4B         C4B         C3B     105.508    1.50
+JBT         O4B         C4B         H25     108.947    1.50
+JBT         C5B         C4B         C3B     114.866    1.63
+JBT         C5B         C4B         H25     108.268    1.50
+JBT         C3B         C4B         H25     109.143    1.50
+JBT         O3B         C3B         C4B     110.864    2.31
+JBT         O3B         C3B         C2B     110.766    3.00
+JBT         O3B         C3B         H26     110.343    1.64
+JBT         C4B         C3B         C2B     102.352    1.50
+JBT         C4B         C3B         H26     110.624    1.81
+JBT         C2B         C3B         H26     110.255    2.04
+JBT         P3B         O3B         C3B     109.471    3.00
+JBT         O9A         P3B         O7A     112.139    1.52
+JBT         O9A         P3B         O3B     106.518    3.00
+JBT         O9A         P3B         O8A     112.139    1.52
+JBT         O7A         P3B         O3B     106.518    3.00
+JBT         O7A         P3B         O8A     112.139    1.52
+JBT         O3B         P3B         O8A     106.518    3.00
+JBT         C1B         C2B         C3B     101.388    1.50
+JBT         C1B         C2B         O2B     111.715    2.69
+JBT         C1B         C2B         H29     110.636    1.70
+JBT         C3B         C2B         O2B     112.463    2.73
+JBT         C3B         C2B         H29     110.255    2.04
+JBT         O2B         C2B         H29     110.448    1.97
+JBT         C2B         O2B         H30     109.103    2.13
+JBT         C4B         O4B         C1B     109.903    1.50
+JBT         O4B         C1B         N9A     108.477    1.50
+JBT         O4B         C1B         C2B     106.047    1.50
+JBT         O4B         C1B         H31     109.807    1.50
+JBT         N9A         C1B         C2B     113.824    1.50
+JBT         N9A         C1B         H31     109.561    1.50
+JBT         C2B         C1B         H31     109.015    1.50
+JBT         C1B         N9A         C4A     127.459    1.80
+JBT         C1B         N9A         C8A     126.848    1.91
+JBT         C4A         N9A         C8A     105.693    1.50
+JBT         N3A         C4A         N9A     127.895    1.50
+JBT         N3A         C4A         C5A     126.489    1.50
+JBT         N9A         C4A         C5A     105.616    1.50
+JBT         C2A         N3A         C4A     110.982    1.50
+JBT         N3A         C2A         N1A     129.332    1.50
+JBT         N3A         C2A         H32     115.355    1.50
+JBT         N1A         C2A         H32     115.313    1.50
+JBT         N9A         C8A         N7A     113.469    1.50
+JBT         N9A         C8A         H33     123.206    1.50
+JBT         N7A         C8A         H33     123.326    1.50
+JBT         C5A         N7A         C8A     104.739    1.50
+JBT         C4A         C5A         C6A     117.270    1.50
+JBT         C4A         C5A         N7A     110.483    1.50
+JBT         C6A         C5A         N7A     132.247    1.50
+JBT         N1A         C6A         C5A     117.409    1.50
+JBT         N1A         C6A         N6A     118.799    1.50
+JBT         C5A         C6A         N6A     123.792    1.50
+JBT         C2A         N1A         C6A     118.521    1.50
+JBT         C6A         N6A         H34     119.723    1.50
+JBT         C6A         N6A         H35     119.723    1.50
+JBT         H34         N6A         H35     120.554    1.88
+JBT          O6          C6          C5     128.244    1.50
+JBT          O6          C6          N1     120.389    1.50
+JBT          C5          C6          N1     111.367    1.50
+JBT          N7          C5          C6     129.975    1.50
+JBT          N7          C5          C4     110.629    1.50
+JBT          C6          C5          C4     119.397    1.50
+JBT          C5          N7          C8     103.927    1.50
+JBT          N7          C8          N9     112.130    1.94
+JBT          N7          C8         H36     123.170    1.50
+JBT          N9          C8         H36     124.701    2.19
+JBT          C6          N1          C2     125.351    1.50
+JBT          C6          N1         H37     116.978    2.44
+JBT          C2          N1         H37     117.677    2.71
+JBT          N1          C2          N3     123.603    1.50
+JBT          N1          C2          N2     116.575    1.50
+JBT          N3          C2          N2     119.821    1.50
+JBT          C2          N2         H38     119.868    1.50
+JBT          C2          N2         H39     119.868    1.50
+JBT         H38          N2         H39     120.263    1.96
+JBT          C4          N3          C2     112.066    1.50
+JBT          C5          C4          N9     106.805    1.69
+JBT          C5          C4          N3     128.211    1.50
+JBT          N9          C4          N3     124.984    1.50
+JBT          C8          N9          C4     107.594    1.50
+JBT          C8          N9       "C1'"     126.078    2.46
+JBT          C4          N9       "C1'"     125.158    1.54
+JBT          N9       "C1'"       "O4'"     108.167    1.51
+JBT          N9       "C1'"       "C2'"     113.752    2.20
+JBT          N9       "C1'"         H40     109.246    1.50
+JBT       "O4'"       "C1'"       "C2'"     106.047    1.50
+JBT       "O4'"       "C1'"         H40     109.807    1.50
+JBT       "C2'"       "C1'"         H40     109.015    1.50
+JBT       "C1'"       "O4'"       "C4'"     109.903    1.50
+JBT       "C1'"       "C2'"       "C3'"     101.239    1.50
+JBT       "C1'"       "C2'"       "O2'"     111.715    2.69
+JBT       "C1'"       "C2'"         H41     110.636    1.70
+JBT       "C3'"       "C2'"       "O2'"     112.782    2.45
+JBT       "C3'"       "C2'"         H41     110.596    1.51
+JBT       "O2'"       "C2'"         H41     110.448    1.97
+JBT       "C2'"       "O2'"         H42     109.103    2.13
+JBT       "C4'"       "C3'"       "C2'"     102.602    1.50
+JBT       "C4'"       "C3'"       "O3'"     111.281    2.46
+JBT       "C4'"       "C3'"         H43     110.452    2.54
+JBT       "C2'"       "C3'"       "O3'"     111.581    2.83
+JBT       "C2'"       "C3'"         H43     110.504    1.75
+JBT       "O3'"       "C3'"         H43     110.380    1.67
+JBT       "C3'"       "O3'"         H44     108.744    3.00
+JBT       "O4'"       "C4'"       "C5'"     109.123    1.50
+JBT       "O4'"       "C4'"       "C3'"     105.388    1.50
+JBT       "O4'"       "C4'"         H45     108.947    1.50
+JBT       "C5'"       "C4'"       "C3'"     116.008    1.52
+JBT       "C5'"       "C4'"         H45     108.268    1.50
+JBT       "C3'"       "C4'"         H45     109.363    1.86
+JBT       "C4'"       "C5'"       "O5'"     109.342    1.50
+JBT       "C4'"       "C5'"         H46     109.624    1.50
+JBT       "C4'"       "C5'"         H47     109.624    1.50
+JBT       "O5'"       "C5'"         H46     109.845    1.50
+JBT       "O5'"       "C5'"         H47     109.845    1.50
+JBT         H46       "C5'"         H47     108.472    1.50
+JBT       "C5'"       "O5'"           P     118.553    2.41
+JBT         OPP           P         O2P     108.816    2.14
+JBT         OPP           P       "O5'"     101.065    1.97
+JBT         OPP           P         O1P     108.816    2.14
+JBT         O2P           P       "O5'"     109.410    1.50
+JBT         O2P           P         O1P     118.411    2.35
+JBT       "O5'"           P         O1P     109.410    1.50
+JBT          P2         OPP           P     132.542    3.00
+JBT         O3P          P2         O1G     108.530    2.45
+JBT         O3P          P2         OPP     108.570    2.41
+JBT         O3P          P2         O4P     116.964    2.85
+JBT         O1G          P2         OPP     101.077    2.30
+JBT         O1G          P2         O4P     108.530    2.45
+JBT         OPP          P2         O4P     108.570    2.41
+JBT         C1G         O1G          P2     122.306    2.63
+JBT         O5G         C1G         C2G     110.164    1.50
+JBT         O5G         C1G         O1G     110.394    2.23
+JBT         O5G         C1G         H50     109.272    1.61
+JBT         C2G         C1G         O1G     108.240    1.70
+JBT         C2G         C1G         H50     109.599    1.50
+JBT         O1G         C1G         H50     109.322    1.50
+JBT         C5G         O5G         C1G     113.152    1.70
+JBT         C6G         C5G         O5G     107.094    1.50
+JBT         C6G         C5G         C4G     115.626    1.50
+JBT         C6G         C5G         H51     109.260    1.50
+JBT         O5G         C5G         C4G     107.969    1.58
+JBT         O5G         C5G         H51     108.843    1.50
+JBT         C4G         C5G         H51     108.738    2.27
+JBT         C5G         C6G         H52     109.535    1.50
+JBT         C5G         C6G         H53     109.535    1.50
+JBT         C5G         C6G         H54     109.535    1.50
+JBT         H52         C6G         H53     109.383    1.59
+JBT         H52         C6G         H54     109.383    1.59
+JBT         H53         C6G         H54     109.383    1.59
+JBT         O2G         C2G         C1G     109.976    1.78
+JBT         O2G         C2G         C3G     110.081    2.02
+JBT         O2G         C2G         H55     108.551    1.50
+JBT         C1G         C2G         C3G     111.404    1.62
+JBT         C1G         C2G         H55     108.925    1.50
+JBT         C3G         C2G         H55     109.166    1.50
+JBT         C2G         O2G         H56     109.126    2.06
+JBT         C4G         C3G         C2G     110.742    1.50
+JBT         C4G         C3G         O3G     110.124    1.87
+JBT         C4G         C3G         H57     108.987    1.50
+JBT         C2G         C3G         O3G     110.081    2.02
+JBT         C2G         C3G         H57     109.166    1.50
+JBT         O3G         C3G         H57     108.954    1.50
+JBT         C3G         O3G         H58     108.064    2.53
+JBT         C5G         C4G         N4A     111.865    2.42
+JBT         C5G         C4G         C3G     111.124    1.57
+JBT         C5G         C4G         H59     106.721    1.50
+JBT         N4A         C4G         C3G     110.827    2.19
+JBT         N4A         C4G         H59     108.110    1.50
+JBT         C3G         C4G         H59     107.258    1.68
+JBT         C4G         N4A         C01     114.477    2.43
+JBT         C4G         N4A         H60     107.785    2.86
+JBT         C01         N4A         H60     111.861    3.00
+JBT         S1P         C01         N4A     109.471    3.00
+JBT         S1P         C01         C02     112.239    3.00
+JBT         S1P         C01         H62     107.632    1.50
+JBT         N4A         C01         C02     111.883    2.59
+JBT         N4A         C01         H62     109.140    1.50
+JBT         C02         C01         H62     108.681    1.50
+JBT         C01         C02         H63     109.528    1.50
+JBT         C01         C02         H64     109.528    1.50
+JBT         C01         C02         H65     109.528    1.50
+JBT         H63         C02         H64     109.399    1.50
+JBT         H63         C02         H65     109.399    1.50
+JBT         H64         C02         H65     109.399    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JBT           sp3_sp3_163         CBP         CAP         OAP         H12     180.000    10.0     3
+JBT           sp3_sp3_142         C9P         CAP         CBP         CDP     180.000    10.0     3
+JBT           sp3_sp3_112         CEP         CBP         CDP         H13     -60.000    10.0     3
+JBT           sp3_sp3_127         CDP         CBP         CEP         H16     -60.000    10.0     3
+JBT           sp3_sp3_133         CDP         CBP         CCP         O6A      60.000    10.0     3
+JBT           sp3_sp3_139         CBP         CCP         O6A         P2A     180.000    10.0     3
+JBT           sp3_sp3_159         CCP         O6A         P2A         O4A      60.000    10.0     3
+JBT           sp3_sp3_156         P1A         O3A         P2A         O4A      60.000    10.0     3
+JBT             sp2_sp2_9         C6P         C5P         N4P         C3P     180.000     5.0     2
+JBT            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+JBT           sp3_sp3_161         P2A         O3A         P1A         O5B     -60.000    10.0     3
+JBT           sp3_sp3_151         C5B         O5B         P1A         O3A     180.000    10.0     3
+JBT           sp3_sp3_115         C4B         C5B         O5B         P1A     180.000    10.0     3
+JBT            sp3_sp3_88         O4B         C4B         C5B         O5B     180.000    10.0     3
+JBT           sp3_sp3_101         O3B         C3B         C4B         C5B     180.000    10.0     3
+JBT            sp3_sp3_26         C5B         C4B         O4B         C1B     -60.000    10.0     3
+JBT            sp3_sp3_85         C4B         C3B         O3B         P3B     180.000    10.0     3
+JBT            sp3_sp3_44         O2B         C2B         C3B         O3B     -60.000    10.0     3
+JBT            sp3_sp3_84         C3B         O3B         P3B         O9A      60.000    10.0     3
+JBT            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+JBT           sp3_sp3_118         C1B         C2B         O2B         H30     180.000    10.0     3
+JBT            sp3_sp3_32         O4B         C1B         C2B         O2B     180.000    10.0     3
+JBT            sp3_sp3_29         N9A         C1B         O4B         C4B     180.000    10.0     3
+JBT             sp2_sp3_1         C4A         N9A         C1B         O4B     150.000    10.0     6
+JBT              const_32         N3A         C4A         N9A         C1B       0.000    10.0     2
+JBT              const_54         N7A         C8A         N9A         C1B     180.000    10.0     2
+JBT       const_sp2_sp2_2         N9A         C4A         N3A         C2A     180.000     5.0     2
+JBT              const_33         N3A         C4A         C5A         C6A       0.000    10.0     2
+JBT           sp3_sp3_175         S1P         C2P         C3P         N4P     180.000    10.0     3
+JBT       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+JBT       const_sp2_sp2_5         N3A         C2A         N1A         C6A       0.000     5.0     2
+JBT              const_39         N9A         C8A         N7A         C5A       0.000    10.0     2
+JBT              const_37         C4A         C5A         N7A         C8A       0.000    10.0     2
+JBT              const_10         C4A         C5A         C6A         N6A     180.000    10.0     2
+JBT       const_sp2_sp2_8         N6A         C6A         N1A         C2A     180.000     5.0     2
+JBT             sp2_sp2_3         N1A         C6A         N6A         H34       0.000     5.0     2
+JBT              const_16          N7          C5          C6          O6       0.000    10.0     2
+JBT              const_59          O6          C6          N1          C2     180.000    10.0     2
+JBT           sp3_sp3_184         C3P         C2P         S1P         C01     180.000    10.0     3
+JBT              const_42          C6          C5          N7          C8     180.000    10.0     2
+JBT              const_17          N9          C4          C5          N7       0.000    10.0     2
+JBT              const_43          N9          C8          N7          C5       0.000    10.0     2
+JBT              const_45          N7          C8          N9          C4       0.000    10.0     2
+JBT              const_27          N2          C2          N1          C6     180.000    10.0     2
+JBT            sp2_sp2_13          N1          C2          N2         H38     180.000     5.0     2
+JBT              const_24          N2          C2          N3          C4     180.000    10.0     2
+JBT              const_21          C5          C4          N3          C2       0.000    10.0     2
+JBT              const_49          C5          C4          N9          C8       0.000    10.0     2
+JBT            sp2_sp3_31          C8          N9       "C1'"       "O4'"     150.000    10.0     6
+JBT             sp3_sp3_2          N9       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+JBT           sp3_sp3_266          N9       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+JBT           sp3_sp3_187         N4A         C01         S1P         C2P     180.000    10.0     3
+JBT             sp3_sp3_5       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+JBT           sp3_sp3_271       "C1'"       "C2'"       "O2'"         H42     180.000    10.0     3
+JBT            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+JBT           sp3_sp3_274       "C4'"       "C3'"       "O3'"         H44     180.000    10.0     3
+JBT            sp3_sp3_11       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+JBT           sp3_sp3_247       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+JBT           sp3_sp3_256       "C4'"       "C5'"       "O5'"           P     180.000    10.0     3
+JBT           sp3_sp3_259       "C5'"       "O5'"           P         OPP     180.000    10.0     3
+JBT           sp3_sp3_246          P2         OPP           P         O2P      60.000    10.0     3
+JBT           sp3_sp3_166         C5P         C6P         C7P         N8P     180.000    10.0     3
+JBT           sp3_sp3_243           P         OPP          P2         O3P      60.000    10.0     3
+JBT           sp3_sp3_240         C1G         O1G          P2         O3P      60.000    10.0     3
+JBT           sp3_sp3_232         O5G         C1G         O1G          P2     180.000    10.0     3
+JBT            sp3_sp3_50         O1G         C1G         O5G         C5G     -60.000    10.0     3
+JBT           sp3_sp3_227         O1G         C1G         C2G         O2G     180.000    10.0     3
+JBT            sp3_sp3_53         C6G         C5G         O5G         C1G      60.000    10.0     3
+JBT           sp3_sp3_190         O5G         C5G         C6G         H52     180.000    10.0     3
+JBT            sp3_sp3_59         N4A         C4G         C5G         C6G     -60.000    10.0     3
+JBT            sp2_sp3_14         C9P         N8P         C7P         C6P     120.000    10.0     6
+JBT           sp3_sp3_199         C1G         C2G         O2G         H56     180.000    10.0     3
+JBT            sp3_sp3_77         O2G         C2G         C3G         O3G     -60.000    10.0     3
+JBT           sp3_sp3_235         C4G         C3G         O3G         H58     180.000    10.0     3
+JBT            sp3_sp3_68         O3G         C3G         C4G         N4A     180.000    10.0     3
+JBT           sp3_sp3_202         C5G         C4G         N4A         C01     180.000    10.0     3
+JBT           sp3_sp3_209         S1P         C01         N4A         C4G     -60.000    10.0     3
+JBT           sp3_sp3_214         S1P         C01         C02         H63     180.000    10.0     3
+JBT             sp2_sp2_7         O9P         C9P         N8P         C7P       0.000     5.0     2
+JBT             sp2_sp3_7         O9P         C9P         CAP         CBP       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JBT    chir_1    CAP    OAP    C9P    CBP    negative
+JBT    chir_2    CBP    CAP    CCP    CDP    both
+JBT    chir_3    P2A    O3A    O6A    O5A    both
+JBT    chir_4    P1A    O3A    O5B    O1A    both
+JBT    chir_5    C4B    O4B    C3B    C5B    negative
+JBT    chir_6    C3B    O3B    C4B    C2B    positive
+JBT    chir_7    P3B    O3B    O7A    O8A    both
+JBT    chir_8    C2B    O2B    C1B    C3B    negative
+JBT    chir_9    C1B    O4B    N9A    C2B    negative
+JBT    chir_10    "C1'"    "O4'"    N9    "C2'"    negative
+JBT    chir_11    "C2'"    "O2'"    "C1'"    "C3'"    negative
+JBT    chir_12    "C3'"    "O3'"    "C4'"    "C2'"    positive
+JBT    chir_13    "C4'"    "O4'"    "C3'"    "C5'"    negative
+JBT    chir_14    P    OPP    "O5'"    O1P    both
+JBT    chir_15    P2    OPP    O1G    O4P    both
+JBT    chir_16    C1G    O1G    O5G    C2G    negative
+JBT    chir_17    C5G    O5G    C4G    C6G    negative
+JBT    chir_18    C2G    O2G    C1G    C3G    positive
+JBT    chir_19    C3G    O3G    C2G    C4G    positive
+JBT    chir_20    C4G    N4A    C5G    C3G    positive
+JBT    chir_21    C01    S1P    N4A    C02    positive
+JBT    chir_22    N4A    C01    C4G    H60    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JBT    plan-1         C1B   0.020
+JBT    plan-1         C2A   0.020
+JBT    plan-1         C4A   0.020
+JBT    plan-1         C5A   0.020
+JBT    plan-1         C6A   0.020
+JBT    plan-1         C8A   0.020
+JBT    plan-1         H32   0.020
+JBT    plan-1         H33   0.020
+JBT    plan-1         N1A   0.020
+JBT    plan-1         N3A   0.020
+JBT    plan-1         N6A   0.020
+JBT    plan-1         N7A   0.020
+JBT    plan-1         N9A   0.020
+JBT    plan-2       "C1'"   0.020
+JBT    plan-2          C2   0.020
+JBT    plan-2          C4   0.020
+JBT    plan-2          C5   0.020
+JBT    plan-2          C6   0.020
+JBT    plan-2          C8   0.020
+JBT    plan-2         H36   0.020
+JBT    plan-2         H37   0.020
+JBT    plan-2          N1   0.020
+JBT    plan-2          N2   0.020
+JBT    plan-2          N3   0.020
+JBT    plan-2          N7   0.020
+JBT    plan-2          N9   0.020
+JBT    plan-2          O6   0.020
+JBT    plan-3         C5P   0.020
+JBT    plan-3         C6P   0.020
+JBT    plan-3         N4P   0.020
+JBT    plan-3         O5P   0.020
+JBT    plan-4         C3P   0.020
+JBT    plan-4         C5P   0.020
+JBT    plan-4          H1   0.020
+JBT    plan-4         N4P   0.020
+JBT    plan-5         C7P   0.020
+JBT    plan-5         C9P   0.020
+JBT    plan-5         H10   0.020
+JBT    plan-5         N8P   0.020
+JBT    plan-6         C9P   0.020
+JBT    plan-6         CAP   0.020
+JBT    plan-6         N8P   0.020
+JBT    plan-6         O9P   0.020
+JBT    plan-7         C6A   0.020
+JBT    plan-7         H34   0.020
+JBT    plan-7         H35   0.020
+JBT    plan-7         N6A   0.020
+JBT    plan-8          C2   0.020
+JBT    plan-8         H38   0.020
+JBT    plan-8         H39   0.020
+JBT    plan-8          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JBT           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                                                                                                                            O=P(O)(O)OC1C(O)C(OC1COP(=O)(O)OP(=O)(O)OCC(C)(C)C(O)C(=O)NCCC(=O)NCCSC(NC5C(OC(OP(=O)(OP(=O)(OCC4OC(n2c3N=C(N)NC(=O)c3nc2)C(O)C4O)O)O)C(O)C5O)C)C)n6c7ncnc(N)c7nc6
+JBT            InChI                InChI  1.03 InChI=1S/C39H64N13O30P5S/c1-15-20(24(55)26(57)37(76-15)80-87(71,72)82-85(67,68)73-9-17-23(54)25(56)35(77-17)52-14-47-22-32(52)49-38(41)50-33(22)60)48-16(2)88-8-7-42-19(53)5-6-43-34(61)29(59)39(3,4)11-75-86(69,70)81-84(65,66)74-10-18-28(79-83(62,63)64)27(58)36(78-18)51-13-46-21-30(40)44-12-45-31(21)51/h12-18,20,23-29,35-37,48,54-59H,5-11H2,1-4H3,(H,42,53)(H,43,61)(H,65,66)(H,67,68)(H,69,70)(H,71,72)(H2,40,44,45)(H2,62,63,64)(H3,41,49,50,60)/t15-,16+,17-,18-,20-,23-,24+,25-,26+,27-,28-,29+,35-,36-,37-/m1/s1
+JBT         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    JPJUGYYIHUXJRE-NLBQBQJKSA-N
+JBT SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                                                                                                                C[C@@H](N[C@@H]1[C@@H](C)O[C@H](O[P](O)(=O)O[P](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)n3cnc4C(=O)NC(=Nc34)N)[C@@H](O)[C@H]1O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[C@H]5O[C@H]([C@H](O)[C@@H]5O[P](O)(O)=O)n6cnc7c(N)ncnc67
+JBT           SMILES               CACTVS 3.370                                                                                                                                                                                                                                                                                                     C[CH](N[CH]1[CH](C)O[CH](O[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH]([CH](O)[CH]2O)n3cnc4C(=O)NC(=Nc34)N)[CH](O)[CH]1O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]5O[CH]([CH](O)[CH]5O[P](O)(O)=O)n6cnc7c(N)ncnc67
+JBT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                                                                      C[C@@H]1[C@H]([C@@H]([C@@H]([C@H](O1)OP(=O)(O)OP(=O)(O)OC[C@@H]2[C@H]([C@H]([C@@H](O2)n3cnc4c3N=C(NC4=O)N)O)O)O)O)N[C@H](C)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@@H]5[C@H]([C@H]([C@@H](O5)n6cnc7c6ncnc7N)O)OP(=O)(O)O)O
+JBT           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                                                                                                                                          CC1C(C(C(C(O1)OP(=O)(O)OP(=O)(O)OCC2C(C(C(O2)n3cnc4c3N=C(NC4=O)N)O)O)O)O)NC(C)SCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC5C(C(C(O5)n6cnc7c6ncnc7N)O)OP(=O)(O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JBT acedrg               243         "dictionary generator"                  
+JBT acedrg_database      11          "data source"                           
+JBT rdkit                2017.03.2   "Chemoinformatics tool"
+JBT refmac5              5.8.0238    "optimization tool"                     

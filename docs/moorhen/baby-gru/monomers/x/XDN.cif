@@ -1,0 +1,169 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XDN     XDN      PIPERIDINE-3,4,5-TRIOL     NON-POLYMER     20     9     .     
+#
+data_comp_XDN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XDN     C1      C       CH2     0       20.492      68.185      35.787      
+XDN     C2      C       CH1     0       20.196      68.848      37.122      
+XDN     O2      O       OH1     0       21.295      69.676      37.488      
+XDN     C3      C       CH1     0       19.917      67.798      38.189      
+XDN     O3      O       OH1     0       19.496      68.447      39.388      
+XDN     C4      C       CH1     0       18.833      66.830      37.736      
+XDN     O4      O       OH1     0       18.660      65.774      38.675      
+XDN     C5      C       CH2     0       19.180      66.241      36.378      
+XDN     N5      N       NT1     0       19.385      67.306      35.387      
+XDN     H11     H       H       0       20.623      68.871      35.112      
+XDN     H12     H       H       0       21.309      67.665      35.863      
+XDN     H2      H       H       0       19.400      69.409      37.029      
+XDN     HO2     H       H       0       21.060      70.133      38.154      
+XDN     H3      H       H       0       20.749      67.294      38.377      
+XDN     HO3     H       H       0       19.508      67.890      40.018      
+XDN     H4      H       H       0       17.992      67.324      37.663      
+XDN     HO4     H       H       0       17.934      65.389      38.494      
+XDN     H51     H       H       0       18.456      65.662      36.087      
+XDN     H52     H       H       0       19.989      65.710      36.457      
+XDN     HN5     H       H       0       19.567      66.943      34.598      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XDN          C1          C2      SINGLE       n     1.519  0.0103     1.519  0.0103
+XDN          C1          N5      SINGLE       n     1.467  0.0110     1.467  0.0110
+XDN          C2          O2      SINGLE       n     1.424  0.0100     1.424  0.0100
+XDN          C2          C3      SINGLE       n     1.521  0.0100     1.521  0.0100
+XDN          C3          O3      SINGLE       n     1.427  0.0125     1.427  0.0125
+XDN          C3          C4      SINGLE       n     1.521  0.0100     1.521  0.0100
+XDN          C4          O4      SINGLE       n     1.424  0.0100     1.424  0.0100
+XDN          C4          C5      SINGLE       n     1.519  0.0103     1.519  0.0103
+XDN          C5          N5      SINGLE       n     1.467  0.0110     1.467  0.0110
+XDN          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0195
+XDN          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0195
+XDN          C2          H2      SINGLE       n     1.089  0.0100     0.978  0.0167
+XDN          O2         HO2      SINGLE       n     0.970  0.0120     0.841  0.0200
+XDN          C3          H3      SINGLE       n     1.089  0.0100     0.990  0.0140
+XDN          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+XDN          C4          H4      SINGLE       n     1.089  0.0100     0.978  0.0167
+XDN          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+XDN          C5         H51      SINGLE       n     1.089  0.0100     0.971  0.0195
+XDN          C5         H52      SINGLE       n     1.089  0.0100     0.971  0.0195
+XDN          N5         HN5      SINGLE       n     1.036  0.0160     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XDN          C2          C1          N5     110.258    1.51
+XDN          C2          C1         H11     108.826    1.78
+XDN          C2          C1         H12     108.826    1.78
+XDN          N5          C1         H11     109.326    1.50
+XDN          N5          C1         H12     109.326    1.50
+XDN         H11          C1         H12     108.406    1.54
+XDN          C1          C2          O2     109.653    2.18
+XDN          C1          C2          C3     110.559    1.78
+XDN          C1          C2          H2     109.232    1.50
+XDN          O2          C2          C3     111.445    1.50
+XDN          O2          C2          H2     109.251    2.36
+XDN          C3          C2          H2     108.539    1.50
+XDN          C2          O2         HO2     107.637    2.41
+XDN          C2          C3          O3     109.464    2.12
+XDN          C2          C3          C4     110.796    1.54
+XDN          C2          C3          H3     109.462    1.50
+XDN          O3          C3          C4     109.464    2.12
+XDN          O3          C3          H3     108.767    1.50
+XDN          C4          C3          H3     109.462    1.50
+XDN          C3          O3         HO3     108.895    2.41
+XDN          C3          C4          O4     111.445    1.50
+XDN          C3          C4          C5     110.559    1.78
+XDN          C3          C4          H4     108.539    1.50
+XDN          O4          C4          C5     109.653    2.18
+XDN          O4          C4          H4     109.251    2.36
+XDN          C5          C4          H4     109.232    1.50
+XDN          C4          O4         HO4     107.637    2.41
+XDN          C4          C5          N5     110.258    1.51
+XDN          C4          C5         H51     108.826    1.78
+XDN          C4          C5         H52     108.826    1.78
+XDN          N5          C5         H51     109.326    1.50
+XDN          N5          C5         H52     109.326    1.50
+XDN         H51          C5         H52     108.406    1.54
+XDN          C1          N5          C5     110.415    1.50
+XDN          C1          N5         HN5     109.383    3.00
+XDN          C5          N5         HN5     109.383    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XDN             sp3_sp3_2          N5          C1          C2          O2     180.000    10.0     3
+XDN            sp3_sp3_43          C2          C1          N5          C5     180.000    10.0     3
+XDN            sp3_sp3_49          C1          C2          O2         HO2     180.000    10.0     3
+XDN            sp3_sp3_14          O2          C2          C3          O3     -60.000    10.0     3
+XDN            sp3_sp3_52          C2          C3          O3         HO3     180.000    10.0     3
+XDN            sp3_sp3_23          O3          C3          C4          O4      60.000    10.0     3
+XDN            sp3_sp3_55          C3          C4          O4         HO4     180.000    10.0     3
+XDN            sp3_sp3_31          O4          C4          C5          N5     180.000    10.0     3
+XDN            sp3_sp3_37          C4          C5          N5          C1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XDN    chir_1    C2    O2    C3    C1    positive
+XDN    chir_2    C3    O3    C4    C2    negative
+XDN    chir_3    C4    O4    C3    C5    negative
+XDN    chir_4    N5    C5    C1    HN5    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XDN           SMILES              ACDLabs 12.01                                                OC1CNCC(O)C1O
+XDN            InChI                InChI  1.03 InChI=1S/C5H11NO3/c7-3-1-6-2-4(8)5(3)9/h3-9H,1-2H2/t3-,4+,5+
+XDN         InChIKey                InChI  1.03                                  RMCNETIHECSPMZ-SCDXWVJYSA-N
+XDN SMILES_CANONICAL               CACTVS 3.370                                  O[C@H]1CNC[C@@H](O)[C@@H]1O
+XDN           SMILES               CACTVS 3.370                                       O[CH]1CNC[CH](O)[CH]1O
+XDN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                    C1[C@H](C([C@H](CN1)O)O)O
+XDN           SMILES "OpenEye OEToolkits" 1.7.6                                            C1C(C(C(CN1)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XDN acedrg               243         "dictionary generator"                  
+XDN acedrg_database      11          "data source"                           
+XDN rdkit                2017.03.2   "Chemoinformatics tool"
+XDN refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,226 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IMB     IMB      "[(ISOQUINOLIN-1-YLAMINO)-PHOSPHONO-METHYL]-PHOSPHONIC ACID"     NON-POLYMER     28     20     .     
+#
+data_comp_IMB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IMB     N1      N       NRD6    0       22.205      19.036      28.253      
+IMB     C2      C       CR6     0       22.237      19.646      27.060      
+IMB     C3      C       CR66    0       21.030      20.187      26.473      
+IMB     C4      C       CR66    0       19.813      20.046      27.197      
+IMB     C5      C       CR16    0       19.852      19.388      28.452      
+IMB     C6      C       CR16    0       21.043      18.915      28.919      
+IMB     C9      C       CR16    0       21.000      20.847      25.212      
+IMB     C10     C       CR16    0       19.823      21.334      24.710      
+IMB     C11     C       CR16    0       18.622      21.191      25.433      
+IMB     C12     C       CR16    0       18.615      20.564      26.643      
+IMB     N17     N       NT1     0       23.446      19.751      26.417      
+IMB     C18     C       CH1     0       23.767      18.893      25.272      
+IMB     P20     P       P       0       24.327      17.244      25.807      
+IMB     P21     P       P       0       24.958      19.738      24.183      
+IMB     O23     O       O       0       24.873      19.082      22.834      
+IMB     O25     O       OP      -1      26.319      19.570      24.801      
+IMB     O26     O       OP      -1      24.548      21.184      24.126      
+IMB     O28     O       OP      -1      24.802      16.526      24.575      
+IMB     O30     O       O       0       23.149      16.552      26.436      
+IMB     O31     O       OP      -1      25.442      17.455      26.793      
+IMB     H5      H       H       0       19.043      19.276      28.968      
+IMB     H6      H       H       0       21.060      18.469      29.774      
+IMB     H9      H       H       0       21.794      20.949      24.720      
+IMB     H10     H       H       0       19.816      21.770      23.872      
+IMB     H11     H       H       0       17.817      21.531      25.076      
+IMB     H12     H       H       0       17.805      20.473      27.119      
+IMB     H17     H       H       0       24.136      19.944      26.925      
+IMB     H18     H       H       0       22.937      18.770      24.760      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IMB          N1          C2      DOUBLE       y     1.335  0.0100     1.335  0.0100
+IMB          N1          C6      SINGLE       y     1.335  0.0118     1.335  0.0118
+IMB          C2          C3      SINGLE       y     1.443  0.0100     1.443  0.0100
+IMB          C2         N17      SINGLE       n     1.367  0.0200     1.367  0.0200
+IMB          C3          C4      DOUBLE       y     1.421  0.0102     1.421  0.0102
+IMB          C3          C9      SINGLE       y     1.418  0.0111     1.418  0.0111
+IMB          C4          C5      SINGLE       y     1.415  0.0105     1.415  0.0105
+IMB          C4         C12      SINGLE       y     1.415  0.0105     1.415  0.0105
+IMB          C5          C6      DOUBLE       y     1.358  0.0100     1.358  0.0100
+IMB          C9         C10      DOUBLE       y     1.363  0.0129     1.363  0.0129
+IMB         C10         C11      SINGLE       y     1.402  0.0131     1.402  0.0131
+IMB         C11         C12      DOUBLE       y     1.358  0.0118     1.358  0.0118
+IMB         N17         C18      SINGLE       n     1.466  0.0100     1.466  0.0100
+IMB         C18         P20      SINGLE       n     1.827  0.0200     1.827  0.0200
+IMB         C18         P21      SINGLE       n     1.827  0.0200     1.827  0.0200
+IMB         P20         O28      SINGLE       n     1.505  0.0200     1.505  0.0200
+IMB         P20         O30      DOUBLE       n     1.505  0.0200     1.505  0.0200
+IMB         P20         O31      SINGLE       n     1.505  0.0200     1.505  0.0200
+IMB         P21         O23      DOUBLE       n     1.505  0.0200     1.505  0.0200
+IMB         P21         O25      SINGLE       n     1.505  0.0200     1.505  0.0200
+IMB         P21         O26      SINGLE       n     1.505  0.0200     1.505  0.0200
+IMB          C5          H5      SINGLE       n     1.082  0.0130     0.967  0.0200
+IMB          C6          H6      SINGLE       n     1.082  0.0130     0.965  0.0200
+IMB          C9          H9      SINGLE       n     1.082  0.0130     0.940  0.0117
+IMB         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0184
+IMB         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0184
+IMB         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0192
+IMB         N17         H17      SINGLE       n     1.016  0.0100     0.877  0.0200
+IMB         C18         H18      SINGLE       n     1.089  0.0100     0.983  0.0180
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IMB          C2          N1          C6     118.391    1.50
+IMB          N1          C2          C3     121.175    1.50
+IMB          N1          C2         N17     118.545    2.32
+IMB          C3          C2         N17     120.280    1.83
+IMB          C2          C3          C4     119.462    1.50
+IMB          C2          C3          C9     121.665    1.72
+IMB          C4          C3          C9     118.872    1.50
+IMB          C3          C4          C5     119.005    1.50
+IMB          C3          C4         C12     119.124    1.50
+IMB          C5          C4         C12     121.871    1.50
+IMB          C4          C5          C6     119.266    1.50
+IMB          C4          C5          H5     120.205    1.50
+IMB          C6          C5          H5     120.529    1.50
+IMB          N1          C6          C5     122.699    1.50
+IMB          N1          C6          H6     118.185    1.50
+IMB          C5          C6          H6     119.116    1.51
+IMB          C3          C9         C10     120.618    1.50
+IMB          C3          C9          H9     119.592    1.50
+IMB         C10          C9          H9     119.790    1.50
+IMB          C9         C10         C11     120.263    1.50
+IMB          C9         C10         H10     119.896    1.50
+IMB         C11         C10         H10     119.840    1.50
+IMB         C10         C11         C12     120.263    1.50
+IMB         C10         C11         H11     119.840    1.50
+IMB         C12         C11         H11     119.896    1.50
+IMB          C4         C12         C11     120.860    1.50
+IMB          C4         C12         H12     119.456    1.50
+IMB         C11         C12         H12     119.684    1.50
+IMB          C2         N17         C18     117.868    3.00
+IMB          C2         N17         H17     115.343    2.89
+IMB         C18         N17         H17     113.811    3.00
+IMB         N17         C18         P20     112.238    3.00
+IMB         N17         C18         P21     112.238    3.00
+IMB         N17         C18         H18     108.034    1.59
+IMB         P20         C18         P21     114.813    3.00
+IMB         P20         C18         H18     108.528    1.50
+IMB         P21         C18         H18     108.528    1.50
+IMB         C18         P20         O28     110.326    3.00
+IMB         C18         P20         O30     110.326    3.00
+IMB         C18         P20         O31     110.326    3.00
+IMB         O28         P20         O30     112.502    1.50
+IMB         O28         P20         O31     112.502    1.50
+IMB         O30         P20         O31     112.502    1.50
+IMB         C18         P21         O23     110.326    3.00
+IMB         C18         P21         O25     110.326    3.00
+IMB         C18         P21         O26     110.326    3.00
+IMB         O23         P21         O25     112.502    1.50
+IMB         O23         P21         O26     112.502    1.50
+IMB         O25         P21         O26     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IMB              const_22         N17          C2          N1          C6     180.000    10.0     2
+IMB              const_35          C5          C6          N1          C2       0.000    10.0     2
+IMB             sp2_sp3_2          C2         N17         C18         P20     120.000    10.0     6
+IMB             sp3_sp3_1         N17         C18         P20         O28     180.000    10.0     3
+IMB            sp3_sp3_15         N17         C18         P21         O23     -60.000    10.0     3
+IMB             sp2_sp2_3          N1          C2         N17         C18       0.000     5.0     2
+IMB              const_25         N17          C2          C3          C4     180.000    10.0     2
+IMB       const_sp2_sp2_1          C2          C3          C4          C5       0.000     5.0     2
+IMB              const_39          C2          C3          C9         C10     180.000    10.0     2
+IMB              const_27          C3          C4          C5          C6       0.000    10.0     2
+IMB       const_sp2_sp2_5         C11         C12          C4          C3       0.000     5.0     2
+IMB              const_31          C4          C5          C6          N1       0.000    10.0     2
+IMB              const_17         C11         C10          C9          C3       0.000    10.0     2
+IMB              const_13          C9         C10         C11         C12       0.000    10.0     2
+IMB       const_sp2_sp2_9         C10         C11         C12          C4       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IMB    chir_1    C18    P20    P21    N17    both
+IMB    chir_2    P20    O28    O31    O30    both
+IMB    chir_3    P21    O25    O26    O23    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IMB    plan-1         C10   0.020
+IMB    plan-1         C11   0.020
+IMB    plan-1         C12   0.020
+IMB    plan-1          C2   0.020
+IMB    plan-1          C3   0.020
+IMB    plan-1          C4   0.020
+IMB    plan-1          C5   0.020
+IMB    plan-1          C6   0.020
+IMB    plan-1          C9   0.020
+IMB    plan-1         H10   0.020
+IMB    plan-1         H11   0.020
+IMB    plan-1         H12   0.020
+IMB    plan-1          H5   0.020
+IMB    plan-1          H6   0.020
+IMB    plan-1          H9   0.020
+IMB    plan-1          N1   0.020
+IMB    plan-1         N17   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IMB           SMILES              ACDLabs 10.04                                                                                       O=P(O)(O)C(Nc2nccc1ccccc12)P(=O)(O)O
+IMB SMILES_CANONICAL               CACTVS 3.341                                                                                   O[P](O)(=O)C(Nc1nccc2ccccc12)[P](O)(O)=O
+IMB           SMILES               CACTVS 3.341                                                                                   O[P](O)(=O)C(Nc1nccc2ccccc12)[P](O)(O)=O
+IMB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     c1ccc2c(c1)ccnc2NC(P(=O)(O)O)P(=O)(O)O
+IMB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                     c1ccc2c(c1)ccnc2NC(P(=O)(O)O)P(=O)(O)O
+IMB            InChI                InChI  1.03 InChI=1S/C10H12N2O6P2/c13-19(14,15)10(20(16,17)18)12-9-8-4-2-1-3-7(8)5-6-11-9/h1-6,10H,(H,11,12)(H2,13,14,15)(H2,16,17,18)
+IMB         InChIKey                InChI  1.03                                                                                                JPVMIOWESIQIGB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IMB acedrg               243         "dictionary generator"                  
+IMB acedrg_database      11          "data source"                           
+IMB rdkit                2017.03.2   "Chemoinformatics tool"
+IMB refmac5              5.8.0238    "optimization tool"                     

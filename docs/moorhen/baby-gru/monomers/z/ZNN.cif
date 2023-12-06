@@ -1,0 +1,184 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZNN     ZNN      N-(4-aminobutyl)-2-azidoacetamide     NON-POLYMER     25     12     .     
+#
+data_comp_ZNN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZNN     N       N       NT2     0       29.740      12.421      43.291      
+ZNN     CA      C       CH2     0       28.989      13.055      44.378      
+ZNN     CB      C       CH2     0       29.071      12.327      45.712      
+ZNN     CG      C       CH2     0       28.540      13.129      46.892      
+ZNN     CD      C       CH2     0       27.030      13.044      47.044      
+ZNN     NE      N       NH1     0       26.313      13.811      46.033      
+ZNN     CZ      C       C       0       26.221      15.145      46.041      
+ZNN     O       O       O       0       26.718      15.857      46.917      
+ZNN     CO      C       CH2     0       25.467      15.769      44.904      
+ZNN     N6      N       N       0       24.020      15.603      45.092      
+ZNN     N8      N       NSP     1       23.504      16.313      46.041      
+ZNN     N9      N       NSP     -1      23.055      16.934      46.878      
+ZNN     H1      H       H       0       29.844      12.981      42.610      
+ZNN     H2      H       H       0       30.552      12.183      43.561      
+ZNN     H4      H       H       0       28.049      13.116      44.113      
+ZNN     H5      H       H       0       29.324      13.968      44.498      
+ZNN     H6      H       H       0       30.009      12.097      45.884      
+ZNN     H7      H       H       0       28.567      11.489      45.641      
+ZNN     H8      H       H       0       28.798      14.069      46.784      
+ZNN     H9      H       H       0       28.959      12.797      47.715      
+ZNN     H10     H       H       0       26.778      13.375      47.933      
+ZNN     H11     H       H       0       26.752      12.105      46.987      
+ZNN     H12     H       H       0       25.924      13.365      45.391      
+ZNN     H13     H       H       0       25.732      15.350      44.061      
+ZNN     H14     H       H       0       25.678      16.722      44.849      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZNN           N          CA      SINGLE       n     1.466  0.0117     1.466  0.0117
+ZNN          CA          CB      SINGLE       n     1.521  0.0102     1.521  0.0102
+ZNN          CO          N6      SINGLE       n     1.469  0.0125     1.469  0.0125
+ZNN          CZ          CO      SINGLE       n     1.498  0.0200     1.498  0.0200
+ZNN          N6          N8      DOUBLE       n     1.293  0.0200     1.293  0.0200
+ZNN          CB          CG      SINGLE       n     1.519  0.0150     1.519  0.0150
+ZNN          N8          N9      DOUBLE       n     1.135  0.0160     1.135  0.0160
+ZNN          NE          CZ      SINGLE       n     1.335  0.0100     1.335  0.0100
+ZNN          CD          NE      SINGLE       n     1.456  0.0109     1.456  0.0109
+ZNN          CZ           O      DOUBLE       n     1.232  0.0104     1.232  0.0104
+ZNN          CG          CD      SINGLE       n     1.517  0.0143     1.517  0.0143
+ZNN           N          H1      SINGLE       n     1.036  0.0160     0.888  0.0200
+ZNN           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+ZNN          CA          H4      SINGLE       n     1.089  0.0100     0.979  0.0106
+ZNN          CA          H5      SINGLE       n     1.089  0.0100     0.979  0.0106
+ZNN          CB          H6      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZNN          CB          H7      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZNN          CG          H8      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZNN          CG          H9      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZNN          CD         H10      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZNN          CD         H11      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZNN          NE         H12      SINGLE       n     1.016  0.0100     0.872  0.0200
+ZNN          CO         H13      SINGLE       n     1.089  0.0100     0.978  0.0134
+ZNN          CO         H14      SINGLE       n     1.089  0.0100     0.978  0.0134
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZNN          CA           N          H1     110.839    3.00
+ZNN          CA           N          H2     110.839    3.00
+ZNN          H1           N          H2     107.243    3.00
+ZNN           N          CA          CB     114.751    2.00
+ZNN           N          CA          H4     108.763    1.50
+ZNN           N          CA          H5     108.763    1.50
+ZNN          CB          CA          H4     108.627    1.50
+ZNN          CB          CA          H5     108.627    1.50
+ZNN          H4          CA          H5     107.806    1.50
+ZNN          CA          CB          CG     113.118    2.03
+ZNN          CA          CB          H6     108.630    1.50
+ZNN          CA          CB          H7     108.630    1.50
+ZNN          CG          CB          H6     108.999    1.50
+ZNN          CG          CB          H7     108.999    1.50
+ZNN          H6          CB          H7     107.927    1.57
+ZNN          CB          CG          CD     112.652    1.50
+ZNN          CB          CG          H8     108.999    1.50
+ZNN          CB          CG          H9     108.999    1.50
+ZNN          CD          CG          H8     108.956    1.50
+ZNN          CD          CG          H9     108.956    1.50
+ZNN          H8          CG          H9     107.927    1.57
+ZNN          NE          CD          CG     112.624    1.50
+ZNN          NE          CD         H10     108.979    1.50
+ZNN          NE          CD         H11     108.979    1.50
+ZNN          CG          CD         H10     109.197    1.51
+ZNN          CG          CD         H11     109.197    1.51
+ZNN         H10          CD         H11     107.877    1.50
+ZNN          CZ          NE          CD     122.788    1.80
+ZNN          CZ          NE         H12     119.036    1.85
+ZNN          CD          NE         H12     118.176    1.90
+ZNN          CO          CZ          NE     116.274    1.50
+ZNN          CO          CZ           O     120.522    1.59
+ZNN          NE          CZ           O     123.204    1.50
+ZNN          N6          CO          CZ     110.034    2.57
+ZNN          N6          CO         H13     109.051    1.50
+ZNN          N6          CO         H14     109.051    1.50
+ZNN          CZ          CO         H13     109.672    1.50
+ZNN          CZ          CO         H14     109.672    1.50
+ZNN         H13          CO         H14     108.019    1.50
+ZNN          CO          N6          N8     115.160    1.71
+ZNN          N6          N8          N9     180.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZNN             sp3_sp3_1          CB          CA           N          H1     180.000    10.0     3
+ZNN             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+ZNN            sp3_sp3_16          CA          CB          CG          CD     180.000    10.0     3
+ZNN            sp3_sp3_25          NE          CD          CG          CB     180.000    10.0     3
+ZNN            sp2_sp3_11          CZ          NE          CD          CG     120.000    10.0     6
+ZNN             sp2_sp2_1          CO          CZ          NE          CD     180.000     5.0     2
+ZNN             sp2_sp3_5          NE          CZ          CO          N6     120.000    10.0     6
+ZNN             sp2_sp3_2          N8          N6          CO          CZ     120.000    10.0     6
+ZNN           other_tor_1          N9          N8          N6          CO      90.000    10.0     1
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZNN    plan-1          CD   0.020
+ZNN    plan-1          CZ   0.020
+ZNN    plan-1         H12   0.020
+ZNN    plan-1          NE   0.020
+ZNN    plan-2          CO   0.020
+ZNN    plan-2          CZ   0.020
+ZNN    plan-2          NE   0.020
+ZNN    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZNN           SMILES              ACDLabs 12.01                                      "[N-]=[N+]=N\CC(=O)NCCCCN"
+ZNN            InChI                InChI  1.03 InChI=1S/C6H13N5O/c7-3-1-2-4-9-6(12)5-10-11-8/h1-5,7H2,(H,9,12)
+ZNN         InChIKey                InChI  1.03                                     SISZTIABCFMEIA-UHFFFAOYSA-N
+ZNN SMILES_CANONICAL               CACTVS 3.385                                         NCCCCNC(=O)CN=[N+]=[N-]
+ZNN           SMILES               CACTVS 3.385                                         NCCCCNC(=O)CN=[N+]=[N-]
+ZNN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                       C(CCNC(=O)CN=[N+]=[N-])CN
+ZNN           SMILES "OpenEye OEToolkits" 1.7.6                                       C(CCNC(=O)CN=[N+]=[N-])CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZNN acedrg               243         "dictionary generator"                  
+ZNN acedrg_database      11          "data source"                           
+ZNN rdkit                2017.03.2   "Chemoinformatics tool"
+ZNN refmac5              5.8.0238    "optimization tool"                     

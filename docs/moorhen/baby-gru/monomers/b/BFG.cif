@@ -1,0 +1,284 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BFG     BFG      3,3-diphenyl-N-(2-sulfanylethyl)propanamide     NON-POLYMER     39     20     .     
+#
+data_comp_BFG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BFG     C4      C       CR6     0       19.325      9.383       13.179      
+BFG     C5      C       CR16    0       20.425      9.407       14.039      
+BFG     C6      C       CR16    0       20.699      10.528      14.814      
+BFG     C7      C       CH1     0       19.003      8.161       12.323      
+BFG     C8      C       CR6     0       18.192      7.136       13.110      
+BFG     C10     C       CR16    0       16.150      5.880       13.456      
+BFG     C13     C       CR16    0       18.735      6.491       14.221      
+BFG     C15     C       C       0       19.891      6.592       10.521      
+BFG     C2      C       CR16    0       18.791      11.633      13.903      
+BFG     C3      C       CR16    0       18.511      10.515      13.127      
+BFG     C14     C       CH2     0       20.249      7.548       11.653      
+BFG     N17     N       NH1     0       19.659      5.313       10.856      
+BFG     C18     C       CH2     0       19.272      4.276       9.910       
+BFG     C19     C       CH2     0       20.426      3.823       9.049       
+BFG     S20     S       SH1     0       19.951      2.542       7.860       
+BFG     O16     O       O       0       19.821      6.986       9.358       
+BFG     C12     C       CR16    0       17.996      5.557       14.936      
+BFG     C11     C       CR16    0       16.707      5.253       14.553      
+BFG     C9      C       CR16    0       16.886      6.815       12.738      
+BFG     C1      C       CR16    0       19.883      11.637      14.744      
+BFG     H5      H       H       0       20.990      8.654       14.098      
+BFG     H6      H       H       0       21.448      10.529      15.389      
+BFG     H7      H       H       0       18.419      8.482       11.580      
+BFG     H10     H       H       0       15.267      5.674       13.192      
+BFG     H13     H       H       0       19.617      6.691       14.490      
+BFG     H2      H       H       0       18.231      12.391      13.854      
+BFG     H3      H       H       0       17.760      10.523      12.555      
+BFG     H14     H       H       0       20.774      7.073       12.316      
+BFG     H14A    H       H       0       20.803      8.260       11.297      
+BFG     HN17    H       H       0       19.743      5.089       11.695      
+BFG     H18     H       H       0       18.557      4.616       9.331       
+BFG     H18A    H       H       0       18.922      3.504       10.404      
+BFG     H19     H       H       0       21.130      3.473       9.621       
+BFG     H19A    H       H       0       20.779      4.586       8.562       
+BFG     HS20    H       HSH1    0       20.959      2.566       7.205       
+BFG     H12     H       H       0       18.378      5.129       15.685      
+BFG     H11     H       H       0       16.205      4.618       15.040      
+BFG     H9      H       H       0       16.495      7.238       11.990      
+BFG     H1      H       H       0       20.072      12.397      15.271      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BFG          C4          C5      DOUBLE       y     1.391  0.0100     1.391  0.0100
+BFG          C4          C7      SINGLE       n     1.523  0.0100     1.523  0.0100
+BFG          C4          C3      SINGLE       y     1.391  0.0100     1.391  0.0100
+BFG          C5          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+BFG          C6          C1      DOUBLE       y     1.374  0.0127     1.374  0.0127
+BFG          C7          C8      SINGLE       n     1.523  0.0100     1.523  0.0100
+BFG          C7         C14      SINGLE       n     1.539  0.0119     1.539  0.0119
+BFG          C8         C13      SINGLE       y     1.391  0.0100     1.391  0.0100
+BFG          C8          C9      DOUBLE       y     1.391  0.0100     1.391  0.0100
+BFG         C10         C11      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BFG         C10          C9      SINGLE       y     1.386  0.0100     1.386  0.0100
+BFG         C13         C12      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BFG         C15         C14      SINGLE       n     1.519  0.0161     1.519  0.0161
+BFG         C15         N17      SINGLE       n     1.337  0.0118     1.337  0.0118
+BFG         C15         O16      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BFG          C2          C3      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BFG          C2          C1      SINGLE       y     1.374  0.0127     1.374  0.0127
+BFG         N17         C18      SINGLE       n     1.455  0.0100     1.455  0.0100
+BFG         C18         C19      SINGLE       n     1.509  0.0190     1.509  0.0190
+BFG         C19         S20      SINGLE       n     1.811  0.0100     1.811  0.0100
+BFG         C12         C11      SINGLE       y     1.374  0.0127     1.374  0.0127
+BFG          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+BFG          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+BFG          C7          H7      SINGLE       n     1.089  0.0100     0.997  0.0100
+BFG         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0175
+BFG         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0174
+BFG          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0175
+BFG          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0174
+BFG         C14         H14      SINGLE       n     1.089  0.0100     0.970  0.0100
+BFG         C14        H14A      SINGLE       n     1.089  0.0100     0.970  0.0100
+BFG         N17        HN17      SINGLE       n     1.016  0.0100     0.872  0.0200
+BFG         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0127
+BFG         C18        H18A      SINGLE       n     1.089  0.0100     0.981  0.0127
+BFG         C19         H19      SINGLE       n     1.089  0.0100     0.972  0.0107
+BFG         C19        H19A      SINGLE       n     1.089  0.0100     0.972  0.0107
+BFG         S20        HS20      SINGLE       n     1.338  0.0100     1.203  0.0200
+BFG         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0175
+BFG         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0161
+BFG          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+BFG          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BFG          C5          C4          C7     120.871    1.77
+BFG          C5          C4          C3     118.258    1.50
+BFG          C7          C4          C3     120.871    1.77
+BFG          C4          C5          C6     120.763    1.50
+BFG          C4          C5          H5     119.589    1.50
+BFG          C6          C5          H5     119.648    1.50
+BFG          C5          C6          C1     120.166    1.50
+BFG          C5          C6          H6     119.872    1.50
+BFG          C1          C6          H6     119.962    1.50
+BFG          C4          C7          C8     111.144    1.76
+BFG          C4          C7         C14     112.177    1.50
+BFG          C4          C7          H7     106.754    1.50
+BFG          C8          C7         C14     112.177    1.50
+BFG          C8          C7          H7     106.754    1.50
+BFG         C14          C7          H7     106.553    1.50
+BFG          C7          C8         C13     120.871    1.77
+BFG          C7          C8          C9     120.871    1.77
+BFG         C13          C8          C9     118.258    1.50
+BFG         C11         C10          C9     120.166    1.50
+BFG         C11         C10         H10     119.962    1.50
+BFG          C9         C10         H10     119.872    1.50
+BFG          C8         C13         C12     120.763    1.50
+BFG          C8         C13         H13     119.589    1.50
+BFG         C12         C13         H13     119.648    1.50
+BFG         C14         C15         N17     116.501    1.50
+BFG         C14         C15         O16     121.615    1.50
+BFG         N17         C15         O16     121.904    1.50
+BFG          C3          C2          C1     120.166    1.50
+BFG          C3          C2          H2     119.872    1.50
+BFG          C1          C2          H2     119.962    1.50
+BFG          C4          C3          C2     120.763    1.50
+BFG          C4          C3          H3     119.589    1.50
+BFG          C2          C3          H3     119.648    1.50
+BFG          C7         C14         C15     111.511    2.91
+BFG          C7         C14         H14     109.393    1.50
+BFG          C7         C14        H14A     109.393    1.50
+BFG         C15         C14         H14     108.929    1.50
+BFG         C15         C14        H14A     108.929    1.50
+BFG         H14         C14        H14A     107.705    1.50
+BFG         C15         N17         C18     123.437    1.80
+BFG         C15         N17        HN17     117.862    2.10
+BFG         C18         N17        HN17     118.700    1.83
+BFG         N17         C18         C19     112.117    1.54
+BFG         N17         C18         H18     109.102    1.50
+BFG         N17         C18        H18A     109.102    1.50
+BFG         C19         C18         H18     108.883    1.50
+BFG         C19         C18        H18A     108.883    1.50
+BFG         H18         C18        H18A     107.995    1.50
+BFG         C18         C19         S20     112.239    3.00
+BFG         C18         C19         H19     108.864    1.50
+BFG         C18         C19        H19A     108.864    1.50
+BFG         S20         C19         H19     108.594    1.76
+BFG         S20         C19        H19A     108.594    1.76
+BFG         H19         C19        H19A     108.165    1.50
+BFG         C19         S20        HS20      97.089    1.52
+BFG         C13         C12         C11     120.166    1.50
+BFG         C13         C12         H12     119.872    1.50
+BFG         C11         C12         H12     119.962    1.50
+BFG         C10         C11         C12     119.884    1.50
+BFG         C10         C11         H11     120.058    1.50
+BFG         C12         C11         H11     120.058    1.50
+BFG          C8          C9         C10     120.763    1.50
+BFG          C8          C9          H9     119.589    1.50
+BFG         C10          C9          H9     119.648    1.50
+BFG          C6          C1          C2     119.884    1.50
+BFG          C6          C1          H1     120.058    1.50
+BFG          C2          C1          H1     120.058    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BFG              const_23          C7          C4          C5          C6     180.000    10.0     2
+BFG             sp2_sp3_1          C5          C4          C7         C14     150.000    10.0     6
+BFG              const_42          C2          C3          C4          C7     180.000    10.0     2
+BFG            sp2_sp3_20         C15         N17         C18         C19     120.000    10.0     6
+BFG            sp3_sp3_10         N17         C18         C19         S20     180.000    10.0     3
+BFG            sp3_sp3_19         C18         C19         S20        HS20     180.000    10.0     3
+BFG       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+BFG              const_25          C4          C5          C6          C1       0.000    10.0     2
+BFG              const_29          C2          C1          C6          C5       0.000    10.0     2
+BFG             sp3_sp3_2         C15         C14          C7          C4     -60.000    10.0     3
+BFG             sp2_sp3_8         C13          C8          C7         C14     -90.000    10.0     6
+BFG              const_47          C7          C8          C9         C10     180.000    10.0     2
+BFG       const_sp2_sp2_2         C12         C13          C8          C7     180.000     5.0     2
+BFG              const_13          C9         C10         C11         C12       0.000    10.0     2
+BFG              const_17         C11         C10          C9          C8       0.000    10.0     2
+BFG       const_sp2_sp2_5         C11         C12         C13          C8       0.000     5.0     2
+BFG            sp2_sp3_14         N17         C15         C14          C7     120.000    10.0     6
+BFG             sp2_sp2_1         C14         C15         N17         C18     180.000     5.0     2
+BFG              const_33          C6          C1          C2          C3       0.000    10.0     2
+BFG              const_37          C1          C2          C3          C4       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BFG    chir_1    C7    C4    C8    C14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BFG    plan-1          C1   0.020
+BFG    plan-1          C2   0.020
+BFG    plan-1          C3   0.020
+BFG    plan-1          C4   0.020
+BFG    plan-1          C5   0.020
+BFG    plan-1          C6   0.020
+BFG    plan-1          C7   0.020
+BFG    plan-1          H1   0.020
+BFG    plan-1          H2   0.020
+BFG    plan-1          H3   0.020
+BFG    plan-1          H5   0.020
+BFG    plan-1          H6   0.020
+BFG    plan-2         C10   0.020
+BFG    plan-2         C11   0.020
+BFG    plan-2         C12   0.020
+BFG    plan-2         C13   0.020
+BFG    plan-2          C7   0.020
+BFG    plan-2          C8   0.020
+BFG    plan-2          C9   0.020
+BFG    plan-2         H10   0.020
+BFG    plan-2         H11   0.020
+BFG    plan-2         H12   0.020
+BFG    plan-2         H13   0.020
+BFG    plan-2          H9   0.020
+BFG    plan-3         C14   0.020
+BFG    plan-3         C15   0.020
+BFG    plan-3         N17   0.020
+BFG    plan-3         O16   0.020
+BFG    plan-4         C15   0.020
+BFG    plan-4         C18   0.020
+BFG    plan-4        HN17   0.020
+BFG    plan-4         N17   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BFG           SMILES              ACDLabs 12.01                                                                               O=C(NCCS)CC(c1ccccc1)c2ccccc2
+BFG SMILES_CANONICAL               CACTVS 3.370                                                                               SCCNC(=O)CC(c1ccccc1)c2ccccc2
+BFG           SMILES               CACTVS 3.370                                                                               SCCNC(=O)CC(c1ccccc1)c2ccccc2
+BFG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                             c1ccc(cc1)C(CC(=O)NCCS)c2ccccc2
+BFG           SMILES "OpenEye OEToolkits" 1.7.0                                                                             c1ccc(cc1)C(CC(=O)NCCS)c2ccccc2
+BFG            InChI                InChI  1.03 InChI=1S/C17H19NOS/c19-17(18-11-12-20)13-16(14-7-3-1-4-8-14)15-9-5-2-6-10-15/h1-10,16,20H,11-13H2,(H,18,19)
+BFG         InChIKey                InChI  1.03                                                                                 OBWWQAVWKRLIJP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BFG acedrg               243         "dictionary generator"                  
+BFG acedrg_database      11          "data source"                           
+BFG rdkit                2017.03.2   "Chemoinformatics tool"
+BFG refmac5              5.8.0238    "optimization tool"                     

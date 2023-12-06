@@ -1,0 +1,335 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TSF     TSF      "3-(1,3,7-TRIHYDRO-9-D-RIBITYL-2,6,8-PURINETRIONE-7-YL) 1,1 DIFLUOROPENTANE-1-PHOSPHATE"     NON-POLYMER     53     32     .     
+#
+data_comp_TSF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TSF     O2P     O       O       0       48.971      2.999       -0.743      
+TSF     P       P       P       0       47.900      3.190       0.276       
+TSF     O3P     O       OP      -1      48.376      3.982       1.447       
+TSF     O1P     O       OP      -1      46.658      3.763       -0.318      
+TSF     C19     C       CT      0       47.463      1.557       0.904       
+TSF     F1      F       F       0       47.026      0.783       -0.129      
+TSF     F2      F       F       0       48.574      0.962       1.419       
+TSF     C18     C       CH2     0       46.384      1.610       1.977       
+TSF     C17     C       CH2     0       45.910      0.252       2.483       
+TSF     C16     C       CH2     0       44.911      0.334       3.613       
+TSF     C15     C       CH2     0       43.552      0.840       3.161       
+TSF     N5      N       NT      0       42.516      0.694       4.187       
+TSF     C9      C       CR56    0       41.713      -0.416      4.401       
+TSF     C4      C       CR6     0       41.623      -1.680      3.755       
+TSF     O2      O       O       0       42.305      -2.064      2.797       
+TSF     N3      N       NR6     0       40.654      -2.532      4.296       
+TSF     C6      C       CR5     0       42.206      1.691       5.109       
+TSF     O4      O       O       0       42.730      2.789       5.191       
+TSF     N7      N       NT      0       41.182      1.199       5.915       
+TSF     C8      C       CR56    0       40.887      -0.089      5.481       
+TSF     N1      N       NR6     0       39.966      -0.982      5.947       
+TSF     C2      C       CR6     0       39.836      -2.218      5.361       
+TSF     O1      O       O       0       39.009      -3.011      5.784       
+TSF     C10     C       CH2     0       40.577      1.952       7.017       
+TSF     C11     C       CH1     0       41.094      1.484       8.366       
+TSF     O19     O       OH1     0       42.451      1.892       8.515       
+TSF     C12     C       CH1     0       40.271      2.004       9.552       
+TSF     O21     O       OH1     0       38.972      1.416       9.501       
+TSF     C13     C       CH1     0       40.130      3.529       9.632       
+TSF     O23     O       OH1     0       41.412      4.147       9.499       
+TSF     C14     C       CH2     0       39.487      3.987       10.926      
+TSF     O26     O       OH1     0       40.309      3.701       12.054      
+TSF     H181    H       H       0       45.613      2.096       1.618       
+TSF     H182    H       H       0       46.728      2.123       2.738       
+TSF     H171    H       H       0       46.688      -0.262      2.789       
+TSF     H172    H       H       0       45.504      -0.240      1.738       
+TSF     H161    H       H       0       45.260      0.933       4.306       
+TSF     H162    H       H       0       44.804      -0.557      4.010       
+TSF     H151    H       H       0       43.274      0.350       2.363       
+TSF     H152    H       H       0       43.625      1.785       2.919       
+TSF     H3      H       H       0       40.555      -3.334      3.932       
+TSF     H1      H       H       0       39.445      -0.772      6.631       
+TSF     H101    H       H       0       39.595      1.834       6.977       
+TSF     H102    H       H       0       40.776      2.915       6.902       
+TSF     H11     H       H       0       41.072      0.493       8.388       
+TSF     H19     H       H       0       42.827      1.405       9.098       
+TSF     H12     H       H       0       40.715      1.693       10.382      
+TSF     H21     H       H       0       38.702      1.269       10.292      
+TSF     H13     H       H       0       39.547      3.839       8.876       
+TSF     H23     H       H       0       41.338      4.983       9.378       
+TSF     H141    H       H       0       38.614      3.539       11.037      
+TSF     H142    H       H       0       39.329      4.961       10.881      
+TSF     H26     H       H       0       39.828      3.734       12.749      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TSF         O2P           P      DOUBLE       n     1.492  0.0200     1.492  0.0200
+TSF           P         O3P      SINGLE       n     1.492  0.0200     1.492  0.0200
+TSF           P         O1P      SINGLE       n     1.492  0.0200     1.492  0.0200
+TSF           P         C19      SINGLE       n     1.803  0.0200     1.803  0.0200
+TSF         C19          F1      SINGLE       n     1.362  0.0123     1.362  0.0123
+TSF         C19          F2      SINGLE       n     1.362  0.0123     1.362  0.0123
+TSF         C19         C18      SINGLE       n     1.520  0.0164     1.520  0.0164
+TSF         C18         C17      SINGLE       n     1.523  0.0117     1.523  0.0117
+TSF         C17         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+TSF         C16         C15      SINGLE       n     1.518  0.0169     1.518  0.0169
+TSF         C15          N5      SINGLE       n     1.464  0.0100     1.464  0.0100
+TSF          N5          C9      SINGLE       y     1.383  0.0152     1.383  0.0152
+TSF          N5          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+TSF          C9          C4      SINGLE       y     1.419  0.0100     1.419  0.0100
+TSF          C9          C8      DOUBLE       y     1.419  0.0200     1.419  0.0200
+TSF          C4          O2      DOUBLE       n     1.237  0.0126     1.237  0.0126
+TSF          C4          N3      SINGLE       y     1.392  0.0104     1.392  0.0104
+TSF          N3          C2      SINGLE       y     1.373  0.0104     1.373  0.0104
+TSF          C6          O4      DOUBLE       n     1.219  0.0100     1.219  0.0100
+TSF          C6          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+TSF          N7          C8      SINGLE       y     1.404  0.0200     1.404  0.0200
+TSF          N7         C10      SINGLE       n     1.464  0.0105     1.464  0.0105
+TSF          C8          N1      SINGLE       y     1.361  0.0200     1.361  0.0200
+TSF          N1          C2      SINGLE       y     1.371  0.0103     1.371  0.0103
+TSF          C2          O1      DOUBLE       n     1.220  0.0100     1.220  0.0100
+TSF         C10         C11      SINGLE       n     1.512  0.0200     1.512  0.0200
+TSF         C11         O19      SINGLE       n     1.424  0.0199     1.424  0.0199
+TSF         C11         C12      SINGLE       n     1.531  0.0100     1.531  0.0100
+TSF         C12         O21      SINGLE       n     1.424  0.0199     1.424  0.0199
+TSF         C12         C13      SINGLE       n     1.530  0.0100     1.530  0.0100
+TSF         C13         O23      SINGLE       n     1.429  0.0100     1.429  0.0100
+TSF         C13         C14      SINGLE       n     1.514  0.0100     1.514  0.0100
+TSF         C14         O26      SINGLE       n     1.425  0.0100     1.425  0.0100
+TSF         C18        H181      SINGLE       n     1.089  0.0100     0.980  0.0160
+TSF         C18        H182      SINGLE       n     1.089  0.0100     0.980  0.0160
+TSF         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+TSF         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+TSF         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0160
+TSF         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0160
+TSF         C15        H151      SINGLE       n     1.089  0.0100     0.978  0.0180
+TSF         C15        H152      SINGLE       n     1.089  0.0100     0.978  0.0180
+TSF          N3          H3      SINGLE       n     1.016  0.0100     0.886  0.0200
+TSF          N1          H1      SINGLE       n     1.016  0.0100     0.885  0.0200
+TSF         C10        H101      SINGLE       n     1.089  0.0100     0.990  0.0100
+TSF         C10        H102      SINGLE       n     1.089  0.0100     0.990  0.0100
+TSF         C11         H11      SINGLE       n     1.089  0.0100     0.992  0.0184
+TSF         O19         H19      SINGLE       n     0.970  0.0120     0.848  0.0200
+TSF         C12         H12      SINGLE       n     1.089  0.0100     0.992  0.0184
+TSF         O21         H21      SINGLE       n     0.970  0.0120     0.848  0.0200
+TSF         C13         H13      SINGLE       n     1.089  0.0100     1.004  0.0200
+TSF         O23         H23      SINGLE       n     0.970  0.0120     0.848  0.0200
+TSF         C14        H141      SINGLE       n     1.089  0.0100     0.988  0.0200
+TSF         C14        H142      SINGLE       n     1.089  0.0100     0.988  0.0200
+TSF         O26         H26      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TSF         O2P           P         O3P     112.502    1.50
+TSF         O2P           P         O1P     112.502    1.50
+TSF         O2P           P         C19     108.625    3.00
+TSF         O3P           P         O1P     112.502    1.50
+TSF         O3P           P         C19     108.625    3.00
+TSF         O1P           P         C19     108.625    3.00
+TSF           P         C19          F1     108.594    1.85
+TSF           P         C19          F2     108.594    1.85
+TSF           P         C19         C18     111.410    2.87
+TSF          F1         C19          F2     106.974    1.50
+TSF          F1         C19         C18     108.305    1.50
+TSF          F2         C19         C18     108.305    1.50
+TSF         C19         C18         C17     113.743    2.68
+TSF         C19         C18        H181     108.829    1.50
+TSF         C19         C18        H182     108.829    1.50
+TSF         C17         C18        H181     108.801    1.50
+TSF         C17         C18        H182     108.801    1.50
+TSF        H181         C18        H182     107.715    1.50
+TSF         C18         C17         C16     114.183    2.57
+TSF         C18         C17        H171     108.801    1.50
+TSF         C18         C17        H172     108.801    1.50
+TSF         C16         C17        H171     108.846    1.50
+TSF         C16         C17        H172     108.846    1.50
+TSF        H171         C17        H172     107.646    1.50
+TSF         C17         C16         C15     112.575    1.89
+TSF         C17         C16        H161     108.980    1.50
+TSF         C17         C16        H162     108.980    1.50
+TSF         C15         C16        H161     108.983    1.50
+TSF         C15         C16        H162     108.983    1.50
+TSF        H161         C16        H162     107.897    1.50
+TSF         C16         C15          N5     112.729    1.50
+TSF         C16         C15        H151     109.079    1.50
+TSF         C16         C15        H152     109.079    1.50
+TSF          N5         C15        H151     108.458    1.53
+TSF          N5         C15        H152     108.458    1.53
+TSF        H151         C15        H152     107.797    1.50
+TSF         C15          N5          C9     124.544    1.50
+TSF         C15          N5          C6     120.342    1.76
+TSF          C9          N5          C6     109.313    1.50
+TSF          N5          C9          C4     130.185    1.50
+TSF          N5          C9          C8     108.577    1.68
+TSF          C4          C9          C8     121.238    1.63
+TSF          C9          C4          O2     126.209    1.50
+TSF          C9          C4          N3     113.888    1.50
+TSF          O2          C4          N3     119.903    1.50
+TSF          C4          N3          C2     123.695    2.07
+TSF          C4          N3          H3     118.566    1.86
+TSF          C2          N3          H3     117.739    1.94
+TSF          N5          C6          O4     126.377    1.50
+TSF          N5          C6          N7     107.332    1.50
+TSF          O4          C6          N7     126.290    1.50
+TSF          C6          N7          C8     108.342    1.50
+TSF          C6          N7         C10     120.342    1.76
+TSF          C8          N7         C10     124.975    2.43
+TSF          C9          C8          N7     113.499    1.68
+TSF          C9          C8          N1     121.371    1.50
+TSF          N7          C8          N1     125.130    3.00
+TSF          C8          N1          C2     121.321    1.50
+TSF          C8          N1          H1     120.233    1.50
+TSF          C2          N1          H1     118.446    2.15
+TSF          N3          C2          N1     118.487    1.50
+TSF          N3          C2          O1     121.448    1.50
+TSF          N1          C2          O1     120.065    1.67
+TSF          N7         C10         C11     111.989    1.71
+TSF          N7         C10        H101     108.458    1.53
+TSF          N7         C10        H102     108.458    1.53
+TSF         C11         C10        H101     109.255    1.50
+TSF         C11         C10        H102     109.255    1.50
+TSF        H101         C10        H102     107.991    1.50
+TSF         C10         C11         O19     109.670    2.62
+TSF         C10         C11         C12     110.999    2.33
+TSF         C10         C11         H11     108.989    1.50
+TSF         O19         C11         C12     109.320    2.01
+TSF         O19         C11         H11     108.183    1.96
+TSF         C12         C11         H11     108.450    1.83
+TSF         C11         O19         H19     109.265    3.00
+TSF         C11         C12         O21     109.320    2.01
+TSF         C11         C12         C13     113.695    2.13
+TSF         C11         C12         H12     108.450    1.83
+TSF         O21         C12         C13     109.164    1.97
+TSF         O21         C12         H12     108.243    1.50
+TSF         C13         C12         H12     108.336    1.50
+TSF         C12         O21         H21     108.564    3.00
+TSF         C12         C13         O23     109.549    1.85
+TSF         C12         C13         C14     112.159    1.50
+TSF         C12         C13         H13     108.777    1.50
+TSF         O23         C13         C14     109.623    1.60
+TSF         O23         C13         H13     108.591    1.50
+TSF         C14         C13         H13     107.986    1.50
+TSF         C13         O23         H23     111.202    3.00
+TSF         C13         C14         O26     111.364    1.50
+TSF         C13         C14        H141     109.234    1.50
+TSF         C13         C14        H142     109.234    1.50
+TSF         O26         C14        H141     109.268    1.50
+TSF         O26         C14        H142     109.268    1.50
+TSF        H141         C14        H142     108.313    1.50
+TSF         C14         O26         H26     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TSF             sp2_sp3_2          C9          N5         C15         C16     -90.000    10.0     6
+TSF              const_24          C4          C9          N5         C15       0.000    10.0     2
+TSF              const_40          O4          C6          N5         C15       0.000    10.0     2
+TSF       const_sp2_sp2_4          O2          C4          C9          N5       0.000     5.0     2
+TSF              const_25          N7          C8          C9          N5       0.000    10.0     2
+TSF       const_sp2_sp2_7          O2          C4          N3          C2     180.000     5.0     2
+TSF              const_11          O1          C2          N3          C4     180.000    10.0     2
+TSF              const_36          O4          C6          N7         C10       0.000    10.0     2
+TSF              const_30          C9          C8          N7         C10     180.000    10.0     2
+TSF             sp2_sp3_8          C6          N7         C10         C11     -90.000    10.0     6
+TSF              const_17          C9          C8          N1          C2       0.000    10.0     2
+TSF             sp3_sp3_6          F1         C19           P         O2P     -60.000    10.0     3
+TSF              const_15          O1          C2          N1          C8     180.000    10.0     2
+TSF            sp3_sp3_46          N7         C10         C11         O19     180.000    10.0     3
+TSF            sp3_sp3_55         C10         C11         O19         H19     180.000    10.0     3
+TSF            sp3_sp3_58         C10         C11         C12         O21     180.000    10.0     3
+TSF            sp3_sp3_67         C11         C12         O21         H21     180.000    10.0     3
+TSF            sp3_sp3_70         C11         C12         C13         O23     180.000    10.0     3
+TSF            sp3_sp3_79         C12         C13         O23         H23     180.000    10.0     3
+TSF            sp3_sp3_82         C12         C13         C14         O26     180.000    10.0     3
+TSF            sp3_sp3_91         C13         C14         O26         H26     180.000    10.0     3
+TSF            sp3_sp3_10         C17         C18         C19           P     180.000    10.0     3
+TSF            sp3_sp3_19         C16         C17         C18         C19     180.000    10.0     3
+TSF            sp3_sp3_28         C15         C16         C17         C18     180.000    10.0     3
+TSF            sp3_sp3_37          N5         C15         C16         C17     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TSF    chir_1    P    O3P    O1P    O2P    both
+TSF    chir_2    C19    P    F1    F2    both
+TSF    chir_3    C11    O19    C12    C10    negative
+TSF    chir_4    C12    O21    C13    C11    positive
+TSF    chir_5    C13    O23    C12    C14    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TSF    plan-1         C10   0.020
+TSF    plan-1         C15   0.020
+TSF    plan-1          C2   0.020
+TSF    plan-1          C4   0.020
+TSF    plan-1          C6   0.020
+TSF    plan-1          C8   0.020
+TSF    plan-1          C9   0.020
+TSF    plan-1          H1   0.020
+TSF    plan-1          H3   0.020
+TSF    plan-1          N1   0.020
+TSF    plan-1          N3   0.020
+TSF    plan-1          N5   0.020
+TSF    plan-1          N7   0.020
+TSF    plan-1          O1   0.020
+TSF    plan-1          O2   0.020
+TSF    plan-1          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TSF           SMILES              ACDLabs 10.04                                                                                                                           FC(F)(P(=O)(O)O)CCCCN2C=1C(=O)NC(=O)NC=1N(C2=O)CC(O)C(O)C(O)CO
+TSF SMILES_CANONICAL               CACTVS 3.341                                                                                                            OC[C@@H](O)[C@@H](O)[C@H](O)CN1C(=O)N(CCCCC(F)(F)[P](O)(O)=O)C2=C1NC(=O)NC2=O
+TSF           SMILES               CACTVS 3.341                                                                                                                 OC[CH](O)[CH](O)[CH](O)CN1C(=O)N(CCCCC(F)(F)[P](O)(O)=O)C2=C1NC(=O)NC2=O
+TSF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                            C(CCN1C2=C(NC(=O)NC2=O)N(C1=O)C[C@H]([C@@H]([C@@H](CO)O)O)O)CC(F)(F)P(=O)(O)O
+TSF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                          C(CCN1C2=C(NC(=O)NC2=O)N(C1=O)CC(C(C(CO)O)O)O)CC(F)(F)P(=O)(O)O
+TSF            InChI                InChI  1.03 InChI=1S/C15H23F2N4O10P/c16-15(17,32(29,30)31)3-1-2-4-20-9-11(18-13(27)19-12(9)26)21(14(20)28)5-7(23)10(25)8(24)6-22/h7-8,10,22-25H,1-6H2,(H2,29,30,31)(H2,18,19,26,27)/t7-,8-,10+/m1/s1
+TSF         InChIKey                InChI  1.03                                                                                                                                                              ZBEBHCIQAVPUSI-MRTMQBJTSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TSF acedrg               243         "dictionary generator"                  
+TSF acedrg_database      11          "data source"                           
+TSF rdkit                2017.03.2   "Chemoinformatics tool"
+TSF refmac5              5.8.0238    "optimization tool"                     

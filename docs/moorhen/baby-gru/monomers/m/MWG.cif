@@ -1,0 +1,250 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MWG     MWG      "(3R)-8-fluoro-7-(fluoromethyl)-3-methylocta-1,6-dien-3-yl trihydrogen diphosphate"     NON-POLYMER     36     21     .     
+#
+data_comp_MWG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MWG     C1      C       C2      0       -6.423      13.773      -22.765     
+MWG     C2      C       C1      0       -6.636      12.815      -21.916     
+MWG     C3      C       CT      0       -7.870      12.631      -21.050     
+MWG     C4      C       CH2     0       -7.988      13.793      -20.048     
+MWG     C5      C       CH2     0       -6.786      14.034      -19.130     
+MWG     C6      C       C1      0       -6.967      15.226      -18.235     
+MWG     C7      C       C       0       -7.204      15.264      -16.928     
+MWG     C8      C       CH2     0       -7.261      16.555      -16.158     
+MWG     C9      C       CH2     0       -7.411      14.031      -16.089     
+MWG     O1      O       O2      0       -9.052      12.724      -21.871     
+MWG     C10     C       CH3     0       -7.848      11.292      -20.323     
+MWG     F8      F       F       0       -8.492      16.822      -15.737     
+MWG     F9      F       F       0       -8.085      14.279      -14.970     
+MWG     O1A     O       O       0       -10.552     12.512      -23.866     
+MWG     O1B     O       OP      -1      -11.384     8.432       -21.818     
+MWG     O2A     O       OP      -1      -8.299      11.294      -23.862     
+MWG     O2B     O       OP      -1      -9.081      8.339       -22.820     
+MWG     O3A     O       O2      0       -10.160     10.540      -22.354     
+MWG     O3B     O       O       0       -11.026     9.115       -24.209     
+MWG     PA      P       P       0       -9.489      11.788      -23.107     
+MWG     PB      P       P       0       -10.428     9.020       -22.827     
+MWG     H1      H       H       0       -5.614      13.797      -23.260     
+MWG     H2      H       H       0       -7.075      14.451      -22.893     
+MWG     H3      H       H       0       -5.950      12.170      -21.833     
+MWG     H4      H       H       0       -8.778      13.629      -19.490     
+MWG     H5      H       H       0       -8.160      14.612      -20.557     
+MWG     H6      H       H       0       -5.985      14.175      -19.680     
+MWG     H7      H       H       0       -6.635      13.233      -18.584     
+MWG     H8      H       H       0       -6.907      16.062      -18.671     
+MWG     H9      H       H       0       -6.966      17.290      -16.721     
+MWG     H10     H       H       0       -6.681      16.495      -15.382     
+MWG     H11     H       H       0       -6.548      13.656      -15.846     
+MWG     H12     H       H       0       -7.914      13.373      -16.596     
+MWG     H13     H       H       0       -7.069      11.248      -19.742     
+MWG     H14     H       H       0       -7.804      10.568      -20.971     
+MWG     H15     H       H       0       -8.655      11.200      -19.788     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MWG         O1A          PA      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MWG         O3B          PB      DOUBLE       n     1.509  0.0200     1.509  0.0200
+MWG         O2B          PB      SINGLE       n     1.509  0.0200     1.509  0.0200
+MWG         O2A          PA      SINGLE       n     1.493  0.0122     1.493  0.0122
+MWG          O1          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+MWG         O3A          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+MWG         O3A          PB      SINGLE       n     1.614  0.0178     1.614  0.0178
+MWG         O1B          PB      SINGLE       n     1.509  0.0200     1.509  0.0200
+MWG          C1          C2      DOUBLE       n     1.296  0.0200     1.296  0.0200
+MWG          C3          O1      SINGLE       n     1.439  0.0100     1.439  0.0100
+MWG          C2          C3      SINGLE       n     1.516  0.0163     1.516  0.0163
+MWG          C3         C10      SINGLE       n     1.522  0.0100     1.522  0.0100
+MWG          C3          C4      SINGLE       n     1.536  0.0100     1.536  0.0100
+MWG          C4          C5      SINGLE       n     1.526  0.0144     1.526  0.0144
+MWG          C5          C6      SINGLE       n     1.499  0.0121     1.499  0.0121
+MWG          C6          C7      DOUBLE       n     1.325  0.0100     1.325  0.0100
+MWG          C7          C9      SINGLE       n     1.499  0.0155     1.499  0.0155
+MWG          C7          C8      SINGLE       n     1.499  0.0155     1.499  0.0155
+MWG          C9          F9      SINGLE       n     1.328  0.0174     1.328  0.0174
+MWG          C8          F8      SINGLE       n     1.328  0.0174     1.328  0.0174
+MWG          C1          H1      SINGLE       n     1.082  0.0130     0.949  0.0200
+MWG          C1          H2      SINGLE       n     1.082  0.0130     0.949  0.0200
+MWG          C2          H3      SINGLE       n     1.082  0.0130     0.945  0.0200
+MWG          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0178
+MWG          C4          H5      SINGLE       n     1.089  0.0100     0.980  0.0178
+MWG          C5          H6      SINGLE       n     1.089  0.0100     0.983  0.0180
+MWG          C5          H7      SINGLE       n     1.089  0.0100     0.983  0.0180
+MWG          C6          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+MWG          C8          H9      SINGLE       n     1.089  0.0100     0.971  0.0145
+MWG          C8         H10      SINGLE       n     1.089  0.0100     0.971  0.0145
+MWG          C9         H11      SINGLE       n     1.089  0.0100     0.971  0.0145
+MWG          C9         H12      SINGLE       n     1.089  0.0100     0.971  0.0145
+MWG         C10         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+MWG         C10         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+MWG         C10         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MWG          C2          C1          H1     120.058    1.50
+MWG          C2          C1          H2     120.058    1.50
+MWG          H1          C1          H2     119.884    2.15
+MWG          C1          C2          C3     126.466    1.50
+MWG          C1          C2          H3     116.367    1.83
+MWG          C3          C2          H3     117.166    1.50
+MWG          O1          C3          C2     108.672    2.73
+MWG          O1          C3         C10     109.482    3.00
+MWG          O1          C3          C4     109.482    3.00
+MWG          C2          C3         C10     111.622    2.77
+MWG          C2          C3          C4     109.863    1.68
+MWG         C10          C3          C4     110.828    1.50
+MWG          C3          C4          C5     111.094    2.85
+MWG          C3          C4          H4     108.172    1.50
+MWG          C3          C4          H5     108.172    1.50
+MWG          C5          C4          H4     108.915    1.50
+MWG          C5          C4          H5     108.915    1.50
+MWG          H4          C4          H5     107.452    1.50
+MWG          C4          C5          C6     113.132    2.43
+MWG          C4          C5          H6     108.844    1.50
+MWG          C4          C5          H7     108.844    1.50
+MWG          C6          C5          H6     109.181    1.50
+MWG          C6          C5          H7     109.181    1.50
+MWG          H6          C5          H7     107.922    1.50
+MWG          C5          C6          C7     127.956    1.50
+MWG          C5          C6          H8     115.648    1.60
+MWG          C7          C6          H8     116.396    1.50
+MWG          C6          C7          C9     122.734    1.80
+MWG          C6          C7          C8     122.734    1.80
+MWG          C9          C7          C8     114.531    1.50
+MWG          C7          C8          F8     111.799    1.75
+MWG          C7          C8          H9     109.584    1.50
+MWG          C7          C8         H10     109.584    1.50
+MWG          F8          C8          H9     108.415    2.17
+MWG          F8          C8         H10     108.415    2.17
+MWG          H9          C8         H10     109.375    1.50
+MWG          C7          C9          F9     111.799    1.75
+MWG          C7          C9         H11     109.584    1.50
+MWG          C7          C9         H12     109.584    1.50
+MWG          F9          C9         H11     108.415    2.17
+MWG          F9          C9         H12     108.415    2.17
+MWG         H11          C9         H12     109.375    1.50
+MWG          PA          O1          C3     121.496    2.55
+MWG          C3         C10         H13     109.538    1.50
+MWG          C3         C10         H14     109.538    1.50
+MWG          C3         C10         H15     109.538    1.50
+MWG         H13         C10         H14     109.441    1.50
+MWG         H13         C10         H15     109.441    1.50
+MWG         H14         C10         H15     109.441    1.50
+MWG          PA         O3A          PB     132.584    3.00
+MWG         O1A          PA         O2A     118.411    2.35
+MWG         O1A          PA          O1     107.912    2.57
+MWG         O1A          PA         O3A     108.816    2.14
+MWG         O2A          PA          O1     107.912    2.57
+MWG         O2A          PA         O3A     108.816    2.14
+MWG          O1          PA         O3A     101.065    1.97
+MWG         O3B          PB         O2B     112.716    1.50
+MWG         O3B          PB         O3A     105.965    2.38
+MWG         O3B          PB         O1B     112.716    1.50
+MWG         O2B          PB         O3A     105.965    2.38
+MWG         O2B          PB         O1B     112.716    1.50
+MWG         O3A          PB         O1B     105.965    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MWG             sp2_sp2_1          H1          C1          C2          C3     180.000     5.0     2
+MWG             sp3_sp3_6          PB         O3A          PA         O1A      60.000    10.0     3
+MWG             sp3_sp3_9          PA         O3A          PB         O3B      60.000    10.0     3
+MWG             sp2_sp3_1          C1          C2          C3          O1       0.000    10.0     6
+MWG            sp3_sp3_13         H13         C10          C3          O1     180.000    10.0     3
+MWG            sp3_sp3_22          O1          C3          C4          C5     180.000    10.0     3
+MWG            sp3_sp3_10          C2          C3          O1          PA     180.000    10.0     3
+MWG            sp3_sp3_31          C3          C4          C5          C6     180.000    10.0     3
+MWG             sp2_sp3_8          C7          C6          C5          C4     120.000    10.0     6
+MWG             sp2_sp2_5          C5          C6          C7          C9     180.000     5.0     2
+MWG            sp2_sp3_20          C6          C7          C8          F8     120.000    10.0     6
+MWG            sp2_sp3_14          C6          C7          C9          F9     120.000    10.0     6
+MWG             sp3_sp3_3          C3          O1          PA         O1A      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MWG    chir_1    C3    O1    C2    C4    negative
+MWG    chir_2    PA    O3A    O1    O2A    both
+MWG    chir_3    PB    O3A    O2B    O1B    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MWG    plan-1          C1   0.020
+MWG    plan-1          C2   0.020
+MWG    plan-1          H1   0.020
+MWG    plan-1          H2   0.020
+MWG    plan-2          C1   0.020
+MWG    plan-2          C2   0.020
+MWG    plan-2          C3   0.020
+MWG    plan-2          H3   0.020
+MWG    plan-3          C5   0.020
+MWG    plan-3          C6   0.020
+MWG    plan-3          C7   0.020
+MWG    plan-3          H8   0.020
+MWG    plan-4          C6   0.020
+MWG    plan-4          C7   0.020
+MWG    plan-4          C8   0.020
+MWG    plan-4          C9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MWG           SMILES              ACDLabs 12.01                                                                                         C=C/C(C)(CC\C=C(/CF)CF)OP(=O)(O)OP(O)(O)=O
+MWG            InChI                InChI  1.03 InChI=1S/C10H18F2O7P2/c1-3-10(2,6-4-5-9(7-11)8-12)18-21(16,17)19-20(13,14)15/h3,5H,1,4,6-8H2,2H3,(H,16,17)(H2,13,14,15)/t10-/m0/s1
+MWG         InChIKey                InChI  1.03                                                                                                        POYBZGMZDXIMIL-JTQLQIEISA-N
+MWG SMILES_CANONICAL               CACTVS 3.385                                                                                     C[C@](CCC=C(CF)CF)(O[P](O)(=O)O[P](O)(O)=O)C=C
+MWG           SMILES               CACTVS 3.385                                                                                      C[C](CCC=C(CF)CF)(O[P](O)(=O)O[P](O)(O)=O)C=C
+MWG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                        C[C@@](CCC=C(CF)CF)(C=C)OP(=O)(O)OP(=O)(O)O
+MWG           SMILES "OpenEye OEToolkits" 2.0.7                                                                                            CC(CCC=C(CF)CF)(C=C)OP(=O)(O)OP(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MWG acedrg               243         "dictionary generator"                  
+MWG acedrg_database      11          "data source"                           
+MWG rdkit                2017.03.2   "Chemoinformatics tool"
+MWG refmac5              5.8.0238    "optimization tool"                     

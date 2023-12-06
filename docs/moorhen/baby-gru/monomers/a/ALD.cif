@@ -1,0 +1,452 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ALD     ALD      N-[(benzyloxy)carbonyl]-L-leucyl-N-[(2S)-1-hydroxy-4-methylpentan-2-yl]-L-leucinamide     NON-POLYMER     77     34     .     
+#
+data_comp_ALD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ALD     C9      C       C       0       -5.339      25.358      -20.492     
+ALD     O31     O       O       0       -5.503      26.419      -21.058     
+ALD     O8      O       O2      0       -4.320      24.509      -20.728     
+ALD     C7      C       CH2     0       -3.244      24.938      -21.611     
+ALD     C3      C       CR6     0       -3.673      24.820      -23.047     
+ALD     C4      C       CR16    0       -4.019      23.587      -23.579     
+ALD     C5      C       CR16    0       -4.419      23.475      -24.905     
+ALD     C6      C       CR16    0       -4.478      24.597      -25.708     
+ALD     C1      C       CR16    0       -4.138      25.830      -25.188     
+ALD     C2      C       CR16    0       -3.738      25.942      -23.862     
+ALD     N10     N       NH1     0       -6.153      24.860      -19.538     
+ALD     C11     C       CH1     0       -7.376      25.549      -19.149     
+ALD     C12     C       C       0       -7.098      26.789      -18.292     
+ALD     O32     O       O       0       -6.468      26.668      -17.243     
+ALD     C30     C       CH2     0       -8.305      24.585      -18.407     
+ALD     C31     C       CH1     0       -9.699      25.111      -18.052     
+ALD     C32     C       CH3     0       -10.535     25.354      -19.300     
+ALD     C33     C       CH3     0       -10.414     24.147      -17.117     
+ALD     N13     N       NH1     0       -7.554      27.964      -18.755     
+ALD     C14     C       CH1     0       -7.626      29.159      -17.924     
+ALD     C15     C       C       0       -8.979      29.178      -17.204     
+ALD     O34     O       O       0       -10.005     29.394      -17.847     
+ALD     C24     C       CH2     0       -7.434      30.434      -18.752     
+ALD     C25     C       CH1     0       -6.003      30.780      -19.178     
+ALD     C26     C       CH3     0       -5.407      29.705      -20.077     
+ALD     C27     C       CH3     0       -5.104      31.038      -17.974     
+ALD     N16     N       NH1     0       -8.982      28.944      -15.883     
+ALD     C17     C       CH1     0       -10.198     28.821      -15.072     
+ALD     C22     C       CH2     0       -10.792     30.204      -14.833     
+ALD     C18     C       CH2     0       -9.914      28.104      -13.745     
+ALD     C19     C       CH1     0       -9.753      26.580      -13.826     
+ALD     C20     C       CH3     0       -10.002     25.933      -12.470     
+ALD     C21     C       CH3     0       -8.377      26.192      -14.353     
+ALD     O33     O       OH1     0       -9.886      31.049      -14.147     
+ALD     H71     H       H       0       -2.459      24.372      -21.459     
+ALD     H72     H       H       0       -2.991      25.864      -21.409     
+ALD     H4      H       H       0       -3.981      22.816      -23.035     
+ALD     H5      H       H       0       -4.651      22.630      -25.257     
+ALD     H6      H       H       0       -4.750      24.521      -26.608     
+ALD     H1      H       H       0       -4.178      26.599      -25.734     
+ALD     H2      H       H       0       -3.507      26.788      -23.515     
+ALD     HNA     H       H       0       -5.933      24.108      -19.144     
+ALD     H11     H       H       0       -7.839      25.840      -19.974     
+ALD     H301    H       H       0       -7.862      24.312      -17.578     
+ALD     H302    H       H       0       -8.413      23.783      -18.956     
+ALD     H31     H       H       0       -9.600      25.972      -17.578     
+ALD     H321    H       H       0       -11.461     25.512      -19.046     
+ALD     H322    H       H       0       -10.487     24.575      -19.881     
+ALD     H323    H       H       0       -10.193     26.133      -19.774     
+ALD     H331    H       H       0       -9.877      24.015      -16.316     
+ALD     H332    H       H       0       -10.542     23.294      -17.565     
+ALD     H333    H       H       0       -11.279     24.517      -16.869     
+ALD     HND     H       H       0       -7.809      28.017      -19.588     
+ALD     H14     H       H       0       -6.912      29.118      -17.244     
+ALD     H241    H       H       0       -7.783      31.188      -18.236     
+ALD     H242    H       H       0       -7.981      30.360      -19.559     
+ALD     H25     H       H       0       -6.044      31.617      -19.703     
+ALD     H261    H       H       0       -4.634      30.066      -20.546     
+ALD     H262    H       H       0       -6.073      29.418      -20.725     
+ALD     H263    H       H       0       -5.131      28.943      -19.539     
+ALD     H271    H       H       0       -4.834      30.192      -17.578     
+ALD     H272    H       H       0       -5.588      31.564      -17.314     
+ALD     H273    H       H       0       -4.313      31.528      -18.260     
+ALD     HNG     H       H       0       -8.221      28.863      -15.466     
+ALD     H17     H       H       0       -10.856     28.280      -15.575     
+ALD     H221    H       H       0       -11.616     30.116      -14.307     
+ALD     H222    H       H       0       -11.027     30.610      -15.694     
+ALD     H181    H       H       0       -10.652     28.301      -13.127     
+ALD     H182    H       H       0       -9.099      28.484      -13.352     
+ALD     H19     H       H       0       -10.430     26.233      -14.458     
+ALD     H201    H       H       0       -9.895      24.969      -12.544     
+ALD     H202    H       H       0       -10.907     26.136      -12.174     
+ALD     H203    H       H       0       -9.365      26.281      -11.822     
+ALD     H211    H       H       0       -7.691      26.693      -13.879     
+ALD     H212    H       H       0       -8.326      26.392      -15.304     
+ALD     H213    H       H       0       -8.233      25.239      -14.217     
+ALD     HOX     H       H       0       -10.298     31.748      -13.909     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ALD          C1          C2      SINGLE       y     1.386  0.0100     1.386  0.0100
+ALD          C6          C1      DOUBLE       y     1.376  0.0124     1.376  0.0124
+ALD          C3          C2      DOUBLE       y     1.383  0.0108     1.383  0.0108
+ALD          C3          C4      SINGLE       y     1.383  0.0108     1.383  0.0108
+ALD          C7          C3      SINGLE       n     1.501  0.0101     1.501  0.0101
+ALD          C4          C5      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ALD          C5          C6      SINGLE       y     1.376  0.0124     1.376  0.0124
+ALD          O8          C7      SINGLE       n     1.450  0.0125     1.450  0.0125
+ALD          C9          O8      SINGLE       n     1.341  0.0100     1.341  0.0100
+ALD          C9         N10      SINGLE       n     1.344  0.0100     1.344  0.0100
+ALD          C9         O31      DOUBLE       n     1.210  0.0102     1.210  0.0102
+ALD         N10         C11      SINGLE       n     1.453  0.0115     1.453  0.0115
+ALD         C11         C12      SINGLE       n     1.530  0.0100     1.530  0.0100
+ALD         C11         C30      SINGLE       n     1.528  0.0100     1.528  0.0100
+ALD         C12         N13      SINGLE       n     1.337  0.0100     1.337  0.0100
+ALD         C12         O32      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ALD         N13         C14      SINGLE       n     1.453  0.0100     1.453  0.0100
+ALD         C14         C15      SINGLE       n     1.530  0.0100     1.530  0.0100
+ALD         C14         C24      SINGLE       n     1.528  0.0100     1.528  0.0100
+ALD         C15         N16      SINGLE       n     1.337  0.0102     1.337  0.0102
+ALD         C15         O34      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ALD         N16         C17      SINGLE       n     1.463  0.0100     1.463  0.0100
+ALD         C17         C18      SINGLE       n     1.532  0.0100     1.532  0.0100
+ALD         C17         C22      SINGLE       n     1.522  0.0132     1.522  0.0132
+ALD         C18         C19      SINGLE       n     1.527  0.0183     1.527  0.0183
+ALD         C19         C20      SINGLE       n     1.521  0.0151     1.521  0.0151
+ALD         C19         C21      SINGLE       n     1.521  0.0151     1.521  0.0151
+ALD         C22         O33      SINGLE       n     1.417  0.0200     1.417  0.0200
+ALD         C24         C25      SINGLE       n     1.528  0.0105     1.528  0.0105
+ALD         C25         C26      SINGLE       n     1.521  0.0151     1.521  0.0151
+ALD         C25         C27      SINGLE       n     1.521  0.0151     1.521  0.0151
+ALD         C30         C31      SINGLE       n     1.528  0.0105     1.528  0.0105
+ALD         C31         C32      SINGLE       n     1.521  0.0151     1.521  0.0151
+ALD         C31         C33      SINGLE       n     1.521  0.0151     1.521  0.0151
+ALD          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0157
+ALD          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0157
+ALD          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+ALD          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+ALD          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0161
+ALD          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0175
+ALD          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0174
+ALD         N10         HNA      SINGLE       n     1.016  0.0100     0.875  0.0200
+ALD         C11         H11      SINGLE       n     1.089  0.0100     0.991  0.0200
+ALD         C30        H301      SINGLE       n     1.089  0.0100     0.978  0.0119
+ALD         C30        H302      SINGLE       n     1.089  0.0100     0.978  0.0119
+ALD         C31         H31      SINGLE       n     1.089  0.0100     0.989  0.0162
+ALD         C32        H321      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C32        H322      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C32        H323      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C33        H331      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C33        H332      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C33        H333      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         N13         HND      SINGLE       n     1.016  0.0100     0.873  0.0200
+ALD         C14         H14      SINGLE       n     1.089  0.0100     0.991  0.0200
+ALD         C24        H241      SINGLE       n     1.089  0.0100     0.978  0.0119
+ALD         C24        H242      SINGLE       n     1.089  0.0100     0.978  0.0119
+ALD         C25         H25      SINGLE       n     1.089  0.0100     0.989  0.0162
+ALD         C26        H261      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C26        H262      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C26        H263      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C27        H271      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C27        H272      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C27        H273      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         N16         HNG      SINGLE       n     1.016  0.0100     0.872  0.0200
+ALD         C17         H17      SINGLE       n     1.089  0.0100     0.989  0.0107
+ALD         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0174
+ALD         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0174
+ALD         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0160
+ALD         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0160
+ALD         C19         H19      SINGLE       n     1.089  0.0100     0.989  0.0162
+ALD         C20        H201      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C20        H202      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C20        H203      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C21        H211      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C21        H212      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         C21        H213      SINGLE       n     1.089  0.0100     0.973  0.0146
+ALD         O33         HOX      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ALD          O8          C9         N10     110.815    1.50
+ALD          O8          C9         O31     124.295    1.50
+ALD         N10          C9         O31     124.890    1.50
+ALD          C7          O8          C9     115.730    1.50
+ALD          C3          C7          O8     109.508    2.22
+ALD          C3          C7         H71     109.785    1.50
+ALD          C3          C7         H72     109.785    1.50
+ALD          O8          C7         H71     109.538    1.50
+ALD          O8          C7         H72     109.538    1.50
+ALD         H71          C7         H72     108.275    1.50
+ALD          C2          C3          C4     118.697    1.50
+ALD          C2          C3          C7     120.651    1.50
+ALD          C4          C3          C7     120.651    1.50
+ALD          C3          C4          C5     120.514    1.50
+ALD          C3          C4          H4     119.732    1.50
+ALD          C5          C4          H4     119.754    1.50
+ALD          C4          C5          C6     120.186    1.50
+ALD          C4          C5          H5     119.862    1.50
+ALD          C6          C5          H5     119.952    1.50
+ALD          C1          C6          C5     119.903    1.50
+ALD          C1          C6          H6     120.048    1.50
+ALD          C5          C6          H6     120.048    1.50
+ALD          C2          C1          C6     120.186    1.50
+ALD          C2          C1          H1     119.862    1.50
+ALD          C6          C1          H1     119.952    1.50
+ALD          C1          C2          C3     120.514    1.50
+ALD          C1          C2          H2     119.754    1.50
+ALD          C3          C2          H2     119.732    1.50
+ALD          C9         N10         C11     120.144    1.69
+ALD          C9         N10         HNA     119.498    2.20
+ALD         C11         N10         HNA     120.357    1.50
+ALD         N10         C11         C12     112.413    1.56
+ALD         N10         C11         C30     110.590    1.68
+ALD         N10         C11         H11     108.337    1.50
+ALD         C12         C11         C30     110.666    1.50
+ALD         C12         C11         H11     107.852    1.50
+ALD         C30         C11         H11     108.275    1.50
+ALD         C11         C12         N13     116.639    1.50
+ALD         C11         C12         O32     120.345    1.50
+ALD         N13         C12         O32     123.016    1.50
+ALD         C11         C30         C31     115.210    1.50
+ALD         C11         C30        H301     108.470    1.50
+ALD         C11         C30        H302     108.470    1.50
+ALD         C31         C30        H301     108.478    1.50
+ALD         C31         C30        H302     108.478    1.50
+ALD        H301         C30        H302     107.542    1.50
+ALD         C30         C31         C32     110.880    1.50
+ALD         C30         C31         C33     110.880    1.50
+ALD         C30         C31         H31     108.053    1.50
+ALD         C32         C31         C33     110.507    1.50
+ALD         C32         C31         H31     108.052    1.50
+ALD         C33         C31         H31     108.052    1.50
+ALD         C31         C32        H321     109.488    1.50
+ALD         C31         C32        H322     109.488    1.50
+ALD         C31         C32        H323     109.488    1.50
+ALD        H321         C32        H322     109.411    1.50
+ALD        H321         C32        H323     109.411    1.50
+ALD        H322         C32        H323     109.411    1.50
+ALD         C31         C33        H331     109.488    1.50
+ALD         C31         C33        H332     109.488    1.50
+ALD         C31         C33        H333     109.488    1.50
+ALD        H331         C33        H332     109.411    1.50
+ALD        H331         C33        H333     109.411    1.50
+ALD        H332         C33        H333     109.411    1.50
+ALD         C12         N13         C14     121.028    1.58
+ALD         C12         N13         HND     119.169    1.83
+ALD         C14         N13         HND     119.803    1.64
+ALD         N13         C14         C15     111.371    2.04
+ALD         N13         C14         C24     110.363    1.84
+ALD         N13         C14         H14     107.954    1.50
+ALD         C15         C14         C24     110.666    1.50
+ALD         C15         C14         H14     107.852    1.50
+ALD         C24         C14         H14     108.275    1.50
+ALD         C14         C15         N16     116.639    1.50
+ALD         C14         C15         O34     120.345    1.50
+ALD         N16         C15         O34     123.016    1.50
+ALD         C14         C24         C25     115.210    1.50
+ALD         C14         C24        H241     108.470    1.50
+ALD         C14         C24        H242     108.470    1.50
+ALD         C25         C24        H241     108.478    1.50
+ALD         C25         C24        H242     108.478    1.50
+ALD        H241         C24        H242     107.542    1.50
+ALD         C24         C25         C26     110.880    1.50
+ALD         C24         C25         C27     110.880    1.50
+ALD         C24         C25         H25     108.053    1.50
+ALD         C26         C25         C27     110.507    1.50
+ALD         C26         C25         H25     108.052    1.50
+ALD         C27         C25         H25     108.052    1.50
+ALD         C25         C26        H261     109.488    1.50
+ALD         C25         C26        H262     109.488    1.50
+ALD         C25         C26        H263     109.488    1.50
+ALD        H261         C26        H262     109.411    1.50
+ALD        H261         C26        H263     109.411    1.50
+ALD        H262         C26        H263     109.411    1.50
+ALD         C25         C27        H271     109.488    1.50
+ALD         C25         C27        H272     109.488    1.50
+ALD         C25         C27        H273     109.488    1.50
+ALD        H271         C27        H272     109.411    1.50
+ALD        H271         C27        H273     109.411    1.50
+ALD        H272         C27        H273     109.411    1.50
+ALD         C15         N16         C17     123.632    1.63
+ALD         C15         N16         HNG     118.879    1.83
+ALD         C17         N16         HNG     117.489    3.00
+ALD         N16         C17         C18     110.353    1.50
+ALD         N16         C17         C22     109.157    1.65
+ALD         N16         C17         H17     108.194    1.50
+ALD         C18         C17         C22     111.010    1.56
+ALD         C18         C17         H17     107.815    1.50
+ALD         C22         C17         H17     108.349    1.50
+ALD         C17         C22         O33     111.600    1.50
+ALD         C17         C22        H221     109.294    1.50
+ALD         C17         C22        H222     109.294    1.50
+ALD         O33         C22        H221     109.411    1.50
+ALD         O33         C22        H222     109.411    1.50
+ALD        H221         C22        H222     108.070    1.50
+ALD         C17         C18         C19     115.419    1.50
+ALD         C17         C18        H181     108.489    1.50
+ALD         C17         C18        H182     108.489    1.50
+ALD         C19         C18        H181     108.478    1.50
+ALD         C19         C18        H182     108.478    1.50
+ALD        H181         C18        H182     107.542    1.50
+ALD         C18         C19         C20     110.880    1.50
+ALD         C18         C19         C21     110.880    1.50
+ALD         C18         C19         H19     108.053    1.50
+ALD         C20         C19         C21     110.507    1.50
+ALD         C20         C19         H19     108.052    1.50
+ALD         C21         C19         H19     108.052    1.50
+ALD         C19         C20        H201     109.488    1.50
+ALD         C19         C20        H202     109.488    1.50
+ALD         C19         C20        H203     109.488    1.50
+ALD        H201         C20        H202     109.411    1.50
+ALD        H201         C20        H203     109.411    1.50
+ALD        H202         C20        H203     109.411    1.50
+ALD         C19         C21        H211     109.488    1.50
+ALD         C19         C21        H212     109.488    1.50
+ALD         C19         C21        H213     109.488    1.50
+ALD        H211         C21        H212     109.411    1.50
+ALD        H211         C21        H213     109.411    1.50
+ALD        H212         C21        H213     109.411    1.50
+ALD         C22         O33         HOX     108.529    2.94
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ALD             sp2_sp2_3          O8          C9         N10         C11     180.000     5.0     2
+ALD             sp2_sp2_1         N10          C9          O8          C7     180.000     5.0     2
+ALD             sp2_sp3_7          C9         N10         C11         C12       0.000    10.0     6
+ALD            sp2_sp3_13         N13         C12         C11         N10       0.000    10.0     6
+ALD             sp3_sp3_4         N10         C11         C30         C31     180.000    10.0     3
+ALD             sp2_sp2_7         C11         C12         N13         C14     180.000     5.0     2
+ALD            sp3_sp3_98         C11         C30         C31         C32     -60.000    10.0     3
+ALD           sp3_sp3_106         C30         C31         C32        H321     180.000    10.0     3
+ALD           sp3_sp3_118         C30         C31         C33        H331      60.000    10.0     3
+ALD            sp2_sp3_19         C12         N13         C14         C15       0.000    10.0     6
+ALD            sp2_sp3_25         N16         C15         C14         N13       0.000    10.0     6
+ALD            sp3_sp3_13         N13         C14         C24         C25     180.000    10.0     3
+ALD            sp2_sp2_11         C14         C15         N16         C17     180.000     5.0     2
+ALD            sp3_sp3_71         C14         C24         C25         C26     -60.000    10.0     3
+ALD            sp3_sp3_79         C24         C25         C26        H261     180.000    10.0     3
+ALD            sp3_sp3_91         C24         C25         C27        H271      60.000    10.0     3
+ALD            sp2_sp3_31         C15         N16         C17         C18       0.000    10.0     6
+ALD            sp3_sp3_31         N16         C17         C22         O33     180.000    10.0     3
+ALD            sp3_sp3_22         N16         C17         C18         C19     180.000    10.0     3
+ALD            sp3_sp3_67         C17         C22         O33         HOX     180.000    10.0     3
+ALD            sp3_sp3_41         C17         C18         C19         C20     -60.000    10.0     3
+ALD             sp3_sp3_1          C3          C7          O8          C9     180.000    10.0     3
+ALD            sp3_sp3_49         C18         C19         C20        H201     180.000    10.0     3
+ALD            sp3_sp3_61         C18         C19         C21        H211      60.000    10.0     3
+ALD             sp2_sp3_2          C2          C3          C7          O8     -90.000    10.0     6
+ALD              const_23          C7          C3          C4          C5     180.000    10.0     2
+ALD       const_sp2_sp2_2          C1          C2          C3          C7     180.000     5.0     2
+ALD              const_17          C3          C4          C5          C6       0.000    10.0     2
+ALD              const_13          C4          C5          C6          C1       0.000    10.0     2
+ALD       const_sp2_sp2_9          C2          C1          C6          C5       0.000     5.0     2
+ALD       const_sp2_sp2_5          C6          C1          C2          C3       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ALD    chir_1    C11    N10    C12    C30    positive
+ALD    chir_2    C31    C30    C32    C33    both
+ALD    chir_3    C14    N13    C15    C24    positive
+ALD    chir_4    C25    C24    C26    C27    both
+ALD    chir_5    C17    N16    C22    C18    positive
+ALD    chir_6    C19    C18    C20    C21    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ALD    plan-1          C1   0.020
+ALD    plan-1          C2   0.020
+ALD    plan-1          C3   0.020
+ALD    plan-1          C4   0.020
+ALD    plan-1          C5   0.020
+ALD    plan-1          C6   0.020
+ALD    plan-1          C7   0.020
+ALD    plan-1          H1   0.020
+ALD    plan-1          H2   0.020
+ALD    plan-1          H4   0.020
+ALD    plan-1          H5   0.020
+ALD    plan-1          H6   0.020
+ALD    plan-2          C9   0.020
+ALD    plan-2         N10   0.020
+ALD    plan-2         O31   0.020
+ALD    plan-2          O8   0.020
+ALD    plan-3         C11   0.020
+ALD    plan-3          C9   0.020
+ALD    plan-3         HNA   0.020
+ALD    plan-3         N10   0.020
+ALD    plan-4         C11   0.020
+ALD    plan-4         C12   0.020
+ALD    plan-4         N13   0.020
+ALD    plan-4         O32   0.020
+ALD    plan-5         C12   0.020
+ALD    plan-5         C14   0.020
+ALD    plan-5         HND   0.020
+ALD    plan-5         N13   0.020
+ALD    plan-6         C14   0.020
+ALD    plan-6         C15   0.020
+ALD    plan-6         N16   0.020
+ALD    plan-6         O34   0.020
+ALD    plan-7         C15   0.020
+ALD    plan-7         C17   0.020
+ALD    plan-7         HNG   0.020
+ALD    plan-7         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ALD           SMILES              ACDLabs 12.01                                                                                                                                               O=C(NC(CC(C)C)CO)C(NC(=O)C(NC(=O)OCc1ccccc1)CC(C)C)CC(C)C
+ALD            InChI                InChI  1.03 InChI=1S/C26H43N3O5/c1-17(2)12-21(15-30)27-24(31)22(13-18(3)4)28-25(32)23(14-19(5)6)29-26(33)34-16-20-10-8-7-9-11-20/h7-11,17-19,21-23,30H,12-16H2,1-6H3,(H,27,31)(H,28,32)(H,29,33)/t21-,22-,23-/m0/s1
+ALD         InChIKey                InChI  1.03                                                                                                                                                                             WUJQMWDTZKIKQZ-VABKMULXSA-N
+ALD SMILES_CANONICAL               CACTVS 3.370                                                                                                                                  CC(C)C[C@@H](CO)NC(=O)[C@H](CC(C)C)NC(=O)[C@H](CC(C)C)NC(=O)OCc1ccccc1
+ALD           SMILES               CACTVS 3.370                                                                                                                                      CC(C)C[CH](CO)NC(=O)[CH](CC(C)C)NC(=O)[CH](CC(C)C)NC(=O)OCc1ccccc1
+ALD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                  CC(C)C[C@@H](CO)NC(=O)[C@H](CC(C)C)NC(=O)[C@H](CC(C)C)NC(=O)OCc1ccccc1
+ALD           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                               CC(C)CC(CO)NC(=O)C(CC(C)C)NC(=O)C(CC(C)C)NC(=O)OCc1ccccc1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ALD acedrg               243         "dictionary generator"                  
+ALD acedrg_database      11          "data source"                           
+ALD rdkit                2017.03.2   "Chemoinformatics tool"
+ALD refmac5              5.8.0238    "optimization tool"                     

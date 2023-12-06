@@ -1,0 +1,239 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JAA     JAA      "{(1R,2R)-3-oxo-2-[(2Z)-pent-2-en-1-yl]cyclopentyl}acetic acid"     NON-POLYMER     32     15     .     
+#
+data_comp_JAA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JAA     O01     O       O       0       4.180       23.372      -51.839     
+JAA     O02     O       O       0       9.108       26.483      -48.278     
+JAA     O03     O       OC      -1      8.766       27.616      -50.155     
+JAA     C04     C       CH1     0       6.658       25.202      -49.997     
+JAA     C05     C       CH1     0       6.125       23.835      -50.461     
+JAA     C06     C       CH2     0       5.910       26.252      -50.838     
+JAA     C07     C       CH2     0       4.554       25.632      -51.087     
+JAA     C08     C       CR5     0       4.842       24.161      -51.217     
+JAA     C09     C       CH2     0       5.993       22.767      -49.368     
+JAA     C10     C       CH2     0       8.178       25.326      -50.118     
+JAA     C11     C       C1      0       4.619       22.396      -48.906     
+JAA     C12     C       C       0       8.730       26.580      -49.462     
+JAA     C13     C       C1      0       3.856       23.081      -48.066     
+JAA     C14     C       CH2     0       4.210       24.377      -47.403     
+JAA     C15     C       CH3     0       3.222       24.791      -46.371     
+JAA     H2      H       H       0       6.415       25.328      -49.060     
+JAA     H3      H       H       0       6.766       23.472      -51.127     
+JAA     H4      H       H       0       6.383       26.421      -51.682     
+JAA     H5      H       H       0       5.829       27.097      -50.345     
+JAA     H6      H       H       0       4.149       25.973      -51.907     
+JAA     H7      H       H       0       3.943       25.795      -50.344     
+JAA     H8      H       H       0       6.529       23.058      -48.584     
+JAA     H9      H       H       0       6.454       21.948      -49.688     
+JAA     H10     H       H       0       8.427       25.332      -51.067     
+JAA     H11     H       H       0       8.600       24.542      -49.706     
+JAA     H12     H       H       0       4.270       21.590      -49.254     
+JAA     H14     H       H       0       3.005       22.725      -47.859     
+JAA     H16     H       H       0       4.270       25.079      -48.085     
+JAA     H17     H       H       0       5.093       24.293      -46.985     
+JAA     H18     H       H       0       3.500       25.634      -45.974     
+JAA     H19     H       H       0       3.169       24.109      -45.679     
+JAA     H20     H       H       0       2.347       24.900      -46.784     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JAA         C06         C07      SINGLE       n     1.516  0.0166     1.516  0.0166
+JAA         C04         C06      SINGLE       n     1.539  0.0100     1.539  0.0100
+JAA         C07         C08      SINGLE       n     1.506  0.0100     1.506  0.0100
+JAA         O01         C08      DOUBLE       n     1.203  0.0100     1.203  0.0100
+JAA         C05         C08      SINGLE       n     1.518  0.0140     1.518  0.0140
+JAA         C04         C05      SINGLE       n     1.535  0.0110     1.535  0.0110
+JAA         C04         C10      SINGLE       n     1.529  0.0101     1.529  0.0101
+JAA         C05         C09      SINGLE       n     1.529  0.0100     1.529  0.0100
+JAA         C10         C12      SINGLE       n     1.519  0.0106     1.519  0.0106
+JAA         O02         C12      DOUBLE       n     1.247  0.0187     1.247  0.0187
+JAA         O03         C12      SINGLE       n     1.247  0.0187     1.247  0.0187
+JAA         C09         C11      SINGLE       n     1.490  0.0200     1.490  0.0200
+JAA         C11         C13      DOUBLE       n     1.324  0.0200     1.324  0.0200
+JAA         C13         C14      SINGLE       n     1.498  0.0100     1.498  0.0100
+JAA         C14         C15      SINGLE       n     1.487  0.0200     1.487  0.0200
+JAA         C04          H2      SINGLE       n     1.089  0.0100     0.977  0.0200
+JAA         C05          H3      SINGLE       n     1.089  0.0100     0.993  0.0142
+JAA         C06          H4      SINGLE       n     1.089  0.0100     0.982  0.0200
+JAA         C06          H5      SINGLE       n     1.089  0.0100     0.982  0.0200
+JAA         C07          H6      SINGLE       n     1.089  0.0100     0.976  0.0200
+JAA         C07          H7      SINGLE       n     1.089  0.0100     0.976  0.0200
+JAA         C09          H8      SINGLE       n     1.089  0.0100     0.993  0.0200
+JAA         C09          H9      SINGLE       n     1.089  0.0100     0.993  0.0200
+JAA         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0131
+JAA         C10         H11      SINGLE       n     1.089  0.0100     0.981  0.0131
+JAA         C11         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+JAA         C13         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+JAA         C14         H16      SINGLE       n     1.089  0.0100     0.981  0.0159
+JAA         C14         H17      SINGLE       n     1.089  0.0100     0.981  0.0159
+JAA         C15         H18      SINGLE       n     1.089  0.0100     0.973  0.0141
+JAA         C15         H19      SINGLE       n     1.089  0.0100     0.973  0.0141
+JAA         C15         H20      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JAA         C06         C04         C05     104.443    2.26
+JAA         C06         C04         C10     112.940    1.68
+JAA         C06         C04          H2     108.684    1.50
+JAA         C05         C04         C10     113.301    2.40
+JAA         C05         C04          H2     108.456    1.50
+JAA         C10         C04          H2     108.762    2.10
+JAA         C08         C05         C04     104.236    1.50
+JAA         C08         C05         C09     112.228    2.70
+JAA         C08         C05          H3     107.894    1.87
+JAA         C04         C05         C09     115.964    1.72
+JAA         C04         C05          H3     108.019    1.50
+JAA         C09         C05          H3     108.060    2.47
+JAA         C07         C06         C04     104.563    1.50
+JAA         C07         C06          H4     111.084    1.50
+JAA         C07         C06          H5     111.084    1.50
+JAA         C04         C06          H4     110.534    1.50
+JAA         C04         C06          H5     110.534    1.50
+JAA          H4         C06          H5     108.821    1.50
+JAA         C06         C07         C08     105.023    1.50
+JAA         C06         C07          H6     111.541    2.42
+JAA         C06         C07          H7     111.541    2.42
+JAA         C08         C07          H6     110.385    1.57
+JAA         C08         C07          H7     110.385    1.57
+JAA          H6         C07          H7     108.761    1.50
+JAA         C07         C08         O01     125.582    1.50
+JAA         C07         C08         C05     109.243    1.50
+JAA         O01         C08         C05     125.175    1.50
+JAA         C05         C09         C11     115.262    2.40
+JAA         C05         C09          H8     108.499    1.50
+JAA         C05         C09          H9     108.499    1.50
+JAA         C11         C09          H8     109.492    1.50
+JAA         C11         C09          H9     109.492    1.50
+JAA          H8         C09          H9     106.773    2.92
+JAA         C04         C10         C12     112.778    2.78
+JAA         C04         C10         H10     109.158    1.50
+JAA         C04         C10         H11     109.158    1.50
+JAA         C12         C10         H10     108.627    1.50
+JAA         C12         C10         H11     108.627    1.50
+JAA         H10         C10         H11     107.484    1.50
+JAA         C09         C11         C13     126.006    2.07
+JAA         C09         C11         H12     116.183    1.50
+JAA         C13         C11         H12     117.810    1.72
+JAA         C10         C12         O02     117.144    2.33
+JAA         C10         C12         O03     117.144    2.33
+JAA         O02         C12         O03     125.713    2.50
+JAA         C11         C13         C14     125.883    2.53
+JAA         C11         C13         H14     117.788    1.50
+JAA         C14         C13         H14     116.329    2.44
+JAA         C13         C14         C15     112.824    1.50
+JAA         C13         C14         H16     109.018    1.50
+JAA         C13         C14         H17     109.018    1.50
+JAA         C15         C14         H16     108.933    1.50
+JAA         C15         C14         H17     108.933    1.50
+JAA         H16         C14         H17     107.592    1.50
+JAA         C14         C15         H18     109.498    1.50
+JAA         C14         C15         H19     109.498    1.50
+JAA         C14         C15         H20     109.498    1.50
+JAA         H18         C15         H19     109.380    1.50
+JAA         H18         C15         H20     109.380    1.50
+JAA         H19         C15         H20     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JAA             sp2_sp2_1         C09         C11         C13         C14     180.000     5.0     2
+JAA            sp2_sp3_26         C11         C13         C14         C15     120.000    10.0     6
+JAA            sp3_sp3_46         C13         C14         C15         H18     180.000    10.0     3
+JAA            sp3_sp3_23         C10         C04         C05         C09     180.000    10.0     3
+JAA             sp3_sp3_4         C10         C04         C06         C07     -60.000    10.0     3
+JAA            sp3_sp3_28         C06         C04         C10         C12     180.000    10.0     3
+JAA            sp2_sp3_11         O01         C08         C05         C09     -60.000    10.0     6
+JAA            sp3_sp3_37         C08         C05         C09         C11     180.000    10.0     3
+JAA            sp3_sp3_10         C04         C06         C07         C08     -60.000    10.0     3
+JAA             sp2_sp3_4         O01         C08         C07         C06     180.000    10.0     6
+JAA            sp2_sp3_20         C13         C11         C09         C05     120.000    10.0     6
+JAA            sp2_sp3_14         O02         C12         C10         C04     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JAA    chir_1    C04    C05    C10    C06    negative
+JAA    chir_2    C05    C08    C04    C09    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JAA    plan-1         C05   0.020
+JAA    plan-1         C07   0.020
+JAA    plan-1         C08   0.020
+JAA    plan-1         O01   0.020
+JAA    plan-2         C09   0.020
+JAA    plan-2         C11   0.020
+JAA    plan-2         C13   0.020
+JAA    plan-2         H12   0.020
+JAA    plan-3         C10   0.020
+JAA    plan-3         C12   0.020
+JAA    plan-3         O02   0.020
+JAA    plan-3         O03   0.020
+JAA    plan-4         C11   0.020
+JAA    plan-4         C13   0.020
+JAA    plan-4         C14   0.020
+JAA    plan-4         H14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JAA           SMILES              ACDLabs 12.01                                                                                   O=C1C(C(CC(=O)O)CC1)C\C=C/CC
+JAA            InChI                InChI  1.03 InChI=1S/C12H18O3/c1-2-3-4-5-10-9(8-12(14)15)6-7-11(10)13/h3-4,9-10H,2,5-8H2,1H3,(H,14,15)/b4-3-/t9-,10-/m1/s1
+JAA         InChIKey                InChI  1.03                                                                                    ZNJFBWYDHIGLCU-HWKXXFMVSA-N
+JAA SMILES_CANONICAL               CACTVS 3.385                                                                            CC\C=C/C[C@@H]1[C@H](CCC1=O)CC(O)=O
+JAA           SMILES               CACTVS 3.385                                                                                 CCC=CC[CH]1[CH](CCC1=O)CC(O)=O
+JAA SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                            CC/C=C\C[C@@H]1[C@H](CCC1=O)CC(=O)O
+JAA           SMILES "OpenEye OEToolkits" 1.9.2                                                                                       CCC=CCC1C(CCC1=O)CC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JAA acedrg               243         "dictionary generator"                  
+JAA acedrg_database      11          "data source"                           
+JAA rdkit                2017.03.2   "Chemoinformatics tool"
+JAA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,322 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NFH     NFH      N~2~-[(2R)-2-{[formyl(hydroxy)amino]methyl}-4-methylpentanoyl]-N,3-dimethyl-L-valinamide     NON-POLYMER     51     22     .     
+#
+data_comp_NFH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NFH     C       C       C       0       41.086      13.722      142.136     
+NFH     N       N       N       0       41.887      15.436      145.446     
+NFH     O       O       O       0       41.980      12.904      141.923     
+NFH     C1      C       C       0       39.767      13.601      139.160     
+NFH     N1      N       NH1     0       39.870      13.641      141.578     
+NFH     O1      O       O       0       39.442      14.788      139.136     
+NFH     N2      N       NH1     0       40.288      12.956      138.115     
+NFH     CA      C       CH1     0       41.336      14.888      143.078     
+NFH     CB      C       CH2     0       42.389      15.845      142.479     
+NFH     CG      C       CH1     0       42.076      16.447      141.100     
+NFH     CM      C       C1      0       43.040      15.945      145.872     
+NFH     OM      O       O       0       43.134      16.848      146.706     
+NFH     CN      C       CH2     0       41.767      14.364      144.452     
+NFH     ON      O       OH1     0       40.685      15.890      145.917     
+NFH     CA1     C       CH1     0       39.560      12.782      140.440     
+NFH     CB1     C       CT      0       38.155      12.099      140.534     
+NFH     CD1     C       CH3     0       40.850      17.347      141.149     
+NFH     CD2     C       CH3     0       43.273      17.218      140.566     
+NFH     CG1     C       CH3     0       37.998      11.062      139.414     
+NFH     CG2     C       CH3     0       38.024      11.370      141.876     
+NFH     CG3     C       CH3     0       37.004      13.106      140.419     
+NFH     CN2     C       CH3     0       40.606      13.603      136.852     
+NFH     HN1     H       H       0       39.229      14.127      141.914     
+NFH     H2      H       H       0       40.443      12.100      138.178     
+NFH     HA      H       H       0       40.496      15.397      143.195     
+NFH     HB      H       H       0       43.239      15.362      142.412     
+NFH     HBA     H       H       0       42.523      16.587      143.104     
+NFH     HG      H       H       0       41.890      15.710      140.470     
+NFH     HM      H       H       0       43.853      15.583      145.501     
+NFH     HN      H       H       0       41.109      13.710      144.769     
+NFH     HNA     H       H       0       42.628      13.904      144.367     
+NFH     HON     H       H       0       40.573      16.691      145.593     
+NFH     HA1     H       H       0       40.215      12.040      140.429     
+NFH     HD1     H       H       0       40.741      17.794      140.291     
+NFH     HD1A    H       H       0       40.962      18.013      141.849     
+NFH     HD1B    H       H       0       40.060      16.811      141.335     
+NFH     HD2     H       H       0       44.040      16.623      140.502     
+NFH     HD2A    H       H       0       43.483      17.952      141.169     
+NFH     HD2B    H       H       0       43.064      17.573      139.684     
+NFH     HG1     H       H       0       38.772      10.472      139.405     
+NFH     HG1A    H       H       0       37.927      11.512      138.555     
+NFH     HG1B    H       H       0       37.195      10.535      139.567     
+NFH     HG2     H       H       0       37.205      10.845      141.884     
+NFH     HG2A    H       H       0       37.995      12.020      142.599     
+NFH     HG2B    H       H       0       38.787      10.780      142.002     
+NFH     HG3     H       H       0       36.165      12.665      140.640     
+NFH     HG3A    H       H       0       36.954      13.450      139.511     
+NFH     HG3B    H       H       0       37.149      13.844      141.035     
+NFH     HN2     H       H       0       40.142      14.452      136.777     
+NFH     HN2A    H       H       0       40.335      13.027      136.118     
+NFH     H29     H       H       0       41.564      13.755      136.799     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NFH           C          CA      SINGLE       n     1.516  0.0100     1.516  0.0100
+NFH           N          ON      SINGLE       n     1.366  0.0200     1.366  0.0200
+NFH           N          CM      SINGLE       n     1.324  0.0200     1.324  0.0200
+NFH           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+NFH          C1         CA1      SINGLE       n     1.529  0.0100     1.529  0.0100
+NFH           C          N1      SINGLE       n     1.334  0.0100     1.334  0.0100
+NFH          C1          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+NFH          C1          N2      SINGLE       n     1.328  0.0101     1.328  0.0101
+NFH          CA          CN      SINGLE       n     1.530  0.0119     1.530  0.0119
+NFH          CA          CB      SINGLE       n     1.530  0.0184     1.530  0.0184
+NFH          CB          CG      SINGLE       n     1.534  0.0100     1.534  0.0100
+NFH          CG         CD1      SINGLE       n     1.521  0.0151     1.521  0.0151
+NFH          CM          OM      DOUBLE       n     1.232  0.0100     1.232  0.0100
+NFH           N          CN      SINGLE       n     1.464  0.0154     1.464  0.0154
+NFH          N1         CA1      SINGLE       n     1.453  0.0100     1.453  0.0100
+NFH         CA1         CB1      SINGLE       n     1.559  0.0100     1.559  0.0100
+NFH         CB1         CG2      SINGLE       n     1.531  0.0109     1.531  0.0109
+NFH          CG         CD2      SINGLE       n     1.521  0.0151     1.521  0.0151
+NFH         CB1         CG1      SINGLE       n     1.531  0.0109     1.531  0.0109
+NFH         CB1         CG3      SINGLE       n     1.531  0.0109     1.531  0.0109
+NFH          N2         CN2      SINGLE       n     1.450  0.0100     1.450  0.0100
+NFH          N1         HN1      SINGLE       n     1.016  0.0100     0.873  0.0200
+NFH          N2          H2      SINGLE       n     1.016  0.0100     0.872  0.0200
+NFH          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0142
+NFH          CB          HB      SINGLE       n     1.089  0.0100     0.980  0.0160
+NFH          CB         HBA      SINGLE       n     1.089  0.0100     0.980  0.0160
+NFH          CG          HG      SINGLE       n     1.089  0.0100     0.989  0.0162
+NFH          CM          HM      SINGLE       n     1.082  0.0130     0.964  0.0200
+NFH          CN          HN      SINGLE       n     1.089  0.0100     0.980  0.0157
+NFH          CN         HNA      SINGLE       n     1.089  0.0100     0.980  0.0157
+NFH          ON         HON      SINGLE       n     0.970  0.0120     0.871  0.0200
+NFH         CA1         HA1      SINGLE       n     1.089  0.0100     0.991  0.0200
+NFH         CD1         HD1      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CD1        HD1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CD1        HD1B      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CD2         HD2      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CD2        HD2A      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CD2        HD2B      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG1         HG1      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG1        HG1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG1        HG1B      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG2         HG2      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG2        HG2A      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG2        HG2B      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG3         HG3      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG3        HG3A      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CG3        HG3B      SINGLE       n     1.089  0.0100     0.973  0.0146
+NFH         CN2         HN2      SINGLE       n     1.089  0.0100     0.971  0.0198
+NFH         CN2        HN2A      SINGLE       n     1.089  0.0100     0.971  0.0198
+NFH         CN2         H29      SINGLE       n     1.089  0.0100     0.971  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NFH          CA           C           O     121.196    1.75
+NFH          CA           C          N1     116.228    1.50
+NFH           O           C          N1     122.576    1.50
+NFH          ON           N          CM     121.147    2.14
+NFH          ON           N          CN     114.417    3.00
+NFH          CM           N          CN     124.436    2.35
+NFH         CA1          C1          O1     120.421    1.50
+NFH         CA1          C1          N2     116.408    1.50
+NFH          O1          C1          N2     123.171    1.50
+NFH           C          N1         CA1     122.007    1.76
+NFH           C          N1         HN1     118.918    2.34
+NFH         CA1          N1         HN1     119.075    1.92
+NFH          C1          N2         CN2     121.933    1.50
+NFH          C1          N2          H2     119.540    1.69
+NFH         CN2          N2          H2     118.526    1.58
+NFH           C          CA          CN     110.441    2.25
+NFH           C          CA          CB     110.094    2.47
+NFH           C          CA          HA     108.369    1.50
+NFH          CN          CA          CB     111.094    2.85
+NFH          CN          CA          HA     108.213    1.50
+NFH          CB          CA          HA     107.780    1.50
+NFH          CA          CB          CG     115.330    1.50
+NFH          CA          CB          HB     108.447    1.50
+NFH          CA          CB         HBA     108.447    1.50
+NFH          CG          CB          HB     108.194    1.50
+NFH          CG          CB         HBA     108.194    1.50
+NFH          HB          CB         HBA     107.599    1.50
+NFH          CB          CG         CD1     111.049    1.51
+NFH          CB          CG         CD2     111.049    1.51
+NFH          CB          CG          HG     108.023    1.50
+NFH         CD1          CG         CD2     110.507    1.50
+NFH         CD1          CG          HG     108.052    1.50
+NFH         CD2          CG          HG     108.052    1.50
+NFH           N          CM          OM     123.822    1.98
+NFH           N          CM          HM     117.675    2.15
+NFH          OM          CM          HM     118.502    2.29
+NFH          CA          CN           N     111.308    2.28
+NFH          CA          CN          HN     109.373    1.50
+NFH          CA          CN         HNA     109.373    1.50
+NFH           N          CN          HN     109.068    1.50
+NFH           N          CN         HNA     109.068    1.50
+NFH          HN          CN         HNA     107.873    1.50
+NFH           N          ON         HON     106.835    3.00
+NFH          C1         CA1          N1     111.106    2.53
+NFH          C1         CA1         CB1     111.511    2.91
+NFH          C1         CA1         HA1     108.061    1.50
+NFH          N1         CA1         CB1     111.308    2.28
+NFH          N1         CA1         HA1     108.161    1.50
+NFH         CB1         CA1         HA1     106.840    1.50
+NFH         CA1         CB1         CG2     109.638    1.92
+NFH         CA1         CB1         CG1     109.638    1.92
+NFH         CA1         CB1         CG3     109.638    1.92
+NFH         CG2         CB1         CG1     108.477    1.50
+NFH         CG2         CB1         CG3     108.477    1.50
+NFH         CG1         CB1         CG3     108.477    1.50
+NFH          CG         CD1         HD1     109.488    1.50
+NFH          CG         CD1        HD1A     109.488    1.50
+NFH          CG         CD1        HD1B     109.488    1.50
+NFH         HD1         CD1        HD1A     109.411    1.50
+NFH         HD1         CD1        HD1B     109.411    1.50
+NFH        HD1A         CD1        HD1B     109.411    1.50
+NFH          CG         CD2         HD2     109.488    1.50
+NFH          CG         CD2        HD2A     109.488    1.50
+NFH          CG         CD2        HD2B     109.488    1.50
+NFH         HD2         CD2        HD2A     109.411    1.50
+NFH         HD2         CD2        HD2B     109.411    1.50
+NFH        HD2A         CD2        HD2B     109.411    1.50
+NFH         CB1         CG1         HG1     109.547    1.50
+NFH         CB1         CG1        HG1A     109.547    1.50
+NFH         CB1         CG1        HG1B     109.547    1.50
+NFH         HG1         CG1        HG1A     109.377    1.50
+NFH         HG1         CG1        HG1B     109.377    1.50
+NFH        HG1A         CG1        HG1B     109.377    1.50
+NFH         CB1         CG2         HG2     109.547    1.50
+NFH         CB1         CG2        HG2A     109.547    1.50
+NFH         CB1         CG2        HG2B     109.547    1.50
+NFH         HG2         CG2        HG2A     109.377    1.50
+NFH         HG2         CG2        HG2B     109.377    1.50
+NFH        HG2A         CG2        HG2B     109.377    1.50
+NFH         CB1         CG3         HG3     109.547    1.50
+NFH         CB1         CG3        HG3A     109.547    1.50
+NFH         CB1         CG3        HG3B     109.547    1.50
+NFH         HG3         CG3        HG3A     109.377    1.50
+NFH         HG3         CG3        HG3B     109.377    1.50
+NFH        HG3A         CG3        HG3B     109.377    1.50
+NFH          N2         CN2         HN2     109.480    1.50
+NFH          N2         CN2        HN2A     109.480    1.50
+NFH          N2         CN2         H29     109.480    1.50
+NFH         HN2         CN2        HN2A     109.279    1.79
+NFH         HN2         CN2         H29     109.279    1.79
+NFH        HN2A         CN2         H29     109.279    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NFH             sp2_sp2_5          CA           C          N1         CA1     180.000     5.0     2
+NFH             sp2_sp3_1           O           C          CA          CN       0.000    10.0     6
+NFH            sp3_sp3_38          C1         CA1         CB1         CG2     -60.000    10.0     3
+NFH            sp3_sp3_67         CA1         CB1         CG1         HG1      60.000    10.0     3
+NFH            sp3_sp3_46         CA1         CB1         CG2         HG2     180.000    10.0     3
+NFH            sp3_sp3_73         CA1         CB1         CG3         HG3     180.000    10.0     3
+NFH             sp2_sp2_2          OM          CM           N          ON       0.000     5.0     2
+NFH            sp2_sp3_16          ON           N          CN          CA     120.000    10.0     6
+NFH             sp2_sp3_9          O1          C1         CA1          N1       0.000    10.0     6
+NFH             sp2_sp2_9         CA1          C1          N2         CN2     180.000     5.0     2
+NFH            sp2_sp3_21           C          N1         CA1          C1       0.000    10.0     6
+NFH            sp2_sp3_27          C1          N2         CN2         HN2       0.000    10.0     6
+NFH             sp3_sp3_1           C          CA          CN           N     180.000    10.0     3
+NFH            sp3_sp3_10           C          CA          CB          CG     180.000    10.0     3
+NFH            sp3_sp3_20          CA          CB          CG         CD1     -60.000    10.0     3
+NFH            sp3_sp3_28         HD1         CD1          CG          CB     180.000    10.0     3
+NFH            sp3_sp3_56         HD2         CD2          CG          CB     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NFH    chir_1    CA    C    CN    CB    negative
+NFH    chir_2    CG    CB    CD1    CD2    both
+NFH    chir_3    CA1    N1    C1    CB1    positive
+NFH    chir_4    CB1    CA1    CG2    CG1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NFH    plan-1           C   0.020
+NFH    plan-1          CA   0.020
+NFH    plan-1          N1   0.020
+NFH    plan-1           O   0.020
+NFH    plan-2          CM   0.020
+NFH    plan-2          CN   0.020
+NFH    plan-2           N   0.020
+NFH    plan-2          ON   0.020
+NFH    plan-3          C1   0.020
+NFH    plan-3         CA1   0.020
+NFH    plan-3          N2   0.020
+NFH    plan-3          O1   0.020
+NFH    plan-4           C   0.020
+NFH    plan-4         CA1   0.020
+NFH    plan-4         HN1   0.020
+NFH    plan-4          N1   0.020
+NFH    plan-5          C1   0.020
+NFH    plan-5         CN2   0.020
+NFH    plan-5          H2   0.020
+NFH    plan-5          N2   0.020
+NFH    plan-6          CM   0.020
+NFH    plan-6          HM   0.020
+NFH    plan-6           N   0.020
+NFH    plan-6          OM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NFH           SMILES              ACDLabs 12.01                                                                                             O=CN(O)CC(C(=O)NC(C(=O)NC)C(C)(C)C)CC(C)C
+NFH SMILES_CANONICAL               CACTVS 3.370                                                                                    CNC(=O)[C@@H](NC(=O)[C@H](CC(C)C)CN(O)C=O)C(C)(C)C
+NFH           SMILES               CACTVS 3.370                                                                                       CNC(=O)[CH](NC(=O)[CH](CC(C)C)CN(O)C=O)C(C)(C)C
+NFH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                     CC(C)C[C@H](CN(C=O)O)C(=O)N[C@H](C(=O)NC)C(C)(C)C
+NFH           SMILES "OpenEye OEToolkits" 1.7.0                                                                                             CC(C)CC(CN(C=O)O)C(=O)NC(C(=O)NC)C(C)(C)C
+NFH            InChI                InChI  1.03 InChI=1S/C15H29N3O4/c1-10(2)7-11(8-18(22)9-19)13(20)17-12(14(21)16-6)15(3,4)5/h9-12,22H,7-8H2,1-6H3,(H,16,21)(H,17,20)/t11-,12-/m1/s1
+NFH         InChIKey                InChI  1.03                                                                                                           YRLGSCVOSAUJJE-VXGBXAGGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NFH acedrg               243         "dictionary generator"                  
+NFH acedrg_database      11          "data source"                           
+NFH rdkit                2017.03.2   "Chemoinformatics tool"
+NFH refmac5              5.8.0238    "optimization tool"                     

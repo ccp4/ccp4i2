@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5PQ     5PQ      3-[[(2~{R},3~{S},4~{R},5~{R})-5-(2-azanyl-7-methyl-6-oxidanylidene-1~{H}-purin-7-ium-9-yl)-3,4-bis(oxidanyl)oxolan-2-yl]methylamino]-4-oxidanyl-cyclobut-3-ene-1,2-dione     NON-POLYMER     45     28     .     
+#
+data_comp_5PQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5PQ     C4      C       CR56    0       -0.137      -1.304      16.668      
+5PQ     C5      C       CR56    0       -0.855      -2.357      16.105      
+5PQ     C6      C       CR6     0       -2.250      -2.252      15.915      
+5PQ     C8      C       CR15    0       1.301       -2.955      16.218      
+5PQ     N1      N       NR6     0       -2.756      -1.023      16.346      
+5PQ     N2      N       NH2     0       -2.632      1.100       17.259      
+5PQ     N3      N       NRD6    0       -0.668      -0.116      17.078      
+5PQ     O6      O       O       0       -3.003      -3.103      15.431      
+5PQ     C2      C       CR6     0       -1.990      -0.020      16.896      
+5PQ     N7      N       NR5     1       0.049       -3.371      15.831      
+5PQ     CAA     C       CH3     0       -0.241      -4.670      15.237      
+5PQ     N9      N       NT      0       1.185       -1.672      16.730      
+5PQ     CAZ     C       CH1     0       2.267       -0.843      17.270      
+5PQ     OAN     O       O2      0       3.475       -1.175      16.621      
+5PQ     CAX     C       CH1     0       2.529       -1.075      18.754      
+5PQ     OAH     O       OH1     0       1.621       -0.340      19.546      
+5PQ     CAW     C       CH1     0       3.982       -0.602      18.885      
+5PQ     OAG     O       OH1     0       4.068       0.784       19.199      
+5PQ     CAY     C       CH1     0       4.584       -0.880      17.502      
+5PQ     CAJ     C       CH2     0       5.583       -2.022      17.446      
+5PQ     NAL     N       NH1     0       4.948       -3.332      17.545      
+5PQ     CAQ     C       C       0       5.049       -4.130      18.591      
+5PQ     CAT     C       C       0       4.527       -5.477      18.881      
+5PQ     OAE     O       O       0       3.854       -6.304      18.289      
+5PQ     CAS     C       C       0       5.183       -5.400      20.213      
+5PQ     OAD     O       O       0       5.281       -6.133      21.193      
+5PQ     CAP     C       C       0       5.655       -4.074      19.848      
+5PQ     OAF     O       OH1     0       6.379       -3.183      20.479      
+5PQ     H1      H       H       0       2.102       -3.446      16.145      
+5PQ     H2      H       H       0       -3.637      -0.886      16.255      
+5PQ     H3      H       H       0       -2.275      1.882       17.088      
+5PQ     H4      H       H       0       -3.407      1.046       17.666      
+5PQ     H5      H       H       0       0.586       -5.162      15.110      
+5PQ     H6      H       H       0       -0.677      -4.544      14.379      
+5PQ     H7      H       H       0       -0.828      -5.171      15.826      
+5PQ     H8      H       H       0       2.058       0.116       17.121      
+5PQ     H9      H       H       0       2.460       -2.042      18.969      
+5PQ     H10     H       H       0       1.854       -0.395      20.360      
+5PQ     H11     H       H       0       4.451       -1.135      19.578      
+5PQ     H12     H       H       0       4.054       0.874       20.043      
+5PQ     H13     H       H       0       5.033       -0.061      17.179      
+5PQ     H14     H       H       0       6.235       -1.912      18.169      
+5PQ     H15     H       H       0       6.071       -1.973      16.598      
+5PQ     H16     H       H       0       4.470       -3.607      16.868      
+5PQ     H17     H       H       0       6.655       -3.341      21.279      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5PQ         CAT         OAE      DOUBLE       n     1.220  0.0200     1.220  0.0200
+5PQ         NAL         CAQ      SINGLE       n     1.317  0.0100     1.317  0.0100
+5PQ         CAJ         NAL      SINGLE       n     1.456  0.0100     1.456  0.0100
+5PQ          N2          C2      SINGLE       n     1.340  0.0101     1.340  0.0101
+5PQ          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+5PQ          C6          N1      SINGLE       y     1.396  0.0107     1.396  0.0107
+5PQ          C6          O6      DOUBLE       n     1.235  0.0124     1.235  0.0124
+5PQ          N3          C2      DOUBLE       y     1.332  0.0108     1.332  0.0108
+5PQ         CAQ         CAT      SINGLE       y     1.472  0.0100     1.472  0.0100
+5PQ         CAT         CAS      SINGLE       y     1.495  0.0183     1.495  0.0183
+5PQ          C5          C6      SINGLE       y     1.402  0.0200     1.402  0.0200
+5PQ         OAN         CAY      SINGLE       n     1.446  0.0100     1.446  0.0100
+5PQ         CAZ         OAN      SINGLE       n     1.412  0.0100     1.412  0.0100
+5PQ          C4          N3      SINGLE       y     1.358  0.0100     1.358  0.0100
+5PQ         CAQ         CAP      DOUBLE       y     1.392  0.0108     1.392  0.0108
+5PQ          C4          C5      DOUBLE       y     1.383  0.0176     1.383  0.0176
+5PQ          C5          N7      SINGLE       y     1.387  0.0100     1.387  0.0100
+5PQ         CAY         CAJ      SINGLE       n     1.517  0.0109     1.517  0.0109
+5PQ          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+5PQ          N7         CAA      SINGLE       n     1.457  0.0100     1.457  0.0100
+5PQ          C8          N7      DOUBLE       y     1.373  0.0166     1.373  0.0166
+5PQ          C8          N9      SINGLE       y     1.376  0.0200     1.376  0.0200
+5PQ          N9         CAZ      SINGLE       n     1.458  0.0200     1.458  0.0200
+5PQ         CAW         CAY      SINGLE       n     1.528  0.0117     1.528  0.0117
+5PQ         CAZ         CAX      SINGLE       n     1.527  0.0100     1.527  0.0100
+5PQ         CAS         CAP      SINGLE       y     1.456  0.0155     1.456  0.0155
+5PQ         CAS         OAD      DOUBLE       n     1.228  0.0116     1.228  0.0116
+5PQ         CAP         OAF      SINGLE       n     1.310  0.0107     1.310  0.0107
+5PQ         CAX         CAW      SINGLE       n     1.531  0.0100     1.531  0.0100
+5PQ         CAW         OAG      SINGLE       n     1.422  0.0100     1.422  0.0100
+5PQ         CAX         OAH      SINGLE       n     1.411  0.0100     1.411  0.0100
+5PQ          C8          H1      SINGLE       n     1.082  0.0130     0.943  0.0184
+5PQ          N1          H2      SINGLE       n     1.016  0.0100     0.895  0.0200
+5PQ          N2          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+5PQ          N2          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+5PQ         CAA          H5      SINGLE       n     1.089  0.0100     0.971  0.0146
+5PQ         CAA          H6      SINGLE       n     1.089  0.0100     0.971  0.0146
+5PQ         CAA          H7      SINGLE       n     1.089  0.0100     0.971  0.0146
+5PQ         CAZ          H8      SINGLE       n     1.089  0.0100     0.993  0.0200
+5PQ         CAX          H9      SINGLE       n     1.089  0.0100     0.994  0.0200
+5PQ         OAH         H10      SINGLE       n     0.970  0.0120     0.849  0.0200
+5PQ         CAW         H11      SINGLE       n     1.089  0.0100     0.992  0.0200
+5PQ         OAG         H12      SINGLE       n     0.970  0.0120     0.849  0.0200
+5PQ         CAY         H13      SINGLE       n     1.089  0.0100     0.988  0.0100
+5PQ         CAJ         H14      SINGLE       n     1.089  0.0100     0.980  0.0123
+5PQ         CAJ         H15      SINGLE       n     1.089  0.0100     0.980  0.0123
+5PQ         NAL         H16      SINGLE       n     1.016  0.0100     0.873  0.0200
+5PQ         OAF         H17      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5PQ          N3          C4          C5     124.841    1.50
+5PQ          N3          C4          N9     126.668    1.50
+5PQ          C5          C4          N9     108.490    1.69
+5PQ          C6          C5          C4     120.732    1.84
+5PQ          C6          C5          N7     131.868    1.50
+5PQ          C4          C5          N7     107.401    1.50
+5PQ          N1          C6          O6     120.151    1.50
+5PQ          N1          C6          C5     113.121    1.50
+5PQ          O6          C6          C5     126.728    1.50
+5PQ          N7          C8          N9     107.248    1.50
+5PQ          N7          C8          H1     126.784    1.71
+5PQ          N9          C8          H1     125.968    2.19
+5PQ          C2          N1          C6     125.450    1.50
+5PQ          C2          N1          H2     117.625    2.71
+5PQ          C6          N1          H2     116.925    2.44
+5PQ          C2          N2          H3     119.868    1.50
+5PQ          C2          N2          H4     119.868    1.50
+5PQ          H3          N2          H4     120.263    1.96
+5PQ          C2          N3          C4     112.160    1.50
+5PQ          N2          C2          N1     116.529    1.50
+5PQ          N2          C2          N3     119.775    1.50
+5PQ          N1          C2          N3     123.696    1.50
+5PQ          C5          N7         CAA     127.015    1.50
+5PQ          C5          N7          C8     108.474    1.50
+5PQ         CAA          N7          C8     124.511    1.50
+5PQ          N7         CAA          H5     109.470    1.50
+5PQ          N7         CAA          H6     109.470    1.50
+5PQ          N7         CAA          H7     109.470    1.50
+5PQ          H5         CAA          H6     109.427    1.50
+5PQ          H5         CAA          H7     109.427    1.50
+5PQ          H6         CAA          H7     109.427    1.50
+5PQ          C4          N9          C8     107.594    1.50
+5PQ          C4          N9         CAZ     125.158    1.54
+5PQ          C8          N9         CAZ     126.078    2.46
+5PQ         OAN         CAZ          N9     108.167    1.51
+5PQ         OAN         CAZ         CAX     106.047    1.50
+5PQ         OAN         CAZ          H8     109.807    1.50
+5PQ          N9         CAZ         CAX     113.752    2.20
+5PQ          N9         CAZ          H8     109.246    1.50
+5PQ         CAX         CAZ          H8     109.015    1.50
+5PQ         CAY         OAN         CAZ     109.426    1.50
+5PQ         CAZ         CAX         CAW     101.239    1.50
+5PQ         CAZ         CAX         OAH     111.715    2.69
+5PQ         CAZ         CAX          H9     110.636    1.70
+5PQ         CAW         CAX         OAH     112.782    2.45
+5PQ         CAW         CAX          H9     110.596    1.51
+5PQ         OAH         CAX          H9     110.448    1.97
+5PQ         CAX         OAH         H10     109.103    2.13
+5PQ         CAY         CAW         CAX     102.352    1.50
+5PQ         CAY         CAW         OAG     110.985    2.41
+5PQ         CAY         CAW         H11     110.624    1.81
+5PQ         CAX         CAW         OAG     111.581    2.83
+5PQ         CAX         CAW         H11     110.504    1.75
+5PQ         OAG         CAW         H11     110.380    1.67
+5PQ         CAW         OAG         H12     108.744    3.00
+5PQ         OAN         CAY         CAJ     108.989    1.51
+5PQ         OAN         CAY         CAW     105.508    1.50
+5PQ         OAN         CAY         H13     109.115    1.50
+5PQ         CAJ         CAY         CAW     115.298    1.50
+5PQ         CAJ         CAY         H13     108.793    1.50
+5PQ         CAW         CAY         H13     109.143    1.50
+5PQ         NAL         CAJ         CAY     111.113    2.62
+5PQ         NAL         CAJ         H14     109.052    1.50
+5PQ         NAL         CAJ         H15     109.052    1.50
+5PQ         CAY         CAJ         H14     109.129    1.50
+5PQ         CAY         CAJ         H15     109.129    1.50
+5PQ         H14         CAJ         H15     108.010    1.71
+5PQ         CAQ         NAL         CAJ     122.217    1.57
+5PQ         CAQ         NAL         H16     119.254    3.00
+5PQ         CAJ         NAL         H16     118.529    1.91
+5PQ         NAL         CAQ         CAT     134.409    1.61
+5PQ         NAL         CAQ         CAP     135.043    3.00
+5PQ         CAT         CAQ         CAP      90.547    1.50
+5PQ         OAE         CAT         CAQ     135.964    1.50
+5PQ         OAE         CAT         CAS     135.531    1.53
+5PQ         CAQ         CAT         CAS      88.505    1.50
+5PQ         CAT         CAS         CAP      88.549    1.50
+5PQ         CAT         CAS         OAD     135.720    1.50
+5PQ         CAP         CAS         OAD     135.730    1.50
+5PQ         CAQ         CAP         CAS      92.398    1.50
+5PQ         CAQ         CAP         OAF     133.801    3.00
+5PQ         CAS         CAP         OAF     133.801    3.00
+5PQ         CAP         OAF         H17     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5PQ              const_17          N3          C4          C5          C6       0.000    10.0     2
+5PQ              const_51          N3          C4          N9          C8     180.000    10.0     2
+5PQ       const_sp2_sp2_1          C5          C4          N3          C2       0.000     5.0     2
+5PQ            sp2_sp3_13          C4          N9         CAZ         OAN     150.000    10.0     6
+5PQ             sp3_sp3_2          N9         CAZ         OAN         CAY     -60.000    10.0     3
+5PQ            sp3_sp3_37         OAH         CAX         CAZ         OAN      60.000    10.0     3
+5PQ             sp3_sp3_5         CAJ         CAY         OAN         CAZ     180.000    10.0     3
+5PQ            sp3_sp3_46         CAZ         CAX         OAH         H10     180.000    10.0     3
+5PQ            sp3_sp3_20         OAG         CAW         CAX         OAH     -60.000    10.0     3
+5PQ            sp3_sp3_43         CAY         CAW         OAG         H12     180.000    10.0     3
+5PQ            sp3_sp3_11         OAG         CAW         CAY         CAJ      60.000    10.0     3
+5PQ            sp3_sp3_25         NAL         CAJ         CAY         OAN     180.000    10.0     3
+5PQ             sp2_sp3_2         CAQ         NAL         CAJ         CAY     120.000    10.0     6
+5PQ              const_14          C4          C5          C6          O6     180.000    10.0     2
+5PQ              const_24          C6          C5          N7         CAA       0.000    10.0     2
+5PQ             sp2_sp2_1         CAT         CAQ         NAL         CAJ     180.000     5.0     2
+5PQ              const_36         NAL         CAQ         CAT         OAE       0.000    10.0     2
+5PQ              const_48         OAF         CAP         CAQ         NAL       0.000    10.0     2
+5PQ              const_40         OAD         CAS         CAT         OAE       0.000    10.0     2
+5PQ              const_44         OAF         CAP         CAS         OAD       0.000    10.0     2
+5PQ             sp2_sp2_9         CAQ         CAP         OAF         H17     180.000     5.0     2
+5PQ              const_11          O6          C6          N1          C2     180.000    10.0     2
+5PQ              const_29          N7          C8          N9          C4       0.000    10.0     2
+5PQ              const_26          N9          C8          N7         CAA     180.000    10.0     2
+5PQ       const_sp2_sp2_7          N2          C2          N1          C6     180.000     5.0     2
+5PQ             sp2_sp2_5          N1          C2          N2          H3     180.000     5.0     2
+5PQ       const_sp2_sp2_4          N2          C2          N3          C4     180.000     5.0     2
+5PQ             sp2_sp3_7          C5          N7         CAA          H5     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+5PQ    chir_1    CAZ    OAN    N9    CAX    negative
+5PQ    chir_2    CAX    OAH    CAZ    CAW    negative
+5PQ    chir_3    CAW    OAG    CAY    CAX    positive
+5PQ    chir_4    CAY    OAN    CAW    CAJ    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5PQ    plan-1          C2   0.020
+5PQ    plan-1          C4   0.020
+5PQ    plan-1          C5   0.020
+5PQ    plan-1          C6   0.020
+5PQ    plan-1          C8   0.020
+5PQ    plan-1         CAA   0.020
+5PQ    plan-1         CAZ   0.020
+5PQ    plan-1          H1   0.020
+5PQ    plan-1          H2   0.020
+5PQ    plan-1          N1   0.020
+5PQ    plan-1          N2   0.020
+5PQ    plan-1          N3   0.020
+5PQ    plan-1          N7   0.020
+5PQ    plan-1          N9   0.020
+5PQ    plan-1          O6   0.020
+5PQ    plan-2         CAP   0.020
+5PQ    plan-2         CAQ   0.020
+5PQ    plan-2         CAS   0.020
+5PQ    plan-2         CAT   0.020
+5PQ    plan-2         NAL   0.020
+5PQ    plan-2         OAD   0.020
+5PQ    plan-2         OAE   0.020
+5PQ    plan-2         OAF   0.020
+5PQ    plan-3          C2   0.020
+5PQ    plan-3          H3   0.020
+5PQ    plan-3          H4   0.020
+5PQ    plan-3          N2   0.020
+5PQ    plan-4         CAJ   0.020
+5PQ    plan-4         CAQ   0.020
+5PQ    plan-4         H16   0.020
+5PQ    plan-4         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5PQ            InChI                InChI  1.03 InChI=1S/C15H16N6O7/c1-20-3-21(12-6(20)13(27)19-15(16)18-12)14-11(26)7(22)4(28-14)2-17-5-8(23)10(25)9(5)24/h3-4,7,11,14,22,26H,2H2,1H3,(H4-,16,17,18,19,23,24,25,27)/p+1/t4-,7-,11-,14-/m1/s1
+5PQ         InChIKey                InChI  1.03                                                                                                                                                                   WRZJZJPEHQGNLE-CZCBHZRKSA-O
+5PQ SMILES_CANONICAL               CACTVS 3.385                                                                                                                  C[n+]1cn([C@@H]2O[C@H](CNC3=C(O)C(=O)C3=O)[C@@H](O)[C@H]2O)c4N=C(N)NC(=O)c14
+5PQ           SMILES               CACTVS 3.385                                                                                                                        C[n+]1cn([CH]2O[CH](CNC3=C(O)C(=O)C3=O)[CH](O)[CH]2O)c4N=C(N)NC(=O)c14
+5PQ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                C[n+]1cn(c2c1C(=O)NC(=N2)N)[C@H]3[C@@H]([C@@H]([C@H](O3)CNC4=C(C(=O)C4=O)O)O)O
+5PQ           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                                  C[n+]1cn(c2c1C(=O)NC(=N2)N)C3C(C(C(O3)CNC4=C(C(=O)C4=O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5PQ acedrg               243         "dictionary generator"                  
+5PQ acedrg_database      11          "data source"                           
+5PQ rdkit                2017.03.2   "Chemoinformatics tool"
+5PQ refmac5              5.8.0238    "optimization tool"                     

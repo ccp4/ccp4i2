@@ -1,0 +1,603 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M6B     M6B      "(1R,2R,3R,6R,7S,8S,9R,10R,12R,13S,17S)-3-ethyl-2,10-dihydroxy-2,6,8,10,12,15,15,17-octamethyl-5-oxo-9-(prop-2-yn-1-yloxy)-4,14,16-trioxabicyclo[11.3.1]heptadec-7-yl {3-[N'-(methylcarbamoyl)carbamimidamido]propyl}carbamate"     NON-POLYMER     109     49     .     
+#
+data_comp_M6B
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M6B     C20     C       CH3     0       -25.065     -6.053      -33.290     
+M6B     N5      N       NH1     0       -24.687     -5.834      -31.914     
+M6B     C19     C       C       0       -23.615     -5.081      -31.572     
+M6B     O5      O       O       0       -22.876     -4.556      -32.416     
+M6B     N4      N       NH1     0       -23.357     -4.871      -30.203     
+M6B     C18     C       C       0       -22.393     -4.117      -29.580     
+M6B     N3      N       NH2     1       -22.397     -4.055      -28.259     
+M6B     N2      N       NH1     0       -21.461     -3.491      -30.307     
+M6B     C17     C       CH2     0       -20.520     -2.492      -29.804     
+M6B     C16     C       CH2     0       -19.837     -1.750      -30.942     
+M6B     C15     C       CH2     0       -19.477     -0.318      -30.593     
+M6B     N1      N       NH1     0       -20.638     0.565       -30.614     
+M6B     C14     C       C       0       -21.148     1.066       -31.758     
+M6B     O4      O       O       0       -20.711     0.829       -32.863     
+M6B     O3      O       O2      0       -22.188     1.884       -31.475     
+M6B     C3      C       CH1     0       -23.119     2.290       -32.538     
+M6B     C4      C       CH1     0       -24.531     1.809       -32.131     
+M6B     C30     C       CH3     0       -24.915     2.308       -30.723     
+M6B     C2      C       CH1     0       -22.929     3.803       -32.765     
+M6B     C29     C       CH3     0       -21.464     4.192       -33.000     
+M6B     C1      C       C       0       -23.773     4.288       -33.949     
+M6B     O1      O       O       0       -23.490     4.019       -35.091     
+M6B     O2      O       O2      0       -24.841     5.010       -33.537     
+M6B     C13     C       CH1     0       -25.704     5.694       -34.501     
+M6B     C27     C       CH2     0       -25.555     7.185       -34.229     
+M6B     C28     C       CH3     0       -24.171     7.719       -34.520     
+M6B     C12     C       CT      0       -27.136     5.094       -34.397     
+M6B     O10     O       OH1     0       -28.016     5.914       -35.194     
+M6B     C34     C       CH3     0       -27.656     5.145       -32.964     
+M6B     C11     C       CH1     0       -27.165     3.648       -34.946     
+M6B     C10     C       CH1     0       -28.427     2.801       -34.720     
+M6B     C33     C       CH3     0       -29.709     3.465       -35.225     
+M6B     O9      O       O2      0       -26.903     3.719       -36.368     
+M6B     C24     C       CT      0       -26.788     2.458       -37.045     
+M6B     C25     C       CH3     0       -25.348     2.355       -37.524     
+M6B     C26     C       CH3     0       -27.789     2.408       -38.193     
+M6B     O8      O       O2      0       -27.012     1.364       -36.142     
+M6B     C9      C       CH1     0       -28.211     1.408       -35.338     
+M6B     C8      C       CH1     0       -28.127     0.209       -34.375     
+M6B     C32     C       CH3     0       -29.525     -0.086      -33.824     
+M6B     C7      C       CH2     0       -27.121     0.325       -33.209     
+M6B     C6      C       CT      0       -25.686     -0.195      -33.422     
+M6B     O7      O       OH1     0       -25.154     0.326       -34.653     
+M6B     C31     C       CH3     0       -25.684     -1.715      -33.514     
+M6B     C5      C       CH1     0       -24.715     0.283       -32.303     
+M6B     O6      O       O2      0       -25.188     -0.345      -31.079     
+M6B     C21     C       CH2     0       -24.184     -0.974      -30.296     
+M6B     C22     C       CSP     0       -24.710     -1.436      -29.013     
+M6B     C23     C       CSP     0       -25.141     -1.863      -28.011     
+M6B     H1      H       H       0       -25.145     -5.205      -33.757     
+M6B     H2      H       H       0       -25.919     -6.513      -33.335     
+M6B     H3      H       H       0       -24.397     -6.594      -33.742     
+M6B     H4      H       H       0       -25.180     -6.211      -31.271     
+M6B     H5      H       H       0       -23.903     -5.300      -29.666     
+M6B     H6      H       H       0       -23.035     -4.452      -27.802     
+M6B     H60     H       H       0       -21.755     -3.636      -27.834     
+M6B     H7      H       H       0       -21.385     -3.724      -31.142     
+M6B     H8      H       H       0       -19.843     -2.935      -29.249     
+M6B     H9      H       H       0       -21.003     -1.851      -29.238     
+M6B     H10     H       H       0       -20.426     -1.746      -31.724     
+M6B     H11     H       H       0       -19.022     -2.232      -31.189     
+M6B     H12     H       H       0       -18.806     0.013       -31.228     
+M6B     H13     H       H       0       -19.077     -0.295      -29.697     
+M6B     H14     H       H       0       -21.012     0.773       -29.852     
+M6B     H15     H       H       0       -22.878     1.840       -33.388     
+M6B     H16     H       H       0       -25.156     2.246       -32.744     
+M6B     H17     H       H       0       -24.807     3.272       -30.676     
+M6B     H18     H       H       0       -24.348     1.888       -30.053     
+M6B     H19     H       H       0       -25.846     2.086       -30.543     
+M6B     H20     H       H       0       -23.246     4.263       -31.965     
+M6B     H21     H       H       0       -20.977     4.152       -32.159     
+M6B     H22     H       H       0       -21.418     5.097       -33.355     
+M6B     H23     H       H       0       -21.062     3.575       -33.636     
+M6B     H24     H       H       0       -25.381     5.528       -35.420     
+M6B     H25     H       H       0       -25.767     7.356       -33.288     
+M6B     H26     H       H       0       -26.203     7.674       -34.778     
+M6B     H27     H       H       0       -24.195     8.691       -34.543     
+M6B     H28     H       H       0       -23.866     7.383       -35.381     
+M6B     H29     H       H       0       -23.557     7.427       -33.824     
+M6B     H30     H       H       0       -27.773     5.904       -36.007     
+M6B     H31     H       H       0       -27.419     5.992       -32.552     
+M6B     H32     H       H       0       -27.263     4.418       -32.450     
+M6B     H33     H       H       0       -28.623     5.053       -32.963     
+M6B     H34     H       H       0       -26.416     3.173       -34.513     
+M6B     H35     H       H       0       -28.537     2.681       -33.748     
+M6B     H36     H       H       0       -29.991     4.155       -34.605     
+M6B     H37     H       H       0       -30.422     2.809       -35.301     
+M6B     H38     H       H       0       -29.559     3.868       -36.094     
+M6B     H39     H       H       0       -25.072     3.205       -37.908     
+M6B     H40     H       H       0       -25.282     1.658       -38.199     
+M6B     H41     H       H       0       -24.770     2.136       -36.775     
+M6B     H42     H       H       0       -28.577     2.924       -37.961     
+M6B     H43     H       H       0       -28.043     1.485       -38.360     
+M6B     H44     H       H       0       -27.383     2.782       -38.994     
+M6B     H45     H       H       0       -28.983     1.226       -35.948     
+M6B     H46     H       H       0       -27.854     -0.576      -34.913     
+M6B     H47     H       H       0       -30.168     -0.117      -34.553     
+M6B     H48     H       H       0       -29.781     0.613       -33.197     
+M6B     H49     H       H       0       -29.519     -0.944      -33.365     
+M6B     H50     H       H       0       -27.495     -0.159      -32.442     
+M6B     H51     H       H       0       -27.068     1.260       -32.948     
+M6B     H52     H       H       0       -25.394     1.126       -34.750     
+M6B     H53     H       H       0       -26.257     -2.087      -32.822     
+M6B     H54     H       H       0       -24.779     -2.048      -33.396     
+M6B     H55     H       H       0       -26.015     -1.986      -34.387     
+M6B     H56     H       H       0       -23.824     -0.096      -32.520     
+M6B     H57     H       H       0       -23.451     -0.336      -30.138     
+M6B     H58     H       H       0       -23.819     -1.741      -30.795     
+M6B     H59     H       H       0       -25.511     -2.184      -27.196     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M6B         C24         C26      SINGLE       n     1.520  0.0136     1.520  0.0136
+M6B         C24         C25      SINGLE       n     1.520  0.0136     1.520  0.0136
+M6B         C24          O8      SINGLE       n     1.429  0.0100     1.429  0.0100
+M6B          O9         C24      SINGLE       n     1.429  0.0100     1.429  0.0100
+M6B          O8          C9      SINGLE       n     1.438  0.0100     1.438  0.0100
+M6B         C11          O9      SINGLE       n     1.437  0.0151     1.437  0.0151
+M6B          C9          C8      SINGLE       n     1.531  0.0100     1.531  0.0100
+M6B         C10          C9      SINGLE       n     1.530  0.0100     1.530  0.0100
+M6B          C6          O7      SINGLE       n     1.437  0.0141     1.437  0.0141
+M6B         C27         C28      SINGLE       n     1.511  0.0200     1.511  0.0200
+M6B          C1          O1      DOUBLE       n     1.203  0.0150     1.203  0.0150
+M6B         C11         C10      SINGLE       n     1.530  0.0100     1.530  0.0100
+M6B         C12         C11      SINGLE       n     1.537  0.0100     1.537  0.0100
+M6B          C6         C31      SINGLE       n     1.520  0.0101     1.520  0.0101
+M6B          C8         C32      SINGLE       n     1.528  0.0100     1.528  0.0100
+M6B          C8          C7      SINGLE       n     1.535  0.0100     1.535  0.0100
+M6B         C12         O10      SINGLE       n     1.441  0.0113     1.441  0.0113
+M6B         C10         C33      SINGLE       n     1.526  0.0100     1.526  0.0100
+M6B         C13         C27      SINGLE       n     1.519  0.0116     1.519  0.0116
+M6B         C13         C12      SINGLE       n     1.548  0.0100     1.548  0.0100
+M6B          O2         C13      SINGLE       n     1.454  0.0123     1.454  0.0123
+M6B          C7          C6      SINGLE       n     1.533  0.0100     1.533  0.0100
+M6B          C6          C5      SINGLE       n     1.547  0.0100     1.547  0.0100
+M6B         C12         C34      SINGLE       n     1.522  0.0100     1.522  0.0100
+M6B          C1          O2      SINGLE       n     1.343  0.0132     1.343  0.0132
+M6B          C2          C1      SINGLE       n     1.521  0.0200     1.521  0.0200
+M6B         C14          O4      DOUBLE       n     1.210  0.0102     1.210  0.0102
+M6B          C4          C5      SINGLE       n     1.533  0.0100     1.533  0.0100
+M6B          C5          O6      SINGLE       n     1.439  0.0183     1.439  0.0183
+M6B          C2         C29      SINGLE       n     1.531  0.0104     1.531  0.0104
+M6B          C3          C2      SINGLE       n     1.536  0.0100     1.536  0.0100
+M6B          C3          C4      SINGLE       n     1.537  0.0114     1.537  0.0114
+M6B          O3          C3      SINGLE       n     1.459  0.0134     1.459  0.0134
+M6B          C4         C30      SINGLE       n     1.534  0.0118     1.534  0.0118
+M6B         C14          O3      SINGLE       n     1.347  0.0100     1.347  0.0100
+M6B          N1         C14      SINGLE       n     1.340  0.0141     1.340  0.0141
+M6B          O6         C21      SINGLE       n     1.418  0.0110     1.418  0.0110
+M6B         C22         C23      TRIPLE       n     1.171  0.0134     1.171  0.0134
+M6B         C21         C22      SINGLE       n     1.462  0.0100     1.462  0.0100
+M6B         C16         C15      SINGLE       n     1.517  0.0117     1.517  0.0117
+M6B         C15          N1      SINGLE       n     1.455  0.0131     1.455  0.0131
+M6B         C17         C16      SINGLE       n     1.517  0.0117     1.517  0.0117
+M6B         C20          N5      SINGLE       n     1.443  0.0100     1.443  0.0100
+M6B         C19          O5      DOUBLE       n     1.235  0.0158     1.235  0.0158
+M6B          N5         C19      SINGLE       n     1.345  0.0158     1.345  0.0158
+M6B         C19          N4      SINGLE       n     1.399  0.0142     1.399  0.0142
+M6B          N2         C17      SINGLE       n     1.456  0.0136     1.456  0.0136
+M6B         C18          N2      SINGLE       n     1.331  0.0100     1.331  0.0100
+M6B          N4         C18      SINGLE       n     1.361  0.0133     1.361  0.0133
+M6B         C18          N3      DOUBLE       n     1.318  0.0103     1.318  0.0103
+M6B         C20          H1      SINGLE       n     1.089  0.0100     0.971  0.0198
+M6B         C20          H2      SINGLE       n     1.089  0.0100     0.971  0.0198
+M6B         C20          H3      SINGLE       n     1.089  0.0100     0.971  0.0198
+M6B          N5          H4      SINGLE       n     1.016  0.0100     0.894  0.0200
+M6B          N4          H5      SINGLE       n     1.016  0.0100     0.878  0.0200
+M6B          N3          H6      SINGLE       n     1.016  0.0100     0.879  0.0200
+M6B          N3         H60      SINGLE       n     1.016  0.0100     0.879  0.0200
+M6B          N2          H7      SINGLE       n     1.016  0.0100     0.872  0.0200
+M6B         C17          H8      SINGLE       n     1.089  0.0100     0.981  0.0152
+M6B         C17          H9      SINGLE       n     1.089  0.0100     0.981  0.0152
+M6B         C16         H10      SINGLE       n     1.089  0.0100     0.979  0.0161
+M6B         C16         H11      SINGLE       n     1.089  0.0100     0.979  0.0161
+M6B         C15         H12      SINGLE       n     1.089  0.0100     0.981  0.0152
+M6B         C15         H13      SINGLE       n     1.089  0.0100     0.981  0.0152
+M6B          N1         H14      SINGLE       n     1.016  0.0100     0.872  0.0200
+M6B          C3         H15      SINGLE       n     1.089  0.0100     0.991  0.0106
+M6B          C4         H16      SINGLE       n     1.089  0.0100     0.988  0.0186
+M6B         C30         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B         C30         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B         C30         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B          C2         H20      SINGLE       n     1.089  0.0100     0.979  0.0200
+M6B         C29         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+M6B         C29         H22      SINGLE       n     1.089  0.0100     0.973  0.0141
+M6B         C29         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+M6B         C13         H24      SINGLE       n     1.089  0.0100     0.990  0.0148
+M6B         C27         H25      SINGLE       n     1.089  0.0100     0.981  0.0160
+M6B         C27         H26      SINGLE       n     1.089  0.0100     0.981  0.0160
+M6B         C28         H27      SINGLE       n     1.089  0.0100     0.973  0.0157
+M6B         C28         H28      SINGLE       n     1.089  0.0100     0.973  0.0157
+M6B         C28         H29      SINGLE       n     1.089  0.0100     0.973  0.0157
+M6B         O10         H30      SINGLE       n     0.970  0.0120     0.848  0.0200
+M6B         C34         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B         C34         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B         C34         H33      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B         C11         H34      SINGLE       n     1.089  0.0100     0.989  0.0172
+M6B         C10         H35      SINGLE       n     1.089  0.0100     0.988  0.0159
+M6B         C33         H36      SINGLE       n     1.089  0.0100     0.971  0.0171
+M6B         C33         H37      SINGLE       n     1.089  0.0100     0.971  0.0171
+M6B         C33         H38      SINGLE       n     1.089  0.0100     0.971  0.0171
+M6B         C25         H39      SINGLE       n     1.089  0.0100     0.972  0.0169
+M6B         C25         H40      SINGLE       n     1.089  0.0100     0.972  0.0169
+M6B         C25         H41      SINGLE       n     1.089  0.0100     0.972  0.0169
+M6B         C26         H42      SINGLE       n     1.089  0.0100     0.972  0.0169
+M6B         C26         H43      SINGLE       n     1.089  0.0100     0.972  0.0169
+M6B         C26         H44      SINGLE       n     1.089  0.0100     0.972  0.0169
+M6B          C9         H45      SINGLE       n     1.089  0.0100     1.000  0.0100
+M6B          C8         H46      SINGLE       n     1.089  0.0100     0.991  0.0104
+M6B         C32         H47      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B         C32         H48      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B         C32         H49      SINGLE       n     1.089  0.0100     0.973  0.0146
+M6B          C7         H50      SINGLE       n     1.089  0.0100     0.981  0.0160
+M6B          C7         H51      SINGLE       n     1.089  0.0100     0.981  0.0160
+M6B          O7         H52      SINGLE       n     0.970  0.0120     0.848  0.0200
+M6B         C31         H53      SINGLE       n     1.089  0.0100     0.972  0.0148
+M6B         C31         H54      SINGLE       n     1.089  0.0100     0.972  0.0148
+M6B         C31         H55      SINGLE       n     1.089  0.0100     0.972  0.0148
+M6B          C5         H56      SINGLE       n     1.089  0.0100     0.992  0.0184
+M6B         C21         H57      SINGLE       n     1.089  0.0100     0.985  0.0100
+M6B         C21         H58      SINGLE       n     1.089  0.0100     0.985  0.0100
+M6B         C23         H59      SINGLE       n     1.048  0.0100     0.950  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M6B          N5         C20          H1     110.997    1.85
+M6B          N5         C20          H2     110.997    1.85
+M6B          N5         C20          H3     110.997    1.85
+M6B          H1         C20          H2     109.279    1.79
+M6B          H1         C20          H3     109.279    1.79
+M6B          H2         C20          H3     109.279    1.79
+M6B         C20          N5         C19     121.744    2.00
+M6B         C20          N5          H4     118.977    1.50
+M6B         C19          N5          H4     119.279    2.29
+M6B          O5         C19          N5     122.453    1.50
+M6B          O5         C19          N4     119.777    1.77
+M6B          N5         C19          N4     117.770    1.50
+M6B         C19          N4         C18     127.642    3.00
+M6B         C19          N4          H5     115.946    2.37
+M6B         C18          N4          H5     116.412    1.80
+M6B          N2         C18          N4     118.530    3.00
+M6B          N2         C18          N3     121.095    1.50
+M6B          N4         C18          N3     120.375    2.74
+M6B         C18          N3          H6     119.689    1.50
+M6B         C18          N3         H60     119.689    1.50
+M6B          H6          N3         H60     120.621    2.09
+M6B         C17          N2         C18     124.700    1.50
+M6B         C17          N2          H7     117.853    1.50
+M6B         C18          N2          H7     117.447    2.01
+M6B         C16         C17          N2     110.271    1.50
+M6B         C16         C17          H8     109.350    1.50
+M6B         C16         C17          H9     109.350    1.50
+M6B          N2         C17          H8     109.183    1.50
+M6B          N2         C17          H9     109.183    1.50
+M6B          H8         C17          H9     107.877    1.50
+M6B         C15         C16         C17     113.258    1.75
+M6B         C15         C16         H10     108.958    1.50
+M6B         C15         C16         H11     108.958    1.50
+M6B         C17         C16         H10     108.958    1.50
+M6B         C17         C16         H11     108.958    1.50
+M6B         H10         C16         H11     107.594    1.73
+M6B         C16         C15          N1     112.309    1.89
+M6B         C16         C15         H12     109.350    1.50
+M6B         C16         C15         H13     109.350    1.50
+M6B          N1         C15         H12     109.015    1.50
+M6B          N1         C15         H13     109.015    1.50
+M6B         H12         C15         H13     107.877    1.50
+M6B         C14          N1         C15     121.872    1.50
+M6B         C14          N1         H14     119.301    1.50
+M6B         C15          N1         H14     118.828    1.50
+M6B          O4         C14          O3     125.284    1.50
+M6B          O4         C14          N1     124.620    1.50
+M6B          O3         C14          N1     110.098    1.50
+M6B          C3          O3         C14     116.876    1.50
+M6B          C2          C3          C4     116.131    2.20
+M6B          C2          C3          O3     106.864    2.42
+M6B          C2          C3         H15     107.902    1.50
+M6B          C4          C3          O3     107.304    1.57
+M6B          C4          C3         H15     108.887    1.50
+M6B          O3          C3         H15     109.221    1.50
+M6B          C5          C4          C3     112.308    2.04
+M6B          C5          C4         C30     111.475    1.50
+M6B          C5          C4         H16     107.173    1.50
+M6B          C3          C4         C30     110.589    1.50
+M6B          C3          C4         H16     107.580    1.50
+M6B         C30          C4         H16     107.070    1.50
+M6B          C4         C30         H17     109.455    1.50
+M6B          C4         C30         H18     109.455    1.50
+M6B          C4         C30         H19     109.455    1.50
+M6B         H17         C30         H18     109.411    1.50
+M6B         H17         C30         H19     109.411    1.50
+M6B         H18         C30         H19     109.411    1.50
+M6B          C1          C2         C29     110.113    2.62
+M6B          C1          C2          C3     110.587    2.32
+M6B          C1          C2         H20     107.456    2.04
+M6B         C29          C2          C3     112.124    1.77
+M6B         C29          C2         H20     109.059    1.50
+M6B          C3          C2         H20     107.398    1.50
+M6B          C2         C29         H21     109.532    1.50
+M6B          C2         C29         H22     109.532    1.50
+M6B          C2         C29         H23     109.532    1.50
+M6B         H21         C29         H22     109.411    1.50
+M6B         H21         C29         H23     109.411    1.50
+M6B         H22         C29         H23     109.411    1.50
+M6B          O1          C1          O2     124.099    2.59
+M6B          O1          C1          C2     123.936    2.15
+M6B          O2          C1          C2     111.965    1.81
+M6B         C13          O2          C1     117.944    1.50
+M6B         C27         C13         C12     115.251    1.66
+M6B         C27         C13          O2     107.570    1.96
+M6B         C27         C13         H24     108.603    1.50
+M6B         C12         C13          O2     108.239    1.94
+M6B         C12         C13         H24     107.911    1.50
+M6B          O2         C13         H24     109.221    1.50
+M6B         C28         C27         C13     113.852    1.50
+M6B         C28         C27         H25     108.955    1.50
+M6B         C28         C27         H26     108.955    1.50
+M6B         C13         C27         H25     108.468    1.50
+M6B         C13         C27         H26     108.468    1.50
+M6B         H25         C27         H26     107.797    1.50
+M6B         C27         C28         H27     109.517    1.50
+M6B         C27         C28         H28     109.517    1.50
+M6B         C27         C28         H29     109.517    1.50
+M6B         H27         C28         H28     109.380    1.50
+M6B         H27         C28         H29     109.380    1.50
+M6B         H28         C28         H29     109.380    1.50
+M6B         C11         C12         O10     108.026    1.61
+M6B         C11         C12         C13     113.198    2.74
+M6B         C11         C12         C34     111.120    1.50
+M6B         O10         C12         C13     107.749    2.75
+M6B         O10         C12         C34     107.541    2.05
+M6B         C13         C12         C34     111.214    1.72
+M6B         C12         O10         H30     109.626    3.00
+M6B         C12         C34         H31     109.614    1.50
+M6B         C12         C34         H32     109.614    1.50
+M6B         C12         C34         H33     109.614    1.50
+M6B         H31         C34         H32     109.387    1.50
+M6B         H31         C34         H33     109.387    1.50
+M6B         H32         C34         H33     109.387    1.50
+M6B          O9         C11         C10     110.400    1.50
+M6B          O9         C11         C12     106.906    1.50
+M6B          O9         C11         H34     108.995    1.50
+M6B         C10         C11         C12     111.163    2.25
+M6B         C10         C11         H34     108.255    1.50
+M6B         C12         C11         H34     108.115    1.50
+M6B          C9         C10         C11     111.124    1.57
+M6B          C9         C10         C33     112.224    1.57
+M6B          C9         C10         H35     107.888    1.50
+M6B         C11         C10         C33     112.224    1.57
+M6B         C11         C10         H35     107.888    1.50
+M6B         C33         C10         H35     107.856    1.50
+M6B         C10         C33         H36     110.552    1.95
+M6B         C10         C33         H37     110.552    1.95
+M6B         C10         C33         H38     110.552    1.95
+M6B         H36         C33         H37     109.342    1.50
+M6B         H36         C33         H38     109.342    1.50
+M6B         H37         C33         H38     109.342    1.50
+M6B         C24          O9         C11     114.100    1.50
+M6B         C26         C24         C25     113.181    1.50
+M6B         C26         C24          O8     108.688    3.00
+M6B         C26         C24          O9     108.688    3.00
+M6B         C25         C24          O8     108.688    3.00
+M6B         C25         C24          O9     108.688    3.00
+M6B          O8         C24          O9     109.620    1.50
+M6B         C24         C25         H39     109.412    1.50
+M6B         C24         C25         H40     109.412    1.50
+M6B         C24         C25         H41     109.412    1.50
+M6B         H39         C25         H40     109.505    1.50
+M6B         H39         C25         H41     109.505    1.50
+M6B         H40         C25         H41     109.505    1.50
+M6B         C24         C26         H42     109.412    1.50
+M6B         C24         C26         H43     109.412    1.50
+M6B         C24         C26         H44     109.412    1.50
+M6B         H42         C26         H43     109.505    1.50
+M6B         H42         C26         H44     109.505    1.50
+M6B         H43         C26         H44     109.505    1.50
+M6B         C24          O8          C9     114.100    1.50
+M6B          O8          C9          C8     108.001    2.29
+M6B          O8          C9         C10     110.400    1.50
+M6B          O8          C9         H45     108.995    1.50
+M6B          C8          C9         C10     116.428    1.50
+M6B          C8          C9         H45     107.839    1.50
+M6B         C10          C9         H45     108.255    1.50
+M6B          C9          C8         C32     109.364    1.50
+M6B          C9          C8          C7     111.617    2.15
+M6B          C9          C8         H46     107.587    1.50
+M6B         C32          C8          C7     110.825    1.87
+M6B         C32          C8         H46     107.831    1.50
+M6B          C7          C8         H46     106.844    1.50
+M6B          C8         C32         H47     109.476    1.50
+M6B          C8         C32         H48     109.476    1.50
+M6B          C8         C32         H49     109.476    1.50
+M6B         H47         C32         H48     109.356    1.50
+M6B         H47         C32         H49     109.356    1.50
+M6B         H48         C32         H49     109.356    1.50
+M6B          C8          C7          C6     111.094    2.85
+M6B          C8          C7         H50     108.303    1.50
+M6B          C8          C7         H51     108.303    1.50
+M6B          C6          C7         H50     108.201    1.50
+M6B          C6          C7         H51     108.201    1.50
+M6B         H50          C7         H51     107.715    1.50
+M6B          O7          C6         C31     109.714    1.50
+M6B          O7          C6          C7     107.760    2.12
+M6B          O7          C6          C5     107.804    2.98
+M6B         C31          C6          C7     111.119    1.58
+M6B         C31          C6          C5     111.297    1.84
+M6B          C7          C6          C5     111.264    1.50
+M6B          C6          O7         H52     109.053    1.50
+M6B          C6         C31         H53     109.470    1.50
+M6B          C6         C31         H54     109.470    1.50
+M6B          C6         C31         H55     109.470    1.50
+M6B         H53         C31         H54     109.441    1.50
+M6B         H53         C31         H55     109.441    1.50
+M6B         H54         C31         H55     109.441    1.50
+M6B          C6          C5          C4     111.094    2.85
+M6B          C6          C5          O6     109.482    3.00
+M6B          C6          C5         H56     107.955    1.50
+M6B          C4          C5          O6     109.862    2.13
+M6B          C4          C5         H56     108.131    1.50
+M6B          O6          C5         H56     108.915    1.50
+M6B          C5          O6         C21     114.178    1.50
+M6B          O6         C21         C22     111.929    1.50
+M6B          O6         C21         H57     109.361    1.50
+M6B          O6         C21         H58     109.361    1.50
+M6B         C22         C21         H57     109.570    1.50
+M6B         C22         C21         H58     109.570    1.50
+M6B         H57         C21         H58     108.277    1.50
+M6B         C23         C22         C21     177.445    1.50
+M6B         C22         C23         H59     179.396    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M6B            sp2_sp3_13         C19          N5         C20          H1       0.000    10.0     6
+M6B             sp2_sp3_8         C14          N1         C15         C16     120.000    10.0     6
+M6B             sp2_sp2_7          O4         C14          N1         C15       0.000     5.0     2
+M6B             sp2_sp2_3          O4         C14          O3          C3     180.000     5.0     2
+M6B           sp3_sp3_205          C2          C3          O3         C14     180.000    10.0     3
+M6B           sp3_sp3_196          C2          C3          C4          C5     180.000    10.0     3
+M6B           sp3_sp3_187          C1          C2          C3          C4     180.000    10.0     3
+M6B           sp3_sp3_208         H17         C30          C4          C5     180.000    10.0     3
+M6B           sp3_sp3_166          C3          C4          C5          C6     180.000    10.0     3
+M6B           sp3_sp3_178          C1          C2         C29         H21     180.000    10.0     3
+M6B             sp2_sp3_1          O1          C1          C2         C29       0.000    10.0     6
+M6B            sp2_sp2_11          O5         C19          N5         C20       0.000     5.0     2
+M6B             sp2_sp2_1          O1          C1          O2         C13     180.000     5.0     2
+M6B           sp3_sp3_136         C27         C13          O2          C1     180.000    10.0     3
+M6B           sp3_sp3_118         C12         C13         C27         C28     180.000    10.0     3
+M6B           sp3_sp3_130         O10         C12         C13         C27      60.000    10.0     3
+M6B            sp3_sp3_52         C13         C27         C28         H27     180.000    10.0     3
+M6B           sp3_sp3_107         C13         C12         O10         H30      60.000    10.0     3
+M6B           sp3_sp3_160         O10         C12         C34         H31      60.000    10.0     3
+M6B            sp3_sp3_70          O9         C11         C12         O10     180.000    10.0     3
+M6B            sp3_sp3_65         C33         C10         C11         C12     180.000    10.0     3
+M6B             sp3_sp3_2         C12         C11          O9         C24     -60.000    10.0     3
+M6B            sp2_sp2_15          O5         C19          N4         C18       0.000     5.0     2
+M6B           sp3_sp3_109          C9         C10         C33         H36     180.000    10.0     3
+M6B            sp3_sp3_17         C33         C10          C9          C8      60.000    10.0     3
+M6B             sp3_sp3_6         C26         C24          O9         C11      60.000    10.0     3
+M6B            sp3_sp3_37         C26         C24         C25         H39     -60.000    10.0     3
+M6B            sp3_sp3_28         C25         C24         C26         H42     -60.000    10.0     3
+M6B             sp3_sp3_8         C26         C24          O8          C9     -60.000    10.0     3
+M6B            sp3_sp3_11          C8          C9          O8         C24     180.000    10.0     3
+M6B            sp3_sp3_40         C32          C8          C9          O8     180.000    10.0     3
+M6B            sp3_sp3_89         H47         C32          C8          C7     -60.000    10.0     3
+M6B            sp3_sp3_98          C6          C7          C8         C32     -60.000    10.0     3
+M6B           sp3_sp3_139          O7          C6          C7          C8     180.000    10.0     3
+M6B            sp3_sp3_49         C31          C6          O7         H52     180.000    10.0     3
+M6B            sp3_sp3_79         H53         C31          C6          O7     180.000    10.0     3
+M6B           sp3_sp3_148          C4          C5          C6          O7     180.000    10.0     3
+M6B           sp3_sp3_175          C6          C5          O6         C21     180.000    10.0     3
+M6B           sp3_sp3_217         C22         C21          O6          C5     180.000    10.0     3
+M6B           sp3_sp3_220         C23         C22         C21          O6     180.000    10.0     3
+M6B           other_tor_1         C21         C22         C23         H59     180.000    10.0     1
+M6B            sp2_sp2_21          N2         C18          N4         C19     180.000     5.0     2
+M6B            sp2_sp2_25          N2         C18          N3          H6     180.000     5.0     2
+M6B            sp2_sp2_17          N4         C18          N2         C17     180.000     5.0     2
+M6B            sp2_sp3_20         C18          N2         C17         C16     120.000    10.0     6
+M6B           sp3_sp3_232         C15         C16         C17          N2     180.000    10.0     3
+M6B           sp3_sp3_223          N1         C15         C16         C17     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+M6B    chir_1    C3    O3    C2    C4    positive
+M6B    chir_2    C4    C5    C3    C30    positive
+M6B    chir_3    C2    C1    C3    C29    negative
+M6B    chir_4    C13    O2    C12    C27    negative
+M6B    chir_5    C12    O10    C11    C13    negative
+M6B    chir_6    C11    O9    C12    C10    negative
+M6B    chir_7    C10    C11    C9    C33    positive
+M6B    chir_8    C24    O9    O8    C26    both
+M6B    chir_9    C9    O8    C10    C8    positive
+M6B    chir_10    C8    C9    C7    C32    negative
+M6B    chir_11    C6    O7    C5    C7    negative
+M6B    chir_12    C5    O6    C6    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M6B    plan-1         C19   0.020
+M6B    plan-1         C20   0.020
+M6B    plan-1          H4   0.020
+M6B    plan-1          N5   0.020
+M6B    plan-2         C19   0.020
+M6B    plan-2          N4   0.020
+M6B    plan-2          N5   0.020
+M6B    plan-2          O5   0.020
+M6B    plan-3         C18   0.020
+M6B    plan-3         C19   0.020
+M6B    plan-3          H5   0.020
+M6B    plan-3          N4   0.020
+M6B    plan-4         C18   0.020
+M6B    plan-4          N2   0.020
+M6B    plan-4          N3   0.020
+M6B    plan-4          N4   0.020
+M6B    plan-5         C18   0.020
+M6B    plan-5          H6   0.020
+M6B    plan-5         H60   0.020
+M6B    plan-5          N3   0.020
+M6B    plan-6         C17   0.020
+M6B    plan-6         C18   0.020
+M6B    plan-6          H7   0.020
+M6B    plan-6          N2   0.020
+M6B    plan-7         C14   0.020
+M6B    plan-7         C15   0.020
+M6B    plan-7         H14   0.020
+M6B    plan-7          N1   0.020
+M6B    plan-8         C14   0.020
+M6B    plan-8          N1   0.020
+M6B    plan-8          O3   0.020
+M6B    plan-8          O4   0.020
+M6B    plan-9          C1   0.020
+M6B    plan-9          C2   0.020
+M6B    plan-9          O1   0.020
+M6B    plan-9          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M6B           SMILES              ACDLabs 12.01                                                                                                                                                                                          CNC(N\C(=N)NCCCNC(OC2C(C)C(OC(C(C)(O)C1C(C)C(OC(O1)(C)C)C(C)CC(C(C2C)OCC#C)(O)C)CC)=O)=O)=O
+M6B            InChI                InChI  1.03 InChI=1S/C34H59N5O10/c1-12-17-45-26-21(5)25(47-31(42)38-16-14-15-37-29(35)39-30(41)36-11)22(6)28(40)46-23(13-2)34(10,44)27-20(4)24(48-32(7,8)49-27)19(3)18-33(26,9)43/h1,19-27,43-44H,13-18H2,2-11H3,(H,38,42)(H4,35,36,37,39,41)/t19-,20+,21+,22-,23-,24+,25+,26-,27-,33-,34-/m1/s1
+M6B         InChIKey                InChI  1.03                                                                                                                                                                                                                                                          DJXCCVYRAMGGTR-CTVLDKPJSA-N
+M6B SMILES_CANONICAL               CACTVS 3.385                                                                                                                                               CC[C@H]1OC(=O)[C@H](C)[C@@H](OC(=O)NCCCNC(=N)NC(=O)NC)[C@H](C)[C@@H](OCC#C)[C@](C)(O)C[C@@H](C)[C@@H]2OC(C)(C)O[C@H]([C@H]2C)[C@]1(C)O
+M6B           SMILES               CACTVS 3.385                                                                                                                                                              CC[CH]1OC(=O)[CH](C)[CH](OC(=O)NCCCNC(=N)NC(=O)NC)[CH](C)[CH](OCC#C)[C](C)(O)C[CH](C)[CH]2OC(C)(C)O[CH]([CH]2C)[C]1(C)O
+M6B SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                                      "[H]/N=C(\NCCCNC(=O)O[C@H]1[C@@H]([C@H]([C@](C[C@H]([C@H]2[C@@H]([C@H]([C@]([C@H](OC(=O)[C@@H]1C)CC)(C)O)OC(O2)(C)C)C)C)(C)O)OCC#C)C)/NC(=O)NC"
+M6B           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                                                                         CCC1C(C2C(C(C(CC(C(C(C(C(C(=O)O1)C)OC(=O)NCCCNC(=N)NC(=O)NC)C)OCC#C)(C)O)C)OC(O2)(C)C)C)(C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M6B acedrg               243         "dictionary generator"                  
+M6B acedrg_database      11          "data source"                           
+M6B rdkit                2017.03.2   "Chemoinformatics tool"
+M6B refmac5              5.8.0238    "optimization tool"                     

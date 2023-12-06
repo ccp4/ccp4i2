@@ -1,0 +1,200 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DYC     DYC      3-(4-bromophenyl)imidazo[2,1-b][1,3]thiazole     NON-POLYMER     22     15     .     
+#
+data_comp_DYC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DYC     CAB     C       CR55    0       -25.644     5.132       18.042      
+DYC     CAD     C       CR15    0       -24.946     4.665       20.001      
+DYC     CAE     C       CR15    0       -26.157     4.071       19.925      
+DYC     CAF     C       CR5     0       -27.733     4.151       17.802      
+DYC     CAG     C       CR15    0       -27.671     4.703       16.570      
+DYC     CAI     C       CR6     0       -28.881     3.356       18.273      
+DYC     CAJ     C       CR16    0       -28.683     2.113       18.856      
+DYC     CAK     C       CR16    0       -29.763     1.356       19.303      
+DYC     CAL     C       CR6     0       -31.042     1.858       19.158      
+DYC     CAM     C       CR16    0       -31.264     3.093       18.579      
+DYC     CAN     C       CR16    0       -30.174     3.840       18.137      
+DYC     NAA     N       NT      0       -26.626     4.365       18.651      
+DYC     NAC     N       NRD5    0       -24.616     5.329       18.836      
+DYC     SAH     S       S2      0       -26.171     5.534       16.444      
+DYC     BRA     BR      BR      0       -32.521     0.832       19.763      
+DYC     H1      H       H       0       -24.396     4.632       20.754      
+DYC     H2      H       H       0       -26.604     3.561       20.581      
+DYC     H3      H       H       0       -28.333     4.642       15.904      
+DYC     H5      H       H       0       -27.809     1.778       18.953      
+DYC     H6      H       H       0       -29.623     0.514       19.699      
+DYC     H7      H       H       0       -32.139     3.425       18.485      
+DYC     H8      H       H       0       -30.318     4.681       17.742      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DYC         CAB         NAA      SINGLE       y     1.395  0.0168     1.395  0.0168
+DYC         CAB         NAC      DOUBLE       y     1.313  0.0130     1.313  0.0130
+DYC         CAB         SAH      SINGLE       y     1.739  0.0135     1.739  0.0135
+DYC         CAD         CAE      DOUBLE       y     1.348  0.0118     1.348  0.0118
+DYC         CAD         NAC      SINGLE       y     1.372  0.0131     1.372  0.0131
+DYC         CAE         NAA      SINGLE       y     1.396  0.0141     1.396  0.0141
+DYC         CAF         CAG      DOUBLE       y     1.347  0.0108     1.347  0.0108
+DYC         CAF         CAI      SINGLE       n     1.473  0.0100     1.473  0.0100
+DYC         CAF         NAA      SINGLE       y     1.389  0.0194     1.389  0.0194
+DYC         CAG         SAH      SINGLE       y     1.734  0.0200     1.734  0.0200
+DYC         CAI         CAJ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+DYC         CAI         CAN      SINGLE       y     1.383  0.0100     1.383  0.0100
+DYC         CAJ         CAK      SINGLE       y     1.389  0.0100     1.389  0.0100
+DYC         CAK         CAL      DOUBLE       y     1.378  0.0111     1.378  0.0111
+DYC         CAL         CAM      SINGLE       y     1.378  0.0111     1.378  0.0111
+DYC         CAL         BRA      SINGLE       n     1.899  0.0100     1.899  0.0100
+DYC         CAM         CAN      DOUBLE       y     1.389  0.0100     1.389  0.0100
+DYC         CAD          H1      SINGLE       n     1.082  0.0130     0.933  0.0100
+DYC         CAE          H2      SINGLE       n     1.082  0.0130     0.944  0.0108
+DYC         CAG          H3      SINGLE       n     1.082  0.0130     0.941  0.0178
+DYC         CAJ          H5      SINGLE       n     1.082  0.0130     0.941  0.0108
+DYC         CAK          H6      SINGLE       n     1.082  0.0130     0.941  0.0149
+DYC         CAM          H7      SINGLE       n     1.082  0.0130     0.941  0.0149
+DYC         CAN          H8      SINGLE       n     1.082  0.0130     0.941  0.0108
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DYC         NAA         CAB         NAC     111.800    1.94
+DYC         NAA         CAB         SAH     111.655    1.50
+DYC         NAC         CAB         SAH     136.546    2.47
+DYC         CAE         CAD         NAC     111.155    1.50
+DYC         CAE         CAD          H1     124.469    1.50
+DYC         NAC         CAD          H1     124.376    1.50
+DYC         CAD         CAE         NAA     106.534    2.95
+DYC         CAD         CAE          H2     128.084    1.50
+DYC         NAA         CAE          H2     125.382    2.15
+DYC         CAG         CAF         CAI     122.595    2.62
+DYC         CAG         CAF         NAA     118.703    3.00
+DYC         CAI         CAF         NAA     118.703    3.00
+DYC         CAF         CAG         SAH     113.183    3.00
+DYC         CAF         CAG          H3     124.177    1.50
+DYC         SAH         CAG          H3     122.639    2.18
+DYC         CAF         CAI         CAJ     120.491    1.73
+DYC         CAF         CAI         CAN     120.491    1.73
+DYC         CAJ         CAI         CAN     119.017    1.50
+DYC         CAI         CAJ         CAK     120.557    1.50
+DYC         CAI         CAJ          H5     119.793    1.50
+DYC         CAK         CAJ          H5     119.650    1.50
+DYC         CAJ         CAK         CAL     119.188    1.50
+DYC         CAJ         CAK          H6     120.406    1.50
+DYC         CAL         CAK          H6     120.407    1.50
+DYC         CAK         CAL         CAM     121.492    1.50
+DYC         CAK         CAL         BRA     119.254    1.50
+DYC         CAM         CAL         BRA     119.254    1.50
+DYC         CAL         CAM         CAN     119.188    1.50
+DYC         CAL         CAM          H7     120.407    1.50
+DYC         CAN         CAM          H7     120.406    1.50
+DYC         CAI         CAN         CAM     120.557    1.50
+DYC         CAI         CAN          H8     119.793    1.50
+DYC         CAM         CAN          H8     119.650    1.50
+DYC         CAB         NAA         CAE     108.518    2.27
+DYC         CAB         NAA         CAF     109.471    3.00
+DYC         CAE         NAA         CAF     134.194    3.00
+DYC         CAB         NAC         CAD     103.117    1.50
+DYC         CAB         SAH         CAG     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DYC       const_sp2_sp2_1         NAC         CAB         NAA         CAE       0.000     5.0     2
+DYC              const_35         NAA         CAB         NAC         CAD       0.000    10.0     2
+DYC            sp2_sp2_11         NAA         CAB         SAH         CAG       0.000     5.0     2
+DYC              const_13         CAE         CAD         NAC         CAB       0.000    10.0     2
+DYC       const_sp2_sp2_9         NAC         CAD         CAE         NAA       0.000     5.0     2
+DYC       const_sp2_sp2_5         CAD         CAE         NAA         CAB       0.000     5.0     2
+DYC             sp2_sp2_1         CAG         CAF         NAA         CAB       0.000     5.0     2
+DYC             sp2_sp2_7         CAI         CAF         CAG         SAH     180.000     5.0     2
+DYC            sp2_sp2_13         CAG         CAF         CAI         CAJ     180.000     5.0     2
+DYC             sp2_sp2_9         CAF         CAG         SAH         CAB       0.000     5.0     2
+DYC              const_39         CAF         CAI         CAN         CAM     180.000    10.0     2
+DYC              const_17         CAF         CAI         CAJ         CAK     180.000    10.0     2
+DYC              const_19         CAI         CAJ         CAK         CAL       0.000    10.0     2
+DYC              const_24         CAJ         CAK         CAL         BRA     180.000    10.0     2
+DYC              const_29         BRA         CAL         CAM         CAN     180.000    10.0     2
+DYC              const_31         CAL         CAM         CAN         CAI       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DYC    plan-1         CAB   0.020
+DYC    plan-1         CAD   0.020
+DYC    plan-1         CAE   0.020
+DYC    plan-1         CAF   0.020
+DYC    plan-1         CAG   0.020
+DYC    plan-1         CAI   0.020
+DYC    plan-1          H1   0.020
+DYC    plan-1          H2   0.020
+DYC    plan-1          H3   0.020
+DYC    plan-1         NAA   0.020
+DYC    plan-1         NAC   0.020
+DYC    plan-1         SAH   0.020
+DYC    plan-2         BRA   0.020
+DYC    plan-2         CAF   0.020
+DYC    plan-2         CAI   0.020
+DYC    plan-2         CAJ   0.020
+DYC    plan-2         CAK   0.020
+DYC    plan-2         CAL   0.020
+DYC    plan-2         CAM   0.020
+DYC    plan-2         CAN   0.020
+DYC    plan-2          H5   0.020
+DYC    plan-2          H6   0.020
+DYC    plan-2          H7   0.020
+DYC    plan-2          H8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DYC            InChI                InChI  1.03 InChI=1S/C11H7BrN2S/c12-9-3-1-8(2-4-9)10-7-15-11-13-5-6-14(10)11/h1-7H
+DYC         InChIKey                InChI  1.03                                            LVDOGHLCDFUJNK-UHFFFAOYSA-N
+DYC SMILES_CANONICAL               CACTVS 3.385                                               Brc1ccc(cc1)c2csc3nccn23
+DYC           SMILES               CACTVS 3.385                                               Brc1ccc(cc1)c2csc3nccn23
+DYC SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                               c1cc(ccc1c2csc3n2ccn3)Br
+DYC           SMILES "OpenEye OEToolkits" 2.0.7                                               c1cc(ccc1c2csc3n2ccn3)Br
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DYC acedrg               243         "dictionary generator"                  
+DYC acedrg_database      11          "data source"                           
+DYC rdkit                2017.03.2   "Chemoinformatics tool"
+DYC refmac5              5.8.0238    "optimization tool"                     

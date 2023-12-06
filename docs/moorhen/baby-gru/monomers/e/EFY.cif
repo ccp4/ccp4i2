@@ -1,0 +1,397 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EFY     EFY      N-(1-{[(3-tert-butylbenzoyl)amino]methyl}cyclopentyl)-2,1-benzoxazole-4-carboxamide     NON-POLYMER     60     31     .     
+#
+data_comp_EFY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EFY     C7      C       CR16    0       -16.341     47.851      -10.096     
+EFY     C25     C       CR16    0       -19.698     43.570      -6.999      
+EFY     C8      C       CR16    0       -15.546     46.725      -9.982      
+EFY     C24     C       CR16    0       -18.701     42.967      -7.765      
+EFY     C6      C       CR16    0       -17.102     48.276      -9.019      
+EFY     C26     C       CR16    0       -20.658     42.825      -6.356      
+EFY     C10     C       CR16    0       -16.290     46.458      -7.707      
+EFY     C30     C       CR15    0       -19.843     39.447      -7.178      
+EFY     C31     C       CR56    0       -19.598     40.775      -7.264      
+EFY     C9      C       CR6     0       -15.519     46.015      -8.785      
+EFY     C23     C       CR6     0       -18.610     41.581      -7.913      
+EFY     C5      C       CR6     0       -17.103     47.598      -7.795      
+EFY     C27     C       CR56    0       -20.611     41.403      -6.489      
+EFY     C11     C       C       0       -14.665     44.786      -8.626      
+EFY     C21     C       C       0       -17.523     40.979      -8.754      
+EFY     C17     C       CH2     0       -15.491     39.984      -11.737     
+EFY     C18     C       CH2     0       -14.373     39.399      -10.918     
+EFY     C16     C       CH2     0       -15.675     41.393      -11.200     
+EFY     C19     C       CH2     0       -14.560     39.981      -9.531      
+EFY     C15     C       CT      0       -15.207     41.374      -9.720      
+EFY     C1      C       CH3     0       -19.444     48.136      -7.039      
+EFY     C3      C       CH3     0       -17.552     49.547      -6.266      
+EFY     C4      C       CH3     0       -17.852     47.262      -5.356      
+EFY     C14     C       CH2     0       -14.183     42.497      -9.465      
+EFY     C2      C       CT      0       -17.967     48.115      -6.628      
+EFY     N28     N       NRD5    0       -21.427     40.508      -5.961      
+EFY     N20     N       NH1     0       -16.294     41.583      -8.726      
+EFY     N13     N       NH1     0       -14.783     43.826      -9.553      
+EFY     O12     O       O       0       -13.924     44.667      -7.650      
+EFY     O22     O       O       0       -17.771     40.016      -9.481      
+EFY     O29     O       O2      0       -20.926     39.259      -6.409      
+EFY     H1      H       H       0       -16.363     48.332      -10.909     
+EFY     H2      H       H       0       -19.716     44.497      -6.922      
+EFY     H3      H       H       0       -15.032     46.436      -10.715     
+EFY     H4      H       H       0       -18.063     43.513      -8.185      
+EFY     H5      H       H       0       -17.638     49.049      -9.113      
+EFY     H6      H       H       0       -21.331     43.240      -5.842      
+EFY     H7      H       H       0       -16.263     45.974      -6.900      
+EFY     H8      H       H       0       -19.342     38.763      -7.588      
+EFY     H9      H       H       0       -15.247     40.002      -12.696     
+EFY     H10     H       H       0       -16.319     39.453      -11.631     
+EFY     H11     H       H       0       -14.435     38.411      -10.897     
+EFY     H12     H       H       0       -13.493     39.654      -11.293     
+EFY     H13     H       H       0       -16.606     41.664      -11.267     
+EFY     H14     H       H       0       -15.144     42.021      -11.720     
+EFY     H15     H       H       0       -13.701     40.057      -9.078      
+EFY     H16     H       H       0       -15.133     39.405      -8.996      
+EFY     H17     H       H       0       -19.698     47.264      -7.387      
+EFY     H18     H       H       0       -19.585     48.810      -7.727      
+EFY     H19     H       H       0       -19.997     48.348      -6.267      
+EFY     H20     H       H       0       -16.588     49.583      -6.138      
+EFY     H21     H       H       0       -17.996     49.820      -5.445      
+EFY     H22     H       H       0       -17.804     50.153      -6.984      
+EFY     H23     H       H       0       -16.929     47.254      -5.048      
+EFY     H24     H       H       0       -18.140     46.352      -5.544      
+EFY     H25     H       H       0       -18.418     47.638      -4.659      
+EFY     H26     H       H       0       -13.472     42.418      -10.135     
+EFY     H27     H       H       0       -13.784     42.343      -8.584      
+EFY     H28     H       H       0       -16.110     42.101      -8.047      
+EFY     H29     H       H       0       -15.243     44.005      -10.270     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EFY         C17         C18      SINGLE       n     1.512  0.0200     1.512  0.0200
+EFY         C17         C16      SINGLE       n     1.519  0.0200     1.519  0.0200
+EFY         C18         C19      SINGLE       n     1.519  0.0200     1.519  0.0200
+EFY         C16         C15      SINGLE       n     1.540  0.0147     1.540  0.0147
+EFY          C7          C8      DOUBLE       y     1.382  0.0100     1.382  0.0100
+EFY          C7          C6      SINGLE       y     1.383  0.0105     1.383  0.0105
+EFY          C8          C9      SINGLE       y     1.390  0.0100     1.390  0.0100
+EFY         C15         C14      SINGLE       n     1.537  0.0100     1.537  0.0100
+EFY         C19         C15      SINGLE       n     1.540  0.0147     1.540  0.0147
+EFY         C15         N20      SINGLE       n     1.456  0.0200     1.456  0.0200
+EFY         C14         N13      SINGLE       n     1.455  0.0100     1.455  0.0100
+EFY         C11         N13      SINGLE       n     1.334  0.0104     1.334  0.0104
+EFY         C21         O22      DOUBLE       n     1.230  0.0114     1.230  0.0114
+EFY          C6          C5      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EFY          C9         C11      SINGLE       n     1.502  0.0100     1.502  0.0100
+EFY         C10          C9      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EFY         C21         N20      SINGLE       n     1.343  0.0186     1.343  0.0186
+EFY         C23         C21      SINGLE       n     1.496  0.0111     1.496  0.0111
+EFY         C11         O12      DOUBLE       n     1.230  0.0114     1.230  0.0114
+EFY         C30         O29      SINGLE       y     1.338  0.0126     1.338  0.0126
+EFY         C30         C31      DOUBLE       y     1.352  0.0100     1.352  0.0100
+EFY         C10          C5      SINGLE       y     1.393  0.0100     1.393  0.0100
+EFY          C5          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+EFY         N28         O29      SINGLE       y     1.417  0.0117     1.417  0.0117
+EFY         C31         C23      SINGLE       y     1.423  0.0132     1.423  0.0132
+EFY         C24         C23      DOUBLE       y     1.388  0.0124     1.388  0.0124
+EFY         C31         C27      SINGLE       y     1.421  0.0100     1.421  0.0100
+EFY          C3          C2      SINGLE       n     1.532  0.0112     1.532  0.0112
+EFY          C1          C2      SINGLE       n     1.532  0.0112     1.532  0.0112
+EFY          C4          C2      SINGLE       n     1.532  0.0112     1.532  0.0112
+EFY         C27         N28      DOUBLE       y     1.323  0.0100     1.323  0.0100
+EFY         C25         C24      SINGLE       y     1.391  0.0100     1.391  0.0100
+EFY         C26         C27      SINGLE       y     1.427  0.0100     1.427  0.0100
+EFY         C25         C26      DOUBLE       y     1.371  0.0115     1.371  0.0115
+EFY          C7          H1      SINGLE       n     1.082  0.0130     0.945  0.0184
+EFY         C25          H2      SINGLE       n     1.082  0.0130     0.930  0.0100
+EFY          C8          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+EFY         C24          H4      SINGLE       n     1.082  0.0130     0.939  0.0120
+EFY          C6          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+EFY         C26          H6      SINGLE       n     1.082  0.0130     0.943  0.0200
+EFY         C10          H7      SINGLE       n     1.082  0.0130     0.944  0.0147
+EFY         C30          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+EFY         C17          H9      SINGLE       n     1.089  0.0100     0.990  0.0100
+EFY         C17         H10      SINGLE       n     1.089  0.0100     0.990  0.0100
+EFY         C18         H11      SINGLE       n     1.089  0.0100     0.990  0.0100
+EFY         C18         H12      SINGLE       n     1.089  0.0100     0.990  0.0100
+EFY         C16         H13      SINGLE       n     1.089  0.0100     0.973  0.0100
+EFY         C16         H14      SINGLE       n     1.089  0.0100     0.973  0.0100
+EFY         C19         H15      SINGLE       n     1.089  0.0100     0.973  0.0100
+EFY         C19         H16      SINGLE       n     1.089  0.0100     0.973  0.0100
+EFY          C1         H17      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C1         H18      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C1         H19      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C3         H20      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C3         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C3         H22      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C4         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C4         H24      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY          C4         H25      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFY         C14         H26      SINGLE       n     1.089  0.0100     0.980  0.0123
+EFY         C14         H27      SINGLE       n     1.089  0.0100     0.980  0.0123
+EFY         N20         H28      SINGLE       n     1.016  0.0100     0.872  0.0200
+EFY         N13         H29      SINGLE       n     1.016  0.0100     0.870  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EFY          C8          C7          C6     120.266    1.50
+EFY          C8          C7          H1     119.867    1.50
+EFY          C6          C7          H1     119.867    1.50
+EFY         C24         C25         C26     121.388    1.50
+EFY         C24         C25          H2     119.421    1.50
+EFY         C26         C25          H2     119.192    1.50
+EFY          C7          C8          C9     120.440    1.50
+EFY          C7          C8          H3     119.706    1.50
+EFY          C9          C8          H3     119.855    1.50
+EFY         C23         C24         C25     122.052    1.50
+EFY         C23         C24          H4     119.034    1.50
+EFY         C25         C24          H4     118.914    1.50
+EFY          C7          C6          C5     121.464    1.50
+EFY          C7          C6          H5     119.468    1.50
+EFY          C5          C6          H5     119.068    1.50
+EFY         C27         C26         C25     118.278    1.50
+EFY         C27         C26          H6     120.727    1.50
+EFY         C25         C26          H6     120.995    1.50
+EFY          C9         C10          C5     121.249    1.50
+EFY          C9         C10          H7     119.978    1.50
+EFY          C5         C10          H7     118.773    1.50
+EFY         O29         C30         C31     107.990    1.50
+EFY         O29         C30          H8     125.649    3.00
+EFY         C31         C30          H8     126.361    2.35
+EFY         C30         C31         C23     134.406    2.28
+EFY         C30         C31         C27     106.206    1.50
+EFY         C23         C31         C27     119.387    1.51
+EFY          C8          C9         C11     120.086    2.80
+EFY          C8          C9         C10     119.600    1.50
+EFY         C11          C9         C10     120.314    2.64
+EFY         C21         C23         C31     122.240    2.66
+EFY         C21         C23         C24     119.636    2.75
+EFY         C31         C23         C24     118.124    1.50
+EFY          C6          C5         C10     116.982    1.50
+EFY          C6          C5          C2     121.649    1.50
+EFY         C10          C5          C2     121.369    1.60
+EFY         C31         C27         N28     111.744    1.50
+EFY         C31         C27         C26     120.771    1.50
+EFY         N28         C27         C26     127.485    2.01
+EFY         N13         C11          C9     117.049    1.50
+EFY         N13         C11         O12     121.576    1.50
+EFY          C9         C11         O12     121.375    1.50
+EFY         O22         C21         N20     121.937    1.50
+EFY         O22         C21         C23     120.868    1.52
+EFY         N20         C21         C23     117.195    1.95
+EFY         C18         C17         C16     105.475    1.91
+EFY         C18         C17          H9     110.679    1.50
+EFY         C18         C17         H10     110.679    1.50
+EFY         C16         C17          H9     110.839    1.50
+EFY         C16         C17         H10     110.839    1.50
+EFY          H9         C17         H10     108.634    1.62
+EFY         C17         C18         C19     105.475    1.91
+EFY         C17         C18         H11     110.679    1.50
+EFY         C17         C18         H12     110.679    1.50
+EFY         C19         C18         H11     110.839    1.50
+EFY         C19         C18         H12     110.839    1.50
+EFY         H11         C18         H12     108.634    1.62
+EFY         C17         C16         C15     106.191    1.50
+EFY         C17         C16         H13     110.839    1.50
+EFY         C17         C16         H14     110.839    1.50
+EFY         C15         C16         H13     110.815    1.50
+EFY         C15         C16         H14     110.815    1.50
+EFY         H13         C16         H14     108.567    1.50
+EFY         C18         C19         C15     106.191    1.50
+EFY         C18         C19         H15     110.839    1.50
+EFY         C18         C19         H16     110.839    1.50
+EFY         C15         C19         H15     110.815    1.50
+EFY         C15         C19         H16     110.815    1.50
+EFY         H15         C19         H16     108.567    1.50
+EFY         C16         C15         C14     113.745    2.48
+EFY         C16         C15         C19     104.443    2.26
+EFY         C16         C15         N20     112.360    2.19
+EFY         C14         C15         C19     113.745    2.48
+EFY         C14         C15         N20     108.124    2.26
+EFY         C19         C15         N20     112.360    2.19
+EFY          C2          C1         H17     109.561    1.50
+EFY          C2          C1         H18     109.561    1.50
+EFY          C2          C1         H19     109.561    1.50
+EFY         H17          C1         H18     109.375    1.50
+EFY         H17          C1         H19     109.375    1.50
+EFY         H18          C1         H19     109.375    1.50
+EFY          C2          C3         H20     109.561    1.50
+EFY          C2          C3         H21     109.561    1.50
+EFY          C2          C3         H22     109.561    1.50
+EFY         H20          C3         H21     109.375    1.50
+EFY         H20          C3         H22     109.375    1.50
+EFY         H21          C3         H22     109.375    1.50
+EFY          C2          C4         H23     109.561    1.50
+EFY          C2          C4         H24     109.561    1.50
+EFY          C2          C4         H25     109.561    1.50
+EFY         H23          C4         H24     109.375    1.50
+EFY         H23          C4         H25     109.375    1.50
+EFY         H24          C4         H25     109.375    1.50
+EFY         C15         C14         N13     111.113    2.62
+EFY         C15         C14         H26     107.973    1.50
+EFY         C15         C14         H27     107.973    1.50
+EFY         N13         C14         H26     109.204    2.90
+EFY         N13         C14         H27     109.204    2.90
+EFY         H26         C14         H27     108.010    1.71
+EFY          C5          C2          C3     110.353    1.57
+EFY          C5          C2          C1     110.353    1.57
+EFY          C5          C2          C4     110.353    1.57
+EFY          C3          C2          C1     108.339    1.50
+EFY          C3          C2          C4     108.339    1.50
+EFY          C1          C2          C4     108.339    1.50
+EFY         O29         N28         C27     104.919    1.50
+EFY         C15         N20         C21     122.159    1.92
+EFY         C15         N20         H28     118.472    1.72
+EFY         C21         N20         H28     119.370    1.50
+EFY         C14         N13         C11     123.111    1.94
+EFY         C14         N13         H29     118.697    2.47
+EFY         C11         N13         H29     118.192    1.68
+EFY         C30         O29         N28     109.140    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EFY       const_sp2_sp2_1          C6          C7          C8          C9       0.000     5.0     2
+EFY              const_46          C5          C6          C7          C8       0.000    10.0     2
+EFY            sp2_sp2_15         O22         C21         C23         C31       0.000     5.0     2
+EFY            sp2_sp3_14          C6          C5          C2          C3     -90.000    10.0     6
+EFY              const_44         C31         C27         N28         O29       0.000    10.0     2
+EFY             sp2_sp2_3         O12         C11         N13         C14       0.000     5.0     2
+EFY            sp2_sp2_11         O22         C21         N20         C15       0.000     5.0     2
+EFY             sp3_sp3_1         C16         C17         C18         C19      60.000    10.0     3
+EFY            sp3_sp3_37         C15         C16         C17         C18     180.000    10.0     3
+EFY            sp3_sp3_10         C17         C18         C19         C15     -60.000    10.0     3
+EFY            sp3_sp3_31         C14         C15         C16         C17     180.000    10.0     3
+EFY            sp3_sp3_25         C14         C15         C19         C18     180.000    10.0     3
+EFY            sp3_sp3_46         N13         C14         C15         N20     180.000    10.0     3
+EFY             sp2_sp3_2         C21         N20         C15         C14     120.000    10.0     6
+EFY              const_21         C23         C24         C25         C26       0.000    10.0     2
+EFY              const_54         C24         C25         C26         C27       0.000    10.0     2
+EFY            sp3_sp3_64         H17          C1          C2          C3     180.000    10.0     3
+EFY            sp3_sp3_58          C1          C2          C3         H20      60.000    10.0     3
+EFY            sp3_sp3_76          C3          C2          C4         H23      60.000    10.0     3
+EFY             sp2_sp3_8         C11         N13         C14         C15     120.000    10.0     6
+EFY              const_43         C27         N28         O29         C30       0.000    10.0     2
+EFY       const_sp2_sp2_6          C7          C8          C9         C11     180.000     5.0     2
+EFY              const_27         C21         C23         C24         C25     180.000    10.0     2
+EFY              const_19          C2          C5          C6          C7     180.000    10.0     2
+EFY              const_37         C25         C26         C27         C31       0.000    10.0     2
+EFY              const_14          C9         C10          C5          C2     180.000    10.0     2
+EFY              const_10          C5         C10          C9         C11     180.000    10.0     2
+EFY              const_41         C31         C30         O29         N28       0.000    10.0     2
+EFY              const_51         O29         C30         C31         C23     180.000    10.0     2
+EFY              const_32         C21         C23         C31         C30       0.000    10.0     2
+EFY              const_33         N28         C27         C31         C30       0.000    10.0     2
+EFY             sp2_sp2_5         N13         C11          C9          C8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EFY    chir_1    C15    N20    C14    C16    both
+EFY    chir_2    C2    C5    C3    C1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EFY    plan-1         C21   0.020
+EFY    plan-1         C23   0.020
+EFY    plan-1         C24   0.020
+EFY    plan-1         C25   0.020
+EFY    plan-1         C26   0.020
+EFY    plan-1         C27   0.020
+EFY    plan-1         C30   0.020
+EFY    plan-1         C31   0.020
+EFY    plan-1          H2   0.020
+EFY    plan-1          H4   0.020
+EFY    plan-1          H6   0.020
+EFY    plan-1          H8   0.020
+EFY    plan-1         N28   0.020
+EFY    plan-1         O29   0.020
+EFY    plan-2         C10   0.020
+EFY    plan-2         C11   0.020
+EFY    plan-2          C2   0.020
+EFY    plan-2          C5   0.020
+EFY    plan-2          C6   0.020
+EFY    plan-2          C7   0.020
+EFY    plan-2          C8   0.020
+EFY    plan-2          C9   0.020
+EFY    plan-2          H1   0.020
+EFY    plan-2          H3   0.020
+EFY    plan-2          H5   0.020
+EFY    plan-2          H7   0.020
+EFY    plan-3         C11   0.020
+EFY    plan-3          C9   0.020
+EFY    plan-3         N13   0.020
+EFY    plan-3         O12   0.020
+EFY    plan-4         C21   0.020
+EFY    plan-4         C23   0.020
+EFY    plan-4         N20   0.020
+EFY    plan-4         O22   0.020
+EFY    plan-5         C15   0.020
+EFY    plan-5         C21   0.020
+EFY    plan-5         H28   0.020
+EFY    plan-5         N20   0.020
+EFY    plan-6         C11   0.020
+EFY    plan-6         C14   0.020
+EFY    plan-6         H29   0.020
+EFY    plan-6         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EFY           SMILES              ACDLabs 12.01                                                                                                                     O=C(c1cccc(c1)C(C)(C)C)NCC4(NC(=O)c2cccc3nocc23)CCCC4
+EFY            InChI                InChI  1.03 InChI=1S/C25H29N3O3/c1-24(2,3)18-9-6-8-17(14-18)22(29)26-16-25(12-4-5-13-25)27-23(30)19-10-7-11-21-20(19)15-31-28-21/h6-11,14-15H,4-5,12-13,16H2,1-3H3,(H,26,29)(H,27,30)
+EFY         InChIKey                InChI  1.03                                                                                                                                               ZVPHHRCZSPAOCC-UHFFFAOYSA-N
+EFY SMILES_CANONICAL               CACTVS 3.370                                                                                                                     CC(C)(C)c1cccc(c1)C(=O)NCC2(CCCC2)NC(=O)c3cccc4nocc34
+EFY           SMILES               CACTVS 3.370                                                                                                                     CC(C)(C)c1cccc(c1)C(=O)NCC2(CCCC2)NC(=O)c3cccc4nocc34
+EFY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                     CC(C)(C)c1cccc(c1)C(=O)NCC2(CCCC2)NC(=O)c3cccc4c3con4
+EFY           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                     CC(C)(C)c1cccc(c1)C(=O)NCC2(CCCC2)NC(=O)c3cccc4c3con4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EFY acedrg               243         "dictionary generator"                  
+EFY acedrg_database      11          "data source"                           
+EFY rdkit                2017.03.2   "Chemoinformatics tool"
+EFY refmac5              5.8.0238    "optimization tool"                     

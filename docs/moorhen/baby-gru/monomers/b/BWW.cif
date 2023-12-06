@@ -1,0 +1,306 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BWW     BWW      "4-[[3-(5-fluoranyl-2-oxidanyl-phenyl)phenyl]sulfonylamino]-2-oxidanyl-benzoic acid"     NON-POLYMER     41     28     .     
+#
+data_comp_BWW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BWW     F       F       F       0       54.167      42.385      2.535       
+BWW     C13     C       CR6     0       55.024      41.363      2.797       
+BWW     C12     C       CR16    0       54.513      40.182      3.286       
+BWW     C14     C       CR16    0       56.367      41.548      2.564       
+BWW     C15     C       CR16    0       57.234      40.505      2.833       
+BWW     C16     C       CR6     0       56.749      39.299      3.327       
+BWW     O4      O       OH1     0       57.658      38.297      3.575       
+BWW     C11     C       CR6     0       55.378      39.118      3.563       
+BWW     C7      C       CR6     0       54.814      37.846      4.092       
+BWW     C6      C       CR16    0       53.792      37.185      3.409       
+BWW     C8      C       CR16    0       55.258      37.285      5.291       
+BWW     C9      C       CR16    0       54.710      36.106      5.772       
+BWW     C10     C       CR16    0       53.699      35.459      5.085       
+BWW     C5      C       CR6     0       53.233      36.010      3.900       
+BWW     S       S       S3      0       51.948      35.200      3.008       
+BWW     O2      O       O       0       52.547      34.487      1.923       
+BWW     O3      O       O       0       51.132      34.491      3.944       
+BWW     N       N       NH1     0       50.984      36.331      2.338       
+BWW     C4      C       CR6     0       50.654      37.620      2.842       
+BWW     C3      C       CR16    0       50.580      38.675      1.944       
+BWW     C2      C       CR16    0       50.271      39.933      2.394       
+BWW     C17     C       CR16    0       50.419      37.844      4.199       
+BWW     C18     C       CR6     0       50.109      39.118      4.647       
+BWW     O5      O       OH1     0       49.882      39.302      5.991       
+BWW     C1      C       CR6     0       50.027      40.196      3.749       
+BWW     C       C       C       0       49.691      41.583      4.215       
+BWW     O1      O       OC      -1      50.291      42.024      5.212       
+BWW     O       O       O       0       48.832      42.221      3.580       
+BWW     H1      H       H       0       53.587      40.086      3.436       
+BWW     H2      H       H       0       56.691      42.367      2.229       
+BWW     H3      H       H       0       58.161      40.606      2.681       
+BWW     H4      H       H       0       57.588      37.542      3.167       
+BWW     H5      H       H       0       53.478      37.553      2.611       
+BWW     H6      H       H       0       55.950      37.710      5.775       
+BWW     H7      H       H       0       55.025      35.743      6.573       
+BWW     H8      H       H       0       53.332      34.661      5.419       
+BWW     H9      H       H       0       50.629      36.115      1.581       
+BWW     H10     H       H       0       50.740      38.526      1.027       
+BWW     H11     H       H       0       50.221      40.643      1.775       
+BWW     H12     H       H       0       50.471      37.131      4.820       
+BWW     H13     H       H       0       50.501      39.116      6.561       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BWW           S          O2      DOUBLE       n     1.430  0.0100     1.430  0.0100
+BWW           F         C13      SINGLE       n     1.359  0.0100     1.359  0.0100
+BWW         C13         C14      DOUBLE       y     1.374  0.0100     1.374  0.0100
+BWW         C14         C15      SINGLE       y     1.379  0.0100     1.379  0.0100
+BWW           S           N      SINGLE       n     1.627  0.0106     1.627  0.0106
+BWW           N          C4      SINGLE       n     1.420  0.0112     1.420  0.0112
+BWW         C13         C12      SINGLE       y     1.374  0.0106     1.374  0.0106
+BWW          C4          C3      DOUBLE       y     1.383  0.0100     1.383  0.0100
+BWW          C3          C2      SINGLE       y     1.368  0.0103     1.368  0.0103
+BWW         C15         C16      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BWW           S          O3      DOUBLE       n     1.430  0.0100     1.430  0.0100
+BWW          C5           S      SINGLE       n     1.758  0.0100     1.758  0.0100
+BWW         C12         C11      DOUBLE       y     1.396  0.0100     1.396  0.0100
+BWW          C4         C17      SINGLE       y     1.389  0.0122     1.389  0.0122
+BWW          C2          C1      DOUBLE       y     1.398  0.0109     1.398  0.0109
+BWW         C16         C11      SINGLE       y     1.397  0.0100     1.397  0.0100
+BWW         C16          O4      SINGLE       n     1.374  0.0155     1.374  0.0155
+BWW          C6          C5      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BWW          C7          C6      SINGLE       y     1.392  0.0100     1.392  0.0100
+BWW         C11          C7      SINGLE       n     1.487  0.0100     1.487  0.0100
+BWW         C10          C5      SINGLE       y     1.384  0.0100     1.384  0.0100
+BWW          C7          C8      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BWW         C18          C1      SINGLE       y     1.401  0.0100     1.401  0.0100
+BWW          C1           C      SINGLE       n     1.498  0.0200     1.498  0.0200
+BWW         C17         C18      DOUBLE       y     1.381  0.0100     1.381  0.0100
+BWW           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+BWW         C18          O5      SINGLE       n     1.374  0.0155     1.374  0.0155
+BWW           C          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+BWW          C9         C10      DOUBLE       y     1.379  0.0100     1.379  0.0100
+BWW          C8          C9      SINGLE       y     1.384  0.0100     1.384  0.0100
+BWW         C12          H1      SINGLE       n     1.082  0.0130     0.942  0.0153
+BWW         C14          H2      SINGLE       n     1.082  0.0130     0.942  0.0131
+BWW         C15          H3      SINGLE       n     1.082  0.0130     0.944  0.0200
+BWW          O4          H4      SINGLE       n     0.966  0.0059     0.861  0.0200
+BWW          C6          H5      SINGLE       n     1.082  0.0130     0.933  0.0100
+BWW          C8          H6      SINGLE       n     1.082  0.0130     0.945  0.0170
+BWW          C9          H7      SINGLE       n     1.082  0.0130     0.934  0.0100
+BWW         C10          H8      SINGLE       n     1.082  0.0130     0.940  0.0163
+BWW           N          H9      SINGLE       n     1.016  0.0100     0.863  0.0160
+BWW          C3         H10      SINGLE       n     1.082  0.0130     0.942  0.0198
+BWW          C2         H11      SINGLE       n     1.082  0.0130     0.943  0.0200
+BWW         C17         H12      SINGLE       n     1.082  0.0130     0.947  0.0200
+BWW          O5         H13      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BWW           F         C13         C14     118.575    1.50
+BWW           F         C13         C12     118.466    1.50
+BWW         C14         C13         C12     122.959    1.50
+BWW         C13         C12         C11     119.507    1.50
+BWW         C13         C12          H1     120.623    1.50
+BWW         C11         C12          H1     119.871    1.50
+BWW         C13         C14         C15     118.549    1.50
+BWW         C13         C14          H2     120.800    1.50
+BWW         C15         C14          H2     120.650    1.50
+BWW         C14         C15         C16     119.912    1.50
+BWW         C14         C15          H3     120.391    1.50
+BWW         C16         C15          H3     119.696    1.50
+BWW         C15         C16         C11     120.875    1.50
+BWW         C15         C16          O4     119.563    3.00
+BWW         C11         C16          O4     119.563    3.00
+BWW         C16          O4          H4     120.000    3.00
+BWW         C12         C11         C16     118.197    1.50
+BWW         C12         C11          C7     120.042    1.53
+BWW         C16         C11          C7     121.760    1.50
+BWW          C6          C7         C11     121.047    1.52
+BWW          C6          C7          C8     117.414    1.50
+BWW         C11          C7          C8     121.539    1.50
+BWW          C5          C6          C7     121.174    1.50
+BWW          C5          C6          H5     119.969    1.50
+BWW          C7          C6          H5     118.857    1.50
+BWW          C7          C8          C9     120.952    1.50
+BWW          C7          C8          H6     119.445    1.50
+BWW          C9          C8          H6     119.603    1.50
+BWW         C10          C9          C8     120.969    1.50
+BWW         C10          C9          H7     119.467    1.50
+BWW          C8          C9          H7     119.565    1.50
+BWW          C5         C10          C9     118.988    1.50
+BWW          C5         C10          H8     120.515    1.50
+BWW          C9         C10          H8     120.496    1.50
+BWW           S          C5          C6     119.672    1.50
+BWW           S          C5         C10     119.824    1.50
+BWW          C6          C5         C10     120.503    1.50
+BWW          O2           S           N     106.760    2.22
+BWW          O2           S          O3     119.445    1.50
+BWW          O2           S          C5     108.260    1.50
+BWW           N           S          O3     106.760    2.22
+BWW           N           S          C5     106.694    1.50
+BWW          O3           S          C5     108.260    1.50
+BWW           S           N          C4     124.789    3.00
+BWW           S           N          H9     117.438    1.95
+BWW          C4           N          H9     117.772    1.74
+BWW           N          C4          C3     119.709    2.56
+BWW           N          C4         C17     120.228    2.41
+BWW          C3          C4         C17     120.064    2.01
+BWW          C4          C3          C2     119.669    1.50
+BWW          C4          C3         H10     120.118    1.50
+BWW          C2          C3         H10     120.214    1.50
+BWW          C3          C2          C1     121.855    1.50
+BWW          C3          C2         H11     119.212    1.50
+BWW          C1          C2         H11     118.934    1.50
+BWW          C4         C17         C18     119.837    1.50
+BWW          C4         C17         H12     120.521    1.50
+BWW         C18         C17         H12     119.641    1.50
+BWW          C1         C18         C17     120.797    1.50
+BWW          C1         C18          O5     119.601    3.00
+BWW         C17         C18          O5     119.601    3.00
+BWW         C18          O5         H13     120.000    3.00
+BWW          C2          C1         C18     117.778    1.50
+BWW          C2          C1           C     121.043    1.50
+BWW         C18          C1           C     121.179    1.50
+BWW          C1           C           O     117.949    1.50
+BWW          C1           C          O1     117.949    1.50
+BWW           O           C          O1     124.103    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BWW              const_17          C7          C8          C9         C10       0.000    10.0     2
+BWW              const_13          C5         C10          C9          C8       0.000    10.0     2
+BWW              const_10          C9         C10          C5           S     180.000    10.0     2
+BWW             sp2_sp3_7          C6          C5           S          O2     150.000    10.0     6
+BWW             sp2_sp3_2          C4           N           S          O2     120.000    10.0     6
+BWW             sp2_sp2_1          C3          C4           N           S     180.000     5.0     2
+BWW              const_42          C2          C3          C4           N     180.000    10.0     2
+BWW              const_66         C18         C17          C4           N     180.000    10.0     2
+BWW              const_45          C1          C2          C3          C4       0.000    10.0     2
+BWW              const_62         C11         C12         C13           F     180.000    10.0     2
+BWW              const_23           F         C13         C14         C15     180.000    10.0     2
+BWW              const_51           C          C1          C2          C3     180.000    10.0     2
+BWW              const_58          C4         C17         C18          O5     180.000    10.0     2
+BWW            sp2_sp2_15          C1         C18          O5         H13     180.000     5.0     2
+BWW              const_56           C          C1         C18          O5       0.000    10.0     2
+BWW            sp2_sp2_11           O           C          C1          C2     180.000     5.0     2
+BWW              const_37         C16         C11         C12         C13       0.000    10.0     2
+BWW              const_25         C13         C14         C15         C16       0.000    10.0     2
+BWW              const_30         C14         C15         C16          O4     180.000    10.0     2
+BWW             sp2_sp2_5         C15         C16          O4          H4     180.000     5.0     2
+BWW              const_34         C12         C11         C16          O4     180.000    10.0     2
+BWW             sp2_sp2_7         C12         C11          C7          C6     180.000     5.0     2
+BWW              const_69          C6          C7          C8          C9       0.000    10.0     2
+BWW       const_sp2_sp2_2          C5          C6          C7         C11     180.000     5.0     2
+BWW       const_sp2_sp2_7           S          C5          C6          C7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BWW    chir_1    S    O2    O3    N    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BWW    plan-1         C10   0.020
+BWW    plan-1         C11   0.020
+BWW    plan-1          C5   0.020
+BWW    plan-1          C6   0.020
+BWW    plan-1          C7   0.020
+BWW    plan-1          C8   0.020
+BWW    plan-1          C9   0.020
+BWW    plan-1          H5   0.020
+BWW    plan-1          H6   0.020
+BWW    plan-1          H7   0.020
+BWW    plan-1          H8   0.020
+BWW    plan-1           S   0.020
+BWW    plan-2           C   0.020
+BWW    plan-2          C1   0.020
+BWW    plan-2         C17   0.020
+BWW    plan-2         C18   0.020
+BWW    plan-2          C2   0.020
+BWW    plan-2          C3   0.020
+BWW    plan-2          C4   0.020
+BWW    plan-2         H10   0.020
+BWW    plan-2         H11   0.020
+BWW    plan-2         H12   0.020
+BWW    plan-2           N   0.020
+BWW    plan-2          O5   0.020
+BWW    plan-3         C11   0.020
+BWW    plan-3         C12   0.020
+BWW    plan-3         C13   0.020
+BWW    plan-3         C14   0.020
+BWW    plan-3         C15   0.020
+BWW    plan-3         C16   0.020
+BWW    plan-3          C7   0.020
+BWW    plan-3           F   0.020
+BWW    plan-3          H1   0.020
+BWW    plan-3          H2   0.020
+BWW    plan-3          H3   0.020
+BWW    plan-3          O4   0.020
+BWW    plan-4          C4   0.020
+BWW    plan-4          H9   0.020
+BWW    plan-4           N   0.020
+BWW    plan-4           S   0.020
+BWW    plan-5           C   0.020
+BWW    plan-5          C1   0.020
+BWW    plan-5           O   0.020
+BWW    plan-5          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BWW            InChI                InChI  1.03 InChI=1S/C19H14FNO6S/c20-12-4-7-17(22)16(9-12)11-2-1-3-14(8-11)28(26,27)21-13-5-6-15(19(24)25)18(23)10-13/h1-10,21-23H,(H,24,25)
+BWW         InChIKey                InChI  1.03                                                                                                      DDVUKRHRMBDQTD-UHFFFAOYSA-N
+BWW SMILES_CANONICAL               CACTVS 3.385                                                                              OC(=O)c1ccc(N[S](=O)(=O)c2cccc(c2)c3cc(F)ccc3O)cc1O
+BWW           SMILES               CACTVS 3.385                                                                              OC(=O)c1ccc(N[S](=O)(=O)c2cccc(c2)c3cc(F)ccc3O)cc1O
+BWW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                            c1cc(cc(c1)S(=O)(=O)Nc2ccc(c(c2)O)C(=O)O)c3cc(ccc3O)F
+BWW           SMILES "OpenEye OEToolkits" 2.0.6                                                                            c1cc(cc(c1)S(=O)(=O)Nc2ccc(c(c2)O)C(=O)O)c3cc(ccc3O)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BWW acedrg               243         "dictionary generator"                  
+BWW acedrg_database      11          "data source"                           
+BWW rdkit                2017.03.2   "Chemoinformatics tool"
+BWW refmac5              5.8.0238    "optimization tool"                     

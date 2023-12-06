@@ -1,0 +1,290 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A55     A55      N-[2-(4-AMINO-5,8-DIFLUORO-1,2-DIHYDROQUINAZOLIN-2-YL)ETHYL]-3-FURAMIDE     NON-POLYMER     37     23     .     
+#
+data_comp_A55
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A55     C2      C       CR16    0       126.630     111.284     94.476      
+A55     C1      C       CR16    0       125.695     112.086     95.145      
+A55     C6      C       CR6     0       125.477     113.389     94.728      
+A55     C5      C       CR66    0       126.202     113.921     93.620      
+A55     C4      C       CR66    0       127.137     113.099     92.959      
+A55     C3      C       CR6     0       127.334     111.785     93.404      
+A55     F27     F       F       0       128.223     110.966     92.797      
+A55     N7      N       NR6     0       127.841     113.606     91.883      
+A55     C8      C       CH1     0       127.283     114.712     91.095      
+A55     N9      N       NRD6    0       126.542     115.670     91.933      
+A55     C10     C       CR6     0       126.037     115.278     93.110      
+A55     N11     N       NH2     0       125.372     116.185     93.818      
+A55     C16     C       CH2     0       126.367     114.169     89.989      
+A55     C17     C       CH2     0       125.836     115.199     89.010      
+A55     N18     N       NH1     0       126.878     115.797     88.192      
+A55     C20     C       C       0       126.619     116.728     87.267      
+A55     C21     C       CR5     0       127.732     117.253     86.455      
+A55     C23     C       CR15    0       129.101     116.854     86.420      
+A55     C24     C       CR15    0       129.710     117.629     85.520      
+A55     O25     O       O2      0       128.820     118.504     84.968      
+A55     C26     C       CR15    0       127.623     118.258     85.550      
+A55     O22     O       O       0       125.466     117.140     87.086      
+A55     F12     F       F       0       124.572     114.142     95.388      
+A55     H2      H       H       0       126.772     110.395     94.768      
+A55     H1      H       H       0       125.216     111.732     95.881      
+A55     HN7     H       H       0       128.619     113.283     91.666      
+A55     H8      H       H       0       128.020     115.209     90.657      
+A55     H111    H       H       0       124.724     116.633     93.445      
+A55     H112    H       H       0       125.589     116.325     94.651      
+A55     H161    H       H       0       125.602     113.722     90.412      
+A55     H162    H       H       0       126.861     113.489     89.484      
+A55     H171    H       H       0       125.373     115.908     89.504      
+A55     H172    H       H       0       125.179     114.771     88.421      
+A55     H18     H       H       0       127.698     115.531     88.320      
+A55     H23     H       H       0       129.501     116.168     86.941      
+A55     H24     H       H       0       130.620     117.598     85.281      
+A55     H26     H       H       0       126.834     118.737     85.337      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A55          C2          C1      DOUBLE       y     1.389  0.0146     1.389  0.0146
+A55          C2          C3      SINGLE       y     1.368  0.0123     1.368  0.0123
+A55          C1          C6      SINGLE       y     1.380  0.0128     1.380  0.0128
+A55          C6          C5      DOUBLE       y     1.421  0.0167     1.421  0.0167
+A55          C6         F12      SINGLE       n     1.350  0.0100     1.350  0.0100
+A55          C5          C4      SINGLE       y     1.406  0.0100     1.406  0.0100
+A55          C5         C10      SINGLE       n     1.445  0.0193     1.445  0.0193
+A55          C4          C3      DOUBLE       y     1.397  0.0100     1.397  0.0100
+A55          C4          N7      SINGLE       n     1.378  0.0112     1.378  0.0112
+A55          C3         F27      SINGLE       n     1.353  0.0100     1.353  0.0100
+A55          N7          C8      SINGLE       n     1.461  0.0156     1.461  0.0156
+A55          C8          N9      SINGLE       n     1.466  0.0143     1.466  0.0143
+A55          C8         C16      SINGLE       n     1.534  0.0115     1.534  0.0115
+A55          N9         C10      DOUBLE       n     1.329  0.0200     1.329  0.0200
+A55         C10         N11      SINGLE       n     1.328  0.0120     1.328  0.0120
+A55         C16         C17      SINGLE       n     1.513  0.0171     1.513  0.0171
+A55         C17         N18      SINGLE       n     1.451  0.0100     1.451  0.0100
+A55         N18         C20      SINGLE       n     1.332  0.0105     1.332  0.0105
+A55         C20         C21      SINGLE       n     1.463  0.0173     1.463  0.0173
+A55         C20         O22      DOUBLE       n     1.235  0.0149     1.235  0.0149
+A55         C21         C23      SINGLE       y     1.424  0.0134     1.424  0.0134
+A55         C21         C26      DOUBLE       y     1.355  0.0100     1.355  0.0100
+A55         C23         C24      DOUBLE       y     1.336  0.0106     1.336  0.0106
+A55         C24         O25      SINGLE       y     1.366  0.0135     1.366  0.0135
+A55         O25         C26      SINGLE       y     1.353  0.0100     1.353  0.0100
+A55          C2          H2      SINGLE       n     1.082  0.0130     0.947  0.0112
+A55          C1          H1      SINGLE       n     1.082  0.0130     0.947  0.0112
+A55          N7         HN7      SINGLE       n     1.016  0.0100     0.870  0.0200
+A55          C8          H8      SINGLE       n     1.089  0.0100     0.991  0.0200
+A55         N11        H111      SINGLE       n     1.016  0.0100     0.872  0.0200
+A55         N11        H112      SINGLE       n     1.016  0.0100     0.872  0.0200
+A55         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0164
+A55         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0164
+A55         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0152
+A55         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0152
+A55         N18         H18      SINGLE       n     1.016  0.0100     0.873  0.0200
+A55         C23         H23      SINGLE       n     1.082  0.0130     0.950  0.0200
+A55         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0191
+A55         C26         H26      SINGLE       n     1.082  0.0130     0.947  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A55          C1          C2          C3     119.306    1.50
+A55          C1          C2          H2     119.836    1.50
+A55          C3          C2          H2     120.858    1.50
+A55          C2          C1          C6     119.306    1.50
+A55          C2          C1          H1     120.024    1.50
+A55          C6          C1          H1     120.670    1.50
+A55          C1          C6          C5     120.716    1.50
+A55          C1          C6         F12     118.840    1.50
+A55          C5          C6         F12     120.444    2.04
+A55          C6          C5          C4     119.977    1.50
+A55          C6          C5         C10     123.465    1.50
+A55          C4          C5         C10     116.557    1.50
+A55          C5          C4          C3     119.977    1.50
+A55          C5          C4          N7     119.059    1.50
+A55          C3          C4          N7     120.964    1.50
+A55          C2          C3          C4     120.716    1.50
+A55          C2          C3         F27     118.089    1.50
+A55          C4          C3         F27     121.194    2.46
+A55          C4          N7          C8     119.754    3.00
+A55          C4          N7         HN7     120.763    1.76
+A55          C8          N7         HN7     119.483    2.75
+A55          N7          C8          N9     110.430    3.00
+A55          N7          C8         C16     110.271    2.01
+A55          N7          C8          H8     109.078    1.50
+A55          N9          C8         C16     109.088    1.95
+A55          N9          C8          H8     107.065    1.50
+A55         C16          C8          H8     107.221    1.50
+A55          C8          N9         C10     118.328    2.71
+A55          C5         C10          N9     122.305    2.19
+A55          C5         C10         N11     119.966    1.68
+A55          N9         C10         N11     117.729    1.93
+A55         C10         N11        H111     119.596    1.50
+A55         C10         N11        H112     119.596    1.50
+A55        H111         N11        H112     120.807    3.00
+A55          C8         C16         C17     113.198    2.74
+A55          C8         C16        H161     108.442    1.50
+A55          C8         C16        H162     108.442    1.50
+A55         C17         C16        H161     108.444    1.50
+A55         C17         C16        H162     108.444    1.50
+A55        H161         C16        H162     107.474    1.50
+A55         C16         C17         N18     112.377    1.75
+A55         C16         C17        H171     109.234    1.50
+A55         C16         C17        H172     109.234    1.50
+A55         N18         C17        H171     109.052    1.50
+A55         N18         C17        H172     109.052    1.50
+A55        H171         C17        H172     107.827    1.50
+A55         C17         N18         C20     122.324    2.29
+A55         C17         N18         H18     118.411    1.89
+A55         C20         N18         H18     119.281    1.50
+A55         N18         C20         C21     117.293    2.07
+A55         N18         C20         O22     121.373    1.50
+A55         C21         C20         O22     121.334    1.50
+A55         C20         C21         C23     127.643    2.80
+A55         C20         C21         C26     126.411    2.77
+A55         C23         C21         C26     105.946    1.50
+A55         C21         C23         C24     107.077    1.50
+A55         C21         C23         H23     126.293    1.50
+A55         C24         C23         H23     126.630    1.50
+A55         C23         C24         O25     110.490    1.50
+A55         C23         C24         H24     126.330    3.00
+A55         O25         C24         H24     123.180    3.00
+A55         C24         O25         C26     106.493    1.50
+A55         C21         C26         O25     109.995    1.50
+A55         C21         C26         H26     126.509    3.00
+A55         O25         C26         H26     123.496    2.87
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A55       const_sp2_sp2_5          C6          C1          C2          C3       0.000     5.0     2
+A55              const_34          C1          C2          C3         F27     180.000    10.0     2
+A55            sp2_sp2_11          C5         C10         N11        H111     180.000     5.0     2
+A55            sp3_sp3_10          C8         C16         C17         N18     180.000    10.0     3
+A55            sp2_sp3_11         C20         N18         C17         C16     120.000    10.0     6
+A55            sp2_sp2_17         O22         C20         N18         C17       0.000     5.0     2
+A55            sp2_sp2_19         N18         C20         C21         C23     180.000     5.0     2
+A55              const_23         C20         C21         C23         C24     180.000    10.0     2
+A55              const_39         C20         C21         C26         O25     180.000    10.0     2
+A55              const_25         C21         C23         C24         O25       0.000    10.0     2
+A55              const_29         C23         C24         O25         C26       0.000    10.0     2
+A55              const_31         C21         C26         O25         C24       0.000    10.0     2
+A55              const_10          C2          C1          C6         F12     180.000    10.0     2
+A55              const_14          C4          C5          C6         F12     180.000    10.0     2
+A55            sp2_sp2_10         N11         C10          C5          C6       0.000     5.0     2
+A55       const_sp2_sp2_1          C3          C4          C5          C6       0.000     5.0     2
+A55              const_19         F27          C3          C4          C5     180.000    10.0     2
+A55             sp2_sp2_1          C5          C4          N7          C8       0.000     5.0     2
+A55             sp2_sp3_2          C4          N7          C8         C16     120.000    10.0     6
+A55             sp3_sp3_1         C17         C16          C8          N7     180.000    10.0     3
+A55             sp2_sp3_8         C10          N9          C8         C16     120.000    10.0     6
+A55             sp2_sp2_6         N11         C10          N9          C8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+A55    chir_1    C8    N9    N7    C16    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A55    plan-1          C1   0.020
+A55    plan-1         C10   0.020
+A55    plan-1          C2   0.020
+A55    plan-1          C3   0.020
+A55    plan-1          C4   0.020
+A55    plan-1          C5   0.020
+A55    plan-1          C6   0.020
+A55    plan-1         F12   0.020
+A55    plan-1         F27   0.020
+A55    plan-1          H1   0.020
+A55    plan-1          H2   0.020
+A55    plan-1          N7   0.020
+A55    plan-2         C20   0.020
+A55    plan-2         C21   0.020
+A55    plan-2         C23   0.020
+A55    plan-2         C24   0.020
+A55    plan-2         C26   0.020
+A55    plan-2         H23   0.020
+A55    plan-2         H24   0.020
+A55    plan-2         H26   0.020
+A55    plan-2         O25   0.020
+A55    plan-3          C4   0.020
+A55    plan-3          C8   0.020
+A55    plan-3         HN7   0.020
+A55    plan-3          N7   0.020
+A55    plan-4         C10   0.020
+A55    plan-4          C5   0.020
+A55    plan-4         N11   0.020
+A55    plan-4          N9   0.020
+A55    plan-5         C10   0.020
+A55    plan-5        H111   0.020
+A55    plan-5        H112   0.020
+A55    plan-5         N11   0.020
+A55    plan-6         C17   0.020
+A55    plan-6         C20   0.020
+A55    plan-6         H18   0.020
+A55    plan-6         N18   0.020
+A55    plan-7         C20   0.020
+A55    plan-7         C21   0.020
+A55    plan-7         N18   0.020
+A55    plan-7         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A55           SMILES              ACDLabs 10.04                                                                                                          O=C(NCCC2N=C(N)c1c(F)ccc(F)c1N2)c3ccoc3
+A55 SMILES_CANONICAL               CACTVS 3.341                                                                                                      NC1=N[C@H](CCNC(=O)c2cocc2)Nc3c(F)ccc(F)c13
+A55           SMILES               CACTVS 3.341                                                                                                       NC1=N[CH](CCNC(=O)c2cocc2)Nc3c(F)ccc(F)c13
+A55 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                   c1cc(c2c(c1F)C(=N[C@@H](N2)CCNC(=O)c3ccoc3)N)F
+A55           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        c1cc(c2c(c1F)C(=NC(N2)CCNC(=O)c3ccoc3)N)F
+A55            InChI                InChI  1.03 InChI=1S/C15H14F2N4O2/c16-9-1-2-10(17)13-12(9)14(18)21-11(20-13)3-5-19-15(22)8-4-6-23-7-8/h1-2,4,6-7,11,20H,3,5H2,(H2,18,21)(H,19,22)/t11-/m1/s1
+A55         InChIKey                InChI  1.03                                                                                                                      BOAUWUUBSXECNL-LLVKDONJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A55 acedrg               243         "dictionary generator"                  
+A55 acedrg_database      11          "data source"                           
+A55 rdkit                2017.03.2   "Chemoinformatics tool"
+A55 refmac5              5.8.0238    "optimization tool"                     

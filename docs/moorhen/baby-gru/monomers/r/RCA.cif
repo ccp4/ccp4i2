@@ -1,0 +1,275 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RCA     RCA      6-{[4-(HYDROXYMETHYL)-5-METHYL-2,6-DIOXOHEXAHYDROPYRIMIDIN-5-YL]METHYL}-5-METHYLPYRIMIDINE-2,4(1H,3H)-DIONE     NON-POLYMER     37     21     .     
+#
+data_comp_RCA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RCA     O2      O       O       0       43.214      33.838      0.624       
+RCA     C3      C       CR6     0       45.405      34.771      0.658       
+RCA     C4      C       CH3     0       45.032      35.848      1.642       
+RCA     C5      C       CR6     0       46.711      34.635      0.121       
+RCA     C1      C       CR6     0       46.026      32.723      -1.215      
+RCA     N1      N       NR6     0       46.966      33.630      -0.792      
+RCA     C2      C       CR6     0       44.380      33.836      0.235       
+RCA     N2      N       NR6     0       44.773      32.872      -0.677      
+RCA     O1      O       O       0       46.282      31.837      -2.019      
+RCA     C11     C       CH1     0       49.527      36.319      2.242       
+RCA     O4      O       O       0       52.466      34.641      3.545       
+RCA     O3      O       O       0       49.936      33.566      -0.028      
+RCA     N4      N       NR6     0       50.640      35.903      3.112       
+RCA     C10     C       CR6     0       51.498      34.911      2.823       
+RCA     C12     C       CH2     0       50.052      37.401      1.301       
+RCA     O5      O       OH1     0       49.088      38.439      1.137       
+RCA     C7      C       CT      0       48.894      35.077      1.529       
+RCA     N3      N       NR6     0       51.220      34.194      1.713       
+RCA     C9      C       CR6     0       50.041      34.218      0.993       
+RCA     C6      C       CH2     0       47.881      35.536      0.445       
+RCA     C8      C       CH3     0       48.199      34.204      2.595       
+RCA     H43     H       H       0       44.266      35.566      2.169       
+RCA     H42     H       H       0       44.807      36.661      1.161       
+RCA     H41     H       H       0       45.775      36.026      2.238       
+RCA     H1      H       H       0       47.770      33.554      -1.131      
+RCA     H2      H       H       0       44.159      32.287      -0.947      
+RCA     H11     H       H       0       48.842      36.736      2.816       
+RCA     H4      H       H       0       50.747      36.327      3.859       
+RCA     H122    H       H       0       50.270      37.012      0.428       
+RCA     H121    H       H       0       50.876      37.781      1.673       
+RCA     H5      H       H       0       49.265      38.849      0.416       
+RCA     H3      H       H       0       51.853      33.660      1.422       
+RCA     H62     H       H       0       47.516      36.403      0.713       
+RCA     H61     H       H       0       48.375      35.693      -0.386      
+RCA     H83     H       H       0       47.944      33.349      2.209       
+RCA     H82     H       H       0       47.410      34.656      2.926       
+RCA     H81     H       H       0       48.805      34.045      3.335       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RCA          O2          C2      DOUBLE       n     1.228  0.0100     1.228  0.0100
+RCA          C3          C4      SINGLE       n     1.501  0.0100     1.501  0.0100
+RCA          C3          C5      DOUBLE       y     1.383  0.0200     1.383  0.0200
+RCA          C3          C2      SINGLE       y     1.446  0.0100     1.446  0.0100
+RCA          C5          N1      SINGLE       y     1.372  0.0116     1.372  0.0116
+RCA          C5          C6      SINGLE       n     1.504  0.0100     1.504  0.0100
+RCA          C1          N1      SINGLE       y     1.368  0.0100     1.368  0.0100
+RCA          C1          N2      SINGLE       y     1.370  0.0100     1.370  0.0100
+RCA          C1          O1      DOUBLE       n     1.223  0.0100     1.223  0.0100
+RCA          C2          N2      SINGLE       y     1.383  0.0100     1.383  0.0100
+RCA         C11          N4      SINGLE       n     1.468  0.0100     1.468  0.0100
+RCA         C11         C12      SINGLE       n     1.518  0.0121     1.518  0.0121
+RCA         C11          C7      SINGLE       n     1.541  0.0162     1.541  0.0162
+RCA          O4         C10      DOUBLE       n     1.237  0.0100     1.237  0.0100
+RCA          O3          C9      DOUBLE       n     1.216  0.0100     1.216  0.0100
+RCA          N4         C10      SINGLE       n     1.338  0.0126     1.338  0.0126
+RCA         C10          N3      SINGLE       n     1.343  0.0163     1.343  0.0163
+RCA         C12          O5      SINGLE       n     1.425  0.0187     1.425  0.0187
+RCA          C7          C9      SINGLE       n     1.515  0.0151     1.515  0.0151
+RCA          C7          C6      SINGLE       n     1.537  0.0119     1.537  0.0119
+RCA          C7          C8      SINGLE       n     1.538  0.0100     1.538  0.0100
+RCA          N3          C9      SINGLE       n     1.377  0.0100     1.377  0.0100
+RCA          C4         H43      SINGLE       n     1.089  0.0100     0.971  0.0135
+RCA          C4         H42      SINGLE       n     1.089  0.0100     0.971  0.0135
+RCA          C4         H41      SINGLE       n     1.089  0.0100     0.971  0.0135
+RCA          N1          H1      SINGLE       n     1.016  0.0100     0.883  0.0200
+RCA          N2          H2      SINGLE       n     1.016  0.0100     0.889  0.0200
+RCA         C11         H11      SINGLE       n     1.089  0.0100     0.985  0.0189
+RCA          N4          H4      SINGLE       n     1.016  0.0100     0.866  0.0200
+RCA         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0170
+RCA         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0170
+RCA          O5          H5      SINGLE       n     0.970  0.0120     0.848  0.0200
+RCA          N3          H3      SINGLE       n     1.016  0.0100     0.876  0.0200
+RCA          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0157
+RCA          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0157
+RCA          C8         H83      SINGLE       n     1.089  0.0100     0.971  0.0163
+RCA          C8         H82      SINGLE       n     1.089  0.0100     0.971  0.0163
+RCA          C8         H81      SINGLE       n     1.089  0.0100     0.971  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RCA          C4          C3          C5     121.745    1.84
+RCA          C4          C3          C2     118.843    1.50
+RCA          C5          C3          C2     119.411    1.50
+RCA          C3          C4         H43     109.580    1.50
+RCA          C3          C4         H42     109.580    1.50
+RCA          C3          C4         H41     109.580    1.50
+RCA         H43          C4         H42     109.348    1.50
+RCA         H43          C4         H41     109.348    1.50
+RCA         H42          C4         H41     109.348    1.50
+RCA          C3          C5          N1     119.665    3.00
+RCA          C3          C5          C6     124.077    1.94
+RCA          N1          C5          C6     116.258    1.95
+RCA          N1          C1          N2     115.151    1.50
+RCA          N1          C1          O1     122.836    1.50
+RCA          N2          C1          O1     122.013    1.50
+RCA          C5          N1          C1     122.510    1.50
+RCA          C5          N1          H1     119.440    2.27
+RCA          C1          N1          H1     118.050    1.73
+RCA          O2          C2          C3     124.546    1.50
+RCA          O2          C2          N2     118.917    1.50
+RCA          C3          C2          N2     116.537    1.50
+RCA          C1          N2          C2     126.726    1.50
+RCA          C1          N2          H2     116.023    2.30
+RCA          C2          N2          H2     117.252    1.81
+RCA          N4         C11         C12     110.271    2.01
+RCA          N4         C11          C7     110.160    1.50
+RCA          N4         C11         H11     108.119    1.50
+RCA         C12         C11          C7     111.163    2.25
+RCA         C12         C11         H11     107.660    1.50
+RCA          C7         C11         H11     109.200    1.50
+RCA         C11          N4         C10     123.949    2.69
+RCA         C11          N4          H4     118.029    2.13
+RCA         C10          N4          H4     118.021    2.07
+RCA          O4         C10          N4     122.330    1.50
+RCA          O4         C10          N3     121.576    1.50
+RCA          N4         C10          N3     116.095    1.50
+RCA         C11         C12          O5     110.487    1.50
+RCA         C11         C12        H122     109.532    1.50
+RCA         C11         C12        H121     109.532    1.50
+RCA          O5         C12        H122     109.894    1.50
+RCA          O5         C12        H121     109.894    1.50
+RCA        H122         C12        H121     108.331    1.50
+RCA         C12          O5          H5     107.864    2.31
+RCA         C11          C7          C9     112.021    2.38
+RCA         C11          C7          C6     111.163    2.25
+RCA         C11          C7          C8     111.163    2.25
+RCA          C9          C7          C6     110.115    2.66
+RCA          C9          C7          C8     107.786    2.08
+RCA          C6          C7          C8     109.461    1.92
+RCA         C10          N3          C9     126.178    1.50
+RCA         C10          N3          H3     116.711    1.91
+RCA          C9          N3          H3     117.111    1.85
+RCA          O3          C9          C7     121.018    1.87
+RCA          O3          C9          N3     121.020    1.50
+RCA          C7          C9          N3     117.961    1.63
+RCA          C5          C6          C7     113.109    2.13
+RCA          C5          C6         H62     108.951    1.50
+RCA          C5          C6         H61     108.951    1.50
+RCA          C7          C6         H62     109.342    1.50
+RCA          C7          C6         H61     109.342    1.50
+RCA         H62          C6         H61     107.741    1.50
+RCA          C7          C8         H83     109.516    1.50
+RCA          C7          C8         H82     109.516    1.50
+RCA          C7          C8         H81     109.516    1.50
+RCA         H83          C8         H82     109.363    1.50
+RCA         H83          C8         H81     109.363    1.50
+RCA         H82          C8         H81     109.363    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RCA             sp2_sp2_3          O4         C10          N4         C11     180.000     5.0     2
+RCA             sp2_sp2_7          O4         C10          N3          C9     180.000     5.0     2
+RCA            sp3_sp3_19         C11         C12          O5          H5     180.000    10.0     3
+RCA            sp2_sp3_11          O3          C9          C7          C6     -60.000    10.0     6
+RCA            sp3_sp3_24          C5          C6          C7          C8      60.000    10.0     3
+RCA            sp3_sp3_37          C6          C7          C8         H83     -60.000    10.0     3
+RCA            sp2_sp2_11          O3          C9          N3         C10     180.000     5.0     2
+RCA            sp2_sp3_13          C5          C3          C4         H43     150.000    10.0     6
+RCA       const_sp2_sp2_4          C4          C3          C5          C6       0.000     5.0     2
+RCA              const_24          O2          C2          C3          C4       0.000    10.0     2
+RCA            sp2_sp3_20          C3          C5          C6          C7     -90.000    10.0     6
+RCA       const_sp2_sp2_7          C6          C5          N1          C1     180.000     5.0     2
+RCA              const_11          O1          C1          N1          C5     180.000    10.0     2
+RCA              const_15          O1          C1          N2          C2     180.000    10.0     2
+RCA              const_19          O2          C2          N2          C1     180.000    10.0     2
+RCA             sp2_sp3_2         C10          N4         C11         C12     120.000    10.0     6
+RCA             sp3_sp3_1          N4         C11         C12          O5     180.000    10.0     3
+RCA            sp3_sp3_14         C12         C11          C7          C6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RCA    chir_1    C11    N4    C12    C7    negative
+RCA    chir_2    C7    C9    C11    C6    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RCA    plan-1          C1   0.020
+RCA    plan-1          C2   0.020
+RCA    plan-1          C3   0.020
+RCA    plan-1          C4   0.020
+RCA    plan-1          C5   0.020
+RCA    plan-1          C6   0.020
+RCA    plan-1          H1   0.020
+RCA    plan-1          H2   0.020
+RCA    plan-1          N1   0.020
+RCA    plan-1          N2   0.020
+RCA    plan-1          O1   0.020
+RCA    plan-1          O2   0.020
+RCA    plan-2         C10   0.020
+RCA    plan-2         C11   0.020
+RCA    plan-2          H4   0.020
+RCA    plan-2          N4   0.020
+RCA    plan-3         C10   0.020
+RCA    plan-3          N3   0.020
+RCA    plan-3          N4   0.020
+RCA    plan-3          O4   0.020
+RCA    plan-4         C10   0.020
+RCA    plan-4          C9   0.020
+RCA    plan-4          H3   0.020
+RCA    plan-4          N3   0.020
+RCA    plan-5          C7   0.020
+RCA    plan-5          C9   0.020
+RCA    plan-5          N3   0.020
+RCA    plan-5          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RCA           SMILES              ACDLabs 10.04                                                                                                      O=C1NC(CO)C(C(=O)N1)(C)CC2=C(C(=O)NC(=O)N2)C
+RCA SMILES_CANONICAL               CACTVS 3.341                                                                                                   CC1=C(C[C@]2(C)[C@H](CO)NC(=O)NC2=O)NC(=O)NC1=O
+RCA           SMILES               CACTVS 3.341                                                                                                     CC1=C(C[C]2(C)[CH](CO)NC(=O)NC2=O)NC(=O)NC1=O
+RCA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                 CC1=C(NC(=O)NC1=O)C[C@@]2([C@@H](NC(=O)NC2=O)CO)C
+RCA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                          CC1=C(NC(=O)NC1=O)CC2(C(NC(=O)NC2=O)CO)C
+RCA            InChI                InChI  1.03 InChI=1S/C12H16N4O5/c1-5-6(13-10(20)15-8(5)18)3-12(2)7(4-17)14-11(21)16-9(12)19/h7,17H,3-4H2,1-2H3,(H2,13,15,18,20)(H2,14,16,19,21)/t7-,12+/m0/s1
+RCA         InChIKey                InChI  1.03                                                                                                                       KBBKHMIEEMSXSM-JVXZTZIISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RCA acedrg               243         "dictionary generator"                  
+RCA acedrg_database      11          "data source"                           
+RCA rdkit                2017.03.2   "Chemoinformatics tool"
+RCA refmac5              5.8.0238    "optimization tool"                     

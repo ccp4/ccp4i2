@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LUR     LUR      "{2-[(2-chloro-6-fluorophenyl)amino]-5-methylphenyl}acetic acid"     NON-POLYMER     32     20     .     
+#
+data_comp_LUR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LUR     OAB     O       O       0       21.606      0.696       -31.225     
+LUR     CAN     C       C       0       21.492      -0.274      -30.455     
+LUR     OAC     O       OC      -1      22.449      -0.804      -29.863     
+LUR     CAL     C       CH2     0       20.098      -0.848      -30.223     
+LUR     CAR     C       CR6     0       19.192      0.044       -29.408     
+LUR     CAK     C       CR16    0       18.101      0.668       -30.018     
+LUR     CAO     C       CR6     0       17.227      1.501       -29.331     
+LUR     CAA     C       CH3     0       16.062      2.152       -30.033     
+LUR     CAI     C       CR16    0       17.462      1.710       -27.981     
+LUR     CAJ     C       CR16    0       18.529      1.115       -27.331     
+LUR     CAS     C       CR6     0       19.400      0.279       -28.034     
+LUR     NAM     N       NH1     0       20.499      -0.331      -27.363     
+LUR     CAT     C       CR6     0       21.258      0.174       -26.287     
+LUR     CAQ     C       CR6     0       22.015      1.342       -26.400     
+LUR     CLE     CL      CL      0       22.063      2.238       -27.884     
+LUR     CAH     C       CR16    0       22.746      1.799       -25.313     
+LUR     CAF     C       CR16    0       22.720      1.095       -24.123     
+LUR     CAG     C       CR16    0       21.975      -0.064      -23.995     
+LUR     CAP     C       CR6     0       21.254      -0.511      -25.078     
+LUR     FAD     F       F       0       20.522      -1.644      -24.960     
+LUR     H2      H       H       0       20.184      -1.708      -29.773     
+LUR     H3      H       H       0       19.685      -1.014      -31.091     
+LUR     H4      H       H       0       17.950      0.519       -30.938     
+LUR     H5      H       H       0       15.646      2.803       -29.444     
+LUR     H6      H       H       0       15.410      1.476       -30.277     
+LUR     H7      H       H       0       16.376      2.600       -30.836     
+LUR     H8      H       H       0       16.882      2.271       -27.494     
+LUR     H9      H       H       0       18.667      1.272       -26.414     
+LUR     H10     H       H       0       20.715      -1.132      -27.614     
+LUR     H14     H       H       0       23.255      2.584       -25.388     
+LUR     H15     H       H       0       23.216      1.408       -23.390     
+LUR     H16     H       H       0       21.960      -0.540      -23.184     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LUR         OAB         CAN      DOUBLE       n     1.244  0.0200     1.244  0.0200
+LUR         CAN         CAL      SINGLE       n     1.525  0.0126     1.525  0.0126
+LUR         CAN         OAC      SINGLE       n     1.244  0.0200     1.244  0.0200
+LUR         CAL         CAR      SINGLE       n     1.507  0.0100     1.507  0.0100
+LUR         CAR         CAK      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LUR         CAK         CAO      SINGLE       y     1.386  0.0100     1.386  0.0100
+LUR         CAO         CAA      SINGLE       n     1.506  0.0200     1.506  0.0200
+LUR         CAR         CAS      SINGLE       y     1.400  0.0100     1.400  0.0100
+LUR         CAO         CAI      DOUBLE       y     1.383  0.0103     1.383  0.0103
+LUR         CAS         NAM      SINGLE       n     1.419  0.0107     1.419  0.0107
+LUR         CAJ         CAS      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LUR         CAI         CAJ      SINGLE       y     1.381  0.0100     1.381  0.0100
+LUR         CAQ         CLE      SINGLE       n     1.734  0.0100     1.734  0.0100
+LUR         NAM         CAT      SINGLE       n     1.400  0.0200     1.400  0.0200
+LUR         CAT         CAQ      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LUR         CAQ         CAH      SINGLE       y     1.383  0.0100     1.383  0.0100
+LUR         CAT         CAP      SINGLE       y     1.384  0.0122     1.384  0.0122
+LUR         CAH         CAF      DOUBLE       y     1.376  0.0127     1.376  0.0127
+LUR         CAP         FAD      SINGLE       n     1.354  0.0100     1.354  0.0100
+LUR         CAG         CAP      DOUBLE       y     1.372  0.0100     1.372  0.0100
+LUR         CAF         CAG      SINGLE       y     1.378  0.0121     1.378  0.0121
+LUR         CAL          H2      SINGLE       n     1.089  0.0100     0.975  0.0113
+LUR         CAL          H3      SINGLE       n     1.089  0.0100     0.975  0.0113
+LUR         CAK          H4      SINGLE       n     1.082  0.0130     0.944  0.0143
+LUR         CAA          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+LUR         CAA          H6      SINGLE       n     1.089  0.0100     0.971  0.0135
+LUR         CAA          H7      SINGLE       n     1.089  0.0100     0.971  0.0135
+LUR         CAI          H8      SINGLE       n     1.082  0.0130     0.943  0.0173
+LUR         CAJ          H9      SINGLE       n     1.082  0.0130     0.941  0.0129
+LUR         NAM         H10      SINGLE       n     1.016  0.0100     0.870  0.0200
+LUR         CAH         H14      SINGLE       n     1.082  0.0130     0.939  0.0138
+LUR         CAF         H15      SINGLE       n     1.082  0.0130     0.939  0.0109
+LUR         CAG         H16      SINGLE       n     1.082  0.0130     0.940  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LUR         OAB         CAN         CAL     118.115    1.50
+LUR         OAB         CAN         OAC     123.770    1.50
+LUR         CAL         CAN         OAC     118.115    1.50
+LUR         CAN         CAL         CAR     113.841    2.18
+LUR         CAN         CAL          H2     108.710    1.50
+LUR         CAN         CAL          H3     108.710    1.50
+LUR         CAR         CAL          H2     108.919    1.50
+LUR         CAR         CAL          H3     108.919    1.50
+LUR          H2         CAL          H3     107.676    1.52
+LUR         CAL         CAR         CAK     120.630    1.50
+LUR         CAL         CAR         CAS     121.476    1.50
+LUR         CAK         CAR         CAS     117.895    1.50
+LUR         CAR         CAK         CAO     122.298    1.50
+LUR         CAR         CAK          H4     118.833    1.50
+LUR         CAO         CAK          H4     118.870    1.50
+LUR         CAK         CAO         CAA     121.136    1.50
+LUR         CAK         CAO         CAI     117.694    1.50
+LUR         CAA         CAO         CAI     121.170    1.50
+LUR         CAO         CAA          H5     109.567    1.50
+LUR         CAO         CAA          H6     109.567    1.50
+LUR         CAO         CAA          H7     109.567    1.50
+LUR          H5         CAA          H6     109.348    1.50
+LUR          H5         CAA          H7     109.348    1.50
+LUR          H6         CAA          H7     109.348    1.50
+LUR         CAO         CAI         CAJ     121.612    1.50
+LUR         CAO         CAI          H8     119.182    1.50
+LUR         CAJ         CAI          H8     119.207    1.50
+LUR         CAS         CAJ         CAI     119.957    1.50
+LUR         CAS         CAJ          H9     119.742    1.50
+LUR         CAI         CAJ          H9     120.301    1.50
+LUR         CAR         CAS         NAM     118.923    1.50
+LUR         CAR         CAS         CAJ     120.545    1.78
+LUR         NAM         CAS         CAJ     120.532    1.50
+LUR         CAS         NAM         CAT     126.630    2.45
+LUR         CAS         NAM         H10     116.643    2.14
+LUR         CAT         NAM         H10     116.726    2.39
+LUR         NAM         CAT         CAQ     120.597    1.50
+LUR         NAM         CAT         CAP     119.985    3.00
+LUR         CAQ         CAT         CAP     119.418    1.64
+LUR         CLE         CAQ         CAT     120.280    1.53
+LUR         CLE         CAQ         CAH     119.492    1.50
+LUR         CAT         CAQ         CAH     120.227    1.59
+LUR         CAQ         CAH         CAF     119.515    1.50
+LUR         CAQ         CAH         H14     120.020    1.50
+LUR         CAF         CAH         H14     120.465    1.50
+LUR         CAH         CAF         CAG     120.694    1.50
+LUR         CAH         CAF         H15     119.689    1.50
+LUR         CAG         CAF         H15     119.617    1.50
+LUR         CAP         CAG         CAF     118.486    1.50
+LUR         CAP         CAG         H16     120.569    1.50
+LUR         CAF         CAG         H16     120.945    1.50
+LUR         CAT         CAP         FAD     119.206    1.50
+LUR         CAT         CAP         CAG     121.660    1.82
+LUR         FAD         CAP         CAG     119.134    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LUR             sp2_sp2_1         CAR         CAS         NAM         CAT     180.000     5.0     2
+LUR             sp2_sp2_5         CAQ         CAT         NAM         CAS     180.000     5.0     2
+LUR       const_sp2_sp2_4         CLE         CAQ         CAT         NAM       0.000     5.0     2
+LUR              const_48         FAD         CAP         CAT         NAM       0.000    10.0     2
+LUR       const_sp2_sp2_6         CAF         CAH         CAQ         CLE     180.000     5.0     2
+LUR       const_sp2_sp2_9         CAG         CAF         CAH         CAQ       0.000     5.0     2
+LUR              const_13         CAH         CAF         CAG         CAP       0.000    10.0     2
+LUR              const_18         CAF         CAG         CAP         FAD     180.000    10.0     2
+LUR             sp2_sp3_2         OAB         CAN         CAL         CAR     120.000    10.0     6
+LUR             sp2_sp3_8         CAK         CAR         CAL         CAN     -90.000    10.0     6
+LUR              const_44         CAL         CAR         CAS         NAM       0.000    10.0     2
+LUR              const_22         CAO         CAK         CAR         CAL     180.000    10.0     2
+LUR              const_26         CAR         CAK         CAO         CAA     180.000    10.0     2
+LUR            sp2_sp3_13         CAK         CAO         CAA          H5     150.000    10.0     6
+LUR              const_30         CAJ         CAI         CAO         CAA     180.000    10.0     2
+LUR              const_33         CAO         CAI         CAJ         CAS       0.000    10.0     2
+LUR              const_38         CAI         CAJ         CAS         NAM     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LUR    plan-1         CAA   0.020
+LUR    plan-1         CAI   0.020
+LUR    plan-1         CAJ   0.020
+LUR    plan-1         CAK   0.020
+LUR    plan-1         CAL   0.020
+LUR    plan-1         CAO   0.020
+LUR    plan-1         CAR   0.020
+LUR    plan-1         CAS   0.020
+LUR    plan-1          H4   0.020
+LUR    plan-1          H8   0.020
+LUR    plan-1          H9   0.020
+LUR    plan-1         NAM   0.020
+LUR    plan-2         CAF   0.020
+LUR    plan-2         CAG   0.020
+LUR    plan-2         CAH   0.020
+LUR    plan-2         CAP   0.020
+LUR    plan-2         CAQ   0.020
+LUR    plan-2         CAT   0.020
+LUR    plan-2         CLE   0.020
+LUR    plan-2         FAD   0.020
+LUR    plan-2         H14   0.020
+LUR    plan-2         H15   0.020
+LUR    plan-2         H16   0.020
+LUR    plan-2         NAM   0.020
+LUR    plan-3         CAL   0.020
+LUR    plan-3         CAN   0.020
+LUR    plan-3         OAB   0.020
+LUR    plan-3         OAC   0.020
+LUR    plan-4         CAS   0.020
+LUR    plan-4         CAT   0.020
+LUR    plan-4         H10   0.020
+LUR    plan-4         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LUR           SMILES              ACDLabs 12.01                                                                          Clc2cccc(F)c2Nc1ccc(cc1CC(=O)O)C
+LUR            InChI                InChI  1.03 InChI=1S/C15H13ClFNO2/c1-9-5-6-13(10(7-9)8-14(19)20)18-15-11(16)3-2-4-12(15)17/h2-7,18H,8H2,1H3,(H,19,20)
+LUR         InChIKey                InChI  1.03                                                                               KHPKQFYUPIUARC-UHFFFAOYSA-N
+LUR SMILES_CANONICAL               CACTVS 3.370                                                                        Cc1ccc(Nc2c(F)cccc2Cl)c(CC(O)=O)c1
+LUR           SMILES               CACTVS 3.370                                                                        Cc1ccc(Nc2c(F)cccc2Cl)c(CC(O)=O)c1
+LUR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                        Cc1ccc(c(c1)CC(=O)O)Nc2c(cccc2Cl)F
+LUR           SMILES "OpenEye OEToolkits" 1.7.6                                                                        Cc1ccc(c(c1)CC(=O)O)Nc2c(cccc2Cl)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LUR acedrg               243         "dictionary generator"                  
+LUR acedrg_database      11          "data source"                           
+LUR rdkit                2017.03.2   "Chemoinformatics tool"
+LUR refmac5              5.8.0238    "optimization tool"                     

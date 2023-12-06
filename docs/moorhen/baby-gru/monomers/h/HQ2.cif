@@ -1,0 +1,259 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HQ2     HQ2      "8-hydroxy-3-(piperazin-1-yl)quinoline-5-carboxylic acid"     NON-POLYMER     34     20     .     
+#
+data_comp_HQ2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HQ2     NAA     N       NRD6    0       -26.909     -20.577     -20.595     
+HQ2     NAB     N       NT      0       -23.666     -18.822     -20.587     
+HQ2     NAC     N       NT1     0       -21.563     -17.052     -19.799     
+HQ2     CAD     C       CR16    0       -27.937     -22.831     -23.280     
+HQ2     CAE     C       CR16    0       -26.829     -22.775     -24.139     
+HQ2     CAF     C       CR6     0       -25.734     -21.999     -23.846     
+HQ2     CAG     C       CR66    0       -25.718     -21.226     -22.639     
+HQ2     CAH     C       CR66    0       -26.844     -21.282     -21.766     
+HQ2     CAI     C       CR6     0       -27.955     -22.103     -22.115     
+HQ2     CAJ     C       CR16    0       -24.631     -20.396     -22.257     
+HQ2     CAK     C       CR6     0       -24.712     -19.669     -21.037     
+HQ2     CAL     C       CR16    0       -25.860     -19.795     -20.251     
+HQ2     CAM     C       C       0       -24.598     -22.016     -24.843     
+HQ2     CAN     C       CH2     0       -22.265     -19.145     -20.879     
+HQ2     CAO     C       CH2     0       -21.347     -18.498     -19.858     
+HQ2     CAP     C       CH2     0       -22.961     -16.750     -19.497     
+HQ2     CAQ     C       CH2     0       -23.882     -17.372     -20.530     
+HQ2     OAR     O       OH1     0       -29.046     -22.164     -21.279     
+HQ2     OAS     O       O       0       -24.831     -21.589     -25.988     
+HQ2     OAT     O       OC      -1      -23.501     -22.458     -24.458     
+HQ2     HNAC    H       H       0       -21.036     -16.696     -19.171     
+HQ2     HAD     H       H       0       -28.676     -23.371     -23.504     
+HQ2     HAE     H       H       0       -26.841     -23.281     -24.929     
+HQ2     HAJ     H       H       0       -23.865     -20.327     -22.802     
+HQ2     HAL     H       H       0       -25.916     -19.311     -19.442     
+HQ2     HAN     H       H       0       -22.033     -18.823     -21.784     
+HQ2     HANA    H       H       0       -22.139     -20.125     -20.860     
+HQ2     HAO     H       H       0       -20.408     -18.679     -20.099     
+HQ2     HAOA    H       H       0       -21.515     -18.891     -18.970     
+HQ2     HAP     H       H       0       -23.091     -15.773     -19.485     
+HQ2     HAPA    H       H       0       -23.187     -17.099     -18.602     
+HQ2     HAQ     H       H       0       -24.822     -17.180     -20.293     
+HQ2     HAQA    H       H       0       -23.701     -16.976     -21.417     
+HQ2     HOAR    H       H       0       -28.934     -22.179     -20.425     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HQ2         NAA         CAH      DOUBLE       y     1.365  0.0100     1.365  0.0100
+HQ2         NAA         CAL      SINGLE       y     1.334  0.0177     1.334  0.0177
+HQ2         NAB         CAN      SINGLE       n     1.464  0.0100     1.464  0.0100
+HQ2         NAB         CAK      SINGLE       n     1.405  0.0196     1.405  0.0196
+HQ2         NAB         CAQ      SINGLE       n     1.464  0.0100     1.464  0.0100
+HQ2         NAC         CAO      SINGLE       n     1.460  0.0112     1.460  0.0112
+HQ2         NAC         CAP      SINGLE       n     1.460  0.0112     1.460  0.0112
+HQ2         CAD         CAE      SINGLE       y     1.399  0.0100     1.399  0.0100
+HQ2         CAD         CAI      DOUBLE       y     1.370  0.0100     1.370  0.0100
+HQ2         CAE         CAF      DOUBLE       y     1.369  0.0100     1.369  0.0100
+HQ2         CAF         CAM      SINGLE       n     1.509  0.0121     1.509  0.0121
+HQ2         CAF         CAG      SINGLE       y     1.427  0.0100     1.427  0.0100
+HQ2         CAG         CAJ      DOUBLE       y     1.417  0.0100     1.417  0.0100
+HQ2         CAG         CAH      SINGLE       y     1.423  0.0100     1.423  0.0100
+HQ2         CAH         CAI      SINGLE       y     1.420  0.0100     1.420  0.0100
+HQ2         CAI         OAR      SINGLE       n     1.374  0.0155     1.374  0.0155
+HQ2         CAJ         CAK      SINGLE       y     1.413  0.0134     1.413  0.0134
+HQ2         CAK         CAL      DOUBLE       y     1.390  0.0107     1.390  0.0107
+HQ2         CAM         OAS      DOUBLE       n     1.244  0.0200     1.244  0.0200
+HQ2         CAM         OAT      SINGLE       n     1.244  0.0200     1.244  0.0200
+HQ2         CAN         CAO      SINGLE       n     1.516  0.0100     1.516  0.0100
+HQ2         CAP         CAQ      SINGLE       n     1.516  0.0100     1.516  0.0100
+HQ2         NAC        HNAC      SINGLE       n     1.036  0.0160     0.893  0.0200
+HQ2         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0100
+HQ2         CAE         HAE      SINGLE       n     1.082  0.0130     0.938  0.0102
+HQ2         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0183
+HQ2         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0200
+HQ2         CAN         HAN      SINGLE       n     1.089  0.0100     0.988  0.0200
+HQ2         CAN        HANA      SINGLE       n     1.089  0.0100     0.988  0.0200
+HQ2         CAO         HAO      SINGLE       n     1.089  0.0100     0.986  0.0200
+HQ2         CAO        HAOA      SINGLE       n     1.089  0.0100     0.986  0.0200
+HQ2         CAP         HAP      SINGLE       n     1.089  0.0100     0.986  0.0200
+HQ2         CAP        HAPA      SINGLE       n     1.089  0.0100     0.986  0.0200
+HQ2         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.988  0.0200
+HQ2         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.988  0.0200
+HQ2         OAR        HOAR      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HQ2         CAH         NAA         CAL     117.177    1.50
+HQ2         CAN         NAB         CAK     116.897    2.51
+HQ2         CAN         NAB         CAQ     110.693    1.50
+HQ2         CAK         NAB         CAQ     116.897    2.51
+HQ2         CAO         NAC         CAP     110.165    1.50
+HQ2         CAO         NAC        HNAC     109.673    3.00
+HQ2         CAP         NAC        HNAC     109.673    3.00
+HQ2         CAE         CAD         CAI     120.200    1.50
+HQ2         CAE         CAD         HAD     119.996    1.50
+HQ2         CAI         CAD         HAD     119.804    1.50
+HQ2         CAD         CAE         CAF     121.106    1.50
+HQ2         CAD         CAE         HAE     119.191    1.50
+HQ2         CAF         CAE         HAE     119.703    1.50
+HQ2         CAE         CAF         CAM     117.434    1.68
+HQ2         CAE         CAF         CAG     120.010    1.50
+HQ2         CAM         CAF         CAG     122.555    1.76
+HQ2         CAF         CAG         CAJ     121.712    1.50
+HQ2         CAF         CAG         CAH     119.160    1.50
+HQ2         CAJ         CAG         CAH     119.128    1.50
+HQ2         NAA         CAH         CAG     123.520    1.50
+HQ2         NAA         CAH         CAI     117.219    1.50
+HQ2         CAG         CAH         CAI     119.261    1.50
+HQ2         CAD         CAI         CAH     120.264    1.50
+HQ2         CAD         CAI         OAR     121.486    3.00
+HQ2         CAH         CAI         OAR     118.250    2.50
+HQ2         CAG         CAJ         CAK     119.868    2.81
+HQ2         CAG         CAJ         HAJ     120.094    1.50
+HQ2         CAK         CAJ         HAJ     120.038    1.50
+HQ2         NAB         CAK         CAJ     121.767    1.50
+HQ2         NAB         CAK         CAL     119.667    2.00
+HQ2         CAJ         CAK         CAL     118.566    1.50
+HQ2         NAA         CAL         CAK     121.741    1.50
+HQ2         NAA         CAL         HAL     118.652    1.67
+HQ2         CAK         CAL         HAL     119.607    1.50
+HQ2         CAF         CAM         OAS     117.540    1.50
+HQ2         CAF         CAM         OAT     117.541    1.50
+HQ2         OAS         CAM         OAT     124.922    1.50
+HQ2         NAB         CAN         CAO     110.170    1.50
+HQ2         NAB         CAN         HAN     109.558    1.50
+HQ2         NAB         CAN        HANA     109.558    1.50
+HQ2         CAO         CAN         HAN     109.625    1.50
+HQ2         CAO         CAN        HANA     109.625    1.50
+HQ2         HAN         CAN        HANA     108.196    1.50
+HQ2         NAC         CAO         CAN     110.811    1.78
+HQ2         NAC         CAO         HAO     109.479    1.50
+HQ2         NAC         CAO        HAOA     109.479    1.50
+HQ2         CAN         CAO         HAO     109.527    1.50
+HQ2         CAN         CAO        HAOA     109.527    1.50
+HQ2         HAO         CAO        HAOA     108.060    1.50
+HQ2         NAC         CAP         CAQ     110.811    1.78
+HQ2         NAC         CAP         HAP     109.479    1.50
+HQ2         NAC         CAP        HAPA     109.479    1.50
+HQ2         CAQ         CAP         HAP     109.527    1.50
+HQ2         CAQ         CAP        HAPA     109.527    1.50
+HQ2         HAP         CAP        HAPA     108.060    1.50
+HQ2         NAB         CAQ         CAP     110.170    1.50
+HQ2         NAB         CAQ         HAQ     109.558    1.50
+HQ2         NAB         CAQ        HAQA     109.558    1.50
+HQ2         CAP         CAQ         HAQ     109.625    1.50
+HQ2         CAP         CAQ        HAQA     109.625    1.50
+HQ2         HAQ         CAQ        HAQA     108.196    1.50
+HQ2         CAI         OAR        HOAR     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HQ2              const_35         CAK         CAL         NAA         CAH       0.000    10.0     2
+HQ2              const_21         CAG         CAH         NAA         CAL       0.000    10.0     2
+HQ2              const_33         NAB         CAK         CAL         NAA     180.000    10.0     2
+HQ2             sp3_sp3_1         NAB         CAN         CAO         NAC     -60.000    10.0     3
+HQ2            sp3_sp3_22         NAC         CAP         CAQ         NAB      60.000    10.0     3
+HQ2             sp2_sp2_1         CAJ         CAK         NAB         CAN     180.000     5.0     2
+HQ2             sp2_sp3_4         CAK         NAB         CAN         CAO     180.000    10.0     6
+HQ2             sp2_sp3_7         CAN         NAB         CAQ         CAP       0.000    10.0     6
+HQ2            sp3_sp3_10         CAN         CAO         NAC         CAP      60.000    10.0     3
+HQ2            sp3_sp3_16         CAQ         CAP         NAC         CAO     -60.000    10.0     3
+HQ2       const_sp2_sp2_1         CAI         CAD         CAE         CAF       0.000     5.0     2
+HQ2              const_38         CAE         CAD         CAI         OAR     180.000    10.0     2
+HQ2       const_sp2_sp2_6         CAD         CAE         CAF         CAM     180.000     5.0     2
+HQ2             sp2_sp2_5         CAE         CAF         CAM         OAS     180.000     5.0     2
+HQ2              const_12         CAM         CAF         CAG         CAJ       0.000    10.0     2
+HQ2              const_14         CAF         CAG         CAH         NAA     180.000    10.0     2
+HQ2              const_25         CAF         CAG         CAJ         CAK     180.000    10.0     2
+HQ2              const_20         NAA         CAH         CAI         OAR       0.000    10.0     2
+HQ2             sp2_sp2_9         CAD         CAI         OAR        HOAR     180.000     5.0     2
+HQ2              const_28         CAG         CAJ         CAK         NAB     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HQ2    chir_1    NAC    CAO    CAP    HNAC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HQ2    plan-1         CAD   0.020
+HQ2    plan-1         CAE   0.020
+HQ2    plan-1         CAF   0.020
+HQ2    plan-1         CAG   0.020
+HQ2    plan-1         CAH   0.020
+HQ2    plan-1         CAI   0.020
+HQ2    plan-1         CAJ   0.020
+HQ2    plan-1         CAK   0.020
+HQ2    plan-1         CAL   0.020
+HQ2    plan-1         CAM   0.020
+HQ2    plan-1         HAD   0.020
+HQ2    plan-1         HAE   0.020
+HQ2    plan-1         HAJ   0.020
+HQ2    plan-1         HAL   0.020
+HQ2    plan-1         NAA   0.020
+HQ2    plan-1         NAB   0.020
+HQ2    plan-1         OAR   0.020
+HQ2    plan-2         CAF   0.020
+HQ2    plan-2         CAM   0.020
+HQ2    plan-2         OAS   0.020
+HQ2    plan-2         OAT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HQ2           SMILES              ACDLabs 12.01                                                                                O=C(O)c2c1cc(cnc1c(O)cc2)N3CCNCC3
+HQ2 SMILES_CANONICAL               CACTVS 3.370                                                                                OC(=O)c1ccc(O)c2ncc(cc12)N3CCNCC3
+HQ2           SMILES               CACTVS 3.370                                                                                OC(=O)c1ccc(O)c2ncc(cc12)N3CCNCC3
+HQ2 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                              c1cc(c2c(c1C(=O)O)cc(cn2)N3CCNCC3)O
+HQ2           SMILES "OpenEye OEToolkits" 1.7.2                                                                              c1cc(c2c(c1C(=O)O)cc(cn2)N3CCNCC3)O
+HQ2            InChI                InChI  1.03 InChI=1S/C14H15N3O3/c18-12-2-1-10(14(19)20)11-7-9(8-16-13(11)12)17-5-3-15-4-6-17/h1-2,7-8,15,18H,3-6H2,(H,19,20)
+HQ2         InChIKey                InChI  1.03                                                                                      TUTIPJBLHAOGRW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HQ2 acedrg               243         "dictionary generator"                  
+HQ2 acedrg_database      11          "data source"                           
+HQ2 rdkit                2017.03.2   "Chemoinformatics tool"
+HQ2 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,348 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GPI     GPI      (2S)-[3-PYRIDYL-1-PROPYL]-1-[3,3-DIMETHYL-1,2-DIOXOPENTYL]-2-PYRROLIDINECARBOXYLATE     NON-POLYMER     54     26     .     
+#
+data_comp_GPI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GPI     C2      C       CH1     0       -4.511      2.040       -0.942      
+GPI     N6      N       NR5     0       -4.190      3.331       -0.316      
+GPI     C5      C       CH2     0       -2.733      3.508       -0.161      
+GPI     C3      C       CH2     0       -3.163      1.611       -1.535      
+GPI     C4      C       CH2     0       -2.159      2.169       -0.565      
+GPI     C1      C       C       0       -5.019      1.024       0.067       
+GPI     O1      O       O       0       -4.471      0.776       1.102       
+GPI     O2      O       O2      0       -6.146      0.451       -0.358      
+GPI     C14     C       CH2     0       -7.009      -0.165      0.637       
+GPI     C15     C       CH2     0       -8.331      -0.516      0.003       
+GPI     C16     C       CH2     0       -9.216      -1.403      0.882       
+GPI     N19     N       NRD6    0       -11.117     0.885       3.247       
+GPI     C20     C       CR16    0       -10.598     0.505       4.431       
+GPI     C21     C       CR16    0       -9.638      -0.475      4.552       
+GPI     C22     C       CR16    0       -9.190      -1.094      3.400       
+GPI     C17     C       CR6     0       -9.698      -0.735      2.151       
+GPI     C18     C       CR16    0       -10.664     0.267       2.137       
+GPI     C7      C       C       0       -5.163      4.196       0.068       
+GPI     O7      O       O       0       -6.340      3.876       -0.076      
+GPI     C8      C       C       0       -4.926      5.505       0.732       
+GPI     O8      O       O       0       -3.807      6.016       0.588       
+GPI     C9      C       CT      0       -5.935      6.240       1.634       
+GPI     C12     C       CH3     0       -5.268      7.432       2.335       
+GPI     C13     C       CH3     0       -6.422      5.284       2.730       
+GPI     C10     C       CH2     0       -7.185      6.769       0.886       
+GPI     C11     C       CH3     0       -6.937      7.626       -0.348      
+GPI     H2      H       H       0       -5.173      2.160       -1.655      
+GPI     H51     H       H       0       -2.501      3.722       0.767       
+GPI     H52     H       H       0       -2.401      4.221       -0.746      
+GPI     H31     H       H       0       -3.036      1.992       -2.430      
+GPI     H32     H       H       0       -3.094      0.633       -1.591      
+GPI     H41     H       H       0       -2.060      1.583       0.213       
+GPI     H42     H       H       0       -1.284      2.280       -0.993      
+GPI     H141    H       H       0       -7.162      0.453       1.385       
+GPI     H142    H       H       0       -6.592      -0.980      0.989       
+GPI     H151    H       H       0       -8.162      -0.977      -0.844      
+GPI     H152    H       H       0       -8.813      0.311       -0.199      
+GPI     H161    H       H       0       -8.714      -2.211      1.123       
+GPI     H162    H       H       0       -9.998      -1.683      0.360       
+GPI     H20     H       H       0       -10.910     0.932       5.211       
+GPI     H21     H       H       0       -9.297      -0.716      5.397       
+GPI     H22     H       H       0       -8.533      -1.769      3.458       
+GPI     H18     H       H       0       -11.020     0.525       1.306       
+GPI     H121    H       H       0       -4.939      8.066       1.675       
+GPI     H122    H       H       0       -4.524      7.117       2.879       
+GPI     H123    H       H       0       -5.916      7.876       2.910       
+GPI     H131    H       H       0       -6.932      5.782       3.393       
+GPI     H132    H       H       0       -5.656      4.866       3.161       
+GPI     H133    H       H       0       -6.988      4.596       2.342       
+GPI     H101    H       H       0       -7.717      7.293       1.520       
+GPI     H102    H       H       0       -7.729      6.000       0.618       
+GPI     H111    H       H       0       -7.788      7.953       -0.689      
+GPI     H112    H       H       0       -6.500      7.095       -1.035      
+GPI     H113    H       H       0       -6.373      8.383       -0.116      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GPI          C2          N6      SINGLE       n     1.466  0.0100     1.466  0.0100
+GPI          C2          C3      SINGLE       n     1.533  0.0100     1.533  0.0100
+GPI          C2          C1      SINGLE       n     1.514  0.0130     1.514  0.0130
+GPI          N6          C5      SINGLE       n     1.472  0.0100     1.472  0.0100
+GPI          N6          C7      SINGLE       n     1.346  0.0102     1.346  0.0102
+GPI          C5          C4      SINGLE       n     1.512  0.0163     1.512  0.0163
+GPI          C3          C4      SINGLE       n     1.508  0.0200     1.508  0.0200
+GPI          C1          O1      DOUBLE       n     1.196  0.0100     1.196  0.0100
+GPI          C1          O2      SINGLE       n     1.329  0.0128     1.329  0.0128
+GPI          O2         C14      SINGLE       n     1.452  0.0100     1.452  0.0100
+GPI         C14         C15      SINGLE       n     1.507  0.0100     1.507  0.0100
+GPI         C15         C16      SINGLE       n     1.530  0.0100     1.530  0.0100
+GPI         C16         C17      SINGLE       n     1.513  0.0100     1.513  0.0100
+GPI         N19         C20      DOUBLE       y     1.338  0.0156     1.338  0.0156
+GPI         N19         C18      SINGLE       y     1.342  0.0117     1.342  0.0117
+GPI         C20         C21      SINGLE       y     1.368  0.0200     1.368  0.0200
+GPI         C21         C22      DOUBLE       y     1.375  0.0185     1.375  0.0185
+GPI         C22         C17      SINGLE       y     1.392  0.0100     1.392  0.0100
+GPI         C17         C18      DOUBLE       y     1.387  0.0100     1.387  0.0100
+GPI          C7          O7      DOUBLE       n     1.225  0.0128     1.225  0.0128
+GPI          C7          C8      SINGLE       n     1.449  0.0200     1.449  0.0200
+GPI          C8          O8      DOUBLE       n     1.234  0.0195     1.234  0.0195
+GPI          C8          C9      SINGLE       n     1.530  0.0100     1.530  0.0100
+GPI          C9         C12      SINGLE       n     1.529  0.0127     1.529  0.0127
+GPI          C9         C13      SINGLE       n     1.529  0.0127     1.529  0.0127
+GPI          C9         C10      SINGLE       n     1.545  0.0100     1.545  0.0100
+GPI         C10         C11      SINGLE       n     1.515  0.0200     1.515  0.0200
+GPI          C2          H2      SINGLE       n     1.089  0.0100     0.979  0.0200
+GPI          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0200
+GPI          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0200
+GPI          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0200
+GPI          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0200
+GPI          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0200
+GPI          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0200
+GPI         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0134
+GPI         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0134
+GPI         C15        H151      SINGLE       n     1.089  0.0100     0.979  0.0102
+GPI         C15        H152      SINGLE       n     1.089  0.0100     0.979  0.0102
+GPI         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0150
+GPI         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0150
+GPI         C20         H20      SINGLE       n     1.082  0.0130     0.942  0.0166
+GPI         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0124
+GPI         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0173
+GPI         C18         H18      SINGLE       n     1.082  0.0130     0.940  0.0200
+GPI         C12        H121      SINGLE       n     1.089  0.0100     0.973  0.0141
+GPI         C12        H122      SINGLE       n     1.089  0.0100     0.973  0.0141
+GPI         C12        H123      SINGLE       n     1.089  0.0100     0.973  0.0141
+GPI         C13        H131      SINGLE       n     1.089  0.0100     0.973  0.0141
+GPI         C13        H132      SINGLE       n     1.089  0.0100     0.973  0.0141
+GPI         C13        H133      SINGLE       n     1.089  0.0100     0.973  0.0141
+GPI         C10        H101      SINGLE       n     1.089  0.0100     0.980  0.0160
+GPI         C10        H102      SINGLE       n     1.089  0.0100     0.980  0.0160
+GPI         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0157
+GPI         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0157
+GPI         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GPI          N6          C2          C3     102.601    1.50
+GPI          N6          C2          C1     111.727    1.53
+GPI          N6          C2          H2     110.316    1.50
+GPI          C3          C2          C1     111.235    1.50
+GPI          C3          C2          H2     110.662    1.50
+GPI          C1          C2          H2     109.502    1.50
+GPI          C2          N6          C5     112.901    1.50
+GPI          C2          N6          C7     122.009    2.62
+GPI          C5          N6          C7     125.090    2.62
+GPI          N6          C5          C4     103.293    1.50
+GPI          N6          C5         H51     111.063    1.50
+GPI          N6          C5         H52     111.063    1.50
+GPI          C4          C5         H51     111.171    1.50
+GPI          C4          C5         H52     111.171    1.50
+GPI         H51          C5         H52     108.998    1.50
+GPI          C2          C3          C4     103.507    1.50
+GPI          C2          C3         H31     110.902    1.50
+GPI          C2          C3         H32     110.902    1.50
+GPI          C4          C3         H31     110.886    1.50
+GPI          C4          C3         H32     110.886    1.50
+GPI         H31          C3         H32     108.922    1.50
+GPI          C5          C4          C3     104.327    2.00
+GPI          C5          C4         H41     110.793    1.50
+GPI          C5          C4         H42     110.793    1.50
+GPI          C3          C4         H41     110.864    1.50
+GPI          C3          C4         H42     110.864    1.50
+GPI         H41          C4         H42     108.899    1.50
+GPI          C2          C1          O1     124.394    1.50
+GPI          C2          C1          O2     110.846    1.50
+GPI          O1          C1          O2     124.759    1.50
+GPI          C1          O2         C14     116.664    1.50
+GPI          O2         C14         C15     108.779    2.16
+GPI          O2         C14        H141     110.128    1.50
+GPI          O2         C14        H142     110.128    1.50
+GPI         C15         C14        H141     109.222    1.50
+GPI         C15         C14        H142     109.222    1.50
+GPI        H141         C14        H142     108.375    1.50
+GPI         C14         C15         C16     113.604    1.50
+GPI         C14         C15        H151     108.840    1.50
+GPI         C14         C15        H152     108.840    1.50
+GPI         C16         C15        H151     108.878    1.50
+GPI         C16         C15        H152     108.878    1.50
+GPI        H151         C15        H152     107.711    1.50
+GPI         C15         C16         C17     114.108    2.12
+GPI         C15         C16        H161     108.798    1.50
+GPI         C15         C16        H162     108.798    1.50
+GPI         C17         C16        H161     108.582    1.50
+GPI         C17         C16        H162     108.582    1.50
+GPI        H161         C16        H162     107.745    1.50
+GPI         C20         N19         C18     117.140    1.50
+GPI         N19         C20         C21     123.400    1.50
+GPI         N19         C20         H20     118.072    1.50
+GPI         C21         C20         H20     118.527    1.50
+GPI         C20         C21         C22     118.641    1.50
+GPI         C20         C21         H21     120.673    1.50
+GPI         C22         C21         H21     120.686    1.50
+GPI         C21         C22         C17     121.000    1.50
+GPI         C21         C22         H22     119.636    1.50
+GPI         C17         C22         H22     119.364    1.50
+GPI         C16         C17         C22     121.316    1.50
+GPI         C16         C17         C18     122.138    1.64
+GPI         C22         C17         C18     116.546    1.50
+GPI         N19         C18         C17     123.273    1.50
+GPI         N19         C18         H18     118.513    1.50
+GPI         C17         C18         H18     118.214    1.50
+GPI          N6          C7          O7     120.406    1.50
+GPI          N6          C7          C8     119.509    3.00
+GPI          O7          C7          C8     120.086    3.00
+GPI          C7          C8          O8     117.651    2.75
+GPI          C7          C8          C9     124.168    3.00
+GPI          O8          C8          C9     118.181    1.50
+GPI          C8          C9         C12     109.499    1.50
+GPI          C8          C9         C13     109.499    1.50
+GPI          C8          C9         C10     111.511    2.91
+GPI         C12          C9         C13     108.963    1.54
+GPI         C12          C9         C10     108.344    2.10
+GPI         C13          C9         C10     108.344    2.10
+GPI          C9         C12        H121     109.537    1.50
+GPI          C9         C12        H122     109.537    1.50
+GPI          C9         C12        H123     109.537    1.50
+GPI        H121         C12        H122     109.377    1.50
+GPI        H121         C12        H123     109.377    1.50
+GPI        H122         C12        H123     109.377    1.50
+GPI          C9         C13        H131     109.537    1.50
+GPI          C9         C13        H132     109.537    1.50
+GPI          C9         C13        H133     109.537    1.50
+GPI        H131         C13        H132     109.377    1.50
+GPI        H131         C13        H133     109.377    1.50
+GPI        H132         C13        H133     109.377    1.50
+GPI          C9         C10         C11     115.312    1.50
+GPI          C9         C10        H101     107.886    1.50
+GPI          C9         C10        H102     107.886    1.50
+GPI         C11         C10        H101     108.311    1.50
+GPI         C11         C10        H102     108.311    1.50
+GPI        H101         C10        H102     107.441    1.50
+GPI         C10         C11        H111     109.504    1.50
+GPI         C10         C11        H112     109.504    1.50
+GPI         C10         C11        H113     109.504    1.50
+GPI        H111         C11        H112     109.380    1.50
+GPI        H111         C11        H113     109.380    1.50
+GPI        H112         C11        H113     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GPI             sp2_sp3_5          C7          N6          C2          C1     -60.000    10.0     6
+GPI            sp3_sp3_22          C1          C2          C3          C4      60.000    10.0     3
+GPI            sp2_sp3_13          O1          C1          C2          N6       0.000    10.0     6
+GPI            sp2_sp3_20         C22         C17         C16         C15     -90.000    10.0     6
+GPI       const_sp2_sp2_1         C21         C20         N19         C18       0.000     5.0     2
+GPI              const_19         C17         C18         N19         C20       0.000    10.0     2
+GPI       const_sp2_sp2_3         N19         C20         C21         C22       0.000     5.0     2
+GPI       const_sp2_sp2_7         C20         C21         C22         C17       0.000     5.0     2
+GPI              const_13         C16         C17         C22         C21     180.000    10.0     2
+GPI              const_17         C16         C17         C18         N19     180.000    10.0     2
+GPI            sp2_sp2_10          O7          C7          C8          O8     180.000     5.0     2
+GPI            sp2_sp3_25          C7          C8          C9         C12       0.000    10.0     6
+GPI             sp2_sp2_3          O7          C7          N6          C2       0.000     5.0     2
+GPI            sp2_sp3_10          C7          N6          C5          C4     180.000    10.0     6
+GPI            sp3_sp3_50        H121         C12          C9          C8     -60.000    10.0     3
+GPI            sp3_sp3_58        H131         C13          C9          C8     180.000    10.0     3
+GPI            sp3_sp3_67         C11         C10          C9          C8     180.000    10.0     3
+GPI            sp3_sp3_76          C9         C10         C11        H111     180.000    10.0     3
+GPI             sp3_sp3_1          C3          C4          C5          N6      60.000    10.0     3
+GPI            sp3_sp3_10          C2          C3          C4          C5     -60.000    10.0     3
+GPI             sp2_sp2_6          O1          C1          O2         C14       0.000     5.0     2
+GPI            sp3_sp3_28         C15         C14          O2          C1     180.000    10.0     3
+GPI            sp3_sp3_31          O2         C14         C15         C16     180.000    10.0     3
+GPI            sp3_sp3_40         C14         C15         C16         C17     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GPI    chir_1    C2    N6    C1    C3    positive
+GPI    chir_2    C9    C8    C10    C12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GPI    plan-1         C16   0.020
+GPI    plan-1         C17   0.020
+GPI    plan-1         C18   0.020
+GPI    plan-1         C20   0.020
+GPI    plan-1         C21   0.020
+GPI    plan-1         C22   0.020
+GPI    plan-1         H18   0.020
+GPI    plan-1         H20   0.020
+GPI    plan-1         H21   0.020
+GPI    plan-1         H22   0.020
+GPI    plan-1         N19   0.020
+GPI    plan-2          C2   0.020
+GPI    plan-2          C5   0.020
+GPI    plan-2          C7   0.020
+GPI    plan-2          N6   0.020
+GPI    plan-3          C1   0.020
+GPI    plan-3          C2   0.020
+GPI    plan-3          O1   0.020
+GPI    plan-3          O2   0.020
+GPI    plan-4          C7   0.020
+GPI    plan-4          C8   0.020
+GPI    plan-4          N6   0.020
+GPI    plan-4          O7   0.020
+GPI    plan-5          C7   0.020
+GPI    plan-5          C8   0.020
+GPI    plan-5          C9   0.020
+GPI    plan-5          O8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GPI           SMILES              ACDLabs 10.04                                                                                                      O=C(OCCCc1cccnc1)C2N(C(=O)C(=O)C(C)(C)CC)CCC2
+GPI SMILES_CANONICAL               CACTVS 3.341                                                                                                    CCC(C)(C)C(=O)C(=O)N1CCC[C@H]1C(=O)OCCCc2cccnc2
+GPI           SMILES               CACTVS 3.341                                                                                                     CCC(C)(C)C(=O)C(=O)N1CCC[CH]1C(=O)OCCCc2cccnc2
+GPI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                    CCC(C)(C)C(=O)C(=O)N1CCC[C@H]1C(=O)OCCCc2cccnc2
+GPI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        CCC(C)(C)C(=O)C(=O)N1CCCC1C(=O)OCCCc2cccnc2
+GPI            InChI                InChI  1.03 InChI=1S/C20H28N2O4/c1-4-20(2,3)17(23)18(24)22-12-6-10-16(22)19(25)26-13-7-9-15-8-5-11-21-14-15/h5,8,11,14,16H,4,6-7,9-10,12-13H2,1-3H3/t16-/m0/s1
+GPI         InChIKey                InChI  1.03                                                                                                                        OQAHHWOPVDDWHD-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GPI acedrg               243         "dictionary generator"                  
+GPI acedrg_database      11          "data source"                           
+GPI rdkit                2017.03.2   "Chemoinformatics tool"
+GPI refmac5              5.8.0238    "optimization tool"                     

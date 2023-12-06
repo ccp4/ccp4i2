@@ -1,0 +1,250 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ID3     ID3      (3E)-4-(2,6,6-trimethylcyclohex-1-en-1-yl)but-3-en-2-one     NON-POLYMER     34     14     .     
+#
+data_comp_ID3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ID3     C1      C       CT      0       -6.973      47.601      -17.820     
+ID3     O1      O       O       0       -2.892      47.654      -13.181     
+ID3     C2      C       CH2     0       -7.412      48.477      -19.004     
+ID3     C3      C       CH2     0       -6.280      49.141      -19.712     
+ID3     C4      C       CH2     0       -5.472      50.004      -18.748     
+ID3     C5      C       CR6     0       -5.335      49.433      -17.361     
+ID3     C6      C       CR6     0       -5.804      48.200      -17.036     
+ID3     C7      C       C1      0       -5.308      47.439      -15.870     
+ID3     C8      C       C1      0       -4.149      47.631      -15.152     
+ID3     C9      C       C       0       -3.979      47.426      -13.734     
+ID3     C16     C       CH3     0       -6.604      46.213      -18.384     
+ID3     C17     C       CH3     0       -8.200      47.438      -16.903     
+ID3     C18     C       CH3     0       -4.583      50.361      -16.441     
+ID3     C19     C       CH3     0       -5.124      46.917      -12.900     
+ID3     H2      H       H       0       -7.905      47.925      -19.642     
+ID3     H2A     H       H       0       -8.022      49.166      -18.676     
+ID3     H3      H       H       0       -6.631      49.702      -20.435     
+ID3     H3A     H       H       0       -5.696      48.462      -20.109     
+ID3     H4      H       H       0       -5.898      50.881      -18.677     
+ID3     H4A     H       H       0       -4.575      50.135      -19.113     
+ID3     H7      H       H       0       -5.840      46.718      -15.593     
+ID3     H8      H       H       0       -3.384      47.905      -15.629     
+ID3     H16     H       H       0       -6.033      45.737      -17.763     
+ID3     H16A    H       H       0       -6.137      46.315      -19.229     
+ID3     H16B    H       H       0       -7.413      45.695      -18.530     
+ID3     H17     H       H       0       -8.330      48.248      -16.383     
+ID3     H17A    H       H       0       -8.064      46.689      -16.302     
+ID3     H17B    H       H       0       -8.992      47.273      -17.442     
+ID3     H18     H       H       0       -4.937      50.290      -15.542     
+ID3     H18A    H       H       0       -4.673      51.278      -16.741     
+ID3     H18B    H       H       0       -3.643      50.124      -16.432     
+ID3     H19     H       H       0       -4.809      46.706      -12.008     
+ID3     H19A    H       H       0       -5.492      46.119      -13.306     
+ID3     H19B    H       H       0       -5.813      47.596      -12.845     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ID3          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+ID3          C1         C16      SINGLE       n     1.537  0.0100     1.537  0.0100
+ID3          C1          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+ID3          C1         C17      SINGLE       n     1.537  0.0100     1.537  0.0100
+ID3          O1          C9      DOUBLE       n     1.240  0.0190     1.240  0.0190
+ID3          C2          C3      SINGLE       n     1.492  0.0200     1.492  0.0200
+ID3          C3          C4      SINGLE       n     1.524  0.0139     1.524  0.0139
+ID3          C4          C5      SINGLE       n     1.501  0.0100     1.501  0.0100
+ID3          C5          C6      DOUBLE       n     1.347  0.0100     1.347  0.0100
+ID3          C5         C18      SINGLE       n     1.504  0.0100     1.504  0.0100
+ID3          C6          C7      SINGLE       n     1.442  0.0200     1.442  0.0200
+ID3          C7          C8      DOUBLE       n     1.365  0.0200     1.365  0.0200
+ID3          C8          C9      SINGLE       n     1.434  0.0200     1.434  0.0200
+ID3          C9         C19      SINGLE       n     1.503  0.0111     1.503  0.0111
+ID3          C2          H2      SINGLE       n     1.089  0.0100     0.977  0.0105
+ID3          C2         H2A      SINGLE       n     1.089  0.0100     0.977  0.0105
+ID3          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0113
+ID3          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0113
+ID3          C4          H4      SINGLE       n     1.089  0.0100     0.978  0.0148
+ID3          C4         H4A      SINGLE       n     1.089  0.0100     0.978  0.0148
+ID3          C7          H7      SINGLE       n     1.082  0.0130     0.938  0.0146
+ID3          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0196
+ID3         C16         H16      SINGLE       n     1.089  0.0100     0.971  0.0163
+ID3         C16        H16A      SINGLE       n     1.089  0.0100     0.971  0.0163
+ID3         C16        H16B      SINGLE       n     1.089  0.0100     0.971  0.0163
+ID3         C17         H17      SINGLE       n     1.089  0.0100     0.971  0.0163
+ID3         C17        H17A      SINGLE       n     1.089  0.0100     0.971  0.0163
+ID3         C17        H17B      SINGLE       n     1.089  0.0100     0.971  0.0163
+ID3         C18         H18      SINGLE       n     1.089  0.0100     0.969  0.0158
+ID3         C18        H18A      SINGLE       n     1.089  0.0100     0.969  0.0158
+ID3         C18        H18B      SINGLE       n     1.089  0.0100     0.969  0.0158
+ID3         C19         H19      SINGLE       n     1.089  0.0100     0.969  0.0177
+ID3         C19        H19A      SINGLE       n     1.089  0.0100     0.969  0.0177
+ID3         C19        H19B      SINGLE       n     1.089  0.0100     0.969  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ID3          C2          C1         C16     108.237    2.03
+ID3          C2          C1          C6     112.021    2.38
+ID3          C2          C1         C17     108.237    2.03
+ID3         C16          C1          C6     110.110    1.50
+ID3         C16          C1         C17     108.431    1.50
+ID3          C6          C1         C17     110.110    1.50
+ID3          C1          C2          C3     113.880    1.50
+ID3          C1          C2          H2     108.646    1.50
+ID3          C1          C2         H2A     108.646    1.50
+ID3          C3          C2          H2     108.941    1.50
+ID3          C3          C2         H2A     108.941    1.50
+ID3          H2          C2         H2A     107.710    1.50
+ID3          C2          C3          C4     111.448    2.19
+ID3          C2          C3          H3     109.322    1.50
+ID3          C2          C3         H3A     109.322    1.50
+ID3          C4          C3          H3     109.281    1.50
+ID3          C4          C3         H3A     109.281    1.50
+ID3          H3          C3         H3A     108.036    1.50
+ID3          C3          C4          C5     113.289    1.74
+ID3          C3          C4          H4     109.190    1.50
+ID3          C3          C4         H4A     109.190    1.50
+ID3          C5          C4          H4     108.281    1.50
+ID3          C5          C4         H4A     108.281    1.50
+ID3          H4          C4         H4A     107.973    1.50
+ID3          C4          C5          C6     121.531    1.95
+ID3          C4          C5         C18     113.673    1.50
+ID3          C6          C5         C18     124.797    1.50
+ID3          C1          C6          C5     119.631    3.00
+ID3          C1          C6          C7     119.411    3.00
+ID3          C5          C6          C7     120.958    1.50
+ID3          C6          C7          C8     126.680    1.50
+ID3          C6          C7          H7     116.520    1.50
+ID3          C8          C7          H7     116.800    1.66
+ID3          C7          C8          C9     123.543    2.80
+ID3          C7          C8          H8     118.847    2.25
+ID3          C9          C8          H8     117.610    1.99
+ID3          O1          C9          C8     122.289    2.74
+ID3          O1          C9         C19     119.078    1.50
+ID3          C8          C9         C19     118.633    1.89
+ID3          C1         C16         H16     109.665    1.50
+ID3          C1         C16        H16A     109.665    1.50
+ID3          C1         C16        H16B     109.665    1.50
+ID3         H16         C16        H16A     109.363    1.50
+ID3         H16         C16        H16B     109.363    1.50
+ID3        H16A         C16        H16B     109.363    1.50
+ID3          C1         C17         H17     109.665    1.50
+ID3          C1         C17        H17A     109.665    1.50
+ID3          C1         C17        H17B     109.665    1.50
+ID3         H17         C17        H17A     109.363    1.50
+ID3         H17         C17        H17B     109.363    1.50
+ID3        H17A         C17        H17B     109.363    1.50
+ID3          C5         C18         H18     110.039    1.89
+ID3          C5         C18        H18A     110.039    1.89
+ID3          C5         C18        H18B     110.039    1.89
+ID3         H18         C18        H18A     109.339    1.50
+ID3         H18         C18        H18B     109.339    1.50
+ID3        H18A         C18        H18B     109.339    1.50
+ID3          C9         C19         H19     109.699    1.50
+ID3          C9         C19        H19A     109.699    1.50
+ID3          C9         C19        H19B     109.699    1.50
+ID3         H19         C19        H19A     109.400    1.50
+ID3         H19         C19        H19B     109.400    1.50
+ID3        H19A         C19        H19B     109.400    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ID3            sp3_sp3_34         C17          C1         C16         H16     -60.000    10.0     3
+ID3            sp3_sp3_43         C16          C1         C17         H17     -60.000    10.0     3
+ID3             sp3_sp3_4         C16          C1          C2          C3     -60.000    10.0     3
+ID3            sp2_sp3_12          C7          C6          C1         C16      60.000    10.0     6
+ID3            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+ID3            sp3_sp3_19          C2          C3          C4          C5      60.000    10.0     3
+ID3             sp2_sp3_4         C18          C5          C4          C3     180.000    10.0     6
+ID3            sp2_sp3_13          C4          C5         C18         H18     150.000    10.0     6
+ID3             sp2_sp2_4         C18          C5          C6          C7       0.000     5.0     2
+ID3             sp2_sp2_5          C1          C6          C7          C8     180.000     5.0     2
+ID3             sp2_sp2_9          C6          C7          C8          C9     180.000     5.0     2
+ID3            sp2_sp2_14          C7          C8          C9          O1       0.000     5.0     2
+ID3            sp2_sp3_19          O1          C9         C19         H19       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ID3    chir_1    C1    C6    C2    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ID3    plan-1         C18   0.020
+ID3    plan-1          C4   0.020
+ID3    plan-1          C5   0.020
+ID3    plan-1          C6   0.020
+ID3    plan-2          C1   0.020
+ID3    plan-2          C5   0.020
+ID3    plan-2          C6   0.020
+ID3    plan-2          C7   0.020
+ID3    plan-3          C6   0.020
+ID3    plan-3          C7   0.020
+ID3    plan-3          C8   0.020
+ID3    plan-3          H7   0.020
+ID3    plan-4          C7   0.020
+ID3    plan-4          C8   0.020
+ID3    plan-4          C9   0.020
+ID3    plan-4          H8   0.020
+ID3    plan-5         C19   0.020
+ID3    plan-5          C8   0.020
+ID3    plan-5          C9   0.020
+ID3    plan-5          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ID3           SMILES              ACDLabs 12.01                                                     O=C(\C=C\C1=C(C)CCCC1(C)C)C
+ID3 SMILES_CANONICAL               CACTVS 3.370                                                     CC(=O)/C=C/C1=C(C)CCCC1(C)C
+ID3           SMILES               CACTVS 3.370                                                       CC(=O)C=CC1=C(C)CCCC1(C)C
+ID3 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                   CC1=C(C(CCC1)(C)C)/C=C/C(=O)C
+ID3           SMILES "OpenEye OEToolkits" 1.7.0                                                     CC1=C(C(CCC1)(C)C)C=CC(=O)C
+ID3            InChI                InChI  1.03 InChI=1S/C13H20O/c1-10-6-5-9-13(3,4)12(10)8-7-11(2)14/h7-8H,5-6,9H2,1-4H3/b8-7+
+ID3         InChIKey                InChI  1.03                                                     PSQYTAPXSHCGMF-BQYQJAHWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ID3 acedrg               243         "dictionary generator"                  
+ID3 acedrg_database      11          "data source"                           
+ID3 rdkit                2017.03.2   "Chemoinformatics tool"
+ID3 refmac5              5.8.0238    "optimization tool"                     

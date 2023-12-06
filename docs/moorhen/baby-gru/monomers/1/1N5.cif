@@ -1,0 +1,191 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1N5     1N5      "(2R,4S)-2,4,7-trihydroxyheptanoic acid"     NON-POLYMER     25     12     .     
+#
+data_comp_1N5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1N5     C1      C       C       0       26.243      14.761      50.070      
+1N5     C2      C       CH1     0       25.810      16.209      50.334      
+1N5     C3      C       CH2     0       25.546      16.964      49.034      
+1N5     O4      O       OH1     0       26.573      19.048      49.631      
+1N5     C7      C       CH2     0       22.513      18.170      47.801      
+1N5     C4      C       CH1     0       25.341      18.466      49.209      
+1N5     C5      C       CH2     0       24.845      19.159      47.952      
+1N5     C6      C       CH2     0       23.351      19.420      47.906      
+1N5     O2      O       OH1     0       24.634      16.236      51.130      
+1N5     O7      O       OH1     0       21.155      18.475      47.532      
+1N5     O1A     O       OC      -1      25.359      13.957      49.713      
+1N5     O1B     O       O       0       27.449      14.483      50.229      
+1N5     H2      H       H       0       26.538      16.659      50.829      
+1N5     H3      H       H       0       24.748      16.583      48.606      
+1N5     H3A     H       H       0       26.305      16.819      48.426      
+1N5     HO4     H       H       0       26.413      19.798      49.991      
+1N5     H7      H       H       0       22.571      17.669      48.643      
+1N5     H7A     H       H       0       22.866      17.603      47.083      
+1N5     H4      H       H       0       24.671      18.612      49.926      
+1N5     H5      H       H       0       25.091      18.612      47.175      
+1N5     H5A     H       H       0       25.313      20.018      47.863      
+1N5     H6      H       H       0       23.088      19.907      48.715      
+1N5     H6A     H       H       0       23.153      19.994      47.137      
+1N5     HO2     H       H       0       24.652      16.927      51.622      
+1N5     HO7     H       H       0       20.729      17.750      47.444      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1N5          C1         O1B      DOUBLE       n     1.247  0.0187     1.247  0.0187
+1N5          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+1N5          C1         O1A      SINGLE       n     1.247  0.0187     1.247  0.0187
+1N5          C2          C3      SINGLE       n     1.525  0.0100     1.525  0.0100
+1N5          C2          O2      SINGLE       n     1.419  0.0162     1.419  0.0162
+1N5          C3          C4      SINGLE       n     1.525  0.0100     1.525  0.0100
+1N5          O4          C4      SINGLE       n     1.424  0.0199     1.424  0.0199
+1N5          C7          O7      SINGLE       n     1.417  0.0200     1.417  0.0200
+1N5          C7          C6      SINGLE       n     1.508  0.0200     1.508  0.0200
+1N5          C4          C5      SINGLE       n     1.516  0.0100     1.516  0.0100
+1N5          C5          C6      SINGLE       n     1.517  0.0100     1.517  0.0100
+1N5          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0129
+1N5          C3          H3      SINGLE       n     1.089  0.0100     0.983  0.0125
+1N5          C3         H3A      SINGLE       n     1.089  0.0100     0.983  0.0125
+1N5          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+1N5          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0174
+1N5          C7         H7A      SINGLE       n     1.089  0.0100     0.981  0.0174
+1N5          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0184
+1N5          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0160
+1N5          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0160
+1N5          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0166
+1N5          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0166
+1N5          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+1N5          O7         HO7      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1N5         O1B          C1          C2     117.318    2.01
+1N5         O1B          C1         O1A     125.364    1.50
+1N5          C2          C1         O1A     117.318    2.01
+1N5          C1          C2          C3     111.511    2.91
+1N5          C1          C2          O2     110.439    2.49
+1N5          C1          C2          H2     107.755    1.52
+1N5          C3          C2          O2     108.204    2.17
+1N5          C3          C2          H2     108.868    1.50
+1N5          O2          C2          H2     108.401    1.50
+1N5          C2          C3          C4     111.094    2.85
+1N5          C2          C3          H3     108.460    1.50
+1N5          C2          C3         H3A     108.460    1.50
+1N5          C4          C3          H3     108.468    1.50
+1N5          C4          C3         H3A     108.468    1.50
+1N5          H3          C3         H3A     107.406    1.50
+1N5          C4          O4         HO4     108.921    2.24
+1N5          O7          C7          C6     111.456    3.00
+1N5          O7          C7          H7     109.258    1.50
+1N5          O7          C7         H7A     109.258    1.50
+1N5          C6          C7          H7     109.269    1.50
+1N5          C6          C7         H7A     109.269    1.50
+1N5          H7          C7         H7A     108.120    1.50
+1N5          C3          C4          O4     109.024    2.32
+1N5          C3          C4          C5     113.270    1.72
+1N5          C3          C4          H4     108.603    1.50
+1N5          O4          C4          C5     109.904    2.15
+1N5          O4          C4          H4     108.270    1.50
+1N5          C5          C4          H4     108.124    1.50
+1N5          C4          C5          C6     114.715    1.50
+1N5          C4          C5          H5     108.478    1.50
+1N5          C4          C5         H5A     108.478    1.50
+1N5          C6          C5          H5     108.713    1.50
+1N5          C6          C5         H5A     108.713    1.50
+1N5          H5          C5         H5A     107.428    1.50
+1N5          C7          C6          C5     113.896    1.50
+1N5          C7          C6          H6     108.717    1.50
+1N5          C7          C6         H6A     108.717    1.50
+1N5          C5          C6          H6     108.929    1.50
+1N5          C5          C6         H6A     108.929    1.50
+1N5          H6          C6         H6A     107.788    1.50
+1N5          C2          O2         HO2     108.308    3.00
+1N5          C7          O7         HO7     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1N5             sp2_sp3_1         O1B          C1          C2          C3       0.000    10.0     6
+1N5             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+1N5            sp3_sp3_10          C1          C2          O2         HO2     180.000    10.0     3
+1N5            sp3_sp3_13          C2          C3          C4          O4     180.000    10.0     3
+1N5            sp3_sp3_22          C3          C4          O4         HO4     180.000    10.0     3
+1N5            sp3_sp3_28          C5          C6          C7          O7     180.000    10.0     3
+1N5            sp3_sp3_25          C6          C7          O7         HO7     180.000    10.0     3
+1N5            sp3_sp3_37          C3          C4          C5          C6     180.000    10.0     3
+1N5            sp3_sp3_46          C4          C5          C6          C7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+1N5    chir_1    C2    O2    C1    C3    negative
+1N5    chir_2    C4    O4    C3    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1N5    plan-1          C1   0.020
+1N5    plan-1          C2   0.020
+1N5    plan-1         O1A   0.020
+1N5    plan-1         O1B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1N5           SMILES              ACDLabs 10.04                                                                  O=C(O)C(O)CC(O)CCCO
+1N5 SMILES_CANONICAL               CACTVS 3.341                                                         OCCC[C@H](O)C[C@@H](O)C(O)=O
+1N5           SMILES               CACTVS 3.341                                                            OCCC[CH](O)C[CH](O)C(O)=O
+1N5 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                       C(C[C@@H](C[C@H](C(=O)O)O)O)CO
+1N5           SMILES "OpenEye OEToolkits" 1.5.0                                                                C(CC(CC(C(=O)O)O)O)CO
+1N5            InChI                InChI  1.03 InChI=1S/C7H14O5/c8-3-1-2-5(9)4-6(10)7(11)12/h5-6,8-10H,1-4H2,(H,11,12)/t5-,6+/m0/s1
+1N5         InChIKey                InChI  1.03                                                          UZWBQTOHZVUOKI-NTSWFWBYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1N5 acedrg               243         "dictionary generator"                  
+1N5 acedrg_database      11          "data source"                           
+1N5 rdkit                2017.03.2   "Chemoinformatics tool"
+1N5 refmac5              5.8.0238    "optimization tool"                     

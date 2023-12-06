@@ -1,0 +1,149 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PYF     PYF      3-PYRIDINYLCARBINOL     NON-POLYMER     15     8     .     
+#
+data_comp_PYF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PYF     N1      N       NRD6    0       10.319      -3.390      15.057      
+PYF     C2      C       CR16    0       10.862      -2.995      16.224      
+PYF     C3      C       CR6     0       10.124      -2.623      17.340      
+PYF     C4      C       CR16    0       8.742       -2.666      17.234      
+PYF     C5      C       CR16    0       8.156       -3.071      16.042      
+PYF     C6      C       CR16    0       8.975       -3.421      14.987      
+PYF     C7      C       CH2     0       10.802      -2.190      18.614      
+PYF     O7      O       OH1     0       11.097      -3.296      19.455      
+PYF     H2      H       H       0       11.800      -2.968      16.286      
+PYF     H4      H       H       0       8.202       -2.423      17.968      
+PYF     H5      H       H       0       7.218       -3.106      15.955      
+PYF     H6      H       H       0       8.578       -3.696      14.178      
+PYF     H71     H       H       0       10.224      -1.567      19.100      
+PYF     H72     H       H       0       11.635      -1.722      18.401      
+PYF     HO7     H       H       0       10.371      -3.589      19.785      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PYF          N1          C2      DOUBLE       y     1.342  0.0117     1.342  0.0117
+PYF          N1          C6      SINGLE       y     1.338  0.0156     1.338  0.0156
+PYF          C2          C3      SINGLE       y     1.386  0.0100     1.386  0.0100
+PYF          C3          C4      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PYF          C3          C7      SINGLE       n     1.507  0.0100     1.507  0.0100
+PYF          C4          C5      SINGLE       y     1.375  0.0185     1.375  0.0185
+PYF          C5          C6      DOUBLE       y     1.368  0.0200     1.368  0.0200
+PYF          C7          O7      SINGLE       n     1.420  0.0138     1.420  0.0138
+PYF          C2          H2      SINGLE       n     1.082  0.0130     0.940  0.0200
+PYF          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+PYF          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0124
+PYF          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0166
+PYF          C7         H71      SINGLE       n     1.089  0.0100     0.979  0.0179
+PYF          C7         H72      SINGLE       n     1.089  0.0100     0.979  0.0179
+PYF          O7         HO7      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PYF          C2          N1          C6     117.076    1.50
+PYF          N1          C2          C3     124.249    1.50
+PYF          N1          C2          H2     117.851    1.50
+PYF          C3          C2          H2     117.900    1.50
+PYF          C2          C3          C4     117.353    1.50
+PYF          C2          C3          C7     121.146    1.59
+PYF          C4          C3          C7     121.501    1.50
+PYF          C3          C4          C5     119.409    1.50
+PYF          C3          C4          H4     120.362    1.50
+PYF          C5          C4          H4     120.229    1.50
+PYF          C4          C5          C6     118.577    1.50
+PYF          C4          C5          H5     120.718    1.50
+PYF          C6          C5          H5     120.706    1.50
+PYF          N1          C6          C5     123.336    1.50
+PYF          N1          C6          H6     118.105    1.50
+PYF          C5          C6          H6     118.559    1.50
+PYF          C3          C7          O7     111.937    1.71
+PYF          C3          C7         H71     109.800    1.50
+PYF          C3          C7         H72     109.800    1.50
+PYF          O7          C7         H71     109.107    1.50
+PYF          O7          C7         H72     109.107    1.50
+PYF         H71          C7         H72     107.986    1.50
+PYF          C7          O7         HO7     108.716    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PYF       const_sp2_sp2_1          C3          C2          N1          C6       0.000     5.0     2
+PYF              const_19          C5          C6          N1          C2       0.000    10.0     2
+PYF       const_sp2_sp2_4          N1          C2          C3          C7     180.000     5.0     2
+PYF       const_sp2_sp2_9          C7          C3          C4          C5     180.000     5.0     2
+PYF             sp2_sp3_2          C2          C3          C7          O7     -90.000    10.0     6
+PYF              const_11          C3          C4          C5          C6       0.000    10.0     2
+PYF              const_15          C4          C5          C6          N1       0.000    10.0     2
+PYF             sp3_sp3_1          C3          C7          O7         HO7     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PYF    plan-1          C2   0.020
+PYF    plan-1          C3   0.020
+PYF    plan-1          C4   0.020
+PYF    plan-1          C5   0.020
+PYF    plan-1          C6   0.020
+PYF    plan-1          C7   0.020
+PYF    plan-1          H2   0.020
+PYF    plan-1          H4   0.020
+PYF    plan-1          H5   0.020
+PYF    plan-1          H6   0.020
+PYF    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PYF           SMILES              ACDLabs 10.04                                     OCc1cccnc1
+PYF SMILES_CANONICAL               CACTVS 3.341                                     OCc1cccnc1
+PYF           SMILES               CACTVS 3.341                                     OCc1cccnc1
+PYF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                   c1cc(cnc1)CO
+PYF           SMILES "OpenEye OEToolkits" 1.5.0                                   c1cc(cnc1)CO
+PYF            InChI                InChI  1.03 InChI=1S/C6H7NO/c8-5-6-2-1-3-7-4-6/h1-4,8H,5H2
+PYF         InChIKey                InChI  1.03                    MVQVNTPHUGQQHK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PYF acedrg               243         "dictionary generator"                  
+PYF acedrg_database      11          "data source"                           
+PYF rdkit                2017.03.2   "Chemoinformatics tool"
+PYF refmac5              5.8.0238    "optimization tool"                     

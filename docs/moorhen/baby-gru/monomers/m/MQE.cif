@@ -1,0 +1,889 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MQE     MQE      "2-methyl-3-[(2E,6E,10E,14E,18E,22E,26E,30E,34E,38E)-3,7,11,15,19,23,27,31,35,39,43-undecamethyltetratetraconta-2,6,10,14,18,22,26,30,34,38,42-undecaen-1-yl]naphthalene-1,4-dione"     NON-POLYMER     164     68     .     
+#
+data_comp_MQE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MQE     CAC     C       CH2     0       105.242     108.274     88.183      
+MQE     CAD     C       CH2     0       108.547     109.794     91.270      
+MQE     CAE     C       CH2     0       100.749     109.204     86.880      
+MQE     CAF     C       CH2     0       113.104     108.427     92.698      
+MQE     CAG     C       CH2     0       116.337     108.645     96.457      
+MQE     CAH     C       CH2     0       97.209      108.636     83.448      
+MQE     CAI     C       CH2     0       104.655     109.214     87.148      
+MQE     CAJ     C       CH2     0       108.263     110.150     89.822      
+MQE     CAK     C       CH2     0       112.253     109.673     92.540      
+MQE     CAL     C       CH2     0       100.487     109.498     85.415      
+MQE     CAM     C       CH2     0       116.277     108.892     94.951      
+MQE     CAN     C       CH2     0       118.899     109.812     100.187     
+MQE     CAO     C       CH2     0       96.227      109.738     83.095      
+MQE     CAP     C       C       0       106.668     108.596     88.540      
+MQE     CAQ     C       C       0       109.894     110.256     91.758      
+MQE     CAR     C       C       0       102.126     109.619     87.323      
+MQE     CAS     C       CH2     0       118.941     108.530     99.376      
+MQE     CAT     C       C       0       114.522     108.728     93.103      
+MQE     CAU     C       CH2     0       92.482      108.639     83.507      
+MQE     CAV     C       C       0       98.603      109.127     83.733      
+MQE     CAW     C       C       0       117.650     108.830     97.176      
+MQE     CAX     C       CR6     0       123.074     112.297     100.748     
+MQE     CAY     C       CH2     0       122.506     110.959     101.180     
+MQE     CAZ     C       C       0       93.807      109.281     83.822      
+MQE     CBA     C       CH2     0       92.278      107.293     84.183      
+MQE     CBB     C       C       0       120.129     110.039     101.024     
+MQE     CBC     C       C1      0       106.938     109.616     89.356      
+MQE     CBD     C       C1      0       103.198     108.954     86.891      
+MQE     CBE     C       C1      0       110.870     109.391     92.032      
+MQE     CBF     C       C1      0       99.119      109.083     84.962      
+MQE     CBG     C       C1      0       114.933     108.575     94.362      
+MQE     CBH     C       C1      0       117.777     108.405     98.435      
+MQE     CBI     C       C1      0       94.825      109.217     82.960      
+MQE     CBJ     C       CH2     0       94.593      104.547     82.621      
+MQE     CBK     C       CR6     0       122.709     113.484     101.403     
+MQE     CBL     C       C1      0       121.201     110.627     100.506     
+MQE     CBM     C       C       0       93.392      105.434     82.813      
+MQE     CBN     C       C1      0       93.340      106.291     83.833      
+MQE     CBO     C       CH2     0       94.816      103.540     83.737      
+MQE     CBP     C       CR66    0       124.592     113.647     99.152      
+MQE     CBQ     C       CR6     0       124.015     112.343     99.580      
+MQE     CBR     C       CR66    0       124.263     114.824     99.838      
+MQE     CBS     C       CR6     0       123.334     114.782     101.001     
+MQE     CBT     C       CH3     0       107.703     107.708     87.898      
+MQE     CBU     C       CH3     0       110.025     111.747     91.897      
+MQE     CBV     C       CH3     0       102.165     110.808     88.249      
+MQE     CBW     C       CH3     0       115.394     109.233     91.988      
+MQE     CBX     C       CH3     0       99.331      109.658     82.531      
+MQE     CBY     C       CH3     0       118.742     109.523     96.398      
+MQE     CBZ     C       CH3     0       93.855      109.969     85.158      
+MQE     CCA     C       CH3     0       120.033     109.557     102.446     
+MQE     CCB     C       C1      0       93.749      102.488     83.813      
+MQE     CCC     C       C       0       93.606      101.511     84.707      
+MQE     CCD     C       CH2     0       92.444      100.554     84.597      
+MQE     CCE     C       CH3     0       121.709     113.495     102.527     
+MQE     CCF     C       CH3     0       92.311      105.274     81.777      
+MQE     CCG     C       CR16    0       125.465     113.705     98.061      
+MQE     CCH     C       CR16    0       124.812     116.041     99.422      
+MQE     CCI     C       CH2     0       92.322      99.426      85.619      
+MQE     CCJ     C       CR16    0       126.002     114.915     97.660      
+MQE     CCK     C       CR16    0       125.675     116.085     98.342      
+MQE     CCL     C       CH3     0       94.555      101.288     85.859      
+MQE     CCM     C       C1      0       91.127      98.550      85.388      
+MQE     CCN     C       C       0       90.720      97.497      86.086      
+MQE     CCO     C       CH3     0       91.440      96.976      87.299      
+MQE     CCP     C       CH3     0       89.489      96.713      85.731      
+MQE     OAA     O       O       0       124.298     111.306     98.980      
+MQE     OAB     O       O       0       123.074     115.812     101.623     
+MQE     H1      H       H       0       105.190     107.358     87.842      
+MQE     H2      H       H       0       104.697     108.319     88.995      
+MQE     H3      H       H       0       108.480     108.823     91.375      
+MQE     H4      H       H       0       107.856     110.197     91.833      
+MQE     H5      H       H       0       100.644     108.242     87.033      
+MQE     H6      H       H       0       100.077     109.667     87.420      
+MQE     H7      H       H       0       113.112     107.940     91.849      
+MQE     H8      H       H       0       112.692     107.844     93.369      
+MQE     H9      H       H       0       116.034     107.728     96.621      
+MQE     H10     H       H       0       115.677     109.230     96.883      
+MQE     H11     H       H       0       97.248      108.002     82.703      
+MQE     H12     H       H       0       96.871      108.150     84.228      
+MQE     H13     H       H       0       105.149     109.107     86.310      
+MQE     H14     H       H       0       104.778     110.136     87.448      
+MQE     H15     H       H       0       108.980     109.799     89.259      
+MQE     H16     H       H       0       108.262     111.124     89.730      
+MQE     H17     H       H       0       112.701     110.285     91.920      
+MQE     H18     H       H       0       112.188     110.123     93.407      
+MQE     H19     H       H       0       101.156     109.030     84.873      
+MQE     H20     H       H       0       100.597     110.458     85.260      
+MQE     H21     H       H       0       116.956     108.343     94.509      
+MQE     H22     H       H       0       116.484     109.832     94.772      
+MQE     H23     H       H       0       118.114     109.792     100.772     
+MQE     H24     H       H       0       118.789     110.569     99.575      
+MQE     H25     H       H       0       96.499      110.145     82.247      
+MQE     H26     H       H       0       96.260      110.431     83.783      
+MQE     H28     H       H       0       118.935     107.768     99.991      
+MQE     H29     H       H       0       119.777     108.496     98.871      
+MQE     H30     H       H       0       92.402      108.522     82.538      
+MQE     H31     H       H       0       91.767      109.244     83.789      
+MQE     H33     H       H       0       122.383     110.962     102.150     
+MQE     H34     H       H       0       123.155     110.255     100.978     
+MQE     H35     H       H       0       91.402      106.938     83.928      
+MQE     H36     H       H       0       92.273      107.425     85.153      
+MQE     H38     H       H       0       106.186     110.077     89.696      
+MQE     H40     H       H       0       103.022     108.205     86.342      
+MQE     H41     H       H       0       110.673     108.477     91.888      
+MQE     H42     H       H       0       98.552      108.752     85.642      
+MQE     H44     H       H       0       114.299     108.224     94.969      
+MQE     H45     H       H       0       117.025     107.957     98.794      
+MQE     H46     H       H       0       94.646      108.777     82.143      
+MQE     H47     H       H       0       95.389      105.112     82.546      
+MQE     H48     H       H       0       94.502      104.060     81.776      
+MQE     H49     H       H       0       121.137     110.867     99.593      
+MQE     H51     H       H       0       94.077      106.270     84.425      
+MQE     H52     H       H       0       94.857      104.015     84.591      
+MQE     H53     H       H       0       95.682      103.104     83.598      
+MQE     H54     H       H       0       108.539     107.762     88.387      
+MQE     H55     H       H       0       107.849     107.990     86.980      
+MQE     H56     H       H       0       107.394     106.787     87.904      
+MQE     H57     H       H       0       110.842     111.968     92.371      
+MQE     H58     H       H       0       109.264     112.093     92.393      
+MQE     H59     H       H       0       110.045     112.154     91.016      
+MQE     H60     H       H       0       103.016     110.840     88.714      
+MQE     H61     H       H       0       101.451     110.737     88.903      
+MQE     H62     H       H       0       102.050     111.623     87.735      
+MQE     H63     H       H       0       116.328     109.171     92.242      
+MQE     H64     H       H       0       115.174     110.160     91.799      
+MQE     H65     H       H       0       115.244     108.700     91.191      
+MQE     H66     H       H       0       100.275     109.761     82.730      
+MQE     H67     H       H       0       98.960      110.520     82.282      
+MQE     H68     H       H       0       99.227      109.039     81.790      
+MQE     H69     H       H       0       119.501     109.704     96.973      
+MQE     H70     H       H       0       118.408     110.363     96.044      
+MQE     H71     H       H       0       119.028     108.956     95.663      
+MQE     H72     H       H       0       94.772      110.033     85.467      
+MQE     H73     H       H       0       93.338      109.459     85.803      
+MQE     H74     H       H       0       93.479      110.860     85.078      
+MQE     H75     H       H       0       120.899     109.231     102.742     
+MQE     H76     H       H       0       119.386     108.835     102.504     
+MQE     H77     H       H       0       119.752     110.288     103.019     
+MQE     H78     H       H       0       93.094      102.527     83.131      
+MQE     H81     H       H       0       92.473      100.149     83.706      
+MQE     H82     H       H       0       91.619      101.081     84.632      
+MQE     H83     H       H       0       121.472     114.404     102.763     
+MQE     H84     H       H       0       122.089     113.054     103.301     
+MQE     H85     H       H       0       120.908     113.023     102.253     
+MQE     H86     H       H       0       91.692      106.018     81.822      
+MQE     H87     H       H       0       91.830      104.446     81.936      
+MQE     H88     H       H       0       92.710      105.247     80.892      
+MQE     H89     H       H       0       125.691     112.920     97.595      
+MQE     H90     H       H       0       124.597     116.836     99.876      
+MQE     H91     H       H       0       92.260      99.813      86.516      
+MQE     H92     H       H       0       93.130      98.875      85.585      
+MQE     H93     H       H       0       126.590     114.947     96.924      
+MQE     H94     H       H       0       126.042     116.908     98.067      
+MQE     H95     H       H       0       95.259      101.956     85.845      
+MQE     H96     H       H       0       94.955      100.406     85.786      
+MQE     H97     H       H       0       94.071      101.355     86.698      
+MQE     H98     H       H       0       90.595      98.783      84.642      
+MQE     H101    H       H       0       92.173      97.565      87.535      
+MQE     H102    H       H       0       91.790      96.090      87.111      
+MQE     H103    H       H       0       90.821      96.923      88.045      
+MQE     H104    H       H       0       89.063      97.098      84.948      
+MQE     H105    H       H       0       88.866      96.731      86.476      
+MQE     H106    H       H       0       89.734      95.792      85.542      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MQE         CBM         CCF      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CAU         CBA      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CAU         CAZ      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CBJ         CBM      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CBM         CBN      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CBJ         CBO      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CBA         CBN      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAZ         CBI      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CAO         CBI      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAZ         CBZ      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CBO         CCB      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAH         CAO      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CCB         CCC      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CAH         CAV      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CCC         CCD      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CCC         CCL      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CCD         CCI      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CCI         CCM      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAV         CBX      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CCM         CCN      DOUBLE       n     1.324  0.0100     1.324  0.0100
+MQE         CAV         CBF      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CCN         CCP      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CCN         CCO      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CAL         CBF      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAE         CAL      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CAE         CAR      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CAR         CBD      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CAI         CBD      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAR         CBV      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CAC         CAI      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CAP         CBT      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CAC         CAP      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CAP         CBC      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CAJ         CBC      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAD         CAJ      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CAD         CAQ      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CAQ         CBE      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CAK         CBE      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAQ         CBU      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CAF         CAK      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CAT         CBW      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CAF         CAT      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CAT         CBG      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CAM         CBG      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAG         CAM      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CAW         CBY      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CAG         CAW      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CAW         CBH      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MQE         CCG         CCJ      DOUBLE       y     1.380  0.0100     1.380  0.0100
+MQE         CCJ         CCK      SINGLE       y     1.389  0.0136     1.389  0.0136
+MQE         CBP         CCG      SINGLE       y     1.392  0.0100     1.392  0.0100
+MQE         CBQ         OAA      DOUBLE       n     1.229  0.0101     1.229  0.0101
+MQE         CCH         CCK      DOUBLE       y     1.380  0.0100     1.380  0.0100
+MQE         CBP         CBQ      SINGLE       n     1.484  0.0102     1.484  0.0102
+MQE         CAX         CBQ      SINGLE       n     1.480  0.0186     1.480  0.0186
+MQE         CBP         CBR      DOUBLE       y     1.396  0.0100     1.396  0.0100
+MQE         CAS         CBH      SINGLE       n     1.498  0.0141     1.498  0.0141
+MQE         CAN         CAS      SINGLE       n     1.516  0.0200     1.516  0.0200
+MQE         CAY         CBL      SINGLE       n     1.504  0.0100     1.504  0.0100
+MQE         CBB         CBL      DOUBLE       n     1.323  0.0117     1.323  0.0117
+MQE         CAN         CBB      SINGLE       n     1.503  0.0104     1.503  0.0104
+MQE         CAX         CAY      SINGLE       n     1.512  0.0100     1.512  0.0100
+MQE         CAX         CBK      DOUBLE       n     1.369  0.0200     1.369  0.0200
+MQE         CBR         CCH      SINGLE       y     1.392  0.0100     1.392  0.0100
+MQE         CBR         CBS      SINGLE       n     1.484  0.0102     1.484  0.0102
+MQE         CBB         CCA      SINGLE       n     1.499  0.0156     1.499  0.0156
+MQE         CBK         CBS      SINGLE       n     1.485  0.0118     1.485  0.0118
+MQE         CBK         CCE      SINGLE       n     1.499  0.0100     1.499  0.0100
+MQE         CBS         OAB      DOUBLE       n     1.229  0.0101     1.229  0.0101
+MQE         CAC          H1      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAC          H2      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAD          H3      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAD          H4      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAE          H5      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAE          H6      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAF          H7      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAF          H8      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAG          H9      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAG         H10      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAH         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAH         H12      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAI         H13      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAI         H14      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAJ         H15      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAJ         H16      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAK         H17      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAK         H18      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAL         H19      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAL         H20      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAM         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAM         H22      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAN         H23      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAN         H24      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAO         H25      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAO         H26      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAS         H28      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAS         H29      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAU         H30      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAU         H31      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CAY         H33      SINGLE       n     1.089  0.0100     0.980  0.0173
+MQE         CAY         H34      SINGLE       n     1.089  0.0100     0.980  0.0173
+MQE         CBA         H35      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CBA         H36      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CBC         H38      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBD         H40      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBE         H41      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBF         H42      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBG         H44      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBH         H45      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBI         H46      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBJ         H47      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CBJ         H48      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CBL         H49      SINGLE       n     1.082  0.0130     0.946  0.0103
+MQE         CBN         H51      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CBO         H52      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CBO         H53      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CBT         H54      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBT         H55      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBT         H56      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBU         H57      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBU         H58      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBU         H59      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBV         H60      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBV         H61      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBV         H62      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBW         H63      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBW         H64      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBW         H65      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBX         H66      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBX         H67      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBX         H68      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBY         H69      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBY         H70      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBY         H71      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBZ         H72      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBZ         H73      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CBZ         H74      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCA         H75      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCA         H76      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCA         H77      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCB         H78      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CCD         H81      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CCD         H82      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CCE         H83      SINGLE       n     1.089  0.0100     0.969  0.0130
+MQE         CCE         H84      SINGLE       n     1.089  0.0100     0.969  0.0130
+MQE         CCE         H85      SINGLE       n     1.089  0.0100     0.969  0.0130
+MQE         CCF         H86      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCF         H87      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCF         H88      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCG         H89      SINGLE       n     1.082  0.0130     0.941  0.0157
+MQE         CCH         H90      SINGLE       n     1.082  0.0130     0.941  0.0157
+MQE         CCI         H91      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CCI         H92      SINGLE       n     1.089  0.0100     0.979  0.0159
+MQE         CCJ         H93      SINGLE       n     1.082  0.0130     0.943  0.0198
+MQE         CCK         H94      SINGLE       n     1.082  0.0130     0.943  0.0198
+MQE         CCL         H95      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCL         H96      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCL         H97      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCM         H98      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQE         CCO        H101      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCO        H102      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCO        H103      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCP        H104      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCP        H105      SINGLE       n     1.089  0.0100     0.971  0.0140
+MQE         CCP        H106      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MQE         CAI         CAC         CAP     113.520    2.62
+MQE         CAI         CAC          H1     108.867    1.50
+MQE         CAI         CAC          H2     108.867    1.50
+MQE         CAP         CAC          H1     108.816    1.50
+MQE         CAP         CAC          H2     108.816    1.50
+MQE          H1         CAC          H2     107.710    1.94
+MQE         CAJ         CAD         CAQ     113.520    2.62
+MQE         CAJ         CAD          H3     108.867    1.50
+MQE         CAJ         CAD          H4     108.867    1.50
+MQE         CAQ         CAD          H3     108.816    1.50
+MQE         CAQ         CAD          H4     108.816    1.50
+MQE          H3         CAD          H4     107.710    1.94
+MQE         CAL         CAE         CAR     113.520    2.62
+MQE         CAL         CAE          H5     108.867    1.50
+MQE         CAL         CAE          H6     108.867    1.50
+MQE         CAR         CAE          H5     108.816    1.50
+MQE         CAR         CAE          H6     108.816    1.50
+MQE          H5         CAE          H6     107.710    1.94
+MQE         CAK         CAF         CAT     113.520    2.62
+MQE         CAK         CAF          H7     108.867    1.50
+MQE         CAK         CAF          H8     108.867    1.50
+MQE         CAT         CAF          H7     108.816    1.50
+MQE         CAT         CAF          H8     108.816    1.50
+MQE          H7         CAF          H8     107.710    1.94
+MQE         CAM         CAG         CAW     113.520    2.62
+MQE         CAM         CAG          H9     108.867    1.50
+MQE         CAM         CAG         H10     108.867    1.50
+MQE         CAW         CAG          H9     108.816    1.50
+MQE         CAW         CAG         H10     108.816    1.50
+MQE          H9         CAG         H10     107.710    1.94
+MQE         CAO         CAH         CAV     113.520    2.62
+MQE         CAO         CAH         H11     108.867    1.50
+MQE         CAO         CAH         H12     108.867    1.50
+MQE         CAV         CAH         H11     108.816    1.50
+MQE         CAV         CAH         H12     108.816    1.50
+MQE         H11         CAH         H12     107.710    1.94
+MQE         CBD         CAI         CAC     112.751    2.50
+MQE         CBD         CAI         H13     109.181    1.50
+MQE         CBD         CAI         H14     109.181    1.50
+MQE         CAC         CAI         H13     109.013    1.50
+MQE         CAC         CAI         H14     109.013    1.50
+MQE         H13         CAI         H14     107.922    1.50
+MQE         CBC         CAJ         CAD     112.751    2.50
+MQE         CBC         CAJ         H15     109.181    1.50
+MQE         CBC         CAJ         H16     109.181    1.50
+MQE         CAD         CAJ         H15     109.013    1.50
+MQE         CAD         CAJ         H16     109.013    1.50
+MQE         H15         CAJ         H16     107.922    1.50
+MQE         CBE         CAK         CAF     112.751    2.50
+MQE         CBE         CAK         H17     109.181    1.50
+MQE         CBE         CAK         H18     109.181    1.50
+MQE         CAF         CAK         H17     109.013    1.50
+MQE         CAF         CAK         H18     109.013    1.50
+MQE         H17         CAK         H18     107.922    1.50
+MQE         CBF         CAL         CAE     112.751    2.50
+MQE         CBF         CAL         H19     109.181    1.50
+MQE         CBF         CAL         H20     109.181    1.50
+MQE         CAE         CAL         H19     109.013    1.50
+MQE         CAE         CAL         H20     109.013    1.50
+MQE         H19         CAL         H20     107.922    1.50
+MQE         CBG         CAM         CAG     112.751    2.50
+MQE         CBG         CAM         H21     109.181    1.50
+MQE         CBG         CAM         H22     109.181    1.50
+MQE         CAG         CAM         H21     109.013    1.50
+MQE         CAG         CAM         H22     109.013    1.50
+MQE         H21         CAM         H22     107.922    1.50
+MQE         CAS         CAN         CBB     113.520    2.62
+MQE         CAS         CAN         H23     108.867    1.50
+MQE         CAS         CAN         H24     108.867    1.50
+MQE         CBB         CAN         H23     108.816    1.50
+MQE         CBB         CAN         H24     108.816    1.50
+MQE         H23         CAN         H24     107.710    1.94
+MQE         CBI         CAO         CAH     112.751    2.50
+MQE         CBI         CAO         H25     109.181    1.50
+MQE         CBI         CAO         H26     109.181    1.50
+MQE         CAH         CAO         H25     109.013    1.50
+MQE         CAH         CAO         H26     109.013    1.50
+MQE         H25         CAO         H26     107.922    1.50
+MQE         CBT         CAP         CAC     115.131    1.50
+MQE         CBT         CAP         CBC     123.681    1.50
+MQE         CAC         CAP         CBC     121.188    1.50
+MQE         CAD         CAQ         CBE     121.188    1.50
+MQE         CAD         CAQ         CBU     115.131    1.50
+MQE         CBE         CAQ         CBU     123.681    1.50
+MQE         CAE         CAR         CBD     121.188    1.50
+MQE         CAE         CAR         CBV     115.131    1.50
+MQE         CBD         CAR         CBV     123.681    1.50
+MQE         CBH         CAS         CAN     112.751    2.50
+MQE         CBH         CAS         H28     109.181    1.50
+MQE         CBH         CAS         H29     109.181    1.50
+MQE         CAN         CAS         H28     109.013    1.50
+MQE         CAN         CAS         H29     109.013    1.50
+MQE         H28         CAS         H29     107.922    1.50
+MQE         CBW         CAT         CAF     115.131    1.50
+MQE         CBW         CAT         CBG     123.681    1.50
+MQE         CAF         CAT         CBG     121.188    1.50
+MQE         CBA         CAU         CAZ     113.520    2.62
+MQE         CBA         CAU         H30     108.867    1.50
+MQE         CBA         CAU         H31     108.867    1.50
+MQE         CAZ         CAU         H30     108.816    1.50
+MQE         CAZ         CAU         H31     108.816    1.50
+MQE         H30         CAU         H31     107.710    1.94
+MQE         CAH         CAV         CBX     115.131    1.50
+MQE         CAH         CAV         CBF     121.188    1.50
+MQE         CBX         CAV         CBF     123.681    1.50
+MQE         CBY         CAW         CAG     115.131    1.50
+MQE         CBY         CAW         CBH     123.681    1.50
+MQE         CAG         CAW         CBH     121.188    1.50
+MQE         CBQ         CAX         CAY     119.530    1.80
+MQE         CBQ         CAX         CBK     119.679    1.50
+MQE         CAY         CAX         CBK     120.791    1.70
+MQE         CBL         CAY         CAX     113.484    1.50
+MQE         CBL         CAY         H33     108.894    1.50
+MQE         CBL         CAY         H34     108.894    1.50
+MQE         CAX         CAY         H33     108.683    1.50
+MQE         CAX         CAY         H34     108.683    1.50
+MQE         H33         CAY         H34     107.186    1.50
+MQE         CAU         CAZ         CBI     121.188    1.50
+MQE         CAU         CAZ         CBZ     115.131    1.50
+MQE         CBI         CAZ         CBZ     123.681    1.50
+MQE         CAU         CBA         CBN     112.751    2.50
+MQE         CAU         CBA         H35     109.013    1.50
+MQE         CAU         CBA         H36     109.013    1.50
+MQE         CBN         CBA         H35     109.181    1.50
+MQE         CBN         CBA         H36     109.181    1.50
+MQE         H35         CBA         H36     107.922    1.50
+MQE         CBL         CBB         CAN     121.648    1.82
+MQE         CBL         CBB         CCA     122.925    2.01
+MQE         CAN         CBB         CCA     115.427    1.50
+MQE         CAP         CBC         CAJ     128.114    1.50
+MQE         CAP         CBC         H38     116.261    1.50
+MQE         CAJ         CBC         H38     115.635    1.60
+MQE         CAR         CBD         CAI     128.114    1.50
+MQE         CAR         CBD         H40     116.261    1.50
+MQE         CAI         CBD         H40     115.635    1.60
+MQE         CAQ         CBE         CAK     128.114    1.50
+MQE         CAQ         CBE         H41     116.261    1.50
+MQE         CAK         CBE         H41     115.635    1.60
+MQE         CAV         CBF         CAL     128.114    1.50
+MQE         CAV         CBF         H42     116.261    1.50
+MQE         CAL         CBF         H42     115.635    1.60
+MQE         CAT         CBG         CAM     128.114    1.50
+MQE         CAT         CBG         H44     116.261    1.50
+MQE         CAM         CBG         H44     115.635    1.60
+MQE         CAW         CBH         CAS     128.114    1.50
+MQE         CAW         CBH         H45     116.261    1.50
+MQE         CAS         CBH         H45     115.635    1.60
+MQE         CAZ         CBI         CAO     128.114    1.50
+MQE         CAZ         CBI         H46     116.261    1.50
+MQE         CAO         CBI         H46     115.635    1.60
+MQE         CBM         CBJ         CBO     113.520    2.62
+MQE         CBM         CBJ         H47     108.816    1.50
+MQE         CBM         CBJ         H48     108.816    1.50
+MQE         CBO         CBJ         H47     108.867    1.50
+MQE         CBO         CBJ         H48     108.867    1.50
+MQE         H47         CBJ         H48     107.710    1.94
+MQE         CAX         CBK         CBS     119.679    1.50
+MQE         CAX         CBK         CCE     122.497    2.03
+MQE         CBS         CBK         CCE     117.824    1.50
+MQE         CAY         CBL         CBB     127.247    1.50
+MQE         CAY         CBL         H49     116.515    1.50
+MQE         CBB         CBL         H49     116.224    1.50
+MQE         CCF         CBM         CBJ     115.131    1.50
+MQE         CCF         CBM         CBN     123.681    1.50
+MQE         CBJ         CBM         CBN     121.188    1.50
+MQE         CBM         CBN         CBA     128.114    1.50
+MQE         CBM         CBN         H51     116.261    1.50
+MQE         CBA         CBN         H51     115.635    1.60
+MQE         CBJ         CBO         CCB     112.751    2.50
+MQE         CBJ         CBO         H52     109.013    1.50
+MQE         CBJ         CBO         H53     109.013    1.50
+MQE         CCB         CBO         H52     109.181    1.50
+MQE         CCB         CBO         H53     109.181    1.50
+MQE         H52         CBO         H53     107.922    1.50
+MQE         CCG         CBP         CBQ     119.428    1.50
+MQE         CCG         CBP         CBR     119.773    1.50
+MQE         CBQ         CBP         CBR     120.798    1.50
+MQE         OAA         CBQ         CBP     120.541    1.50
+MQE         OAA         CBQ         CAX     119.936    1.50
+MQE         CBP         CBQ         CAX     119.523    1.50
+MQE         CBP         CBR         CCH     119.773    1.50
+MQE         CBP         CBR         CBS     120.798    1.50
+MQE         CCH         CBR         CBS     119.428    1.50
+MQE         CBR         CBS         CBK     119.523    1.50
+MQE         CBR         CBS         OAB     120.541    1.50
+MQE         CBK         CBS         OAB     119.936    1.50
+MQE         CAP         CBT         H54     109.541    1.50
+MQE         CAP         CBT         H55     109.541    1.50
+MQE         CAP         CBT         H56     109.541    1.50
+MQE         H54         CBT         H55     109.342    1.50
+MQE         H54         CBT         H56     109.342    1.50
+MQE         H55         CBT         H56     109.342    1.50
+MQE         CAQ         CBU         H57     109.541    1.50
+MQE         CAQ         CBU         H58     109.541    1.50
+MQE         CAQ         CBU         H59     109.541    1.50
+MQE         H57         CBU         H58     109.342    1.50
+MQE         H57         CBU         H59     109.342    1.50
+MQE         H58         CBU         H59     109.342    1.50
+MQE         CAR         CBV         H60     109.541    1.50
+MQE         CAR         CBV         H61     109.541    1.50
+MQE         CAR         CBV         H62     109.541    1.50
+MQE         H60         CBV         H61     109.342    1.50
+MQE         H60         CBV         H62     109.342    1.50
+MQE         H61         CBV         H62     109.342    1.50
+MQE         CAT         CBW         H63     109.541    1.50
+MQE         CAT         CBW         H64     109.541    1.50
+MQE         CAT         CBW         H65     109.541    1.50
+MQE         H63         CBW         H64     109.342    1.50
+MQE         H63         CBW         H65     109.342    1.50
+MQE         H64         CBW         H65     109.342    1.50
+MQE         CAV         CBX         H66     109.541    1.50
+MQE         CAV         CBX         H67     109.541    1.50
+MQE         CAV         CBX         H68     109.541    1.50
+MQE         H66         CBX         H67     109.342    1.50
+MQE         H66         CBX         H68     109.342    1.50
+MQE         H67         CBX         H68     109.342    1.50
+MQE         CAW         CBY         H69     109.541    1.50
+MQE         CAW         CBY         H70     109.541    1.50
+MQE         CAW         CBY         H71     109.541    1.50
+MQE         H69         CBY         H70     109.342    1.50
+MQE         H69         CBY         H71     109.342    1.50
+MQE         H70         CBY         H71     109.342    1.50
+MQE         CAZ         CBZ         H72     109.541    1.50
+MQE         CAZ         CBZ         H73     109.541    1.50
+MQE         CAZ         CBZ         H74     109.541    1.50
+MQE         H72         CBZ         H73     109.342    1.50
+MQE         H72         CBZ         H74     109.342    1.50
+MQE         H73         CBZ         H74     109.342    1.50
+MQE         CBB         CCA         H75     109.541    1.50
+MQE         CBB         CCA         H76     109.541    1.50
+MQE         CBB         CCA         H77     109.541    1.50
+MQE         H75         CCA         H76     109.342    1.50
+MQE         H75         CCA         H77     109.342    1.50
+MQE         H76         CCA         H77     109.342    1.50
+MQE         CBO         CCB         CCC     128.114    1.50
+MQE         CBO         CCB         H78     115.635    1.60
+MQE         CCC         CCB         H78     116.261    1.50
+MQE         CCB         CCC         CCD     121.188    1.50
+MQE         CCB         CCC         CCL     123.681    1.50
+MQE         CCD         CCC         CCL     115.131    1.50
+MQE         CCC         CCD         CCI     113.520    2.62
+MQE         CCC         CCD         H81     108.816    1.50
+MQE         CCC         CCD         H82     108.816    1.50
+MQE         CCI         CCD         H81     108.867    1.50
+MQE         CCI         CCD         H82     108.867    1.50
+MQE         H81         CCD         H82     107.710    1.94
+MQE         CBK         CCE         H83     109.593    1.50
+MQE         CBK         CCE         H84     109.593    1.50
+MQE         CBK         CCE         H85     109.593    1.50
+MQE         H83         CCE         H84     109.339    1.50
+MQE         H83         CCE         H85     109.339    1.50
+MQE         H84         CCE         H85     109.339    1.50
+MQE         CBM         CCF         H86     109.541    1.50
+MQE         CBM         CCF         H87     109.541    1.50
+MQE         CBM         CCF         H88     109.541    1.50
+MQE         H86         CCF         H87     109.342    1.50
+MQE         H86         CCF         H88     109.342    1.50
+MQE         H87         CCF         H88     109.342    1.50
+MQE         CCJ         CCG         CBP     120.102    1.50
+MQE         CCJ         CCG         H89     119.977    1.50
+MQE         CBP         CCG         H89     119.921    1.50
+MQE         CCK         CCH         CBR     120.102    1.50
+MQE         CCK         CCH         H90     119.977    1.50
+MQE         CBR         CCH         H90     119.921    1.50
+MQE         CCD         CCI         CCM     112.751    2.50
+MQE         CCD         CCI         H91     109.013    1.50
+MQE         CCD         CCI         H92     109.013    1.50
+MQE         CCM         CCI         H91     109.181    1.50
+MQE         CCM         CCI         H92     109.181    1.50
+MQE         H91         CCI         H92     107.922    1.50
+MQE         CCG         CCJ         CCK     120.125    1.50
+MQE         CCG         CCJ         H93     119.901    1.50
+MQE         CCK         CCJ         H93     119.974    1.50
+MQE         CCJ         CCK         CCH     120.125    1.50
+MQE         CCJ         CCK         H94     119.974    1.50
+MQE         CCH         CCK         H94     119.901    1.50
+MQE         CCC         CCL         H95     109.541    1.50
+MQE         CCC         CCL         H96     109.541    1.50
+MQE         CCC         CCL         H97     109.541    1.50
+MQE         H95         CCL         H96     109.342    1.50
+MQE         H95         CCL         H97     109.342    1.50
+MQE         H96         CCL         H97     109.342    1.50
+MQE         CCI         CCM         CCN     128.282    1.50
+MQE         CCI         CCM         H98     115.635    1.60
+MQE         CCN         CCM         H98     116.082    1.50
+MQE         CCM         CCN         CCP     122.691    1.63
+MQE         CCM         CCN         CCO     122.691    1.63
+MQE         CCP         CCN         CCO     114.618    1.50
+MQE         CCN         CCO        H101     109.600    1.50
+MQE         CCN         CCO        H102     109.600    1.50
+MQE         CCN         CCO        H103     109.600    1.50
+MQE        H101         CCO        H102     109.342    1.50
+MQE        H101         CCO        H103     109.342    1.50
+MQE        H102         CCO        H103     109.342    1.50
+MQE         CCN         CCP        H104     109.600    1.50
+MQE         CCN         CCP        H105     109.600    1.50
+MQE         CCN         CCP        H106     109.600    1.50
+MQE        H104         CCP        H105     109.342    1.50
+MQE        H104         CCP        H106     109.342    1.50
+MQE        H105         CCP        H106     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MQE           sp2_sp3_116         CBT         CAP         CAC         CAI     120.000    10.0     6
+MQE            sp3_sp3_46         CAP         CAC         CAI         CBD     180.000    10.0     3
+MQE           sp2_sp3_158         CAT         CBG         CAM         CAG     120.000    10.0     6
+MQE            sp3_sp3_82         CBB         CAN         CAS         CBH     180.000    10.0     3
+MQE           sp2_sp3_188         CBL         CBB         CAN         CAS     120.000    10.0     6
+MQE            sp2_sp3_26         CAZ         CBI         CAO         CAH     120.000    10.0     6
+MQE            sp2_sp2_43         CBT         CAP         CBC         CAJ       0.000     5.0     2
+MQE           sp2_sp3_109         CAC         CAP         CBT         H54       0.000    10.0     6
+MQE            sp2_sp2_45         CAD         CAQ         CBE         CAK     180.000     5.0     2
+MQE           sp2_sp3_139         CAD         CAQ         CBU         H57       0.000    10.0     6
+MQE            sp2_sp2_37         CAE         CAR         CBD         CAI     180.000     5.0     2
+MQE           sp2_sp3_103         CAE         CAR         CBV         H60       0.000    10.0     6
+MQE           sp2_sp3_176         CAW         CBH         CAS         CAN     120.000    10.0     6
+MQE            sp2_sp2_51         CBW         CAT         CBG         CAM       0.000     5.0     2
+MQE           sp2_sp3_145         CAF         CAT         CBW         H63       0.000    10.0     6
+MQE             sp2_sp3_8         CBI         CAZ         CAU         CBA     120.000    10.0     6
+MQE             sp3_sp3_1         CAZ         CAU         CBA         CBN     180.000    10.0     3
+MQE            sp2_sp2_33         CAH         CAV         CBF         CAL     180.000     5.0     2
+MQE            sp2_sp3_67         CAH         CAV         CBX         H66       0.000    10.0     6
+MQE           sp2_sp3_128         CBE         CAQ         CAD         CAJ     120.000    10.0     6
+MQE            sp3_sp3_55         CAQ         CAD         CAJ         CBC     180.000    10.0     3
+MQE            sp2_sp2_55         CBY         CAW         CBH         CAS       0.000     5.0     2
+MQE           sp2_sp3_163         CAG         CAW         CBY         H69       0.000    10.0     6
+MQE           sp2_sp3_194         CBQ         CAX         CAY         CBL     -90.000    10.0     6
+MQE            sp2_sp2_64         CAY         CAX         CBK         CCE       0.000     5.0     2
+MQE             sp2_sp2_4         CAY         CAX         CBQ         OAA       0.000     5.0     2
+MQE           sp2_sp3_182         CBB         CBL         CAY         CAX     120.000    10.0     6
+MQE            sp2_sp2_21         CAU         CAZ         CBI         CAO     180.000     5.0     2
+MQE            sp2_sp3_31         CAU         CAZ         CBZ         H72       0.000    10.0     6
+MQE            sp2_sp3_20         CBM         CBN         CBA         CAU     120.000    10.0     6
+MQE            sp2_sp2_57         CAN         CBB         CBL         CAY     180.000     5.0     2
+MQE           sp2_sp3_199         CBL         CBB         CCA         H75       0.000    10.0     6
+MQE            sp2_sp3_92         CBD         CAR         CAE         CAL     120.000    10.0     6
+MQE            sp3_sp3_37         CAR         CAE         CAL         CBF     180.000    10.0     3
+MQE            sp2_sp3_14         CCF         CBM         CBJ         CBO     120.000    10.0     6
+MQE            sp3_sp3_10         CBM         CBJ         CBO         CCB     180.000    10.0     3
+MQE            sp2_sp2_16         CCE         CBK         CBS         OAB       0.000     5.0     2
+MQE           sp2_sp3_205         CAX         CBK         CCE         H83     150.000    10.0     6
+MQE            sp2_sp2_19         CCF         CBM         CBN         CBA       0.000     5.0     2
+MQE             sp2_sp3_1         CBJ         CBM         CCF         H86       0.000    10.0     6
+MQE            sp2_sp3_38         CCC         CCB         CBO         CBJ     120.000    10.0     6
+MQE             sp2_sp2_8         CCG         CBP         CBQ         OAA       0.000     5.0     2
+MQE       const_sp2_sp2_1         CCG         CBP         CBR         CCH       0.000     5.0     2
+MQE       const_sp2_sp2_7         CBQ         CBP         CCG         CCJ     180.000     5.0     2
+MQE           sp2_sp3_152         CBW         CAT         CAF         CAK     120.000    10.0     6
+MQE            sp3_sp3_64         CAT         CAF         CAK         CBE     180.000    10.0     3
+MQE            sp2_sp2_10         CBP         CBR         CBS         OAB     180.000     5.0     2
+MQE              const_21         CBP         CBR         CCH         CCK       0.000    10.0     2
+MQE            sp3_sp3_73         CAW         CAG         CAM         CBG     180.000    10.0     3
+MQE           sp2_sp3_170         CBY         CAW         CAG         CAM     120.000    10.0     6
+MQE            sp2_sp2_25         CBO         CCB         CCC         CCD     180.000     5.0     2
+MQE            sp2_sp3_50         CCB         CCC         CCD         CCI     120.000    10.0     6
+MQE            sp2_sp3_55         CCB         CCC         CCL         H95       0.000    10.0     6
+MQE            sp3_sp3_28         CCC         CCD         CCI         CCM     180.000    10.0     3
+MQE       const_sp2_sp2_9         CBP         CCG         CCJ         CCK       0.000     5.0     2
+MQE              const_17         CBR         CCH         CCK         CCJ       0.000    10.0     2
+MQE            sp2_sp3_62         CCN         CCM         CCI         CCD     120.000    10.0     6
+MQE              const_13         CCG         CCJ         CCK         CCH       0.000    10.0     2
+MQE            sp3_sp3_19         CAV         CAH         CAO         CBI     180.000    10.0     3
+MQE            sp2_sp3_44         CBX         CAV         CAH         CAO     120.000    10.0     6
+MQE            sp2_sp2_29         CCI         CCM         CCN         CCP     180.000     5.0     2
+MQE            sp2_sp3_79         CCM         CCN         CCO        H101       0.000    10.0     6
+MQE            sp2_sp3_73         CCM         CCN         CCP        H104       0.000    10.0     6
+MQE            sp2_sp3_98         CAR         CBD         CAI         CAC     120.000    10.0     6
+MQE           sp2_sp3_122         CAP         CBC         CAJ         CAD     120.000    10.0     6
+MQE           sp2_sp3_134         CAQ         CBE         CAK         CAF     120.000    10.0     6
+MQE            sp2_sp3_86         CAV         CBF         CAL         CAE     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MQE    plan-1         CBP   0.020
+MQE    plan-1         CBQ   0.020
+MQE    plan-1         CBR   0.020
+MQE    plan-1         CBS   0.020
+MQE    plan-1         CCG   0.020
+MQE    plan-1         CCH   0.020
+MQE    plan-1         CCJ   0.020
+MQE    plan-1         CCK   0.020
+MQE    plan-1         H89   0.020
+MQE    plan-1         H90   0.020
+MQE    plan-1         H93   0.020
+MQE    plan-1         H94   0.020
+MQE    plan-2         CAC   0.020
+MQE    plan-2         CAP   0.020
+MQE    plan-2         CBC   0.020
+MQE    plan-2         CBT   0.020
+MQE    plan-3         CAD   0.020
+MQE    plan-3         CAQ   0.020
+MQE    plan-3         CBE   0.020
+MQE    plan-3         CBU   0.020
+MQE    plan-4         CAE   0.020
+MQE    plan-4         CAR   0.020
+MQE    plan-4         CBD   0.020
+MQE    plan-4         CBV   0.020
+MQE    plan-5         CAF   0.020
+MQE    plan-5         CAT   0.020
+MQE    plan-5         CBG   0.020
+MQE    plan-5         CBW   0.020
+MQE    plan-6         CAH   0.020
+MQE    plan-6         CAV   0.020
+MQE    plan-6         CBF   0.020
+MQE    plan-6         CBX   0.020
+MQE    plan-7         CAG   0.020
+MQE    plan-7         CAW   0.020
+MQE    plan-7         CBH   0.020
+MQE    plan-7         CBY   0.020
+MQE    plan-8         CAX   0.020
+MQE    plan-8         CAY   0.020
+MQE    plan-8         CBK   0.020
+MQE    plan-8         CBQ   0.020
+MQE    plan-9         CAU   0.020
+MQE    plan-9         CAZ   0.020
+MQE    plan-9         CBI   0.020
+MQE    plan-9         CBZ   0.020
+MQE   plan-10         CAN   0.020
+MQE   plan-10         CBB   0.020
+MQE   plan-10         CBL   0.020
+MQE   plan-10         CCA   0.020
+MQE   plan-11         CAJ   0.020
+MQE   plan-11         CAP   0.020
+MQE   plan-11         CBC   0.020
+MQE   plan-11         H38   0.020
+MQE   plan-12         CAI   0.020
+MQE   plan-12         CAR   0.020
+MQE   plan-12         CBD   0.020
+MQE   plan-12         H40   0.020
+MQE   plan-13         CAK   0.020
+MQE   plan-13         CAQ   0.020
+MQE   plan-13         CBE   0.020
+MQE   plan-13         H41   0.020
+MQE   plan-14         CAL   0.020
+MQE   plan-14         CAV   0.020
+MQE   plan-14         CBF   0.020
+MQE   plan-14         H42   0.020
+MQE   plan-15         CAM   0.020
+MQE   plan-15         CAT   0.020
+MQE   plan-15         CBG   0.020
+MQE   plan-15         H44   0.020
+MQE   plan-16         CAS   0.020
+MQE   plan-16         CAW   0.020
+MQE   plan-16         CBH   0.020
+MQE   plan-16         H45   0.020
+MQE   plan-17         CAO   0.020
+MQE   plan-17         CAZ   0.020
+MQE   plan-17         CBI   0.020
+MQE   plan-17         H46   0.020
+MQE   plan-18         CAX   0.020
+MQE   plan-18         CBK   0.020
+MQE   plan-18         CBS   0.020
+MQE   plan-18         CCE   0.020
+MQE   plan-19         CAY   0.020
+MQE   plan-19         CBB   0.020
+MQE   plan-19         CBL   0.020
+MQE   plan-19         H49   0.020
+MQE   plan-20         CBJ   0.020
+MQE   plan-20         CBM   0.020
+MQE   plan-20         CBN   0.020
+MQE   plan-20         CCF   0.020
+MQE   plan-21         CBA   0.020
+MQE   plan-21         CBM   0.020
+MQE   plan-21         CBN   0.020
+MQE   plan-21         H51   0.020
+MQE   plan-22         CAX   0.020
+MQE   plan-22         CBP   0.020
+MQE   plan-22         CBQ   0.020
+MQE   plan-22         OAA   0.020
+MQE   plan-23         CBK   0.020
+MQE   plan-23         CBR   0.020
+MQE   plan-23         CBS   0.020
+MQE   plan-23         OAB   0.020
+MQE   plan-24         CBO   0.020
+MQE   plan-24         CCB   0.020
+MQE   plan-24         CCC   0.020
+MQE   plan-24         H78   0.020
+MQE   plan-25         CCB   0.020
+MQE   plan-25         CCC   0.020
+MQE   plan-25         CCD   0.020
+MQE   plan-25         CCL   0.020
+MQE   plan-26         CCI   0.020
+MQE   plan-26         CCM   0.020
+MQE   plan-26         CCN   0.020
+MQE   plan-26         H98   0.020
+MQE   plan-27         CCM   0.020
+MQE   plan-27         CCN   0.020
+MQE   plan-27         CCO   0.020
+MQE   plan-27         CCP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MQE           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                     C(\C(=C\CC/C(C)=C/CC\C(=C\CC\C(=C\CC/C(C)=C/CC1=C(C(c2c(C1=O)cccc2)=O)C)C)C)C)C/C=C(/CC\C=C(\CC/C=C(/CC\C=C(\CC\C=C(\CC\C=C(\C)C)C)C)C)C)C
+MQE            InChI                InChI  1.03 InChI=1S/C66H96O2/c1-50(2)26-16-27-51(3)28-17-29-52(4)30-18-31-53(5)32-19-33-54(6)34-20-35-55(7)36-21-37-56(8)38-22-39-57(9)40-23-41-58(10)42-24-43-59(11)44-25-45-60(12)48-49-62-61(13)65(67)63-46-14-15-47-64(63)66(62)68/h14-15,26,28,30,32,34,36,38,40,42,44,46-48H,16-25,27,29,31,33,35,37,39,41,43,45,49H2,1-13H3/b51-28+,52-30+,53-32+,54-34+,55-36+,56-38+,57-40+,58-42+,59-44+,60-48+
+MQE         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                    YYDMANIEKFAEJC-RYZSZPJESA-N
+MQE SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                                                           CC(C)=CCC/C(C)=C/CC\C(C)=C\CC/C(C)=C/CC\C(C)=C\CC/C(C)=C/CC\C(C)=C\CC/C(C)=C/CC\C(C)=C\CC\C(C)=C\CC/C(C)=C/CC1=C(C)C(=O)c2ccccc2C1=O
+MQE           SMILES               CACTVS 3.385                                                                                                                                                                                                                                                                               CC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCC1=C(C)C(=O)c2ccccc2C1=O
+MQE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                                                                 CC1=C(C(=O)c2ccccc2C1=O)C/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CC/C=C(\C)/CCC=C(C)C
+MQE           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                                                                                               CC1=C(C(=O)c2ccccc2C1=O)CC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)CCC=C(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MQE acedrg               243         "dictionary generator"                  
+MQE acedrg_database      11          "data source"                           
+MQE rdkit                2017.03.2   "Chemoinformatics tool"
+MQE refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,312 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ORB     ORB      N-{(1R)-1-[4-(2-CHLORO-5-FLUOROPYRIDIN-3-YL)PHENYL]ETHYL}-3,5-DIMETHYLISOXAZOLE-4-SULFONAMIDE     NON-POLYMER     44     27     .     
+#
+data_comp_ORB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ORB     F2      F       F       0       -0.065      11.678      -27.894     
+ORB     C2      C       CR6     0       1.293       11.788      -27.763     
+ORB     C3      C       CR16    0       1.820       12.424      -26.661     
+ORB     C4      C       CR6     0       3.208       12.523      -26.550     
+ORB     C5      C       CR6     0       3.980       11.969      -27.573     
+ORB     CL2     CL      CL      0       5.714       12.046      -27.517     
+ORB     N6      N       NRD6    0       3.464       11.358      -28.633     
+ORB     C1      C       CR16    0       2.127       11.265      -28.734     
+ORB     C7      C       CR6     0       3.801       13.207      -25.370     
+ORB     C12     C       CR16    0       3.694       12.660      -24.090     
+ORB     C11     C       CR16    0       4.235       13.303      -22.985     
+ORB     C10     C       CR6     0       4.904       14.514      -23.123     
+ORB     C9      C       CR16    0       5.001       15.073      -24.391     
+ORB     C8      C       CR16    0       4.457       14.432      -25.496     
+ORB     C13     C       CH1     0       5.482       15.236      -21.918     
+ORB     C25     C       CH3     0       6.988       15.400      -22.004     
+ORB     N14     N       NT1     0       4.879       16.567      -21.693     
+ORB     S15     S       S3      0       3.312       16.755      -21.331     
+ORB     O16     O       O       0       2.981       15.724      -20.399     
+ORB     O17     O       O       0       3.160       18.120      -20.935     
+ORB     C18     C       CR5     0       2.354       16.526      -22.766     
+ORB     C22     C       CR5     0       2.435       17.268      -23.901     
+ORB     C24     C       CH3     0       3.260       18.427      -24.313     
+ORB     O21     O       O2      0       1.543       16.784      -24.788     
+ORB     N20     N       NRD5    0       0.873       15.688      -24.190     
+ORB     C19     C       CR5     0       1.367       15.545      -22.990     
+ORB     C23     C       CH3     0       0.835       14.448      -22.125     
+ORB     H3      H       H       0       1.265       12.786      -25.991     
+ORB     H1      H       H       0       1.762       10.834      -29.480     
+ORB     H12     H       H       0       3.250       11.836      -23.975     
+ORB     H11     H       H       0       4.152       12.908      -22.133     
+ORB     H9      H       H       0       5.444       15.898      -24.504     
+ORB     H8      H       H       0       4.542       14.826      -26.348     
+ORB     H13     H       H       0       5.293       14.689      -21.116     
+ORB     H251    H       H       0       7.324       15.801      -21.183     
+ORB     H252    H       H       0       7.216       15.975      -22.755     
+ORB     H253    H       H       0       7.408       14.531      -22.129     
+ORB     H14     H       H       0       5.171       17.206      -22.189     
+ORB     H241    H       H       0       3.049       18.667      -25.231     
+ORB     H242    H       H       0       4.201       18.196      -24.250     
+ORB     H243    H       H       0       3.074       19.182      -23.732     
+ORB     H231    H       H       0       0.065       14.037      -22.549     
+ORB     H232    H       H       0       0.572       14.812      -21.265     
+ORB     H233    H       H       0       1.523       13.777      -21.992     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ORB          F2          C2      SINGLE       n     1.368  0.0200     1.368  0.0200
+ORB          C2          C3      DOUBLE       y     1.375  0.0110     1.375  0.0110
+ORB          C2          C1      SINGLE       y     1.378  0.0116     1.378  0.0116
+ORB          C3          C4      SINGLE       y     1.395  0.0100     1.395  0.0100
+ORB          C4          C5      DOUBLE       y     1.390  0.0100     1.390  0.0100
+ORB          C4          C7      SINGLE       n     1.487  0.0100     1.487  0.0100
+ORB          C5         CL2      SINGLE       n     1.736  0.0100     1.736  0.0100
+ORB          C5          N6      SINGLE       y     1.322  0.0100     1.322  0.0100
+ORB          N6          C1      DOUBLE       y     1.338  0.0100     1.338  0.0100
+ORB          C7         C12      DOUBLE       y     1.392  0.0100     1.392  0.0100
+ORB          C7          C8      SINGLE       y     1.392  0.0100     1.392  0.0100
+ORB         C12         C11      SINGLE       y     1.385  0.0100     1.385  0.0100
+ORB         C11         C10      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ORB         C10          C9      SINGLE       y     1.386  0.0100     1.386  0.0100
+ORB         C10         C13      SINGLE       n     1.519  0.0100     1.519  0.0100
+ORB          C9          C8      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ORB         C13         C25      SINGLE       n     1.517  0.0100     1.517  0.0100
+ORB         C13         N14      SINGLE       n     1.476  0.0100     1.476  0.0100
+ORB         N14         S15      SINGLE       n     1.616  0.0106     1.616  0.0106
+ORB         S15         O16      DOUBLE       n     1.429  0.0100     1.429  0.0100
+ORB         S15         O17      DOUBLE       n     1.429  0.0100     1.429  0.0100
+ORB         S15         C18      SINGLE       n     1.738  0.0100     1.738  0.0100
+ORB         C18         C22      DOUBLE       y     1.359  0.0100     1.359  0.0100
+ORB         C18         C19      SINGLE       y     1.407  0.0100     1.407  0.0100
+ORB         C22         C24      SINGLE       n     1.481  0.0100     1.481  0.0100
+ORB         C22         O21      SINGLE       y     1.350  0.0100     1.350  0.0100
+ORB         O21         N20      SINGLE       y     1.417  0.0100     1.417  0.0100
+ORB         N20         C19      DOUBLE       y     1.303  0.0100     1.303  0.0100
+ORB         C19         C23      SINGLE       n     1.494  0.0100     1.494  0.0100
+ORB          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0153
+ORB          C1          H1      SINGLE       n     1.082  0.0130     0.936  0.0100
+ORB         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0170
+ORB         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+ORB          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+ORB          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0170
+ORB         C13         H13      SINGLE       n     1.089  0.0100     0.989  0.0200
+ORB         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0168
+ORB         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0168
+ORB         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0168
+ORB         N14         H14      SINGLE       n     1.036  0.0160     0.860  0.0200
+ORB         C24        H241      SINGLE       n     1.089  0.0100     0.971  0.0130
+ORB         C24        H242      SINGLE       n     1.089  0.0100     0.971  0.0130
+ORB         C24        H243      SINGLE       n     1.089  0.0100     0.971  0.0130
+ORB         C23        H231      SINGLE       n     1.089  0.0100     0.970  0.0153
+ORB         C23        H232      SINGLE       n     1.089  0.0100     0.970  0.0153
+ORB         C23        H233      SINGLE       n     1.089  0.0100     0.970  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ORB          F2          C2          C3     119.242    1.50
+ORB          F2          C2          C1     119.769    1.50
+ORB          C3          C2          C1     120.989    1.50
+ORB          C2          C3          C4     119.127    1.50
+ORB          C2          C3          H3     121.126    1.50
+ORB          C4          C3          H3     119.747    1.50
+ORB          C3          C4          C5     118.325    1.50
+ORB          C3          C4          C7     119.871    1.53
+ORB          C5          C4          C7     121.804    1.50
+ORB          C4          C5         CL2     120.254    1.50
+ORB          C4          C5          N6     123.603    1.50
+ORB         CL2          C5          N6     116.144    1.50
+ORB          C5          N6          C1     116.952    1.50
+ORB          C2          C1          N6     121.003    1.50
+ORB          C2          C1          H1     120.121    1.50
+ORB          N6          C1          H1     118.875    1.50
+ORB          C4          C7         C12     121.144    1.52
+ORB          C4          C7          C8     121.144    1.52
+ORB         C12          C7          C8     117.712    1.50
+ORB          C7         C12         C11     121.214    1.50
+ORB          C7         C12         H12     119.401    1.50
+ORB         C11         C12         H12     119.385    1.50
+ORB         C12         C11         C10     120.757    1.50
+ORB         C12         C11         H11     119.581    1.50
+ORB         C10         C11         H11     119.662    1.50
+ORB         C11         C10          C9     118.346    1.50
+ORB         C11         C10         C13     120.827    1.50
+ORB          C9         C10         C13     120.827    1.50
+ORB         C10          C9          C8     120.757    1.50
+ORB         C10          C9          H9     119.662    1.50
+ORB          C8          C9          H9     119.581    1.50
+ORB          C7          C8          C9     121.214    1.50
+ORB          C7          C8          H8     119.401    1.50
+ORB          C9          C8          H8     119.385    1.50
+ORB         C10         C13         C25     112.585    1.68
+ORB         C10         C13         N14     113.412    1.50
+ORB         C10         C13         H13     107.531    1.50
+ORB         C25         C13         N14     108.411    1.50
+ORB         C25         C13         H13     108.162    3.00
+ORB         N14         C13         H13     107.090    1.50
+ORB         C13         C25        H251     110.841    2.67
+ORB         C13         C25        H252     110.841    2.67
+ORB         C13         C25        H253     110.841    2.67
+ORB        H251         C25        H252     109.407    1.50
+ORB        H251         C25        H253     109.407    1.50
+ORB        H252         C25        H253     109.407    1.50
+ORB         C13         N14         S15     121.275    1.50
+ORB         C13         N14         H14     116.312    3.00
+ORB         S15         N14         H14     112.257    3.00
+ORB         N14         S15         O16     106.864    1.61
+ORB         N14         S15         O17     106.864    1.61
+ORB         N14         S15         C18     109.471    3.00
+ORB         O16         S15         O17     119.673    1.50
+ORB         O16         S15         C18     108.090    1.50
+ORB         O17         S15         C18     108.090    1.50
+ORB         S15         C18         C22     126.211    1.70
+ORB         S15         C18         C19     126.211    1.70
+ORB         C22         C18         C19     107.578    2.27
+ORB         C18         C22         C24     133.548    3.00
+ORB         C18         C22         O21     108.741    1.50
+ORB         C24         C22         O21     117.712    1.50
+ORB         C22         C24        H241     109.556    1.50
+ORB         C22         C24        H242     109.556    1.50
+ORB         C22         C24        H243     109.556    1.50
+ORB        H241         C24        H242     109.377    1.50
+ORB        H241         C24        H243     109.377    1.50
+ORB        H242         C24        H243     109.377    1.50
+ORB         C22         O21         N20     108.258    1.50
+ORB         O21         N20         C19     106.146    1.50
+ORB         C18         C19         N20     109.278    1.93
+ORB         C18         C19         C23     131.504    3.00
+ORB         N20         C19         C23     119.218    1.54
+ORB         C19         C23        H231     109.591    1.50
+ORB         C19         C23        H232     109.591    1.50
+ORB         C19         C23        H233     109.591    1.50
+ORB        H231         C23        H232     109.354    1.50
+ORB        H231         C23        H233     109.354    1.50
+ORB        H232         C23        H233     109.354    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ORB              const_11         C13         C10         C11         C12     180.000    10.0     2
+ORB              const_15         C13         C10          C9          C8     180.000    10.0     2
+ORB             sp2_sp3_1         C11         C10         C13         C25     150.000    10.0     6
+ORB              const_17          C7          C8          C9         C10       0.000    10.0     2
+ORB             sp3_sp3_4         N14         C13         C25        H251      60.000    10.0     3
+ORB            sp3_sp3_12         C25         C13         N14         S15      60.000    10.0     3
+ORB            sp3_sp3_20         C13         N14         S15         O16     180.000    10.0     3
+ORB             sp2_sp3_9         C22         C18         S15         N14      30.000    10.0     6
+ORB              const_32          F2          C2          C3          C4     180.000    10.0     2
+ORB              const_47          N6          C1          C2          F2     180.000    10.0     2
+ORB              const_24         S15         C18         C22         C24       0.000    10.0     2
+ORB              const_57         S15         C18         C19         C23       0.000    10.0     2
+ORB            sp2_sp3_13         C18         C22         C24        H241     150.000    10.0     6
+ORB              const_26         C24         C22         O21         N20     180.000    10.0     2
+ORB              const_27         C19         N20         O21         C22       0.000    10.0     2
+ORB              const_29         C23         C19         N20         O21     180.000    10.0     2
+ORB            sp2_sp3_19         C18         C19         C23        H231     150.000    10.0     6
+ORB              const_34          C2          C3          C4          C5       0.000    10.0     2
+ORB              const_39          C3          C4          C5         CL2     180.000    10.0     2
+ORB             sp2_sp2_1          C3          C4          C7         C12     180.000     5.0     2
+ORB              const_43         CL2          C5          N6          C1     180.000    10.0     2
+ORB              const_44          C2          C1          N6          C5       0.000    10.0     2
+ORB              const_52          C4          C7          C8          C9     180.000    10.0     2
+ORB       const_sp2_sp2_2         C11         C12          C7          C4     180.000     5.0     2
+ORB       const_sp2_sp2_5         C10         C11         C12          C7       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ORB    chir_1    C13    N14    C10    C25    negative
+ORB    chir_2    S15    O16    O17    N14    both
+ORB    chir_3    N14    S15    C13    H14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ORB    plan-1         C10   0.020
+ORB    plan-1         C11   0.020
+ORB    plan-1         C12   0.020
+ORB    plan-1         C13   0.020
+ORB    plan-1          C4   0.020
+ORB    plan-1          C7   0.020
+ORB    plan-1          C8   0.020
+ORB    plan-1          C9   0.020
+ORB    plan-1         H11   0.020
+ORB    plan-1         H12   0.020
+ORB    plan-1          H8   0.020
+ORB    plan-1          H9   0.020
+ORB    plan-2          C1   0.020
+ORB    plan-2          C2   0.020
+ORB    plan-2          C3   0.020
+ORB    plan-2          C4   0.020
+ORB    plan-2          C5   0.020
+ORB    plan-2          C7   0.020
+ORB    plan-2         CL2   0.020
+ORB    plan-2          F2   0.020
+ORB    plan-2          H1   0.020
+ORB    plan-2          H3   0.020
+ORB    plan-2          N6   0.020
+ORB    plan-3         C18   0.020
+ORB    plan-3         C19   0.020
+ORB    plan-3         C22   0.020
+ORB    plan-3         C23   0.020
+ORB    plan-3         C24   0.020
+ORB    plan-3         N20   0.020
+ORB    plan-3         O21   0.020
+ORB    plan-3         S15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ORB           SMILES              ACDLabs 12.01                                                                                     O=S(=O)(c1c(onc1C)C)NC(c3ccc(c2cc(F)cnc2Cl)cc3)C
+ORB            InChI                InChI  1.03 InChI=1S/C18H17ClFN3O3S/c1-10(23-27(24,25)17-11(2)22-26-12(17)3)13-4-6-14(7-5-13)16-8-15(20)9-21-18(16)19/h4-10,23H,1-3H3/t10-/m1/s1
+ORB         InChIKey                InChI  1.03                                                                                                          UOZIRTCHSJAAOG-SNVBAGLBSA-N
+ORB SMILES_CANONICAL               CACTVS 3.385                                                                              C[C@@H](N[S](=O)(=O)c1c(C)onc1C)c2ccc(cc2)c3cc(F)cnc3Cl
+ORB           SMILES               CACTVS 3.385                                                                                C[CH](N[S](=O)(=O)c1c(C)onc1C)c2ccc(cc2)c3cc(F)cnc3Cl
+ORB SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                               Cc1c(c(on1)C)S(=O)(=O)N[C@H](C)c2ccc(cc2)c3cc(cnc3Cl)F
+ORB           SMILES "OpenEye OEToolkits" 1.9.2                                                                                   Cc1c(c(on1)C)S(=O)(=O)NC(C)c2ccc(cc2)c3cc(cnc3Cl)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ORB acedrg               243         "dictionary generator"                  
+ORB acedrg_database      11          "data source"                           
+ORB rdkit                2017.03.2   "Chemoinformatics tool"
+ORB refmac5              5.8.0238    "optimization tool"                     

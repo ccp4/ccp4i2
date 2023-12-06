@@ -1,0 +1,390 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4NJ     4NJ      (5S)-3,5-bis(4-chlorobenzyl)-4-(6-chloro-1H-indol-3-yl)-5-hydroxy-1-methyl-1,5-dihydro-2H-pyrrol-2-one     NON-POLYMER     55     34     .     
+#
+data_comp_4NJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4NJ     C5      C       CH2     0       22.130      -2.939      -7.370      
+4NJ     C6      C       CR6     0       21.110      -2.470      -6.357      
+4NJ     C7      C       CR16    0       20.269      -1.396      -6.631      
+4NJ     C8      C       CR16    0       19.329      -0.953      -5.702      
+4NJ     C9      C       CR6     0       19.239      -1.590      -4.485      
+4NJ     C10     C       CR16    0       20.059      -2.652      -4.174      
+4NJ     C11     C       CR16    0       20.994      -3.083      -5.114      
+4NJ     CL1     CL      CL      0       18.069      -1.042      -3.317      
+4NJ     C13     C       CT      0       21.852      -4.295      -8.036      
+4NJ     C14     C       CR5     0       20.430      -4.471      -8.539      
+4NJ     C15     C       CR5     0       19.815      -5.472      -7.831      
+4NJ     C16     C       CR5     0       20.784      -6.100      -6.948      
+4NJ     N18     N       NR5     0       21.956      -5.437      -7.107      
+4NJ     C19     C       CH3     0       23.197      -5.785      -6.431      
+4NJ     O20     O       O       0       20.580      -7.050      -6.198      
+4NJ     O21     O       OH1     0       22.768      -4.419      -9.099      
+4NJ     C28     C       CH2     0       18.370      -5.875      -7.936      
+4NJ     C37     C       CR6     0       17.411      -4.987      -7.170      
+4NJ     C38     C       CR16    0       16.410      -4.275      -7.820      
+4NJ     C39     C       CR16    0       15.527      -3.456      -7.116      
+4NJ     C40     C       CR6     0       15.655      -3.354      -5.749      
+4NJ     C41     C       CR16    0       16.635      -4.044      -5.072      
+4NJ     C42     C       CR16    0       17.509      -4.858      -5.790      
+4NJ     CL2     CL      CL      0       14.558      -2.334      -4.861      
+4NJ     C44     C       CR5     0       19.861      -3.674      -9.603      
+4NJ     C45     C       CR56    0       20.143      -3.763      -11.008     
+4NJ     C46     C       CR56    0       19.348      -2.792      -11.655     
+4NJ     C48     C       CR15    0       18.922      -2.675      -9.471      
+4NJ     N49     N       NR5     0       18.617      -2.148      -10.687     
+4NJ     C56     C       CR16    0       19.383      -2.610      -13.038     
+4NJ     C57     C       CR6     0       20.239      -3.430      -13.756     
+4NJ     C58     C       CR16    0       21.039      -4.401      -13.148     
+4NJ     C59     C       CR16    0       20.995      -4.571      -11.780     
+4NJ     CL3     CL      CL      0       20.321      -3.243      -15.488     
+4NJ     H1      H       H       0       23.002      -2.989      -6.929      
+4NJ     H2      H       H       0       22.199      -2.264      -8.076      
+4NJ     H3      H       H       0       20.330      -0.963      -7.466      
+4NJ     H4      H       H       0       18.764      -0.230      -5.903      
+4NJ     H5      H       H       0       19.989      -3.078      -3.340      
+4NJ     H6      H       H       0       21.556      -3.810      -4.903      
+4NJ     H7      H       H       0       23.145      -6.692      -6.088      
+4NJ     H8      H       H       0       23.347      -5.169      -5.695      
+4NJ     H9      H       H       0       23.937      -5.722      -7.059      
+4NJ     H10     H       H       0       22.795      -5.220      -9.367      
+4NJ     H11     H       H       0       18.278      -6.788      -7.604      
+4NJ     H12     H       H       0       18.114      -5.876      -8.878      
+4NJ     H13     H       H       0       16.324      -4.346      -8.756      
+4NJ     H14     H       H       0       14.855      -2.981      -7.568      
+4NJ     H15     H       H       0       16.713      -3.967      -4.139      
+4NJ     H16     H       H       0       18.182      -5.332      -5.329      
+4NJ     H17     H       H       0       18.539      -2.389      -8.652      
+4NJ     H18     H       H       0       18.045      -1.500      -10.828     
+4NJ     H19     H       H       0       18.854      -1.965      -13.455     
+4NJ     H20     H       H       0       21.607      -4.939      -13.667     
+4NJ     H21     H       H       0       21.529      -5.223      -11.361     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4NJ         C57         CL3      SINGLE       n     1.744  0.0100     1.744  0.0100
+4NJ         C56         C57      SINGLE       y     1.385  0.0100     1.385  0.0100
+4NJ         C57         C58      DOUBLE       y     1.395  0.0100     1.395  0.0100
+4NJ         C46         C56      DOUBLE       y     1.392  0.0100     1.392  0.0100
+4NJ         C58         C59      SINGLE       y     1.376  0.0100     1.376  0.0100
+4NJ         C45         C46      SINGLE       y     1.407  0.0100     1.407  0.0100
+4NJ         C46         N49      SINGLE       y     1.373  0.0100     1.373  0.0100
+4NJ         C45         C59      DOUBLE       y     1.399  0.0100     1.399  0.0100
+4NJ         C44         C45      SINGLE       y     1.434  0.0200     1.434  0.0200
+4NJ         C48         N49      SINGLE       y     1.361  0.0158     1.361  0.0158
+4NJ         C44         C48      DOUBLE       y     1.377  0.0125     1.377  0.0125
+4NJ         C14         C44      SINGLE       n     1.442  0.0200     1.442  0.0200
+4NJ         C13         O21      SINGLE       n     1.407  0.0100     1.407  0.0100
+4NJ         C13         C14      SINGLE       n     1.517  0.0200     1.517  0.0200
+4NJ         C14         C15      DOUBLE       n     1.368  0.0200     1.368  0.0200
+4NJ         C15         C28      SINGLE       n     1.504  0.0100     1.504  0.0100
+4NJ         C28         C37      SINGLE       n     1.514  0.0100     1.514  0.0100
+4NJ          C5         C13      SINGLE       n     1.533  0.0100     1.533  0.0100
+4NJ         C13         N18      SINGLE       n     1.475  0.0124     1.475  0.0124
+4NJ         C15         C16      SINGLE       n     1.447  0.0200     1.447  0.0200
+4NJ          C5          C6      SINGLE       n     1.509  0.0100     1.509  0.0100
+4NJ         C37         C38      DOUBLE       y     1.386  0.0100     1.386  0.0100
+4NJ         C38         C39      SINGLE       y     1.380  0.0199     1.380  0.0199
+4NJ         C37         C42      SINGLE       y     1.386  0.0100     1.386  0.0100
+4NJ          C6          C7      DOUBLE       y     1.387  0.0100     1.387  0.0100
+4NJ          C7          C8      SINGLE       y     1.380  0.0199     1.380  0.0199
+4NJ         C16         N18      SINGLE       n     1.352  0.0127     1.352  0.0127
+4NJ         N18         C19      SINGLE       n     1.452  0.0100     1.452  0.0100
+4NJ         C16         O20      DOUBLE       n     1.226  0.0123     1.226  0.0123
+4NJ         C39         C40      DOUBLE       y     1.373  0.0107     1.373  0.0107
+4NJ          C6         C11      SINGLE       y     1.387  0.0100     1.387  0.0100
+4NJ          C8          C9      DOUBLE       y     1.373  0.0107     1.373  0.0107
+4NJ         C41         C42      DOUBLE       y     1.380  0.0199     1.380  0.0199
+4NJ         C40         C41      SINGLE       y     1.373  0.0107     1.373  0.0107
+4NJ         C40         CL2      SINGLE       n     1.741  0.0100     1.741  0.0100
+4NJ         C10         C11      DOUBLE       y     1.380  0.0199     1.380  0.0199
+4NJ          C9         C10      SINGLE       y     1.373  0.0107     1.373  0.0107
+4NJ          C9         CL1      SINGLE       n     1.741  0.0100     1.741  0.0100
+4NJ          C5          H1      SINGLE       n     1.089  0.0100     0.979  0.0161
+4NJ          C5          H2      SINGLE       n     1.089  0.0100     0.979  0.0161
+4NJ          C7          H3      SINGLE       n     1.082  0.0130     0.943  0.0173
+4NJ          C8          H4      SINGLE       n     1.082  0.0130     0.939  0.0176
+4NJ         C10          H5      SINGLE       n     1.082  0.0130     0.939  0.0176
+4NJ         C11          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+4NJ         C19          H7      SINGLE       n     1.089  0.0100     0.972  0.0143
+4NJ         C19          H8      SINGLE       n     1.089  0.0100     0.972  0.0143
+4NJ         C19          H9      SINGLE       n     1.089  0.0100     0.972  0.0143
+4NJ         O21         H10      SINGLE       n     0.970  0.0120     0.844  0.0200
+4NJ         C28         H11      SINGLE       n     1.089  0.0100     0.976  0.0116
+4NJ         C28         H12      SINGLE       n     1.089  0.0100     0.976  0.0116
+4NJ         C38         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+4NJ         C39         H14      SINGLE       n     1.082  0.0130     0.939  0.0176
+4NJ         C41         H15      SINGLE       n     1.082  0.0130     0.939  0.0176
+4NJ         C42         H16      SINGLE       n     1.082  0.0130     0.943  0.0173
+4NJ         C48         H17      SINGLE       n     1.082  0.0130     0.949  0.0200
+4NJ         N49         H18      SINGLE       n     1.016  0.0100     0.876  0.0200
+4NJ         C56         H19      SINGLE       n     1.082  0.0130     0.932  0.0200
+4NJ         C58         H20      SINGLE       n     1.082  0.0130     0.939  0.0105
+4NJ         C59         H21      SINGLE       n     1.082  0.0130     0.942  0.0182
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4NJ         C13          C5          C6     115.125    1.54
+4NJ         C13          C5          H1     108.438    1.50
+4NJ         C13          C5          H2     108.438    1.50
+4NJ          C6          C5          H1     108.788    1.50
+4NJ          C6          C5          H2     108.788    1.50
+4NJ          H1          C5          H2     107.782    1.50
+4NJ          C5          C6          C7     120.984    1.50
+4NJ          C5          C6         C11     120.984    1.50
+4NJ          C7          C6         C11     118.032    1.50
+4NJ          C6          C7          C8     121.379    1.50
+4NJ          C6          C7          H3     119.326    1.50
+4NJ          C8          C7          H3     119.295    1.50
+4NJ          C7          C8          C9     118.996    1.50
+4NJ          C7          C8          H4     120.530    1.50
+4NJ          C9          C8          H4     120.474    1.50
+4NJ          C8          C9         C10     121.227    1.50
+4NJ          C8          C9         CL1     119.382    1.50
+4NJ         C10          C9         CL1     119.382    1.50
+4NJ         C11         C10          C9     118.996    1.50
+4NJ         C11         C10          H5     120.530    1.50
+4NJ          C9         C10          H5     120.474    1.50
+4NJ          C6         C11         C10     121.379    1.50
+4NJ          C6         C11          H6     119.326    1.50
+4NJ         C10         C11          H6     119.295    1.50
+4NJ         O21         C13         C14     110.215    3.00
+4NJ         O21         C13          C5     108.042    2.99
+4NJ         O21         C13         N18     110.902    1.50
+4NJ         C14         C13          C5     111.539    2.78
+4NJ         C14         C13         N18     101.369    1.50
+4NJ          C5         C13         N18     112.314    2.23
+4NJ         C44         C14         C13     122.424    2.33
+4NJ         C44         C14         C15     127.374    3.00
+4NJ         C13         C14         C15     110.202    2.72
+4NJ         C14         C15         C28     126.710    2.76
+4NJ         C14         C15         C16     107.401    3.00
+4NJ         C28         C15         C16     125.889    3.00
+4NJ         C15         C16         N18     106.835    1.57
+4NJ         C15         C16         O20     127.042    1.50
+4NJ         N18         C16         O20     126.123    1.96
+4NJ         C13         N18         C16     113.672    1.50
+4NJ         C13         N18         C19     122.551    1.87
+4NJ         C16         N18         C19     123.776    1.50
+4NJ         N18         C19          H7     109.491    1.50
+4NJ         N18         C19          H8     109.491    1.50
+4NJ         N18         C19          H9     109.491    1.50
+4NJ          H7         C19          H8     109.462    1.50
+4NJ          H7         C19          H9     109.462    1.50
+4NJ          H8         C19          H9     109.462    1.50
+4NJ         C13         O21         H10     108.794    2.66
+4NJ         C15         C28         C37     114.825    1.57
+4NJ         C15         C28         H11     108.561    1.50
+4NJ         C15         C28         H12     108.561    1.50
+4NJ         C37         C28         H11     108.562    1.50
+4NJ         C37         C28         H12     108.562    1.50
+4NJ         H11         C28         H12     107.648    1.50
+4NJ         C28         C37         C38     120.984    1.50
+4NJ         C28         C37         C42     120.984    1.50
+4NJ         C38         C37         C42     118.032    1.50
+4NJ         C37         C38         C39     121.379    1.50
+4NJ         C37         C38         H13     119.326    1.50
+4NJ         C39         C38         H13     119.295    1.50
+4NJ         C38         C39         C40     118.996    1.50
+4NJ         C38         C39         H14     120.530    1.50
+4NJ         C40         C39         H14     120.474    1.50
+4NJ         C39         C40         C41     121.227    1.50
+4NJ         C39         C40         CL2     119.382    1.50
+4NJ         C41         C40         CL2     119.382    1.50
+4NJ         C42         C41         C40     118.996    1.50
+4NJ         C42         C41         H15     120.530    1.50
+4NJ         C40         C41         H15     120.474    1.50
+4NJ         C37         C42         C41     121.379    1.50
+4NJ         C37         C42         H16     119.326    1.50
+4NJ         C41         C42         H16     119.295    1.50
+4NJ         C45         C44         C48     105.879    1.50
+4NJ         C45         C44         C14     126.786    2.97
+4NJ         C48         C44         C14     127.335    3.00
+4NJ         C46         C45         C59     118.635    1.50
+4NJ         C46         C45         C44     107.368    1.50
+4NJ         C59         C45         C44     133.997    1.50
+4NJ         C56         C46         C45     121.712    1.50
+4NJ         C56         C46         N49     130.829    1.50
+4NJ         C45         C46         N49     107.459    1.50
+4NJ         N49         C48         C44     110.195    1.50
+4NJ         N49         C48         H17     124.512    1.50
+4NJ         C44         C48         H17     125.294    1.50
+4NJ         C46         N49         C48     109.100    1.50
+4NJ         C46         N49         H18     125.659    1.60
+4NJ         C48         N49         H18     125.241    1.50
+4NJ         C57         C56         C46     116.975    1.50
+4NJ         C57         C56         H19     121.802    1.50
+4NJ         C46         C56         H19     121.223    1.50
+4NJ         CL3         C57         C56     118.295    1.50
+4NJ         CL3         C57         C58     118.352    1.50
+4NJ         C56         C57         C58     123.353    1.50
+4NJ         C57         C58         C59     120.270    1.50
+4NJ         C57         C58         H20     120.123    1.50
+4NJ         C59         C58         H20     119.607    1.50
+4NJ         C58         C59         C45     119.055    1.50
+4NJ         C58         C59         H21     120.852    1.50
+4NJ         C45         C59         H21     120.093    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4NJ            sp2_sp3_26          C7          C6          C5         C13     -90.000    10.0     6
+4NJ             sp3_sp3_4         O21         C13          C5          C6     180.000    10.0     3
+4NJ             sp2_sp2_8         C28         C15         C16         O20       0.000     5.0     2
+4NJ             sp2_sp3_8         C14         C15         C28         C37     -90.000    10.0     6
+4NJ            sp2_sp2_12         O20         C16         N18         C19       0.000     5.0     2
+4NJ            sp2_sp3_31         C13         N18         C19          H7     150.000    10.0     6
+4NJ            sp2_sp3_14         C38         C37         C28         C15     -90.000    10.0     6
+4NJ              const_23         C28         C37         C38         C39     180.000    10.0     2
+4NJ              const_83         C28         C37         C42         C41     180.000    10.0     2
+4NJ              const_25         C37         C38         C39         C40       0.000    10.0     2
+4NJ              const_30         C38         C39         C40         CL2     180.000    10.0     2
+4NJ       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+4NJ              const_86         C10         C11          C6          C5     180.000    10.0     2
+4NJ              const_35         CL2         C40         C41         C42     180.000    10.0     2
+4NJ              const_37         C40         C41         C42         C37       0.000    10.0     2
+4NJ              const_41         C48         C44         C45         C46       0.000    10.0     2
+4NJ              const_77         C45         C44         C48         N49       0.000    10.0     2
+4NJ              const_45         C59         C45         C46         C56       0.000    10.0     2
+4NJ              const_73         C46         C45         C59         C58       0.000    10.0     2
+4NJ              const_51         C56         C46         N49         C48     180.000    10.0     2
+4NJ              const_57         C45         C46         C56         C57       0.000    10.0     2
+4NJ              const_53         C44         C48         N49         C46       0.000    10.0     2
+4NJ              const_62         C46         C56         C57         CL3     180.000    10.0     2
+4NJ       const_sp2_sp2_5          C6          C7          C8          C9       0.000     5.0     2
+4NJ              const_67         CL3         C57         C58         C59     180.000    10.0     2
+4NJ              const_69         C57         C58         C59         C45       0.000    10.0     2
+4NJ              const_10          C7          C8          C9         CL1     180.000    10.0     2
+4NJ              const_14         C11         C10          C9         CL1     180.000    10.0     2
+4NJ              const_17          C9         C10         C11          C6       0.000    10.0     2
+4NJ            sp2_sp3_23         C19         N18         C13         O21     -60.000    10.0     6
+4NJ             sp3_sp3_2          C5         C13         O21         H10      60.000    10.0     3
+4NJ             sp2_sp3_5         C44         C14         C13         O21     -60.000    10.0     6
+4NJ             sp2_sp2_4         C44         C14         C15         C28       0.000     5.0     2
+4NJ            sp2_sp2_13         C13         C14         C44         C45     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4NJ    chir_1    C13    O21    N18    C14    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4NJ    plan-1         C14   0.020
+4NJ    plan-1         C44   0.020
+4NJ    plan-1         C45   0.020
+4NJ    plan-1         C46   0.020
+4NJ    plan-1         C48   0.020
+4NJ    plan-1         C56   0.020
+4NJ    plan-1         C57   0.020
+4NJ    plan-1         C58   0.020
+4NJ    plan-1         C59   0.020
+4NJ    plan-1         CL3   0.020
+4NJ    plan-1         H17   0.020
+4NJ    plan-1         H18   0.020
+4NJ    plan-1         H19   0.020
+4NJ    plan-1         H20   0.020
+4NJ    plan-1         H21   0.020
+4NJ    plan-1         N49   0.020
+4NJ    plan-2         C28   0.020
+4NJ    plan-2         C37   0.020
+4NJ    plan-2         C38   0.020
+4NJ    plan-2         C39   0.020
+4NJ    plan-2         C40   0.020
+4NJ    plan-2         C41   0.020
+4NJ    plan-2         C42   0.020
+4NJ    plan-2         CL2   0.020
+4NJ    plan-2         H13   0.020
+4NJ    plan-2         H14   0.020
+4NJ    plan-2         H15   0.020
+4NJ    plan-2         H16   0.020
+4NJ    plan-3         C10   0.020
+4NJ    plan-3         C11   0.020
+4NJ    plan-3          C5   0.020
+4NJ    plan-3          C6   0.020
+4NJ    plan-3          C7   0.020
+4NJ    plan-3          C8   0.020
+4NJ    plan-3          C9   0.020
+4NJ    plan-3         CL1   0.020
+4NJ    plan-3          H3   0.020
+4NJ    plan-3          H4   0.020
+4NJ    plan-3          H5   0.020
+4NJ    plan-3          H6   0.020
+4NJ    plan-4         C13   0.020
+4NJ    plan-4         C14   0.020
+4NJ    plan-4         C15   0.020
+4NJ    plan-4         C44   0.020
+4NJ    plan-5         C14   0.020
+4NJ    plan-5         C15   0.020
+4NJ    plan-5         C16   0.020
+4NJ    plan-5         C28   0.020
+4NJ    plan-6         C15   0.020
+4NJ    plan-6         C16   0.020
+4NJ    plan-6         N18   0.020
+4NJ    plan-6         O20   0.020
+4NJ    plan-7         C13   0.020
+4NJ    plan-7         C16   0.020
+4NJ    plan-7         C19   0.020
+4NJ    plan-7         N18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4NJ           SMILES              ACDLabs 12.01                                                                                                             C(c1ccc(cc1)Cl)C2(N(C(C(=C2c3cnc4c3ccc(c4)Cl)Cc5ccc(cc5)Cl)=O)C)O
+4NJ            InChI                InChI  1.03 InChI=1S/C27H21Cl3N2O2/c1-32-26(33)22(12-16-2-6-18(28)7-3-16)25(23-15-31-24-13-20(30)10-11-21(23)24)27(32,34)14-17-4-8-19(29)9-5-17/h2-11,13,15,31,34H,12,14H2,1H3/t27-/m0/s1
+4NJ         InChIKey                InChI  1.03                                                                                                                                                   HHGSWONIEYVVCX-MHZLTWQESA-N
+4NJ SMILES_CANONICAL               CACTVS 3.385                                                                                                        CN1C(=O)C(=C(c2c[nH]c3cc(Cl)ccc23)[C@@]1(O)Cc4ccc(Cl)cc4)Cc5ccc(Cl)cc5
+4NJ           SMILES               CACTVS 3.385                                                                                                          CN1C(=O)C(=C(c2c[nH]c3cc(Cl)ccc23)[C]1(O)Cc4ccc(Cl)cc4)Cc5ccc(Cl)cc5
+4NJ SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                         CN1C(=O)C(=C([C@]1(Cc2ccc(cc2)Cl)O)c3c[nH]c4c3ccc(c4)Cl)Cc5ccc(cc5)Cl
+4NJ           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                            CN1C(=O)C(=C(C1(Cc2ccc(cc2)Cl)O)c3c[nH]c4c3ccc(c4)Cl)Cc5ccc(cc5)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4NJ acedrg               243         "dictionary generator"                  
+4NJ acedrg_database      11          "data source"                           
+4NJ rdkit                2017.03.2   "Chemoinformatics tool"
+4NJ refmac5              5.8.0238    "optimization tool"                     

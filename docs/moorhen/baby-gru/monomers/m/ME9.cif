@@ -1,0 +1,247 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ME9     ME9      "1,1'-butane-1,4-diylbis(1H-pyrrole-2,5-dione)"     NON-POLYMER     30     18     .     
+#
+data_comp_ME9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ME9     OAA     O       O       0       9.865       -2.101      -19.984     
+ME9     OAB     O       O       0       11.690      -6.268      -20.262     
+ME9     OAC     O       O       0       6.237       -7.821      -20.541     
+ME9     OAD     O       O       0       5.045       -4.492      -23.417     
+ME9     CAE     C       CR15    0       11.314      -3.339      -18.468     
+ME9     CAF     C       CR15    0       11.827      -4.551      -18.539     
+ME9     CAG     C       CR15    0       4.408       -6.215      -20.491     
+ME9     CAH     C       CR15    0       4.081       -5.232      -21.306     
+ME9     CAI     C       CH2     0       8.827       -5.379      -21.743     
+ME9     CAJ     C       CH2     0       8.147       -5.530      -23.090     
+ME9     CAK     C       CH2     0       10.007      -4.426      -21.790     
+ME9     CAL     C       CH2     0       7.060       -6.589      -23.090     
+ME9     CAM     C       CR5     0       10.505      -3.088      -19.695     
+ME9     CAN     C       CR5     0       11.414      -5.172      -19.830     
+ME9     CAO     C       CR5     0       5.625       -6.894      -21.022     
+ME9     CAP     C       CR5     0       5.031       -5.225      -22.454     
+ME9     NAQ     N       NR5     0       10.623      -4.231      -20.480     
+ME9     NAR     N       NR5     0       5.941       -6.249      -22.214     
+ME9     HAE     H       H       0       11.436      -2.727      -17.759     
+ME9     HAF     H       H       0       12.368      -4.963      -17.883     
+ME9     HAG     H       H       0       3.950       -6.454      -19.700     
+ME9     HAH     H       H       0       3.364       -4.629      -21.186     
+ME9     HAI     H       H       0       9.137       -6.258      -21.439     
+ME9     HAIA    H       H       0       8.175       -5.048      -21.089     
+ME9     HAJ     H       H       0       8.821       -5.765      -23.762     
+ME9     HAJA    H       H       0       7.755       -4.669      -23.349     
+ME9     HAK     H       H       0       9.710       -3.561      -22.139     
+ME9     HAKA    H       H       0       10.683      -4.782      -22.404     
+ME9     HAL     H       H       0       7.443       -7.445      -22.808     
+ME9     HALA    H       H       0       6.720       -6.699      -24.003     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ME9         OAA         CAM      DOUBLE       n     1.210  0.0100     1.210  0.0100
+ME9         OAB         CAN      DOUBLE       n     1.210  0.0100     1.210  0.0100
+ME9         OAC         CAO      DOUBLE       n     1.210  0.0100     1.210  0.0100
+ME9         OAD         CAP      DOUBLE       n     1.210  0.0100     1.210  0.0100
+ME9         CAE         CAM      SINGLE       n     1.491  0.0100     1.491  0.0100
+ME9         CAE         CAF      DOUBLE       n     1.319  0.0146     1.319  0.0146
+ME9         CAF         CAN      SINGLE       n     1.491  0.0100     1.491  0.0100
+ME9         CAG         CAH      DOUBLE       n     1.319  0.0146     1.319  0.0146
+ME9         CAG         CAO      SINGLE       n     1.491  0.0100     1.491  0.0100
+ME9         CAH         CAP      SINGLE       n     1.491  0.0100     1.491  0.0100
+ME9         CAI         CAJ      SINGLE       n     1.515  0.0194     1.515  0.0194
+ME9         CAI         CAK      SINGLE       n     1.517  0.0146     1.517  0.0146
+ME9         CAJ         CAL      SINGLE       n     1.517  0.0146     1.517  0.0146
+ME9         CAK         NAQ      SINGLE       n     1.459  0.0100     1.459  0.0100
+ME9         CAL         NAR      SINGLE       n     1.459  0.0100     1.459  0.0100
+ME9         CAM         NAQ      SINGLE       n     1.390  0.0100     1.390  0.0100
+ME9         CAN         NAQ      SINGLE       n     1.390  0.0100     1.390  0.0100
+ME9         CAO         NAR      SINGLE       n     1.390  0.0100     1.390  0.0100
+ME9         CAP         NAR      SINGLE       n     1.390  0.0100     1.390  0.0100
+ME9         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0100
+ME9         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0100
+ME9         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0100
+ME9         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0100
+ME9         CAI         HAI      SINGLE       n     1.089  0.0100     0.981  0.0160
+ME9         CAI        HAIA      SINGLE       n     1.089  0.0100     0.981  0.0160
+ME9         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0160
+ME9         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0160
+ME9         CAK         HAK      SINGLE       n     1.089  0.0100     0.980  0.0125
+ME9         CAK        HAKA      SINGLE       n     1.089  0.0100     0.980  0.0125
+ME9         CAL         HAL      SINGLE       n     1.089  0.0100     0.980  0.0125
+ME9         CAL        HALA      SINGLE       n     1.089  0.0100     0.980  0.0125
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ME9         CAM         CAE         CAF     108.697    1.50
+ME9         CAM         CAE         HAE     125.397    1.50
+ME9         CAF         CAE         HAE     125.906    1.50
+ME9         CAE         CAF         CAN     108.697    1.50
+ME9         CAE         CAF         HAF     125.906    1.50
+ME9         CAN         CAF         HAF     125.397    1.50
+ME9         CAH         CAG         CAO     108.697    1.50
+ME9         CAH         CAG         HAG     125.906    1.50
+ME9         CAO         CAG         HAG     125.397    1.50
+ME9         CAG         CAH         CAP     108.697    1.50
+ME9         CAG         CAH         HAH     125.906    1.50
+ME9         CAP         CAH         HAH     125.397    1.50
+ME9         CAJ         CAI         CAK     112.731    1.81
+ME9         CAJ         CAI         HAI     109.088    1.50
+ME9         CAJ         CAI        HAIA     109.088    1.50
+ME9         CAK         CAI         HAI     109.026    1.50
+ME9         CAK         CAI        HAIA     109.026    1.50
+ME9         HAI         CAI        HAIA     107.778    1.50
+ME9         CAI         CAJ         CAL     112.731    1.81
+ME9         CAI         CAJ         HAJ     109.088    1.50
+ME9         CAI         CAJ        HAJA     109.088    1.50
+ME9         CAL         CAJ         HAJ     109.026    1.50
+ME9         CAL         CAJ        HAJA     109.026    1.50
+ME9         HAJ         CAJ        HAJA     107.778    1.50
+ME9         CAI         CAK         NAQ     112.468    1.52
+ME9         CAI         CAK         HAK     109.154    1.50
+ME9         CAI         CAK        HAKA     109.154    1.50
+ME9         NAQ         CAK         HAK     108.700    1.50
+ME9         NAQ         CAK        HAKA     108.700    1.50
+ME9         HAK         CAK        HAKA     107.877    1.91
+ME9         CAJ         CAL         NAR     112.468    1.52
+ME9         CAJ         CAL         HAL     109.154    1.50
+ME9         CAJ         CAL        HALA     109.154    1.50
+ME9         NAR         CAL         HAL     108.700    1.50
+ME9         NAR         CAL        HALA     108.700    1.50
+ME9         HAL         CAL        HALA     107.877    1.91
+ME9         OAA         CAM         CAE     128.648    1.50
+ME9         OAA         CAM         NAQ     125.105    1.50
+ME9         CAE         CAM         NAQ     106.247    1.50
+ME9         OAB         CAN         CAF     128.648    1.50
+ME9         OAB         CAN         NAQ     125.105    1.50
+ME9         CAF         CAN         NAQ     106.247    1.50
+ME9         OAC         CAO         CAG     128.648    1.50
+ME9         OAC         CAO         NAR     125.105    1.50
+ME9         CAG         CAO         NAR     106.247    1.50
+ME9         OAD         CAP         CAH     128.648    1.50
+ME9         OAD         CAP         NAR     125.105    1.50
+ME9         CAH         CAP         NAR     106.247    1.50
+ME9         CAK         NAQ         CAM     124.945    1.50
+ME9         CAK         NAQ         CAN     124.945    1.50
+ME9         CAM         NAQ         CAN     110.110    1.50
+ME9         CAL         NAR         CAO     124.945    1.50
+ME9         CAL         NAR         CAP     124.945    1.50
+ME9         CAO         NAR         CAP     110.110    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ME9             sp2_sp3_2         CAM         NAQ         CAK         CAI     -90.000    10.0     6
+ME9             sp2_sp3_8         CAO         NAR         CAL         CAJ     -90.000    10.0     6
+ME9             sp2_sp2_8         OAA         CAM         NAQ         CAK       0.000     5.0     2
+ME9            sp2_sp2_12         OAB         CAN         NAQ         CAK       0.000     5.0     2
+ME9            sp2_sp2_32         OAC         CAO         NAR         CAL       0.000     5.0     2
+ME9            sp2_sp2_28         OAD         CAP         NAR         CAL       0.000     5.0     2
+ME9             sp2_sp2_2         CAF         CAE         CAM         OAA     180.000     5.0     2
+ME9            sp2_sp2_33         CAM         CAE         CAF         CAN       0.000     5.0     2
+ME9            sp2_sp2_14         CAE         CAF         CAN         OAB     180.000     5.0     2
+ME9            sp2_sp2_38         CAH         CAG         CAO         OAC     180.000     5.0     2
+ME9            sp2_sp2_17         CAO         CAG         CAH         CAP       0.000     5.0     2
+ME9            sp2_sp2_22         CAG         CAH         CAP         OAD     180.000     5.0     2
+ME9            sp3_sp3_10         CAJ         CAI         CAK         NAQ     180.000    10.0     3
+ME9             sp3_sp3_1         CAK         CAI         CAJ         CAL     180.000    10.0     3
+ME9            sp3_sp3_19         CAI         CAJ         CAL         NAR     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ME9    plan-1         CAE   0.020
+ME9    plan-1         CAF   0.020
+ME9    plan-1         CAM   0.020
+ME9    plan-1         HAE   0.020
+ME9    plan-2         CAE   0.020
+ME9    plan-2         CAF   0.020
+ME9    plan-2         CAN   0.020
+ME9    plan-2         HAF   0.020
+ME9    plan-3         CAG   0.020
+ME9    plan-3         CAH   0.020
+ME9    plan-3         CAO   0.020
+ME9    plan-3         HAG   0.020
+ME9    plan-4         CAG   0.020
+ME9    plan-4         CAH   0.020
+ME9    plan-4         CAP   0.020
+ME9    plan-4         HAH   0.020
+ME9    plan-5         CAE   0.020
+ME9    plan-5         CAM   0.020
+ME9    plan-5         NAQ   0.020
+ME9    plan-5         OAA   0.020
+ME9    plan-6         CAF   0.020
+ME9    plan-6         CAN   0.020
+ME9    plan-6         NAQ   0.020
+ME9    plan-6         OAB   0.020
+ME9    plan-7         CAG   0.020
+ME9    plan-7         CAO   0.020
+ME9    plan-7         NAR   0.020
+ME9    plan-7         OAC   0.020
+ME9    plan-8         CAH   0.020
+ME9    plan-8         CAP   0.020
+ME9    plan-8         NAR   0.020
+ME9    plan-8         OAD   0.020
+ME9    plan-9         CAK   0.020
+ME9    plan-9         CAM   0.020
+ME9    plan-9         CAN   0.020
+ME9    plan-9         NAQ   0.020
+ME9   plan-10         CAL   0.020
+ME9   plan-10         CAO   0.020
+ME9   plan-10         CAP   0.020
+ME9   plan-10         NAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ME9           SMILES              ACDLabs 12.01                                                       O=C1C=CC(=O)N1CCCCN2C(=O)C=CC2=O
+ME9 SMILES_CANONICAL               CACTVS 3.370                                                       O=C1C=CC(=O)N1CCCCN2C(=O)C=CC2=O
+ME9           SMILES               CACTVS 3.370                                                       O=C1C=CC(=O)N1CCCCN2C(=O)C=CC2=O
+ME9 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                     C1=CC(=O)N(C1=O)CCCCN2C(=O)C=CC2=O
+ME9           SMILES "OpenEye OEToolkits" 1.7.0                                                     C1=CC(=O)N(C1=O)CCCCN2C(=O)C=CC2=O
+ME9            InChI                InChI  1.03 InChI=1S/C12H12N2O4/c15-9-3-4-10(16)13(9)7-1-2-8-14-11(17)5-6-12(14)18/h3-6H,1-2,7-8H2
+ME9         InChIKey                InChI  1.03                                                            WXXSHAKLDCERGU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ME9 acedrg               243         "dictionary generator"                  
+ME9 acedrg_database      11          "data source"                           
+ME9 rdkit                2017.03.2   "Chemoinformatics tool"
+ME9 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,286 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MMG     MMG      "4-(5-phenyl-1H-pyrrolo[2,3-b]pyridin-3-yl)benzoic acid"     NON-POLYMER     37     24     .     
+#
+data_comp_MMG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MMG     C4      C       CR16    0       39.034      30.458      66.230      
+MMG     C5      C       CR16    0       36.716      29.962      66.541      
+MMG     C6      C       CR16    0       34.505      35.912      69.966      
+MMG     C7      C       CR16    0       33.817      33.720      69.279      
+MMG     C8      C       CR16    0       33.309      36.435      69.486      
+MMG     C10     C       CR16    0       36.846      32.270      68.536      
+MMG     C13     C       CR6     0       37.877      30.589      67.000      
+MMG     C15     C       CR6     0       32.361      35.606      68.899      
+MMG     C17     C       CR56    0       36.876      32.991      69.728      
+MMG     C20     C       C       0       31.072      36.173      68.382      
+MMG     C1      C       CR16    0       37.872      29.115      64.614      
+MMG     C2      C       CR16    0       39.030      29.726      65.049      
+MMG     C3      C       CR16    0       36.715      29.233      65.358      
+MMG     C9      C       CR16    0       32.622      34.244      68.800      
+MMG     C11     C       CR15    0       36.675      34.275      71.559      
+MMG     C12     C       CR16    0       38.934      31.228      69.212      
+MMG     C14     C       CR6     0       34.781      34.543      69.871      
+MMG     C16     C       CR6     0       37.881      31.374      68.266      
+MMG     C18     C       CR5     0       36.047      33.980      70.378      
+MMG     C19     C       CR56    0       37.980      32.758      70.592      
+MMG     N21     N       NR5     0       37.836      33.546      71.692      
+MMG     N22     N       NRD6    0       38.990      31.905      70.357      
+MMG     O23     O       O       0       30.663      35.778      67.275      
+MMG     O24     O       OC      -1      30.483      37.010      69.090      
+MMG     H4      H       H       0       39.833      30.872      66.518      
+MMG     H5      H       H       0       35.918      30.035      67.042      
+MMG     H6      H       H       0       35.137      36.483      70.359      
+MMG     H7      H       H       0       33.982      32.798      69.205      
+MMG     H8      H       H       0       33.144      37.359      69.559      
+MMG     H10     H       H       0       36.137      32.383      67.924      
+MMG     H1      H       H       0       37.870      28.618      63.811      
+MMG     H2      H       H       0       39.822      29.648      64.543      
+MMG     H3      H       H       0       35.922      28.816      65.064      
+MMG     H9      H       H       0       31.989      33.672      68.404      
+MMG     H11     H       H       0       36.363      34.887      72.189      
+MMG     H12     H       H       0       39.625      30.623      69.016      
+MMG     HN21    H       H       0       38.379      33.581      72.358      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MMG          C4          C2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MMG          C4         C13      SINGLE       y     1.392  0.0100     1.392  0.0100
+MMG          C5          C3      SINGLE       y     1.386  0.0100     1.386  0.0100
+MMG          C5         C13      DOUBLE       y     1.392  0.0100     1.392  0.0100
+MMG          C6         C14      DOUBLE       y     1.396  0.0100     1.396  0.0100
+MMG          C6          C8      SINGLE       y     1.387  0.0100     1.387  0.0100
+MMG          C7          C9      DOUBLE       y     1.387  0.0100     1.387  0.0100
+MMG          C7         C14      SINGLE       y     1.396  0.0100     1.396  0.0100
+MMG          C8         C15      DOUBLE       y     1.385  0.0114     1.385  0.0114
+MMG         C10         C16      DOUBLE       y     1.391  0.0108     1.391  0.0108
+MMG         C10         C17      SINGLE       y     1.392  0.0100     1.392  0.0100
+MMG         C13         C16      SINGLE       n     1.487  0.0100     1.487  0.0100
+MMG         C15          C9      SINGLE       y     1.385  0.0114     1.385  0.0114
+MMG         C15         C20      SINGLE       n     1.498  0.0200     1.498  0.0200
+MMG         C17         C18      SINGLE       y     1.446  0.0100     1.446  0.0100
+MMG         C17         C19      DOUBLE       y     1.421  0.0100     1.421  0.0100
+MMG         C20         O23      DOUBLE       n     1.244  0.0200     1.244  0.0200
+MMG         C20         O24      SINGLE       n     1.244  0.0200     1.244  0.0200
+MMG          C1          C3      DOUBLE       y     1.376  0.0124     1.376  0.0124
+MMG          C1          C2      SINGLE       y     1.376  0.0124     1.376  0.0124
+MMG         C11         C18      DOUBLE       y     1.369  0.0100     1.369  0.0100
+MMG         C11         N21      SINGLE       y     1.376  0.0100     1.376  0.0100
+MMG         C12         C16      SINGLE       y     1.412  0.0136     1.412  0.0136
+MMG         C12         N22      DOUBLE       y     1.321  0.0127     1.321  0.0127
+MMG         C14         C18      SINGLE       n     1.476  0.0100     1.476  0.0100
+MMG         C19         N22      SINGLE       y     1.339  0.0100     1.339  0.0100
+MMG         C19         N21      SINGLE       y     1.361  0.0100     1.361  0.0100
+MMG          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0170
+MMG          C5          H5      SINGLE       n     1.082  0.0130     0.945  0.0170
+MMG          C6          H6      SINGLE       n     1.082  0.0130     0.939  0.0154
+MMG          C7          H7      SINGLE       n     1.082  0.0130     0.939  0.0154
+MMG          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0168
+MMG         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0168
+MMG          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+MMG          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0180
+MMG          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0180
+MMG          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0168
+MMG         C11         H11      SINGLE       n     1.082  0.0130     0.932  0.0100
+MMG         C12         H12      SINGLE       n     1.082  0.0130     0.939  0.0108
+MMG         N21        HN21      SINGLE       n     1.016  0.0100     0.860  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MMG          C2          C4         C13     120.887    1.50
+MMG          C2          C4          H4     119.636    1.50
+MMG         C13          C4          H4     119.477    1.50
+MMG          C3          C5         C13     120.887    1.50
+MMG          C3          C5          H5     119.636    1.50
+MMG         C13          C5          H5     119.477    1.50
+MMG         C14          C6          C8     121.022    1.50
+MMG         C14          C6          H6     119.355    1.50
+MMG          C8          C6          H6     119.624    1.50
+MMG          C9          C7         C14     121.022    1.50
+MMG          C9          C7          H7     119.624    1.50
+MMG         C14          C7          H7     119.355    1.50
+MMG          C6          C8         C15     120.401    1.50
+MMG          C6          C8          H8     119.634    1.50
+MMG         C15          C8          H8     119.965    1.50
+MMG         C16         C10         C17     119.087    1.50
+MMG         C16         C10         H10     120.324    1.50
+MMG         C17         C10         H10     120.588    1.50
+MMG          C4         C13          C5     117.808    1.50
+MMG          C4         C13         C16     121.096    1.52
+MMG          C5         C13         C16     121.096    1.52
+MMG          C8         C15          C9     119.148    1.50
+MMG          C8         C15         C20     120.426    1.50
+MMG          C9         C15         C20     120.426    1.50
+MMG         C10         C17         C18     135.825    2.20
+MMG         C10         C17         C19     117.635    1.50
+MMG         C18         C17         C19     106.540    1.50
+MMG         C15         C20         O23     117.791    1.50
+MMG         C15         C20         O24     117.791    1.50
+MMG         O23         C20         O24     124.418    1.50
+MMG          C3          C1          C2     119.915    1.50
+MMG          C3          C1          H1     120.043    1.50
+MMG          C2          C1          H1     120.043    1.50
+MMG          C4          C2          C1     120.251    1.50
+MMG          C4          C2          H2     119.823    1.50
+MMG          C1          C2          H2     119.926    1.50
+MMG          C5          C3          C1     120.251    1.50
+MMG          C5          C3          H3     119.823    1.50
+MMG          C1          C3          H3     119.926    1.50
+MMG          C7          C9         C15     120.401    1.50
+MMG          C7          C9          H9     119.634    1.50
+MMG         C15          C9          H9     119.965    1.50
+MMG         C18         C11         N21     110.739    1.50
+MMG         C18         C11         H11     124.915    1.86
+MMG         N21         C11         H11     124.346    1.50
+MMG         C16         C12         N22     122.652    1.50
+MMG         C16         C12         H12     118.425    1.50
+MMG         N22         C12         H12     118.923    1.50
+MMG          C6         C14          C7     118.011    1.50
+MMG          C6         C14         C18     120.992    1.50
+MMG          C7         C14         C18     120.992    1.50
+MMG         C10         C16         C13     120.065    1.77
+MMG         C10         C16         C12     119.279    1.51
+MMG         C13         C16         C12     120.656    1.79
+MMG         C17         C18         C11     106.014    1.50
+MMG         C17         C18         C14     127.053    1.50
+MMG         C11         C18         C14     126.933    1.76
+MMG         C17         C19         N22     126.147    1.50
+MMG         C17         C19         N21     108.299    1.50
+MMG         N22         C19         N21     125.554    1.50
+MMG         C11         N21         C19     108.408    1.50
+MMG         C11         N21        HN21     125.914    1.50
+MMG         C19         N21        HN21     125.679    1.50
+MMG         C12         N22         C19     115.200    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MMG              const_33          C1          C2          C4         C13       0.000    10.0     2
+MMG              const_73          C5         C13          C4          C2       0.000    10.0     2
+MMG              const_37          C3          C1          C2          C4       0.000    10.0     2
+MMG              const_41          C2          C1          C3          C5       0.000    10.0     2
+MMG              const_21         N21         C11         C18         C17       0.000    10.0     2
+MMG              const_25         C18         C11         N21         C19       0.000    10.0     2
+MMG       const_sp2_sp2_5         N22         C12         C16         C10       0.000     5.0     2
+MMG       const_sp2_sp2_9         C16         C12         N22         C19       0.000     5.0     2
+MMG             sp2_sp2_9          C6         C14         C18         C17     180.000     5.0     2
+MMG              const_29         C17         C19         N21         C11       0.000    10.0     2
+MMG              const_11         C17         C19         N22         C12       0.000    10.0     2
+MMG              const_45          C1          C3          C5         C13       0.000    10.0     2
+MMG              const_49          C4         C13          C5          C3       0.000    10.0     2
+MMG              const_53          C7         C14          C6          C8       0.000    10.0     2
+MMG              const_77         C14          C6          C8         C15       0.000    10.0     2
+MMG              const_61         C14          C7          C9         C15       0.000    10.0     2
+MMG              const_57          C6         C14          C7          C9       0.000    10.0     2
+MMG              const_71         C20         C15          C8          C6     180.000    10.0     2
+MMG       const_sp2_sp2_2         C17         C10         C16         C13     180.000     5.0     2
+MMG              const_82         C16         C10         C17         C18     180.000    10.0     2
+MMG             sp2_sp2_1          C4         C13         C16         C10     180.000     5.0     2
+MMG              const_67         C20         C15          C9          C7     180.000    10.0     2
+MMG             sp2_sp2_5          C8         C15         C20         O23     180.000     5.0     2
+MMG              const_19         C10         C17         C18         C11     180.000    10.0     2
+MMG              const_13         C10         C17         C19         N22       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MMG    plan-1         C10   0.020
+MMG    plan-1         C11   0.020
+MMG    plan-1         C12   0.020
+MMG    plan-1         C13   0.020
+MMG    plan-1         C14   0.020
+MMG    plan-1         C16   0.020
+MMG    plan-1         C17   0.020
+MMG    plan-1         C18   0.020
+MMG    plan-1         C19   0.020
+MMG    plan-1         H10   0.020
+MMG    plan-1         H11   0.020
+MMG    plan-1         H12   0.020
+MMG    plan-1        HN21   0.020
+MMG    plan-1         N21   0.020
+MMG    plan-1         N22   0.020
+MMG    plan-2          C1   0.020
+MMG    plan-2         C13   0.020
+MMG    plan-2         C16   0.020
+MMG    plan-2          C2   0.020
+MMG    plan-2          C3   0.020
+MMG    plan-2          C4   0.020
+MMG    plan-2          C5   0.020
+MMG    plan-2          H1   0.020
+MMG    plan-2          H2   0.020
+MMG    plan-2          H3   0.020
+MMG    plan-2          H4   0.020
+MMG    plan-2          H5   0.020
+MMG    plan-3         C14   0.020
+MMG    plan-3         C15   0.020
+MMG    plan-3         C18   0.020
+MMG    plan-3         C20   0.020
+MMG    plan-3          C6   0.020
+MMG    plan-3          C7   0.020
+MMG    plan-3          C8   0.020
+MMG    plan-3          C9   0.020
+MMG    plan-3          H6   0.020
+MMG    plan-3          H7   0.020
+MMG    plan-3          H8   0.020
+MMG    plan-3          H9   0.020
+MMG    plan-4         C15   0.020
+MMG    plan-4         C20   0.020
+MMG    plan-4         O23   0.020
+MMG    plan-4         O24   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MMG           SMILES              ACDLabs 10.04                                                                                   O=C(O)c4ccc(c2c1cc(cnc1nc2)c3ccccc3)cc4
+MMG SMILES_CANONICAL               CACTVS 3.341                                                                                OC(=O)c1ccc(cc1)c2c[nH]c3ncc(cc23)c4ccccc4
+MMG           SMILES               CACTVS 3.341                                                                                OC(=O)c1ccc(cc1)c2c[nH]c3ncc(cc23)c4ccccc4
+MMG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                              c1ccc(cc1)c2cc3c(c[nH]c3nc2)c4ccc(cc4)C(=O)O
+MMG           SMILES "OpenEye OEToolkits" 1.5.0                                                                              c1ccc(cc1)c2cc3c(c[nH]c3nc2)c4ccc(cc4)C(=O)O
+MMG            InChI                InChI  1.03 InChI=1S/C20H14N2O2/c23-20(24)15-8-6-14(7-9-15)18-12-22-19-17(18)10-16(11-21-19)13-4-2-1-3-5-13/h1-12H,(H,21,22)(H,23,24)
+MMG         InChIKey                InChI  1.03                                                                                               KSFDVNIKNYXUIP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MMG acedrg               243         "dictionary generator"                  
+MMG acedrg_database      11          "data source"                           
+MMG rdkit                2017.03.2   "Chemoinformatics tool"
+MMG refmac5              5.8.0238    "optimization tool"                     

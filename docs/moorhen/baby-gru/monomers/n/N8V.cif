@@ -1,0 +1,307 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+N8V     N8V      (1S,2S,3S,6R)-4-(hydroxymethyl)-6-(octylamino)cyclohex-4-ene-1,2,3-triol     NON-POLYMER     49     20     .     
+#
+data_comp_N8V
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+N8V     O2      O       OH1     0       -4.179      -5.799      5.236       
+N8V     C2      C       CH1     0       -4.336      -6.324      6.558       
+N8V     C3      C       CH1     0       -3.137      -5.990      7.425       
+N8V     O3      O       OH1     0       -2.961      -4.572      7.493       
+N8V     C4      C       CH1     0       -3.278      -6.571      8.836       
+N8V     O4      O       OH1     0       -4.168      -5.779      9.627       
+N8V     C1      C       CH1     0       -4.536      -7.845      6.453       
+N8V     C7      C       CR16    0       -4.320      -8.567      7.759       
+N8V     C5      C       CR6     0       -3.751      -8.009      8.827       
+N8V     C6      C       CH2     0       -3.560      -8.791      10.101      
+N8V     O6      O       OH1     0       -2.753      -9.940      9.907       
+N8V     N8      N       NT1     0       -5.854      -8.205      5.887       
+N8V     C9      C       CH2     0       -7.068      -7.831      6.627       
+N8V     C10     C       CH2     0       -7.876      -6.766      5.908       
+N8V     C11     C       CH2     0       -8.967      -6.173      6.778       
+N8V     C12     C       CH2     0       -10.101     -7.125      7.080       
+N8V     C13     C       CH2     0       -11.248     -6.502      7.838       
+N8V     C14     C       CH2     0       -12.350     -7.469      8.193       
+N8V     C15     C       CH2     0       -13.544     -6.835      8.858       
+N8V     C16     C       CH3     0       -13.296     -6.434      10.293      
+N8V     H1      H       H       0       -4.221      -4.960      5.282       
+N8V     H2      H       H       0       -5.138      -5.918      6.964       
+N8V     H3      H       H       0       -2.349      -6.379      6.997       
+N8V     H4      H       H       0       -2.207      -4.407      7.827       
+N8V     H5      H       H       0       -2.392      -6.541      9.274       
+N8V     H6      H       H       0       -4.946      -5.812      9.302       
+N8V     H7      H       H       0       -3.856      -8.189      5.821       
+N8V     H8      H       H       0       -4.603      -9.466      7.823       
+N8V     H9      H       H       0       -4.438      -9.074      10.440      
+N8V     H10     H       H       0       -3.145      -8.223      10.786      
+N8V     H11     H       H       0       -1.959      -9.686      9.797       
+N8V     H12     H       H       0       -5.921      -8.004      5.028       
+N8V     H13     H       H       0       -6.838      -7.501      7.528       
+N8V     H14     H       H       0       -7.627      -8.638      6.736       
+N8V     H15     H       H       0       -8.284      -7.160      5.108       
+N8V     H16     H       H       0       -7.274      -6.048      5.618       
+N8V     H17     H       H       0       -9.333      -5.381      6.329       
+N8V     H18     H       H       0       -8.571      -5.877      7.626       
+N8V     H19     H       H       0       -9.751      -7.876      7.604       
+N8V     H20     H       H       0       -10.442     -7.485      6.234       
+N8V     H21     H       H       0       -11.627     -5.778      7.296       
+N8V     H22     H       H       0       -10.900     -6.105      8.664       
+N8V     H23     H       H       0       -11.986     -8.156      8.792       
+N8V     H24     H       H       0       -12.650     -7.919      7.374       
+N8V     H25     H       H       0       -14.294     -7.468      8.830       
+N8V     H26     H       H       0       -13.805     -6.038      8.346       
+N8V     H27     H       H       0       -14.115     -6.076      10.678      
+N8V     H28     H       H       0       -12.600     -5.754      10.325      
+N8V     H29     H       H       0       -13.011     -7.211      10.804      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+N8V          O2          C2      SINGLE       n     1.431  0.0107     1.431  0.0107
+N8V          C1          N8      SINGLE       n     1.472  0.0145     1.472  0.0145
+N8V          N8          C9      SINGLE       n     1.465  0.0118     1.465  0.0118
+N8V          C2          C1      SINGLE       n     1.535  0.0100     1.535  0.0100
+N8V          C1          C7      SINGLE       n     1.504  0.0105     1.504  0.0105
+N8V          C2          C3      SINGLE       n     1.515  0.0100     1.515  0.0100
+N8V          C9         C10      SINGLE       n     1.516  0.0131     1.516  0.0131
+N8V         C10         C11      SINGLE       n     1.514  0.0200     1.514  0.0200
+N8V          C3          O3      SINGLE       n     1.429  0.0159     1.429  0.0159
+N8V          C3          C4      SINGLE       n     1.529  0.0100     1.529  0.0100
+N8V          C7          C5      DOUBLE       n     1.329  0.0123     1.329  0.0123
+N8V         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+N8V          C4          C5      SINGLE       n     1.510  0.0100     1.510  0.0100
+N8V          C5          C6      SINGLE       n     1.507  0.0100     1.507  0.0100
+N8V          C4          O4      SINGLE       n     1.427  0.0125     1.427  0.0125
+N8V         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+N8V         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+N8V          C6          O6      SINGLE       n     1.417  0.0163     1.417  0.0163
+N8V         C14         C15      SINGLE       n     1.507  0.0200     1.507  0.0200
+N8V         C15         C16      SINGLE       n     1.510  0.0200     1.510  0.0200
+N8V          O2          H1      SINGLE       n     0.970  0.0120     0.841  0.0200
+N8V          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0151
+N8V          C3          H3      SINGLE       n     1.089  0.0100     0.977  0.0200
+N8V          O3          H4      SINGLE       n     0.970  0.0120     0.841  0.0200
+N8V          C4          H5      SINGLE       n     1.089  0.0100     0.989  0.0200
+N8V          O4          H6      SINGLE       n     0.970  0.0120     0.843  0.0200
+N8V          C1          H7      SINGLE       n     1.089  0.0100     0.990  0.0163
+N8V          C7          H8      SINGLE       n     1.082  0.0130     0.945  0.0102
+N8V          C6          H9      SINGLE       n     1.089  0.0100     0.982  0.0119
+N8V          C6         H10      SINGLE       n     1.089  0.0100     0.982  0.0119
+N8V          O6         H11      SINGLE       n     0.970  0.0120     0.841  0.0200
+N8V          N8         H12      SINGLE       n     1.036  0.0160     0.882  0.0200
+N8V          C9         H13      SINGLE       n     1.089  0.0100     0.988  0.0200
+N8V          C9         H14      SINGLE       n     1.089  0.0100     0.988  0.0200
+N8V         C10         H15      SINGLE       n     1.089  0.0100     0.981  0.0160
+N8V         C10         H16      SINGLE       n     1.089  0.0100     0.981  0.0160
+N8V         C11         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C11         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C12         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C12         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C13         H21      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C13         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C14         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C14         H24      SINGLE       n     1.089  0.0100     0.981  0.0163
+N8V         C15         H25      SINGLE       n     1.089  0.0100     0.982  0.0155
+N8V         C15         H26      SINGLE       n     1.089  0.0100     0.982  0.0155
+N8V         C16         H27      SINGLE       n     1.089  0.0100     0.973  0.0157
+N8V         C16         H28      SINGLE       n     1.089  0.0100     0.973  0.0157
+N8V         C16         H29      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+N8V          C2          O2          H1     108.064    2.53
+N8V          O2          C2          C1     109.247    2.43
+N8V          O2          C2          C3     111.630    1.78
+N8V          O2          C2          H2     108.954    1.50
+N8V          C1          C2          C3     111.124    1.57
+N8V          C1          C2          H2     109.068    1.50
+N8V          C3          C2          H2     108.943    1.50
+N8V          C2          C3          O3     110.219    1.72
+N8V          C2          C3          C4     111.124    1.57
+N8V          C2          C3          H3     107.830    1.50
+N8V          O3          C3          C4     109.779    1.72
+N8V          O3          C3          H3     108.767    1.50
+N8V          C4          C3          H3     109.434    1.50
+N8V          C3          O3          H4     108.895    2.41
+N8V          C3          C4          C5     111.944    1.50
+N8V          C3          C4          O4     110.170    1.75
+N8V          C3          C4          H5     108.836    1.50
+N8V          C5          C4          O4     109.627    1.79
+N8V          C5          C4          H5     108.621    1.50
+N8V          O4          C4          H5     107.721    1.50
+N8V          C4          O4          H6     109.283    1.50
+N8V          N8          C1          C2     111.865    2.42
+N8V          N8          C1          C7     110.455    3.00
+N8V          N8          C1          H7     107.382    1.55
+N8V          C2          C1          C7     112.021    2.38
+N8V          C2          C1          H7     108.258    1.50
+N8V          C7          C1          H7     107.701    1.50
+N8V          C1          C7          C5     122.416    3.00
+N8V          C1          C7          H8     118.596    1.50
+N8V          C5          C7          H8     118.988    1.92
+N8V          C7          C5          C4     121.931    1.50
+N8V          C7          C5          C6     121.553    2.28
+N8V          C4          C5          C6     116.516    2.44
+N8V          C5          C6          O6     112.455    1.50
+N8V          C5          C6          H9     110.379    3.00
+N8V          C5          C6         H10     110.379    3.00
+N8V          O6          C6          H9     109.147    1.50
+N8V          O6          C6         H10     109.147    1.50
+N8V          H9          C6         H10     107.920    1.50
+N8V          C6          O6         H11     108.166    2.70
+N8V          C1          N8          C9     114.477    2.43
+N8V          C1          N8         H12     112.476    3.00
+N8V          C9          N8         H12     109.903    3.00
+N8V          N8          C9         C10     111.829    1.50
+N8V          N8          C9         H13     109.170    3.00
+N8V          N8          C9         H14     109.170    3.00
+N8V         C10          C9         H13     109.153    1.50
+N8V         C10          C9         H14     109.153    1.50
+N8V         H13          C9         H14     107.881    1.50
+N8V          C9         C10         C11     112.612    1.50
+N8V          C9         C10         H15     109.061    1.50
+N8V          C9         C10         H16     109.061    1.50
+N8V         C11         C10         H15     109.041    1.50
+N8V         C11         C10         H16     109.041    1.50
+N8V         H15         C10         H16     107.927    1.57
+N8V         C10         C11         C12     113.853    2.32
+N8V         C10         C11         H17     108.806    1.50
+N8V         C10         C11         H18     108.806    1.50
+N8V         C12         C11         H17     108.698    1.50
+N8V         C12         C11         H18     108.698    1.50
+N8V         H17         C11         H18     107.646    1.50
+N8V         C11         C12         C13     114.243    1.69
+N8V         C11         C12         H19     108.698    1.50
+N8V         C11         C12         H20     108.698    1.50
+N8V         C13         C12         H19     108.698    1.50
+N8V         C13         C12         H20     108.698    1.50
+N8V         H19         C12         H20     107.646    1.50
+N8V         C12         C13         C14     114.243    1.69
+N8V         C12         C13         H21     108.698    1.50
+N8V         C12         C13         H22     108.698    1.50
+N8V         C14         C13         H21     108.698    1.50
+N8V         C14         C13         H22     108.698    1.50
+N8V         H21         C13         H22     107.646    1.50
+N8V         C13         C14         C15     114.362    3.00
+N8V         C13         C14         H23     108.698    1.50
+N8V         C13         C14         H24     108.698    1.50
+N8V         C15         C14         H23     108.653    1.50
+N8V         C15         C14         H24     108.653    1.50
+N8V         H23         C14         H24     107.646    1.50
+N8V         C14         C15         C16     113.719    3.00
+N8V         C14         C15         H25     108.758    1.50
+N8V         C14         C15         H26     108.758    1.50
+N8V         C16         C15         H25     108.918    1.50
+N8V         C16         C15         H26     108.918    1.50
+N8V         H25         C15         H26     107.763    1.50
+N8V         C15         C16         H27     109.554    1.50
+N8V         C15         C16         H28     109.554    1.50
+N8V         C15         C16         H29     109.554    1.50
+N8V         H27         C16         H28     109.380    1.50
+N8V         H27         C16         H29     109.380    1.50
+N8V         H28         C16         H29     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+N8V            sp3_sp3_19          C1          C2          O2          H1     180.000    10.0     3
+N8V            sp3_sp3_28         C10          C9          N8          C1     180.000    10.0     3
+N8V            sp3_sp3_43         C11         C10          C9          N8     180.000    10.0     3
+N8V            sp3_sp3_52          C9         C10         C11         C12     180.000    10.0     3
+N8V            sp3_sp3_64         C10         C11         C12         C13     180.000    10.0     3
+N8V            sp3_sp3_76         C11         C12         C13         C14     180.000    10.0     3
+N8V            sp3_sp3_85         C12         C13         C14         C15     180.000    10.0     3
+N8V            sp3_sp3_97         C13         C14         C15         C16     180.000    10.0     3
+N8V           sp3_sp3_106         C14         C15         C16         H27     180.000    10.0     3
+N8V            sp3_sp3_38          O2          C2          C3          O3     180.000    10.0     3
+N8V             sp3_sp3_5          N8          C1          C2          O2      60.000    10.0     3
+N8V            sp3_sp3_61          C2          C3          O3          H4     180.000    10.0     3
+N8V            sp3_sp3_14          O3          C3          C4          O4      60.000    10.0     3
+N8V            sp3_sp3_73          C3          C4          O4          H6     180.000    10.0     3
+N8V            sp2_sp3_11          C6          C5          C4          O4     -60.000    10.0     6
+N8V            sp3_sp3_23          C2          C1          N8          C9     -60.000    10.0     3
+N8V             sp2_sp3_2          C5          C7          C1          N8     120.000    10.0     6
+N8V             sp2_sp2_3          C6          C5          C7          C1     180.000     5.0     2
+N8V            sp2_sp3_14          C7          C5          C6          O6     -90.000    10.0     6
+N8V            sp3_sp3_94          C5          C6          O6         H11     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+N8V    chir_1    C2    O2    C3    C1    positive
+N8V    chir_2    C3    O3    C2    C4    positive
+N8V    chir_3    C4    O4    C3    C5    positive
+N8V    chir_4    C1    N8    C2    C7    negative
+N8V    chir_5    N8    C1    C9    H12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+N8V    plan-1          C1   0.020
+N8V    plan-1          C5   0.020
+N8V    plan-1          C7   0.020
+N8V    plan-1          H8   0.020
+N8V    plan-2          C4   0.020
+N8V    plan-2          C5   0.020
+N8V    plan-2          C6   0.020
+N8V    plan-2          C7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+N8V           SMILES              ACDLabs 12.01                                                                                           OC1C(NCCCCCCCC)C=C(C(O)C1O)CO
+N8V            InChI                InChI  1.03 InChI=1S/C15H29NO4/c1-2-3-4-5-6-7-8-16-12-9-11(10-17)13(18)15(20)14(12)19/h9,12-20H,2-8,10H2,1H3/t12-,13+,14+,15+/m1/s1
+N8V         InChIKey                InChI  1.03                                                                                             UPZUHYMBTUUPML-QPSCCSFWSA-N
+N8V SMILES_CANONICAL               CACTVS 3.385                                                                          CCCCCCCCN[C@@H]1C=C(CO)[C@H](O)[C@H](O)[C@H]1O
+N8V           SMILES               CACTVS 3.385                                                                               CCCCCCCCN[CH]1C=C(CO)[CH](O)[CH](O)[CH]1O
+N8V SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                        CCCCCCCCN[C@@H]1C=C([C@@H]([C@@H]([C@H]1O)O)O)CO
+N8V           SMILES "OpenEye OEToolkits" 1.7.6                                                                                           CCCCCCCCNC1C=C(C(C(C1O)O)O)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+N8V acedrg               243         "dictionary generator"                  
+N8V acedrg_database      11          "data source"                           
+N8V rdkit                2017.03.2   "Chemoinformatics tool"
+N8V refmac5              5.8.0238    "optimization tool"                     

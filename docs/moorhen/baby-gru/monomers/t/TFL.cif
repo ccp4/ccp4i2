@@ -1,0 +1,271 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TFL     TFL      2-[4-(DIMETHYLAMINO)PHENYL]-6-HYDROXY-3-METHYL-1,3-BENZOTHIAZOL-3-IUM     NON-POLYMER     37     20     .     
+#
+data_comp_TFL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TFL     C2      C       CR6     0       -23.451     110.210     40.153      
+TFL     C3      C       CR16    0       -23.447     111.286     41.071      
+TFL     C4      C       CR16    0       -22.309     112.038     41.284      
+TFL     C5      C       CR6     0       -21.129     111.757     40.594      
+TFL     C6      C       CR16    0       -21.112     110.698     39.685      
+TFL     C7      C       CR16    0       -22.245     109.939     39.466      
+TFL     C8      C       CR5     0       -19.926     112.561     40.831      
+TFL     N1      N       NR5     1       -19.179     112.644     41.991      
+TFL     C9      C       CR56    0       -18.095     113.521     41.855      
+TFL     S1      S       S2      0       -19.301     113.526     39.634      
+TFL     C10     C       CR56    0       -18.052     114.078     40.579      
+TFL     C11     C       CR16    0       -17.064     114.977     40.203      
+TFL     C12     C       CR6     0       -16.101     115.320     41.133      
+TFL     C13     C       CR16    0       -16.130     114.766     42.425      
+TFL     C14     C       CR16    0       -17.108     113.879     42.791      
+TFL     O3      O       OH1     0       -15.107     116.207     40.795      
+TFL     N2      N       N       0       -24.580     109.459     39.940      
+TFL     C15     C       CH3     0       -25.057     109.184     38.598      
+TFL     C16     C       CH3     0       -25.338     108.914     41.049      
+TFL     C17     C       CH3     0       -19.461     111.925     43.230      
+TFL     H3      H       H       0       -24.235     111.491     41.544      
+TFL     H4      H       H       0       -22.332     112.749     41.900      
+TFL     H6      H       H       0       -20.322     110.498     39.215      
+TFL     H7      H       H       0       -22.217     109.229     38.849      
+TFL     H11     H       H       0       -17.048     115.345     39.338      
+TFL     H13     H       H       0       -15.467     115.009     43.049      
+TFL     H14     H       H       0       -17.115     113.517     43.658      
+TFL     HA      H       H       0       -15.260     116.830     40.221      
+TFL     H151    H       H       0       -24.771     109.891     37.995      
+TFL     H152    H       H       0       -26.027     109.138     38.598      
+TFL     H153    H       H       0       -24.695     108.336     38.292      
+TFL     H161    H       H       0       -24.750     108.760     41.807      
+TFL     H162    H       H       0       -25.746     108.072     40.785      
+TFL     H163    H       H       0       -26.034     109.540     41.306      
+TFL     H171    H       H       0       -18.632     111.734     43.697      
+TFL     H172    H       H       0       -19.910     111.089     43.028      
+TFL     H173    H       H       0       -20.033     112.469     43.796      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TFL          C2          C3      DOUBLE       y     1.409  0.0111     1.409  0.0111
+TFL          C2          C7      SINGLE       y     1.409  0.0111     1.409  0.0111
+TFL          C2          N2      SINGLE       n     1.369  0.0106     1.369  0.0106
+TFL          C3          C4      SINGLE       y     1.378  0.0100     1.378  0.0100
+TFL          C4          C5      DOUBLE       y     1.392  0.0100     1.392  0.0100
+TFL          C5          C6      SINGLE       y     1.392  0.0100     1.392  0.0100
+TFL          C5          C8      SINGLE       n     1.466  0.0100     1.466  0.0100
+TFL          C6          C7      DOUBLE       y     1.378  0.0100     1.378  0.0100
+TFL          C8          N1      DOUBLE       y     1.376  0.0109     1.376  0.0109
+TFL          C8          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+TFL          N1          C9      SINGLE       y     1.387  0.0100     1.387  0.0100
+TFL          N1         C17      SINGLE       n     1.457  0.0100     1.457  0.0100
+TFL          C9         C10      DOUBLE       y     1.372  0.0141     1.372  0.0141
+TFL          C9         C14      SINGLE       y     1.397  0.0109     1.397  0.0109
+TFL          S1         C10      SINGLE       y     1.695  0.0200     1.695  0.0200
+TFL         C10         C11      SINGLE       y     1.382  0.0123     1.382  0.0123
+TFL         C11         C12      DOUBLE       y     1.381  0.0100     1.381  0.0100
+TFL         C12         C13      SINGLE       y     1.405  0.0100     1.405  0.0100
+TFL         C12          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+TFL         C13         C14      DOUBLE       y     1.366  0.0100     1.366  0.0100
+TFL          N2         C15      SINGLE       n     1.447  0.0119     1.447  0.0119
+TFL          N2         C16      SINGLE       n     1.447  0.0119     1.447  0.0119
+TFL          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0198
+TFL          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0147
+TFL          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0147
+TFL          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0198
+TFL         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0170
+TFL         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0200
+TFL         C14         H14      SINGLE       n     1.082  0.0130     0.940  0.0191
+TFL          O3          HA      SINGLE       n     0.966  0.0059     0.861  0.0200
+TFL         C15        H151      SINGLE       n     1.089  0.0100     0.971  0.0181
+TFL         C15        H152      SINGLE       n     1.089  0.0100     0.971  0.0181
+TFL         C15        H153      SINGLE       n     1.089  0.0100     0.971  0.0181
+TFL         C16        H161      SINGLE       n     1.089  0.0100     0.971  0.0181
+TFL         C16        H162      SINGLE       n     1.089  0.0100     0.971  0.0181
+TFL         C16        H163      SINGLE       n     1.089  0.0100     0.971  0.0181
+TFL         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0146
+TFL         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0146
+TFL         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TFL          C3          C2          C7     117.739    1.50
+TFL          C3          C2          N2     121.131    1.50
+TFL          C7          C2          N2     121.131    1.50
+TFL          C2          C3          C4     121.143    1.50
+TFL          C2          C3          H3     119.224    1.50
+TFL          C4          C3          H3     119.634    1.50
+TFL          C3          C4          C5     120.544    1.50
+TFL          C3          C4          H4     119.581    1.50
+TFL          C5          C4          H4     119.875    1.50
+TFL          C4          C5          C6     118.889    1.50
+TFL          C4          C5          C8     120.556    1.80
+TFL          C6          C5          C8     120.556    1.80
+TFL          C5          C6          C7     120.544    1.50
+TFL          C5          C6          H6     119.875    1.50
+TFL          C7          C6          H6     119.581    1.50
+TFL          C2          C7          C6     121.143    1.50
+TFL          C2          C7          H7     119.224    1.50
+TFL          C6          C7          H7     119.634    1.50
+TFL          C5          C8          N1     128.012    1.58
+TFL          C5          C8          S1     123.561    3.00
+TFL          N1          C8          S1     108.426    3.00
+TFL          C8          N1          C9     107.526    1.50
+TFL          C8          N1         C17     127.713    1.50
+TFL          C9          N1         C17     124.760    1.65
+TFL          N1          C9         C10     107.195    1.50
+TFL          N1          C9         C14     132.085    1.50
+TFL         C10          C9         C14     120.720    1.84
+TFL          C8          S1         C10     108.426    3.00
+TFL          C9         C10          S1     108.426    3.00
+TFL          C9         C10         C11     120.933    1.99
+TFL          S1         C10         C11     130.640    3.00
+TFL         C10         C11         C12     118.242    1.50
+TFL         C10         C11         H11     121.025    1.50
+TFL         C12         C11         H11     120.733    1.50
+TFL         C11         C12         C13     121.185    1.50
+TFL         C11         C12          O3     119.408    3.00
+TFL         C13         C12          O3     119.408    3.00
+TFL         C12         C13         C14     121.018    1.50
+TFL         C12         C13         H13     119.462    1.50
+TFL         C14         C13         H13     119.520    1.50
+TFL          C9         C14         C13     117.902    1.50
+TFL          C9         C14         H14     121.220    1.50
+TFL         C13         C14         H14     120.878    1.50
+TFL         C12          O3          HA     120.000    3.00
+TFL          C2          N2         C15     121.018    1.50
+TFL          C2          N2         C16     121.018    1.50
+TFL         C15          N2         C16     117.963    1.50
+TFL          N2         C15        H151     109.662    1.50
+TFL          N2         C15        H152     109.662    1.50
+TFL          N2         C15        H153     109.662    1.50
+TFL        H151         C15        H152     109.352    1.56
+TFL        H151         C15        H153     109.352    1.56
+TFL        H152         C15        H153     109.352    1.56
+TFL          N2         C16        H161     109.662    1.50
+TFL          N2         C16        H162     109.662    1.50
+TFL          N2         C16        H163     109.662    1.50
+TFL        H161         C16        H162     109.352    1.56
+TFL        H161         C16        H163     109.352    1.56
+TFL        H162         C16        H163     109.352    1.56
+TFL          N1         C17        H171     109.510    1.50
+TFL          N1         C17        H172     109.510    1.50
+TFL          N1         C17        H173     109.510    1.50
+TFL        H171         C17        H172     109.427    1.50
+TFL        H171         C17        H173     109.427    1.50
+TFL        H172         C17        H173     109.427    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TFL              const_33          N2          C2          C3          C4     180.000    10.0     2
+TFL             sp2_sp2_1          C3          C2          N2         C15     180.000     5.0     2
+TFL              const_53          N2          C2          C7          C6     180.000    10.0     2
+TFL       const_sp2_sp2_5          C9         C10         C11         C12       0.000     5.0     2
+TFL              const_10         C10         C11         C12          O3     180.000    10.0     2
+TFL              const_15          O3         C12         C13         C14     180.000    10.0     2
+TFL             sp2_sp2_9         C11         C12          O3          HA     180.000     5.0     2
+TFL              const_17         C12         C13         C14          C9       0.000    10.0     2
+TFL            sp2_sp3_10         C16          N2         C15        H151     180.000    10.0     6
+TFL            sp2_sp3_16         C15          N2         C16        H161     180.000    10.0     6
+TFL              const_35          C2          C3          C4          C5       0.000    10.0     2
+TFL              const_39          C3          C4          C5          C6       0.000    10.0     2
+TFL              const_43          C4          C5          C6          C7       0.000    10.0     2
+TFL             sp2_sp2_5          C4          C5          C8          N1     180.000     5.0     2
+TFL              const_47          C5          C6          C7          C2       0.000    10.0     2
+TFL              const_24          C5          C8          N1         C17       0.000    10.0     2
+TFL              const_56          C5          C8          S1         C10     180.000    10.0     2
+TFL             sp2_sp3_1          C8          N1         C17        H171     150.000    10.0     6
+TFL              const_26         C10          C9          N1         C17     180.000    10.0     2
+TFL       const_sp2_sp2_1          S1         C10          C9          N1       0.000     5.0     2
+TFL              const_58         C13         C14          C9          N1     180.000    10.0     2
+TFL              const_29          C9         C10          S1          C8       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TFL    plan-1         C10   0.020
+TFL    plan-1         C11   0.020
+TFL    plan-1         C12   0.020
+TFL    plan-1         C13   0.020
+TFL    plan-1         C14   0.020
+TFL    plan-1         C17   0.020
+TFL    plan-1          C5   0.020
+TFL    plan-1          C8   0.020
+TFL    plan-1          C9   0.020
+TFL    plan-1         H11   0.020
+TFL    plan-1         H13   0.020
+TFL    plan-1         H14   0.020
+TFL    plan-1          N1   0.020
+TFL    plan-1          O3   0.020
+TFL    plan-1          S1   0.020
+TFL    plan-2          C2   0.020
+TFL    plan-2          C3   0.020
+TFL    plan-2          C4   0.020
+TFL    plan-2          C5   0.020
+TFL    plan-2          C6   0.020
+TFL    plan-2          C7   0.020
+TFL    plan-2          C8   0.020
+TFL    plan-2          H3   0.020
+TFL    plan-2          H4   0.020
+TFL    plan-2          H6   0.020
+TFL    plan-2          H7   0.020
+TFL    plan-2          N2   0.020
+TFL    plan-3         C15   0.020
+TFL    plan-3         C16   0.020
+TFL    plan-3          C2   0.020
+TFL    plan-3          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TFL           SMILES              ACDLabs 10.04                                                             Oc3ccc1c(sc([n+]1C)c2ccc(N(C)C)cc2)c3
+TFL SMILES_CANONICAL               CACTVS 3.341                                                               CN(C)c1ccc(cc1)c2sc3cc(O)ccc3[n+]2C
+TFL           SMILES               CACTVS 3.341                                                               CN(C)c1ccc(cc1)c2sc3cc(O)ccc3[n+]2C
+TFL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                               C[n+]1c2ccc(cc2sc1c3ccc(cc3)N(C)C)O
+TFL           SMILES "OpenEye OEToolkits" 1.5.0                                                               C[n+]1c2ccc(cc2sc1c3ccc(cc3)N(C)C)O
+TFL            InChI                InChI  1.03 InChI=1S/C16H16N2OS/c1-17(2)12-6-4-11(5-7-12)16-18(3)14-9-8-13(19)10-15(14)20-16/h4-10H,1-3H3/p+1
+TFL         InChIKey                InChI  1.03                                                                       NOVJJPLRUMZSDK-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TFL acedrg               243         "dictionary generator"                  
+TFL acedrg_database      11          "data source"                           
+TFL rdkit                2017.03.2   "Chemoinformatics tool"
+TFL refmac5              5.8.0238    "optimization tool"                     

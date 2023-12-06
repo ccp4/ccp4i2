@@ -1,0 +1,738 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RPO     RPO      "(1R,2R,3S,4R,6S)-4,6-diamino-2-{[3-O-(2,6-diamino-2,6-dideoxy-beta-L-idopyranosyl)-beta-D-ribofuranosyl]oxy}-3-hydroxycyclohexyl 2-amino-4-O-benzyl-2-deoxy-alpha-D-glucopyranoside"     NON-POLYMER     103     49     .     
+#
+data_comp_RPO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RPO     C1      C       CH1     0       189.945     87.355      -11.082     
+RPO     O1      O       O2      0       190.670     88.558      -11.244     
+RPO     C2      C       CH1     0       188.672     87.657      -10.296     
+RPO     N2      N       NT2     0       187.947     88.821      -10.830     
+RPO     C3      C       CH1     0       188.962     87.834      -8.801      
+RPO     O3      O       OH1     0       187.744     87.946      -8.075      
+RPO     C4      C       CH1     0       189.780     86.657      -8.277      
+RPO     O4      O       O2      0       190.119     86.890      -6.909      
+RPO     C5      C       CH1     0       191.073     86.540      -9.087      
+RPO     O5      O       O2      0       190.755     86.334      -10.481     
+RPO     C6      C       CH2     0       191.942     85.376      -8.661      
+RPO     O6      O       OH1     0       193.097     85.250      -9.490      
+RPO     CAL     C       CR16    0       189.674     87.405      -2.493      
+RPO     CAM     C       CR16    0       189.274     87.060      -3.778      
+RPO     CAN     C       CR16    0       190.894     86.977      -2.008      
+RPO     CAO     C       CR6     0       190.092     86.285      -4.587      
+RPO     CAP     C       CR16    0       191.715     86.206      -2.804      
+RPO     CAU     C       CH2     0       189.658     85.909      -5.979      
+RPO     CBC     C       CR16    0       191.315     85.860      -4.090      
+RPO     CBD     C       CH1     0       193.552     90.190      -13.927     
+RPO     CAT     C       CH2     0       193.993     89.759      -12.532     
+RPO     CBE     C       CH1     0       192.796     89.597      -11.598     
+RPO     CBT     C       CH1     0       191.777     88.610      -12.165     
+RPO     CBW     C       CH1     0       191.336     89.087      -13.555     
+RPO     CBI     C       CH1     0       192.528     89.207      -14.506     
+RPO     NAB     N       NT3     1       194.744     90.289      -14.828     
+RPO     NAC     N       NT3     1       193.264     89.142      -10.250     
+RPO     "O1'"   O       O2      0       190.414     88.133      -14.132     
+RPO     OAH     O       OH1     0       192.111     89.660      -15.792     
+RPO     "C4'"   C       CH1     0       186.986     88.198      -14.480     
+RPO     "O4'"   O       O2      0       188.176     88.787      -13.905     
+RPO     "C1'"   C       CH1     0       189.289     88.650      -14.789     
+RPO     "C2'"   C       CH1     0       188.847     87.619      -15.831     
+RPO     "O2'"   O       OH1     0       189.497     87.740      -17.081     
+RPO     "C3'"   C       CH1     0       187.343     87.860      -15.927     
+RPO     "O3'"   O       O2      0       187.022     88.946      -16.798     
+RPO     "C5'"   C       CH2     0       186.540     87.015      -13.652     
+RPO     "O5'"   O       OH1     0       186.125     87.419      -12.355     
+RPO     CBM     C       CH1     0       183.475     88.546      -17.508     
+RPO     OAV     O       O2      0       184.695     88.727      -16.762     
+RPO     CBQ     C       CH1     0       185.851     88.830      -17.589     
+RPO     CBF     C       CH1     0       185.753     90.046      -18.499     
+RPO     NAD     N       NT2     0       185.911     91.307      -17.759     
+RPO     CBH     C       CH1     0       184.443     90.057      -19.302     
+RPO     OAG     O       OH1     0       184.516     89.137      -20.385     
+RPO     CBJ     C       CH1     0       183.238     89.766      -18.410     
+RPO     OAI     O       OH1     0       182.998     90.913      -17.599     
+RPO     CAQ     C       CH2     0       182.364     88.286      -16.506     
+RPO     NAA     N       NT3     1       182.486     86.995      -15.783     
+RPO     H1      H       H       0       189.681     87.048      -11.980     
+RPO     H2      H       H       0       188.083     86.869      -10.383     
+RPO     HN2     H       H       0       188.412     89.563      -10.679     
+RPO     HN2A    H       H       0       187.831     88.731      -11.706     
+RPO     H3      H       H       0       189.484     88.668      -8.676      
+RPO     HO3     H       H       0       187.307     87.232      -8.164      
+RPO     H4      H       H       0       189.250     85.829      -8.364      
+RPO     H5      H       H       0       191.584     87.377      -8.991      
+RPO     H6      H       H       0       191.420     84.548      -8.708      
+RPO     H6A     H       H       0       192.227     85.504      -7.733      
+RPO     HO6     H       H       0       193.582     85.941      -9.406      
+RPO     HAL     H       H       0       189.110     87.933      -1.950      
+RPO     HAM     H       H       0       188.439     87.355      -4.103      
+RPO     HAN     H       H       0       191.166     87.212      -1.135      
+RPO     HAP     H       H       0       192.550     85.912      -2.476      
+RPO     HAU     H       H       0       190.027     85.033      -6.216      
+RPO     HAUA    H       H       0       188.681     85.852      -6.018      
+RPO     HBC     H       H       0       191.882     85.332      -4.630      
+RPO     HBD     H       H       0       193.126     91.092      -13.862     
+RPO     HAT     H       H       0       194.479     88.906      -12.590     
+RPO     HATA    H       H       0       194.609     90.429      -12.162     
+RPO     HBE     H       H       0       192.352     90.487      -11.496     
+RPO     HBT     H       H       0       192.200     87.719      -12.241     
+RPO     HBW     H       H       0       190.897     89.970      -13.468     
+RPO     HBI     H       H       0       192.957     88.315      -14.603     
+RPO     HNAC    H       H       0       194.479     90.335      -15.687     
+RPO     HNAD    H       H       0       195.273     89.568      -14.725     
+RPO     H7      H       H       0       195.215     91.029      -14.631     
+RPO     HNAE    H       H       0       193.413     88.255      -10.256     
+RPO     HNAF    H       H       0       192.642     89.336      -9.633      
+RPO     H8      H       H       0       194.027     89.564      -10.028     
+RPO     HOAH    H       H       0       191.729     90.406      -15.705     
+RPO     "H4'"   H       H       0       186.239     88.898      -14.477     
+RPO     "H1'"   H       H       0       189.483     89.528      -15.204     
+RPO     "H2'"   H       H       0       189.017     86.678      -15.477     
+RPO     "HO2'"  H       H       0       190.339     87.711      -16.974     
+RPO     "H3'"   H       H       0       186.885     87.032      -16.215     
+RPO     "H5'"   H       H       0       187.280     86.377      -13.572     
+RPO     "H5'A"  H       H       0       185.794     86.566      -14.105     
+RPO     "HO5'"  H       H       0       185.429     87.898      -12.423     
+RPO     HBM     H       H       0       183.563     87.741      -18.078     
+RPO     HBQ     H       H       0       185.922     88.020      -18.151     
+RPO     HBF     H       H       0       186.491     89.984      -19.153     
+RPO     HNAG    H       H       0       186.630     91.268      -17.238     
+RPO     HNAH    H       H       0       186.009     91.984      -18.327     
+RPO     HBH     H       H       0       184.325     90.966      -19.681     
+RPO     HOAG    H       H       0       184.617     88.358      -20.093     
+RPO     HBJ     H       H       0       182.443     89.603      -18.979     
+RPO     HOAI    H       H       0       182.637     91.516      -18.062     
+RPO     HAQ     H       H       0       181.504     88.299      -16.979     
+RPO     HAQA    H       H       0       182.359     89.012      -15.845     
+RPO     HNAA    H       H       0       183.359     86.797      -15.634     
+RPO     HNAB    H       H       0       182.116     86.326      -16.271     
+RPO     H9      H       H       0       182.060     87.042      -14.984     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RPO          C1          O1      SINGLE       n     1.406  0.0151     1.406  0.0151
+RPO          C1          C2      SINGLE       n     1.512  0.0200     1.512  0.0200
+RPO          C1          O5      SINGLE       n     1.422  0.0172     1.422  0.0172
+RPO          O1         CBT      SINGLE       n     1.436  0.0105     1.436  0.0105
+RPO          C2          N2      SINGLE       n     1.470  0.0107     1.470  0.0107
+RPO          C2          C3      SINGLE       n     1.532  0.0100     1.532  0.0100
+RPO          C3          O3      SINGLE       n     1.421  0.0106     1.421  0.0106
+RPO          C3          C4      SINGLE       n     1.526  0.0100     1.526  0.0100
+RPO          C4          O4      SINGLE       n     1.427  0.0102     1.427  0.0102
+RPO          C4          C5      SINGLE       n     1.525  0.0186     1.525  0.0186
+RPO          O4         CAU      SINGLE       n     1.424  0.0176     1.424  0.0176
+RPO          C5          O5      SINGLE       n     1.441  0.0100     1.441  0.0100
+RPO          C5          C6      SINGLE       n     1.511  0.0142     1.511  0.0142
+RPO          C6          O6      SINGLE       n     1.426  0.0200     1.426  0.0200
+RPO       "O1'"       "C1'"      SINGLE       n     1.396  0.0146     1.396  0.0146
+RPO       "C1'"       "C2'"      SINGLE       n     1.532  0.0126     1.532  0.0126
+RPO       "O4'"       "C1'"      SINGLE       n     1.423  0.0192     1.423  0.0192
+RPO         CBW       "O1'"      SINGLE       n     1.436  0.0184     1.436  0.0184
+RPO       "C2'"       "O2'"      SINGLE       n     1.413  0.0100     1.413  0.0100
+RPO       "C2'"       "C3'"      SINGLE       n     1.529  0.0127     1.529  0.0127
+RPO       "C3'"       "O3'"      SINGLE       n     1.425  0.0115     1.425  0.0115
+RPO       "C4'"       "C3'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+RPO       "O3'"         CBQ      SINGLE       n     1.415  0.0128     1.415  0.0128
+RPO       "C4'"       "O4'"      SINGLE       n     1.445  0.0110     1.445  0.0110
+RPO       "C4'"       "C5'"      SINGLE       n     1.511  0.0118     1.511  0.0118
+RPO       "C5'"       "O5'"      SINGLE       n     1.421  0.0131     1.421  0.0131
+RPO         CAQ         NAA      SINGLE       n     1.483  0.0133     1.483  0.0133
+RPO         CBD         NAB      SINGLE       n     1.496  0.0100     1.496  0.0100
+RPO         CBE         NAC      SINGLE       n     1.496  0.0100     1.496  0.0100
+RPO         CBF         NAD      SINGLE       n     1.470  0.0107     1.470  0.0107
+RPO         CBH         OAG      SINGLE       n     1.421  0.0106     1.421  0.0106
+RPO         CBI         OAH      SINGLE       n     1.424  0.0100     1.424  0.0100
+RPO         CBJ         OAI      SINGLE       n     1.425  0.0100     1.425  0.0100
+RPO         CAL         CAM      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RPO         CAL         CAN      SINGLE       y     1.376  0.0124     1.376  0.0124
+RPO         CAM         CAO      SINGLE       y     1.383  0.0108     1.383  0.0108
+RPO         CAN         CAP      DOUBLE       y     1.374  0.0127     1.374  0.0127
+RPO         CAO         CAU      SINGLE       n     1.506  0.0100     1.506  0.0100
+RPO         CAO         CBC      DOUBLE       y     1.383  0.0108     1.383  0.0108
+RPO         CAP         CBC      SINGLE       y     1.386  0.0100     1.386  0.0100
+RPO         CBM         CAQ      SINGLE       n     1.518  0.0100     1.518  0.0100
+RPO         CBD         CAT      SINGLE       n     1.525  0.0100     1.525  0.0100
+RPO         CAT         CBE      SINGLE       n     1.525  0.0100     1.525  0.0100
+RPO         CBM         OAV      SINGLE       n     1.441  0.0100     1.441  0.0100
+RPO         OAV         CBQ      SINGLE       n     1.422  0.0172     1.422  0.0172
+RPO         CBD         CBI      SINGLE       n     1.532  0.0100     1.532  0.0100
+RPO         CBE         CBT      SINGLE       n     1.524  0.0103     1.524  0.0103
+RPO         CBF         CBH      SINGLE       n     1.532  0.0100     1.532  0.0100
+RPO         CBQ         CBF      SINGLE       n     1.512  0.0200     1.512  0.0200
+RPO         CBH         CBJ      SINGLE       n     1.523  0.0100     1.523  0.0100
+RPO         CBW         CBI      SINGLE       n     1.526  0.0100     1.526  0.0100
+RPO         CBM         CBJ      SINGLE       n     1.524  0.0192     1.524  0.0192
+RPO         CBT         CBW      SINGLE       n     1.522  0.0154     1.522  0.0154
+RPO          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0183
+RPO          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0199
+RPO          N2         HN2      SINGLE       n     1.036  0.0160     0.889  0.0200
+RPO          N2        HN2A      SINGLE       n     1.036  0.0160     0.889  0.0200
+RPO          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0104
+RPO          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+RPO          C4          H4      SINGLE       n     1.089  0.0100     0.987  0.0102
+RPO          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0182
+RPO          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0184
+RPO          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0184
+RPO          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+RPO         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0175
+RPO         CAM         HAM      SINGLE       n     1.082  0.0130     0.944  0.0174
+RPO         CAN         HAN      SINGLE       n     1.082  0.0130     0.944  0.0161
+RPO         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0175
+RPO         CAU         HAU      SINGLE       n     1.089  0.0100     0.980  0.0180
+RPO         CAU        HAUA      SINGLE       n     1.089  0.0100     0.980  0.0180
+RPO         CBC         HBC      SINGLE       n     1.082  0.0130     0.944  0.0174
+RPO         CBD         HBD      SINGLE       n     1.089  0.0100     1.000  0.0100
+RPO         CAT         HAT      SINGLE       n     1.089  0.0100     0.983  0.0138
+RPO         CAT        HATA      SINGLE       n     1.089  0.0100     0.983  0.0138
+RPO         CBE         HBE      SINGLE       n     1.089  0.0100     1.000  0.0100
+RPO         CBT         HBT      SINGLE       n     1.089  0.0100     0.989  0.0181
+RPO         CBW         HBW      SINGLE       n     1.089  0.0100     0.989  0.0181
+RPO         CBI         HBI      SINGLE       n     1.089  0.0100     0.994  0.0160
+RPO         NAB        HNAC      SINGLE       n     1.036  0.0160     0.899  0.0200
+RPO         NAB        HNAD      SINGLE       n     1.036  0.0160     0.899  0.0200
+RPO         NAB          H7      SINGLE       n     1.036  0.0160     0.899  0.0200
+RPO         NAC        HNAE      SINGLE       n     1.036  0.0160     0.899  0.0200
+RPO         NAC        HNAF      SINGLE       n     1.036  0.0160     0.899  0.0200
+RPO         NAC          H8      SINGLE       n     1.036  0.0160     0.899  0.0200
+RPO         OAH        HOAH      SINGLE       n     0.970  0.0120     0.841  0.0200
+RPO       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     1.024  0.0200
+RPO       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.990  0.0166
+RPO       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     1.020  0.0200
+RPO       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+RPO       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.988  0.0200
+RPO       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+RPO       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.981  0.0200
+RPO       "O5'"      "HO5'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+RPO         CBM         HBM      SINGLE       n     1.089  0.0100     0.990  0.0106
+RPO         CBQ         HBQ      SINGLE       n     1.089  0.0100     0.989  0.0183
+RPO         CBF         HBF      SINGLE       n     1.089  0.0100     0.988  0.0199
+RPO         NAD        HNAG      SINGLE       n     1.036  0.0160     0.889  0.0200
+RPO         NAD        HNAH      SINGLE       n     1.036  0.0160     0.889  0.0200
+RPO         CBH         HBH      SINGLE       n     1.089  0.0100     0.992  0.0104
+RPO         OAG        HOAG      SINGLE       n     0.970  0.0120     0.841  0.0200
+RPO         CBJ         HBJ      SINGLE       n     1.089  0.0100     0.991  0.0105
+RPO         OAI        HOAI      SINGLE       n     0.970  0.0120     0.841  0.0200
+RPO         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.982  0.0165
+RPO         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.982  0.0165
+RPO         NAA        HNAA      SINGLE       n     1.036  0.0160     0.907  0.0200
+RPO         NAA        HNAB      SINGLE       n     1.036  0.0160     0.907  0.0200
+RPO         NAA          H9      SINGLE       n     1.036  0.0160     0.907  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RPO          O1          C1          C2     108.367    1.50
+RPO          O1          C1          O5     110.325    1.95
+RPO          O1          C1          H1     107.875    2.12
+RPO          C2          C1          O5     111.350    3.00
+RPO          C2          C1          H1     108.848    1.50
+RPO          O5          C1          H1     109.272    1.61
+RPO          C1          O1         CBT     117.169    1.96
+RPO          C1          C2          N2     111.865    2.42
+RPO          C1          C2          C3     111.124    1.57
+RPO          C1          C2          H2     107.511    1.55
+RPO          N2          C2          C3     111.315    2.25
+RPO          N2          C2          H2     108.113    1.50
+RPO          C3          C2          H2     107.258    1.68
+RPO          C2          N2         HN2     109.984    3.00
+RPO          C2          N2        HN2A     109.984    3.00
+RPO         HN2          N2        HN2A     108.673    3.00
+RPO          C2          C3          O3     110.124    1.87
+RPO          C2          C3          C4     110.742    1.50
+RPO          C2          C3          H3     108.987    1.50
+RPO          O3          C3          C4     110.081    2.02
+RPO          O3          C3          H3     108.954    1.50
+RPO          C4          C3          H3     109.166    1.50
+RPO          C3          O3         HO3     108.064    2.53
+RPO          C3          C4          O4     109.116    2.14
+RPO          C3          C4          C5     110.072    1.92
+RPO          C3          C4          H4     109.166    1.50
+RPO          O4          C4          C5     106.941    2.44
+RPO          O4          C4          H4     109.623    1.50
+RPO          C5          C4          H4     110.022    1.50
+RPO          C4          O4         CAU     115.152    1.50
+RPO          C4          C5          O5     109.259    1.76
+RPO          C4          C5          C6     113.127    1.52
+RPO          C4          C5          H5     108.888    1.50
+RPO          O5          C5          C6     106.879    1.50
+RPO          O5          C5          H5     109.134    1.50
+RPO          C6          C5          H5     109.269    1.50
+RPO          C1          O5          C5     113.097    1.50
+RPO          C5          C6          O6     111.299    2.09
+RPO          C5          C6          H6     109.363    1.50
+RPO          C5          C6         H6A     109.363    1.50
+RPO          O6          C6          H6     109.265    1.50
+RPO          O6          C6         H6A     109.265    1.50
+RPO          H6          C6         H6A     108.155    1.50
+RPO          C6          O6         HO6     109.472    2.41
+RPO         CAM         CAL         CAN     120.186    1.50
+RPO         CAM         CAL         HAL     119.862    1.50
+RPO         CAN         CAL         HAL     119.952    1.50
+RPO         CAL         CAM         CAO     120.514    1.50
+RPO         CAL         CAM         HAM     119.754    1.50
+RPO         CAO         CAM         HAM     119.732    1.50
+RPO         CAL         CAN         CAP     119.903    1.50
+RPO         CAL         CAN         HAN     120.048    1.50
+RPO         CAP         CAN         HAN     120.048    1.50
+RPO         CAM         CAO         CAU     120.651    1.50
+RPO         CAM         CAO         CBC     118.697    1.50
+RPO         CAU         CAO         CBC     120.651    1.50
+RPO         CAN         CAP         CBC     120.186    1.50
+RPO         CAN         CAP         HAP     119.952    1.50
+RPO         CBC         CAP         HAP     119.862    1.50
+RPO          O4         CAU         CAO     109.471    1.90
+RPO          O4         CAU         HAU     109.700    1.50
+RPO          O4         CAU        HAUA     109.700    1.50
+RPO         CAO         CAU         HAU     109.830    1.50
+RPO         CAO         CAU        HAUA     109.830    1.50
+RPO         HAU         CAU        HAUA     108.301    1.50
+RPO         CAO         CBC         CAP     120.514    1.50
+RPO         CAO         CBC         HBC     119.732    1.50
+RPO         CAP         CBC         HBC     119.754    1.50
+RPO         NAB         CBD         CAT     109.461    1.50
+RPO         NAB         CBD         CBI     110.002    1.50
+RPO         NAB         CBD         HBD     108.734    1.50
+RPO         CAT         CBD         CBI     111.166    1.50
+RPO         CAT         CBD         HBD     108.719    1.50
+RPO         CBI         CBD         HBD     108.719    1.50
+RPO         CBD         CAT         CBE     112.567    1.88
+RPO         CBD         CAT         HAT     109.552    1.50
+RPO         CBD         CAT        HATA     109.552    1.50
+RPO         CBE         CAT         HAT     109.552    1.50
+RPO         CBE         CAT        HATA     109.552    1.50
+RPO         HAT         CAT        HATA     107.784    1.50
+RPO         NAC         CBE         CAT     109.461    1.50
+RPO         NAC         CBE         CBT     109.671    1.50
+RPO         NAC         CBE         HBE     108.734    1.50
+RPO         CAT         CBE         CBT     111.392    1.50
+RPO         CAT         CBE         HBE     108.719    1.50
+RPO         CBT         CBE         HBE     108.763    1.50
+RPO          O1         CBT         CBE     107.953    1.94
+RPO          O1         CBT         CBW     108.580    2.45
+RPO          O1         CBT         HBT     109.522    1.50
+RPO         CBE         CBT         CBW     108.862    1.50
+RPO         CBE         CBT         HBT     108.664    1.50
+RPO         CBW         CBT         HBT     109.166    1.50
+RPO       "O1'"         CBW         CBI     108.860    2.21
+RPO       "O1'"         CBW         CBT     108.860    2.21
+RPO       "O1'"         CBW         HBW     109.040    1.50
+RPO         CBI         CBW         CBT     110.796    1.54
+RPO         CBI         CBW         HBW     109.166    1.50
+RPO         CBT         CBW         HBW     109.166    1.50
+RPO         OAH         CBI         CBD     109.484    1.50
+RPO         OAH         CBI         CBW     110.081    2.02
+RPO         OAH         CBI         HBI     108.954    1.50
+RPO         CBD         CBI         CBW     108.862    1.50
+RPO         CBD         CBI         HBI     108.942    1.50
+RPO         CBW         CBI         HBI     109.166    1.50
+RPO         CBD         NAB        HNAC     109.908    1.75
+RPO         CBD         NAB        HNAD     109.908    1.75
+RPO         CBD         NAB          H7     109.908    1.75
+RPO        HNAC         NAB        HNAD     109.122    2.58
+RPO        HNAC         NAB          H7     109.122    2.58
+RPO        HNAD         NAB          H7     109.122    2.58
+RPO         CBE         NAC        HNAE     109.908    1.75
+RPO         CBE         NAC        HNAF     109.908    1.75
+RPO         CBE         NAC          H8     109.908    1.75
+RPO        HNAE         NAC        HNAF     109.122    2.58
+RPO        HNAE         NAC          H8     109.122    2.58
+RPO        HNAF         NAC          H8     109.122    2.58
+RPO       "C1'"       "O1'"         CBW     114.840    1.50
+RPO         CBI         OAH        HOAH     108.064    2.53
+RPO       "C3'"       "C4'"       "O4'"     105.508    1.50
+RPO       "C3'"       "C4'"       "C5'"     114.866    1.63
+RPO       "C3'"       "C4'"       "H4'"     109.143    1.50
+RPO       "O4'"       "C4'"       "C5'"     110.385    1.64
+RPO       "O4'"       "C4'"       "H4'"     109.199    2.08
+RPO       "C5'"       "C4'"       "H4'"     109.037    1.87
+RPO       "C1'"       "O4'"       "C4'"     109.722    1.50
+RPO       "O1'"       "C1'"       "C2'"     108.741    2.62
+RPO       "O1'"       "C1'"       "O4'"     111.780    1.50
+RPO       "O1'"       "C1'"       "H1'"     111.010    1.50
+RPO       "C2'"       "C1'"       "O4'"     104.988    1.50
+RPO       "C2'"       "C1'"       "H1'"     112.713    2.29
+RPO       "O4'"       "C1'"       "H1'"     109.510    2.59
+RPO       "C1'"       "C2'"       "O2'"     114.767    2.06
+RPO       "C1'"       "C2'"       "C3'"     104.443    2.26
+RPO       "C1'"       "C2'"       "H2'"     110.947    3.00
+RPO       "O2'"       "C2'"       "C3'"     112.463    2.73
+RPO       "O2'"       "C2'"       "H2'"     108.546    1.50
+RPO       "C3'"       "C2'"       "H2'"     110.255    2.04
+RPO       "C2'"       "O2'"      "HO2'"     110.011    1.50
+RPO       "C2'"       "C3'"       "O3'"     110.766    3.00
+RPO       "C2'"       "C3'"       "C4'"     102.352    1.50
+RPO       "C2'"       "C3'"       "H3'"     110.255    2.04
+RPO       "O3'"       "C3'"       "C4'"     110.864    2.31
+RPO       "O3'"       "C3'"       "H3'"     110.343    1.64
+RPO       "C4'"       "C3'"       "H3'"     110.624    1.81
+RPO       "C3'"       "O3'"         CBQ     116.304    2.37
+RPO       "C4'"       "C5'"       "O5'"     111.279    1.98
+RPO       "C4'"       "C5'"       "H5'"     109.326    2.00
+RPO       "C4'"       "C5'"      "H5'A"     109.326    2.00
+RPO       "O5'"       "C5'"       "H5'"     109.280    1.50
+RPO       "O5'"       "C5'"      "H5'A"     109.280    1.50
+RPO       "H5'"       "C5'"      "H5'A"     108.248    2.26
+RPO       "C5'"       "O5'"      "HO5'"     109.007    3.00
+RPO         CAQ         CBM         OAV     107.878    2.44
+RPO         CAQ         CBM         CBJ     113.587    1.96
+RPO         CAQ         CBM         HBM     108.699    2.22
+RPO         OAV         CBM         CBJ     109.378    1.54
+RPO         OAV         CBM         HBM     108.995    1.50
+RPO         CBJ         CBM         HBM     108.898    1.50
+RPO         CBM         OAV         CBQ     113.097    1.50
+RPO       "O3'"         CBQ         OAV     110.394    2.23
+RPO       "O3'"         CBQ         CBF     108.367    1.50
+RPO       "O3'"         CBQ         HBQ     109.322    1.50
+RPO         OAV         CBQ         CBF     111.350    3.00
+RPO         OAV         CBQ         HBQ     109.272    1.61
+RPO         CBF         CBQ         HBQ     108.848    1.50
+RPO         NAD         CBF         CBH     111.315    2.25
+RPO         NAD         CBF         CBQ     111.865    2.42
+RPO         NAD         CBF         HBF     108.113    1.50
+RPO         CBH         CBF         CBQ     111.124    1.57
+RPO         CBH         CBF         HBF     107.258    1.68
+RPO         CBQ         CBF         HBF     107.511    1.55
+RPO         CBF         NAD        HNAG     109.984    3.00
+RPO         CBF         NAD        HNAH     109.984    3.00
+RPO        HNAG         NAD        HNAH     108.673    3.00
+RPO         OAG         CBH         CBF     110.124    1.87
+RPO         OAG         CBH         CBJ     110.984    1.55
+RPO         OAG         CBH         HBH     108.954    1.50
+RPO         CBF         CBH         CBJ     110.742    1.50
+RPO         CBF         CBH         HBH     108.987    1.50
+RPO         CBJ         CBH         HBH     108.714    1.50
+RPO         CBH         OAG        HOAG     108.064    2.53
+RPO         OAI         CBJ         CBH     109.301    2.14
+RPO         OAI         CBJ         CBM     109.153    2.02
+RPO         OAI         CBJ         HBJ     109.194    1.50
+RPO         CBH         CBJ         CBM     110.072    1.92
+RPO         CBH         CBJ         HBJ     109.514    1.50
+RPO         CBM         CBJ         HBJ     109.550    1.50
+RPO         CBJ         OAI        HOAI     109.564    3.00
+RPO         NAA         CAQ         CBM     113.823    1.83
+RPO         NAA         CAQ         HAQ     108.377    1.50
+RPO         NAA         CAQ        HAQA     108.377    1.50
+RPO         CBM         CAQ         HAQ     108.444    1.50
+RPO         CBM         CAQ        HAQA     108.444    1.50
+RPO         HAQ         CAQ        HAQA     107.850    1.50
+RPO         CAQ         NAA        HNAA     110.335    2.25
+RPO         CAQ         NAA        HNAB     110.335    2.25
+RPO         CAQ         NAA          H9     110.335    2.25
+RPO        HNAA         NAA        HNAB     108.820    2.86
+RPO        HNAA         NAA          H9     108.820    2.86
+RPO        HNAB         NAA          H9     108.820    2.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RPO                  nu05          C5          O5          C1          C2     -57.952    10.0     3
+RPO                  nu15          O5          C1          C2          C3      52.297    10.0     3
+RPO                  nu25          C1          C2          C3          C4     -51.194    10.0     3
+RPO                  nu35          C2          C3          C4          C5      54.155    10.0     3
+RPO                  nu45          C3          C4          C5          O5     -59.915    10.0     3
+RPO                  nu55          C4          C5          O5          C1      62.404    10.0     3
+RPO                  nu0'       "C4'"       "O4'"       "C1'"       "C2'"     -14.197    10.0     3
+RPO                  nu1'       "O4'"       "C1'"       "C2'"       "C3'"      29.764    10.0     3
+RPO                  nu2'       "C1'"       "C2'"       "C3'"       "C4'"     -31.621    10.0     3
+RPO                  nu3'       "C2'"       "C3'"       "C4'"       "O4'"      25.173    10.0     3
+RPO                  nu4'       "C3'"       "C4'"       "O4'"       "C1'"      -7.096    10.0     3
+RPO                  nu0V         CBM         OAV         CBQ         CBF      68.115    10.0     3
+RPO                  nu1V         OAV         CBQ         CBF         CBH     -53.603    10.0     3
+RPO                  nu2V         CBQ         CBF         CBH         CBJ      40.672    10.0     3
+RPO                  nu3V         CBF         CBH         CBJ         CBM     -40.026    10.0     3
+RPO                  nu4V         CBH         CBJ         CBM         OAV      52.437    10.0     3
+RPO                  nu5V         CBJ         CBM         OAV         CBQ     -67.504    10.0     3
+RPO       const_sp2_sp2_1         CAN         CAL         CAM         CAO       0.000     5.0     2
+RPO       const_sp2_sp2_2         CAN         CAL         CAM         HAM     180.000     5.0     2
+RPO       const_sp2_sp2_3         HAL         CAL         CAM         CAO     180.000     5.0     2
+RPO       const_sp2_sp2_4         HAL         CAL         CAM         HAM       0.000     5.0     2
+RPO       const_sp2_sp2_5         CAL         CAM         CAO         CBC       0.000     5.0     2
+RPO       const_sp2_sp2_6         CAL         CAM         CAO         CAU     180.000     5.0     2
+RPO       const_sp2_sp2_7         HAM         CAM         CAO         CBC     180.000     5.0     2
+RPO       const_sp2_sp2_8         HAM         CAM         CAO         CAU       0.000     5.0     2
+RPO       const_sp2_sp2_9         CAM         CAO         CBC         CAP       0.000     5.0     2
+RPO              const_10         CAM         CAO         CBC         HBC     180.000    10.0     2
+RPO              const_11         CAU         CAO         CBC         CAP     180.000    10.0     2
+RPO              const_12         CAU         CAO         CBC         HBC       0.000    10.0     2
+RPO              const_13         CAN         CAP         CBC         CAO       0.000    10.0     2
+RPO              const_14         CAN         CAP         CBC         HBC     180.000    10.0     2
+RPO              const_15         HAP         CAP         CBC         CAO     180.000    10.0     2
+RPO              const_16         HAP         CAP         CBC         HBC       0.000    10.0     2
+RPO              const_17         CAL         CAN         CAP         CBC       0.000    10.0     2
+RPO              const_18         CAL         CAN         CAP         HAP     180.000    10.0     2
+RPO              const_19         HAN         CAN         CAP         CBC     180.000    10.0     2
+RPO              const_20         HAN         CAN         CAP         HAP       0.000    10.0     2
+RPO            sp3_sp3_70         CBE         CAT         CBD         CBI      60.000    10.0     3
+RPO            sp3_sp3_71         CBE         CAT         CBD         NAB     180.000    10.0     3
+RPO            sp3_sp3_72         CBE         CAT         CBD         HBD     -60.000    10.0     3
+RPO            sp3_sp3_73         HAT         CAT         CBD         CBI     -60.000    10.0     3
+RPO            sp3_sp3_74         HAT         CAT         CBD         NAB      60.000    10.0     3
+RPO            sp3_sp3_75         HAT         CAT         CBD         HBD     180.000    10.0     3
+RPO            sp3_sp3_76        HATA         CAT         CBD         CBI     180.000    10.0     3
+RPO            sp3_sp3_77        HATA         CAT         CBD         NAB     -60.000    10.0     3
+RPO            sp3_sp3_78        HATA         CAT         CBD         HBD      60.000    10.0     3
+RPO            sp3_sp3_79         CBD         CAT         CBE         CBT     -60.000    10.0     3
+RPO            sp3_sp3_80         CBD         CAT         CBE         NAC      60.000    10.0     3
+RPO            sp3_sp3_81         CBD         CAT         CBE         HBE     180.000    10.0     3
+RPO            sp3_sp3_82         HAT         CAT         CBE         CBT     180.000    10.0     3
+RPO            sp3_sp3_83         HAT         CAT         CBE         NAC     -60.000    10.0     3
+RPO            sp3_sp3_84         HAT         CAT         CBE         HBE      60.000    10.0     3
+RPO            sp3_sp3_85        HATA         CAT         CBE         CBT      60.000    10.0     3
+RPO            sp3_sp3_86        HATA         CAT         CBE         NAC     180.000    10.0     3
+RPO            sp3_sp3_87        HATA         CAT         CBE         HBE     -60.000    10.0     3
+RPO            sp3_sp3_88         CAT         CBE         CBT         CBW      60.000    10.0     3
+RPO            sp3_sp3_89         CAT         CBE         CBT          O1     180.000    10.0     3
+RPO            sp3_sp3_90         CAT         CBE         CBT         HBT     -60.000    10.0     3
+RPO            sp3_sp3_91         NAC         CBE         CBT         CBW     -60.000    10.0     3
+RPO            sp3_sp3_92         NAC         CBE         CBT          O1      60.000    10.0     3
+RPO            sp3_sp3_93         NAC         CBE         CBT         HBT     180.000    10.0     3
+RPO            sp3_sp3_94         HBE         CBE         CBT         CBW     180.000    10.0     3
+RPO            sp3_sp3_95         HBE         CBE         CBT          O1     -60.000    10.0     3
+RPO            sp3_sp3_96         HBE         CBE         CBT         HBT      60.000    10.0     3
+RPO            sp3_sp3_97         CBE         CBT         CBW         CBI     -60.000    10.0     3
+RPO            sp3_sp3_98         CBE         CBT         CBW       "O1'"      60.000    10.0     3
+RPO            sp3_sp3_99         CBE         CBT         CBW         HBW     180.000    10.0     3
+RPO           sp3_sp3_100          O1         CBT         CBW         CBI     180.000    10.0     3
+RPO           sp3_sp3_101          O1         CBT         CBW       "O1'"     -60.000    10.0     3
+RPO           sp3_sp3_102          O1         CBT         CBW         HBW      60.000    10.0     3
+RPO           sp3_sp3_103         HBT         CBT         CBW         CBI      60.000    10.0     3
+RPO           sp3_sp3_104         HBT         CBT         CBW       "O1'"     180.000    10.0     3
+RPO           sp3_sp3_105         HBT         CBT         CBW         HBW     -60.000    10.0     3
+RPO           sp3_sp3_106         CBD         CBI         CBW         CBT      60.000    10.0     3
+RPO           sp3_sp3_107         CBD         CBI         CBW       "O1'"     180.000    10.0     3
+RPO           sp3_sp3_108         CBD         CBI         CBW         HBW     -60.000    10.0     3
+RPO           sp3_sp3_109         OAH         CBI         CBW         CBT     -60.000    10.0     3
+RPO           sp3_sp3_110         OAH         CBI         CBW       "O1'"      60.000    10.0     3
+RPO           sp3_sp3_111         OAH         CBI         CBW         HBW     180.000    10.0     3
+RPO           sp3_sp3_112         HBI         CBI         CBW         CBT     180.000    10.0     3
+RPO           sp3_sp3_113         HBI         CBI         CBW       "O1'"     -60.000    10.0     3
+RPO           sp3_sp3_114         HBI         CBI         CBW         HBW      60.000    10.0     3
+RPO           sp3_sp3_148          C2          C1          O1         CBT     180.000    10.0     3
+RPO           sp3_sp3_149          O5          C1          O1         CBT      60.000    10.0     3
+RPO           sp3_sp3_150          H1          C1          O1         CBT     -60.000    10.0     3
+RPO           sp3_sp3_154         CBE         CBT          O1          C1     180.000    10.0     3
+RPO           sp3_sp3_155         CBW         CBT          O1          C1      60.000    10.0     3
+RPO           sp3_sp3_156         HBT         CBT          O1          C1     -60.000    10.0     3
+RPO           sp3_sp3_157          C1          C2          N2         HN2     180.000    10.0     3
+RPO           sp3_sp3_158          C1          C2          N2        HN2A     -60.000    10.0     3
+RPO           sp3_sp3_159          C3          C2          N2         HN2      60.000    10.0     3
+RPO           sp3_sp3_160          C3          C2          N2        HN2A     180.000    10.0     3
+RPO           sp3_sp3_161          H2          C2          N2         HN2     -60.000    10.0     3
+RPO           sp3_sp3_162          H2          C2          N2        HN2A      60.000    10.0     3
+RPO           sp3_sp3_163          C2          C3          O3         HO3     180.000    10.0     3
+RPO           sp3_sp3_164          C4          C3          O3         HO3      60.000    10.0     3
+RPO           sp3_sp3_165          H3          C3          O3         HO3     -60.000    10.0     3
+RPO           sp3_sp3_166          C3          C4          O4         CAU     180.000    10.0     3
+RPO           sp3_sp3_167          C5          C4          O4         CAU      60.000    10.0     3
+RPO           sp3_sp3_168          H4          C4          O4         CAU     -60.000    10.0     3
+RPO           sp3_sp3_169         CAO         CAU          O4          C4     180.000    10.0     3
+RPO           sp3_sp3_170         HAU         CAU          O4          C4      60.000    10.0     3
+RPO           sp3_sp3_171        HAUA         CAU          O4          C4     -60.000    10.0     3
+RPO           sp3_sp3_172          C4          C5          C6          O6     180.000    10.0     3
+RPO           sp3_sp3_173          C4          C5          C6          H6     -60.000    10.0     3
+RPO           sp3_sp3_174          C4          C5          C6         H6A      60.000    10.0     3
+RPO           sp3_sp3_175          O5          C5          C6          O6      60.000    10.0     3
+RPO           sp3_sp3_176          O5          C5          C6          H6     180.000    10.0     3
+RPO           sp3_sp3_177          O5          C5          C6         H6A     -60.000    10.0     3
+RPO           sp3_sp3_178          H5          C5          C6          O6     -60.000    10.0     3
+RPO           sp3_sp3_179          H5          C5          C6          H6      60.000    10.0     3
+RPO           sp3_sp3_180          H5          C5          C6         H6A     180.000    10.0     3
+RPO           sp3_sp3_181          C5          C6          O6         HO6     180.000    10.0     3
+RPO           sp3_sp3_182          H6          C6          O6         HO6      60.000    10.0     3
+RPO           sp3_sp3_183         H6A          C6          O6         HO6     -60.000    10.0     3
+RPO           sp3_sp3_184       "C2'"       "C1'"       "O1'"         CBW     180.000    10.0     3
+RPO           sp3_sp3_185       "O4'"       "C1'"       "O1'"         CBW      60.000    10.0     3
+RPO           sp3_sp3_186       "H1'"       "C1'"       "O1'"         CBW     -60.000    10.0     3
+RPO           sp3_sp3_187         CBI         CBW       "O1'"       "C1'"     180.000    10.0     3
+RPO           sp3_sp3_188         CBT         CBW       "O1'"       "C1'"      60.000    10.0     3
+RPO           sp3_sp3_189         HBW         CBW       "O1'"       "C1'"     -60.000    10.0     3
+RPO           sp3_sp3_190       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+RPO           sp3_sp3_191       "C3'"       "C2'"       "O2'"      "HO2'"      60.000    10.0     3
+RPO           sp3_sp3_192       "H2'"       "C2'"       "O2'"      "HO2'"     -60.000    10.0     3
+RPO           sp3_sp3_193       "C2'"       "C3'"       "O3'"         CBQ     180.000    10.0     3
+RPO           sp3_sp3_194       "C4'"       "C3'"       "O3'"         CBQ      60.000    10.0     3
+RPO           sp3_sp3_195       "H3'"       "C3'"       "O3'"         CBQ     -60.000    10.0     3
+RPO           sp3_sp3_196         OAV         CBQ       "O3'"       "C3'"     180.000    10.0     3
+RPO           sp3_sp3_197         CBF         CBQ       "O3'"       "C3'"      60.000    10.0     3
+RPO           sp3_sp3_198         HBQ         CBQ       "O3'"       "C3'"     -60.000    10.0     3
+RPO           sp3_sp3_202       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+RPO           sp3_sp3_203       "C3'"       "C4'"       "C5'"       "H5'"     -60.000    10.0     3
+RPO           sp3_sp3_204       "C3'"       "C4'"       "C5'"      "H5'A"      60.000    10.0     3
+RPO           sp3_sp3_205       "O4'"       "C4'"       "C5'"       "O5'"      60.000    10.0     3
+RPO           sp3_sp3_206       "O4'"       "C4'"       "C5'"       "H5'"     180.000    10.0     3
+RPO           sp3_sp3_207       "O4'"       "C4'"       "C5'"      "H5'A"     -60.000    10.0     3
+RPO           sp3_sp3_208       "H4'"       "C4'"       "C5'"       "O5'"     -60.000    10.0     3
+RPO           sp3_sp3_209       "H4'"       "C4'"       "C5'"       "H5'"      60.000    10.0     3
+RPO           sp3_sp3_210       "H4'"       "C4'"       "C5'"      "H5'A"     180.000    10.0     3
+RPO           sp3_sp3_211       "C4'"       "C5'"       "O5'"      "HO5'"     180.000    10.0     3
+RPO           sp3_sp3_212       "H5'"       "C5'"       "O5'"      "HO5'"      60.000    10.0     3
+RPO           sp3_sp3_213      "H5'A"       "C5'"       "O5'"      "HO5'"     -60.000    10.0     3
+RPO           sp3_sp3_214         CBM         CAQ         NAA        HNAA     180.000    10.0     3
+RPO           sp3_sp3_215         CBM         CAQ         NAA        HNAB     -60.000    10.0     3
+RPO           sp3_sp3_216         CBM         CAQ         NAA          H9      60.000    10.0     3
+RPO           sp3_sp3_217         HAQ         CAQ         NAA        HNAA      60.000    10.0     3
+RPO           sp3_sp3_218         HAQ         CAQ         NAA        HNAB     180.000    10.0     3
+RPO           sp3_sp3_219         HAQ         CAQ         NAA          H9     -60.000    10.0     3
+RPO           sp3_sp3_220        HAQA         CAQ         NAA        HNAA     -60.000    10.0     3
+RPO           sp3_sp3_221        HAQA         CAQ         NAA        HNAB      60.000    10.0     3
+RPO           sp3_sp3_222        HAQA         CAQ         NAA          H9     180.000    10.0     3
+RPO           sp3_sp3_223         CAT         CBD         NAB        HNAC     180.000    10.0     3
+RPO           sp3_sp3_224         CAT         CBD         NAB        HNAD     -60.000    10.0     3
+RPO           sp3_sp3_225         CAT         CBD         NAB          H7      60.000    10.0     3
+RPO           sp3_sp3_226         CBI         CBD         NAB        HNAC      60.000    10.0     3
+RPO           sp3_sp3_227         CBI         CBD         NAB        HNAD     180.000    10.0     3
+RPO           sp3_sp3_228         CBI         CBD         NAB          H7     -60.000    10.0     3
+RPO           sp3_sp3_229         HBD         CBD         NAB        HNAC     -60.000    10.0     3
+RPO           sp3_sp3_230         HBD         CBD         NAB        HNAD      60.000    10.0     3
+RPO           sp3_sp3_231         HBD         CBD         NAB          H7     180.000    10.0     3
+RPO           sp3_sp3_232         CAT         CBE         NAC        HNAE     180.000    10.0     3
+RPO           sp3_sp3_233         CAT         CBE         NAC        HNAF     -60.000    10.0     3
+RPO           sp3_sp3_234         CAT         CBE         NAC          H8      60.000    10.0     3
+RPO           sp3_sp3_235         CBT         CBE         NAC        HNAE      60.000    10.0     3
+RPO           sp3_sp3_236         CBT         CBE         NAC        HNAF     180.000    10.0     3
+RPO           sp3_sp3_237         CBT         CBE         NAC          H8     -60.000    10.0     3
+RPO           sp3_sp3_238         HBE         CBE         NAC        HNAE     -60.000    10.0     3
+RPO           sp3_sp3_239         HBE         CBE         NAC        HNAF      60.000    10.0     3
+RPO           sp3_sp3_240         HBE         CBE         NAC          H8     180.000    10.0     3
+RPO           sp3_sp3_241         CBH         CBF         NAD        HNAG     180.000    10.0     3
+RPO           sp3_sp3_242         CBH         CBF         NAD        HNAH     -60.000    10.0     3
+RPO           sp3_sp3_243         CBQ         CBF         NAD        HNAG      60.000    10.0     3
+RPO           sp3_sp3_244         CBQ         CBF         NAD        HNAH     180.000    10.0     3
+RPO           sp3_sp3_245         HBF         CBF         NAD        HNAG     -60.000    10.0     3
+RPO           sp3_sp3_246         HBF         CBF         NAD        HNAH      60.000    10.0     3
+RPO           sp3_sp3_247         CBF         CBH         OAG        HOAG     180.000    10.0     3
+RPO           sp3_sp3_248         CBJ         CBH         OAG        HOAG      60.000    10.0     3
+RPO           sp3_sp3_249         HBH         CBH         OAG        HOAG     -60.000    10.0     3
+RPO           sp3_sp3_250         CBD         CBI         OAH        HOAH     180.000    10.0     3
+RPO           sp3_sp3_251         CBW         CBI         OAH        HOAH      60.000    10.0     3
+RPO           sp3_sp3_252         HBI         CBI         OAH        HOAH     -60.000    10.0     3
+RPO           sp3_sp3_253         CBH         CBJ         OAI        HOAI     180.000    10.0     3
+RPO           sp3_sp3_254         CBM         CBJ         OAI        HOAI      60.000    10.0     3
+RPO           sp3_sp3_255         HBJ         CBJ         OAI        HOAI     -60.000    10.0     3
+RPO              const_21         CAM         CAL         CAN         CAP       0.000    10.0     2
+RPO              const_22         CAM         CAL         CAN         HAN     180.000    10.0     2
+RPO              const_23         HAL         CAL         CAN         CAP     180.000    10.0     2
+RPO              const_24         HAL         CAL         CAN         HAN       0.000    10.0     2
+RPO             sp2_sp3_1         CAM         CAO         CAU         HAU     150.000    10.0     6
+RPO             sp2_sp3_2         CAM         CAO         CAU          O4     -90.000    10.0     6
+RPO             sp2_sp3_3         CAM         CAO         CAU        HAUA      30.000    10.0     6
+RPO             sp2_sp3_4         CBC         CAO         CAU         HAU     -30.000    10.0     6
+RPO             sp2_sp3_5         CBC         CAO         CAU          O4      90.000    10.0     6
+RPO             sp2_sp3_6         CBC         CAO         CAU        HAUA    -150.000    10.0     6
+RPO           sp3_sp3_256         NAA         CAQ         CBM         OAV     180.000    10.0     3
+RPO           sp3_sp3_257         NAA         CAQ         CBM         CBJ     -60.000    10.0     3
+RPO           sp3_sp3_258         NAA         CAQ         CBM         HBM      60.000    10.0     3
+RPO           sp3_sp3_259         HAQ         CAQ         CBM         OAV      60.000    10.0     3
+RPO           sp3_sp3_260         HAQ         CAQ         CBM         CBJ     180.000    10.0     3
+RPO           sp3_sp3_261         HAQ         CAQ         CBM         HBM     -60.000    10.0     3
+RPO           sp3_sp3_262        HAQA         CAQ         CBM         OAV     -60.000    10.0     3
+RPO           sp3_sp3_263        HAQA         CAQ         CBM         CBJ      60.000    10.0     3
+RPO           sp3_sp3_264        HAQA         CAQ         CBM         HBM     180.000    10.0     3
+RPO           sp3_sp3_265         CAT         CBD         CBI         CBW     180.000    10.0     3
+RPO           sp3_sp3_266         CAT         CBD         CBI         OAH     -60.000    10.0     3
+RPO           sp3_sp3_267         CAT         CBD         CBI         HBI      60.000    10.0     3
+RPO           sp3_sp3_268         NAB         CBD         CBI         CBW      60.000    10.0     3
+RPO           sp3_sp3_269         NAB         CBD         CBI         OAH     180.000    10.0     3
+RPO           sp3_sp3_270         NAB         CBD         CBI         HBI     -60.000    10.0     3
+RPO           sp3_sp3_271         HBD         CBD         CBI         CBW     -60.000    10.0     3
+RPO           sp3_sp3_272         HBD         CBD         CBI         OAH      60.000    10.0     3
+RPO           sp3_sp3_273         HBD         CBD         CBI         HBI     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RPO    chir_1    C1    O5    O1    C2    positive
+RPO    chir_2    C2    N2    C1    C3    negative
+RPO    chir_3    C3    O3    C4    C2    negative
+RPO    chir_4    C4    O4    C5    C3    positive
+RPO    chir_5    C5    O5    C4    C6    negative
+RPO    chir_6    CBD    NAB    CBI    CAT    negative
+RPO    chir_7    CBE    NAC    CBT    CAT    positive
+RPO    chir_8    CBT    O1    CBW    CBE    negative
+RPO    chir_9    CBW    "O1'"    CBT    CBI    negative
+RPO    chir_10    CBI    OAH    CBW    CBD    positive
+RPO    chir_11    "C4'"    "O4'"    "C3'"    "C5'"    negative
+RPO    chir_12    "C1'"    "O1'"    "O4'"    "C2'"    positive
+RPO    chir_13    "C2'"    "O2'"    "C1'"    "C3'"    negative
+RPO    chir_14    "C3'"    "O3'"    "C4'"    "C2'"    positive
+RPO    chir_15    CBM    OAV    CBJ    CAQ    positive
+RPO    chir_16    CBQ    "O3'"    OAV    CBF    negative
+RPO    chir_17    CBF    NAD    CBQ    CBH    negative
+RPO    chir_18    CBH    OAG    CBJ    CBF    negative
+RPO    chir_19    CBJ    OAI    CBM    CBH    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RPO    plan-1         CAL   0.020
+RPO    plan-1         CAM   0.020
+RPO    plan-1         CAN   0.020
+RPO    plan-1         CAO   0.020
+RPO    plan-1         CAP   0.020
+RPO    plan-1         CAU   0.020
+RPO    plan-1         CBC   0.020
+RPO    plan-1         HAL   0.020
+RPO    plan-1         HAM   0.020
+RPO    plan-1         HAN   0.020
+RPO    plan-1         HAP   0.020
+RPO    plan-1         HBC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RPO            InChI                InChI  1.03 InChI=1S/C30H51N5O14/c31-7-14-20(39)21(40)17(34)28(44-14)48-26-16(9-37)46-30(23(26)42)49-27-19(38)12(32)6-13(33)24(27)47-29-18(35)22(41)25(15(8-36)45-29)43-10-11-4-2-1-3-5-11/h1-5,12-30,36-42H,6-10,31-35H2/t12-,13+,14+,15-,16-,17-,18-,19+,20-,21-,22-,23-,24-,25-,26-,27-,28-,29-,30+/m1/s1
+RPO         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                      DRHDMQJFWDZMND-JCNXQQRHSA-N
+RPO           SMILES              ACDLabs 12.01                                                                                                                                                                                                              O(C3C(OC2OC(CO)C(OCc1ccccc1)C(O)C2N)C(N)CC(N)C3O)C5OC(C(OC4OC(CN)C(O)C(O)C4N)C5O)CO
+RPO SMILES_CANONICAL               CACTVS 3.370                                                                                                                          NC[C@@H]1O[C@H](O[C@@H]2[C@@H](CO)O[C@@H](O[C@@H]3[C@@H](O)[C@H](N)C[C@H](N)[C@H]3O[C@H]4O[C@H](CO)[C@@H](OCc5ccccc5)[C@H](O)[C@H]4N)[C@@H]2O)[C@H](N)[C@@H](O)[C@@H]1O
+RPO           SMILES               CACTVS 3.370                                                                                                                                                       NC[CH]1O[CH](O[CH]2[CH](CO)O[CH](O[CH]3[CH](O)[CH](N)C[CH](N)[CH]3O[CH]4O[CH](CO)[CH](OCc5ccccc5)[CH](O)[CH]4N)[CH]2O)[CH](N)[CH](O)[CH]1O
+RPO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                   c1ccc(cc1)CO[C@@H]2[C@H](O[C@@H]([C@@H]([C@H]2O)N)O[C@@H]3[C@H](C[C@H]([C@@H]([C@H]3O[C@H]4[C@@H]([C@@H]([C@H](O4)CO)O[C@@H]5[C@@H]([C@H]([C@@H]([C@@H](O5)CN)O)O)N)O)O)N)N)CO
+RPO           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                          c1ccc(cc1)COC2C(OC(C(C2O)N)OC3C(CC(C(C3OC4C(C(C(O4)CO)OC5C(C(C(C(O5)CN)O)O)N)O)O)N)N)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RPO acedrg               243         "dictionary generator"                  
+RPO acedrg_database      11          "data source"                           
+RPO rdkit                2017.03.2   "Chemoinformatics tool"
+RPO refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,130 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NBN     NBN      "N-BUTYL ISOCYANIDE"     NON-POLYMER     15     6     .     
+#
+data_comp_NBN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NBN     C       C       C       -1      16.533      26.821      4.924       
+NBN     N       N       NSP     1       17.849      27.061      5.098       
+NBN     C1      C       CH2     0       19.280      27.322      5.289       
+NBN     C2      C       CH2     0       19.480      28.336      6.389       
+NBN     C3      C       CH2     0       18.974      29.710      5.985       
+NBN     C4      C       CH3     0       19.231      30.778      7.028       
+NBN     H11     H       H       0       19.667      27.661      4.452       
+NBN     H12     H       H       0       19.739      26.485      5.523       
+NBN     H21     H       H       0       20.435      28.388      6.605       
+NBN     H22     H       H       0       19.005      28.034      7.191       
+NBN     H31     H       H       0       18.009      29.657      5.816       
+NBN     H32     H       H       0       19.410      29.975      5.146       
+NBN     H41     H       H       0       19.786      31.479      6.645       
+NBN     H42     H       H       0       19.687      30.389      7.795       
+NBN     H43     H       H       0       18.383      31.159      7.317       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NBN           C           N      TRIPLE       n     1.349  0.0200     1.349  0.0200
+NBN           N          C1      SINGLE       n     1.467  0.0158     1.467  0.0158
+NBN          C1          C2      SINGLE       n     1.510  0.0200     1.510  0.0200
+NBN          C2          C3      SINGLE       n     1.517  0.0200     1.517  0.0200
+NBN          C3          C4      SINGLE       n     1.510  0.0200     1.510  0.0200
+NBN          C1         H11      SINGLE       n     1.089  0.0100     0.982  0.0168
+NBN          C1         H12      SINGLE       n     1.089  0.0100     0.982  0.0168
+NBN          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0150
+NBN          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0150
+NBN          C3         H31      SINGLE       n     1.089  0.0100     0.982  0.0155
+NBN          C3         H32      SINGLE       n     1.089  0.0100     0.982  0.0155
+NBN          C4         H41      SINGLE       n     1.089  0.0100     0.973  0.0157
+NBN          C4         H42      SINGLE       n     1.089  0.0100     0.973  0.0157
+NBN          C4         H43      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NBN           C           N          C1     180.000    3.00
+NBN           N          C1          C2     109.508    2.50
+NBN           N          C1         H11     109.364    1.50
+NBN           N          C1         H12     109.364    1.50
+NBN          C2          C1         H11     109.449    1.50
+NBN          C2          C1         H12     109.449    1.50
+NBN         H11          C1         H12     108.106    1.50
+NBN          C1          C2          C3     111.303    3.00
+NBN          C1          C2         H21     108.887    1.50
+NBN          C1          C2         H22     108.887    1.50
+NBN          C3          C2         H21     109.463    1.50
+NBN          C3          C2         H22     109.463    1.50
+NBN         H21          C2         H22     107.927    1.57
+NBN          C2          C3          C4     112.927    1.64
+NBN          C2          C3         H31     108.966    1.50
+NBN          C2          C3         H32     108.966    1.50
+NBN          C4          C3         H31     108.918    1.50
+NBN          C4          C3         H32     108.918    1.50
+NBN         H31          C3         H32     107.763    1.50
+NBN          C3          C4         H41     109.554    1.50
+NBN          C3          C4         H42     109.554    1.50
+NBN          C3          C4         H43     109.554    1.50
+NBN         H41          C4         H42     109.380    1.50
+NBN         H41          C4         H43     109.380    1.50
+NBN         H42          C4         H43     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NBN             sp3_sp3_1           C           N          C1          C2     180.000    10.0     3
+NBN             sp3_sp3_4           N          C1          C2          C3     180.000    10.0     3
+NBN            sp3_sp3_13          C1          C2          C3          C4     180.000    10.0     3
+NBN            sp3_sp3_22          C2          C3          C4         H41     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NBN           SMILES              ACDLabs 10.04                     "butyl isocyanide"
+NBN SMILES_CANONICAL               CACTVS 3.341                          CCCC[N+]#[C-]
+NBN           SMILES               CACTVS 3.341                          CCCC[N+]#[C-]
+NBN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                          CCCC[N+]#[C-]
+NBN           SMILES "OpenEye OEToolkits" 1.5.0                          CCCC[N+]#[C-]
+NBN            InChI                InChI  1.03 InChI=1S/C5H9N/c1-3-4-5-6-2/h3-5H2,1H3
+NBN         InChIKey                InChI  1.03            FSBLVBBRXSCOKU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NBN acedrg               243         "dictionary generator"                  
+NBN acedrg_database      11          "data source"                           
+NBN rdkit                2017.03.2   "Chemoinformatics tool"
+NBN refmac5              5.8.0238    "optimization tool"                     

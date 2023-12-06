@@ -1,0 +1,210 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IMW     IMW      2-methyl-5-(1-methylethyl)cyclohexa-2,5-diene-1,4-dione     NON-POLYMER     24     12     .     
+#
+data_comp_IMW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IMW     CAA     C       CR6     0       -2.771      -13.044     -2.179      
+IMW     CAB     C       CR16    0       -4.059      -12.835     -2.480      
+IMW     CAC     C       CR6     0       -4.496      -12.259     -3.756      
+IMW     CAD     C       CR6     0       -3.470      -11.881     -4.767      
+IMW     CAE     C       CR16    0       -2.172      -12.088     -4.466      
+IMW     CAF     C       CR6     0       -1.738      -12.685     -3.198      
+IMW     CAG     C       CH3     0       -2.348      -13.630     -0.862      
+IMW     CAH     C       CH1     0       -3.884      -11.277     -6.101      
+IMW     CAI     C       CH3     0       -3.466      -12.160     -7.277      
+IMW     OAJ     O       O       0       -0.528      -12.879     -2.992      
+IMW     OAK     O       O       0       -5.709      -12.097     -3.971      
+IMW     CAL     C       CH3     0       -3.352      -9.853      -6.270      
+IMW     HAB     H       H       0       -4.736      -13.062     -1.856      
+IMW     HAE     H       H       0       -1.496      -11.845     -5.084      
+IMW     HAG     H       H       0       -1.392      -13.535     -0.745      
+IMW     HAGA    H       H       0       -2.583      -14.570     -0.838      
+IMW     HAGB    H       H       0       -2.805      -13.168     -0.143      
+IMW     HAH     H       H       0       -4.874      -11.222     -6.116      
+IMW     HAI     H       H       0       -3.528      -13.097     -7.021      
+IMW     HAIA    H       H       0       -2.549      -11.959     -7.535      
+IMW     HAIB    H       H       0       -4.057      -11.994     -8.032      
+IMW     HAL     H       H       0       -3.290      -9.421      -5.400      
+IMW     HALA    H       H       0       -3.960      -9.346      -6.837      
+IMW     HALB    H       H       0       -2.471      -9.873      -6.681      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IMW         CAA         CAB      DOUBLE       n     1.336  0.0100     1.336  0.0100
+IMW         CAA         CAF      SINGLE       n     1.472  0.0200     1.472  0.0200
+IMW         CAA         CAG      SINGLE       n     1.500  0.0100     1.500  0.0100
+IMW         CAB         CAC      SINGLE       n     1.461  0.0142     1.461  0.0142
+IMW         CAC         CAD      SINGLE       n     1.466  0.0200     1.466  0.0200
+IMW         CAC         OAK      DOUBLE       n     1.240  0.0200     1.240  0.0200
+IMW         CAD         CAE      DOUBLE       n     1.344  0.0122     1.344  0.0122
+IMW         CAD         CAH      SINGLE       n     1.518  0.0100     1.518  0.0100
+IMW         CAE         CAF      SINGLE       n     1.461  0.0142     1.461  0.0142
+IMW         CAF         OAJ      DOUBLE       n     1.240  0.0200     1.240  0.0200
+IMW         CAH         CAI      SINGLE       n     1.526  0.0116     1.526  0.0116
+IMW         CAH         CAL      SINGLE       n     1.526  0.0116     1.526  0.0116
+IMW         CAB         HAB      SINGLE       n     1.082  0.0130     0.948  0.0100
+IMW         CAE         HAE      SINGLE       n     1.082  0.0130     0.948  0.0100
+IMW         CAG         HAG      SINGLE       n     1.089  0.0100     0.969  0.0130
+IMW         CAG        HAGA      SINGLE       n     1.089  0.0100     0.969  0.0130
+IMW         CAG        HAGB      SINGLE       n     1.089  0.0100     0.969  0.0130
+IMW         CAH         HAH      SINGLE       n     1.089  0.0100     0.993  0.0147
+IMW         CAI         HAI      SINGLE       n     1.089  0.0100     0.973  0.0141
+IMW         CAI        HAIA      SINGLE       n     1.089  0.0100     0.973  0.0141
+IMW         CAI        HAIB      SINGLE       n     1.089  0.0100     0.973  0.0141
+IMW         CAL         HAL      SINGLE       n     1.089  0.0100     0.973  0.0141
+IMW         CAL        HALA      SINGLE       n     1.089  0.0100     0.973  0.0141
+IMW         CAL        HALB      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IMW         CAB         CAA         CAF     118.519    1.50
+IMW         CAB         CAA         CAG     122.888    1.50
+IMW         CAF         CAA         CAG     118.593    1.50
+IMW         CAA         CAB         CAC     122.398    1.50
+IMW         CAA         CAB         HAB     120.223    1.50
+IMW         CAC         CAB         HAB     117.379    2.23
+IMW         CAB         CAC         CAD     119.083    1.50
+IMW         CAB         CAC         OAK     120.261    1.50
+IMW         CAD         CAC         OAK     120.656    1.54
+IMW         CAC         CAD         CAE     118.519    1.50
+IMW         CAC         CAD         CAH     119.457    1.50
+IMW         CAE         CAD         CAH     122.024    1.71
+IMW         CAD         CAE         CAF     122.398    1.50
+IMW         CAD         CAE         HAE     120.223    1.50
+IMW         CAF         CAE         HAE     117.379    2.23
+IMW         CAA         CAF         CAE     119.083    1.50
+IMW         CAA         CAF         OAJ     120.656    1.54
+IMW         CAE         CAF         OAJ     120.261    1.50
+IMW         CAA         CAG         HAG     109.398    1.50
+IMW         CAA         CAG        HAGA     109.398    1.50
+IMW         CAA         CAG        HAGB     109.398    1.50
+IMW         HAG         CAG        HAGA     109.339    1.50
+IMW         HAG         CAG        HAGB     109.339    1.50
+IMW        HAGA         CAG        HAGB     109.339    1.50
+IMW         CAD         CAH         CAI     111.478    2.34
+IMW         CAD         CAH         CAL     111.478    2.34
+IMW         CAD         CAH         HAH     107.346    1.50
+IMW         CAI         CAH         CAL     110.146    1.50
+IMW         CAI         CAH         HAH     107.585    1.50
+IMW         CAL         CAH         HAH     107.585    1.50
+IMW         CAH         CAI         HAI     109.488    1.50
+IMW         CAH         CAI        HAIA     109.488    1.50
+IMW         CAH         CAI        HAIB     109.488    1.50
+IMW         HAI         CAI        HAIA     109.356    1.50
+IMW         HAI         CAI        HAIB     109.356    1.50
+IMW        HAIA         CAI        HAIB     109.356    1.50
+IMW         CAH         CAL         HAL     109.488    1.50
+IMW         CAH         CAL        HALA     109.488    1.50
+IMW         CAH         CAL        HALB     109.488    1.50
+IMW         HAL         CAL        HALA     109.356    1.50
+IMW         HAL         CAL        HALB     109.356    1.50
+IMW        HALA         CAL        HALB     109.356    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IMW             sp2_sp2_3         CAG         CAA         CAB         CAC     180.000     5.0     2
+IMW            sp2_sp2_24         CAG         CAA         CAF         OAJ       0.000     5.0     2
+IMW             sp2_sp3_1         CAB         CAA         CAG         HAG     150.000    10.0     6
+IMW             sp2_sp2_6         CAA         CAB         CAC         OAK     180.000     5.0     2
+IMW            sp2_sp2_12         OAK         CAC         CAD         CAH       0.000     5.0     2
+IMW            sp2_sp2_15         CAH         CAD         CAE         CAF     180.000     5.0     2
+IMW             sp2_sp3_8         CAC         CAD         CAH         CAI     -90.000    10.0     6
+IMW            sp2_sp2_18         CAD         CAE         CAF         OAJ     180.000     5.0     2
+IMW            sp3_sp3_10         CAI         CAH         CAL         HAL     180.000    10.0     3
+IMW             sp3_sp3_4         CAL         CAH         CAI         HAI      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IMW    chir_1    CAH    CAD    CAI    CAL    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IMW    plan-1         CAA   0.020
+IMW    plan-1         CAB   0.020
+IMW    plan-1         CAF   0.020
+IMW    plan-1         CAG   0.020
+IMW    plan-2         CAA   0.020
+IMW    plan-2         CAB   0.020
+IMW    plan-2         CAC   0.020
+IMW    plan-2         HAB   0.020
+IMW    plan-3         CAB   0.020
+IMW    plan-3         CAC   0.020
+IMW    plan-3         CAD   0.020
+IMW    plan-3         OAK   0.020
+IMW    plan-4         CAC   0.020
+IMW    plan-4         CAD   0.020
+IMW    plan-4         CAE   0.020
+IMW    plan-4         CAH   0.020
+IMW    plan-5         CAD   0.020
+IMW    plan-5         CAE   0.020
+IMW    plan-5         CAF   0.020
+IMW    plan-5         HAE   0.020
+IMW    plan-6         CAA   0.020
+IMW    plan-6         CAE   0.020
+IMW    plan-6         CAF   0.020
+IMW    plan-6         OAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IMW           SMILES              ACDLabs 12.01                                    O=C1C=C(C(=O)C=C1C(C)C)C
+IMW SMILES_CANONICAL               CACTVS 3.370                                    CC(C)C1=CC(=O)C(=CC1=O)C
+IMW           SMILES               CACTVS 3.370                                    CC(C)C1=CC(=O)C(=CC1=O)C
+IMW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                    CC1=CC(=O)C(=CC1=O)C(C)C
+IMW           SMILES "OpenEye OEToolkits" 1.7.0                                    CC1=CC(=O)C(=CC1=O)C(C)C
+IMW            InChI                InChI  1.03 InChI=1S/C10H12O2/c1-6(2)8-5-9(11)7(3)4-10(8)12/h4-6H,1-3H3
+IMW         InChIKey                InChI  1.03                                 KEQHJBNSCLWCAE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IMW acedrg               243         "dictionary generator"                  
+IMW acedrg_database      11          "data source"                           
+IMW rdkit                2017.03.2   "Chemoinformatics tool"
+IMW refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,275 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AJZ     AJZ      3-(4-morpholin-4-ylthieno[3,2-d]pyrimidin-2-yl)phenol     NON-POLYMER     37     22     .     
+#
+data_comp_AJZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AJZ     N1      N       NRD6    0       -33.782     66.575      -35.720     
+AJZ     C2      C       CR6     0       -34.134     65.366      -35.176     
+AJZ     N3      N       NRD6    0       -34.261     64.234      -35.921     
+AJZ     C4      C       CR56    0       -34.024     64.321      -37.259     
+AJZ     C5      C       CR56    0       -33.659     65.554      -37.867     
+AJZ     C6      C       CR6     0       -33.543     66.695      -37.040     
+AJZ     OAA     O       OH1     0       -34.620     67.561      -30.807     
+AJZ     CAB     C       CR16    0       -34.890     64.038      -31.705     
+AJZ     CAC     C       CR15    0       -33.812     63.665      -39.440     
+AJZ     CAD     C       CR16    0       -34.882     65.190      -30.942     
+AJZ     CAE     C       CR16    0       -34.648     64.089      -33.070     
+AJZ     CAF     C       CR15    0       -34.101     63.260      -38.197     
+AJZ     CAG     C       CR16    0       -34.388     66.468      -32.922     
+AJZ     CAH     C       CH2     0       -33.103     70.221      -36.712     
+AJZ     CAI     C       CH2     0       -31.199     69.315      -37.747     
+AJZ     CAJ     C       CH2     0       -33.990     69.144      -37.286     
+AJZ     CAK     C       CH2     0       -32.002     68.183      -38.341     
+AJZ     OAN     O       O2      0       -31.986     70.489      -37.558     
+AJZ     SAO     S       S2      0       -33.451     65.292      -39.499     
+AJZ     CAP     C       CR6     0       -34.630     66.408      -31.555     
+AJZ     CAQ     C       CR6     0       -34.390     65.308      -33.706     
+AJZ     NAV     N       NR6     0       -33.198     67.934      -37.531     
+AJZ     HOAA    H       H       0       -34.895     68.300      -31.152     
+AJZ     HAB     H       H       0       -35.060     63.212      -31.293     
+AJZ     HAC     H       H       0       -33.800     63.137      -40.221     
+AJZ     HAD     H       H       0       -35.046     65.150      -30.015     
+AJZ     HAE     H       H       0       -34.659     63.288      -33.569     
+AJZ     HAF     H       H       0       -34.330     62.374      -37.972     
+AJZ     HAG     H       H       0       -34.218     67.302      -33.325     
+AJZ     HAH     H       H       0       -33.624     71.043      -36.598     
+AJZ     HAHA    H       H       0       -32.780     69.940      -35.830     
+AJZ     HAI     H       H       0       -30.449     69.526      -38.342     
+AJZ     HAIA    H       H       0       -30.830     69.032      -36.884     
+AJZ     HAJ     H       H       0       -34.722     68.948      -36.660     
+AJZ     HAJA    H       H       0       -34.384     69.455      -38.131     
+AJZ     HAK     H       H       0       -31.449     67.371      -38.379     
+AJZ     HAKA    H       H       0       -32.269     68.414      -39.259     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AJZ          N1          C2      DOUBLE       y     1.365  0.0104     1.365  0.0104
+AJZ          N1          C6      SINGLE       y     1.341  0.0106     1.341  0.0106
+AJZ          C2          N3      SINGLE       y     1.340  0.0200     1.340  0.0200
+AJZ          C2         CAQ      SINGLE       n     1.485  0.0100     1.485  0.0100
+AJZ          N3          C4      DOUBLE       y     1.351  0.0186     1.351  0.0186
+AJZ          C4          C5      SINGLE       y     1.399  0.0200     1.399  0.0200
+AJZ          C4         CAF      SINGLE       y     1.379  0.0200     1.379  0.0200
+AJZ          C5          C6      DOUBLE       y     1.409  0.0109     1.409  0.0109
+AJZ          C5         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+AJZ          C6         NAV      SINGLE       n     1.364  0.0191     1.364  0.0191
+AJZ         OAA         CAP      SINGLE       n     1.374  0.0155     1.374  0.0155
+AJZ         CAB         CAD      DOUBLE       y     1.380  0.0100     1.380  0.0100
+AJZ         CAB         CAE      SINGLE       y     1.384  0.0100     1.384  0.0100
+AJZ         CAC         CAF      DOUBLE       y     1.334  0.0111     1.334  0.0111
+AJZ         CAC         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+AJZ         CAD         CAP      SINGLE       y     1.385  0.0100     1.385  0.0100
+AJZ         CAE         CAQ      DOUBLE       y     1.391  0.0100     1.391  0.0100
+AJZ         CAG         CAP      DOUBLE       y     1.385  0.0120     1.385  0.0120
+AJZ         CAG         CAQ      SINGLE       y     1.392  0.0100     1.392  0.0100
+AJZ         CAH         CAJ      SINGLE       n     1.508  0.0100     1.508  0.0100
+AJZ         CAH         OAN      SINGLE       n     1.423  0.0105     1.423  0.0105
+AJZ         CAI         CAK      SINGLE       n     1.508  0.0100     1.508  0.0100
+AJZ         CAI         OAN      SINGLE       n     1.423  0.0105     1.423  0.0105
+AJZ         CAJ         NAV      SINGLE       n     1.463  0.0105     1.463  0.0105
+AJZ         CAK         NAV      SINGLE       n     1.463  0.0105     1.463  0.0105
+AJZ         OAA        HOAA      SINGLE       n     0.966  0.0059     0.861  0.0200
+AJZ         CAB         HAB      SINGLE       n     1.082  0.0130     0.938  0.0149
+AJZ         CAC         HAC      SINGLE       n     1.082  0.0130     0.942  0.0200
+AJZ         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0163
+AJZ         CAE         HAE      SINGLE       n     1.082  0.0130     0.945  0.0148
+AJZ         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0149
+AJZ         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0200
+AJZ         CAH         HAH      SINGLE       n     1.089  0.0100     0.980  0.0155
+AJZ         CAH        HAHA      SINGLE       n     1.089  0.0100     0.980  0.0155
+AJZ         CAI         HAI      SINGLE       n     1.089  0.0100     0.980  0.0155
+AJZ         CAI        HAIA      SINGLE       n     1.089  0.0100     0.980  0.0155
+AJZ         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.983  0.0140
+AJZ         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.983  0.0140
+AJZ         CAK         HAK      SINGLE       n     1.089  0.0100     0.983  0.0140
+AJZ         CAK        HAKA      SINGLE       n     1.089  0.0100     0.983  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AJZ          C2          N1          C6     119.192    1.58
+AJZ          N1          C2          N3     123.270    1.50
+AJZ          N1          C2         CAQ     117.596    1.50
+AJZ          N3          C2         CAQ     119.135    2.15
+AJZ          C2          N3          C4     116.623    1.50
+AJZ          N3          C4          C5     123.373    1.50
+AJZ          N3          C4         CAF     128.906    1.50
+AJZ          C5          C4         CAF     107.721    1.70
+AJZ          C4          C5          C6     118.468    1.50
+AJZ          C4          C5         SAO     108.136    3.00
+AJZ          C6          C5         SAO     133.395    3.00
+AJZ          N1          C6          C5     119.075    1.50
+AJZ          N1          C6         NAV     119.010    1.50
+AJZ          C5          C6         NAV     121.915    3.00
+AJZ         CAP         OAA        HOAA     120.000    3.00
+AJZ         CAD         CAB         CAE     120.685    1.50
+AJZ         CAD         CAB         HAB     119.524    1.50
+AJZ         CAE         CAB         HAB     119.790    1.50
+AJZ         CAF         CAC         SAO     108.136    3.00
+AJZ         CAF         CAC         HAC     128.560    2.40
+AJZ         SAO         CAC         HAC     123.304    3.00
+AJZ         CAB         CAD         CAP     119.558    1.50
+AJZ         CAB         CAD         HAD     120.318    1.50
+AJZ         CAP         CAD         HAD     120.124    1.50
+AJZ         CAB         CAE         CAQ     120.424    1.50
+AJZ         CAB         CAE         HAE     119.731    1.50
+AJZ         CAQ         CAE         HAE     119.845    1.50
+AJZ          C4         CAF         CAC     107.870    1.50
+AJZ          C4         CAF         HAF     126.086    1.50
+AJZ         CAC         CAF         HAF     126.044    1.50
+AJZ         CAP         CAG         CAQ     120.596    1.50
+AJZ         CAP         CAG         HAG     119.961    1.50
+AJZ         CAQ         CAG         HAG     119.443    1.50
+AJZ         CAJ         CAH         OAN     111.654    1.50
+AJZ         CAJ         CAH         HAH     109.316    1.50
+AJZ         CAJ         CAH        HAHA     109.316    1.50
+AJZ         OAN         CAH         HAH     109.195    1.50
+AJZ         OAN         CAH        HAHA     109.195    1.50
+AJZ         HAH         CAH        HAHA     108.175    1.50
+AJZ         CAK         CAI         OAN     111.654    1.50
+AJZ         CAK         CAI         HAI     109.316    1.50
+AJZ         CAK         CAI        HAIA     109.316    1.50
+AJZ         OAN         CAI         HAI     109.195    1.50
+AJZ         OAN         CAI        HAIA     109.195    1.50
+AJZ         HAI         CAI        HAIA     108.175    1.50
+AJZ         CAH         CAJ         NAV     109.680    1.50
+AJZ         CAH         CAJ         HAJ     109.720    1.50
+AJZ         CAH         CAJ        HAJA     109.720    1.50
+AJZ         NAV         CAJ         HAJ     109.564    1.50
+AJZ         NAV         CAJ        HAJA     109.564    1.50
+AJZ         HAJ         CAJ        HAJA     108.247    1.50
+AJZ         CAI         CAK         NAV     109.680    1.50
+AJZ         CAI         CAK         HAK     109.720    1.50
+AJZ         CAI         CAK        HAKA     109.720    1.50
+AJZ         NAV         CAK         HAK     109.564    1.50
+AJZ         NAV         CAK        HAKA     109.564    1.50
+AJZ         HAK         CAK        HAKA     108.247    1.50
+AJZ         CAH         OAN         CAI     109.829    1.50
+AJZ          C5         SAO         CAC     108.136    3.00
+AJZ         OAA         CAP         CAD     119.874    3.00
+AJZ         OAA         CAP         CAG     119.874    3.00
+AJZ         CAD         CAP         CAG     120.253    1.50
+AJZ          C2         CAQ         CAE     120.758    1.50
+AJZ          C2         CAQ         CAG     120.758    1.50
+AJZ         CAE         CAQ         CAG     118.484    1.50
+AJZ          C6         NAV         CAJ     123.274    1.77
+AJZ          C6         NAV         CAK     123.274    1.77
+AJZ         CAJ         NAV         CAK     113.451    1.54
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AJZ       const_sp2_sp2_1          N3          C2          N1          C6       0.000     5.0     2
+AJZ              const_43          C5          C6          N1          C2       0.000    10.0     2
+AJZ              const_40         CAB         CAE         CAQ          C2     180.000    10.0     2
+AJZ              const_32         CAQ         CAG         CAP         OAA     180.000    10.0     2
+AJZ              const_36         CAP         CAG         CAQ          C2     180.000    10.0     2
+AJZ             sp3_sp3_1         OAN         CAH         CAJ         NAV      60.000    10.0     3
+AJZ            sp3_sp3_22         CAJ         CAH         OAN         CAI     180.000    10.0     3
+AJZ            sp3_sp3_10         OAN         CAI         CAK         NAV     -60.000    10.0     3
+AJZ            sp3_sp3_19         CAK         CAI         OAN         CAH      60.000    10.0     3
+AJZ             sp2_sp3_4          C6         NAV         CAJ         CAH     180.000    10.0     6
+AJZ            sp2_sp3_10          C6         NAV         CAK         CAI     180.000    10.0     6
+AJZ       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+AJZ             sp2_sp2_1          N1          C2         CAQ         CAE     180.000     5.0     2
+AJZ       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+AJZ              const_47          N3          C4         CAF         CAC     180.000    10.0     2
+AJZ       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+AJZ              const_15          C4          C5         SAO         CAC       0.000    10.0     2
+AJZ              const_11          C4          C5          C6          N1       0.000    10.0     2
+AJZ             sp2_sp2_7          N1          C6         NAV         CAJ       0.000     5.0     2
+AJZ             sp2_sp2_9         CAD         CAP         OAA        HOAA     180.000     5.0     2
+AJZ              const_49         CAD         CAB         CAE         CAQ       0.000    10.0     2
+AJZ              const_23         CAE         CAB         CAD         CAP       0.000    10.0     2
+AJZ              const_19         SAO         CAC         CAF          C4       0.000    10.0     2
+AJZ              const_17         CAF         CAC         SAO          C5       0.000    10.0     2
+AJZ              const_28         CAB         CAD         CAP         OAA     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AJZ    plan-1          C2   0.020
+AJZ    plan-1          C4   0.020
+AJZ    plan-1          C5   0.020
+AJZ    plan-1          C6   0.020
+AJZ    plan-1         CAC   0.020
+AJZ    plan-1         CAF   0.020
+AJZ    plan-1         CAQ   0.020
+AJZ    plan-1         HAC   0.020
+AJZ    plan-1         HAF   0.020
+AJZ    plan-1          N1   0.020
+AJZ    plan-1          N3   0.020
+AJZ    plan-1         NAV   0.020
+AJZ    plan-1         SAO   0.020
+AJZ    plan-2          C2   0.020
+AJZ    plan-2         CAB   0.020
+AJZ    plan-2         CAD   0.020
+AJZ    plan-2         CAE   0.020
+AJZ    plan-2         CAG   0.020
+AJZ    plan-2         CAP   0.020
+AJZ    plan-2         CAQ   0.020
+AJZ    plan-2         HAB   0.020
+AJZ    plan-2         HAD   0.020
+AJZ    plan-2         HAE   0.020
+AJZ    plan-2         HAG   0.020
+AJZ    plan-2         OAA   0.020
+AJZ    plan-3          C6   0.020
+AJZ    plan-3         CAJ   0.020
+AJZ    plan-3         CAK   0.020
+AJZ    plan-3         NAV   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AJZ SMILES_CANONICAL               CACTVS 3.352                                                                             Oc1cccc(c1)c2nc3ccsc3c(n2)N4CCOCC4
+AJZ           SMILES               CACTVS 3.352                                                                             Oc1cccc(c1)c2nc3ccsc3c(n2)N4CCOCC4
+AJZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                           c1cc(cc(c1)O)c2nc3ccsc3c(n2)N4CCOCC4
+AJZ           SMILES "OpenEye OEToolkits" 1.7.0                                                                           c1cc(cc(c1)O)c2nc3ccsc3c(n2)N4CCOCC4
+AJZ            InChI                InChI  1.03 InChI=1S/C16H15N3O2S/c20-12-3-1-2-11(10-12)15-17-13-4-9-22-14(13)16(18-15)19-5-7-21-8-6-19/h1-4,9-10,20H,5-8H2
+AJZ         InChIKey                InChI  1.03                                                                                    XXLAEKOWCYJOKK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AJZ acedrg               243         "dictionary generator"                  
+AJZ acedrg_database      11          "data source"                           
+AJZ rdkit                2017.03.2   "Chemoinformatics tool"
+AJZ refmac5              5.8.0238    "optimization tool"                     

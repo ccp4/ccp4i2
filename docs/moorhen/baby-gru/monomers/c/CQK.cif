@@ -1,0 +1,191 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CQK     CQK      ~{N}-oxidanyl-4-(2~{H}-1,2,3,4-tetrazol-5-yl)pyridine-2-carboxamide     NON-POLYMER     21     15     .     
+#
+data_comp_CQK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CQK     CAG     C       CR5     0       -1.793      -11.830     -17.783     
+CQK     CAH     C       CR6     0       -4.584      -9.340      -17.329     
+CQK     CAJ     C       CR16    0       -3.835      -10.509     -17.217     
+CQK     CAK     C       CR16    0       -2.987      -8.393      -18.698     
+CQK     CAL     C       CR6     0       -2.611      -10.611     -17.879     
+CQK     CAM     C       CR16    0       -2.188      -9.519      -18.635     
+CQK     CAN     C       C       0       -5.909      -9.215      -16.617     
+CQK     NAC     N       NR5     0       -1.112      -13.744     -17.287     
+CQK     NAD     N       NRD5    0       -0.186      -13.226     -18.053     
+CQK     NAE     N       NRD5    0       -2.123      -12.915     -17.094     
+CQK     NAF     N       NRD5    0       -0.593      -12.012     -18.382     
+CQK     NAI     N       NRD6    0       -4.164      -8.293      -18.061     
+CQK     NAO     N       NH1     0       -6.569      -8.083      -16.845     
+CQK     OAA     O       OH1     0       -7.793      -7.847      -16.228     
+CQK     OAB     O       O       0       -6.328      -10.106     -15.877     
+CQK     H1      H       H       0       -4.147      -11.230     -16.698     
+CQK     H2      H       H       0       -2.693      -7.659      -19.212     
+CQK     H3      H       H       0       -1.379      -9.544      -19.093     
+CQK     H4      H       H       0       -1.060      -14.559     -16.941     
+CQK     H5      H       H       0       -6.296      -7.434      -17.374     
+CQK     H6      H       H       0       -8.387      -8.314      -16.654     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CQK         CAK         CAM      DOUBLE       y     1.379  0.0100     1.379  0.0100
+CQK         CAK         NAI      SINGLE       y     1.337  0.0100     1.337  0.0100
+CQK         CAL         CAM      SINGLE       y     1.391  0.0100     1.391  0.0100
+CQK         CAH         NAI      DOUBLE       y     1.338  0.0100     1.338  0.0100
+CQK         CAG         CAL      SINGLE       n     1.467  0.0100     1.467  0.0100
+CQK         CAJ         CAL      DOUBLE       y     1.390  0.0112     1.390  0.0112
+CQK         CAG         NAF      SINGLE       y     1.352  0.0100     1.352  0.0100
+CQK         NAD         NAF      DOUBLE       y     1.322  0.0100     1.322  0.0100
+CQK         CAG         NAE      DOUBLE       y     1.327  0.0100     1.327  0.0100
+CQK         NAC         NAD      SINGLE       y     1.309  0.0100     1.309  0.0100
+CQK         CAH         CAJ      SINGLE       y     1.387  0.0100     1.387  0.0100
+CQK         CAH         CAN      SINGLE       n     1.504  0.0100     1.504  0.0100
+CQK         NAC         NAE      SINGLE       y     1.322  0.0100     1.322  0.0100
+CQK         CAN         NAO      SINGLE       n     1.327  0.0100     1.327  0.0100
+CQK         CAN         OAB      DOUBLE       n     1.230  0.0114     1.230  0.0114
+CQK         NAO         OAA      SINGLE       n     1.390  0.0100     1.390  0.0100
+CQK         CAJ          H1      SINGLE       n     1.082  0.0130     0.943  0.0184
+CQK         CAK          H2      SINGLE       n     1.082  0.0130     0.944  0.0187
+CQK         CAM          H3      SINGLE       n     1.082  0.0130     0.930  0.0100
+CQK         NAC          H4      SINGLE       n     1.016  0.0100     0.887  0.0200
+CQK         NAO          H5      SINGLE       n     1.016  0.0100     0.880  0.0200
+CQK         OAA          H6      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CQK         CAL         CAG         NAF     124.899    1.50
+CQK         CAL         CAG         NAE     124.502    1.72
+CQK         NAF         CAG         NAE     110.599    1.50
+CQK         NAI         CAH         CAJ     122.093    1.50
+CQK         NAI         CAH         CAN     117.816    1.50
+CQK         CAJ         CAH         CAN     120.091    1.50
+CQK         CAL         CAJ         CAH     119.899    1.50
+CQK         CAL         CAJ          H1     119.625    1.50
+CQK         CAH         CAJ          H1     120.476    1.50
+CQK         CAM         CAK         NAI     122.779    1.50
+CQK         CAM         CAK          H2     118.747    1.50
+CQK         NAI         CAK          H2     118.474    1.50
+CQK         CAM         CAL         CAG     120.572    1.50
+CQK         CAM         CAL         CAJ     118.855    1.50
+CQK         CAG         CAL         CAJ     120.572    1.50
+CQK         CAK         CAM         CAL     119.599    1.50
+CQK         CAK         CAM          H3     120.194    1.50
+CQK         CAL         CAM          H3     120.207    1.50
+CQK         CAH         CAN         NAO     114.650    1.50
+CQK         CAH         CAN         OAB     121.458    1.50
+CQK         NAO         CAN         OAB     123.892    1.50
+CQK         NAD         NAC         NAE     112.198    1.50
+CQK         NAD         NAC          H4     123.433    2.38
+CQK         NAE         NAC          H4     124.368    1.95
+CQK         NAF         NAD         NAC     106.498    1.50
+CQK         CAG         NAE         NAC     104.423    1.52
+CQK         CAG         NAF         NAD     106.282    1.50
+CQK         CAK         NAI         CAH     116.775    1.50
+CQK         CAN         NAO         OAA     119.920    1.50
+CQK         CAN         NAO          H5     124.918    3.00
+CQK         OAA         NAO          H5     115.162    3.00
+CQK         NAO         OAA          H6     106.924    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CQK       const_sp2_sp2_2         CAL         CAG         NAF         NAD     180.000     5.0     2
+CQK             sp2_sp2_1         NAF         CAG         CAL         CAM     180.000     5.0     2
+CQK              const_25         CAL         CAG         NAE         NAC     180.000    10.0     2
+CQK       const_sp2_sp2_9         CAN         CAH         NAI         CAK     180.000     5.0     2
+CQK              const_28         CAN         CAH         CAJ         CAL     180.000    10.0     2
+CQK             sp2_sp2_7         NAI         CAH         CAN         NAO       0.000     5.0     2
+CQK              const_20         CAH         CAJ         CAL         CAM       0.000    10.0     2
+CQK              const_10         CAM         CAK         NAI         CAH       0.000    10.0     2
+CQK              const_12         NAI         CAK         CAM         CAL       0.000    10.0     2
+CQK              const_18         CAG         CAL         CAM         CAK     180.000    10.0     2
+CQK            sp2_sp2_11         OAB         CAN         NAO         OAA       0.000     5.0     2
+CQK       const_sp2_sp2_4         NAE         NAC         NAD         NAF       0.000     5.0     2
+CQK       const_sp2_sp2_6         NAD         NAC         NAE         CAG       0.000     5.0     2
+CQK       const_sp2_sp2_3         NAC         NAD         NAF         CAG       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CQK    plan-1         CAG   0.020
+CQK    plan-1         CAL   0.020
+CQK    plan-1          H4   0.020
+CQK    plan-1         NAC   0.020
+CQK    plan-1         NAD   0.020
+CQK    plan-1         NAE   0.020
+CQK    plan-1         NAF   0.020
+CQK    plan-2         CAG   0.020
+CQK    plan-2         CAH   0.020
+CQK    plan-2         CAJ   0.020
+CQK    plan-2         CAK   0.020
+CQK    plan-2         CAL   0.020
+CQK    plan-2         CAM   0.020
+CQK    plan-2         CAN   0.020
+CQK    plan-2          H1   0.020
+CQK    plan-2          H2   0.020
+CQK    plan-2          H3   0.020
+CQK    plan-2         NAI   0.020
+CQK    plan-3         CAH   0.020
+CQK    plan-3         CAN   0.020
+CQK    plan-3         NAO   0.020
+CQK    plan-3         OAB   0.020
+CQK    plan-4         CAN   0.020
+CQK    plan-4          H5   0.020
+CQK    plan-4         NAO   0.020
+CQK    plan-4         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CQK            InChI                InChI  1.03 InChI=1S/C7H6N6O2/c14-7(11-15)5-3-4(1-2-8-5)6-9-12-13-10-6/h1-3,15H,(H,11,14)(H,9,10,12,13)
+CQK         InChIKey                InChI  1.03                                                                 ICLVJVGNXROVLL-UHFFFAOYSA-N
+CQK SMILES_CANONICAL               CACTVS 3.385                                                                 ONC(=O)c1cc(ccn1)c2n[nH]nn2
+CQK           SMILES               CACTVS 3.385                                                                 ONC(=O)c1cc(ccn1)c2n[nH]nn2
+CQK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                 c1cnc(cc1c2n[nH]nn2)C(=O)NO
+CQK           SMILES "OpenEye OEToolkits" 2.0.6                                                                 c1cnc(cc1c2n[nH]nn2)C(=O)NO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CQK acedrg               243         "dictionary generator"                  
+CQK acedrg_database      11          "data source"                           
+CQK rdkit                2017.03.2   "Chemoinformatics tool"
+CQK refmac5              5.8.0238    "optimization tool"                     

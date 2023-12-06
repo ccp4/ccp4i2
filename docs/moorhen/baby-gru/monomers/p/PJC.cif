@@ -1,0 +1,360 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PJC     PJC      3-(1H-indol-3-yl)-4-[2-(4-oxopiperidin-1-yl)-5-(trifluoromethyl)pyrimidin-4-yl]-1H-pyrrole-2,5-dione     NON-POLYMER     49     33     .     
+#
+data_comp_PJC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PJC     C5      C       CR6     0       6.842       -4.916      8.461       
+PJC     C6      C       CR6     0       7.778       -4.361      9.376       
+PJC     C8      C       CR6     0       6.383       -4.923      11.161      
+PJC     C10     C       CR16    0       5.685       -5.445      9.026       
+PJC     N12     N       NT      0       6.155       -4.930      12.508      
+PJC     C13     C       CH2     0       6.848       -4.024      13.434      
+PJC     C20     C       CH2     0       6.823       -6.899      13.835      
+PJC     C28     C       CR5     0       10.363      -4.107      9.427       
+PJC     F1      F       F       0       6.859       -3.749      6.410       
+PJC     C2      C       CT      0       7.029       -4.942      6.969       
+PJC     F3      F       F       0       8.240       -5.348      6.601       
+PJC     F4      F       F       0       6.185       -5.755      6.336       
+PJC     N7      N       NRD6    0       7.541       -4.384      10.701      
+PJC     N9      N       NRD6    0       5.444       -5.453      10.349      
+PJC     C16     C       CH2     0       8.070       -4.717      14.035      
+PJC     C19     C       CR6     0       7.708       -6.025      14.665      
+PJC     C23     C       CH2     0       5.663       -6.120      13.214      
+PJC     O26     O       O       0       8.101       -6.350      15.760      
+PJC     C27     C       CR5     0       9.069       -3.751      8.976       
+PJC     C29     C       CR5     0       11.340      -3.349      8.592       
+PJC     N30     N       NR5     0       10.621      -2.416      7.871       
+PJC     C32     C       CR5     0       9.264       -2.578      8.056       
+PJC     O33     O       O       0       8.408       -1.880      7.551       
+PJC     O34     O       O       0       12.553      -3.493      8.528       
+PJC     C35     C       CR5     0       10.777      -5.004      10.492      
+PJC     C36     C       CR15    0       11.624      -4.682      11.520      
+PJC     N38     N       NR5     0       11.786      -5.753      12.352      
+PJC     C40     C       CR56    0       11.032      -6.806      11.881      
+PJC     C41     C       CR56    0       10.380      -6.362      10.712      
+PJC     C42     C       CR16    0       9.538       -7.257      10.028      
+PJC     C44     C       CR16    0       9.377       -8.536      10.522      
+PJC     C46     C       CR16    0       10.036      -8.948      11.683      
+PJC     C48     C       CR16    0       10.870      -8.098      12.380      
+PJC     H10     H       H       0       5.033       -5.817      8.462       
+PJC     H13     H       H       0       7.131       -3.200      12.965      
+PJC     H13A    H       H       0       6.231       -3.765      14.164      
+PJC     H20     H       H       0       6.465       -7.611      14.388      
+PJC     H20A    H       H       0       7.346       -7.306      13.126      
+PJC     H16     H       H       0       8.468       -4.137      14.703      
+PJC     H16A    H       H       0       8.726       -4.866      13.337      
+PJC     H23     H       H       0       5.170       -6.711      12.593      
+PJC     H23A    H       H       0       5.040       -5.842      13.932      
+PJC     HN30    H       H       0       10.965      -1.819      7.378       
+PJC     H36     H       H       0       12.048      -3.836      11.641      
+PJC     HN38    H       H       0       12.290      -5.766      13.069      
+PJC     H42     H       H       0       9.091       -6.986      9.246       
+PJC     H44     H       H       0       8.814       -9.143      10.068      
+PJC     H46     H       H       0       9.909       -9.826      11.998      
+PJC     H48     H       H       0       11.314      -8.377      13.162      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PJC          C5          C2      SINGLE       n     1.496  0.0100     1.496  0.0100
+PJC          C5         C10      DOUBLE       y     1.378  0.0135     1.378  0.0135
+PJC          C5          C6      SINGLE       y     1.382  0.0200     1.382  0.0200
+PJC          C6         C27      SINGLE       n     1.480  0.0100     1.480  0.0100
+PJC          C6          N7      DOUBLE       y     1.343  0.0100     1.343  0.0100
+PJC          C8          N9      DOUBLE       y     1.345  0.0100     1.345  0.0100
+PJC          C8          N7      SINGLE       y     1.350  0.0125     1.350  0.0125
+PJC          C8         N12      SINGLE       n     1.357  0.0112     1.357  0.0112
+PJC         C10          N9      SINGLE       y     1.340  0.0101     1.340  0.0101
+PJC         N12         C23      SINGLE       n     1.464  0.0100     1.464  0.0100
+PJC         N12         C13      SINGLE       n     1.464  0.0100     1.464  0.0100
+PJC         C13         C16      SINGLE       n     1.525  0.0128     1.525  0.0128
+PJC         C20         C23      SINGLE       n     1.525  0.0128     1.525  0.0128
+PJC         C20         C19      SINGLE       n     1.491  0.0141     1.491  0.0141
+PJC         C28         C29      SINGLE       n     1.499  0.0195     1.499  0.0195
+PJC         C28         C27      DOUBLE       n     1.432  0.0200     1.432  0.0200
+PJC         C28         C35      SINGLE       n     1.453  0.0105     1.453  0.0105
+PJC          F1          C2      SINGLE       n     1.329  0.0183     1.329  0.0183
+PJC          C2          F3      SINGLE       n     1.329  0.0183     1.329  0.0183
+PJC          C2          F4      SINGLE       n     1.329  0.0183     1.329  0.0183
+PJC         C16         C19      SINGLE       n     1.491  0.0141     1.491  0.0141
+PJC         C19         O26      DOUBLE       n     1.208  0.0100     1.208  0.0100
+PJC         C27         C32      SINGLE       n     1.503  0.0100     1.503  0.0100
+PJC         C29         N30      SINGLE       n     1.377  0.0125     1.377  0.0125
+PJC         C29         O34      DOUBLE       n     1.223  0.0129     1.223  0.0129
+PJC         N30         C32      SINGLE       n     1.376  0.0100     1.376  0.0100
+PJC         C32         O33      DOUBLE       n     1.214  0.0122     1.214  0.0122
+PJC         C35         C41      SINGLE       y     1.434  0.0200     1.434  0.0200
+PJC         C35         C36      DOUBLE       y     1.370  0.0100     1.370  0.0100
+PJC         C36         N38      SINGLE       y     1.365  0.0187     1.365  0.0187
+PJC         N38         C40      SINGLE       y     1.378  0.0100     1.378  0.0100
+PJC         C40         C41      DOUBLE       y     1.408  0.0100     1.408  0.0100
+PJC         C40         C48      SINGLE       y     1.391  0.0100     1.391  0.0100
+PJC         C41         C42      SINGLE       y     1.403  0.0105     1.403  0.0105
+PJC         C42         C44      DOUBLE       y     1.377  0.0100     1.377  0.0100
+PJC         C44         C46      SINGLE       y     1.394  0.0106     1.394  0.0106
+PJC         C46         C48      DOUBLE       y     1.376  0.0100     1.376  0.0100
+PJC         C10         H10      SINGLE       n     1.082  0.0130     0.940  0.0200
+PJC         C13         H13      SINGLE       n     1.089  0.0100     0.990  0.0100
+PJC         C13        H13A      SINGLE       n     1.089  0.0100     0.990  0.0100
+PJC         C20         H20      SINGLE       n     1.089  0.0100     0.970  0.0100
+PJC         C20        H20A      SINGLE       n     1.089  0.0100     0.970  0.0100
+PJC         C16         H16      SINGLE       n     1.089  0.0100     0.970  0.0100
+PJC         C16        H16A      SINGLE       n     1.089  0.0100     0.970  0.0100
+PJC         C23         H23      SINGLE       n     1.089  0.0100     0.990  0.0100
+PJC         C23        H23A      SINGLE       n     1.089  0.0100     0.990  0.0100
+PJC         N30        HN30      SINGLE       n     1.016  0.0100     0.847  0.0200
+PJC         C36         H36      SINGLE       n     1.082  0.0130     0.954  0.0200
+PJC         N38        HN38      SINGLE       n     1.016  0.0100     0.876  0.0200
+PJC         C42         H42      SINGLE       n     1.082  0.0130     0.940  0.0143
+PJC         C44         H44      SINGLE       n     1.082  0.0130     0.944  0.0181
+PJC         C46         H46      SINGLE       n     1.082  0.0130     0.941  0.0181
+PJC         C48         H48      SINGLE       n     1.082  0.0130     0.942  0.0188
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PJC          C2          C5         C10     119.843    1.51
+PJC          C2          C5          C6     122.921    1.50
+PJC         C10          C5          C6     117.237    1.50
+PJC          C5          C6         C27     121.365    1.57
+PJC          C5          C6          N7     121.489    1.61
+PJC         C27          C6          N7     117.147    1.50
+PJC          N9          C8          N7     123.741    1.50
+PJC          N9          C8         N12     118.196    1.50
+PJC          N7          C8         N12     118.063    1.50
+PJC          C5         C10          N9     122.877    1.50
+PJC          C5         C10         H10     118.539    1.50
+PJC          N9         C10         H10     118.584    1.50
+PJC          C8         N12         C23     121.653    1.50
+PJC          C8         N12         C13     121.653    1.50
+PJC         C23         N12         C13     112.638    1.65
+PJC         N12         C13         C16     110.484    1.50
+PJC         N12         C13         H13     109.643    1.50
+PJC         N12         C13        H13A     109.643    1.50
+PJC         C16         C13         H13     109.272    1.50
+PJC         C16         C13        H13A     109.272    1.50
+PJC         H13         C13        H13A     108.202    1.50
+PJC         C23         C20         C19     111.507    1.57
+PJC         C23         C20         H20     108.959    1.50
+PJC         C23         C20        H20A     108.959    1.50
+PJC         C19         C20         H20     109.327    1.50
+PJC         C19         C20        H20A     109.327    1.50
+PJC         H20         C20        H20A     107.934    1.50
+PJC         C29         C28         C27     108.285    3.00
+PJC         C29         C28         C35     121.370    1.50
+PJC         C27         C28         C35     130.345    2.40
+PJC          C5          C2          F1     112.758    1.50
+PJC          C5          C2          F3     112.758    1.50
+PJC          C5          C2          F4     112.758    1.50
+PJC          F1          C2          F3     105.974    1.50
+PJC          F1          C2          F4     105.974    1.50
+PJC          F3          C2          F4     105.974    1.50
+PJC          C6          N7          C8     118.263    1.50
+PJC          C8          N9         C10     116.394    1.50
+PJC         C13         C16         C19     111.507    1.57
+PJC         C13         C16         H16     108.959    1.50
+PJC         C13         C16        H16A     108.959    1.50
+PJC         C19         C16         H16     109.327    1.50
+PJC         C19         C16        H16A     109.327    1.50
+PJC         H16         C16        H16A     107.934    1.50
+PJC         C20         C19         C16     114.643    1.50
+PJC         C20         C19         O26     122.673    1.50
+PJC         C16         C19         O26     122.673    1.50
+PJC         N12         C23         C20     110.484    1.50
+PJC         N12         C23         H23     109.643    1.50
+PJC         N12         C23        H23A     109.643    1.50
+PJC         C20         C23         H23     109.272    1.50
+PJC         C20         C23        H23A     109.272    1.50
+PJC         H23         C23        H23A     108.202    1.50
+PJC          C6         C27         C28     127.868    2.34
+PJC          C6         C27         C32     123.847    2.12
+PJC         C28         C27         C32     108.285    3.00
+PJC         C28         C29         N30     106.828    1.50
+PJC         C28         C29         O34     128.351    1.50
+PJC         N30         C29         O34     124.822    1.50
+PJC         C29         N30         C32     109.774    1.50
+PJC         C29         N30        HN30     125.104    2.00
+PJC         C32         N30        HN30     125.122    3.00
+PJC         C27         C32         N30     106.828    1.50
+PJC         C27         C32         O33     128.080    1.62
+PJC         N30         C32         O33     125.091    1.50
+PJC         C28         C35         C41     128.867    1.90
+PJC         C28         C35         C36     125.254    1.67
+PJC         C41         C35         C36     105.879    1.50
+PJC         C35         C36         N38     110.195    1.50
+PJC         C35         C36         H36     125.294    1.50
+PJC         N38         C36         H36     124.512    1.50
+PJC         C36         N38         C40     109.100    1.50
+PJC         C36         N38        HN38     125.241    1.50
+PJC         C40         N38        HN38     125.659    1.60
+PJC         N38         C40         C41     107.459    1.50
+PJC         N38         C40         C48     130.213    1.50
+PJC         C41         C40         C48     122.328    1.50
+PJC         C35         C41         C40     107.368    1.50
+PJC         C35         C41         C42     134.071    1.50
+PJC         C40         C41         C42     118.561    1.50
+PJC         C41         C42         C44     118.900    1.50
+PJC         C41         C42         H42     120.406    1.50
+PJC         C44         C42         H42     120.694    1.50
+PJC         C42         C44         C46     121.207    1.50
+PJC         C42         C44         H44     119.474    1.50
+PJC         C46         C44         H44     119.319    1.50
+PJC         C44         C46         C48     121.623    1.50
+PJC         C44         C46         H46     119.243    1.50
+PJC         C48         C46         H46     119.134    1.50
+PJC         C40         C48         C46     117.380    1.50
+PJC         C40         C48         H48     121.140    1.50
+PJC         C46         C48         H48     121.480    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PJC              const_48          C2          C5          C6         C27       0.000    10.0     2
+PJC       const_sp2_sp2_2          N9         C10          C5          C2     180.000     5.0     2
+PJC            sp2_sp3_19         C10          C5          C2          F1     150.000    10.0     6
+PJC            sp2_sp3_16         O26         C19         C16         C13     180.000    10.0     6
+PJC            sp2_sp2_16          C6         C27         C32         O33       0.000     5.0     2
+PJC             sp2_sp2_7         O34         C29         N30         C32     180.000     5.0     2
+PJC              const_11          C5          C6          N7          C8       0.000    10.0     2
+PJC            sp2_sp2_17         C28         C27          C6          C5     180.000     5.0     2
+PJC            sp2_sp2_11         O33         C32         N30         C29     180.000     5.0     2
+PJC              const_51         C28         C35         C36         N38     180.000    10.0     2
+PJC              const_15         C28         C35         C41         C40     180.000    10.0     2
+PJC              const_25         C35         C36         N38         C40       0.000    10.0     2
+PJC              const_21         C41         C40         N38         C36       0.000    10.0     2
+PJC              const_17         N38         C40         C41         C35       0.000    10.0     2
+PJC              const_55         N38         C40         C48         C46     180.000    10.0     2
+PJC              const_31         C35         C41         C42         C44     180.000    10.0     2
+PJC              const_33         C41         C42         C44         C46       0.000    10.0     2
+PJC       const_sp2_sp2_9          N9          C8          N7          C6       0.000     5.0     2
+PJC       const_sp2_sp2_7          N7          C8          N9         C10       0.000     5.0     2
+PJC            sp2_sp2_21          N9          C8         N12         C23     180.000     5.0     2
+PJC              const_37         C42         C44         C46         C48       0.000    10.0     2
+PJC              const_41         C44         C46         C48         C40       0.000    10.0     2
+PJC       const_sp2_sp2_5          C5         C10          N9          C8       0.000     5.0     2
+PJC             sp2_sp3_4          C8         N12         C23         C20     180.000    10.0     6
+PJC            sp2_sp3_28          C8         N12         C13         C16     180.000    10.0     6
+PJC            sp3_sp3_10         N12         C13         C16         C19      60.000    10.0     3
+PJC            sp2_sp3_10         O26         C19         C20         C23     180.000    10.0     6
+PJC             sp3_sp3_1         C19         C20         C23         N12     -60.000    10.0     3
+PJC            sp2_sp2_27          C6         C27         C28         C29     180.000     5.0     2
+PJC             sp2_sp2_2         C27         C28         C29         O34     180.000     5.0     2
+PJC            sp2_sp2_29         C29         C28         C35         C41     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PJC    chir_1    C2    F1    F3    F4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PJC    plan-1         C28   0.020
+PJC    plan-1         C35   0.020
+PJC    plan-1         C36   0.020
+PJC    plan-1         C40   0.020
+PJC    plan-1         C41   0.020
+PJC    plan-1         C42   0.020
+PJC    plan-1         C44   0.020
+PJC    plan-1         C46   0.020
+PJC    plan-1         C48   0.020
+PJC    plan-1         H36   0.020
+PJC    plan-1         H42   0.020
+PJC    plan-1         H44   0.020
+PJC    plan-1         H46   0.020
+PJC    plan-1         H48   0.020
+PJC    plan-1        HN38   0.020
+PJC    plan-1         N38   0.020
+PJC    plan-2         C10   0.020
+PJC    plan-2          C2   0.020
+PJC    plan-2         C27   0.020
+PJC    plan-2          C5   0.020
+PJC    plan-2          C6   0.020
+PJC    plan-2          C8   0.020
+PJC    plan-2         H10   0.020
+PJC    plan-2         N12   0.020
+PJC    plan-2          N7   0.020
+PJC    plan-2          N9   0.020
+PJC    plan-3         C27   0.020
+PJC    plan-3         C28   0.020
+PJC    plan-3         C29   0.020
+PJC    plan-3         C35   0.020
+PJC    plan-4         C16   0.020
+PJC    plan-4         C19   0.020
+PJC    plan-4         C20   0.020
+PJC    plan-4         O26   0.020
+PJC    plan-5         C27   0.020
+PJC    plan-5         C28   0.020
+PJC    plan-5         C32   0.020
+PJC    plan-5          C6   0.020
+PJC    plan-6         C28   0.020
+PJC    plan-6         C29   0.020
+PJC    plan-6         N30   0.020
+PJC    plan-6         O34   0.020
+PJC    plan-7         C29   0.020
+PJC    plan-7         C32   0.020
+PJC    plan-7        HN30   0.020
+PJC    plan-7         N30   0.020
+PJC    plan-8         C27   0.020
+PJC    plan-8         C32   0.020
+PJC    plan-8         N30   0.020
+PJC    plan-8         O33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PJC            InChI                InChI  1.03 InChI=1S/C22H16F3N5O3/c23-22(24,25)14-10-27-21(30-7-5-11(31)6-8-30)28-18(14)17-16(19(32)29-20(17)33)13-9-26-15-4-2-1-3-12(13)15/h1-4,9-10,26H,5-8H2,(H,29,32,33)
+PJC         InChIKey                InChI  1.03                                                                                                                                      MYIILBMNTUDZDH-UHFFFAOYSA-N
+PJC SMILES_CANONICAL               CACTVS 3.385                                                                                                   FC(F)(F)c1cnc(nc1C2=C(C(=O)NC2=O)c3c[nH]c4ccccc34)N5CCC(=O)CC5
+PJC           SMILES               CACTVS 3.385                                                                                                   FC(F)(F)c1cnc(nc1C2=C(C(=O)NC2=O)c3c[nH]c4ccccc34)N5CCC(=O)CC5
+PJC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                             c1ccc2c(c1)c(c[nH]2)C3=C(C(=O)NC3=O)c4c(cnc(n4)N5CCC(=O)CC5)C(F)(F)F
+PJC           SMILES "OpenEye OEToolkits" 1.7.5                                                                                             c1ccc2c(c1)c(c[nH]2)C3=C(C(=O)NC3=O)c4c(cnc(n4)N5CCC(=O)CC5)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PJC acedrg               243         "dictionary generator"                  
+PJC acedrg_database      11          "data source"                           
+PJC rdkit                2017.03.2   "Chemoinformatics tool"
+PJC refmac5              5.8.0238    "optimization tool"                     

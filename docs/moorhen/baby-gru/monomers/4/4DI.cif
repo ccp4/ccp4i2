@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4DI     4DI      "4-(DIMETHYLAMINO)BUTYL IMIDOTHIOCARBAMATE"     NON-POLYMER     28     11     .     
+#
+data_comp_4DI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4DI     C1      C       C       0       35.671      -27.008     5.030       
+4DI     S       S       S2      0       36.899      -28.258     5.267       
+4DI     C2      C       CH2     0       38.593      -28.026     4.673       
+4DI     C3      C       CH2     0       39.550      -29.047     5.229       
+4DI     C4      C       CH2     0       40.810      -29.215     4.395       
+4DI     C5      C       CH2     0       41.885      -30.040     5.089       
+4DI     N1      N       NT      0       43.024      -30.386     4.221       
+4DI     C6      C       CH3     0       43.729      -31.577     4.712       
+4DI     C7      C       CH3     0       43.966      -29.265     4.102       
+4DI     N2      N       NH2     0       36.060      -25.893     4.406       
+4DI     N3      N       NH1     0       34.448      -27.149     5.433       
+4DI     H21     H       H       0       38.898      -27.132     4.924       
+4DI     H22     H       H       0       38.598      -28.081     3.697       
+4DI     H31     H       H       0       39.093      -29.913     5.289       
+4DI     H32     H       H       0       39.806      -28.779     6.138       
+4DI     H41     H       H       0       41.172      -28.328     4.189       
+4DI     H42     H       H       0       40.572      -29.649     3.548       
+4DI     H51     H       H       0       41.473      -30.865     5.422       
+4DI     H52     H       H       0       42.213      -29.541     5.866       
+4DI     H61     H       H       0       44.505      -31.757     4.146       
+4DI     H62     H       H       0       43.128      -32.347     4.688       
+4DI     H63     H       H       0       44.026      -31.425     5.630       
+4DI     H71     H       H       0       44.367      -29.080     4.973       
+4DI     H72     H       H       0       43.494      -28.470     3.787       
+4DI     H73     H       H       0       44.669      -29.496     3.464       
+4DI     HN21    H       H       0       35.485      -25.244     4.265       
+4DI     HN22    H       H       0       36.891      -25.805     4.135       
+4DI     HN3     H       H       0       34.294      -27.931     5.835       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4DI          C1           S      SINGLE       n     1.762  0.0200     1.762  0.0200
+4DI          C1          N2      SINGLE       n     1.330  0.0200     1.330  0.0200
+4DI          C1          N3      DOUBLE       n     1.291  0.0200     1.291  0.0200
+4DI           S          C2      SINGLE       n     1.809  0.0191     1.809  0.0191
+4DI          C2          C3      SINGLE       n     1.503  0.0200     1.503  0.0200
+4DI          C3          C4      SINGLE       n     1.520  0.0173     1.520  0.0173
+4DI          C4          C5      SINGLE       n     1.522  0.0100     1.522  0.0100
+4DI          C5          N1      SINGLE       n     1.468  0.0114     1.468  0.0114
+4DI          N1          C6      SINGLE       n     1.466  0.0117     1.466  0.0117
+4DI          N1          C7      SINGLE       n     1.466  0.0117     1.466  0.0117
+4DI          C2         H21      SINGLE       n     1.089  0.0100     0.978  0.0177
+4DI          C2         H22      SINGLE       n     1.089  0.0100     0.978  0.0177
+4DI          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0160
+4DI          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0160
+4DI          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+4DI          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+4DI          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0143
+4DI          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0143
+4DI          C6         H61      SINGLE       n     1.089  0.0100     0.977  0.0113
+4DI          C6         H62      SINGLE       n     1.089  0.0100     0.977  0.0113
+4DI          C6         H63      SINGLE       n     1.089  0.0100     0.977  0.0113
+4DI          C7         H71      SINGLE       n     1.089  0.0100     0.977  0.0113
+4DI          C7         H72      SINGLE       n     1.089  0.0100     0.977  0.0113
+4DI          C7         H73      SINGLE       n     1.089  0.0100     0.977  0.0113
+4DI          N2        HN21      SINGLE       n     1.016  0.0100     0.878  0.0200
+4DI          N2        HN22      SINGLE       n     1.016  0.0100     0.878  0.0200
+4DI          N3         HN3      SINGLE       n     1.016  0.0100     0.892  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4DI           S          C1          N2     115.606    3.00
+4DI           S          C1          N3     122.410    3.00
+4DI          N2          C1          N3     121.984    3.00
+4DI          C1           S          C2     120.000    3.00
+4DI           S          C2          C3     112.239    3.00
+4DI           S          C2         H21     109.066    1.50
+4DI           S          C2         H22     109.066    1.50
+4DI          C3          C2         H21     109.210    1.50
+4DI          C3          C2         H22     109.210    1.50
+4DI         H21          C2         H22     107.939    1.50
+4DI          C2          C3          C4     113.790    2.08
+4DI          C2          C3         H31     108.903    1.50
+4DI          C2          C3         H32     108.903    1.50
+4DI          C4          C3         H31     108.801    1.50
+4DI          C4          C3         H32     108.801    1.50
+4DI         H31          C3         H32     107.852    1.50
+4DI          C3          C4          C5     113.118    2.03
+4DI          C3          C4         H41     108.801    1.50
+4DI          C3          C4         H42     108.801    1.50
+4DI          C5          C4         H41     108.945    1.50
+4DI          C5          C4         H42     108.945    1.50
+4DI         H41          C4         H42     107.927    1.57
+4DI          C4          C5          N1     113.952    1.84
+4DI          C4          C5         H51     108.873    1.50
+4DI          C4          C5         H52     108.873    1.50
+4DI          N1          C5         H51     108.882    1.50
+4DI          N1          C5         H52     108.882    1.50
+4DI         H51          C5         H52     107.673    1.50
+4DI          C5          N1          C6     110.729    1.50
+4DI          C5          N1          C7     110.729    1.50
+4DI          C6          N1          C7     109.730    1.50
+4DI          N1          C6         H61     109.516    1.50
+4DI          N1          C6         H62     109.516    1.50
+4DI          N1          C6         H63     109.516    1.50
+4DI         H61          C6         H62     109.408    1.50
+4DI         H61          C6         H63     109.408    1.50
+4DI         H62          C6         H63     109.408    1.50
+4DI          N1          C7         H71     109.516    1.50
+4DI          N1          C7         H72     109.516    1.50
+4DI          N1          C7         H73     109.516    1.50
+4DI         H71          C7         H72     109.408    1.50
+4DI         H71          C7         H73     109.408    1.50
+4DI         H72          C7         H73     109.408    1.50
+4DI          C1          N2        HN21     120.029    1.50
+4DI          C1          N2        HN22     120.029    1.50
+4DI        HN21          N2        HN22     119.941    1.51
+4DI          C1          N3         HN3     112.238    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4DI             sp2_sp2_1          N2          C1           S          C2     180.000     5.0     2
+4DI             sp2_sp2_7           S          C1          N3         HN3     180.000     5.0     2
+4DI             sp2_sp2_3           S          C1          N2        HN21     180.000     5.0     2
+4DI             sp3_sp3_1          C3          C2           S          C1     180.000    10.0     3
+4DI             sp3_sp3_4           S          C2          C3          C4     180.000    10.0     3
+4DI            sp3_sp3_13          C2          C3          C4          C5     180.000    10.0     3
+4DI            sp3_sp3_22          C3          C4          C5          N1     180.000    10.0     3
+4DI            sp3_sp3_32          C4          C5          N1          C6     -60.000    10.0     3
+4DI            sp3_sp3_37         H61          C6          N1          C5     180.000    10.0     3
+4DI            sp3_sp3_44         H71          C7          N1          C5     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4DI    chir_1    N1    C5    C6    C7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4DI    plan-1          C1   0.020
+4DI    plan-1          N2   0.020
+4DI    plan-1          N3   0.020
+4DI    plan-1           S   0.020
+4DI    plan-2          C1   0.020
+4DI    plan-2        HN21   0.020
+4DI    plan-2        HN22   0.020
+4DI    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4DI           SMILES              ACDLabs 10.04                                           "[N@H]=C(SCCCCN(C)C)N"
+4DI SMILES_CANONICAL               CACTVS 3.341                                                 CN(C)CCCCSC(N)=N
+4DI           SMILES               CACTVS 3.341                                                 CN(C)CCCCSC(N)=N
+4DI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                         "[H]/N=C(\N)/SCCCCN(C)C"
+4DI           SMILES "OpenEye OEToolkits" 1.5.0                                            "[H]N=C(N)SCCCCN(C)C"
+4DI            InChI                InChI  1.03 InChI=1S/C7H17N3S/c1-10(2)5-3-4-6-11-7(8)9/h3-6H2,1-2H3,(H3,8,9)
+4DI         InChIKey                InChI  1.03                                      UFYJLJINUGVUHO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4DI acedrg               243         "dictionary generator"                  
+4DI acedrg_database      11          "data source"                           
+4DI rdkit                2017.03.2   "Chemoinformatics tool"
+4DI refmac5              5.8.0238    "optimization tool"                     

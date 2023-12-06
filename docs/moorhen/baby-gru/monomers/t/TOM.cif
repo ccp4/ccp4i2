@@ -1,0 +1,202 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TOM     TOM      "4-(2-METHOXYPHENYL)-2-OXOBUT-3-ENOIC ACID"     NON-POLYMER     24     15     .     
+#
+data_comp_TOM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TOM     O8      O       O       0       28.065      37.414      28.447      
+TOM     C9      C       C       0       27.091      38.165      28.270      
+TOM     C10     C       C       0       27.051      38.865      27.037      
+TOM     O11     O       OC      -1      27.953      38.673      26.240      
+TOM     O10     O       O       0       26.121      39.621      26.827      
+TOM     C8      C       C1      0       26.056      38.272      29.321      
+TOM     C7      C       C1      0       26.070      37.575      30.460      
+TOM     C1      C       CR6     0       26.190      36.126      30.615      
+TOM     C6      C       CR16    0       27.236      35.559      31.355      
+TOM     C5      C       CR16    0       27.363      34.198      31.514      
+TOM     C4      C       CR16    0       26.443      33.351      30.936      
+TOM     C3      C       CR16    0       25.394      33.858      30.201      
+TOM     C2      C       CR6     0       25.263      35.235      30.032      
+TOM     O2      O       O2      0       24.243      35.806      29.321      
+TOM     C11     C       CH3     0       23.886      35.260      28.052      
+TOM     H8      H       H       0       25.349      38.873      29.176      
+TOM     H7      H       H       0       25.993      38.075      31.259      
+TOM     H6      H       H       0       27.870      36.129      31.753      
+TOM     H5      H       H       0       28.079      33.847      32.017      
+TOM     H4      H       H       0       26.529      32.418      31.044      
+TOM     H3      H       H       0       24.770      33.273      29.810      
+TOM     H111    H       H       0       23.354      34.458      28.185      
+TOM     H112    H       H       0       24.689      35.036      27.553      
+TOM     H113    H       H       0       23.367      35.912      27.554      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TOM          O8          C9      DOUBLE       n     1.235  0.0194     1.235  0.0194
+TOM          C9         C10      SINGLE       n     1.398  0.0200     1.398  0.0200
+TOM          C9          C8      SINGLE       n     1.475  0.0100     1.475  0.0100
+TOM         C10         O10      DOUBLE       n     1.214  0.0200     1.214  0.0200
+TOM         C10         O11      SINGLE       n     1.214  0.0200     1.214  0.0200
+TOM          C8          C7      DOUBLE       n     1.333  0.0100     1.333  0.0100
+TOM          C7          C1      SINGLE       n     1.460  0.0100     1.460  0.0100
+TOM          C1          C2      DOUBLE       y     1.402  0.0100     1.402  0.0100
+TOM          C1          C6      SINGLE       y     1.396  0.0100     1.396  0.0100
+TOM          C6          C5      DOUBLE       y     1.373  0.0108     1.373  0.0108
+TOM          C5          C4      SINGLE       y     1.376  0.0124     1.376  0.0124
+TOM          C4          C3      DOUBLE       y     1.375  0.0106     1.375  0.0106
+TOM          C3          C2      SINGLE       y     1.388  0.0100     1.388  0.0100
+TOM          C2          O2      SINGLE       n     1.365  0.0100     1.365  0.0100
+TOM          O2         C11      SINGLE       n     1.424  0.0117     1.424  0.0117
+TOM          C8          H8      SINGLE       n     1.082  0.0130     0.940  0.0178
+TOM          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0200
+TOM          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+TOM          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+TOM          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0183
+TOM          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0179
+TOM         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOM         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOM         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TOM          O8          C9         C10     117.068    3.00
+TOM          O8          C9          C8     119.613    1.50
+TOM         C10          C9          C8     123.319    3.00
+TOM          C9         C10         O10     117.745    2.67
+TOM          C9         C10         O11     117.745    2.67
+TOM         O10         C10         O11     124.510    1.63
+TOM          C9          C8          C7     122.661    2.16
+TOM          C9          C8          H8     118.247    2.16
+TOM          C7          C8          H8     119.092    1.50
+TOM          C8          C7          C1     126.784    1.50
+TOM          C8          C7          H7     116.681    1.50
+TOM          C1          C7          H7     116.535    1.50
+TOM          C7          C1          C2     120.822    1.50
+TOM          C7          C1          C6     122.679    1.66
+TOM          C2          C1          C6     116.499    1.50
+TOM          C1          C6          C5     121.753    1.50
+TOM          C1          C6          H6     118.893    1.50
+TOM          C5          C6          H6     119.354    1.50
+TOM          C6          C5          C4     120.315    1.50
+TOM          C6          C5          H5     119.797    1.50
+TOM          C4          C5          H5     119.888    1.50
+TOM          C5          C4          C3     120.816    1.50
+TOM          C5          C4          H4     119.777    1.50
+TOM          C3          C4          H4     119.408    1.50
+TOM          C4          C3          C2     119.791    1.50
+TOM          C4          C3          H3     120.140    1.50
+TOM          C2          C3          H3     120.069    1.50
+TOM          C1          C2          C3     120.827    1.50
+TOM          C1          C2          O2     115.669    1.50
+TOM          C3          C2          O2     123.505    1.50
+TOM          C2          O2         C11     118.009    1.50
+TOM          O2         C11        H111     109.428    1.50
+TOM          O2         C11        H112     109.428    1.50
+TOM          O2         C11        H113     109.428    1.50
+TOM        H111         C11        H112     109.509    1.50
+TOM        H111         C11        H113     109.509    1.50
+TOM        H112         C11        H113     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TOM       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+TOM       const_sp2_sp2_7          O2          C2          C3          C4     180.000     5.0     2
+TOM            sp2_sp2_17          C1          C2          O2         C11     180.000     5.0     2
+TOM             sp3_sp3_2        H111         C11          O2          C2     -60.000    10.0     3
+TOM             sp2_sp2_2         O10         C10          C9          O8       0.000     5.0     2
+TOM             sp2_sp2_6          C7          C8          C9          O8       0.000     5.0     2
+TOM             sp2_sp2_9          C1          C7          C8          C9     180.000     5.0     2
+TOM            sp2_sp2_13          C2          C1          C7          C8     180.000     5.0     2
+TOM       const_sp2_sp2_4          C7          C1          C2          O2       0.000     5.0     2
+TOM              const_23          C7          C1          C6          C5     180.000    10.0     2
+TOM              const_17          C4          C5          C6          C1       0.000    10.0     2
+TOM              const_13          C3          C4          C5          C6       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TOM    plan-1          C1   0.020
+TOM    plan-1          C2   0.020
+TOM    plan-1          C3   0.020
+TOM    plan-1          C4   0.020
+TOM    plan-1          C5   0.020
+TOM    plan-1          C6   0.020
+TOM    plan-1          C7   0.020
+TOM    plan-1          H3   0.020
+TOM    plan-1          H4   0.020
+TOM    plan-1          H5   0.020
+TOM    plan-1          H6   0.020
+TOM    plan-1          O2   0.020
+TOM    plan-2         C10   0.020
+TOM    plan-2          C8   0.020
+TOM    plan-2          C9   0.020
+TOM    plan-2          O8   0.020
+TOM    plan-3         C10   0.020
+TOM    plan-3          C9   0.020
+TOM    plan-3         O10   0.020
+TOM    plan-3         O11   0.020
+TOM    plan-4          C7   0.020
+TOM    plan-4          C8   0.020
+TOM    plan-4          C9   0.020
+TOM    plan-4          H8   0.020
+TOM    plan-5          C1   0.020
+TOM    plan-5          C7   0.020
+TOM    plan-5          C8   0.020
+TOM    plan-5          H7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TOM           SMILES              ACDLabs 10.04                                                          O=C(O)C(=O)/C=C\c1ccccc1OC
+TOM SMILES_CANONICAL               CACTVS 3.341                                                          COc1ccccc1\C=C/C(=O)C(O)=O
+TOM           SMILES               CACTVS 3.341                                                            COc1ccccc1C=CC(=O)C(O)=O
+TOM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                            COc1ccccc1C=CC(=O)C(=O)O
+TOM           SMILES "OpenEye OEToolkits" 1.5.0                                                            COc1ccccc1C=CC(=O)C(=O)O
+TOM            InChI                InChI  1.03 InChI=1S/C11H10O4/c1-15-10-5-3-2-4-8(10)6-7-9(12)11(13)14/h2-7H,1H3,(H,13,14)/b7-6-
+TOM         InChIKey                InChI  1.03                                                         QGTBUESLYPYXRT-SREVYHEPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TOM acedrg               243         "dictionary generator"                  
+TOM acedrg_database      11          "data source"                           
+TOM rdkit                2017.03.2   "Chemoinformatics tool"
+TOM refmac5              5.8.0238    "optimization tool"                     

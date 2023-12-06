@@ -1,0 +1,334 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BBB     BBB      1-((2-HYDROXYETHOXY)METHYL)-5-(3-(BENZYLOXY)BENZYL)-6-HYDROXYPYRIMIDINE-2,4(1H,3H)-DIONE     NON-POLYMER     51     29     .     
+#
+data_comp_BBB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BBB     OAC     O       OH1     0       7.176       1.510       0.813       
+BBB     CAN     C       CH2     0       7.196       1.790       2.199       
+BBB     CAO     C       CH2     0       6.064       2.676       2.615       
+BBB     OAT     O       O2      0       4.857       1.923       2.634       
+BBB     CAR     C       CH2     0       3.685       2.660       2.867       
+BBB     NBC     N       NR6     0       2.481       1.803       2.853       
+BBB     CBB     C       CR6     0       1.641       1.758       3.965       
+BBB     OAB     O       O       0       1.848       2.415       4.976       
+BBB     NAS     N       NR6     0       0.547       0.929       3.870       
+BBB     CBA     C       CR6     0       0.199       0.137       2.789       
+BBB     OAA     O       O       0       -0.821      -0.558      2.859       
+BBB     CAY     C       CR6     0       2.212       1.040       1.719       
+BBB     CAZ     C       CR6     0       1.078       0.201       1.647       
+BBB     CAQ     C       CH2     0       0.798       -0.640      0.411       
+BBB     CAW     C       CR6     0       1.472       -1.994      0.496       
+BBB     CAK     C       CR16    0       0.750       -3.155      0.739       
+BBB     CAH     C       CR16    0       1.390       -4.383      0.824       
+BBB     CAL     C       CR16    0       2.766       -4.474      0.673       
+BBB     CAM     C       CR16    0       2.859       -2.092      0.348       
+BBB     CAX     C       CR6     0       3.505       -3.320      0.435       
+BBB     OAU     O       O2      0       4.872       -3.404      0.289       
+BBB     CAP     C       CH2     0       5.694       -2.477      1.021       
+BBB     CAV     C       CR6     0       7.080       -3.026      1.203       
+BBB     CAJ     C       CR16    0       7.425       -3.696      2.367       
+BBB     CAG     C       CR16    0       8.709       -4.196      2.541       
+BBB     CAE     C       CR16    0       9.659       -4.024      1.556       
+BBB     CAF     C       CR16    0       9.329       -3.354      0.396       
+BBB     CAI     C       CR16    0       8.044       -2.853      0.221       
+BBB     OAD     O       OH1     0       3.106       1.160       0.679       
+BBB     HAC     H       H       0       7.631       0.812       0.661       
+BBB     HAN1    H       H       0       8.045       2.224       2.425       
+BBB     HAN2    H       H       0       7.144       0.946       2.696       
+BBB     HAO1    H       H       0       5.978       3.425       1.985       
+BBB     HAO2    H       H       0       6.239       3.043       3.509       
+BBB     HAR1    H       H       0       3.590       3.341       2.169       
+BBB     HAR2    H       H       0       3.762       3.115       3.730       
+BBB     HAS     H       H       0       0.011       0.905       4.586       
+BBB     HAQ1    H       H       0       1.121       -0.168      -0.387      
+BBB     HAQ2    H       H       0       -0.172      -0.768      0.316       
+BBB     HAK     H       H       0       -0.187      -3.106      0.843       
+BBB     HAH     H       H       0       0.887       -5.163      0.985       
+BBB     HAL     H       H       0       3.196       -5.310      0.731       
+BBB     HAM     H       H       0       3.363       -1.314      0.184       
+BBB     HAP1    H       H       0       5.295       -2.303      1.897       
+BBB     HAP2    H       H       0       5.739       -1.630      0.534       
+BBB     HAJ     H       H       0       6.780       -3.817      3.046       
+BBB     HAG     H       H       0       8.932       -4.654      3.336       
+BBB     HAE     H       H       0       10.531      -4.364      1.674       
+BBB     HAF     H       H       0       9.976       -3.235      -0.280      
+BBB     HAI     H       H       0       7.825       -2.395      -0.575      
+BBB     HAD     H       H       0       2.845       1.474       -0.079      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BBB         OAC         CAN      SINGLE       n     1.414  0.0200     1.414  0.0200
+BBB         CAN         CAO      SINGLE       n     1.496  0.0200     1.496  0.0200
+BBB         CAO         OAT      SINGLE       n     1.422  0.0116     1.422  0.0116
+BBB         OAT         CAR      SINGLE       n     1.402  0.0123     1.402  0.0123
+BBB         CAR         NBC      SINGLE       n     1.471  0.0100     1.471  0.0100
+BBB         NBC         CBB      SINGLE       y     1.384  0.0100     1.384  0.0100
+BBB         NBC         CAY      SINGLE       y     1.381  0.0124     1.381  0.0124
+BBB         CBB         OAB      DOUBLE       n     1.222  0.0104     1.222  0.0104
+BBB         CBB         NAS      SINGLE       y     1.373  0.0100     1.373  0.0100
+BBB         NAS         CBA      SINGLE       y     1.383  0.0100     1.383  0.0100
+BBB         CBA         OAA      DOUBLE       n     1.234  0.0141     1.234  0.0141
+BBB         CBA         CAZ      SINGLE       y     1.433  0.0200     1.433  0.0200
+BBB         CAY         CAZ      DOUBLE       y     1.397  0.0167     1.397  0.0167
+BBB         CAY         OAD      SINGLE       n     1.374  0.0155     1.374  0.0155
+BBB         CAZ         CAQ      SINGLE       n     1.518  0.0100     1.518  0.0100
+BBB         CAQ         CAW      SINGLE       n     1.514  0.0100     1.514  0.0100
+BBB         CAW         CAK      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BBB         CAW         CAM      SINGLE       y     1.396  0.0100     1.396  0.0100
+BBB         CAK         CAH      SINGLE       y     1.382  0.0119     1.382  0.0119
+BBB         CAH         CAL      DOUBLE       y     1.382  0.0111     1.382  0.0111
+BBB         CAL         CAX      SINGLE       y     1.386  0.0109     1.386  0.0109
+BBB         CAM         CAX      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BBB         CAX         OAU      SINGLE       n     1.372  0.0114     1.372  0.0114
+BBB         OAU         CAP      SINGLE       n     1.432  0.0146     1.432  0.0146
+BBB         CAP         CAV      SINGLE       n     1.502  0.0100     1.502  0.0100
+BBB         CAV         CAJ      DOUBLE       y     1.383  0.0108     1.383  0.0108
+BBB         CAV         CAI      SINGLE       y     1.383  0.0108     1.383  0.0108
+BBB         CAJ         CAG      SINGLE       y     1.386  0.0100     1.386  0.0100
+BBB         CAG         CAE      DOUBLE       y     1.374  0.0127     1.374  0.0127
+BBB         CAE         CAF      SINGLE       y     1.374  0.0127     1.374  0.0127
+BBB         CAF         CAI      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BBB         OAC         HAC      SINGLE       n     0.970  0.0120     0.846  0.0200
+BBB         CAN        HAN1      SINGLE       n     1.089  0.0100     0.980  0.0144
+BBB         CAN        HAN2      SINGLE       n     1.089  0.0100     0.980  0.0144
+BBB         CAO        HAO1      SINGLE       n     1.089  0.0100     0.982  0.0175
+BBB         CAO        HAO2      SINGLE       n     1.089  0.0100     0.982  0.0175
+BBB         CAR        HAR1      SINGLE       n     1.089  0.0100     0.980  0.0169
+BBB         CAR        HAR2      SINGLE       n     1.089  0.0100     0.980  0.0169
+BBB         NAS         HAS      SINGLE       n     1.016  0.0100     0.893  0.0200
+BBB         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.983  0.0146
+BBB         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.983  0.0146
+BBB         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0174
+BBB         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0152
+BBB         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0163
+BBB         CAM         HAM      SINGLE       n     1.082  0.0130     0.945  0.0164
+BBB         CAP        HAP1      SINGLE       n     1.089  0.0100     0.978  0.0133
+BBB         CAP        HAP2      SINGLE       n     1.089  0.0100     0.978  0.0133
+BBB         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0174
+BBB         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0175
+BBB         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0161
+BBB         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0175
+BBB         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0174
+BBB         OAD         HAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BBB         CAN         OAC         HAC     109.347    1.86
+BBB         OAC         CAN         CAO     112.284    1.56
+BBB         OAC         CAN        HAN1     109.012    1.50
+BBB         OAC         CAN        HAN2     109.012    1.50
+BBB         CAO         CAN        HAN1     109.198    1.50
+BBB         CAO         CAN        HAN2     109.198    1.50
+BBB        HAN1         CAN        HAN2     108.093    1.50
+BBB         CAN         CAO         OAT     109.629    1.89
+BBB         CAN         CAO        HAO1     109.795    1.50
+BBB         CAN         CAO        HAO2     109.795    1.50
+BBB         OAT         CAO        HAO1     109.668    1.50
+BBB         OAT         CAO        HAO2     109.668    1.50
+BBB        HAO1         CAO        HAO2     108.274    1.50
+BBB         CAO         OAT         CAR     114.958    1.57
+BBB         OAT         CAR         NBC     112.798    1.50
+BBB         OAT         CAR        HAR1     109.488    1.50
+BBB         OAT         CAR        HAR2     109.488    1.50
+BBB         NBC         CAR        HAR1     108.793    1.53
+BBB         NBC         CAR        HAR2     108.793    1.53
+BBB        HAR1         CAR        HAR2     108.663    1.50
+BBB         CAR         NBC         CBB     118.680    1.50
+BBB         CAR         NBC         CAY     120.168    1.83
+BBB         CBB         NBC         CAY     121.152    2.37
+BBB         NBC         CBB         OAB     121.569    1.50
+BBB         NBC         CBB         NAS     116.499    1.50
+BBB         OAB         CBB         NAS     121.933    1.50
+BBB         CBB         NAS         CBA     127.018    1.50
+BBB         CBB         NAS         HAS     115.804    1.50
+BBB         CBA         NAS         HAS     117.178    1.81
+BBB         NAS         CBA         OAA     118.856    1.50
+BBB         NAS         CBA         CAZ     116.659    1.50
+BBB         OAA         CBA         CAZ     124.485    1.50
+BBB         NBC         CAY         CAZ     119.787    3.00
+BBB         NBC         CAY         OAD     116.563    1.93
+BBB         CAZ         CAY         OAD     123.650    3.00
+BBB         CBA         CAZ         CAY     118.885    1.50
+BBB         CBA         CAZ         CAQ     120.382    1.50
+BBB         CAY         CAZ         CAQ     120.733    1.50
+BBB         CAZ         CAQ         CAW     113.189    2.84
+BBB         CAZ         CAQ        HAQ1     108.909    1.50
+BBB         CAZ         CAQ        HAQ2     108.909    1.50
+BBB         CAW         CAQ        HAQ1     108.797    1.50
+BBB         CAW         CAQ        HAQ2     108.797    1.50
+BBB        HAQ1         CAQ        HAQ2     107.770    1.50
+BBB         CAQ         CAW         CAK     121.297    1.50
+BBB         CAQ         CAW         CAM     120.086    1.50
+BBB         CAK         CAW         CAM     118.617    1.50
+BBB         CAW         CAK         CAH     120.946    1.50
+BBB         CAW         CAK         HAK     119.370    1.50
+BBB         CAH         CAK         HAK     119.684    1.50
+BBB         CAK         CAH         CAL     120.377    1.50
+BBB         CAK         CAH         HAH     119.950    1.50
+BBB         CAL         CAH         HAH     119.672    1.50
+BBB         CAH         CAL         CAX     119.221    1.50
+BBB         CAH         CAL         HAL     120.424    1.50
+BBB         CAX         CAL         HAL     120.355    1.50
+BBB         CAW         CAM         CAX     120.806    1.50
+BBB         CAW         CAM         HAM     119.586    1.50
+BBB         CAX         CAM         HAM     119.608    1.50
+BBB         CAL         CAX         CAM     120.032    1.50
+BBB         CAL         CAX         OAU     120.053    3.00
+BBB         CAM         CAX         OAU     119.915    3.00
+BBB         CAX         OAU         CAP     117.611    1.50
+BBB         OAU         CAP         CAV     109.292    2.21
+BBB         OAU         CAP        HAP1     109.697    1.50
+BBB         OAU         CAP        HAP2     109.697    1.50
+BBB         CAV         CAP        HAP1     109.862    1.50
+BBB         CAV         CAP        HAP2     109.862    1.50
+BBB        HAP1         CAP        HAP2     108.398    1.50
+BBB         CAP         CAV         CAJ     120.651    1.50
+BBB         CAP         CAV         CAI     120.652    1.50
+BBB         CAJ         CAV         CAI     118.697    1.50
+BBB         CAV         CAJ         CAG     120.514    1.50
+BBB         CAV         CAJ         HAJ     119.732    1.50
+BBB         CAG         CAJ         HAJ     119.754    1.50
+BBB         CAJ         CAG         CAE     120.186    1.50
+BBB         CAJ         CAG         HAG     119.862    1.50
+BBB         CAE         CAG         HAG     119.952    1.50
+BBB         CAG         CAE         CAF     119.903    1.50
+BBB         CAG         CAE         HAE     120.048    1.50
+BBB         CAF         CAE         HAE     120.048    1.50
+BBB         CAE         CAF         CAI     120.186    1.50
+BBB         CAE         CAF         HAF     119.952    1.50
+BBB         CAI         CAF         HAF     119.862    1.50
+BBB         CAV         CAI         CAF     120.514    1.50
+BBB         CAV         CAI         HAI     119.732    1.50
+BBB         CAF         CAI         HAI     119.754    1.50
+BBB         CAY         OAD         HAD     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BBB             sp3_sp3_1         CAO         CAN         OAC         HAC     180.000    10.0     3
+BBB              const_60         OAD         CAY         CAZ         CAQ       0.000    10.0     2
+BBB             sp2_sp2_1         NBC         CAY         OAD         HAD     180.000     5.0     2
+BBB             sp2_sp3_8         CBA         CAZ         CAQ         CAW     -90.000    10.0     6
+BBB            sp2_sp3_14         CAK         CAW         CAQ         CAZ     -90.000    10.0     6
+BBB              const_22         CAH         CAK         CAW         CAQ     180.000    10.0     2
+BBB              const_66         CAX         CAM         CAW         CAQ     180.000    10.0     2
+BBB              const_25         CAL         CAH         CAK         CAW       0.000    10.0     2
+BBB              const_29         CAK         CAH         CAL         CAX       0.000    10.0     2
+BBB              const_34         CAH         CAL         CAX         OAU     180.000    10.0     2
+BBB              const_38         CAW         CAM         CAX         OAU     180.000    10.0     2
+BBB             sp2_sp2_3         CAL         CAX         OAU         CAP     180.000     5.0     2
+BBB             sp3_sp3_4         OAC         CAN         CAO         OAT     180.000    10.0     3
+BBB            sp3_sp3_19         CAV         CAP         OAU         CAX     180.000    10.0     3
+BBB            sp2_sp3_20         CAJ         CAV         CAP         OAU     -90.000    10.0     6
+BBB       const_sp2_sp2_2         CAG         CAJ         CAV         CAP     180.000     5.0     2
+BBB              const_70         CAF         CAI         CAV         CAP     180.000    10.0     2
+BBB       const_sp2_sp2_5         CAE         CAG         CAJ         CAV       0.000     5.0     2
+BBB       const_sp2_sp2_9         CAF         CAE         CAG         CAJ       0.000     5.0     2
+BBB              const_13         CAG         CAE         CAF         CAI       0.000    10.0     2
+BBB              const_17         CAE         CAF         CAI         CAV       0.000    10.0     2
+BBB            sp3_sp3_13         CAN         CAO         OAT         CAR     180.000    10.0     3
+BBB            sp3_sp3_16         NBC         CAR         OAT         CAO     180.000    10.0     3
+BBB             sp2_sp3_2         CBB         NBC         CAR         OAT     -90.000    10.0     6
+BBB              const_64         OAD         CAY         NBC         CAR       0.000    10.0     2
+BBB              const_44         OAB         CBB         NBC         CAR       0.000    10.0     2
+BBB              const_47         OAB         CBB         NAS         CBA     180.000    10.0     2
+BBB              const_51         OAA         CBA         NAS         CBB     180.000    10.0     2
+BBB              const_56         CAQ         CAZ         CBA         OAA       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BBB    plan-1         CAQ   0.020
+BBB    plan-1         CAR   0.020
+BBB    plan-1         CAY   0.020
+BBB    plan-1         CAZ   0.020
+BBB    plan-1         CBA   0.020
+BBB    plan-1         CBB   0.020
+BBB    plan-1         HAS   0.020
+BBB    plan-1         NAS   0.020
+BBB    plan-1         NBC   0.020
+BBB    plan-1         OAA   0.020
+BBB    plan-1         OAB   0.020
+BBB    plan-1         OAD   0.020
+BBB    plan-2         CAH   0.020
+BBB    plan-2         CAK   0.020
+BBB    plan-2         CAL   0.020
+BBB    plan-2         CAM   0.020
+BBB    plan-2         CAQ   0.020
+BBB    plan-2         CAW   0.020
+BBB    plan-2         CAX   0.020
+BBB    plan-2         HAH   0.020
+BBB    plan-2         HAK   0.020
+BBB    plan-2         HAL   0.020
+BBB    plan-2         HAM   0.020
+BBB    plan-2         OAU   0.020
+BBB    plan-3         CAE   0.020
+BBB    plan-3         CAF   0.020
+BBB    plan-3         CAG   0.020
+BBB    plan-3         CAI   0.020
+BBB    plan-3         CAJ   0.020
+BBB    plan-3         CAP   0.020
+BBB    plan-3         CAV   0.020
+BBB    plan-3         HAE   0.020
+BBB    plan-3         HAF   0.020
+BBB    plan-3         HAG   0.020
+BBB    plan-3         HAI   0.020
+BBB    plan-3         HAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BBB           SMILES              ACDLabs 10.04                                                                                                     O=C1C(=C(O)N(C(=O)N1)COCCO)Cc3cccc(OCc2ccccc2)c3
+BBB SMILES_CANONICAL               CACTVS 3.341                                                                                                       OCCOCN1C(=O)NC(=O)C(=C1O)Cc2cccc(OCc3ccccc3)c2
+BBB           SMILES               CACTVS 3.341                                                                                                       OCCOCN1C(=O)NC(=O)C(=C1O)Cc2cccc(OCc3ccccc3)c2
+BBB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                     c1ccc(cc1)COc2cccc(c2)CC3=C(N(C(=O)NC3=O)COCCO)O
+BBB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                     c1ccc(cc1)COc2cccc(c2)CC3=C(N(C(=O)NC3=O)COCCO)O
+BBB            InChI                InChI  1.03 InChI=1S/C21H22N2O6/c24-9-10-28-14-23-20(26)18(19(25)22-21(23)27)12-16-7-4-8-17(11-16)29-13-15-5-2-1-3-6-15/h1-8,11,24,26H,9-10,12-14H2,(H,22,25,27)
+BBB         InChIKey                InChI  1.03                                                                                                                          CAWXCABXSPTFRN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BBB acedrg               243         "dictionary generator"                  
+BBB acedrg_database      11          "data source"                           
+BBB rdkit                2017.03.2   "Chemoinformatics tool"
+BBB refmac5              5.8.0238    "optimization tool"                     

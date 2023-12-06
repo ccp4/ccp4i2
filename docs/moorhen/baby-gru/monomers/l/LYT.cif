@@ -1,0 +1,134 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LYT     LYT      BUTYLAMINE     NON-POLYMER     16     5     .     
+#
+data_comp_LYT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LYT     C1      C       CH2     0       39.412      22.299      6.467       
+LYT     N       N       NT2     0       40.195      21.637      7.516       
+LYT     C2      C       CH2     0       39.403      21.573      5.131       
+LYT     C3      C       CH2     0       38.457      22.200      4.121       
+LYT     C4      C       CH3     0       38.980      23.496      3.548       
+LYT     H11     H       H       0       39.772      23.199      6.330       
+LYT     H12     H       H       0       38.489      22.392      6.778       
+LYT     HN1     H       H       0       41.065      21.760      7.386       
+LYT     HN2     H       H       0       40.050      20.761      7.513       
+LYT     H21     H       H       0       39.143      20.639      5.285       
+LYT     H22     H       H       0       40.314      21.574      4.768       
+LYT     H31     H       H       0       37.592      22.369      4.554       
+LYT     H32     H       H       0       38.306      21.565      3.387       
+LYT     H41     H       H       0       38.372      23.817      2.860       
+LYT     H42     H       H       0       39.859      23.349      3.159       
+LYT     H43     H       H       0       39.047      24.161      4.256       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LYT          C1           N      SINGLE       n     1.466  0.0117     1.466  0.0117
+LYT          C1          C2      SINGLE       n     1.521  0.0102     1.521  0.0102
+LYT          C2          C3      SINGLE       n     1.520  0.0176     1.520  0.0176
+LYT          C3          C4      SINGLE       n     1.510  0.0200     1.510  0.0200
+LYT          C1         H11      SINGLE       n     1.089  0.0100     0.979  0.0106
+LYT          C1         H12      SINGLE       n     1.089  0.0100     0.979  0.0106
+LYT           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+LYT           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+LYT          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+LYT          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+LYT          C3         H31      SINGLE       n     1.089  0.0100     0.982  0.0155
+LYT          C3         H32      SINGLE       n     1.089  0.0100     0.982  0.0155
+LYT          C4         H41      SINGLE       n     1.089  0.0100     0.973  0.0157
+LYT          C4         H42      SINGLE       n     1.089  0.0100     0.973  0.0157
+LYT          C4         H43      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LYT           N          C1          C2     114.751    2.00
+LYT           N          C1         H11     108.763    1.50
+LYT           N          C1         H12     108.763    1.50
+LYT          C2          C1         H11     108.627    1.50
+LYT          C2          C1         H12     108.627    1.50
+LYT         H11          C1         H12     107.806    1.50
+LYT          C1           N         HN1     110.839    3.00
+LYT          C1           N         HN2     110.839    3.00
+LYT         HN1           N         HN2     107.243    3.00
+LYT          C1          C2          C3     113.118    2.03
+LYT          C1          C2         H21     108.630    1.50
+LYT          C1          C2         H22     108.630    1.50
+LYT          C3          C2         H21     109.463    1.50
+LYT          C3          C2         H22     109.463    1.50
+LYT         H21          C2         H22     107.927    1.57
+LYT          C2          C3          C4     112.927    1.64
+LYT          C2          C3         H31     108.966    1.50
+LYT          C2          C3         H32     108.966    1.50
+LYT          C4          C3         H31     108.918    1.50
+LYT          C4          C3         H32     108.918    1.50
+LYT         H31          C3         H32     107.763    1.50
+LYT          C3          C4         H41     109.554    1.50
+LYT          C3          C4         H42     109.554    1.50
+LYT          C3          C4         H43     109.554    1.50
+LYT         H41          C4         H42     109.380    1.50
+LYT         H41          C4         H43     109.380    1.50
+LYT         H42          C4         H43     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LYT             sp3_sp3_1          C2          C1           N         HN1     180.000    10.0     3
+LYT             sp3_sp3_7           N          C1          C2          C3     180.000    10.0     3
+LYT            sp3_sp3_16          C1          C2          C3          C4     180.000    10.0     3
+LYT            sp3_sp3_25          C2          C3          C4         H41     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LYT           SMILES              ACDLabs 10.04                                 NCCCC
+LYT SMILES_CANONICAL               CACTVS 3.341                                 CCCCN
+LYT           SMILES               CACTVS 3.341                                 CCCCN
+LYT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                 CCCCN
+LYT           SMILES "OpenEye OEToolkits" 1.5.0                                 CCCCN
+LYT            InChI                InChI  1.03 InChI=1S/C4H11N/c1-2-3-4-5/h2-5H2,1H3
+LYT         InChIKey                InChI  1.03           HQABUPZFAYXKJW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LYT acedrg               243         "dictionary generator"                  
+LYT acedrg_database      11          "data source"                           
+LYT rdkit                2017.03.2   "Chemoinformatics tool"
+LYT refmac5              5.8.0238    "optimization tool"                     

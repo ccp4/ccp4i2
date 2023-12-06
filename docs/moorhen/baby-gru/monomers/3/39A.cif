@@ -1,0 +1,191 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+39A     39A      6-AMINO-3,9-DIMETHYL-9H-PURIN-3-IUM     NON-POLYMER     22     12     .     
+#
+data_comp_39A
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+39A     N6      N       NH2     0       133.535     32.047      3.529       
+39A     C6      C       CR6     0       132.331     31.770      4.030       
+39A     C5      C       CR56    0       131.178     32.526      3.721       
+39A     N7      N       NRD5    0       130.998     33.638      2.905       
+39A     C4      C       CR56    0       129.945     32.186      4.276       
+39A     N9      N       NT      0       129.002     33.075      3.815       
+39A     C8      C       CR15    0       129.714     33.914      2.998       
+39A     C9M     C       CH3     0       127.569     33.157      4.092       
+39A     N3      N       NR6     1       129.867     31.110      5.125       
+39A     C3M     C       CH3     0       128.614     30.676      5.758       
+39A     C2      C       CR16    0       131.030     30.377      5.414       
+39A     N1      N       NRD6    0       132.214     30.710      4.875       
+39A     HN61    H       H       0       133.603     32.522      2.795       
+39A     HN62    H       H       0       134.256     31.753      3.936       
+39A     H8      H       H       0       129.307     34.634      2.539       
+39A     H9M1    H       H       0       127.197     33.931      3.645       
+39A     H9M2    H       H       0       127.429     33.238      5.047       
+39A     H9M3    H       H       0       127.131     32.357      3.769       
+39A     H3M1    H       H       0       128.767     29.887      6.304       
+39A     H3M2    H       H       0       127.961     30.467      5.070       
+39A     H3M3    H       H       0       128.272     31.391      6.319       
+39A     H2      H       H       0       130.988     29.636      5.996       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+39A          N6          C6      SINGLE       n     1.332  0.0100     1.332  0.0100
+39A          C6          C5      DOUBLE       y     1.409  0.0100     1.409  0.0100
+39A          C6          N1      SINGLE       y     1.354  0.0100     1.354  0.0100
+39A          C5          N7      SINGLE       y     1.389  0.0100     1.389  0.0100
+39A          C5          C4      SINGLE       y     1.396  0.0100     1.396  0.0100
+39A          N7          C8      DOUBLE       y     1.312  0.0100     1.312  0.0100
+39A          C4          N9      SINGLE       y     1.381  0.0157     1.381  0.0157
+39A          C4          N3      DOUBLE       y     1.370  0.0100     1.370  0.0100
+39A          N9          C8      SINGLE       y     1.368  0.0147     1.368  0.0147
+39A          N9         C9M      SINGLE       n     1.461  0.0100     1.461  0.0100
+39A          N3         C3M      SINGLE       n     1.467  0.0100     1.467  0.0100
+39A          N3          C2      SINGLE       y     1.387  0.0182     1.387  0.0182
+39A          C2          N1      DOUBLE       y     1.334  0.0127     1.334  0.0127
+39A          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+39A          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+39A          C8          H8      SINGLE       n     1.082  0.0130     0.946  0.0200
+39A         C9M        H9M1      SINGLE       n     1.089  0.0100     0.968  0.0155
+39A         C9M        H9M2      SINGLE       n     1.089  0.0100     0.968  0.0155
+39A         C9M        H9M3      SINGLE       n     1.089  0.0100     0.968  0.0155
+39A         C3M        H3M1      SINGLE       n     1.089  0.0100     0.971  0.0146
+39A         C3M        H3M2      SINGLE       n     1.089  0.0100     0.971  0.0146
+39A         C3M        H3M3      SINGLE       n     1.089  0.0100     0.971  0.0146
+39A          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+39A          C6          N6        HN61     119.723    1.50
+39A          C6          N6        HN62     119.723    1.50
+39A        HN61          N6        HN62     120.554    1.88
+39A          N6          C6          C5     123.434    1.50
+39A          N6          C6          N1     118.441    1.50
+39A          C5          C6          N1     118.124    1.50
+39A          C6          C5          N7     130.687    1.50
+39A          C6          C5          C4     120.396    1.69
+39A          N7          C5          C4     108.917    1.50
+39A          C5          N7          C8     103.565    1.50
+39A          C5          C4          N9     112.138    1.50
+39A          C5          C4          N3     121.145    1.50
+39A          N9          C4          N3     126.718    3.00
+39A          C4          N9          C8     105.610    1.50
+39A          C4          N9         C9M     123.873    2.87
+39A          C8          N9         C9M     124.795    3.00
+39A          N7          C8          N9     114.617    1.50
+39A          N7          C8          H8     123.146    1.50
+39A          N9          C8          H8     122.237    1.50
+39A          N9         C9M        H9M1     109.468    1.50
+39A          N9         C9M        H9M2     109.468    1.50
+39A          N9         C9M        H9M3     109.468    1.50
+39A        H9M1         C9M        H9M2     109.427    1.50
+39A        H9M1         C9M        H9M3     109.427    1.50
+39A        H9M2         C9M        H9M3     109.427    1.50
+39A          C4          N3         C3M     122.521    1.50
+39A          C4          N3          C2     120.555    1.50
+39A         C3M          N3          C2     116.923    1.50
+39A          N3         C3M        H3M1     109.501    1.50
+39A          N3         C3M        H3M2     109.501    1.50
+39A          N3         C3M        H3M3     109.501    1.50
+39A        H3M1         C3M        H3M2     109.456    1.50
+39A        H3M1         C3M        H3M3     109.456    1.50
+39A        H3M2         C3M        H3M3     109.456    1.50
+39A          N3          C2          N1     120.508    2.44
+39A          N3          C2          H2     120.118    1.62
+39A          N1          C2          H2     119.374    1.50
+39A          C6          N1          C2     119.271    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+39A             sp2_sp2_1          C5          C6          N6        HN61     180.000     5.0     2
+39A              const_17          N3          C2          N1          C6       0.000    10.0     2
+39A              const_32          N6          C6          N1          C2     180.000    10.0     2
+39A       const_sp2_sp2_4          N7          C5          C6          N6       0.000     5.0     2
+39A              const_20          C6          C5          N7          C8     180.000    10.0     2
+39A       const_sp2_sp2_6          N9          C4          C5          C6     180.000     5.0     2
+39A              const_21          N9          C8          N7          C5       0.000    10.0     2
+39A              const_28          C5          C4          N9         C9M     180.000    10.0     2
+39A              const_10          C5          C4          N3         C3M     180.000    10.0     2
+39A              const_24          N7          C8          N9         C9M     180.000    10.0     2
+39A             sp2_sp3_1          C4          N9         C9M        H9M1     150.000    10.0     6
+39A              const_14          N1          C2          N3         C3M     180.000    10.0     2
+39A             sp2_sp3_7          C4          N3         C3M        H3M1     150.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+39A    plan-1          C2   0.020
+39A    plan-1         C3M   0.020
+39A    plan-1          C4   0.020
+39A    plan-1          C5   0.020
+39A    plan-1          C6   0.020
+39A    plan-1          C8   0.020
+39A    plan-1         C9M   0.020
+39A    plan-1          H2   0.020
+39A    plan-1          H8   0.020
+39A    plan-1          N1   0.020
+39A    plan-1          N3   0.020
+39A    plan-1          N6   0.020
+39A    plan-1          N7   0.020
+39A    plan-1          N9   0.020
+39A    plan-2          C6   0.020
+39A    plan-2        HN61   0.020
+39A    plan-2        HN62   0.020
+39A    plan-2          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+39A           SMILES              ACDLabs 10.04                                            n2c[n+](c1c(ncn1C)c2N)C
+39A SMILES_CANONICAL               CACTVS 3.341                                            Cn1cnc2c(N)nc[n+](C)c12
+39A           SMILES               CACTVS 3.341                                            Cn1cnc2c(N)nc[n+](C)c12
+39A SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              Cn1cnc2c1[n+](cnc2N)C
+39A           SMILES "OpenEye OEToolkits" 1.5.0                                              Cn1cnc2c1[n+](cnc2N)C
+39A            InChI                InChI  1.03 InChI=1S/C7H9N5/c1-11-3-9-5-6(8)10-4-12(2)7(5)11/h3-4,8H,1-2H3/p+1
+39A         InChIKey                InChI  1.03                                        YXTNRNJPEDJTNF-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+39A acedrg               243         "dictionary generator"                  
+39A acedrg_database      11          "data source"                           
+39A rdkit                2017.03.2   "Chemoinformatics tool"
+39A refmac5              5.8.0238    "optimization tool"                     

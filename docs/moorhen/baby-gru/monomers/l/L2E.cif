@@ -1,0 +1,386 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+L2E     L2E      (2S)-2-(3,4-dihydroxyphenyl)-6-[(2E)-3,7-dimethylocta-2,6-dien-1-yl]-5,7-dihydroxy-2,3-dihydro-4H-chromen-4-one     NON-POLYMER     59     31     .     
+#
+data_comp_L2E
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+L2E     CAA     C       CH3     0       6.647       39.267      20.032      
+L2E     CAT     C       C       0       6.333       40.513      19.252      
+L2E     CAB     C       CH3     0       7.442       40.953      18.340      
+L2E     CAI     C       C1      0       5.175       41.153      19.356      
+L2E     CAO     C       CH2     0       4.703       42.371      18.615      
+L2E     CAQ     C       CH2     0       3.223       42.661      18.810      
+L2E     CAU     C       C       0       2.321       41.591      18.253      
+L2E     CAC     C       CH3     0       2.222       41.558      16.754      
+L2E     CAJ     C       C1      0       1.719       40.712      19.049      
+L2E     CAP     C       CH2     0       1.001       39.445      18.671      
+L2E     CBC     C       CR6     0       1.634       38.225      19.309      
+L2E     CAZ     C       CR6     0       2.817       37.675      18.782      
+L2E     OAH     O       OH1     0       3.401       38.227      17.663      
+L2E     CAY     C       CR6     0       1.081       37.635      20.457      
+L2E     OAG     O       OH1     0       -0.068      38.117      21.041      
+L2E     CAN     C       CR16    0       1.666       36.528      21.053      
+L2E     CBB     C       CR66    0       2.821       35.988      20.510      
+L2E     OAS     O       O2      0       3.342       34.903      21.176      
+L2E     CBD     C       CR66    0       3.430       36.542      19.376      
+L2E     CAV     C       CR6     0       4.646       35.954      18.843      
+L2E     OAD     O       O       0       5.078       36.180      17.701      
+L2E     CAR     C       CH2     0       5.361       35.017      19.782      
+L2E     CBE     C       CH1     0       4.379       34.122      20.512      
+L2E     CBA     C       CR6     0       5.029       33.260      21.558      
+L2E     CAM     C       CR16    0       5.535       33.831      22.729      
+L2E     CAX     C       CR6     0       6.139       33.040      23.697      
+L2E     OAF     O       OH1     0       6.624       33.630      24.840      
+L2E     CAW     C       CR6     0       6.256       31.662      23.515      
+L2E     OAE     O       OH1     0       6.853       30.873      24.469      
+L2E     CAK     C       CR16    0       5.761       31.089      22.356      
+L2E     CAL     C       CR16    0       5.152       31.887      21.383      
+L2E     H1      H       H       0       5.876       39.003      20.561      
+L2E     H2      H       H       0       7.399       39.435      20.623      
+L2E     H3      H       H       0       6.875       38.550      19.419      
+L2E     H5      H       H       0       7.338       41.892      18.117      
+L2E     H6      H       H       0       7.421       40.425      17.525      
+L2E     H7      H       H       0       8.296       40.823      18.783      
+L2E     H8      H       H       0       4.562       40.801      19.983      
+L2E     H10     H       H       0       4.879       42.250      17.660      
+L2E     H11     H       H       0       5.219       43.146      18.917      
+L2E     H12     H       H       0       3.009       43.513      18.377      
+L2E     H13     H       H       0       3.046       42.768      19.767      
+L2E     H14     H       H       0       1.312       41.343      16.493      
+L2E     H15     H       H       0       2.826       40.883      16.403      
+L2E     H16     H       H       0       2.463       42.425      16.388      
+L2E     H17     H       H       0       1.741       40.907      19.976      
+L2E     H18     H       H       0       1.012       39.333      17.703      
+L2E     H19     H       H       0       0.069       39.509      18.950      
+L2E     H20     H       H       0       4.140       38.662      17.733      
+L2E     H21     H       H       0       -0.712      37.578      21.234      
+L2E     H22     H       H       0       1.268       36.143      21.826      
+L2E     H25     H       H       0       5.870       35.534      20.431      
+L2E     H26     H       H       0       5.986       34.466      19.278      
+L2E     H27     H       H       0       3.928       33.533      19.849      
+L2E     H28     H       H       0       5.463       34.757      22.867      
+L2E     H29     H       H       0       7.386       33.389      25.160      
+L2E     H30     H       H       0       6.672       30.993      25.302      
+L2E     H31     H       H       0       5.835       30.157      22.225      
+L2E     H32     H       H       0       4.821       31.486      20.602      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+L2E         CAZ         OAH      SINGLE       n     1.374  0.0155     1.374  0.0155
+L2E         CAV         OAD      DOUBLE       n     1.241  0.0116     1.241  0.0116
+L2E         CAU         CAC      SINGLE       n     1.499  0.0156     1.499  0.0156
+L2E         CAQ         CAU      SINGLE       n     1.503  0.0104     1.503  0.0104
+L2E         CAU         CAJ      DOUBLE       n     1.326  0.0104     1.326  0.0104
+L2E         CAJ         CAP      SINGLE       n     1.503  0.0103     1.503  0.0103
+L2E         CAP         CBC      SINGLE       n     1.512  0.0100     1.512  0.0100
+L2E         CAO         CAQ      SINGLE       n     1.516  0.0200     1.516  0.0200
+L2E         CAT         CAB      SINGLE       n     1.499  0.0156     1.499  0.0156
+L2E         CAI         CAO      SINGLE       n     1.498  0.0141     1.498  0.0141
+L2E         CBC         CAZ      DOUBLE       y     1.393  0.0154     1.393  0.0154
+L2E         CAZ         CBD      SINGLE       y     1.412  0.0100     1.412  0.0100
+L2E         CBD         CAV      SINGLE       n     1.450  0.0125     1.450  0.0125
+L2E         CAV         CAR      SINGLE       n     1.508  0.0113     1.508  0.0113
+L2E         CBC         CAY      SINGLE       y     1.398  0.0100     1.398  0.0100
+L2E         CBB         CBD      DOUBLE       y     1.396  0.0100     1.396  0.0100
+L2E         CAR         CBE      SINGLE       n     1.512  0.0142     1.512  0.0142
+L2E         CAT         CAI      DOUBLE       n     1.324  0.0100     1.324  0.0100
+L2E         CAA         CAT      SINGLE       n     1.499  0.0156     1.499  0.0156
+L2E         CAY         OAG      SINGLE       n     1.374  0.0155     1.374  0.0155
+L2E         CAY         CAN      DOUBLE       y     1.383  0.0100     1.383  0.0100
+L2E         OAS         CBE      SINGLE       n     1.452  0.0100     1.452  0.0100
+L2E         CBE         CBA      SINGLE       n     1.502  0.0100     1.502  0.0100
+L2E         CAN         CBB      SINGLE       y     1.383  0.0100     1.383  0.0100
+L2E         CBB         OAS      SINGLE       n     1.369  0.0100     1.369  0.0100
+L2E         CBA         CAL      SINGLE       y     1.385  0.0100     1.385  0.0100
+L2E         CAK         CAL      DOUBLE       y     1.395  0.0100     1.395  0.0100
+L2E         CBA         CAM      DOUBLE       y     1.393  0.0100     1.393  0.0100
+L2E         CAW         CAK      SINGLE       y     1.381  0.0100     1.381  0.0100
+L2E         CAM         CAX      SINGLE       y     1.385  0.0100     1.385  0.0100
+L2E         CAX         CAW      DOUBLE       y     1.391  0.0100     1.391  0.0100
+L2E         CAW         OAE      SINGLE       n     1.374  0.0155     1.374  0.0155
+L2E         CAX         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+L2E         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAB          H5      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAB          H6      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAB          H7      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAI          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+L2E         CAO         H10      SINGLE       n     1.089  0.0100     0.979  0.0159
+L2E         CAO         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+L2E         CAQ         H12      SINGLE       n     1.089  0.0100     0.979  0.0159
+L2E         CAQ         H13      SINGLE       n     1.089  0.0100     0.979  0.0159
+L2E         CAC         H14      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAC         H15      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAC         H16      SINGLE       n     1.089  0.0100     0.971  0.0140
+L2E         CAJ         H17      SINGLE       n     1.082  0.0130     0.947  0.0200
+L2E         CAP         H18      SINGLE       n     1.089  0.0100     0.976  0.0140
+L2E         CAP         H19      SINGLE       n     1.089  0.0100     0.976  0.0140
+L2E         OAH         H20      SINGLE       n     0.966  0.0059     0.861  0.0200
+L2E         OAG         H21      SINGLE       n     0.966  0.0059     0.861  0.0200
+L2E         CAN         H22      SINGLE       n     1.082  0.0130     0.951  0.0181
+L2E         CAR         H25      SINGLE       n     1.089  0.0100     0.974  0.0126
+L2E         CAR         H26      SINGLE       n     1.089  0.0100     0.974  0.0126
+L2E         CBE         H27      SINGLE       n     1.089  0.0100     0.994  0.0200
+L2E         CAM         H28      SINGLE       n     1.082  0.0130     0.939  0.0103
+L2E         OAF         H29      SINGLE       n     0.966  0.0059     0.861  0.0200
+L2E         OAE         H30      SINGLE       n     0.966  0.0059     0.861  0.0200
+L2E         CAK         H31      SINGLE       n     1.082  0.0130     0.944  0.0200
+L2E         CAL         H32      SINGLE       n     1.082  0.0130     0.938  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+L2E         CAT         CAA          H1     109.600    1.50
+L2E         CAT         CAA          H2     109.600    1.50
+L2E         CAT         CAA          H3     109.600    1.50
+L2E          H1         CAA          H2     109.342    1.50
+L2E          H1         CAA          H3     109.342    1.50
+L2E          H2         CAA          H3     109.342    1.50
+L2E         CAB         CAT         CAI     122.691    1.63
+L2E         CAB         CAT         CAA     114.618    1.50
+L2E         CAI         CAT         CAA     122.691    1.63
+L2E         CAT         CAB          H5     109.600    1.50
+L2E         CAT         CAB          H6     109.600    1.50
+L2E         CAT         CAB          H7     109.600    1.50
+L2E          H5         CAB          H6     109.342    1.50
+L2E          H5         CAB          H7     109.342    1.50
+L2E          H6         CAB          H7     109.342    1.50
+L2E         CAO         CAI         CAT     128.282    1.50
+L2E         CAO         CAI          H8     115.635    1.60
+L2E         CAT         CAI          H8     116.082    1.50
+L2E         CAQ         CAO         CAI     112.751    2.50
+L2E         CAQ         CAO         H10     109.013    1.50
+L2E         CAQ         CAO         H11     109.013    1.50
+L2E         CAI         CAO         H10     109.181    1.50
+L2E         CAI         CAO         H11     109.181    1.50
+L2E         H10         CAO         H11     107.922    1.50
+L2E         CAU         CAQ         CAO     113.520    2.62
+L2E         CAU         CAQ         H12     108.816    1.50
+L2E         CAU         CAQ         H13     108.816    1.50
+L2E         CAO         CAQ         H12     108.867    1.50
+L2E         CAO         CAQ         H13     108.867    1.50
+L2E         H12         CAQ         H13     107.710    1.94
+L2E         CAC         CAU         CAQ     115.386    1.50
+L2E         CAC         CAU         CAJ     123.007    1.73
+L2E         CAQ         CAU         CAJ     121.607    1.82
+L2E         CAU         CAC         H14     109.541    1.50
+L2E         CAU         CAC         H15     109.541    1.50
+L2E         CAU         CAC         H16     109.541    1.50
+L2E         H14         CAC         H15     109.342    1.50
+L2E         H14         CAC         H16     109.342    1.50
+L2E         H15         CAC         H16     109.342    1.50
+L2E         CAU         CAJ         CAP     127.346    1.50
+L2E         CAU         CAJ         H17     116.349    1.50
+L2E         CAP         CAJ         H17     116.305    1.50
+L2E         CAJ         CAP         CBC     113.492    1.82
+L2E         CAJ         CAP         H18     109.071    1.50
+L2E         CAJ         CAP         H19     109.071    1.50
+L2E         CBC         CAP         H18     108.575    1.50
+L2E         CBC         CAP         H19     108.575    1.50
+L2E         H18         CAP         H19     107.704    1.50
+L2E         CAP         CBC         CAZ     121.192    1.50
+L2E         CAP         CBC         CAY     120.661    1.50
+L2E         CAZ         CBC         CAY     118.146    1.50
+L2E         OAH         CAZ         CBC     120.901    3.00
+L2E         OAH         CAZ         CBD     118.021    2.42
+L2E         CBC         CAZ         CBD     121.079    1.50
+L2E         CAZ         OAH         H20     120.000    3.00
+L2E         CBC         CAY         OAG     119.510    3.00
+L2E         CBC         CAY         CAN     120.980    1.50
+L2E         OAG         CAY         CAN     119.510    3.00
+L2E         CAY         OAG         H21     120.000    3.00
+L2E         CAY         CAN         CBB     119.284    1.50
+L2E         CAY         CAN         H22     119.934    1.50
+L2E         CBB         CAN         H22     120.782    1.50
+L2E         CBD         CBB         CAN     122.325    1.50
+L2E         CBD         CBB         OAS     121.168    1.50
+L2E         CAN         CBB         OAS     116.507    1.50
+L2E         CBE         OAS         CBB     114.163    1.50
+L2E         CAZ         CBD         CAV     121.015    1.50
+L2E         CAZ         CBD         CBB     118.186    1.50
+L2E         CAV         CBD         CBB     120.800    1.50
+L2E         OAD         CAV         CBD     122.876    1.50
+L2E         OAD         CAV         CAR     121.353    1.50
+L2E         CBD         CAV         CAR     115.771    1.50
+L2E         CAV         CAR         CBE     111.338    1.51
+L2E         CAV         CAR         H25     109.466    1.50
+L2E         CAV         CAR         H26     109.466    1.50
+L2E         CBE         CAR         H25     109.236    1.50
+L2E         CBE         CAR         H26     109.236    1.50
+L2E         H25         CAR         H26     107.989    1.50
+L2E         CAR         CBE         OAS     109.460    1.50
+L2E         CAR         CBE         CBA     114.163    1.60
+L2E         CAR         CBE         H27     108.938    1.55
+L2E         OAS         CBE         CBA     107.980    1.50
+L2E         OAS         CBE         H27     107.570    1.59
+L2E         CBA         CBE         H27     108.507    1.50
+L2E         CBE         CBA         CAL     120.842    1.50
+L2E         CBE         CBA         CAM     120.612    1.50
+L2E         CAL         CBA         CAM     118.545    1.50
+L2E         CBA         CAM         CAX     120.081    1.50
+L2E         CBA         CAM         H28     120.135    1.50
+L2E         CAX         CAM         H28     119.784    1.50
+L2E         CAM         CAX         CAW     120.438    1.50
+L2E         CAM         CAX         OAF     119.781    3.00
+L2E         CAW         CAX         OAF     119.781    3.00
+L2E         CAX         OAF         H29     120.000    3.00
+L2E         CAK         CAW         CAX     119.460    1.50
+L2E         CAK         CAW         OAE     120.270    3.00
+L2E         CAX         CAW         OAE     120.270    3.00
+L2E         CAW         OAE         H30     120.000    3.00
+L2E         CAL         CAK         CAW     120.324    1.50
+L2E         CAL         CAK         H31     119.996    1.50
+L2E         CAW         CAK         H31     119.680    1.50
+L2E         CBA         CAL         CAK     121.151    1.50
+L2E         CBA         CAL         H32     119.583    1.50
+L2E         CAK         CAL         H32     119.266    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+L2E            sp2_sp3_43         CAB         CAT         CAA          H1       0.000    10.0     6
+L2E              const_24         OAH         CAZ         CBC         CAP       0.000    10.0     2
+L2E              const_44         OAG         CAY         CBC         CAP       0.000    10.0     2
+L2E             sp2_sp2_5         CBC         CAZ         OAH         H20     180.000     5.0     2
+L2E              const_28         OAH         CAZ         CBD         CAV       0.000    10.0     2
+L2E            sp2_sp2_15         CBC         CAY         OAG         H21     180.000     5.0     2
+L2E              const_38         CBB         CAN         CAY         OAG     180.000    10.0     2
+L2E              const_33         CAY         CAN         CBB         CBD       0.000    10.0     2
+L2E            sp2_sp2_17         CBD         CBB         OAS         CBE       0.000     5.0     2
+L2E              const_29         CAN         CBB         CBD         CAZ       0.000    10.0     2
+L2E            sp3_sp3_10         CAR         CBE         OAS         CBB      60.000    10.0     3
+L2E             sp2_sp2_4         OAD         CAV         CBD         CAZ       0.000     5.0     2
+L2E             sp2_sp3_4         OAD         CAV         CAR         CBE     180.000    10.0     6
+L2E            sp2_sp3_31         CAI         CAT         CAB          H5       0.000    10.0     6
+L2E            sp2_sp2_11         CAO         CAI         CAT         CAB     180.000     5.0     2
+L2E             sp3_sp3_1         CAV         CAR         CBE         OAS     -60.000    10.0     3
+L2E            sp2_sp3_49         CAL         CBA         CBE         CAR     150.000    10.0     6
+L2E              const_46         CAX         CAM         CBA         CBE     180.000    10.0     2
+L2E       const_sp2_sp2_2         CAK         CAL         CBA         CBE     180.000     5.0     2
+L2E              const_18         CBA         CAM         CAX         OAF     180.000    10.0     2
+L2E            sp2_sp2_21         CAM         CAX         OAF         H29     180.000     5.0     2
+L2E              const_16         OAE         CAW         CAX         OAF       0.000    10.0     2
+L2E            sp2_sp2_19         CAK         CAW         OAE         H30     180.000     5.0     2
+L2E              const_10         CAL         CAK         CAW         OAE     180.000    10.0     2
+L2E       const_sp2_sp2_5         CAW         CAK         CAL         CBA       0.000     5.0     2
+L2E            sp2_sp3_38         CAT         CAI         CAO         CAQ     120.000    10.0     6
+L2E            sp3_sp3_13         CAI         CAO         CAQ         CAU     180.000    10.0     3
+L2E            sp2_sp3_14         CAC         CAU         CAQ         CAO     120.000    10.0     6
+L2E             sp2_sp3_7         CAQ         CAU         CAC         H14       0.000    10.0     6
+L2E             sp2_sp2_8         CAP         CAJ         CAU         CAC       0.000     5.0     2
+L2E            sp2_sp3_20         CAU         CAJ         CAP         CBC     120.000    10.0     6
+L2E            sp2_sp3_26         CAZ         CBC         CAP         CAJ     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+L2E    chir_1    CBE    OAS    CBA    CAR    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+L2E    plan-1         CAN   0.020
+L2E    plan-1         CAP   0.020
+L2E    plan-1         CAV   0.020
+L2E    plan-1         CAY   0.020
+L2E    plan-1         CAZ   0.020
+L2E    plan-1         CBB   0.020
+L2E    plan-1         CBC   0.020
+L2E    plan-1         CBD   0.020
+L2E    plan-1         H22   0.020
+L2E    plan-1         OAG   0.020
+L2E    plan-1         OAH   0.020
+L2E    plan-1         OAS   0.020
+L2E    plan-2         CAK   0.020
+L2E    plan-2         CAL   0.020
+L2E    plan-2         CAM   0.020
+L2E    plan-2         CAW   0.020
+L2E    plan-2         CAX   0.020
+L2E    plan-2         CBA   0.020
+L2E    plan-2         CBE   0.020
+L2E    plan-2         H28   0.020
+L2E    plan-2         H31   0.020
+L2E    plan-2         H32   0.020
+L2E    plan-2         OAE   0.020
+L2E    plan-2         OAF   0.020
+L2E    plan-3         CAA   0.020
+L2E    plan-3         CAB   0.020
+L2E    plan-3         CAI   0.020
+L2E    plan-3         CAT   0.020
+L2E    plan-4         CAI   0.020
+L2E    plan-4         CAO   0.020
+L2E    plan-4         CAT   0.020
+L2E    plan-4          H8   0.020
+L2E    plan-5         CAC   0.020
+L2E    plan-5         CAJ   0.020
+L2E    plan-5         CAQ   0.020
+L2E    plan-5         CAU   0.020
+L2E    plan-6         CAJ   0.020
+L2E    plan-6         CAP   0.020
+L2E    plan-6         CAU   0.020
+L2E    plan-6         H17   0.020
+L2E    plan-7         CAR   0.020
+L2E    plan-7         CAV   0.020
+L2E    plan-7         CBD   0.020
+L2E    plan-7         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+L2E           SMILES              ACDLabs 12.01                                                                                                                 O=C2c3c(O)c(c(O)cc3OC(c1ccc(O)c(O)c1)C2)C\C=C(/C)CC\C=C(/C)C
+L2E            InChI                InChI  1.03 InChI=1S/C25H28O6/c1-14(2)5-4-6-15(3)7-9-17-19(27)12-23-24(25(17)30)21(29)13-22(31-23)16-8-10-18(26)20(28)11-16/h5,7-8,10-12,22,26-28,30H,4,6,9,13H2,1-3H3/b15-7+/t22-/m0/s1
+L2E         InChIKey                InChI  1.03                                                                                                                                                  XCYSQFHYFNWYFP-CEMXSPGASA-N
+L2E SMILES_CANONICAL               CACTVS 3.385                                                                                                                CC(C)=CCC\C(C)=C\Cc1c(O)cc2O[C@@H](CC(=O)c2c1O)c3ccc(O)c(O)c3
+L2E           SMILES               CACTVS 3.385                                                                                                                    CC(C)=CCCC(C)=CCc1c(O)cc2O[CH](CC(=O)c2c1O)c3ccc(O)c(O)c3
+L2E SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                              CC(=CCC/C(=C/Cc1c(cc2c(c1O)C(=O)C[C@H](O2)c3ccc(c(c3)O)O)O)/C)C
+L2E           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                     CC(=CCCC(=CCc1c(cc2c(c1O)C(=O)CC(O2)c3ccc(c(c3)O)O)O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+L2E acedrg               243         "dictionary generator"                  
+L2E acedrg_database      11          "data source"                           
+L2E rdkit                2017.03.2   "Chemoinformatics tool"
+L2E refmac5              5.8.0238    "optimization tool"                     

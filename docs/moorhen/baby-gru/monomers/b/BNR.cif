@@ -1,0 +1,869 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BNR     BNR      BIS-DAUNORUBICIN     NON-POLYMER     150     84     .     
+#
+data_comp_BNR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BNR     C1      C       CR16    0       23.898      15.980      10.366      
+BNR     C2      C       CR16    0       22.554      16.056      10.020      
+BNR     C3      C       CR16    0       21.723      14.957      10.122      
+BNR     C4      C       CR6     0       22.231      13.730      10.574      
+BNR     O4      O       O2      0       21.450      12.624      10.696      
+BNR     C5      C       CR66    0       23.606      13.623      10.934      
+BNR     C6      C       CR6     0       24.231      12.368      11.435      
+BNR     O6      O       O       0       23.797      11.246      11.104      
+BNR     C7      C       CR66    0       25.438      12.493      12.290      
+BNR     C8      C       CR6     0       25.794      11.493      13.226      
+BNR     O8      O       OH1     0       25.008      10.368      13.344      
+BNR     C9      C       CR66    0       26.936      11.633      14.027      
+BNR     C10     C       CH1     0       27.279      10.532      15.021      
+BNR     O10     O       O2      0       27.673      9.349       14.300      
+BNR     C11     C       CH2     0       28.380      10.907      16.008      
+BNR     C12     C       CT      0       29.521      11.671      15.336      
+BNR     O12     O       OH1     0       30.014      10.854      14.267      
+BNR     C13     C       C       0       30.607      11.976      16.393      
+BNR     O13     O       O       0       30.322      12.600      17.391      
+BNR     C14     C       CH3     0       32.024      11.508      16.203      
+BNR     C15     C       CH2     0       28.978      12.970      14.753      
+BNR     C16     C       CR66    0       27.744      12.781      13.899      
+BNR     C17     C       CR6     0       27.393      13.780      12.983      
+BNR     O17     O       OH1     0       28.171      14.911      12.855      
+BNR     C18     C       CR66    0       26.246      13.643      12.167      
+BNR     C19     C       CR6     0       25.860      14.688      11.195      
+BNR     O19     O       O       0       26.694      15.437      10.693      
+BNR     C20     C       CR66    0       24.424      14.775      10.814      
+BNR     C21     C       CH3     0       20.571      12.267      9.624       
+BNR     "C1'"   C       CH1     0       27.556      8.080       14.910      
+BNR     "C2'"   C       CH2     0       26.734      7.201       13.999      
+BNR     "C3'"   C       CH1     0       27.514      6.800       12.762      
+BNR     "O3'"   O       OH1     0       26.753      5.844       12.026      
+BNR     "C4'"   C       CH1     0       28.892      6.225       13.109      
+BNR     "N4'"   N       NT2     1       28.782      4.840       13.719      
+BNR     "C5'"   C       CH1     0       29.639      7.207       14.024      
+BNR     "O5'"   O       O2      0       28.846      7.503       15.180      
+BNR     "C6'"   C       CH3     0       30.993      6.712       14.510      
+BNR     "C7'"   C       CH2     0       29.569      3.724       13.076      
+BNR     "C8'"   C       CR6     0       29.280      3.646       11.602      
+BNR     C1B     C       CR16    0       26.363      17.476      8.250       
+BNR     C2B     C       CR16    0       27.530      18.136      8.609       
+BNR     C3B     C       CR16    0       28.768      17.637      8.266       
+BNR     C4B     C       CR6     0       28.870      16.435      7.548       
+BNR     "O4'"   O       O2      0       30.071      15.912      7.185       
+BNR     C5B     C       CR66    0       27.687      15.736      7.161       
+BNR     C6B     C       CR6     0       27.709      14.459      6.386       
+BNR     "O6'"   O       O       0       28.705      14.135      5.707       
+BNR     C7B     C       CR66    0       26.488      13.606      6.379       
+BNR     C8B     C       CR6     0       26.541      12.243      5.991       
+BNR     "O8'"   O       OH1     0       27.745      11.685      5.619       
+BNR     "C9'"   C       CR66    0       25.388      11.447      5.984       
+BNR     "CA'"   C       CH1     0       25.498      9.990       5.551       
+BNR     "OA'"   O       O2      0       26.346      9.281       6.476       
+BNR     "CB'"   C       CH2     0       24.162      9.258       5.426       
+BNR     "CC'"   C       CT      0       23.150      9.684       6.493       
+BNR     "OC'"   O       OH1     0       23.687      9.455       7.800       
+BNR     "CD'"   C       C       0       21.835      8.880       6.384       
+BNR     "OD'"   O       O       0       20.764      9.414       6.199       
+BNR     "CE'"   C       CH3     0       21.893      7.384       6.522       
+BNR     "CF'"   C       CH2     0       22.891      11.176      6.362       
+BNR     "CG'"   C       CR66    0       24.154      12.006      6.367       
+BNR     "CH'"   C       CR6     0       24.087      13.353      6.743       
+BNR     "OH'"   O       OH1     0       22.879      13.903      7.113       
+BNR     "CI'"   C       CR66    0       25.247      14.164      6.755       
+BNR     "CJ'"   C       CR6     0       25.175      15.589      7.153       
+BNR     "OJ'"   O       O       0       24.107      16.199      7.130       
+BNR     "CK'"   C       CR66    0       26.434      16.287      7.533       
+BNR     "CL'"   C       CH3     0       31.151      15.910      8.125       
+BNR     C1D     C       CH1     0       27.320      8.392       5.971       
+BNR     C2D     C       CH2     0       28.351      8.152       7.056       
+BNR     C3D     C       CH1     0       27.862      7.186       8.120       
+BNR     O3D     O       OH1     0       28.954      6.834       8.967       
+BNR     C4D     C       CH1     0       27.238      5.922       7.518       
+BNR     N4D     N       NT2     1       28.280      5.025       6.877       
+BNR     C5D     C       CH1     0       26.148      6.343       6.525       
+BNR     O5D     O       O2      0       26.727      7.165       5.504       
+BNR     C6D     C       CH3     0       25.432      5.190       5.840       
+BNR     C7D     C       CH2     0       28.381      3.609       7.386       
+BNR     C8D     C       CR6     0       28.703      3.594       8.855       
+BNR     C9A     C       CR16    0       30.238      4.019       10.667      
+BNR     C9B     C       CR16    0       28.022      3.273       11.147      
+BNR     C1A     C       CR16    0       29.955      3.986       9.310       
+BNR     C1C     C       CR16    0       27.735      3.252       9.791       
+BNR     H1      H       H       0       24.448      16.739      10.292      
+BNR     H2      H       H       0       22.198      16.870      9.712       
+BNR     H3      H       H       0       20.815      15.033      9.882       
+BNR     HO8     H       H       0       24.490      10.274      14.025      
+BNR     H10     H       H       0       26.463      10.330      15.541      
+BNR     H111    H       H       0       28.739      10.094      16.422      
+BNR     H112    H       H       0       27.995      11.464      16.718      
+BNR     H12     H       H       0       30.557      11.294      13.786      
+BNR     H141    H       H       0       32.061      10.789      15.554      
+BNR     H142    H       H       0       32.371      11.188      17.052      
+BNR     H143    H       H       0       32.569      12.250      15.893      
+BNR     H151    H       H       0       29.688      13.397      14.212      
+BNR     H152    H       H       0       28.756      13.588      15.494      
+BNR     H17     H       H       0       27.864      15.675      13.106      
+BNR     H211    H       H       0       20.996      12.460      8.773       
+BNR     H212    H       H       0       19.749      12.778      9.699       
+BNR     H213    H       H       0       20.368      11.319      9.676       
+BNR     "H1'"   H       H       0       27.075      8.173       15.769      
+BNR     "H2'1"  H       H       0       26.457      6.382       14.494      
+BNR     "H2'2"  H       H       0       25.910      7.691       13.725      
+BNR     "H3'"   H       H       0       27.645      7.604       12.191      
+BNR     "HO3'"  H       H       0       26.901      5.941       11.204      
+BNR     "H4'"   H       H       0       29.412      6.159       12.280      
+BNR     "HN'1"  H       H       0       27.902      4.601       13.694      
+BNR     "HN'2"  H       H       0       29.018      4.877       14.599      
+BNR     "H5'"   H       H       0       29.778      8.037       13.523      
+BNR     "H6'1"  H       H       0       30.899      6.304       15.386      
+BNR     "H6'2"  H       H       0       31.610      7.459       14.567      
+BNR     "H6'3"  H       H       0       31.342      6.055       13.885      
+BNR     "H7'1"  H       H       0       29.331      2.877       13.501      
+BNR     "H7'2"  H       H       0       30.523      3.880       13.218      
+BNR     H1B     H       H       0       25.529      17.834      8.493       
+BNR     "H2'"   H       H       0       27.480      18.939      9.095       
+BNR     H3B     H       H       0       29.545      18.104      8.521       
+BNR     "HO8'"  H       H       0       28.199      11.223      6.187       
+BNR     "H10'"  H       H       0       25.923      9.979       4.659       
+BNR     "HL'1"  H       H       0       24.319      8.296       5.495       
+BNR     "HL'2"  H       H       0       23.783      9.438       4.539       
+BNR     "H12'"  H       H       0       24.112      8.721       7.821       
+BNR     "HK'1"  H       H       0       22.766      7.110       6.846       
+BNR     "HK'2"  H       H       0       21.728      6.974       5.658       
+BNR     "HK'3"  H       H       0       21.212      7.093       7.151       
+BNR     "HJ'1"  H       H       0       22.308      11.459      7.109       
+BNR     "HJ'2"  H       H       0       22.403      11.347      5.518       
+BNR     "H17'"  H       H       0       22.501      14.490      6.609       
+BNR     "HI'1"  H       H       0       30.824      15.642      9.000       
+BNR     "HI'2"  H       H       0       31.531      16.803      8.180       
+BNR     "HI'3"  H       H       0       31.834      15.286      7.830       
+BNR     H1D     H       H       0       27.778      8.822       5.208       
+BNR     H2B     H       H       0       29.180      7.787       6.640       
+BNR     H2D     H       H       0       28.580      9.022       7.485       
+BNR     H3D     H       H       0       27.172      7.641       8.674       
+BNR     HO3A    H       H       0       28.660      6.599       9.719       
+BNR     H4D     H       H       0       26.796      5.420       8.238       
+BNR     HNB     H       H       0       29.094      5.417       6.999       
+BNR     HND     H       H       0       28.138      4.989       5.978       
+BNR     H5D     H       H       0       25.485      6.873       7.013       
+BNR     H6B     H       H       0       24.556      5.484       5.542       
+BNR     H6D     H       H       0       25.329      4.455       6.467       
+BNR     H6E     H       H       0       25.950      4.891       5.075       
+BNR     H7B     H       H       0       29.080      3.138       6.893       
+BNR     H7D     H       H       0       27.533      3.148       7.228       
+BNR     H9A     H       H       0       31.094      4.285       10.957      
+BNR     H9B     H       H       0       27.354      3.037       11.768      
+BNR     "H9A'"  H       H       0       30.618      4.239       8.690       
+BNR     "H9B'"  H       H       0       26.878      2.991       9.501       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BNR          C1          C2      DOUBLE       y     1.388  0.0167     1.388  0.0167
+BNR          C1         C20      SINGLE       y     1.386  0.0100     1.386  0.0100
+BNR          C2          C3      SINGLE       y     1.375  0.0172     1.375  0.0172
+BNR          C3          C4      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BNR          C4          O4      SINGLE       n     1.356  0.0100     1.356  0.0100
+BNR          C4          C5      SINGLE       y     1.415  0.0100     1.415  0.0100
+BNR          O4         C21      SINGLE       n     1.429  0.0105     1.429  0.0105
+BNR          C5          C6      SINGLE       n     1.469  0.0164     1.469  0.0164
+BNR          C5         C20      DOUBLE       y     1.410  0.0100     1.410  0.0100
+BNR          C6          O6      DOUBLE       n     1.244  0.0200     1.244  0.0200
+BNR          C6          C7      SINGLE       n     1.463  0.0186     1.463  0.0186
+BNR          C7          C8      DOUBLE       y     1.407  0.0116     1.407  0.0116
+BNR          C7         C18      SINGLE       y     1.403  0.0114     1.403  0.0114
+BNR          C8          O8      SINGLE       n     1.374  0.0155     1.374  0.0155
+BNR          C8          C9      SINGLE       y     1.393  0.0103     1.393  0.0103
+BNR          C9         C10      SINGLE       n     1.515  0.0100     1.515  0.0100
+BNR          C9         C16      DOUBLE       y     1.395  0.0120     1.395  0.0120
+BNR         C10         O10      SINGLE       n     1.434  0.0148     1.434  0.0148
+BNR         C10         C11      SINGLE       n     1.520  0.0132     1.520  0.0132
+BNR         O10       "C1'"      SINGLE       n     1.403  0.0143     1.403  0.0143
+BNR         C11         C12      SINGLE       n     1.529  0.0100     1.529  0.0100
+BNR         C12         O12      SINGLE       n     1.427  0.0129     1.427  0.0129
+BNR         C12         C13      SINGLE       n     1.536  0.0125     1.536  0.0125
+BNR         C12         C15      SINGLE       n     1.517  0.0164     1.517  0.0164
+BNR         C13         O13      DOUBLE       n     1.210  0.0100     1.210  0.0100
+BNR         C13         C14      SINGLE       n     1.501  0.0100     1.501  0.0100
+BNR         C15         C16      SINGLE       n     1.506  0.0100     1.506  0.0100
+BNR         C16         C17      SINGLE       y     1.393  0.0103     1.393  0.0103
+BNR         C17         O17      SINGLE       n     1.374  0.0155     1.374  0.0155
+BNR         C17         C18      DOUBLE       y     1.407  0.0116     1.407  0.0116
+BNR         C18         C19      SINGLE       n     1.463  0.0186     1.463  0.0186
+BNR         C19         O19      DOUBLE       n     1.227  0.0124     1.227  0.0124
+BNR         C19         C20      SINGLE       n     1.484  0.0104     1.484  0.0104
+BNR       "C1'"       "C2'"      SINGLE       n     1.507  0.0154     1.507  0.0154
+BNR       "C1'"       "O5'"      SINGLE       n     1.422  0.0169     1.422  0.0169
+BNR       "C2'"       "C3'"      SINGLE       n     1.516  0.0124     1.516  0.0124
+BNR       "C3'"       "O3'"      SINGLE       n     1.427  0.0100     1.427  0.0100
+BNR       "C3'"       "C4'"      SINGLE       n     1.528  0.0129     1.528  0.0129
+BNR       "C4'"       "N4'"      SINGLE       n     1.506  0.0100     1.506  0.0100
+BNR       "C4'"       "C5'"      SINGLE       n     1.533  0.0100     1.533  0.0100
+BNR       "N4'"       "C7'"      SINGLE       n     1.503  0.0100     1.503  0.0100
+BNR       "C5'"       "O5'"      SINGLE       n     1.429  0.0100     1.429  0.0100
+BNR       "C5'"       "C6'"      SINGLE       n     1.518  0.0129     1.518  0.0129
+BNR       "C7'"       "C8'"      SINGLE       n     1.504  0.0100     1.504  0.0100
+BNR       "C8'"         C9A      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BNR       "C8'"         C9B      SINGLE       y     1.386  0.0100     1.386  0.0100
+BNR         C1B         C2B      DOUBLE       y     1.388  0.0167     1.388  0.0167
+BNR         C1B       "CK'"      SINGLE       y     1.386  0.0100     1.386  0.0100
+BNR         C2B         C3B      SINGLE       y     1.375  0.0172     1.375  0.0172
+BNR         C3B         C4B      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BNR         C4B       "O4'"      SINGLE       n     1.356  0.0100     1.356  0.0100
+BNR         C4B         C5B      SINGLE       y     1.415  0.0100     1.415  0.0100
+BNR       "O4'"       "CL'"      SINGLE       n     1.429  0.0105     1.429  0.0105
+BNR         C5B         C6B      SINGLE       n     1.469  0.0164     1.469  0.0164
+BNR         C5B       "CK'"      DOUBLE       y     1.410  0.0100     1.410  0.0100
+BNR         C6B       "O6'"      DOUBLE       n     1.244  0.0200     1.244  0.0200
+BNR         C6B         C7B      SINGLE       n     1.463  0.0186     1.463  0.0186
+BNR         C7B         C8B      DOUBLE       y     1.407  0.0116     1.407  0.0116
+BNR         C7B       "CI'"      SINGLE       y     1.403  0.0114     1.403  0.0114
+BNR         C8B       "O8'"      SINGLE       n     1.374  0.0155     1.374  0.0155
+BNR         C8B       "C9'"      SINGLE       y     1.393  0.0103     1.393  0.0103
+BNR       "C9'"       "CA'"      SINGLE       n     1.515  0.0100     1.515  0.0100
+BNR       "C9'"       "CG'"      DOUBLE       y     1.395  0.0120     1.395  0.0120
+BNR       "CA'"       "OA'"      SINGLE       n     1.434  0.0148     1.434  0.0148
+BNR       "CA'"       "CB'"      SINGLE       n     1.520  0.0132     1.520  0.0132
+BNR       "OA'"         C1D      SINGLE       n     1.403  0.0143     1.403  0.0143
+BNR       "CB'"       "CC'"      SINGLE       n     1.529  0.0100     1.529  0.0100
+BNR       "CC'"       "OC'"      SINGLE       n     1.427  0.0129     1.427  0.0129
+BNR       "CC'"       "CD'"      SINGLE       n     1.536  0.0125     1.536  0.0125
+BNR       "CC'"       "CF'"      SINGLE       n     1.517  0.0164     1.517  0.0164
+BNR       "CD'"       "OD'"      DOUBLE       n     1.210  0.0100     1.210  0.0100
+BNR       "CD'"       "CE'"      SINGLE       n     1.501  0.0100     1.501  0.0100
+BNR       "CF'"       "CG'"      SINGLE       n     1.506  0.0100     1.506  0.0100
+BNR       "CG'"       "CH'"      SINGLE       y     1.393  0.0103     1.393  0.0103
+BNR       "CH'"       "OH'"      SINGLE       n     1.374  0.0155     1.374  0.0155
+BNR       "CH'"       "CI'"      DOUBLE       y     1.407  0.0116     1.407  0.0116
+BNR       "CI'"       "CJ'"      SINGLE       n     1.463  0.0186     1.463  0.0186
+BNR       "CJ'"       "OJ'"      DOUBLE       n     1.227  0.0124     1.227  0.0124
+BNR       "CJ'"       "CK'"      SINGLE       n     1.484  0.0104     1.484  0.0104
+BNR         C1D         C2D      SINGLE       n     1.507  0.0154     1.507  0.0154
+BNR         C1D         O5D      SINGLE       n     1.422  0.0169     1.422  0.0169
+BNR         C2D         C3D      SINGLE       n     1.516  0.0124     1.516  0.0124
+BNR         C3D         O3D      SINGLE       n     1.427  0.0100     1.427  0.0100
+BNR         C3D         C4D      SINGLE       n     1.528  0.0129     1.528  0.0129
+BNR         C4D         N4D      SINGLE       n     1.506  0.0100     1.506  0.0100
+BNR         C4D         C5D      SINGLE       n     1.533  0.0100     1.533  0.0100
+BNR         N4D         C7D      SINGLE       n     1.503  0.0100     1.503  0.0100
+BNR         C5D         O5D      SINGLE       n     1.429  0.0100     1.429  0.0100
+BNR         C5D         C6D      SINGLE       n     1.518  0.0129     1.518  0.0129
+BNR         C7D         C8D      SINGLE       n     1.504  0.0100     1.504  0.0100
+BNR         C8D         C1A      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BNR         C8D         C1C      SINGLE       y     1.386  0.0100     1.386  0.0100
+BNR         C9A         C1A      SINGLE       y     1.384  0.0100     1.384  0.0100
+BNR         C9B         C1C      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BNR          C1          H1      SINGLE       n     1.082  0.0130     0.941  0.0157
+BNR          C2          H2      SINGLE       n     1.082  0.0130     0.940  0.0131
+BNR          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0175
+BNR          O8         HO8      SINGLE       n     0.966  0.0059     0.861  0.0200
+BNR         C10         H10      SINGLE       n     1.089  0.0100     0.988  0.0175
+BNR         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0200
+BNR         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0200
+BNR         O12         H12      SINGLE       n     0.970  0.0120     0.848  0.0200
+BNR         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0140
+BNR         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0140
+BNR         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0140
+BNR         C15        H151      SINGLE       n     1.089  0.0100     0.990  0.0100
+BNR         C15        H152      SINGLE       n     1.089  0.0100     0.990  0.0100
+BNR         O17         H17      SINGLE       n     0.966  0.0059     0.861  0.0200
+BNR         C21        H211      SINGLE       n     1.089  0.0100     0.971  0.0157
+BNR         C21        H212      SINGLE       n     1.089  0.0100     0.971  0.0157
+BNR         C21        H213      SINGLE       n     1.089  0.0100     0.971  0.0157
+BNR       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.989  0.0183
+BNR       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.997  0.0200
+BNR       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.997  0.0200
+BNR       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.995  0.0100
+BNR       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+BNR       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.985  0.0158
+BNR       "N4'"      "HN'1"      SINGLE       n     1.036  0.0160     0.912  0.0165
+BNR       "N4'"      "HN'2"      SINGLE       n     1.036  0.0160     0.912  0.0165
+BNR       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.979  0.0100
+BNR       "C6'"      "H6'1"      SINGLE       n     1.089  0.0100     0.971  0.0171
+BNR       "C6'"      "H6'2"      SINGLE       n     1.089  0.0100     0.971  0.0171
+BNR       "C6'"      "H6'3"      SINGLE       n     1.089  0.0100     0.971  0.0171
+BNR       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.977  0.0142
+BNR       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.977  0.0142
+BNR         C1B         H1B      SINGLE       n     1.082  0.0130     0.941  0.0157
+BNR         C2B       "H2'"      SINGLE       n     1.082  0.0130     0.940  0.0131
+BNR         C3B         H3B      SINGLE       n     1.082  0.0130     0.942  0.0175
+BNR       "O8'"      "HO8'"      SINGLE       n     0.966  0.0059     0.861  0.0200
+BNR       "CA'"      "H10'"      SINGLE       n     1.089  0.0100     0.988  0.0175
+BNR       "CB'"      "HL'1"      SINGLE       n     1.089  0.0100     0.981  0.0200
+BNR       "CB'"      "HL'2"      SINGLE       n     1.089  0.0100     0.981  0.0200
+BNR       "OC'"      "H12'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+BNR       "CE'"      "HK'1"      SINGLE       n     1.089  0.0100     0.971  0.0140
+BNR       "CE'"      "HK'2"      SINGLE       n     1.089  0.0100     0.971  0.0140
+BNR       "CE'"      "HK'3"      SINGLE       n     1.089  0.0100     0.971  0.0140
+BNR       "CF'"      "HJ'1"      SINGLE       n     1.089  0.0100     0.990  0.0100
+BNR       "CF'"      "HJ'2"      SINGLE       n     1.089  0.0100     0.990  0.0100
+BNR       "OH'"      "H17'"      SINGLE       n     0.966  0.0059     0.861  0.0200
+BNR       "CL'"      "HI'1"      SINGLE       n     1.089  0.0100     0.971  0.0157
+BNR       "CL'"      "HI'2"      SINGLE       n     1.089  0.0100     0.971  0.0157
+BNR       "CL'"      "HI'3"      SINGLE       n     1.089  0.0100     0.971  0.0157
+BNR         C1D         H1D      SINGLE       n     1.089  0.0100     0.989  0.0183
+BNR         C2D         H2B      SINGLE       n     1.089  0.0100     0.997  0.0200
+BNR         C2D         H2D      SINGLE       n     1.089  0.0100     0.997  0.0200
+BNR         C3D         H3D      SINGLE       n     1.089  0.0100     0.995  0.0100
+BNR         O3D        HO3A      SINGLE       n     0.970  0.0120     0.841  0.0200
+BNR         C4D         H4D      SINGLE       n     1.089  0.0100     0.985  0.0158
+BNR         N4D         HNB      SINGLE       n     1.036  0.0160     0.912  0.0165
+BNR         N4D         HND      SINGLE       n     1.036  0.0160     0.912  0.0165
+BNR         C5D         H5D      SINGLE       n     1.089  0.0100     0.979  0.0100
+BNR         C6D         H6B      SINGLE       n     1.089  0.0100     0.971  0.0171
+BNR         C6D         H6D      SINGLE       n     1.089  0.0100     0.971  0.0171
+BNR         C6D         H6E      SINGLE       n     1.089  0.0100     0.971  0.0171
+BNR         C7D         H7B      SINGLE       n     1.089  0.0100     0.977  0.0142
+BNR         C7D         H7D      SINGLE       n     1.089  0.0100     0.977  0.0142
+BNR         C9A         H9A      SINGLE       n     1.082  0.0130     0.942  0.0167
+BNR         C9B         H9B      SINGLE       n     1.082  0.0130     0.942  0.0167
+BNR         C1A      "H9A'"      SINGLE       n     1.082  0.0130     0.942  0.0167
+BNR         C1C      "H9B'"      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BNR          C2          C1         C20     120.181    1.50
+BNR          C2          C1          H1     119.985    1.50
+BNR         C20          C1          H1     119.834    1.50
+BNR          C1          C2          C3     121.656    1.50
+BNR          C1          C2          H2     119.518    1.50
+BNR          C3          C2          H2     118.827    1.50
+BNR          C2          C3          C4     119.771    1.50
+BNR          C2          C3          H3     120.134    1.50
+BNR          C4          C3          H3     120.095    1.50
+BNR          C3          C4          O4     122.906    1.50
+BNR          C3          C4          C5     119.719    1.50
+BNR          O4          C4          C5     117.375    1.50
+BNR          C4          O4         C21     117.888    1.50
+BNR          C4          C5          C6     121.488    1.50
+BNR          C4          C5         C20     118.093    1.50
+BNR          C6          C5         C20     120.419    1.50
+BNR          C5          C6          O6     120.491    1.50
+BNR          C5          C6          C7     118.974    1.50
+BNR          O6          C6          C7     120.534    1.50
+BNR          C6          C7          C8     120.115    1.85
+BNR          C6          C7         C18     120.540    1.50
+BNR          C8          C7         C18     119.344    1.50
+BNR          C7          C8          O8     119.630    2.42
+BNR          C7          C8          C9     120.740    1.55
+BNR          O8          C8          C9     119.630    2.42
+BNR          C8          O8         HO8     120.000    3.00
+BNR          C8          C9         C10     119.739    3.00
+BNR          C8          C9         C16     119.916    1.50
+BNR         C10          C9         C16     120.345    1.50
+BNR          C9         C10         O10     108.615    2.09
+BNR          C9         C10         C11     112.454    1.55
+BNR          C9         C10         H10     108.618    1.50
+BNR         O10         C10         C11     110.347    2.52
+BNR         O10         C10         H10     108.904    1.51
+BNR         C11         C10         H10     108.616    1.50
+BNR         C10         O10       "C1'"     116.577    2.53
+BNR         C10         C11         C12     111.124    1.57
+BNR         C10         C11        H111     109.005    1.50
+BNR         C10         C11        H112     109.005    1.50
+BNR         C12         C11        H111     108.992    1.50
+BNR         C12         C11        H112     108.992    1.50
+BNR        H111         C11        H112     108.019    1.50
+BNR         C11         C12         O12     108.626    2.18
+BNR         C11         C12         C13     111.056    2.52
+BNR         C11         C12         C15     111.124    1.57
+BNR         O12         C12         C13     108.672    2.53
+BNR         O12         C12         C15     109.247    2.43
+BNR         C13         C12         C15     111.056    2.52
+BNR         C12         O12         H12     108.581    2.44
+BNR         C12         C13         O13     122.416    2.54
+BNR         C12         C13         C14     117.117    2.04
+BNR         O13         C13         C14     120.467    1.50
+BNR         C13         C14        H141     109.473    1.50
+BNR         C13         C14        H142     109.473    1.50
+BNR         C13         C14        H143     109.473    1.50
+BNR        H141         C14        H142     109.450    1.50
+BNR        H141         C14        H143     109.450    1.50
+BNR        H142         C14        H143     109.450    1.50
+BNR         C12         C15         C16     111.445    2.09
+BNR         C12         C15        H151     109.200    1.50
+BNR         C12         C15        H152     109.200    1.50
+BNR         C16         C15        H151     109.223    1.50
+BNR         C16         C15        H152     109.223    1.50
+BNR        H151         C15        H152     107.873    1.50
+BNR          C9         C16         C15     120.384    1.50
+BNR          C9         C16         C17     119.916    1.50
+BNR         C15         C16         C17     119.700    1.82
+BNR         C16         C17         O17     119.630    2.42
+BNR         C16         C17         C18     120.740    1.55
+BNR         O17         C17         C18     119.630    2.42
+BNR         C17         O17         H17     120.000    3.00
+BNR          C7         C18         C17     119.344    1.50
+BNR          C7         C18         C19     120.540    1.50
+BNR         C17         C18         C19     120.115    1.85
+BNR         C18         C19         O19     120.819    1.50
+BNR         C18         C19         C20     118.974    1.50
+BNR         O19         C19         C20     120.206    1.50
+BNR          C1         C20          C5     120.581    1.50
+BNR          C1         C20         C19     118.868    1.50
+BNR          C5         C20         C19     120.551    1.50
+BNR          O4         C21        H211     109.402    1.50
+BNR          O4         C21        H212     109.402    1.50
+BNR          O4         C21        H213     109.402    1.50
+BNR        H211         C21        H212     109.509    1.50
+BNR        H211         C21        H213     109.509    1.50
+BNR        H212         C21        H213     109.509    1.50
+BNR         O10       "C1'"       "C2'"     108.296    1.50
+BNR         O10       "C1'"       "O5'"     110.325    1.95
+BNR         O10       "C1'"       "H1'"     109.322    1.50
+BNR       "C2'"       "C1'"       "O5'"     111.005    1.50
+BNR       "C2'"       "C1'"       "H1'"     109.482    1.68
+BNR       "O5'"       "C1'"       "H1'"     109.272    1.61
+BNR       "C1'"       "C2'"       "C3'"     111.124    1.57
+BNR       "C1'"       "C2'"      "H2'1"     109.160    1.50
+BNR       "C1'"       "C2'"      "H2'2"     109.160    1.50
+BNR       "C3'"       "C2'"      "H2'1"     109.270    1.50
+BNR       "C3'"       "C2'"      "H2'2"     109.270    1.50
+BNR      "H2'1"       "C2'"      "H2'2"     108.019    1.50
+BNR       "C2'"       "C3'"       "O3'"     109.687    1.93
+BNR       "C2'"       "C3'"       "C4'"     112.456    1.50
+BNR       "C2'"       "C3'"       "H3'"     109.129    1.50
+BNR       "O3'"       "C3'"       "C4'"     109.135    1.90
+BNR       "O3'"       "C3'"       "H3'"     108.626    1.50
+BNR       "C4'"       "C3'"       "H3'"     108.664    1.50
+BNR       "C3'"       "O3'"      "HO3'"     109.344    1.84
+BNR       "C3'"       "C4'"       "N4'"     110.235    2.04
+BNR       "C3'"       "C4'"       "C5'"     111.124    1.57
+BNR       "C3'"       "C4'"       "H4'"     108.763    1.50
+BNR       "N4'"       "C4'"       "C5'"     110.019    1.64
+BNR       "N4'"       "C4'"       "H4'"     107.917    1.50
+BNR       "C5'"       "C4'"       "H4'"     107.948    1.50
+BNR       "C4'"       "N4'"       "C7'"     115.279    2.04
+BNR       "C4'"       "N4'"      "HN'1"     108.461    2.74
+BNR       "C4'"       "N4'"      "HN'2"     108.461    2.74
+BNR       "C7'"       "N4'"      "HN'1"     108.380    1.50
+BNR       "C7'"       "N4'"      "HN'2"     108.380    1.50
+BNR      "HN'1"       "N4'"      "HN'2"     107.680    1.50
+BNR       "C4'"       "C5'"       "O5'"     109.691    1.50
+BNR       "C4'"       "C5'"       "C6'"     114.035    1.50
+BNR       "C4'"       "C5'"       "H5'"     108.616    1.50
+BNR       "O5'"       "C5'"       "C6'"     107.094    1.50
+BNR       "O5'"       "C5'"       "H5'"     108.843    1.50
+BNR       "C6'"       "C5'"       "H5'"     109.260    1.50
+BNR       "C1'"       "O5'"       "C5'"     113.097    1.50
+BNR       "C5'"       "C6'"      "H6'1"     109.535    1.50
+BNR       "C5'"       "C6'"      "H6'2"     109.535    1.50
+BNR       "C5'"       "C6'"      "H6'3"     109.535    1.50
+BNR      "H6'1"       "C6'"      "H6'2"     109.383    1.59
+BNR      "H6'1"       "C6'"      "H6'3"     109.383    1.59
+BNR      "H6'2"       "C6'"      "H6'3"     109.383    1.59
+BNR       "N4'"       "C7'"       "C8'"     112.510    2.24
+BNR       "N4'"       "C7'"      "H7'1"     109.246    1.50
+BNR       "N4'"       "C7'"      "H7'2"     109.246    1.50
+BNR       "C8'"       "C7'"      "H7'1"     109.604    1.50
+BNR       "C8'"       "C7'"      "H7'2"     109.604    1.50
+BNR      "H7'1"       "C7'"      "H7'2"     108.195    1.50
+BNR       "C7'"       "C8'"         C9A     120.804    1.50
+BNR       "C7'"       "C8'"         C9B     120.804    1.50
+BNR         C9A       "C8'"         C9B     118.391    1.50
+BNR         C2B         C1B       "CK'"     120.181    1.50
+BNR         C2B         C1B         H1B     119.985    1.50
+BNR       "CK'"         C1B         H1B     119.834    1.50
+BNR         C1B         C2B         C3B     121.656    1.50
+BNR         C1B         C2B       "H2'"     119.518    1.50
+BNR         C3B         C2B       "H2'"     118.827    1.50
+BNR         C2B         C3B         C4B     119.771    1.50
+BNR         C2B         C3B         H3B     120.134    1.50
+BNR         C4B         C3B         H3B     120.095    1.50
+BNR         C3B         C4B       "O4'"     122.906    1.50
+BNR         C3B         C4B         C5B     119.719    1.50
+BNR       "O4'"         C4B         C5B     117.375    1.50
+BNR         C4B       "O4'"       "CL'"     117.888    1.50
+BNR         C4B         C5B         C6B     121.488    1.50
+BNR         C4B         C5B       "CK'"     118.093    1.50
+BNR         C6B         C5B       "CK'"     120.419    1.50
+BNR         C5B         C6B       "O6'"     120.491    1.50
+BNR         C5B         C6B         C7B     118.974    1.50
+BNR       "O6'"         C6B         C7B     120.534    1.50
+BNR         C6B         C7B         C8B     120.115    1.85
+BNR         C6B         C7B       "CI'"     120.540    1.50
+BNR         C8B         C7B       "CI'"     119.344    1.50
+BNR         C7B         C8B       "O8'"     119.630    2.42
+BNR         C7B         C8B       "C9'"     120.740    1.55
+BNR       "O8'"         C8B       "C9'"     119.630    2.42
+BNR         C8B       "O8'"      "HO8'"     120.000    3.00
+BNR         C8B       "C9'"       "CA'"     119.739    3.00
+BNR         C8B       "C9'"       "CG'"     119.916    1.50
+BNR       "CA'"       "C9'"       "CG'"     120.345    1.50
+BNR       "C9'"       "CA'"       "OA'"     108.615    2.09
+BNR       "C9'"       "CA'"       "CB'"     112.454    1.55
+BNR       "C9'"       "CA'"      "H10'"     108.618    1.50
+BNR       "OA'"       "CA'"       "CB'"     110.347    2.52
+BNR       "OA'"       "CA'"      "H10'"     108.904    1.51
+BNR       "CB'"       "CA'"      "H10'"     108.616    1.50
+BNR       "CA'"       "OA'"         C1D     116.577    2.53
+BNR       "CA'"       "CB'"       "CC'"     111.124    1.57
+BNR       "CA'"       "CB'"      "HL'1"     109.005    1.50
+BNR       "CA'"       "CB'"      "HL'2"     109.005    1.50
+BNR       "CC'"       "CB'"      "HL'1"     108.992    1.50
+BNR       "CC'"       "CB'"      "HL'2"     108.992    1.50
+BNR      "HL'1"       "CB'"      "HL'2"     108.019    1.50
+BNR       "CB'"       "CC'"       "OC'"     108.626    2.18
+BNR       "CB'"       "CC'"       "CD'"     111.056    2.52
+BNR       "CB'"       "CC'"       "CF'"     111.124    1.57
+BNR       "OC'"       "CC'"       "CD'"     108.672    2.53
+BNR       "OC'"       "CC'"       "CF'"     109.247    2.43
+BNR       "CD'"       "CC'"       "CF'"     111.056    2.52
+BNR       "CC'"       "OC'"      "H12'"     108.581    2.44
+BNR       "CC'"       "CD'"       "OD'"     122.416    2.54
+BNR       "CC'"       "CD'"       "CE'"     117.117    2.04
+BNR       "OD'"       "CD'"       "CE'"     120.467    1.50
+BNR       "CD'"       "CE'"      "HK'1"     109.473    1.50
+BNR       "CD'"       "CE'"      "HK'2"     109.473    1.50
+BNR       "CD'"       "CE'"      "HK'3"     109.473    1.50
+BNR      "HK'1"       "CE'"      "HK'2"     109.450    1.50
+BNR      "HK'1"       "CE'"      "HK'3"     109.450    1.50
+BNR      "HK'2"       "CE'"      "HK'3"     109.450    1.50
+BNR       "CC'"       "CF'"       "CG'"     111.445    2.09
+BNR       "CC'"       "CF'"      "HJ'1"     109.200    1.50
+BNR       "CC'"       "CF'"      "HJ'2"     109.200    1.50
+BNR       "CG'"       "CF'"      "HJ'1"     109.223    1.50
+BNR       "CG'"       "CF'"      "HJ'2"     109.223    1.50
+BNR      "HJ'1"       "CF'"      "HJ'2"     107.873    1.50
+BNR       "C9'"       "CG'"       "CF'"     120.384    1.50
+BNR       "C9'"       "CG'"       "CH'"     119.916    1.50
+BNR       "CF'"       "CG'"       "CH'"     119.700    1.82
+BNR       "CG'"       "CH'"       "OH'"     119.630    2.42
+BNR       "CG'"       "CH'"       "CI'"     120.740    1.55
+BNR       "OH'"       "CH'"       "CI'"     119.630    2.42
+BNR       "CH'"       "OH'"      "H17'"     120.000    3.00
+BNR         C7B       "CI'"       "CH'"     119.344    1.50
+BNR         C7B       "CI'"       "CJ'"     120.540    1.50
+BNR       "CH'"       "CI'"       "CJ'"     120.115    1.85
+BNR       "CI'"       "CJ'"       "OJ'"     120.819    1.50
+BNR       "CI'"       "CJ'"       "CK'"     118.974    1.50
+BNR       "OJ'"       "CJ'"       "CK'"     120.206    1.50
+BNR         C1B       "CK'"         C5B     120.581    1.50
+BNR         C1B       "CK'"       "CJ'"     118.868    1.50
+BNR         C5B       "CK'"       "CJ'"     120.551    1.50
+BNR       "O4'"       "CL'"      "HI'1"     109.402    1.50
+BNR       "O4'"       "CL'"      "HI'2"     109.402    1.50
+BNR       "O4'"       "CL'"      "HI'3"     109.402    1.50
+BNR      "HI'1"       "CL'"      "HI'2"     109.509    1.50
+BNR      "HI'1"       "CL'"      "HI'3"     109.509    1.50
+BNR      "HI'2"       "CL'"      "HI'3"     109.509    1.50
+BNR       "OA'"         C1D         C2D     108.296    1.50
+BNR       "OA'"         C1D         O5D     110.325    1.95
+BNR       "OA'"         C1D         H1D     109.322    1.50
+BNR         C2D         C1D         O5D     111.005    1.50
+BNR         C2D         C1D         H1D     109.482    1.68
+BNR         O5D         C1D         H1D     109.272    1.61
+BNR         C1D         C2D         C3D     111.124    1.57
+BNR         C1D         C2D         H2B     109.160    1.50
+BNR         C1D         C2D         H2D     109.160    1.50
+BNR         C3D         C2D         H2B     109.270    1.50
+BNR         C3D         C2D         H2D     109.270    1.50
+BNR         H2B         C2D         H2D     108.019    1.50
+BNR         C2D         C3D         O3D     109.687    1.93
+BNR         C2D         C3D         C4D     112.456    1.50
+BNR         C2D         C3D         H3D     109.129    1.50
+BNR         O3D         C3D         C4D     109.135    1.90
+BNR         O3D         C3D         H3D     108.626    1.50
+BNR         C4D         C3D         H3D     108.664    1.50
+BNR         C3D         O3D        HO3A     109.344    1.84
+BNR         C3D         C4D         N4D     110.235    2.04
+BNR         C3D         C4D         C5D     111.124    1.57
+BNR         C3D         C4D         H4D     108.763    1.50
+BNR         N4D         C4D         C5D     110.019    1.64
+BNR         N4D         C4D         H4D     107.917    1.50
+BNR         C5D         C4D         H4D     107.948    1.50
+BNR         C4D         N4D         C7D     115.279    2.04
+BNR         C4D         N4D         HNB     108.461    2.74
+BNR         C4D         N4D         HND     108.461    2.74
+BNR         C7D         N4D         HNB     108.380    1.50
+BNR         C7D         N4D         HND     108.380    1.50
+BNR         HNB         N4D         HND     107.680    1.50
+BNR         C4D         C5D         O5D     109.691    1.50
+BNR         C4D         C5D         C6D     114.035    1.50
+BNR         C4D         C5D         H5D     108.616    1.50
+BNR         O5D         C5D         C6D     107.094    1.50
+BNR         O5D         C5D         H5D     108.843    1.50
+BNR         C6D         C5D         H5D     109.260    1.50
+BNR         C1D         O5D         C5D     113.097    1.50
+BNR         C5D         C6D         H6B     109.535    1.50
+BNR         C5D         C6D         H6D     109.535    1.50
+BNR         C5D         C6D         H6E     109.535    1.50
+BNR         H6B         C6D         H6D     109.383    1.59
+BNR         H6B         C6D         H6E     109.383    1.59
+BNR         H6D         C6D         H6E     109.383    1.59
+BNR         N4D         C7D         C8D     112.510    2.24
+BNR         N4D         C7D         H7B     109.246    1.50
+BNR         N4D         C7D         H7D     109.246    1.50
+BNR         C8D         C7D         H7B     109.604    1.50
+BNR         C8D         C7D         H7D     109.604    1.50
+BNR         H7B         C7D         H7D     108.195    1.50
+BNR         C7D         C8D         C1A     120.804    1.50
+BNR         C7D         C8D         C1C     120.804    1.50
+BNR         C1A         C8D         C1C     118.391    1.50
+BNR       "C8'"         C9A         C1A     120.804    1.50
+BNR       "C8'"         C9A         H9A     119.584    1.50
+BNR         C1A         C9A         H9A     119.612    1.50
+BNR       "C8'"         C9B         C1C     120.804    1.50
+BNR       "C8'"         C9B         H9B     119.584    1.50
+BNR         C1C         C9B         H9B     119.612    1.50
+BNR         C8D         C1A         C9A     120.804    1.50
+BNR         C8D         C1A      "H9A'"     119.584    1.50
+BNR         C9A         C1A      "H9A'"     119.612    1.50
+BNR         C8D         C1C         C9B     120.804    1.50
+BNR         C8D         C1C      "H9B'"     119.584    1.50
+BNR         C9B         C1C      "H9B'"     119.612    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BNR              const_65         C20          C1          C2          C3       0.000    10.0     2
+BNR             const_109          C2          C1         C20          C5       0.000    10.0     2
+BNR             sp2_sp3_5          C8          C9         C10         O10     -60.000    10.0     6
+BNR              const_10         C15         C16          C9          C8     180.000    10.0     2
+BNR           sp3_sp3_137          C9         C10         O10       "C1'"     180.000    10.0     3
+BNR            sp3_sp3_43         O10         C10         C11         C12     180.000    10.0     3
+BNR           sp3_sp3_140       "C2'"       "C1'"         O10         C10     180.000    10.0     3
+BNR            sp3_sp3_50         C10         C11         C12         O12     180.000    10.0     3
+BNR           sp3_sp3_144         C13         C12         O12         H12      60.000    10.0     3
+BNR            sp2_sp3_26         O13         C13         C12         O12     120.000    10.0     6
+BNR            sp3_sp3_61         O12         C12         C15         C16     180.000    10.0     3
+BNR            sp2_sp3_34         O13         C13         C14        H141     180.000    10.0     6
+BNR              const_69          C1          C2          C3          C4       0.000    10.0     2
+BNR             sp2_sp3_7          C9         C16         C15         C12       0.000    10.0     6
+BNR              const_14          C9         C16         C17         O17     180.000    10.0     2
+BNR            sp2_sp2_37         C16         C17         O17         H17     180.000     5.0     2
+BNR              const_19         O17         C17         C18          C7     180.000    10.0     2
+BNR            sp2_sp2_10          C7         C18         C19         O19     180.000     5.0     2
+BNR            sp2_sp2_16         O19         C19         C20          C1       0.000     5.0     2
+BNR             sp3_sp3_4         O10       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+BNR           sp3_sp3_147         O10       "C1'"       "O5'"       "C5'"      60.000    10.0     3
+BNR              const_74          C2          C3          C4          O4     180.000    10.0     2
+BNR            sp3_sp3_11       "C1'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+BNR           sp3_sp3_149       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+BNR            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "N4'"     180.000    10.0     3
+BNR           sp3_sp3_152       "C3'"       "C4'"       "N4'"       "C7'"     180.000    10.0     3
+BNR            sp3_sp3_32       "N4'"       "C4'"       "C5'"       "C6'"     -60.000    10.0     3
+BNR           sp3_sp3_161       "C8'"       "C7'"       "N4'"       "C4'"     180.000    10.0     3
+BNR            sp3_sp3_38       "C6'"       "C5'"       "O5'"       "C1'"      60.000    10.0     3
+BNR           sp3_sp3_170       "C4'"       "C5'"       "C6'"      "H6'1"     180.000    10.0     3
+BNR            sp2_sp3_38         C9A       "C8'"       "C7'"       "N4'"     -90.000    10.0     6
+BNR              const_27       "C7'"       "C8'"         C9A         C1A     180.000    10.0     2
+BNR             const_115       "C7'"       "C8'"         C9B         C1C     180.000    10.0     2
+BNR            sp2_sp2_33          C3          C4          O4         C21     180.000     5.0     2
+BNR              const_80          O4          C4          C5          C6       0.000    10.0     2
+BNR              const_45       "CK'"         C1B         C2B         C3B       0.000    10.0     2
+BNR             const_117         C2B         C1B       "CK'"         C5B       0.000    10.0     2
+BNR              const_49         C1B         C2B         C3B         C4B       0.000    10.0     2
+BNR              const_54         C2B         C3B         C4B       "O4'"     180.000    10.0     2
+BNR            sp2_sp2_39         C3B         C4B       "O4'"       "CL'"     180.000     5.0     2
+BNR              const_60       "O4'"         C4B         C5B         C6B       0.000    10.0     2
+BNR           sp3_sp3_180      "HI'1"       "CL'"       "O4'"         C4B     -60.000    10.0     3
+BNR            sp2_sp2_20         C4B         C5B         C6B       "O6'"       0.000     5.0     2
+BNR              const_61         C4B         C5B       "CK'"         C1B       0.000    10.0     2
+BNR            sp2_sp2_24       "O6'"         C6B         C7B         C8B       0.000     5.0     2
+BNR              const_92         C6B         C7B         C8B       "O8'"       0.000    10.0     2
+BNR              const_86         C6B         C7B       "CI'"       "CH'"     180.000    10.0     2
+BNR            sp2_sp2_41         C7B         C8B       "O8'"      "HO8'"     180.000     5.0     2
+BNR              const_96       "O8'"         C8B       "C9'"       "CA'"       0.000    10.0     2
+BNR           sp3_sp3_134        H211         C21          O4          C4     -60.000    10.0     3
+BNR            sp2_sp3_17         C8B       "C9'"       "CA'"       "OA'"     -60.000    10.0     6
+BNR              const_98         C8B       "C9'"       "CG'"       "CF'"     180.000    10.0     2
+BNR           sp3_sp3_183       "C9'"       "CA'"       "OA'"         C1D     180.000    10.0     3
+BNR           sp3_sp3_109       "OA'"       "CA'"       "CB'"       "CC'"     180.000    10.0     3
+BNR           sp3_sp3_186         C2D         C1D       "OA'"       "CA'"     180.000    10.0     3
+BNR           sp3_sp3_116       "CA'"       "CB'"       "CC'"       "OC'"     180.000    10.0     3
+BNR           sp3_sp3_190       "CD'"       "CC'"       "OC'"      "H12'"      60.000    10.0     3
+BNR            sp2_sp3_44       "OD'"       "CD'"       "CC'"       "OC'"     120.000    10.0     6
+BNR           sp3_sp3_127       "OC'"       "CC'"       "CF'"       "CG'"     180.000    10.0     3
+BNR            sp2_sp3_52       "OD'"       "CD'"       "CE'"      "HK'1"     180.000    10.0     6
+BNR              const_81          C1         C20          C5          C4       0.000    10.0     2
+BNR             sp2_sp2_4          C4          C5          C6          O6       0.000     5.0     2
+BNR            sp2_sp3_19       "C9'"       "CG'"       "CF'"       "CC'"       0.000    10.0     6
+BNR             const_102       "C9'"       "CG'"       "CH'"       "OH'"     180.000    10.0     2
+BNR            sp2_sp2_43       "CG'"       "CH'"       "OH'"      "H17'"     180.000     5.0     2
+BNR             const_107       "OH'"       "CH'"       "CI'"         C7B     180.000    10.0     2
+BNR            sp2_sp2_26         C7B       "CI'"       "CJ'"       "OJ'"     180.000     5.0     2
+BNR            sp2_sp2_32       "OJ'"       "CJ'"       "CK'"         C1B       0.000     5.0     2
+BNR            sp3_sp3_70       "OA'"         C1D         C2D         C3D      60.000    10.0     3
+BNR           sp3_sp3_193       "OA'"         C1D         O5D         C5D      60.000    10.0     3
+BNR             sp2_sp2_8          O6          C6          C7          C8       0.000     5.0     2
+BNR            sp3_sp3_77         C1D         C2D         C3D         O3D     180.000    10.0     3
+BNR           sp3_sp3_195         C2D         C3D         O3D        HO3A     180.000    10.0     3
+BNR            sp3_sp3_89         O3D         C3D         C4D         N4D     180.000    10.0     3
+BNR           sp3_sp3_198         C3D         C4D         N4D         C7D     180.000    10.0     3
+BNR            sp3_sp3_98         N4D         C4D         C5D         C6D     -60.000    10.0     3
+BNR           sp3_sp3_207         C8D         C7D         N4D         C4D     180.000    10.0     3
+BNR           sp3_sp3_104         C6D         C5D         O5D         C1D      60.000    10.0     3
+BNR           sp3_sp3_216         C4D         C5D         C6D         H6B     180.000    10.0     3
+BNR            sp2_sp3_56         C1A         C8D         C7D         N4D     -90.000    10.0     6
+BNR              const_34         C9A         C1A         C8D         C7D     180.000    10.0     2
+BNR              const_38         C9B         C1C         C8D         C7D     180.000    10.0     2
+BNR              const_29         C8D         C1A         C9A       "C8'"       0.000    10.0     2
+BNR              const_41         C8D         C1C         C9B       "C8'"       0.000    10.0     2
+BNR              const_22         C17         C18          C7          C6     180.000    10.0     2
+BNR       const_sp2_sp2_4          C6          C7          C8          O8       0.000     5.0     2
+BNR            sp2_sp2_35          C7          C8          O8         HO8     180.000     5.0     2
+BNR       const_sp2_sp2_8          O8          C8          C9         C10       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BNR    chir_1    C10    O10    C9    C11    positive
+BNR    chir_2    C12    O12    C13    C11    positive
+BNR    chir_3    "C1'"    "O5'"    O10    "C2'"    negative
+BNR    chir_4    "C3'"    "O3'"    "C4'"    "C2'"    positive
+BNR    chir_5    "C4'"    "N4'"    "C5'"    "C3'"    positive
+BNR    chir_6    "C5'"    "O5'"    "C4'"    "C6'"    positive
+BNR    chir_7    "CA'"    "OA'"    "C9'"    "CB'"    positive
+BNR    chir_8    "CC'"    "OC'"    "CD'"    "CB'"    positive
+BNR    chir_9    C1D    O5D    "OA'"    C2D    negative
+BNR    chir_10    C3D    O3D    C4D    C2D    positive
+BNR    chir_11    C4D    N4D    C5D    C3D    positive
+BNR    chir_12    C5D    O5D    C4D    C6D    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BNR    plan-1          C1   0.020
+BNR    plan-1         C19   0.020
+BNR    plan-1          C2   0.020
+BNR    plan-1         C20   0.020
+BNR    plan-1          C3   0.020
+BNR    plan-1          C4   0.020
+BNR    plan-1          C5   0.020
+BNR    plan-1          C6   0.020
+BNR    plan-1          H1   0.020
+BNR    plan-1          H2   0.020
+BNR    plan-1          H3   0.020
+BNR    plan-1          O4   0.020
+BNR    plan-2         C10   0.020
+BNR    plan-2         C15   0.020
+BNR    plan-2         C16   0.020
+BNR    plan-2         C17   0.020
+BNR    plan-2         C18   0.020
+BNR    plan-2         C19   0.020
+BNR    plan-2          C6   0.020
+BNR    plan-2          C7   0.020
+BNR    plan-2          C8   0.020
+BNR    plan-2          C9   0.020
+BNR    plan-2         O17   0.020
+BNR    plan-2          O8   0.020
+BNR    plan-3         C1A   0.020
+BNR    plan-3         C1C   0.020
+BNR    plan-3       "C7'"   0.020
+BNR    plan-3         C7D   0.020
+BNR    plan-3       "C8'"   0.020
+BNR    plan-3         C8D   0.020
+BNR    plan-3         C9A   0.020
+BNR    plan-3         C9B   0.020
+BNR    plan-3         H9A   0.020
+BNR    plan-3      "H9A'"   0.020
+BNR    plan-3         H9B   0.020
+BNR    plan-3      "H9B'"   0.020
+BNR    plan-4         C1B   0.020
+BNR    plan-4         C2B   0.020
+BNR    plan-4         C3B   0.020
+BNR    plan-4         C4B   0.020
+BNR    plan-4         C5B   0.020
+BNR    plan-4         C6B   0.020
+BNR    plan-4       "CJ'"   0.020
+BNR    plan-4       "CK'"   0.020
+BNR    plan-4         H1B   0.020
+BNR    plan-4       "H2'"   0.020
+BNR    plan-4         H3B   0.020
+BNR    plan-4       "O4'"   0.020
+BNR    plan-5         C6B   0.020
+BNR    plan-5         C7B   0.020
+BNR    plan-5         C8B   0.020
+BNR    plan-5       "C9'"   0.020
+BNR    plan-5       "CA'"   0.020
+BNR    plan-5       "CF'"   0.020
+BNR    plan-5       "CG'"   0.020
+BNR    plan-5       "CH'"   0.020
+BNR    plan-5       "CI'"   0.020
+BNR    plan-5       "CJ'"   0.020
+BNR    plan-5       "O8'"   0.020
+BNR    plan-5       "OH'"   0.020
+BNR    plan-6          C5   0.020
+BNR    plan-6          C6   0.020
+BNR    plan-6          C7   0.020
+BNR    plan-6          O6   0.020
+BNR    plan-7         C12   0.020
+BNR    plan-7         C13   0.020
+BNR    plan-7         C14   0.020
+BNR    plan-7         O13   0.020
+BNR    plan-8         C18   0.020
+BNR    plan-8         C19   0.020
+BNR    plan-8         C20   0.020
+BNR    plan-8         O19   0.020
+BNR    plan-9         C5B   0.020
+BNR    plan-9         C6B   0.020
+BNR    plan-9         C7B   0.020
+BNR    plan-9       "O6'"   0.020
+BNR   plan-10       "CC'"   0.020
+BNR   plan-10       "CD'"   0.020
+BNR   plan-10       "CE'"   0.020
+BNR   plan-10       "OD'"   0.020
+BNR   plan-11       "CI'"   0.020
+BNR   plan-11       "CJ'"   0.020
+BNR   plan-11       "CK'"   0.020
+BNR   plan-11       "OJ'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BNR           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                                            O=C2c1c(O)c%11c(c(O)c1C(=O)c3cccc(OC)c23)CC(O)(C(=O)C)CC%11OC4OC(C)C(C(O)C4)[NH2+]Cc5ccc(cc5)C[NH2+]C%10C(OC(OC9c8c(O)c7C(=O)c6c(OC)cccc6C(=O)c7c(O)c8CC(O)(C(=O)C)C9)CC%10O)C
+BNR SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                           COc1cccc2C(=O)c3c(O)c4C[C@](O)(C[C@H](O[C@H]5C[C@H](O)[C@H]([NH2+]Cc6ccc(C[NH2+][C@H]7[C@@H](O)C[C@@H](O[C@H]7C)O[C@H]8C[C@@](O)(Cc9c(O)c%10C(=O)c%11cccc(OC)c%11C(=O)c%10c(O)c89)C(C)=O)cc6)[C@H](C)O5)c4c(O)c3C(=O)c12)C(C)=O
+BNR           SMILES               CACTVS 3.341                                                                                                                                                                                                                          COc1cccc2C(=O)c3c(O)c4C[C](O)(C[CH](O[CH]5C[CH](O)[CH]([NH2+]Cc6ccc(C[NH2+][CH]7[CH](O)C[CH](O[CH]7C)O[CH]8C[C](O)(Cc9c(O)c%10C(=O)c%11cccc(OC)c%11C(=O)c%10c(O)c89)C(C)=O)cc6)[CH](C)O5)c4c(O)c3C(=O)c12)C(C)=O
+BNR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                    C[C@H]1[C@H]([C@H](C[C@@H](O1)O[C@H]2C[C@@](Cc3c2c(c4c(c3O)C(=O)c5cccc(c5C4=O)OC)O)(C(=O)C)O)O)[NH2+]Cc6ccc(cc6)C[NH2+][C@@H]7[C@@H](O[C@H](C[C@@H]7O)O[C@H]8C[C@@](Cc9c8c(c1c(c9O)C(=O)c2cccc(c2C1=O)OC)O)(C(=O)C)O)C
+BNR           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                                                        CC1C(C(CC(O1)OC2CC(Cc3c2c(c4c(c3O)C(=O)c5cccc(c5C4=O)OC)O)(C(=O)C)O)O)[NH2+]Cc6ccc(cc6)C[NH2+]C7C(OC(CC7O)OC8CC(Cc9c8c(c1c(c9O)C(=O)c2cccc(c2C1=O)OC)O)(C(=O)C)O)C
+BNR            InChI                InChI  1.03 InChI=1S/C62H64N2O20/c1-25-51(35(67)17-41(81-25)83-39-21-61(77,27(3)65)19-33-45(39)59(75)49-47(55(33)71)53(69)31-9-7-11-37(79-5)43(31)57(49)73)63-23-29-13-15-30(16-14-29)24-64-52-26(2)82-42(18-36(52)68)84-40-22-62(78,28(4)66)20-34-46(40)60(76)50-48(56(34)72)54(70)32-10-8-12-38(80-6)44(32)58(50)74/h7-16,25-26,35-36,39-42,51-52,63-64,67-68,71-72,75-78H,17-24H2,1-6H3/p+2/t25-,26-,35-,36-,39-,40-,41-,42-,51+,52+,61-,62-/m0/s1
+BNR         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                                                               CRXRBKHVHUKITD-MJSRGEEMSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BNR acedrg               243         "dictionary generator"                  
+BNR acedrg_database      11          "data source"                           
+BNR rdkit                2017.03.2   "Chemoinformatics tool"
+BNR refmac5              5.8.0238    "optimization tool"                     

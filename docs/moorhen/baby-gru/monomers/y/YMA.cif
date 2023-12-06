@@ -1,0 +1,375 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YMA     YMA      7,10,13-TRI(CARBOXYMETHYL)-5,15-DIOXO-4,7,10,13,16-PENTAAZA-1,19-DITHIANONADECANE     NON-POLYMER     63     33     .     
+#
+data_comp_YMA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YMA     O8      O       O       0       1.541       12.598      4.385       
+YMA     C2      C       C       0       1.969       11.476      4.050       
+YMA     O7      O       OC      -1      1.920       10.441      4.744       
+YMA     C1      C       CH2     0       2.608       11.357      2.668       
+YMA     N1      N       NT      0       1.627       11.216      1.570       
+YMA     C10     C       CH2     0       2.089       11.810      0.303       
+YMA     C11     C       CH2     0       1.863       13.309      0.227       
+YMA     N3      N       NT      0       2.131       13.886      -1.103      
+YMA     C14     C       CH2     0       1.550       15.230      -1.283      
+YMA     C15     C       C       0       1.338       15.630      -2.736      
+YMA     N5      N       NH1     0       1.652       16.865      -3.144      
+YMA     C16     C       CH2     0       2.169       17.966      -2.337      
+YMA     C18     C       CH2     0       3.665       17.884      -2.129      
+YMA     S2      S       SH1     0       4.602       18.114      -3.662      
+YMA     O6      O       O       0       0.870       14.809      -3.522      
+YMA     C12     C       CH2     0       3.528       13.773      -1.519      
+YMA     C13     C       C       0       3.758       12.660      -2.539      
+YMA     O4      O       OC      -1      4.628       11.810      -2.266      
+YMA     O3      O       O       0       3.059       12.680      -3.572      
+YMA     C3      C       CH2     0       1.105       9.844       1.428       
+YMA     C4      C       CH2     0       -0.332      9.796       0.948       
+YMA     N2      N       NT      0       -1.272      10.484      1.851       
+YMA     C5      C       CH2     0       -1.701      9.653       2.972       
+YMA     C6      C       C       0       -2.071      10.445      4.226       
+YMA     O2      O       O       0       -3.261      10.400      4.599       
+YMA     O1      O       OC      -1      -1.158      11.080      4.787       
+YMA     C7      C       CH2     0       -2.381      11.142      1.133       
+YMA     C8      C       C       0       -2.038      12.419      0.385       
+YMA     O5      O       O       0       -2.047      12.430      -0.845      
+YMA     N4      N       NH1     0       -1.732      13.512      1.088       
+YMA     C9      C       CH2     0       -1.666      13.602      2.542       
+YMA     C17     C       CH2     0       -1.381      15.007      3.020       
+YMA     S1      S       SH1     0       0.170       15.677      2.368       
+YMA     H11     H       H       0       3.200       10.587      2.663       
+YMA     H12     H       H       0       3.151       12.147      2.512       
+YMA     H101    H       H       0       1.619       11.386      -0.446      
+YMA     H102    H       H       0       3.045       11.625      0.194       
+YMA     H111    H       H       0       2.436       13.749      0.889       
+YMA     H112    H       H       0       0.933       13.490      0.476       
+YMA     H141    H       H       0       2.126       15.865      -0.850      
+YMA     H142    H       H       0       0.688       15.267      -0.838      
+YMA     HN5     H       H       0       1.538       17.041      -3.991      
+YMA     H161    H       H       0       1.719       17.983      -1.466      
+YMA     H162    H       H       0       1.965       18.811      -2.792      
+YMA     H181    H       H       0       3.890       17.016      -1.755      
+YMA     H182    H       H       0       3.934       18.568      -1.494      
+YMA     HS2     H       HSH1    0       5.699       18.102      -3.168      
+YMA     H121    H       H       0       4.085       13.601      -0.741      
+YMA     H122    H       H       0       3.824       14.613      -1.907      
+YMA     H31     H       H       0       1.163       9.380       2.289       
+YMA     H32     H       H       0       1.666       9.353       0.791       
+YMA     H41     H       H       0       -0.601      8.858       0.859       
+YMA     H42     H       H       0       -0.375      10.200      0.057       
+YMA     H51     H       H       0       -0.990      9.032       3.202       
+YMA     H52     H       H       0       -2.470      9.126       2.696       
+YMA     H71     H       H       0       -3.092      11.342      1.761       
+YMA     H72     H       H       0       -2.740      10.509      0.489       
+YMA     HN4     H       H       0       -1.552      14.242      0.642       
+YMA     H91     H       H       0       -0.961      13.006      2.872       
+YMA     H92     H       H       0       -2.520      13.307      2.926       
+YMA     H171    H       H       0       -1.338      15.009      3.991       
+YMA     H172    H       H       0       -2.111      15.588      2.746       
+YMA     HS1     H       HSH1    0       0.038       16.795      2.790       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YMA          O8          C2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+YMA          C2          O7      SINGLE       n     1.247  0.0187     1.247  0.0187
+YMA          C2          C1      SINGLE       n     1.527  0.0103     1.527  0.0103
+YMA          C1          N1      SINGLE       n     1.464  0.0183     1.464  0.0183
+YMA          N1         C10      SINGLE       n     1.470  0.0100     1.470  0.0100
+YMA          N1          C3      SINGLE       n     1.470  0.0100     1.470  0.0100
+YMA         C10         C11      SINGLE       n     1.512  0.0200     1.512  0.0200
+YMA         C11          N3      SINGLE       n     1.468  0.0100     1.468  0.0100
+YMA          N3         C14      SINGLE       n     1.467  0.0129     1.467  0.0129
+YMA          N3         C12      SINGLE       n     1.455  0.0100     1.455  0.0100
+YMA         C14         C15      SINGLE       n     1.515  0.0100     1.515  0.0100
+YMA         C15          N5      SINGLE       n     1.329  0.0100     1.329  0.0100
+YMA         C15          O6      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YMA          N5         C16      SINGLE       n     1.455  0.0100     1.455  0.0100
+YMA         C16         C18      SINGLE       n     1.509  0.0190     1.509  0.0190
+YMA         C18          S2      SINGLE       n     1.811  0.0100     1.811  0.0100
+YMA         C12         C13      SINGLE       n     1.527  0.0103     1.527  0.0103
+YMA         C13          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+YMA         C13          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+YMA          C3          C4      SINGLE       n     1.512  0.0200     1.512  0.0200
+YMA          C4          N2      SINGLE       n     1.468  0.0100     1.468  0.0100
+YMA          N2          C5      SINGLE       n     1.455  0.0100     1.455  0.0100
+YMA          N2          C7      SINGLE       n     1.467  0.0129     1.467  0.0129
+YMA          C5          C6      SINGLE       n     1.527  0.0103     1.527  0.0103
+YMA          C6          O2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+YMA          C6          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+YMA          C7          C8      SINGLE       n     1.515  0.0100     1.515  0.0100
+YMA          C8          O5      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YMA          C8          N4      SINGLE       n     1.329  0.0100     1.329  0.0100
+YMA          N4          C9      SINGLE       n     1.455  0.0100     1.455  0.0100
+YMA          C9         C17      SINGLE       n     1.509  0.0190     1.509  0.0190
+YMA         C17          S1      SINGLE       n     1.811  0.0100     1.811  0.0100
+YMA          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA         C10        H101      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA         C10        H102      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA          N5         HN5      SINGLE       n     1.016  0.0100     0.872  0.0200
+YMA         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0127
+YMA         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0127
+YMA         C18        H181      SINGLE       n     1.089  0.0100     0.972  0.0107
+YMA         C18        H182      SINGLE       n     1.089  0.0100     0.972  0.0107
+YMA          S2         HS2      SINGLE       n     1.338  0.0100     1.203  0.0200
+YMA         C12        H121      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA         C12        H122      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0143
+YMA          C5         H51      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA          C5         H52      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA          C7         H71      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA          C7         H72      SINGLE       n     1.089  0.0100     0.971  0.0200
+YMA          N4         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+YMA          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0127
+YMA          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0127
+YMA         C17        H171      SINGLE       n     1.089  0.0100     0.972  0.0107
+YMA         C17        H172      SINGLE       n     1.089  0.0100     0.972  0.0107
+YMA          S1         HS1      SINGLE       n     1.338  0.0100     1.203  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YMA          O8          C2          O7     125.708    1.50
+YMA          O8          C2          C1     117.146    1.78
+YMA          O7          C2          C1     117.146    1.78
+YMA          C2          C1          N1     112.134    2.59
+YMA          C2          C1         H11     108.544    1.50
+YMA          C2          C1         H12     108.544    1.50
+YMA          N1          C1         H11     108.627    1.50
+YMA          N1          C1         H12     108.627    1.50
+YMA         H11          C1         H12     107.487    1.50
+YMA          C1          N1         C10     112.657    1.50
+YMA          C1          N1          C3     112.657    1.50
+YMA         C10          N1          C3     112.482    2.92
+YMA          N1         C10         C11     113.220    1.92
+YMA          N1         C10        H101     109.110    1.50
+YMA          N1         C10        H102     109.110    1.50
+YMA         C11         C10        H101     108.926    1.50
+YMA         C11         C10        H102     108.926    1.50
+YMA        H101         C10        H102     107.844    1.50
+YMA         C10         C11          N3     113.220    1.92
+YMA         C10         C11        H111     108.926    1.50
+YMA         C10         C11        H112     108.926    1.50
+YMA          N3         C11        H111     109.110    1.50
+YMA          N3         C11        H112     109.110    1.50
+YMA        H111         C11        H112     107.844    1.50
+YMA         C11          N3         C14     112.122    1.59
+YMA         C11          N3         C12     112.657    1.50
+YMA         C14          N3         C12     113.464    1.79
+YMA          N3         C14         C15     115.270    2.40
+YMA          N3         C14        H141     108.930    1.50
+YMA          N3         C14        H142     108.930    1.50
+YMA         C15         C14        H141     108.523    1.50
+YMA         C15         C14        H142     108.523    1.50
+YMA        H141         C14        H142     107.938    1.50
+YMA         C14         C15          N5     115.850    1.70
+YMA         C14         C15          O6     121.411    1.50
+YMA          N5         C15          O6     122.739    1.50
+YMA         C15          N5         C16     122.830    1.80
+YMA         C15          N5         HN5     119.078    1.85
+YMA         C16          N5         HN5     118.093    1.83
+YMA          N5         C16         C18     112.117    1.54
+YMA          N5         C16        H161     109.102    1.50
+YMA          N5         C16        H162     109.102    1.50
+YMA         C18         C16        H161     108.883    1.50
+YMA         C18         C16        H162     108.883    1.50
+YMA        H161         C16        H162     107.995    1.50
+YMA         C16         C18          S2     112.239    3.00
+YMA         C16         C18        H181     108.864    1.50
+YMA         C16         C18        H182     108.864    1.50
+YMA          S2         C18        H181     108.594    1.76
+YMA          S2         C18        H182     108.594    1.76
+YMA        H181         C18        H182     108.165    1.50
+YMA         C18          S2         HS2      97.089    1.52
+YMA          N3         C12         C13     112.134    2.59
+YMA          N3         C12        H121     108.627    1.50
+YMA          N3         C12        H122     108.627    1.50
+YMA         C13         C12        H121     108.544    1.50
+YMA         C13         C12        H122     108.544    1.50
+YMA        H121         C12        H122     107.487    1.50
+YMA         C12         C13          O4     117.146    1.78
+YMA         C12         C13          O3     117.146    1.78
+YMA          O4         C13          O3     125.708    1.50
+YMA          N1          C3          C4     113.220    1.92
+YMA          N1          C3         H31     109.110    1.50
+YMA          N1          C3         H32     109.110    1.50
+YMA          C4          C3         H31     108.926    1.50
+YMA          C4          C3         H32     108.926    1.50
+YMA         H31          C3         H32     107.844    1.50
+YMA          C3          C4          N2     113.220    1.92
+YMA          C3          C4         H41     108.926    1.50
+YMA          C3          C4         H42     108.926    1.50
+YMA          N2          C4         H41     109.110    1.50
+YMA          N2          C4         H42     109.110    1.50
+YMA         H41          C4         H42     107.844    1.50
+YMA          C4          N2          C5     112.657    1.50
+YMA          C4          N2          C7     112.122    1.59
+YMA          C5          N2          C7     113.464    1.79
+YMA          N2          C5          C6     112.134    2.59
+YMA          N2          C5         H51     108.627    1.50
+YMA          N2          C5         H52     108.627    1.50
+YMA          C6          C5         H51     108.544    1.50
+YMA          C6          C5         H52     108.544    1.50
+YMA         H51          C5         H52     107.487    1.50
+YMA          C5          C6          O2     117.146    1.78
+YMA          C5          C6          O1     117.146    1.78
+YMA          O2          C6          O1     125.708    1.50
+YMA          N2          C7          C8     115.270    2.40
+YMA          N2          C7         H71     108.930    1.50
+YMA          N2          C7         H72     108.930    1.50
+YMA          C8          C7         H71     108.523    1.50
+YMA          C8          C7         H72     108.523    1.50
+YMA         H71          C7         H72     107.938    1.50
+YMA          C7          C8          O5     121.411    1.50
+YMA          C7          C8          N4     115.850    1.70
+YMA          O5          C8          N4     122.739    1.50
+YMA          C8          N4          C9     122.830    1.80
+YMA          C8          N4         HN4     119.078    1.85
+YMA          C9          N4         HN4     118.093    1.83
+YMA          N4          C9         C17     112.117    1.54
+YMA          N4          C9         H91     109.102    1.50
+YMA          N4          C9         H92     109.102    1.50
+YMA         C17          C9         H91     108.883    1.50
+YMA         C17          C9         H92     108.883    1.50
+YMA         H91          C9         H92     107.995    1.50
+YMA          C9         C17          S1     112.239    3.00
+YMA          C9         C17        H171     108.864    1.50
+YMA          C9         C17        H172     108.864    1.50
+YMA          S1         C17        H171     108.594    1.76
+YMA          S1         C17        H172     108.594    1.76
+YMA        H171         C17        H172     108.165    1.50
+YMA         C17          S1         HS1      97.089    1.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YMA            sp2_sp3_14         C15          N5         C16         C18     120.000    10.0     6
+YMA            sp3_sp3_46          N5         C16         C18          S2     180.000    10.0     3
+YMA            sp3_sp3_55         C16         C18          S2         HS2     180.000    10.0     3
+YMA            sp2_sp3_20          O4         C13         C12          N3     120.000    10.0     6
+YMA            sp3_sp3_58          N1          C3          C4          N2     180.000    10.0     3
+YMA             sp2_sp3_2          O8          C2          C1          N1     120.000    10.0     6
+YMA            sp3_sp3_67          C3          C4          N2          C5     180.000    10.0     3
+YMA            sp3_sp3_73          C6          C5          N2          C4     180.000    10.0     3
+YMA            sp3_sp3_79          C8          C7          N2          C4     180.000    10.0     3
+YMA            sp2_sp3_26          O2          C6          C5          N2     120.000    10.0     6
+YMA            sp2_sp3_32          O5          C8          C7          N2     120.000    10.0     6
+YMA             sp2_sp2_5          C7          C8          N4          C9     180.000     5.0     2
+YMA            sp2_sp3_38          C8          N4          C9         C17     120.000    10.0     6
+YMA            sp3_sp3_85          S1         C17          C9          N4     180.000    10.0     3
+YMA            sp3_sp3_94          C9         C17          S1         HS1     180.000    10.0     3
+YMA             sp3_sp3_2          C2          C1          N1         C10     -60.000    10.0     3
+YMA            sp3_sp3_14          C4          C3          N1          C1     -60.000    10.0     3
+YMA             sp3_sp3_7         C11         C10          N1          C1     180.000    10.0     3
+YMA            sp3_sp3_19          N1         C10         C11          N3     180.000    10.0     3
+YMA            sp3_sp3_28         C10         C11          N3         C14     180.000    10.0     3
+YMA            sp3_sp3_40         C13         C12          N3         C11     180.000    10.0     3
+YMA            sp3_sp3_34         C15         C14          N3         C11     180.000    10.0     3
+YMA             sp2_sp3_8          N5         C15         C14          N3     120.000    10.0     6
+YMA             sp2_sp2_1         C14         C15          N5         C16     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YMA    chir_1    N1    C1    C10    C3    both
+YMA    chir_2    N3    C12    C14    C11    positive
+YMA    chir_3    N2    C5    C7    C4    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YMA    plan-1          C1   0.020
+YMA    plan-1          C2   0.020
+YMA    plan-1          O7   0.020
+YMA    plan-1          O8   0.020
+YMA    plan-2         C14   0.020
+YMA    plan-2         C15   0.020
+YMA    plan-2          N5   0.020
+YMA    plan-2          O6   0.020
+YMA    plan-3         C15   0.020
+YMA    plan-3         C16   0.020
+YMA    plan-3         HN5   0.020
+YMA    plan-3          N5   0.020
+YMA    plan-4         C12   0.020
+YMA    plan-4         C13   0.020
+YMA    plan-4          O3   0.020
+YMA    plan-4          O4   0.020
+YMA    plan-5          C5   0.020
+YMA    plan-5          C6   0.020
+YMA    plan-5          O1   0.020
+YMA    plan-5          O2   0.020
+YMA    plan-6          C7   0.020
+YMA    plan-6          C8   0.020
+YMA    plan-6          N4   0.020
+YMA    plan-6          O5   0.020
+YMA    plan-7          C8   0.020
+YMA    plan-7          C9   0.020
+YMA    plan-7         HN4   0.020
+YMA    plan-7          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YMA           SMILES              ACDLabs 10.04                                                                                                                        O=C(NCCS)CN(CCN(CC(=O)O)CCN(CC(=O)NCCS)CC(=O)O)CC(=O)O
+YMA SMILES_CANONICAL               CACTVS 3.341                                                                                                                        OC(=O)CN(CCN(CC(O)=O)CC(=O)NCCS)CCN(CC(O)=O)CC(=O)NCCS
+YMA           SMILES               CACTVS 3.341                                                                                                                        OC(=O)CN(CCN(CC(O)=O)CC(=O)NCCS)CCN(CC(O)=O)CC(=O)NCCS
+YMA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                      C(CS)NC(=O)CN(CCN(CCN(CC(=O)NCCS)CC(=O)O)CC(=O)O)CC(=O)O
+YMA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                      C(CS)NC(=O)CN(CCN(CCN(CC(=O)NCCS)CC(=O)O)CC(=O)O)CC(=O)O
+YMA            InChI                InChI  1.03 InChI=1S/C18H33N5O8S2/c24-14(19-1-7-32)9-22(12-17(28)29)5-3-21(11-16(26)27)4-6-23(13-18(30)31)10-15(25)20-2-8-33/h32-33H,1-13H2,(H,19,24)(H,20,25)(H,26,27)(H,28,29)(H,30,31)
+YMA         InChIKey                InChI  1.03                                                                                                                                                   MRDWXQKAAKNXSP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YMA acedrg               243         "dictionary generator"                  
+YMA acedrg_database      11          "data source"                           
+YMA rdkit                2017.03.2   "Chemoinformatics tool"
+YMA refmac5              5.8.0238    "optimization tool"                     

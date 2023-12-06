@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VCA     VCA      "VACCENIC ACID"     NON-POLYMER     53     20     .     
+#
+data_comp_VCA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VCA     O2      O       OC      -1      45.006      -11.634     27.626      
+VCA     C1      C       C       0       45.854      -11.148     26.851      
+VCA     O1      O       O       0       46.910      -10.608     27.236      
+VCA     C2      C       CH2     0       45.586      -11.218     25.358      
+VCA     C3      C       CH2     0       45.134      -9.930      24.741      
+VCA     C4      C       CH2     0       43.685      -9.600      25.058      
+VCA     C5      C       CH2     0       43.160      -8.372      24.354      
+VCA     C6      C       CH2     0       41.749      -7.999      24.738      
+VCA     C7      C       CH2     0       41.223      -6.761      24.052      
+VCA     C8      C       CH2     0       39.809      -6.398      24.435      
+VCA     C9      C       CH2     0       39.274      -5.146      23.752      
+VCA     C10     C       CH2     0       37.841      -4.845      24.065      
+VCA     C11     C       C1      0       37.352      -3.575      23.437      
+VCA     C12     C       C1      0       37.069      -2.439      24.034      
+VCA     C13     C       CH2     0       37.170      -2.131      25.497      
+VCA     C14     C       CH2     0       38.581      -2.010      25.983      
+VCA     C15     C       CH2     0       39.304      -0.763      25.501      
+VCA     C16     C       CH2     0       40.680      -0.579      26.092      
+VCA     C17     C       CH2     0       41.442      0.595       25.532      
+VCA     C18     C       CH3     0       42.832      0.741       26.101      
+VCA     H21     H       H       0       44.902      -11.903     25.198      
+VCA     H22     H       H       0       46.407      -11.512     24.909      
+VCA     H31     H       H       0       45.241      -9.982      23.768      
+VCA     H32     H       H       0       45.703      -9.200      25.064      
+VCA     H41     H       H       0       43.597      -9.468      26.026      
+VCA     H42     H       H       0       43.126      -10.367     24.810      
+VCA     H51     H       H       0       43.192      -8.526      23.386      
+VCA     H52     H       H       0       43.751      -7.616      24.556      
+VCA     H61     H       H       0       41.714      -7.859      25.708      
+VCA     H62     H       H       0       41.156      -8.751      24.525      
+VCA     H71     H       H       0       41.261      -6.898      23.081      
+VCA     H72     H       H       0       41.812      -6.007      24.269      
+VCA     H81     H       H       0       39.771      -6.266      25.406      
+VCA     H82     H       H       0       39.221      -7.151      24.215      
+VCA     H91     H       H       0       39.369      -5.253      22.782      
+VCA     H92     H       H       0       39.824      -4.381      24.022      
+VCA     H101    H       H       0       37.735      -4.787      25.039      
+VCA     H102    H       H       0       37.285      -5.590      23.746      
+VCA     H11     H       H       0       37.231      -3.591      22.499      
+VCA     H12     H       H       0       36.769      -1.737      23.477      
+VCA     H131    H       H       0       36.720      -2.843      26.004      
+VCA     H132    H       H       0       36.699      -1.287      25.678      
+VCA     H141    H       H       0       39.085      -2.797      25.689      
+VCA     H142    H       H       0       38.577      -2.011      26.963      
+VCA     H151    H       H       0       38.759      0.021       25.723      
+VCA     H152    H       H       0       39.384      -0.804      24.525      
+VCA     H161    H       H       0       41.201      -1.395      25.935      
+VCA     H162    H       H       0       40.593      -0.463      27.062      
+VCA     H171    H       H       0       40.935      1.416       25.714      
+VCA     H172    H       H       0       41.506      0.493       24.557      
+VCA     H181    H       H       0       43.262      1.523       25.713      
+VCA     H182    H       H       0       43.355      -0.052      25.891      
+VCA     H183    H       H       0       42.780      0.847       27.066      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VCA          O2          C1      SINGLE       n     1.247  0.0187     1.247  0.0187
+VCA          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+VCA          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+VCA          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+VCA          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+VCA          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+VCA          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+VCA          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+VCA          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+VCA          C8          C9      SINGLE       n     1.523  0.0117     1.523  0.0117
+VCA          C9         C10      SINGLE       n     1.497  0.0200     1.497  0.0200
+VCA         C10         C11      SINGLE       n     1.497  0.0127     1.497  0.0127
+VCA         C11         C12      DOUBLE       n     1.308  0.0200     1.308  0.0200
+VCA         C12         C13      SINGLE       n     1.497  0.0127     1.497  0.0127
+VCA         C13         C14      SINGLE       n     1.497  0.0200     1.497  0.0200
+VCA         C14         C15      SINGLE       n     1.519  0.0164     1.519  0.0164
+VCA         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+VCA         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+VCA         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+VCA          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+VCA          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+VCA          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+VCA          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+VCA          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0160
+VCA          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0160
+VCA         C10        H101      SINGLE       n     1.089  0.0100     0.983  0.0180
+VCA         C10        H102      SINGLE       n     1.089  0.0100     0.983  0.0180
+VCA         C11         H11      SINGLE       n     1.082  0.0130     0.945  0.0200
+VCA         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+VCA         C13        H131      SINGLE       n     1.089  0.0100     0.983  0.0180
+VCA         C13        H132      SINGLE       n     1.089  0.0100     0.983  0.0180
+VCA         C14        H141      SINGLE       n     1.089  0.0100     0.980  0.0160
+VCA         C14        H142      SINGLE       n     1.089  0.0100     0.980  0.0160
+VCA         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+VCA         C17        H171      SINGLE       n     1.089  0.0100     0.982  0.0155
+VCA         C17        H172      SINGLE       n     1.089  0.0100     0.982  0.0155
+VCA         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0157
+VCA         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0157
+VCA         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VCA          O2          C1          O1     123.571    1.50
+VCA          O2          C1          C2     118.214    1.64
+VCA          O1          C1          C2     118.214    1.64
+VCA          C1          C2          C3     114.612    2.19
+VCA          C1          C2         H21     108.404    1.50
+VCA          C1          C2         H22     108.404    1.50
+VCA          C3          C2         H21     108.815    1.50
+VCA          C3          C2         H22     108.815    1.50
+VCA         H21          C2         H22     107.521    1.50
+VCA          C2          C3          C4     112.553    1.50
+VCA          C2          C3         H31     109.164    1.50
+VCA          C2          C3         H32     109.164    1.50
+VCA          C4          C3         H31     108.698    1.50
+VCA          C4          C3         H32     108.698    1.50
+VCA         H31          C3         H32     107.646    1.50
+VCA          C3          C4          C5     114.243    1.69
+VCA          C3          C4         H41     108.698    1.50
+VCA          C3          C4         H42     108.698    1.50
+VCA          C5          C4         H41     108.698    1.50
+VCA          C5          C4         H42     108.698    1.50
+VCA         H41          C4         H42     107.646    1.50
+VCA          C4          C5          C6     114.243    1.69
+VCA          C4          C5         H51     108.698    1.50
+VCA          C4          C5         H52     108.698    1.50
+VCA          C6          C5         H51     108.698    1.50
+VCA          C6          C5         H52     108.698    1.50
+VCA         H51          C5         H52     107.646    1.50
+VCA          C5          C6          C7     114.243    1.69
+VCA          C5          C6         H61     108.698    1.50
+VCA          C5          C6         H62     108.698    1.50
+VCA          C7          C6         H61     108.698    1.50
+VCA          C7          C6         H62     108.698    1.50
+VCA         H61          C6         H62     107.646    1.50
+VCA          C6          C7          C8     114.243    1.69
+VCA          C6          C7         H71     108.698    1.50
+VCA          C6          C7         H72     108.698    1.50
+VCA          C8          C7         H71     108.698    1.50
+VCA          C8          C7         H72     108.698    1.50
+VCA         H71          C7         H72     107.646    1.50
+VCA          C7          C8          C9     114.243    1.69
+VCA          C7          C8         H81     108.698    1.50
+VCA          C7          C8         H82     108.698    1.50
+VCA          C9          C8         H81     108.698    1.50
+VCA          C9          C8         H82     108.698    1.50
+VCA         H81          C8         H82     107.646    1.50
+VCA          C8          C9         C10     114.266    1.80
+VCA          C8          C9         H91     108.698    1.50
+VCA          C8          C9         H92     108.698    1.50
+VCA         C10          C9         H91     108.805    1.50
+VCA         C10          C9         H92     108.805    1.50
+VCA         H91          C9         H92     107.646    1.50
+VCA          C9         C10         C11     113.226    1.94
+VCA          C9         C10        H101     108.819    1.50
+VCA          C9         C10        H102     108.819    1.50
+VCA         C11         C10        H101     108.886    1.50
+VCA         C11         C10        H102     108.886    1.50
+VCA        H101         C10        H102     107.922    1.50
+VCA         C10         C11         C12     125.684    3.00
+VCA         C10         C11         H11     117.007    1.61
+VCA         C12         C11         H11     117.310    2.16
+VCA         C11         C12         C13     125.684    3.00
+VCA         C11         C12         H12     117.310    2.16
+VCA         C13         C12         H12     117.007    1.61
+VCA         C12         C13         C14     113.226    1.94
+VCA         C12         C13        H131     108.886    1.50
+VCA         C12         C13        H132     108.886    1.50
+VCA         C14         C13        H131     108.819    1.50
+VCA         C14         C13        H132     108.819    1.50
+VCA        H131         C13        H132     107.922    1.50
+VCA         C13         C14         C15     114.266    1.80
+VCA         C13         C14        H141     108.805    1.50
+VCA         C13         C14        H142     108.805    1.50
+VCA         C15         C14        H141     108.698    1.50
+VCA         C15         C14        H142     108.698    1.50
+VCA        H141         C14        H142     107.646    1.50
+VCA         C14         C15         C16     114.243    1.69
+VCA         C14         C15        H151     108.698    1.50
+VCA         C14         C15        H152     108.698    1.50
+VCA         C16         C15        H151     108.698    1.50
+VCA         C16         C15        H152     108.698    1.50
+VCA        H151         C15        H152     107.646    1.50
+VCA         C15         C16         C17     114.362    3.00
+VCA         C15         C16        H161     108.698    1.50
+VCA         C15         C16        H162     108.698    1.50
+VCA         C17         C16        H161     108.653    1.50
+VCA         C17         C16        H162     108.653    1.50
+VCA        H161         C16        H162     107.646    1.50
+VCA         C16         C17         C18     113.719    3.00
+VCA         C16         C17        H171     108.758    1.50
+VCA         C16         C17        H172     108.758    1.50
+VCA         C18         C17        H171     108.918    1.50
+VCA         C18         C17        H172     108.918    1.50
+VCA        H171         C17        H172     107.763    1.50
+VCA         C17         C18        H181     109.554    1.50
+VCA         C17         C18        H182     109.554    1.50
+VCA         C17         C18        H183     109.554    1.50
+VCA        H181         C18        H182     109.380    1.50
+VCA        H181         C18        H183     109.380    1.50
+VCA        H182         C18        H183     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VCA            sp3_sp3_64         C11         C10          C9          C8     180.000    10.0     3
+VCA             sp2_sp3_8         C12         C11         C10          C9     120.000    10.0     6
+VCA             sp2_sp2_1         C10         C11         C12         C13     180.000     5.0     2
+VCA            sp2_sp3_14         C11         C12         C13         C14     120.000    10.0     6
+VCA            sp3_sp3_73         C12         C13         C14         C15     180.000    10.0     3
+VCA            sp3_sp3_82         C13         C14         C15         C16     180.000    10.0     3
+VCA            sp3_sp3_91         C14         C15         C16         C17     180.000    10.0     3
+VCA           sp3_sp3_100         C15         C16         C17         C18     180.000    10.0     3
+VCA           sp3_sp3_109         C16         C17         C18        H181     180.000    10.0     3
+VCA             sp2_sp3_2          O2          C1          C2          C3     120.000    10.0     6
+VCA             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+VCA            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+VCA            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+VCA            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+VCA            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+VCA            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+VCA            sp3_sp3_55          C7          C8          C9         C10     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VCA    plan-1          C1   0.020
+VCA    plan-1          C2   0.020
+VCA    plan-1          O1   0.020
+VCA    plan-1          O2   0.020
+VCA    plan-2         C10   0.020
+VCA    plan-2         C11   0.020
+VCA    plan-2         C12   0.020
+VCA    plan-2         H11   0.020
+VCA    plan-3         C11   0.020
+VCA    plan-3         C12   0.020
+VCA    plan-3         C13   0.020
+VCA    plan-3         H12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VCA           SMILES              ACDLabs 12.01                                                                                 O=C(O)CCCCCCCCC\C=C/CCCCCC
+VCA            InChI                InChI  1.03 InChI=1S/C18H34O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18(19)20/h7-8H,2-6,9-17H2,1H3,(H,19,20)/b8-7-
+VCA         InChIKey                InChI  1.03                                                                                UWHZIFQPPBDJPM-FPLPWBNLSA-N
+VCA SMILES_CANONICAL               CACTVS 3.370                                                                                 CCCCCC\C=C/CCCCCCCCCC(O)=O
+VCA           SMILES               CACTVS 3.370                                                                                   CCCCCCC=CCCCCCCCCCC(O)=O
+VCA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                   CCCCCCC=CCCCCCCCCCC(=O)O
+VCA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                   CCCCCCC=CCCCCCCCCCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VCA acedrg               243         "dictionary generator"                  
+VCA acedrg_database      11          "data source"                           
+VCA rdkit                2017.03.2   "Chemoinformatics tool"
+VCA refmac5              5.8.0238    "optimization tool"                     

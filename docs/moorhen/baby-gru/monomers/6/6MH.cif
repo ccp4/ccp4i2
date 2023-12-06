@@ -1,0 +1,165 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+6MH     6MH      1-hydroxy-6-methylpyridine-2(1H)-thione     NON-POLYMER     16     9     .     
+#
+data_comp_6MH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+6MH     C6      C       CH3     0       16.157      3.626       13.534      
+6MH     C5      C       CR6     0       15.571      3.175       14.834      
+6MH     C4      C       CR16    0       14.764      3.980       15.624      
+6MH     C3      C       CR16    0       14.250      3.537       16.831      
+6MH     C2      C       CR16    0       14.504      2.250       17.245      
+6MH     C1      C       CR6     0       15.334      1.397       16.456      
+6MH     S1      S       S1      0       15.686      -0.172      16.949      
+6MH     N1      N       NR6     0       15.861      1.883       15.255      
+6MH     O1      O       OH1     0       16.672      1.076       14.484      
+6MH     H1      H       H       0       15.866      4.531       13.344      
+6MH     H2      H       H       0       15.862      3.037       12.823      
+6MH     H3      H       H       0       17.124      3.605       13.591      
+6MH     H4      H       H       0       14.571      4.851       15.315      
+6MH     H5      H       H       0       13.729      4.112       17.365      
+6MH     H6      H       H       0       14.136      1.925       18.044      
+6MH     H7      H       H       0       16.138      0.445       14.129      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+6MH          C6          C5      SINGLE       n     1.494  0.0100     1.494  0.0100
+6MH          N1          O1      SINGLE       n     1.377  0.0113     1.377  0.0113
+6MH          C5          N1      SINGLE       n     1.359  0.0200     1.359  0.0200
+6MH          C5          C4      DOUBLE       n     1.376  0.0141     1.376  0.0141
+6MH          C1          N1      SINGLE       n     1.378  0.0200     1.378  0.0200
+6MH          C4          C3      SINGLE       n     1.380  0.0111     1.380  0.0111
+6MH          C1          S1      DOUBLE       n     1.679  0.0141     1.679  0.0141
+6MH          C2          C1      SINGLE       n     1.427  0.0127     1.427  0.0127
+6MH          C3          C2      DOUBLE       n     1.374  0.0122     1.374  0.0122
+6MH          C6          H1      SINGLE       n     1.089  0.0100     0.969  0.0150
+6MH          C6          H2      SINGLE       n     1.089  0.0100     0.969  0.0150
+6MH          C6          H3      SINGLE       n     1.089  0.0100     0.969  0.0150
+6MH          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0140
+6MH          C3          H5      SINGLE       n     1.082  0.0130     0.942  0.0150
+6MH          C2          H6      SINGLE       n     1.082  0.0130     0.938  0.0100
+6MH          O1          H7      SINGLE       n     0.970  0.0120     0.899  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+6MH          C5          C6          H1     109.441    1.50
+6MH          C5          C6          H2     109.441    1.50
+6MH          C5          C6          H3     109.441    1.50
+6MH          H1          C6          H2     109.380    1.50
+6MH          H1          C6          H3     109.380    1.50
+6MH          H2          C6          H3     109.380    1.50
+6MH          C6          C5          N1     117.439    1.50
+6MH          C6          C5          C4     124.068    1.50
+6MH          N1          C5          C4     118.494    1.50
+6MH          C5          C4          C3     121.012    1.50
+6MH          C5          C4          H4     118.362    1.80
+6MH          C3          C4          H4     120.626    1.50
+6MH          C4          C3          C2     119.530    1.50
+6MH          C4          C3          H5     120.312    1.50
+6MH          C2          C3          H5     120.159    1.50
+6MH          C1          C2          C3     120.784    1.50
+6MH          C1          C2          H6     119.060    1.50
+6MH          C3          C2          H6     120.156    1.50
+6MH          N1          C1          S1     118.753    1.58
+6MH          N1          C1          C2     119.878    1.50
+6MH          S1          C1          C2     121.370    1.58
+6MH          O1          N1          C5     119.784    1.53
+6MH          O1          N1          C1     119.913    1.81
+6MH          C5          N1          C1     120.303    2.15
+6MH          N1          O1          H7     106.410    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+6MH             sp2_sp3_1          N1          C5          C6          H1     150.000    10.0     6
+6MH            sp2_sp2_22          C3          C4          C5          C6     180.000     5.0     2
+6MH             sp2_sp2_4          C6          C5          N1          O1       0.000     5.0     2
+6MH            sp2_sp2_17          C2          C3          C4          C5       0.000     5.0     2
+6MH            sp2_sp2_13          C1          C2          C3          C4       0.000     5.0     2
+6MH            sp2_sp2_11          S1          C1          C2          C3     180.000     5.0     2
+6MH             sp2_sp2_8          S1          C1          N1          O1       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+6MH    plan-1          C4   0.020
+6MH    plan-1          C5   0.020
+6MH    plan-1          C6   0.020
+6MH    plan-1          N1   0.020
+6MH    plan-2          C3   0.020
+6MH    plan-2          C4   0.020
+6MH    plan-2          C5   0.020
+6MH    plan-2          H4   0.020
+6MH    plan-3          C2   0.020
+6MH    plan-3          C3   0.020
+6MH    plan-3          C4   0.020
+6MH    plan-3          H5   0.020
+6MH    plan-4          C1   0.020
+6MH    plan-4          C2   0.020
+6MH    plan-4          C3   0.020
+6MH    plan-4          H6   0.020
+6MH    plan-5          C1   0.020
+6MH    plan-5          C2   0.020
+6MH    plan-5          N1   0.020
+6MH    plan-5          S1   0.020
+6MH    plan-6          C1   0.020
+6MH    plan-6          C5   0.020
+6MH    plan-6          N1   0.020
+6MH    plan-6          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+6MH           SMILES              ACDLabs 12.01                                  S=C1C=CC=C(N1O)C
+6MH            InChI                InChI  1.03 InChI=1S/C6H7NOS/c1-5-3-2-4-6(9)7(5)8/h2-4,8H,1H3
+6MH         InChIKey                InChI  1.03                       KVLOEFKBTCCASR-UHFFFAOYSA-N
+6MH SMILES_CANONICAL               CACTVS 3.385                                  CC1=CC=CC(=S)N1O
+6MH           SMILES               CACTVS 3.385                                  CC1=CC=CC(=S)N1O
+6MH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                  CC1=CC=CC(=S)N1O
+6MH           SMILES "OpenEye OEToolkits" 1.7.6                                  CC1=CC=CC(=S)N1O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+6MH acedrg               243         "dictionary generator"                  
+6MH acedrg_database      11          "data source"                           
+6MH rdkit                2017.03.2   "Chemoinformatics tool"
+6MH refmac5              5.8.0238    "optimization tool"                     

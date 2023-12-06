@@ -1,0 +1,353 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FHF     FHF      N-((2R,4S)-2-butyl-4-(3-(2-fluorophenyl)ureido)-5-methyl-3-oxohexyl)-N-hydroxyformamide     NON-POLYMER     55     27     .     
+#
+data_comp_FHF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FHF     C       C       C       0       -17.193     144.309     44.052      
+FHF     N       N       NH1     0       -16.365     145.800     45.840      
+FHF     O       O       O       0       -16.398     144.732     43.240      
+FHF     CA      C       CH1     0       -17.533     145.104     45.318      
+FHF     CB      C       CH1     0       -18.713     146.084     45.114      
+FHF     CAA     C       CH3     0       -15.990     139.992     47.543      
+FHF     OAD     O       O       0       -19.822     139.643     41.426      
+FHF     OAE     O       O       0       -15.205     143.945     46.440      
+FHF     OAG     O       OH1     0       -20.520     141.857     42.883      
+FHF     FAH     F       F       0       -11.924     147.190     46.374      
+FHF     CAI     C       C1      0       -19.041     140.586     41.565      
+FHF     CAJ     C       CR16    0       -10.855     144.971     49.020      
+FHF     CAK     C       CR16    0       -12.050     144.355     49.332      
+FHF     CAL     C       CR16    0       -10.806     145.927     48.025      
+FHF     CAM     C       CR16    0       -13.213     144.692     48.651      
+FHF     CAN     C       CH2     0       -15.934     140.389     46.087      
+FHF     CAO     C       CH2     0       -17.065     141.291     45.659      
+FHF     CAP     C       CH2     0       -16.922     141.801     44.230      
+FHF     CAQ     C       CH2     0       -18.393     142.820     42.421      
+FHF     NAR     N       NH1     0       -14.345     146.016     46.928      
+FHF     CAT     C       C       0       -15.301     145.179     46.395      
+FHF     CAV     C       CR6     0       -11.961     146.252     47.354      
+FHF     CAW     C       CR6     0       -13.186     145.649     47.638      
+FHF     CAY     C       CH1     0       -17.870     142.956     43.856      
+FHF     NBA     N       N       0       -19.314     141.689     42.258      
+FHF     CG1     C       CH3     0       -20.041     145.348     45.008      
+FHF     CG2     C       CH3     0       -18.507     146.999     43.910      
+FHF     HN      H       H       0       -16.358     146.673     45.788      
+FHF     HA      H       H       0       -17.815     144.449     46.006      
+FHF     HB      H       H       0       -18.759     146.660     45.916      
+FHF     HAA     H       H       0       -15.285     139.349     47.732      
+FHF     HAAA    H       H       0       -16.855     139.589     47.737      
+FHF     HAAB    H       H       0       -15.868     140.779     48.100      
+FHF     HOAG    H       H       0       -20.967     142.441     42.417      
+FHF     HAI     H       H       0       -18.175     140.523     41.146      
+FHF     HAJ     H       H       0       -10.071     144.741     49.486      
+FHF     HAK     H       H       0       -12.080     143.704     50.013      
+FHF     HAL     H       H       0       -9.995      146.351     47.807      
+FHF     HAM     H       H       0       -14.020     144.266     48.869      
+FHF     HAN     H       H       0       -15.953     139.577     45.535      
+FHF     HANA    H       H       0       -15.083     140.848     45.916      
+FHF     HAO     H       H       0       -17.107     142.058     46.268      
+FHF     HAOA    H       H       0       -17.909     140.799     45.737      
+FHF     HAP     H       H       0       -17.079     141.051     43.620      
+FHF     HAPA    H       H       0       -15.997     142.098     44.098      
+FHF     HAQ     H       H       0       -17.635     142.709     41.810      
+FHF     HAQA    H       H       0       -18.860     143.645     42.168      
+FHF     HNAR    H       H       0       -14.461     146.881     46.814      
+FHF     HAY     H       H       0       -18.647     142.911     44.467      
+FHF     HG1     H       H       0       -20.769     145.993     44.995      
+FHF     HG1A    H       H       0       -20.148     144.756     45.773      
+FHF     HG1B    H       H       0       -20.060     144.824     44.188      
+FHF     HG2     H       H       0       -18.811     146.549     43.102      
+FHF     HG2A    H       H       0       -17.564     147.217     43.823      
+FHF     HG2B    H       H       0       -19.018     147.817     44.035      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FHF           C           O      DOUBLE       n     1.209  0.0200     1.209  0.0200
+FHF           C          CA      SINGLE       n     1.529  0.0100     1.529  0.0100
+FHF           C         CAY      SINGLE       n     1.522  0.0115     1.522  0.0115
+FHF           N          CA      SINGLE       n     1.452  0.0100     1.452  0.0100
+FHF           N         CAT      SINGLE       n     1.345  0.0100     1.345  0.0100
+FHF          CA          CB      SINGLE       n     1.542  0.0112     1.542  0.0112
+FHF          CB         CG1      SINGLE       n     1.521  0.0135     1.521  0.0135
+FHF          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+FHF         CAA         CAN      SINGLE       n     1.510  0.0200     1.510  0.0200
+FHF         OAD         CAI      DOUBLE       n     1.232  0.0100     1.232  0.0100
+FHF         OAE         CAT      DOUBLE       n     1.235  0.0158     1.235  0.0158
+FHF         OAG         NBA      SINGLE       n     1.366  0.0200     1.366  0.0200
+FHF         FAH         CAV      SINGLE       n     1.357  0.0110     1.357  0.0110
+FHF         CAI         NBA      SINGLE       n     1.324  0.0200     1.324  0.0200
+FHF         CAJ         CAK      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FHF         CAJ         CAL      SINGLE       y     1.378  0.0100     1.378  0.0100
+FHF         CAK         CAM      SINGLE       y     1.386  0.0100     1.386  0.0100
+FHF         CAL         CAV      DOUBLE       y     1.370  0.0110     1.370  0.0110
+FHF         CAM         CAW      DOUBLE       y     1.389  0.0100     1.389  0.0100
+FHF         CAN         CAO      SINGLE       n     1.507  0.0200     1.507  0.0200
+FHF         CAO         CAP      SINGLE       n     1.523  0.0116     1.523  0.0116
+FHF         CAP         CAY      SINGLE       n     1.536  0.0100     1.536  0.0100
+FHF         CAQ         CAY      SINGLE       n     1.530  0.0119     1.530  0.0119
+FHF         CAQ         NBA      SINGLE       n     1.464  0.0154     1.464  0.0154
+FHF         NAR         CAT      SINGLE       n     1.360  0.0168     1.360  0.0168
+FHF         NAR         CAW      SINGLE       n     1.406  0.0100     1.406  0.0100
+FHF         CAV         CAW      SINGLE       y     1.385  0.0134     1.385  0.0134
+FHF           N          HN      SINGLE       n     1.016  0.0100     0.873  0.0200
+FHF          CA          HA      SINGLE       n     1.089  0.0100     0.991  0.0200
+FHF          CB          HB      SINGLE       n     1.089  0.0100     0.989  0.0175
+FHF         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+FHF         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+FHF         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0157
+FHF         OAG        HOAG      SINGLE       n     0.970  0.0120     0.871  0.0200
+FHF         CAI         HAI      SINGLE       n     1.082  0.0130     0.964  0.0200
+FHF         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0200
+FHF         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0172
+FHF         CAL         HAL      SINGLE       n     1.082  0.0130     0.940  0.0138
+FHF         CAM         HAM      SINGLE       n     1.082  0.0130     0.939  0.0128
+FHF         CAN         HAN      SINGLE       n     1.089  0.0100     0.982  0.0155
+FHF         CAN        HANA      SINGLE       n     1.089  0.0100     0.982  0.0155
+FHF         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0163
+FHF         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FHF         CAP         HAP      SINGLE       n     1.089  0.0100     0.980  0.0160
+FHF         CAP        HAPA      SINGLE       n     1.089  0.0100     0.980  0.0160
+FHF         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.980  0.0157
+FHF         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.980  0.0157
+FHF         NAR        HNAR      SINGLE       n     1.016  0.0100     0.879  0.0200
+FHF         CAY         HAY      SINGLE       n     1.089  0.0100     0.990  0.0142
+FHF         CG1         HG1      SINGLE       n     1.089  0.0100     0.973  0.0146
+FHF         CG1        HG1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FHF         CG1        HG1B      SINGLE       n     1.089  0.0100     0.973  0.0146
+FHF         CG2         HG2      SINGLE       n     1.089  0.0100     0.973  0.0146
+FHF         CG2        HG2A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FHF         CG2        HG2B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FHF           O           C          CA     121.400    1.50
+FHF           O           C         CAY     121.206    1.50
+FHF          CA           C         CAY     117.395    2.45
+FHF          CA           N         CAT     122.563    3.00
+FHF          CA           N          HN     118.841    1.92
+FHF         CAT           N          HN     118.596    1.50
+FHF           C          CA           N     111.249    2.34
+FHF           C          CA          CB     111.511    2.91
+FHF           C          CA          HA     107.798    1.50
+FHF           N          CA          CB     111.159    1.50
+FHF           N          CA          HA     108.161    1.50
+FHF          CB          CA          HA     107.847    1.50
+FHF          CA          CB         CG1     111.173    1.50
+FHF          CA          CB         CG2     111.173    1.50
+FHF          CA          CB          HB     107.639    1.50
+FHF         CG1          CB         CG2     110.676    1.50
+FHF         CG1          CB          HB     107.603    1.50
+FHF         CG2          CB          HB     107.603    1.50
+FHF         CAN         CAA         HAA     109.554    1.50
+FHF         CAN         CAA        HAAA     109.554    1.50
+FHF         CAN         CAA        HAAB     109.554    1.50
+FHF         HAA         CAA        HAAA     109.380    1.50
+FHF         HAA         CAA        HAAB     109.380    1.50
+FHF        HAAA         CAA        HAAB     109.380    1.50
+FHF         NBA         OAG        HOAG     106.835    3.00
+FHF         OAD         CAI         NBA     123.822    1.98
+FHF         OAD         CAI         HAI     118.502    2.29
+FHF         NBA         CAI         HAI     117.675    2.15
+FHF         CAK         CAJ         CAL     120.566    1.50
+FHF         CAK         CAJ         HAJ     119.874    1.50
+FHF         CAL         CAJ         HAJ     119.560    1.50
+FHF         CAJ         CAK         CAM     120.838    1.50
+FHF         CAJ         CAK         HAK     119.722    1.50
+FHF         CAM         CAK         HAK     119.440    1.50
+FHF         CAJ         CAL         CAV     118.918    1.50
+FHF         CAJ         CAL         HAL     120.729    1.50
+FHF         CAV         CAL         HAL     120.353    1.50
+FHF         CAK         CAM         CAW     120.297    1.50
+FHF         CAK         CAM         HAM     119.897    1.50
+FHF         CAW         CAM         HAM     119.807    1.50
+FHF         CAA         CAN         CAO     113.719    3.00
+FHF         CAA         CAN         HAN     108.918    1.50
+FHF         CAA         CAN        HANA     108.918    1.50
+FHF         CAO         CAN         HAN     108.758    1.50
+FHF         CAO         CAN        HANA     108.758    1.50
+FHF         HAN         CAN        HANA     107.763    1.50
+FHF         CAN         CAO         CAP     112.909    2.09
+FHF         CAN         CAO         HAO     108.653    1.50
+FHF         CAN         CAO        HAOA     108.653    1.50
+FHF         CAP         CAO         HAO     108.762    1.50
+FHF         CAP         CAO        HAOA     108.762    1.50
+FHF         HAO         CAO        HAOA     107.646    1.50
+FHF         CAO         CAP         CAY     114.798    1.57
+FHF         CAO         CAP         HAP     108.469    1.50
+FHF         CAO         CAP        HAPA     108.469    1.50
+FHF         CAY         CAP         HAP     108.447    1.50
+FHF         CAY         CAP        HAPA     108.447    1.50
+FHF         HAP         CAP        HAPA     107.657    1.50
+FHF         CAY         CAQ         NBA     111.308    2.28
+FHF         CAY         CAQ         HAQ     109.373    1.50
+FHF         CAY         CAQ        HAQA     109.373    1.50
+FHF         NBA         CAQ         HAQ     109.068    1.50
+FHF         NBA         CAQ        HAQA     109.068    1.50
+FHF         HAQ         CAQ        HAQA     107.873    1.50
+FHF         CAT         NAR         CAW     126.562    2.10
+FHF         CAT         NAR        HNAR     116.740    1.50
+FHF         CAW         NAR        HNAR     116.697    2.05
+FHF           N         CAT         OAE     122.699    1.50
+FHF           N         CAT         NAR     114.050    1.67
+FHF         OAE         CAT         NAR     123.251    1.50
+FHF         FAH         CAV         CAL     119.744    1.50
+FHF         FAH         CAV         CAW     118.164    1.50
+FHF         CAL         CAV         CAW     122.092    1.82
+FHF         CAM         CAW         NAR     121.449    3.00
+FHF         CAM         CAW         CAV     117.289    1.50
+FHF         NAR         CAW         CAV     121.261    2.30
+FHF           C         CAY         CAP     111.199    2.39
+FHF           C         CAY         CAQ     111.511    2.91
+FHF           C         CAY         HAY     108.203    1.50
+FHF         CAP         CAY         CAQ     110.760    1.86
+FHF         CAP         CAY         HAY     107.780    1.50
+FHF         CAQ         CAY         HAY     108.213    1.50
+FHF         OAG         NBA         CAI     121.147    2.14
+FHF         OAG         NBA         CAQ     114.417    3.00
+FHF         CAI         NBA         CAQ     124.436    2.35
+FHF          CB         CG1         HG1     109.507    1.50
+FHF          CB         CG1        HG1A     109.507    1.50
+FHF          CB         CG1        HG1B     109.507    1.50
+FHF         HG1         CG1        HG1A     109.411    1.50
+FHF         HG1         CG1        HG1B     109.411    1.50
+FHF        HG1A         CG1        HG1B     109.411    1.50
+FHF          CB         CG2         HG2     109.507    1.50
+FHF          CB         CG2        HG2A     109.507    1.50
+FHF          CB         CG2        HG2B     109.507    1.50
+FHF         HG2         CG2        HG2A     109.411    1.50
+FHF         HG2         CG2        HG2B     109.411    1.50
+FHF        HG2A         CG2        HG2B     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FHF             sp2_sp3_7           O           C         CAY         CAP       0.000    10.0     6
+FHF             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+FHF             sp2_sp2_6         OAD         CAI         NBA         OAG       0.000     5.0     2
+FHF       const_sp2_sp2_1         CAL         CAJ         CAK         CAM       0.000     5.0     2
+FHF              const_21         CAK         CAJ         CAL         CAV       0.000    10.0     2
+FHF       const_sp2_sp2_5         CAJ         CAK         CAM         CAW       0.000     5.0     2
+FHF              const_18         CAJ         CAL         CAV         FAH     180.000    10.0     2
+FHF              const_10         CAK         CAM         CAW         NAR     180.000    10.0     2
+FHF            sp3_sp3_37         CAA         CAN         CAO         CAP     180.000    10.0     3
+FHF            sp3_sp3_46         CAN         CAO         CAP         CAY     180.000    10.0     3
+FHF            sp3_sp3_55         CAO         CAP         CAY           C     180.000    10.0     3
+FHF            sp3_sp3_64         NBA         CAQ         CAY           C     180.000    10.0     3
+FHF            sp2_sp3_22         OAG         NBA         CAQ         CAY     120.000    10.0     6
+FHF             sp2_sp2_9           N         CAT         NAR         CAW     180.000     5.0     2
+FHF            sp2_sp2_13         CAM         CAW         NAR         CAT     180.000     5.0     2
+FHF             sp2_sp2_3         OAE         CAT           N          CA       0.000     5.0     2
+FHF            sp2_sp3_13         CAT           N          CA           C       0.000    10.0     6
+FHF              const_16         FAH         CAV         CAW         NAR       0.000    10.0     2
+FHF             sp3_sp3_2           C          CA          CB         CG1     -60.000    10.0     3
+FHF            sp3_sp3_10          CA          CB         CG1         HG1     180.000    10.0     3
+FHF            sp3_sp3_22          CA          CB         CG2         HG2      60.000    10.0     3
+FHF            sp3_sp3_28         HAA         CAA         CAN         CAO     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FHF    chir_1    CA    N    C    CB    positive
+FHF    chir_2    CB    CA    CG1    CG2    both
+FHF    chir_3    CAY    C    CAQ    CAP    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FHF    plan-1         CAJ   0.020
+FHF    plan-1         CAK   0.020
+FHF    plan-1         CAL   0.020
+FHF    plan-1         CAM   0.020
+FHF    plan-1         CAV   0.020
+FHF    plan-1         CAW   0.020
+FHF    plan-1         FAH   0.020
+FHF    plan-1         HAJ   0.020
+FHF    plan-1         HAK   0.020
+FHF    plan-1         HAL   0.020
+FHF    plan-1         HAM   0.020
+FHF    plan-1         NAR   0.020
+FHF    plan-2           C   0.020
+FHF    plan-2          CA   0.020
+FHF    plan-2         CAY   0.020
+FHF    plan-2           O   0.020
+FHF    plan-3          CA   0.020
+FHF    plan-3         CAT   0.020
+FHF    plan-3          HN   0.020
+FHF    plan-3           N   0.020
+FHF    plan-4         CAI   0.020
+FHF    plan-4         HAI   0.020
+FHF    plan-4         NBA   0.020
+FHF    plan-4         OAD   0.020
+FHF    plan-5         CAT   0.020
+FHF    plan-5         CAW   0.020
+FHF    plan-5        HNAR   0.020
+FHF    plan-5         NAR   0.020
+FHF    plan-6         CAT   0.020
+FHF    plan-6           N   0.020
+FHF    plan-6         NAR   0.020
+FHF    plan-6         OAE   0.020
+FHF    plan-7         CAI   0.020
+FHF    plan-7         CAQ   0.020
+FHF    plan-7         NBA   0.020
+FHF    plan-7         OAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FHF           SMILES              ACDLabs 12.01                                                                                                                          O=C(Nc1ccccc1F)NC(C(=O)C(CCCC)CN(O)C=O)C(C)C
+FHF            InChI                InChI  1.03 InChI=1S/C19H28FN3O4/c1-4-5-8-14(11-23(27)12-24)18(25)17(13(2)3)22-19(26)21-16-10-7-6-9-15(16)20/h6-7,9-10,12-14,17,27H,4-5,8,11H2,1-3H3,(H2,21,22,26)/t14-,17+/m1/s1
+FHF         InChIKey                InChI  1.03                                                                                                                                           OWFALUNDSZEADU-PBHICJAKSA-N
+FHF SMILES_CANONICAL               CACTVS 3.370                                                                                                                 CCCC[C@H](CN(O)C=O)C(=O)[C@@H](NC(=O)Nc1ccccc1F)C(C)C
+FHF           SMILES               CACTVS 3.370                                                                                                                    CCCC[CH](CN(O)C=O)C(=O)[CH](NC(=O)Nc1ccccc1F)C(C)C
+FHF SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                  CCCC[C@H](CN(C=O)O)C(=O)[C@H](C(C)C)NC(=O)Nc1ccccc1F
+FHF           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                          CCCCC(CN(C=O)O)C(=O)C(C(C)C)NC(=O)Nc1ccccc1F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FHF acedrg               243         "dictionary generator"                  
+FHF acedrg_database      11          "data source"                           
+FHF rdkit                2017.03.2   "Chemoinformatics tool"
+FHF refmac5              5.8.0238    "optimization tool"                     

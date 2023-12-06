@@ -1,0 +1,349 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BQM     BQM      3-({4-[(1E)-3-morpholin-4-yl-3-oxoprop-1-en-1-yl]-2,3-bis(trifluoromethyl)phenyl}sulfanyl)aniline     NON-POLYMER     50     32     .     
+#
+data_comp_BQM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BQM     F6      F       F       0       18.477      -14.458     -6.062      
+BQM     C12     C       CT      0       19.355      -15.149     -6.785      
+BQM     F4      F       F       0       19.518      -14.472     -7.918      
+BQM     F5      F       F       0       20.506      -15.007     -6.139      
+BQM     C11     C       CR6     0       18.938      -16.580     -7.010      
+BQM     C9      C       CR6     0       17.710      -16.940     -7.645      
+BQM     C10     C       CT      0       16.706      -15.930     -8.149      
+BQM     F3      F       F       0       15.573      -16.003     -7.457      
+BQM     F2      F       F       0       17.031      -14.646     -8.126      
+BQM     F1      F       F       0       16.370      -16.158     -9.416      
+BQM     C13     C       CR6     0       19.808      -17.605     -6.584      
+BQM     S       S       S2      0       21.371      -17.426     -5.763      
+BQM     C14     C       CR6     0       21.389      -18.251     -4.196      
+BQM     C19     C       CR16    0       21.823      -19.570     -4.105      
+BQM     C18     C       CR6     0       21.826      -20.231     -2.870      
+BQM     N2      N       NH2     0       22.264      -21.532     -2.770      
+BQM     C17     C       CR16    0       21.372      -19.540     -1.741      
+BQM     C16     C       CR16    0       20.931      -18.229     -1.844      
+BQM     C15     C       CR16    0       20.931      -17.580     -3.069      
+BQM     C20     C       CR16    0       19.476      -18.947     -6.751      
+BQM     C21     C       CR16    0       18.292      -19.301     -7.359      
+BQM     C8      C       CR6     0       17.400      -18.322     -7.809      
+BQM     C7      C       C1      0       16.168      -18.819     -8.436      
+BQM     C6      C       C1      0       16.074      -19.658     -9.456      
+BQM     C1      C       C       0       14.763      -20.153     -9.966      
+BQM     O1      O       O       0       13.711      -19.684     -9.523      
+BQM     N1      N       NR6     0       14.739      -21.187     -10.852     
+BQM     C5      C       CH2     0       13.603      -21.417     -11.756     
+BQM     C4      C       CH2     0       13.042      -22.803     -11.541     
+BQM     O2      O       O2      0       14.038      -23.805     -11.726     
+BQM     C3      C       CH2     0       15.123      -23.604     -10.822     
+BQM     C2      C       CH2     0       15.756      -22.240     -10.985     
+BQM     H19     H       H       0       22.126      -20.020     -4.883      
+BQM     HN2     H       H       0       22.027      -22.021     -2.081      
+BQM     HN2A    H       H       0       22.778      -21.869     -3.396      
+BQM     H17     H       H       0       21.369      -19.973     -0.903      
+BQM     H16     H       H       0       20.630      -17.778     -1.078      
+BQM     H15     H       H       0       20.632      -16.692     -3.137      
+BQM     H20     H       H       0       20.068      -19.614     -6.452      
+BQM     H21     H       H       0       18.080      -20.211     -7.473      
+BQM     H7      H       H       0       15.357      -18.536     -8.044      
+BQM     H6      H       H       0       16.857      -19.925     -9.892      
+BQM     H5      H       H       0       12.902      -20.753     -11.603     
+BQM     H5A     H       H       0       13.906      -21.329     -12.682     
+BQM     H4      H       H       0       12.310      -22.957     -12.175     
+BQM     H4A     H       H       0       12.678      -22.870     -10.634     
+BQM     H3      H       H       0       15.801      -24.294     -10.979     
+BQM     H3A     H       H       0       14.798      -23.702     -9.903      
+BQM     H2      H       H       0       16.450      -22.131     -10.307     
+BQM     H2A     H       H       0       16.177      -22.177     -11.865     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BQM          F6         C12      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQM         C12          F4      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQM         C12          F5      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQM         C12         C11      SINGLE       n     1.495  0.0102     1.495  0.0102
+BQM         C11          C9      DOUBLE       y     1.403  0.0100     1.403  0.0100
+BQM         C11         C13      SINGLE       y     1.397  0.0100     1.397  0.0100
+BQM          C9         C10      SINGLE       n     1.496  0.0100     1.496  0.0100
+BQM          C9          C8      SINGLE       y     1.405  0.0111     1.405  0.0111
+BQM         C10          F3      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQM         C10          F2      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQM         C10          F1      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQM         C13           S      SINGLE       n     1.772  0.0127     1.772  0.0127
+BQM         C13         C20      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BQM           S         C14      SINGLE       n     1.772  0.0127     1.772  0.0127
+BQM         C14         C19      DOUBLE       y     1.386  0.0107     1.386  0.0107
+BQM         C14         C15      SINGLE       y     1.386  0.0105     1.386  0.0105
+BQM         C19         C18      SINGLE       y     1.396  0.0100     1.396  0.0100
+BQM         C18          N2      SINGLE       n     1.376  0.0195     1.376  0.0195
+BQM         C18         C17      DOUBLE       y     1.396  0.0104     1.396  0.0104
+BQM         C17         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+BQM         C16         C15      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BQM         C20         C21      SINGLE       y     1.382  0.0100     1.382  0.0100
+BQM         C21          C8      DOUBLE       y     1.398  0.0152     1.398  0.0152
+BQM          C8          C7      SINGLE       n     1.462  0.0126     1.462  0.0126
+BQM          C7          C6      DOUBLE       n     1.321  0.0100     1.321  0.0100
+BQM          C6          C1      SINGLE       n     1.484  0.0100     1.484  0.0100
+BQM          C1          O1      DOUBLE       n     1.232  0.0100     1.232  0.0100
+BQM          C1          N1      SINGLE       n     1.352  0.0100     1.352  0.0100
+BQM          N1          C5      SINGLE       n     1.463  0.0100     1.463  0.0100
+BQM          N1          C2      SINGLE       n     1.463  0.0100     1.463  0.0100
+BQM          C5          C4      SINGLE       n     1.510  0.0111     1.510  0.0111
+BQM          C4          O2      SINGLE       n     1.423  0.0105     1.423  0.0105
+BQM          O2          C3      SINGLE       n     1.423  0.0105     1.423  0.0105
+BQM          C3          C2      SINGLE       n     1.510  0.0111     1.510  0.0111
+BQM         C19         H19      SINGLE       n     1.082  0.0130     0.949  0.0200
+BQM          N2         HN2      SINGLE       n     1.016  0.0100     0.877  0.0200
+BQM          N2        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+BQM         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0178
+BQM         C16         H16      SINGLE       n     1.082  0.0130     0.938  0.0160
+BQM         C15         H15      SINGLE       n     1.082  0.0130     0.940  0.0163
+BQM         C20         H20      SINGLE       n     1.082  0.0130     0.940  0.0163
+BQM         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0168
+BQM          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0200
+BQM          C6          H6      SINGLE       n     1.082  0.0130     0.936  0.0100
+BQM          C5          H5      SINGLE       n     1.089  0.0100     0.978  0.0137
+BQM          C5         H5A      SINGLE       n     1.089  0.0100     0.978  0.0137
+BQM          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0155
+BQM          C4         H4A      SINGLE       n     1.089  0.0100     0.980  0.0155
+BQM          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0155
+BQM          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0155
+BQM          C2          H2      SINGLE       n     1.089  0.0100     0.978  0.0137
+BQM          C2         H2A      SINGLE       n     1.089  0.0100     0.978  0.0137
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BQM          F6         C12          F4     105.974    1.50
+BQM          F6         C12          F5     105.974    1.50
+BQM          F6         C12         C11     112.758    1.50
+BQM          F4         C12          F5     105.974    1.50
+BQM          F4         C12         C11     112.758    1.50
+BQM          F5         C12         C11     112.758    1.50
+BQM         C12         C11          C9     120.399    1.95
+BQM         C12         C11         C13     120.130    1.50
+BQM          C9         C11         C13     119.471    1.50
+BQM         C11          C9         C10     120.201    1.95
+BQM         C11          C9          C8     119.526    1.50
+BQM         C10          C9          C8     120.273    1.50
+BQM          C9         C10          F3     112.001    2.51
+BQM          C9         C10          F2     112.001    2.51
+BQM          C9         C10          F1     112.001    2.51
+BQM          F3         C10          F2     105.974    1.50
+BQM          F3         C10          F1     105.974    1.50
+BQM          F2         C10          F1     105.974    1.50
+BQM         C11         C13           S     119.833    2.83
+BQM         C11         C13         C20     120.333    1.50
+BQM           S         C13         C20     119.833    2.83
+BQM         C13           S         C14     120.000    3.00
+BQM           S         C14         C19     120.025    2.83
+BQM           S         C14         C15     120.025    2.83
+BQM         C19         C14         C15     119.951    1.50
+BQM         C14         C19         C18     119.785    1.50
+BQM         C14         C19         H19     120.059    1.50
+BQM         C18         C19         H19     120.155    1.50
+BQM         C19         C18          N2     120.814    1.50
+BQM         C19         C18         C17     118.371    1.50
+BQM          N2         C18         C17     120.815    1.50
+BQM         C18          N2         HN2     119.811    2.73
+BQM         C18          N2        HN2A     119.811    2.73
+BQM         HN2          N2        HN2A     120.379    3.00
+BQM         C18         C17         C16     121.050    1.50
+BQM         C18         C17         H17     119.221    1.50
+BQM         C16         C17         H17     119.728    1.50
+BQM         C17         C16         C15     121.150    1.50
+BQM         C17         C16         H16     119.385    1.50
+BQM         C15         C16         H16     119.465    1.50
+BQM         C14         C15         C16     119.693    1.50
+BQM         C14         C15         H15     120.010    1.50
+BQM         C16         C15         H15     120.297    1.50
+BQM         C13         C20         C21     120.510    1.50
+BQM         C13         C20         H20     119.323    1.50
+BQM         C21         C20         H20     120.167    1.50
+BQM         C20         C21          C8     120.525    1.50
+BQM         C20         C21         H21     119.937    1.50
+BQM          C8         C21         H21     119.538    1.50
+BQM          C9          C8         C21     119.634    1.50
+BQM          C9          C8          C7     120.860    2.13
+BQM         C21          C8          C7     119.505    1.50
+BQM          C8          C7          C6     127.463    1.50
+BQM          C8          C7          H7     116.388    1.65
+BQM          C6          C7          H7     116.149    1.50
+BQM          C7          C6          C1     121.063    1.50
+BQM          C7          C6          H6     119.735    1.50
+BQM          C1          C6          H6     119.202    1.50
+BQM          C6          C1          O1     120.586    1.50
+BQM          C6          C1          N1     118.300    1.50
+BQM          O1          C1          N1     121.105    1.50
+BQM          C1          N1          C5     123.505    3.00
+BQM          C1          N1          C2     123.505    3.00
+BQM          C5          N1          C2     112.990    1.50
+BQM          N1          C5          C4     109.646    1.50
+BQM          N1          C5          H5     109.579    1.50
+BQM          N1          C5         H5A     109.579    1.50
+BQM          C4          C5          H5     109.668    1.50
+BQM          C4          C5         H5A     109.668    1.50
+BQM          H5          C5         H5A     108.316    1.50
+BQM          C5          C4          O2     111.652    1.50
+BQM          C5          C4          H4     109.301    1.50
+BQM          C5          C4         H4A     109.301    1.50
+BQM          O2          C4          H4     109.195    1.50
+BQM          O2          C4         H4A     109.195    1.50
+BQM          H4          C4         H4A     108.175    1.50
+BQM          C4          O2          C3     109.829    1.50
+BQM          O2          C3          C2     111.652    1.50
+BQM          O2          C3          H3     109.195    1.50
+BQM          O2          C3         H3A     109.195    1.50
+BQM          C2          C3          H3     109.301    1.50
+BQM          C2          C3         H3A     109.301    1.50
+BQM          H3          C3         H3A     108.175    1.50
+BQM          N1          C2          C3     109.646    1.50
+BQM          N1          C2          H2     109.579    1.50
+BQM          N1          C2         H2A     109.579    1.50
+BQM          C3          C2          H2     109.668    1.50
+BQM          C3          C2         H2A     109.668    1.50
+BQM          H2          C2         H2A     108.316    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BQM             sp2_sp2_1         C11         C13           S         C14     180.000     5.0     2
+BQM              const_19           S         C13         C20         C21     180.000    10.0     2
+BQM             sp2_sp2_3         C19         C14           S         C13     180.000     5.0     2
+BQM              const_23           S         C14         C19         C18     180.000    10.0     2
+BQM              const_47           S         C14         C15         C16     180.000    10.0     2
+BQM              const_27          N2         C18         C19         C14     180.000    10.0     2
+BQM             sp2_sp2_5         C19         C18          N2         HN2     180.000     5.0     2
+BQM              const_30         C16         C17         C18          N2     180.000    10.0     2
+BQM              const_33         C15         C16         C17         C18       0.000    10.0     2
+BQM              const_37         C14         C15         C16         C17       0.000    10.0     2
+BQM              const_13         C13         C20         C21          C8       0.000    10.0     2
+BQM             sp2_sp3_7          C9         C11         C12          F6     150.000    10.0     6
+BQM              const_10         C20         C21          C8          C7     180.000    10.0     2
+BQM             sp2_sp2_9          C6          C7          C8          C9     180.000     5.0     2
+BQM            sp2_sp2_13          C1          C6          C7          C8     180.000     5.0     2
+BQM            sp2_sp2_19          O1          C1          C6          C7       0.000     5.0     2
+BQM            sp2_sp2_21          C6          C1          N1          C5     180.000     5.0     2
+BQM             sp2_sp3_4          C1          N1          C5          C4     180.000    10.0     6
+BQM            sp2_sp3_22          C1          N1          C2          C3     180.000    10.0     6
+BQM             sp3_sp3_1          O2          C4          C5          N1     -60.000    10.0     3
+BQM            sp3_sp3_10          C5          C4          O2          C3      60.000    10.0     3
+BQM            sp3_sp3_13          C2          C3          O2          C4     -60.000    10.0     3
+BQM            sp3_sp3_16          N1          C2          C3          O2      60.000    10.0     3
+BQM              const_44         C12         C11         C13           S       0.000    10.0     2
+BQM       const_sp2_sp2_4         C12         C11          C9         C10       0.000     5.0     2
+BQM       const_sp2_sp2_8          C7          C8          C9         C10       0.000     5.0     2
+BQM            sp2_sp3_13         C11          C9         C10          F3     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BQM    chir_1    C12    F6    F4    F5    both
+BQM    chir_2    C10    F3    F2    F1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BQM    plan-1         C10   0.020
+BQM    plan-1         C11   0.020
+BQM    plan-1         C12   0.020
+BQM    plan-1         C13   0.020
+BQM    plan-1         C20   0.020
+BQM    plan-1         C21   0.020
+BQM    plan-1          C7   0.020
+BQM    plan-1          C8   0.020
+BQM    plan-1          C9   0.020
+BQM    plan-1         H20   0.020
+BQM    plan-1         H21   0.020
+BQM    plan-1           S   0.020
+BQM    plan-2         C14   0.020
+BQM    plan-2         C15   0.020
+BQM    plan-2         C16   0.020
+BQM    plan-2         C17   0.020
+BQM    plan-2         C18   0.020
+BQM    plan-2         C19   0.020
+BQM    plan-2         H15   0.020
+BQM    plan-2         H16   0.020
+BQM    plan-2         H17   0.020
+BQM    plan-2         H19   0.020
+BQM    plan-2          N2   0.020
+BQM    plan-2           S   0.020
+BQM    plan-3         C18   0.020
+BQM    plan-3         HN2   0.020
+BQM    plan-3        HN2A   0.020
+BQM    plan-3          N2   0.020
+BQM    plan-4          C6   0.020
+BQM    plan-4          C7   0.020
+BQM    plan-4          C8   0.020
+BQM    plan-4          H7   0.020
+BQM    plan-5          C1   0.020
+BQM    plan-5          C6   0.020
+BQM    plan-5          C7   0.020
+BQM    plan-5          H6   0.020
+BQM    plan-6          C1   0.020
+BQM    plan-6          C6   0.020
+BQM    plan-6          N1   0.020
+BQM    plan-6          O1   0.020
+BQM    plan-7          C1   0.020
+BQM    plan-7          C2   0.020
+BQM    plan-7          C5   0.020
+BQM    plan-7          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BQM           SMILES              ACDLabs 10.04                                                                                       O=C(\C=C\c2ccc(Sc1cc(N)ccc1)c(c2C(F)(F)F)C(F)(F)F)N3CCOCC3
+BQM SMILES_CANONICAL               CACTVS 3.341                                                                                       Nc1cccc(Sc2ccc(\C=C\C(=O)N3CCOCC3)c(c2C(F)(F)F)C(F)(F)F)c1
+BQM           SMILES               CACTVS 3.341                                                                                         Nc1cccc(Sc2ccc(C=CC(=O)N3CCOCC3)c(c2C(F)(F)F)C(F)(F)F)c1
+BQM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     c1cc(cc(c1)Sc2ccc(c(c2C(F)(F)F)C(F)(F)F)\C=C\C(=O)N3CCOCC3)N
+BQM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                       c1cc(cc(c1)Sc2ccc(c(c2C(F)(F)F)C(F)(F)F)C=CC(=O)N3CCOCC3)N
+BQM            InChI                InChI  1.03 InChI=1S/C21H18F6N2O2S/c22-20(23,24)18-13(5-7-17(30)29-8-10-31-11-9-29)4-6-16(19(18)21(25,26)27)32-15-3-1-2-14(28)12-15/h1-7,12H,8-11,28H2/b7-5+
+BQM         InChIKey                InChI  1.03                                                                                                                      KLSZVPNVFKKIRD-FNORWQNLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BQM acedrg               243         "dictionary generator"                  
+BQM acedrg_database      11          "data source"                           
+BQM rdkit                2017.03.2   "Chemoinformatics tool"
+BQM refmac5              5.8.0238    "optimization tool"                     

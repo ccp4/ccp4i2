@@ -1,0 +1,161 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CGN     CGN      5-OXO-PYRROLIDINE-2-CARBALDEHYDE     NON-POLYMER     15     8     .     
+#
+data_comp_CGN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CGN     CB      C       CH2     0       2.024       79.769      43.061      
+CGN     CG      C       CH2     0       3.518       79.975      43.274      
+CGN     CD      C       CR5     0       3.651       81.364      43.839      
+CGN     N       N       NR5     0       2.481       81.984      43.702      
+CGN     OE1     O       O       0       4.666       81.859      44.342      
+CGN     C       C       C1      0       0.141       81.231      43.918      
+CGN     CA      C       CH1     0       1.423       81.191      43.087      
+CGN     O       O       O       0       -0.845      80.689      43.544      
+CGN     HB1     H       H       0       1.851       79.336      42.197      
+CGN     HB2     H       H       0       1.643       79.213      43.776      
+CGN     HG1     H       H       0       3.877       79.318      43.903      
+CGN     HG2     H       H       0       4.007       79.903      42.430      
+CGN     HN      H       H       0       2.343       82.803      43.957      
+CGN     H       H       H       0       0.139       81.692      44.738      
+CGN     HA      H       H       0       1.245       81.509      42.169      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CGN          CB          CG      SINGLE       n     1.520  0.0160     1.520  0.0160
+CGN          CB          CA      SINGLE       n     1.542  0.0100     1.542  0.0100
+CGN          CG          CD      SINGLE       n     1.505  0.0100     1.505  0.0100
+CGN          CD           N      SINGLE       n     1.332  0.0100     1.332  0.0100
+CGN          CD         OE1      DOUBLE       n     1.236  0.0100     1.236  0.0100
+CGN           N          CA      SINGLE       n     1.459  0.0100     1.459  0.0100
+CGN           C          CA      SINGLE       n     1.527  0.0175     1.527  0.0175
+CGN           C           O      DOUBLE       n     1.185  0.0182     1.185  0.0182
+CGN          CB         HB1      SINGLE       n     1.089  0.0100     0.982  0.0200
+CGN          CB         HB2      SINGLE       n     1.089  0.0100     0.982  0.0200
+CGN          CG         HG1      SINGLE       n     1.089  0.0100     0.978  0.0150
+CGN          CG         HG2      SINGLE       n     1.089  0.0100     0.978  0.0150
+CGN           N          HN      SINGLE       n     1.016  0.0100     0.869  0.0200
+CGN           C           H      SINGLE       n     1.082  0.0130     0.940  0.0157
+CGN          CA          HA      SINGLE       n     1.089  0.0100     0.988  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CGN          CG          CB          CA     103.810    1.50
+CGN          CG          CB         HB1     110.929    1.50
+CGN          CG          CB         HB2     110.929    1.50
+CGN          CA          CB         HB1     110.853    1.50
+CGN          CA          CB         HB2     110.853    1.50
+CGN         HB1          CB         HB2     108.922    1.50
+CGN          CB          CG          CD     104.467    1.50
+CGN          CB          CG         HG1     111.113    1.50
+CGN          CB          CG         HG2     111.113    1.50
+CGN          CD          CG         HG1     110.409    1.50
+CGN          CD          CG         HG2     110.409    1.50
+CGN         HG1          CG         HG2     108.838    1.50
+CGN          CG          CD           N     108.239    1.50
+CGN          CG          CD         OE1     126.495    1.50
+CGN           N          CD         OE1     125.266    1.50
+CGN          CD           N          CA     115.527    1.50
+CGN          CD           N          HN     123.255    1.93
+CGN          CA           N          HN     121.218    3.00
+CGN          CA           C           O     120.918    3.00
+CGN          CA           C           H     119.212    1.78
+CGN           O           C           H     119.870    1.50
+CGN          CB          CA           N     102.676    1.50
+CGN          CB          CA           C     110.031    2.42
+CGN          CB          CA          HA     110.393    1.50
+CGN           N          CA           C     111.417    2.02
+CGN           N          CA          HA     110.210    1.50
+CGN           C          CA          HA     110.011    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CGN             sp3_sp3_1          CA          CB          CG          CD      60.000    10.0     3
+CGN            sp3_sp3_13           C          CA          CB          CG      60.000    10.0     3
+CGN             sp2_sp3_4         OE1          CD          CG          CB     180.000    10.0     6
+CGN             sp2_sp2_3         OE1          CD           N          CA     180.000     5.0     2
+CGN             sp2_sp3_8          CD           N          CA           C     120.000    10.0     6
+CGN            sp2_sp3_13           O           C          CA          CB       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CGN    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CGN    plan-1          CD   0.020
+CGN    plan-1          CG   0.020
+CGN    plan-1           N   0.020
+CGN    plan-1         OE1   0.020
+CGN    plan-2          CA   0.020
+CGN    plan-2          CD   0.020
+CGN    plan-2          HN   0.020
+CGN    plan-2           N   0.020
+CGN    plan-3           C   0.020
+CGN    plan-3          CA   0.020
+CGN    plan-3           H   0.020
+CGN    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CGN           SMILES              ACDLabs 10.04                                                    O=CC1NC(=O)CC1
+CGN SMILES_CANONICAL               CACTVS 3.341                                               O=C[C@@H]1CCC(=O)N1
+CGN           SMILES               CACTVS 3.341                                                 O=C[CH]1CCC(=O)N1
+CGN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                               C1CC(=O)N[C@@H]1C=O
+CGN           SMILES "OpenEye OEToolkits" 1.5.0                                                    C1CC(=O)NC1C=O
+CGN            InChI                InChI  1.03 InChI=1S/C5H7NO2/c7-3-4-1-2-5(8)6-4/h3-4H,1-2H2,(H,6,8)/t4-/m0/s1
+CGN         InChIKey                InChI  1.03                                       XBGYMVTXOUKXLG-BYPYZUCNSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CGN acedrg               243         "dictionary generator"                  
+CGN acedrg_database      11          "data source"                           
+CGN rdkit                2017.03.2   "Chemoinformatics tool"
+CGN refmac5              5.8.0238    "optimization tool"                     

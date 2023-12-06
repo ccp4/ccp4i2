@@ -1,0 +1,169 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+40S     40S      3-methylpentane-1,5-diol     NON-POLYMER     22     8     .     
+#
+data_comp_40S
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+40S     C01     C       CH3     0       -24.965     5.125       -9.990      
+40S     C02     C       CH1     0       -24.383     3.721       -10.077     
+40S     C03     C       CH2     0       -24.735     2.906       -8.831      
+40S     C04     C       CH2     0       -23.995     3.266       -7.576      
+40S     O05     O       OH1     0       -24.140     2.265       -6.583      
+40S     C06     C       CH2     0       -24.832     3.013       -11.359     
+40S     C07     C       CH2     0       -24.372     3.610       -12.660     
+40S     O08     O       OH1     0       -22.961     3.718       -12.729     
+40S     H1      H       H       0       -25.933     5.083       -10.087     
+40S     H2      H       H       0       -24.594     5.678       -10.700     
+40S     H3      H       H       0       -24.745     5.520       -9.129      
+40S     H4      H       H       0       -23.398     3.802       -10.108     
+40S     H5      H       H       0       -24.569     1.963       -9.016      
+40S     H6      H       H       0       -25.690     3.006       -8.657      
+40S     H7      H       H       0       -24.339     4.117       -7.230      
+40S     H8      H       H       0       -23.043     3.381       -7.783      
+40S     H9      H       H       0       -23.901     2.587       -5.839      
+40S     H10     H       H       0       -25.808     2.988       -11.370     
+40S     H11     H       H       0       -24.519     2.090       -11.330     
+40S     H12     H       H       0       -24.770     4.501       -12.767     
+40S     H13     H       H       0       -24.688     3.048       -13.400     
+40S     H14     H       H       0       -22.631     2.939       -12.741     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+40S         C07         O08      SINGLE       n     1.417  0.0200     1.417  0.0200
+40S         C06         C07      SINGLE       n     1.499  0.0200     1.499  0.0200
+40S         C02         C06      SINGLE       n     1.524  0.0200     1.524  0.0200
+40S         C01         C02      SINGLE       n     1.521  0.0151     1.521  0.0151
+40S         C02         C03      SINGLE       n     1.524  0.0200     1.524  0.0200
+40S         C03         C04      SINGLE       n     1.499  0.0200     1.499  0.0200
+40S         C04         O05      SINGLE       n     1.417  0.0200     1.417  0.0200
+40S         C01          H1      SINGLE       n     1.089  0.0100     0.973  0.0146
+40S         C01          H2      SINGLE       n     1.089  0.0100     0.973  0.0146
+40S         C01          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+40S         C02          H4      SINGLE       n     1.089  0.0100     0.989  0.0162
+40S         C03          H5      SINGLE       n     1.089  0.0100     0.976  0.0116
+40S         C03          H6      SINGLE       n     1.089  0.0100     0.976  0.0116
+40S         C04          H7      SINGLE       n     1.089  0.0100     0.981  0.0174
+40S         C04          H8      SINGLE       n     1.089  0.0100     0.981  0.0174
+40S         O05          H9      SINGLE       n     0.970  0.0120     0.846  0.0200
+40S         C06         H10      SINGLE       n     1.089  0.0100     0.976  0.0116
+40S         C06         H11      SINGLE       n     1.089  0.0100     0.976  0.0116
+40S         C07         H12      SINGLE       n     1.089  0.0100     0.981  0.0174
+40S         C07         H13      SINGLE       n     1.089  0.0100     0.981  0.0174
+40S         O08         H14      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+40S         C02         C01          H1     109.656    1.50
+40S         C02         C01          H2     109.656    1.50
+40S         C02         C01          H3     109.656    1.50
+40S          H1         C01          H2     109.411    1.50
+40S          H1         C01          H3     109.411    1.50
+40S          H2         C01          H3     109.411    1.50
+40S         C06         C02         C01     111.118    1.50
+40S         C06         C02         C03     111.631    1.85
+40S         C06         C02          H4     107.675    1.50
+40S         C01         C02         C03     111.118    1.50
+40S         C01         C02          H4     108.064    1.50
+40S         C03         C02          H4     107.675    1.50
+40S         C02         C03         C04     116.077    1.94
+40S         C02         C03          H5     108.713    1.50
+40S         C02         C03          H6     108.713    1.50
+40S         C04         C03          H5     108.237    1.50
+40S         C04         C03          H6     108.237    1.50
+40S          H5         C03          H6     107.611    1.50
+40S         C03         C04         O05     111.314    3.00
+40S         C03         C04          H7     109.205    1.50
+40S         C03         C04          H8     109.205    1.50
+40S         O05         C04          H7     109.258    1.50
+40S         O05         C04          H8     109.258    1.50
+40S          H7         C04          H8     108.120    1.50
+40S         C04         O05          H9     108.576    2.78
+40S         C07         C06         C02     116.077    1.94
+40S         C07         C06         H10     108.237    1.50
+40S         C07         C06         H11     108.237    1.50
+40S         C02         C06         H10     108.713    1.50
+40S         C02         C06         H11     108.713    1.50
+40S         H10         C06         H11     107.611    1.50
+40S         O08         C07         C06     111.314    3.00
+40S         O08         C07         H12     109.258    1.50
+40S         O08         C07         H13     109.258    1.50
+40S         C06         C07         H12     109.205    1.50
+40S         C06         C07         H13     109.205    1.50
+40S         H12         C07         H13     108.120    1.50
+40S         C07         O08         H14     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+40S            sp3_sp3_23          H1         C01         C02         C06     -60.000    10.0     3
+40S            sp3_sp3_31         C06         C02         C03         C04     180.000    10.0     3
+40S            sp3_sp3_13         C01         C02         C06         C07     180.000    10.0     3
+40S            sp3_sp3_40         C02         C03         C04         O05     180.000    10.0     3
+40S            sp3_sp3_49         C03         C04         O05          H9     180.000    10.0     3
+40S             sp3_sp3_4         C02         C06         C07         O08     180.000    10.0     3
+40S             sp3_sp3_1         C06         C07         O08         H14     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+40S    chir_1    C02    C06    C03    C01    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+40S           SMILES              ACDLabs 12.01                                        OCCC(C)CCO
+40S            InChI                InChI  1.03 InChI=1S/C6H14O2/c1-6(2-4-7)3-5-8/h6-8H,2-5H2,1H3
+40S         InChIKey                InChI  1.03                       SXFJDZNJHVPHPH-UHFFFAOYSA-N
+40S SMILES_CANONICAL               CACTVS 3.385                                        CC(CCO)CCO
+40S           SMILES               CACTVS 3.385                                        CC(CCO)CCO
+40S SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                        CC(CCO)CCO
+40S           SMILES "OpenEye OEToolkits" 1.7.6                                        CC(CCO)CCO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+40S acedrg               243         "dictionary generator"                  
+40S acedrg_database      11          "data source"                           
+40S rdkit                2017.03.2   "Chemoinformatics tool"
+40S refmac5              5.8.0238    "optimization tool"                     

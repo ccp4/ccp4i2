@@ -1,0 +1,176 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FW2     FW2      L-2-keto-3deoxy-gluconate     NON-POLYMER     21     12     .     
+#
+data_comp_FW2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FW2     C1      C       C       0       -40.983     12.071      -14.575     
+FW2     C2      C       C       0       -41.359     12.516      -13.384     
+FW2     C3      C       CH2     0       -40.652     13.599      -12.601     
+FW2     C4      C       CH1     0       -41.318     14.972      -12.671     
+FW2     C5      C       CH1     0       -40.824     15.836      -13.833     
+FW2     C6      C       CH2     0       -41.309     17.272      -13.784     
+FW2     O1      O       OC      -1      -40.015     12.584      -15.141     
+FW2     O2      O       O       0       -41.623     11.155      -15.104     
+FW2     O4      O       OH1     0       -41.090     15.649      -11.425     
+FW2     O5      O       OH1     0       -41.233     15.240      -15.066     
+FW2     O6      O       OH1     0       -41.019     17.967      -14.995     
+FW2     O3      O       O       0       -42.362     12.022      -12.859     
+FW2     H7      H       H       0       -39.733     13.681      -12.915     
+FW2     H8      H       H       0       -40.622     13.321      -11.667     
+FW2     H1      H       H       0       -42.299     14.849      -12.771     
+FW2     H       H       H       0       -39.821     15.853      -13.807     
+FW2     H4      H       H       0       -40.872     17.739      -13.032     
+FW2     H3      H       H       0       -42.285     17.280      -13.630     
+FW2     H6      H       H       0       -40.257     15.792      -11.336     
+FW2     H5      H       H       0       -42.079     15.207      -15.131     
+FW2     H2      H       H       0       -41.350     18.743      -14.941     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FW2          C1          O2      DOUBLE       n     1.230  0.0200     1.230  0.0200
+FW2          C6          O6      SINGLE       n     1.425  0.0100     1.425  0.0100
+FW2          C1          O1      SINGLE       n     1.230  0.0200     1.230  0.0200
+FW2          C5          O5      SINGLE       n     1.429  0.0100     1.429  0.0100
+FW2          C1          C2      SINGLE       n     1.299  0.0200     1.299  0.0200
+FW2          C5          C6      SINGLE       n     1.514  0.0100     1.514  0.0100
+FW2          C4          C5      SINGLE       n     1.526  0.0100     1.526  0.0100
+FW2          C2          C3      SINGLE       n     1.508  0.0100     1.508  0.0100
+FW2          C3          C4      SINGLE       n     1.523  0.0119     1.523  0.0119
+FW2          C4          O4      SINGLE       n     1.435  0.0100     1.435  0.0100
+FW2          C2          O3      DOUBLE       n     1.230  0.0184     1.230  0.0184
+FW2          C3          H7      SINGLE       n     1.089  0.0100     0.975  0.0121
+FW2          C3          H8      SINGLE       n     1.089  0.0100     0.975  0.0121
+FW2          C4          H1      SINGLE       n     1.089  0.0100     0.993  0.0100
+FW2          C5           H      SINGLE       n     1.089  0.0100     1.004  0.0200
+FW2          C6          H4      SINGLE       n     1.089  0.0100     0.988  0.0200
+FW2          C6          H3      SINGLE       n     1.089  0.0100     0.988  0.0200
+FW2          O4          H6      SINGLE       n     0.970  0.0120     0.848  0.0200
+FW2          O5          H5      SINGLE       n     0.970  0.0120     0.848  0.0200
+FW2          O6          H2      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FW2          O2          C1          O1     122.692    1.63
+FW2          O2          C1          C2     118.654    3.00
+FW2          O1          C1          C2     118.654    3.00
+FW2          C1          C2          C3     122.999    2.52
+FW2          C1          C2          O3     119.042    3.00
+FW2          C3          C2          O3     117.958    1.51
+FW2          C2          C3          C4     113.692    1.88
+FW2          C2          C3          H7     108.680    1.71
+FW2          C2          C3          H8     108.680    1.71
+FW2          C4          C3          H7     108.544    1.56
+FW2          C4          C3          H8     108.544    1.56
+FW2          H7          C3          H8     108.131    1.50
+FW2          C5          C4          C3     112.748    1.86
+FW2          C5          C4          O4     109.320    2.01
+FW2          C5          C4          H1     108.450    1.83
+FW2          C3          C4          O4     108.747    2.04
+FW2          C3          C4          H1     108.825    1.50
+FW2          O4          C4          H1     107.870    1.50
+FW2          O5          C5          C6     109.623    1.60
+FW2          O5          C5          C4     109.320    2.01
+FW2          O5          C5           H     108.591    1.50
+FW2          C6          C5          C4     113.761    1.50
+FW2          C6          C5           H     107.986    1.50
+FW2          C4          C5           H     108.450    1.83
+FW2          O6          C6          C5     111.364    1.50
+FW2          O6          C6          H4     109.268    1.50
+FW2          O6          C6          H3     109.268    1.50
+FW2          C5          C6          H4     109.234    1.50
+FW2          C5          C6          H3     109.234    1.50
+FW2          H4          C6          H3     108.313    1.50
+FW2          C4          O4          H6     108.815    1.50
+FW2          C5          O5          H5     111.202    3.00
+FW2          C6          O6          H2     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FW2             sp2_sp2_1          O2          C1          C2          C3     180.000     5.0     2
+FW2             sp2_sp3_2          C1          C2          C3          C4     120.000    10.0     6
+FW2            sp3_sp3_25          C2          C3          C4          C5     180.000    10.0     3
+FW2            sp3_sp3_16          C3          C4          C5          O5     180.000    10.0     3
+FW2            sp3_sp3_34          C5          C4          O4          H6     180.000    10.0     3
+FW2             sp3_sp3_7          O5          C5          C6          O6     180.000    10.0     3
+FW2             sp3_sp3_4          C6          C5          O5          H5     180.000    10.0     3
+FW2             sp3_sp3_1          C5          C6          O6          H2     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FW2    chir_1    C4    O4    C5    C3    negative
+FW2    chir_2    C5    O5    C4    C6    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FW2    plan-1          C1   0.020
+FW2    plan-1          C2   0.020
+FW2    plan-1          O1   0.020
+FW2    plan-1          O2   0.020
+FW2    plan-2          C1   0.020
+FW2    plan-2          C2   0.020
+FW2    plan-2          C3   0.020
+FW2    plan-2          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FW2            InChI                InChI  1.03 InChI=1S/C6H10O6/c7-2-5(10)3(8)1-4(9)6(11)12/h3,5,7-8,10H,1-2H2,(H,11,12)/t3-,5+/m1/s1
+FW2         InChIKey                InChI  1.03                                                            WPAMZTWLKIDIOP-WUJLRWPWSA-N
+FW2 SMILES_CANONICAL               CACTVS 3.385                                                         OC[C@H](O)[C@H](O)CC(=O)C(O)=O
+FW2           SMILES               CACTVS 3.385                                                           OC[CH](O)[CH](O)CC(=O)C(O)=O
+FW2 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                       C([C@H]([C@H](CO)O)O)C(=O)C(=O)O
+FW2           SMILES "OpenEye OEToolkits" 2.0.6                                                               C(C(C(CO)O)O)C(=O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FW2 acedrg               243         "dictionary generator"                  
+FW2 acedrg_database      11          "data source"                           
+FW2 rdkit                2017.03.2   "Chemoinformatics tool"
+FW2 refmac5              5.8.0238    "optimization tool"                     

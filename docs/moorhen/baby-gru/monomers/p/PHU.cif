@@ -1,0 +1,173 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PHU     PHU      1-phenylurea     NON-POLYMER     18     10     .     
+#
+data_comp_PHU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PHU     C1      C       C       0       -12.207     59.350      -9.899      
+PHU     C2      C       CR6     0       -12.205     57.023      -9.023      
+PHU     C3      C       CR16    0       -13.532     56.642      -9.177      
+PHU     C4      C       CR16    0       -11.228     56.048      -8.865      
+PHU     C5      C       CR16    0       -11.581     54.705      -8.863      
+PHU     C6      C       CR16    0       -13.872     55.296      -9.175      
+PHU     C7      C       CR16    0       -12.900     54.329      -9.018      
+PHU     N1      N       NH1     0       -11.824     58.379      -9.020      
+PHU     N2      N       NH2     0       -12.161     60.631      -9.453      
+PHU     O1      O       O       0       -12.577     59.091      -11.054     
+PHU     H3      H       H       0       -14.201     57.298      -9.285      
+PHU     H4      H       H       0       -10.325     56.300      -8.759      
+PHU     H5      H       H       0       -10.913     54.048      -8.756      
+PHU     H6      H       H       0       -14.774     55.042      -9.281      
+PHU     H7      H       H       0       -13.135     53.415      -9.017      
+PHU     HN1     H       H       0       -11.263     58.628      -8.390      
+PHU     HN2     H       H       0       -12.392     61.285      -9.997      
+PHU     HN2A    H       H       0       -11.908     60.806      -8.627      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PHU          C1          O1      DOUBLE       n     1.239  0.0100     1.239  0.0100
+PHU          C1          N2      SINGLE       n     1.349  0.0200     1.349  0.0200
+PHU          C1          N1      SINGLE       n     1.361  0.0100     1.361  0.0100
+PHU          C2          C3      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PHU          C2          N1      SINGLE       n     1.407  0.0126     1.407  0.0126
+PHU          C2          C4      SINGLE       y     1.385  0.0100     1.385  0.0100
+PHU          C3          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+PHU          C4          C5      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PHU          C5          C7      SINGLE       y     1.376  0.0124     1.376  0.0124
+PHU          C6          C7      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PHU          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0178
+PHU          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0178
+PHU          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0172
+PHU          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0172
+PHU          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+PHU          N1         HN1      SINGLE       n     1.016  0.0100     0.879  0.0200
+PHU          N2         HN2      SINGLE       n     1.016  0.0100     0.881  0.0200
+PHU          N2        HN2A      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PHU          O1          C1          N2     121.571    1.50
+PHU          O1          C1          N1     122.786    1.50
+PHU          N2          C1          N1     115.642    2.49
+PHU          C3          C2          N1     120.302    3.00
+PHU          C3          C2          C4     119.396    1.50
+PHU          N1          C2          C4     120.302    3.00
+PHU          C2          C3          C6     119.830    1.50
+PHU          C2          C3          H3     120.019    1.50
+PHU          C6          C3          H3     120.151    1.50
+PHU          C2          C4          C5     119.830    1.50
+PHU          C2          C4          H4     120.019    1.50
+PHU          C5          C4          H4     120.151    1.50
+PHU          C4          C5          C7     120.518    1.50
+PHU          C4          C5          H5     119.600    1.50
+PHU          C7          C5          H5     119.882    1.50
+PHU          C3          C6          C7     120.518    1.50
+PHU          C3          C6          H6     119.600    1.50
+PHU          C7          C6          H6     119.882    1.50
+PHU          C5          C7          C6     119.909    1.50
+PHU          C5          C7          H7     120.046    1.50
+PHU          C6          C7          H7     120.046    1.50
+PHU          C1          N1          C2     126.971    2.10
+PHU          C1          N1         HN1     115.715    3.00
+PHU          C2          N1         HN1     117.314    1.97
+PHU          C1          N2         HN2     119.497    2.46
+PHU          C1          N2        HN2A     119.497    2.46
+PHU         HN2          N2        HN2A     121.006    2.62
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PHU             sp2_sp2_7          O1          C1          N1          C2       0.000     5.0     2
+PHU             sp2_sp2_3          O1          C1          N2         HN2       0.000     5.0     2
+PHU       const_sp2_sp2_3          N1          C2          C3          C6     180.000     5.0     2
+PHU              const_23          N1          C2          C4          C5     180.000    10.0     2
+PHU             sp2_sp2_9          C3          C2          N1          C1     180.000     5.0     2
+PHU       const_sp2_sp2_5          C2          C3          C6          C7       0.000     5.0     2
+PHU              const_17          C2          C4          C5          C7       0.000    10.0     2
+PHU              const_13          C4          C5          C7          C6       0.000    10.0     2
+PHU       const_sp2_sp2_9          C3          C6          C7          C5       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PHU    plan-1          C2   0.020
+PHU    plan-1          C3   0.020
+PHU    plan-1          C4   0.020
+PHU    plan-1          C5   0.020
+PHU    plan-1          C6   0.020
+PHU    plan-1          C7   0.020
+PHU    plan-1          H3   0.020
+PHU    plan-1          H4   0.020
+PHU    plan-1          H5   0.020
+PHU    plan-1          H6   0.020
+PHU    plan-1          H7   0.020
+PHU    plan-1          N1   0.020
+PHU    plan-2          C1   0.020
+PHU    plan-2          N1   0.020
+PHU    plan-2          N2   0.020
+PHU    plan-2          O1   0.020
+PHU    plan-3          C1   0.020
+PHU    plan-3          C2   0.020
+PHU    plan-3         HN1   0.020
+PHU    plan-3          N1   0.020
+PHU    plan-4          C1   0.020
+PHU    plan-4         HN2   0.020
+PHU    plan-4        HN2A   0.020
+PHU    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PHU           SMILES              ACDLabs 12.01                                            O=C(Nc1ccccc1)N
+PHU            InChI                InChI  1.03 InChI=1S/C7H8N2O/c8-7(10)9-6-4-2-1-3-5-6/h1-5H,(H3,8,9,10)
+PHU         InChIKey                InChI  1.03                                LUBJCRLGQSPQNN-UHFFFAOYSA-N
+PHU SMILES_CANONICAL               CACTVS 3.370                                            NC(=O)Nc1ccccc1
+PHU           SMILES               CACTVS 3.370                                            NC(=O)Nc1ccccc1
+PHU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                          c1ccc(cc1)NC(=O)N
+PHU           SMILES "OpenEye OEToolkits" 1.7.2                                          c1ccc(cc1)NC(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PHU acedrg               243         "dictionary generator"                  
+PHU acedrg_database      11          "data source"                           
+PHU rdkit                2017.03.2   "Chemoinformatics tool"
+PHU refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,270 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5VK     5VK      "ethyl 3-[4-(2-hydroxyphenyl)-3-oxidanyl-phenyl]propanoate"     NON-POLYMER     39     21     .     
+#
+data_comp_5VK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5VK     CAA     C       CH3     0       -12.339     11.284      -25.610     
+5VK     CAL     C       CH2     0       -13.780     11.514      -25.353     
+5VK     OAO     O       O2      0       -14.026     11.565      -23.919     
+5VK     CAP     C       C       0       -14.048     10.429      -23.214     
+5VK     OAB     O       O       0       -14.126     9.329       -23.704     
+5VK     CAM     C       CH2     0       -13.967     10.701      -21.737     
+5VK     CAN     C       CH2     0       -12.564     10.568      -21.162     
+5VK     CAQ     C       CR6     0       -11.540     11.461      -21.833     
+5VK     CAK     C       CR16    0       -11.588     12.840      -21.650     
+5VK     CAS     C       CR6     0       -10.659     13.671      -22.266     
+5VK     OAD     O       OH1     0       -10.743     15.030      -22.053     
+5VK     CAI     C       CR16    0       -10.549     10.937      -22.651     
+5VK     CAJ     C       CR16    0       -9.621      11.765      -23.265     
+5VK     CAU     C       CR6     0       -9.650      13.153      -23.092     
+5VK     CAT     C       CR6     0       -8.643      14.004      -23.771     
+5VK     CAH     C       CR16    0       -7.283      13.873      -23.456     
+5VK     CAF     C       CR16    0       -6.318      14.648      -24.075     
+5VK     CAE     C       CR16    0       -6.690      15.572      -25.030     
+5VK     CAG     C       CR16    0       -8.017      15.726      -25.369     
+5VK     CAR     C       CR6     0       -8.986      14.949      -24.750     
+5VK     OAC     O       OH1     0       -10.298     15.135      -25.118     
+5VK     H1      H       H       0       -12.156     11.405      -26.556     
+5VK     H2      H       H       0       -12.099     10.380      -25.349     
+5VK     H3      H       H       0       -11.813     11.919      -25.098     
+5VK     H4      H       H       0       -14.312     10.800      -25.765     
+5VK     H5      H       H       0       -14.052     12.364      -25.758     
+5VK     H6      H       H       0       -14.558     10.075      -21.280     
+5VK     H7      H       H       0       -14.299     11.602      -21.566     
+5VK     H8      H       H       0       -12.274     9.634       -21.246     
+5VK     H9      H       H       0       -12.592     10.786      -20.206     
+5VK     H10     H       H       0       -12.257     13.215      -21.099     
+5VK     H11     H       H       0       -11.354     15.365      -21.547     
+5VK     H12     H       H       0       -10.503     10.005      -22.789     
+5VK     H13     H       H       0       -8.941      11.377      -23.828     
+5VK     H14     H       H       0       -7.024      13.242      -22.803     
+5VK     H15     H       H       0       -5.410      14.545      -23.844     
+5VK     H16     H       H       0       -6.035      16.102      -25.454     
+5VK     H17     H       H       0       -8.270      16.356      -26.020     
+5VK     H18     H       H       0       -10.742     14.488      -25.472     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5VK         CAA         CAL      SINGLE       n     1.478  0.0200     1.478  0.0200
+5VK         CAL         OAO      SINGLE       n     1.451  0.0100     1.451  0.0100
+5VK         CAE         CAG      DOUBLE       y     1.375  0.0106     1.375  0.0106
+5VK         CAG         CAR      SINGLE       y     1.384  0.0100     1.384  0.0100
+5VK         OAO         CAP      SINGLE       n     1.329  0.0116     1.329  0.0116
+5VK         CAF         CAE      SINGLE       y     1.376  0.0124     1.376  0.0124
+5VK         CAR         OAC      SINGLE       n     1.374  0.0155     1.374  0.0155
+5VK         CAT         CAR      DOUBLE       y     1.397  0.0100     1.397  0.0100
+5VK         CAP         OAB      DOUBLE       n     1.203  0.0150     1.203  0.0150
+5VK         CAH         CAF      DOUBLE       y     1.381  0.0100     1.381  0.0100
+5VK         CAP         CAM      SINGLE       n     1.502  0.0100     1.502  0.0100
+5VK         CAT         CAH      SINGLE       y     1.398  0.0100     1.398  0.0100
+5VK         CAU         CAT      SINGLE       n     1.481  0.0125     1.481  0.0125
+5VK         CAJ         CAU      DOUBLE       y     1.396  0.0100     1.396  0.0100
+5VK         CAS         CAU      SINGLE       y     1.397  0.0100     1.397  0.0100
+5VK         CAI         CAJ      SINGLE       y     1.385  0.0100     1.385  0.0100
+5VK         CAS         OAD      SINGLE       n     1.374  0.0155     1.374  0.0155
+5VK         CAK         CAS      DOUBLE       y     1.385  0.0100     1.385  0.0100
+5VK         CAQ         CAI      DOUBLE       y     1.385  0.0110     1.385  0.0110
+5VK         CAM         CAN      SINGLE       n     1.519  0.0161     1.519  0.0161
+5VK         CAQ         CAK      SINGLE       y     1.388  0.0100     1.388  0.0100
+5VK         CAN         CAQ      SINGLE       n     1.514  0.0100     1.514  0.0100
+5VK         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0156
+5VK         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0156
+5VK         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0156
+5VK         CAL          H4      SINGLE       n     1.089  0.0100     0.980  0.0148
+5VK         CAL          H5      SINGLE       n     1.089  0.0100     0.980  0.0148
+5VK         CAM          H6      SINGLE       n     1.089  0.0100     0.975  0.0139
+5VK         CAM          H7      SINGLE       n     1.089  0.0100     0.975  0.0139
+5VK         CAN          H8      SINGLE       n     1.089  0.0100     0.981  0.0169
+5VK         CAN          H9      SINGLE       n     1.089  0.0100     0.981  0.0169
+5VK         CAK         H10      SINGLE       n     1.082  0.0130     0.945  0.0164
+5VK         OAD         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+5VK         CAI         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+5VK         CAJ         H13      SINGLE       n     1.082  0.0130     0.964  0.0200
+5VK         CAH         H14      SINGLE       n     1.082  0.0130     0.945  0.0186
+5VK         CAF         H15      SINGLE       n     1.082  0.0130     0.943  0.0180
+5VK         CAE         H16      SINGLE       n     1.082  0.0130     0.943  0.0183
+5VK         CAG         H17      SINGLE       n     1.082  0.0130     0.941  0.0179
+5VK         OAC         H18      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5VK         CAL         CAA          H1     109.517    1.50
+5VK         CAL         CAA          H2     109.517    1.50
+5VK         CAL         CAA          H3     109.517    1.50
+5VK          H1         CAA          H2     109.410    1.50
+5VK          H1         CAA          H3     109.410    1.50
+5VK          H2         CAA          H3     109.410    1.50
+5VK         CAA         CAL         OAO     108.459    2.39
+5VK         CAA         CAL          H4     110.009    1.50
+5VK         CAA         CAL          H5     110.009    1.50
+5VK         OAO         CAL          H4     109.826    1.50
+5VK         OAO         CAL          H5     109.826    1.50
+5VK          H4         CAL          H5     108.453    1.50
+5VK         CAL         OAO         CAP     116.497    1.50
+5VK         OAO         CAP         OAB     123.165    1.50
+5VK         OAO         CAP         CAM     111.642    1.92
+5VK         OAB         CAP         CAM     125.192    1.50
+5VK         CAP         CAM         CAN     113.176    1.59
+5VK         CAP         CAM          H6     108.334    1.67
+5VK         CAP         CAM          H7     108.334    1.67
+5VK         CAN         CAM          H6     109.117    1.50
+5VK         CAN         CAM          H7     109.117    1.50
+5VK          H6         CAM          H7     107.822    1.50
+5VK         CAM         CAN         CAQ     113.580    2.23
+5VK         CAM         CAN          H8     108.882    1.50
+5VK         CAM         CAN          H9     108.882    1.50
+5VK         CAQ         CAN          H8     108.803    1.50
+5VK         CAQ         CAN          H9     108.803    1.50
+5VK          H8         CAN          H9     107.745    1.50
+5VK         CAI         CAQ         CAK     118.461    1.50
+5VK         CAI         CAQ         CAN     121.326    1.50
+5VK         CAK         CAQ         CAN     120.213    1.74
+5VK         CAS         CAK         CAQ     120.261    1.50
+5VK         CAS         CAK         H10     119.833    1.50
+5VK         CAQ         CAK         H10     119.906    1.50
+5VK         CAU         CAS         OAD     119.520    3.00
+5VK         CAU         CAS         CAK     120.960    1.50
+5VK         OAD         CAS         CAK     119.520    3.00
+5VK         CAS         OAD         H11     120.000    3.00
+5VK         CAJ         CAI         CAQ     121.461    1.50
+5VK         CAJ         CAI         H12     119.302    1.50
+5VK         CAQ         CAI         H12     119.237    1.50
+5VK         CAU         CAJ         CAI     121.888    1.50
+5VK         CAU         CAJ         H13     118.893    1.50
+5VK         CAI         CAJ         H13     119.219    1.50
+5VK         CAT         CAU         CAJ     120.512    1.50
+5VK         CAT         CAU         CAS     122.519    1.64
+5VK         CAJ         CAU         CAS     116.970    1.50
+5VK         CAR         CAT         CAH     116.903    1.50
+5VK         CAR         CAT         CAU     122.552    1.64
+5VK         CAH         CAT         CAU     120.545    1.50
+5VK         CAF         CAH         CAT     121.532    1.50
+5VK         CAF         CAH         H14     119.484    1.50
+5VK         CAT         CAH         H14     118.984    1.50
+5VK         CAE         CAF         CAH     120.117    1.50
+5VK         CAE         CAF         H15     119.998    1.50
+5VK         CAH         CAF         H15     119.894    1.50
+5VK         CAG         CAE         CAF     120.574    1.50
+5VK         CAG         CAE         H16     119.529    1.50
+5VK         CAF         CAE         H16     119.898    1.50
+5VK         CAE         CAG         CAR     119.974    1.50
+5VK         CAE         CAG         H17     120.294    1.50
+5VK         CAR         CAG         H17     119.731    1.50
+5VK         CAG         CAR         OAC     119.555    3.00
+5VK         CAG         CAR         CAT     120.890    1.50
+5VK         OAC         CAR         CAT     119.555    3.00
+5VK         CAR         OAC         H18     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5VK             sp3_sp3_1          H1         CAA         CAL         OAO     180.000    10.0     3
+5VK              const_25         CAQ         CAI         CAJ         CAU       0.000    10.0     2
+5VK              const_30         CAI         CAJ         CAU         CAT     180.000    10.0     2
+5VK             sp2_sp2_5         CAR         CAT         CAU         CAJ     180.000     5.0     2
+5VK              const_41         CAF         CAH         CAT         CAR       0.000    10.0     2
+5VK       const_sp2_sp2_3         OAC         CAR         CAT         CAH     180.000     5.0     2
+5VK              const_17         CAE         CAF         CAH         CAT       0.000    10.0     2
+5VK              const_13         CAG         CAE         CAF         CAH       0.000    10.0     2
+5VK       const_sp2_sp2_9         CAF         CAE         CAG         CAR       0.000     5.0     2
+5VK       const_sp2_sp2_6         CAE         CAG         CAR         OAC     180.000     5.0     2
+5VK             sp2_sp2_3         CAG         CAR         OAC         H18     180.000     5.0     2
+5VK            sp3_sp3_10         CAA         CAL         OAO         CAP     180.000    10.0     3
+5VK             sp2_sp2_1         OAB         CAP         OAO         CAL     180.000     5.0     2
+5VK             sp2_sp3_2         OAO         CAP         CAM         CAN     120.000    10.0     6
+5VK            sp3_sp3_13         CAP         CAM         CAN         CAQ     180.000    10.0     3
+5VK             sp2_sp3_8         CAI         CAQ         CAN         CAM     -90.000    10.0     6
+5VK              const_22         CAJ         CAI         CAQ         CAN     180.000    10.0     2
+5VK              const_46         CAS         CAK         CAQ         CAN     180.000    10.0     2
+5VK              const_38         CAQ         CAK         CAS         OAD     180.000    10.0     2
+5VK             sp2_sp2_9         CAU         CAS         OAD         H11     180.000     5.0     2
+5VK              const_36         OAD         CAS         CAU         CAT       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5VK    plan-1         CAI   0.020
+5VK    plan-1         CAJ   0.020
+5VK    plan-1         CAK   0.020
+5VK    plan-1         CAN   0.020
+5VK    plan-1         CAQ   0.020
+5VK    plan-1         CAS   0.020
+5VK    plan-1         CAT   0.020
+5VK    plan-1         CAU   0.020
+5VK    plan-1         H10   0.020
+5VK    plan-1         H12   0.020
+5VK    plan-1         H13   0.020
+5VK    plan-1         OAD   0.020
+5VK    plan-2         CAE   0.020
+5VK    plan-2         CAF   0.020
+5VK    plan-2         CAG   0.020
+5VK    plan-2         CAH   0.020
+5VK    plan-2         CAR   0.020
+5VK    plan-2         CAT   0.020
+5VK    plan-2         CAU   0.020
+5VK    plan-2         H14   0.020
+5VK    plan-2         H15   0.020
+5VK    plan-2         H16   0.020
+5VK    plan-2         H17   0.020
+5VK    plan-2         OAC   0.020
+5VK    plan-3         CAM   0.020
+5VK    plan-3         CAP   0.020
+5VK    plan-3         OAB   0.020
+5VK    plan-3         OAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5VK            InChI                InChI  1.03 InChI=1S/C17H18O4/c1-2-21-17(20)10-8-12-7-9-14(16(19)11-12)13-5-3-4-6-15(13)18/h3-7,9,11,18-19H,2,8,10H2,1H3
+5VK         InChIKey                InChI  1.03                                                                                  NLRSDRXKCXNRRG-UHFFFAOYSA-N
+5VK SMILES_CANONICAL               CACTVS 3.385                                                                             CCOC(=O)CCc1ccc(c(O)c1)c2ccccc2O
+5VK           SMILES               CACTVS 3.385                                                                             CCOC(=O)CCc1ccc(c(O)c1)c2ccccc2O
+5VK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                             CCOC(=O)CCc1ccc(c(c1)O)c2ccccc2O
+5VK           SMILES "OpenEye OEToolkits" 2.0.4                                                                             CCOC(=O)CCc1ccc(c(c1)O)c2ccccc2O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5VK acedrg               243         "dictionary generator"                  
+5VK acedrg_database      11          "data source"                           
+5VK rdkit                2017.03.2   "Chemoinformatics tool"
+5VK refmac5              5.8.0238    "optimization tool"                     

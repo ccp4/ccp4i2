@@ -1,0 +1,935 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PUL     PUL      "(1S,2S,3E,5E,7E,10S,11S,12S)-12-[(2R,4E,6E,8Z,10R,12E,14E,16Z,18S,19Z)-10,18-DIHYDROXY-12,16,19-TRIMETHYL-11,22-DIOXOOXACYCLODOCOSA-4,6,8,12,14,16,19-HEPTAEN-2-YL]-2,11-DIHYDROXY-1,10-DIMETHYL-9-OXOTRIDECA-3,5,7-TRIEN-1-YL 6-DEOXY-2,4-DI-O-METHYL-BETA-L-GALACTOPYRANOSIDE"     NON-POLYMER     126     60     .     
+#
+data_comp_PUL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PUL     C12     C       C       0       34.178      53.954      8.378       
+PUL     C13     C       CH1     0       34.132      53.339      9.788       
+PUL     C14     C       C1      0       32.936      52.422      9.831       
+PUL     C15     C       C1      0       32.980      51.109      9.663       
+PUL     C16     C       C1      0       31.875      50.203      9.535       
+PUL     C17     C       C1      0       31.979      48.846      9.259       
+PUL     C18     C       C1      0       30.916      47.903      9.022       
+PUL     C19     C       C1      0       31.061      46.615      8.714       
+PUL     C20     C       CH2     0       29.933      45.670      8.431       
+PUL     C11     C       C       0       34.577      53.242      7.194       
+PUL     C10     C       C1      0       35.073      51.956      7.225       
+PUL     C9      C       C1      0       35.388      51.048      6.210       
+PUL     C8      C       C1      0       35.870      49.751      6.401       
+PUL     C7      C       C       0       36.135      48.698      5.459       
+PUL     C6      C       C1      0       36.594      47.465      5.938       
+PUL     C5      C       CH1     0       36.824      46.190      5.123       
+PUL     C4      C       C       0       35.508      45.579      4.681       
+PUL     O12     O       O       0       33.794      55.110      8.270       
+PUL     C21     C       CH1     0       30.315      44.369      7.740       
+PUL     O21     O       O2      0       31.203      44.708      6.615       
+PUL     C43     C       CH3     0       34.390      53.985      5.900       
+PUL     C42     C       CH3     0       35.865      48.978      4.034       
+PUL     C41     C       CH3     0       35.394      45.345      3.206       
+PUL     C3      C       C1      0       34.550      45.292      5.571       
+PUL     C2      C       CH2     0       33.186      44.722      5.333       
+PUL     C1      C       C       0       32.489      44.295      6.599       
+PUL     O1      O       O       0       33.015      43.667      7.476       
+PUL     O5      O       OH1     0       37.556      45.263      5.910       
+PUL     O13     O       OH1     0       34.033      54.327      10.807      
+PUL     C22     C       CH1     0       29.109      43.597      7.176       
+PUL     C23     C       CH1     0       27.991      43.355      8.220       
+PUL     C24     C       CH1     0       26.758      42.551      7.777       
+PUL     C25     C       C       0       25.765      42.426      8.922       
+PUL     C26     C       C1      0       25.543      41.113      9.483       
+PUL     C27     C       C1      0       24.703      40.812      10.538      
+PUL     C28     C       C1      0       24.439      39.576      11.116      
+PUL     C29     C       C1      0       23.593      39.299      12.182      
+PUL     C30     C       C1      0       23.318      38.001      12.751      
+PUL     C31     C       C1      0       22.506      37.746      13.766      
+PUL     C44     C       CH3     0       29.532      42.277      6.504       
+PUL     O23     O       OH1     0       28.561      42.747      9.387       
+PUL     O25     O       O       0       25.196      43.418      9.346       
+PUL     C32     C       CH1     0       22.216      36.390      14.316      
+PUL     O32     O       OH1     0       21.534      35.592      13.342      
+PUL     C33     C       CH1     0       21.380      36.462      15.591      
+PUL     O33     O       O2      0       20.085      37.081      15.278      
+PUL     C35     C       CH1     0       19.704      38.168      16.076      
+PUL     C45     C       CH3     0       26.069      43.175      6.558       
+PUL     O35     O       O2      0       19.414      37.688      17.373      
+PUL     C39     C       CH1     0       19.094      38.732      18.320      
+PUL     C38     C       CH1     0       17.866      39.564      17.872      
+PUL     C37     C       CH1     0       17.930      39.928      16.369      
+PUL     C36     C       CH1     0       18.459      38.803      15.473      
+PUL     C46     C       CH3     0       18.334      38.641      13.059      
+PUL     O36     O       O2      0       18.781      39.368      14.207      
+PUL     O37     O       OH1     0       16.640      40.330      15.904      
+PUL     O38     O       O2      0       16.641      38.937      18.261      
+PUL     C47     C       CH3     0       16.236      37.726      17.615      
+PUL     C40     C       CH3     0       18.909      38.053      19.657      
+PUL     C34     C       CH3     0       21.121      35.094      16.183      
+PUL     H13     H       H       0       34.957      52.811      9.947       
+PUL     H14     H       H       0       32.091      52.826      9.937       
+PUL     H15     H       H       0       33.830      50.715      9.581       
+PUL     H16     H       H       0       31.008      50.566      9.607       
+PUL     H17     H       H       0       32.856      48.504      9.194       
+PUL     H18     H       H       0       30.038      48.241      9.077       
+PUL     H19     H       H       0       31.940      46.280      8.666       
+PUL     H201    H       H       0       29.262      46.126      7.880       
+PUL     H202    H       H       0       29.506      45.452      9.286       
+PUL     H10     H       H       0       35.227      51.592      8.069       
+PUL     H9      H       H       0       35.241      51.320      5.324       
+PUL     H8      H       H       0       36.023      49.538      7.308       
+PUL     H6      H       H       0       36.752      47.399      6.865       
+PUL     H5      H       H       0       37.375      46.416      4.320       
+PUL     H21     H       H       0       30.781      43.788      8.385       
+PUL     H431    H       H       0       34.684      53.448      5.156       
+PUL     H432    H       H       0       34.906      54.805      5.920       
+PUL     H433    H       H       0       33.451      54.200      5.785       
+PUL     H421    H       H       0       36.236      48.279      3.481       
+PUL     H422    H       H       0       36.267      49.824      3.788       
+PUL     H423    H       H       0       34.907      49.025      3.891       
+PUL     H411    H       H       0       34.623      44.789      3.015       
+PUL     H412    H       H       0       36.196      44.899      2.887       
+PUL     H413    H       H       0       35.298      46.196      2.749       
+PUL     H3      H       H       0       34.760      45.477      6.472       
+PUL     H2C1    H       H       0       33.254      43.937      4.756       
+PUL     H2C2    H       H       0       32.631      45.383      4.874       
+PUL     HB      H       H       0       37.896      44.679      5.396       
+PUL     HA      H       H       0       33.329      54.787      10.678      
+PUL     H22     H       H       0       28.722      44.163      6.466       
+PUL     H23     H       H       0       27.647      44.246      8.490       
+PUL     H24     H       H       0       27.043      41.641      7.529       
+PUL     H26     H       H       0       26.005      40.380      9.113       
+PUL     H27     H       H       0       24.248      41.546      10.914      
+PUL     H28     H       H       0       24.886      38.837      10.737      
+PUL     H29     H       H       0       23.149      40.035      12.571      
+PUL     H30     H       H       0       23.760      37.272      12.349      
+PUL     H31     H       H       0       22.073      38.481      14.168      
+PUL     H441    H       H       0       30.474      42.304      6.271       
+PUL     H442    H       H       0       29.007      42.146      5.696       
+PUL     H443    H       H       0       29.376      41.534      7.111       
+PUL     HD      H       H       0       28.644      41.907      9.299       
+PUL     H32     H       H       0       23.081      35.952      14.526      
+PUL     HE      H       H       0       20.789      35.952      13.150      
+PUL     H33     H       H       0       21.866      37.015      16.259      
+PUL     H35     H       H       0       20.419      38.824      16.122      
+PUL     H451    H       H       0       26.076      44.144      6.643       
+PUL     H452    H       H       0       25.149      42.861      6.502       
+PUL     H453    H       H       0       26.547      42.919      5.750       
+PUL     H39     H       H       0       19.870      39.342      18.386      
+PUL     H38     H       H       0       17.903      40.420      18.363      
+PUL     H37     H       H       0       18.537      40.705      16.271      
+PUL     H36     H       H       0       17.755      38.121      15.359      
+PUL     H461    H       H       0       18.301      37.690      13.253      
+PUL     H462    H       H       0       18.951      38.795      12.324      
+PUL     H463    H       H       0       17.449      38.951      12.805      
+PUL     HF      H       H       0       16.726      40.715      15.162      
+PUL     H471    H       H       0       16.991      37.129      17.515      
+PUL     H472    H       H       0       15.868      37.931      16.741      
+PUL     H473    H       H       0       15.556      37.291      18.153      
+PUL     H401    H       H       0       18.479      38.666      20.276      
+PUL     H402    H       H       0       19.775      37.792      20.011      
+PUL     H403    H       H       0       18.354      37.264      19.547      
+PUL     H341    H       H       0       21.826      34.479      15.913      
+PUL     H342    H       H       0       20.262      34.758      15.870      
+PUL     H343    H       H       0       21.106      35.159      17.155      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PUL         C12         C13      SINGLE       n     1.527  0.0142     1.527  0.0142
+PUL         C12         C11      SINGLE       n     1.397  0.0200     1.397  0.0200
+PUL         C12         O12      DOUBLE       n     1.220  0.0120     1.220  0.0120
+PUL         C13         C14      SINGLE       n     1.506  0.0126     1.506  0.0126
+PUL         C13         O13      SINGLE       n     1.420  0.0113     1.420  0.0113
+PUL         C14         C15      DOUBLE       n     1.325  0.0117     1.325  0.0117
+PUL         C15         C16      SINGLE       n     1.439  0.0200     1.439  0.0200
+PUL         C16         C17      DOUBLE       n     1.391  0.0200     1.391  0.0200
+PUL         C17         C18      SINGLE       n     1.445  0.0200     1.445  0.0200
+PUL         C18         C19      DOUBLE       n     1.332  0.0144     1.332  0.0144
+PUL         C19         C20      SINGLE       n     1.498  0.0152     1.498  0.0152
+PUL         C20         C21      SINGLE       n     1.517  0.0103     1.517  0.0103
+PUL         C11         C10      DOUBLE       n     1.349  0.0200     1.349  0.0200
+PUL         C11         C43      SINGLE       n     1.483  0.0200     1.483  0.0200
+PUL         C10          C9      SINGLE       n     1.385  0.0200     1.385  0.0200
+PUL          C9          C8      DOUBLE       n     1.385  0.0200     1.385  0.0200
+PUL          C8          C7      SINGLE       n     1.421  0.0200     1.421  0.0200
+PUL          C7          C6      DOUBLE       n     1.385  0.0200     1.385  0.0200
+PUL          C7         C42      SINGLE       n     1.466  0.0200     1.466  0.0200
+PUL          C6          C5      SINGLE       n     1.527  0.0142     1.527  0.0142
+PUL          C5          C4      SINGLE       n     1.506  0.0195     1.506  0.0195
+PUL          C5          O5      SINGLE       n     1.420  0.0113     1.420  0.0113
+PUL          C4         C41      SINGLE       n     1.490  0.0200     1.490  0.0200
+PUL          C4          C3      DOUBLE       n     1.333  0.0119     1.333  0.0119
+PUL         C21         O21      SINGLE       n     1.465  0.0100     1.465  0.0100
+PUL         C21         C22      SINGLE       n     1.532  0.0100     1.532  0.0100
+PUL         O21          C1      SINGLE       n     1.343  0.0110     1.343  0.0110
+PUL          C3          C2      SINGLE       n     1.490  0.0200     1.490  0.0200
+PUL          C2          C1      SINGLE       n     1.504  0.0100     1.504  0.0100
+PUL          C1          O1      DOUBLE       n     1.198  0.0126     1.198  0.0126
+PUL         C22         C23      SINGLE       n     1.539  0.0120     1.539  0.0120
+PUL         C22         C44      SINGLE       n     1.534  0.0118     1.534  0.0118
+PUL         C23         C24      SINGLE       n     1.534  0.0100     1.534  0.0100
+PUL         C23         O23      SINGLE       n     1.426  0.0179     1.426  0.0179
+PUL         C24         C25      SINGLE       n     1.518  0.0100     1.518  0.0100
+PUL         C24         C45      SINGLE       n     1.531  0.0100     1.531  0.0100
+PUL         C25         C26      SINGLE       n     1.435  0.0200     1.435  0.0200
+PUL         C25         O25      DOUBLE       n     1.218  0.0100     1.218  0.0100
+PUL         C26         C27      DOUBLE       n     1.379  0.0195     1.379  0.0195
+PUL         C27         C28      SINGLE       n     1.391  0.0200     1.391  0.0200
+PUL         C28         C29      DOUBLE       n     1.391  0.0200     1.391  0.0200
+PUL         C29         C30      SINGLE       n     1.445  0.0200     1.445  0.0200
+PUL         C30         C31      DOUBLE       n     1.325  0.0127     1.325  0.0127
+PUL         C31         C32      SINGLE       n     1.491  0.0104     1.491  0.0104
+PUL         C32         O32      SINGLE       n     1.431  0.0106     1.431  0.0106
+PUL         C32         C33      SINGLE       n     1.522  0.0173     1.522  0.0173
+PUL         C33         O33      SINGLE       n     1.456  0.0200     1.456  0.0200
+PUL         C33         C34      SINGLE       n     1.509  0.0148     1.509  0.0148
+PUL         O33         C35      SINGLE       n     1.398  0.0150     1.398  0.0150
+PUL         C35         O35      SINGLE       n     1.415  0.0124     1.415  0.0124
+PUL         C35         C36      SINGLE       n     1.523  0.0117     1.523  0.0117
+PUL         O35         C39      SINGLE       n     1.445  0.0100     1.445  0.0100
+PUL         C39         C38      SINGLE       n     1.525  0.0174     1.525  0.0174
+PUL         C39         C40      SINGLE       n     1.510  0.0100     1.510  0.0100
+PUL         C38         C37      SINGLE       n     1.522  0.0154     1.522  0.0154
+PUL         C38         O38      SINGLE       n     1.420  0.0100     1.420  0.0100
+PUL         C37         C36      SINGLE       n     1.521  0.0165     1.521  0.0165
+PUL         C37         O37      SINGLE       n     1.427  0.0138     1.427  0.0138
+PUL         C36         O36      SINGLE       n     1.419  0.0100     1.419  0.0100
+PUL         C46         O36      SINGLE       n     1.422  0.0156     1.422  0.0156
+PUL         O38         C47      SINGLE       n     1.422  0.0156     1.422  0.0156
+PUL         C13         H13      SINGLE       n     1.089  0.0100     0.994  0.0200
+PUL         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0157
+PUL         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0200
+PUL         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0200
+PUL         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0181
+PUL         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0185
+PUL         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0185
+PUL         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0174
+PUL          C5          H5      SINGLE       n     1.089  0.0100     1.000  0.0100
+PUL         C21         H21      SINGLE       n     1.089  0.0100     0.986  0.0160
+PUL         C43        H431      SINGLE       n     1.089  0.0100     0.969  0.0177
+PUL         C43        H432      SINGLE       n     1.089  0.0100     0.969  0.0177
+PUL         C43        H433      SINGLE       n     1.089  0.0100     0.969  0.0177
+PUL         C42        H421      SINGLE       n     1.089  0.0100     0.969  0.0177
+PUL         C42        H422      SINGLE       n     1.089  0.0100     0.969  0.0177
+PUL         C42        H423      SINGLE       n     1.089  0.0100     0.969  0.0177
+PUL         C41        H411      SINGLE       n     1.089  0.0100     0.971  0.0140
+PUL         C41        H412      SINGLE       n     1.089  0.0100     0.971  0.0140
+PUL         C41        H413      SINGLE       n     1.089  0.0100     0.971  0.0140
+PUL          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0154
+PUL          C2        H2C1      SINGLE       n     1.089  0.0100     0.977  0.0200
+PUL          C2        H2C2      SINGLE       n     1.089  0.0100     0.977  0.0200
+PUL          O5          HB      SINGLE       n     0.970  0.0120     0.849  0.0200
+PUL         O13          HA      SINGLE       n     0.970  0.0120     0.849  0.0200
+PUL         C22         H22      SINGLE       n     1.089  0.0100     0.988  0.0186
+PUL         C23         H23      SINGLE       n     1.089  0.0100     0.995  0.0200
+PUL         C24         H24      SINGLE       n     1.089  0.0100     0.986  0.0117
+PUL         C26         H26      SINGLE       n     1.082  0.0130     0.942  0.0111
+PUL         C27         H27      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL         C28         H28      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL         C29         H29      SINGLE       n     1.082  0.0130     0.943  0.0196
+PUL         C30         H30      SINGLE       n     1.082  0.0130     0.943  0.0200
+PUL         C31         H31      SINGLE       n     1.082  0.0130     0.943  0.0181
+PUL         C44        H441      SINGLE       n     1.089  0.0100     0.973  0.0146
+PUL         C44        H442      SINGLE       n     1.089  0.0100     0.973  0.0146
+PUL         C44        H443      SINGLE       n     1.089  0.0100     0.973  0.0146
+PUL         O23          HD      SINGLE       n     0.970  0.0120     0.848  0.0200
+PUL         C32         H32      SINGLE       n     1.089  0.0100     0.992  0.0100
+PUL         O32          HE      SINGLE       n     0.970  0.0120     0.848  0.0200
+PUL         C33         H33      SINGLE       n     1.089  0.0100     0.994  0.0168
+PUL         C35         H35      SINGLE       n     1.089  0.0100     0.971  0.0193
+PUL         C45        H451      SINGLE       n     1.089  0.0100     0.973  0.0141
+PUL         C45        H452      SINGLE       n     1.089  0.0100     0.973  0.0141
+PUL         C45        H453      SINGLE       n     1.089  0.0100     0.973  0.0141
+PUL         C39         H39      SINGLE       n     1.089  0.0100     0.989  0.0117
+PUL         C38         H38      SINGLE       n     1.089  0.0100     0.987  0.0102
+PUL         C37         H37      SINGLE       n     1.089  0.0100     0.991  0.0121
+PUL         C36         H36      SINGLE       n     1.089  0.0100     0.989  0.0181
+PUL         C46        H461      SINGLE       n     1.089  0.0100     0.971  0.0146
+PUL         C46        H462      SINGLE       n     1.089  0.0100     0.971  0.0146
+PUL         C46        H463      SINGLE       n     1.089  0.0100     0.971  0.0146
+PUL         O37          HF      SINGLE       n     0.970  0.0120     0.841  0.0200
+PUL         C47        H471      SINGLE       n     1.089  0.0100     0.971  0.0146
+PUL         C47        H472      SINGLE       n     1.089  0.0100     0.971  0.0146
+PUL         C47        H473      SINGLE       n     1.089  0.0100     0.971  0.0146
+PUL         C40        H401      SINGLE       n     1.089  0.0100     0.971  0.0171
+PUL         C40        H402      SINGLE       n     1.089  0.0100     0.971  0.0171
+PUL         C40        H403      SINGLE       n     1.089  0.0100     0.971  0.0171
+PUL         C34        H341      SINGLE       n     1.089  0.0100     0.974  0.0145
+PUL         C34        H342      SINGLE       n     1.089  0.0100     0.974  0.0145
+PUL         C34        H343      SINGLE       n     1.089  0.0100     0.974  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PUL         C13         C12         C11     122.044    3.00
+PUL         C13         C12         O12     118.501    1.50
+PUL         C11         C12         O12     119.455    1.50
+PUL         C12         C13         C14     110.644    2.86
+PUL         C12         C13         O13     109.232    2.48
+PUL         C12         C13         H13     108.767    1.64
+PUL         C14         C13         O13     109.232    2.48
+PUL         C14         C13         H13     108.767    1.64
+PUL         O13         C13         H13     108.586    2.82
+PUL         C13         C14         C15     125.169    3.00
+PUL         C13         C14         H14     116.916    1.69
+PUL         C15         C14         H14     117.914    2.02
+PUL         C14         C15         C16     126.116    2.95
+PUL         C14         C15         H15     117.833    2.29
+PUL         C16         C15         H15     116.051    1.85
+PUL         C15         C16         C17     127.252    3.00
+PUL         C15         C16         H16     116.374    1.85
+PUL         C17         C16         H16     116.374    1.85
+PUL         C16         C17         C18     127.252    3.00
+PUL         C16         C17         H17     116.374    1.85
+PUL         C18         C17         H17     116.374    1.85
+PUL         C17         C18         C19     126.726    2.74
+PUL         C17         C18         H18     115.972    1.85
+PUL         C19         C18         H18     117.302    1.50
+PUL         C18         C19         C20     125.367    2.56
+PUL         C18         C19         H19     117.184    1.50
+PUL         C20         C19         H19     117.448    1.96
+PUL         C19         C20         C21     113.751    2.05
+PUL         C19         C20        H201     109.879    2.65
+PUL         C19         C20        H202     109.879    2.65
+PUL         C21         C20        H201     108.544    1.56
+PUL         C21         C20        H202     108.544    1.56
+PUL        H201         C20        H202     107.440    1.74
+PUL         C12         C11         C10     122.225    3.00
+PUL         C12         C11         C43     116.157    1.50
+PUL         C10         C11         C43     121.618    3.00
+PUL         C11         C10          C9     128.575    1.85
+PUL         C11         C10         H10     116.066    1.81
+PUL          C9         C10         H10     115.358    2.90
+PUL         C10          C9          C8     128.131    3.00
+PUL         C10          C9          H9     115.934    2.93
+PUL          C8          C9          H9     115.934    2.93
+PUL          C9          C8          C7     128.593    1.85
+PUL          C9          C8          H8     115.376    2.90
+PUL          C7          C8          H8     116.030    1.50
+PUL          C8          C7          C6     120.475    3.00
+PUL          C8          C7         C42     116.788    1.50
+PUL          C6          C7         C42     122.737    1.98
+PUL          C7          C6          C5     124.591    3.00
+PUL          C7          C6          H6     117.861    1.82
+PUL          C5          C6          H6     117.548    1.69
+PUL          C6          C5          C4     111.575    3.00
+PUL          C6          C5          O5     109.232    2.48
+PUL          C6          C5          H5     108.767    1.64
+PUL          C4          C5          O5     110.427    2.31
+PUL          C4          C5          H5     109.227    1.50
+PUL          O5          C5          H5     108.586    2.82
+PUL          C5          C4         C41     114.922    2.45
+PUL          C5          C4          C3     121.465    3.00
+PUL         C41          C4          C3     123.613    1.50
+PUL         C20         C21         O21     106.474    2.40
+PUL         C20         C21         C22     111.094    2.85
+PUL         C20         C21         H21     108.825    1.50
+PUL         O21         C21         C22     107.304    1.57
+PUL         O21         C21         H21     109.024    1.50
+PUL         C22         C21         H21     108.131    1.50
+PUL         C21         O21          C1     117.944    1.50
+PUL         C11         C43        H431     109.469    1.50
+PUL         C11         C43        H432     109.469    1.50
+PUL         C11         C43        H433     109.469    1.50
+PUL        H431         C43        H432     109.342    1.50
+PUL        H431         C43        H433     109.342    1.50
+PUL        H432         C43        H433     109.342    1.50
+PUL          C7         C42        H421     109.517    1.50
+PUL          C7         C42        H422     109.517    1.50
+PUL          C7         C42        H423     109.517    1.50
+PUL        H421         C42        H422     109.342    1.50
+PUL        H421         C42        H423     109.342    1.50
+PUL        H422         C42        H423     109.342    1.50
+PUL          C4         C41        H411     109.466    1.50
+PUL          C4         C41        H412     109.466    1.50
+PUL          C4         C41        H413     109.466    1.50
+PUL        H411         C41        H412     109.342    1.50
+PUL        H411         C41        H413     109.342    1.50
+PUL        H412         C41        H413     109.342    1.50
+PUL          C4          C3          C2     127.595    1.80
+PUL          C4          C3          H3     116.125    1.50
+PUL          C2          C3          H3     116.280    1.62
+PUL          C3          C2          C1     113.284    2.75
+PUL          C3          C2        H2C1     109.415    1.72
+PUL          C3          C2        H2C2     109.415    1.72
+PUL          C1          C2        H2C1     107.450    2.45
+PUL          C1          C2        H2C2     107.450    2.45
+PUL        H2C1          C2        H2C2     107.320    3.00
+PUL         O21          C1          C2     111.480    1.50
+PUL         O21          C1          O1     123.108    2.43
+PUL          C2          C1          O1     125.413    1.50
+PUL          C5          O5          HB     108.635    1.50
+PUL         C13         O13          HA     108.635    1.50
+PUL         C21         C22         C23     112.308    2.04
+PUL         C21         C22         C44     111.475    1.50
+PUL         C21         C22         H22     107.173    1.50
+PUL         C23         C22         C44     111.031    1.54
+PUL         C23         C22         H22     107.296    1.50
+PUL         C44         C22         H22     107.070    1.50
+PUL         C22         C23         C24     116.131    2.20
+PUL         C22         C23         O23     109.669    1.94
+PUL         C22         C23         H23     107.659    1.50
+PUL         C24         C23         O23     109.333    2.45
+PUL         C24         C23         H23     107.758    1.74
+PUL         O23         C23         H23     108.007    1.50
+PUL         C23         C24         C25     111.694    2.38
+PUL         C23         C24         C45     112.203    1.50
+PUL         C23         C24         H24     108.824    1.50
+PUL         C25         C24         C45     109.495    2.07
+PUL         C25         C24         H24     107.425    2.18
+PUL         C45         C24         H24     108.296    1.70
+PUL         C24         C25         C26     117.528    2.48
+PUL         C24         C25         O25     120.661    1.78
+PUL         C26         C25         O25     121.811    2.74
+PUL         C25         C26         C27     124.513    2.42
+PUL         C25         C26         H26     119.118    1.99
+PUL         C27         C26         H26     116.369    1.72
+PUL         C26         C27         C28     129.211    1.50
+PUL         C26         C27         H27     114.990    1.50
+PUL         C28         C27         H27     115.799    1.85
+PUL         C27         C28         C29     127.252    3.00
+PUL         C27         C28         H28     116.374    1.85
+PUL         C29         C28         H28     116.374    1.85
+PUL         C28         C29         C30     127.252    3.00
+PUL         C28         C29         H29     116.374    1.85
+PUL         C30         C29         H29     116.374    1.85
+PUL         C29         C30         C31     126.116    2.95
+PUL         C29         C30         H30     116.051    1.85
+PUL         C31         C30         H30     117.833    2.29
+PUL         C30         C31         C32     125.374    1.50
+PUL         C30         C31         H31     117.369    2.02
+PUL         C32         C31         H31     117.257    1.50
+PUL         C22         C44        H441     109.455    1.50
+PUL         C22         C44        H442     109.455    1.50
+PUL         C22         C44        H443     109.455    1.50
+PUL        H441         C44        H442     109.411    1.50
+PUL        H441         C44        H443     109.411    1.50
+PUL        H442         C44        H443     109.411    1.50
+PUL         C23         O23          HD     110.295    3.00
+PUL         C31         C32         O32     110.754    1.50
+PUL         C31         C32         C33     111.511    2.91
+PUL         C31         C32         H32     108.518    1.50
+PUL         O32         C32         C33     109.482    3.00
+PUL         O32         C32         H32     108.666    1.50
+PUL         C33         C32         H32     109.155    1.50
+PUL         C32         O32          HE     109.416    1.50
+PUL         C32         C33         O33     109.482    3.00
+PUL         C32         C33         C34     111.094    2.85
+PUL         C32         C33         H33     109.155    1.50
+PUL         O33         C33         C34     108.550    2.56
+PUL         O33         C33         H33     109.308    1.85
+PUL         C34         C33         H33     109.377    1.50
+PUL         C33         O33         C35     115.520    1.50
+PUL         O33         C35         O35     108.210    1.50
+PUL         O33         C35         C36     108.249    1.50
+PUL         O33         C35         H35     110.234    1.50
+PUL         O35         C35         C36     110.135    2.04
+PUL         O35         C35         H35     109.385    1.50
+PUL         C36         C35         H35     109.805    1.50
+PUL         C24         C45        H451     109.528    1.50
+PUL         C24         C45        H452     109.528    1.50
+PUL         C24         C45        H453     109.528    1.50
+PUL        H451         C45        H452     109.411    1.50
+PUL        H451         C45        H453     109.411    1.50
+PUL        H452         C45        H453     109.411    1.50
+PUL         C35         O35         C39     113.444    1.50
+PUL         O35         C39         C38     110.326    1.50
+PUL         O35         C39         C40     106.787    1.50
+PUL         O35         C39         H39     109.141    1.50
+PUL         C38         C39         C40     113.362    1.50
+PUL         C38         C39         H39     108.991    1.50
+PUL         C40         C39         H39     109.193    1.50
+PUL         C39         C38         C37     110.316    1.64
+PUL         C39         C38         O38     107.676    2.35
+PUL         C39         C38         H38     109.942    1.50
+PUL         C37         C38         O38     109.116    2.14
+PUL         C37         C38         H38     109.166    1.50
+PUL         O38         C38         H38     109.096    1.50
+PUL         C38         C37         C36     110.796    1.54
+PUL         C38         C37         O37     110.081    2.02
+PUL         C38         C37         H37     109.166    1.50
+PUL         C36         C37         O37     110.081    2.02
+PUL         C36         C37         H37     109.166    1.50
+PUL         O37         C37         H37     108.767    1.50
+PUL         C35         C36         C37     110.229    1.69
+PUL         C35         C36         O36     110.871    2.40
+PUL         C35         C36         H36     109.841    1.50
+PUL         C37         C36         O36     109.116    2.14
+PUL         C37         C36         H36     109.166    1.50
+PUL         O36         C36         H36     108.710    1.50
+PUL         O36         C46        H461     109.431    1.50
+PUL         O36         C46        H462     109.431    1.50
+PUL         O36         C46        H463     109.431    1.50
+PUL        H461         C46        H462     109.450    1.50
+PUL        H461         C46        H463     109.450    1.50
+PUL        H462         C46        H463     109.450    1.50
+PUL         C36         O36         C46     113.659    1.50
+PUL         C37         O37          HF     108.895    2.41
+PUL         C38         O38         C47     114.344    1.50
+PUL         O38         C47        H471     109.431    1.50
+PUL         O38         C47        H472     109.431    1.50
+PUL         O38         C47        H473     109.431    1.50
+PUL        H471         C47        H472     109.450    1.50
+PUL        H471         C47        H473     109.450    1.50
+PUL        H472         C47        H473     109.450    1.50
+PUL         C39         C40        H401     109.468    1.50
+PUL         C39         C40        H402     109.468    1.50
+PUL         C39         C40        H403     109.468    1.50
+PUL        H401         C40        H402     109.383    1.59
+PUL        H401         C40        H403     109.383    1.59
+PUL        H402         C40        H403     109.383    1.59
+PUL         C33         C34        H341     109.569    1.50
+PUL         C33         C34        H342     109.569    1.50
+PUL         C33         C34        H343     109.569    1.50
+PUL        H341         C34        H342     109.425    1.50
+PUL        H341         C34        H343     109.425    1.50
+PUL        H342         C34        H343     109.425    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PUL                   nu0         C39         O35         C35         C36     -68.880    10.0     3
+PUL                   nu1         O35         C35         C36         C37      58.007    10.0     3
+PUL                   nu2         C35         C36         C37         C38     -44.711    10.0     3
+PUL                   nu3         C36         C37         C38         C39      40.701    10.0     3
+PUL                   nu4         C37         C38         C39         O35     -49.355    10.0     3
+PUL                   nu5         C38         C39         O35         C35      64.165    10.0     3
+PUL             sp2_sp3_1         C11         C12         C13         C14       0.000    10.0     6
+PUL             sp2_sp3_2         C11         C12         C13         O13     120.000    10.0     6
+PUL             sp2_sp3_3         C11         C12         C13         H13    -120.000    10.0     6
+PUL             sp2_sp3_4         O12         C12         C13         C14     180.000    10.0     6
+PUL             sp2_sp3_5         O12         C12         C13         O13     -60.000    10.0     6
+PUL             sp2_sp3_6         O12         C12         C13         H13      60.000    10.0     6
+PUL             sp2_sp2_1         C43         C11         C12         C13     180.000     5.0     2
+PUL             sp2_sp2_2         C43         C11         C12         O12       0.000     5.0     2
+PUL             sp2_sp2_3         C10         C11         C12         C13       0.000     5.0     2
+PUL             sp2_sp2_4         C10         C11         C12         O12     180.000     5.0     2
+PUL             sp2_sp3_7         C15         C14         C13         C12       0.000    10.0     6
+PUL             sp2_sp3_8         C15         C14         C13         O13     120.000    10.0     6
+PUL             sp2_sp3_9         C15         C14         C13         H13    -120.000    10.0     6
+PUL            sp2_sp3_10         H14         C14         C13         C12     180.000    10.0     6
+PUL            sp2_sp3_11         H14         C14         C13         O13     -60.000    10.0     6
+PUL            sp2_sp3_12         H14         C14         C13         H13      60.000    10.0     6
+PUL            sp3_sp3_34         C12         C13         O13          HA     180.000    10.0     3
+PUL            sp3_sp3_35         C14         C13         O13          HA      60.000    10.0     3
+PUL            sp3_sp3_36         H13         C13         O13          HA     -60.000    10.0     3
+PUL             sp2_sp2_5         C13         C14         C15         C16     180.000     5.0     2
+PUL             sp2_sp2_6         C13         C14         C15         H15       0.000     5.0     2
+PUL             sp2_sp2_7         H14         C14         C15         C16       0.000     5.0     2
+PUL             sp2_sp2_8         H14         C14         C15         H15     180.000     5.0     2
+PUL             sp2_sp2_9         C14         C15         C16         C17     180.000     5.0     2
+PUL            sp2_sp2_10         C14         C15         C16         H16       0.000     5.0     2
+PUL            sp2_sp2_11         H15         C15         C16         C17       0.000     5.0     2
+PUL            sp2_sp2_12         H15         C15         C16         H16     180.000     5.0     2
+PUL            sp2_sp2_13         C15         C16         C17         C18     180.000     5.0     2
+PUL            sp2_sp2_14         C15         C16         C17         H17       0.000     5.0     2
+PUL            sp2_sp2_15         H16         C16         C17         C18       0.000     5.0     2
+PUL            sp2_sp2_16         H16         C16         C17         H17     180.000     5.0     2
+PUL            sp2_sp2_17         C16         C17         C18         C19     180.000     5.0     2
+PUL            sp2_sp2_18         C16         C17         C18         H18       0.000     5.0     2
+PUL            sp2_sp2_19         H17         C17         C18         C19       0.000     5.0     2
+PUL            sp2_sp2_20         H17         C17         C18         H18     180.000     5.0     2
+PUL            sp2_sp2_21         C17         C18         C19         C20     180.000     5.0     2
+PUL            sp2_sp2_22         C17         C18         C19         H19       0.000     5.0     2
+PUL            sp2_sp2_23         H18         C18         C19         C20       0.000     5.0     2
+PUL            sp2_sp2_24         H18         C18         C19         H19     180.000     5.0     2
+PUL            sp2_sp3_13         C18         C19         C20        H201       0.000    10.0     6
+PUL            sp2_sp3_14         C18         C19         C20         C21     120.000    10.0     6
+PUL            sp2_sp3_15         C18         C19         C20        H202    -120.000    10.0     6
+PUL            sp2_sp3_16         H19         C19         C20        H201     180.000    10.0     6
+PUL            sp2_sp3_17         H19         C19         C20         C21     -60.000    10.0     6
+PUL            sp2_sp3_18         H19         C19         C20        H202      60.000    10.0     6
+PUL            sp3_sp3_37         C19         C20         C21         O21     180.000    10.0     3
+PUL            sp3_sp3_38         C19         C20         C21         C22     -60.000    10.0     3
+PUL            sp3_sp3_39         C19         C20         C21         H21      60.000    10.0     3
+PUL            sp3_sp3_40        H201         C20         C21         O21      60.000    10.0     3
+PUL            sp3_sp3_41        H201         C20         C21         C22     180.000    10.0     3
+PUL            sp3_sp3_42        H201         C20         C21         H21     -60.000    10.0     3
+PUL            sp3_sp3_43        H202         C20         C21         O21     -60.000    10.0     3
+PUL            sp3_sp3_44        H202         C20         C21         C22      60.000    10.0     3
+PUL            sp3_sp3_45        H202         C20         C21         H21     180.000    10.0     3
+PUL            sp2_sp2_25          C9         C10         C11         C12     180.000     5.0     2
+PUL            sp2_sp2_26          C9         C10         C11         C43       0.000     5.0     2
+PUL            sp2_sp2_27         H10         C10         C11         C12       0.000     5.0     2
+PUL            sp2_sp2_28         H10         C10         C11         C43     180.000     5.0     2
+PUL            sp2_sp3_19         C12         C11         C43        H431       0.000    10.0     6
+PUL            sp2_sp3_20         C12         C11         C43        H432     120.000    10.0     6
+PUL            sp2_sp3_21         C12         C11         C43        H433    -120.000    10.0     6
+PUL            sp2_sp3_22         C10         C11         C43        H431     180.000    10.0     6
+PUL            sp2_sp3_23         C10         C11         C43        H432     -60.000    10.0     6
+PUL            sp2_sp3_24         C10         C11         C43        H433      60.000    10.0     6
+PUL            sp2_sp2_29         C11         C10          C9          C8     180.000     5.0     2
+PUL            sp2_sp2_30         C11         C10          C9          H9       0.000     5.0     2
+PUL            sp2_sp2_31         H10         C10          C9          C8       0.000     5.0     2
+PUL            sp2_sp2_32         H10         C10          C9          H9     180.000     5.0     2
+PUL            sp2_sp2_33          C7          C8          C9         C10     180.000     5.0     2
+PUL            sp2_sp2_34          C7          C8          C9          H9       0.000     5.0     2
+PUL            sp2_sp2_35          H8          C8          C9         C10       0.000     5.0     2
+PUL            sp2_sp2_36          H8          C8          C9          H9     180.000     5.0     2
+PUL            sp2_sp2_37         C42          C7          C8          C9     180.000     5.0     2
+PUL            sp2_sp2_38         C42          C7          C8          H8       0.000     5.0     2
+PUL            sp2_sp2_39          C6          C7          C8          C9       0.000     5.0     2
+PUL            sp2_sp2_40          C6          C7          C8          H8     180.000     5.0     2
+PUL            sp2_sp2_41          C5          C6          C7          C8     180.000     5.0     2
+PUL            sp2_sp2_42          C5          C6          C7         C42       0.000     5.0     2
+PUL            sp2_sp2_43          H6          C6          C7          C8       0.000     5.0     2
+PUL            sp2_sp2_44          H6          C6          C7         C42     180.000     5.0     2
+PUL            sp2_sp3_25          C8          C7         C42        H421       0.000    10.0     6
+PUL            sp2_sp3_26          C8          C7         C42        H422     120.000    10.0     6
+PUL            sp2_sp3_27          C8          C7         C42        H423    -120.000    10.0     6
+PUL            sp2_sp3_28          C6          C7         C42        H421     180.000    10.0     6
+PUL            sp2_sp3_29          C6          C7         C42        H422     -60.000    10.0     6
+PUL            sp2_sp3_30          C6          C7         C42        H423      60.000    10.0     6
+PUL            sp2_sp3_31          C7          C6          C5          C4       0.000    10.0     6
+PUL            sp2_sp3_32          C7          C6          C5          O5     120.000    10.0     6
+PUL            sp2_sp3_33          C7          C6          C5          H5    -120.000    10.0     6
+PUL            sp2_sp3_34          H6          C6          C5          C4     180.000    10.0     6
+PUL            sp2_sp3_35          H6          C6          C5          O5     -60.000    10.0     6
+PUL            sp2_sp3_36          H6          C6          C5          H5      60.000    10.0     6
+PUL            sp2_sp3_37         C41          C4          C5          C6       0.000    10.0     6
+PUL            sp2_sp3_38         C41          C4          C5          O5     120.000    10.0     6
+PUL            sp2_sp3_39         C41          C4          C5          H5    -120.000    10.0     6
+PUL            sp2_sp3_40          C3          C4          C5          C6     180.000    10.0     6
+PUL            sp2_sp3_41          C3          C4          C5          O5     -60.000    10.0     6
+PUL            sp2_sp3_42          C3          C4          C5          H5      60.000    10.0     6
+PUL            sp3_sp3_46          C6          C5          O5          HB     180.000    10.0     3
+PUL            sp3_sp3_47          C4          C5          O5          HB      60.000    10.0     3
+PUL            sp3_sp3_48          H5          C5          O5          HB     -60.000    10.0     3
+PUL            sp2_sp3_43          C5          C4         C41        H411       0.000    10.0     6
+PUL            sp2_sp3_44          C5          C4         C41        H412     120.000    10.0     6
+PUL            sp2_sp3_45          C5          C4         C41        H413    -120.000    10.0     6
+PUL            sp2_sp3_46          C3          C4         C41        H411     180.000    10.0     6
+PUL            sp2_sp3_47          C3          C4         C41        H412     -60.000    10.0     6
+PUL            sp2_sp3_48          C3          C4         C41        H413      60.000    10.0     6
+PUL            sp2_sp2_45          C2          C3          C4          C5     180.000     5.0     2
+PUL            sp2_sp2_46          C2          C3          C4         C41       0.000     5.0     2
+PUL            sp2_sp2_47          H3          C3          C4          C5       0.000     5.0     2
+PUL            sp2_sp2_48          H3          C3          C4         C41     180.000     5.0     2
+PUL            sp3_sp3_49         C20         C21         O21          C1     180.000    10.0     3
+PUL            sp3_sp3_50         C22         C21         O21          C1     -60.000    10.0     3
+PUL            sp3_sp3_51         H21         C21         O21          C1      60.000    10.0     3
+PUL            sp3_sp3_52         C20         C21         C22         C23     180.000    10.0     3
+PUL            sp3_sp3_53         C20         C21         C22         C44     -60.000    10.0     3
+PUL            sp3_sp3_54         C20         C21         C22         H22      60.000    10.0     3
+PUL            sp3_sp3_55         O21         C21         C22         C23      60.000    10.0     3
+PUL            sp3_sp3_56         O21         C21         C22         C44     180.000    10.0     3
+PUL            sp3_sp3_57         O21         C21         C22         H22     -60.000    10.0     3
+PUL            sp3_sp3_58         H21         C21         C22         C23     -60.000    10.0     3
+PUL            sp3_sp3_59         H21         C21         C22         C44      60.000    10.0     3
+PUL            sp3_sp3_60         H21         C21         C22         H22     180.000    10.0     3
+PUL            sp2_sp2_49          C2          C1         O21         C21     180.000     5.0     2
+PUL            sp2_sp2_50          O1          C1         O21         C21       0.000     5.0     2
+PUL            sp2_sp3_49          C4          C3          C2        H2C1       0.000    10.0     6
+PUL            sp2_sp3_50          C4          C3          C2          C1     120.000    10.0     6
+PUL            sp2_sp3_51          C4          C3          C2        H2C2    -120.000    10.0     6
+PUL            sp2_sp3_52          H3          C3          C2        H2C1     180.000    10.0     6
+PUL            sp2_sp3_53          H3          C3          C2          C1     -60.000    10.0     6
+PUL            sp2_sp3_54          H3          C3          C2        H2C2      60.000    10.0     6
+PUL            sp2_sp3_55         O21          C1          C2        H2C1       0.000    10.0     6
+PUL            sp2_sp3_56         O21          C1          C2          C3     120.000    10.0     6
+PUL            sp2_sp3_57         O21          C1          C2        H2C2    -120.000    10.0     6
+PUL            sp2_sp3_58          O1          C1          C2        H2C1     180.000    10.0     6
+PUL            sp2_sp3_59          O1          C1          C2          C3     -60.000    10.0     6
+PUL            sp2_sp3_60          O1          C1          C2        H2C2      60.000    10.0     6
+PUL            sp3_sp3_61         C21         C22         C23         C24     180.000    10.0     3
+PUL            sp3_sp3_62         C21         C22         C23         O23     -60.000    10.0     3
+PUL            sp3_sp3_63         C21         C22         C23         H23      60.000    10.0     3
+PUL            sp3_sp3_64         C44         C22         C23         C24      60.000    10.0     3
+PUL            sp3_sp3_65         C44         C22         C23         O23     180.000    10.0     3
+PUL            sp3_sp3_66         C44         C22         C23         H23     -60.000    10.0     3
+PUL            sp3_sp3_67         H22         C22         C23         C24     -60.000    10.0     3
+PUL            sp3_sp3_68         H22         C22         C23         O23      60.000    10.0     3
+PUL            sp3_sp3_69         H22         C22         C23         H23     180.000    10.0     3
+PUL            sp3_sp3_70         C21         C22         C44        H441     180.000    10.0     3
+PUL            sp3_sp3_71         C21         C22         C44        H442     -60.000    10.0     3
+PUL            sp3_sp3_72         C21         C22         C44        H443      60.000    10.0     3
+PUL            sp3_sp3_73         C23         C22         C44        H441      60.000    10.0     3
+PUL            sp3_sp3_74         C23         C22         C44        H442     180.000    10.0     3
+PUL            sp3_sp3_75         C23         C22         C44        H443     -60.000    10.0     3
+PUL            sp3_sp3_76         H22         C22         C44        H441     -60.000    10.0     3
+PUL            sp3_sp3_77         H22         C22         C44        H442      60.000    10.0     3
+PUL            sp3_sp3_78         H22         C22         C44        H443     180.000    10.0     3
+PUL            sp3_sp3_79         C22         C23         C24         C25     180.000    10.0     3
+PUL            sp3_sp3_80         C22         C23         C24         C45     -60.000    10.0     3
+PUL            sp3_sp3_81         C22         C23         C24         H24      60.000    10.0     3
+PUL            sp3_sp3_82         O23         C23         C24         C25      60.000    10.0     3
+PUL            sp3_sp3_83         O23         C23         C24         C45     180.000    10.0     3
+PUL            sp3_sp3_84         O23         C23         C24         H24     -60.000    10.0     3
+PUL            sp3_sp3_85         H23         C23         C24         C25     -60.000    10.0     3
+PUL            sp3_sp3_86         H23         C23         C24         C45      60.000    10.0     3
+PUL            sp3_sp3_87         H23         C23         C24         H24     180.000    10.0     3
+PUL            sp3_sp3_88         C22         C23         O23          HD     180.000    10.0     3
+PUL            sp3_sp3_89         C24         C23         O23          HD      60.000    10.0     3
+PUL            sp3_sp3_90         H23         C23         O23          HD     -60.000    10.0     3
+PUL            sp2_sp3_61         C26         C25         C24         C23       0.000    10.0     6
+PUL            sp2_sp3_62         C26         C25         C24         C45     120.000    10.0     6
+PUL            sp2_sp3_63         C26         C25         C24         H24    -120.000    10.0     6
+PUL            sp2_sp3_64         O25         C25         C24         C23     180.000    10.0     6
+PUL            sp2_sp3_65         O25         C25         C24         C45     -60.000    10.0     6
+PUL            sp2_sp3_66         O25         C25         C24         H24      60.000    10.0     6
+PUL            sp3_sp3_91         C23         C24         C45        H451     180.000    10.0     3
+PUL            sp3_sp3_92         C23         C24         C45        H452     -60.000    10.0     3
+PUL            sp3_sp3_93         C23         C24         C45        H453      60.000    10.0     3
+PUL            sp3_sp3_94         C25         C24         C45        H451      60.000    10.0     3
+PUL            sp3_sp3_95         C25         C24         C45        H452     180.000    10.0     3
+PUL            sp3_sp3_96         C25         C24         C45        H453     -60.000    10.0     3
+PUL            sp3_sp3_97         H24         C24         C45        H451     -60.000    10.0     3
+PUL            sp3_sp3_98         H24         C24         C45        H452      60.000    10.0     3
+PUL            sp3_sp3_99         H24         C24         C45        H453     180.000    10.0     3
+PUL            sp2_sp2_51         C24         C25         C26         C27     180.000     5.0     2
+PUL            sp2_sp2_52         C24         C25         C26         H26       0.000     5.0     2
+PUL            sp2_sp2_53         O25         C25         C26         C27       0.000     5.0     2
+PUL            sp2_sp2_54         O25         C25         C26         H26     180.000     5.0     2
+PUL            sp2_sp2_55         C25         C26         C27         C28     180.000     5.0     2
+PUL            sp2_sp2_56         C25         C26         C27         H27       0.000     5.0     2
+PUL            sp2_sp2_57         H26         C26         C27         C28       0.000     5.0     2
+PUL            sp2_sp2_58         H26         C26         C27         H27     180.000     5.0     2
+PUL            sp2_sp2_59         C26         C27         C28         C29     180.000     5.0     2
+PUL            sp2_sp2_60         C26         C27         C28         H28       0.000     5.0     2
+PUL            sp2_sp2_61         H27         C27         C28         C29       0.000     5.0     2
+PUL            sp2_sp2_62         H27         C27         C28         H28     180.000     5.0     2
+PUL            sp2_sp2_63         C27         C28         C29         C30     180.000     5.0     2
+PUL            sp2_sp2_64         C27         C28         C29         H29       0.000     5.0     2
+PUL            sp2_sp2_65         H28         C28         C29         C30       0.000     5.0     2
+PUL            sp2_sp2_66         H28         C28         C29         H29     180.000     5.0     2
+PUL            sp2_sp2_67         C28         C29         C30         C31     180.000     5.0     2
+PUL            sp2_sp2_68         C28         C29         C30         H30       0.000     5.0     2
+PUL            sp2_sp2_69         H29         C29         C30         C31       0.000     5.0     2
+PUL            sp2_sp2_70         H29         C29         C30         H30     180.000     5.0     2
+PUL            sp2_sp2_71         C29         C30         C31         C32     180.000     5.0     2
+PUL            sp2_sp2_72         C29         C30         C31         H31       0.000     5.0     2
+PUL            sp2_sp2_73         H30         C30         C31         C32       0.000     5.0     2
+PUL            sp2_sp2_74         H30         C30         C31         H31     180.000     5.0     2
+PUL            sp2_sp3_67         C30         C31         C32         O32       0.000    10.0     6
+PUL            sp2_sp3_68         C30         C31         C32         C33     120.000    10.0     6
+PUL            sp2_sp3_69         C30         C31         C32         H32    -120.000    10.0     6
+PUL            sp2_sp3_70         H31         C31         C32         O32     180.000    10.0     6
+PUL            sp2_sp3_71         H31         C31         C32         C33     -60.000    10.0     6
+PUL            sp2_sp3_72         H31         C31         C32         H32      60.000    10.0     6
+PUL           sp3_sp3_100         C31         C32         O32          HE     180.000    10.0     3
+PUL           sp3_sp3_101         C33         C32         O32          HE      60.000    10.0     3
+PUL           sp3_sp3_102         H32         C32         O32          HE     -60.000    10.0     3
+PUL           sp3_sp3_103         C31         C32         C33         O33     180.000    10.0     3
+PUL           sp3_sp3_104         C31         C32         C33         C34     -60.000    10.0     3
+PUL           sp3_sp3_105         C31         C32         C33         H33      60.000    10.0     3
+PUL           sp3_sp3_106         O32         C32         C33         O33      60.000    10.0     3
+PUL           sp3_sp3_107         O32         C32         C33         C34     180.000    10.0     3
+PUL           sp3_sp3_108         O32         C32         C33         H33     -60.000    10.0     3
+PUL           sp3_sp3_109         H32         C32         C33         O33     -60.000    10.0     3
+PUL           sp3_sp3_110         H32         C32         C33         C34      60.000    10.0     3
+PUL           sp3_sp3_111         H32         C32         C33         H33     180.000    10.0     3
+PUL           sp3_sp3_112         C32         C33         O33         C35     180.000    10.0     3
+PUL           sp3_sp3_113         C34         C33         O33         C35      60.000    10.0     3
+PUL           sp3_sp3_114         H33         C33         O33         C35     -60.000    10.0     3
+PUL           sp3_sp3_115         C32         C33         C34        H341     180.000    10.0     3
+PUL           sp3_sp3_116         C32         C33         C34        H342     -60.000    10.0     3
+PUL           sp3_sp3_117         C32         C33         C34        H343      60.000    10.0     3
+PUL           sp3_sp3_118         O33         C33         C34        H341      60.000    10.0     3
+PUL           sp3_sp3_119         O33         C33         C34        H342     180.000    10.0     3
+PUL           sp3_sp3_120         O33         C33         C34        H343     -60.000    10.0     3
+PUL           sp3_sp3_121         H33         C33         C34        H341     -60.000    10.0     3
+PUL           sp3_sp3_122         H33         C33         C34        H342      60.000    10.0     3
+PUL           sp3_sp3_123         H33         C33         C34        H343     180.000    10.0     3
+PUL           sp3_sp3_124         O35         C35         O33         C33     180.000    10.0     3
+PUL           sp3_sp3_125         C36         C35         O33         C33      60.000    10.0     3
+PUL           sp3_sp3_126         H35         C35         O33         C33     -60.000    10.0     3
+PUL           sp3_sp3_136         O35         C39         C40        H401     180.000    10.0     3
+PUL           sp3_sp3_137         O35         C39         C40        H402     -60.000    10.0     3
+PUL           sp3_sp3_138         O35         C39         C40        H403      60.000    10.0     3
+PUL           sp3_sp3_139         C38         C39         C40        H401      60.000    10.0     3
+PUL           sp3_sp3_140         C38         C39         C40        H402     180.000    10.0     3
+PUL           sp3_sp3_141         C38         C39         C40        H403     -60.000    10.0     3
+PUL           sp3_sp3_142         H39         C39         C40        H401     -60.000    10.0     3
+PUL           sp3_sp3_143         H39         C39         C40        H402      60.000    10.0     3
+PUL           sp3_sp3_144         H39         C39         C40        H403     180.000    10.0     3
+PUL           sp3_sp3_145         C39         C38         O38         C47     180.000    10.0     3
+PUL           sp3_sp3_146         C37         C38         O38         C47      60.000    10.0     3
+PUL           sp3_sp3_147         H38         C38         O38         C47     -60.000    10.0     3
+PUL           sp3_sp3_148         C38         C37         O37          HF     180.000    10.0     3
+PUL           sp3_sp3_149         C36         C37         O37          HF      60.000    10.0     3
+PUL           sp3_sp3_150         H37         C37         O37          HF     -60.000    10.0     3
+PUL           sp3_sp3_151         C35         C36         O36         C46     180.000    10.0     3
+PUL           sp3_sp3_152         C37         C36         O36         C46      60.000    10.0     3
+PUL           sp3_sp3_153         H36         C36         O36         C46     -60.000    10.0     3
+PUL           sp3_sp3_154        H461         C46         O36         C36     180.000    10.0     3
+PUL           sp3_sp3_155        H462         C46         O36         C36      60.000    10.0     3
+PUL           sp3_sp3_156        H463         C46         O36         C36     -60.000    10.0     3
+PUL           sp3_sp3_157        H471         C47         O38         C38     180.000    10.0     3
+PUL           sp3_sp3_158        H472         C47         O38         C38      60.000    10.0     3
+PUL           sp3_sp3_159        H473         C47         O38         C38     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PUL    chir_1    C13    O13    C12    C14    positive
+PUL    chir_2    C5    O5    C4    C6    negative
+PUL    chir_3    C21    O21    C22    C20    positive
+PUL    chir_4    C22    C21    C23    C44    positive
+PUL    chir_5    C23    O23    C24    C22    positive
+PUL    chir_6    C24    C25    C23    C45    positive
+PUL    chir_7    C32    O32    C33    C31    positive
+PUL    chir_8    C33    O33    C32    C34    positive
+PUL    chir_9    C35    O35    O33    C36    negative
+PUL    chir_10    C39    O35    C38    C40    negative
+PUL    chir_11    C38    O38    C39    C37    negative
+PUL    chir_12    C37    O37    C36    C38    positive
+PUL    chir_13    C36    O36    C35    C37    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PUL    plan-1         C11   0.020
+PUL    plan-1         C12   0.020
+PUL    plan-1         C13   0.020
+PUL    plan-1         O12   0.020
+PUL    plan-2         C13   0.020
+PUL    plan-2         C14   0.020
+PUL    plan-2         C15   0.020
+PUL    plan-2         H14   0.020
+PUL    plan-3         C14   0.020
+PUL    plan-3         C15   0.020
+PUL    plan-3         C16   0.020
+PUL    plan-3         H15   0.020
+PUL    plan-4         C15   0.020
+PUL    plan-4         C16   0.020
+PUL    plan-4         C17   0.020
+PUL    plan-4         H16   0.020
+PUL    plan-5         C16   0.020
+PUL    plan-5         C17   0.020
+PUL    plan-5         C18   0.020
+PUL    plan-5         H17   0.020
+PUL    plan-6         C17   0.020
+PUL    plan-6         C18   0.020
+PUL    plan-6         C19   0.020
+PUL    plan-6         H18   0.020
+PUL    plan-7         C18   0.020
+PUL    plan-7         C19   0.020
+PUL    plan-7         C20   0.020
+PUL    plan-7         H19   0.020
+PUL    plan-8         C10   0.020
+PUL    plan-8         C11   0.020
+PUL    plan-8         C12   0.020
+PUL    plan-8         C43   0.020
+PUL    plan-9         C10   0.020
+PUL    plan-9         C11   0.020
+PUL    plan-9          C9   0.020
+PUL    plan-9         H10   0.020
+PUL   plan-10         C10   0.020
+PUL   plan-10          C8   0.020
+PUL   plan-10          C9   0.020
+PUL   plan-10          H9   0.020
+PUL   plan-11          C7   0.020
+PUL   plan-11          C8   0.020
+PUL   plan-11          C9   0.020
+PUL   plan-11          H8   0.020
+PUL   plan-12         C42   0.020
+PUL   plan-12          C6   0.020
+PUL   plan-12          C7   0.020
+PUL   plan-12          C8   0.020
+PUL   plan-13          C5   0.020
+PUL   plan-13          C6   0.020
+PUL   plan-13          C7   0.020
+PUL   plan-13          H6   0.020
+PUL   plan-14          C3   0.020
+PUL   plan-14          C4   0.020
+PUL   plan-14         C41   0.020
+PUL   plan-14          C5   0.020
+PUL   plan-15          C2   0.020
+PUL   plan-15          C3   0.020
+PUL   plan-15          C4   0.020
+PUL   plan-15          H3   0.020
+PUL   plan-16          C1   0.020
+PUL   plan-16          C2   0.020
+PUL   plan-16          O1   0.020
+PUL   plan-16         O21   0.020
+PUL   plan-17         C24   0.020
+PUL   plan-17         C25   0.020
+PUL   plan-17         C26   0.020
+PUL   plan-17         O25   0.020
+PUL   plan-18         C25   0.020
+PUL   plan-18         C26   0.020
+PUL   plan-18         C27   0.020
+PUL   plan-18         H26   0.020
+PUL   plan-19         C26   0.020
+PUL   plan-19         C27   0.020
+PUL   plan-19         C28   0.020
+PUL   plan-19         H27   0.020
+PUL   plan-20         C27   0.020
+PUL   plan-20         C28   0.020
+PUL   plan-20         C29   0.020
+PUL   plan-20         H28   0.020
+PUL   plan-21         C28   0.020
+PUL   plan-21         C29   0.020
+PUL   plan-21         C30   0.020
+PUL   plan-21         H29   0.020
+PUL   plan-22         C29   0.020
+PUL   plan-22         C30   0.020
+PUL   plan-22         C31   0.020
+PUL   plan-22         H30   0.020
+PUL   plan-23         C30   0.020
+PUL   plan-23         C31   0.020
+PUL   plan-23         C32   0.020
+PUL   plan-23         H31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PUL           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                                                                  O=C1C(=CC=CC(=CC(O)C(=CCC(=O)OC(CC=CC=CC=CC1O)C(C)C(O)C(C(=O)\C=C\C=C\C=C\C(O)C(OC2OC(C(OC)C(O)C2OC)C)C)C)C)C)C
+PUL SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                          CO[C@H]1[C@@H](C)O[C@@H](O[C@@H](C)[C@@H](O)/C=C/C=C/C=C/C(=O)[C@@H](C)[C@@H](O)[C@H](C)[C@@H]2C/C=C/C=C/C=C/[C@H](O)C(=O)\C(=C\C=C\C(=C\[C@@H](O)\C(=C\CC(=O)O2)C)C)C)[C@H](OC)[C@H]1O
+PUL           SMILES               CACTVS 3.341                                                                                                                                                                                                                                             CO[CH]1[CH](C)O[CH](O[CH](C)[CH](O)C=CC=CC=CC(=O)[CH](C)[CH](O)[CH](C)[CH]2CC=CC=CC=C[CH](O)C(=O)C(=CC=CC(=C[CH](O)C(=CCC(=O)O2)C)C)C)[CH](OC)[CH]1O
+PUL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                       C[C@@H]1[C@@H]([C@@H]([C@H]([C@@H](O1)O[C@@H](C)[C@H](\C=C\C=C\C=C\C(=O)[C@@H](C)[C@H]([C@H](C)[C@@H]2C\C=C\C=C\C=C\[C@@H](C(=O)C(=C\C=C\C(=C\[C@H](/C(=C/CC(=O)O2)/C)O)\C)C)O)O)O)OC)O)OC
+PUL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                                                                  CC1C(C(C(C(O1)OC(C)C(C=CC=CC=CC(=O)C(C)C(C(C)C2CC=CC=CC=CC(C(=O)C(=CC=CC(=CC(C(=CCC(=O)O2)C)O)C)C)O)O)O)OC)O)OC
+PUL            InChI                InChI  1.03 InChI=1S/C47H66O13/c1-29-20-19-21-31(3)42(53)38(50)24-17-11-10-12-18-25-40(60-41(52)27-26-30(2)39(51)28-29)33(5)43(54)32(4)36(48)22-15-13-14-16-23-37(49)34(6)58-47-46(57-9)44(55)45(56-8)35(7)59-47/h10-24,26,28,32-35,37-40,43-47,49-51,54-55H,25,27H2,1-9H3/b11-10+,14-13+,18-12+,20-19+,22-15+,23-16+,24-17+,29-28+,30-26+,31-21+/t32-,33-,34+,35-,37+,38+,39-,40+,43-,44+,45+,46-,47-/m1/s1
+PUL         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                      FXSFWUNCIOIMAC-VXILMCRLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PUL acedrg               243         "dictionary generator"                  
+PUL acedrg_database      11          "data source"                           
+PUL rdkit                2017.03.2   "Chemoinformatics tool"
+PUL refmac5              5.8.0238    "optimization tool"                     

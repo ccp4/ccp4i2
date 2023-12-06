@@ -1,0 +1,330 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ACD     ACD      "ARACHIDONIC ACID"     NON-POLYMER     53     22     .     
+#
+data_comp_ACD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ACD     C1      C       C       0       -46.262     66.759      -6.256      
+ACD     C2      C       CH2     0       -46.569     68.105      -5.625      
+ACD     C3      C       CH2     0       -45.911     69.293      -6.310      
+ACD     C4      C       CH2     0       -46.173     70.601      -5.573      
+ACD     C5      C       C1      0       -45.565     71.794      -6.243      
+ACD     C6      C       C1      0       -46.079     72.480      -7.251      
+ACD     C7      C       CH2     0       -47.380     72.196      -7.939      
+ACD     C8      C       C1      0       -48.588     72.613      -7.153      
+ACD     C9      C       C1      0       -49.841     72.372      -7.485      
+ACD     C10     C       CH2     0       -50.292     71.636      -8.711      
+ACD     C11     C       C1      0       -51.747     71.273      -8.728      
+ACD     C12     C       C1      0       -52.409     70.768      -9.755      
+ACD     C13     C       CH2     0       -51.844     70.463      -11.113     
+ACD     C14     C       C1      0       -52.525     69.308      -11.792     
+ACD     C15     C       C1      0       -51.960     68.180      -12.197     
+ACD     C16     C       CH2     0       -50.520     67.785      -12.077     
+ACD     C17     C       CH2     0       -50.127     67.393      -10.686     
+ACD     C18     C       CH2     0       -48.636     67.166      -10.497     
+ACD     C19     C       CH2     0       -47.849     68.416      -10.197     
+ACD     C20     C       CH3     0       -46.357     68.193      -10.140     
+ACD     O1      O       O       0       -45.144     66.249      -6.044      
+ACD     O2      O       OC      -1      -47.142     66.222      -6.958      
+ACD     H21     H       H       0       -46.281     68.081      -4.687      
+ACD     H22     H       H       0       -47.542     68.236      -5.631      
+ACD     H31     H       H       0       -46.250     69.369      -7.226      
+ACD     H32     H       H       0       -44.944     69.144      -6.360      
+ACD     H41     H       H       0       -45.809     70.529      -4.663      
+ACD     H42     H       H       0       -47.144     70.734      -5.500      
+ACD     H5      H       H       0       -44.729     72.086      -5.913      
+ACD     H6      H       H       0       -45.582     73.220      -7.571      
+ACD     H71     H       H       0       -47.439     71.230      -8.129      
+ACD     H72     H       H       0       -47.389     72.657      -8.810      
+ACD     H8      H       H       0       -48.431     73.091      -6.351      
+ACD     H9      H       H       0       -50.517     72.691      -6.903      
+ACD     H101    H       H       0       -49.759     70.812      -8.800      
+ACD     H102    H       H       0       -50.093     72.188      -9.503      
+ACD     H11     H       H       0       -52.233     71.419      -7.928      
+ACD     H12     H       H       0       -53.328     70.579      -9.626      
+ACD     H131    H       H       0       -50.880     70.275      -11.032     
+ACD     H132    H       H       0       -51.929     71.264      -11.682     
+ACD     H14     H       H       0       -53.456     69.399      -11.945     
+ACD     H15     H       H       0       -52.534     67.553      -12.610     
+ACD     H161    H       H       0       -49.957     68.537      -12.367     
+ACD     H162    H       H       0       -50.347     67.028      -12.681     
+ACD     H171    H       H       0       -50.602     66.570      -10.446     
+ACD     H172    H       H       0       -50.419     68.094      -10.067     
+ACD     H181    H       H       0       -48.275     66.756      -11.312     
+ACD     H182    H       H       0       -48.507     66.530      -9.762      
+ACD     H191    H       H       0       -48.149     68.778      -9.335      
+ACD     H192    H       H       0       -48.045     69.086      -10.888     
+ACD     H201    H       H       0       -45.908     69.035      -9.950      
+ACD     H202    H       H       0       -46.046     67.848      -10.995     
+ACD     H203    H       H       0       -46.149     67.551      -9.439      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ACD          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+ACD          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ACD          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+ACD          C2          C3      SINGLE       n     1.521  0.0157     1.521  0.0157
+ACD          C3          C4      SINGLE       n     1.523  0.0175     1.523  0.0175
+ACD          C4          C5      SINGLE       n     1.497  0.0127     1.497  0.0127
+ACD          C5          C6      DOUBLE       n     1.322  0.0108     1.322  0.0108
+ACD          C6          C7      SINGLE       n     1.498  0.0200     1.498  0.0200
+ACD          C7          C8      SINGLE       n     1.498  0.0200     1.498  0.0200
+ACD          C8          C9      DOUBLE       n     1.317  0.0200     1.317  0.0200
+ACD          C9         C10      SINGLE       n     1.498  0.0200     1.498  0.0200
+ACD         C10         C11      SINGLE       n     1.498  0.0200     1.498  0.0200
+ACD         C11         C12      DOUBLE       n     1.317  0.0200     1.317  0.0200
+ACD         C12         C13      SINGLE       n     1.498  0.0200     1.498  0.0200
+ACD         C13         C14      SINGLE       n     1.498  0.0200     1.498  0.0200
+ACD         C14         C15      DOUBLE       n     1.320  0.0157     1.320  0.0157
+ACD         C15         C16      SINGLE       n     1.497  0.0127     1.497  0.0127
+ACD         C16         C17      SINGLE       n     1.497  0.0200     1.497  0.0200
+ACD         C17         C18      SINGLE       n     1.519  0.0164     1.519  0.0164
+ACD         C18         C19      SINGLE       n     1.507  0.0200     1.507  0.0200
+ACD         C19         C20      SINGLE       n     1.510  0.0200     1.510  0.0200
+ACD          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+ACD          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+ACD          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0178
+ACD          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0178
+ACD          C4         H41      SINGLE       n     1.089  0.0100     0.983  0.0180
+ACD          C4         H42      SINGLE       n     1.089  0.0100     0.983  0.0180
+ACD          C5          H5      SINGLE       n     1.082  0.0130     0.945  0.0200
+ACD          C6          H6      SINGLE       n     1.082  0.0130     0.947  0.0200
+ACD          C7         H71      SINGLE       n     1.089  0.0100     0.986  0.0100
+ACD          C7         H72      SINGLE       n     1.089  0.0100     0.986  0.0100
+ACD          C8          H8      SINGLE       n     1.082  0.0130     0.947  0.0200
+ACD          C9          H9      SINGLE       n     1.082  0.0130     0.947  0.0200
+ACD         C10        H101      SINGLE       n     1.089  0.0100     0.986  0.0100
+ACD         C10        H102      SINGLE       n     1.089  0.0100     0.986  0.0100
+ACD         C11         H11      SINGLE       n     1.082  0.0130     0.947  0.0200
+ACD         C12         H12      SINGLE       n     1.082  0.0130     0.947  0.0200
+ACD         C13        H131      SINGLE       n     1.089  0.0100     0.986  0.0100
+ACD         C13        H132      SINGLE       n     1.089  0.0100     0.986  0.0100
+ACD         C14         H14      SINGLE       n     1.082  0.0130     0.947  0.0200
+ACD         C15         H15      SINGLE       n     1.082  0.0130     0.945  0.0200
+ACD         C16        H161      SINGLE       n     1.089  0.0100     0.983  0.0180
+ACD         C16        H162      SINGLE       n     1.089  0.0100     0.983  0.0180
+ACD         C17        H171      SINGLE       n     1.089  0.0100     0.980  0.0160
+ACD         C17        H172      SINGLE       n     1.089  0.0100     0.980  0.0160
+ACD         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+ACD         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+ACD         C19        H191      SINGLE       n     1.089  0.0100     0.982  0.0155
+ACD         C19        H192      SINGLE       n     1.089  0.0100     0.982  0.0155
+ACD         C20        H201      SINGLE       n     1.089  0.0100     0.973  0.0157
+ACD         C20        H202      SINGLE       n     1.089  0.0100     0.973  0.0157
+ACD         C20        H203      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ACD          C2          C1          O1     118.214    1.64
+ACD          C2          C1          O2     118.214    1.64
+ACD          O1          C1          O2     123.571    1.50
+ACD          C1          C2          C3     114.612    2.19
+ACD          C1          C2         H21     108.404    1.50
+ACD          C1          C2         H22     108.404    1.50
+ACD          C3          C2         H21     108.815    1.50
+ACD          C3          C2         H22     108.815    1.50
+ACD         H21          C2         H22     107.521    1.50
+ACD          C2          C3          C4     112.061    1.52
+ACD          C2          C3         H31     109.164    1.50
+ACD          C2          C3         H32     109.164    1.50
+ACD          C4          C3         H31     108.805    1.50
+ACD          C4          C3         H32     108.805    1.50
+ACD         H31          C3         H32     107.646    1.50
+ACD          C3          C4          C5     113.226    1.94
+ACD          C3          C4         H41     108.819    1.50
+ACD          C3          C4         H42     108.819    1.50
+ACD          C5          C4         H41     108.886    1.50
+ACD          C5          C4         H42     108.886    1.50
+ACD         H41          C4         H42     107.922    1.50
+ACD          C4          C5          C6     125.684    3.00
+ACD          C4          C5          H5     117.007    1.61
+ACD          C6          C5          H5     117.310    2.16
+ACD          C5          C6          C7     125.699    1.66
+ACD          C5          C6          H6     117.527    2.16
+ACD          C7          C6          H6     116.773    1.62
+ACD          C6          C7          C8     114.535    3.00
+ACD          C6          C7         H71     109.415    1.72
+ACD          C6          C7         H72     109.415    1.72
+ACD          C8          C7         H71     109.415    1.72
+ACD          C8          C7         H72     109.415    1.72
+ACD         H71          C7         H72     107.005    1.50
+ACD          C7          C8          C9     125.699    1.66
+ACD          C7          C8          H8     116.773    1.62
+ACD          C9          C8          H8     117.527    2.16
+ACD          C8          C9         C10     125.699    1.66
+ACD          C8          C9          H9     117.527    2.16
+ACD         C10          C9          H9     116.773    1.62
+ACD          C9         C10         C11     114.535    3.00
+ACD          C9         C10        H101     109.415    1.72
+ACD          C9         C10        H102     109.415    1.72
+ACD         C11         C10        H101     109.415    1.72
+ACD         C11         C10        H102     109.415    1.72
+ACD        H101         C10        H102     107.005    1.50
+ACD         C10         C11         C12     125.699    1.66
+ACD         C10         C11         H11     116.773    1.62
+ACD         C12         C11         H11     117.527    2.16
+ACD         C11         C12         C13     125.699    1.66
+ACD         C11         C12         H12     117.527    2.16
+ACD         C13         C12         H12     116.773    1.62
+ACD         C12         C13         C14     114.535    3.00
+ACD         C12         C13        H131     109.415    1.72
+ACD         C12         C13        H132     109.415    1.72
+ACD         C14         C13        H131     109.415    1.72
+ACD         C14         C13        H132     109.415    1.72
+ACD        H131         C13        H132     107.005    1.50
+ACD         C13         C14         C15     125.699    1.66
+ACD         C13         C14         H14     116.773    1.62
+ACD         C15         C14         H14     117.527    2.16
+ACD         C14         C15         C16     125.684    3.00
+ACD         C14         C15         H15     117.310    2.16
+ACD         C16         C15         H15     117.007    1.61
+ACD         C15         C16         C17     113.226    1.94
+ACD         C15         C16        H161     108.886    1.50
+ACD         C15         C16        H162     108.886    1.50
+ACD         C17         C16        H161     108.819    1.50
+ACD         C17         C16        H162     108.819    1.50
+ACD        H161         C16        H162     107.922    1.50
+ACD         C16         C17         C18     114.266    1.80
+ACD         C16         C17        H171     108.805    1.50
+ACD         C16         C17        H172     108.805    1.50
+ACD         C18         C17        H171     108.698    1.50
+ACD         C18         C17        H172     108.698    1.50
+ACD        H171         C17        H172     107.646    1.50
+ACD         C17         C18         C19     114.362    3.00
+ACD         C17         C18        H181     108.698    1.50
+ACD         C17         C18        H182     108.698    1.50
+ACD         C19         C18        H181     108.653    1.50
+ACD         C19         C18        H182     108.653    1.50
+ACD        H181         C18        H182     107.646    1.50
+ACD         C18         C19         C20     113.719    3.00
+ACD         C18         C19        H191     108.758    1.50
+ACD         C18         C19        H192     108.758    1.50
+ACD         C20         C19        H191     108.918    1.50
+ACD         C20         C19        H192     108.918    1.50
+ACD        H191         C19        H192     107.763    1.50
+ACD         C19         C20        H201     109.554    1.50
+ACD         C19         C20        H202     109.554    1.50
+ACD         C19         C20        H203     109.554    1.50
+ACD        H201         C20        H202     109.380    1.50
+ACD        H201         C20        H203     109.380    1.50
+ACD        H202         C20        H203     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ACD             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+ACD             sp2_sp2_9         C10         C11         C12         C13     180.000     5.0     2
+ACD            sp2_sp3_38         C11         C12         C13         C14     120.000    10.0     6
+ACD            sp2_sp3_44         C15         C14         C13         C12     120.000    10.0     6
+ACD            sp2_sp2_13         C13         C14         C15         C16     180.000     5.0     2
+ACD            sp2_sp3_50         C14         C15         C16         C17     120.000    10.0     6
+ACD            sp3_sp3_19         C15         C16         C17         C18     180.000    10.0     3
+ACD            sp3_sp3_28         C16         C17         C18         C19     180.000    10.0     3
+ACD            sp3_sp3_37         C17         C18         C19         C20     180.000    10.0     3
+ACD            sp3_sp3_46         C18         C19         C20        H201     180.000    10.0     3
+ACD             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+ACD            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+ACD             sp2_sp3_8          C6          C5          C4          C3     120.000    10.0     6
+ACD             sp2_sp2_1          C4          C5          C6          C7     180.000     5.0     2
+ACD            sp2_sp3_14          C5          C6          C7          C8     120.000    10.0     6
+ACD            sp2_sp3_20          C9          C8          C7          C6     120.000    10.0     6
+ACD             sp2_sp2_5          C7          C8          C9         C10     180.000     5.0     2
+ACD            sp2_sp3_26          C8          C9         C10         C11     120.000    10.0     6
+ACD            sp2_sp3_32         C12         C11         C10          C9     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ACD    plan-1          C1   0.020
+ACD    plan-1          C2   0.020
+ACD    plan-1          O1   0.020
+ACD    plan-1          O2   0.020
+ACD    plan-2          C4   0.020
+ACD    plan-2          C5   0.020
+ACD    plan-2          C6   0.020
+ACD    plan-2          H5   0.020
+ACD    plan-3          C5   0.020
+ACD    plan-3          C6   0.020
+ACD    plan-3          C7   0.020
+ACD    plan-3          H6   0.020
+ACD    plan-4          C7   0.020
+ACD    plan-4          C8   0.020
+ACD    plan-4          C9   0.020
+ACD    plan-4          H8   0.020
+ACD    plan-5         C10   0.020
+ACD    plan-5          C8   0.020
+ACD    plan-5          C9   0.020
+ACD    plan-5          H9   0.020
+ACD    plan-6         C10   0.020
+ACD    plan-6         C11   0.020
+ACD    plan-6         C12   0.020
+ACD    plan-6         H11   0.020
+ACD    plan-7         C11   0.020
+ACD    plan-7         C12   0.020
+ACD    plan-7         C13   0.020
+ACD    plan-7         H12   0.020
+ACD    plan-8         C13   0.020
+ACD    plan-8         C14   0.020
+ACD    plan-8         C15   0.020
+ACD    plan-8         H14   0.020
+ACD    plan-9         C14   0.020
+ACD    plan-9         C15   0.020
+ACD    plan-9         C16   0.020
+ACD    plan-9         H15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ACD           SMILES              ACDLabs 10.04                                                                                                                          O=C(O)CCC\C=C/C\C=C/C\C=C/C\C=C/CCCCC
+ACD SMILES_CANONICAL               CACTVS 3.341                                                                                                                          CCCCC/C=C\C\C=C/C/C=C\C\C=C/CCCC(O)=O
+ACD           SMILES               CACTVS 3.341                                                                                                                                  CCCCCC=CCC=CCC=CCC=CCCCC(O)=O
+ACD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                          CCCCC\C=C/C\C=C/C\C=C/C\C=C/CCCC(=O)O
+ACD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                  CCCCCC=CCC=CCC=CCC=CCCCC(=O)O
+ACD            InChI                InChI  1.03 InChI=1S/C20H32O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20(21)22/h6-7,9-10,12-13,15-16H,2-5,8,11,14,17-19H2,1H3,(H,21,22)/b7-6-,10-9-,13-12-,16-15-
+ACD         InChIKey                InChI  1.03                                                                                                                                    YZXBAPSDXZZRGB-DOFZRALJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ACD acedrg               243         "dictionary generator"                  
+ACD acedrg_database      11          "data source"                           
+ACD rdkit                2017.03.2   "Chemoinformatics tool"
+ACD refmac5              5.8.0238    "optimization tool"                     

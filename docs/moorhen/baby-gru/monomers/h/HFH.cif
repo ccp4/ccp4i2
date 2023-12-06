@@ -1,0 +1,467 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HFH     HFH      ~{N}-[(2~{S})-1-[(3~{R},3~{a}~{R},6~{S},6~{a}~{S})-6-fluoranyl-3-oxidanyl-2,3,3~{a},5,6,6~{a}-hexahydrofuro[3,2-b]pyrrol-4-yl]-4-methyl-1-oxidanylidene-pentan-2-yl]-4-[2-(4-methylpiperazin-1-yl)-1,3-thiazol-4-yl]benzamide     NON-POLYMER     74     38     .     
+#
+data_comp_HFH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HFH     C1      C       CH1     0       -25.276     -15.655     0.116       
+HFH     C2      C       CH1     0       -23.817     -15.739     0.602       
+HFH     C3      C       CH1     0       -23.778     -17.029     1.433       
+HFH     O5      O       O2      0       -25.829     -16.960     0.303       
+HFH     N6      N       NR5     0       -23.015     -15.787     -0.643      
+HFH     C7      C       CH1     0       -25.189     -15.283     -1.360      
+HFH     C8      C       CH2     0       -23.900     -15.931     -1.811      
+HFH     C11     C       C       0       -21.658     -15.741     -0.623      
+HFH     C12     C       CH1     0       -20.866     -16.017     -1.906      
+HFH     C14     C       CH2     0       -19.606     -16.840     -1.609      
+HFH     C16     C       C       0       -20.687     -14.544     -3.895      
+HFH     C19     C       CH3     0       -17.457     -17.904     -2.393      
+HFH     C21     C       CR6     0       -20.035     -13.319     -4.477      
+HFH     C22     C       CR16    0       -18.759     -12.914     -4.093      
+HFH     C24     C       CR6     0       -18.841     -11.040     -5.618      
+HFH     C27     C       CR5     0       -18.201     -9.850      -6.210      
+HFH     C30     C       CR5     0       -18.261     -7.954      -7.539      
+HFH     C33     C       CH2     0       -17.921     -5.850      -8.956      
+HFH     C34     C       CH2     0       -18.607     -4.521      -8.734      
+HFH     F10     F       F       0       -25.126     -13.943     -1.501      
+HFH     C4      C       CH2     0       -24.846     -17.879     0.781       
+HFH     O9      O       OH1     0       -24.079     -16.774     2.798       
+HFH     O13     O       O       0       -21.073     -15.458     0.422       
+HFH     C17     C       CH1     0       -18.787     -17.283     -2.825      
+HFH     C18     C       CH3     0       -19.577     -18.246     -3.708      
+HFH     N15     N       NH1     0       -20.522     -14.767     -2.580      
+HFH     O20     O       O       0       -21.292     -15.321     -4.633      
+HFH     C23     C       CR16    0       -18.176     -11.793     -4.648      
+HFH     C25     C       CR16    0       -20.115     -11.460     -6.010      
+HFH     C26     C       CR16    0       -20.699     -12.579     -5.451      
+HFH     C28     C       CR15    0       -16.902     -9.399      -6.067      
+HFH     S29     S       S2      0       -16.693     -8.012      -6.951      
+HFH     N31     N       NRD5    0       -18.967     -9.026      -7.051      
+HFH     N32     N       NR6     0       -18.724     -6.952      -8.404      
+HFH     N35     N       NT      0       -19.954     -4.526      -9.306      
+HFH     C38     C       CH3     0       -20.596     -3.223      -9.139      
+HFH     C36     C       CH2     0       -20.744     -5.582      -8.673      
+HFH     C37     C       CH2     0       -20.110     -6.936      -8.896      
+HFH     H1      H       H       0       -25.774     -14.971     0.622       
+HFH     H2      H       H       0       -23.587     -14.951     1.159       
+HFH     H3      H       H       0       -22.890     -17.451     1.368       
+HFH     H4      H       H       0       -25.951     -15.651     -1.856      
+HFH     H5      H       H       0       -24.038     -16.875     -2.033      
+HFH     H6      H       H       0       -23.533     -15.468     -2.593      
+HFH     H7      H       H       0       -21.429     -16.560     -2.502      
+HFH     H8      H       H       0       -19.868     -17.639     -1.110      
+HFH     H9      H       H       0       -19.023     -16.312     -1.028      
+HFH     H10     H       H       0       -17.421     -17.970     -1.423      
+HFH     H11     H       H       0       -16.724     -17.344     -2.704      
+HFH     H12     H       H       0       -17.363     -18.794     -2.776      
+HFH     H13     H       H       0       -18.292     -13.402     -3.438      
+HFH     H14     H       H       0       -17.798     -5.989      -9.903      
+HFH     H15     H       H       0       -17.053     -5.827      -8.541      
+HFH     H16     H       H       0       -18.660     -4.340      -7.775      
+HFH     H17     H       H       0       -18.078     -3.811      -9.150      
+HFH     H18     H       H       0       -25.236     -18.493     1.427       
+HFH     H19     H       H       0       -24.471     -18.394     0.045       
+HFH     H20     H       H       0       -24.839     -16.398     2.859       
+HFH     H21     H       H       0       -18.581     -16.480     -3.363      
+HFH     H22     H       H       0       -19.949     -18.958     -3.159      
+HFH     H23     H       H       0       -18.990     -18.629     -4.382      
+HFH     H24     H       H       0       -20.299     -17.767     -4.148      
+HFH     H25     H       H       0       -20.205     -14.121     -2.085      
+HFH     H26     H       H       0       -17.318     -11.535     -4.368      
+HFH     H27     H       H       0       -20.587     -10.976     -6.661      
+HFH     H28     H       H       0       -21.559     -12.840     -5.731      
+HFH     H29     H       H       0       -16.205     -9.778      -5.558      
+HFH     H31     H       H       0       -20.669     -3.015      -8.189      
+HFH     H32     H       H       0       -21.486     -3.245      -9.536      
+HFH     H33     H       H       0       -20.062     -2.537      -9.581      
+HFH     H34     H       H       0       -21.648     -5.583      -9.046      
+HFH     H35     H       H       0       -20.810     -5.410      -7.712      
+HFH     H36     H       H       0       -20.633     -7.607      -8.441      
+HFH     H37     H       H       0       -20.115     -7.137      -9.840      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HFH         N35         C38      SINGLE       n     1.462  0.0100     1.462  0.0100
+HFH         N35         C36      SINGLE       n     1.462  0.0100     1.462  0.0100
+HFH         C34         N35      SINGLE       n     1.462  0.0100     1.462  0.0100
+HFH         C36         C37      SINGLE       n     1.510  0.0100     1.510  0.0100
+HFH         N32         C37      SINGLE       n     1.464  0.0109     1.464  0.0109
+HFH         C33         C34      SINGLE       n     1.510  0.0100     1.510  0.0100
+HFH         C33         N32      SINGLE       n     1.464  0.0109     1.464  0.0109
+HFH         C30         N32      SINGLE       n     1.374  0.0200     1.374  0.0200
+HFH         C30         N31      DOUBLE       y     1.354  0.0165     1.354  0.0165
+HFH         C30         S29      SINGLE       y     1.695  0.0200     1.695  0.0200
+HFH         C27         N31      SINGLE       y     1.391  0.0109     1.391  0.0109
+HFH         C28         S29      SINGLE       y     1.695  0.0200     1.695  0.0200
+HFH         C27         C28      DOUBLE       y     1.371  0.0200     1.371  0.0200
+HFH         C24         C27      SINGLE       n     1.469  0.0100     1.469  0.0100
+HFH         C24         C25      DOUBLE       y     1.391  0.0100     1.391  0.0100
+HFH         C24         C23      SINGLE       y     1.391  0.0100     1.391  0.0100
+HFH         C25         C26      SINGLE       y     1.377  0.0100     1.377  0.0100
+HFH         C22         C23      DOUBLE       y     1.377  0.0100     1.377  0.0100
+HFH         C21         C26      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HFH         C21         C22      SINGLE       y     1.389  0.0100     1.389  0.0100
+HFH         C16         C21      SINGLE       n     1.502  0.0100     1.502  0.0100
+HFH         C16         O20      DOUBLE       n     1.230  0.0114     1.230  0.0114
+HFH         C16         N15      SINGLE       n     1.337  0.0101     1.337  0.0101
+HFH         C17         C18      SINGLE       n     1.521  0.0151     1.521  0.0151
+HFH         C12         N15      SINGLE       n     1.456  0.0100     1.456  0.0100
+HFH          C7         F10      SINGLE       n     1.349  0.0200     1.349  0.0200
+HFH         C19         C17      SINGLE       n     1.521  0.0151     1.521  0.0151
+HFH         C14         C17      SINGLE       n     1.528  0.0105     1.528  0.0105
+HFH         C12         C14      SINGLE       n     1.531  0.0100     1.531  0.0100
+HFH         C11         C12      SINGLE       n     1.528  0.0100     1.528  0.0100
+HFH          C7          C8      SINGLE       n     1.516  0.0176     1.516  0.0176
+HFH          N6          C8      SINGLE       n     1.470  0.0100     1.470  0.0100
+HFH          C1          C7      SINGLE       n     1.526  0.0100     1.526  0.0100
+HFH          N6         C11      SINGLE       n     1.346  0.0135     1.346  0.0135
+HFH         C11         O13      DOUBLE       n     1.227  0.0149     1.227  0.0149
+HFH          C2          N6      SINGLE       n     1.476  0.0116     1.476  0.0116
+HFH          C1          C2      SINGLE       n     1.538  0.0153     1.538  0.0153
+HFH          C1          O5      SINGLE       n     1.427  0.0100     1.427  0.0100
+HFH          C2          C3      SINGLE       n     1.538  0.0153     1.538  0.0153
+HFH          O5          C4      SINGLE       n     1.427  0.0100     1.427  0.0100
+HFH          C3          C4      SINGLE       n     1.513  0.0120     1.513  0.0120
+HFH          C3          O9      SINGLE       n     1.419  0.0100     1.419  0.0100
+HFH          C1          H1      SINGLE       n     1.089  0.0100     0.986  0.0173
+HFH          C2          H2      SINGLE       n     1.089  0.0100     0.992  0.0104
+HFH          C3          H3      SINGLE       n     1.089  0.0100     0.986  0.0178
+HFH          C7          H4      SINGLE       n     1.089  0.0100     0.981  0.0170
+HFH          C8          H5      SINGLE       n     1.089  0.0100     0.980  0.0177
+HFH          C8          H6      SINGLE       n     1.089  0.0100     0.980  0.0177
+HFH         C12          H7      SINGLE       n     1.089  0.0100     0.990  0.0200
+HFH         C14          H8      SINGLE       n     1.089  0.0100     0.978  0.0119
+HFH         C14          H9      SINGLE       n     1.089  0.0100     0.978  0.0119
+HFH         C19         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFH         C19         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFH         C19         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFH         C22         H13      SINGLE       n     1.082  0.0130     0.941  0.0168
+HFH         C33         H14      SINGLE       n     1.089  0.0100     0.965  0.0141
+HFH         C33         H15      SINGLE       n     1.089  0.0100     0.965  0.0141
+HFH         C34         H16      SINGLE       n     1.089  0.0100     0.978  0.0109
+HFH         C34         H17      SINGLE       n     1.089  0.0100     0.978  0.0109
+HFH          C4         H18      SINGLE       n     1.089  0.0100     0.973  0.0110
+HFH          C4         H19      SINGLE       n     1.089  0.0100     0.973  0.0110
+HFH          O9         H20      SINGLE       n     0.970  0.0120     0.849  0.0200
+HFH         C17         H21      SINGLE       n     1.089  0.0100     0.989  0.0162
+HFH         C18         H22      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFH         C18         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFH         C18         H24      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFH         N15         H25      SINGLE       n     1.016  0.0100     0.872  0.0200
+HFH         C23         H26      SINGLE       n     1.082  0.0130     0.939  0.0102
+HFH         C25         H27      SINGLE       n     1.082  0.0130     0.939  0.0102
+HFH         C26         H28      SINGLE       n     1.082  0.0130     0.941  0.0168
+HFH         C28         H29      SINGLE       n     1.082  0.0130     0.942  0.0200
+HFH         C38         H31      SINGLE       n     1.089  0.0100     0.975  0.0100
+HFH         C38         H32      SINGLE       n     1.089  0.0100     0.975  0.0100
+HFH         C38         H33      SINGLE       n     1.089  0.0100     0.975  0.0100
+HFH         C36         H34      SINGLE       n     1.089  0.0100     0.978  0.0109
+HFH         C36         H35      SINGLE       n     1.089  0.0100     0.978  0.0109
+HFH         C37         H36      SINGLE       n     1.089  0.0100     0.965  0.0141
+HFH         C37         H37      SINGLE       n     1.089  0.0100     0.965  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HFH          C7          C1          C2     104.802    1.87
+HFH          C7          C1          O5     111.992    1.91
+HFH          C7          C1          H1     111.223    1.50
+HFH          C2          C1          O5     105.292    1.61
+HFH          C2          C1          H1     111.710    2.45
+HFH          O5          C1          H1     112.135    1.50
+HFH          N6          C2          C1     103.067    1.50
+HFH          N6          C2          C3     113.949    2.21
+HFH          N6          C2          H2     111.574    1.50
+HFH          C1          C2          C3     104.802    1.87
+HFH          C1          C2          H2     110.660    1.91
+HFH          C3          C2          H2     110.691    1.64
+HFH          C2          C3          C4     103.933    1.82
+HFH          C2          C3          O9     110.714    3.00
+HFH          C2          C3          H3     110.225    1.62
+HFH          C4          C3          O9     110.813    3.00
+HFH          C4          C3          H3     111.691    1.57
+HFH          O9          C3          H3     109.786    2.31
+HFH          C1          O5          C4     108.692    2.03
+HFH          C8          N6         C11     125.184    3.00
+HFH          C8          N6          C2     111.575    2.39
+HFH         C11          N6          C2     123.241    3.00
+HFH         F10          C7          C8     111.374    2.09
+HFH         F10          C7          C1     110.789    1.99
+HFH         F10          C7          H4     111.229    1.50
+HFH          C8          C7          C1     103.933    1.82
+HFH          C8          C7          H4     110.859    1.50
+HFH          C1          C7          H4     111.012    1.50
+HFH          C7          C8          N6     103.352    1.50
+HFH          C7          C8          H5     111.088    1.50
+HFH          C7          C8          H6     111.088    1.50
+HFH          N6          C8          H5     110.966    1.50
+HFH          N6          C8          H6     110.966    1.50
+HFH          H5          C8          H6     109.055    1.50
+HFH         C12         C11          N6     118.024    2.02
+HFH         C12         C11         O13     121.561    1.50
+HFH          N6         C11         O13     120.415    1.50
+HFH         N15         C12         C14     110.930    1.50
+HFH         N15         C12         C11     111.249    2.34
+HFH         N15         C12          H7     108.366    1.50
+HFH         C14         C12         C11     111.469    2.23
+HFH         C14         C12          H7     107.451    1.50
+HFH         C11         C12          H7     108.476    1.50
+HFH         C17         C14         C12     114.904    1.50
+HFH         C17         C14          H8     108.478    1.50
+HFH         C17         C14          H9     108.478    1.50
+HFH         C12         C14          H8     108.818    1.50
+HFH         C12         C14          H9     108.818    1.50
+HFH          H8         C14          H9     107.542    1.50
+HFH         C21         C16         O20     120.865    1.50
+HFH         C21         C16         N15     116.740    1.50
+HFH         O20         C16         N15     122.394    1.50
+HFH         C17         C19         H10     109.488    1.50
+HFH         C17         C19         H11     109.488    1.50
+HFH         C17         C19         H12     109.488    1.50
+HFH         H10         C19         H11     109.411    1.50
+HFH         H10         C19         H12     109.411    1.50
+HFH         H11         C19         H12     109.411    1.50
+HFH         C26         C21         C22     118.893    1.50
+HFH         C26         C21         C16     120.554    2.80
+HFH         C22         C21         C16     120.554    2.80
+HFH         C23         C22         C21     120.657    1.50
+HFH         C23         C22         H13     119.482    1.50
+HFH         C21         C22         H13     119.861    1.50
+HFH         C27         C24         C25     120.845    1.50
+HFH         C27         C24         C23     120.845    1.50
+HFH         C25         C24         C23     118.310    1.50
+HFH         N31         C27         C28     108.547    1.50
+HFH         N31         C27         C24     118.641    1.50
+HFH         C28         C27         C24     132.812    2.57
+HFH         N32         C30         N31     129.260    1.97
+HFH         N32         C30         S29     122.117    3.00
+HFH         N31         C30         S29     108.623    3.00
+HFH         C34         C33         N32     110.420    1.50
+HFH         C34         C33         H14     109.595    1.50
+HFH         C34         C33         H15     109.595    1.50
+HFH         N32         C33         H14     109.654    1.50
+HFH         N32         C33         H15     109.654    1.50
+HFH         H14         C33         H15     108.670    1.50
+HFH         N35         C34         C33     110.809    1.50
+HFH         N35         C34         H16     109.480    1.50
+HFH         N35         C34         H17     109.480    1.50
+HFH         C33         C34         H16     109.306    1.50
+HFH         C33         C34         H17     109.306    1.50
+HFH         H16         C34         H17     108.187    1.50
+HFH          O5          C4          C3     105.158    1.50
+HFH          O5          C4         H18     110.691    1.50
+HFH          O5          C4         H19     110.691    1.50
+HFH          C3          C4         H18     110.668    1.50
+HFH          C3          C4         H19     110.668    1.50
+HFH         H18          C4         H19     108.924    1.50
+HFH          C3          O9         H20     108.859    2.55
+HFH         C18         C17         C19     110.507    1.50
+HFH         C18         C17         C14     110.880    1.50
+HFH         C18         C17         H21     108.052    1.50
+HFH         C19         C17         C14     110.880    1.50
+HFH         C19         C17         H21     108.052    1.50
+HFH         C14         C17         H21     108.053    1.50
+HFH         C17         C18         H22     109.488    1.50
+HFH         C17         C18         H23     109.488    1.50
+HFH         C17         C18         H24     109.488    1.50
+HFH         H22         C18         H23     109.411    1.50
+HFH         H22         C18         H24     109.411    1.50
+HFH         H23         C18         H24     109.411    1.50
+HFH         C16         N15         C12     121.986    2.35
+HFH         C16         N15         H25     119.438    1.94
+HFH         C12         N15         H25     118.576    1.50
+HFH         C24         C23         C22     120.742    1.50
+HFH         C24         C23         H26     119.547    1.50
+HFH         C22         C23         H26     119.711    1.50
+HFH         C24         C25         C26     120.742    1.50
+HFH         C24         C25         H27     119.547    1.50
+HFH         C26         C25         H27     119.711    1.50
+HFH         C25         C26         C21     120.657    1.50
+HFH         C25         C26         H28     119.482    1.50
+HFH         C21         C26         H28     119.861    1.50
+HFH         S29         C28         C27     108.623    3.00
+HFH         S29         C28         H29     122.728    3.00
+HFH         C27         C28         H29     128.649    2.15
+HFH         C30         S29         C28     108.623    3.00
+HFH         C30         N31         C27     105.585    1.50
+HFH         C37         N32         C33     113.533    1.57
+HFH         C37         N32         C30     123.234    3.00
+HFH         C33         N32         C30     123.234    3.00
+HFH         C38         N35         C36     110.746    1.50
+HFH         C38         N35         C34     110.746    1.50
+HFH         C36         N35         C34     109.130    1.50
+HFH         N35         C38         H31     109.526    1.50
+HFH         N35         C38         H32     109.526    1.50
+HFH         N35         C38         H33     109.526    1.50
+HFH         H31         C38         H32     109.428    1.50
+HFH         H31         C38         H33     109.428    1.50
+HFH         H32         C38         H33     109.428    1.50
+HFH         N35         C36         C37     110.809    1.50
+HFH         N35         C36         H34     109.480    1.50
+HFH         N35         C36         H35     109.480    1.50
+HFH         C37         C36         H34     109.306    1.50
+HFH         C37         C36         H35     109.306    1.50
+HFH         H34         C36         H35     108.187    1.50
+HFH         C36         C37         N32     110.420    1.50
+HFH         C36         C37         H36     109.595    1.50
+HFH         C36         C37         H37     109.595    1.50
+HFH         N32         C37         H36     109.654    1.50
+HFH         N32         C37         H37     109.654    1.50
+HFH         H36         C37         H37     108.670    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HFH             sp3_sp3_1          C7          C1          C2          N6      60.000    10.0     3
+HFH           sp3_sp3_122          C7          C1          O5          C4      60.000    10.0     3
+HFH            sp3_sp3_32          C2          C1          C7         F10     180.000    10.0     3
+HFH            sp2_sp2_11         O20         C16         C21         C26       0.000     5.0     2
+HFH            sp2_sp2_15         O20         C16         N15         C12       0.000     5.0     2
+HFH            sp3_sp3_94         C18         C17         C19         H10     180.000    10.0     3
+HFH              const_35         C16         C21         C22         C23     180.000    10.0     2
+HFH       const_sp2_sp2_3         C16         C21         C26         C25     180.000     5.0     2
+HFH              const_17         C21         C22         C23         C24       0.000    10.0     2
+HFH             sp2_sp2_6         C25         C24         C27         N31       0.000     5.0     2
+HFH              const_14         C22         C23         C24         C27     180.000    10.0     2
+HFH              const_11         C27         C24         C25         C26     180.000    10.0     2
+HFH              const_29         N31         C27         C28         S29       0.000    10.0     2
+HFH              const_21         C28         C27         N31         C30       0.000    10.0     2
+HFH              const_26         N32         C30         S29         C28     180.000    10.0     2
+HFH              const_24         N32         C30         N31         C27     180.000    10.0     2
+HFH             sp2_sp2_1         N31         C30         N32         C37     180.000     5.0     2
+HFH            sp3_sp3_49         N32         C33         C34         N35      60.000    10.0     3
+HFH            sp2_sp3_19         C37         N32         C33         C34       0.000    10.0     6
+HFH            sp3_sp3_59         C33         C34         N35         C38      60.000    10.0     3
+HFH            sp3_sp3_14          N6          C2          C3          O9     -60.000    10.0     3
+HFH            sp2_sp3_10         C11          N6          C2          C1     180.000    10.0     6
+HFH            sp3_sp3_88         C19         C17         C18         H22      60.000    10.0     3
+HFH       const_sp2_sp2_5         C24         C25         C26         C21       0.000     5.0     2
+HFH            sp3_sp3_22          O9          C3          C4          O5     -60.000    10.0     3
+HFH           sp3_sp3_124          C2          C3          O9         H20     180.000    10.0     3
+HFH              const_27         C27         C28         S29         C30       0.000    10.0     2
+HFH            sp2_sp3_13         C33         N32         C37         C36       0.000    10.0     6
+HFH            sp3_sp3_80         H31         C38         N35         C36     -60.000    10.0     3
+HFH            sp3_sp3_65         C37         C36         N35         C38     180.000    10.0     3
+HFH            sp3_sp3_70         N35         C36         C37         N32     -60.000    10.0     3
+HFH            sp3_sp3_28          C3          C4          O5          C1     -60.000    10.0     3
+HFH             sp2_sp3_4         C11          N6          C8          C7     180.000    10.0     6
+HFH            sp2_sp2_17         C12         C11          N6          C8     180.000     5.0     2
+HFH            sp3_sp3_43         F10          C7          C8          N6     180.000    10.0     3
+HFH            sp2_sp3_34         O13         C11         C12         N15     180.000    10.0     6
+HFH            sp2_sp3_25         C16         N15         C12         C14       0.000    10.0     6
+HFH           sp3_sp3_112         N15         C12         C14         C17     180.000    10.0     3
+HFH           sp3_sp3_104         C12         C14         C17         C18     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HFH    chir_1    C1    O5    C7    C2    positive
+HFH    chir_2    C2    N6    C1    C3    negative
+HFH    chir_3    C3    O9    C4    C2    negative
+HFH    chir_4    C7    F10    C1    C8    positive
+HFH    chir_5    C12    N15    C11    C14    positive
+HFH    chir_6    C17    C14    C18    C19    both
+HFH    chir_7    N35    C36    C34    C38    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HFH    plan-1         C16   0.020
+HFH    plan-1         C21   0.020
+HFH    plan-1         C22   0.020
+HFH    plan-1         C23   0.020
+HFH    plan-1         C24   0.020
+HFH    plan-1         C25   0.020
+HFH    plan-1         C26   0.020
+HFH    plan-1         C27   0.020
+HFH    plan-1         H13   0.020
+HFH    plan-1         H26   0.020
+HFH    plan-1         H27   0.020
+HFH    plan-1         H28   0.020
+HFH    plan-2         C24   0.020
+HFH    plan-2         C27   0.020
+HFH    plan-2         C28   0.020
+HFH    plan-2         C30   0.020
+HFH    plan-2         H29   0.020
+HFH    plan-2         N31   0.020
+HFH    plan-2         N32   0.020
+HFH    plan-2         S29   0.020
+HFH    plan-3         C11   0.020
+HFH    plan-3          C2   0.020
+HFH    plan-3          C8   0.020
+HFH    plan-3          N6   0.020
+HFH    plan-4         C11   0.020
+HFH    plan-4         C12   0.020
+HFH    plan-4          N6   0.020
+HFH    plan-4         O13   0.020
+HFH    plan-5         C16   0.020
+HFH    plan-5         C21   0.020
+HFH    plan-5         N15   0.020
+HFH    plan-5         O20   0.020
+HFH    plan-6         C12   0.020
+HFH    plan-6         C16   0.020
+HFH    plan-6         H25   0.020
+HFH    plan-6         N15   0.020
+HFH    plan-7         C30   0.020
+HFH    plan-7         C33   0.020
+HFH    plan-7         C37   0.020
+HFH    plan-7         N32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HFH            InChI                InChI  1.03 InChI=1S/C27H36FN5O4S/c1-16(2)12-20(26(36)33-13-19(28)24-23(33)22(34)14-37-24)29-25(35)18-6-4-17(5-7-18)21-15-38-27(30-21)32-10-8-31(3)9-11-32/h4-7,15-16,19-20,22-24,34H,8-14H2,1-3H3,(H,29,35)/t19-,20-,22-,23+,24+/m0/s1
+HFH         InChIKey                InChI  1.03                                                                                                                                                                                                 BJRXVCXTMWVZKF-KVFBUXGHSA-N
+HFH SMILES_CANONICAL               CACTVS 3.385                                                                                                                                   CC(C)C[C@H](NC(=O)c1ccc(cc1)c2csc(n2)N3CCN(C)CC3)C(=O)N4C[C@H](F)[C@H]5OC[C@H](O)[C@@H]45
+HFH           SMILES               CACTVS 3.385                                                                                                                                         CC(C)C[CH](NC(=O)c1ccc(cc1)c2csc(n2)N3CCN(C)CC3)C(=O)N4C[CH](F)[CH]5OC[CH](O)[CH]45
+HFH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                 CC(C)C[C@@H](C(=O)N1C[C@@H]([C@@H]2[C@H]1[C@H](CO2)O)F)NC(=O)c3ccc(cc3)c4csc(n4)N5CCN(CC5)C
+HFH           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                        CC(C)CC(C(=O)N1CC(C2C1C(CO2)O)F)NC(=O)c3ccc(cc3)c4csc(n4)N5CCN(CC5)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HFH acedrg               243         "dictionary generator"                  
+HFH acedrg_database      11          "data source"                           
+HFH rdkit                2017.03.2   "Chemoinformatics tool"
+HFH refmac5              5.8.0238    "optimization tool"                     

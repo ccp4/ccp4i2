@@ -1,0 +1,671 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MRR     MRR      "(R)-2-METHYLMYRISTOYL-COENZYME A"     NON-POLYMER     124     64     .     
+#
+data_comp_MRR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MRR     O7A     O       OP      -1      -11.791     1.409       2.530       
+MRR     P3B     P       P       0       -12.953     1.410       1.556       
+MRR     O8A     O       O       0       -13.921     0.273       1.822       
+MRR     O9A     O       OP      -1      -13.656     2.754       1.512       
+MRR     O3B     O       O2      0       -12.325     1.188       0.079       
+MRR     C3B     C       CH1     0       -11.770     -0.111      -0.155      
+MRR     C2B     C       CH1     0       -12.769     -1.065      -0.815      
+MRR     O2B     O       OH1     0       -13.636     -0.432      -1.735      
+MRR     C1B     C       CH1     0       -11.833     -2.062      -1.496      
+MRR     N9A     N       NT      0       -11.509     -3.218      -0.655      
+MRR     C4A     C       CR56    0       -12.235     -4.377      -0.584      
+MRR     N3A     N       NRD6    0       -13.358     -4.674      -1.265      
+MRR     C2A     C       CR16    0       -13.797     -5.895      -0.953      
+MRR     N1A     N       NRD6    0       -13.275     -6.787      -0.095      
+MRR     C6A     C       CR6     0       -12.142     -6.456      0.578       
+MRR     N6A     N       NH2     0       -11.622     -7.336      1.429       
+MRR     C5A     C       CR56    0       -11.583     -5.184      0.328       
+MRR     N7A     N       NRD5    0       -10.460     -4.534      0.825       
+MRR     C8A     C       CR15    0       -10.453     -3.369      0.219       
+MRR     O4B     O       O2      0       -10.642     -1.369      -1.800      
+MRR     C4B     C       CH1     0       -10.668     -0.046      -1.204      
+MRR     C5B     C       CH2     0       -9.295      0.299       -0.681      
+MRR     O5B     O       O2      0       -8.446      0.688       -1.793      
+MRR     P1A     P       P       0       -7.094      1.510       -1.521      
+MRR     O1A     O       O       0       -6.346      1.666       -2.803      
+MRR     O2A     O       OP      -1      -7.408      2.740       -0.736      
+MRR     O3A     O       O2      0       -6.290      0.489       -0.581      
+MRR     P2A     P       P       0       -5.129      0.697       0.507       
+MRR     O4A     O       O       0       -5.679      1.450       1.673       
+MRR     O5A     O       OP      -1      -4.445      -0.608      0.748       
+MRR     O6A     O       O2      0       -4.115      1.658       -0.283      
+MRR     CCP     C       CH2     0       -2.947      2.183       0.413       
+MRR     CBP     C       CT      0       -2.051      2.946       -0.567      
+MRR     CDP     C       CH3     0       -1.549      1.976       -1.646      
+MRR     CEP     C       CH3     0       -2.876      4.046       -1.252      
+MRR     CAP     C       CH1     0       -0.842      3.596       0.134       
+MRR     OAP     O       OH1     0       -1.302      4.569       1.066       
+MRR     C9P     C       C       0       0.097       2.629       0.848       
+MRR     O9P     O       O       0       -0.170      2.266       1.993       
+MRR     N8P     N       NH1     0       1.175       2.213       0.191       
+MRR     C7P     C       CH2     0       2.161       1.303       0.766       
+MRR     C6P     C       CH2     0       3.414       1.172       -0.085      
+MRR     C5P     C       C       0       4.451       0.225       0.489       
+MRR     O5P     O       O       0       4.234       -0.401      1.525       
+MRR     N4P     N       NH1     0       5.606       0.102       -0.184      
+MRR     C3P     C       CH2     0       6.699       -0.766      0.240       
+MRR     C2P     C       CH2     0       7.972       -0.589      -0.571      
+MRR     S1P     S       S2      0       8.523       -2.118      -1.376      
+MRR     C1      C       C       0       10.196      -2.413      -1.867      
+MRR     O1      O       O       0       10.510      -3.435      -2.429      
+MRR     C2      C       CH1     0       11.191      -1.309      -1.529      
+MRR     C13     C       CH3     0       11.057      -0.150      -2.509      
+MRR     C3      C       CH2     0       12.631      -1.849      -1.494      
+MRR     C4      C       CH2     0       13.690      -0.888      -0.965      
+MRR     C5      C       CH2     0       15.044      -1.517      -0.730      
+MRR     C6      C       CH2     0       16.186      -0.538      -0.586      
+MRR     C7      C       CH2     0       17.546      -1.193      -0.513      
+MRR     C8      C       CH2     0       18.689      -0.251      -0.212      
+MRR     C9      C       CH2     0       20.028      -0.938      -0.077      
+MRR     C10     C       CH2     0       21.186      -0.011      0.207       
+MRR     C11     C       CH2     0       22.518      -0.713      0.339       
+MRR     C12     C       CH2     0       23.682      0.204       0.626       
+MRR     C14     C       CH2     0       25.008      -0.503      0.756       
+MRR     C15     C       CH3     0       26.167      0.422       1.042       
+MRR     "H3'"   H       H       0       -11.425     -0.504      0.680       
+MRR     "H2'"   H       H       0       -13.305     -1.522      -0.114      
+MRR     H3      H       H       0       -13.199     -0.162      -2.412      
+MRR     "H1'"   H       H       0       -12.253     -2.376      -2.328      
+MRR     H4      H       H       0       -14.584     -6.170      -1.396      
+MRR     HN61    H       H       0       -10.752     -7.377      1.534       
+MRR     HN62    H       H       0       -12.151     -7.871      1.880       
+MRR     H8      H       H       0       -9.790      -2.717      0.371       
+MRR     "H4'"   H       H       0       -10.913     0.610       -1.891      
+MRR     "H5'1"  H       H       0       -8.908      -0.486      -0.220      
+MRR     "H5'2"  H       H       0       -9.365      1.041       -0.032      
+MRR     H201    H       H       0       -2.447      1.443       0.811       
+MRR     H202    H       H       0       -3.234      2.780       1.132       
+MRR     H181    H       H       0       -0.836      2.396       -2.157      
+MRR     H182    H       H       0       -2.278      1.742       -2.246      
+MRR     H183    H       H       0       -1.211      1.166       -1.226      
+MRR     H191    H       H       0       -2.282      4.667       -1.706      
+MRR     H192    H       H       0       -3.395      4.528       -0.584      
+MRR     H193    H       H       0       -3.483      3.651       -1.902      
+MRR     H10     H       H       0       -0.321      4.068       -0.560      
+MRR     H1      H       H       0       -0.684      5.133       1.204       
+MRR     HN8     H       H       0       1.303       2.486       -0.628      
+MRR     H171    H       H       0       1.753       0.419       0.872       
+MRR     H172    H       H       0       2.414       1.627       1.656       
+MRR     H161    H       H       0       3.820       2.050       -0.192      
+MRR     H162    H       H       0       3.165       0.860       -0.973      
+MRR     HN4     H       H       0       5.695       0.565       -0.918      
+MRR     H11     H       H       0       6.403       -1.700      0.175       
+MRR     H12     H       H       0       6.900       -0.583      1.182       
+MRR     H21     H       H       0       8.681       -0.272      0.023       
+MRR     H22     H       H       0       7.832       0.094       -1.255      
+MRR     H2      H       H       0       10.975      -0.969      -0.624      
+MRR     H131    H       H       0       11.598      0.599       -2.205      
+MRR     H132    H       H       0       10.127      0.129       -2.564      
+MRR     H133    H       H       0       11.361      -0.431      -3.389      
+MRR     H31     H       H       0       12.882      -2.113      -2.404      
+MRR     H32     H       H       0       12.644      -2.656      -0.939      
+MRR     H41     H       H       0       13.371      -0.503      -0.121      
+MRR     H42     H       H       0       13.794      -0.152      -1.605      
+MRR     H51     H       H       0       15.242      -2.120      -1.478      
+MRR     H52     H       H       0       14.997      -2.064      0.084       
+MRR     H61     H       H       0       16.047      -0.007      0.227       
+MRR     H62     H       H       0       16.173      0.078       -1.350      
+MRR     H71     H       H       0       17.725      -1.638      -1.369      
+MRR     H72     H       H       0       17.522      -1.886      0.181       
+MRR     H81     H       H       0       18.494      0.226       0.622       
+MRR     H82     H       H       0       18.747      0.414       -0.931      
+MRR     H91     H       H       0       20.215      -1.426      -0.907      
+MRR     H92     H       H       0       19.970      -1.597      0.647       
+MRR     H101    H       H       0       21.003      0.476       1.039       
+MRR     H102    H       H       0       21.248      0.648       -0.517      
+MRR     H111    H       H       0       22.699      -1.200      -0.493      
+MRR     H112    H       H       0       22.454      -1.373      1.061       
+MRR     H121    H       H       0       23.502      0.691       1.458       
+MRR     H122    H       H       0       23.748      0.865       -0.097      
+MRR     H141    H       H       0       25.188      -0.990      -0.077      
+MRR     H142    H       H       0       24.943      -1.163      1.480       
+MRR     H151    H       H       0       26.987      -0.096      1.113       
+MRR     H152    H       H       0       26.009      0.893       1.879       
+MRR     H153    H       H       0       26.254      1.068       0.319       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MRR         O7A         P3B      SINGLE       n     1.517  0.0192     1.517  0.0192
+MRR         P3B         O8A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+MRR         P3B         O9A      SINGLE       n     1.517  0.0192     1.517  0.0192
+MRR         P3B         O3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+MRR         O3B         C3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+MRR         C3B         C2B      SINGLE       n     1.529  0.0125     1.529  0.0125
+MRR         C3B         C4B      SINGLE       n     1.525  0.0133     1.525  0.0133
+MRR         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+MRR         C2B         C1B      SINGLE       n     1.525  0.0100     1.525  0.0100
+MRR         C1B         N9A      SINGLE       n     1.458  0.0200     1.458  0.0200
+MRR         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+MRR         N9A         C4A      SINGLE       y     1.372  0.0100     1.372  0.0100
+MRR         N9A         C8A      SINGLE       y     1.372  0.0200     1.372  0.0200
+MRR         C4A         N3A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+MRR         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+MRR         N3A         C2A      SINGLE       y     1.330  0.0100     1.330  0.0100
+MRR         C2A         N1A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+MRR         N1A         C6A      SINGLE       y     1.354  0.0100     1.354  0.0100
+MRR         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+MRR         C6A         C5A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+MRR         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+MRR         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+MRR         O4B         C4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+MRR         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+MRR         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+MRR         O5B         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MRR         P1A         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MRR         P1A         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+MRR         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MRR         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MRR         P2A         O4A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MRR         P2A         O5A      SINGLE       n     1.493  0.0122     1.493  0.0122
+MRR         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MRR         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+MRR         CCP         CBP      SINGLE       n     1.526  0.0108     1.526  0.0108
+MRR         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+MRR         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+MRR         CBP         CAP      SINGLE       n     1.532  0.0112     1.532  0.0112
+MRR         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+MRR         CAP         C9P      SINGLE       n     1.519  0.0108     1.519  0.0108
+MRR         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MRR         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+MRR         N8P         C7P      SINGLE       n     1.457  0.0100     1.457  0.0100
+MRR         C7P         C6P      SINGLE       n     1.513  0.0195     1.513  0.0195
+MRR         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+MRR         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MRR         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+MRR         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+MRR         C3P         C2P      SINGLE       n     1.510  0.0158     1.510  0.0158
+MRR         C2P         S1P      SINGLE       n     1.809  0.0191     1.809  0.0191
+MRR         S1P          C1      SINGLE       n     1.762  0.0200     1.762  0.0200
+MRR          C1          O1      DOUBLE       n     1.207  0.0100     1.207  0.0100
+MRR          C1          C2      SINGLE       n     1.515  0.0176     1.515  0.0176
+MRR          C2         C13      SINGLE       n     1.521  0.0173     1.521  0.0173
+MRR          C2          C3      SINGLE       n     1.536  0.0100     1.536  0.0100
+MRR          C3          C4      SINGLE       n     1.523  0.0116     1.523  0.0116
+MRR          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+MRR         C12         C14      SINGLE       n     1.507  0.0200     1.507  0.0200
+MRR         C14         C15      SINGLE       n     1.510  0.0200     1.510  0.0200
+MRR         C3B       "H3'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+MRR         C2B       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+MRR         O2B          H3      SINGLE       n     0.970  0.0120     0.849  0.0200
+MRR         C1B       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+MRR         C2A          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+MRR         N6A        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+MRR         N6A        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+MRR         C8A          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+MRR         C4B       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+MRR         C5B      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+MRR         C5B      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+MRR         CCP        H201      SINGLE       n     1.089  0.0100     0.978  0.0102
+MRR         CCP        H202      SINGLE       n     1.089  0.0100     0.978  0.0102
+MRR         CDP        H181      SINGLE       n     1.089  0.0100     0.973  0.0146
+MRR         CDP        H182      SINGLE       n     1.089  0.0100     0.973  0.0146
+MRR         CDP        H183      SINGLE       n     1.089  0.0100     0.973  0.0146
+MRR         CEP        H191      SINGLE       n     1.089  0.0100     0.973  0.0146
+MRR         CEP        H192      SINGLE       n     1.089  0.0100     0.973  0.0146
+MRR         CEP        H193      SINGLE       n     1.089  0.0100     0.973  0.0146
+MRR         CAP         H10      SINGLE       n     1.089  0.0100     0.988  0.0129
+MRR         OAP          H1      SINGLE       n     0.970  0.0120     0.848  0.0200
+MRR         N8P         HN8      SINGLE       n     1.016  0.0100     0.872  0.0200
+MRR         C7P        H171      SINGLE       n     1.089  0.0100     0.980  0.0159
+MRR         C7P        H172      SINGLE       n     1.089  0.0100     0.980  0.0159
+MRR         C6P        H161      SINGLE       n     1.089  0.0100     0.973  0.0156
+MRR         C6P        H162      SINGLE       n     1.089  0.0100     0.973  0.0156
+MRR         N4P         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+MRR         C3P         H11      SINGLE       n     1.089  0.0100     0.981  0.0127
+MRR         C3P         H12      SINGLE       n     1.089  0.0100     0.981  0.0127
+MRR         C2P         H21      SINGLE       n     1.089  0.0100     0.978  0.0177
+MRR         C2P         H22      SINGLE       n     1.089  0.0100     0.978  0.0177
+MRR          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0142
+MRR         C13        H131      SINGLE       n     1.089  0.0100     0.973  0.0141
+MRR         C13        H132      SINGLE       n     1.089  0.0100     0.973  0.0141
+MRR         C13        H133      SINGLE       n     1.089  0.0100     0.973  0.0141
+MRR          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+MRR          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+MRR          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0163
+MRR         C14        H141      SINGLE       n     1.089  0.0100     0.982  0.0155
+MRR         C14        H142      SINGLE       n     1.089  0.0100     0.982  0.0155
+MRR         C15        H151      SINGLE       n     1.089  0.0100     0.973  0.0157
+MRR         C15        H152      SINGLE       n     1.089  0.0100     0.973  0.0157
+MRR         C15        H153      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MRR         O7A         P3B         O8A     112.139    1.52
+MRR         O7A         P3B         O9A     112.139    1.52
+MRR         O7A         P3B         O3B     106.518    3.00
+MRR         O8A         P3B         O9A     112.139    1.52
+MRR         O8A         P3B         O3B     106.518    3.00
+MRR         O9A         P3B         O3B     106.518    3.00
+MRR         P3B         O3B         C3B     109.471    3.00
+MRR         O3B         C3B         C2B     110.766    3.00
+MRR         O3B         C3B         C4B     110.864    2.31
+MRR         O3B         C3B       "H3'"     110.343    1.64
+MRR         C2B         C3B         C4B     102.352    1.50
+MRR         C2B         C3B       "H3'"     110.255    2.04
+MRR         C4B         C3B       "H3'"     110.624    1.81
+MRR         C3B         C2B         O2B     112.463    2.73
+MRR         C3B         C2B         C1B     101.388    1.50
+MRR         C3B         C2B       "H2'"     110.255    2.04
+MRR         O2B         C2B         C1B     111.715    2.69
+MRR         O2B         C2B       "H2'"     110.448    1.97
+MRR         C1B         C2B       "H2'"     110.636    1.70
+MRR         C2B         O2B          H3     109.103    2.13
+MRR         C2B         C1B         N9A     113.752    2.20
+MRR         C2B         C1B         O4B     106.047    1.50
+MRR         C2B         C1B       "H1'"     109.015    1.50
+MRR         N9A         C1B         O4B     108.167    1.51
+MRR         N9A         C1B       "H1'"     109.246    1.50
+MRR         O4B         C1B       "H1'"     109.807    1.50
+MRR         C1B         N9A         C4A     125.158    1.54
+MRR         C1B         N9A         C8A     126.078    2.46
+MRR         C4A         N9A         C8A     107.594    1.50
+MRR         N9A         C4A         N3A     125.845    1.50
+MRR         N9A         C4A         C5A     107.666    1.69
+MRR         N3A         C4A         C5A     126.489    1.50
+MRR         C4A         N3A         C2A     110.982    1.50
+MRR         N3A         C2A         N1A     129.332    1.50
+MRR         N3A         C2A          H4     115.355    1.50
+MRR         N1A         C2A          H4     115.313    1.50
+MRR         C2A         N1A         C6A     118.521    1.50
+MRR         N1A         C6A         N6A     118.799    1.50
+MRR         N1A         C6A         C5A     117.409    1.50
+MRR         N6A         C6A         C5A     123.792    1.50
+MRR         C6A         N6A        HN61     119.723    1.50
+MRR         C6A         N6A        HN62     119.723    1.50
+MRR        HN61         N6A        HN62     120.554    1.88
+MRR         C4A         C5A         C6A     117.267    1.50
+MRR         C4A         C5A         N7A     110.588    1.50
+MRR         C6A         C5A         N7A     132.145    1.50
+MRR         C5A         N7A         C8A     103.927    1.50
+MRR         N9A         C8A         N7A     112.130    1.94
+MRR         N9A         C8A          H8     124.701    2.19
+MRR         N7A         C8A          H8     123.170    1.50
+MRR         C1B         O4B         C4B     109.903    1.50
+MRR         C3B         C4B         O4B     105.508    1.50
+MRR         C3B         C4B         C5B     114.866    1.63
+MRR         C3B         C4B       "H4'"     109.143    1.50
+MRR         O4B         C4B         C5B     109.123    1.50
+MRR         O4B         C4B       "H4'"     108.947    1.50
+MRR         C5B         C4B       "H4'"     108.268    1.50
+MRR         C4B         C5B         O5B     109.342    1.50
+MRR         C4B         C5B      "H5'1"     109.624    1.50
+MRR         C4B         C5B      "H5'2"     109.624    1.50
+MRR         O5B         C5B      "H5'1"     109.845    1.50
+MRR         O5B         C5B      "H5'2"     109.845    1.50
+MRR      "H5'1"         C5B      "H5'2"     108.472    1.50
+MRR         C5B         O5B         P1A     118.553    2.41
+MRR         O5B         P1A         O1A     109.410    1.50
+MRR         O5B         P1A         O2A     109.410    1.50
+MRR         O5B         P1A         O3A     101.065    1.97
+MRR         O1A         P1A         O2A     118.411    2.35
+MRR         O1A         P1A         O3A     108.816    2.14
+MRR         O2A         P1A         O3A     108.816    2.14
+MRR         P1A         O3A         P2A     132.542    3.00
+MRR         O3A         P2A         O4A     108.816    2.14
+MRR         O3A         P2A         O5A     108.816    2.14
+MRR         O3A         P2A         O6A     101.065    1.97
+MRR         O4A         P2A         O5A     118.411    2.35
+MRR         O4A         P2A         O6A     107.912    2.57
+MRR         O5A         P2A         O6A     107.912    2.57
+MRR         P2A         O6A         CCP     119.251    1.51
+MRR         O6A         CCP         CBP     108.435    1.69
+MRR         O6A         CCP        H201     109.739    1.50
+MRR         O6A         CCP        H202     109.739    1.50
+MRR         CBP         CCP        H201     109.473    1.50
+MRR         CBP         CCP        H202     109.473    1.50
+MRR        H201         CCP        H202     108.108    1.50
+MRR         CCP         CBP         CDP     109.385    1.50
+MRR         CCP         CBP         CEP     109.385    1.50
+MRR         CCP         CBP         CAP     111.094    2.85
+MRR         CDP         CBP         CEP     108.765    1.50
+MRR         CDP         CBP         CAP     109.534    1.52
+MRR         CEP         CBP         CAP     109.534    1.52
+MRR         CBP         CDP        H181     109.575    1.50
+MRR         CBP         CDP        H182     109.575    1.50
+MRR         CBP         CDP        H183     109.575    1.50
+MRR        H181         CDP        H182     109.377    1.50
+MRR        H181         CDP        H183     109.377    1.50
+MRR        H182         CDP        H183     109.377    1.50
+MRR         CBP         CEP        H191     109.575    1.50
+MRR         CBP         CEP        H192     109.575    1.50
+MRR         CBP         CEP        H193     109.575    1.50
+MRR        H191         CEP        H192     109.377    1.50
+MRR        H191         CEP        H193     109.377    1.50
+MRR        H192         CEP        H193     109.377    1.50
+MRR         CBP         CAP         OAP     109.482    3.00
+MRR         CBP         CAP         C9P     111.511    2.91
+MRR         CBP         CAP         H10     107.825    1.50
+MRR         OAP         CAP         C9P     109.850    1.55
+MRR         OAP         CAP         H10     108.675    1.50
+MRR         C9P         CAP         H10     108.529    1.70
+MRR         CAP         OAP          H1     108.894    3.00
+MRR         CAP         C9P         O9P     119.859    1.78
+MRR         CAP         C9P         N8P     117.147    1.50
+MRR         O9P         C9P         N8P     122.977    1.50
+MRR         C9P         N8P         C7P     122.964    1.80
+MRR         C9P         N8P         HN8     118.685    1.94
+MRR         C7P         N8P         HN8     118.351    1.90
+MRR         N8P         C7P         C6P     112.257    1.50
+MRR         N8P         C7P        H171     108.979    1.50
+MRR         N8P         C7P        H172     108.979    1.50
+MRR         C6P         C7P        H171     108.971    1.50
+MRR         C6P         C7P        H172     108.971    1.50
+MRR        H171         C7P        H172     107.877    1.50
+MRR         C7P         C6P         C5P     112.120    2.79
+MRR         C7P         C6P        H161     109.432    1.50
+MRR         C7P         C6P        H162     109.432    1.50
+MRR         C5P         C6P        H161     108.945    1.50
+MRR         C5P         C6P        H162     108.945    1.50
+MRR        H161         C6P        H162     107.745    2.07
+MRR         C6P         C5P         O5P     120.987    1.50
+MRR         C6P         C5P         N4P     117.070    1.96
+MRR         O5P         C5P         N4P     121.943    1.50
+MRR         C5P         N4P         C3P     123.437    1.80
+MRR         C5P         N4P         HN4     117.862    2.10
+MRR         C3P         N4P         HN4     118.700    1.83
+MRR         N4P         C3P         C2P     112.117    1.54
+MRR         N4P         C3P         H11     109.102    1.50
+MRR         N4P         C3P         H12     109.102    1.50
+MRR         C2P         C3P         H11     109.038    1.50
+MRR         C2P         C3P         H12     109.038    1.50
+MRR         H11         C3P         H12     107.995    1.50
+MRR         C3P         C2P         S1P     112.239    3.00
+MRR         C3P         C2P         H21     108.964    1.50
+MRR         C3P         C2P         H22     108.964    1.50
+MRR         S1P         C2P         H21     109.066    1.50
+MRR         S1P         C2P         H22     109.066    1.50
+MRR         H21         C2P         H22     107.807    1.50
+MRR         C2P         S1P          C1     120.000    3.00
+MRR         S1P          C1          O1     123.269    2.65
+MRR         S1P          C1          C2     113.653    2.65
+MRR          O1          C1          C2     123.085    1.76
+MRR          C1          C2         C13     110.636    2.31
+MRR          C1          C2          C3     111.280    2.52
+MRR          C1          C2          H2     108.083    1.50
+MRR         C13          C2          C3     111.474    1.79
+MRR         C13          C2          H2     108.016    1.51
+MRR          C3          C2          H2     107.780    1.50
+MRR          C2         C13        H131     109.591    1.50
+MRR          C2         C13        H132     109.591    1.50
+MRR          C2         C13        H133     109.591    1.50
+MRR        H131         C13        H132     109.411    1.50
+MRR        H131         C13        H133     109.411    1.50
+MRR        H132         C13        H133     109.411    1.50
+MRR          C2          C3          C4     114.798    1.57
+MRR          C2          C3         H31     108.447    1.50
+MRR          C2          C3         H32     108.447    1.50
+MRR          C4          C3         H31     108.469    1.50
+MRR          C4          C3         H32     108.469    1.50
+MRR         H31          C3         H32     107.657    1.50
+MRR          C3          C4          C5     115.535    2.06
+MRR          C3          C4         H41     108.762    1.50
+MRR          C3          C4         H42     108.762    1.50
+MRR          C5          C4         H41     108.698    1.50
+MRR          C5          C4         H42     108.698    1.50
+MRR         H41          C4         H42     107.646    1.50
+MRR          C4          C5          C6     114.243    1.69
+MRR          C4          C5         H51     108.698    1.50
+MRR          C4          C5         H52     108.698    1.50
+MRR          C6          C5         H51     108.698    1.50
+MRR          C6          C5         H52     108.698    1.50
+MRR         H51          C5         H52     107.646    1.50
+MRR          C5          C6          C7     114.243    1.69
+MRR          C5          C6         H61     108.698    1.50
+MRR          C5          C6         H62     108.698    1.50
+MRR          C7          C6         H61     108.698    1.50
+MRR          C7          C6         H62     108.698    1.50
+MRR         H61          C6         H62     107.646    1.50
+MRR          C6          C7          C8     114.243    1.69
+MRR          C6          C7         H71     108.698    1.50
+MRR          C6          C7         H72     108.698    1.50
+MRR          C8          C7         H71     108.698    1.50
+MRR          C8          C7         H72     108.698    1.50
+MRR         H71          C7         H72     107.646    1.50
+MRR          C7          C8          C9     114.243    1.69
+MRR          C7          C8         H81     108.698    1.50
+MRR          C7          C8         H82     108.698    1.50
+MRR          C9          C8         H81     108.698    1.50
+MRR          C9          C8         H82     108.698    1.50
+MRR         H81          C8         H82     107.646    1.50
+MRR          C8          C9         C10     114.243    1.69
+MRR          C8          C9         H91     108.698    1.50
+MRR          C8          C9         H92     108.698    1.50
+MRR         C10          C9         H91     108.698    1.50
+MRR         C10          C9         H92     108.698    1.50
+MRR         H91          C9         H92     107.646    1.50
+MRR          C9         C10         C11     114.243    1.69
+MRR          C9         C10        H101     108.698    1.50
+MRR          C9         C10        H102     108.698    1.50
+MRR         C11         C10        H101     108.698    1.50
+MRR         C11         C10        H102     108.698    1.50
+MRR        H101         C10        H102     107.646    1.50
+MRR         C10         C11         C12     114.243    1.69
+MRR         C10         C11        H111     108.698    1.50
+MRR         C10         C11        H112     108.698    1.50
+MRR         C12         C11        H111     108.698    1.50
+MRR         C12         C11        H112     108.698    1.50
+MRR        H111         C11        H112     107.646    1.50
+MRR         C11         C12         C14     114.362    3.00
+MRR         C11         C12        H121     108.698    1.50
+MRR         C11         C12        H122     108.698    1.50
+MRR         C14         C12        H121     108.653    1.50
+MRR         C14         C12        H122     108.653    1.50
+MRR        H121         C12        H122     107.646    1.50
+MRR         C12         C14         C15     113.719    3.00
+MRR         C12         C14        H141     108.758    1.50
+MRR         C12         C14        H142     108.758    1.50
+MRR         C15         C14        H141     108.918    1.50
+MRR         C15         C14        H142     108.918    1.50
+MRR        H141         C14        H142     107.763    1.50
+MRR         C14         C15        H151     109.554    1.50
+MRR         C14         C15        H152     109.554    1.50
+MRR         C14         C15        H153     109.554    1.50
+MRR        H151         C15        H152     109.380    1.50
+MRR        H151         C15        H153     109.380    1.50
+MRR        H152         C15        H153     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MRR       const_sp2_sp2_2         N9A         C4A         N3A         C2A     180.000     5.0     2
+MRR              const_18         N9A         C4A         C5A         C6A     180.000    10.0     2
+MRR       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+MRR       const_sp2_sp2_5         N3A         C2A         N1A         C6A       0.000     5.0     2
+MRR       const_sp2_sp2_8         N6A         C6A         N1A         C2A     180.000     5.0     2
+MRR             sp2_sp2_3         N1A         C6A         N6A        HN61       0.000     5.0     2
+MRR              const_10         C4A         C5A         C6A         N6A     180.000    10.0     2
+MRR              const_21         C4A         C5A         N7A         C8A       0.000    10.0     2
+MRR              const_23         N9A         C8A         N7A         C5A       0.000    10.0     2
+MRR            sp3_sp3_23         C5B         C4B         O4B         C1B     180.000    10.0     3
+MRR            sp3_sp3_26         C3B         O3B         P3B         O7A     -60.000    10.0     3
+MRR            sp3_sp3_43         C3B         C4B         C5B         O5B     180.000    10.0     3
+MRR            sp3_sp3_52         C4B         C5B         O5B         P1A     180.000    10.0     3
+MRR            sp3_sp3_57         C5B         O5B         P1A         O1A      60.000    10.0     3
+MRR            sp3_sp3_59         P2A         O3A         P1A         O5B     -60.000    10.0     3
+MRR            sp3_sp3_63         P1A         O3A         P2A         O4A      60.000    10.0     3
+MRR            sp3_sp3_64         CCP         O6A         P2A         O3A     180.000    10.0     3
+MRR            sp3_sp3_67         CBP         CCP         O6A         P2A     180.000    10.0     3
+MRR            sp3_sp3_73         CDP         CBP         CCP         O6A      60.000    10.0     3
+MRR            sp3_sp3_79         CCP         CBP         CDP        H181     180.000    10.0     3
+MRR            sp3_sp3_91         CCP         CBP         CEP        H191      60.000    10.0     3
+MRR            sp3_sp3_98         OAP         CAP         CBP         CCP     -60.000    10.0     3
+MRR           sp3_sp3_106         CBP         CAP         OAP          H1     180.000    10.0     3
+MRR             sp2_sp3_7         O9P         C9P         CAP         CBP       0.000    10.0     6
+MRR             sp2_sp2_5         CAP         C9P         N8P         C7P     180.000     5.0     2
+MRR            sp2_sp3_14         C9P         N8P         C7P         C6P     120.000    10.0     6
+MRR           sp3_sp3_109         C5P         C6P         C7P         N8P     180.000    10.0     3
+MRR            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+MRR             sp2_sp2_9         C6P         C5P         N4P         C3P     180.000     5.0     2
+MRR            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+MRR           sp3_sp3_118         S1P         C2P         C3P         N4P     180.000    10.0     3
+MRR           sp3_sp3_127         C3P         C2P         S1P          C1     180.000    10.0     3
+MRR            sp2_sp2_13          O1          C1         S1P         C2P     180.000     5.0     2
+MRR            sp2_sp3_31         S1P          C1          C2         C13       0.000    10.0     6
+MRR            sp3_sp3_28         C2B         C3B         O3B         P3B     180.000    10.0     3
+MRR           sp3_sp3_130        H131         C13          C2          C1     180.000    10.0     3
+MRR           sp3_sp3_139          C1          C2          C3          C4     180.000    10.0     3
+MRR           sp3_sp3_148          C2          C3          C4          C5     180.000    10.0     3
+MRR           sp3_sp3_157          C3          C4          C5          C6     180.000    10.0     3
+MRR           sp3_sp3_166          C4          C5          C6          C7     180.000    10.0     3
+MRR           sp3_sp3_175          C5          C6          C7          C8     180.000    10.0     3
+MRR           sp3_sp3_184          C6          C7          C8          C9     180.000    10.0     3
+MRR           sp3_sp3_193          C7          C8          C9         C10     180.000    10.0     3
+MRR           sp3_sp3_202         C11         C10          C9          C8     180.000    10.0     3
+MRR           sp3_sp3_211          C9         C10         C11         C12     180.000    10.0     3
+MRR            sp3_sp3_35         O3B         C3B         C4B         C5B     180.000    10.0     3
+MRR             sp3_sp3_5         O2B         C2B         C3B         O3B      60.000    10.0     3
+MRR           sp3_sp3_220         C10         C11         C12         C14     180.000    10.0     3
+MRR           sp3_sp3_229         C11         C12         C14         C15     180.000    10.0     3
+MRR           sp3_sp3_238         C12         C14         C15        H151     180.000    10.0     3
+MRR            sp3_sp3_40         C3B         C2B         O2B          H3     180.000    10.0     3
+MRR            sp3_sp3_14         N9A         C1B         C2B         O2B     -60.000    10.0     3
+MRR            sp3_sp3_19         C2B         C1B         O4B         C4B      60.000    10.0     3
+MRR             sp2_sp3_1         C4A         N9A         C1B         C2B     150.000    10.0     6
+MRR              const_16         N3A         C4A         N9A         C1B       0.000    10.0     2
+MRR              const_26         N7A         C8A         N9A         C1B     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MRR    chir_1    P3B    O3B    O7A    O9A    both
+MRR    chir_2    C3B    O3B    C4B    C2B    positive
+MRR    chir_3    C2B    O2B    C1B    C3B    negative
+MRR    chir_4    C1B    O4B    N9A    C2B    negative
+MRR    chir_5    C4B    O4B    C3B    C5B    negative
+MRR    chir_6    P1A    O3A    O5B    O2A    both
+MRR    chir_7    P2A    O3A    O6A    O5A    both
+MRR    chir_8    CBP    CAP    CCP    CDP    both
+MRR    chir_9    CAP    OAP    C9P    CBP    negative
+MRR    chir_10    C2    C1    C3    C13    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MRR    plan-1         C1B   0.020
+MRR    plan-1         C2A   0.020
+MRR    plan-1         C4A   0.020
+MRR    plan-1         C5A   0.020
+MRR    plan-1         C6A   0.020
+MRR    plan-1         C8A   0.020
+MRR    plan-1          H4   0.020
+MRR    plan-1          H8   0.020
+MRR    plan-1         N1A   0.020
+MRR    plan-1         N3A   0.020
+MRR    plan-1         N6A   0.020
+MRR    plan-1         N7A   0.020
+MRR    plan-1         N9A   0.020
+MRR    plan-2         C6A   0.020
+MRR    plan-2        HN61   0.020
+MRR    plan-2        HN62   0.020
+MRR    plan-2         N6A   0.020
+MRR    plan-3         C9P   0.020
+MRR    plan-3         CAP   0.020
+MRR    plan-3         N8P   0.020
+MRR    plan-3         O9P   0.020
+MRR    plan-4         C7P   0.020
+MRR    plan-4         C9P   0.020
+MRR    plan-4         HN8   0.020
+MRR    plan-4         N8P   0.020
+MRR    plan-5         C5P   0.020
+MRR    plan-5         C6P   0.020
+MRR    plan-5         N4P   0.020
+MRR    plan-5         O5P   0.020
+MRR    plan-6         C3P   0.020
+MRR    plan-6         C5P   0.020
+MRR    plan-6         HN4   0.020
+MRR    plan-6         N4P   0.020
+MRR    plan-7          C1   0.020
+MRR    plan-7          C2   0.020
+MRR    plan-7          O1   0.020
+MRR    plan-7         S1P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MRR           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                               O=C(SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O)C(C)CCCCCCCCCCCC
+MRR SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                           CCCCCCCCCCCC[C@@H](C)C(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P@@](O)(=O)O[P@@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+MRR           SMILES               CACTVS 3.341                                                                                                                                                                                                                       CCCCCCCCCCCC[CH](C)C(=O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+MRR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                             CCCCCCCCCCCC[C@@H](C)C(=O)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)CO[P@](=O)(O)O[P@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+MRR           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                               CCCCCCCCCCCCC(C)C(=O)SCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+MRR            InChI                InChI  1.03 InChI=1S/C36H64N7O17P3S/c1-5-6-7-8-9-10-11-12-13-14-15-24(2)35(48)64-19-18-38-26(44)16-17-39-33(47)30(46)36(3,4)21-57-63(54,55)60-62(52,53)56-20-25-29(59-61(49,50)51)28(45)34(58-25)43-23-42-27-31(37)40-22-41-32(27)43/h22-25,28-30,34,45-46H,5-21H2,1-4H3,(H,38,44)(H,39,47)(H,52,53)(H,54,55)(H2,37,40,41)(H2,49,50,51)/t24-,25-,28-,29-,30+,34-/m1/s1
+MRR         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                KJEFZXSIQKASDI-MOTPQXBDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MRR acedrg               243         "dictionary generator"                  
+MRR acedrg_database      11          "data source"                           
+MRR rdkit                2017.03.2   "Chemoinformatics tool"
+MRR refmac5              5.8.0238    "optimization tool"                     

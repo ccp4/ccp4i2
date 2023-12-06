@@ -1,0 +1,464 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JLH     JLH      "(2~{R})-2-[5-[3-chloranyl-2-methyl-4-[2-(4-methylpiperazin-1-yl)ethoxy]phenyl]-6-ethyl-thieno[2,3-d]pyrimidin-4-yl]oxy-3-phenyl-propanoic acid"     NON-POLYMER     75     41     .     
+#
+data_comp_JLH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JLH     C10     C       CH2     0       9.118       56.876      -2.299      
+JLH     C13     C       CH2     0       14.649      56.689      -7.514      
+JLH     C17     C       CR6     0       15.218      57.839      -6.716      
+JLH     C20     C       CR16    0       16.955      58.771      -5.315      
+JLH     C21     C       CR16    0       15.072      60.111      -5.898      
+JLH     C22     C       CH3     0       8.323       56.452      -1.076      
+JLH     C24     C       CR6     0       11.013      57.150      -4.792      
+JLH     C26     C       CR6     0       10.624      58.891      -6.972      
+JLH     C28     C       CR6     0       11.153      59.359      -5.767      
+JLH     CL      CL      CL      0       11.562      61.042      -5.650      
+JLH     N01     N       NRD6    0       14.270      54.036      -4.232      
+JLH     C02     C       CR16    0       14.105      53.311      -3.077      
+JLH     N03     N       NRD6    0       13.126      53.461      -2.188      
+JLH     C04     C       CR6     0       13.380      54.981      -4.515      
+JLH     S05     S       S2      0       10.894      54.856      -1.570      
+JLH     C06     C       CR5     0       10.338      56.070      -2.587      
+JLH     C07     C       CR5     0       11.203      56.189      -3.689      
+JLH     C08     C       CR56    0       12.301      55.230      -3.640      
+JLH     C09     C       CR56    0       12.224      54.420      -2.468      
+JLH     O11     O       O2      0       13.477      55.748      -5.630      
+JLH     C12     C       CH1     0       14.431      55.424      -6.669      
+JLH     C14     C       C       0       13.909      54.284      -7.540      
+JLH     O15     O       OC      -1      12.738      54.344      -7.963      
+JLH     O16     O       O       0       14.670      53.330      -7.799      
+JLH     C18     C       CR16    0       14.546      59.054      -6.632      
+JLH     C19     C       CR16    0       16.275      59.967      -5.242      
+JLH     C23     C       CR16    0       16.432      57.714      -6.049      
+JLH     C25     C       CR6     0       11.359      58.517      -4.669      
+JLH     C27     C       CR16    0       10.298      57.538      -7.075      
+JLH     C29     C       CR16    0       10.489      56.688      -5.999      
+JLH     C30     C       CH3     0       11.935      59.088      -3.391      
+JLH     O31     O       O2      0       10.485      59.824      -7.970      
+JLH     C32     C       CH2     0       9.703       59.515      -9.124      
+JLH     C33     C       CH2     0       9.630       60.747      -9.992      
+JLH     N34     N       NT      0       8.519       61.677      -9.731      
+JLH     C35     C       CH2     0       7.192       61.129      -10.075     
+JLH     C36     C       CH2     0       6.124       62.187      -9.919      
+JLH     N37     N       NT      0       6.107       62.718      -8.557      
+JLH     C38     C       CH2     0       7.421       63.258      -8.215      
+JLH     C39     C       CH2     0       8.490       62.200      -8.353      
+JLH     C40     C       CH3     0       5.043       63.710      -8.371      
+JLH     H1      H       H       0       9.385       57.806      -2.186      
+JLH     H2      H       H       0       8.533       56.836      -3.077      
+JLH     H3      H       H       0       15.263      56.477      -8.250      
+JLH     H4      H       H       0       13.791      56.960      -7.906      
+JLH     H5      H       H       0       17.780      58.670      -4.867      
+JLH     H6      H       H       0       14.603      60.929      -5.850      
+JLH     H7      H       H       0       7.531       57.012      -0.998      
+JLH     H8      H       H       0       8.868       56.556      -0.276      
+JLH     H9      H       H       0       8.049       55.523      -1.166      
+JLH     H10     H       H       0       14.748      52.640      -2.893      
+JLH     H11     H       H       0       15.281      55.160      -6.275      
+JLH     H13     H       H       0       13.723      59.162      -7.079      
+JLH     H14     H       H       0       16.631      60.686      -4.743      
+JLH     H15     H       H       0       16.904      56.898      -6.094      
+JLH     H16     H       H       0       9.943       57.199      -7.872      
+JLH     H17     H       H       0       10.262      55.779      -6.089      
+JLH     H18     H       H       0       12.048      58.394      -2.725      
+JLH     H19     H       H       0       11.335      59.767      -3.041      
+JLH     H20     H       H       0       12.799      59.490      -3.576      
+JLH     H21     H       H       0       8.813       59.229      -8.853      
+JLH     H22     H       H       0       10.121      58.788      -9.622      
+JLH     H23     H       H       0       9.570       60.457      -10.923     
+JLH     H24     H       H       0       10.469      61.240      -9.897      
+JLH     H26     H       H       0       7.201       60.807      -10.999     
+JLH     H27     H       H       0       6.984       60.374      -9.491      
+JLH     H28     H       H       0       5.252       61.797      -10.129     
+JLH     H29     H       H       0       6.292       62.914      -10.551     
+JLH     H31     H       H       0       7.409       63.589      -7.294      
+JLH     H32     H       H       0       7.629       64.010      -8.806      
+JLH     H33     H       H       0       9.362       62.583      -8.130      
+JLH     H34     H       H       0       8.307       61.472      -7.727      
+JLH     H35     H       H       0       5.425       64.568      -8.108      
+JLH     H36     H       H       0       4.437       63.403      -7.671      
+JLH     H37     H       H       0       4.541       63.825      -9.199      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JLH         C35         C36      SINGLE       n     1.509  0.0100     1.509  0.0100
+JLH         N34         C35      SINGLE       n     1.469  0.0137     1.469  0.0137
+JLH         C36         N37      SINGLE       n     1.457  0.0100     1.457  0.0100
+JLH         C33         N34      SINGLE       n     1.467  0.0100     1.467  0.0100
+JLH         C32         C33      SINGLE       n     1.505  0.0100     1.505  0.0100
+JLH         N34         C39      SINGLE       n     1.469  0.0137     1.469  0.0137
+JLH         N37         C40      SINGLE       n     1.462  0.0100     1.462  0.0100
+JLH         O31         C32      SINGLE       n     1.425  0.0100     1.425  0.0100
+JLH         N37         C38      SINGLE       n     1.457  0.0100     1.457  0.0100
+JLH         C38         C39      SINGLE       n     1.509  0.0100     1.509  0.0100
+JLH         C26         O31      SINGLE       n     1.367  0.0103     1.367  0.0103
+JLH         C14         O16      DOUBLE       n     1.247  0.0187     1.247  0.0187
+JLH         C13         C17      SINGLE       n     1.509  0.0100     1.509  0.0100
+JLH         C13         C12      SINGLE       n     1.531  0.0200     1.531  0.0200
+JLH         C14         O15      SINGLE       n     1.247  0.0187     1.247  0.0187
+JLH         C12         C14      SINGLE       n     1.526  0.0200     1.526  0.0200
+JLH         C26         C27      SINGLE       y     1.389  0.0100     1.389  0.0100
+JLH         C27         C29      DOUBLE       y     1.382  0.0100     1.382  0.0100
+JLH         C17         C18      DOUBLE       y     1.385  0.0111     1.385  0.0111
+JLH         C17         C23      SINGLE       y     1.385  0.0111     1.385  0.0111
+JLH         C26         C28      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JLH         C21         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+JLH         C20         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+JLH         O11         C12      SINGLE       n     1.434  0.0185     1.434  0.0185
+JLH         C24         C29      SINGLE       y     1.391  0.0100     1.391  0.0100
+JLH         C21         C19      DOUBLE       y     1.374  0.0127     1.374  0.0127
+JLH         C20         C19      SINGLE       y     1.374  0.0127     1.374  0.0127
+JLH         C04         O11      SINGLE       n     1.345  0.0140     1.345  0.0140
+JLH         C28          CL      SINGLE       n     1.733  0.0100     1.733  0.0100
+JLH         C28         C25      SINGLE       y     1.392  0.0100     1.392  0.0100
+JLH         C24         C25      DOUBLE       y     1.406  0.0100     1.406  0.0100
+JLH         C24         C07      SINGLE       n     1.473  0.0100     1.473  0.0100
+JLH         N01         C04      DOUBLE       y     1.322  0.0100     1.322  0.0100
+JLH         C04         C08      SINGLE       y     1.402  0.0100     1.402  0.0100
+JLH         C25         C30      SINGLE       n     1.508  0.0100     1.508  0.0100
+JLH         N01         C02      SINGLE       y     1.362  0.0200     1.362  0.0200
+JLH         C07         C08      SINGLE       y     1.446  0.0100     1.446  0.0100
+JLH         C06         C07      DOUBLE       y     1.386  0.0200     1.386  0.0200
+JLH         C08         C09      DOUBLE       y     1.401  0.0200     1.401  0.0200
+JLH         C02         N03      DOUBLE       y     1.330  0.0100     1.330  0.0100
+JLH         C10         C06      SINGLE       n     1.486  0.0100     1.486  0.0100
+JLH         S05         C06      SINGLE       y     1.695  0.0200     1.695  0.0200
+JLH         N03         C09      SINGLE       y     1.338  0.0176     1.338  0.0176
+JLH         S05         C09      SINGLE       y     1.695  0.0200     1.695  0.0200
+JLH         C10         C22      SINGLE       n     1.510  0.0200     1.510  0.0200
+JLH         C10          H1      SINGLE       n     1.089  0.0100     0.974  0.0100
+JLH         C10          H2      SINGLE       n     1.089  0.0100     0.974  0.0100
+JLH         C13          H3      SINGLE       n     1.089  0.0100     0.981  0.0169
+JLH         C13          H4      SINGLE       n     1.089  0.0100     0.981  0.0169
+JLH         C20          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+JLH         C21          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+JLH         C22          H7      SINGLE       n     1.089  0.0100     0.973  0.0120
+JLH         C22          H8      SINGLE       n     1.089  0.0100     0.973  0.0120
+JLH         C22          H9      SINGLE       n     1.089  0.0100     0.973  0.0120
+JLH         C02         H10      SINGLE       n     1.082  0.0130     0.947  0.0200
+JLH         C12         H11      SINGLE       n     1.089  0.0100     0.974  0.0160
+JLH         C18         H13      SINGLE       n     1.082  0.0130     0.944  0.0174
+JLH         C19         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+JLH         C23         H15      SINGLE       n     1.082  0.0130     0.944  0.0174
+JLH         C27         H16      SINGLE       n     1.082  0.0130     0.937  0.0135
+JLH         C29         H17      SINGLE       n     1.082  0.0130     0.941  0.0147
+JLH         C30         H18      SINGLE       n     1.089  0.0100     0.971  0.0135
+JLH         C30         H19      SINGLE       n     1.089  0.0100     0.971  0.0135
+JLH         C30         H20      SINGLE       n     1.089  0.0100     0.971  0.0135
+JLH         C32         H21      SINGLE       n     1.089  0.0100     0.975  0.0100
+JLH         C32         H22      SINGLE       n     1.089  0.0100     0.975  0.0100
+JLH         C33         H23      SINGLE       n     1.089  0.0100     0.977  0.0152
+JLH         C33         H24      SINGLE       n     1.089  0.0100     0.977  0.0152
+JLH         C35         H26      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C35         H27      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C36         H28      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C36         H29      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C38         H31      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C38         H32      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C39         H33      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C39         H34      SINGLE       n     1.089  0.0100     0.978  0.0109
+JLH         C40         H35      SINGLE       n     1.089  0.0100     0.975  0.0100
+JLH         C40         H36      SINGLE       n     1.089  0.0100     0.975  0.0100
+JLH         C40         H37      SINGLE       n     1.089  0.0100     0.975  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JLH         C06         C10         C22     113.284    1.50
+JLH         C06         C10          H1     108.883    1.50
+JLH         C06         C10          H2     108.883    1.50
+JLH         C22         C10          H1     108.959    1.50
+JLH         C22         C10          H2     108.959    1.50
+JLH          H1         C10          H2     107.724    1.50
+JLH         C17         C13         C12     111.525    1.84
+JLH         C17         C13          H3     108.813    1.50
+JLH         C17         C13          H4     108.813    1.50
+JLH         C12         C13          H3     108.687    1.50
+JLH         C12         C13          H4     108.687    1.50
+JLH          H3         C13          H4     107.755    1.50
+JLH         C13         C17         C18     120.970    1.50
+JLH         C13         C17         C23     120.970    1.50
+JLH         C18         C17         C23     118.060    1.50
+JLH         C23         C20         C19     120.325    1.50
+JLH         C23         C20          H5     119.792    1.50
+JLH         C19         C20          H5     119.883    1.50
+JLH         C18         C21         C19     120.325    1.50
+JLH         C18         C21          H6     119.792    1.50
+JLH         C19         C21          H6     119.883    1.50
+JLH         C10         C22          H7     109.517    1.50
+JLH         C10         C22          H8     109.517    1.50
+JLH         C10         C22          H9     109.517    1.50
+JLH          H7         C22          H8     109.422    1.50
+JLH          H7         C22          H9     109.422    1.50
+JLH          H8         C22          H9     109.422    1.50
+JLH         C29         C24         C25     119.098    1.50
+JLH         C29         C24         C07     120.716    1.50
+JLH         C25         C24         C07     120.186    1.50
+JLH         O31         C26         C27     124.423    1.50
+JLH         O31         C26         C28     116.487    1.87
+JLH         C27         C26         C28     119.090    1.50
+JLH         C26         C28          CL     118.453    1.50
+JLH         C26         C28         C25     122.062    1.50
+JLH          CL         C28         C25     119.486    1.50
+JLH         C04         N01         C02     117.040    1.63
+JLH         N01         C02         N03     126.267    1.50
+JLH         N01         C02         H10     117.092    1.50
+JLH         N03         C02         H10     116.641    1.50
+JLH         C02         N03         C09     115.747    1.50
+JLH         O11         C04         N01     120.844    2.36
+JLH         O11         C04         C08     118.883    2.74
+JLH         N01         C04         C08     120.273    1.50
+JLH         C06         S05         C09     108.141    3.00
+JLH         C07         C06         C10     132.650    2.66
+JLH         C07         C06         S05     108.141    3.00
+JLH         C10         C06         S05     119.209    3.00
+JLH         C24         C07         C08     125.527    2.23
+JLH         C24         C07         C06     126.714    1.78
+JLH         C08         C07         C06     107.760    1.50
+JLH         C04         C08         C07     133.890    2.28
+JLH         C04         C08         C09     118.293    1.50
+JLH         C07         C08         C09     107.817    1.50
+JLH         C08         C09         N03     122.380    2.68
+JLH         C08         C09         S05     108.141    3.00
+JLH         N03         C09         S05     129.479    3.00
+JLH         C12         O11         C04     117.287    1.50
+JLH         C13         C12         C14     111.511    2.91
+JLH         C13         C12         O11     107.754    2.90
+JLH         C13         C12         H11     109.155    1.50
+JLH         C14         C12         O11     110.354    2.51
+JLH         C14         C12         H11     109.227    1.50
+JLH         O11         C12         H11     109.515    1.50
+JLH         O16         C14         O15     122.692    1.50
+JLH         O16         C14         C12     118.654    3.00
+JLH         O15         C14         C12     118.654    3.00
+JLH         C17         C18         C21     120.624    1.50
+JLH         C17         C18         H13     119.591    1.50
+JLH         C21         C18         H13     119.786    1.50
+JLH         C21         C19         C20     120.043    1.50
+JLH         C21         C19         H14     119.979    1.50
+JLH         C20         C19         H14     119.979    1.50
+JLH         C17         C23         C20     120.624    1.50
+JLH         C17         C23         H15     119.591    1.50
+JLH         C20         C23         H15     119.786    1.50
+JLH         C28         C25         C24     119.113    1.50
+JLH         C28         C25         C30     120.500    1.70
+JLH         C24         C25         C30     120.387    1.50
+JLH         C26         C27         C29     120.015    1.50
+JLH         C26         C27         H16     119.863    1.50
+JLH         C29         C27         H16     120.123    1.50
+JLH         C27         C29         C24     120.622    1.50
+JLH         C27         C29         H17     119.521    1.50
+JLH         C24         C29         H17     119.857    1.50
+JLH         C25         C30         H18     109.580    1.50
+JLH         C25         C30         H19     109.580    1.50
+JLH         C25         C30         H20     109.580    1.50
+JLH         H18         C30         H19     109.348    1.50
+JLH         H18         C30         H20     109.348    1.50
+JLH         H19         C30         H20     109.348    1.50
+JLH         C32         O31         C26     117.255    1.53
+JLH         C33         C32         O31     107.560    1.73
+JLH         C33         C32         H21     110.293    1.50
+JLH         C33         C32         H22     110.293    1.50
+JLH         O31         C32         H21     110.103    1.50
+JLH         O31         C32         H22     110.103    1.50
+JLH         H21         C32         H22     108.653    1.50
+JLH         N34         C33         C32     113.936    1.71
+JLH         N34         C33         H23     108.784    1.50
+JLH         N34         C33         H24     108.784    1.50
+JLH         C32         C33         H23     108.646    1.50
+JLH         C32         C33         H24     108.646    1.50
+JLH         H23         C33         H24     107.745    1.50
+JLH         C35         N34         C33     110.993    1.77
+JLH         C35         N34         C39     108.582    1.50
+JLH         C33         N34         C39     110.993    1.77
+JLH         C36         C35         N34     110.891    1.50
+JLH         C36         C35         H26     109.532    1.50
+JLH         C36         C35         H27     109.532    1.50
+JLH         N34         C35         H26     109.491    1.50
+JLH         N34         C35         H27     109.491    1.50
+JLH         H26         C35         H27     108.187    1.50
+JLH         C35         C36         N37     110.810    1.50
+JLH         C35         C36         H28     109.532    1.50
+JLH         C35         C36         H29     109.532    1.50
+JLH         N37         C36         H28     109.480    1.50
+JLH         N37         C36         H29     109.480    1.50
+JLH         H28         C36         H29     108.187    1.50
+JLH         C36         N37         C40     110.746    1.50
+JLH         C36         N37         C38     109.130    1.50
+JLH         C40         N37         C38     110.746    1.50
+JLH         N37         C38         C39     110.810    1.50
+JLH         N37         C38         H31     109.480    1.50
+JLH         N37         C38         H32     109.480    1.50
+JLH         C39         C38         H31     109.532    1.50
+JLH         C39         C38         H32     109.532    1.50
+JLH         H31         C38         H32     108.187    1.50
+JLH         N34         C39         C38     110.891    1.50
+JLH         N34         C39         H33     109.491    1.50
+JLH         N34         C39         H34     109.491    1.50
+JLH         C38         C39         H33     109.532    1.50
+JLH         C38         C39         H34     109.532    1.50
+JLH         H33         C39         H34     108.187    1.50
+JLH         N37         C40         H35     109.526    1.50
+JLH         N37         C40         H36     109.526    1.50
+JLH         N37         C40         H37     109.526    1.50
+JLH         H35         C40         H36     109.428    1.50
+JLH         H35         C40         H37     109.428    1.50
+JLH         H36         C40         H37     109.428    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JLH            sp2_sp3_20         C07         C06         C10         C22     -90.000    10.0     6
+JLH            sp3_sp3_79         C06         C10         C22          H7     180.000    10.0     3
+JLH              const_73         N03         C02         N01         C04       0.000    10.0     2
+JLH       const_sp2_sp2_2         O11         C04         N01         C02     180.000     5.0     2
+JLH              const_13         N01         C02         N03         C09       0.000    10.0     2
+JLH              const_11         C08         C09         N03         C02       0.000    10.0     2
+JLH       const_sp2_sp2_6         O11         C04         C08         C07       0.000     5.0     2
+JLH             sp2_sp2_3         N01         C04         O11         C12     180.000     5.0     2
+JLH              const_16         C10         C06         S05         C09     180.000    10.0     2
+JLH              const_75         C08         C09         S05         C06       0.000    10.0     2
+JLH              const_20         C10         C06         C07         C24       0.000    10.0     2
+JLH              const_24         C24         C07         C08         C04       0.000    10.0     2
+JLH       const_sp2_sp2_7         C04         C08         C09         N03       0.000     5.0     2
+JLH            sp3_sp3_76         C13         C12         O11         C04     180.000    10.0     3
+JLH             sp2_sp3_2         C18         C17         C13         C12     -90.000    10.0     6
+JLH            sp3_sp3_67         C14         C12         C13         C17     180.000    10.0     3
+JLH             sp2_sp3_7         O16         C14         C12         C13       0.000    10.0     6
+JLH            sp2_sp3_13         C28         C25         C30         H18     150.000    10.0     6
+JLH              const_49         C26         C27         C29         C24       0.000    10.0     2
+JLH              const_27         C13         C17         C18         C21     180.000    10.0     2
+JLH              const_67         C13         C17         C23         C20     180.000    10.0     2
+JLH            sp3_sp3_64         C33         C32         O31         C26     180.000    10.0     3
+JLH            sp3_sp3_43         O31         C32         C33         N34     180.000    10.0     3
+JLH            sp3_sp3_38         C32         C33         N34         C35     -60.000    10.0     3
+JLH             sp3_sp3_2         C36         C35         N34         C33     180.000    10.0     3
+JLH            sp3_sp3_53         C38         C39         N34         C33     -60.000    10.0     3
+JLH             sp3_sp3_7         N34         C35         C36         N37     -60.000    10.0     3
+JLH            sp3_sp3_17         C35         C36         N37         C40     180.000    10.0     3
+JLH            sp3_sp3_23         C39         C38         N37         C40      60.000    10.0     3
+JLH            sp3_sp3_59         H35         C40         N37         C36     -60.000    10.0     3
+JLH            sp3_sp3_28         N37         C38         C39         N34      60.000    10.0     3
+JLH              const_37         C21         C19         C20         C23       0.000    10.0     2
+JLH              const_41         C19         C20         C23         C17       0.000    10.0     2
+JLH              const_29         C17         C18         C21         C19       0.000    10.0     2
+JLH              const_33         C20         C19         C21         C18       0.000    10.0     2
+JLH             sp2_sp2_5         C08         C07         C24         C29     180.000     5.0     2
+JLH              const_70         C29         C24         C25         C30     180.000    10.0     2
+JLH              const_45         C25         C24         C29         C27       0.000    10.0     2
+JLH              const_55         O31         C26         C27         C29     180.000    10.0     2
+JLH             sp2_sp2_1         C27         C26         O31         C32     180.000     5.0     2
+JLH              const_60         O31         C26         C28          CL       0.000    10.0     2
+JLH              const_64         C30         C25         C28          CL       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JLH    chir_1    C12    O11    C14    C13    negative
+JLH    chir_2    N34    C33    C35    C39    both
+JLH    chir_3    N37    C36    C38    C40    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JLH    plan-1         C02   0.020
+JLH    plan-1         C04   0.020
+JLH    plan-1         C06   0.020
+JLH    plan-1         C07   0.020
+JLH    plan-1         C08   0.020
+JLH    plan-1         C09   0.020
+JLH    plan-1         C10   0.020
+JLH    plan-1         C24   0.020
+JLH    plan-1         H10   0.020
+JLH    plan-1         N01   0.020
+JLH    plan-1         N03   0.020
+JLH    plan-1         O11   0.020
+JLH    plan-1         S05   0.020
+JLH    plan-2         C13   0.020
+JLH    plan-2         C17   0.020
+JLH    plan-2         C18   0.020
+JLH    plan-2         C19   0.020
+JLH    plan-2         C20   0.020
+JLH    plan-2         C21   0.020
+JLH    plan-2         C23   0.020
+JLH    plan-2         H13   0.020
+JLH    plan-2         H14   0.020
+JLH    plan-2         H15   0.020
+JLH    plan-2          H5   0.020
+JLH    plan-2          H6   0.020
+JLH    plan-3         C07   0.020
+JLH    plan-3         C24   0.020
+JLH    plan-3         C25   0.020
+JLH    plan-3         C26   0.020
+JLH    plan-3         C27   0.020
+JLH    plan-3         C28   0.020
+JLH    plan-3         C29   0.020
+JLH    plan-3         C30   0.020
+JLH    plan-3          CL   0.020
+JLH    plan-3         H16   0.020
+JLH    plan-3         H17   0.020
+JLH    plan-3         O31   0.020
+JLH    plan-4         C12   0.020
+JLH    plan-4         C14   0.020
+JLH    plan-4         O15   0.020
+JLH    plan-4         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JLH            InChI                InChI  1.03 InChI=1S/C31H35ClN4O4S/c1-4-25-26(22-10-11-23(28(32)20(22)2)39-17-16-36-14-12-35(3)13-15-36)27-29(33-19-34-30(27)41-25)40-24(31(37)38)18-21-8-6-5-7-9-21/h5-11,19,24H,4,12-18H2,1-3H3,(H,37,38)/t24-/m1/s1
+JLH         InChIKey                InChI  1.03                                                                                                                                                                                ORTDLNZBBWXSKF-XMMPIXPASA-N
+JLH SMILES_CANONICAL               CACTVS 3.385                                                                                                                                      CCc1sc2ncnc(O[C@H](Cc3ccccc3)C(O)=O)c2c1c4ccc(OCCN5CCN(C)CC5)c(Cl)c4C
+JLH           SMILES               CACTVS 3.385                                                                                                                                       CCc1sc2ncnc(O[CH](Cc3ccccc3)C(O)=O)c2c1c4ccc(OCCN5CCN(C)CC5)c(Cl)c4C
+JLH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                    CCc1c(c2c(ncnc2s1)O[C@H](Cc3ccccc3)C(=O)O)c4ccc(c(c4C)Cl)OCCN5CCN(CC5)C
+JLH           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                        CCc1c(c2c(ncnc2s1)OC(Cc3ccccc3)C(=O)O)c4ccc(c(c4C)Cl)OCCN5CCN(CC5)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JLH acedrg               243         "dictionary generator"                  
+JLH acedrg_database      11          "data source"                           
+JLH rdkit                2017.03.2   "Chemoinformatics tool"
+JLH refmac5              5.8.0238    "optimization tool"                     

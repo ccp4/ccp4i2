@@ -1,0 +1,567 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KAN     KAN      "KANAMYCIN A"     NON-POLYMER     72     33     .     
+#
+data_comp_KAN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KAN     C1      C       CH1     0       20.407      47.124      42.257      
+KAN     C2      C       CH1     0       19.002      47.651      42.533      
+KAN     C3      C       CH1     0       18.016      46.497      42.680      
+KAN     C4      C       CH1     0       18.086      45.564      41.479      
+KAN     C5      C       CH1     0       19.525      45.096      41.256      
+KAN     C6      C       CH2     0       19.701      44.255      40.004      
+KAN     C7      C       CH1     0       25.106      47.253      43.561      
+KAN     C8      C       CH1     0       24.635      45.926      42.969      
+KAN     C9      C       CH1     0       23.178      46.075      42.525      
+KAN     C10     C       CH1     0       22.292      46.406      43.730      
+KAN     C11     C       CH1     0       22.734      47.747      44.308      
+KAN     C12     C       CH2     0       24.207      47.713      44.707      
+KAN     C13     C       CH1     0       25.657      44.256      41.461      
+KAN     C14     C       CH1     0       27.108      44.020      41.050      
+KAN     C15     C       CH1     0       27.441      44.760      39.752      
+KAN     C16     C       CH1     0       26.441      44.425      38.645      
+KAN     C17     C       CH1     0       25.012      44.677      39.143      
+KAN     C18     C       CH2     0       23.951      44.234      38.162      
+KAN     N1      N       NT3     1       19.077      42.911      40.072      
+KAN     N2      N       NT3     1       21.899      48.081      45.504      
+KAN     N3      N       NT3     1       26.514      47.123      44.052      
+KAN     N4      N       NT2     0       28.823      44.499      39.325      
+KAN     O5      O       O2      0       20.397      46.240      41.128      
+KAN     O6      O       OH1     0       19.004      48.470      43.700      
+KAN     O7      O       OH1     0       16.694      47.016      42.824      
+KAN     O8      O       OH1     0       17.250      44.427      41.688      
+KAN     O9      O       O2      0       20.887      46.464      43.411      
+KAN     O10     O       OH1     0       22.702      44.881      41.903      
+KAN     O11     O       O2      0       25.492      45.603      41.858      
+KAN     O12     O       O2      0       24.775      43.940      40.375      
+KAN     O13     O       OH1     0       27.997      44.430      42.098      
+KAN     O14     O       OH1     0       26.696      45.227      37.490      
+KAN     O15     O       OH1     0       24.005      42.828      37.919      
+KAN     H1      H       H       0       21.000      47.892      42.050      
+KAN     H2      H       H       0       18.720      48.204      41.766      
+KAN     H3      H       H       0       18.245      45.983      43.496      
+KAN     H4      H       H       0       17.773      46.050      40.680      
+KAN     H5      H       H       0       19.809      44.555      42.035      
+KAN     H61     H       H       0       20.662      44.145      39.835      
+KAN     H62     H       H       0       19.314      44.741      39.244      
+KAN     H7      H       H       0       25.084      47.947      42.841      
+KAN     H8      H       H       0       24.698      45.227      43.666      
+KAN     H9      H       H       0       23.124      46.814      41.870      
+KAN     H10     H       H       0       22.433      45.714      44.422      
+KAN     H11     H       H       0       22.606      48.458      43.618      
+KAN     H121    H       H       0       24.485      48.611      44.996      
+KAN     H122    H       H       0       24.322      47.107      45.472      
+KAN     H13     H       H       0       25.441      43.659      42.223      
+KAN     H14     H       H       0       27.233      43.065      40.900      
+KAN     H15     H       H       0       27.365      45.720      39.934      
+KAN     H16     H       H       0       26.544      43.472      38.399      
+KAN     H17     H       H       0       24.904      45.638      39.315      
+KAN     H181    H       H       0       24.072      44.711      37.315      
+KAN     H182    H       H       0       23.067      44.465      38.516      
+KAN     HN11    H       H       0       19.094      42.591      40.921      
+KAN     HN12    H       H       0       19.525      42.331      39.537      
+KAN     H18     H       H       0       18.214      42.952      39.795      
+KAN     HN21    H       H       0       21.946      47.415      46.106      
+KAN     HN22    H       H       0       21.042      48.194      45.257      
+KAN     H23     H       H       0       22.197      48.840      45.883      
+KAN     HN31    H       H       0       26.728      47.830      44.566      
+KAN     HN32    H       H       0       27.078      47.095      43.354      
+KAN     H33     H       H       0       26.605      46.371      44.536      
+KAN     HN41    H       H       0       28.915      43.635      39.136      
+KAN     HN42    H       H       0       29.380      44.706      39.987      
+KAN     HO6     H       H       0       18.253      48.842      43.777      
+KAN     HO7     H       H       0       16.177      46.388      43.039      
+KAN     HO8     H       H       0       17.496      44.004      42.373      
+KAN     HO1     H       H       0       22.775      44.238      42.440      
+KAN     HO3     H       H       0       27.955      45.263      42.197      
+KAN     HO4     H       H       0       26.616      46.042      37.684      
+KAN     HO5     H       H       0       23.680      42.414      38.584      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KAN          C1          C2      SINGLE       n     1.522  0.0111     1.522  0.0111
+KAN          C1          O5      SINGLE       n     1.422  0.0169     1.422  0.0169
+KAN          C1          O9      SINGLE       n     1.406  0.0135     1.406  0.0135
+KAN          C2          C3      SINGLE       n     1.519  0.0200     1.519  0.0200
+KAN          C2          O6      SINGLE       n     1.425  0.0112     1.425  0.0112
+KAN          C3          C4      SINGLE       n     1.520  0.0158     1.520  0.0158
+KAN          C3          O7      SINGLE       n     1.427  0.0138     1.427  0.0138
+KAN          C4          C5      SINGLE       n     1.524  0.0192     1.524  0.0192
+KAN          C4          O8      SINGLE       n     1.425  0.0176     1.425  0.0176
+KAN          C5          C6      SINGLE       n     1.518  0.0100     1.518  0.0100
+KAN          C5          O5      SINGLE       n     1.441  0.0100     1.441  0.0100
+KAN          C6          N1      SINGLE       n     1.483  0.0133     1.483  0.0133
+KAN          C7          C8      SINGLE       n     1.524  0.0103     1.524  0.0103
+KAN          C7         C12      SINGLE       n     1.525  0.0100     1.525  0.0100
+KAN          C7          N3      SINGLE       n     1.496  0.0100     1.496  0.0100
+KAN          C8          C9      SINGLE       n     1.521  0.0165     1.521  0.0165
+KAN          C8         O11      SINGLE       n     1.436  0.0105     1.436  0.0105
+KAN          C9         C10      SINGLE       n     1.521  0.0165     1.521  0.0165
+KAN          C9         O10      SINGLE       n     1.427  0.0125     1.427  0.0125
+KAN         C10         C11      SINGLE       n     1.524  0.0103     1.524  0.0103
+KAN         C10          O9      SINGLE       n     1.436  0.0105     1.436  0.0105
+KAN         C11         C12      SINGLE       n     1.525  0.0100     1.525  0.0100
+KAN         C11          N2      SINGLE       n     1.496  0.0100     1.496  0.0100
+KAN         C13         C14      SINGLE       n     1.522  0.0129     1.522  0.0129
+KAN         C13         O11      SINGLE       n     1.406  0.0136     1.406  0.0136
+KAN         C13         O12      SINGLE       n     1.422  0.0171     1.422  0.0171
+KAN         C14         C15      SINGLE       n     1.529  0.0115     1.529  0.0115
+KAN         C14         O13      SINGLE       n     1.432  0.0200     1.432  0.0200
+KAN         C15         C16      SINGLE       n     1.529  0.0115     1.529  0.0115
+KAN         C15          N4      SINGLE       n     1.470  0.0100     1.470  0.0100
+KAN         C16         C17      SINGLE       n     1.525  0.0186     1.525  0.0186
+KAN         C16         O14      SINGLE       n     1.428  0.0123     1.428  0.0123
+KAN         C17         C18      SINGLE       n     1.511  0.0100     1.511  0.0100
+KAN         C17         O12      SINGLE       n     1.439  0.0187     1.439  0.0187
+KAN         C18         O15      SINGLE       n     1.426  0.0200     1.426  0.0200
+KAN          C1          H1      SINGLE       n     1.089  0.0100     0.992  0.0127
+KAN          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0140
+KAN          C3          H3      SINGLE       n     1.089  0.0100     0.991  0.0121
+KAN          C4          H4      SINGLE       n     1.089  0.0100     0.986  0.0131
+KAN          C5          H5      SINGLE       n     1.089  0.0100     0.990  0.0106
+KAN          C6         H61      SINGLE       n     1.089  0.0100     0.982  0.0165
+KAN          C6         H62      SINGLE       n     1.089  0.0100     0.982  0.0165
+KAN          C7          H7      SINGLE       n     1.089  0.0100     1.000  0.0100
+KAN          C8          H8      SINGLE       n     1.089  0.0100     0.989  0.0181
+KAN          C9          H9      SINGLE       n     1.089  0.0100     0.990  0.0140
+KAN         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0181
+KAN         C11         H11      SINGLE       n     1.089  0.0100     1.000  0.0100
+KAN         C12        H121      SINGLE       n     1.089  0.0100     0.983  0.0138
+KAN         C12        H122      SINGLE       n     1.089  0.0100     0.983  0.0138
+KAN         C13         H13      SINGLE       n     1.089  0.0100     0.992  0.0126
+KAN         C14         H14      SINGLE       n     1.089  0.0100     0.975  0.0196
+KAN         C15         H15      SINGLE       n     1.089  0.0100     0.980  0.0200
+KAN         C16         H16      SINGLE       n     1.089  0.0100     0.989  0.0181
+KAN         C17         H17      SINGLE       n     1.089  0.0100     0.983  0.0200
+KAN         C18        H181      SINGLE       n     1.089  0.0100     0.980  0.0184
+KAN         C18        H182      SINGLE       n     1.089  0.0100     0.980  0.0184
+KAN          N1        HN11      SINGLE       n     1.036  0.0160     0.907  0.0200
+KAN          N1        HN12      SINGLE       n     1.036  0.0160     0.907  0.0200
+KAN          N1         H18      SINGLE       n     1.036  0.0160     0.907  0.0200
+KAN          N2        HN21      SINGLE       n     1.036  0.0160     0.899  0.0200
+KAN          N2        HN22      SINGLE       n     1.036  0.0160     0.899  0.0200
+KAN          N2         H23      SINGLE       n     1.036  0.0160     0.899  0.0200
+KAN          N3        HN31      SINGLE       n     1.036  0.0160     0.899  0.0200
+KAN          N3        HN32      SINGLE       n     1.036  0.0160     0.899  0.0200
+KAN          N3         H33      SINGLE       n     1.036  0.0160     0.899  0.0200
+KAN          N4        HN41      SINGLE       n     1.036  0.0160     0.889  0.0200
+KAN          N4        HN42      SINGLE       n     1.036  0.0160     0.889  0.0200
+KAN          O6         HO6      SINGLE       n     0.970  0.0120     0.841  0.0200
+KAN          O7         HO7      SINGLE       n     0.970  0.0120     0.841  0.0200
+KAN          O8         HO8      SINGLE       n     0.970  0.0120     0.841  0.0200
+KAN         O10         HO1      SINGLE       n     0.970  0.0120     0.841  0.0200
+KAN         O13         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+KAN         O14         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+KAN         O15         HO5      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KAN          C2          C1          O5     110.316    1.50
+KAN          C2          C1          O9     108.782    1.93
+KAN          C2          C1          H1     109.438    1.50
+KAN          O5          C1          O9     110.157    1.98
+KAN          O5          C1          H1     109.132    1.50
+KAN          O9          C1          H1     109.369    1.50
+KAN          C1          C2          C3     109.880    1.85
+KAN          C1          C2          O6     109.907    1.90
+KAN          C1          C2          H2     108.647    1.50
+KAN          C3          C2          O6     111.053    2.62
+KAN          C3          C2          H2     108.505    1.50
+KAN          O6          C2          H2     108.551    1.50
+KAN          C2          C3          C4     110.687    1.67
+KAN          C2          C3          O7     109.587    2.09
+KAN          C2          C3          H3     108.712    1.50
+KAN          C4          C3          O7     110.243    1.88
+KAN          C4          C3          H3     108.653    1.50
+KAN          O7          C3          H3     108.767    1.50
+KAN          C3          C4          C5     110.316    1.64
+KAN          C3          C4          O8     110.101    1.97
+KAN          C3          C4          H4     109.032    1.50
+KAN          C5          C4          O8     109.153    2.02
+KAN          C5          C4          H4     109.550    1.50
+KAN          O8          C4          H4     109.194    1.50
+KAN          C4          C5          C6     113.587    1.96
+KAN          C4          C5          O5     109.378    1.54
+KAN          C4          C5          H5     108.898    1.50
+KAN          C6          C5          O5     107.878    2.44
+KAN          C6          C5          H5     108.699    2.22
+KAN          O5          C5          H5     108.995    1.50
+KAN          C5          C6          N1     113.823    1.83
+KAN          C5          C6         H61     108.444    1.50
+KAN          C5          C6         H62     108.444    1.50
+KAN          N1          C6         H61     108.377    1.50
+KAN          N1          C6         H62     108.377    1.50
+KAN         H61          C6         H62     107.850    1.50
+KAN          C8          C7         C12     111.392    1.50
+KAN          C8          C7          N3     109.671    1.50
+KAN          C8          C7          H7     108.763    1.50
+KAN         C12          C7          N3     109.461    1.50
+KAN         C12          C7          H7     108.719    1.50
+KAN          N3          C7          H7     108.734    1.50
+KAN          C7          C8          C9     108.862    1.50
+KAN          C7          C8         O11     107.953    1.94
+KAN          C7          C8          H8     108.664    1.50
+KAN          C9          C8         O11     108.580    2.45
+KAN          C9          C8          H8     109.166    1.50
+KAN         O11          C8          H8     109.522    1.50
+KAN          C8          C9         C10     110.796    1.54
+KAN          C8          C9         O10     110.081    2.02
+KAN          C8          C9          H9     109.166    1.50
+KAN         C10          C9         O10     110.081    2.02
+KAN         C10          C9          H9     109.166    1.50
+KAN         O10          C9          H9     108.767    1.50
+KAN          C9         C10         C11     108.862    1.50
+KAN          C9         C10          O9     108.580    2.45
+KAN          C9         C10         H10     109.166    1.50
+KAN         C11         C10          O9     107.953    1.94
+KAN         C11         C10         H10     108.664    1.50
+KAN          O9         C10         H10     109.522    1.50
+KAN         C10         C11         C12     111.392    1.50
+KAN         C10         C11          N2     109.671    1.50
+KAN         C10         C11         H11     108.763    1.50
+KAN         C12         C11          N2     109.461    1.50
+KAN         C12         C11         H11     108.719    1.50
+KAN          N2         C11         H11     108.734    1.50
+KAN          C7         C12         C11     112.567    1.88
+KAN          C7         C12        H121     109.552    1.50
+KAN          C7         C12        H122     109.552    1.50
+KAN         C11         C12        H121     109.552    1.50
+KAN         C11         C12        H122     109.552    1.50
+KAN        H121         C12        H122     107.784    1.50
+KAN         C14         C13         O11     108.473    2.03
+KAN         C14         C13         O12     110.164    1.50
+KAN         C14         C13         H13     109.599    1.50
+KAN         O11         C13         O12     110.157    1.98
+KAN         O11         C13         H13     109.369    1.50
+KAN         O12         C13         H13     109.132    1.50
+KAN         C13         C14         C15     111.124    1.57
+KAN         C13         C14         O13     109.976    1.78
+KAN         C13         C14         H14     108.925    1.50
+KAN         C15         C14         O13     110.124    1.87
+KAN         C15         C14         H14     108.987    1.50
+KAN         O13         C14         H14     108.790    1.50
+KAN         C14         C15         C16     111.932    2.44
+KAN         C14         C15          N4     111.315    2.25
+KAN         C14         C15         H15     107.258    1.68
+KAN         C16         C15          N4     111.315    2.25
+KAN         C16         C15         H15     107.258    1.68
+KAN          N4         C15         H15     107.474    1.50
+KAN         C15         C16         C17     109.627    1.81
+KAN         C15         C16         O14     110.124    1.87
+KAN         C15         C16         H16     108.987    1.50
+KAN         C17         C16         O14     109.153    2.02
+KAN         C17         C16         H16     109.550    1.50
+KAN         O14         C16         H16     108.790    1.50
+KAN         C16         C17         C18     113.127    1.52
+KAN         C16         C17         O12     109.378    1.54
+KAN         C16         C17         H17     108.898    1.50
+KAN         C18         C17         O12     106.879    1.50
+KAN         C18         C17         H17     109.269    1.50
+KAN         O12         C17         H17     109.134    1.50
+KAN         C17         C18         O15     111.299    2.09
+KAN         C17         C18        H181     109.363    1.50
+KAN         C17         C18        H182     109.363    1.50
+KAN         O15         C18        H181     109.265    1.50
+KAN         O15         C18        H182     109.265    1.50
+KAN        H181         C18        H182     108.155    1.50
+KAN          C6          N1        HN11     110.335    2.25
+KAN          C6          N1        HN12     110.335    2.25
+KAN          C6          N1         H18     110.335    2.25
+KAN        HN11          N1        HN12     108.820    2.86
+KAN        HN11          N1         H18     108.820    2.86
+KAN        HN12          N1         H18     108.820    2.86
+KAN         C11          N2        HN21     109.908    1.75
+KAN         C11          N2        HN22     109.908    1.75
+KAN         C11          N2         H23     109.908    1.75
+KAN        HN21          N2        HN22     109.122    2.58
+KAN        HN21          N2         H23     109.122    2.58
+KAN        HN22          N2         H23     109.122    2.58
+KAN          C7          N3        HN31     109.908    1.75
+KAN          C7          N3        HN32     109.908    1.75
+KAN          C7          N3         H33     109.908    1.75
+KAN        HN31          N3        HN32     109.122    2.58
+KAN        HN31          N3         H33     109.122    2.58
+KAN        HN32          N3         H33     109.122    2.58
+KAN         C15          N4        HN41     109.341    3.00
+KAN         C15          N4        HN42     109.341    3.00
+KAN        HN41          N4        HN42     108.673    3.00
+KAN          C1          O5          C5     113.097    1.50
+KAN          C2          O6         HO6     109.126    2.06
+KAN          C3          O7         HO7     108.895    2.41
+KAN          C4          O8         HO8     109.564    3.00
+KAN          C1          O9         C10     117.169    1.96
+KAN          C9         O10         HO1     108.895    2.41
+KAN          C8         O11         C13     117.169    1.96
+KAN         C13         O12         C17     113.300    1.50
+KAN         C14         O13         HO3     109.099    3.00
+KAN         C16         O14         HO4     109.099    3.00
+KAN         C18         O15         HO5     109.472    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KAN                   nu0          C5          O5          C1          C2     -64.082    10.0     3
+KAN                   nu1          O5          C1          C2          C3      57.903    10.0     3
+KAN                   nu2          C1          C2          C3          C4     -52.018    10.0     3
+KAN                   nu3          C2          C3          C4          C5      50.677    10.0     3
+KAN                   nu4          C3          C4          C5          O5     -55.206    10.0     3
+KAN                   nu5          C4          C5          O5          C1      62.595    10.0     3
+KAN             sp3_sp3_1         C12          C7          C8          C9      60.000    10.0     3
+KAN             sp3_sp3_2         C12          C7          C8         O11     180.000    10.0     3
+KAN             sp3_sp3_3         C12          C7          C8          H8     -60.000    10.0     3
+KAN             sp3_sp3_4          N3          C7          C8          C9     -60.000    10.0     3
+KAN             sp3_sp3_5          N3          C7          C8         O11      60.000    10.0     3
+KAN             sp3_sp3_6          N3          C7          C8          H8     180.000    10.0     3
+KAN             sp3_sp3_7          H7          C7          C8          C9     180.000    10.0     3
+KAN             sp3_sp3_8          H7          C7          C8         O11     -60.000    10.0     3
+KAN             sp3_sp3_9          H7          C7          C8          H8      60.000    10.0     3
+KAN            sp3_sp3_10          C7          C8          C9         C10     -60.000    10.0     3
+KAN            sp3_sp3_11          C7          C8          C9         O10      60.000    10.0     3
+KAN            sp3_sp3_12          C7          C8          C9          H9     180.000    10.0     3
+KAN            sp3_sp3_13         O11          C8          C9         C10     180.000    10.0     3
+KAN            sp3_sp3_14         O11          C8          C9         O10     -60.000    10.0     3
+KAN            sp3_sp3_15         O11          C8          C9          H9      60.000    10.0     3
+KAN            sp3_sp3_16          H8          C8          C9         C10      60.000    10.0     3
+KAN            sp3_sp3_17          H8          C8          C9         O10     180.000    10.0     3
+KAN            sp3_sp3_18          H8          C8          C9          H9     -60.000    10.0     3
+KAN            sp3_sp3_19         C11         C10          C9          C8      60.000    10.0     3
+KAN            sp3_sp3_20         C11         C10          C9         O10     180.000    10.0     3
+KAN            sp3_sp3_21         C11         C10          C9          H9     -60.000    10.0     3
+KAN            sp3_sp3_22          O9         C10          C9          C8     -60.000    10.0     3
+KAN            sp3_sp3_23          O9         C10          C9         O10      60.000    10.0     3
+KAN            sp3_sp3_24          O9         C10          C9          H9     180.000    10.0     3
+KAN            sp3_sp3_25         H10         C10          C9          C8     180.000    10.0     3
+KAN            sp3_sp3_26         H10         C10          C9         O10     -60.000    10.0     3
+KAN            sp3_sp3_27         H10         C10          C9          H9      60.000    10.0     3
+KAN            sp3_sp3_28          C9         C10         C11         C12     -60.000    10.0     3
+KAN            sp3_sp3_29          C9         C10         C11          N2      60.000    10.0     3
+KAN            sp3_sp3_30          C9         C10         C11         H11     180.000    10.0     3
+KAN            sp3_sp3_31          O9         C10         C11         C12     180.000    10.0     3
+KAN            sp3_sp3_32          O9         C10         C11          N2     -60.000    10.0     3
+KAN            sp3_sp3_33          O9         C10         C11         H11      60.000    10.0     3
+KAN            sp3_sp3_34         H10         C10         C11         C12      60.000    10.0     3
+KAN            sp3_sp3_35         H10         C10         C11          N2     180.000    10.0     3
+KAN            sp3_sp3_36         H10         C10         C11         H11     -60.000    10.0     3
+KAN            sp3_sp3_37         C10         C11         C12          C7      60.000    10.0     3
+KAN            sp3_sp3_38         C10         C11         C12        H121     180.000    10.0     3
+KAN            sp3_sp3_39         C10         C11         C12        H122     -60.000    10.0     3
+KAN            sp3_sp3_40          N2         C11         C12          C7     -60.000    10.0     3
+KAN            sp3_sp3_41          N2         C11         C12        H121      60.000    10.0     3
+KAN            sp3_sp3_42          N2         C11         C12        H122     180.000    10.0     3
+KAN            sp3_sp3_43         H11         C11         C12          C7     180.000    10.0     3
+KAN            sp3_sp3_44         H11         C11         C12        H121     -60.000    10.0     3
+KAN            sp3_sp3_45         H11         C11         C12        H122      60.000    10.0     3
+KAN            sp3_sp3_46         O12         C13         C14         C15     -60.000    10.0     3
+KAN            sp3_sp3_47         O12         C13         C14         O13      60.000    10.0     3
+KAN            sp3_sp3_48         O12         C13         C14         H14     180.000    10.0     3
+KAN            sp3_sp3_49         O11         C13         C14         C15      60.000    10.0     3
+KAN            sp3_sp3_50         O11         C13         C14         O13     180.000    10.0     3
+KAN            sp3_sp3_51         O11         C13         C14         H14     -60.000    10.0     3
+KAN            sp3_sp3_52         H13         C13         C14         C15     180.000    10.0     3
+KAN            sp3_sp3_53         H13         C13         C14         O13     -60.000    10.0     3
+KAN            sp3_sp3_54         H13         C13         C14         H14      60.000    10.0     3
+KAN            sp3_sp3_55         C13         C14         C15         C16      60.000    10.0     3
+KAN            sp3_sp3_56         C13         C14         C15          N4     180.000    10.0     3
+KAN            sp3_sp3_57         C13         C14         C15         H15     -60.000    10.0     3
+KAN            sp3_sp3_58         O13         C14         C15         C16     180.000    10.0     3
+KAN            sp3_sp3_59         O13         C14         C15          N4     -60.000    10.0     3
+KAN            sp3_sp3_60         O13         C14         C15         H15      60.000    10.0     3
+KAN            sp3_sp3_61         H14         C14         C15         C16     -60.000    10.0     3
+KAN            sp3_sp3_62         H14         C14         C15          N4      60.000    10.0     3
+KAN            sp3_sp3_63         H14         C14         C15         H15     180.000    10.0     3
+KAN            sp3_sp3_64         C14         C15         C16         C17     -60.000    10.0     3
+KAN            sp3_sp3_65         C14         C15         C16         O14      60.000    10.0     3
+KAN            sp3_sp3_66         C14         C15         C16         H16     180.000    10.0     3
+KAN            sp3_sp3_67          N4         C15         C16         C17      60.000    10.0     3
+KAN            sp3_sp3_68          N4         C15         C16         O14     180.000    10.0     3
+KAN            sp3_sp3_69          N4         C15         C16         H16     -60.000    10.0     3
+KAN            sp3_sp3_70         H15         C15         C16         C17     180.000    10.0     3
+KAN            sp3_sp3_71         H15         C15         C16         O14     -60.000    10.0     3
+KAN            sp3_sp3_72         H15         C15         C16         H16      60.000    10.0     3
+KAN            sp3_sp3_73         C15         C16         C17         O12      60.000    10.0     3
+KAN            sp3_sp3_74         C15         C16         C17         C18     180.000    10.0     3
+KAN            sp3_sp3_75         C15         C16         C17         H17     -60.000    10.0     3
+KAN            sp3_sp3_76         O14         C16         C17         O12     180.000    10.0     3
+KAN            sp3_sp3_77         O14         C16         C17         C18     -60.000    10.0     3
+KAN            sp3_sp3_78         O14         C16         C17         H17      60.000    10.0     3
+KAN            sp3_sp3_79         H16         C16         C17         O12     -60.000    10.0     3
+KAN            sp3_sp3_80         H16         C16         C17         C18      60.000    10.0     3
+KAN            sp3_sp3_81         H16         C16         C17         H17     180.000    10.0     3
+KAN            sp3_sp3_82         C16         C17         O12         C13     -60.000    10.0     3
+KAN            sp3_sp3_83         C18         C17         O12         C13      60.000    10.0     3
+KAN            sp3_sp3_84         H17         C17         O12         C13     180.000    10.0     3
+KAN           sp3_sp3_127          C2          C1          O9         C10     180.000    10.0     3
+KAN           sp3_sp3_128          O5          C1          O9         C10      60.000    10.0     3
+KAN           sp3_sp3_129          H1          C1          O9         C10     -60.000    10.0     3
+KAN           sp3_sp3_130          C1          C2          O6         HO6     180.000    10.0     3
+KAN           sp3_sp3_131          C3          C2          O6         HO6      60.000    10.0     3
+KAN           sp3_sp3_132          H2          C2          O6         HO6     -60.000    10.0     3
+KAN           sp3_sp3_133          C2          C3          O7         HO7     180.000    10.0     3
+KAN           sp3_sp3_134          C4          C3          O7         HO7      60.000    10.0     3
+KAN           sp3_sp3_135          H3          C3          O7         HO7     -60.000    10.0     3
+KAN           sp3_sp3_136          C3          C4          O8         HO8     180.000    10.0     3
+KAN           sp3_sp3_137          C5          C4          O8         HO8      60.000    10.0     3
+KAN           sp3_sp3_138          H4          C4          O8         HO8     -60.000    10.0     3
+KAN           sp3_sp3_139          C4          C5          C6          N1     180.000    10.0     3
+KAN           sp3_sp3_140          C4          C5          C6         H61     -60.000    10.0     3
+KAN           sp3_sp3_141          C4          C5          C6         H62      60.000    10.0     3
+KAN           sp3_sp3_142          O5          C5          C6          N1      60.000    10.0     3
+KAN           sp3_sp3_143          O5          C5          C6         H61     180.000    10.0     3
+KAN           sp3_sp3_144          O5          C5          C6         H62     -60.000    10.0     3
+KAN           sp3_sp3_145          H5          C5          C6          N1     -60.000    10.0     3
+KAN           sp3_sp3_146          H5          C5          C6         H61      60.000    10.0     3
+KAN           sp3_sp3_147          H5          C5          C6         H62     180.000    10.0     3
+KAN           sp3_sp3_148          C5          C6          N1        HN11     180.000    10.0     3
+KAN           sp3_sp3_149          C5          C6          N1        HN12     -60.000    10.0     3
+KAN           sp3_sp3_150          C5          C6          N1         H18      60.000    10.0     3
+KAN           sp3_sp3_151         H61          C6          N1        HN11      60.000    10.0     3
+KAN           sp3_sp3_152         H61          C6          N1        HN12     180.000    10.0     3
+KAN           sp3_sp3_153         H61          C6          N1         H18     -60.000    10.0     3
+KAN           sp3_sp3_154         H62          C6          N1        HN11     -60.000    10.0     3
+KAN           sp3_sp3_155         H62          C6          N1        HN12      60.000    10.0     3
+KAN           sp3_sp3_156         H62          C6          N1         H18     180.000    10.0     3
+KAN           sp3_sp3_157         C11         C12          C7          C8     180.000    10.0     3
+KAN           sp3_sp3_158         C11         C12          C7          N3     -60.000    10.0     3
+KAN           sp3_sp3_159         C11         C12          C7          H7      60.000    10.0     3
+KAN           sp3_sp3_160        H121         C12          C7          C8      60.000    10.0     3
+KAN           sp3_sp3_161        H121         C12          C7          N3     180.000    10.0     3
+KAN           sp3_sp3_162        H121         C12          C7          H7     -60.000    10.0     3
+KAN           sp3_sp3_163        H122         C12          C7          C8     -60.000    10.0     3
+KAN           sp3_sp3_164        H122         C12          C7          N3      60.000    10.0     3
+KAN           sp3_sp3_165        H122         C12          C7          H7     180.000    10.0     3
+KAN           sp3_sp3_166          C8          C7          N3        HN31     180.000    10.0     3
+KAN           sp3_sp3_167          C8          C7          N3        HN32     -60.000    10.0     3
+KAN           sp3_sp3_168          C8          C7          N3         H33      60.000    10.0     3
+KAN           sp3_sp3_169         C12          C7          N3        HN31      60.000    10.0     3
+KAN           sp3_sp3_170         C12          C7          N3        HN32     180.000    10.0     3
+KAN           sp3_sp3_171         C12          C7          N3         H33     -60.000    10.0     3
+KAN           sp3_sp3_172          H7          C7          N3        HN31     -60.000    10.0     3
+KAN           sp3_sp3_173          H7          C7          N3        HN32      60.000    10.0     3
+KAN           sp3_sp3_174          H7          C7          N3         H33     180.000    10.0     3
+KAN           sp3_sp3_175          C7          C8         O11         C13     180.000    10.0     3
+KAN           sp3_sp3_176          C9          C8         O11         C13      60.000    10.0     3
+KAN           sp3_sp3_177          H8          C8         O11         C13     -60.000    10.0     3
+KAN           sp3_sp3_178          C8          C9         O10         HO1     180.000    10.0     3
+KAN           sp3_sp3_179         C10          C9         O10         HO1      60.000    10.0     3
+KAN           sp3_sp3_180          H9          C9         O10         HO1     -60.000    10.0     3
+KAN           sp3_sp3_181          C9         C10          O9          C1     180.000    10.0     3
+KAN           sp3_sp3_182         C11         C10          O9          C1      60.000    10.0     3
+KAN           sp3_sp3_183         H10         C10          O9          C1     -60.000    10.0     3
+KAN           sp3_sp3_184         C10         C11          N2        HN21     180.000    10.0     3
+KAN           sp3_sp3_185         C10         C11          N2        HN22     -60.000    10.0     3
+KAN           sp3_sp3_186         C10         C11          N2         H23      60.000    10.0     3
+KAN           sp3_sp3_187         C12         C11          N2        HN21      60.000    10.0     3
+KAN           sp3_sp3_188         C12         C11          N2        HN22     180.000    10.0     3
+KAN           sp3_sp3_189         C12         C11          N2         H23     -60.000    10.0     3
+KAN           sp3_sp3_190         H11         C11          N2        HN21     -60.000    10.0     3
+KAN           sp3_sp3_191         H11         C11          N2        HN22      60.000    10.0     3
+KAN           sp3_sp3_192         H11         C11          N2         H23     180.000    10.0     3
+KAN           sp3_sp3_193         C14         C13         O11          C8     180.000    10.0     3
+KAN           sp3_sp3_194         O12         C13         O11          C8      60.000    10.0     3
+KAN           sp3_sp3_195         H13         C13         O11          C8     -60.000    10.0     3
+KAN           sp3_sp3_196         C14         C13         O12         C17      60.000    10.0     3
+KAN           sp3_sp3_197         O11         C13         O12         C17      60.000    10.0     3
+KAN           sp3_sp3_198         H13         C13         O12         C17     -60.000    10.0     3
+KAN           sp3_sp3_199         C13         C14         O13         HO3     180.000    10.0     3
+KAN           sp3_sp3_200         C15         C14         O13         HO3      60.000    10.0     3
+KAN           sp3_sp3_201         H14         C14         O13         HO3     -60.000    10.0     3
+KAN           sp3_sp3_202         C14         C15          N4        HN41     180.000    10.0     3
+KAN           sp3_sp3_203         C14         C15          N4        HN42     -60.000    10.0     3
+KAN           sp3_sp3_204         C16         C15          N4        HN41      60.000    10.0     3
+KAN           sp3_sp3_205         C16         C15          N4        HN42     180.000    10.0     3
+KAN           sp3_sp3_206         H15         C15          N4        HN41     -60.000    10.0     3
+KAN           sp3_sp3_207         H15         C15          N4        HN42      60.000    10.0     3
+KAN           sp3_sp3_208         C15         C16         O14         HO4     180.000    10.0     3
+KAN           sp3_sp3_209         C17         C16         O14         HO4      60.000    10.0     3
+KAN           sp3_sp3_210         H16         C16         O14         HO4     -60.000    10.0     3
+KAN           sp3_sp3_211         C16         C17         C18         O15     180.000    10.0     3
+KAN           sp3_sp3_212         C16         C17         C18        H181     -60.000    10.0     3
+KAN           sp3_sp3_213         C16         C17         C18        H182      60.000    10.0     3
+KAN           sp3_sp3_214         O12         C17         C18         O15      60.000    10.0     3
+KAN           sp3_sp3_215         O12         C17         C18        H181     180.000    10.0     3
+KAN           sp3_sp3_216         O12         C17         C18        H182     -60.000    10.0     3
+KAN           sp3_sp3_217         H17         C17         C18         O15     -60.000    10.0     3
+KAN           sp3_sp3_218         H17         C17         C18        H181      60.000    10.0     3
+KAN           sp3_sp3_219         H17         C17         C18        H182     180.000    10.0     3
+KAN           sp3_sp3_220         C17         C18         O15         HO5     180.000    10.0     3
+KAN           sp3_sp3_221        H181         C18         O15         HO5      60.000    10.0     3
+KAN           sp3_sp3_222        H182         C18         O15         HO5     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KAN    chir_1    C1    O9    O5    C2    negative
+KAN    chir_2    C2    O6    C1    C3    negative
+KAN    chir_3    C3    O7    C2    C4    positive
+KAN    chir_4    C4    O8    C5    C3    positive
+KAN    chir_5    C5    O5    C4    C6    negative
+KAN    chir_6    C7    N3    C8    C12    negative
+KAN    chir_7    C8    O11    C9    C7    positive
+KAN    chir_8    C9    O10    C10    C8    negative
+KAN    chir_9    C10    O9    C9    C11    negative
+KAN    chir_10    C11    N2    C10    C12    positive
+KAN    chir_11    C13    O12    O11    C14    positive
+KAN    chir_12    C14    O13    C13    C15    negative
+KAN    chir_13    C15    N4    C14    C16    positive
+KAN    chir_14    C16    O14    C17    C15    positive
+KAN    chir_15    C17    O12    C16    C18    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KAN           SMILES              ACDLabs 10.04                                                                                                                                                   O(C2C(O)C(OC1OC(CN)C(O)C(O)C1O)C(N)CC2N)C3OC(C(O)C(N)C3O)CO
+KAN SMILES_CANONICAL               CACTVS 3.341                                                                                   NC[C@H]1O[C@H](O[C@@H]2[C@@H](N)C[C@@H](N)[C@H](O[C@H]3O[C@H](CO)[C@@H](O)[C@H](N)[C@H]3O)[C@H]2O)[C@H](O)[C@@H](O)[C@@H]1O
+KAN           SMILES               CACTVS 3.341                                                                                                        NC[CH]1O[CH](O[CH]2[CH](N)C[CH](N)[CH](O[CH]3O[CH](CO)[CH](O)[CH](N)[CH]3O)[CH]2O)[CH](O)[CH](O)[CH]1O
+KAN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           C1[C@H]([C@@H]([C@H]([C@@H]([C@H]1N)O[C@@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CN)O)O)O)O)O[C@@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)N)O)N
+KAN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                               C1C(C(C(C(C1N)OC2C(C(C(C(O2)CN)O)O)O)O)OC3C(C(C(C(O3)CO)O)N)O)N
+KAN            InChI                InChI  1.03 InChI=1S/C18H36N4O11/c19-2-6-10(25)12(27)13(28)18(30-6)33-16-5(21)1-4(20)15(14(16)29)32-17-11(26)8(22)9(24)7(3-23)31-17/h4-18,23-29H,1-3,19-22H2/t4-,5+,6-,7-,8+,9-,10-,11-,12+,13-,14-,15+,16-,17-,18-/m1/s1
+KAN         InChIKey                InChI  1.03                                                                                                                                                                                   SBUJHOSQTJFQJX-NOAMYHISSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KAN acedrg               243         "dictionary generator"                  
+KAN acedrg_database      11          "data source"                           
+KAN rdkit                2017.03.2   "Chemoinformatics tool"
+KAN refmac5              5.8.0238    "optimization tool"                     

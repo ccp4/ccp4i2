@@ -1,0 +1,380 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MSP     MSP      "5'-O-[(L-METHIONYL)-SULPHAMOYL]ADENOSINE"     NON-POLYMER     57     31     .     
+#
+data_comp_MSP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MSP     N2      N       NT3     1       9.750       19.340      15.087      
+MSP     CA      C       CH1     0       10.616      20.411      14.516      
+MSP     CB      C       CH2     0       10.168      20.770      13.094      
+MSP     CG      C       CH2     0       10.462      19.702      12.059      
+MSP     SD      S       S2      0       10.136      20.277      10.373      
+MSP     CE      C       CH3     0       10.676      18.856      9.426       
+MSP     C9      C       C       0       10.547      21.633      15.430      
+MSP     N8      N       NH1     0       9.343       22.199      15.604      
+MSP     S1      S       S3      0       9.082       23.610      16.413      
+MSP     O1S     O       O       0       7.705       23.927      16.287      
+MSP     O2S     O       O       0       9.670       23.505      17.700      
+MSP     "O5'"   O       O2      0       9.895       24.687      15.601      
+MSP     "C5'"   C       CH2     0       9.469       24.993      14.234      
+MSP     "C4'"   C       CH1     0       10.587      25.692      13.494      
+MSP     "O4'"   O       O2      0       10.922      26.919      14.191      
+MSP     "C3'"   C       CH1     0       11.898      24.892      13.386      
+MSP     "O3'"   O       OH1     0       12.384      24.891      12.049      
+MSP     "C2'"   C       CH1     0       12.821      25.561      14.399      
+MSP     "O2'"   O       OH1     0       14.183      25.564      14.016      
+MSP     "C1'"   C       CH1     0       12.323      27.005      14.352      
+MSP     N9      N       NR5     0       12.628      27.771      15.565      
+MSP     C8      C       CR15    0       12.197      27.469      16.816      
+MSP     N7      N       NRD5    0       12.663      28.327      17.735      
+MSP     C5      C       CR56    0       13.535      29.098      17.136      
+MSP     C6      C       CR6     0       14.528      29.870      17.717      
+MSP     N6      N       NH2     0       14.507      30.339      18.932      
+MSP     N1      N       NR6     0       15.590      30.113      16.906      
+MSP     C2      C       CR16    0       15.726      29.598      15.653      
+MSP     N3      N       NRD6    0       14.767      28.922      15.054      
+MSP     C4      C       CH1     0       13.422      28.997      15.639      
+MSP     O1      O       O       0       11.566      22.066      15.967      
+MSP     HN21    H       H       0       9.898       19.249      15.982      
+MSP     HN22    H       H       0       9.947       18.550      14.679      
+MSP     H23     H       H       0       8.869       19.526      14.950      
+MSP     HA      H       H       0       11.545      20.085      14.485      
+MSP     HB1     H       H       0       10.616      21.598      12.827      
+MSP     HB2     H       H       0       9.206       20.945      13.104      
+MSP     HG1     H       H       0       9.908       18.913      12.240      
+MSP     HG2     H       H       0       11.403      19.434      12.128      
+MSP     HE1     H       H       0       10.539      19.025      8.486       
+MSP     HE2     H       H       0       10.166      18.081      9.691       
+MSP     HE3     H       H       0       11.613      18.697      9.591       
+MSP     HN8     H       H       0       8.635       21.814      15.272      
+MSP     "H5'1"  H       H       0       8.680       25.574      14.252      
+MSP     "H5'2"  H       H       0       9.235       24.169      13.759      
+MSP     "H4'"   H       H       0       10.271      25.912      12.591      
+MSP     "H3'"   H       H       0       11.756      23.960      13.697      
+MSP     H2      H       H       0       13.076      24.401      12.010      
+MSP     H1      H       H       0       12.713      25.160      15.287      
+MSP     "H2'"   H       H       0       14.685      25.952      14.580      
+MSP     "H1'"   H       H       0       12.686      27.463      13.556      
+MSP     H8      H       H       0       11.635      26.746      17.040      
+MSP     HN61    H       H       0       15.244      30.423      19.378      
+MSP     HN62    H       H       0       13.755      30.568      19.297      
+MSP     HN1     H       H       0       16.214      30.629      17.199      
+MSP     H3      H       H       0       16.544      29.736      15.205      
+MSP     H4      H       H       0       12.905      29.760      15.269      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MSP          N2          CA      SINGLE       n     1.488  0.0100     1.488  0.0100
+MSP          CA          CB      SINGLE       n     1.532  0.0100     1.532  0.0100
+MSP          CA          C9      SINGLE       n     1.526  0.0100     1.526  0.0100
+MSP          CB          CG      SINGLE       n     1.517  0.0200     1.517  0.0200
+MSP          CG          SD      SINGLE       n     1.811  0.0200     1.811  0.0200
+MSP          SD          CE      SINGLE       n     1.792  0.0100     1.792  0.0100
+MSP          C9          N8      SINGLE       n     1.336  0.0126     1.336  0.0126
+MSP          C9          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MSP          N8          S1      SINGLE       n     1.642  0.0171     1.642  0.0171
+MSP          S1         O1S      DOUBLE       n     1.418  0.0102     1.418  0.0102
+MSP          S1         O2S      DOUBLE       n     1.418  0.0102     1.418  0.0102
+MSP          S1       "O5'"      SINGLE       n     1.572  0.0130     1.572  0.0130
+MSP       "O5'"       "C5'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+MSP       "C5'"       "C4'"      SINGLE       n     1.511  0.0128     1.511  0.0128
+MSP       "C4'"       "O4'"      SINGLE       n     1.450  0.0100     1.450  0.0100
+MSP       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+MSP       "O4'"       "C1'"      SINGLE       n     1.416  0.0117     1.416  0.0117
+MSP       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+MSP       "C3'"       "C2'"      SINGLE       n     1.517  0.0200     1.517  0.0200
+MSP       "C2'"       "O2'"      SINGLE       n     1.412  0.0200     1.412  0.0200
+MSP       "C2'"       "C1'"      SINGLE       n     1.529  0.0100     1.529  0.0100
+MSP       "C1'"          N9      SINGLE       n     1.465  0.0174     1.465  0.0174
+MSP          N9          C8      SINGLE       n     1.352  0.0100     1.352  0.0100
+MSP          N9          C4      SINGLE       n     1.465  0.0100     1.465  0.0100
+MSP          C8          N7      DOUBLE       n     1.324  0.0160     1.324  0.0160
+MSP          N7          C5      SINGLE       n     1.314  0.0200     1.314  0.0200
+MSP          C5          C6      DOUBLE       n     1.377  0.0200     1.377  0.0200
+MSP          C5          C4      SINGLE       n     1.510  0.0100     1.510  0.0100
+MSP          C6          N6      SINGLE       n     1.302  0.0100     1.302  0.0100
+MSP          C6          N1      SINGLE       n     1.353  0.0104     1.353  0.0104
+MSP          N1          C2      SINGLE       n     1.356  0.0110     1.356  0.0110
+MSP          C2          N3      DOUBLE       n     1.302  0.0200     1.302  0.0200
+MSP          N3          C4      SINGLE       n     1.463  0.0130     1.463  0.0130
+MSP          N2        HN21      SINGLE       n     1.036  0.0160     0.911  0.0200
+MSP          N2        HN22      SINGLE       n     1.036  0.0160     0.911  0.0200
+MSP          N2         H23      SINGLE       n     1.036  0.0160     0.911  0.0200
+MSP          CA          HA      SINGLE       n     1.089  0.0100     0.985  0.0200
+MSP          CB         HB1      SINGLE       n     1.089  0.0100     0.978  0.0200
+MSP          CB         HB2      SINGLE       n     1.089  0.0100     0.978  0.0200
+MSP          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0122
+MSP          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0122
+MSP          CE         HE1      SINGLE       n     1.089  0.0100     0.965  0.0170
+MSP          CE         HE2      SINGLE       n     1.089  0.0100     0.965  0.0170
+MSP          CE         HE3      SINGLE       n     1.089  0.0100     0.965  0.0170
+MSP          N8         HN8      SINGLE       n     1.016  0.0100     0.872  0.0200
+MSP       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.980  0.0101
+MSP       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.980  0.0101
+MSP       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+MSP       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+MSP       "O3'"          H2      SINGLE       n     0.970  0.0120     0.849  0.0200
+MSP       "C2'"          H1      SINGLE       n     1.089  0.0100     0.981  0.0200
+MSP       "O2'"       "H2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+MSP       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.987  0.0200
+MSP          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0118
+MSP          N6        HN61      SINGLE       n     1.016  0.0100     0.866  0.0160
+MSP          N6        HN62      SINGLE       n     1.016  0.0100     0.866  0.0160
+MSP          N1         HN1      SINGLE       n     1.016  0.0100     0.860  0.0100
+MSP          C2          H3      SINGLE       n     1.082  0.0130     0.943  0.0200
+MSP          C4          H4      SINGLE       n     1.089  0.0100     0.993  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MSP          CA          N2        HN21     109.708    3.00
+MSP          CA          N2        HN22     109.708    3.00
+MSP          CA          N2         H23     109.708    3.00
+MSP        HN21          N2        HN22     109.028    2.41
+MSP        HN21          N2         H23     109.028    2.41
+MSP        HN22          N2         H23     109.028    2.41
+MSP          N2          CA          CB     110.245    1.51
+MSP          N2          CA          C9     107.575    1.50
+MSP          N2          CA          HA     109.157    1.50
+MSP          CB          CA          C9     111.313    1.89
+MSP          CB          CA          HA     109.207    1.50
+MSP          C9          CA          HA     109.286    1.50
+MSP          CA          CB          CG     114.033    1.57
+MSP          CA          CB         HB1     108.567    1.50
+MSP          CA          CB         HB2     108.567    1.50
+MSP          CG          CB         HB1     108.955    1.50
+MSP          CG          CB         HB2     108.955    1.50
+MSP         HB1          CB         HB2     107.698    1.50
+MSP          CB          CG          SD     112.576    2.44
+MSP          CB          CG         HG1     109.206    1.50
+MSP          CB          CG         HG2     109.206    1.50
+MSP          SD          CG         HG1     108.861    1.50
+MSP          SD          CG         HG2     108.861    1.50
+MSP         HG1          CG         HG2     107.939    1.50
+MSP          CG          SD          CE     100.595    1.50
+MSP          SD          CE         HE1     109.425    1.50
+MSP          SD          CE         HE2     109.425    1.50
+MSP          SD          CE         HE3     109.425    1.50
+MSP         HE1          CE         HE2     109.509    1.50
+MSP         HE1          CE         HE3     109.509    1.50
+MSP         HE2          CE         HE3     109.509    1.50
+MSP          CA          C9          N8     116.687    1.68
+MSP          CA          C9          O1     121.161    1.50
+MSP          N8          C9          O1     122.151    1.50
+MSP          C9          N8          S1     122.441    2.63
+MSP          C9          N8         HN8     119.805    2.55
+MSP          S1          N8         HN8     117.753    2.40
+MSP          N8          S1         O1S     106.847    2.16
+MSP          N8          S1         O2S     106.847    2.16
+MSP          N8          S1       "O5'"     104.512    2.36
+MSP         O1S          S1         O2S     119.943    1.50
+MSP         O1S          S1       "O5'"     106.128    3.00
+MSP         O2S          S1       "O5'"     106.128    3.00
+MSP          S1       "O5'"       "C5'"     118.000    1.50
+MSP       "O5'"       "C5'"       "C4'"     108.904    2.44
+MSP       "O5'"       "C5'"      "H5'1"     110.152    1.50
+MSP       "O5'"       "C5'"      "H5'2"     110.152    1.50
+MSP       "C4'"       "C5'"      "H5'1"     109.496    1.62
+MSP       "C4'"       "C5'"      "H5'2"     109.496    1.62
+MSP      "H5'1"       "C5'"      "H5'2"     108.493    1.50
+MSP       "C5'"       "C4'"       "O4'"     109.123    1.50
+MSP       "C5'"       "C4'"       "C3'"     114.866    1.63
+MSP       "C5'"       "C4'"       "H4'"     108.962    1.72
+MSP       "O4'"       "C4'"       "C3'"     104.641    1.82
+MSP       "O4'"       "C4'"       "H4'"     110.466    2.90
+MSP       "C3'"       "C4'"       "H4'"     109.363    1.86
+MSP       "C4'"       "O4'"       "C1'"     109.816    1.50
+MSP       "C4'"       "C3'"       "O3'"     111.281    2.46
+MSP       "C4'"       "C3'"       "C2'"     101.879    2.07
+MSP       "C4'"       "C3'"       "H3'"     110.452    2.54
+MSP       "O3'"       "C3'"       "C2'"     114.431    3.00
+MSP       "O3'"       "C3'"       "H3'"     110.380    1.67
+MSP       "C2'"       "C3'"       "H3'"     107.880    2.97
+MSP       "C3'"       "O3'"          H2     108.744    3.00
+MSP       "C3'"       "C2'"       "O2'"     112.637    3.00
+MSP       "C3'"       "C2'"       "C1'"     101.599    1.50
+MSP       "C3'"       "C2'"          H1     111.559    3.00
+MSP       "O2'"       "C2'"       "C1'"     107.625    3.00
+MSP       "O2'"       "C2'"          H1     111.144    3.00
+MSP       "C1'"       "C2'"          H1     111.470    3.00
+MSP       "C2'"       "O2'"       "H2'"     112.841    3.00
+MSP       "O4'"       "C1'"       "C2'"     106.883    1.50
+MSP       "O4'"       "C1'"          N9     109.703    1.83
+MSP       "O4'"       "C1'"       "H1'"     108.532    2.90
+MSP       "C2'"       "C1'"          N9     113.039    1.91
+MSP       "C2'"       "C1'"       "H1'"     111.147    3.00
+MSP          N9       "C1'"       "H1'"     110.672    1.50
+MSP       "C1'"          N9          C8     123.026    2.97
+MSP       "C1'"          N9          C4     125.071    2.39
+MSP          C8          N9          C4     111.903    2.93
+MSP          N9          C8          N7     110.980    1.83
+MSP          N9          C8          H8     125.829    1.50
+MSP          N7          C8          H8     123.191    2.01
+MSP          C8          N7          C5     109.205    3.00
+MSP          N7          C5          C6     123.822    3.00
+MSP          N7          C5          C4     114.491    1.50
+MSP          C6          C5          C4     121.687    2.63
+MSP          C5          C6          N6     124.208    2.53
+MSP          C5          C6          N1     116.000    3.00
+MSP          N6          C6          N1     119.792    1.50
+MSP          C6          N6        HN61     120.138    1.50
+MSP          C6          N6        HN62     120.138    1.50
+MSP        HN61          N6        HN62     119.724    1.50
+MSP          C6          N1          C2     124.247    1.50
+MSP          C6          N1         HN1     117.922    1.50
+MSP          C2          N1         HN1     117.831    1.50
+MSP          N1          C2          N3     123.332    2.48
+MSP          N1          C2          H3     117.645    1.50
+MSP          N3          C2          H3     119.023    1.50
+MSP          C2          N3          C4     119.539    3.00
+MSP          N9          C4          C5     102.868    1.50
+MSP          N9          C4          N3     109.471    3.00
+MSP          N9          C4          H4     109.463    1.68
+MSP          C5          C4          N3     109.471    3.00
+MSP          C5          C4          H4     110.208    2.02
+MSP          N3          C4          H4     109.471    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MSP            sp3_sp3_25          CB          CA          N2        HN21     180.000    10.0     3
+MSP            sp3_sp3_61       "C4'"       "C5'"       "O5'"          S1     180.000    10.0     3
+MSP            sp3_sp3_64       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+MSP             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+MSP            sp3_sp3_77       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+MSP             sp3_sp3_4       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+MSP            sp3_sp3_82       "C4'"       "C3'"       "O3'"          H2     180.000    10.0     3
+MSP            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+MSP            sp3_sp3_85       "C3'"       "C2'"       "O2'"       "H2'"     180.000    10.0     3
+MSP             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+MSP            sp2_sp3_22          C8          N9       "C1'"       "O4'"     150.000    10.0     6
+MSP            sp3_sp3_34          N2          CA          CB          CG     180.000    10.0     3
+MSP            sp2_sp3_10          N8          C9          CA          N2       0.000    10.0     6
+MSP            sp2_sp2_16          N7          C8          N9       "C1'"     180.000     5.0     2
+MSP            sp2_sp3_31       "C1'"          N9          C4          C5     180.000    10.0     6
+MSP            sp2_sp2_19          N9          C8          N7          C5       0.000     5.0     2
+MSP            sp2_sp2_22          C6          C5          N7          C8     180.000     5.0     2
+MSP             sp2_sp2_4          N7          C5          C6          N6       0.000     5.0     2
+MSP             sp2_sp3_4          N7          C5          C4          N9       0.000    10.0     6
+MSP            sp2_sp2_27          C5          C6          N6        HN61     180.000     5.0     2
+MSP             sp2_sp2_7          N6          C6          N1          C2     180.000     5.0     2
+MSP             sp2_sp2_9          N3          C2          N1          C6       0.000     5.0     2
+MSP            sp2_sp2_13          N1          C2          N3          C4       0.000     5.0     2
+MSP             sp2_sp3_2          C2          N3          C4          N9     120.000    10.0     6
+MSP            sp3_sp3_43          CA          CB          CG          SD     180.000    10.0     3
+MSP            sp3_sp3_52          CB          CG          SD          CE     180.000    10.0     3
+MSP            sp3_sp3_55         HE1          CE          SD          CG     180.000    10.0     3
+MSP            sp2_sp2_23          CA          C9          N8          S1     180.000     5.0     2
+MSP            sp2_sp3_16          C9          N8          S1         O1S       0.000    10.0     6
+MSP            sp3_sp3_60       "C5'"       "O5'"          S1          N8      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MSP    chir_1    CA    N2    C9    CB    positive
+MSP    chir_2    S1    O1S    O2S    "O5'"    both
+MSP    chir_3    "C4'"    "O4'"    "C3'"    "C5'"    negative
+MSP    chir_4    "C3'"    "O3'"    "C4'"    "C2'"    positive
+MSP    chir_5    "C2'"    "O2'"    "C1'"    "C3'"    negative
+MSP    chir_6    "C1'"    "O4'"    N9    "C2'"    negative
+MSP    chir_7    C4    N9    N3    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MSP    plan-1          C9   0.020
+MSP    plan-1          CA   0.020
+MSP    plan-1          N8   0.020
+MSP    plan-1          O1   0.020
+MSP    plan-2          C9   0.020
+MSP    plan-2         HN8   0.020
+MSP    plan-2          N8   0.020
+MSP    plan-2          S1   0.020
+MSP    plan-3       "C1'"   0.020
+MSP    plan-3          C4   0.020
+MSP    plan-3          C8   0.020
+MSP    plan-3          N9   0.020
+MSP    plan-4          C8   0.020
+MSP    plan-4          H8   0.020
+MSP    plan-4          N7   0.020
+MSP    plan-4          N9   0.020
+MSP    plan-5          C4   0.020
+MSP    plan-5          C5   0.020
+MSP    plan-5          C6   0.020
+MSP    plan-5          N7   0.020
+MSP    plan-6          C5   0.020
+MSP    plan-6          C6   0.020
+MSP    plan-6          N1   0.020
+MSP    plan-6          N6   0.020
+MSP    plan-7          C6   0.020
+MSP    plan-7        HN61   0.020
+MSP    plan-7        HN62   0.020
+MSP    plan-7          N6   0.020
+MSP    plan-8          C2   0.020
+MSP    plan-8          C6   0.020
+MSP    plan-8         HN1   0.020
+MSP    plan-8          N1   0.020
+MSP    plan-9          C2   0.020
+MSP    plan-9          H3   0.020
+MSP    plan-9          N1   0.020
+MSP    plan-9          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MSP           SMILES              ACDLabs 10.04                                                                                                                                                 O=C(NS(=O)(=O)OCC3OC(N2C=NC1=C(N)NC=NC12)C(O)C3O)C(N)CCSC
+MSP SMILES_CANONICAL               CACTVS 3.341                                                                                                                      CSCC[C@H](N)C(=O)N[S](=O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N2C=NC3=C(N)NC=N[C@H]23
+MSP           SMILES               CACTVS 3.341                                                                                                                             CSCC[CH](N)C(=O)N[S](=O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O)N2C=NC3=C(N)NC=N[CH]23
+MSP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                        CSCC[C@@H](C(=O)NS(=O)(=O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)N2C=NC3=C(NC=NC32)N)O)O)N
+MSP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                               CSCCC(C(=O)NS(=O)(=O)OCC1C(C(C(O1)N2C=NC3=C(NC=NC32)N)O)O)N
+MSP            InChI                InChI  1.03 InChI=1S/C15H25N7O7S2/c1-30-3-2-7(16)14(25)21-31(26,27)28-4-8-10(23)11(24)15(29-8)22-6-20-9-12(17)18-5-19-13(9)22/h5-8,10-11,13,15,23-24H,2-4,16-17H2,1H3,(H,18,19)(H,21,25)/t7-,8+,10+,11+,13?,15+/m0/s1
+MSP         InChIKey                InChI  1.03                                                                                                                                                                               SQDXXTAOGLOMRP-VOLIQSIHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MSP acedrg               243         "dictionary generator"                  
+MSP acedrg_database      11          "data source"                           
+MSP rdkit                2017.03.2   "Chemoinformatics tool"
+MSP refmac5              5.8.0238    "optimization tool"                     

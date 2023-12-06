@@ -1,0 +1,309 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PZW     PZW      (1R)-9-(azetidin-3-ylamino)-1,8-dimethyl-3,5-dihydro[1,2,4]triazino[3,4-c][1,4]benzoxazin-2(1H)-one     NON-POLYMER     41     22     .     
+#
+data_comp_PZW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PZW     C1      C       CH3     0       25.163      -7.393      -10.379     
+PZW     C2      C       CR6     0       24.062      -7.099      -9.392      
+PZW     C3      C       CR16    0       24.313      -6.260      -8.318      
+PZW     C4      C       CR66    0       23.318      -5.966      -7.387      
+PZW     O5      O       O2      0       23.644      -5.127      -6.348      
+PZW     C6      C       CH2     0       22.978      -5.385      -5.097      
+PZW     C7      C       CR66    0       21.524      -5.761      -5.267      
+PZW     N8      N       NRD6    0       20.739      -5.686      -4.215      
+PZW     N9      N       NR6     0       19.402      -5.517      -4.453      
+PZW     C10     C       CR6     0       18.762      -5.949      -5.576      
+PZW     O11     O       O       0       17.560      -6.136      -5.599      
+PZW     C12     C       CH1     0       19.607      -6.215      -6.812      
+PZW     C13     C       CH3     0       19.249      -5.261      -7.947      
+PZW     N14     N       NR6     0       21.076      -6.170      -6.524      
+PZW     C15     C       CR66    0       22.037      -6.511      -7.514      
+PZW     C16     C       CR16    0       21.768      -7.359      -8.587      
+PZW     C17     C       CR6     0       22.764      -7.665      -9.533      
+PZW     N18     N       NH1     0       22.480      -8.513      -10.621     
+PZW     C19     C       CH1     0       21.371      -9.440      -10.672     
+PZW     C20     C       CH2     0       21.437      -10.541     -11.765     
+PZW     N21     N       NT1     0       21.434      -11.569     -10.694     
+PZW     C22     C       CH2     0       21.334      -10.566     -9.604      
+PZW     H1      H       H       0       25.989      -6.973      -10.090     
+PZW     H2      H       H       0       24.916      -7.048      -11.252     
+PZW     H3      H       H       0       25.295      -8.353      -10.439     
+PZW     H4      H       H       0       25.186      -5.879      -8.219      
+PZW     H5      H       H       0       23.032      -4.586      -4.537      
+PZW     H6      H       H       0       23.439      -6.111      -4.634      
+PZW     H7      H       H       0       18.952      -5.110      -3.843      
+PZW     H8      H       H       0       19.356      -7.126      -7.094      
+PZW     H9      H       H       0       18.343      -4.916      -7.824      
+PZW     H10     H       H       0       19.298      -5.738      -8.800      
+PZW     H11     H       H       0       19.880      -4.514      -7.959      
+PZW     H12     H       H       0       20.910      -7.730      -8.680      
+PZW     H13     H       H       0       22.983      -8.468      -11.331     
+PZW     H14     H       H       0       20.525      -8.942      -10.707     
+PZW     H15     H       H       0       20.653      -10.572     -12.341     
+PZW     H16     H       H       0       22.254      -10.526     -12.292     
+PZW     H17     H       H       0       20.763      -12.127     -10.733     
+PZW     H19     H       H       0       20.499      -10.610     -9.107      
+PZW     H20     H       H       0       22.097      -10.564     -9.001      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PZW         C19         C20      SINGLE       n     1.556  0.0190     1.556  0.0190
+PZW         C20         N21      SINGLE       n     1.482  0.0136     1.482  0.0136
+PZW         N18         C19      SINGLE       n     1.444  0.0112     1.444  0.0112
+PZW         C17         N18      SINGLE       n     1.382  0.0200     1.382  0.0200
+PZW         C19         C22      SINGLE       n     1.556  0.0190     1.556  0.0190
+PZW          C1          C2      SINGLE       n     1.505  0.0100     1.505  0.0100
+PZW         N21         C22      SINGLE       n     1.482  0.0136     1.482  0.0136
+PZW          C2         C17      DOUBLE       y     1.406  0.0135     1.406  0.0135
+PZW         C16         C17      SINGLE       y     1.399  0.0111     1.399  0.0111
+PZW          C2          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+PZW         C15         C16      DOUBLE       y     1.388  0.0100     1.388  0.0100
+PZW          C3          C4      DOUBLE       y     1.391  0.0112     1.391  0.0112
+PZW         C12         C13      SINGLE       n     1.522  0.0113     1.522  0.0113
+PZW          C4         C15      SINGLE       y     1.395  0.0114     1.395  0.0114
+PZW         N14         C15      SINGLE       n     1.394  0.0198     1.394  0.0198
+PZW          C4          O5      SINGLE       n     1.374  0.0130     1.374  0.0130
+PZW         C12         N14      SINGLE       n     1.466  0.0199     1.466  0.0199
+PZW         C10         C12      SINGLE       n     1.517  0.0100     1.517  0.0100
+PZW          C7         N14      SINGLE       n     1.359  0.0200     1.359  0.0200
+PZW          O5          C6      SINGLE       n     1.436  0.0130     1.436  0.0130
+PZW         C10         O11      DOUBLE       n     1.216  0.0100     1.216  0.0100
+PZW          N9         C10      SINGLE       n     1.361  0.0200     1.361  0.0200
+PZW          C6          C7      SINGLE       n     1.504  0.0118     1.504  0.0118
+PZW          C7          N8      DOUBLE       n     1.304  0.0200     1.304  0.0200
+PZW          N8          N9      SINGLE       n     1.364  0.0200     1.364  0.0200
+PZW          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0135
+PZW          C1          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+PZW          C1          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+PZW          C3          H4      SINGLE       n     1.082  0.0130     0.958  0.0200
+PZW          C6          H5      SINGLE       n     1.089  0.0100     0.977  0.0141
+PZW          C6          H6      SINGLE       n     1.089  0.0100     0.977  0.0141
+PZW          N9          H7      SINGLE       n     1.016  0.0100     0.860  0.0100
+PZW         C12          H8      SINGLE       n     1.089  0.0100     0.987  0.0200
+PZW         C13          H9      SINGLE       n     1.089  0.0100     0.978  0.0100
+PZW         C13         H10      SINGLE       n     1.089  0.0100     0.978  0.0100
+PZW         C13         H11      SINGLE       n     1.089  0.0100     0.978  0.0100
+PZW         C16         H12      SINGLE       n     1.082  0.0130     0.943  0.0181
+PZW         N18         H13      SINGLE       n     1.016  0.0100     0.873  0.0200
+PZW         C19         H14      SINGLE       n     1.089  0.0100     0.983  0.0141
+PZW         C20         H15      SINGLE       n     1.089  0.0100     0.973  0.0130
+PZW         C20         H16      SINGLE       n     1.089  0.0100     0.973  0.0130
+PZW         N21         H17      SINGLE       n     1.036  0.0160     0.873  0.0200
+PZW         C22         H19      SINGLE       n     1.089  0.0100     0.973  0.0130
+PZW         C22         H20      SINGLE       n     1.089  0.0100     0.973  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PZW          C2          C1          H1     109.470    1.50
+PZW          C2          C1          H2     109.470    1.50
+PZW          C2          C1          H3     109.470    1.50
+PZW          H1          C1          H2     109.348    1.50
+PZW          H1          C1          H3     109.348    1.50
+PZW          H2          C1          H3     109.348    1.50
+PZW          C1          C2         C17     120.909    1.50
+PZW          C1          C2          C3     120.228    1.50
+PZW         C17          C2          C3     118.863    1.50
+PZW          C2          C3          C4     120.673    1.50
+PZW          C2          C3          H4     119.144    1.50
+PZW          C4          C3          H4     120.183    1.50
+PZW          C3          C4         C15     120.393    1.50
+PZW          C3          C4          O5     117.248    1.50
+PZW         C15          C4          O5     122.358    1.50
+PZW          C4          O5          C6     114.274    3.00
+PZW          O5          C6          C7     111.147    1.69
+PZW          O5          C6          H5     109.213    1.50
+PZW          O5          C6          H6     109.213    1.50
+PZW          C7          C6          H5     108.985    1.50
+PZW          C7          C6          H6     108.985    1.50
+PZW          H5          C6          H6     108.313    1.80
+PZW         N14          C7          C6     117.757    1.57
+PZW         N14          C7          N8     123.143    1.67
+PZW          C6          C7          N8     119.100    1.50
+PZW          C7          N8          N9     116.161    2.00
+PZW         C10          N9          N8     124.852    2.47
+PZW         C10          N9          H7     118.917    2.28
+PZW          N8          N9          H7     116.232    2.20
+PZW         C12         C10         O11     120.218    1.50
+PZW         C12         C10          N9     117.924    1.63
+PZW         O11         C10          N9     121.857    1.61
+PZW         C13         C12         N14     109.929    2.45
+PZW         C13         C12         C10     110.265    2.02
+PZW         C13         C12          H8     107.754    1.50
+PZW         N14         C12         C10     111.533    1.50
+PZW         N14         C12          H8     109.224    1.50
+PZW         C10         C12          H8     106.591    3.00
+PZW         C12         C13          H9     109.693    1.50
+PZW         C12         C13         H10     109.693    1.50
+PZW         C12         C13         H11     109.693    1.50
+PZW          H9         C13         H10     109.479    1.50
+PZW          H9         C13         H11     109.479    1.50
+PZW         H10         C13         H11     109.479    1.50
+PZW         C15         N14         C12     119.846    3.00
+PZW         C15         N14          C7     119.370    1.50
+PZW         C12         N14          C7     120.784    2.54
+PZW         C16         C15          C4     119.468    1.50
+PZW         C16         C15         N14     121.743    1.50
+PZW          C4         C15         N14     118.790    1.50
+PZW         C17         C16         C15     120.454    1.50
+PZW         C17         C16         H12     119.825    1.50
+PZW         C15         C16         H12     119.722    1.50
+PZW         N18         C17          C2     119.334    1.50
+PZW         N18         C17         C16     120.516    2.08
+PZW          C2         C17         C16     120.150    1.82
+PZW         C19         N18         C17     121.138    3.00
+PZW         C19         N18         H13     119.908    2.80
+PZW         C17         N18         H13     118.953    2.27
+PZW         C20         C19         N18     116.232    2.96
+PZW         C20         C19         C22      89.015    2.00
+PZW         C20         C19         H14     111.910    1.50
+PZW         N18         C19         C22     116.232    2.96
+PZW         N18         C19         H14     109.796    1.50
+PZW         C22         C19         H14     111.910    1.50
+PZW         C19         C20         N21      88.172    1.93
+PZW         C19         C20         H15     113.758    1.54
+PZW         C19         C20         H16     113.758    1.54
+PZW         N21         C20         H15     113.624    1.50
+PZW         N21         C20         H16     113.624    1.50
+PZW         H15         C20         H16     110.649    1.50
+PZW         C20         N21         C22      91.745    1.91
+PZW         C20         N21         H17     114.354    1.51
+PZW         C22         N21         H17     114.354    1.51
+PZW         C19         C22         N21      88.172    1.93
+PZW         C19         C22         H19     113.758    1.54
+PZW         C19         C22         H20     113.758    1.54
+PZW         N21         C22         H19     113.624    1.50
+PZW         N21         C22         H20     113.624    1.50
+PZW         H19         C22         H20     110.649    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PZW            sp2_sp3_25         C17          C2          C1          H1     150.000    10.0     6
+PZW            sp3_sp3_34         N14         C12         C13          H9     180.000    10.0     3
+PZW             sp2_sp3_5         C15         N14         C12         C13     -60.000    10.0     6
+PZW            sp2_sp2_14         C16         C15         N14         C12       0.000     5.0     2
+PZW       const_sp2_sp2_9          C4         C15         C16         C17       0.000     5.0     2
+PZW       const_sp2_sp2_6         C15         C16         C17         N18     180.000     5.0     2
+PZW            sp2_sp2_15          C2         C17         N18         C19     180.000     5.0     2
+PZW            sp2_sp3_20         C17         N18         C19         C20     120.000    10.0     6
+PZW            sp3_sp3_10         N18         C19         C20         N21     180.000    10.0     3
+PZW            sp3_sp3_28         N18         C19         C22         N21      60.000    10.0     3
+PZW            sp3_sp3_13         C19         C20         N21         C22     -60.000    10.0     3
+PZW       const_sp2_sp2_4         N18         C17          C2          C1       0.000     5.0     2
+PZW              const_23          C1          C2          C3          C4     180.000    10.0     2
+PZW            sp3_sp3_19         C19         C22         N21         C20      60.000    10.0     3
+PZW              const_17          C2          C3          C4         C15       0.000    10.0     2
+PZW              const_13         C16         C15          C4          C3       0.000    10.0     2
+PZW            sp2_sp2_20          C3          C4          O5          C6     180.000     5.0     2
+PZW             sp3_sp3_1          C7          C6          O5          C4      60.000    10.0     3
+PZW            sp2_sp3_13         N14          C7          C6          O5       0.000    10.0     6
+PZW             sp2_sp2_1          C6          C7         N14         C15       0.000     5.0     2
+PZW            sp2_sp2_21         N14          C7          N8          N9       0.000     5.0     2
+PZW             sp2_sp2_9          C7          N8          N9         C10       0.000     5.0     2
+PZW             sp2_sp2_7         O11         C10          N9          N8     180.000     5.0     2
+PZW            sp2_sp3_11         O11         C10         C12         C13     -60.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PZW    chir_1    C12    N14    C10    C13    negative
+PZW    chir_2    C19    N18    C20    C22    both
+PZW    chir_3    N21    C20    C22    H17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PZW    plan-1          C1   0.020
+PZW    plan-1         C15   0.020
+PZW    plan-1         C16   0.020
+PZW    plan-1         C17   0.020
+PZW    plan-1          C2   0.020
+PZW    plan-1          C3   0.020
+PZW    plan-1          C4   0.020
+PZW    plan-1         H12   0.020
+PZW    plan-1          H4   0.020
+PZW    plan-1         N14   0.020
+PZW    plan-1         N18   0.020
+PZW    plan-1          O5   0.020
+PZW    plan-2          C6   0.020
+PZW    plan-2          C7   0.020
+PZW    plan-2         N14   0.020
+PZW    plan-2          N8   0.020
+PZW    plan-3         C10   0.020
+PZW    plan-3          H7   0.020
+PZW    plan-3          N8   0.020
+PZW    plan-3          N9   0.020
+PZW    plan-4         C10   0.020
+PZW    plan-4         C12   0.020
+PZW    plan-4          N9   0.020
+PZW    plan-4         O11   0.020
+PZW    plan-5         C12   0.020
+PZW    plan-5         C15   0.020
+PZW    plan-5          C7   0.020
+PZW    plan-5         N14   0.020
+PZW    plan-6         C17   0.020
+PZW    plan-6         C19   0.020
+PZW    plan-6         H13   0.020
+PZW    plan-6         N18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PZW           SMILES              ACDLabs 12.01                                                                                                  O=C4NN=C1N(c3c(OC1)cc(c(NC2CNC2)c3)C)C4C
+PZW            InChI                InChI  1.03 InChI=1S/C15H19N5O2/c1-8-3-13-12(4-11(8)17-10-5-16-6-10)20-9(2)15(21)19-18-14(20)7-22-13/h3-4,9-10,16-17H,5-7H2,1-2H3,(H,19,21)/t9-/m1/s1
+PZW         InChIKey                InChI  1.03                                                                                                               YWULJUISHNTGOC-SECBINFHSA-N
+PZW SMILES_CANONICAL               CACTVS 3.385                                                                                                C[C@H]1N2C(=NNC1=O)COc3cc(C)c(NC4CNC4)cc23
+PZW           SMILES               CACTVS 3.385                                                                                                 C[CH]1N2C(=NNC1=O)COc3cc(C)c(NC4CNC4)cc23
+PZW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                               Cc1cc2c(cc1NC3CNC3)N4[C@@H](C(=O)NN=C4CO2)C
+PZW           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                    Cc1cc2c(cc1NC3CNC3)N4C(C(=O)NN=C4CO2)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PZW acedrg               243         "dictionary generator"                  
+PZW acedrg_database      11          "data source"                           
+PZW rdkit                2017.03.2   "Chemoinformatics tool"
+PZW refmac5              5.8.0238    "optimization tool"                     

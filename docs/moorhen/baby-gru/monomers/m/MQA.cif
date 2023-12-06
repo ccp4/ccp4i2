@@ -1,0 +1,324 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MQA     MQA      "[(1aS,8S,8aR,8bS)-6,8a-dimethoxy-5-methyl-4,7-dioxo-1,1a,2,4,7,8,8a,8b-octahydroazireno[2',3':3,4]pyrrolo[1,2-a]indol-8-yl]methyl carbamate"     NON-POLYMER     44     25     .     
+#
+data_comp_MQA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MQA     C1      C       CH1     0       19.457      35.197      45.732      
+MQA     C2      C       CH1     0       18.855      34.062      46.526      
+MQA     C3      C       CH2     0       17.924      33.284      45.615      
+MQA     C5      C       CR6     0       15.584      33.808      43.467      
+MQA     C6      C       CR6     0       14.519      34.520      42.736      
+MQA     C7      C       CR6     0       14.863      35.578      41.959      
+MQA     C8      C       CR6     0       16.173      36.153      42.053      
+MQA     C9      C       CH1     0       18.424      36.223      43.512      
+MQA     C10     C       CH2     0       18.231      37.497      44.303      
+MQA     C11     C       C       0       18.781      39.204      42.715      
+MQA     O5      O       O       0       15.381      32.647      43.872      
+MQA     CM6     C       CH3     0       13.087      34.083      42.852      
+MQA     O7      O       O2      0       13.957      36.079      41.073      
+MQA     C24     C       CH3     0       13.299      37.306      41.409      
+MQA     O8      O       O       0       16.468      37.059      41.250      
+MQA     C4A     C       CR56    0       16.836      34.447      43.664      
+MQA     C8A     C       CR56    0       17.107      35.647      43.045      
+MQA     N4      N       NT      0       17.911      34.066      44.368      
+MQA     C9A     C       CT      0       19.024      35.016      44.273      
+MQA     O24     O       O2      0       20.089      34.469      43.499      
+MQA     C25     C       CH3     0       21.338      35.182      43.394      
+MQA     N2      N       NT1     0       18.436      35.459      46.780      
+MQA     O10     O       O2      0       17.814      38.563      43.413      
+MQA     O11     O       O       0       19.048      38.977      41.550      
+MQA     N12     N       NH2     0       19.395      40.111      43.466      
+MQA     H1      H       H       0       20.401      35.443      45.924      
+MQA     H2      H       H       0       19.434      33.555      47.157      
+MQA     H3      H       H       0       18.263      32.378      45.456      
+MQA     H3A     H       H       0       17.023      33.226      45.999      
+MQA     H9      H       H       0       18.987      36.429      42.730      
+MQA     H10     H       H       0       19.069      37.742      44.750      
+MQA     H10A    H       H       0       17.545      37.358      44.990      
+MQA     HM6     H       H       0       12.512      34.861      42.913      
+MQA     HM6A    H       H       0       12.970      33.541      43.646      
+MQA     HM6B    H       H       0       12.841      33.565      42.071      
+MQA     H24     H       H       0       13.904      38.050      41.252      
+MQA     H24A    H       H       0       13.038      37.293      42.345      
+MQA     H24B    H       H       0       12.508      37.410      40.855      
+MQA     H25     H       H       0       21.215      36.112      43.621      
+MQA     H25A    H       H       0       21.666      35.116      42.489      
+MQA     H25B    H       H       0       21.981      34.789      43.996      
+MQA     HN2     H       H       0       17.599      35.614      46.443      
+MQA     HN12    H       H       0       20.050      40.593      43.121      
+MQA     HN1A    H       H       0       19.159      40.238      44.310      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MQA          C1         C9A      SINGLE       n     1.520  0.0132     1.520  0.0132
+MQA          C1          N2      SINGLE       n     1.477  0.0145     1.477  0.0145
+MQA          C1          C2      SINGLE       n     1.515  0.0200     1.515  0.0200
+MQA          C2          C3      SINGLE       n     1.517  0.0100     1.517  0.0100
+MQA          C2          N2      SINGLE       n     1.477  0.0145     1.477  0.0145
+MQA          C3          N4      SINGLE       n     1.470  0.0131     1.470  0.0131
+MQA          C5          C6      SINGLE       n     1.454  0.0200     1.454  0.0200
+MQA          C5         C4A      SINGLE       n     1.403  0.0200     1.403  0.0200
+MQA          C5          O5      DOUBLE       n     1.243  0.0200     1.243  0.0200
+MQA          C6          C7      DOUBLE       n     1.351  0.0100     1.351  0.0100
+MQA          C6         CM6      SINGLE       n     1.499  0.0100     1.499  0.0100
+MQA          C7          O7      SINGLE       n     1.358  0.0139     1.358  0.0139
+MQA          C7          C8      SINGLE       n     1.412  0.0200     1.412  0.0200
+MQA          C8          O8      DOUBLE       n     1.243  0.0200     1.243  0.0200
+MQA          C8         C8A      SINGLE       n     1.435  0.0200     1.435  0.0200
+MQA          C9         C8A      SINGLE       n     1.509  0.0129     1.509  0.0129
+MQA          C9         C10      SINGLE       n     1.507  0.0100     1.507  0.0100
+MQA          C9         C9A      SINGLE       n     1.540  0.0100     1.540  0.0100
+MQA         C10         O10      SINGLE       n     1.447  0.0100     1.447  0.0100
+MQA         C11         O11      DOUBLE       n     1.217  0.0100     1.217  0.0100
+MQA         C11         O10      SINGLE       n     1.351  0.0100     1.351  0.0100
+MQA         C11         N12      SINGLE       n     1.326  0.0100     1.326  0.0100
+MQA          O7         C24      SINGLE       n     1.430  0.0147     1.430  0.0147
+MQA         C4A         C8A      DOUBLE       n     1.368  0.0200     1.368  0.0200
+MQA         C4A          N4      SINGLE       n     1.343  0.0200     1.343  0.0200
+MQA          N4         C9A      SINGLE       n     1.461  0.0175     1.461  0.0175
+MQA         C9A         O24      SINGLE       n     1.416  0.0135     1.416  0.0135
+MQA         O24         C25      SINGLE       n     1.436  0.0102     1.436  0.0102
+MQA          C1          H1      SINGLE       n     1.089  0.0100     0.995  0.0132
+MQA          C2          H2      SINGLE       n     1.089  0.0100     0.995  0.0132
+MQA          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0150
+MQA          C3         H3A      SINGLE       n     1.089  0.0100     0.981  0.0150
+MQA          C9          H9      SINGLE       n     1.089  0.0100     0.987  0.0153
+MQA         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0120
+MQA         C10        H10A      SINGLE       n     1.089  0.0100     0.981  0.0120
+MQA         CM6         HM6      SINGLE       n     1.089  0.0100     0.969  0.0130
+MQA         CM6        HM6A      SINGLE       n     1.089  0.0100     0.969  0.0130
+MQA         CM6        HM6B      SINGLE       n     1.089  0.0100     0.969  0.0130
+MQA         C24         H24      SINGLE       n     1.089  0.0100     0.971  0.0174
+MQA         C24        H24A      SINGLE       n     1.089  0.0100     0.971  0.0174
+MQA         C24        H24B      SINGLE       n     1.089  0.0100     0.971  0.0174
+MQA         C25         H25      SINGLE       n     1.089  0.0100     0.965  0.0100
+MQA         C25        H25A      SINGLE       n     1.089  0.0100     0.965  0.0100
+MQA         C25        H25B      SINGLE       n     1.089  0.0100     0.965  0.0100
+MQA          N2         HN2      SINGLE       n     1.036  0.0160     0.916  0.0200
+MQA         N12        HN12      SINGLE       n     1.016  0.0100     0.884  0.0200
+MQA         N12        HN1A      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MQA         C9A          C1          N2     114.372    2.71
+MQA         C9A          C1          C2     107.823    1.50
+MQA         C9A          C1          H1     119.374    1.50
+MQA          N2          C1          C2      59.653    1.50
+MQA          N2          C1          H1     122.819    3.00
+MQA          C2          C1          H1     119.207    3.00
+MQA          C1          C2          C3     108.186    1.62
+MQA          C1          C2          N2      59.653    1.50
+MQA          C1          C2          H2     119.207    3.00
+MQA          C3          C2          N2     113.297    3.00
+MQA          C3          C2          H2     118.986    3.00
+MQA          N2          C2          H2     122.819    3.00
+MQA          C2          C3          N4     103.194    1.50
+MQA          C2          C3          H3     110.913    1.50
+MQA          C2          C3         H3A     110.913    1.50
+MQA          N4          C3          H3     110.748    1.50
+MQA          N4          C3         H3A     110.748    1.50
+MQA          H3          C3         H3A     108.960    1.50
+MQA          C6          C5         C4A     119.848    1.68
+MQA          C6          C5          O5     118.775    1.87
+MQA         C4A          C5          O5     121.377    1.50
+MQA          C5          C6          C7     119.426    1.51
+MQA          C5          C6         CM6     120.110    1.80
+MQA          C7          C6         CM6     120.464    1.57
+MQA          C6          C7          O7     118.494    2.73
+MQA          C6          C7          C8     121.222    1.52
+MQA          O7          C7          C8     120.284    3.00
+MQA          C7          C8          O8     117.175    2.74
+MQA          C7          C8         C8A     119.848    1.68
+MQA          O8          C8         C8A     122.977    1.50
+MQA         C8A          C9         C10     112.093    2.64
+MQA         C8A          C9         C9A     101.463    2.46
+MQA         C8A          C9          H9     110.820    1.50
+MQA         C10          C9         C9A     113.984    2.76
+MQA         C10          C9          H9     109.227    1.50
+MQA         C9A          C9          H9     110.225    1.62
+MQA          C9         C10         O10     108.530    1.50
+MQA          C9         C10         H10     109.599    1.50
+MQA          C9         C10        H10A     109.599    1.50
+MQA         O10         C10         H10     109.858    1.50
+MQA         O10         C10        H10A     109.858    1.50
+MQA         H10         C10        H10A     108.335    1.56
+MQA         O11         C11         O10     124.504    1.50
+MQA         O11         C11         N12     124.940    1.50
+MQA         O10         C11         N12     110.556    1.50
+MQA          C6         CM6         HM6     109.593    1.50
+MQA          C6         CM6        HM6A     109.593    1.50
+MQA          C6         CM6        HM6B     109.593    1.50
+MQA         HM6         CM6        HM6A     109.339    1.50
+MQA         HM6         CM6        HM6B     109.339    1.50
+MQA        HM6A         CM6        HM6B     109.339    1.50
+MQA          C7          O7         C24     117.188    1.67
+MQA          O7         C24         H24     109.377    1.50
+MQA          O7         C24        H24A     109.377    1.50
+MQA          O7         C24        H24B     109.377    1.50
+MQA         H24         C24        H24A     109.450    1.50
+MQA         H24         C24        H24B     109.450    1.50
+MQA        H24A         C24        H24B     109.450    1.50
+MQA          C5         C4A         C8A     120.506    2.63
+MQA          C5         C4A          N4     129.434    3.00
+MQA         C8A         C4A          N4     110.060    2.47
+MQA          C8         C8A          C9     129.339    2.33
+MQA          C8         C8A         C4A     119.150    1.50
+MQA          C9         C8A         C4A     111.511    2.20
+MQA          C3          N4         C4A     124.082    3.00
+MQA          C3          N4         C9A     108.987    2.83
+MQA         C4A          N4         C9A     111.489    2.37
+MQA          C1         C9A          C9     114.221    2.96
+MQA          C1         C9A          N4     103.194    1.50
+MQA          C1         C9A         O24     110.933    2.89
+MQA          C9         C9A          N4     104.544    2.17
+MQA          C9         C9A         O24     110.490    3.00
+MQA          N4         C9A         O24     112.734    1.50
+MQA         C9A         O24         C25     116.638    1.50
+MQA         O24         C25         H25     109.467    1.50
+MQA         O24         C25        H25A     109.467    1.50
+MQA         O24         C25        H25B     109.467    1.50
+MQA         H25         C25        H25A     109.475    1.50
+MQA         H25         C25        H25B     109.475    1.50
+MQA        H25A         C25        H25B     109.475    1.50
+MQA          C1          N2          C2      60.695    1.50
+MQA          C1          N2         HN2     109.255    2.92
+MQA          C2          N2         HN2     109.255    2.92
+MQA         C10         O10         C11     115.913    1.50
+MQA         C11         N12        HN12     119.996    2.41
+MQA         C11         N12        HN1A     119.996    2.41
+MQA        HN12         N12        HN1A     120.007    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MQA            sp3_sp3_31         C9A          C1          C2          C3     180.000    10.0     3
+MQA             sp3_sp3_6          N2          C1         C9A         O24     180.000    10.0     3
+MQA            sp3_sp3_19         C9A          C1          N2          C2      60.000    10.0     3
+MQA            sp3_sp3_65          C1         C9A         O24         C25     180.000    10.0     3
+MQA            sp2_sp2_19          N4         C4A         C8A          C8     180.000     5.0     2
+MQA            sp3_sp3_32         C9A          C1          C2          N2     -60.000    10.0     3
+MQA             sp2_sp3_3          C3          N4         C9A         O24    -120.000    10.0     6
+MQA            sp3_sp3_68         H25         C25         O24         C9A     180.000    10.0     3
+MQA            sp3_sp3_68        H25A         C25         O24         C9A     180.000    10.0     3
+MQA            sp3_sp3_10          C1          C2          C3          N4     -60.000    10.0     3
+MQA            sp2_sp3_10         C4A          N4          C3          C2     180.000    10.0     6
+MQA            sp2_sp3_19          C5          C6         CM6         HM6     150.000    10.0     6
+MQA             sp2_sp2_6          C5          C6          C7          O7     180.000     5.0     2
+MQA            sp2_sp3_22          C7          C6         CM6         HM6     -30.000    10.0     6
+MQA            sp2_sp2_10          C6          C7          C8          O8     180.000     5.0     2
+MQA            sp3_sp3_41         O10         C10          C9         C9A     -60.000    10.0     3
+MQA            sp2_sp2_14          C7          C8         C8A          C9     180.000     5.0     2
+MQA            sp2_sp2_18          C5         C4A         C8A          C9     180.000     5.0     2
+MQA            sp2_sp2_21         C8A         C4A          N4         C9A       0.000     5.0     2
+MQA            sp3_sp3_57          H9          C9         C9A         O24     180.000    10.0     3
+MQA            sp3_sp3_43         H10         C10          C9         C8A      60.000    10.0     3
+MQA            sp2_sp2_31         O11         C11         O10         C10     180.000     5.0     2
+MQA            sp2_sp2_34         O10         C11         N12        HN1A       0.000     5.0     2
+MQA            sp3_sp3_62         H24         C24          O7          C7     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MQA    chir_1    C1    N2    C9A    C2    positive
+MQA    chir_2    C2    N2    C1    C3    positive
+MQA    chir_3    C9    C9A    C10    C8A    positive
+MQA    chir_4    C9A    O24    N4    C1    negative
+MQA    chir_5    N2    C1    C2    HN2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MQA    plan-1         C4A   0.020
+MQA    plan-1          C5   0.020
+MQA    plan-1          C6   0.020
+MQA    plan-1          O5   0.020
+MQA    plan-2          C5   0.020
+MQA    plan-2          C6   0.020
+MQA    plan-2          C7   0.020
+MQA    plan-2         CM6   0.020
+MQA    plan-3          C6   0.020
+MQA    plan-3          C7   0.020
+MQA    plan-3          C8   0.020
+MQA    plan-3          O7   0.020
+MQA    plan-4          C7   0.020
+MQA    plan-4          C8   0.020
+MQA    plan-4         C8A   0.020
+MQA    plan-4          O8   0.020
+MQA    plan-5         C11   0.020
+MQA    plan-5         N12   0.020
+MQA    plan-5         O10   0.020
+MQA    plan-5         O11   0.020
+MQA    plan-6         C4A   0.020
+MQA    plan-6          C5   0.020
+MQA    plan-6         C8A   0.020
+MQA    plan-6          N4   0.020
+MQA    plan-7         C4A   0.020
+MQA    plan-7          C8   0.020
+MQA    plan-7         C8A   0.020
+MQA    plan-7          C9   0.020
+MQA    plan-8         C11   0.020
+MQA    plan-8        HN12   0.020
+MQA    plan-8        HN1A   0.020
+MQA    plan-8         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MQA           SMILES              ACDLabs 10.04                                                                                                        O=C1C2=C(C(=O)C(OC)=C1C)C(C4(OC)N2CC3NC34)COC(=O)N
+MQA SMILES_CANONICAL               CACTVS 3.341                                                                                       COC1=C(C)C(=O)C2=C([C@@H](COC(N)=O)[C@@]3(OC)[C@H]4N[C@H]4CN23)C1=O
+MQA           SMILES               CACTVS 3.341                                                                                             COC1=C(C)C(=O)C2=C([CH](COC(N)=O)[C]3(OC)[CH]4N[CH]4CN23)C1=O
+MQA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  CC1=C(C(=O)C2=C(C1=O)[N@@]3C[C@H]4[C@@H]([C@@]3([C@@H]2COC(=O)N)OC)N4)OC
+MQA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        CC1=C(C(=O)C2=C(C1=O)N3CC4C(C3(C2COC(=O)N)OC)N4)OC
+MQA            InChI                InChI  1.03 InChI=1S/C16H19N3O6/c1-6-11(20)10-9(12(21)13(6)23-2)7(5-25-15(17)22)16(24-3)14-8(18-14)4-19(10)16/h7-8,14,18H,4-5H2,1-3H3,(H2,17,22)/t7-,8+,14+,16-/m1/s1
+MQA         InChIKey                InChI  1.03                                                                                                                               HYFMSAFINFJTFH-NGSRAFSJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MQA acedrg               243         "dictionary generator"                  
+MQA acedrg_database      11          "data source"                           
+MQA rdkit                2017.03.2   "Chemoinformatics tool"
+MQA refmac5              5.8.0238    "optimization tool"                     

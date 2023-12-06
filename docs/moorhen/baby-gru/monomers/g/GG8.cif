@@ -1,0 +1,207 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GG8     GG8      ~{N}-[3,3,3-tris(fluoranyl)propyl]benzenesulfonamide     NON-POLYMER     26     16     .     
+#
+data_comp_GG8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GG8     C4      C       CR6     0       -27.858     12.252      -5.453      
+GG8     C5      C       CR16    0       -28.356     11.003      -5.789      
+GG8     C6      C       CR16    0       -28.453     10.024      -4.812      
+GG8     C7      C       CR16    0       -28.059     10.289      -3.516      
+GG8     C8      C       CR16    0       -27.566     11.534      -3.189      
+GG8     C9      C       CR16    0       -27.462     12.526      -4.152      
+GG8     N1      N       NT1     0       -29.232     14.026      -7.001      
+GG8     C3      C       CH2     0       -29.994     14.727      -5.954      
+GG8     F1      F       F       0       -30.611     18.158      -7.249      
+GG8     C1      C       CT      0       -30.867     16.873      -7.016      
+GG8     F2      F       F       0       -30.923     16.284      -8.208      
+GG8     F3      F       F       0       -32.101     16.825      -6.519      
+GG8     C2      C       CH2     0       -29.844     16.234      -6.098      
+GG8     S1      S       S3      0       -27.738     13.493      -6.701      
+GG8     O1      O       O       0       -26.999     14.599      -6.175      
+GG8     O2      O       O       0       -27.284     12.856      -7.899      
+GG8     H1      H       H       0       -28.624     10.820      -6.671      
+GG8     H2      H       H       0       -28.789     9.175       -5.035      
+GG8     H3      H       H       0       -28.128     9.619       -2.854      
+GG8     H4      H       H       0       -27.298     11.714      -2.306      
+GG8     H5      H       H       0       -27.125     13.372      -3.922      
+GG8     H6      H       H       0       -29.309     14.377      -7.785      
+GG8     H7      H       H       0       -29.671     14.458      -5.069      
+GG8     H8      H       H       0       -30.941     14.483      -6.017      
+GG8     H9      H       H       0       -28.946     16.430      -6.439      
+GG8     H10     H       H       0       -29.917     16.641      -5.208      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GG8          C1          F2      SINGLE       n     1.331  0.0122     1.331  0.0122
+GG8          S1          O2      DOUBLE       n     1.431  0.0100     1.431  0.0100
+GG8          F1          C1      SINGLE       n     1.331  0.0122     1.331  0.0122
+GG8          C1          F3      SINGLE       n     1.331  0.0122     1.331  0.0122
+GG8          C1          C2      SINGLE       n     1.511  0.0200     1.511  0.0200
+GG8          N1          S1      SINGLE       n     1.613  0.0107     1.613  0.0107
+GG8          S1          O1      DOUBLE       n     1.431  0.0100     1.431  0.0100
+GG8          C4          S1      SINGLE       n     1.762  0.0100     1.762  0.0100
+GG8          N1          C3      SINGLE       n     1.470  0.0100     1.470  0.0100
+GG8          C4          C5      DOUBLE       y     1.382  0.0100     1.382  0.0100
+GG8          C5          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+GG8          C3          C2      SINGLE       n     1.512  0.0200     1.512  0.0200
+GG8          C4          C9      SINGLE       y     1.382  0.0100     1.382  0.0100
+GG8          C6          C7      DOUBLE       y     1.376  0.0124     1.376  0.0124
+GG8          C8          C9      DOUBLE       y     1.383  0.0100     1.383  0.0100
+GG8          C7          C8      SINGLE       y     1.374  0.0123     1.374  0.0123
+GG8          C5          H1      SINGLE       n     1.082  0.0130     0.940  0.0163
+GG8          C6          H2      SINGLE       n     1.082  0.0130     0.940  0.0176
+GG8          C7          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+GG8          C8          H4      SINGLE       n     1.082  0.0130     0.940  0.0176
+GG8          C9          H5      SINGLE       n     1.082  0.0130     0.940  0.0163
+GG8          N1          H6      SINGLE       n     1.036  0.0160     0.862  0.0200
+GG8          C3          H7      SINGLE       n     1.089  0.0100     0.980  0.0143
+GG8          C3          H8      SINGLE       n     1.089  0.0100     0.980  0.0143
+GG8          C2          H9      SINGLE       n     1.089  0.0100     0.981  0.0160
+GG8          C2         H10      SINGLE       n     1.089  0.0100     0.981  0.0160
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GG8          S1          C4          C5     119.703    1.50
+GG8          S1          C4          C9     119.703    1.50
+GG8          C5          C4          C9     120.594    1.50
+GG8          C4          C5          C6     119.119    1.50
+GG8          C4          C5          H1     120.450    1.50
+GG8          C6          C5          H1     120.431    1.50
+GG8          C5          C6          C7     120.529    1.50
+GG8          C5          C6          H2     119.635    1.50
+GG8          C7          C6          H2     119.836    1.50
+GG8          C6          C7          C8     120.111    1.50
+GG8          C6          C7          H3     119.945    1.50
+GG8          C8          C7          H3     119.945    1.50
+GG8          C9          C8          C7     120.529    1.50
+GG8          C9          C8          H4     119.635    1.50
+GG8          C7          C8          H4     119.836    1.50
+GG8          C4          C9          C8     119.119    1.50
+GG8          C4          C9          H5     120.450    1.50
+GG8          C8          C9          H5     120.431    1.50
+GG8          S1          N1          C3     119.552    1.50
+GG8          S1          N1          H6     112.671    3.00
+GG8          C3          N1          H6     113.514    3.00
+GG8          N1          C3          C2     110.147    1.50
+GG8          N1          C3          H7     109.574    1.50
+GG8          N1          C3          H8     109.574    1.50
+GG8          C2          C3          H7     109.099    1.50
+GG8          C2          C3          H8     109.099    1.50
+GG8          H7          C3          H8     108.069    1.50
+GG8          F2          C1          F1     106.361    1.50
+GG8          F2          C1          F3     106.361    1.50
+GG8          F2          C1          C2     112.804    1.50
+GG8          F1          C1          F3     106.361    1.50
+GG8          F1          C1          C2     112.804    1.50
+GG8          F3          C1          C2     112.804    1.50
+GG8          C1          C2          C3     112.855    2.08
+GG8          C1          C2          H9     109.125    1.50
+GG8          C1          C2         H10     109.125    1.50
+GG8          C3          C2          H9     108.805    1.50
+GG8          C3          C2         H10     108.805    1.50
+GG8          H9          C2         H10     107.715    1.50
+GG8          O2          S1          N1     106.978    1.50
+GG8          O2          S1          O1     119.599    1.50
+GG8          O2          S1          C4     107.960    1.50
+GG8          N1          S1          O1     106.978    1.50
+GG8          N1          S1          C4     107.578    1.50
+GG8          O1          S1          C4     107.960    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GG8       const_sp2_sp2_3          S1          C4          C5          C6     180.000     5.0     2
+GG8             sp2_sp3_1          C5          C4          S1          O2     150.000    10.0     6
+GG8              const_23          S1          C4          C9          C8     180.000    10.0     2
+GG8       const_sp2_sp2_5          C4          C5          C6          C7       0.000     5.0     2
+GG8       const_sp2_sp2_9          C5          C6          C7          C8       0.000     5.0     2
+GG8              const_13          C6          C7          C8          C9       0.000    10.0     2
+GG8              const_17          C7          C8          C9          C4       0.000    10.0     2
+GG8            sp3_sp3_14          C3          N1          S1          O2     180.000    10.0     3
+GG8            sp3_sp3_16          C2          C3          N1          S1     180.000    10.0     3
+GG8            sp3_sp3_22          C1          C2          C3          N1     180.000    10.0     3
+GG8             sp3_sp3_1          F2          C1          C2          C3     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GG8    chir_1    C1    F2    F1    F3    both
+GG8    chir_2    S1    O2    O1    N1    both
+GG8    chir_3    N1    S1    C3    H6    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GG8    plan-1          C4   0.020
+GG8    plan-1          C5   0.020
+GG8    plan-1          C6   0.020
+GG8    plan-1          C7   0.020
+GG8    plan-1          C8   0.020
+GG8    plan-1          C9   0.020
+GG8    plan-1          H1   0.020
+GG8    plan-1          H2   0.020
+GG8    plan-1          H3   0.020
+GG8    plan-1          H4   0.020
+GG8    plan-1          H5   0.020
+GG8    plan-1          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GG8            InChI                InChI  1.03 InChI=1S/C9H10F3NO2S/c10-9(11,12)6-7-13-16(14,15)8-4-2-1-3-5-8/h1-5,13H,6-7H2
+GG8         InChIKey                InChI  1.03                                                   PCTNYPUVXBXHOS-UHFFFAOYSA-N
+GG8 SMILES_CANONICAL               CACTVS 3.385                                                FC(F)(F)CCN[S](=O)(=O)c1ccccc1
+GG8           SMILES               CACTVS 3.385                                                FC(F)(F)CCN[S](=O)(=O)c1ccccc1
+GG8 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                c1ccc(cc1)S(=O)(=O)NCCC(F)(F)F
+GG8           SMILES "OpenEye OEToolkits" 2.0.6                                                c1ccc(cc1)S(=O)(=O)NCCC(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GG8 acedrg               243         "dictionary generator"                  
+GG8 acedrg_database      11          "data source"                           
+GG8 rdkit                2017.03.2   "Chemoinformatics tool"
+GG8 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,531 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZPY     ZPY      "ethyl 1-{(2S,3S)-3-[(3-{[(1R)-1-(4-fluorophenyl)ethyl]carbamoyl}-5-[methyl(methylsulfonyl)amino]benzoyl)amino]-2-hydroxy-4-phenylbutyl}-1H-pyrazole-4-carboxylate"     NON-POLYMER     86     48     .     
+#
+data_comp_ZPY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZPY     CAA     C       CH3     0       20.304      33.207      -1.753      
+ZPY     CAB     C       CH3     0       18.720      20.854      4.848       
+ZPY     CAC     C       CH3     0       26.234      21.741      -1.016      
+ZPY     CAD     C       CH3     0       26.528      18.659      0.373       
+ZPY     OAE     O       O       0       21.316      19.324      1.860       
+ZPY     OAF     O       O       0       23.542      25.846      0.782       
+ZPY     OAG     O       O       0       23.246      31.976      -1.549      
+ZPY     OAH     O       O       0       26.485      20.153      2.483       
+ZPY     OAI     O       O       0       28.202      20.577      0.785       
+ZPY     OAJ     O       OH1     0       21.855      27.310      4.833       
+ZPY     FAK     F       F       0       21.122      15.305      6.884       
+ZPY     CAL     C       CR16    0       18.818      23.281      -0.031      
+ZPY     CAM     C       CR16    0       18.618      23.180      1.329       
+ZPY     CAN     C       CR16    0       19.395      24.418      -0.555      
+ZPY     CAO     C       CR16    0       18.992      24.221      2.169       
+ZPY     CAP     C       CR16    0       19.773      25.460      0.284       
+ZPY     CAQ     C       CR16    0       21.294      17.626      6.583       
+ZPY     CAR     C       CR16    0       19.893      16.301      5.151       
+ZPY     CAS     C       CR16    0       20.925      18.765      5.877       
+ZPY     CAT     C       CR16    0       19.533      17.449      4.454       
+ZPY     CAU     C       CR15    0       24.111      29.682      0.095       
+ZPY     CAV     C       CR16    0       22.338      22.729      2.072       
+ZPY     CAW     C       CR16    0       23.731      20.872      1.395       
+ZPY     CAX     C       CR16    0       24.473      23.150      1.020       
+ZPY     CAY     C       CR15    0       22.690      30.320      1.660       
+ZPY     CAZ     C       CH2     0       21.226      33.636      -0.675      
+ZPY     CBA     C       CH2     0       19.994      26.510      2.570       
+ZPY     CBB     C       CH2     0       23.269      28.489      3.303       
+ZPY     NBC     N       NRD5    0       24.247      28.832      1.095       
+ZPY     NBD     N       NH1     0       20.834      20.690      3.599       
+ZPY     NBE     N       NH1     0       22.266      25.600      2.622       
+ZPY     OBF     O       O2      0       21.712      32.442      0.033       
+ZPY     CBG     C       C       0       21.531      20.362      2.488       
+ZPY     CBH     C       C       0       23.085      25.128      1.673       
+ZPY     CBI     C       C       0       22.733      31.741      -0.484      
+ZPY     CBJ     C       CR6     0       20.765      16.425      6.197       
+ZPY     CBK     C       CR6     0       19.574      25.377      1.657       
+ZPY     CBL     C       CR5     0       23.142      30.649      0.389       
+ZPY     CBM     C       CR6     0       22.555      21.349      1.992       
+ZPY     CBN     C       CR6     0       23.299      23.638      1.612       
+ZPY     CBO     C       CR6     0       20.043      18.694      4.806       
+ZPY     CBP     C       CR6     0       24.694      21.773      0.928       
+ZPY     CBQ     C       CH1     0       19.648      19.945      4.043       
+ZPY     CBR     C       CH1     0       21.889      27.896      3.533       
+ZPY     CBS     C       CH1     0       21.495      26.835      2.488       
+ZPY     NBT     N       N       0       25.863      21.307      0.325       
+ZPY     NBU     N       NR5     0       23.370      29.230      2.048       
+ZPY     SBV     S       S3      0       26.861      20.220      1.110       
+ZPY     HAA     H       H       0       19.891      33.988      -2.156      
+ZPY     HAAA    H       H       0       19.614      32.634      -1.380      
+ZPY     HAAB    H       H       0       20.798      32.719      -2.431      
+ZPY     HAB     H       H       0       18.625      20.511      5.755       
+ZPY     HABA    H       H       0       17.846      20.878      4.422       
+ZPY     HABB    H       H       0       19.081      21.757      4.884       
+ZPY     HAC     H       H       0       25.513      22.247      -1.416      
+ZPY     HACA    H       H       0       26.422      20.968      -1.566      
+ZPY     HACB    H       H       0       27.025      22.297      -0.969      
+ZPY     HAD     H       H       0       25.852      18.766      -0.314      
+ZPY     HADA    H       H       0       26.209      18.045      1.050       
+ZPY     HADB    H       H       0       27.341      18.312      -0.025      
+ZPY     HOAJ    H       H       0       21.077      27.389      5.162       
+ZPY     HAL     H       H       0       18.561      22.574      -0.602      
+ZPY     HAM     H       H       0       18.223      22.403      1.690       
+ZPY     HAN     H       H       0       19.533      24.491      -1.486      
+ZPY     HAO     H       H       0       18.853      24.142      3.100       
+ZPY     HAP     H       H       0       20.167      26.236      -0.083      
+ZPY     HAQ     H       H       0       21.891      17.678      7.307       
+ZPY     HAR     H       H       0       19.546      15.461      4.910       
+ZPY     HAS     H       H       0       21.281      19.601      6.130       
+ZPY     HAT     H       H       0       18.933      17.379      3.731       
+ZPY     HAU     H       H       0       24.599      29.645      -0.705      
+ZPY     HAV     H       H       0       21.546      23.050      2.469       
+ZPY     HAW     H       H       0       23.884      19.948      1.329       
+ZPY     HAX     H       H       0       25.119      23.746      0.692       
+ZPY     HAY     H       H       0       22.029      30.777      2.151       
+ZPY     HAZ     H       H       0       20.751      34.221      -0.048      
+ZPY     HAZA    H       H       0       21.975      34.142      -1.055      
+ZPY     HBA     H       H       0       19.769      26.276      3.495       
+ZPY     HBAA    H       H       0       19.483      27.313      2.332       
+ZPY     HBB     H       H       0       23.929      27.772      3.303       
+ZPY     HBBA    H       H       0       23.484      29.089      4.039       
+ZPY     HNBD    H       H       0       21.124      21.351      4.109       
+ZPY     HNBE    H       H       0       22.200      25.168      3.378       
+ZPY     HBQ     H       H       0       19.150      19.662      3.236       
+ZPY     HBR     H       H       0       21.218      28.627      3.505       
+ZPY     HBS     H       H       0       21.665      27.220      1.600       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZPY         CAA         CAZ      SINGLE       n     1.478  0.0200     1.478  0.0200
+ZPY         CAB         CBQ      SINGLE       n     1.524  0.0100     1.524  0.0100
+ZPY         CAC         NBT      SINGLE       n     1.453  0.0119     1.453  0.0119
+ZPY         CAD         SBV      SINGLE       n     1.756  0.0200     1.756  0.0200
+ZPY         OAE         CBG      DOUBLE       n     1.230  0.0114     1.230  0.0114
+ZPY         OAF         CBH      DOUBLE       n     1.230  0.0114     1.230  0.0114
+ZPY         OAG         CBI      DOUBLE       n     1.204  0.0100     1.204  0.0100
+ZPY         OAH         SBV      DOUBLE       n     1.425  0.0100     1.425  0.0100
+ZPY         OAI         SBV      DOUBLE       n     1.425  0.0100     1.425  0.0100
+ZPY         OAJ         CBR      SINGLE       n     1.424  0.0199     1.424  0.0199
+ZPY         FAK         CBJ      SINGLE       n     1.361  0.0100     1.361  0.0100
+ZPY         CAL         CAM      DOUBLE       y     1.374  0.0127     1.374  0.0127
+ZPY         CAL         CAN      SINGLE       y     1.374  0.0127     1.374  0.0127
+ZPY         CAM         CAO      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZPY         CAN         CAP      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZPY         CAO         CBK      DOUBLE       y     1.385  0.0111     1.385  0.0111
+ZPY         CAP         CBK      SINGLE       y     1.385  0.0111     1.385  0.0111
+ZPY         CAQ         CAS      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZPY         CAQ         CBJ      SINGLE       y     1.363  0.0118     1.363  0.0118
+ZPY         CAR         CAT      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZPY         CAR         CBJ      DOUBLE       y     1.363  0.0118     1.363  0.0118
+ZPY         CAS         CBO      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZPY         CAT         CBO      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZPY         CAU         NBC      DOUBLE       y     1.319  0.0100     1.319  0.0100
+ZPY         CAU         CBL      SINGLE       y     1.402  0.0100     1.402  0.0100
+ZPY         CAV         CBM      DOUBLE       y     1.395  0.0100     1.395  0.0100
+ZPY         CAV         CBN      SINGLE       y     1.395  0.0100     1.395  0.0100
+ZPY         CAW         CBM      SINGLE       y     1.398  0.0100     1.398  0.0100
+ZPY         CAW         CBP      DOUBLE       y     1.393  0.0100     1.393  0.0100
+ZPY         CAX         CBN      DOUBLE       y     1.398  0.0100     1.398  0.0100
+ZPY         CAX         CBP      SINGLE       y     1.393  0.0100     1.393  0.0100
+ZPY         CAY         CBL      DOUBLE       y     1.393  0.0200     1.393  0.0200
+ZPY         CAY         NBU      SINGLE       y     1.340  0.0100     1.340  0.0100
+ZPY         CAZ         OBF      SINGLE       n     1.455  0.0200     1.455  0.0200
+ZPY         CBA         CBK      SINGLE       n     1.512  0.0103     1.512  0.0103
+ZPY         CBA         CBS      SINGLE       n     1.536  0.0100     1.536  0.0100
+ZPY         CBB         CBR      SINGLE       n     1.512  0.0200     1.512  0.0200
+ZPY         CBB         NBU      SINGLE       n     1.460  0.0100     1.460  0.0100
+ZPY         NBC         NBU      SINGLE       y     1.351  0.0100     1.351  0.0100
+ZPY         NBD         CBG      SINGLE       n     1.340  0.0141     1.340  0.0141
+ZPY         NBD         CBQ      SINGLE       n     1.463  0.0100     1.463  0.0100
+ZPY         NBE         CBH      SINGLE       n     1.332  0.0109     1.332  0.0109
+ZPY         NBE         CBS      SINGLE       n     1.455  0.0112     1.455  0.0112
+ZPY         OBF         CBI      SINGLE       n     1.335  0.0111     1.335  0.0111
+ZPY         CBG         CBM      SINGLE       n     1.502  0.0100     1.502  0.0100
+ZPY         CBH         CBN      SINGLE       n     1.502  0.0100     1.502  0.0100
+ZPY         CBI         CBL      SINGLE       n     1.454  0.0120     1.454  0.0120
+ZPY         CBO         CBQ      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPY         CBP         NBT      SINGLE       n     1.373  0.0198     1.373  0.0198
+ZPY         CBR         CBS      SINGLE       n     1.538  0.0100     1.538  0.0100
+ZPY         NBT         SBV      SINGLE       n     1.657  0.0200     1.657  0.0200
+ZPY         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+ZPY         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+ZPY         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0156
+ZPY         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0168
+ZPY         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0168
+ZPY         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0168
+ZPY         CAC         HAC      SINGLE       n     1.089  0.0100     0.967  0.0106
+ZPY         CAC        HACA      SINGLE       n     1.089  0.0100     0.967  0.0106
+ZPY         CAC        HACB      SINGLE       n     1.089  0.0100     0.967  0.0106
+ZPY         CAD         HAD      SINGLE       n     1.089  0.0100     0.969  0.0154
+ZPY         CAD        HADA      SINGLE       n     1.089  0.0100     0.969  0.0154
+ZPY         CAD        HADB      SINGLE       n     1.089  0.0100     0.969  0.0154
+ZPY         OAJ        HOAJ      SINGLE       n     0.970  0.0120     0.848  0.0200
+ZPY         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0161
+ZPY         CAM         HAM      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZPY         CAN         HAN      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZPY         CAO         HAO      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZPY         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZPY         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.940  0.0141
+ZPY         CAR         HAR      SINGLE       n     1.082  0.0130     0.940  0.0141
+ZPY         CAS         HAS      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZPY         CAT         HAT      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZPY         CAU         HAU      SINGLE       n     1.082  0.0130     0.938  0.0150
+ZPY         CAV         HAV      SINGLE       n     1.082  0.0130     0.946  0.0200
+ZPY         CAW         HAW      SINGLE       n     1.082  0.0130     0.939  0.0130
+ZPY         CAX         HAX      SINGLE       n     1.082  0.0130     0.939  0.0130
+ZPY         CAY         HAY      SINGLE       n     1.082  0.0130     0.942  0.0200
+ZPY         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.980  0.0148
+ZPY         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.980  0.0148
+ZPY         CBA         HBA      SINGLE       n     1.089  0.0100     0.981  0.0150
+ZPY         CBA        HBAA      SINGLE       n     1.089  0.0100     0.981  0.0150
+ZPY         CBB         HBB      SINGLE       n     1.089  0.0100     0.974  0.0100
+ZPY         CBB        HBBA      SINGLE       n     1.089  0.0100     0.974  0.0100
+ZPY         NBD        HNBD      SINGLE       n     1.016  0.0100     0.883  0.0200
+ZPY         NBE        HNBE      SINGLE       n     1.016  0.0100     0.873  0.0200
+ZPY         CBQ         HBQ      SINGLE       n     1.089  0.0100     0.990  0.0152
+ZPY         CBR         HBR      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPY         CBS         HBS      SINGLE       n     1.089  0.0100     0.984  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZPY         CAZ         CAA         HAA     109.517    1.50
+ZPY         CAZ         CAA        HAAA     109.517    1.50
+ZPY         CAZ         CAA        HAAB     109.517    1.50
+ZPY         HAA         CAA        HAAA     109.410    1.50
+ZPY         HAA         CAA        HAAB     109.410    1.50
+ZPY        HAAA         CAA        HAAB     109.410    1.50
+ZPY         CBQ         CAB         HAB     109.526    1.50
+ZPY         CBQ         CAB        HABA     109.526    1.50
+ZPY         CBQ         CAB        HABB     109.526    1.50
+ZPY         HAB         CAB        HABA     109.407    1.50
+ZPY         HAB         CAB        HABB     109.407    1.50
+ZPY        HABA         CAB        HABB     109.407    1.50
+ZPY         NBT         CAC         HAC     109.702    1.50
+ZPY         NBT         CAC        HACA     109.702    1.50
+ZPY         NBT         CAC        HACB     109.702    1.50
+ZPY         HAC         CAC        HACA     109.334    1.50
+ZPY         HAC         CAC        HACB     109.334    1.50
+ZPY        HACA         CAC        HACB     109.334    1.50
+ZPY         SBV         CAD         HAD     109.392    1.50
+ZPY         SBV         CAD        HADA     109.392    1.50
+ZPY         SBV         CAD        HADB     109.392    1.50
+ZPY         HAD         CAD        HADA     109.614    1.50
+ZPY         HAD         CAD        HADB     109.614    1.50
+ZPY        HADA         CAD        HADB     109.614    1.50
+ZPY         CBR         OAJ        HOAJ     109.265    3.00
+ZPY         CAM         CAL         CAN     120.043    1.50
+ZPY         CAM         CAL         HAL     119.979    1.50
+ZPY         CAN         CAL         HAL     119.979    1.50
+ZPY         CAL         CAM         CAO     120.325    1.50
+ZPY         CAL         CAM         HAM     119.883    1.50
+ZPY         CAO         CAM         HAM     119.792    1.50
+ZPY         CAL         CAN         CAP     120.325    1.50
+ZPY         CAL         CAN         HAN     119.883    1.50
+ZPY         CAP         CAN         HAN     119.792    1.50
+ZPY         CAM         CAO         CBK     120.624    1.50
+ZPY         CAM         CAO         HAO     119.786    1.50
+ZPY         CBK         CAO         HAO     119.591    1.50
+ZPY         CAN         CAP         CBK     120.624    1.50
+ZPY         CAN         CAP         HAP     119.786    1.50
+ZPY         CBK         CAP         HAP     119.591    1.50
+ZPY         CAS         CAQ         CBJ     118.228    1.50
+ZPY         CAS         CAQ         HAQ     120.956    1.50
+ZPY         CBJ         CAQ         HAQ     120.816    1.50
+ZPY         CAT         CAR         CBJ     118.228    1.50
+ZPY         CAT         CAR         HAR     120.956    1.50
+ZPY         CBJ         CAR         HAR     120.816    1.50
+ZPY         CAQ         CAS         CBO     121.087    1.50
+ZPY         CAQ         CAS         HAS     119.423    1.50
+ZPY         CBO         CAS         HAS     119.491    1.50
+ZPY         CAR         CAT         CBO     121.087    1.50
+ZPY         CAR         CAT         HAT     119.423    1.50
+ZPY         CBO         CAT         HAT     119.491    1.50
+ZPY         NBC         CAU         CBL     111.039    1.50
+ZPY         NBC         CAU         HAU     124.487    1.50
+ZPY         CBL         CAU         HAU     124.474    1.50
+ZPY         CBM         CAV         CBN     120.757    1.50
+ZPY         CBM         CAV         HAV     119.621    1.50
+ZPY         CBN         CAV         HAV     119.621    1.50
+ZPY         CBM         CAW         CBP     119.731    1.50
+ZPY         CBM         CAW         HAW     120.343    1.50
+ZPY         CBP         CAW         HAW     119.926    1.50
+ZPY         CBN         CAX         CBP     119.731    1.50
+ZPY         CBN         CAX         HAX     120.343    1.50
+ZPY         CBP         CAX         HAX     119.926    1.50
+ZPY         CBL         CAY         NBU     107.287    1.50
+ZPY         CBL         CAY         HAY     126.088    1.50
+ZPY         NBU         CAY         HAY     126.625    2.21
+ZPY         CAA         CAZ         OBF     107.633    2.73
+ZPY         CAA         CAZ         HAZ     110.009    1.50
+ZPY         CAA         CAZ        HAZA     110.009    1.50
+ZPY         OBF         CAZ         HAZ     109.991    1.50
+ZPY         OBF         CAZ        HAZA     109.991    1.50
+ZPY         HAZ         CAZ        HAZA     108.453    1.50
+ZPY         CBK         CBA         CBS     113.215    1.50
+ZPY         CBK         CBA         HBA     108.862    1.50
+ZPY         CBK         CBA        HBAA     108.862    1.50
+ZPY         CBS         CBA         HBA     108.892    1.50
+ZPY         CBS         CBA        HBAA     108.892    1.50
+ZPY         HBA         CBA        HBAA     107.782    1.50
+ZPY         CBR         CBB         NBU     111.867    1.85
+ZPY         CBR         CBB         HBB     109.255    1.50
+ZPY         CBR         CBB        HBBA     109.255    1.50
+ZPY         NBU         CBB         HBB     108.839    1.50
+ZPY         NBU         CBB        HBBA     108.839    1.50
+ZPY         HBB         CBB        HBBA     107.830    1.50
+ZPY         CAU         NBC         NBU     104.748    1.50
+ZPY         CBG         NBD         CBQ     122.446    1.50
+ZPY         CBG         NBD        HNBD     119.255    1.54
+ZPY         CBQ         NBD        HNBD     118.299    1.50
+ZPY         CBH         NBE         CBS     122.601    1.50
+ZPY         CBH         NBE        HNBE     119.151    1.94
+ZPY         CBS         NBE        HNBE     118.248    1.99
+ZPY         CAZ         OBF         CBI     116.829    1.50
+ZPY         OAE         CBG         NBD     122.389    1.50
+ZPY         OAE         CBG         CBM     121.139    1.50
+ZPY         NBD         CBG         CBM     116.472    1.50
+ZPY         OAF         CBH         NBE     122.394    1.50
+ZPY         OAF         CBH         CBN     120.865    1.50
+ZPY         NBE         CBH         CBN     116.740    1.50
+ZPY         OAG         CBI         OBF     123.403    1.50
+ZPY         OAG         CBI         CBL     124.639    1.50
+ZPY         OBF         CBI         CBL     111.958    1.50
+ZPY         FAK         CBJ         CAQ     118.517    1.50
+ZPY         FAK         CBJ         CAR     118.517    1.50
+ZPY         CAQ         CBJ         CAR     122.966    1.50
+ZPY         CAO         CBK         CAP     118.059    1.50
+ZPY         CAO         CBK         CBA     120.970    1.50
+ZPY         CAP         CBK         CBA     120.970    1.50
+ZPY         CAU         CBL         CAY     106.191    1.50
+ZPY         CAU         CBL         CBI     127.249    2.69
+ZPY         CAY         CBL         CBI     126.560    3.00
+ZPY         CAV         CBM         CAW     119.646    1.50
+ZPY         CAV         CBM         CBG     120.508    2.64
+ZPY         CAW         CBM         CBG     119.846    3.00
+ZPY         CAV         CBN         CAX     119.646    1.50
+ZPY         CAV         CBN         CBH     120.508    2.64
+ZPY         CAX         CBN         CBH     119.846    3.00
+ZPY         CAS         CBO         CAT     118.405    1.50
+ZPY         CAS         CBO         CBQ     120.798    1.50
+ZPY         CAT         CBO         CBQ     120.798    1.50
+ZPY         CAW         CBP         CAX     120.489    2.01
+ZPY         CAW         CBP         NBT     119.755    1.50
+ZPY         CAX         CBP         NBT     119.755    1.50
+ZPY         CAB         CBQ         NBD     109.059    1.50
+ZPY         CAB         CBQ         CBO     112.423    1.50
+ZPY         CAB         CBQ         HBQ     108.141    1.50
+ZPY         NBD         CBQ         CBO     111.603    1.50
+ZPY         NBD         CBQ         HBQ     107.946    1.50
+ZPY         CBO         CBQ         HBQ     107.970    1.50
+ZPY         OAJ         CBR         CBB     109.670    2.62
+ZPY         OAJ         CBR         CBS     109.040    1.72
+ZPY         OAJ         CBR         HBR     108.183    1.96
+ZPY         CBB         CBR         CBS     111.094    2.85
+ZPY         CBB         CBR         HBR     108.989    1.50
+ZPY         CBS         CBR         HBR     108.500    1.50
+ZPY         CBA         CBS         NBE     109.721    1.50
+ZPY         CBA         CBS         CBR     111.094    2.85
+ZPY         CBA         CBS         HBS     108.431    1.50
+ZPY         NBE         CBS         CBR     111.308    2.28
+ZPY         NBE         CBS         HBS     108.116    1.50
+ZPY         CBR         CBS         HBS     107.639    1.50
+ZPY         CAC         NBT         CBP     120.345    1.50
+ZPY         CAC         NBT         SBV     121.047    2.91
+ZPY         CBP         NBT         SBV     118.608    1.50
+ZPY         CAY         NBU         CBB     128.831    1.50
+ZPY         CAY         NBU         NBC     110.736    1.50
+ZPY         CBB         NBU         NBC     120.433    1.50
+ZPY         CAD         SBV         OAH     108.055    1.50
+ZPY         CAD         SBV         OAI     108.055    1.50
+ZPY         CAD         SBV         NBT     106.122    1.50
+ZPY         OAH         SBV         OAI     119.155    1.50
+ZPY         OAH         SBV         NBT     107.135    1.76
+ZPY         OAI         SBV         NBT     107.135    1.76
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZPY             sp3_sp3_1         HAA         CAA         CAZ         OBF     180.000    10.0     3
+ZPY       const_sp2_sp2_1         CAN         CAL         CAM         CAO       0.000     5.0     2
+ZPY              const_73         CAM         CAL         CAN         CAP       0.000    10.0     2
+ZPY       const_sp2_sp2_5         CAL         CAM         CAO         CBK       0.000     5.0     2
+ZPY              const_17         CAL         CAN         CAP         CBK       0.000    10.0     2
+ZPY              const_10         CAM         CAO         CBK         CBA     180.000    10.0     2
+ZPY              const_14         CAN         CAP         CBK         CBA     180.000    10.0     2
+ZPY              const_21         CBJ         CAQ         CAS         CBO       0.000    10.0     2
+ZPY              const_78         CAS         CAQ         CBJ         FAK     180.000    10.0     2
+ZPY              const_33         CBJ         CAR         CAT         CBO       0.000    10.0     2
+ZPY              const_38         CAT         CAR         CBJ         FAK     180.000    10.0     2
+ZPY              const_26         CAQ         CAS         CBO         CBQ     180.000    10.0     2
+ZPY              const_30         CAR         CAT         CBO         CBQ     180.000    10.0     2
+ZPY            sp3_sp3_10         HAB         CAB         CBQ         NBD     180.000    10.0     3
+ZPY              const_41         CBL         CAU         NBC         NBU       0.000    10.0     2
+ZPY              const_82         NBC         CAU         CBL         CBI     180.000    10.0     2
+ZPY              const_54         CBN         CAV         CBM         CBG     180.000    10.0     2
+ZPY              const_86         CBM         CAV         CBN         CBH     180.000    10.0     2
+ZPY              const_58         CBP         CAW         CBM         CBG     180.000    10.0     2
+ZPY              const_62         CBM         CAW         CBP         NBT     180.000    10.0     2
+ZPY              const_70         CBP         CAX         CBN         CBH     180.000    10.0     2
+ZPY              const_66         CBN         CAX         CBP         NBT     180.000    10.0     2
+ZPY              const_50         NBU         CAY         CBL         CBI     180.000    10.0     2
+ZPY              const_46         CBL         CAY         NBU         CBB     180.000    10.0     2
+ZPY            sp3_sp3_31         CAA         CAZ         OBF         CBI     180.000    10.0     3
+ZPY             sp2_sp3_8         CAO         CBK         CBA         CBS     -90.000    10.0     6
+ZPY            sp3_sp3_34         CBK         CBA         CBS         NBE     180.000    10.0     3
+ZPY            sp3_sp3_43         NBU         CBB         CBR         OAJ     180.000    10.0     3
+ZPY            sp2_sp3_14         CAY         NBU         CBB         CBR     -90.000    10.0     6
+ZPY              const_44         CAU         NBC         NBU         CBB     180.000    10.0     2
+ZPY             sp2_sp2_3         OAE         CBG         NBD         CBQ       0.000     5.0     2
+ZPY            sp2_sp3_19         CBG         NBD         CBQ         CAB       0.000    10.0     6
+ZPY             sp2_sp3_4         SBV         NBT         CAC         HAC     180.000    10.0     6
+ZPY             sp2_sp2_7         OAF         CBH         NBE         CBS       0.000     5.0     2
+ZPY            sp2_sp3_25         CBH         NBE         CBS         CBA       0.000    10.0     6
+ZPY             sp2_sp2_9         OAG         CBI         OBF         CAZ     180.000     5.0     2
+ZPY            sp2_sp2_13         OAE         CBG         CBM         CAV       0.000     5.0     2
+ZPY            sp2_sp2_17         OAF         CBH         CBN         CAV       0.000     5.0     2
+ZPY            sp2_sp2_21         OAG         CBI         CBL         CAU       0.000     5.0     2
+ZPY            sp3_sp3_19         HAD         CAD         SBV         OAH     180.000    10.0     3
+ZPY            sp2_sp3_31         CAS         CBO         CBQ         CAB     150.000    10.0     6
+ZPY            sp2_sp2_24         CAW         CBP         NBT         CAC       0.000     5.0     2
+ZPY            sp3_sp3_52         OAJ         CBR         CBS         CBA     180.000    10.0     3
+ZPY            sp2_sp3_39         CAC         NBT         SBV         CAD    -120.000    10.0     6
+ZPY            sp3_sp3_28         CBB         CBR         OAJ        HOAJ     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZPY    chir_1    CBQ    NBD    CBO    CAB    negative
+ZPY    chir_2    CBR    OAJ    CBS    CBB    positive
+ZPY    chir_3    CBS    NBE    CBR    CBA    positive
+ZPY    chir_4    SBV    OAH    OAI    NBT    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZPY    plan-1         CAL   0.020
+ZPY    plan-1         CAM   0.020
+ZPY    plan-1         CAN   0.020
+ZPY    plan-1         CAO   0.020
+ZPY    plan-1         CAP   0.020
+ZPY    plan-1         CBA   0.020
+ZPY    plan-1         CBK   0.020
+ZPY    plan-1         HAL   0.020
+ZPY    plan-1         HAM   0.020
+ZPY    plan-1         HAN   0.020
+ZPY    plan-1         HAO   0.020
+ZPY    plan-1         HAP   0.020
+ZPY    plan-2         CAQ   0.020
+ZPY    plan-2         CAR   0.020
+ZPY    plan-2         CAS   0.020
+ZPY    plan-2         CAT   0.020
+ZPY    plan-2         CBJ   0.020
+ZPY    plan-2         CBO   0.020
+ZPY    plan-2         CBQ   0.020
+ZPY    plan-2         FAK   0.020
+ZPY    plan-2         HAQ   0.020
+ZPY    plan-2         HAR   0.020
+ZPY    plan-2         HAS   0.020
+ZPY    plan-2         HAT   0.020
+ZPY    plan-3         CAU   0.020
+ZPY    plan-3         CAY   0.020
+ZPY    plan-3         CBB   0.020
+ZPY    plan-3         CBI   0.020
+ZPY    plan-3         CBL   0.020
+ZPY    plan-3         HAU   0.020
+ZPY    plan-3         HAY   0.020
+ZPY    plan-3         NBC   0.020
+ZPY    plan-3         NBU   0.020
+ZPY    plan-4         CAV   0.020
+ZPY    plan-4         CAW   0.020
+ZPY    plan-4         CAX   0.020
+ZPY    plan-4         CBG   0.020
+ZPY    plan-4         CBH   0.020
+ZPY    plan-4         CBM   0.020
+ZPY    plan-4         CBN   0.020
+ZPY    plan-4         CBP   0.020
+ZPY    plan-4         HAV   0.020
+ZPY    plan-4         HAW   0.020
+ZPY    plan-4         HAX   0.020
+ZPY    plan-4         NBT   0.020
+ZPY    plan-5         CBG   0.020
+ZPY    plan-5         CBQ   0.020
+ZPY    plan-5        HNBD   0.020
+ZPY    plan-5         NBD   0.020
+ZPY    plan-6         CBH   0.020
+ZPY    plan-6         CBS   0.020
+ZPY    plan-6        HNBE   0.020
+ZPY    plan-6         NBE   0.020
+ZPY    plan-7         CBG   0.020
+ZPY    plan-7         CBM   0.020
+ZPY    plan-7         NBD   0.020
+ZPY    plan-7         OAE   0.020
+ZPY    plan-8         CBH   0.020
+ZPY    plan-8         CBN   0.020
+ZPY    plan-8         NBE   0.020
+ZPY    plan-8         OAF   0.020
+ZPY    plan-9         CBI   0.020
+ZPY    plan-9         CBL   0.020
+ZPY    plan-9         OAG   0.020
+ZPY    plan-9         OBF   0.020
+ZPY   plan-10         CAC   0.020
+ZPY   plan-10         CBP   0.020
+ZPY   plan-10         NBT   0.020
+ZPY   plan-10         SBV   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZPY           SMILES              ACDLabs 12.01                                                                                                                                                                  Fc1ccc(cc1)C(NC(=O)c2cc(cc(N(C)S(=O)(=O)C)c2)C(=O)NC(C(O)Cn3ncc(C(=O)OCC)c3)Cc4ccccc4)C
+ZPY            InChI                InChI  1.03 InChI=1S/C34H38FN5O7S/c1-5-47-34(44)27-19-36-40(20-27)21-31(41)30(15-23-9-7-6-8-10-23)38-33(43)26-16-25(17-29(18-26)39(3)48(4,45)46)32(42)37-22(2)24-11-13-28(35)14-12-24/h6-14,16-20,22,30-31,41H,5,15,21H2,1-4H3,(H,37,42)(H,38,43)/t22-,30+,31+/m1/s1
+ZPY         InChIKey                InChI  1.03                                                                                                                                                                                                                              MTFQLBNDNYIGHD-OJXBSAKDSA-N
+ZPY SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                    CCOC(=O)c1cnn(C[C@H](O)[C@H](Cc2ccccc2)NC(=O)c3cc(cc(c3)C(=O)N[C@H](C)c4ccc(F)cc4)N(C)[S](C)(=O)=O)c1
+ZPY           SMILES               CACTVS 3.370                                                                                                                                                       CCOC(=O)c1cnn(C[CH](O)[CH](Cc2ccccc2)NC(=O)c3cc(cc(c3)C(=O)N[CH](C)c4ccc(F)cc4)N(C)[S](C)(=O)=O)c1
+ZPY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                     CCOC(=O)c1cnn(c1)C[C@@H]([C@H](Cc2ccccc2)NC(=O)c3cc(cc(c3)N(C)S(=O)(=O)C)C(=O)N[C@H](C)c4ccc(cc4)F)O
+ZPY           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                  CCOC(=O)c1cnn(c1)CC(C(Cc2ccccc2)NC(=O)c3cc(cc(c3)N(C)S(=O)(=O)C)C(=O)NC(C)c4ccc(cc4)F)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZPY acedrg               243         "dictionary generator"                  
+ZPY acedrg_database      11          "data source"                           
+ZPY rdkit                2017.03.2   "Chemoinformatics tool"
+ZPY refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,254 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DX6     DX6      2-amino-5-(2-phenylethyl)-3,7-dihydro-4H-pyrrolo[2,3-d]pyrimidin-4-one     NON-POLYMER     33     19     .     
+#
+data_comp_DX6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DX6     CAF     C       CR16    0       19.549      15.892      8.297       
+DX6     CAD     C       CR16    0       18.471      16.228      9.107       
+DX6     CAC     C       CR16    0       17.764      17.388      8.873       
+DX6     CAE     C       CR16    0       18.129      18.213      7.831       
+DX6     CAG     C       CR16    0       19.206      17.879      7.020       
+DX6     CAN     C       CR6     0       19.929      16.713      7.242       
+DX6     CAI     C       CH2     0       21.098      16.346      6.360       
+DX6     CAJ     C       CH2     0       20.695      15.559      5.087       
+DX6     CAP     C       CR5     0       20.020      14.251      5.371       
+DX6     CAH     C       CR15    0       20.614      13.044      5.609       
+DX6     NAL     N       NR5     0       19.665      12.081      5.836       
+DX6     CAR     C       CR56    0       18.430      12.654      5.752       
+DX6     NAK     N       NRD6    0       17.231      12.034      5.915       
+DX6     CAS     C       CR56    0       18.602      14.026      5.462       
+DX6     CAQ     C       CR6     0       17.445      14.852      5.323       
+DX6     OAB     O       O       0       17.438      16.068      5.070       
+DX6     NAM     N       NR6     0       16.236      14.171      5.499       
+DX6     CAO     C       CR6     0       16.159      12.824      5.781       
+DX6     NAA     N       NH2     0       14.931      12.307      5.924       
+DX6     HAF     H       H       0       20.028      15.095      8.463       
+DX6     HAD     H       H       0       18.224      15.661      9.820       
+DX6     HAC     H       H       0       17.033      17.616      9.425       
+DX6     HAE     H       H       0       17.647      19.008      7.669       
+DX6     HAG     H       H       0       19.450      18.449      6.308       
+DX6     HAI     H       H       0       21.731      15.804      6.880       
+DX6     HAIA    H       H       0       21.562      17.168      6.090       
+DX6     HAJ     H       H       0       21.497      15.390      4.552       
+DX6     HAJA    H       H       0       20.094      16.114      4.549       
+DX6     HAH     H       H       0       21.546      12.888      5.615       
+DX6     HNAL    H       H       0       19.829      11.231      6.008       
+DX6     HNAM    H       H       0       15.477      14.641      5.423       
+DX6     HNAA    H       H       0       14.281      12.574      5.399       
+DX6     HNAB    H       H       0       14.781      11.703      6.541       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DX6         CAF         CAD      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DX6         CAF         CAN      SINGLE       y     1.385  0.0111     1.385  0.0111
+DX6         CAD         CAC      SINGLE       y     1.374  0.0127     1.374  0.0127
+DX6         CAC         CAE      DOUBLE       y     1.374  0.0127     1.374  0.0127
+DX6         CAE         CAG      SINGLE       y     1.386  0.0100     1.386  0.0100
+DX6         CAG         CAN      DOUBLE       y     1.385  0.0111     1.385  0.0111
+DX6         CAN         CAI      SINGLE       n     1.509  0.0100     1.509  0.0100
+DX6         CAI         CAJ      SINGLE       n     1.546  0.0200     1.546  0.0200
+DX6         CAJ         CAP      SINGLE       n     1.499  0.0100     1.499  0.0100
+DX6         CAP         CAH      DOUBLE       y     1.365  0.0100     1.365  0.0100
+DX6         CAP         CAS      SINGLE       y     1.440  0.0100     1.440  0.0100
+DX6         CAH         NAL      SINGLE       y     1.369  0.0100     1.369  0.0100
+DX6         NAL         CAR      SINGLE       y     1.363  0.0100     1.363  0.0100
+DX6         CAR         NAK      SINGLE       y     1.355  0.0100     1.355  0.0100
+DX6         CAR         CAS      DOUBLE       y     1.412  0.0120     1.412  0.0120
+DX6         NAK         CAO      DOUBLE       y     1.332  0.0108     1.332  0.0108
+DX6         CAS         CAQ      SINGLE       y     1.427  0.0100     1.427  0.0100
+DX6         CAQ         OAB      DOUBLE       n     1.242  0.0112     1.242  0.0112
+DX6         CAQ         NAM      SINGLE       y     1.395  0.0119     1.395  0.0119
+DX6         NAM         CAO      SINGLE       y     1.374  0.0100     1.374  0.0100
+DX6         CAO         NAA      SINGLE       n     1.340  0.0101     1.340  0.0101
+DX6         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0174
+DX6         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0175
+DX6         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+DX6         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0175
+DX6         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0174
+DX6         CAI         HAI      SINGLE       n     1.089  0.0100     0.982  0.0102
+DX6         CAI        HAIA      SINGLE       n     1.089  0.0100     0.982  0.0102
+DX6         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.979  0.0187
+DX6         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.979  0.0187
+DX6         CAH         HAH      SINGLE       n     1.082  0.0130     0.945  0.0191
+DX6         NAL        HNAL      SINGLE       n     1.016  0.0100     0.883  0.0200
+DX6         NAM        HNAM      SINGLE       n     1.016  0.0100     0.895  0.0200
+DX6         NAA        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+DX6         NAA        HNAB      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DX6         CAD         CAF         CAN     120.624    1.50
+DX6         CAD         CAF         HAF     119.786    1.50
+DX6         CAN         CAF         HAF     119.591    1.50
+DX6         CAF         CAD         CAC     120.325    1.50
+DX6         CAF         CAD         HAD     119.792    1.50
+DX6         CAC         CAD         HAD     119.883    1.50
+DX6         CAD         CAC         CAE     120.043    1.50
+DX6         CAD         CAC         HAC     119.979    1.50
+DX6         CAE         CAC         HAC     119.979    1.50
+DX6         CAC         CAE         CAG     120.325    1.50
+DX6         CAC         CAE         HAE     119.883    1.50
+DX6         CAG         CAE         HAE     119.792    1.50
+DX6         CAE         CAG         CAN     120.624    1.50
+DX6         CAE         CAG         HAG     119.786    1.50
+DX6         CAN         CAG         HAG     119.591    1.50
+DX6         CAF         CAN         CAG     118.060    1.50
+DX6         CAF         CAN         CAI     120.970    1.80
+DX6         CAG         CAN         CAI     120.970    1.80
+DX6         CAN         CAI         CAJ     113.028    3.00
+DX6         CAN         CAI         HAI     108.988    1.50
+DX6         CAN         CAI        HAIA     108.988    1.50
+DX6         CAJ         CAI         HAI     108.908    1.50
+DX6         CAJ         CAI        HAIA     108.908    1.50
+DX6         HAI         CAI        HAIA     107.772    1.50
+DX6         CAI         CAJ         CAP     113.880    2.07
+DX6         CAI         CAJ         HAJ     109.039    1.50
+DX6         CAI         CAJ        HAJA     109.039    1.50
+DX6         CAP         CAJ         HAJ     108.962    1.50
+DX6         CAP         CAJ        HAJA     108.962    1.50
+DX6         HAJ         CAJ        HAJA     107.724    1.50
+DX6         CAJ         CAP         CAH     127.251    1.57
+DX6         CAJ         CAP         CAS     126.122    1.63
+DX6         CAH         CAP         CAS     106.628    1.50
+DX6         CAP         CAH         NAL     109.821    1.50
+DX6         CAP         CAH         HAH     125.482    1.59
+DX6         NAL         CAH         HAH     124.697    1.50
+DX6         CAH         NAL         CAR     108.127    1.50
+DX6         CAH         NAL        HNAL     125.814    1.67
+DX6         CAR         NAL        HNAL     126.059    1.50
+DX6         NAL         CAR         NAK     126.697    1.65
+DX6         NAL         CAR         CAS     108.325    1.50
+DX6         NAK         CAR         CAS     124.978    1.50
+DX6         CAR         NAK         CAO     114.066    1.50
+DX6         CAP         CAS         CAR     107.098    1.50
+DX6         CAP         CAS         CAQ     133.786    1.50
+DX6         CAR         CAS         CAQ     119.116    1.50
+DX6         CAS         CAQ         OAB     125.921    1.50
+DX6         CAS         CAQ         NAM     114.445    1.50
+DX6         OAB         CAQ         NAM     119.634    1.50
+DX6         CAQ         NAM         CAO     123.892    1.50
+DX6         CAQ         NAM        HNAM     117.769    1.86
+DX6         CAO         NAM        HNAM     118.339    2.71
+DX6         NAK         CAO         NAM     123.503    1.50
+DX6         NAK         CAO         NAA     119.871    1.50
+DX6         NAM         CAO         NAA     116.626    1.50
+DX6         CAO         NAA        HNAA     119.868    1.50
+DX6         CAO         NAA        HNAB     119.868    1.50
+DX6        HNAA         NAA        HNAB     120.263    1.96
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DX6       const_sp2_sp2_1         CAC         CAD         CAF         CAN       0.000     5.0     2
+DX6              const_54         CAD         CAF         CAN         CAI     180.000    10.0     2
+DX6              const_31         NAK         CAR         NAL         CAH     180.000    10.0     2
+DX6              const_38         NAL         CAR         NAK         CAO     180.000    10.0     2
+DX6              const_33         NAL         CAR         CAS         CAP       0.000    10.0     2
+DX6              const_40         NAA         CAO         NAK         CAR     180.000    10.0     2
+DX6              const_52         OAB         CAQ         CAS         CAP       0.000    10.0     2
+DX6              const_47         OAB         CAQ         NAM         CAO     180.000    10.0     2
+DX6              const_43         NAA         CAO         NAM         CAQ     180.000    10.0     2
+DX6             sp2_sp2_3         NAK         CAO         NAA        HNAA       0.000     5.0     2
+DX6       const_sp2_sp2_5         CAE         CAC         CAD         CAF       0.000     5.0     2
+DX6       const_sp2_sp2_9         CAD         CAC         CAE         CAG       0.000     5.0     2
+DX6              const_13         CAC         CAE         CAG         CAN       0.000    10.0     2
+DX6              const_18         CAE         CAG         CAN         CAI     180.000    10.0     2
+DX6             sp2_sp3_2         CAF         CAN         CAI         CAJ     -90.000    10.0     6
+DX6             sp3_sp3_1         CAN         CAI         CAJ         CAP     180.000    10.0     3
+DX6             sp2_sp3_8         CAH         CAP         CAJ         CAI     -90.000    10.0     6
+DX6              const_59         CAJ         CAP         CAS         CAR     180.000    10.0     2
+DX6              const_22         NAL         CAH         CAP         CAJ     180.000    10.0     2
+DX6              const_25         CAP         CAH         NAL         CAR       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DX6    plan-1         CAH   0.020
+DX6    plan-1         CAJ   0.020
+DX6    plan-1         CAO   0.020
+DX6    plan-1         CAP   0.020
+DX6    plan-1         CAQ   0.020
+DX6    plan-1         CAR   0.020
+DX6    plan-1         CAS   0.020
+DX6    plan-1         HAH   0.020
+DX6    plan-1        HNAL   0.020
+DX6    plan-1        HNAM   0.020
+DX6    plan-1         NAA   0.020
+DX6    plan-1         NAK   0.020
+DX6    plan-1         NAL   0.020
+DX6    plan-1         NAM   0.020
+DX6    plan-1         OAB   0.020
+DX6    plan-2         CAC   0.020
+DX6    plan-2         CAD   0.020
+DX6    plan-2         CAE   0.020
+DX6    plan-2         CAF   0.020
+DX6    plan-2         CAG   0.020
+DX6    plan-2         CAI   0.020
+DX6    plan-2         CAN   0.020
+DX6    plan-2         HAC   0.020
+DX6    plan-2         HAD   0.020
+DX6    plan-2         HAE   0.020
+DX6    plan-2         HAF   0.020
+DX6    plan-2         HAG   0.020
+DX6    plan-3         CAO   0.020
+DX6    plan-3        HNAA   0.020
+DX6    plan-3        HNAB   0.020
+DX6    plan-3         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DX6           SMILES              ACDLabs 10.04                                                                               O=C1c2c(cnc2N=C(N1)N)CCc3ccccc3
+DX6 SMILES_CANONICAL               CACTVS 3.341                                                                            NC1=Nc2[nH]cc(CCc3ccccc3)c2C(=O)N1
+DX6           SMILES               CACTVS 3.341                                                                            NC1=Nc2[nH]cc(CCc3ccccc3)c2C(=O)N1
+DX6 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                          c1ccc(cc1)CCc2c[nH]c3c2C(=O)NC(=N3)N
+DX6           SMILES "OpenEye OEToolkits" 1.5.0                                                                          c1ccc(cc1)CCc2c[nH]c3c2C(=O)NC(=N3)N
+DX6            InChI                InChI  1.03 InChI=1S/C14H14N4O/c15-14-17-12-11(13(19)18-14)10(8-16-12)7-6-9-4-2-1-3-5-9/h1-5,8H,6-7H2,(H4,15,16,17,18,19)
+DX6         InChIKey                InChI  1.03                                                                                   GPZHVIFHNQJWLA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DX6 acedrg               243         "dictionary generator"                  
+DX6 acedrg_database      11          "data source"                           
+DX6 rdkit                2017.03.2   "Chemoinformatics tool"
+DX6 refmac5              5.8.0238    "optimization tool"                     

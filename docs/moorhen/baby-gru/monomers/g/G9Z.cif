@@ -1,0 +1,260 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G9Z     G9Z      "agropinic acid"     NON-POLYMER     36     20     .     
+#
+data_comp_G9Z
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G9Z     OAM     O       O       0       87.452      -31.902     -0.833      
+G9Z     CAB     C       CR5     0       87.527      -30.825     -1.436      
+G9Z     CAC     C       CR15    0       88.540      -30.410     -2.331      
+G9Z     CB      C       CR15    0       88.305      -29.138     -2.738      
+G9Z     CA      C       CH1     0       86.995      -28.659     -2.206      
+G9Z     C       C       C       0       85.976      -28.397     -3.309      
+G9Z     O       O       O       0       85.649      -29.301     -4.023      
+G9Z     N       N       NR5     0       86.636      -29.806     -1.344      
+G9Z     CAG     C       CH2     0       85.458      -29.829     -0.488      
+G9Z     CAH     C       CH1     0       85.809      -29.579     0.977       
+G9Z     OAP     O       OH1     0       86.536      -28.350     1.057       
+G9Z     CAI     C       CH1     0       84.598      -29.506     1.919       
+G9Z     OAQ     O       OH1     0       83.551      -30.361     1.455       
+G9Z     CAJ     C       CH1     0       84.889      -29.903     3.374       
+G9Z     OAR     O       OH1     0       83.674      -29.855     4.124       
+G9Z     CAK     C       CH1     0       85.944      -29.037     4.077       
+G9Z     OAT     O       OH1     0       86.162      -29.556     5.391       
+G9Z     CAL     C       CH2     0       85.565      -27.572     4.173       
+G9Z     OAS     O       OH1     0       86.515      -26.839     4.943       
+G9Z     OXT     O       OC      -1      85.534      -27.291     -3.428      
+G9Z     H1      H       H       0       89.274      -30.939     -2.607      
+G9Z     H2      H       H       0       88.882      -28.628     -3.280      
+G9Z     H3      H       H       0       87.116      -27.848     -1.660      
+G9Z     H4      H       H       0       85.028      -30.701     -0.575      
+G9Z     H5      H       H       0       84.827      -29.147     -0.786      
+G9Z     H6      H       H       0       86.402      -30.313     1.285       
+G9Z     H7      H       H       0       87.369      -28.507     1.017       
+G9Z     H8      H       H       0       84.253      -28.577     1.907       
+G9Z     H9      H       H       0       82.823      -30.116     1.813       
+G9Z     H10     H       H       0       85.212      -30.841     3.379       
+G9Z     H11     H       H       0       83.791      -30.270     4.855       
+G9Z     H12     H       H       0       86.806      -29.101     3.570       
+G9Z     H13     H       H       0       86.836      -29.194     5.756       
+G9Z     H14     H       H       0       84.676      -27.488     4.593       
+G9Z     H15     H       H       0       85.519      -27.183     3.268       
+G9Z     H16     H       H       0       86.331      -26.016     4.877       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G9Z           C           O      DOUBLE       n     1.197  0.0200     1.197  0.0200
+G9Z         CAC          CB      DOUBLE       n     1.356  0.0200     1.356  0.0200
+G9Z          CB          CA      SINGLE       n     1.495  0.0100     1.495  0.0100
+G9Z         CAB         CAC      SINGLE       n     1.404  0.0200     1.404  0.0200
+G9Z           C         OXT      SINGLE       n     1.197  0.0200     1.197  0.0200
+G9Z          CA           C      SINGLE       n     1.520  0.0200     1.520  0.0200
+G9Z          CA           N      SINGLE       n     1.479  0.0167     1.479  0.0167
+G9Z         OAM         CAB      DOUBLE       n     1.236  0.0102     1.236  0.0102
+G9Z         CAB           N      SINGLE       n     1.353  0.0132     1.353  0.0132
+G9Z           N         CAG      SINGLE       n     1.455  0.0104     1.455  0.0104
+G9Z         CAG         CAH      SINGLE       n     1.521  0.0130     1.521  0.0130
+G9Z         CAH         OAP      SINGLE       n     1.424  0.0199     1.424  0.0199
+G9Z         CAH         CAI      SINGLE       n     1.531  0.0100     1.531  0.0100
+G9Z         CAI         OAQ      SINGLE       n     1.424  0.0199     1.424  0.0199
+G9Z         CAI         CAJ      SINGLE       n     1.531  0.0100     1.531  0.0100
+G9Z         CAJ         CAK      SINGLE       n     1.530  0.0100     1.530  0.0100
+G9Z         CAJ         OAR      SINGLE       n     1.424  0.0199     1.424  0.0199
+G9Z         CAK         CAL      SINGLE       n     1.514  0.0100     1.514  0.0100
+G9Z         CAK         OAT      SINGLE       n     1.429  0.0100     1.429  0.0100
+G9Z         CAL         OAS      SINGLE       n     1.425  0.0100     1.425  0.0100
+G9Z         CAC          H1      SINGLE       n     1.082  0.0130     0.946  0.0100
+G9Z          CB          H2      SINGLE       n     1.082  0.0130     0.942  0.0200
+G9Z          CA          H3      SINGLE       n     1.089  0.0100     0.985  0.0181
+G9Z         CAG          H4      SINGLE       n     1.089  0.0100     0.976  0.0150
+G9Z         CAG          H5      SINGLE       n     1.089  0.0100     0.976  0.0150
+G9Z         CAH          H6      SINGLE       n     1.089  0.0100     0.992  0.0184
+G9Z         OAP          H7      SINGLE       n     0.970  0.0120     0.848  0.0200
+G9Z         CAI          H8      SINGLE       n     1.089  0.0100     0.992  0.0184
+G9Z         OAQ          H9      SINGLE       n     0.970  0.0120     0.848  0.0200
+G9Z         CAJ         H10      SINGLE       n     1.089  0.0100     0.992  0.0184
+G9Z         OAR         H11      SINGLE       n     0.970  0.0120     0.848  0.0200
+G9Z         CAK         H12      SINGLE       n     1.089  0.0100     1.004  0.0200
+G9Z         OAT         H13      SINGLE       n     0.970  0.0120     0.848  0.0200
+G9Z         CAL         H14      SINGLE       n     1.089  0.0100     0.988  0.0200
+G9Z         CAL         H15      SINGLE       n     1.089  0.0100     0.988  0.0200
+G9Z         OAS         H16      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G9Z         CAC         CAB         OAM     127.751    1.50
+G9Z         CAC         CAB           N     106.683    1.79
+G9Z         OAM         CAB           N     125.566    1.96
+G9Z          CB         CAC         CAB     109.948    1.50
+G9Z          CB         CAC          H1     124.817    1.50
+G9Z         CAB         CAC          H1     125.235    1.50
+G9Z         CAC          CB          CA     111.199    1.50
+G9Z         CAC          CB          H2     124.594    1.50
+G9Z          CA          CB          H2     124.207    1.50
+G9Z          CB          CA           C     110.962    3.00
+G9Z          CB          CA           N     101.369    1.50
+G9Z          CB          CA          H3     108.117    3.00
+G9Z           C          CA           N     111.417    2.02
+G9Z           C          CA          H3     108.963    1.74
+G9Z           N          CA          H3     109.519    1.50
+G9Z           O           C         OXT     122.531    1.50
+G9Z           O           C          CA     118.735    2.73
+G9Z         OXT           C          CA     118.735    2.73
+G9Z          CA           N         CAB     113.318    1.50
+G9Z          CA           N         CAG     122.867    1.87
+G9Z         CAB           N         CAG     123.814    1.55
+G9Z           N         CAG         CAH     110.974    2.01
+G9Z           N         CAG          H4     108.795    1.50
+G9Z           N         CAG          H5     108.795    1.50
+G9Z         CAH         CAG          H4     108.905    1.50
+G9Z         CAH         CAG          H5     108.905    1.50
+G9Z          H4         CAG          H5     107.867    1.50
+G9Z         CAG         CAH         OAP     109.214    2.12
+G9Z         CAG         CAH         CAI     110.999    2.33
+G9Z         CAG         CAH          H6     108.279    1.50
+G9Z         OAP         CAH         CAI     109.320    2.01
+G9Z         OAP         CAH          H6     108.183    1.96
+G9Z         CAI         CAH          H6     108.450    1.83
+G9Z         CAH         OAP          H7     109.265    3.00
+G9Z         CAH         CAI         OAQ     109.320    2.01
+G9Z         CAH         CAI         CAJ     113.695    2.13
+G9Z         CAH         CAI          H8     108.450    1.83
+G9Z         OAQ         CAI         CAJ     109.024    2.24
+G9Z         OAQ         CAI          H8     108.243    1.50
+G9Z         CAJ         CAI          H8     108.569    1.50
+G9Z         CAI         OAQ          H9     108.564    3.00
+G9Z         CAI         CAJ         CAK     112.413    1.50
+G9Z         CAI         CAJ         OAR     109.024    2.24
+G9Z         CAI         CAJ         H10     108.569    1.50
+G9Z         CAK         CAJ         OAR     109.164    1.97
+G9Z         CAK         CAJ         H10     108.336    1.50
+G9Z         OAR         CAJ         H10     108.243    1.50
+G9Z         CAJ         OAR         H11     108.564    3.00
+G9Z         CAJ         CAK         CAL     112.159    1.50
+G9Z         CAJ         CAK         OAT     109.549    1.85
+G9Z         CAJ         CAK         H12     108.777    1.50
+G9Z         CAL         CAK         OAT     109.623    1.60
+G9Z         CAL         CAK         H12     107.986    1.50
+G9Z         OAT         CAK         H12     108.591    1.50
+G9Z         CAK         OAT         H13     111.202    3.00
+G9Z         CAK         CAL         OAS     111.364    1.50
+G9Z         CAK         CAL         H14     109.234    1.50
+G9Z         CAK         CAL         H15     109.234    1.50
+G9Z         OAS         CAL         H14     109.268    1.50
+G9Z         OAS         CAL         H15     109.268    1.50
+G9Z         H14         CAL         H15     108.313    1.50
+G9Z         CAL         OAS         H16     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G9Z            sp3_sp3_22         CAH         CAI         OAQ          H9     180.000    10.0     3
+G9Z            sp3_sp3_25         CAH         CAI         CAJ         CAK     180.000    10.0     3
+G9Z            sp3_sp3_43         CAI         CAJ         OAR         H11     180.000    10.0     3
+G9Z            sp3_sp3_34         CAI         CAJ         CAK         CAL     180.000    10.0     3
+G9Z            sp3_sp3_55         CAJ         CAK         OAT         H13     180.000    10.0     3
+G9Z            sp3_sp3_46         CAJ         CAK         CAL         OAS     180.000    10.0     3
+G9Z            sp3_sp3_58         CAK         CAL         OAS         H16     180.000    10.0     3
+G9Z             sp2_sp2_3         OAM         CAB         CAC          CB     180.000     5.0     2
+G9Z            sp2_sp2_12         OAM         CAB           N         CAG       0.000     5.0     2
+G9Z             sp2_sp2_5         CAB         CAC          CB          CA       0.000     5.0     2
+G9Z             sp2_sp3_2         CAC          CB          CA           C     120.000    10.0     6
+G9Z            sp2_sp3_13           O           C          CA          CB       0.000    10.0     6
+G9Z            sp2_sp3_11         CAG           N          CA           C     -60.000    10.0     6
+G9Z            sp2_sp3_20          CA           N         CAG         CAH     -90.000    10.0     6
+G9Z             sp3_sp3_1           N         CAG         CAH         OAP     180.000    10.0     3
+G9Z            sp3_sp3_10         CAG         CAH         OAP          H7     180.000    10.0     3
+G9Z            sp3_sp3_13         CAG         CAH         CAI         OAQ     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G9Z    chir_1    CA    N    C    CB    positive
+G9Z    chir_2    CAH    OAP    CAI    CAG    negative
+G9Z    chir_3    CAI    OAQ    CAJ    CAH    negative
+G9Z    chir_4    CAJ    OAR    CAI    CAK    negative
+G9Z    chir_5    CAK    OAT    CAJ    CAL    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G9Z    plan-1         CAB   0.020
+G9Z    plan-1         CAC   0.020
+G9Z    plan-1           N   0.020
+G9Z    plan-1         OAM   0.020
+G9Z    plan-2         CAB   0.020
+G9Z    plan-2         CAC   0.020
+G9Z    plan-2          CB   0.020
+G9Z    plan-2          H1   0.020
+G9Z    plan-3          CA   0.020
+G9Z    plan-3         CAC   0.020
+G9Z    plan-3          CB   0.020
+G9Z    plan-3          H2   0.020
+G9Z    plan-4           C   0.020
+G9Z    plan-4          CA   0.020
+G9Z    plan-4           O   0.020
+G9Z    plan-4         OXT   0.020
+G9Z    plan-5          CA   0.020
+G9Z    plan-5         CAB   0.020
+G9Z    plan-5         CAG   0.020
+G9Z    plan-5           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G9Z            InChI                InChI  1.03 InChI=1S/C11H17NO8/c13-4-7(15)10(18)9(17)6(14)3-12-5(11(19)20)1-2-8(12)16/h1-2,5-7,9-10,13-15,17-18H,3-4H2,(H,19,20)/t5-,6+,7+,9+,10+/m0/s1
+G9Z         InChIKey                InChI  1.03                                                                                                                 WYIHPABVKQQJFB-SZWOQXJISA-N
+G9Z SMILES_CANONICAL               CACTVS 3.385                                                                                OC[C@@H](O)[C@@H](O)[C@H](O)[C@H](O)CN1[C@@H](C=CC1=O)C(O)=O
+G9Z           SMILES               CACTVS 3.385                                                                                        OC[CH](O)[CH](O)[CH](O)[CH](O)CN1[CH](C=CC1=O)C(O)=O
+G9Z SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                              C1=CC(=O)N([C@@H]1C(=O)O)C[C@H]([C@H]([C@@H]([C@@H](CO)O)O)O)O
+G9Z           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                     C1=CC(=O)N(C1C(=O)O)CC(C(C(C(CO)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G9Z acedrg               243         "dictionary generator"                  
+G9Z acedrg_database      11          "data source"                           
+G9Z rdkit                2017.03.2   "Chemoinformatics tool"
+G9Z refmac5              5.8.0238    "optimization tool"                     

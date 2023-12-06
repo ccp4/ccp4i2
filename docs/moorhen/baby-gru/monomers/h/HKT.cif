@@ -1,0 +1,294 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HKT     HKT      1-[5-(2-fluorophenyl)-1-pyridin-3-ylsulfonyl-pyrrol-3-yl]-~{N}-methyl-methanamine     NON-POLYMER     40     24     .     
+#
+data_comp_HKT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HKT     CAL     C       CR5     0       49.352      -15.951     -2.708      
+HKT     CAM     C       CR6     0       49.322      -17.074     -3.654      
+HKT     CAN     C       CR6     0       48.140      -14.723     -5.489      
+HKT     CAO     C       CR15    0       48.870      -13.968     -1.728      
+HKT     CAP     C       CR5     0       49.860      -14.555     -0.975      
+HKT     CAQ     C       CR15    0       50.160      -15.789     -1.592      
+HKT     CAR     C       CR6     0       50.417      -17.346     -4.465      
+HKT     CAS     C       CR16    0       48.202      -17.900     -3.752      
+HKT     CAT     C       CR16    0       47.502      -15.452     -6.485      
+HKT     CAU     C       CR16    0       49.412      -14.230     -5.752      
+HKT     CAV     C       CH2     0       50.500      -13.994     0.257       
+HKT     CAW     C       CR16    0       50.417      -18.396     -5.361      
+HKT     CAX     C       CR16    0       48.195      -18.956     -4.651      
+HKT     CAY     C       CR16    0       49.991      -14.479     -6.984      
+HKT     CAZ     C       CR16    0       49.298      -19.200     -5.448      
+HKT     CBA     C       CR16    0       49.277      -15.213     -7.910      
+HKT     CBB     C       CH3     0       49.898      -15.670     1.957       
+HKT     FAB     F       F       0       51.525      -16.568     -4.396      
+HKT     NAI     N       NT      0       48.548      -14.798     -2.797      
+HKT     NAJ     N       NRD6    0       48.049      -15.700     -7.680      
+HKT     NAK     N       NT1     0       49.755      -14.292     1.484       
+HKT     OAC     O       O       0       47.118      -13.035     -3.816      
+HKT     OAD     O       O       0       46.323      -15.370     -3.739      
+HKT     SAA     S       S3      0       47.375      -14.431     -3.938      
+HKT     H1      H       H       0       48.474      -13.129     -1.547      
+HKT     H2      H       H       0       50.806      -16.404     -1.288      
+HKT     H3      H       H       0       47.450      -17.737     -3.211      
+HKT     H4      H       H       0       46.644      -15.788     -6.316      
+HKT     H5      H       H       0       49.876      -13.733     -5.102      
+HKT     H6      H       H       0       50.574      -13.023     0.156       
+HKT     H7      H       H       0       51.407      -14.355     0.334       
+HKT     H8      H       H       0       51.169      -18.560     -5.903      
+HKT     H9      H       H       0       47.435      -19.510     -4.716      
+HKT     H10     H       H       0       50.853      -14.151     -7.180      
+HKT     H11     H       H       0       49.288      -19.919     -6.055      
+HKT     H12     H       H       0       49.670      -15.382     -8.749      
+HKT     H13     H       H       0       49.457      -15.766     2.824       
+HKT     H14     H       H       0       50.845      -15.890     2.052       
+HKT     H15     H       H       0       49.487      -16.284     1.318       
+HKT     H16     H       H       0       48.888      -14.117     1.367       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HKT         CBA         NAJ      SINGLE       y     1.333  0.0115     1.333  0.0115
+HKT         CAY         CBA      DOUBLE       y     1.374  0.0152     1.374  0.0152
+HKT         CAT         NAJ      DOUBLE       y     1.332  0.0100     1.332  0.0100
+HKT         CAU         CAY      SINGLE       y     1.382  0.0104     1.382  0.0104
+HKT         CAN         CAT      SINGLE       y     1.382  0.0133     1.382  0.0133
+HKT         CAN         CAU      DOUBLE       y     1.388  0.0100     1.388  0.0100
+HKT         CAN         SAA      SINGLE       n     1.753  0.0100     1.753  0.0100
+HKT         CAW         CAZ      SINGLE       y     1.373  0.0120     1.373  0.0120
+HKT         CAX         CAZ      DOUBLE       y     1.377  0.0109     1.377  0.0109
+HKT         CAR         CAW      DOUBLE       y     1.377  0.0100     1.377  0.0100
+HKT         CAS         CAX      SINGLE       y     1.383  0.0100     1.383  0.0100
+HKT         CAR         FAB      SINGLE       n     1.355  0.0164     1.355  0.0164
+HKT         CAM         CAR      SINGLE       y     1.386  0.0100     1.386  0.0100
+HKT         OAD         SAA      DOUBLE       n     1.424  0.0100     1.424  0.0100
+HKT         OAC         SAA      DOUBLE       n     1.424  0.0100     1.424  0.0100
+HKT         NAI         SAA      SINGLE       n     1.671  0.0112     1.671  0.0112
+HKT         CAM         CAS      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HKT         CAL         CAM      SINGLE       n     1.467  0.0100     1.467  0.0100
+HKT         CAL         NAI      SINGLE       y     1.403  0.0200     1.403  0.0200
+HKT         CAO         NAI      SINGLE       y     1.394  0.0186     1.394  0.0186
+HKT         CAL         CAQ      DOUBLE       y     1.385  0.0168     1.385  0.0168
+HKT         CAO         CAP      DOUBLE       y     1.375  0.0104     1.375  0.0104
+HKT         CAP         CAQ      SINGLE       y     1.402  0.0200     1.402  0.0200
+HKT         CAP         CAV      SINGLE       n     1.497  0.0100     1.497  0.0100
+HKT         CAV         NAK      SINGLE       n     1.463  0.0131     1.463  0.0131
+HKT         CBB         NAK      SINGLE       n     1.463  0.0141     1.463  0.0141
+HKT         CAO          H1      SINGLE       n     1.082  0.0130     0.945  0.0191
+HKT         CAQ          H2      SINGLE       n     1.082  0.0130     0.942  0.0154
+HKT         CAS          H3      SINGLE       n     1.082  0.0130     0.941  0.0101
+HKT         CAT          H4      SINGLE       n     1.082  0.0130     0.937  0.0100
+HKT         CAU          H5      SINGLE       n     1.082  0.0130     0.940  0.0163
+HKT         CAV          H6      SINGLE       n     1.089  0.0100     0.979  0.0148
+HKT         CAV          H7      SINGLE       n     1.089  0.0100     0.979  0.0148
+HKT         CAW          H8      SINGLE       n     1.082  0.0130     0.941  0.0154
+HKT         CAX          H9      SINGLE       n     1.082  0.0130     0.943  0.0180
+HKT         CAY         H10      SINGLE       n     1.082  0.0130     0.943  0.0190
+HKT         CAZ         H11      SINGLE       n     1.082  0.0130     0.941  0.0200
+HKT         CBA         H12      SINGLE       n     1.082  0.0130     0.942  0.0166
+HKT         CBB         H13      SINGLE       n     1.089  0.0100     0.977  0.0113
+HKT         CBB         H14      SINGLE       n     1.089  0.0100     0.977  0.0113
+HKT         CBB         H15      SINGLE       n     1.089  0.0100     0.977  0.0113
+HKT         NAK         H16      SINGLE       n     1.036  0.0160     0.890  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HKT         CAM         CAL         NAI     122.926    1.82
+HKT         CAM         CAL         CAQ     129.352    1.52
+HKT         NAI         CAL         CAQ     107.722    1.50
+HKT         CAR         CAM         CAS     119.225    1.64
+HKT         CAR         CAM         CAL     120.426    1.50
+HKT         CAS         CAM         CAL     120.350    1.50
+HKT         CAT         CAN         CAU     118.699    1.50
+HKT         CAT         CAN         SAA     120.859    1.50
+HKT         CAU         CAN         SAA     120.442    1.50
+HKT         NAI         CAO         CAP     109.274    1.50
+HKT         NAI         CAO          H1     125.293    1.50
+HKT         CAP         CAO          H1     125.433    2.48
+HKT         CAO         CAP         CAQ     105.374    1.50
+HKT         CAO         CAP         CAV     127.313    2.55
+HKT         CAQ         CAP         CAV     127.313    2.55
+HKT         CAL         CAQ         CAP     108.298    1.50
+HKT         CAL         CAQ          H2     126.142    1.50
+HKT         CAP         CAQ          H2     125.559    1.50
+HKT         CAW         CAR         FAB     118.093    1.50
+HKT         CAW         CAR         CAM     122.083    1.50
+HKT         FAB         CAR         CAM     119.824    1.50
+HKT         CAX         CAS         CAM     120.265    1.50
+HKT         CAX         CAS          H3     119.913    1.50
+HKT         CAM         CAS          H3     119.822    1.50
+HKT         NAJ         CAT         CAN     122.983    1.50
+HKT         NAJ         CAT          H4     118.330    1.50
+HKT         CAN         CAT          H4     118.687    1.50
+HKT         CAY         CAU         CAN     119.987    1.50
+HKT         CAY         CAU          H5     119.834    1.50
+HKT         CAN         CAU          H5     120.178    1.50
+HKT         CAP         CAV         NAK     112.622    2.07
+HKT         CAP         CAV          H6     108.919    1.50
+HKT         CAP         CAV          H7     108.919    1.50
+HKT         NAK         CAV          H6     109.332    1.50
+HKT         NAK         CAV          H7     109.332    1.50
+HKT          H6         CAV          H7     107.966    1.50
+HKT         CAZ         CAW         CAR     118.440    1.50
+HKT         CAZ         CAW          H8     120.940    1.50
+HKT         CAR         CAW          H8     120.620    1.50
+HKT         CAZ         CAX         CAS     120.048    1.50
+HKT         CAZ         CAX          H9     120.077    1.50
+HKT         CAS         CAX          H9     119.876    1.50
+HKT         CBA         CAY         CAU     119.043    1.50
+HKT         CBA         CAY         H10     120.898    1.50
+HKT         CAU         CAY         H10     120.059    1.50
+HKT         CAW         CAZ         CAX     119.940    1.50
+HKT         CAW         CAZ         H11     119.873    1.50
+HKT         CAX         CAZ         H11     120.187    1.50
+HKT         NAJ         CBA         CAY     123.315    1.50
+HKT         NAJ         CBA         H12     118.115    1.50
+HKT         CAY         CBA         H12     118.570    1.50
+HKT         NAK         CBB         H13     109.627    1.50
+HKT         NAK         CBB         H14     109.627    1.50
+HKT         NAK         CBB         H15     109.627    1.50
+HKT         H13         CBB         H14     109.279    1.79
+HKT         H13         CBB         H15     109.279    1.79
+HKT         H14         CBB         H15     109.279    1.79
+HKT         SAA         NAI         CAL     123.342    2.22
+HKT         SAA         NAI         CAO     122.594    2.24
+HKT         CAL         NAI         CAO     109.079    1.50
+HKT         CBA         NAJ         CAT     115.972    1.50
+HKT         CAV         NAK         CBB     112.615    2.70
+HKT         CAV         NAK         H16     109.185    3.00
+HKT         CBB         NAK         H16     108.144    3.00
+HKT         CAN         SAA         OAD     109.196    1.50
+HKT         CAN         SAA         OAC     109.196    1.50
+HKT         CAN         SAA         NAI     104.047    1.50
+HKT         OAD         SAA         OAC     120.603    1.50
+HKT         OAD         SAA         NAI     106.039    1.50
+HKT         OAC         SAA         NAI     106.039    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HKT             sp2_sp2_1         NAI         CAL         CAM         CAR     180.000     5.0     2
+HKT       const_sp2_sp2_4         CAM         CAL         NAI         SAA       0.000     5.0     2
+HKT              const_63         CAM         CAL         CAQ         CAP     180.000    10.0     2
+HKT             sp3_sp3_2         CAP         CAV         NAK         CBB     -60.000    10.0     3
+HKT              const_25         CAR         CAW         CAZ         CAX       0.000    10.0     2
+HKT              const_29         CAS         CAX         CAZ         CAW       0.000    10.0     2
+HKT              const_45         CAU         CAY         CBA         NAJ       0.000    10.0     2
+HKT              const_43         CAY         CBA         NAJ         CAT       0.000    10.0     2
+HKT             sp3_sp3_7         H13         CBB         NAK         CAV     180.000    10.0     3
+HKT             sp2_sp3_8         CAL         NAI         SAA         OAD     -90.000    10.0     6
+HKT              const_18         CAS         CAM         CAR         FAB     180.000    10.0     2
+HKT              const_57         CAR         CAM         CAS         CAX       0.000    10.0     2
+HKT             sp2_sp3_1         CAT         CAN         SAA         OAD     150.000    10.0     6
+HKT              const_39         SAA         CAN         CAT         NAJ     180.000    10.0     2
+HKT              const_55         SAA         CAN         CAU         CAY     180.000    10.0     2
+HKT       const_sp2_sp2_6         CAP         CAO         NAI         SAA     180.000     5.0     2
+HKT              const_10         NAI         CAO         CAP         CAV     180.000    10.0     2
+HKT            sp2_sp3_14         CAO         CAP         CAV         NAK     -90.000    10.0     6
+HKT              const_15         CAV         CAP         CAQ         CAL     180.000    10.0     2
+HKT              const_23         FAB         CAR         CAW         CAZ     180.000    10.0     2
+HKT              const_33         CAM         CAS         CAX         CAZ       0.000    10.0     2
+HKT              const_41         CAN         CAT         NAJ         CBA       0.000    10.0     2
+HKT              const_49         CAN         CAU         CAY         CBA       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HKT    chir_1    SAA    OAD    OAC    NAI    both
+HKT    chir_2    NAK    CAV    CBB    H16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HKT    plan-1         CAL   0.020
+HKT    plan-1         CAM   0.020
+HKT    plan-1         CAO   0.020
+HKT    plan-1         CAP   0.020
+HKT    plan-1         CAQ   0.020
+HKT    plan-1         CAV   0.020
+HKT    plan-1          H1   0.020
+HKT    plan-1          H2   0.020
+HKT    plan-1         NAI   0.020
+HKT    plan-1         SAA   0.020
+HKT    plan-2         CAL   0.020
+HKT    plan-2         CAM   0.020
+HKT    plan-2         CAR   0.020
+HKT    plan-2         CAS   0.020
+HKT    plan-2         CAW   0.020
+HKT    plan-2         CAX   0.020
+HKT    plan-2         CAZ   0.020
+HKT    plan-2         FAB   0.020
+HKT    plan-2         H11   0.020
+HKT    plan-2          H3   0.020
+HKT    plan-2          H8   0.020
+HKT    plan-2          H9   0.020
+HKT    plan-3         CAN   0.020
+HKT    plan-3         CAT   0.020
+HKT    plan-3         CAU   0.020
+HKT    plan-3         CAY   0.020
+HKT    plan-3         CBA   0.020
+HKT    plan-3         H10   0.020
+HKT    plan-3         H12   0.020
+HKT    plan-3          H4   0.020
+HKT    plan-3          H5   0.020
+HKT    plan-3         NAJ   0.020
+HKT    plan-3         SAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HKT            InChI                InChI  1.03 InChI=1S/C17H16FN3O2S/c1-19-10-13-9-17(15-6-2-3-7-16(15)18)21(12-13)24(22,23)14-5-4-8-20-11-14/h2-9,11-12,19H,10H2,1H3
+HKT         InChIKey                InChI  1.03                                                                                            BFDBKMOZYNOTPK-UHFFFAOYSA-N
+HKT SMILES_CANONICAL               CACTVS 3.385                                                                             CNCc1cn(c(c1)c2ccccc2F)[S](=O)(=O)c3cccnc3
+HKT           SMILES               CACTVS 3.385                                                                             CNCc1cn(c(c1)c2ccccc2F)[S](=O)(=O)c3cccnc3
+HKT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                               CNCc1cc(n(c1)S(=O)(=O)c2cccnc2)c3ccccc3F
+HKT           SMILES "OpenEye OEToolkits" 2.0.6                                                                               CNCc1cc(n(c1)S(=O)(=O)c2cccnc2)c3ccccc3F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HKT acedrg               243         "dictionary generator"                  
+HKT acedrg_database      11          "data source"                           
+HKT rdkit                2017.03.2   "Chemoinformatics tool"
+HKT refmac5              5.8.0238    "optimization tool"                     

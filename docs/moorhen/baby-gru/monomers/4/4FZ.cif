@@ -1,0 +1,176 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4FZ     4FZ      4-formylbenzenecarboximidamide     NON-POLYMER     19     11     .     
+#
+data_comp_4FZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4FZ     O       O       O       0       -0.298      -17.768     13.581      
+4FZ     C1      C       C       0       -2.116      -13.643     18.308      
+4FZ     N1      N       NH2     0       -1.231      -12.710     18.721      
+4FZ     C2      C       CR6     0       -1.779      -14.426     17.091      
+4FZ     N2      N       NH1     0       -3.213      -13.824     18.970      
+4FZ     C3      C       CR16    0       -1.487      -13.782     15.891      
+4FZ     C4      C       CR16    0       -1.174      -14.510     14.754      
+4FZ     C5      C       CR6     0       -1.148      -15.901     14.796      
+4FZ     C6      C       C1      0       -0.817      -16.674     13.589      
+4FZ     C7      C       CR16    0       -1.442      -16.550     15.992      
+4FZ     C8      C       CR16    0       -1.754      -15.818     17.127      
+4FZ     HN1     H       H       0       -0.473      -12.585     18.275      
+4FZ     HN1A    H       H       0       -1.408      -12.219     19.439      
+4FZ     HN2     H       H       0       -3.725      -14.403     18.684      
+4FZ     H3      H       H       0       -1.500      -12.842     15.850      
+4FZ     H4      H       H       0       -0.977      -14.062     13.951      
+4FZ     H6      H       H       0       -1.028      -16.279     12.752      
+4FZ     H7      H       H       0       -1.428      -17.490     16.032      
+4FZ     H8      H       H       0       -1.950      -16.269     17.929      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4FZ           O          C6      DOUBLE       n     1.210  0.0148     1.210  0.0148
+4FZ          C1          N1      SINGLE       n     1.347  0.0152     1.347  0.0152
+4FZ          C1          C2      SINGLE       n     1.484  0.0100     1.484  0.0100
+4FZ          C1          N2      DOUBLE       n     1.287  0.0200     1.287  0.0200
+4FZ          C2          C3      DOUBLE       y     1.390  0.0100     1.390  0.0100
+4FZ          C2          C8      SINGLE       y     1.390  0.0100     1.390  0.0100
+4FZ          C3          C4      SINGLE       y     1.382  0.0100     1.382  0.0100
+4FZ          C4          C5      DOUBLE       y     1.388  0.0100     1.388  0.0100
+4FZ          C5          C6      SINGLE       n     1.471  0.0127     1.471  0.0127
+4FZ          C5          C7      SINGLE       y     1.388  0.0100     1.388  0.0100
+4FZ          C7          C8      DOUBLE       y     1.382  0.0100     1.382  0.0100
+4FZ          N1         HN1      SINGLE       n     1.016  0.0100     0.887  0.0200
+4FZ          N1        HN1A      SINGLE       n     1.016  0.0100     0.887  0.0200
+4FZ          N2         HN2      SINGLE       n     1.016  0.0100     0.823  0.0200
+4FZ          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+4FZ          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+4FZ          C6          H6      SINGLE       n     1.082  0.0130     0.949  0.0200
+4FZ          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0168
+4FZ          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4FZ          N1          C1          C2     117.501    1.50
+4FZ          N1          C1          N2     120.652    2.66
+4FZ          C2          C1          N2     121.847    3.00
+4FZ          C1          N1         HN1     119.893    1.50
+4FZ          C1          N1        HN1A     119.893    1.50
+4FZ         HN1          N1        HN1A     120.214    2.70
+4FZ          C1          C2          C3     120.498    1.50
+4FZ          C1          C2          C8     120.498    1.50
+4FZ          C3          C2          C8     119.004    1.50
+4FZ          C1          N2         HN2     114.748    3.00
+4FZ          C2          C3          C4     120.796    1.50
+4FZ          C2          C3          H3     119.728    1.50
+4FZ          C4          C3          H3     119.476    1.50
+4FZ          C3          C4          C5     120.162    1.50
+4FZ          C3          C4          H4     119.878    1.50
+4FZ          C5          C4          H4     119.960    1.50
+4FZ          C4          C5          C6     120.460    1.50
+4FZ          C4          C5          C7     119.080    1.50
+4FZ          C6          C5          C7     120.460    1.50
+4FZ           O          C6          C5     125.057    1.50
+4FZ           O          C6          H6     117.869    1.69
+4FZ          C5          C6          H6     117.090    1.93
+4FZ          C5          C7          C8     120.162    1.50
+4FZ          C5          C7          H7     119.960    1.50
+4FZ          C8          C7          H7     119.878    1.50
+4FZ          C2          C8          C7     120.796    1.50
+4FZ          C2          C8          H8     119.728    1.50
+4FZ          C7          C8          H8     119.476    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4FZ             sp2_sp2_3          N2          C1          N1         HN1       0.000     5.0     2
+4FZ             sp2_sp2_5          N1          C1          C2          C3     180.000     5.0     2
+4FZ             sp2_sp2_9          N1          C1          N2         HN2     180.000     5.0     2
+4FZ              const_23          C1          C2          C8          C7     180.000    10.0     2
+4FZ       const_sp2_sp2_3          C1          C2          C3          C4     180.000     5.0     2
+4FZ       const_sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+4FZ              const_10          C3          C4          C5          C6     180.000    10.0     2
+4FZ            sp2_sp2_11          C4          C5          C6           O     180.000     5.0     2
+4FZ              const_15          C6          C5          C7          C8     180.000    10.0     2
+4FZ              const_17          C5          C7          C8          C2       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4FZ    plan-1          C1   0.020
+4FZ    plan-1          C2   0.020
+4FZ    plan-1          C3   0.020
+4FZ    plan-1          C4   0.020
+4FZ    plan-1          C5   0.020
+4FZ    plan-1          C6   0.020
+4FZ    plan-1          C7   0.020
+4FZ    plan-1          C8   0.020
+4FZ    plan-1          H3   0.020
+4FZ    plan-1          H4   0.020
+4FZ    plan-1          H7   0.020
+4FZ    plan-1          H8   0.020
+4FZ    plan-2          C1   0.020
+4FZ    plan-2          C2   0.020
+4FZ    plan-2          N1   0.020
+4FZ    plan-2          N2   0.020
+4FZ    plan-3          C1   0.020
+4FZ    plan-3         HN1   0.020
+4FZ    plan-3        HN1A   0.020
+4FZ    plan-3          N1   0.020
+4FZ    plan-4          C5   0.020
+4FZ    plan-4          C6   0.020
+4FZ    plan-4          H6   0.020
+4FZ    plan-4           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4FZ SMILES_CANONICAL               CACTVS 3.352                                         NC(=N)c1ccc(C=O)cc1
+4FZ           SMILES               CACTVS 3.352                                         NC(=N)c1ccc(C=O)cc1
+4FZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                 "[H]/N=C(\c1ccc(cc1)C=O)/N"
+4FZ           SMILES "OpenEye OEToolkits" 1.7.0                                         c1cc(ccc1C=O)C(=N)N
+4FZ            InChI                InChI  1.03 InChI=1S/C8H8N2O/c9-8(10)7-3-1-6(5-11)2-4-7/h1-5H,(H3,9,10)
+4FZ         InChIKey                InChI  1.03                                 WMFQLLSIPXELTN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4FZ acedrg               243         "dictionary generator"                  
+4FZ acedrg_database      11          "data source"                           
+4FZ rdkit                2017.03.2   "Chemoinformatics tool"
+4FZ refmac5              5.8.0238    "optimization tool"                     

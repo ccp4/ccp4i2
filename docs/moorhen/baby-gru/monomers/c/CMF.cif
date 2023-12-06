@@ -1,0 +1,409 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CMF     CMF      "3-CYCLOHEXYL-1-(2-MORPHOLIN-4-YL-2-OXOETHYL)-2-PHENYL-1H-INDOLE-6-CARBOXYLIC ACID"     NON-POLYMER     62     33     .     
+#
+data_comp_CMF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CMF     C24     C       CH2     0       25.208      8.967       4.627       
+CMF     C26     C       CH2     0       25.914      7.731       4.118       
+CMF     O4      O       O2      0       25.949      7.695       2.693       
+CMF     C27     C       CH2     0       26.585      8.860       2.169       
+CMF     C25     C       CH2     0       25.907      10.132      2.631       
+CMF     N2      N       NR6     0       25.879      10.165      4.101       
+CMF     C23     C       C       0       26.475      11.144      4.823       
+CMF     O3      O       O       0       26.685      12.257      4.349       
+CMF     C22     C       CH2     0       27.014      10.817      6.218       
+CMF     N1      N       NR5     0       28.219      11.575      6.542       
+CMF     C1      C       CR56    0       29.432      11.401      5.901       
+CMF     C6      C       CR16    0       29.786      10.536      4.871       
+CMF     C5      C       CR6     0       31.097      10.570      4.403       
+CMF     C8      C       C       0       31.515      9.652       3.294       
+CMF     O2      O       O       0       30.795      9.598       2.280       
+CMF     O1      O       OC      -1      32.562      8.997       3.447       
+CMF     C4      C       CR16    0       32.036      11.458      4.966       
+CMF     C3      C       CR16    0       31.684      12.316      5.991       
+CMF     C2      C       CR56    0       30.365      12.299      6.476       
+CMF     C7      C       CR5     0       29.664      13.030      7.497       
+CMF     C16     C       CH1     0       30.268      14.094      8.375       
+CMF     C17     C       CH2     0       30.770      15.294      7.583       
+CMF     C20     C       CH2     0       31.320      16.382      8.507       
+CMF     C21     C       CH2     0       32.407      15.840      9.419       
+CMF     C19     C       CH2     0       31.922      14.629      10.198      
+CMF     C18     C       CH2     0       31.373      13.549      9.266       
+CMF     C9      C       CR5     0       28.363      12.564      7.511       
+CMF     C10     C       CR6     0       27.273      13.007      8.391       
+CMF     C11     C       CR16    0       27.326      12.766      9.764       
+CMF     C12     C       CR16    0       26.300      13.190      10.596      
+CMF     C13     C       CR16    0       25.212      13.861      10.074      
+CMF     C14     C       CR16    0       25.147      14.110      8.718       
+CMF     C15     C       CR16    0       26.169      13.691      7.879       
+CMF     H241    H       H       0       24.278      8.958       4.323       
+CMF     H242    H       H       0       25.207      8.971       5.603       
+CMF     H261    H       H       0       26.831      7.716       4.464       
+CMF     H262    H       H       0       25.450      6.934       4.448       
+CMF     H271    H       H       0       26.567      8.823       1.190       
+CMF     H272    H       H       0       27.522      8.871       2.456       
+CMF     H251    H       H       0       24.992      10.159      2.286       
+CMF     H252    H       H       0       26.391      10.904      2.278       
+CMF     H221    H       H       0       27.231      9.871       6.263       
+CMF     H222    H       H       0       26.323      10.997      6.876       
+CMF     H6      H       H       0       29.155      9.942       4.494       
+CMF     H4      H       H       0       32.920      11.468      4.640       
+CMF     H3      H       H       0       32.318      12.905      6.360       
+CMF     H16     H       H       0       29.557      14.421      8.969       
+CMF     H171    H       H       0       31.484      15.003      6.958       
+CMF     H172    H       H       0       30.022      15.667      7.045       
+CMF     H201    H       H       0       30.589      16.746      9.053       
+CMF     H202    H       H       0       31.688      17.114      7.964       
+CMF     H211    H       H       0       32.684      16.541      10.047      
+CMF     H212    H       H       0       33.188      15.588      8.881       
+CMF     H191    H       H       0       31.217      14.907      10.825      
+CMF     H192    H       H       0       32.666      14.260      10.723      
+CMF     H181    H       H       0       32.110      13.198      8.699       
+CMF     H182    H       H       0       31.016      12.796      9.808       
+CMF     H11     H       H       0       28.064      12.310      10.129      
+CMF     H12     H       H       0       26.347      13.018      11.522      
+CMF     H13     H       H       0       24.515      14.148      10.643      
+CMF     H14     H       H       0       24.405      14.568      8.358       
+CMF     H15     H       H       0       26.117      13.864      6.954       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CMF         C24         C26      SINGLE       n     1.510  0.0111     1.510  0.0111
+CMF         C24          N2      SINGLE       n     1.465  0.0100     1.465  0.0100
+CMF         C26          O4      SINGLE       n     1.423  0.0105     1.423  0.0105
+CMF          O4         C27      SINGLE       n     1.423  0.0105     1.423  0.0105
+CMF         C27         C25      SINGLE       n     1.510  0.0111     1.510  0.0111
+CMF         C25          N2      SINGLE       n     1.465  0.0100     1.465  0.0100
+CMF          N2         C23      SINGLE       n     1.346  0.0100     1.346  0.0100
+CMF         C23          O3      DOUBLE       n     1.226  0.0100     1.226  0.0100
+CMF         C23         C22      SINGLE       n     1.526  0.0100     1.526  0.0100
+CMF         C22          N1      SINGLE       n     1.456  0.0100     1.456  0.0100
+CMF          N1          C1      SINGLE       y     1.382  0.0100     1.382  0.0100
+CMF          N1          C9      SINGLE       y     1.385  0.0101     1.385  0.0101
+CMF          C1          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+CMF          C1          C2      SINGLE       y     1.414  0.0100     1.414  0.0100
+CMF          C6          C5      SINGLE       y     1.389  0.0100     1.389  0.0100
+CMF          C5          C8      SINGLE       n     1.498  0.0200     1.498  0.0200
+CMF          C5          C4      DOUBLE       y     1.409  0.0100     1.409  0.0100
+CMF          C8          O2      DOUBLE       n     1.244  0.0200     1.244  0.0200
+CMF          C8          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+CMF          C4          C3      SINGLE       y     1.379  0.0100     1.379  0.0100
+CMF          C3          C2      DOUBLE       y     1.401  0.0100     1.401  0.0100
+CMF          C2          C7      SINGLE       y     1.439  0.0100     1.439  0.0100
+CMF          C7         C16      SINGLE       n     1.503  0.0100     1.503  0.0100
+CMF          C7          C9      DOUBLE       y     1.379  0.0100     1.379  0.0100
+CMF         C16         C17      SINGLE       n     1.515  0.0200     1.515  0.0200
+CMF         C16         C18      SINGLE       n     1.515  0.0200     1.515  0.0200
+CMF         C17         C20      SINGLE       n     1.527  0.0107     1.527  0.0107
+CMF         C20         C21      SINGLE       n     1.516  0.0136     1.516  0.0136
+CMF         C21         C19      SINGLE       n     1.516  0.0136     1.516  0.0136
+CMF         C19         C18      SINGLE       n     1.527  0.0107     1.527  0.0107
+CMF          C9         C10      SINGLE       n     1.467  0.0100     1.467  0.0100
+CMF         C10         C11      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CMF         C10         C15      SINGLE       y     1.392  0.0100     1.392  0.0100
+CMF         C11         C12      SINGLE       y     1.384  0.0100     1.384  0.0100
+CMF         C12         C13      DOUBLE       y     1.376  0.0114     1.376  0.0114
+CMF         C13         C14      SINGLE       y     1.376  0.0124     1.376  0.0124
+CMF         C14         C15      DOUBLE       y     1.384  0.0100     1.384  0.0100
+CMF         C24        H241      SINGLE       n     1.089  0.0100     0.978  0.0137
+CMF         C24        H242      SINGLE       n     1.089  0.0100     0.978  0.0137
+CMF         C26        H261      SINGLE       n     1.089  0.0100     0.980  0.0155
+CMF         C26        H262      SINGLE       n     1.089  0.0100     0.980  0.0155
+CMF         C27        H271      SINGLE       n     1.089  0.0100     0.980  0.0155
+CMF         C27        H272      SINGLE       n     1.089  0.0100     0.980  0.0155
+CMF         C25        H251      SINGLE       n     1.089  0.0100     0.978  0.0137
+CMF         C25        H252      SINGLE       n     1.089  0.0100     0.978  0.0137
+CMF         C22        H221      SINGLE       n     1.089  0.0100     0.973  0.0156
+CMF         C22        H222      SINGLE       n     1.089  0.0100     0.973  0.0156
+CMF          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0103
+CMF          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0147
+CMF          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0182
+CMF         C16         H16      SINGLE       n     1.089  0.0100     0.983  0.0100
+CMF         C17        H171      SINGLE       n     1.089  0.0100     0.994  0.0100
+CMF         C17        H172      SINGLE       n     1.089  0.0100     0.994  0.0100
+CMF         C20        H201      SINGLE       n     1.089  0.0100     0.983  0.0149
+CMF         C20        H202      SINGLE       n     1.089  0.0100     0.983  0.0149
+CMF         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0138
+CMF         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0138
+CMF         C19        H191      SINGLE       n     1.089  0.0100     0.983  0.0149
+CMF         C19        H192      SINGLE       n     1.089  0.0100     0.983  0.0149
+CMF         C18        H181      SINGLE       n     1.089  0.0100     0.994  0.0100
+CMF         C18        H182      SINGLE       n     1.089  0.0100     0.994  0.0100
+CMF         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0147
+CMF         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0180
+CMF         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0161
+CMF         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0180
+CMF         C15         H15      SINGLE       n     1.082  0.0130     0.942  0.0147
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CMF         C26         C24          N2     109.646    1.50
+CMF         C26         C24        H241     109.668    1.50
+CMF         C26         C24        H242     109.668    1.50
+CMF          N2         C24        H241     109.579    1.50
+CMF          N2         C24        H242     109.579    1.50
+CMF        H241         C24        H242     108.316    1.50
+CMF         C24         C26          O4     111.652    1.50
+CMF         C24         C26        H261     109.301    1.50
+CMF         C24         C26        H262     109.301    1.50
+CMF          O4         C26        H261     109.195    1.50
+CMF          O4         C26        H262     109.195    1.50
+CMF        H261         C26        H262     108.175    1.50
+CMF         C26          O4         C27     109.829    1.50
+CMF          O4         C27         C25     111.652    1.50
+CMF          O4         C27        H271     109.195    1.50
+CMF          O4         C27        H272     109.195    1.50
+CMF         C25         C27        H271     109.301    1.50
+CMF         C25         C27        H272     109.301    1.50
+CMF        H271         C27        H272     108.175    1.50
+CMF         C27         C25          N2     109.646    1.50
+CMF         C27         C25        H251     109.668    1.50
+CMF         C27         C25        H252     109.668    1.50
+CMF          N2         C25        H251     109.579    1.50
+CMF          N2         C25        H252     109.579    1.50
+CMF        H251         C25        H252     108.316    1.50
+CMF         C24          N2         C25     112.741    1.50
+CMF         C24          N2         C23     123.629    3.00
+CMF         C25          N2         C23     123.629    3.00
+CMF          N2         C23          O3     121.931    1.50
+CMF          N2         C23         C22     117.738    1.50
+CMF          O3         C23         C22     120.331    1.50
+CMF         C23         C22          N1     112.094    1.50
+CMF         C23         C22        H221     109.078    1.50
+CMF         C23         C22        H222     109.078    1.50
+CMF          N1         C22        H221     109.023    1.50
+CMF          N1         C22        H222     109.023    1.50
+CMF        H221         C22        H222     108.085    1.50
+CMF         C22          N1          C1     125.389    1.50
+CMF         C22          N1          C9     126.061    2.00
+CMF          C1          N1          C9     108.550    1.50
+CMF          N1          C1          C6     130.381    1.50
+CMF          N1          C1          C2     108.010    1.50
+CMF          C6          C1          C2     121.609    1.50
+CMF          C1          C6          C5     118.044    1.50
+CMF          C1          C6          H6     121.109    1.50
+CMF          C5          C6          H6     120.847    1.50
+CMF          C6          C5          C8     119.452    1.55
+CMF          C6          C5          C4     121.095    1.50
+CMF          C8          C5          C4     119.452    1.50
+CMF          C5          C8          O2     117.793    1.50
+CMF          C5          C8          O1     117.793    1.50
+CMF          O2          C8          O1     124.413    1.50
+CMF          C5          C4          C3     121.550    1.50
+CMF          C5          C4          H4     119.318    1.50
+CMF          C3          C4          H4     119.131    1.50
+CMF          C4          C3          C2     118.952    1.50
+CMF          C4          C3          H3     120.818    1.50
+CMF          C2          C3          H3     120.231    1.50
+CMF          C1          C2          C3     118.749    1.50
+CMF          C1          C2          C7     107.538    1.50
+CMF          C3          C2          C7     133.713    1.50
+CMF          C2          C7         C16     125.457    1.50
+CMF          C2          C7          C9     107.436    1.50
+CMF         C16          C7          C9     127.106    3.00
+CMF          C7         C16         C17     112.379    1.50
+CMF          C7         C16         C18     112.379    1.50
+CMF          C7         C16         H16     107.266    1.50
+CMF         C17         C16         C18     110.119    1.94
+CMF         C17         C16         H16     107.498    1.50
+CMF         C18         C16         H16     107.498    1.50
+CMF         C16         C17         C20     111.361    1.50
+CMF         C16         C17        H171     109.230    1.50
+CMF         C16         C17        H172     109.230    1.50
+CMF         C20         C17        H171     109.398    1.50
+CMF         C20         C17        H172     109.398    1.50
+CMF        H171         C17        H172     108.131    1.50
+CMF         C17         C20         C21     111.333    1.50
+CMF         C17         C20        H201     109.435    1.50
+CMF         C17         C20        H202     109.435    1.50
+CMF         C21         C20        H201     109.386    1.50
+CMF         C21         C20        H202     109.386    1.50
+CMF        H201         C20        H202     108.036    1.50
+CMF         C20         C21         C19     111.038    1.50
+CMF         C20         C21        H211     109.386    1.50
+CMF         C20         C21        H212     109.386    1.50
+CMF         C19         C21        H211     109.386    1.50
+CMF         C19         C21        H212     109.386    1.50
+CMF        H211         C21        H212     108.036    1.50
+CMF         C21         C19         C18     111.333    1.50
+CMF         C21         C19        H191     109.386    1.50
+CMF         C21         C19        H192     109.386    1.50
+CMF         C18         C19        H191     109.435    1.50
+CMF         C18         C19        H192     109.435    1.50
+CMF        H191         C19        H192     108.036    1.50
+CMF         C16         C18         C19     111.361    1.50
+CMF         C16         C18        H181     109.230    1.50
+CMF         C16         C18        H182     109.230    1.50
+CMF         C19         C18        H181     109.398    1.50
+CMF         C19         C18        H182     109.398    1.50
+CMF        H181         C18        H182     108.131    1.50
+CMF          N1          C9          C7     108.466    1.50
+CMF          N1          C9         C10     122.425    1.89
+CMF          C7          C9         C10     129.110    2.96
+CMF          C9         C10         C11     120.828    1.50
+CMF          C9         C10         C15     120.828    1.50
+CMF         C11         C10         C15     118.344    1.50
+CMF         C10         C11         C12     120.590    1.50
+CMF         C10         C11         H11     119.628    1.50
+CMF         C12         C11         H11     119.782    1.50
+CMF         C11         C12         C13     120.307    1.50
+CMF         C11         C12         H12     119.746    1.50
+CMF         C13         C12         H12     119.947    1.50
+CMF         C12         C13         C14     119.863    1.50
+CMF         C12         C13         H13     120.069    1.50
+CMF         C14         C13         H13     120.069    1.50
+CMF         C13         C14         C15     120.307    1.50
+CMF         C13         C14         H14     119.947    1.50
+CMF         C15         C14         H14     119.746    1.50
+CMF         C10         C15         C14     120.590    1.50
+CMF         C10         C15         H15     119.628    1.50
+CMF         C14         C15         H15     119.782    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CMF            sp3_sp3_46          N2         C24         C26          O4      60.000    10.0     3
+CMF            sp2_sp3_10         C23          N2         C24         C26     180.000    10.0     6
+CMF              const_23          N1          C1          C6          C5     180.000    10.0     2
+CMF              const_46          N1          C1          C2          C3     180.000    10.0     2
+CMF              const_27          C8          C5          C6          C1     180.000    10.0     2
+CMF             sp2_sp2_5          C6          C5          C8          O2     180.000     5.0     2
+CMF              const_30          C3          C4          C5          C8     180.000    10.0     2
+CMF              const_33          C2          C3          C4          C5       0.000    10.0     2
+CMF              const_37          C1          C2          C3          C4       0.000    10.0     2
+CMF              const_50          C1          C2          C7         C16     180.000    10.0     2
+CMF            sp2_sp3_26          C2          C7         C16         C17     -90.000    10.0     6
+CMF              const_53          C2          C7          C9          N1       0.000    10.0     2
+CMF            sp3_sp3_55         C24         C26          O4         C27     -60.000    10.0     3
+CMF             sp3_sp3_7          C7         C16         C17         C20     180.000    10.0     3
+CMF            sp3_sp3_73          C7         C16         C18         C19      60.000    10.0     3
+CMF            sp3_sp3_10         C16         C17         C20         C21     -60.000    10.0     3
+CMF            sp3_sp3_19         C17         C20         C21         C19      60.000    10.0     3
+CMF            sp3_sp3_28         C18         C19         C21         C20     -60.000    10.0     3
+CMF            sp3_sp3_37         C16         C18         C19         C21      60.000    10.0     3
+CMF             sp2_sp2_9         C11         C10          C9          N1     180.000     5.0     2
+CMF       const_sp2_sp2_3          C9         C10         C11         C12     180.000     5.0     2
+CMF              const_63          C9         C10         C15         C14     180.000    10.0     2
+CMF       const_sp2_sp2_5         C10         C11         C12         C13       0.000     5.0     2
+CMF       const_sp2_sp2_9         C11         C12         C13         C14       0.000     5.0     2
+CMF            sp3_sp3_58         C25         C27          O4         C26      60.000    10.0     3
+CMF              const_13         C12         C13         C14         C15       0.000    10.0     2
+CMF              const_17         C13         C14         C15         C10       0.000    10.0     2
+CMF            sp3_sp3_61          N2         C25         C27          O4     -60.000    10.0     3
+CMF             sp2_sp3_4         C23          N2         C25         C27     180.000    10.0     6
+CMF             sp2_sp2_3          O3         C23          N2         C24       0.000     5.0     2
+CMF            sp2_sp3_17          O3         C23         C22          N1     -60.000    10.0     6
+CMF            sp2_sp3_20          C1          N1         C22         C23     -90.000    10.0     6
+CMF              const_44          C6          C1          N1         C22       0.000    10.0     2
+CMF              const_58          C7          C9          N1         C22     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CMF    chir_1    C16    C7    C17    C18    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CMF    plan-1          C1   0.020
+CMF    plan-1         C10   0.020
+CMF    plan-1         C16   0.020
+CMF    plan-1          C2   0.020
+CMF    plan-1         C22   0.020
+CMF    plan-1          C3   0.020
+CMF    plan-1          C4   0.020
+CMF    plan-1          C5   0.020
+CMF    plan-1          C6   0.020
+CMF    plan-1          C7   0.020
+CMF    plan-1          C8   0.020
+CMF    plan-1          C9   0.020
+CMF    plan-1          H3   0.020
+CMF    plan-1          H4   0.020
+CMF    plan-1          H6   0.020
+CMF    plan-1          N1   0.020
+CMF    plan-2         C10   0.020
+CMF    plan-2         C11   0.020
+CMF    plan-2         C12   0.020
+CMF    plan-2         C13   0.020
+CMF    plan-2         C14   0.020
+CMF    plan-2         C15   0.020
+CMF    plan-2          C9   0.020
+CMF    plan-2         H11   0.020
+CMF    plan-2         H12   0.020
+CMF    plan-2         H13   0.020
+CMF    plan-2         H14   0.020
+CMF    plan-2         H15   0.020
+CMF    plan-3         C23   0.020
+CMF    plan-3         C24   0.020
+CMF    plan-3         C25   0.020
+CMF    plan-3          N2   0.020
+CMF    plan-4         C22   0.020
+CMF    plan-4         C23   0.020
+CMF    plan-4          N2   0.020
+CMF    plan-4          O3   0.020
+CMF    plan-5          C5   0.020
+CMF    plan-5          C8   0.020
+CMF    plan-5          O1   0.020
+CMF    plan-5          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CMF           SMILES              ACDLabs 10.04                                                                                                                           O=C(N1CCOCC1)Cn4c2cc(C(=O)O)ccc2c(c4c3ccccc3)C5CCCCC5
+CMF SMILES_CANONICAL               CACTVS 3.341                                                                                                                         OC(=O)c1ccc2c(c1)n(CC(=O)N3CCOCC3)c(c4ccccc4)c2C5CCCCC5
+CMF           SMILES               CACTVS 3.341                                                                                                                         OC(=O)c1ccc2c(c1)n(CC(=O)N3CCOCC3)c(c4ccccc4)c2C5CCCCC5
+CMF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                         c1ccc(cc1)c2c(c3ccc(cc3n2CC(=O)N4CCOCC4)C(=O)O)C5CCCCC5
+CMF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                         c1ccc(cc1)c2c(c3ccc(cc3n2CC(=O)N4CCOCC4)C(=O)O)C5CCCCC5
+CMF            InChI                InChI  1.03 InChI=1S/C27H30N2O4/c30-24(28-13-15-33-16-14-28)18-29-23-17-21(27(31)32)11-12-22(23)25(19-7-3-1-4-8-19)26(29)20-9-5-2-6-10-20/h2,5-6,9-12,17,19H,1,3-4,7-8,13-16,18H2,(H,31,32)
+CMF         InChIKey                InChI  1.03                                                                                                                                                     ZKEZEXYKYHYIMQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CMF acedrg               243         "dictionary generator"                  
+CMF acedrg_database      11          "data source"                           
+CMF rdkit                2017.03.2   "Chemoinformatics tool"
+CMF refmac5              5.8.0238    "optimization tool"                     

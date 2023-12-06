@@ -1,0 +1,174 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+286     286      2-ethenyl-1-methylpyridinium     NON-POLYMER     19     9     .     
+#
+data_comp_286
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+286     C1N     C       CH3     0       16.975      -4.448      7.079       
+286     N1      N       NR6     1       16.784      -3.599      5.894       
+286     C2      C       CR6     0       17.771      -3.528      4.906       
+286     C3      C       CR16    0       17.562      -2.713      3.790       
+286     C21     C       C1      0       19.032      -4.288      5.001       
+286     C22     C       C2      0       19.535      -5.089      4.100       
+286     C4      C       CR16    0       16.389      -1.987      3.671       
+286     C5      C       CR16    0       15.418      -2.063      4.653       
+286     C6      C       CR16    0       15.629      -2.873      5.758       
+286     H1N1    H       H       0       16.202      -4.385      7.664       
+286     H1N2    H       H       0       17.766      -4.157      7.562       
+286     H1N3    H       H       0       17.090      -5.372      6.800       
+286     H3      H       H       0       18.222      -2.661      3.123       
+286     H21     H       H       0       19.528      -4.175      5.798       
+286     H221    H       H       0       20.264      -5.652      4.318       
+286     H222    H       H       0       19.173      -5.109      3.225       
+286     H4      H       H       0       16.251      -1.437      2.916       
+286     H5      H       H       0       14.618      -1.570      4.574       
+286     H6      H       H       0       14.968      -2.926      6.428       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+286         C1N          N1      SINGLE       n     1.467  0.0100     1.467  0.0100
+286          N1          C2      DOUBLE       y     1.390  0.0144     1.390  0.0144
+286          N1          C6      SINGLE       y     1.367  0.0113     1.367  0.0113
+286          C2          C3      SINGLE       y     1.394  0.0127     1.394  0.0127
+286          C2         C21      SINGLE       n     1.470  0.0193     1.470  0.0193
+286          C3          C4      DOUBLE       y     1.380  0.0100     1.380  0.0100
+286         C21         C22      DOUBLE       n     1.306  0.0200     1.306  0.0200
+286          C4          C5      SINGLE       y     1.373  0.0142     1.373  0.0142
+286          C5          C6      DOUBLE       y     1.380  0.0129     1.380  0.0129
+286         C1N        H1N1      SINGLE       n     1.089  0.0100     0.971  0.0146
+286         C1N        H1N2      SINGLE       n     1.089  0.0100     0.971  0.0146
+286         C1N        H1N3      SINGLE       n     1.089  0.0100     0.971  0.0146
+286          C3          H3      SINGLE       n     1.082  0.0130     0.939  0.0148
+286         C21         H21      SINGLE       n     1.082  0.0130     0.946  0.0187
+286         C22        H221      SINGLE       n     1.082  0.0130     0.947  0.0196
+286         C22        H222      SINGLE       n     1.082  0.0130     0.947  0.0196
+286          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0172
+286          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0190
+286          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+286          N1         C1N        H1N1     109.451    1.50
+286          N1         C1N        H1N2     109.451    1.50
+286          N1         C1N        H1N3     109.451    1.50
+286        H1N1         C1N        H1N2     109.436    1.85
+286        H1N1         C1N        H1N3     109.436    1.85
+286        H1N2         C1N        H1N3     109.436    1.85
+286         C1N          N1          C2     119.622    1.50
+286         C1N          N1          C6     119.226    1.50
+286          C2          N1          C6     121.152    1.50
+286          N1          C2          C3     120.288    1.50
+286          N1          C2         C21     118.716    3.00
+286          C3          C2         C21     120.996    2.75
+286          C2          C3          C4     119.455    1.50
+286          C2          C3          H3     119.905    1.50
+286          C4          C3          H3     120.640    1.50
+286          C2         C21         C22     126.977    1.50
+286          C2         C21         H21     116.125    1.50
+286         C22         C21         H21     116.897    1.50
+286         C21         C22        H221     120.187    1.50
+286         C21         C22        H222     120.195    1.50
+286        H221         C22        H222     119.633    1.50
+286          C3          C4          C5     119.022    1.50
+286          C3          C4          H4     120.478    1.50
+286          C5          C4          H4     120.499    1.50
+286          C4          C5          C6     118.714    1.50
+286          C4          C5          H5     120.800    1.50
+286          C6          C5          H5     120.486    1.50
+286          N1          C6          C5     121.368    1.50
+286          N1          C6          H6     118.970    1.50
+286          C5          C6          H6     119.662    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+286             sp2_sp3_1          C2          N1         C1N        H1N1     150.000    10.0     6
+286       const_sp2_sp2_4         C21          C2          N1         C1N       0.000     5.0     2
+286              const_22          C5          C6          N1         C1N     180.000    10.0     2
+286       const_sp2_sp2_7         C21          C2          C3          C4     180.000     5.0     2
+286             sp2_sp2_1          N1          C2         C21         C22     180.000     5.0     2
+286       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+286             sp2_sp2_5          C2         C21         C22        H221     180.000     5.0     2
+286              const_13          C3          C4          C5          C6       0.000    10.0     2
+286              const_17          C4          C5          C6          N1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+286    plan-1         C1N   0.020
+286    plan-1          C2   0.020
+286    plan-1         C21   0.020
+286    plan-1          C3   0.020
+286    plan-1          C4   0.020
+286    plan-1          C5   0.020
+286    plan-1          C6   0.020
+286    plan-1          H3   0.020
+286    plan-1          H4   0.020
+286    plan-1          H5   0.020
+286    plan-1          H6   0.020
+286    plan-1          N1   0.020
+286    plan-2          C2   0.020
+286    plan-2         C21   0.020
+286    plan-2         C22   0.020
+286    plan-2         H21   0.020
+286    plan-3         C21   0.020
+286    plan-3         C22   0.020
+286    plan-3        H221   0.020
+286    plan-3        H222   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+286           SMILES              ACDLabs 10.04                                     C=C\c1[n+](cccc1)C
+286 SMILES_CANONICAL               CACTVS 3.341                                        C[n+]1ccccc1C=C
+286           SMILES               CACTVS 3.341                                        C[n+]1ccccc1C=C
+286 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        C[n+]1ccccc1C=C
+286           SMILES "OpenEye OEToolkits" 1.5.0                                        C[n+]1ccccc1C=C
+286            InChI                InChI  1.03 InChI=1S/C8H10N/c1-3-8-6-4-5-7-9(8)2/h3-7H,1H2,2H3/q+1
+286         InChIKey                InChI  1.03                            DTJIKSRARSRPBU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+286 acedrg               243         "dictionary generator"                  
+286 acedrg_database      11          "data source"                           
+286 rdkit                2017.03.2   "Chemoinformatics tool"
+286 refmac5              5.8.0238    "optimization tool"                     

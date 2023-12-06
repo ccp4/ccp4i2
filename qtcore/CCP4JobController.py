@@ -401,6 +401,8 @@ class CJobController(CCP4JobServer.CJobServer):
         argList = self.getArgList(controlFile)
         db = CCP4Modules.PROJECTSMANAGER().db()
         taskname = db.getJobInfo(jobId=jobId)['taskname']
+        if taskname == "moorhen_rebuild":
+            argList = argList + ["--graphical"]
         if self._diagnostic:
             print('JOBCONTROLLER starting job:', argList , taskname)
         callDict = {}

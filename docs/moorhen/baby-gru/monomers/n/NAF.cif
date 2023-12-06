@@ -1,0 +1,234 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NAF     NAF      M-(N,N,N-TRIMETHYLAMMONIO)-2,2,2-TRIFLUORO-1,1-DIHYDROXYETHYLBENZENE     NON-POLYMER     32     17     .     
+#
+data_comp_NAF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NAF     C1      C       CR6     0       4.185       67.491      63.656      
+NAF     C2      C       CR16    0       4.553       66.620      62.649      
+NAF     C3      C       CR6     0       4.424       65.234      62.797      
+NAF     C4      C       CR16    0       3.928       64.748      64.004      
+NAF     C5      C       CR16    0       3.560       65.611      65.013      
+NAF     C6      C       CR16    0       3.685       66.979      64.847      
+NAF     "C1'"   C       CT      0       4.842       64.271      61.674      
+NAF     "O1'"   O       OH1     0       3.999       63.115      61.702      
+NAF     "O2'"   O       OH1     0       4.772       64.936      60.409      
+NAF     "C2'"   C       CT      0       6.288       63.807      61.881      
+NAF     "F1'"   F       F       0       6.431       63.131      63.016      
+NAF     "F2'"   F       F       0       7.133       64.832      61.924      
+NAF     "F3'"   F       F       0       6.690       63.009      60.896      
+NAF     N1      N       NT      1       4.341       68.980      63.427      
+NAF     CM1     C       CH3     0       3.904       69.829      64.597      
+NAF     CM2     C       CH3     0       3.525       69.422      62.239      
+NAF     CM3     C       CH3     0       5.782       69.327      63.151      
+NAF     H2      H       H       0       4.893       66.962      61.841      
+NAF     H4      H       H       0       3.836       63.818      64.136      
+NAF     H5      H       H       0       3.223       65.272      65.816      
+NAF     H6      H       H       0       3.428       67.545      65.549      
+NAF     HO1     H       H       0       4.123       62.648      61.003      
+NAF     HO2     H       H       0       4.854       64.371      59.779      
+NAF     HM11    H       H       0       2.964       69.669      64.784      
+NAF     HM12    H       H       0       4.030       70.768      64.383      
+NAF     HM13    H       H       0       4.438       69.608      65.378      
+NAF     HM21    H       H       0       2.603       69.144      62.362      
+NAF     HM22    H       H       0       3.878       69.022      61.429      
+NAF     HM23    H       H       0       3.564       70.390      62.159      
+NAF     HM31    H       H       0       6.337       68.990      63.873      
+NAF     HM32    H       H       0       5.879       70.292      63.090      
+NAF     HM33    H       H       0       6.063       68.926      62.313      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NAF          C1          C2      DOUBLE       y     1.372  0.0100     1.372  0.0100
+NAF          C1          C6      SINGLE       y     1.379  0.0100     1.379  0.0100
+NAF          C1          N1      SINGLE       n     1.499  0.0100     1.499  0.0100
+NAF          C2          C3      SINGLE       y     1.388  0.0118     1.388  0.0118
+NAF          C3          C4      DOUBLE       y     1.387  0.0100     1.387  0.0100
+NAF          C3       "C1'"      SINGLE       n     1.529  0.0100     1.529  0.0100
+NAF          C4          C5      SINGLE       y     1.377  0.0100     1.377  0.0100
+NAF          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+NAF       "C1'"       "O1'"      SINGLE       n     1.417  0.0200     1.417  0.0200
+NAF       "C1'"       "O2'"      SINGLE       n     1.417  0.0200     1.417  0.0200
+NAF       "C1'"       "C2'"      SINGLE       n     1.530  0.0103     1.530  0.0103
+NAF       "C2'"       "F1'"      SINGLE       n     1.329  0.0135     1.329  0.0135
+NAF       "C2'"       "F2'"      SINGLE       n     1.329  0.0135     1.329  0.0135
+NAF       "C2'"       "F3'"      SINGLE       n     1.329  0.0135     1.329  0.0135
+NAF          N1         CM1      SINGLE       n     1.501  0.0123     1.501  0.0123
+NAF          N1         CM2      SINGLE       n     1.501  0.0123     1.501  0.0123
+NAF          N1         CM3      SINGLE       n     1.501  0.0123     1.501  0.0123
+NAF          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0139
+NAF          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+NAF          C5          H5      SINGLE       n     1.082  0.0130     0.935  0.0159
+NAF          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0178
+NAF       "O1'"         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAF       "O2'"         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAF         CM1        HM11      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM1        HM12      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM1        HM13      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM2        HM21      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM2        HM22      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM2        HM23      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM3        HM31      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM3        HM32      SINGLE       n     1.089  0.0100     0.971  0.0189
+NAF         CM3        HM33      SINGLE       n     1.089  0.0100     0.971  0.0189
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NAF          C2          C1          C6     120.725    1.50
+NAF          C2          C1          N1     119.932    1.69
+NAF          C6          C1          N1     119.343    1.63
+NAF          C1          C2          C3     120.126    1.50
+NAF          C1          C2          H2     120.350    1.50
+NAF          C3          C2          H2     119.524    1.50
+NAF          C2          C3          C4     118.459    1.50
+NAF          C2          C3       "C1'"     120.770    1.56
+NAF          C4          C3       "C1'"     120.770    1.56
+NAF          C3          C4          C5     120.739    1.50
+NAF          C3          C4          H4     119.590    1.50
+NAF          C5          C4          H4     119.670    1.50
+NAF          C4          C5          C6     120.274    1.50
+NAF          C4          C5          H5     119.959    1.50
+NAF          C6          C5          H5     119.767    1.50
+NAF          C1          C6          C5     119.677    1.50
+NAF          C1          C6          H6     120.297    1.50
+NAF          C5          C6          H6     120.026    1.50
+NAF          C3       "C1'"       "O1'"     109.071    1.91
+NAF          C3       "C1'"       "O2'"     109.071    1.91
+NAF          C3       "C1'"       "C2'"     111.009    1.50
+NAF       "O1'"       "C1'"       "O2'"     111.904    1.92
+NAF       "O1'"       "C1'"       "C2'"     107.590    3.00
+NAF       "O2'"       "C1'"       "C2'"     107.590    3.00
+NAF       "C1'"       "O1'"         HO1     109.055    1.50
+NAF       "C1'"       "O2'"         HO2     109.055    1.50
+NAF       "C1'"       "C2'"       "F1'"     111.591    1.50
+NAF       "C1'"       "C2'"       "F2'"     111.591    1.50
+NAF       "C1'"       "C2'"       "F3'"     111.591    1.50
+NAF       "F1'"       "C2'"       "F2'"     107.197    1.50
+NAF       "F1'"       "C2'"       "F3'"     107.197    1.50
+NAF       "F2'"       "C2'"       "F3'"     107.197    1.50
+NAF          C1          N1         CM1     110.733    1.50
+NAF          C1          N1         CM2     110.733    1.50
+NAF          C1          N1         CM3     110.733    1.50
+NAF         CM1          N1         CM2     108.151    1.50
+NAF         CM1          N1         CM3     108.151    1.50
+NAF         CM2          N1         CM3     108.151    1.50
+NAF          N1         CM1        HM11     109.357    1.50
+NAF          N1         CM1        HM12     109.357    1.50
+NAF          N1         CM1        HM13     109.357    1.50
+NAF        HM11         CM1        HM12     109.580    1.50
+NAF        HM11         CM1        HM13     109.580    1.50
+NAF        HM12         CM1        HM13     109.580    1.50
+NAF          N1         CM2        HM21     109.357    1.50
+NAF          N1         CM2        HM22     109.357    1.50
+NAF          N1         CM2        HM23     109.357    1.50
+NAF        HM21         CM2        HM22     109.580    1.50
+NAF        HM21         CM2        HM23     109.580    1.50
+NAF        HM22         CM2        HM23     109.580    1.50
+NAF          N1         CM3        HM31     109.357    1.50
+NAF          N1         CM3        HM32     109.357    1.50
+NAF          N1         CM3        HM33     109.357    1.50
+NAF        HM31         CM3        HM32     109.580    1.50
+NAF        HM31         CM3        HM33     109.580    1.50
+NAF        HM32         CM3        HM33     109.580    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NAF       const_sp2_sp2_3          N1          C1          C2          C3     180.000     5.0     2
+NAF             sp2_sp3_2          C2          C1          N1         CM1     -90.000    10.0     6
+NAF              const_23          N1          C1          C6          C5     180.000    10.0     2
+NAF            sp3_sp3_17        HM11         CM1          N1         CM2     -60.000    10.0     3
+NAF            sp3_sp3_25        HM21         CM2          N1         CM1     180.000    10.0     3
+NAF            sp3_sp3_35        HM31         CM3          N1         CM1     -60.000    10.0     3
+NAF       const_sp2_sp2_6          C1          C2          C3       "C1'"     180.000     5.0     2
+NAF              const_11       "C1'"          C3          C4          C5     180.000    10.0     2
+NAF             sp2_sp3_7          C2          C3       "C1'"       "O1'"     150.000    10.0     6
+NAF              const_13          C3          C4          C5          C6       0.000    10.0     2
+NAF              const_17          C4          C5          C6          C1       0.000    10.0     2
+NAF             sp3_sp3_2       "O2'"       "C1'"       "O1'"         HO1      60.000    10.0     3
+NAF             sp3_sp3_4       "O1'"       "C1'"       "O2'"         HO2     180.000    10.0     3
+NAF            sp3_sp3_10       "O1'"       "C1'"       "C2'"       "F1'"      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NAF    chir_1    "C1'"    "O1'"    "O2'"    "C2'"    both
+NAF    chir_2    "C2'"    "F1'"    "F2'"    "F3'"    both
+NAF    chir_3    N1    C1    CM1    CM2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NAF    plan-1          C1   0.020
+NAF    plan-1       "C1'"   0.020
+NAF    plan-1          C2   0.020
+NAF    plan-1          C3   0.020
+NAF    plan-1          C4   0.020
+NAF    plan-1          C5   0.020
+NAF    plan-1          C6   0.020
+NAF    plan-1          H2   0.020
+NAF    plan-1          H4   0.020
+NAF    plan-1          H5   0.020
+NAF    plan-1          H6   0.020
+NAF    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NAF           SMILES              ACDLabs 10.04                                                    FC(F)(F)C(O)(O)c1cc(ccc1)[N+](C)(C)C
+NAF SMILES_CANONICAL               CACTVS 3.341                                                    C[N+](C)(C)c1cccc(c1)C(O)(O)C(F)(F)F
+NAF           SMILES               CACTVS 3.341                                                    C[N+](C)(C)c1cccc(c1)C(O)(O)C(F)(F)F
+NAF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                    C[N+](C)(C)c1cccc(c1)C(C(F)(F)F)(O)O
+NAF           SMILES "OpenEye OEToolkits" 1.5.0                                                    C[N+](C)(C)c1cccc(c1)C(C(F)(F)F)(O)O
+NAF            InChI                InChI  1.03 InChI=1S/C11H15F3NO2/c1-15(2,3)9-6-4-5-8(7-9)10(16,17)11(12,13)14/h4-7,16-17H,1-3H3/q+1
+NAF         InChIKey                InChI  1.03                                                             KGVDBJQLTHWAJF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NAF acedrg               243         "dictionary generator"                  
+NAF acedrg_database      11          "data source"                           
+NAF rdkit                2017.03.2   "Chemoinformatics tool"
+NAF refmac5              5.8.0238    "optimization tool"                     

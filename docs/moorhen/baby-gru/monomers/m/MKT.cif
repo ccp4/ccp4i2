@@ -1,0 +1,346 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MKT     MKT      1,3,6,7-tetrahydroxy-2,8-bis(3-methylbut-2-en-1-yl)-9H-xanthen-9-one     NON-POLYMER     53     29     .     
+#
+data_comp_MKT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MKT     CAA     C       CH3     0       -28.783     2.697       -0.078      
+MKT     CAQ     C       C       0       -28.304     1.379       -0.620      
+MKT     CAB     C       CH3     0       -29.374     0.326       -0.686      
+MKT     CAJ     C       C1      0       -27.052     1.152       -1.006      
+MKT     CAN     C       CH2     0       -25.901     2.121       -1.029      
+MKT     CAW     C       CR6     0       -24.624     1.523       -1.585      
+MKT     CAV     C       CR6     0       -24.489     1.260       -2.945      
+MKT     OAI     O       OH1     0       -25.527     1.547       -3.803      
+MKT     CAT     C       CR6     0       -23.543     1.215       -0.739      
+MKT     OAG     O       OH1     0       -23.588     1.440       0.617       
+MKT     CAM     C       CR16    0       -22.366     0.666       -1.234      
+MKT     CAZ     C       CR66    0       -22.260     0.416       -2.586      
+MKT     OAP     O       O2      0       -21.072     -0.125      -2.997      
+MKT     CBB     C       CR66    0       -23.294     0.696       -3.486      
+MKT     CAY     C       CR6     0       -23.115     0.406       -4.913      
+MKT     OAE     O       O       0       -24.037     0.658       -5.721      
+MKT     CBC     C       CR66    0       -21.821     -0.178      -5.317      
+MKT     CBA     C       CR66    0       -20.857     -0.414      -4.324      
+MKT     CAL     C       CR16    0       -19.612     -0.960      -4.610      
+MKT     CAS     C       CR6     0       -19.300     -1.285      -5.919      
+MKT     OAF     O       OH1     0       -18.065     -1.824      -6.192      
+MKT     CAU     C       CR6     0       -20.236     -1.063      -6.940      
+MKT     OAH     O       OH1     0       -19.836     -1.417      -8.211      
+MKT     CAX     C       CR6     0       -21.488     -0.523      -6.676      
+MKT     CAO     C       CH2     0       -22.417     -0.332      -7.876      
+MKT     CAK     C       C1      0       -22.297     1.050       -8.460      
+MKT     CAR     C       C       0       -22.240     1.392       -9.743      
+MKT     CAD     C       CH3     0       -22.068     2.816       -10.195     
+MKT     CAC     C       CH3     0       -22.327     0.395       -10.866     
+MKT     H1      H       H       0       -28.028     3.271       0.125       
+MKT     H2      H       H       0       -29.295     2.546       0.733       
+MKT     H3      H       H       0       -29.348     3.132       -0.736      
+MKT     H4      H       H       0       -29.027     -0.474      -1.113      
+MKT     H5      H       H       0       -30.127     0.661       -1.199      
+MKT     H6      H       H       0       -29.670     0.108       0.212       
+MKT     H7      H       H       0       -26.858     0.272       -1.300      
+MKT     H8      H       H       0       -25.743     2.446       -0.123      
+MKT     H9      H       H       0       -26.149     2.891       -1.575      
+MKT     H10     H       H       0       -25.779     2.362       -3.916      
+MKT     H11     H       H       0       -23.397     0.804       1.166       
+MKT     H12     H       H       0       -21.661     0.470       -0.656      
+MKT     H13     H       H       0       -18.991     -1.105      -3.926      
+MKT     H14     H       H       0       -17.362     -1.507      -5.809      
+MKT     H15     H       H       0       -19.572     -2.220      -8.372      
+MKT     H16     H       H       0       -23.337     -0.493      -7.610      
+MKT     H17     H       H       0       -22.201     -0.991      -8.559      
+MKT     H18     H       H       0       -22.257     1.758       -7.833      
+MKT     H21     H       H       0       -22.091     3.413       -9.430      
+MKT     H22     H       H       0       -22.784     3.052       -10.807     
+MKT     H23     H       H       0       -21.215     2.911       -10.650     
+MKT     H24     H       H       0       -23.035     -0.243      -10.681     
+MKT     H25     H       H       0       -21.482     -0.077      -10.947     
+MKT     H26     H       H       0       -22.520     0.853       -11.700     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MKT         CAR         CAC      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKT         CAR         CAD      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKT         CAK         CAR      DOUBLE       n     1.325  0.0112     1.325  0.0112
+MKT         CAO         CAK      SINGLE       n     1.503  0.0100     1.503  0.0100
+MKT         CAU         OAH      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKT         CAX         CAO      SINGLE       n     1.522  0.0100     1.522  0.0100
+MKT         CAU         CAX      SINGLE       y     1.379  0.0100     1.379  0.0100
+MKT         CAS         CAU      DOUBLE       y     1.400  0.0118     1.400  0.0118
+MKT         CBC         CAX      DOUBLE       y     1.425  0.0100     1.425  0.0100
+MKT         CAS         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKT         CAL         CAS      SINGLE       y     1.384  0.0100     1.384  0.0100
+MKT         CAY         OAE      DOUBLE       n     1.252  0.0100     1.252  0.0100
+MKT         CAY         CBC      SINGLE       y     1.464  0.0100     1.464  0.0100
+MKT         CBC         CBA      SINGLE       y     1.393  0.0100     1.393  0.0100
+MKT         CBB         CAY      SINGLE       y     1.451  0.0157     1.451  0.0157
+MKT         CBA         CAL      DOUBLE       y     1.387  0.0100     1.387  0.0100
+MKT         OAP         CBA      SINGLE       y     1.372  0.0100     1.372  0.0100
+MKT         CAV         OAI      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKT         CAV         CBB      SINGLE       y     1.421  0.0100     1.421  0.0100
+MKT         CAZ         CBB      DOUBLE       y     1.398  0.0100     1.398  0.0100
+MKT         CAW         CAV      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MKT         CAZ         OAP      SINGLE       y     1.367  0.0100     1.367  0.0100
+MKT         CAM         CAZ      SINGLE       y     1.376  0.0100     1.376  0.0100
+MKT         CAN         CAW      SINGLE       n     1.512  0.0100     1.512  0.0100
+MKT         CAW         CAT      SINGLE       y     1.398  0.0100     1.398  0.0100
+MKT         CAJ         CAN      SINGLE       n     1.503  0.0103     1.503  0.0103
+MKT         CAT         CAM      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MKT         CAQ         CAJ      DOUBLE       n     1.325  0.0112     1.325  0.0112
+MKT         CAT         OAG      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKT         CAQ         CAB      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKT         CAA         CAQ      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKT         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAB          H4      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAB          H5      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAB          H6      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAJ          H7      SINGLE       n     1.082  0.0130     0.947  0.0200
+MKT         CAN          H8      SINGLE       n     1.089  0.0100     0.976  0.0140
+MKT         CAN          H9      SINGLE       n     1.089  0.0100     0.976  0.0140
+MKT         OAI         H10      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKT         OAG         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKT         CAM         H12      SINGLE       n     1.082  0.0130     0.933  0.0100
+MKT         CAL         H13      SINGLE       n     1.082  0.0130     0.935  0.0100
+MKT         OAF         H14      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKT         OAH         H15      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKT         CAO         H16      SINGLE       n     1.089  0.0100     0.975  0.0132
+MKT         CAO         H17      SINGLE       n     1.089  0.0100     0.975  0.0132
+MKT         CAK         H18      SINGLE       n     1.082  0.0130     0.947  0.0200
+MKT         CAD         H21      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAD         H22      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAD         H23      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAC         H24      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAC         H25      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKT         CAC         H26      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MKT         CAQ         CAA          H1     109.600    1.50
+MKT         CAQ         CAA          H2     109.600    1.50
+MKT         CAQ         CAA          H3     109.600    1.50
+MKT          H1         CAA          H2     109.342    1.50
+MKT          H1         CAA          H3     109.342    1.50
+MKT          H2         CAA          H3     109.342    1.50
+MKT         CAJ         CAQ         CAB     122.647    1.69
+MKT         CAJ         CAQ         CAA     122.647    1.69
+MKT         CAB         CAQ         CAA     114.705    1.50
+MKT         CAQ         CAB          H4     109.600    1.50
+MKT         CAQ         CAB          H5     109.600    1.50
+MKT         CAQ         CAB          H6     109.600    1.50
+MKT          H4         CAB          H5     109.342    1.50
+MKT          H4         CAB          H6     109.342    1.50
+MKT          H5         CAB          H6     109.342    1.50
+MKT         CAN         CAJ         CAQ     127.274    1.50
+MKT         CAN         CAJ          H7     116.280    1.50
+MKT         CAQ         CAJ          H7     116.446    1.50
+MKT         CAW         CAN         CAJ     113.225    1.50
+MKT         CAW         CAN          H8     108.917    1.50
+MKT         CAW         CAN          H9     108.917    1.50
+MKT         CAJ         CAN          H8     109.071    1.50
+MKT         CAJ         CAN          H9     109.071    1.50
+MKT          H8         CAN          H9     107.704    1.50
+MKT         CAV         CAW         CAN     121.606    1.50
+MKT         CAV         CAW         CAT     118.022    1.50
+MKT         CAN         CAW         CAT     120.372    1.50
+MKT         OAI         CAV         CBB     117.542    2.50
+MKT         OAI         CAV         CAW     120.778    3.00
+MKT         CBB         CAV         CAW     121.681    1.50
+MKT         CAV         OAI         H10     120.000    3.00
+MKT         CAW         CAT         CAM     120.995    1.50
+MKT         CAW         CAT         OAG     119.503    3.00
+MKT         CAM         CAT         OAG     119.503    3.00
+MKT         CAT         OAG         H11     120.000    3.00
+MKT         CAZ         CAM         CAT     118.751    1.50
+MKT         CAZ         CAM         H12     120.954    1.50
+MKT         CAT         CAM         H12     120.295    1.50
+MKT         CBB         CAZ         OAP     121.795    1.50
+MKT         CBB         CAZ         CAM     122.656    1.50
+MKT         OAP         CAZ         CAM     115.550    1.50
+MKT         CBA         OAP         CAZ     119.254    1.50
+MKT         CAY         CBB         CAV     121.811    1.50
+MKT         CAY         CBB         CAZ     120.293    1.50
+MKT         CAV         CBB         CAZ     117.896    1.50
+MKT         OAE         CAY         CBC     122.071    1.50
+MKT         OAE         CAY         CBB     121.070    1.50
+MKT         CBC         CAY         CBB     116.859    1.50
+MKT         CAX         CBC         CAY     121.176    1.50
+MKT         CAX         CBC         CBA     118.811    1.50
+MKT         CAY         CBC         CBA     120.013    1.50
+MKT         CBC         CBA         CAL     121.649    1.50
+MKT         CBC         CBA         OAP     121.787    1.50
+MKT         CAL         CBA         OAP     116.564    1.50
+MKT         CAS         CAL         CBA     118.852    1.50
+MKT         CAS         CAL         H13     120.618    1.50
+MKT         CBA         CAL         H13     120.530    1.50
+MKT         CAU         CAS         OAF     119.893    3.00
+MKT         CAU         CAS         CAL     120.215    1.50
+MKT         OAF         CAS         CAL     119.893    3.00
+MKT         CAS         OAF         H14     120.000    3.00
+MKT         OAH         CAU         CAX     119.270    3.00
+MKT         OAH         CAU         CAS     119.270    3.00
+MKT         CAX         CAU         CAS     121.460    1.50
+MKT         CAU         OAH         H15     120.000    3.00
+MKT         CAO         CAX         CAU     118.530    2.16
+MKT         CAO         CAX         CBC     122.458    1.50
+MKT         CAU         CAX         CBC     119.012    1.50
+MKT         CAK         CAO         CAX     111.656    2.12
+MKT         CAK         CAO         H16     109.239    1.50
+MKT         CAK         CAO         H17     109.239    1.50
+MKT         CAX         CAO         H16     109.135    1.50
+MKT         CAX         CAO         H17     109.135    1.50
+MKT         H16         CAO         H17     107.961    1.50
+MKT         CAR         CAK         CAO     127.137    1.50
+MKT         CAR         CAK         H18     116.591    1.50
+MKT         CAO         CAK         H18     116.272    1.50
+MKT         CAC         CAR         CAD     114.705    1.50
+MKT         CAC         CAR         CAK     122.647    1.69
+MKT         CAD         CAR         CAK     122.647    1.69
+MKT         CAR         CAD         H21     109.600    1.50
+MKT         CAR         CAD         H22     109.600    1.50
+MKT         CAR         CAD         H23     109.600    1.50
+MKT         H21         CAD         H22     109.342    1.50
+MKT         H21         CAD         H23     109.342    1.50
+MKT         H22         CAD         H23     109.342    1.50
+MKT         CAR         CAC         H24     109.600    1.50
+MKT         CAR         CAC         H25     109.600    1.50
+MKT         CAR         CAC         H26     109.600    1.50
+MKT         H24         CAC         H25     109.342    1.50
+MKT         H24         CAC         H26     109.342    1.50
+MKT         H25         CAC         H26     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MKT            sp2_sp3_43         CAJ         CAQ         CAA          H1       0.000    10.0     6
+MKT              const_33         CAT         CAM         CAZ         CBB       0.000    10.0     2
+MKT              const_55         CBB         CAZ         OAP         CBA       0.000    10.0     2
+MKT              const_29         OAP         CAZ         CBB         CAY       0.000    10.0     2
+MKT              const_53         CBC         CBA         OAP         CAZ       0.000    10.0     2
+MKT              const_44         OAE         CAY         CBB         CAV       0.000    10.0     2
+MKT              const_48         OAE         CAY         CBC         CAX       0.000    10.0     2
+MKT              const_49         CAL         CBA         CBC         CAX       0.000    10.0     2
+MKT       const_sp2_sp2_4         CAO         CAX         CBC         CAY       0.000     5.0     2
+MKT              const_17         CAS         CAL         CBA         CBC       0.000    10.0     2
+MKT              const_14         CBA         CAL         CAS         OAF     180.000    10.0     2
+MKT             sp2_sp2_7         CAU         CAS         OAF         H14     180.000     5.0     2
+MKT              const_12         OAF         CAS         CAU         OAH       0.000    10.0     2
+MKT            sp2_sp3_37         CAJ         CAQ         CAB          H4       0.000    10.0     6
+MKT            sp2_sp2_11         CAN         CAJ         CAQ         CAB     180.000     5.0     2
+MKT             sp2_sp2_5         CAX         CAU         OAH         H15     180.000     5.0     2
+MKT       const_sp2_sp2_8         OAH         CAU         CAX         CAO       0.000     5.0     2
+MKT            sp2_sp3_20         CAU         CAX         CAO         CAK     -90.000    10.0     6
+MKT            sp2_sp3_14         CAR         CAK         CAO         CAX     120.000    10.0     6
+MKT             sp2_sp2_1         CAO         CAK         CAR         CAC     180.000     5.0     2
+MKT             sp2_sp3_7         CAC         CAR         CAD         H21       0.000    10.0     6
+MKT             sp2_sp3_1         CAD         CAR         CAC         H24       0.000    10.0     6
+MKT            sp2_sp3_32         CAQ         CAJ         CAN         CAW     120.000    10.0     6
+MKT            sp2_sp3_26         CAV         CAW         CAN         CAJ     -90.000    10.0     6
+MKT              const_24         OAI         CAV         CAW         CAN       0.000    10.0     2
+MKT              const_60         OAG         CAT         CAW         CAN       0.000    10.0     2
+MKT              const_28         OAI         CAV         CBB         CAY       0.000    10.0     2
+MKT             sp2_sp2_9         CBB         CAV         OAI         H10     180.000     5.0     2
+MKT              const_38         CAZ         CAM         CAT         OAG     180.000    10.0     2
+MKT            sp2_sp2_15         CAW         CAT         OAG         H11     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MKT    plan-1         CAL   0.020
+MKT    plan-1         CAM   0.020
+MKT    plan-1         CAN   0.020
+MKT    plan-1         CAO   0.020
+MKT    plan-1         CAS   0.020
+MKT    plan-1         CAT   0.020
+MKT    plan-1         CAU   0.020
+MKT    plan-1         CAV   0.020
+MKT    plan-1         CAW   0.020
+MKT    plan-1         CAX   0.020
+MKT    plan-1         CAY   0.020
+MKT    plan-1         CAZ   0.020
+MKT    plan-1         CBA   0.020
+MKT    plan-1         CBB   0.020
+MKT    plan-1         CBC   0.020
+MKT    plan-1         H12   0.020
+MKT    plan-1         H13   0.020
+MKT    plan-1         OAE   0.020
+MKT    plan-1         OAF   0.020
+MKT    plan-1         OAG   0.020
+MKT    plan-1         OAH   0.020
+MKT    plan-1         OAI   0.020
+MKT    plan-1         OAP   0.020
+MKT    plan-2         CAA   0.020
+MKT    plan-2         CAB   0.020
+MKT    plan-2         CAJ   0.020
+MKT    plan-2         CAQ   0.020
+MKT    plan-3         CAJ   0.020
+MKT    plan-3         CAN   0.020
+MKT    plan-3         CAQ   0.020
+MKT    plan-3          H7   0.020
+MKT    plan-4         CAK   0.020
+MKT    plan-4         CAO   0.020
+MKT    plan-4         CAR   0.020
+MKT    plan-4         H18   0.020
+MKT    plan-5         CAC   0.020
+MKT    plan-5         CAD   0.020
+MKT    plan-5         CAK   0.020
+MKT    plan-5         CAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MKT           SMILES              ACDLabs 12.01                                                                         CC(C)=[C@H]Cc1c(O)cc2Oc3c(C(c2c1O)=O)c(c(c(c3)O)O)C[C@H]=C(C)C
+MKT            InChI                InChI  1.03 InChI=1S/C23H24O6/c1-11(2)5-7-13-15(24)9-18-20(22(13)27)23(28)19-14(8-6-12(3)4)21(26)16(25)10-17(19)29-18/h5-6,9-10,24-27H,7-8H2,1-4H3
+MKT         InChIKey                InChI  1.03                                                                                                            VEZXFTKZUMARDU-UHFFFAOYSA-N
+MKT SMILES_CANONICAL               CACTVS 3.385                                                                                   CC(C)=CCc1c(O)cc2Oc3cc(O)c(O)c(CC=C(C)C)c3C(=O)c2c1O
+MKT           SMILES               CACTVS 3.385                                                                                   CC(C)=CCc1c(O)cc2Oc3cc(O)c(O)c(CC=C(C)C)c3C(=O)c2c1O
+MKT SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                 CC(=CCc1c(cc2c(c1O)C(=O)c3c(cc(c(c3CC=C(C)C)O)O)O2)O)C
+MKT           SMILES "OpenEye OEToolkits" 1.9.2                                                                                 CC(=CCc1c(cc2c(c1O)C(=O)c3c(cc(c(c3CC=C(C)C)O)O)O2)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MKT acedrg               243         "dictionary generator"                  
+MKT acedrg_database      11          "data source"                           
+MKT rdkit                2017.03.2   "Chemoinformatics tool"
+MKT refmac5              5.8.0238    "optimization tool"                     

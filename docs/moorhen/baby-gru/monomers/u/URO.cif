@@ -1,0 +1,158 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+URO     URO      "(2E)-3-(1H-IMIDAZOL-4-YL)ACRYLIC ACID"     NON-POLYMER     15     10     .     
+#
+data_comp_URO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+URO     OAA     O       O       0       9.171       11.312      -16.582     
+URO     CAI     C       C       0       8.848       10.607      -17.537     
+URO     OAB     O       OC      -1      7.681       10.403      -17.870     
+URO     CAC     C       C1      0       9.944       9.965       -18.331     
+URO     CAD     C       C1      0       9.780       9.166       -19.403     
+URO     CAJ     C       CR5     0       10.858      8.556       -20.168     
+URO     CAF     C       CR15    0       10.736      7.747       -21.261     
+URO     NAH     N       NR5     0       12.004      7.414       -21.646     
+URO     CAE     C       CR15    0       12.849      8.014       -20.797     
+URO     NAG     N       NRD5    0       12.209      8.715       -19.886     
+URO     HAC     H       H       0       10.820      10.146      -18.045     
+URO     HAD     H       H       0       8.901       8.980       -19.687     
+URO     HAF     H       H       0       9.937       7.462       -21.685     
+URO     HAH     H       H       0       12.231      6.865       -22.373     
+URO     HAE     H       H       0       13.812      7.939       -20.850     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+URO         OAA         CAI      DOUBLE       n     1.230  0.0200     1.230  0.0200
+URO         CAI         OAB      SINGLE       n     1.230  0.0200     1.230  0.0200
+URO         CAI         CAC      SINGLE       n     1.492  0.0200     1.492  0.0200
+URO         CAC         CAD      DOUBLE       n     1.345  0.0100     1.345  0.0100
+URO         CAD         CAJ      SINGLE       n     1.453  0.0154     1.453  0.0154
+URO         CAJ         CAF      DOUBLE       y     1.366  0.0100     1.366  0.0100
+URO         CAJ         NAG      SINGLE       y     1.389  0.0100     1.389  0.0100
+URO         CAF         NAH      SINGLE       y     1.367  0.0100     1.367  0.0100
+URO         NAH         CAE      SINGLE       y     1.339  0.0139     1.339  0.0139
+URO         CAE         NAG      DOUBLE       y     1.315  0.0100     1.315  0.0100
+URO         CAC         HAC      SINGLE       n     1.082  0.0130     0.939  0.0200
+URO         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0181
+URO         CAF         HAF      SINGLE       n     1.082  0.0130     0.948  0.0200
+URO         NAH         HAH      SINGLE       n     1.016  0.0100     0.938  0.0200
+URO         CAE         HAE      SINGLE       n     1.082  0.0130     0.967  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+URO         OAA         CAI         OAB     123.873    1.50
+URO         OAA         CAI         CAC     118.060    1.74
+URO         OAB         CAI         CAC     118.060    1.74
+URO         CAI         CAC         CAD     124.556    3.00
+URO         CAI         CAC         HAC     116.936    1.95
+URO         CAD         CAC         HAC     118.508    2.05
+URO         CAC         CAD         CAJ     124.284    3.00
+URO         CAC         CAD         HAD     118.175    1.77
+URO         CAJ         CAD         HAD     117.541    1.96
+URO         CAD         CAJ         CAF     127.918    2.58
+URO         CAD         CAJ         NAG     123.252    3.00
+URO         CAF         CAJ         NAG     108.830    1.50
+URO         CAJ         CAF         NAH     106.894    2.19
+URO         CAJ         CAF         HAF     127.578    1.91
+URO         NAH         CAF         HAF     125.528    2.21
+URO         CAF         NAH         CAE     107.176    1.50
+URO         CAF         NAH         HAH     125.869    1.75
+URO         CAE         NAH         HAH     126.955    3.00
+URO         NAH         CAE         NAG     111.557    1.50
+URO         NAH         CAE         HAE     124.074    1.50
+URO         NAG         CAE         HAE     124.370    1.50
+URO         CAJ         NAG         CAE     105.544    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+URO             sp2_sp2_1         CAD         CAC         CAI         OAA     180.000     5.0     2
+URO             sp2_sp2_5         CAI         CAC         CAD         CAJ     180.000     5.0     2
+URO             sp2_sp2_9         CAC         CAD         CAJ         CAF     180.000     5.0     2
+URO       const_sp2_sp2_2         NAH         CAF         CAJ         CAD     180.000     5.0     2
+URO              const_16         CAD         CAJ         NAG         CAE     180.000    10.0     2
+URO       const_sp2_sp2_5         CAJ         CAF         NAH         CAE       0.000     5.0     2
+URO       const_sp2_sp2_9         NAG         CAE         NAH         CAF       0.000     5.0     2
+URO              const_13         NAH         CAE         NAG         CAJ       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+URO    plan-1         CAD   0.020
+URO    plan-1         CAE   0.020
+URO    plan-1         CAF   0.020
+URO    plan-1         CAJ   0.020
+URO    plan-1         HAE   0.020
+URO    plan-1         HAF   0.020
+URO    plan-1         HAH   0.020
+URO    plan-1         NAG   0.020
+URO    plan-1         NAH   0.020
+URO    plan-2         CAC   0.020
+URO    plan-2         CAI   0.020
+URO    plan-2         OAA   0.020
+URO    plan-2         OAB   0.020
+URO    plan-3         CAC   0.020
+URO    plan-3         CAD   0.020
+URO    plan-3         CAI   0.020
+URO    plan-3         HAC   0.020
+URO    plan-4         CAC   0.020
+URO    plan-4         CAD   0.020
+URO    plan-4         CAJ   0.020
+URO    plan-4         HAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+URO           SMILES              ACDLabs 10.04                                                    O=C(O)\C=C\c1ncnc1
+URO SMILES_CANONICAL               CACTVS 3.341                                                 OC(=O)\C=C\c1c[nH]cn1
+URO           SMILES               CACTVS 3.341                                                   OC(=O)C=Cc1c[nH]cn1
+URO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                 c1c(nc[nH]1)C=CC(=O)O
+URO           SMILES "OpenEye OEToolkits" 1.5.0                                                 c1c(nc[nH]1)C=CC(=O)O
+URO            InChI                InChI  1.03 InChI=1S/C6H6N2O2/c9-6(10)2-1-5-3-7-4-8-5/h1-4H,(H,7,8)(H,9,10)/b2-1+
+URO         InChIKey                InChI  1.03                                           LOIYMIARKYCTBW-OWOJBTEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+URO acedrg               243         "dictionary generator"                  
+URO acedrg_database      11          "data source"                           
+URO rdkit                2017.03.2   "Chemoinformatics tool"
+URO refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,316 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ICL     ICL      "[1-(3-CHLORO-2-FORMYL-PHENYLCARBAMOYL)-2-METHYL-PROPYL]-CARBAMIC ACID TERT-BUTYL ESTER"     NON-POLYMER     47     24     .     
+#
+data_comp_ICL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ICL     C1      C       C1      0       -9.783      21.209      37.874      
+ICL     O1      O       O       0       -9.715      20.168      37.262      
+ICL     C2      C       CR6     0       -10.452     22.423      37.391      
+ICL     C3      C       CR6     0       -11.464     23.015      38.148      
+ICL     CL      CL      CL      0       -11.953     22.335      39.671      
+ICL     C4      C       CR16    0       -12.108     24.161      37.709      
+ICL     C5      C       CR16    0       -11.742     24.727      36.501      
+ICL     C6      C       CR16    0       -10.741     24.164      35.725      
+ICL     C7      C       CR6     0       -10.087     23.007      36.160      
+ICL     N1      N       NH1     0       -9.063      22.420      35.385      
+ICL     C8      C       C       0       -7.726      22.594      35.518      
+ICL     O2      O       O       0       -7.209      23.208      36.443      
+ICL     C9      C       CH1     0       -6.852      21.975      34.403      
+ICL     C10     C       CH1     0       -5.664      21.166      35.004      
+ICL     C11     C       CH3     0       -4.700      20.696      33.920      
+ICL     C12     C       CH3     0       -6.154      19.986      35.838      
+ICL     N2      N       NH1     0       -6.379      23.022      33.509      
+ICL     C13     C       C       0       -6.691      23.085      32.197      
+ICL     O3      O       O       0       -7.368      22.268      31.609      
+ICL     O4      O       O2      0       -6.135      24.194      31.662      
+ICL     C14     C       CT      0       -6.324      24.636      30.258      
+ICL     C15     C       CH3     0       -7.793      24.858      29.959      
+ICL     C16     C       CH3     0       -5.706      23.621      29.320      
+ICL     C17     C       CH3     0       -5.566      25.943      30.199      
+ICL     H1      H       H       0       -9.374      21.249      38.729      
+ICL     H4      H       H       0       -12.787     24.548      38.228      
+ICL     H5      H       H       0       -12.177     25.502      36.203      
+ICL     H6      H       H       0       -10.500     24.558      34.904      
+ICL     HN1     H       H       0       -9.337      21.882      34.754      
+ICL     H9      H       H       0       -7.411      21.332      33.888      
+ICL     H10     H       H       0       -5.162      21.769      35.605      
+ICL     H111    H       H       0       -4.065      20.063      34.297      
+ICL     H112    H       H       0       -4.215      21.459      33.561      
+ICL     H113    H       H       0       -5.200      20.265      33.205      
+ICL     H121    H       H       0       -6.868      19.527      35.362      
+ICL     H122    H       H       0       -6.490      20.307      36.692      
+ICL     H123    H       H       0       -5.422      19.366      35.996      
+ICL     HN2     H       H       0       -5.860      23.646      33.842      
+ICL     H151    H       H       0       -7.882      25.424      29.174      
+ICL     H152    H       H       0       -8.216      25.292      30.719      
+ICL     H153    H       H       0       -8.228      24.006      29.792      
+ICL     H161    H       H       0       -6.288      22.848      29.242      
+ICL     H162    H       H       0       -4.843      23.342      29.669      
+ICL     H163    H       H       0       -5.585      24.024      28.443      
+ICL     H171    H       H       0       -5.586      26.289      29.291      
+ICL     H172    H       H       0       -4.644      25.795      30.469      
+ICL     H173    H       H       0       -5.980      26.586      30.799      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ICL          C1          O1      DOUBLE       n     1.210  0.0148     1.210  0.0148
+ICL          C1          C2      SINGLE       n     1.464  0.0162     1.464  0.0162
+ICL          C2          C3      DOUBLE       y     1.391  0.0100     1.391  0.0100
+ICL          C2          C7      SINGLE       y     1.406  0.0100     1.406  0.0100
+ICL          C3          CL      SINGLE       n     1.737  0.0100     1.737  0.0100
+ICL          C3          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+ICL          C4          C5      DOUBLE       y     1.379  0.0100     1.379  0.0100
+ICL          C5          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+ICL          C6          C7      DOUBLE       y     1.395  0.0100     1.395  0.0100
+ICL          C7          N1      SINGLE       n     1.409  0.0133     1.409  0.0133
+ICL          N1          C8      SINGLE       n     1.350  0.0120     1.350  0.0120
+ICL          C8          O2      DOUBLE       n     1.223  0.0143     1.223  0.0143
+ICL          C8          C9      SINGLE       n     1.536  0.0153     1.536  0.0153
+ICL          C9         C10      SINGLE       n     1.544  0.0188     1.544  0.0188
+ICL          C9          N2      SINGLE       n     1.451  0.0100     1.451  0.0100
+ICL         C10         C11      SINGLE       n     1.521  0.0135     1.521  0.0135
+ICL         C10         C12      SINGLE       n     1.521  0.0135     1.521  0.0135
+ICL          N2         C13      SINGLE       n     1.344  0.0100     1.344  0.0100
+ICL         C13          O3      DOUBLE       n     1.210  0.0102     1.210  0.0102
+ICL         C13          O4      SINGLE       n     1.341  0.0126     1.341  0.0126
+ICL          O4         C14      SINGLE       n     1.477  0.0101     1.477  0.0101
+ICL         C14         C15      SINGLE       n     1.512  0.0110     1.512  0.0110
+ICL         C14         C16      SINGLE       n     1.512  0.0110     1.512  0.0110
+ICL         C14         C17      SINGLE       n     1.512  0.0110     1.512  0.0110
+ICL          C1          H1      SINGLE       n     1.082  0.0130     0.949  0.0200
+ICL          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0140
+ICL          C5          H5      SINGLE       n     1.082  0.0130     0.937  0.0130
+ICL          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0198
+ICL          N1         HN1      SINGLE       n     1.016  0.0100     0.874  0.0200
+ICL          C9          H9      SINGLE       n     1.089  0.0100     0.998  0.0200
+ICL         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0175
+ICL         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0146
+ICL         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0146
+ICL         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0146
+ICL         C12        H121      SINGLE       n     1.089  0.0100     0.973  0.0146
+ICL         C12        H122      SINGLE       n     1.089  0.0100     0.973  0.0146
+ICL         C12        H123      SINGLE       n     1.089  0.0100     0.973  0.0146
+ICL          N2         HN2      SINGLE       n     1.016  0.0100     0.875  0.0200
+ICL         C15        H151      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C15        H152      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C15        H153      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C16        H161      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C16        H162      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C16        H163      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C17        H171      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C17        H172      SINGLE       n     1.089  0.0100     0.972  0.0148
+ICL         C17        H173      SINGLE       n     1.089  0.0100     0.972  0.0148
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ICL          O1          C1          C2     124.813    1.50
+ICL          O1          C1          H1     117.869    1.69
+ICL          C2          C1          H1     117.309    1.75
+ICL          C1          C2          C3     120.076    1.50
+ICL          C1          C2          C7     120.485    1.50
+ICL          C3          C2          C7     119.439    1.80
+ICL          C2          C3          CL     120.628    1.50
+ICL          C2          C3          C4     121.013    1.50
+ICL          CL          C3          C4     118.359    1.50
+ICL          C3          C4          C5     119.101    1.50
+ICL          C3          C4          H4     120.337    1.50
+ICL          C5          C4          H4     120.562    1.50
+ICL          C4          C5          C6     120.603    1.50
+ICL          C4          C5          H5     119.719    1.50
+ICL          C6          C5          H5     119.678    1.50
+ICL          C5          C6          C7     119.892    1.50
+ICL          C5          C6          H6     120.192    1.50
+ICL          C7          C6          H6     119.916    1.50
+ICL          C2          C7          C6     119.951    2.02
+ICL          C2          C7          N1     118.939    1.81
+ICL          C6          C7          N1     121.110    1.70
+ICL          C7          N1          C8     127.487    1.64
+ICL          C7          N1         HN1     116.044    2.41
+ICL          C8          N1         HN1     116.469    1.63
+ICL          N1          C8          O2     124.231    1.50
+ICL          N1          C8          C9     114.729    1.50
+ICL          O2          C8          C9     121.040    1.62
+ICL          C8          C9         C10     110.072    2.21
+ICL          C8          C9          N2     111.486    1.78
+ICL          C8          C9          H9     108.109    1.50
+ICL         C10          C9          N2     111.159    1.50
+ICL         C10          C9          H9     107.774    1.50
+ICL          N2          C9          H9     108.475    1.50
+ICL          C9         C10         C11     111.317    1.50
+ICL          C9         C10         C12     111.317    1.50
+ICL          C9         C10         H10     107.640    1.50
+ICL         C11         C10         C12     110.676    1.50
+ICL         C11         C10         H10     107.603    1.50
+ICL         C12         C10         H10     107.603    1.50
+ICL         C10         C11        H111     109.507    1.50
+ICL         C10         C11        H112     109.507    1.50
+ICL         C10         C11        H113     109.507    1.50
+ICL        H111         C11        H112     109.411    1.50
+ICL        H111         C11        H113     109.411    1.50
+ICL        H112         C11        H113     109.411    1.50
+ICL         C10         C12        H121     109.507    1.50
+ICL         C10         C12        H122     109.507    1.50
+ICL         C10         C12        H123     109.507    1.50
+ICL        H121         C12        H122     109.411    1.50
+ICL        H121         C12        H123     109.411    1.50
+ICL        H122         C12        H123     109.411    1.50
+ICL          C9          N2         C13     121.531    1.68
+ICL          C9          N2         HN2     119.240    1.50
+ICL         C13          N2         HN2     119.228    2.20
+ICL          N2         C13          O3     124.504    1.50
+ICL          N2         C13          O4     109.944    1.50
+ICL          O3         C13          O4     125.552    1.50
+ICL         C13          O4         C14     120.806    1.50
+ICL          O4         C14         C15     107.315    3.00
+ICL          O4         C14         C16     107.315    3.00
+ICL          O4         C14         C17     107.315    3.00
+ICL         C15         C14         C16     111.547    1.50
+ICL         C15         C14         C17     111.547    1.50
+ICL         C16         C14         C17     111.547    1.50
+ICL         C14         C15        H151     109.487    1.50
+ICL         C14         C15        H152     109.487    1.50
+ICL         C14         C15        H153     109.487    1.50
+ICL        H151         C15        H152     109.441    1.50
+ICL        H151         C15        H153     109.441    1.50
+ICL        H152         C15        H153     109.441    1.50
+ICL         C14         C16        H161     109.487    1.50
+ICL         C14         C16        H162     109.487    1.50
+ICL         C14         C16        H163     109.487    1.50
+ICL        H161         C16        H162     109.441    1.50
+ICL        H161         C16        H163     109.441    1.50
+ICL        H162         C16        H163     109.441    1.50
+ICL         C14         C17        H171     109.487    1.50
+ICL         C14         C17        H172     109.487    1.50
+ICL         C14         C17        H173     109.487    1.50
+ICL        H171         C17        H172     109.441    1.50
+ICL        H171         C17        H173     109.441    1.50
+ICL        H172         C17        H173     109.441    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ICL             sp2_sp2_1          O1          C1          C2          C3     180.000     5.0     2
+ICL             sp2_sp3_1          N1          C8          C9         C10       0.000    10.0     6
+ICL             sp3_sp3_4         C11         C10          C9          C8      60.000    10.0     3
+ICL             sp2_sp3_7         C13          N2          C9          C8       0.000    10.0     6
+ICL            sp3_sp3_10          C9         C10         C11        H111     180.000    10.0     3
+ICL            sp3_sp3_22          C9         C10         C12        H121      60.000    10.0     3
+ICL            sp2_sp2_15          O3         C13          N2          C9       0.000     5.0     2
+ICL            sp2_sp2_17          N2         C13          O4         C14     180.000     5.0     2
+ICL            sp3_sp3_28         C15         C14          O4         C13     180.000    10.0     3
+ICL            sp3_sp3_31          O4         C14         C15        H151     180.000    10.0     3
+ICL            sp3_sp3_43          O4         C14         C16        H161      60.000    10.0     3
+ICL            sp3_sp3_49          O4         C14         C17        H171     180.000    10.0     3
+ICL       const_sp2_sp2_4          C1          C2          C3          CL       0.000     5.0     2
+ICL              const_24          C1          C2          C7          N1       0.000    10.0     2
+ICL       const_sp2_sp2_7          CL          C3          C4          C5     180.000     5.0     2
+ICL       const_sp2_sp2_9          C3          C4          C5          C6       0.000     5.0     2
+ICL              const_13          C4          C5          C6          C7       0.000    10.0     2
+ICL              const_18          C5          C6          C7          N1     180.000    10.0     2
+ICL             sp2_sp2_5          C2          C7          N1          C8     180.000     5.0     2
+ICL            sp2_sp2_11          O2          C8          N1          C7       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ICL    chir_1    C9    N2    C8    C10    positive
+ICL    chir_2    C10    C9    C11    C12    both
+ICL    chir_3    C14    O4    C15    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ICL    plan-1          C1   0.020
+ICL    plan-1          C2   0.020
+ICL    plan-1          C3   0.020
+ICL    plan-1          C4   0.020
+ICL    plan-1          C5   0.020
+ICL    plan-1          C6   0.020
+ICL    plan-1          C7   0.020
+ICL    plan-1          CL   0.020
+ICL    plan-1          H4   0.020
+ICL    plan-1          H5   0.020
+ICL    plan-1          H6   0.020
+ICL    plan-1          N1   0.020
+ICL    plan-2          C1   0.020
+ICL    plan-2          C2   0.020
+ICL    plan-2          H1   0.020
+ICL    plan-2          O1   0.020
+ICL    plan-3          C7   0.020
+ICL    plan-3          C8   0.020
+ICL    plan-3         HN1   0.020
+ICL    plan-3          N1   0.020
+ICL    plan-4          C8   0.020
+ICL    plan-4          C9   0.020
+ICL    plan-4          N1   0.020
+ICL    plan-4          O2   0.020
+ICL    plan-5         C13   0.020
+ICL    plan-5          C9   0.020
+ICL    plan-5         HN2   0.020
+ICL    plan-5          N2   0.020
+ICL    plan-6         C13   0.020
+ICL    plan-6          N2   0.020
+ICL    plan-6          O3   0.020
+ICL    plan-6          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ICL           SMILES              ACDLabs 10.04                                                                                           O=Cc1c(cccc1Cl)NC(=O)C(NC(=O)OC(C)(C)C)C(C)C
+ICL SMILES_CANONICAL               CACTVS 3.341                                                                                       CC(C)[C@H](NC(=O)OC(C)(C)C)C(=O)Nc1cccc(Cl)c1C=O
+ICL           SMILES               CACTVS 3.341                                                                                        CC(C)[CH](NC(=O)OC(C)(C)C)C(=O)Nc1cccc(Cl)c1C=O
+ICL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      CC(C)[C@@H](C(=O)Nc1cccc(c1C=O)Cl)NC(=O)OC(C)(C)C
+ICL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           CC(C)C(C(=O)Nc1cccc(c1C=O)Cl)NC(=O)OC(C)(C)C
+ICL            InChI                InChI  1.03 InChI=1S/C17H23ClN2O4/c1-10(2)14(20-16(23)24-17(3,4)5)15(22)19-13-8-6-7-12(18)11(13)9-21/h6-10,14H,1-5H3,(H,19,22)(H,20,23)/t14-/m0/s1
+ICL         InChIKey                InChI  1.03                                                                                                            GBHYPZDGTWSQFR-AWEZNQCLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ICL acedrg               243         "dictionary generator"                  
+ICL acedrg_database      11          "data source"                           
+ICL rdkit                2017.03.2   "Chemoinformatics tool"
+ICL refmac5              5.8.0238    "optimization tool"                     

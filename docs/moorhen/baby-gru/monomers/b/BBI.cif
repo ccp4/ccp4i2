@@ -1,0 +1,379 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BBI     BBI      (2-butyl-1-benzofuran-3-yl){4-[2-(diethylamino)ethoxy]-3,5-diiodophenyl}methanone     NON-POLYMER     60     31     .     
+#
+data_comp_BBI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BBI     CAA     C       CH3     0       34.276      -46.319     -2.854      
+BBI     CAB     C       CH2     0       33.353      -45.129     -2.755      
+BBI     CAC     C       CH2     0       32.304      -45.095     -3.852      
+BBI     CAD     C       CH2     0       31.399      -43.869     -3.792      
+BBI     CAE     C       CR5     0       30.128      -44.022     -4.549      
+BBI     OAF     O       O2      0       30.241      -43.989     -5.918      
+BBI     CAG     C       CR56    0       28.971      -44.145     -6.430      
+BBI     CAH     C       CR16    0       28.641      -44.169     -7.774      
+BBI     CAI     C       CR16    0       27.298      -44.338     -8.066      
+BBI     CAJ     C       CR16    0       26.342      -44.476     -7.054      
+BBI     CAK     C       CR16    0       26.702      -44.448     -5.719      
+BBI     CAL     C       CR56    0       28.058      -44.278     -5.398      
+BBI     CAM     C       CR5     0       28.830      -44.195     -4.181      
+BBI     CAN     C       C       0       28.246      -44.290     -2.840      
+BBI     OAO     O       O       0       27.172      -43.731     -2.593      
+BBI     CAP     C       CR6     0       28.925      -45.064     -1.757      
+BBI     CBE     C       CR16    0       29.510      -46.299     -2.021      
+BBI     CBC     C       CR6     0       30.139      -47.011     -1.014      
+BBI     IBD     I       I       0       31.002      -48.866     -1.449      
+BBI     CAQ     C       CR16    0       28.977      -44.552     -0.464      
+BBI     CAR     C       CR6     0       29.601      -45.255     0.553       
+BBI     IAS     I       I       0       29.642      -44.438     2.479       
+BBI     CAT     C       CR6     0       30.204      -46.497     0.290       
+BBI     OAU     O       O2      0       30.828      -47.218     1.278       
+BBI     CAV     C       CH2     0       32.099      -46.787     1.787       
+BBI     CAW     C       CH2     0       33.225      -47.365     0.963       
+BBI     NAX     N       NT      0       33.402      -48.851     1.063       
+BBI     CBA     C       CH2     0       33.634      -49.437     2.420       
+BBI     CBB     C       CH3     0       34.568      -48.654     3.321       
+BBI     CAY     C       CH2     0       34.310      -49.418     0.023       
+BBI     CAZ     C       CH3     0       35.777      -49.118     0.224       
+BBI     H1      H       H       0       34.942      -46.275     -2.146      
+BBI     H2      H       H       0       34.723      -46.314     -3.719      
+BBI     H3      H       H       0       33.761      -47.140     -2.762      
+BBI     H4      H       H       0       33.887      -44.306     -2.799      
+BBI     H5      H       H       0       32.901      -45.147     -1.883      
+BBI     H6      H       H       0       31.760      -45.907     -3.788      
+BBI     H7      H       H       0       32.759      -45.117     -4.720      
+BBI     H8      H       H       0       31.882      -43.096     -4.134      
+BBI     H9      H       H       0       31.196      -43.658     -2.863      
+BBI     H10     H       H       0       29.291      -44.075     -8.447      
+BBI     H11     H       H       0       27.023      -44.361     -8.968      
+BBI     H12     H       H       0       25.434      -44.590     -7.288      
+BBI     H13     H       H       0       26.053      -44.542     -5.042      
+BBI     H14     H       H       0       29.479      -46.650     -2.888      
+BBI     H15     H       H       0       28.584      -43.723     -0.282      
+BBI     H16     H       H       0       32.189      -47.070     2.718       
+BBI     H17     H       H       0       32.159      -45.813     1.765       
+BBI     H18     H       H       0       34.060      -46.928     1.231       
+BBI     H19     H       H       0       33.069      -47.131     0.025       
+BBI     H21     H       H       0       33.991      -50.344     2.318       
+BBI     H22     H       H       0       32.768      -49.517     2.871       
+BBI     H23     H       H       0       34.964      -49.253     3.974       
+BBI     H24     H       H       0       34.070      -47.961     3.783       
+BBI     H25     H       H       0       35.272      -48.245     2.793       
+BBI     H26     H       H       0       34.041      -49.070     -0.852      
+BBI     H27     H       H       0       34.189      -50.390     -0.003      
+BBI     H28     H       H       0       36.270      -49.366     -0.575      
+BBI     H29     H       H       0       36.112      -49.628     0.979       
+BBI     H30     H       H       0       35.897      -48.171     0.395       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BBI         CAH         CAI      SINGLE       y     1.380  0.0109     1.380  0.0109
+BBI         CAG         CAH      DOUBLE       y     1.381  0.0100     1.381  0.0100
+BBI         OAF         CAG      SINGLE       y     1.380  0.0100     1.380  0.0100
+BBI         CAE         OAF      SINGLE       y     1.372  0.0100     1.372  0.0100
+BBI         CAI         CAJ      DOUBLE       y     1.395  0.0112     1.395  0.0112
+BBI         CAA         CAB      SINGLE       n     1.510  0.0200     1.510  0.0200
+BBI         CAG         CAL      SINGLE       y     1.384  0.0146     1.384  0.0146
+BBI         CAB         CAC      SINGLE       n     1.518  0.0159     1.518  0.0159
+BBI         CAC         CAD      SINGLE       n     1.523  0.0182     1.523  0.0182
+BBI         CAD         CAE      SINGLE       n     1.487  0.0100     1.487  0.0100
+BBI         CAE         CAM      DOUBLE       y     1.357  0.0100     1.357  0.0100
+BBI         CAJ         CAK      SINGLE       y     1.374  0.0157     1.374  0.0157
+BBI         CAL         CAM      SINGLE       y     1.444  0.0100     1.444  0.0100
+BBI         CAK         CAL      DOUBLE       y     1.395  0.0150     1.395  0.0150
+BBI         CAM         CAN      SINGLE       n     1.461  0.0158     1.461  0.0158
+BBI         CBC         IBD      SINGLE       n     2.091  0.0100     2.091  0.0100
+BBI         CBE         CBC      DOUBLE       y     1.379  0.0120     1.379  0.0120
+BBI         CAP         CBE      SINGLE       y     1.388  0.0100     1.388  0.0100
+BBI         CAN         CAP      SINGLE       n     1.492  0.0100     1.492  0.0100
+BBI         CAN         OAO      DOUBLE       n     1.234  0.0194     1.234  0.0194
+BBI         CBC         CAT      SINGLE       y     1.397  0.0100     1.397  0.0100
+BBI         CAP         CAQ      DOUBLE       y     1.388  0.0100     1.388  0.0100
+BBI         CAT         OAU      SINGLE       n     1.368  0.0103     1.368  0.0103
+BBI         CAR         CAT      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BBI         CAQ         CAR      SINGLE       y     1.379  0.0120     1.379  0.0120
+BBI         OAU         CAV      SINGLE       n     1.430  0.0100     1.430  0.0100
+BBI         CAR         IAS      SINGLE       n     2.091  0.0100     2.091  0.0100
+BBI         CAV         CAW      SINGLE       n     1.509  0.0100     1.509  0.0100
+BBI         CAW         NAX      SINGLE       n     1.480  0.0200     1.480  0.0200
+BBI         NAX         CAY      SINGLE       n     1.479  0.0150     1.479  0.0150
+BBI         NAX         CBA      SINGLE       n     1.479  0.0150     1.479  0.0150
+BBI         CAY         CAZ      SINGLE       n     1.508  0.0173     1.508  0.0173
+BBI         CBA         CBB      SINGLE       n     1.508  0.0173     1.508  0.0173
+BBI         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+BBI         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+BBI         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+BBI         CAB          H4      SINGLE       n     1.089  0.0100     0.982  0.0155
+BBI         CAB          H5      SINGLE       n     1.089  0.0100     0.982  0.0155
+BBI         CAC          H6      SINGLE       n     1.089  0.0100     0.980  0.0160
+BBI         CAC          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+BBI         CAD          H8      SINGLE       n     1.089  0.0100     0.974  0.0100
+BBI         CAD          H9      SINGLE       n     1.089  0.0100     0.974  0.0100
+BBI         CAH         H10      SINGLE       n     1.082  0.0130     0.940  0.0122
+BBI         CAI         H11      SINGLE       n     1.082  0.0130     0.943  0.0163
+BBI         CAJ         H12      SINGLE       n     1.082  0.0130     0.944  0.0181
+BBI         CAK         H13      SINGLE       n     1.082  0.0130     0.943  0.0100
+BBI         CBE         H14      SINGLE       n     1.082  0.0130     0.936  0.0100
+BBI         CAQ         H15      SINGLE       n     1.082  0.0130     0.936  0.0100
+BBI         CAV         H16      SINGLE       n     1.089  0.0100     0.977  0.0111
+BBI         CAV         H17      SINGLE       n     1.089  0.0100     0.977  0.0111
+BBI         CAW         H18      SINGLE       n     1.089  0.0100     0.980  0.0143
+BBI         CAW         H19      SINGLE       n     1.089  0.0100     0.980  0.0143
+BBI         CBA         H21      SINGLE       n     1.089  0.0100     0.980  0.0143
+BBI         CBA         H22      SINGLE       n     1.089  0.0100     0.980  0.0143
+BBI         CBB         H23      SINGLE       n     1.089  0.0100     0.971  0.0145
+BBI         CBB         H24      SINGLE       n     1.089  0.0100     0.971  0.0145
+BBI         CBB         H25      SINGLE       n     1.089  0.0100     0.971  0.0145
+BBI         CAY         H26      SINGLE       n     1.089  0.0100     0.980  0.0143
+BBI         CAY         H27      SINGLE       n     1.089  0.0100     0.980  0.0143
+BBI         CAZ         H28      SINGLE       n     1.089  0.0100     0.971  0.0145
+BBI         CAZ         H29      SINGLE       n     1.089  0.0100     0.971  0.0145
+BBI         CAZ         H30      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BBI         CAB         CAA          H1     109.554    1.50
+BBI         CAB         CAA          H2     109.554    1.50
+BBI         CAB         CAA          H3     109.554    1.50
+BBI          H1         CAA          H2     109.380    1.50
+BBI          H1         CAA          H3     109.380    1.50
+BBI          H2         CAA          H3     109.380    1.50
+BBI         CAA         CAB         CAC     113.049    1.50
+BBI         CAA         CAB          H4     108.918    1.50
+BBI         CAA         CAB          H5     108.918    1.50
+BBI         CAC         CAB          H4     108.894    1.50
+BBI         CAC         CAB          H5     108.894    1.50
+BBI          H4         CAB          H5     107.763    1.50
+BBI         CAB         CAC         CAD     113.829    1.50
+BBI         CAB         CAC          H6     108.890    1.50
+BBI         CAB         CAC          H7     108.890    1.50
+BBI         CAD         CAC          H6     110.008    2.33
+BBI         CAD         CAC          H7     110.008    2.33
+BBI          H6         CAC          H7     107.698    1.77
+BBI         CAC         CAD         CAE     113.661    1.82
+BBI         CAC         CAD          H8     109.387    2.39
+BBI         CAC         CAD          H9     109.387    2.39
+BBI         CAE         CAD          H8     109.095    1.50
+BBI         CAE         CAD          H9     109.095    1.50
+BBI          H8         CAD          H9     105.502    2.60
+BBI         OAF         CAE         CAD     116.353    1.50
+BBI         OAF         CAE         CAM     110.014    1.50
+BBI         CAD         CAE         CAM     133.633    2.66
+BBI         CAG         OAF         CAE     106.774    1.50
+BBI         CAH         CAG         OAF     125.042    1.50
+BBI         CAH         CAG         CAL     124.454    1.50
+BBI         OAF         CAG         CAL     110.504    1.50
+BBI         CAI         CAH         CAG     115.993    1.50
+BBI         CAI         CAH         H10     122.126    1.50
+BBI         CAG         CAH         H10     121.881    1.50
+BBI         CAH         CAI         CAJ     121.624    1.50
+BBI         CAH         CAI         H11     119.129    1.50
+BBI         CAJ         CAI         H11     119.247    1.50
+BBI         CAI         CAJ         CAK     121.253    1.50
+BBI         CAI         CAJ         H12     119.296    1.50
+BBI         CAK         CAJ         H12     119.451    1.50
+BBI         CAJ         CAK         CAL     118.237    1.50
+BBI         CAJ         CAK         H13     120.813    1.50
+BBI         CAL         CAK         H13     120.950    1.50
+BBI         CAG         CAL         CAM     106.155    1.50
+BBI         CAG         CAL         CAK     118.438    1.50
+BBI         CAM         CAL         CAK     135.407    1.50
+BBI         CAE         CAM         CAL     106.553    1.50
+BBI         CAE         CAM         CAN     127.945    3.00
+BBI         CAL         CAM         CAN     125.502    3.00
+BBI         CAM         CAN         CAP     120.472    1.50
+BBI         CAM         CAN         OAO     120.372    1.53
+BBI         CAP         CAN         OAO     119.157    1.50
+BBI         CBE         CAP         CAN     120.441    2.30
+BBI         CBE         CAP         CAQ     119.119    1.50
+BBI         CAN         CAP         CAQ     120.441    2.30
+BBI         CBC         CBE         CAP     120.329    1.50
+BBI         CBC         CBE         H14     120.065    1.50
+BBI         CAP         CBE         H14     119.607    1.50
+BBI         IBD         CBC         CBE     120.461    1.50
+BBI         IBD         CBC         CAT     119.133    1.50
+BBI         CBE         CBC         CAT     120.406    1.50
+BBI         CAP         CAQ         CAR     120.329    1.50
+BBI         CAP         CAQ         H15     119.607    1.50
+BBI         CAR         CAQ         H15     120.065    1.50
+BBI         CAT         CAR         CAQ     120.406    1.50
+BBI         CAT         CAR         IAS     119.133    1.50
+BBI         CAQ         CAR         IAS     120.461    1.50
+BBI         CBC         CAT         OAU     120.294    1.88
+BBI         CBC         CAT         CAR     119.412    1.50
+BBI         OAU         CAT         CAR     120.294    1.88
+BBI         CAT         OAU         CAV     117.464    1.77
+BBI         OAU         CAV         CAW     107.287    2.37
+BBI         OAU         CAV         H16     110.215    1.50
+BBI         OAU         CAV         H17     110.215    1.50
+BBI         CAW         CAV         H16     110.227    1.50
+BBI         CAW         CAV         H17     110.227    1.50
+BBI         H16         CAV         H17     108.672    1.50
+BBI         CAV         CAW         NAX     112.399    3.00
+BBI         CAV         CAW         H18     109.032    1.50
+BBI         CAV         CAW         H19     109.032    1.50
+BBI         NAX         CAW         H18     109.118    1.50
+BBI         NAX         CAW         H19     109.118    1.50
+BBI         H18         CAW         H19     107.851    1.50
+BBI         CAW         NAX         CAY     112.216    2.51
+BBI         CAW         NAX         CBA     112.216    2.51
+BBI         CAY         NAX         CBA     110.773    1.86
+BBI         NAX         CBA         CBB     113.741    1.57
+BBI         NAX         CBA         H21     109.022    1.50
+BBI         NAX         CBA         H22     109.022    1.50
+BBI         CBB         CBA         H21     109.135    1.50
+BBI         CBB         CBA         H22     109.135    1.50
+BBI         H21         CBA         H22     107.838    1.50
+BBI         CBA         CBB         H23     109.529    1.50
+BBI         CBA         CBB         H24     109.529    1.50
+BBI         CBA         CBB         H25     109.529    1.50
+BBI         H23         CBB         H24     109.415    1.50
+BBI         H23         CBB         H25     109.415    1.50
+BBI         H24         CBB         H25     109.415    1.50
+BBI         NAX         CAY         CAZ     113.741    1.57
+BBI         NAX         CAY         H26     109.022    1.50
+BBI         NAX         CAY         H27     109.022    1.50
+BBI         CAZ         CAY         H26     109.135    1.50
+BBI         CAZ         CAY         H27     109.135    1.50
+BBI         H26         CAY         H27     107.838    1.50
+BBI         CAY         CAZ         H28     109.529    1.50
+BBI         CAY         CAZ         H29     109.529    1.50
+BBI         CAY         CAZ         H30     109.529    1.50
+BBI         H28         CAZ         H29     109.415    1.50
+BBI         H28         CAZ         H30     109.415    1.50
+BBI         H29         CAZ         H30     109.415    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BBI             sp3_sp3_1          H1         CAA         CAB         CAC     180.000    10.0     3
+BBI              const_29         CAJ         CAK         CAL         CAG       0.000    10.0     2
+BBI              const_10         CAG         CAL         CAM         CAN     180.000    10.0     2
+BBI             sp2_sp2_2         CAE         CAM         CAN         OAO       0.000     5.0     2
+BBI             sp2_sp2_7         OAO         CAN         CAP         CBE       0.000     5.0     2
+BBI              const_35         CAN         CAP         CBE         CBC     180.000    10.0     2
+BBI              const_59         CAN         CAP         CAQ         CAR     180.000    10.0     2
+BBI              const_39         IBD         CBC         CBE         CAP     180.000    10.0     2
+BBI              const_44         OAU         CAT         CBC         IBD       0.000    10.0     2
+BBI              const_50         CAP         CAQ         CAR         IAS     180.000    10.0     2
+BBI            sp3_sp3_10         CAA         CAB         CAC         CAD     180.000    10.0     3
+BBI              const_48         IAS         CAR         CAT         OAU       0.000    10.0     2
+BBI             sp2_sp2_9         CBC         CAT         OAU         CAV     180.000     5.0     2
+BBI            sp3_sp3_28         CAW         CAV         OAU         CAT     180.000    10.0     3
+BBI            sp3_sp3_31         OAU         CAV         CAW         NAX     180.000    10.0     3
+BBI            sp3_sp3_41         CAV         CAW         NAX         CAY     -60.000    10.0     3
+BBI            sp3_sp3_53         CBB         CBA         NAX         CAW     -60.000    10.0     3
+BBI            sp3_sp3_46         CAZ         CAY         NAX         CAW     180.000    10.0     3
+BBI            sp3_sp3_67         NAX         CBA         CBB         H23     180.000    10.0     3
+BBI            sp3_sp3_58         NAX         CAY         CAZ         H28     180.000    10.0     3
+BBI            sp3_sp3_19         CAB         CAC         CAD         CAE     180.000    10.0     3
+BBI             sp2_sp3_2         OAF         CAE         CAD         CAC     -90.000    10.0     6
+BBI              const_56         CAD         CAE         CAM         CAN       0.000    10.0     2
+BBI       const_sp2_sp2_2         CAD         CAE         OAF         CAG     180.000     5.0     2
+BBI       const_sp2_sp2_4         CAH         CAG         OAF         CAE     180.000     5.0     2
+BBI       const_sp2_sp2_6         CAH         CAG         CAL         CAM     180.000     5.0     2
+BBI              const_15         OAF         CAG         CAH         CAI     180.000    10.0     2
+BBI              const_17         CAG         CAH         CAI         CAJ       0.000    10.0     2
+BBI              const_21         CAH         CAI         CAJ         CAK       0.000    10.0     2
+BBI              const_25         CAI         CAJ         CAK         CAL       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BBI    chir_1    NAX    CAW    CAY    CBA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BBI    plan-1         CAD   0.020
+BBI    plan-1         CAE   0.020
+BBI    plan-1         CAG   0.020
+BBI    plan-1         CAH   0.020
+BBI    plan-1         CAI   0.020
+BBI    plan-1         CAJ   0.020
+BBI    plan-1         CAK   0.020
+BBI    plan-1         CAL   0.020
+BBI    plan-1         CAM   0.020
+BBI    plan-1         CAN   0.020
+BBI    plan-1         H10   0.020
+BBI    plan-1         H11   0.020
+BBI    plan-1         H12   0.020
+BBI    plan-1         H13   0.020
+BBI    plan-1         OAF   0.020
+BBI    plan-2         CAN   0.020
+BBI    plan-2         CAP   0.020
+BBI    plan-2         CAQ   0.020
+BBI    plan-2         CAR   0.020
+BBI    plan-2         CAT   0.020
+BBI    plan-2         CBC   0.020
+BBI    plan-2         CBE   0.020
+BBI    plan-2         H14   0.020
+BBI    plan-2         H15   0.020
+BBI    plan-2         IAS   0.020
+BBI    plan-2         IBD   0.020
+BBI    plan-2         OAU   0.020
+BBI    plan-3         CAM   0.020
+BBI    plan-3         CAN   0.020
+BBI    plan-3         CAP   0.020
+BBI    plan-3         OAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BBI           SMILES              ACDLabs 12.01                                                                                                          Ic1cc(cc(I)c1OCCN(CC)CC)C(=O)c2c3ccccc3oc2CCCC
+BBI            InChI                InChI  1.03 InChI=1S/C25H29I2NO3/c1-4-7-11-22-23(18-10-8-9-12-21(18)31-22)24(29)17-15-19(26)25(20(27)16-17)30-14-13-28(5-2)6-3/h8-10,12,15-16H,4-7,11,13-14H2,1-3H3
+BBI         InChIKey                InChI  1.03                                                                                                                             IYIKLHRQXLHMJQ-UHFFFAOYSA-N
+BBI SMILES_CANONICAL               CACTVS 3.385                                                                                                        CCCCc1oc2ccccc2c1C(=O)c3cc(I)c(OCCN(CC)CC)c(I)c3
+BBI           SMILES               CACTVS 3.385                                                                                                        CCCCc1oc2ccccc2c1C(=O)c3cc(I)c(OCCN(CC)CC)c(I)c3
+BBI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                      CCCCc1c(c2ccccc2o1)C(=O)c3cc(c(c(c3)I)OCCN(CC)CC)I
+BBI           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                      CCCCc1c(c2ccccc2o1)C(=O)c3cc(c(c(c3)I)OCCN(CC)CC)I
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BBI acedrg               243         "dictionary generator"                  
+BBI acedrg_database      11          "data source"                           
+BBI rdkit                2017.03.2   "Chemoinformatics tool"
+BBI refmac5              5.8.0238    "optimization tool"                     

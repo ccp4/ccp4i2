@@ -1,0 +1,299 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YCL     YCL      "2-{[(2S)-1-amino-5-{[(1Z)-2-chloroethanimidoyl]amino}-1-oxopentan-2-yl]carbamoyl}benzoic acid"     NON-POLYMER     42     24     .     
+#
+data_comp_YCL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YCL     CL      CL      CL      0       -23.648     9.260       -23.810     
+YCL     C1      C       C       0       -27.343     19.665      -22.040     
+YCL     O1      O       OC      -1      -27.645     19.129      -20.959     
+YCL     O2      O       O       0       -27.250     20.893      -22.214     
+YCL     NAA     N       NH2     0       -21.887     16.377      -22.612     
+YCL     NAC     N       NH1     0       -23.302     9.541       -20.182     
+YCL     OAE     O       O       0       -21.308     17.277      -20.634     
+YCL     OAF     O       O       0       -24.325     18.856      -21.836     
+YCL     CAH     C       CR16    0       -27.818     17.985      -25.386     
+YCL     CAI     C       CR16    0       -27.994     18.781      -24.269     
+YCL     CAJ     C       CR16    0       -26.716     17.156      -25.475     
+YCL     CAK     C       CR6     0       -27.073     18.764      -23.222     
+YCL     CAL     C       CR16    0       -25.787     17.124      -24.449     
+YCL     CAM     C       CH2     0       -23.253     13.843      -21.280     
+YCL     CAN     C       CH2     0       -23.478     12.454      -20.710     
+YCL     CAO     C       CH2     0       -23.557     14.939      -20.264     
+YCL     CAP     C       CH2     0       -22.537     9.167       -22.420     
+YCL     NAR     N       NH1     0       -23.063     11.376      -21.621     
+YCL     NAS     N       NH1     0       -24.595     16.612      -21.759     
+YCL     CAU     C       C       0       -22.132     16.711      -21.351     
+YCL     CAV     C       C       0       -23.002     10.061      -21.313     
+YCL     CAW     C       C       0       -24.894     17.835      -22.227     
+YCL     CAX     C       CR6     0       -25.950     17.917      -23.310     
+YCL     CAZ     C       CH1     0       -23.525     16.375      -20.798     
+YCL     HNAA    H       H       0       -22.486     15.950      -23.102     
+YCL     HNAB    H       H       0       -21.106     16.588      -22.971     
+YCL     HNAC    H       H       0       -23.570     10.084      -19.570     
+YCL     HAH     H       H       0       -28.450     18.007      -26.085     
+YCL     HAI     H       H       0       -28.747     19.343      -24.214     
+YCL     HAJ     H       H       0       -26.594     16.613      -26.236     
+YCL     HAL     H       H       0       -25.040     16.556      -24.517     
+YCL     HAM     H       H       0       -23.823     13.959      -22.068     
+YCL     HAMA    H       H       0       -22.319     13.913      -21.569     
+YCL     HAN     H       H       0       -24.430     12.340      -20.504     
+YCL     HANA    H       H       0       -22.975     12.366      -19.872     
+YCL     HAO     H       H       0       -22.909     14.868      -19.532     
+YCL     HAOA    H       H       0       -24.445     14.770      -19.887     
+YCL     HAP     H       H       0       -21.645     9.433       -22.704     
+YCL     HAPA    H       H       0       -22.494     8.246       -22.106     
+YCL     HAR     H       H       0       -22.839     11.612      -22.426     
+YCL     HNAS    H       H       0       -25.069     15.926      -22.015     
+YCL     HAZ     H       H       0       -23.676     16.974      -20.023     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YCL          CL         CAP      SINGLE       n     1.782  0.0100     1.782  0.0100
+YCL          C1          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+YCL          C1          O2      DOUBLE       n     1.244  0.0200     1.244  0.0200
+YCL          C1         CAK      SINGLE       n     1.508  0.0126     1.508  0.0126
+YCL         NAA         CAU      SINGLE       n     1.325  0.0100     1.325  0.0100
+YCL         NAC         CAV      DOUBLE       n     1.269  0.0200     1.269  0.0200
+YCL         OAE         CAU      DOUBLE       n     1.230  0.0100     1.230  0.0100
+YCL         OAF         CAW      DOUBLE       n     1.230  0.0114     1.230  0.0114
+YCL         CAH         CAI      DOUBLE       y     1.380  0.0100     1.380  0.0100
+YCL         CAH         CAJ      SINGLE       y     1.378  0.0129     1.378  0.0129
+YCL         CAI         CAK      SINGLE       y     1.391  0.0100     1.391  0.0100
+YCL         CAJ         CAL      DOUBLE       y     1.380  0.0100     1.380  0.0100
+YCL         CAK         CAX      DOUBLE       y     1.402  0.0100     1.402  0.0100
+YCL         CAL         CAX      SINGLE       y     1.393  0.0100     1.393  0.0100
+YCL         CAM         CAN      SINGLE       n     1.517  0.0143     1.517  0.0143
+YCL         CAM         CAO      SINGLE       n     1.522  0.0100     1.522  0.0100
+YCL         CAN         NAR      SINGLE       n     1.468  0.0100     1.468  0.0100
+YCL         CAO         CAZ      SINGLE       n     1.528  0.0100     1.528  0.0100
+YCL         CAP         CAV      SINGLE       n     1.494  0.0137     1.494  0.0137
+YCL         NAR         CAV      SINGLE       n     1.338  0.0174     1.338  0.0174
+YCL         NAS         CAW      SINGLE       n     1.337  0.0101     1.337  0.0101
+YCL         NAS         CAZ      SINGLE       n     1.451  0.0100     1.451  0.0100
+YCL         CAU         CAZ      SINGLE       n     1.531  0.0100     1.531  0.0100
+YCL         CAW         CAX      SINGLE       n     1.511  0.0100     1.511  0.0100
+YCL         NAA        HNAA      SINGLE       n     1.016  0.0100     0.884  0.0200
+YCL         NAA        HNAB      SINGLE       n     1.016  0.0100     0.884  0.0200
+YCL         NAC        HNAC      SINGLE       n     1.016  0.0100     0.864  0.0200
+YCL         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0180
+YCL         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0168
+YCL         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0180
+YCL         CAL         HAL      SINGLE       n     1.082  0.0130     0.941  0.0168
+YCL         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0160
+YCL         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0160
+YCL         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0152
+YCL         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0152
+YCL         CAO         HAO      SINGLE       n     1.089  0.0100     0.980  0.0160
+YCL         CAO        HAOA      SINGLE       n     1.089  0.0100     0.980  0.0160
+YCL         CAP         HAP      SINGLE       n     1.089  0.0100     0.973  0.0130
+YCL         CAP        HAPA      SINGLE       n     1.089  0.0100     0.973  0.0130
+YCL         NAR         HAR      SINGLE       n     1.016  0.0100     0.867  0.0200
+YCL         NAS        HNAS      SINGLE       n     1.016  0.0100     0.872  0.0200
+YCL         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.991  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YCL          O1          C1          O2     124.404    1.50
+YCL          O1          C1         CAK     117.793    1.50
+YCL          O2          C1         CAK     117.793    1.50
+YCL         CAU         NAA        HNAA     120.017    3.00
+YCL         CAU         NAA        HNAB     120.017    3.00
+YCL        HNAA         NAA        HNAB     119.966    2.38
+YCL         CAV         NAC        HNAC     112.238    3.00
+YCL         CAI         CAH         CAJ     120.037    1.50
+YCL         CAI         CAH         HAH     119.936    1.50
+YCL         CAJ         CAH         HAH     120.027    1.50
+YCL         CAH         CAI         CAK     121.007    1.50
+YCL         CAH         CAI         HAI     119.642    1.50
+YCL         CAK         CAI         HAI     119.350    1.50
+YCL         CAH         CAJ         CAL     120.037    1.50
+YCL         CAH         CAJ         HAJ     120.027    1.50
+YCL         CAL         CAJ         HAJ     119.936    1.50
+YCL          C1         CAK         CAI     118.359    1.99
+YCL          C1         CAK         CAX     122.493    1.50
+YCL         CAI         CAK         CAX     119.148    1.50
+YCL         CAJ         CAL         CAX     120.484    1.50
+YCL         CAJ         CAL         HAL     119.752    1.50
+YCL         CAX         CAL         HAL     119.764    1.50
+YCL         CAN         CAM         CAO     112.387    3.00
+YCL         CAN         CAM         HAM     108.956    1.50
+YCL         CAN         CAM        HAMA     108.956    1.50
+YCL         CAO         CAM         HAM     109.262    1.50
+YCL         CAO         CAM        HAMA     109.262    1.50
+YCL         HAM         CAM        HAMA     107.927    1.57
+YCL         CAM         CAN         NAR     113.155    1.94
+YCL         CAM         CAN         HAN     109.197    1.51
+YCL         CAM         CAN        HANA     109.197    1.51
+YCL         NAR         CAN         HAN     108.615    1.50
+YCL         NAR         CAN        HANA     108.615    1.50
+YCL         HAN         CAN        HANA     107.877    1.50
+YCL         CAM         CAO         CAZ     113.702    1.73
+YCL         CAM         CAO         HAO     108.775    1.50
+YCL         CAM         CAO        HAOA     108.775    1.50
+YCL         CAZ         CAO         HAO     108.827    1.50
+YCL         CAZ         CAO        HAOA     108.827    1.50
+YCL         HAO         CAO        HAOA     107.844    1.50
+YCL          CL         CAP         CAV     110.182    2.17
+YCL          CL         CAP         HAP     108.422    3.00
+YCL          CL         CAP        HAPA     108.422    3.00
+YCL         CAV         CAP         HAP     109.556    1.50
+YCL         CAV         CAP        HAPA     109.556    1.50
+YCL         HAP         CAP        HAPA     108.062    1.50
+YCL         CAN         NAR         CAV     123.901    1.99
+YCL         CAN         NAR         HAR     117.308    1.65
+YCL         CAV         NAR         HAR     118.791    3.00
+YCL         CAW         NAS         CAZ     121.882    1.50
+YCL         CAW         NAS        HNAS     120.021    1.94
+YCL         CAZ         NAS        HNAS     118.097    1.56
+YCL         NAA         CAU         OAE     123.732    1.50
+YCL         NAA         CAU         CAZ     115.746    1.60
+YCL         OAE         CAU         CAZ     120.522    1.50
+YCL         NAC         CAV         CAP     122.446    3.00
+YCL         NAC         CAV         NAR     121.471    3.00
+YCL         CAP         CAV         NAR     116.083    1.98
+YCL         OAF         CAW         NAS     122.357    1.50
+YCL         OAF         CAW         CAX     120.915    1.50
+YCL         NAS         CAW         CAX     116.729    1.50
+YCL         CAK         CAX         CAL     119.288    1.50
+YCL         CAK         CAX         CAW     121.926    2.10
+YCL         CAL         CAX         CAW     118.786    1.50
+YCL         CAO         CAZ         NAS     110.984    1.61
+YCL         CAO         CAZ         CAU     110.281    1.60
+YCL         CAO         CAZ         HAZ     108.242    1.50
+YCL         NAS         CAZ         CAU     110.342    2.62
+YCL         NAS         CAZ         HAZ     109.084    1.50
+YCL         CAU         CAZ         HAZ     108.061    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YCL              const_17         CAH         CAJ         CAL         CAX       0.000    10.0     2
+YCL              const_12          C1         CAK         CAX         CAW       0.000    10.0     2
+YCL              const_14         CAJ         CAL         CAX         CAW     180.000    10.0     2
+YCL             sp3_sp3_1         CAO         CAM         CAN         NAR     180.000    10.0     3
+YCL            sp3_sp3_10         CAN         CAM         CAO         CAZ     180.000    10.0     3
+YCL             sp2_sp3_2         CAV         NAR         CAN         CAM     120.000    10.0     6
+YCL            sp3_sp3_19         CAM         CAO         CAZ         NAS     180.000    10.0     3
+YCL             sp2_sp3_8         NAC         CAV         CAP          CL     120.000    10.0     6
+YCL            sp2_sp2_13         NAC         CAV         NAR         CAN       0.000     5.0     2
+YCL            sp2_sp2_17         OAF         CAW         NAS         CAZ       0.000     5.0     2
+YCL            sp2_sp3_13         CAW         NAS         CAZ         CAO       0.000    10.0     6
+YCL            sp2_sp3_19         NAA         CAU         CAZ         CAO       0.000    10.0     6
+YCL             sp2_sp2_1          O1          C1         CAK         CAI     180.000     5.0     2
+YCL            sp2_sp2_21         OAF         CAW         CAX         CAK       0.000     5.0     2
+YCL             sp2_sp2_7         OAE         CAU         NAA        HNAA       0.000     5.0     2
+YCL             sp2_sp2_9         CAP         CAV         NAC        HNAC     180.000     5.0     2
+YCL              const_21         CAI         CAH         CAJ         CAL       0.000    10.0     2
+YCL       const_sp2_sp2_1         CAJ         CAH         CAI         CAK       0.000     5.0     2
+YCL       const_sp2_sp2_6         CAH         CAI         CAK          C1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YCL    chir_1    CAZ    NAS    CAU    CAO    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YCL    plan-1          C1   0.020
+YCL    plan-1         CAH   0.020
+YCL    plan-1         CAI   0.020
+YCL    plan-1         CAJ   0.020
+YCL    plan-1         CAK   0.020
+YCL    plan-1         CAL   0.020
+YCL    plan-1         CAW   0.020
+YCL    plan-1         CAX   0.020
+YCL    plan-1         HAH   0.020
+YCL    plan-1         HAI   0.020
+YCL    plan-1         HAJ   0.020
+YCL    plan-1         HAL   0.020
+YCL    plan-2          C1   0.020
+YCL    plan-2         CAK   0.020
+YCL    plan-2          O1   0.020
+YCL    plan-2          O2   0.020
+YCL    plan-3         CAU   0.020
+YCL    plan-3        HNAA   0.020
+YCL    plan-3        HNAB   0.020
+YCL    plan-3         NAA   0.020
+YCL    plan-4         CAN   0.020
+YCL    plan-4         CAV   0.020
+YCL    plan-4         HAR   0.020
+YCL    plan-4         NAR   0.020
+YCL    plan-5         CAW   0.020
+YCL    plan-5         CAZ   0.020
+YCL    plan-5        HNAS   0.020
+YCL    plan-5         NAS   0.020
+YCL    plan-6         CAU   0.020
+YCL    plan-6         CAZ   0.020
+YCL    plan-6         NAA   0.020
+YCL    plan-6         OAE   0.020
+YCL    plan-7         CAP   0.020
+YCL    plan-7         CAV   0.020
+YCL    plan-7         NAC   0.020
+YCL    plan-7         NAR   0.020
+YCL    plan-8         CAW   0.020
+YCL    plan-8         CAX   0.020
+YCL    plan-8         NAS   0.020
+YCL    plan-8         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YCL           SMILES              ACDLabs 12.01                                                                                                                  ClCC(=[N@H])NCCCC(C(=O)N)NC(=O)c1ccccc1C(=O)O
+YCL            InChI                InChI  1.03 InChI=1S/C15H19ClN4O4/c16-8-12(17)19-7-3-6-11(13(18)21)20-14(22)9-4-1-2-5-10(9)15(23)24/h1-2,4-5,11H,3,6-8H2,(H2,17,19)(H2,18,21)(H,20,22)(H,23,24)/t11-/m0/s1
+YCL         InChIKey                InChI  1.03                                                                                                                                    VUCFCRGOVAAFJN-NSHDSACASA-N
+YCL SMILES_CANONICAL               CACTVS 3.370                                                                                                                  NC(=O)[C@H](CCCNC(=N)CCl)NC(=O)c1ccccc1C(O)=O
+YCL           SMILES               CACTVS 3.370                                                                                                                   NC(=O)[CH](CCCNC(=N)CCl)NC(=O)c1ccccc1C(O)=O
+YCL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                         "[H]/N=C(/CCl)\NCCC[C@@H](C(=O)N)NC(=O)c1ccccc1C(=O)O"
+YCL           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                  c1ccc(c(c1)C(=O)NC(CCCNC(=N)CCl)C(=O)N)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YCL acedrg               243         "dictionary generator"                  
+YCL acedrg_database      11          "data source"                           
+YCL rdkit                2017.03.2   "Chemoinformatics tool"
+YCL refmac5              5.8.0238    "optimization tool"                     

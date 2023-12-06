@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+428     428      2-(1-methylethyl)imidazo[1,2-b]pyridazin-6-ol     NON-POLYMER     24     13     .     
+#
+data_comp_428
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+428     CAA     C       CR56    0       17.890      -39.400     -25.739     
+428     NAB     N       NT      0       16.603      -39.088     -25.396     
+428     NAC     N       NRD5    0       18.166      -40.696     -25.445     
+428     CAD     C       CR16    0       18.676      -38.368     -26.315     
+428     CAE     C       CR15    0       16.044      -40.222     -24.867     
+428     NAF     N       NRD6    0       15.972      -37.860     -25.550     
+428     CAG     C       CR5     0       16.993      -41.195     -24.899     
+428     CAH     C       CR16    0       18.084      -37.118     -26.488     
+428     CAI     C       CR6     0       16.744      -36.893     -26.101     
+428     CAJ     C       CH1     0       16.903      -42.626     -24.437     
+428     OAK     O       OH1     0       16.214      -35.656     -26.292     
+428     CAL     C       CH3     0       16.477      -42.703     -22.972     
+428     CAM     C       CH3     0       15.966      -43.449     -25.326     
+428     HAD     H       H       0       19.566      -38.524     -26.570     
+428     HAE     H       H       0       15.158      -40.293     -24.545     
+428     HAH     H       H       0       18.587      -36.418     -26.869     
+428     HAJ     H       H       0       17.803      -43.021     -24.508     
+428     HOAK    H       H       0       15.390      -35.572     -26.526     
+428     H1AL    H       H       0       16.986      -42.058     -22.450     
+428     H2AL    H       H       0       16.645      -43.599     -22.632     
+428     H3AL    H       H       0       15.527      -42.502     -22.897     
+428     H1AM    H       H       0       15.493      -42.862     -25.942     
+428     H2AM    H       H       0       15.319      -43.924     -24.775     
+428     H3AM    H       H       0       16.488      -44.094     -25.834     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+428         CAD         CAH      DOUBLE       y     1.369  0.0200     1.369  0.0200
+428         CAH         CAI      SINGLE       y     1.381  0.0200     1.381  0.0200
+428         CAA         CAD      SINGLE       y     1.416  0.0189     1.416  0.0189
+428         CAI         OAK      SINGLE       n     1.359  0.0200     1.359  0.0200
+428         NAF         CAI      DOUBLE       y     1.333  0.0200     1.333  0.0200
+428         CAA         NAC      DOUBLE       y     1.345  0.0200     1.345  0.0200
+428         CAA         NAB      SINGLE       y     1.380  0.0200     1.380  0.0200
+428         NAC         CAG      SINGLE       y     1.382  0.0129     1.382  0.0129
+428         CAJ         CAM      SINGLE       n     1.526  0.0116     1.526  0.0116
+428         NAB         NAF      SINGLE       y     1.389  0.0100     1.389  0.0100
+428         NAB         CAE      SINGLE       y     1.385  0.0200     1.385  0.0200
+428         CAE         CAG      DOUBLE       y     1.361  0.0100     1.361  0.0100
+428         CAG         CAJ      SINGLE       n     1.505  0.0100     1.505  0.0100
+428         CAJ         CAL      SINGLE       n     1.526  0.0116     1.526  0.0116
+428         CAD         HAD      SINGLE       n     1.082  0.0130     0.939  0.0160
+428         CAE         HAE      SINGLE       n     1.082  0.0130     0.945  0.0200
+428         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0156
+428         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.986  0.0100
+428         OAK        HOAK      SINGLE       n     0.966  0.0059     0.861  0.0200
+428         CAL        H1AL      SINGLE       n     1.089  0.0100     0.973  0.0141
+428         CAL        H2AL      SINGLE       n     1.089  0.0100     0.973  0.0141
+428         CAL        H3AL      SINGLE       n     1.089  0.0100     0.973  0.0141
+428         CAM        H1AM      SINGLE       n     1.089  0.0100     0.973  0.0141
+428         CAM        H2AM      SINGLE       n     1.089  0.0100     0.973  0.0141
+428         CAM        H3AM      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+428         CAD         CAA         NAC     130.121    3.00
+428         CAD         CAA         NAB     119.714    1.50
+428         NAC         CAA         NAB     110.165    1.50
+428         CAA         NAB         NAF     128.423    1.50
+428         CAA         NAB         CAE     107.156    1.50
+428         NAF         NAB         CAE     124.514    1.50
+428         CAA         NAC         CAG     103.688    1.50
+428         CAH         CAD         CAA     117.894    1.55
+428         CAH         CAD         HAD     121.235    1.50
+428         CAA         CAD         HAD     120.872    1.50
+428         NAB         CAE         CAG     108.867    1.70
+428         NAB         CAE         HAE     124.358    1.50
+428         CAG         CAE         HAE     126.775    1.50
+428         CAI         NAF         NAB     115.193    1.50
+428         NAC         CAG         CAE     110.090    1.50
+428         NAC         CAG         CAJ     120.841    2.65
+428         CAE         CAG         CAJ     129.069    3.00
+428         CAD         CAH         CAI     119.649    1.50
+428         CAD         CAH         HAH     119.819    1.50
+428         CAI         CAH         HAH     120.531    1.50
+428         CAH         CAI         OAK     119.430    3.00
+428         CAH         CAI         NAF     121.283    1.66
+428         OAK         CAI         NAF     119.288    1.80
+428         CAM         CAJ         CAG     111.134    1.50
+428         CAM         CAJ         CAL     110.428    1.50
+428         CAM         CAJ         HAJ     107.888    1.50
+428         CAG         CAJ         CAL     111.134    1.50
+428         CAG         CAJ         HAJ     107.879    1.50
+428         CAL         CAJ         HAJ     107.888    1.50
+428         CAI         OAK        HOAK     120.000    3.00
+428         CAJ         CAL        H1AL     109.496    1.50
+428         CAJ         CAL        H2AL     109.496    1.50
+428         CAJ         CAL        H3AL     109.496    1.50
+428        H1AL         CAL        H2AL     109.428    1.50
+428        H1AL         CAL        H3AL     109.428    1.50
+428        H2AL         CAL        H3AL     109.428    1.50
+428         CAJ         CAM        H1AM     109.496    1.50
+428         CAJ         CAM        H2AM     109.496    1.50
+428         CAJ         CAM        H3AM     109.496    1.50
+428        H1AM         CAM        H2AM     109.428    1.50
+428        H1AM         CAM        H3AM     109.428    1.50
+428        H2AM         CAM        H3AM     109.428    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+428              const_13         CAD         CAA         NAB         NAF       0.000    10.0     2
+428       const_sp2_sp2_2         CAD         CAA         NAC         CAG     180.000     5.0     2
+428             sp2_sp2_3         NAC         CAA         CAD         CAH     180.000     5.0     2
+428       const_sp2_sp2_9         CAG         CAE         NAB         CAA       0.000     5.0     2
+428            sp2_sp2_15         CAA         NAB         NAF         CAI       0.000     5.0     2
+428       const_sp2_sp2_4         CAJ         CAG         NAC         CAA     180.000     5.0     2
+428             sp2_sp2_5         CAA         CAD         CAH         CAI       0.000     5.0     2
+428       const_sp2_sp2_6         NAB         CAE         CAG         CAJ     180.000     5.0     2
+428            sp2_sp2_14         OAK         CAI         NAF         NAB     180.000     5.0     2
+428             sp2_sp3_2         NAC         CAG         CAJ         CAM     -90.000    10.0     6
+428            sp2_sp2_10         CAD         CAH         CAI         OAK     180.000     5.0     2
+428            sp2_sp2_17         CAH         CAI         OAK        HOAK     180.000     5.0     2
+428            sp3_sp3_10         CAM         CAJ         CAL        H1AL     180.000    10.0     3
+428             sp3_sp3_4         CAL         CAJ         CAM        H1AM      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+428    chir_1    CAJ    CAG    CAM    CAL    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+428    plan-1         CAA   0.020
+428    plan-1         CAD   0.020
+428    plan-1         CAE   0.020
+428    plan-1         CAG   0.020
+428    plan-1         CAH   0.020
+428    plan-1         CAI   0.020
+428    plan-1         CAJ   0.020
+428    plan-1         HAD   0.020
+428    plan-1         HAE   0.020
+428    plan-1         HAH   0.020
+428    plan-1         NAB   0.020
+428    plan-1         NAC   0.020
+428    plan-1         NAF   0.020
+428    plan-1         OAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+428 SMILES_CANONICAL               CACTVS 3.352                                                       CC(C)c1cn2nc(O)ccc2n1
+428           SMILES               CACTVS 3.352                                                       CC(C)c1cn2nc(O)ccc2n1
+428 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                     CC(C)c1cn2c(n1)ccc(n2)O
+428           SMILES "OpenEye OEToolkits" 1.7.0                                                     CC(C)c1cn2c(n1)ccc(n2)O
+428            InChI                InChI  1.03 InChI=1S/C9H11N3O/c1-6(2)7-5-12-8(10-7)3-4-9(13)11-12/h3-6H,1-2H3,(H,11,13)
+428         InChIKey                InChI  1.03                                                 QAOPIBXTQUXLFU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+428 acedrg               243         "dictionary generator"                  
+428 acedrg_database      11          "data source"                           
+428 rdkit                2017.03.2   "Chemoinformatics tool"
+428 refmac5              5.8.0238    "optimization tool"                     

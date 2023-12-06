@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+17U     17U      (3S,4S)-4-amino-2,6-dimethylhept-1-en-3-ol     NON-POLYMER     30     11     .     
+#
+data_comp_17U
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+17U     N3      N       NT2     0       61.514      -136.942    41.600      
+17U     C11     C       CH1     0       62.822      -136.386    41.998      
+17U     C16     C       CH1     0       63.401      -137.057    43.269      
+17U     O6      O       OH1     0       62.539      -136.951    44.403      
+17U     C17     C       C       0       63.735      -138.508    42.984      
+17U     C23     C       CH3     0       65.163      -138.800    42.632      
+17U     C18     C       C2      0       62.814      -139.457    43.040      
+17U     C12     C       CH2     0       62.727      -134.861    42.140      
+17U     C13     C       CH1     0       64.026      -134.089    41.890      
+17U     C15     C       CH3     0       64.310      -133.949    40.397      
+17U     C14     C       CH3     0       63.983      -132.719    42.558      
+17U     H12     H       H       0       60.853      -136.553    42.048      
+17U     H2      H       H       0       61.375      -136.793    40.736      
+17U     H13     H       H       0       63.453      -136.572    41.265      
+17U     H14     H       H       0       64.244      -136.592    43.491      
+17U     H15     H       H       0       61.785      -136.616    44.214      
+17U     H16     H       H       0       65.577      -138.011    42.244      
+17U     H17     H       H       0       65.198      -139.527    41.989      
+17U     H18     H       H       0       65.651      -139.057    43.432      
+17U     H19     H       H       0       61.914      -139.244    43.251      
+17U     H20     H       H       0       63.050      -140.360    42.867      
+17U     H21     H       H       0       62.412      -134.653    43.046      
+17U     H22     H       H       0       62.048      -134.534    41.512      
+17U     H23     H       H       0       64.769      -134.601    42.294      
+17U     H24     H       H       0       63.957      -134.720    39.921      
+17U     H25     H       H       0       65.271      -133.894    40.255      
+17U     H26     H       H       0       63.887      -133.140    40.058      
+17U     H27     H       H       0       63.108      -132.316    42.416      
+17U     H28     H       H       0       64.669      -132.146    42.174      
+17U     H29     H       H       0       64.142      -132.819    43.512      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+17U         C13         C15      SINGLE       n     1.521  0.0151     1.521  0.0151
+17U          N3         C11      SINGLE       n     1.473  0.0130     1.473  0.0130
+17U         C17         C23      SINGLE       n     1.499  0.0100     1.499  0.0100
+17U         C11         C12      SINGLE       n     1.527  0.0173     1.527  0.0173
+17U         C11         C16      SINGLE       n     1.536  0.0180     1.536  0.0180
+17U         C13         C14      SINGLE       n     1.521  0.0151     1.521  0.0151
+17U         C12         C13      SINGLE       n     1.527  0.0183     1.527  0.0183
+17U         C17         C18      DOUBLE       n     1.320  0.0153     1.320  0.0153
+17U         C16         C17      SINGLE       n     1.512  0.0100     1.512  0.0100
+17U         C16          O6      SINGLE       n     1.419  0.0162     1.419  0.0162
+17U          N3         H12      SINGLE       n     1.036  0.0160     0.888  0.0200
+17U          N3          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+17U         C11         H13      SINGLE       n     1.089  0.0100     0.985  0.0149
+17U         C16         H14      SINGLE       n     1.089  0.0100     0.988  0.0129
+17U          O6         H15      SINGLE       n     0.970  0.0120     0.848  0.0200
+17U         C23         H16      SINGLE       n     1.089  0.0100     0.971  0.0140
+17U         C23         H17      SINGLE       n     1.089  0.0100     0.971  0.0140
+17U         C23         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+17U         C18         H19      SINGLE       n     1.082  0.0130     0.949  0.0200
+17U         C18         H20      SINGLE       n     1.082  0.0130     0.949  0.0200
+17U         C12         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+17U         C12         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+17U         C13         H23      SINGLE       n     1.089  0.0100     0.989  0.0162
+17U         C15         H24      SINGLE       n     1.089  0.0100     0.973  0.0146
+17U         C15         H25      SINGLE       n     1.089  0.0100     0.973  0.0146
+17U         C15         H26      SINGLE       n     1.089  0.0100     0.973  0.0146
+17U         C14         H27      SINGLE       n     1.089  0.0100     0.973  0.0146
+17U         C14         H28      SINGLE       n     1.089  0.0100     0.973  0.0146
+17U         C14         H29      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+17U         C11          N3         H12     109.715    3.00
+17U         C11          N3          H2     109.715    3.00
+17U         H12          N3          H2     107.559    3.00
+17U          N3         C11         C12     110.129    2.63
+17U          N3         C11         C16     111.883    2.59
+17U          N3         C11         H13     107.944    1.55
+17U         C12         C11         C16     111.094    2.85
+17U         C12         C11         H13     107.815    1.50
+17U         C16         C11         H13     107.549    1.55
+17U         C11         C16         C17     111.511    2.91
+17U         C11         C16          O6     110.423    2.15
+17U         C11         C16         H14     108.277    1.50
+17U         C17         C16          O6     110.737    1.94
+17U         C17         C16         H14     108.257    1.50
+17U          O6         C16         H14     108.675    1.50
+17U         C16          O6         H15     108.894    3.00
+17U         C23         C17         C18     123.027    1.50
+17U         C23         C17         C16     115.681    2.59
+17U         C18         C17         C16     121.292    1.57
+17U         C17         C23         H16     109.724    1.50
+17U         C17         C23         H17     109.724    1.50
+17U         C17         C23         H18     109.724    1.50
+17U         H16         C23         H17     109.342    1.50
+17U         H16         C23         H18     109.342    1.50
+17U         H17         C23         H18     109.342    1.50
+17U         C17         C18         H19     120.283    1.89
+17U         C17         C18         H20     120.283    1.89
+17U         H19         C18         H20     119.434    1.57
+17U         C11         C12         C13     115.419    1.50
+17U         C11         C12         H21     108.489    1.50
+17U         C11         C12         H22     108.489    1.50
+17U         C13         C12         H21     108.478    1.50
+17U         C13         C12         H22     108.478    1.50
+17U         H21         C12         H22     107.542    1.50
+17U         C15         C13         C14     110.507    1.50
+17U         C15         C13         C12     110.880    1.50
+17U         C15         C13         H23     108.052    1.50
+17U         C14         C13         C12     110.880    1.50
+17U         C14         C13         H23     108.052    1.50
+17U         C12         C13         H23     108.053    1.50
+17U         C13         C15         H24     109.488    1.50
+17U         C13         C15         H25     109.488    1.50
+17U         C13         C15         H26     109.488    1.50
+17U         H24         C15         H25     109.411    1.50
+17U         H24         C15         H26     109.411    1.50
+17U         H25         C15         H26     109.411    1.50
+17U         C13         C14         H27     109.488    1.50
+17U         C13         C14         H28     109.488    1.50
+17U         C13         C14         H29     109.488    1.50
+17U         H27         C14         H28     109.411    1.50
+17U         H27         C14         H29     109.411    1.50
+17U         H28         C14         H29     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+17U            sp3_sp3_10         C12         C11          N3         H12     180.000    10.0     3
+17U            sp3_sp3_25          N3         C11         C16         C17     180.000    10.0     3
+17U            sp3_sp3_16          N3         C11         C12         C13     180.000    10.0     3
+17U            sp3_sp3_52         C11         C16          O6         H15     180.000    10.0     3
+17U             sp2_sp3_7         C23         C17         C16         C11       0.000    10.0     6
+17U             sp2_sp3_1         C18         C17         C23         H16       0.000    10.0     6
+17U             sp2_sp2_3         C23         C17         C18         H19       0.000     5.0     2
+17U            sp3_sp3_44         C11         C12         C13         C15     -60.000    10.0     3
+17U            sp3_sp3_34         C15         C13         C14         H27     180.000    10.0     3
+17U             sp3_sp3_4         C14         C13         C15         H24      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+17U    chir_1    C11    N3    C16    C12    positive
+17U    chir_2    C16    O6    C11    C17    positive
+17U    chir_3    C13    C12    C15    C14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+17U    plan-1         C16   0.020
+17U    plan-1         C17   0.020
+17U    plan-1         C18   0.020
+17U    plan-1         C23   0.020
+17U    plan-2         C17   0.020
+17U    plan-2         C18   0.020
+17U    plan-2         H19   0.020
+17U    plan-2         H20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+17U           SMILES              ACDLabs 12.01                                                              OC(C(=C)\C)C(N)CC(C)C
+17U            InChI                InChI  1.03 InChI=1S/C9H19NO/c1-6(2)5-8(10)9(11)7(3)4/h6,8-9,11H,3,5,10H2,1-2,4H3/t8-,9-/m0/s1
+17U         InChIKey                InChI  1.03                                                        OCYCPKJWRSNASS-IUCAKERBSA-N
+17U SMILES_CANONICAL               CACTVS 3.370                                                      CC(C)C[C@H](N)[C@@H](O)C(C)=C
+17U           SMILES               CACTVS 3.370                                                         CC(C)C[CH](N)[CH](O)C(C)=C
+17U SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                      CC(C)C[C@@H]([C@H](C(=C)C)O)N
+17U           SMILES "OpenEye OEToolkits" 1.7.6                                                               CC(C)CC(C(C(=C)C)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+17U acedrg               243         "dictionary generator"                  
+17U acedrg_database      11          "data source"                           
+17U rdkit                2017.03.2   "Chemoinformatics tool"
+17U refmac5              5.8.0238    "optimization tool"                     

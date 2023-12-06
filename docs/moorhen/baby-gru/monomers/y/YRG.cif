@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YRG     YRG      "(2S)-2-(4-chlorophenoxy)-3-phenylpropanoic acid"     NON-POLYMER     31     19     .     
+#
+data_comp_YRG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YRG     CAK     C       CR16    0       20.296      65.908      18.707      
+YRG     CAI     C       CR16    0       20.918      67.125      18.469      
+YRG     CAP     C       CR6     0       22.024      67.177      17.649      
+YRG     CLAC    CL      CL      0       22.800      68.706      17.353      
+YRG     CAJ     C       CR16    0       22.525      66.037      17.061      
+YRG     CAL     C       CR16    0       21.907      64.817      17.295      
+YRG     CAR     C       CR6     0       20.787      64.742      18.117      
+YRG     OAN     O       O2      0       20.286      63.460      18.260      
+YRG     CAS     C       CH1     0       19.027      63.226      18.933      
+YRG     CAO     C       C       0       19.201      63.265      20.451      
+YRG     OAB     O       OC      -1      18.362      63.888      21.131      
+YRG     OAA     O       O       0       20.173      62.672      20.961      
+YRG     CAM     C       CH2     0       18.514      61.844      18.511      
+YRG     CAQ     C       CR6     0       18.182      61.768      17.041      
+YRG     CAG     C       CR16    0       17.072      62.431      16.527      
+YRG     CAE     C       CR16    0       16.764      62.359      15.174      
+YRG     CAD     C       CR16    0       17.559      61.624      14.320      
+YRG     CAF     C       CR16    0       18.661      60.960      14.814      
+YRG     CAH     C       CR16    0       18.972      61.030      16.166      
+YRG     HAK     H       H       0       19.541      65.878      19.267      
+YRG     HAI     H       H       0       20.585      67.909      18.864      
+YRG     HAJ     H       H       0       23.279      66.084      16.504      
+YRG     HAL     H       H       0       22.249      64.036      16.893      
+YRG     HAS     H       H       0       18.376      63.899      18.664      
+YRG     HAM     H       H       0       17.710      61.631      19.031      
+YRG     HAMA    H       H       0       19.198      61.173      18.723      
+YRG     HAG     H       H       0       16.524      62.936      17.106      
+YRG     HAE     H       H       0       16.009      62.815      14.840      
+YRG     HAD     H       H       0       17.349      61.577      13.401      
+YRG     HAF     H       H       0       19.207      60.456      14.231      
+YRG     HAH     H       H       0       19.729      60.572      16.495      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YRG         CAK         CAR      DOUBLE       y     1.386  0.0109     1.386  0.0109
+YRG         CAK         CAI      SINGLE       y     1.384  0.0100     1.384  0.0100
+YRG         CAI         CAP      DOUBLE       y     1.375  0.0100     1.375  0.0100
+YRG         CAP         CAJ      SINGLE       y     1.375  0.0100     1.375  0.0100
+YRG         CAP        CLAC      SINGLE       n     1.741  0.0100     1.741  0.0100
+YRG         CAJ         CAL      DOUBLE       y     1.384  0.0100     1.384  0.0100
+YRG         CAL         CAR      SINGLE       y     1.386  0.0109     1.386  0.0109
+YRG         CAR         OAN      SINGLE       n     1.378  0.0100     1.378  0.0100
+YRG         OAN         CAS      SINGLE       n     1.434  0.0185     1.434  0.0185
+YRG         CAS         CAM      SINGLE       n     1.531  0.0200     1.531  0.0200
+YRG         CAS         CAO      SINGLE       n     1.526  0.0200     1.526  0.0200
+YRG         CAO         OAA      DOUBLE       n     1.247  0.0187     1.247  0.0187
+YRG         CAO         OAB      SINGLE       n     1.247  0.0187     1.247  0.0187
+YRG         CAM         CAQ      SINGLE       n     1.509  0.0100     1.509  0.0100
+YRG         CAQ         CAH      SINGLE       y     1.385  0.0111     1.385  0.0111
+YRG         CAQ         CAG      DOUBLE       y     1.385  0.0111     1.385  0.0111
+YRG         CAG         CAE      SINGLE       y     1.386  0.0100     1.386  0.0100
+YRG         CAE         CAD      DOUBLE       y     1.374  0.0127     1.374  0.0127
+YRG         CAD         CAF      SINGLE       y     1.374  0.0127     1.374  0.0127
+YRG         CAF         CAH      DOUBLE       y     1.386  0.0100     1.386  0.0100
+YRG         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0200
+YRG         CAI         HAI      SINGLE       n     1.082  0.0130     0.939  0.0186
+YRG         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.939  0.0186
+YRG         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0200
+YRG         CAS         HAS      SINGLE       n     1.089  0.0100     0.974  0.0160
+YRG         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0169
+YRG         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0169
+YRG         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0174
+YRG         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0175
+YRG         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0161
+YRG         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0175
+YRG         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YRG         CAR         CAK         CAI     119.810    1.50
+YRG         CAR         CAK         HAK     120.258    1.50
+YRG         CAI         CAK         HAK     119.933    1.50
+YRG         CAK         CAI         CAP     119.548    1.50
+YRG         CAK         CAI         HAI     120.148    1.50
+YRG         CAP         CAI         HAI     120.304    1.50
+YRG         CAI         CAP         CAJ     121.356    1.50
+YRG         CAI         CAP        CLAC     119.322    1.50
+YRG         CAJ         CAP        CLAC     119.322    1.50
+YRG         CAP         CAJ         CAL     119.548    1.50
+YRG         CAP         CAJ         HAJ     120.304    1.50
+YRG         CAL         CAJ         HAJ     120.148    1.50
+YRG         CAJ         CAL         CAR     119.810    1.50
+YRG         CAJ         CAL         HAL     119.933    1.50
+YRG         CAR         CAL         HAL     120.258    1.50
+YRG         CAK         CAR         CAL     119.928    1.50
+YRG         CAK         CAR         OAN     120.036    3.00
+YRG         CAL         CAR         OAN     120.036    3.00
+YRG         CAR         OAN         CAS     117.287    1.50
+YRG         OAN         CAS         CAM     107.754    2.90
+YRG         OAN         CAS         CAO     110.354    2.51
+YRG         OAN         CAS         HAS     109.515    1.50
+YRG         CAM         CAS         CAO     111.511    2.91
+YRG         CAM         CAS         HAS     109.155    1.50
+YRG         CAO         CAS         HAS     109.227    1.50
+YRG         CAS         CAO         OAA     118.654    3.00
+YRG         CAS         CAO         OAB     118.654    3.00
+YRG         OAA         CAO         OAB     122.692    1.50
+YRG         CAS         CAM         CAQ     111.525    1.84
+YRG         CAS         CAM         HAM     108.687    1.50
+YRG         CAS         CAM        HAMA     108.687    1.50
+YRG         CAQ         CAM         HAM     108.813    1.50
+YRG         CAQ         CAM        HAMA     108.813    1.50
+YRG         HAM         CAM        HAMA     107.755    1.50
+YRG         CAM         CAQ         CAH     120.970    1.50
+YRG         CAM         CAQ         CAG     120.970    1.50
+YRG         CAH         CAQ         CAG     118.060    1.50
+YRG         CAQ         CAG         CAE     120.624    1.50
+YRG         CAQ         CAG         HAG     119.591    1.50
+YRG         CAE         CAG         HAG     119.786    1.50
+YRG         CAG         CAE         CAD     120.325    1.50
+YRG         CAG         CAE         HAE     119.792    1.50
+YRG         CAD         CAE         HAE     119.883    1.50
+YRG         CAE         CAD         CAF     120.043    1.50
+YRG         CAE         CAD         HAD     119.979    1.50
+YRG         CAF         CAD         HAD     119.979    1.50
+YRG         CAD         CAF         CAH     120.325    1.50
+YRG         CAD         CAF         HAF     119.883    1.50
+YRG         CAH         CAF         HAF     119.792    1.50
+YRG         CAQ         CAH         CAF     120.624    1.50
+YRG         CAQ         CAH         HAH     119.591    1.50
+YRG         CAF         CAH         HAH     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YRG              const_41         CAP         CAI         CAK         CAR       0.000    10.0     2
+YRG              const_22         CAI         CAK         CAR         OAN     180.000    10.0     2
+YRG             sp2_sp3_8         CAH         CAQ         CAM         CAS     -90.000    10.0     6
+YRG              const_46         CAE         CAG         CAQ         CAM     180.000    10.0     2
+YRG       const_sp2_sp2_2         CAF         CAH         CAQ         CAM     180.000     5.0     2
+YRG              const_17         CAD         CAE         CAG         CAQ       0.000    10.0     2
+YRG              const_13         CAF         CAD         CAE         CAG       0.000    10.0     2
+YRG       const_sp2_sp2_9         CAE         CAD         CAF         CAH       0.000     5.0     2
+YRG       const_sp2_sp2_5         CAD         CAF         CAH         CAQ       0.000     5.0     2
+YRG              const_38         CAK         CAI         CAP        CLAC     180.000    10.0     2
+YRG              const_34         CAL         CAJ         CAP        CLAC     180.000    10.0     2
+YRG              const_29         CAP         CAJ         CAL         CAR       0.000    10.0     2
+YRG              const_26         CAJ         CAL         CAR         OAN     180.000    10.0     2
+YRG             sp2_sp2_1         CAK         CAR         OAN         CAS     180.000     5.0     2
+YRG             sp3_sp3_1         CAM         CAS         OAN         CAR     180.000    10.0     3
+YRG             sp3_sp3_4         CAQ         CAM         CAS         OAN     180.000    10.0     3
+YRG             sp2_sp3_1         OAA         CAO         CAS         OAN       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YRG    chir_1    CAS    OAN    CAO    CAM    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YRG    plan-1         CAI   0.020
+YRG    plan-1         CAJ   0.020
+YRG    plan-1         CAK   0.020
+YRG    plan-1         CAL   0.020
+YRG    plan-1         CAP   0.020
+YRG    plan-1         CAR   0.020
+YRG    plan-1        CLAC   0.020
+YRG    plan-1         HAI   0.020
+YRG    plan-1         HAJ   0.020
+YRG    plan-1         HAK   0.020
+YRG    plan-1         HAL   0.020
+YRG    plan-1         OAN   0.020
+YRG    plan-2         CAD   0.020
+YRG    plan-2         CAE   0.020
+YRG    plan-2         CAF   0.020
+YRG    plan-2         CAG   0.020
+YRG    plan-2         CAH   0.020
+YRG    plan-2         CAM   0.020
+YRG    plan-2         CAQ   0.020
+YRG    plan-2         HAD   0.020
+YRG    plan-2         HAE   0.020
+YRG    plan-2         HAF   0.020
+YRG    plan-2         HAG   0.020
+YRG    plan-2         HAH   0.020
+YRG    plan-3         CAO   0.020
+YRG    plan-3         CAS   0.020
+YRG    plan-3         OAA   0.020
+YRG    plan-3         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YRG           SMILES              ACDLabs 10.04                                                                               Clc2ccc(OC(C(=O)O)Cc1ccccc1)cc2
+YRG SMILES_CANONICAL               CACTVS 3.341                                                                           OC(=O)[C@H](Cc1ccccc1)Oc2ccc(Cl)cc2
+YRG           SMILES               CACTVS 3.341                                                                            OC(=O)[CH](Cc1ccccc1)Oc2ccc(Cl)cc2
+YRG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        c1ccc(cc1)C[C@@H](C(=O)O)Oc2ccc(cc2)Cl
+YRG           SMILES "OpenEye OEToolkits" 1.5.0                                                                             c1ccc(cc1)CC(C(=O)O)Oc2ccc(cc2)Cl
+YRG            InChI                InChI  1.03 InChI=1S/C15H13ClO3/c16-12-6-8-13(9-7-12)19-14(15(17)18)10-11-4-2-1-3-5-11/h1-9,14H,10H2,(H,17,18)/t14-/m0/s1
+YRG         InChIKey                InChI  1.03                                                                                   CPBLTMSKPQDJPW-AWEZNQCLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YRG acedrg               243         "dictionary generator"                  
+YRG acedrg_database      11          "data source"                           
+YRG rdkit                2017.03.2   "Chemoinformatics tool"
+YRG refmac5              5.8.0238    "optimization tool"                     

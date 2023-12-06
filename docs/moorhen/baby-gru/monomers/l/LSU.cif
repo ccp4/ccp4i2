@@ -1,0 +1,345 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LSU     LSU      "5'-O-(N-(L-Leucyl)-Sulfamoyl)Uridine"     NON-POLYMER     54     29     .     
+#
+data_comp_LSU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LSU     N       N       NT3     1       -0.442      -3.006      -28.366     
+LSU     CA      C       CH1     0       -1.899      -2.819      -28.619     
+LSU     C       C       C       0       -2.664      -3.968      -27.963     
+LSU     O       O       O       0       -3.520      -3.736      -27.111     
+LSU     CB      C       CH2     0       -2.176      -2.782      -30.129     
+LSU     CG      C       CH1     0       -1.595      -1.591      -30.892     
+LSU     CD1     C       CH3     0       -2.229      -0.273      -30.451     
+LSU     CD2     C       CH3     0       -1.754      -1.794      -32.394     
+LSU     "C1'"   C       CH1     0       -8.106      -5.621      -29.372     
+LSU     C2      C       CR6     0       -10.260     -6.280      -28.338     
+LSU     "C2'"   C       CH1     0       -7.341      -4.397      -28.873     
+LSU     "C3'"   C       CH1     0       -6.248      -4.267      -29.945     
+LSU     C4      C       CR6     0       -10.283     -7.627      -26.264     
+LSU     "C4'"   C       CH1     0       -6.034      -5.711      -30.438     
+LSU     C5      C       CR16    0       -8.848      -7.618      -26.290     
+LSU     "C5'"   C       CH2     0       -4.719      -6.341      -30.035     
+LSU     C6      C       CR16    0       -8.207      -6.977      -27.283     
+LSU     N1      N       NR6     0       -8.868      -6.316      -28.300     
+LSU     N3      N       NR6     0       -10.885     -6.946      -27.308     
+LSU     N3S     N       NH1     0       -2.360      -5.212      -28.365     
+LSU     O1S     O       O       0       -2.573      -7.669      -28.586     
+LSU     O2      O       O       0       -10.904     -5.709      -29.211     
+LSU     "O2'"   O       OH1     0       -8.222      -3.294      -28.816     
+LSU     O2S     O       O       0       -3.344      -6.581      -26.523     
+LSU     "O3'"   O       OH1     0       -6.638      -3.421      -31.021     
+LSU     O4      O       O       0       -10.985     -8.175      -25.413     
+LSU     "O4'"   O       O2      0       -7.125      -6.493      -29.884     
+LSU     "O5'"   O       O2      0       -4.614      -6.378      -28.575     
+LSU     S       S       S3      0       -3.188      -6.570      -27.933     
+LSU     H1      H       H       0       -0.294      -3.255      -27.501     
+LSU     H2      H       H       0       -0.010      -2.218      -28.515     
+LSU     H3      H       H       0       -0.092      -3.639      -28.919     
+LSU     H4      H       H       0       -2.187      -1.971      -28.211     
+LSU     H5      H       H       0       -3.145      -2.789      -30.263     
+LSU     H6      H       H       0       -1.823      -3.603      -30.526     
+LSU     H7      H       H       0       -0.627      -1.545      -30.694     
+LSU     H8      H       H       0       -3.013      -0.451      -29.903     
+LSU     H9      H       H       0       -2.493      0.245       -31.231     
+LSU     H10     H       H       0       -1.583      0.237       -29.931     
+LSU     H11     H       H       0       -1.333      -1.056      -32.868     
+LSU     H12     H       H       0       -2.700      -1.825      -32.618     
+LSU     H13     H       H       0       -1.331      -2.630      -32.656     
+LSU     H14     H       H       0       -8.706      -5.357      -30.101     
+LSU     H15     H       H       0       -6.943      -4.567      -27.997     
+LSU     H16     H       H       0       -5.413      -3.925      -29.531     
+LSU     H17     H       H       0       -6.103      -5.732      -31.416     
+LSU     H18     H       H       0       -8.363      -8.055      -25.621     
+LSU     H19     H       H       0       -3.983      -5.818      -30.417     
+LSU     H20     H       H       0       -4.671      -7.250      -30.398     
+LSU     H21     H       H       0       -7.269      -6.978      -27.288     
+LSU     H22     H       H       0       -11.775     -6.931      -27.323     
+LSU     H23     H       H       0       -1.682      -5.337      -28.896     
+LSU     H24     H       H       0       -8.789      -3.415      -28.196     
+LSU     H25     H       H       0       -6.683      -2.622      -30.737     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LSU          CG         CD2      SINGLE       n     1.521  0.0151     1.521  0.0151
+LSU       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+LSU          CB          CG      SINGLE       n     1.528  0.0105     1.528  0.0105
+LSU          CG         CD1      SINGLE       n     1.521  0.0151     1.521  0.0151
+LSU       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+LSU       "C4'"       "O4'"      SINGLE       n     1.451  0.0111     1.451  0.0111
+LSU       "C4'"       "C5'"      SINGLE       n     1.511  0.0128     1.511  0.0128
+LSU       "C2'"       "C3'"      SINGLE       n     1.533  0.0109     1.533  0.0109
+LSU       "C1'"       "O4'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+LSU          CA          CB      SINGLE       n     1.533  0.0100     1.533  0.0100
+LSU       "C5'"       "O5'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+LSU       "C1'"       "C2'"      SINGLE       n     1.529  0.0100     1.529  0.0100
+LSU       "C1'"          N1      SINGLE       n     1.476  0.0133     1.476  0.0133
+LSU       "C2'"       "O2'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+LSU          C2          O2      DOUBLE       n     1.224  0.0111     1.224  0.0111
+LSU           N          CA      SINGLE       n     1.488  0.0100     1.488  0.0100
+LSU          CA           C      SINGLE       n     1.526  0.0100     1.526  0.0100
+LSU          C2          N1      SINGLE       y     1.383  0.0100     1.383  0.0100
+LSU          C6          N1      SINGLE       y     1.375  0.0106     1.375  0.0106
+LSU       "O5'"           S      SINGLE       n     1.572  0.0130     1.572  0.0130
+LSU          C2          N3      SINGLE       y     1.372  0.0112     1.372  0.0112
+LSU           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+LSU           C         N3S      SINGLE       n     1.336  0.0126     1.336  0.0126
+LSU         N3S           S      SINGLE       n     1.642  0.0171     1.642  0.0171
+LSU          C5          C6      DOUBLE       y     1.342  0.0100     1.342  0.0100
+LSU         O1S           S      DOUBLE       n     1.418  0.0102     1.418  0.0102
+LSU         O2S           S      DOUBLE       n     1.418  0.0102     1.418  0.0102
+LSU          C4          N3      SINGLE       y     1.381  0.0100     1.381  0.0100
+LSU          C4          C5      SINGLE       y     1.434  0.0100     1.434  0.0100
+LSU          C4          O4      DOUBLE       n     1.231  0.0100     1.231  0.0100
+LSU           N          H1      SINGLE       n     1.036  0.0160     0.911  0.0200
+LSU           N          H2      SINGLE       n     1.036  0.0160     0.911  0.0200
+LSU           N          H3      SINGLE       n     1.036  0.0160     0.911  0.0200
+LSU          CA          H4      SINGLE       n     1.089  0.0100     0.985  0.0200
+LSU          CB          H5      SINGLE       n     1.089  0.0100     0.978  0.0119
+LSU          CB          H6      SINGLE       n     1.089  0.0100     0.978  0.0119
+LSU          CG          H7      SINGLE       n     1.089  0.0100     0.989  0.0162
+LSU         CD1          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSU         CD1          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSU         CD1         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSU         CD2         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSU         CD2         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSU         CD2         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSU       "C1'"         H14      SINGLE       n     1.089  0.0100     0.981  0.0118
+LSU       "C2'"         H15      SINGLE       n     1.089  0.0100     0.978  0.0200
+LSU       "C3'"         H16      SINGLE       n     1.089  0.0100     0.992  0.0200
+LSU       "C4'"         H17      SINGLE       n     1.089  0.0100     0.981  0.0200
+LSU          C5         H18      SINGLE       n     1.082  0.0130     0.935  0.0100
+LSU       "C5'"         H19      SINGLE       n     1.089  0.0100     0.980  0.0101
+LSU       "C5'"         H20      SINGLE       n     1.089  0.0100     0.980  0.0101
+LSU          C6         H21      SINGLE       n     1.082  0.0130     0.938  0.0107
+LSU          N3         H22      SINGLE       n     1.016  0.0100     0.889  0.0200
+LSU         N3S         H23      SINGLE       n     1.016  0.0100     0.872  0.0200
+LSU       "O2'"         H24      SINGLE       n     0.970  0.0120     0.849  0.0200
+LSU       "O3'"         H25      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LSU          CA           N          H1     109.708    3.00
+LSU          CA           N          H2     109.708    3.00
+LSU          CA           N          H3     109.708    3.00
+LSU          H1           N          H2     109.028    2.41
+LSU          H1           N          H3     109.028    2.41
+LSU          H2           N          H3     109.028    2.41
+LSU          CB          CA           N     109.498    1.50
+LSU          CB          CA           C     111.313    1.89
+LSU          CB          CA          H4     109.621    1.50
+LSU           N          CA           C     107.575    1.50
+LSU           N          CA          H4     109.157    1.50
+LSU           C          CA          H4     109.286    1.50
+LSU          CA           C           O     121.161    1.50
+LSU          CA           C         N3S     116.687    1.68
+LSU           O           C         N3S     122.151    1.50
+LSU          CG          CB          CA     115.345    1.50
+LSU          CG          CB          H5     108.478    1.50
+LSU          CG          CB          H6     108.478    1.50
+LSU          CA          CB          H5     108.436    1.50
+LSU          CA          CB          H6     108.436    1.50
+LSU          H5          CB          H6     107.542    1.50
+LSU         CD2          CG          CB     110.880    1.50
+LSU         CD2          CG         CD1     110.507    1.50
+LSU         CD2          CG          H7     108.052    1.50
+LSU          CB          CG         CD1     110.880    1.50
+LSU          CB          CG          H7     108.053    1.50
+LSU         CD1          CG          H7     108.052    1.50
+LSU          CG         CD1          H8     109.488    1.50
+LSU          CG         CD1          H9     109.488    1.50
+LSU          CG         CD1         H10     109.488    1.50
+LSU          H8         CD1          H9     109.411    1.50
+LSU          H8         CD1         H10     109.411    1.50
+LSU          H9         CD1         H10     109.411    1.50
+LSU          CG         CD2         H11     109.488    1.50
+LSU          CG         CD2         H12     109.488    1.50
+LSU          CG         CD2         H13     109.488    1.50
+LSU         H11         CD2         H12     109.411    1.50
+LSU         H11         CD2         H13     109.411    1.50
+LSU         H12         CD2         H13     109.411    1.50
+LSU       "O4'"       "C1'"       "C2'"     106.825    1.50
+LSU       "O4'"       "C1'"          N1     108.667    1.50
+LSU       "O4'"       "C1'"         H14     109.327    1.50
+LSU       "C2'"       "C1'"          N1     112.859    1.50
+LSU       "C2'"       "C1'"         H14     109.776    1.83
+LSU          N1       "C1'"         H14     109.166    1.50
+LSU          O2          C2          N1     122.841    1.50
+LSU          O2          C2          N3     122.311    1.50
+LSU          N1          C2          N3     114.848    1.50
+LSU       "C3'"       "C2'"       "C1'"     101.269    1.50
+LSU       "C3'"       "C2'"       "O2'"     112.861    2.52
+LSU       "C3'"       "C2'"         H15     110.799    1.82
+LSU       "C1'"       "C2'"       "O2'"     109.476    3.00
+LSU       "C1'"       "C2'"         H15     110.760    1.63
+LSU       "O2'"       "C2'"         H15     111.022    1.77
+LSU       "O3'"       "C3'"       "C4'"     111.281    2.46
+LSU       "O3'"       "C3'"       "C2'"     111.993    3.00
+LSU       "O3'"       "C3'"         H16     110.380    1.67
+LSU       "C4'"       "C3'"       "C2'"     102.071    1.50
+LSU       "C4'"       "C3'"         H16     110.452    2.54
+LSU       "C2'"       "C3'"         H16     110.108    1.66
+LSU          N3          C4          C5     114.659    1.50
+LSU          N3          C4          O4     119.401    1.50
+LSU          C5          C4          O4     125.940    1.50
+LSU       "C3'"       "C4'"       "O4'"     104.439    1.50
+LSU       "C3'"       "C4'"       "C5'"     114.866    1.63
+LSU       "C3'"       "C4'"         H17     109.363    1.86
+LSU       "O4'"       "C4'"       "C5'"     109.123    1.50
+LSU       "O4'"       "C4'"         H17     108.698    1.50
+LSU       "C5'"       "C4'"         H17     108.962    1.72
+LSU          C6          C5          C4     119.525    1.50
+LSU          C6          C5         H18     120.325    1.50
+LSU          C4          C5         H18     120.151    1.50
+LSU       "C4'"       "C5'"       "O5'"     108.904    2.44
+LSU       "C4'"       "C5'"         H19     109.496    1.62
+LSU       "C4'"       "C5'"         H20     109.496    1.62
+LSU       "O5'"       "C5'"         H19     110.152    1.50
+LSU       "O5'"       "C5'"         H20     110.152    1.50
+LSU         H19       "C5'"         H20     108.493    1.50
+LSU          N1          C6          C5     122.557    1.50
+LSU          N1          C6         H21     118.477    1.50
+LSU          C5          C6         H21     118.966    1.50
+LSU       "C1'"          N1          C2     117.109    1.50
+LSU       "C1'"          N1          C6     121.471    1.52
+LSU          C2          N1          C6     121.419    1.50
+LSU          C2          N3          C4     126.992    1.50
+LSU          C2          N3         H22     115.772    1.79
+LSU          C4          N3         H22     117.236    1.73
+LSU           C         N3S           S     122.441    2.63
+LSU           C         N3S         H23     119.805    2.55
+LSU           S         N3S         H23     117.753    2.40
+LSU       "C2'"       "O2'"         H24     109.449    1.85
+LSU       "C3'"       "O3'"         H25     108.744    3.00
+LSU       "C4'"       "O4'"       "C1'"     109.578    1.50
+LSU       "C5'"       "O5'"           S     118.000    1.50
+LSU       "O5'"           S         N3S     104.512    2.36
+LSU       "O5'"           S         O1S     106.128    3.00
+LSU       "O5'"           S         O2S     106.128    3.00
+LSU         N3S           S         O1S     106.847    2.16
+LSU         N3S           S         O2S     106.847    2.16
+LSU         O1S           S         O2S     119.943    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LSU            sp3_sp3_88          CB          CA           N          H1     180.000    10.0     3
+LSU            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+LSU            sp3_sp3_85       "C3'"       "C2'"       "O2'"         H24     180.000    10.0     3
+LSU            sp3_sp3_11       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+LSU            sp3_sp3_34       "C4'"       "C3'"       "O3'"         H25     180.000    10.0     3
+LSU              const_15          O4          C4          C5          C6     180.000    10.0     2
+LSU              const_19          O4          C4          N3          C2     180.000    10.0     2
+LSU            sp3_sp3_55       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+LSU             sp3_sp3_5       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+LSU       const_sp2_sp2_9          C4          C5          C6          N1       0.000     5.0     2
+LSU            sp3_sp3_73       "C4'"       "C5'"       "O5'"           S     180.000    10.0     3
+LSU       const_sp2_sp2_6          C5          C6          N1       "C1'"     180.000     5.0     2
+LSU            sp2_sp3_15           C         N3S           S       "O5'"    -120.000    10.0     6
+LSU             sp2_sp3_7           O           C          CA          CB       0.000    10.0     6
+LSU            sp3_sp3_64           N          CA          CB          CG     180.000    10.0     3
+LSU            sp3_sp3_99       "C5'"       "O5'"           S         N3S      60.000    10.0     3
+LSU             sp2_sp2_1          CA           C         N3S           S     180.000     5.0     2
+LSU            sp3_sp3_38          CA          CB          CG         CD2     -60.000    10.0     3
+LSU            sp3_sp3_46          H8         CD1          CG         CD2     180.000    10.0     3
+LSU            sp3_sp3_25         H11         CD2          CG          CB     180.000    10.0     3
+LSU            sp3_sp3_77       "O4'"       "C1'"       "C2'"       "O2'"     -60.000    10.0     3
+LSU             sp2_sp3_1          C2          N1       "C1'"       "O4'"     150.000    10.0     6
+LSU             sp3_sp3_1       "C2'"       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+LSU       const_sp2_sp2_4          O2          C2          N1       "C1'"       0.000     5.0     2
+LSU              const_23          O2          C2          N3          C4     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LSU    chir_1    CA    N    C    CB    positive
+LSU    chir_2    CG    CB    CD2    CD1    both
+LSU    chir_3    "C1'"    "O4'"    N1    "C2'"    negative
+LSU    chir_4    "C2'"    "O2'"    "C1'"    "C3'"    negative
+LSU    chir_5    "C3'"    "O3'"    "C4'"    "C2'"    positive
+LSU    chir_6    "C4'"    "O4'"    "C3'"    "C5'"    negative
+LSU    chir_7    S    O1S    O2S    "O5'"    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LSU    plan-1       "C1'"   0.020
+LSU    plan-1          C2   0.020
+LSU    plan-1          C4   0.020
+LSU    plan-1          C5   0.020
+LSU    plan-1          C6   0.020
+LSU    plan-1         H18   0.020
+LSU    plan-1         H21   0.020
+LSU    plan-1         H22   0.020
+LSU    plan-1          N1   0.020
+LSU    plan-1          N3   0.020
+LSU    plan-1          O2   0.020
+LSU    plan-1          O4   0.020
+LSU    plan-2           C   0.020
+LSU    plan-2          CA   0.020
+LSU    plan-2         N3S   0.020
+LSU    plan-2           O   0.020
+LSU    plan-3           C   0.020
+LSU    plan-3         H23   0.020
+LSU    plan-3         N3S   0.020
+LSU    plan-3           S   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LSU            InChI                InChI  1.03 InChI=1S/C15H24N4O9S/c1-7(2)5-8(16)13(23)18-29(25,26)27-6-9-11(21)12(22)14(28-9)19-4-3-10(20)17-15(19)24/h3-4,7-9,11-12,14,21-22H,5-6,16H2,1-2H3,(H,18,23)(H,17,20,24)/t8-,9+,11+,12+,14+/m0/s1
+LSU         InChIKey                InChI  1.03                                                                                                                                                                     ZSXZGQLSAQIVTI-XKYXEJCGSA-N
+LSU SMILES_CANONICAL               CACTVS 3.385                                                                                                                  CC(C)C[C@H](N)C(=O)N[S](=O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N2C=CC(=O)NC2=O
+LSU           SMILES               CACTVS 3.385                                                                                                                        CC(C)C[CH](N)C(=O)N[S](=O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O)N2C=CC(=O)NC2=O
+LSU SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                CC(C)C[C@@H](C(=O)NS(=O)(=O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)N2C=CC(=O)NC2=O)O)O)N
+LSU           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                       CC(C)CC(C(=O)NS(=O)(=O)OCC1C(C(C(O1)N2C=CC(=O)NC2=O)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LSU acedrg               243         "dictionary generator"                  
+LSU acedrg_database      11          "data source"                           
+LSU rdkit                2017.03.2   "Chemoinformatics tool"
+LSU refmac5              5.8.0238    "optimization tool"                     

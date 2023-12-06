@@ -1,0 +1,445 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VDZ     VDZ      "5-{2-[1-(5-HYDROXY-1,5-DIMETHYL-HEXYL)-7A-METHYL-OCTAHYDRO-INDEN-4-YLIDENE]-ETHYLIDENE}-2-METHYLENE-CYCLOHEXANE-1,3-DIOL"     NON-POLYMER     74     30     .     
+#
+data_comp_VDZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VDZ     O1      O       OH1     0       59.681      5.285       2.656       
+VDZ     C1      C       CH1     0       59.596      6.273       1.632       
+VDZ     C2      C       CR6     0       59.560      7.701       2.150       
+VDZ     C28     C       C2      0       59.314      8.008       3.414       
+VDZ     C3      C       CH1     0       59.786      8.787       1.117       
+VDZ     O2      O       OH1     0       58.587      9.000       0.379       
+VDZ     C4      C       CH2     0       60.915      8.470       0.135       
+VDZ     C10     C       CH2     0       60.767      6.041       0.674       
+VDZ     C5      C       CR6     0       60.803      7.076       -0.424      
+VDZ     C6      C       C1      0       60.732      6.823       -1.757      
+VDZ     C7      C       C1      0       60.608      5.585       -2.372      
+VDZ     C8      C       CR6     0       61.079      5.221       -3.574      
+VDZ     C9      C       CH2     0       61.910      6.092       -4.485      
+VDZ     C11     C       CH2     0       63.111      5.341       -5.073      
+VDZ     C14     C       CH1     0       60.749      3.884       -4.203      
+VDZ     C13     C       CT      0       61.986      3.077       -4.704      
+VDZ     C12     C       CH2     0       62.724      3.993       -5.684      
+VDZ     C18     C       CH3     0       62.921      2.666       -3.548      
+VDZ     C15     C       CH2     0       59.916      2.834       -3.481      
+VDZ     C16     C       CH2     0       60.080      1.583       -4.362      
+VDZ     C17     C       CH1     0       61.287      1.821       -5.316      
+VDZ     C20     C       CH1     0       62.067      0.520       -5.598      
+VDZ     C21     C       CH3     0       61.195      -0.573      -6.221      
+VDZ     C22     C       CH2     0       63.299      0.796       -6.482      
+VDZ     C23     C       CH2     0       64.010      -0.411      -7.066      
+VDZ     C24     C       CH2     0       65.411      -0.092      -7.588      
+VDZ     C25     C       CT      0       66.256      -1.263      -8.092      
+VDZ     C26     C       CH3     0       67.474      -0.778      -8.870      
+VDZ     C27     C       CH3     0       66.665      -2.189      -6.955      
+VDZ     O3      O       OH1     0       65.456      -2.064      -8.985      
+VDZ     HO1     H       H       0       60.390      5.388       3.103       
+VDZ     H1      H       H       0       58.759      6.112       1.146       
+VDZ     H281    H       H       0       59.313      8.901       3.692       
+VDZ     H282    H       H       0       59.128      7.339       4.040       
+VDZ     H3      H       H       0       59.998      9.624       1.584       
+VDZ     HO2     H       H       0       58.643      9.734       -0.032      
+VDZ     H41     H       H       0       61.773      8.566       0.594       
+VDZ     H42     H       H       0       60.893      9.120       -0.595      
+VDZ     H101    H       H       0       60.694      5.145       0.293       
+VDZ     H102    H       H       0       61.604      6.080       1.179       
+VDZ     H6      H       H       0       60.752      7.571       -2.325      
+VDZ     H7      H       H       0       60.125      4.929       -1.908      
+VDZ     H91     H       H       0       61.352      6.414       -5.210      
+VDZ     H92     H       H       0       62.235      6.862       -3.994      
+VDZ     H111    H       H       0       63.774      5.200       -4.373      
+VDZ     H112    H       H       0       63.523      5.893       -5.761      
+VDZ     H14     H       H       0       60.238      4.095       -5.012      
+VDZ     H121    H       H       0       63.541      3.547       -6.001      
+VDZ     H122    H       H       0       62.150      4.153       -6.472      
+VDZ     H181    H       H       0       62.560      1.889       -3.087      
+VDZ     H182    H       H       0       63.013      3.398       -2.917      
+VDZ     H183    H       H       0       63.799      2.444       -3.904      
+VDZ     H151    H       H       0       58.986      3.105       -3.427      
+VDZ     H152    H       H       0       60.250      2.677       -2.584      
+VDZ     H161    H       H       0       59.266      1.428       -4.883      
+VDZ     H162    H       H       0       60.242      0.796       -3.804      
+VDZ     H17     H       H       0       60.911      2.114       -6.180      
+VDZ     H20     H       H       0       62.394      0.176       -4.735      
+VDZ     H211    H       H       0       61.593      -1.444      -6.050      
+VDZ     H212    H       H       0       61.134      -0.432      -7.182      
+VDZ     H213    H       H       0       60.303      -0.553      -5.839      
+VDZ     H221    H       H       0       63.952      1.291       -5.947      
+VDZ     H222    H       H       0       63.020      1.375       -7.223      
+VDZ     H231    H       H       0       63.472      -0.771      -7.803      
+VDZ     H232    H       H       0       64.072      -1.105      -6.376      
+VDZ     H241    H       H       0       65.905      0.354       -6.868      
+VDZ     H242    H       H       0       65.316      0.556       -8.318      
+VDZ     H261    H       H       0       67.304      -0.853      -9.825      
+VDZ     H262    H       H       0       68.249      -1.316      -8.638      
+VDZ     H263    H       H       0       67.651      0.152       -8.647      
+VDZ     H271    H       H       0       65.870      -2.576      -6.553      
+VDZ     H272    H       H       0       67.154      -1.680      -6.287      
+VDZ     H273    H       H       0       67.229      -2.899      -7.303      
+VDZ     HO3     H       H       0       65.092      -1.572      -9.574      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VDZ          O1          C1      SINGLE       n     1.424  0.0100     1.424  0.0100
+VDZ          C1          C2      SINGLE       n     1.509  0.0131     1.509  0.0131
+VDZ          C1         C10      SINGLE       n     1.523  0.0173     1.523  0.0173
+VDZ          C2         C28      DOUBLE       n     1.321  0.0103     1.321  0.0103
+VDZ          C2          C3      SINGLE       n     1.509  0.0131     1.509  0.0131
+VDZ          C3          O2      SINGLE       n     1.424  0.0100     1.424  0.0100
+VDZ          C3          C4      SINGLE       n     1.523  0.0173     1.523  0.0173
+VDZ          C4          C5      SINGLE       n     1.504  0.0130     1.504  0.0130
+VDZ         C10          C5      SINGLE       n     1.504  0.0130     1.504  0.0130
+VDZ          C5          C6      DOUBLE       n     1.342  0.0200     1.342  0.0200
+VDZ          C6          C7      SINGLE       n     1.376  0.0200     1.376  0.0200
+VDZ          C7          C8      DOUBLE       n     1.334  0.0110     1.334  0.0110
+VDZ          C8          C9      SINGLE       n     1.504  0.0100     1.504  0.0100
+VDZ          C8         C14      SINGLE       n     1.506  0.0107     1.506  0.0107
+VDZ          C9         C11      SINGLE       n     1.532  0.0100     1.532  0.0100
+VDZ         C11         C12      SINGLE       n     1.527  0.0100     1.527  0.0100
+VDZ         C14         C13      SINGLE       n     1.554  0.0100     1.554  0.0100
+VDZ         C14         C15      SINGLE       n     1.522  0.0100     1.522  0.0100
+VDZ         C13         C12      SINGLE       n     1.528  0.0100     1.528  0.0100
+VDZ         C13         C18      SINGLE       n     1.537  0.0100     1.537  0.0100
+VDZ         C13         C17      SINGLE       n     1.555  0.0100     1.555  0.0100
+VDZ         C15         C16      SINGLE       n     1.540  0.0100     1.540  0.0100
+VDZ         C16         C17      SINGLE       n     1.553  0.0100     1.553  0.0100
+VDZ         C17         C20      SINGLE       n     1.535  0.0100     1.535  0.0100
+VDZ         C20         C21      SINGLE       n     1.526  0.0100     1.526  0.0100
+VDZ         C20         C22      SINGLE       n     1.536  0.0100     1.536  0.0100
+VDZ         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+VDZ         C23         C24      SINGLE       n     1.527  0.0105     1.527  0.0105
+VDZ         C24         C25      SINGLE       n     1.526  0.0100     1.526  0.0100
+VDZ         C25         C26      SINGLE       n     1.520  0.0101     1.520  0.0101
+VDZ         C25         C27      SINGLE       n     1.520  0.0101     1.520  0.0101
+VDZ         C25          O3      SINGLE       n     1.437  0.0141     1.437  0.0141
+VDZ          O1         HO1      SINGLE       n     0.970  0.0120     0.843  0.0200
+VDZ          C1          H1      SINGLE       n     1.089  0.0100     0.981  0.0200
+VDZ         C28        H281      SINGLE       n     1.082  0.0130     0.935  0.0139
+VDZ         C28        H282      SINGLE       n     1.082  0.0130     0.935  0.0139
+VDZ          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0200
+VDZ          O2         HO2      SINGLE       n     0.970  0.0120     0.843  0.0200
+VDZ          C4         H41      SINGLE       n     1.089  0.0100     0.978  0.0152
+VDZ          C4         H42      SINGLE       n     1.089  0.0100     0.978  0.0152
+VDZ         C10        H101      SINGLE       n     1.089  0.0100     0.978  0.0152
+VDZ         C10        H102      SINGLE       n     1.089  0.0100     0.978  0.0152
+VDZ          C6          H6      SINGLE       n     1.082  0.0130     0.940  0.0103
+VDZ          C7          H7      SINGLE       n     1.082  0.0130     0.940  0.0103
+VDZ          C9         H91      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDZ          C9         H92      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDZ         C11        H111      SINGLE       n     1.089  0.0100     0.974  0.0100
+VDZ         C11        H112      SINGLE       n     1.089  0.0100     0.974  0.0100
+VDZ         C14         H14      SINGLE       n     1.089  0.0100     0.980  0.0100
+VDZ         C12        H121      SINGLE       n     1.089  0.0100     0.988  0.0200
+VDZ         C12        H122      SINGLE       n     1.089  0.0100     0.988  0.0200
+VDZ         C18        H181      SINGLE       n     1.089  0.0100     0.974  0.0200
+VDZ         C18        H182      SINGLE       n     1.089  0.0100     0.974  0.0200
+VDZ         C18        H183      SINGLE       n     1.089  0.0100     0.974  0.0200
+VDZ         C15        H151      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDZ         C15        H152      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDZ         C16        H161      SINGLE       n     1.089  0.0100     0.978  0.0141
+VDZ         C16        H162      SINGLE       n     1.089  0.0100     0.978  0.0141
+VDZ         C17         H17      SINGLE       n     1.089  0.0100     0.986  0.0165
+VDZ         C20         H20      SINGLE       n     1.089  0.0100     0.986  0.0200
+VDZ         C21        H211      SINGLE       n     1.089  0.0100     0.973  0.0146
+VDZ         C21        H212      SINGLE       n     1.089  0.0100     0.973  0.0146
+VDZ         C21        H213      SINGLE       n     1.089  0.0100     0.973  0.0146
+VDZ         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0160
+VDZ         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0160
+VDZ         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+VDZ         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+VDZ         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0160
+VDZ         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0160
+VDZ         C26        H261      SINGLE       n     1.089  0.0100     0.972  0.0148
+VDZ         C26        H262      SINGLE       n     1.089  0.0100     0.972  0.0148
+VDZ         C26        H263      SINGLE       n     1.089  0.0100     0.972  0.0148
+VDZ         C27        H271      SINGLE       n     1.089  0.0100     0.972  0.0148
+VDZ         C27        H272      SINGLE       n     1.089  0.0100     0.972  0.0148
+VDZ         C27        H273      SINGLE       n     1.089  0.0100     0.972  0.0148
+VDZ          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VDZ          C1          O1         HO1     109.127    2.79
+VDZ          O1          C1          C2     110.376    2.91
+VDZ          O1          C1         C10     109.247    2.43
+VDZ          O1          C1          H1     107.694    1.50
+VDZ          C2          C1         C10     112.021    2.38
+VDZ          C2          C1          H1     108.363    1.50
+VDZ         C10          C1          H1     109.200    1.50
+VDZ          C1          C2         C28     121.696    2.01
+VDZ          C1          C2          C3     116.608    1.99
+VDZ         C28          C2          C3     121.696    2.01
+VDZ          C2         C28        H281     120.214    1.50
+VDZ          C2         C28        H282     120.214    1.50
+VDZ        H281         C28        H282     119.572    2.66
+VDZ          C2          C3          O2     110.376    2.91
+VDZ          C2          C3          C4     112.021    2.38
+VDZ          C2          C3          H3     108.363    1.50
+VDZ          O2          C3          C4     109.247    2.43
+VDZ          O2          C3          H3     107.694    1.50
+VDZ          C4          C3          H3     109.200    1.50
+VDZ          C3          O2         HO2     109.127    2.79
+VDZ          C3          C4          C5     112.021    2.38
+VDZ          C3          C4         H41     109.200    1.50
+VDZ          C3          C4         H42     109.200    1.50
+VDZ          C5          C4         H41     109.465    1.50
+VDZ          C5          C4         H42     109.465    1.50
+VDZ         H41          C4         H42     107.887    1.50
+VDZ          C1         C10          C5     112.021    2.38
+VDZ          C1         C10        H101     109.200    1.50
+VDZ          C1         C10        H102     109.200    1.50
+VDZ          C5         C10        H101     109.465    1.50
+VDZ          C5         C10        H102     109.465    1.50
+VDZ        H101         C10        H102     107.887    1.50
+VDZ          C4          C5         C10     113.034    1.50
+VDZ          C4          C5          C6     123.483    1.92
+VDZ         C10          C5          C6     123.483    1.92
+VDZ          C5          C6          C7     125.078    2.77
+VDZ          C5          C6          H6     117.424    1.50
+VDZ          C7          C6          H6     117.498    1.56
+VDZ          C6          C7          C8     125.644    2.77
+VDZ          C6          C7          H7     118.064    1.56
+VDZ          C8          C7          H7     116.291    1.53
+VDZ          C7          C8          C9     124.694    1.50
+VDZ          C7          C8         C14     121.876    1.50
+VDZ          C9          C8         C14     113.430    2.23
+VDZ          C8          C9         C11     111.193    1.50
+VDZ          C8          C9         H91     108.984    1.50
+VDZ          C8          C9         H92     108.984    1.50
+VDZ         C11          C9         H91     109.046    1.50
+VDZ         C11          C9         H92     109.046    1.50
+VDZ         H91          C9         H92     107.904    1.50
+VDZ          C9         C11         C12     111.930    1.50
+VDZ          C9         C11        H111     109.240    1.50
+VDZ          C9         C11        H112     109.240    1.50
+VDZ         C12         C11        H111     109.250    1.50
+VDZ         C12         C11        H112     109.250    1.50
+VDZ        H111         C11        H112     107.912    1.50
+VDZ          C8         C14         C13     113.565    1.50
+VDZ          C8         C14         C15     119.251    3.00
+VDZ          C8         C14         H14     107.579    1.77
+VDZ         C13         C14         C15     103.847    1.50
+VDZ         C13         C14         H14     105.939    1.50
+VDZ         C15         C14         H14     105.970    1.50
+VDZ         C14         C13         C12     107.382    1.50
+VDZ         C14         C13         C18     110.993    1.50
+VDZ         C14         C13         C17     102.638    2.08
+VDZ         C12         C13         C18     111.010    1.50
+VDZ         C12         C13         C17     116.563    1.50
+VDZ         C18         C13         C17     110.477    1.50
+VDZ         C11         C12         C13     112.828    1.50
+VDZ         C11         C12        H121     109.396    1.50
+VDZ         C11         C12        H122     109.396    1.50
+VDZ         C13         C12        H121     109.703    1.50
+VDZ         C13         C12        H122     109.703    1.50
+VDZ        H121         C12        H122     107.912    1.50
+VDZ         C13         C18        H181     109.618    1.50
+VDZ         C13         C18        H182     109.618    1.50
+VDZ         C13         C18        H183     109.618    1.50
+VDZ        H181         C18        H182     109.337    1.50
+VDZ        H181         C18        H183     109.337    1.50
+VDZ        H182         C18        H183     109.337    1.50
+VDZ         C14         C15         C16     103.717    1.50
+VDZ         C14         C15        H151     111.016    1.50
+VDZ         C14         C15        H152     111.016    1.50
+VDZ         C16         C15        H151     111.137    1.50
+VDZ         C16         C15        H152     111.137    1.50
+VDZ        H151         C15        H152     108.883    1.50
+VDZ         C15         C16         C17     107.063    1.50
+VDZ         C15         C16        H161     110.337    1.50
+VDZ         C15         C16        H162     110.337    1.50
+VDZ         C17         C16        H161     110.194    1.50
+VDZ         C17         C16        H162     110.194    1.50
+VDZ        H161         C16        H162     108.534    1.50
+VDZ         C13         C17         C16     103.557    1.50
+VDZ         C13         C17         C20     119.459    1.50
+VDZ         C13         C17         H17     106.586    1.50
+VDZ         C16         C17         C20     112.192    1.50
+VDZ         C16         C17         H17     107.200    1.50
+VDZ         C20         C17         H17     107.114    1.50
+VDZ         C17         C20         C21     112.864    1.50
+VDZ         C17         C20         C22     110.222    1.50
+VDZ         C17         C20         H20     107.632    1.50
+VDZ         C21         C20         C22     110.535    1.50
+VDZ         C21         C20         H20     107.737    1.50
+VDZ         C22         C20         H20     107.621    1.50
+VDZ         C20         C21        H211     109.640    1.50
+VDZ         C20         C21        H212     109.640    1.50
+VDZ         C20         C21        H213     109.640    1.50
+VDZ        H211         C21        H212     109.345    1.50
+VDZ        H211         C21        H213     109.345    1.50
+VDZ        H212         C21        H213     109.345    1.50
+VDZ         C20         C22         C23     115.300    1.50
+VDZ         C20         C22        H221     108.444    1.50
+VDZ         C20         C22        H222     108.444    1.50
+VDZ         C23         C22        H221     108.377    1.50
+VDZ         C23         C22        H222     108.377    1.50
+VDZ        H221         C22        H222     107.884    1.50
+VDZ         C22         C23         C24     114.183    2.57
+VDZ         C22         C23        H231     108.937    1.50
+VDZ         C22         C23        H232     108.937    1.50
+VDZ         C24         C23        H231     108.962    1.50
+VDZ         C24         C23        H232     108.962    1.50
+VDZ        H231         C23        H232     107.646    1.50
+VDZ         C23         C24         C25     116.288    1.50
+VDZ         C23         C24        H241     108.123    1.50
+VDZ         C23         C24        H242     108.123    1.50
+VDZ         C25         C24        H241     108.723    1.50
+VDZ         C25         C24        H242     108.723    1.50
+VDZ        H241         C24        H242     107.452    1.50
+VDZ         C24         C25         C26     111.896    1.50
+VDZ         C24         C25         C27     111.896    1.50
+VDZ         C24         C25          O3     107.760    2.12
+VDZ         C26         C25         C27     110.915    1.50
+VDZ         C26         C25          O3     107.291    2.44
+VDZ         C27         C25          O3     107.291    2.44
+VDZ         C25         C26        H261     109.123    1.50
+VDZ         C25         C26        H262     109.123    1.50
+VDZ         C25         C26        H263     109.123    1.50
+VDZ        H261         C26        H262     109.441    1.50
+VDZ        H261         C26        H263     109.441    1.50
+VDZ        H262         C26        H263     109.441    1.50
+VDZ         C25         C27        H271     109.123    1.50
+VDZ         C25         C27        H272     109.123    1.50
+VDZ         C25         C27        H273     109.123    1.50
+VDZ        H271         C27        H272     109.441    1.50
+VDZ        H271         C27        H273     109.441    1.50
+VDZ        H272         C27        H273     109.441    1.50
+VDZ         C25          O3         HO3     109.561    1.92
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VDZ            sp3_sp3_73          C2          C1          O1         HO1     180.000    10.0     3
+VDZ            sp2_sp2_13          C6          C7          C8          C9     180.000     5.0     2
+VDZ            sp2_sp3_28          C7          C8          C9         C11     180.000    10.0     6
+VDZ            sp2_sp3_34          C7          C8         C14         C13     180.000    10.0     6
+VDZ            sp3_sp3_10         C12         C11          C9          C8     -60.000    10.0     3
+VDZ            sp3_sp3_19          C9         C11         C12         C13      60.000    10.0     3
+VDZ            sp3_sp3_40         C18         C13         C14          C8     -60.000    10.0     3
+VDZ            sp3_sp3_91          C8         C14         C15         C16      60.000    10.0     3
+VDZ            sp3_sp3_29         C11         C12         C13         C18      60.000    10.0     3
+VDZ            sp3_sp3_97         C14         C13         C18        H181     180.000    10.0     3
+VDZ            sp3_sp3_53         C18         C13         C17         C20     180.000    10.0     3
+VDZ            sp3_sp3_64         C14         C15         C16         C17     -60.000    10.0     3
+VDZ            sp3_sp3_56         C15         C16         C17         C20     180.000    10.0     3
+VDZ             sp2_sp3_5         C28          C2          C1          O1     -60.000    10.0     6
+VDZ            sp3_sp3_79          O1          C1         C10          C5      60.000    10.0     3
+VDZ           sp3_sp3_106         C13         C17         C20         C21     180.000    10.0     3
+VDZ           sp3_sp3_118         C22         C20         C21        H211      60.000    10.0     3
+VDZ           sp3_sp3_127         C21         C20         C22         C23      60.000    10.0     3
+VDZ           sp3_sp3_133         C20         C22         C23         C24     180.000    10.0     3
+VDZ           sp3_sp3_142         C22         C23         C24         C25     180.000    10.0     3
+VDZ           sp3_sp3_152         C23         C24         C25         C26     -60.000    10.0     3
+VDZ           sp3_sp3_160         C24         C25         C26        H261     180.000    10.0     3
+VDZ           sp3_sp3_172         C24         C25         C27        H271      60.000    10.0     3
+VDZ           sp3_sp3_179         C24         C25          O3         HO3      60.000    10.0     3
+VDZ             sp2_sp2_1          C1          C2         C28        H281     180.000     5.0     2
+VDZ            sp2_sp3_11         C28          C2          C3          O2     -60.000    10.0     6
+VDZ            sp3_sp3_85          C2          C3          O2         HO2     180.000    10.0     3
+VDZ             sp3_sp3_4          O2          C3          C4          C5     -60.000    10.0     3
+VDZ            sp2_sp3_16          C6          C5          C4          C3     180.000    10.0     6
+VDZ            sp2_sp3_22          C6          C5         C10          C1     180.000    10.0     6
+VDZ             sp2_sp2_5          C4          C5          C6          C7     180.000     5.0     2
+VDZ             sp2_sp2_9          C5          C6          C7          C8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VDZ    chir_1    C1    O1    C2    C10    negative
+VDZ    chir_2    C3    O2    C2    C4    negative
+VDZ    chir_3    C14    C8    C13    C15    negative
+VDZ    chir_4    C13    C14    C17    C12    negative
+VDZ    chir_5    C17    C13    C20    C16    negative
+VDZ    chir_6    C20    C17    C22    C21    positive
+VDZ    chir_7    C25    O3    C24    C26    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VDZ    plan-1          C1   0.020
+VDZ    plan-1          C2   0.020
+VDZ    plan-1         C28   0.020
+VDZ    plan-1          C3   0.020
+VDZ    plan-2          C2   0.020
+VDZ    plan-2         C28   0.020
+VDZ    plan-2        H281   0.020
+VDZ    plan-2        H282   0.020
+VDZ    plan-3         C10   0.020
+VDZ    plan-3          C4   0.020
+VDZ    plan-3          C5   0.020
+VDZ    plan-3          C6   0.020
+VDZ    plan-4          C5   0.020
+VDZ    plan-4          C6   0.020
+VDZ    plan-4          C7   0.020
+VDZ    plan-4          H6   0.020
+VDZ    plan-5          C6   0.020
+VDZ    plan-5          C7   0.020
+VDZ    plan-5          C8   0.020
+VDZ    plan-5          H7   0.020
+VDZ    plan-6         C14   0.020
+VDZ    plan-6          C7   0.020
+VDZ    plan-6          C8   0.020
+VDZ    plan-6          C9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VDZ           SMILES              ACDLabs 10.04                                                                                                                                        OC3/C(=C)C(O)CC(=C\C=C1/CCCC2(C1CCC2C(C)CCCC(O)(C)C)C)\C3
+VDZ            InChI                InChI  1.03 InChI=1S/C27H44O3/c1-18(8-6-14-26(3,4)30)22-12-13-23-21(9-7-15-27(22,23)5)11-10-20-16-24(28)19(2)25(29)17-20/h10-11,18,22-25,28-30H,2,6-9,12-17H2,1,3-5H3/b21-11+/t18-,22+,23-,24+,25+,27+/m0/s1
+VDZ         InChIKey                InChI  1.03                                                                                                                                                                      UHMPCVGLSKFXHR-NAQZCRMNSA-N
+VDZ SMILES_CANONICAL               CACTVS 3.385                                                                                                                 C[C@@H](CCCC(C)(C)O)[C@H]1CC[C@H]2C(/CCC[C@]12C)=C/C=C3C[C@@H](O)C(=C)[C@H](O)C3
+VDZ           SMILES               CACTVS 3.385                                                                                                                           C[CH](CCCC(C)(C)O)[CH]1CC[CH]2C(CCC[C]12C)=CC=C3C[CH](O)C(=C)[CH](O)C3
+VDZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                              C[C@@H](CCCC(C)(C)O)[C@H]1CC[C@@H]\2[C@@]1(CCC/C2=C\C=C3C[C@H](C(=C)[C@@H](C3)O)O)C
+VDZ           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                            CC(CCCC(C)(C)O)C1CCC2C1(CCCC2=CC=C3CC(C(=C)C(C3)O)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VDZ acedrg               243         "dictionary generator"                  
+VDZ acedrg_database      11          "data source"                           
+VDZ rdkit                2017.03.2   "Chemoinformatics tool"
+VDZ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,143 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3HL     3HL      "(3S)-3-HYDROXYBUTANOIC ACID"     NON-POLYMER     14     7     .     
+#
+data_comp_3HL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3HL     CA      C       CH2     0       54.431      -14.573     15.931      
+3HL     CB      C       CH1     0       54.798      -13.739     14.710      
+3HL     OG1     O       OH1     0       54.033      -12.529     14.714      
+3HL     CG2     C       CH3     0       56.271      -13.410     14.634      
+3HL     C       C       C       0       54.659      -13.863     17.255      
+3HL     OA      O       O       0       53.913      -12.908     17.549      
+3HL     OB      O       OC      -1      55.582      -14.266     17.990      
+3HL     HA1     H       H       0       54.963      -15.397     15.918      
+3HL     HA2     H       H       0       53.485      -14.825     15.865      
+3HL     HB      H       H       0       54.548      -14.241     13.897      
+3HL     HOG1    H       H       0       54.014      -12.196     13.934      
+3HL     HG21    H       H       0       56.493      -13.104     13.736      
+3HL     HG22    H       H       0       56.796      -14.204     14.842      
+3HL     HG23    H       H       0       56.485      -12.707     15.274      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3HL          CA          CB      SINGLE       n     1.520  0.0150     1.520  0.0150
+3HL          CA           C      SINGLE       n     1.519  0.0109     1.519  0.0109
+3HL          CB         OG1      SINGLE       n     1.430  0.0200     1.430  0.0200
+3HL          CB         CG2      SINGLE       n     1.510  0.0200     1.510  0.0200
+3HL           C          OA      DOUBLE       n     1.247  0.0187     1.247  0.0187
+3HL           C          OB      SINGLE       n     1.247  0.0187     1.247  0.0187
+3HL          CA         HA1      SINGLE       n     1.089  0.0100     0.981  0.0185
+3HL          CA         HA2      SINGLE       n     1.089  0.0100     0.981  0.0185
+3HL          CB          HB      SINGLE       n     1.089  0.0100     0.988  0.0200
+3HL         OG1        HOG1      SINGLE       n     0.970  0.0120     0.848  0.0200
+3HL         CG2        HG21      SINGLE       n     1.089  0.0100     0.974  0.0145
+3HL         CG2        HG22      SINGLE       n     1.089  0.0100     0.974  0.0145
+3HL         CG2        HG23      SINGLE       n     1.089  0.0100     0.974  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3HL          CB          CA           C     111.511    2.91
+3HL          CB          CA         HA1     108.544    1.56
+3HL          CB          CA         HA2     108.544    1.56
+3HL           C          CA         HA1     108.816    1.50
+3HL           C          CA         HA2     108.816    1.50
+3HL         HA1          CA         HA2     107.737    1.50
+3HL          CA          CB         OG1     108.747    2.04
+3HL          CA          CB         CG2     112.969    1.50
+3HL          CA          CB          HB     108.825    1.50
+3HL         OG1          CB         CG2     109.534    2.02
+3HL         OG1          CB          HB     107.545    2.92
+3HL         CG2          CB          HB     108.620    2.54
+3HL          CB         OG1        HOG1     109.880    2.07
+3HL          CB         CG2        HG21     109.852    1.50
+3HL          CB         CG2        HG22     109.852    1.50
+3HL          CB         CG2        HG23     109.852    1.50
+3HL        HG21         CG2        HG22     109.425    1.50
+3HL        HG21         CG2        HG23     109.425    1.50
+3HL        HG22         CG2        HG23     109.425    1.50
+3HL          CA           C          OA     118.254    1.50
+3HL          CA           C          OB     118.254    1.50
+3HL          OA           C          OB     123.492    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3HL             sp3_sp3_1           C          CA          CB         OG1     180.000    10.0     3
+3HL             sp2_sp3_2          OA           C          CA          CB     120.000    10.0     6
+3HL            sp3_sp3_10          CA          CB         OG1        HOG1     180.000    10.0     3
+3HL            sp3_sp3_13          CA          CB         CG2        HG21     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3HL    chir_1    CB    OG1    CA    CG2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3HL    plan-1           C   0.020
+3HL    plan-1          CA   0.020
+3HL    plan-1          OA   0.020
+3HL    plan-1          OB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3HL           SMILES              ACDLabs 10.04                                                   O=C(O)CC(O)C
+3HL SMILES_CANONICAL               CACTVS 3.341                                               C[C@H](O)CC(O)=O
+3HL           SMILES               CACTVS 3.341                                                C[CH](O)CC(O)=O
+3HL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              C[C@@H](CC(=O)O)O
+3HL           SMILES "OpenEye OEToolkits" 1.5.0                                                   CC(CC(=O)O)O
+3HL            InChI                InChI  1.03 InChI=1S/C4H8O3/c1-3(5)2-4(6)7/h3,5H,2H2,1H3,(H,6,7)/t3-/m0/s1
+3HL         InChIKey                InChI  1.03                                    WHBMMWSBFZVSSR-VKHMYHEASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3HL acedrg               243         "dictionary generator"                  
+3HL acedrg_database      11          "data source"                           
+3HL rdkit                2017.03.2   "Chemoinformatics tool"
+3HL refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,516 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PSI     PSI      "methyl N-{(4S,5S)-5-[(L-alanyl-L-alanyl)amino]-4-hydroxy-6-phenylhexanoyl}-L-valyl-L-valinate"     NON-POLYMER     89     41     .     
+#
+data_comp_PSI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PSI     N       N       NT3     1       -13.731     15.288      35.739      
+PSI     CA      C       CH1     0       -12.750     14.564      34.883      
+PSI     C       C       C       0       -12.310     15.519      33.773      
+PSI     O       O       O       0       -13.153     15.999      33.015      
+PSI     CB      C       CH3     0       -13.382     13.292      34.335      
+PSI     N1      N       NH1     0       -10.994     15.773      33.682      
+PSI     CA1     C       CH1     0       -10.452     16.683      32.683      
+PSI     C1      C       C       0       -10.356     15.993      31.317      
+PSI     O1      O       O       0       -9.712      14.950      31.211      
+PSI     CB1     C       CH3     0       -9.087      17.220      33.113      
+PSI     C3      C       C       0       -7.826      17.544      26.027      
+PSI     O2      O       O       0       -6.884      16.775      25.841      
+PSI     CA3     C       CH2     0       -8.044      18.193      27.380      
+PSI     CM      C       CH2     0       -8.818      17.308      28.344      
+PSI     C2      C       CH1     0       -10.292     17.098      28.003      
+PSI     OS      O       OH1     0       -10.989     18.349      28.053      
+PSI     CA2     C       CH1     0       -11.006     16.083      28.914      
+PSI     N2      N       NH1     0       -11.008     16.564      30.291      
+PSI     CB2     C       CH2     0       -12.441     15.790      28.449      
+PSI     CG      C       CR6     0       -13.130     14.716      29.263      
+PSI     CD1     C       CR16    0       -12.664     13.406      29.250      
+PSI     CD2     C       CR16    0       -14.242     15.013      30.043      
+PSI     CE1     C       CR16    0       -13.295     12.419      29.998      
+PSI     CE2     C       CR16    0       -14.872     14.025      30.790      
+PSI     CZ      C       CR16    0       -14.398     12.729      30.766      
+PSI     N4      N       NH1     0       -8.704      17.857      25.065      
+PSI     CA4     C       CH1     0       -8.688      17.251      23.740      
+PSI     C4      C       C       0       -7.543      17.838      22.910      
+PSI     O3      O       O       0       -7.510      19.053      22.722      
+PSI     CB3     C       CH1     0       -10.065     17.403      23.029      
+PSI     CG1     C       CH3     0       -10.055     16.765      21.642      
+PSI     CG2     C       CH3     0       -11.199     16.834      23.876      
+PSI     N5      N       NH1     0       -6.618      16.973      22.451      
+PSI     CA5     C       CH1     0       -5.420      17.316      21.684      
+PSI     C5      C       C       0       -4.555      18.372      22.373      
+PSI     O4      O       O       0       -4.712      18.763      23.501      
+PSI     CB4     C       CH1     0       -5.729      17.618      20.194      
+PSI     CG11    C       CH3     0       -6.513      16.475      19.563      
+PSI     CG21    C       CH3     0       -6.441      18.945      19.943      
+PSI     C6      C       CH3     0       -2.381      17.910      21.566      
+PSI     O5      O       O2      0       -3.549      18.768      21.602      
+PSI     H       H       H       0       -14.043     14.733      36.391      
+PSI     H2      H       H       0       -14.436     15.576      35.237      
+PSI     H4      H       H       0       -13.333     16.008      36.132      
+PSI     HA      H       H       0       -11.981     14.326      35.436      
+PSI     HB1     H       H       0       -13.109     13.155      33.412      
+PSI     HB2     H       H       0       -14.351     13.365      34.375      
+PSI     HB3     H       H       0       -13.097     12.531      34.869      
+PSI     H1      H       H       0       -10.445     15.367      34.227      
+PSI     HA1     H       H       0       -11.064     17.456      32.599      
+PSI     HB11    H       H       0       -8.377      16.695      32.705      
+PSI     HB21    H       H       0       -9.004      17.171      34.081      
+PSI     HB31    H       H       0       -9.001      18.147      32.833      
+PSI     HA3     H       H       0       -8.527      19.039      27.263      
+PSI     HA31    H       H       0       -7.171      18.400      27.775      
+PSI     HM2     H       H       0       -8.759      17.696      29.243      
+PSI     HM3     H       H       0       -8.384      16.430      28.380      
+PSI     HC      H       H       0       -10.347     16.755      27.075      
+PSI     HOS     H       H       0       -10.779     18.775      28.756      
+PSI     HA2     H       H       0       -10.495     15.244      28.870      
+PSI     H3      H       H       0       -11.486     17.278      30.436      
+PSI     HB12    H       H       0       -12.418     15.508      27.509      
+PSI     HB22    H       H       0       -12.968     16.616      28.499      
+PSI     HD1     H       H       0       -11.910     13.186      28.727      
+PSI     HD2     H       H       0       -14.574     15.896      30.065      
+PSI     HE1     H       H       0       -12.967     11.533      29.979      
+PSI     HE2     H       H       0       -15.626     14.241      31.314      
+PSI     HZ      H       H       0       -14.826     12.058      31.274      
+PSI     H5      H       H       0       -9.307      18.466      25.233      
+PSI     HA4     H       H       0       -8.523      16.274      23.857      
+PSI     HB      H       H       0       -10.236     18.370      22.911      
+PSI     HG11    H       H       0       -10.966     16.574      21.358      
+PSI     HG12    H       H       0       -9.546      15.936      21.671      
+PSI     HG13    H       H       0       -9.643      17.375      21.006      
+PSI     HG21    H       H       0       -11.323     17.384      24.669      
+PSI     HG22    H       H       0       -10.979     15.925      24.144      
+PSI     HG23    H       H       0       -12.024     16.829      23.360      
+PSI     H6      H       H       0       -6.745      16.127      22.622      
+PSI     HA5     H       H       0       -4.868      16.499      21.679      
+PSI     HB4     H       H       0       -4.864      17.662      19.719      
+PSI     HG14    H       H       0       -6.527      16.586      18.596      
+PSI     HG15    H       H       0       -7.425      16.477      19.902      
+PSI     HG16    H       H       0       -6.088      15.629      19.784      
+PSI     HG24    H       H       0       -6.081      19.636      20.523      
+PSI     HG25    H       H       0       -7.393      18.841      20.114      
+PSI     HG26    H       H       0       -6.311      19.208      19.015      
+PSI     H22     H       H       0       -2.560      17.146      20.996      
+PSI     H31     H       H       0       -2.171      17.604      22.464      
+PSI     H7      H       H       0       -1.628      18.408      21.212      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PSI           N          CA      SINGLE       n     1.489  0.0100     1.489  0.0100
+PSI          CA           C      SINGLE       n     1.526  0.0100     1.526  0.0100
+PSI          CA          CB      SINGLE       n     1.521  0.0100     1.521  0.0100
+PSI           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PSI          N1         CA1      SINGLE       n     1.453  0.0100     1.453  0.0100
+PSI         CA1          C1      SINGLE       n     1.530  0.0100     1.530  0.0100
+PSI         CA1         CB1      SINGLE       n     1.525  0.0113     1.525  0.0113
+PSI          C1          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PSI         CA2          N2      SINGLE       n     1.455  0.0100     1.455  0.0100
+PSI          C2         CA2      SINGLE       n     1.538  0.0100     1.538  0.0100
+PSI         CA2         CB2      SINGLE       n     1.536  0.0100     1.536  0.0100
+PSI          C2          OS      SINGLE       n     1.424  0.0199     1.424  0.0199
+PSI          CM          C2      SINGLE       n     1.525  0.0100     1.525  0.0100
+PSI         CB2          CG      SINGLE       n     1.512  0.0103     1.512  0.0103
+PSI          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PSI          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+PSI         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+PSI         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PSI         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PSI         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+PSI          C3         CA3      SINGLE       n     1.514  0.0100     1.514  0.0100
+PSI          C3          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PSI          N4         CA4      SINGLE       n     1.453  0.0100     1.453  0.0100
+PSI         CA4          C4      SINGLE       n     1.527  0.0100     1.527  0.0100
+PSI         CA4         CB3      SINGLE       n     1.544  0.0188     1.544  0.0188
+PSI          C4          O3      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PSI         CB3         CG1      SINGLE       n     1.521  0.0135     1.521  0.0135
+PSI         CB3         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+PSI          N5         CA5      SINGLE       n     1.453  0.0100     1.453  0.0100
+PSI         CA5          C5      SINGLE       n     1.517  0.0109     1.517  0.0109
+PSI         CA5         CB4      SINGLE       n     1.541  0.0100     1.541  0.0100
+PSI          C5          O4      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PSI         CB4        CG11      SINGLE       n     1.521  0.0135     1.521  0.0135
+PSI         CB4        CG21      SINGLE       n     1.521  0.0135     1.521  0.0135
+PSI          C6          O5      SINGLE       n     1.447  0.0130     1.447  0.0130
+PSI           C          N1      SINGLE       n     1.337  0.0100     1.337  0.0100
+PSI          C1          N2      SINGLE       n     1.337  0.0102     1.337  0.0102
+PSI         CA3          CM      SINGLE       n     1.517  0.0200     1.517  0.0200
+PSI          C3          N4      SINGLE       n     1.334  0.0100     1.334  0.0100
+PSI          C4          N5      SINGLE       n     1.337  0.0100     1.337  0.0100
+PSI          C5          O5      SINGLE       n     1.326  0.0123     1.326  0.0123
+PSI           N           H      SINGLE       n     1.036  0.0160     0.911  0.0200
+PSI           N          H2      SINGLE       n     1.036  0.0160     0.911  0.0200
+PSI           N          H4      SINGLE       n     1.036  0.0160     0.911  0.0200
+PSI          CA          HA      SINGLE       n     1.089  0.0100     0.977  0.0200
+PSI          CB         HB1      SINGLE       n     1.089  0.0100     0.972  0.0152
+PSI          CB         HB2      SINGLE       n     1.089  0.0100     0.972  0.0152
+PSI          CB         HB3      SINGLE       n     1.089  0.0100     0.972  0.0152
+PSI          N1          H1      SINGLE       n     1.016  0.0100     0.873  0.0200
+PSI         CA1         HA1      SINGLE       n     1.089  0.0100     0.989  0.0200
+PSI         CB1        HB11      SINGLE       n     1.089  0.0100     0.972  0.0152
+PSI         CB1        HB21      SINGLE       n     1.089  0.0100     0.972  0.0152
+PSI         CB1        HB31      SINGLE       n     1.089  0.0100     0.972  0.0152
+PSI         CA3         HA3      SINGLE       n     1.089  0.0100     0.981  0.0185
+PSI         CA3        HA31      SINGLE       n     1.089  0.0100     0.981  0.0185
+PSI          CM         HM2      SINGLE       n     1.089  0.0100     0.980  0.0160
+PSI          CM         HM3      SINGLE       n     1.089  0.0100     0.980  0.0160
+PSI          C2          HC      SINGLE       n     1.089  0.0100     0.992  0.0184
+PSI          OS         HOS      SINGLE       n     0.970  0.0120     0.848  0.0200
+PSI         CA2         HA2      SINGLE       n     1.089  0.0100     0.984  0.0181
+PSI          N2          H3      SINGLE       n     1.016  0.0100     0.872  0.0200
+PSI         CB2        HB12      SINGLE       n     1.089  0.0100     0.981  0.0150
+PSI         CB2        HB22      SINGLE       n     1.089  0.0100     0.981  0.0150
+PSI         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+PSI         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+PSI         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+PSI         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+PSI          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+PSI          N4          H5      SINGLE       n     1.016  0.0100     0.873  0.0200
+PSI         CA4         HA4      SINGLE       n     1.089  0.0100     0.998  0.0200
+PSI         CB3          HB      SINGLE       n     1.089  0.0100     0.989  0.0175
+PSI         CG1        HG11      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI         CG1        HG12      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI         CG1        HG13      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI         CG2        HG23      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI          N5          H6      SINGLE       n     1.016  0.0100     0.873  0.0200
+PSI         CA5         HA5      SINGLE       n     1.089  0.0100     0.986  0.0179
+PSI         CB4         HB4      SINGLE       n     1.089  0.0100     0.989  0.0175
+PSI        CG11        HG14      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI        CG11        HG15      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI        CG11        HG16      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI        CG21        HG24      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI        CG21        HG25      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI        CG21        HG26      SINGLE       n     1.089  0.0100     0.973  0.0146
+PSI          C6         H22      SINGLE       n     1.089  0.0100     0.970  0.0175
+PSI          C6         H31      SINGLE       n     1.089  0.0100     0.970  0.0175
+PSI          C6          H7      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PSI          CA           N           H     110.048    1.62
+PSI          CA           N          H2     110.048    1.62
+PSI          CA           N          H4     110.048    1.62
+PSI           H           N          H2     109.028    2.41
+PSI           H           N          H4     109.028    2.41
+PSI          H2           N          H4     109.028    2.41
+PSI           N          CA           C     107.574    1.50
+PSI           N          CA          CB     109.928    1.50
+PSI           N          CA          HA     108.662    1.78
+PSI           C          CA          CB     111.911    1.98
+PSI           C          CA          HA     109.275    1.50
+PSI          CB          CA          HA     109.423    1.50
+PSI          CA           C           O     120.614    1.50
+PSI          CA           C          N1     115.917    1.50
+PSI           O           C          N1     123.469    1.50
+PSI          CA          CB         HB1     109.719    1.50
+PSI          CA          CB         HB2     109.719    1.50
+PSI          CA          CB         HB3     109.719    1.50
+PSI         HB1          CB         HB2     109.386    1.50
+PSI         HB1          CB         HB3     109.386    1.50
+PSI         HB2          CB         HB3     109.386    1.50
+PSI         CA1          N1           C     121.107    1.62
+PSI         CA1          N1          H1     119.538    1.50
+PSI           C          N1          H1     119.355    1.83
+PSI          N1         CA1          C1     111.862    2.48
+PSI          N1         CA1         CB1     110.370    1.50
+PSI          N1         CA1         HA1     108.310    1.50
+PSI          C1         CA1         CB1     110.119    1.50
+PSI          C1         CA1         HA1     107.902    1.50
+PSI         CB1         CA1         HA1     108.358    1.50
+PSI         CA1          C1          O1     120.365    1.50
+PSI         CA1          C1          N2     116.681    1.56
+PSI          O1          C1          N2     122.954    1.50
+PSI         CA1         CB1        HB11     109.620    1.50
+PSI         CA1         CB1        HB21     109.620    1.50
+PSI         CA1         CB1        HB31     109.620    1.50
+PSI        HB11         CB1        HB21     109.386    1.50
+PSI        HB11         CB1        HB31     109.386    1.50
+PSI        HB21         CB1        HB31     109.386    1.50
+PSI         CA3          C3          O2     121.831    1.50
+PSI         CA3          C3          N4     116.136    1.50
+PSI          O2          C3          N4     122.033    1.50
+PSI          C3         CA3          CM     112.984    1.82
+PSI          C3         CA3         HA3     108.930    1.50
+PSI          C3         CA3        HA31     108.930    1.50
+PSI          CM         CA3         HA3     108.844    1.50
+PSI          CM         CA3        HA31     108.844    1.50
+PSI         HA3         CA3        HA31     107.846    1.50
+PSI          C2          CM         CA3     114.669    1.86
+PSI          C2          CM         HM2     108.468    1.50
+PSI          C2          CM         HM3     108.468    1.50
+PSI         CA3          CM         HM2     108.915    1.50
+PSI         CA3          CM         HM3     108.915    1.50
+PSI         HM2          CM         HM3     107.428    1.50
+PSI         CA2          C2          OS     109.040    1.72
+PSI         CA2          C2          CM     114.793    1.69
+PSI         CA2          C2          HC     108.500    1.50
+PSI          OS          C2          CM     109.024    2.32
+PSI          OS          C2          HC     108.700    1.50
+PSI          CM          C2          HC     108.603    1.50
+PSI          C2          OS         HOS     108.640    2.32
+PSI          N2         CA2          C2     109.748    1.50
+PSI          N2         CA2         CB2     110.274    1.50
+PSI          N2         CA2         HA2     108.194    1.50
+PSI          C2         CA2         CB2     112.266    1.50
+PSI          C2         CA2         HA2     107.639    1.50
+PSI         CB2         CA2         HA2     108.431    1.50
+PSI         CA2          N2          C1     123.632    1.63
+PSI         CA2          N2          H3     117.489    3.00
+PSI          C1          N2          H3     118.879    1.83
+PSI         CA2         CB2          CG     113.215    1.50
+PSI         CA2         CB2        HB12     108.892    1.50
+PSI         CA2         CB2        HB22     108.892    1.50
+PSI          CG         CB2        HB12     108.862    1.50
+PSI          CG         CB2        HB22     108.862    1.50
+PSI        HB12         CB2        HB22     107.782    1.50
+PSI         CB2          CG         CD1     120.970    1.50
+PSI         CB2          CG         CD2     120.970    1.50
+PSI         CD1          CG         CD2     118.060    1.50
+PSI          CG         CD1         CE1     120.624    1.50
+PSI          CG         CD1         HD1     119.591    1.50
+PSI         CE1         CD1         HD1     119.786    1.50
+PSI          CG         CD2         CE2     120.624    1.50
+PSI          CG         CD2         HD2     119.591    1.50
+PSI         CE2         CD2         HD2     119.786    1.50
+PSI         CD1         CE1          CZ     120.325    1.50
+PSI         CD1         CE1         HE1     119.792    1.50
+PSI          CZ         CE1         HE1     119.883    1.50
+PSI         CD2         CE2          CZ     120.325    1.50
+PSI         CD2         CE2         HE2     119.792    1.50
+PSI          CZ         CE2         HE2     119.883    1.50
+PSI         CE1          CZ         CE2     120.043    1.50
+PSI         CE1          CZ          HZ     119.979    1.50
+PSI         CE2          CZ          HZ     119.979    1.50
+PSI         CA4          N4          C3     121.954    1.76
+PSI         CA4          N4          H5     119.338    1.91
+PSI          C3          N4          H5     118.709    1.50
+PSI          N4         CA4          C4     111.248    2.09
+PSI          N4         CA4         CB3     110.867    1.63
+PSI          N4         CA4         HA4     107.651    1.50
+PSI          C4         CA4         CB3     111.464    1.50
+PSI          C4         CA4         HA4     107.690    1.50
+PSI         CB3         CA4         HA4     107.774    1.50
+PSI         CA4          C4          O3     120.387    1.50
+PSI         CA4          C4          N5     116.668    1.50
+PSI          O3          C4          N5     122.945    1.50
+PSI         CA4         CB3         CG1     111.317    1.50
+PSI         CA4         CB3         CG2     111.317    1.50
+PSI         CA4         CB3          HB     107.640    1.50
+PSI         CG1         CB3         CG2     110.676    1.50
+PSI         CG1         CB3          HB     107.603    1.50
+PSI         CG2         CB3          HB     107.603    1.50
+PSI         CB3         CG1        HG11     109.507    1.50
+PSI         CB3         CG1        HG12     109.507    1.50
+PSI         CB3         CG1        HG13     109.507    1.50
+PSI        HG11         CG1        HG12     109.411    1.50
+PSI        HG11         CG1        HG13     109.411    1.50
+PSI        HG12         CG1        HG13     109.411    1.50
+PSI         CB3         CG2        HG21     109.507    1.50
+PSI         CB3         CG2        HG22     109.507    1.50
+PSI         CB3         CG2        HG23     109.507    1.50
+PSI        HG21         CG2        HG22     109.411    1.50
+PSI        HG21         CG2        HG23     109.411    1.50
+PSI        HG22         CG2        HG23     109.411    1.50
+PSI         CA5          N5          C4     122.071    1.50
+PSI         CA5          N5          H6     118.978    1.50
+PSI          C4          N5          H6     118.951    1.83
+PSI          N5         CA5          C5     109.960    1.56
+PSI          N5         CA5         CB4     111.099    1.50
+PSI          N5         CA5         HA5     108.062    1.50
+PSI          C5         CA5         CB4     111.487    1.50
+PSI          C5         CA5         HA5     107.455    1.50
+PSI         CB4         CA5         HA5     108.105    1.50
+PSI         CA5          C5          O4     124.461    1.50
+PSI         CA5          C5          O5     111.354    1.50
+PSI          O4          C5          O5     124.185    1.50
+PSI         CA5         CB4        CG11     111.285    1.50
+PSI         CA5         CB4        CG21     111.285    1.50
+PSI         CA5         CB4         HB4     107.617    1.50
+PSI        CG11         CB4        CG21     110.676    1.50
+PSI        CG11         CB4         HB4     107.603    1.50
+PSI        CG21         CB4         HB4     107.603    1.50
+PSI         CB4        CG11        HG14     109.507    1.50
+PSI         CB4        CG11        HG15     109.507    1.50
+PSI         CB4        CG11        HG16     109.507    1.50
+PSI        HG14        CG11        HG15     109.411    1.50
+PSI        HG14        CG11        HG16     109.411    1.50
+PSI        HG15        CG11        HG16     109.411    1.50
+PSI         CB4        CG21        HG24     109.507    1.50
+PSI         CB4        CG21        HG25     109.507    1.50
+PSI         CB4        CG21        HG26     109.507    1.50
+PSI        HG24        CG21        HG25     109.411    1.50
+PSI        HG24        CG21        HG26     109.411    1.50
+PSI        HG25        CG21        HG26     109.411    1.50
+PSI          O5          C6         H22     109.367    1.50
+PSI          O5          C6         H31     109.367    1.50
+PSI          O5          C6          H7     109.367    1.50
+PSI         H22          C6         H31     109.532    1.53
+PSI         H22          C6          H7     109.532    1.53
+PSI         H31          C6          H7     109.532    1.53
+PSI          C6          O5          C5     116.120    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PSI             sp3_sp3_1           C          CA           N           H     180.000    10.0     3
+PSI            sp2_sp3_32          O2          C3         CA3          CM     120.000    10.0     6
+PSI             sp2_sp2_9         CA3          C3          N4         CA4     180.000     5.0     2
+PSI           sp3_sp3_116          C3         CA3          CM          C2     180.000    10.0     3
+PSI            sp3_sp3_49         CA2          C2          CM         CA3     180.000    10.0     3
+PSI            sp3_sp3_46         CA2          C2          OS         HOS     180.000    10.0     3
+PSI            sp3_sp3_28          OS          C2         CA2          N2     180.000    10.0     3
+PSI            sp2_sp3_19          C1          N2         CA2          C2       0.000    10.0     6
+PSI            sp3_sp3_37          N2         CA2         CB2          CG     180.000    10.0     3
+PSI            sp2_sp3_26         CD1          CG         CB2         CA2     -90.000    10.0     6
+PSI       const_sp2_sp2_2         CE1         CD1          CG         CB2     180.000     5.0     2
+PSI              const_22         CE2         CD2          CG         CB2     180.000    10.0     2
+PSI             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+PSI            sp3_sp3_10           N          CA          CB         HB1     180.000    10.0     3
+PSI       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+PSI              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+PSI       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+PSI              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+PSI            sp2_sp3_37          C3          N4         CA4          C4       0.000    10.0     6
+PSI            sp2_sp3_43          O3          C4         CA4          N4       0.000    10.0     6
+PSI            sp3_sp3_59          N4         CA4         CB3         CG1     -60.000    10.0     3
+PSI            sp2_sp2_13         CA4          C4          N5         CA5     180.000     5.0     2
+PSI            sp3_sp3_67         CA4         CB3         CG1        HG11     180.000    10.0     3
+PSI            sp3_sp3_79         CA4         CB3         CG2        HG21      60.000    10.0     3
+PSI             sp2_sp2_1          CA           C          N1         CA1     180.000     5.0     2
+PSI            sp2_sp3_49          C4          N5         CA5          C5       0.000    10.0     6
+PSI            sp2_sp3_55          O4          C5         CA5          N5       0.000    10.0     6
+PSI            sp3_sp3_86          N5         CA5         CB4        CG11     -60.000    10.0     3
+PSI            sp2_sp2_17         CA5          C5          O5          C6     180.000     5.0     2
+PSI            sp3_sp3_94         CA5         CB4        CG11        HG14     180.000    10.0     3
+PSI           sp3_sp3_106         CA5         CB4        CG21        HG24      60.000    10.0     3
+PSI           sp3_sp3_113         H22          C6          O5          C5     -60.000    10.0     3
+PSI             sp2_sp3_7           C          N1         CA1          C1       0.000    10.0     6
+PSI            sp2_sp3_13          O1          C1         CA1          N1       0.000    10.0     6
+PSI            sp3_sp3_19          N1         CA1         CB1        HB11     180.000    10.0     3
+PSI             sp2_sp2_5         CA1          C1          N2         CA2     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PSI    chir_1    CA    N    C    CB    positive
+PSI    chir_2    CA1    N1    C1    CB1    positive
+PSI    chir_3    C2    OS    CA2    CM    positive
+PSI    chir_4    CA2    N2    C2    CB2    positive
+PSI    chir_5    CA4    N4    C4    CB3    positive
+PSI    chir_6    CB3    CA4    CG1    CG2    both
+PSI    chir_7    CA5    N5    C5    CB4    positive
+PSI    chir_8    CB4    CA5    CG11    CG21    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PSI    plan-1         CB2   0.020
+PSI    plan-1         CD1   0.020
+PSI    plan-1         CD2   0.020
+PSI    plan-1         CE1   0.020
+PSI    plan-1         CE2   0.020
+PSI    plan-1          CG   0.020
+PSI    plan-1          CZ   0.020
+PSI    plan-1         HD1   0.020
+PSI    plan-1         HD2   0.020
+PSI    plan-1         HE1   0.020
+PSI    plan-1         HE2   0.020
+PSI    plan-1          HZ   0.020
+PSI    plan-2           C   0.020
+PSI    plan-2          CA   0.020
+PSI    plan-2          N1   0.020
+PSI    plan-2           O   0.020
+PSI    plan-3           C   0.020
+PSI    plan-3         CA1   0.020
+PSI    plan-3          H1   0.020
+PSI    plan-3          N1   0.020
+PSI    plan-4          C1   0.020
+PSI    plan-4         CA1   0.020
+PSI    plan-4          N2   0.020
+PSI    plan-4          O1   0.020
+PSI    plan-5          C3   0.020
+PSI    plan-5         CA3   0.020
+PSI    plan-5          N4   0.020
+PSI    plan-5          O2   0.020
+PSI    plan-6          C1   0.020
+PSI    plan-6         CA2   0.020
+PSI    plan-6          H3   0.020
+PSI    plan-6          N2   0.020
+PSI    plan-7          C3   0.020
+PSI    plan-7         CA4   0.020
+PSI    plan-7          H5   0.020
+PSI    plan-7          N4   0.020
+PSI    plan-8          C4   0.020
+PSI    plan-8         CA4   0.020
+PSI    plan-8          N5   0.020
+PSI    plan-8          O3   0.020
+PSI    plan-9          C4   0.020
+PSI    plan-9         CA5   0.020
+PSI    plan-9          H6   0.020
+PSI    plan-9          N5   0.020
+PSI   plan-10          C5   0.020
+PSI   plan-10         CA5   0.020
+PSI   plan-10          O4   0.020
+PSI   plan-10          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PSI           SMILES              ACDLabs 12.01                                                                                                                                                                                 O=C(OC)C(NC(=O)C(NC(=O)CCC(O)C(NC(=O)C(NC(=O)C(N)C)C)Cc1ccccc1)C(C)C)C(C)C
+PSI SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                       COC(=O)[C@@H](NC(=O)[C@@H](NC(=O)CC[C@H](O)[C@H](Cc1ccccc1)NC(=O)[C@H](C)NC(=O)[C@H](C)N)C(C)C)C(C)C
+PSI           SMILES               CACTVS 3.370                                                                                                                                                               COC(=O)[CH](NC(=O)[CH](NC(=O)CC[CH](O)[CH](Cc1ccccc1)NC(=O)[CH](C)NC(=O)[CH](C)N)C(C)C)C(C)C
+PSI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                    C[C@@H](C(=O)N[C@@H](C)C(=O)N[C@@H](Cc1ccccc1)[C@H](CCC(=O)N[C@@H](C(C)C)C(=O)N[C@@H](C(C)C)C(=O)OC)O)N
+PSI           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                 CC(C)C(C(=O)NC(C(C)C)C(=O)OC)NC(=O)CCC(C(Cc1ccccc1)NC(=O)C(C)NC(=O)C(C)N)O
+PSI            InChI                InChI  1.03 InChI=1S/C29H47N5O7/c1-16(2)24(28(39)34-25(17(3)4)29(40)41-7)33-23(36)14-13-22(35)21(15-20-11-9-8-10-12-20)32-27(38)19(6)31-26(37)18(5)30/h8-12,16-19,21-22,24-25,35H,13-15,30H2,1-7H3,(H,31,37)(H,32,38)(H,33,36)(H,34,39)/t18-,19-,21-,22-,24-,25-/m0/s1
+PSI         InChIKey                InChI  1.03                                                                                                                                                                                                                                IUDCAKKZLXFOQA-QJAPXLAMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PSI acedrg               243         "dictionary generator"                  
+PSI acedrg_database      11          "data source"                           
+PSI rdkit                2017.03.2   "Chemoinformatics tool"
+PSI refmac5              5.8.0238    "optimization tool"                     

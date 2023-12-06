@@ -1,0 +1,666 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NHN     NHN      (6R,8S,11S)-11-CYCLOHEXYL-N-(1-{[(2-{[(1S)-2-(DIMETHYLAMINO)-2-OXO-1-PHENYLETHYL]AMINO}-2-OXOETHYL)AMINO](OXO)ACETYL}BUTYL)-10,13-DIOXO-2,5-DIOXA-9,12-DIAZATRICYCLO[14.3.1.1~6,9~]HENICOSA-1(20),16,18-TRIENE-8-CARBOXAMIDE     NON-POLYMER     113     57     .     
+#
+data_comp_NHN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NHN     C1      C       CH2     0       193.019     -8.558      45.437      
+NHN     C2      C       CH2     0       192.374     -9.915      45.705      
+NHN     C3      C       CR6     0       191.774     -10.051     47.090      
+NHN     C4      C       CR16    0       192.362     -10.894     48.030      
+NHN     C5      C       CR16    0       190.633     -9.344      47.444      
+NHN     C6      C       CR6     0       191.820     -11.026     49.307      
+NHN     C7      C       CR16    0       190.089     -9.474      48.712      
+NHN     C8      C       CR16    0       190.675     -10.312     49.646      
+NHN     C9      C       C       0       194.329     -8.371      46.168      
+NHN     O10     O       O       0       195.265     -9.143      45.964      
+NHN     O11     O       O2      0       192.311     -11.830     50.318      
+NHN     C12     C       CH2     0       193.689     -12.243     50.345      
+NHN     C13     C       CH2     0       194.586     -11.079     50.644      
+NHN     O14     O       O2      0       195.933     -11.436     50.259      
+NHN     N15     N       NH1     0       194.402     -7.342      47.026      
+NHN     C16     C       CH1     0       195.600     -6.976      47.772      
+NHN     C17     C       CH1     0       195.974     -5.489      47.557      
+NHN     C18     C       CH2     0       197.254     -5.093      48.305      
+NHN     C19     C       CH2     0       196.105     -5.153      46.068      
+NHN     C20     C       CH2     0       197.659     -3.641      48.049      
+NHN     C21     C       CH2     0       196.511     -3.699      45.829      
+NHN     C22     C       CH2     0       197.792     -3.352      46.565      
+NHN     C23     C       C       0       195.393     -7.331      49.249      
+NHN     O24     O       O       0       194.555     -6.706      49.897      
+NHN     N25     N       NR5     0       196.088     -8.337      49.819      
+NHN     C26     C       CH2     0       196.771     -9.448      49.137      
+NHN     C27     C       CH1     0       196.345     -8.340      51.262      
+NHN     C28     C       CH2     0       197.111     -9.651      51.516      
+NHN     C29     C       CH1     0       196.992     -10.477     50.240      
+NHN     C30     C       C       0       197.170     -7.121      51.672      
+NHN     O31     O       O       0       198.216     -6.868      51.072      
+NHN     N32     N       NH1     0       196.623     -6.307      52.591      
+NHN     C33     C       CH1     0       196.993     -4.903      52.737      
+NHN     C34     C       CH2     0       195.979     -4.166      53.620      
+NHN     C35     C       CH2     0       194.601     -4.021      52.982      
+NHN     C36     C       CH3     0       193.674     -3.179      53.827      
+NHN     O37     O       O       0       198.591     -4.899      54.491      
+NHN     C38     C       C       0       198.416     -4.724      53.282      
+NHN     O39     O       O       0       199.370     -4.124      51.243      
+NHN     N40     N       NH1     0       200.788     -4.359      52.970      
+NHN     C41     C       CH2     0       201.988     -4.258      52.159      
+NHN     C42     C       C       0       202.288     -5.556      51.428      
+NHN     O43     O       O       0       202.886     -6.461      52.007      
+NHN     C44     C       C       0       199.567     -4.374      52.433      
+NHN     N45     N       NH1     0       201.859     -5.649      50.154      
+NHN     C46     C       CH1     0       201.999     -6.881      49.367      
+NHN     C47     C       CR6     0       201.174     -6.863      48.086      
+NHN     C48     C       CR16    0       200.173     -7.803      47.866      
+NHN     C49     C       CR16    0       201.413     -5.910      47.102      
+NHN     C50     C       CR16    0       199.429     -7.789      46.692      
+NHN     C51     C       CR16    0       200.667     -5.895      45.930      
+NHN     C52     C       CR16    0       199.676     -6.834      45.727      
+NHN     C53     C       C       0       203.488     -7.136      48.997      
+NHN     O54     O       O       0       204.217     -6.169      48.761      
+NHN     N55     N       N       0       203.954     -8.408      48.911      
+NHN     C56     C       CH3     0       205.364     -8.712      48.665      
+NHN     C57     C       CH3     0       203.154     -9.629      49.019      
+NHN     H11     H       H       0       193.183     -8.474      44.485      
+NHN     H12     H       H       0       192.400     -7.861      45.702      
+NHN     H21     H       H       0       191.667     -10.060     45.041      
+NHN     H22     H       H       0       193.050     -10.614     45.578      
+NHN     H4      H       H       0       193.136     -11.377     47.792      
+NHN     H5      H       H       0       190.225     -8.770      46.815      
+NHN     H7      H       H       0       189.315     -8.990      48.942      
+NHN     H8      H       H       0       190.302     -10.398     50.507      
+NHN     H121    H       H       0       193.939     -12.649     49.490      
+NHN     H122    H       H       0       193.807     -12.929     51.035      
+NHN     H131    H       H       0       194.557     -10.873     51.601      
+NHN     H132    H       H       0       194.296     -10.291     50.151      
+NHN     H15     H       H       0       193.689     -6.855      47.155      
+NHN     H16     H       H       0       196.362     -7.493      47.424      
+NHN     H17     H       H       0       195.228     -4.942      47.925      
+NHN     H181    H       H       0       197.119     -5.214      49.265      
+NHN     H182    H       H       0       197.982     -5.683      48.028      
+NHN     H191    H       H       0       195.251     -5.320      45.623      
+NHN     H192    H       H       0       196.773     -5.743      45.665      
+NHN     H201    H       H       0       198.517     -3.461      48.493      
+NHN     H202    H       H       0       196.985     -3.042      48.438      
+NHN     H211    H       H       0       195.790     -3.106      46.134      
+NHN     H212    H       H       0       196.639     -3.551      44.867      
+NHN     H221    H       H       0       198.533     -3.877      46.195      
+NHN     H222    H       H       0       197.996     -2.402      46.435      
+NHN     H261    H       H       0       196.205     -9.822      48.410      
+NHN     H262    H       H       0       197.637     -9.150      48.749      
+NHN     H27     H       H       0       195.490     -8.350      51.757      
+NHN     H281    H       H       0       196.715     -10.137     52.287      
+NHN     H282    H       H       0       198.067     -9.467      51.721      
+NHN     H29     H       H       0       197.839     -10.961     50.083      
+NHN     H32     H       H       0       196.034     -6.639      53.138      
+NHN     H33     H       H       0       196.956     -4.491      51.840      
+NHN     H341    H       H       0       196.326     -3.272      53.822      
+NHN     H342    H       H       0       195.885     -4.652      54.465      
+NHN     H351    H       H       0       194.203     -4.910      52.859      
+NHN     H352    H       H       0       194.693     -3.606      52.097      
+NHN     H361    H       H       0       192.810     -3.105      53.386      
+NHN     H362    H       H       0       194.055     -2.291      53.942      
+NHN     H363    H       H       0       193.558     -3.597      54.698      
+NHN     H40     H       H       0       200.868     -4.409      53.840      
+NHN     H411    H       H       0       202.747     -4.040      52.739      
+NHN     H412    H       H       0       201.889     -3.530      51.511      
+NHN     H45     H       H       0       201.483     -4.954      49.787      
+NHN     H46     H       H       0       201.683     -7.633      49.927      
+NHN     H48     H       H       0       199.998     -8.461      48.520      
+NHN     H49     H       H       0       202.089     -5.264      47.232      
+NHN     H50     H       H       0       198.751     -8.432      46.558      
+NHN     H51     H       H       0       200.838     -5.241      45.271      
+NHN     H52     H       H       0       199.168     -6.823      44.931      
+NHN     H561    H       H       0       205.914     -7.930      48.827      
+NHN     H562    H       H       0       205.475     -8.996      47.743      
+NHN     H563    H       H       0       205.651     -9.427      49.257      
+NHN     H571    H       H       0       202.291     -9.498      48.603      
+NHN     H572    H       H       0       203.030     -9.852      49.956      
+NHN     H573    H       H       0       203.609     -10.364     48.573      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NHN          C1          C2      SINGLE       n     1.524  0.0200     1.524  0.0200
+NHN          C1          C9      SINGLE       n     1.508  0.0116     1.508  0.0116
+NHN          C2          C3      SINGLE       n     1.514  0.0100     1.514  0.0100
+NHN          C3          C4      SINGLE       y     1.388  0.0100     1.388  0.0100
+NHN          C3          C5      DOUBLE       y     1.385  0.0110     1.385  0.0110
+NHN          C4          C6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NHN          C5          C7      SINGLE       y     1.382  0.0119     1.382  0.0119
+NHN          C6          C8      SINGLE       y     1.386  0.0109     1.386  0.0109
+NHN          C6         O11      SINGLE       n     1.375  0.0105     1.375  0.0105
+NHN          C7          C8      DOUBLE       y     1.382  0.0111     1.382  0.0111
+NHN          C9         O10      DOUBLE       n     1.229  0.0102     1.229  0.0102
+NHN          C9         N15      SINGLE       n     1.335  0.0100     1.335  0.0100
+NHN         O11         C12      SINGLE       n     1.433  0.0100     1.433  0.0100
+NHN         C12         C13      SINGLE       n     1.498  0.0106     1.498  0.0106
+NHN         C13         O14      SINGLE       n     1.434  0.0200     1.434  0.0200
+NHN         O14         C29      SINGLE       n     1.423  0.0100     1.423  0.0100
+NHN         N15         C16      SINGLE       n     1.454  0.0100     1.454  0.0100
+NHN         C16         C17      SINGLE       n     1.539  0.0138     1.539  0.0138
+NHN         C16         C23      SINGLE       n     1.528  0.0130     1.528  0.0130
+NHN         C17         C18      SINGLE       n     1.527  0.0119     1.527  0.0119
+NHN         C17         C19      SINGLE       n     1.527  0.0119     1.527  0.0119
+NHN         C18         C20      SINGLE       n     1.527  0.0100     1.527  0.0100
+NHN         C19         C21      SINGLE       n     1.527  0.0100     1.527  0.0100
+NHN         C20         C22      SINGLE       n     1.517  0.0112     1.517  0.0112
+NHN         C21         C22      SINGLE       n     1.517  0.0112     1.517  0.0112
+NHN         C23         O24      DOUBLE       n     1.227  0.0149     1.227  0.0149
+NHN         C23         N25      SINGLE       n     1.342  0.0100     1.342  0.0100
+NHN         N25         C26      SINGLE       n     1.472  0.0100     1.472  0.0100
+NHN         N25         C27      SINGLE       n     1.463  0.0100     1.463  0.0100
+NHN         C26         C29      SINGLE       n     1.523  0.0100     1.523  0.0100
+NHN         C27         C28      SINGLE       n     1.536  0.0100     1.536  0.0100
+NHN         C27         C30      SINGLE       n     1.524  0.0100     1.524  0.0100
+NHN         C28         C29      SINGLE       n     1.520  0.0100     1.520  0.0100
+NHN         C30         O31      DOUBLE       n     1.231  0.0100     1.231  0.0100
+NHN         C30         N32      SINGLE       n     1.337  0.0122     1.337  0.0122
+NHN         N32         C33      SINGLE       n     1.454  0.0100     1.454  0.0100
+NHN         C33         C34      SINGLE       n     1.530  0.0138     1.530  0.0138
+NHN         C33         C38      SINGLE       n     1.524  0.0151     1.524  0.0151
+NHN         C34         C35      SINGLE       n     1.525  0.0100     1.525  0.0100
+NHN         C35         C36      SINGLE       n     1.510  0.0200     1.510  0.0200
+NHN         O37         C38      DOUBLE       n     1.230  0.0184     1.230  0.0184
+NHN         C38         C44      SINGLE       n     1.453  0.0200     1.453  0.0200
+NHN         O39         C44      DOUBLE       n     1.229  0.0129     1.229  0.0129
+NHN         N40         C41      SINGLE       n     1.449  0.0100     1.449  0.0100
+NHN         N40         C44      SINGLE       n     1.329  0.0103     1.329  0.0103
+NHN         C41         C42      SINGLE       n     1.516  0.0100     1.516  0.0100
+NHN         C42         O43      DOUBLE       n     1.229  0.0102     1.229  0.0102
+NHN         C42         N45      SINGLE       n     1.337  0.0129     1.337  0.0129
+NHN         N45         C46      SINGLE       n     1.460  0.0129     1.460  0.0129
+NHN         C46         C47      SINGLE       n     1.520  0.0100     1.520  0.0100
+NHN         C46         C53      SINGLE       n     1.546  0.0134     1.546  0.0134
+NHN         C47         C48      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NHN         C47         C49      SINGLE       y     1.386  0.0100     1.386  0.0100
+NHN         C48         C50      SINGLE       y     1.386  0.0100     1.386  0.0100
+NHN         C49         C51      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NHN         C50         C52      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NHN         C51         C52      SINGLE       y     1.376  0.0124     1.376  0.0124
+NHN         C53         O54      DOUBLE       n     1.232  0.0104     1.232  0.0104
+NHN         C53         N55      SINGLE       n     1.345  0.0100     1.345  0.0100
+NHN         N55         C56      SINGLE       n     1.458  0.0101     1.458  0.0101
+NHN         N55         C57      SINGLE       n     1.458  0.0101     1.458  0.0101
+NHN          C1         H11      SINGLE       n     1.089  0.0100     0.970  0.0190
+NHN          C1         H12      SINGLE       n     1.089  0.0100     0.970  0.0190
+NHN          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0169
+NHN          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0169
+NHN          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0164
+NHN          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+NHN          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0152
+NHN          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0163
+NHN         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0133
+NHN         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0133
+NHN         C13        H131      SINGLE       n     1.089  0.0100     0.979  0.0200
+NHN         C13        H132      SINGLE       n     1.089  0.0100     0.979  0.0200
+NHN         N15         H15      SINGLE       n     1.016  0.0100     0.873  0.0200
+NHN         C16         H16      SINGLE       n     1.089  0.0100     0.989  0.0198
+NHN         C17         H17      SINGLE       n     1.089  0.0100     0.996  0.0146
+NHN         C18        H181      SINGLE       n     1.089  0.0100     0.978  0.0143
+NHN         C18        H182      SINGLE       n     1.089  0.0100     0.978  0.0143
+NHN         C19        H191      SINGLE       n     1.089  0.0100     0.978  0.0143
+NHN         C19        H192      SINGLE       n     1.089  0.0100     0.978  0.0143
+NHN         C20        H201      SINGLE       n     1.089  0.0100     0.982  0.0142
+NHN         C20        H202      SINGLE       n     1.089  0.0100     0.982  0.0142
+NHN         C21        H211      SINGLE       n     1.089  0.0100     0.982  0.0142
+NHN         C21        H212      SINGLE       n     1.089  0.0100     0.982  0.0142
+NHN         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0138
+NHN         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0138
+NHN         C26        H261      SINGLE       n     1.089  0.0100     0.995  0.0200
+NHN         C26        H262      SINGLE       n     1.089  0.0100     0.995  0.0200
+NHN         C27         H27      SINGLE       n     1.089  0.0100     0.989  0.0105
+NHN         C28        H281      SINGLE       n     1.089  0.0100     0.994  0.0200
+NHN         C28        H282      SINGLE       n     1.089  0.0100     0.994  0.0200
+NHN         C29         H29      SINGLE       n     1.089  0.0100     0.988  0.0200
+NHN         N32         H32      SINGLE       n     1.016  0.0100     0.869  0.0200
+NHN         C33         H33      SINGLE       n     1.089  0.0100     0.989  0.0198
+NHN         C34        H341      SINGLE       n     1.089  0.0100     0.980  0.0160
+NHN         C34        H342      SINGLE       n     1.089  0.0100     0.980  0.0160
+NHN         C35        H351      SINGLE       n     1.089  0.0100     0.982  0.0155
+NHN         C35        H352      SINGLE       n     1.089  0.0100     0.982  0.0155
+NHN         C36        H361      SINGLE       n     1.089  0.0100     0.973  0.0157
+NHN         C36        H362      SINGLE       n     1.089  0.0100     0.973  0.0157
+NHN         C36        H363      SINGLE       n     1.089  0.0100     0.973  0.0157
+NHN         N40         H40      SINGLE       n     1.016  0.0100     0.874  0.0200
+NHN         C41        H411      SINGLE       n     1.089  0.0100     0.980  0.0145
+NHN         C41        H412      SINGLE       n     1.089  0.0100     0.980  0.0145
+NHN         N45         H45      SINGLE       n     1.016  0.0100     0.871  0.0200
+NHN         C46         H46      SINGLE       n     1.089  0.0100     0.992  0.0200
+NHN         C48         H48      SINGLE       n     1.082  0.0130     0.944  0.0174
+NHN         C49         H49      SINGLE       n     1.082  0.0130     0.944  0.0174
+NHN         C50         H50      SINGLE       n     1.082  0.0130     0.944  0.0175
+NHN         C51         H51      SINGLE       n     1.082  0.0130     0.944  0.0175
+NHN         C52         H52      SINGLE       n     1.082  0.0130     0.944  0.0161
+NHN         C56        H561      SINGLE       n     1.089  0.0100     0.971  0.0181
+NHN         C56        H562      SINGLE       n     1.089  0.0100     0.971  0.0181
+NHN         C56        H563      SINGLE       n     1.089  0.0100     0.971  0.0181
+NHN         C57        H571      SINGLE       n     1.089  0.0100     0.971  0.0181
+NHN         C57        H572      SINGLE       n     1.089  0.0100     0.971  0.0181
+NHN         C57        H573      SINGLE       n     1.089  0.0100     0.971  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NHN          C2          C1          C9     112.429    2.96
+NHN          C2          C1         H11     108.976    1.50
+NHN          C2          C1         H12     108.976    1.50
+NHN          C9          C1         H11     108.712    1.50
+NHN          C9          C1         H12     108.712    1.50
+NHN         H11          C1         H12     108.535    1.50
+NHN          C1          C2          C3     113.835    1.79
+NHN          C1          C2         H21     108.600    1.50
+NHN          C1          C2         H22     108.600    1.50
+NHN          C3          C2         H21     108.803    1.50
+NHN          C3          C2         H22     108.803    1.50
+NHN         H21          C2         H22     107.745    1.50
+NHN          C2          C3          C4     120.112    1.74
+NHN          C2          C3          C5     121.225    1.50
+NHN          C4          C3          C5     118.663    1.50
+NHN          C3          C4          C6     120.465    1.50
+NHN          C3          C4          H4     119.632    1.50
+NHN          C6          C4          H4     119.903    1.50
+NHN          C3          C5          C7     120.639    1.50
+NHN          C3          C5          H5     119.583    1.50
+NHN          C7          C5          H5     119.778    1.50
+NHN          C4          C6          C8     120.235    1.50
+NHN          C4          C6         O11     119.608    3.00
+NHN          C8          C6         O11     120.154    3.00
+NHN          C5          C7          C8     120.578    1.50
+NHN          C5          C7          H7     119.850    1.50
+NHN          C8          C7          H7     119.572    1.50
+NHN          C6          C8          C7     119.422    1.50
+NHN          C6          C8          H8     120.254    1.50
+NHN          C7          C8          H8     120.324    1.50
+NHN          C1          C9         O10     121.248    1.50
+NHN          C1          C9         N15     116.143    1.50
+NHN         O10          C9         N15     122.609    1.50
+NHN          C6         O11         C12     117.563    1.50
+NHN         O11         C12         C13     108.107    2.18
+NHN         O11         C12        H121     110.038    1.50
+NHN         O11         C12        H122     110.038    1.50
+NHN         C13         C12        H121     110.060    1.50
+NHN         C13         C12        H122     110.060    1.50
+NHN        H121         C12        H122     108.428    1.98
+NHN         C12         C13         O14     109.795    3.00
+NHN         C12         C13        H131     110.060    1.50
+NHN         C12         C13        H132     110.060    1.50
+NHN         O14         C13        H131     109.660    1.50
+NHN         O14         C13        H132     109.660    1.50
+NHN        H131         C13        H132     108.356    1.50
+NHN         C13         O14         C29     114.719    2.29
+NHN          C9         N15         C16     122.005    1.75
+NHN          C9         N15         H15     118.885    1.94
+NHN         C16         N15         H15     119.110    1.91
+NHN         N15         C16         C17     112.102    2.36
+NHN         N15         C16         C23     110.812    2.04
+NHN         N15         C16         H16     108.169    1.50
+NHN         C17         C16         C23     113.355    2.65
+NHN         C17         C16         H16     107.678    2.06
+NHN         C23         C16         H16     108.676    1.50
+NHN         C16         C17         C18     111.163    2.25
+NHN         C16         C17         C19     111.163    2.25
+NHN         C16         C17         H17     107.209    1.50
+NHN         C18         C17         C19     110.252    1.50
+NHN         C18         C17         H17     107.636    1.50
+NHN         C19         C17         H17     107.636    1.50
+NHN         C17         C18         C20     111.983    1.50
+NHN         C17         C18        H181     109.137    1.50
+NHN         C17         C18        H182     109.137    1.50
+NHN         C20         C18        H181     109.267    1.50
+NHN         C20         C18        H182     109.267    1.50
+NHN        H181         C18        H182     107.919    1.50
+NHN         C17         C19         C21     111.983    1.50
+NHN         C17         C19        H191     109.137    1.50
+NHN         C17         C19        H192     109.137    1.50
+NHN         C21         C19        H191     109.267    1.50
+NHN         C21         C19        H192     109.267    1.50
+NHN        H191         C19        H192     107.919    1.50
+NHN         C18         C20         C22     111.360    1.50
+NHN         C18         C20        H201     109.388    1.50
+NHN         C18         C20        H202     109.388    1.50
+NHN         C22         C20        H201     109.386    1.50
+NHN         C22         C20        H202     109.386    1.50
+NHN        H201         C20        H202     108.036    1.50
+NHN         C19         C21         C22     111.360    1.50
+NHN         C19         C21        H211     109.388    1.50
+NHN         C19         C21        H212     109.388    1.50
+NHN         C22         C21        H211     109.386    1.50
+NHN         C22         C21        H212     109.386    1.50
+NHN        H211         C21        H212     108.036    1.50
+NHN         C20         C22         C21     111.038    1.50
+NHN         C20         C22        H221     109.386    1.50
+NHN         C20         C22        H222     109.386    1.50
+NHN         C21         C22        H221     109.386    1.50
+NHN         C21         C22        H222     109.386    1.50
+NHN        H221         C22        H222     108.036    1.50
+NHN         C16         C23         O24     120.695    1.74
+NHN         C16         C23         N25     118.799    1.90
+NHN         O24         C23         N25     120.506    1.54
+NHN         C23         N25         C26     126.446    3.00
+NHN         C23         N25         C27     120.918    3.00
+NHN         C26         N25         C27     112.636    1.50
+NHN         N25         C26         C29     102.939    1.50
+NHN         N25         C26        H261     111.119    1.50
+NHN         N25         C26        H262     111.119    1.50
+NHN         C29         C26        H261     111.086    1.50
+NHN         C29         C26        H262     111.086    1.50
+NHN        H261         C26        H262     108.952    1.50
+NHN         N25         C27         C28     102.944    1.50
+NHN         N25         C27         C30     112.246    1.50
+NHN         N25         C27         H27     110.260    1.50
+NHN         C28         C27         C30     111.469    1.50
+NHN         C28         C27         H27     110.351    1.50
+NHN         C30         C27         H27     109.755    1.50
+NHN         C27         C28         C29     103.875    1.51
+NHN         C27         C28        H281     110.835    1.50
+NHN         C27         C28        H282     110.835    1.50
+NHN         C29         C28        H281     111.188    1.50
+NHN         C29         C28        H282     111.188    1.50
+NHN        H281         C28        H282     109.113    1.50
+NHN         O14         C29         C26     109.088    3.00
+NHN         O14         C29         C28     110.770    3.00
+NHN         O14         C29         H29     110.257    1.68
+NHN         C26         C29         C28     103.389    1.50
+NHN         C26         C29         H29     111.533    1.50
+NHN         C28         C29         H29     111.076    1.50
+NHN         C27         C30         O31     120.913    1.50
+NHN         C27         C30         N32     115.978    1.58
+NHN         O31         C30         N32     123.109    1.50
+NHN         C30         N32         C33     122.130    1.52
+NHN         C30         N32         H32     118.679    2.92
+NHN         C33         N32         H32     119.191    1.91
+NHN         N32         C33         C34     110.984    1.61
+NHN         N32         C33         C38     110.342    2.62
+NHN         N32         C33         H33     108.209    1.50
+NHN         C34         C33         C38     110.376    1.58
+NHN         C34         C33         H33     108.223    1.50
+NHN         C38         C33         H33     107.980    1.50
+NHN         C33         C34         C35     113.702    1.73
+NHN         C33         C34        H341     108.562    1.50
+NHN         C33         C34        H342     108.562    1.50
+NHN         C35         C34        H341     108.575    1.50
+NHN         C35         C34        H342     108.575    1.50
+NHN        H341         C34        H342     107.844    1.50
+NHN         C34         C35         C36     111.714    1.50
+NHN         C34         C35        H351     109.266    1.50
+NHN         C34         C35        H352     109.266    1.50
+NHN         C36         C35        H351     108.918    1.50
+NHN         C36         C35        H352     108.918    1.50
+NHN        H351         C35        H352     107.763    1.50
+NHN         C35         C36        H361     109.554    1.50
+NHN         C35         C36        H362     109.554    1.50
+NHN         C35         C36        H363     109.554    1.50
+NHN        H361         C36        H362     109.380    1.50
+NHN        H361         C36        H363     109.380    1.50
+NHN        H362         C36        H363     109.380    1.50
+NHN         C33         C38         O37     117.794    1.50
+NHN         C33         C38         C44     122.837    3.00
+NHN         O37         C38         C44     119.368    2.59
+NHN         C41         N40         C44     121.236    1.67
+NHN         C41         N40         H40     119.614    1.66
+NHN         C44         N40         H40     119.150    2.08
+NHN         N40         C41         C42     112.639    2.36
+NHN         N40         C41        H411     109.004    1.50
+NHN         N40         C41        H412     109.004    1.50
+NHN         C42         C41        H411     108.872    1.50
+NHN         C42         C41        H412     108.872    1.50
+NHN        H411         C41        H412     107.845    1.50
+NHN         C41         C42         O43     120.989    1.50
+NHN         C41         C42         N45     116.042    1.70
+NHN         O43         C42         N45     122.977    1.50
+NHN         C38         C44         O39     119.544    3.00
+NHN         C38         C44         N40     117.963    3.00
+NHN         O39         C44         N40     122.493    1.83
+NHN         C42         N45         C46     121.455    1.50
+NHN         C42         N45         H45     119.076    1.94
+NHN         C46         N45         H45     119.469    1.50
+NHN         N45         C46         C47     113.090    1.50
+NHN         N45         C46         C53     109.904    2.48
+NHN         N45         C46         H46     108.583    1.50
+NHN         C47         C46         C53     110.517    2.35
+NHN         C47         C46         H46     108.370    1.59
+NHN         C53         C46         H46     108.160    1.50
+NHN         C46         C47         C48     120.770    1.50
+NHN         C46         C47         C49     120.770    1.50
+NHN         C48         C47         C49     118.460    1.50
+NHN         C47         C48         C50     120.588    1.50
+NHN         C47         C48         H48     119.682    1.50
+NHN         C50         C48         H48     119.730    1.50
+NHN         C47         C49         C51     120.588    1.50
+NHN         C47         C49         H49     119.682    1.50
+NHN         C51         C49         H49     119.730    1.50
+NHN         C48         C50         C52     120.216    1.50
+NHN         C48         C50         H50     119.847    1.50
+NHN         C52         C50         H50     119.938    1.50
+NHN         C49         C51         C52     120.216    1.50
+NHN         C49         C51         H51     119.847    1.50
+NHN         C52         C51         H51     119.938    1.50
+NHN         C50         C52         C51     119.933    1.50
+NHN         C50         C52         H52     120.033    1.50
+NHN         C51         C52         H52     120.033    1.50
+NHN         C46         C53         O54     120.943    1.50
+NHN         C46         C53         N55     116.770    1.98
+NHN         O54         C53         N55     122.287    2.26
+NHN         C53         N55         C56     121.452    3.00
+NHN         C53         N55         C57     121.452    3.00
+NHN         C56         N55         C57     117.097    3.00
+NHN         N55         C56        H561     109.484    1.50
+NHN         N55         C56        H562     109.484    1.50
+NHN         N55         C56        H563     109.484    1.50
+NHN        H561         C56        H562     109.408    1.50
+NHN        H561         C56        H563     109.408    1.50
+NHN        H562         C56        H563     109.408    1.50
+NHN         N55         C57        H571     109.484    1.50
+NHN         N55         C57        H572     109.484    1.50
+NHN         N55         C57        H573     109.484    1.50
+NHN        H571         C57        H572     109.408    1.50
+NHN        H571         C57        H573     109.408    1.50
+NHN        H572         C57        H573     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NHN            sp3_sp3_73          C9          C1          C2          C3     180.000    10.0     3
+NHN             sp2_sp3_8         O10          C9          C1          C2     120.000    10.0     6
+NHN            sp3_sp3_82         C13         C12         O11          C6     180.000    10.0     3
+NHN            sp3_sp3_85         O11         C12         C13         O14     180.000    10.0     3
+NHN            sp3_sp3_94         C12         C13         O14         C29     180.000    10.0     3
+NHN            sp3_sp3_97         C26         C29         O14         C13     180.000    10.0     3
+NHN            sp2_sp3_20          C9         N15         C16         C23     120.000    10.0     6
+NHN           sp3_sp3_101         N15         C16         C17         C18     -60.000    10.0     3
+NHN            sp2_sp3_25         O24         C23         C16         N15       0.000    10.0     6
+NHN             sp3_sp3_7         C16         C17         C18         C20     180.000    10.0     3
+NHN           sp3_sp3_112         C16         C17         C19         C21      60.000    10.0     3
+NHN            sp3_sp3_10         C17         C18         C20         C22     -60.000    10.0     3
+NHN            sp3_sp3_37         C17         C19         C21         C22      60.000    10.0     3
+NHN            sp3_sp3_19         C18         C20         C22         C21      60.000    10.0     3
+NHN            sp2_sp3_14          C4          C3          C2          C1     -90.000    10.0     6
+NHN            sp3_sp3_28         C19         C21         C22         C20     -60.000    10.0     3
+NHN             sp2_sp2_7         C16         C23         N25         C26     180.000     5.0     2
+NHN             sp2_sp3_4         C23         N25         C26         C29     180.000    10.0     6
+NHN            sp2_sp3_35         C23         N25         C27         C30     -60.000    10.0     6
+NHN            sp3_sp3_47         N25         C26         C29         O14      60.000    10.0     3
+NHN            sp3_sp3_67         C30         C27         C28         C29     180.000    10.0     3
+NHN            sp2_sp3_37         O31         C30         C27         N25       0.000    10.0     6
+NHN            sp3_sp3_56         C27         C28         C29         O14     180.000    10.0     3
+NHN            sp2_sp2_13         O31         C30         N32         C33       0.000     5.0     2
+NHN       const_sp2_sp2_3          C2          C3          C4          C6     180.000     5.0     2
+NHN              const_43          C2          C3          C5          C7     180.000    10.0     2
+NHN            sp2_sp3_43         C30         N32         C33         C34       0.000    10.0     6
+NHN           sp3_sp3_118         N32         C33         C34         C35     180.000    10.0     3
+NHN            sp2_sp3_49         O37         C38         C33         N32       0.000    10.0     6
+NHN           sp3_sp3_127         C33         C34         C35         C36     180.000    10.0     3
+NHN           sp3_sp3_136         C34         C35         C36        H361     180.000    10.0     3
+NHN            sp2_sp2_16         C33         C38         C44         O39       0.000     5.0     2
+NHN            sp2_sp3_56         C44         N40         C41         C42     120.000    10.0     6
+NHN            sp2_sp2_19         C38         C44         N40         C41     180.000     5.0     2
+NHN       const_sp2_sp2_6          C3          C4          C6         O11     180.000     5.0     2
+NHN            sp2_sp3_62         O43         C42         C41         N40     120.000    10.0     6
+NHN            sp2_sp2_23         C41         C42         N45         C46     180.000     5.0     2
+NHN            sp2_sp3_68         C42         N45         C46         C53     120.000    10.0     6
+NHN            sp2_sp3_73         C48         C47         C46         N45     150.000    10.0     6
+NHN            sp2_sp3_79         O54         C53         C46         N45       0.000    10.0     6
+NHN              const_23         C46         C47         C48         C50     180.000    10.0     2
+NHN              const_47         C46         C47         C49         C51     180.000    10.0     2
+NHN              const_25         C47         C48         C50         C52       0.000    10.0     2
+NHN              const_37         C47         C49         C51         C52       0.000    10.0     2
+NHN              const_29         C48         C50         C52         C51       0.000    10.0     2
+NHN              const_17          C3          C5          C7          C8       0.000    10.0     2
+NHN              const_33         C49         C51         C52         C50       0.000    10.0     2
+NHN            sp2_sp2_27         C46         C53         N55         C56     180.000     5.0     2
+NHN            sp2_sp3_85         C53         N55         C56        H561       0.000    10.0     6
+NHN            sp2_sp3_91         C53         N55         C57        H571       0.000    10.0     6
+NHN             sp2_sp2_1          C4          C6         O11         C12     180.000     5.0     2
+NHN              const_11         O11          C6          C8          C7     180.000    10.0     2
+NHN              const_13          C5          C7          C8          C6       0.000    10.0     2
+NHN             sp2_sp2_3          C1          C9         N15         C16     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NHN    chir_1    C16    N15    C23    C17    positive
+NHN    chir_2    C17    C16    C18    C19    both
+NHN    chir_3    C27    N25    C30    C28    positive
+NHN    chir_4    C29    O14    C26    C28    negative
+NHN    chir_5    C33    N32    C38    C34    positive
+NHN    chir_6    C46    N45    C53    C47    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NHN    plan-1          C2   0.020
+NHN    plan-1          C3   0.020
+NHN    plan-1          C4   0.020
+NHN    plan-1          C5   0.020
+NHN    plan-1          C6   0.020
+NHN    plan-1          C7   0.020
+NHN    plan-1          C8   0.020
+NHN    plan-1          H4   0.020
+NHN    plan-1          H5   0.020
+NHN    plan-1          H7   0.020
+NHN    plan-1          H8   0.020
+NHN    plan-1         O11   0.020
+NHN    plan-2         C46   0.020
+NHN    plan-2         C47   0.020
+NHN    plan-2         C48   0.020
+NHN    plan-2         C49   0.020
+NHN    plan-2         C50   0.020
+NHN    plan-2         C51   0.020
+NHN    plan-2         C52   0.020
+NHN    plan-2         H48   0.020
+NHN    plan-2         H49   0.020
+NHN    plan-2         H50   0.020
+NHN    plan-2         H51   0.020
+NHN    plan-2         H52   0.020
+NHN    plan-3          C1   0.020
+NHN    plan-3          C9   0.020
+NHN    plan-3         N15   0.020
+NHN    plan-3         O10   0.020
+NHN    plan-4         C16   0.020
+NHN    plan-4          C9   0.020
+NHN    plan-4         H15   0.020
+NHN    plan-4         N15   0.020
+NHN    plan-5         C16   0.020
+NHN    plan-5         C23   0.020
+NHN    plan-5         N25   0.020
+NHN    plan-5         O24   0.020
+NHN    plan-6         C23   0.020
+NHN    plan-6         C26   0.020
+NHN    plan-6         C27   0.020
+NHN    plan-6         N25   0.020
+NHN    plan-7         C27   0.020
+NHN    plan-7         C30   0.020
+NHN    plan-7         N32   0.020
+NHN    plan-7         O31   0.020
+NHN    plan-8         C30   0.020
+NHN    plan-8         C33   0.020
+NHN    plan-8         H32   0.020
+NHN    plan-8         N32   0.020
+NHN    plan-9         C33   0.020
+NHN    plan-9         C38   0.020
+NHN    plan-9         C44   0.020
+NHN    plan-9         O37   0.020
+NHN   plan-10         C41   0.020
+NHN   plan-10         C44   0.020
+NHN   plan-10         H40   0.020
+NHN   plan-10         N40   0.020
+NHN   plan-11         C41   0.020
+NHN   plan-11         C42   0.020
+NHN   plan-11         N45   0.020
+NHN   plan-11         O43   0.020
+NHN   plan-12         C38   0.020
+NHN   plan-12         C44   0.020
+NHN   plan-12         N40   0.020
+NHN   plan-12         O39   0.020
+NHN   plan-13         C42   0.020
+NHN   plan-13         C46   0.020
+NHN   plan-13         H45   0.020
+NHN   plan-13         N45   0.020
+NHN   plan-14         C46   0.020
+NHN   plan-14         C53   0.020
+NHN   plan-14         N55   0.020
+NHN   plan-14         O54   0.020
+NHN   plan-15         C53   0.020
+NHN   plan-15         C56   0.020
+NHN   plan-15         C57   0.020
+NHN   plan-15         N55   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NHN           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                              O=C(N(C)C)C(c1ccccc1)NC(=O)CNC(=O)C(=O)C(NC(=O)C2N3C(=O)C(NC(=O)CCc4cccc(OCCOC(C2)C3)c4)C5CCCCC5)CCC
+NHN SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                                         CCC[C@H](NC(=O)[C@@H]1C[C@@H]2CN1C(=O)[C@@H](NC(=O)CCc3cccc(OCCO2)c3)C4CCCCC4)C(=O)C(=O)NCC(=O)N[C@H](C(=O)N(C)C)c5ccccc5
+NHN           SMILES               CACTVS 3.341                                                                                                                                                                                                                                 CCC[CH](NC(=O)[CH]1C[CH]2CN1C(=O)[CH](NC(=O)CCc3cccc(OCCO2)c3)C4CCCCC4)C(=O)C(=O)NCC(=O)N[CH](C(=O)N(C)C)c5ccccc5
+NHN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                            CCC[C@@H](C(=O)C(=O)NCC(=O)N[C@@H](c1ccccc1)C(=O)N(C)C)NC(=O)[C@@H]2CC3CN2C(=O)[C@@H](NC(=O)CCc4cccc(c4)OCCO3)C5CCCCC5
+NHN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                                CCCC(C(=O)C(=O)NCC(=O)NC(c1ccccc1)C(=O)N(C)C)NC(=O)C2CC3CN2C(=O)C(NC(=O)CCc4cccc(c4)OCCO3)C5CCCCC5
+NHN            InChI                InChI  1.03 InChI=1S/C42H56N6O9/c1-4-12-32(38(51)40(53)43-25-35(50)46-36(41(54)47(2)3)28-14-7-5-8-15-28)44-39(52)33-24-31-26-48(33)42(55)37(29-16-9-6-10-17-29)45-34(49)20-19-27-13-11-18-30(23-27)56-21-22-57-31/h5,7-8,11,13-15,18,23,29,31-33,36-37H,4,6,9-10,12,16-17,19-22,24-26H2,1-3H3,(H,43,53)(H,44,52)(H,45,49)(H,46,50)/t31-,32+,33+,36+,37+/m1/s1
+NHN         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                       RJPSYFVTRHPRGV-HVHRWFTHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NHN acedrg               243         "dictionary generator"                  
+NHN acedrg_database      11          "data source"                           
+NHN rdkit                2017.03.2   "Chemoinformatics tool"
+NHN refmac5              5.8.0238    "optimization tool"                     

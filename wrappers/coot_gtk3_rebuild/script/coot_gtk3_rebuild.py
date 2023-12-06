@@ -37,26 +37,34 @@ class coot_gtk3_rebuild(CCP4PluginScript.CPluginScript):
                 self.dropDir = self.workDirectory
                 print('Could not make dropDir reset to', self.dropDir)
 
-        with open(f"{self.getWorkDirectory()}/startupScript.py", "w") as outscript:
-            outscript.write(f"print('{CCP4PluginScript.__file__}')\n")
-            outscript.write("import sys\n")
-            outscript.write("import os\n")
-            outscript.write("import traceback\n")
-            outscript.write(
-                f"CCP4I2_ROOT='{os.path.dirname(os.path.abspath(os.path.dirname(CCP4PluginScript.__file__)))}'\n")
-            outscript.write(f"sys.path.append(CCP4I2_ROOT)\n")
-            outscript.write(
-                f"sys.path.append(os.path.join(CCP4I2_ROOT,'wrappers','coot_gtk3_rebuild','script'))\n")
-            outscript.write("try:\n")
-            outscript.write(
-                "    from wrappers.coot_gtk3_rebuild.script.CCP4i2 import CCP4i2CootGTK3Plugin\n")
-            outscript.write(
-                f"    a=CCP4i2CootGTK3Plugin.CCP4i2Menu(jobId='{self.jobId}')\n")
-            outscript.write("except Exception as err:\n")
-            outscript.write("    print(err)\n")
-            outscript.write("    traceback.print_exc()\n")
         self.appendCommandLine(
-            ['--script', os.path.join(self.getWorkDirectory(), 'startupScript.py')])
+            [os.path.join(self.getWorkDirectory(), 'startupScript.py')])
+
+        with open(f"{self.getWorkDirectory()}/startupScript.py", "w") as outscript:
+            outscript.write(f'''
+import sys
+import os
+import traceback
+import coot_gui_api
+CCP4I2_ROOT='{os.path.dirname(os.path.abspath(os.path.dirname(CCP4PluginScript.__file__)))}'
+sys.path.append(CCP4I2_ROOT)
+sys.path.append(os.path.join(CCP4I2_ROOT,'wrappers','coot_gtk3_rebuild','script'))
+try:
+    print("Hellow world 1")
+    from wrappers.coot_gtk3_rebuild.script.CCP4i2 import CCP4i2CootGTK4Plugin
+    print("Hellow world 2")
+    a=CCP4i2CootGTK4Plugin.CCP4i2Menu(
+        baseUrl='http://127.0.0.1:43434/database', 
+        jobId='{self.jobId}',
+        menuBar=coot_gui_api.main_toolbar(), 
+        app=coot_gui_api.application()
+    )
+    print("Hellow world 3")
+except Exception as err:
+    print(err)
+    traceback.print_exc()
+\n''')
+            
 
     def processOutputFiles(self):
         try:

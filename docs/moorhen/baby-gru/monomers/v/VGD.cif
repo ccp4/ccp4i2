@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VGD     VGD      6-chloro-1H-benzimidazol-2-amine     NON-POLYMER     17     11     .     
+#
+data_comp_VGD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VGD     CLA     CL      CL      0       -15.707     16.665      6.627       
+VGD     CAH     C       CR6     0       -16.697     16.264      5.248       
+VGD     CAC     C       CR16    0       -16.691     17.119      4.150       
+VGD     CAD     C       CR16    0       -17.461     16.833      3.042       
+VGD     CAK     C       CR56    0       -18.240     15.672      3.053       
+VGD     CAJ     C       CR56    0       -18.231     14.825      4.169       
+VGD     CAE     C       CR16    0       -17.458     15.104      5.291       
+VGD     NAG     N       NRD5    0       -19.094     15.157      2.082       
+VGD     CAI     C       CR5     0       -19.576     14.045      2.598       
+VGD     NAF     N       NR5     0       -19.094     13.796      3.846       
+VGD     NAA     N       NH2     0       -20.445     13.234      1.982       
+VGD     HAC     H       H       0       -16.158     17.896      4.164       
+VGD     HAD     H       H       0       -17.463     17.407      2.294       
+VGD     HAE     H       H       0       -17.454     14.539      6.032       
+VGD     HNAF    H       H       0       -19.313     13.098      4.331       
+VGD     HNAA    H       H       0       -20.719     12.509      2.385       
+VGD     HNAB    H       H       0       -20.730     13.437      1.181       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VGD         CLA         CAH      SINGLE       n     1.744  0.0100     1.744  0.0100
+VGD         CAH         CAC      DOUBLE       y     1.389  0.0100     1.389  0.0100
+VGD         CAH         CAE      SINGLE       y     1.385  0.0100     1.385  0.0100
+VGD         CAC         CAD      SINGLE       y     1.375  0.0100     1.375  0.0100
+VGD         CAD         CAK      DOUBLE       y     1.393  0.0100     1.393  0.0100
+VGD         CAK         CAJ      SINGLE       y     1.397  0.0100     1.397  0.0100
+VGD         CAK         NAG      SINGLE       y     1.393  0.0100     1.393  0.0100
+VGD         CAJ         CAE      DOUBLE       y     1.388  0.0100     1.388  0.0100
+VGD         CAJ         NAF      SINGLE       y     1.382  0.0100     1.382  0.0100
+VGD         NAG         CAI      DOUBLE       y     1.318  0.0100     1.318  0.0100
+VGD         CAI         NAF      SINGLE       y     1.359  0.0116     1.359  0.0116
+VGD         CAI         NAA      SINGLE       n     1.338  0.0108     1.338  0.0108
+VGD         CAC         HAC      SINGLE       n     1.082  0.0130     0.942  0.0131
+VGD         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0134
+VGD         CAE         HAE      SINGLE       n     1.082  0.0130     0.932  0.0200
+VGD         NAF        HNAF      SINGLE       n     1.016  0.0100     0.877  0.0200
+VGD         NAA        HNAA      SINGLE       n     1.016  0.0100     0.874  0.0194
+VGD         NAA        HNAB      SINGLE       n     1.016  0.0100     0.874  0.0194
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VGD         CLA         CAH         CAC     118.424    1.50
+VGD         CLA         CAH         CAE     118.368    1.50
+VGD         CAC         CAH         CAE     123.208    1.50
+VGD         CAH         CAC         CAD     120.235    1.50
+VGD         CAH         CAC         HAC     119.850    1.50
+VGD         CAD         CAC         HAC     119.915    1.50
+VGD         CAC         CAD         CAK     117.991    1.50
+VGD         CAC         CAD         HAD     121.041    1.50
+VGD         CAK         CAD         HAD     120.968    1.50
+VGD         CAD         CAK         CAJ     119.985    1.50
+VGD         CAD         CAK         NAG     129.976    1.50
+VGD         CAJ         CAK         NAG     110.039    1.50
+VGD         CAK         CAJ         CAE     121.750    1.50
+VGD         CAK         CAJ         NAF     105.106    1.50
+VGD         CAE         CAJ         NAF     133.144    1.50
+VGD         CAH         CAE         CAJ     116.830    1.50
+VGD         CAH         CAE         HAE     121.874    1.50
+VGD         CAJ         CAE         HAE     121.295    1.50
+VGD         CAK         NAG         CAI     105.356    1.50
+VGD         NAG         CAI         NAF     112.380    1.50
+VGD         NAG         CAI         NAA     124.702    1.50
+VGD         NAF         CAI         NAA     122.918    1.50
+VGD         CAJ         NAF         CAI     107.120    1.50
+VGD         CAJ         NAF        HNAF     128.365    2.11
+VGD         CAI         NAF        HNAF     124.515    2.34
+VGD         CAI         NAA        HNAA     119.586    1.87
+VGD         CAI         NAA        HNAB     119.586    1.87
+VGD        HNAA         NAA        HNAB     120.828    2.45
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VGD       const_sp2_sp2_2         CAD         CAC         CAH         CLA     180.000     5.0     2
+VGD              const_32         CAJ         CAE         CAH         CLA     180.000    10.0     2
+VGD       const_sp2_sp2_5         CAH         CAC         CAD         CAK       0.000     5.0     2
+VGD       const_sp2_sp2_9         CAC         CAD         CAK         CAJ       0.000     5.0     2
+VGD              const_13         CAE         CAJ         CAK         CAD       0.000    10.0     2
+VGD              const_36         CAD         CAK         NAG         CAI     180.000    10.0     2
+VGD              const_17         CAH         CAE         CAJ         CAK       0.000    10.0     2
+VGD              const_21         CAK         CAJ         NAF         CAI       0.000    10.0     2
+VGD              const_30         NAA         CAI         NAG         CAK     180.000    10.0     2
+VGD             sp2_sp2_3         NAG         CAI         NAA        HNAA       0.000     5.0     2
+VGD              const_27         NAA         CAI         NAF         CAJ     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VGD    plan-1         CAC   0.020
+VGD    plan-1         CAD   0.020
+VGD    plan-1         CAE   0.020
+VGD    plan-1         CAH   0.020
+VGD    plan-1         CAI   0.020
+VGD    plan-1         CAJ   0.020
+VGD    plan-1         CAK   0.020
+VGD    plan-1         CLA   0.020
+VGD    plan-1         HAC   0.020
+VGD    plan-1         HAD   0.020
+VGD    plan-1         HAE   0.020
+VGD    plan-1        HNAF   0.020
+VGD    plan-1         NAA   0.020
+VGD    plan-1         NAF   0.020
+VGD    plan-1         NAG   0.020
+VGD    plan-2         CAI   0.020
+VGD    plan-2        HNAA   0.020
+VGD    plan-2        HNAB   0.020
+VGD    plan-2         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VGD           SMILES              ACDLabs 10.04                                              Clc2cc1c(nc(n1)N)cc2
+VGD SMILES_CANONICAL               CACTVS 3.341                                             Nc1[nH]c2cc(Cl)ccc2n1
+VGD           SMILES               CACTVS 3.341                                             Nc1[nH]c2cc(Cl)ccc2n1
+VGD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                           c1cc2c(cc1Cl)[nH]c(n2)N
+VGD           SMILES "OpenEye OEToolkits" 1.5.0                                           c1cc2c(cc1Cl)[nH]c(n2)N
+VGD            InChI                InChI  1.03 InChI=1S/C7H6ClN3/c8-4-1-2-5-6(3-4)11-7(9)10-5/h1-3H,(H3,9,10,11)
+VGD         InChIKey                InChI  1.03                                       PDOCNPCPPLPXRV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VGD acedrg               243         "dictionary generator"                  
+VGD acedrg_database      11          "data source"                           
+VGD rdkit                2017.03.2   "Chemoinformatics tool"
+VGD refmac5              5.8.0238    "optimization tool"                     

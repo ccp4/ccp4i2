@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RSK     RSK      (1S,2R)-1,2-diphenylethane-1,2-diamine     NON-POLYMER     32     16     .     
+#
+data_comp_RSK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RSK     N1      N       NT2     0       -27.716     -46.380     46.772      
+RSK     C8      C       CH1     0       -28.458     -46.644     45.530      
+RSK     C9      C       CR6     0       -27.725     -46.178     44.279      
+RSK     C14     C       CR16    0       -26.482     -46.706     43.950      
+RSK     C13     C       CR16    0       -25.810     -46.284     42.810      
+RSK     C12     C       CR16    0       -26.371     -45.330     41.988      
+RSK     C11     C       CR16    0       -27.605     -44.795     42.302      
+RSK     C10     C       CR16    0       -28.279     -45.216     43.441      
+RSK     C1      C       CH1     0       -28.884     -48.136     45.419      
+RSK     C2      C       CR6     0       -29.587     -48.612     46.682      
+RSK     C7      C       CR16    0       -30.825     -48.090     47.042      
+RSK     C6      C       CR16    0       -31.470     -48.521     48.195      
+RSK     C5      C       CR16    0       -30.886     -49.476     48.999      
+RSK     C4      C       CR16    0       -29.658     -50.004     48.656      
+RSK     C3      C       CR16    0       -29.010     -49.574     47.504      
+RSK     N2      N       NT2     0       -29.654     -48.388     44.191      
+RSK     H1      H       H       0       -26.950     -46.889     46.778      
+RSK     H2      H       H       0       -27.441     -45.501     46.778      
+RSK     H4      H       H       0       -29.309     -46.132     45.587      
+RSK     H5      H       H       0       -26.091     -47.360     44.507      
+RSK     H6      H       H       0       -24.967     -46.651     42.598      
+RSK     H7      H       H       0       -25.914     -45.043     41.214      
+RSK     H8      H       H       0       -27.992     -44.142     41.741      
+RSK     H9      H       H       0       -29.122     -44.845     43.647      
+RSK     H10     H       H       0       -28.036     -48.650     45.338      
+RSK     H11     H       H       0       -31.231     -47.435     46.497      
+RSK     H12     H       H       0       -32.310     -48.158     48.427      
+RSK     H13     H       H       0       -31.325     -49.768     49.782      
+RSK     H14     H       H       0       -29.255     -50.658     49.205      
+RSK     H15     H       H       0       -28.171     -49.941     47.277      
+RSK     H16     H       H       0       -29.934     -49.265     44.185      
+RSK     H17     H       H       0       -30.417     -47.874     44.206      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RSK         C12         C11      DOUBLE       y     1.376  0.0124     1.376  0.0124
+RSK         C13         C12      SINGLE       y     1.374  0.0127     1.374  0.0127
+RSK         C11         C10      SINGLE       y     1.386  0.0100     1.386  0.0100
+RSK         C14         C13      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RSK          C9         C10      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RSK          C9         C14      SINGLE       y     1.386  0.0100     1.386  0.0100
+RSK          C1          N2      SINGLE       n     1.470  0.0100     1.470  0.0100
+RSK          C8          C9      SINGLE       n     1.520  0.0100     1.520  0.0100
+RSK          C8          C1      SINGLE       n     1.553  0.0101     1.553  0.0101
+RSK          C1          C2      SINGLE       n     1.520  0.0100     1.520  0.0100
+RSK          N1          C8      SINGLE       n     1.470  0.0100     1.470  0.0100
+RSK          C2          C7      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RSK          C2          C3      SINGLE       y     1.386  0.0100     1.386  0.0100
+RSK          C7          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+RSK          C4          C3      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RSK          C6          C5      DOUBLE       y     1.374  0.0127     1.374  0.0127
+RSK          C5          C4      SINGLE       y     1.376  0.0124     1.376  0.0124
+RSK          N1          H1      SINGLE       n     1.036  0.0160     0.920  0.0200
+RSK          N1          H2      SINGLE       n     1.036  0.0160     0.920  0.0200
+RSK          C8          H4      SINGLE       n     1.089  0.0100     0.995  0.0100
+RSK         C14          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+RSK         C13          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+RSK         C12          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+RSK         C11          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+RSK         C10          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+RSK          C1         H10      SINGLE       n     1.089  0.0100     0.995  0.0100
+RSK          C7         H11      SINGLE       n     1.082  0.0130     0.944  0.0174
+RSK          C6         H12      SINGLE       n     1.082  0.0130     0.944  0.0175
+RSK          C5         H13      SINGLE       n     1.082  0.0130     0.944  0.0161
+RSK          C4         H14      SINGLE       n     1.082  0.0130     0.944  0.0175
+RSK          C3         H15      SINGLE       n     1.082  0.0130     0.944  0.0174
+RSK          N2         H16      SINGLE       n     1.036  0.0160     0.920  0.0200
+RSK          N2         H17      SINGLE       n     1.036  0.0160     0.920  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RSK          C8          N1          H1     108.580    3.00
+RSK          C8          N1          H2     108.580    3.00
+RSK          H1          N1          H2     105.995    3.00
+RSK          C9          C8          C1     111.416    1.50
+RSK          C9          C8          N1     114.282    2.09
+RSK          C9          C8          H4     107.715    1.50
+RSK          C1          C8          N1     111.883    2.59
+RSK          C1          C8          H4     106.902    2.69
+RSK          N1          C8          H4     107.428    1.50
+RSK         C10          C9         C14     118.460    1.50
+RSK         C10          C9          C8     120.770    1.50
+RSK         C14          C9          C8     120.770    1.50
+RSK         C13         C14          C9     120.588    1.50
+RSK         C13         C14          H5     119.730    1.50
+RSK          C9         C14          H5     119.682    1.50
+RSK         C12         C13         C14     120.216    1.50
+RSK         C12         C13          H6     119.938    1.50
+RSK         C14         C13          H6     119.847    1.50
+RSK         C11         C12         C13     119.933    1.50
+RSK         C11         C12          H7     120.033    1.50
+RSK         C13         C12          H7     120.033    1.50
+RSK         C12         C11         C10     120.216    1.50
+RSK         C12         C11          H8     119.938    1.50
+RSK         C10         C11          H8     119.847    1.50
+RSK         C11         C10          C9     120.588    1.50
+RSK         C11         C10          H9     119.730    1.50
+RSK          C9         C10          H9     119.682    1.50
+RSK          N2          C1          C8     111.883    2.59
+RSK          N2          C1          C2     114.282    2.09
+RSK          N2          C1         H10     107.428    1.50
+RSK          C8          C1          C2     111.416    1.50
+RSK          C8          C1         H10     106.902    2.69
+RSK          C2          C1         H10     107.715    1.50
+RSK          C1          C2          C7     120.770    1.50
+RSK          C1          C2          C3     120.770    1.50
+RSK          C7          C2          C3     118.460    1.50
+RSK          C2          C7          C6     120.588    1.50
+RSK          C2          C7         H11     119.682    1.50
+RSK          C6          C7         H11     119.730    1.50
+RSK          C7          C6          C5     120.216    1.50
+RSK          C7          C6         H12     119.847    1.50
+RSK          C5          C6         H12     119.938    1.50
+RSK          C6          C5          C4     119.933    1.50
+RSK          C6          C5         H13     120.033    1.50
+RSK          C4          C5         H13     120.033    1.50
+RSK          C3          C4          C5     120.216    1.50
+RSK          C3          C4         H14     119.847    1.50
+RSK          C5          C4         H14     119.938    1.50
+RSK          C2          C3          C4     120.588    1.50
+RSK          C2          C3         H15     119.682    1.50
+RSK          C4          C3         H15     119.730    1.50
+RSK          C1          N2         H16     108.580    3.00
+RSK          C1          N2         H17     108.580    3.00
+RSK         H16          N2         H17     105.995    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RSK            sp3_sp3_18          C1          C8          N1          H1      60.000    10.0     3
+RSK              const_25          C5          C6          C7          C2       0.000    10.0     2
+RSK              const_29          C4          C5          C6          C7       0.000    10.0     2
+RSK              const_33          C3          C4          C5          C6       0.000    10.0     2
+RSK              const_37          C2          C3          C4          C5       0.000    10.0     2
+RSK             sp2_sp3_1         C10          C9          C8          C1     150.000    10.0     6
+RSK             sp3_sp3_8          N2          C1          C8          N1     -60.000    10.0     3
+RSK              const_42         C13         C14          C9          C8     180.000    10.0     2
+RSK       const_sp2_sp2_2         C11         C10          C9          C8     180.000     5.0     2
+RSK              const_17         C12         C13         C14          C9       0.000    10.0     2
+RSK              const_13         C11         C12         C13         C14       0.000    10.0     2
+RSK       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+RSK       const_sp2_sp2_5          C9         C10         C11         C12       0.000     5.0     2
+RSK             sp3_sp3_1          C8          C1          N2         H16     180.000    10.0     3
+RSK             sp2_sp3_7          C7          C2          C1          N2     150.000    10.0     6
+RSK              const_23          C1          C2          C7          C6     180.000    10.0     2
+RSK              const_47          C1          C2          C3          C4     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RSK    chir_1    C8    N1    C1    C9    positive
+RSK    chir_2    C1    N2    C8    C2    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RSK    plan-1          C1   0.020
+RSK    plan-1          C2   0.020
+RSK    plan-1          C3   0.020
+RSK    plan-1          C4   0.020
+RSK    plan-1          C5   0.020
+RSK    plan-1          C6   0.020
+RSK    plan-1          C7   0.020
+RSK    plan-1         H11   0.020
+RSK    plan-1         H12   0.020
+RSK    plan-1         H13   0.020
+RSK    plan-1         H14   0.020
+RSK    plan-1         H15   0.020
+RSK    plan-2         C10   0.020
+RSK    plan-2         C11   0.020
+RSK    plan-2         C12   0.020
+RSK    plan-2         C13   0.020
+RSK    plan-2         C14   0.020
+RSK    plan-2          C8   0.020
+RSK    plan-2          C9   0.020
+RSK    plan-2          H5   0.020
+RSK    plan-2          H6   0.020
+RSK    plan-2          H7   0.020
+RSK    plan-2          H8   0.020
+RSK    plan-2          H9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RSK            InChI                InChI  1.03 InChI=1S/C14H16N2/c15-13(11-7-3-1-4-8-11)14(16)12-9-5-2-6-10-12/h1-10,13-14H,15-16H2/t13-,14+
+RSK         InChIKey                InChI  1.03                                                                   PONXTPCRRASWKW-OKILXGFUSA-N
+RSK SMILES_CANONICAL               CACTVS 3.385                                                              N[C@H]([C@H](N)c1ccccc1)c2ccccc2
+RSK           SMILES               CACTVS 3.385                                                                N[CH]([CH](N)c1ccccc1)c2ccccc2
+RSK SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                            c1ccc(cc1)[C@H]([C@H](c2ccccc2)N)N
+RSK           SMILES "OpenEye OEToolkits" 1.9.2                                                                    c1ccc(cc1)C(C(c2ccccc2)N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RSK acedrg               243         "dictionary generator"                  
+RSK acedrg_database      11          "data source"                           
+RSK rdkit                2017.03.2   "Chemoinformatics tool"
+RSK refmac5              5.8.0238    "optimization tool"                     

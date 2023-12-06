@@ -1,0 +1,291 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IZA     IZA      2-TERT-BUTYL-9-FLUORO-3,6-DIHYDRO-7H-BENZ[H]-IMIDAZ[4,5-F]ISOQUINOLINE-7-ONE     NON-POLYMER     39     23     .     
+#
+data_comp_IZA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IZA     O0      O       O       0       77.488      113.964     17.909      
+IZA     C11     C       CR6     0       78.318      113.323     18.537      
+IZA     N2      N       NR6     0       79.656      113.575     18.297      
+IZA     C12     C       CR16    0       80.681      112.937     18.924      
+IZA     C13     C       CR16    0       80.410      111.984     19.851      
+IZA     C9      C       CR66    0       79.075      111.643     20.176      
+IZA     C1      C       CR56    0       78.769      110.648     21.145      
+IZA     C10     C       CR66    0       77.982      112.301     19.530      
+IZA     C8      C       CR66    0       76.571      111.917     19.898      
+IZA     C7      C       CR16    0       75.425      112.510     19.316      
+IZA     C6      C       CR6     0       74.177      112.112     19.698      
+IZA     F1      F       F       0       73.093      112.701     19.119      
+IZA     C5      C       CR16    0       73.961      111.131     20.652      
+IZA     C4      C       CR16    0       75.048      110.535     21.238      
+IZA     C3      C       CR66    0       76.350      110.910     20.878      
+IZA     C0      C       CR56    0       77.494      110.292     21.485      
+IZA     N1      N       NRD5    0       77.542      109.298     22.454      
+IZA     C2      C       CR5     0       78.821      109.068     22.680      
+IZA     N0      N       NR5     0       79.600      109.864     21.913      
+IZA     C14     C       CT      0       79.337      108.054     23.677      
+IZA     C17     C       CH3     0       78.179      107.406     24.450      
+IZA     C16     C       CH3     0       80.265      108.764     24.674      
+IZA     C15     C       CH3     0       80.129      106.961     22.942      
+IZA     HN2     H       H       0       79.850      114.196     17.694      
+IZA     H12     H       H       0       81.573      113.163     18.707      
+IZA     H13     H       H       0       81.119      111.543     20.284      
+IZA     H7      H       H       0       75.520      113.186     18.658      
+IZA     H5      H       H       0       73.096      110.876     20.897      
+IZA     H4      H       H       0       74.918      109.869     21.886      
+IZA     HN0     H       H       0       80.481      109.875     21.905      
+IZA     H171    H       H       0       77.680      108.092     24.928      
+IZA     H172    H       H       0       78.535      106.764     25.089      
+IZA     H173    H       H       0       77.586      106.947     23.830      
+IZA     H161    H       H       0       79.853      109.594     24.973      
+IZA     H162    H       H       0       81.115      108.962     24.244      
+IZA     H163    H       H       0       80.420      108.187     25.443      
+IZA     H151    H       H       0       80.592      107.345     22.177      
+IZA     H152    H       H       0       79.521      106.266     22.634      
+IZA     H153    H       H       0       80.783      106.568     23.547      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IZA          O0         C11      DOUBLE       n     1.223  0.0119     1.223  0.0119
+IZA         C11          N2      SINGLE       y     1.377  0.0110     1.377  0.0110
+IZA         C11         C10      SINGLE       y     1.420  0.0200     1.420  0.0200
+IZA          N2         C12      SINGLE       y     1.358  0.0100     1.358  0.0100
+IZA         C12         C13      DOUBLE       y     1.351  0.0183     1.351  0.0183
+IZA         C13          C9      SINGLE       y     1.411  0.0142     1.411  0.0142
+IZA          C9          C1      SINGLE       y     1.422  0.0100     1.422  0.0100
+IZA          C9         C10      DOUBLE       y     1.422  0.0100     1.422  0.0100
+IZA          C1          C0      DOUBLE       y     1.370  0.0158     1.370  0.0158
+IZA          C1          N0      SINGLE       y     1.376  0.0112     1.376  0.0112
+IZA         C10          C8      SINGLE       y     1.444  0.0200     1.444  0.0200
+IZA          C8          C7      DOUBLE       y     1.405  0.0100     1.405  0.0100
+IZA          C8          C3      SINGLE       y     1.410  0.0100     1.410  0.0100
+IZA          C7          C6      SINGLE       y     1.361  0.0100     1.361  0.0100
+IZA          C6          F1      SINGLE       n     1.362  0.0100     1.362  0.0100
+IZA          C6          C5      DOUBLE       y     1.386  0.0151     1.386  0.0151
+IZA          C5          C4      SINGLE       y     1.370  0.0112     1.370  0.0112
+IZA          C4          C3      DOUBLE       y     1.398  0.0100     1.398  0.0100
+IZA          C3          C0      SINGLE       y     1.432  0.0100     1.432  0.0100
+IZA          C0          N1      SINGLE       y     1.390  0.0100     1.390  0.0100
+IZA          N1          C2      DOUBLE       y     1.317  0.0100     1.317  0.0100
+IZA          C2          N0      SINGLE       y     1.352  0.0107     1.352  0.0107
+IZA          C2         C14      SINGLE       n     1.508  0.0100     1.508  0.0100
+IZA         C14         C17      SINGLE       n     1.534  0.0100     1.534  0.0100
+IZA         C14         C16      SINGLE       n     1.534  0.0100     1.534  0.0100
+IZA         C14         C15      SINGLE       n     1.534  0.0100     1.534  0.0100
+IZA          N2         HN2      SINGLE       n     1.016  0.0100     0.886  0.0200
+IZA         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+IZA         C13         H13      SINGLE       n     1.082  0.0130     0.941  0.0140
+IZA          C7          H7      SINGLE       n     1.082  0.0130     0.951  0.0100
+IZA          C5          H5      SINGLE       n     1.082  0.0130     0.934  0.0100
+IZA          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0130
+IZA          N0         HN0      SINGLE       n     1.016  0.0100     0.881  0.0200
+IZA         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C17        H173      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C16        H163      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C15        H151      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C15        H152      SINGLE       n     1.089  0.0100     0.973  0.0141
+IZA         C15        H153      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IZA          O0         C11          N2     119.879    1.50
+IZA          O0         C11         C10     122.023    1.54
+IZA          N2         C11         C10     118.097    2.19
+IZA         C11          N2         C12     122.949    2.07
+IZA         C11          N2         HN2     117.420    1.50
+IZA         C12          N2         HN2     119.631    2.19
+IZA          N2         C12         C13     118.622    2.98
+IZA          N2         C12         H12     120.105    1.97
+IZA         C13         C12         H12     121.273    1.50
+IZA         C12         C13          C9     120.631    1.50
+IZA         C12         C13         H13     119.743    1.50
+IZA          C9         C13         H13     119.625    1.50
+IZA         C13          C9          C1     122.945    1.50
+IZA         C13          C9         C10     120.051    1.50
+IZA          C1          C9         C10     117.004    1.50
+IZA          C9          C1          C0     123.407    1.50
+IZA          C9          C1          N0     130.518    1.50
+IZA          C0          C1          N0     106.075    1.50
+IZA         C11         C10          C9     119.649    1.50
+IZA         C11         C10          C8     119.932    1.70
+IZA          C9         C10          C8     120.419    1.50
+IZA         C10          C8          C7     121.474    1.50
+IZA         C10          C8          C3     120.419    1.50
+IZA          C7          C8          C3     118.107    1.50
+IZA          C8          C7          C6     119.318    1.50
+IZA          C8          C7          H7     119.627    1.50
+IZA          C6          C7          H7     121.055    1.50
+IZA          C7          C6          F1     118.851    1.50
+IZA          C7          C6          C5     122.841    1.50
+IZA          F1          C6          C5     118.308    1.50
+IZA          C6          C5          C4     119.067    1.50
+IZA          C6          C5          H5     120.924    1.50
+IZA          C4          C5          H5     120.009    1.50
+IZA          C5          C4          C3     120.470    1.50
+IZA          C5          C4          H4     119.797    1.50
+IZA          C3          C4          H4     119.733    1.50
+IZA          C8          C3          C4     120.197    1.50
+IZA          C8          C3          C0     117.321    1.50
+IZA          C4          C3          C0     122.482    1.50
+IZA          C1          C0          C3     121.432    1.50
+IZA          C1          C0          N1     109.663    1.50
+IZA          C3          C0          N1     128.905    1.50
+IZA          C0          N1          C2     106.009    1.50
+IZA          N1          C2          N0     111.094    1.50
+IZA          N1          C2         C14     123.110    1.50
+IZA          N0          C2         C14     125.796    1.69
+IZA          C1          N0          C2     107.158    1.50
+IZA          C1          N0         HN0     126.533    1.50
+IZA          C2          N0         HN0     126.308    1.81
+IZA          C2         C14         C17     109.598    1.50
+IZA          C2         C14         C16     109.598    1.50
+IZA          C2         C14         C15     109.598    1.50
+IZA         C17         C14         C16     109.395    1.50
+IZA         C17         C14         C15     109.395    1.50
+IZA         C16         C14         C15     109.395    1.50
+IZA         C14         C17        H171     109.481    1.50
+IZA         C14         C17        H172     109.481    1.50
+IZA         C14         C17        H173     109.481    1.50
+IZA        H171         C17        H172     109.335    1.50
+IZA        H171         C17        H173     109.335    1.50
+IZA        H172         C17        H173     109.335    1.50
+IZA         C14         C16        H161     109.481    1.50
+IZA         C14         C16        H162     109.481    1.50
+IZA         C14         C16        H163     109.481    1.50
+IZA        H161         C16        H162     109.335    1.50
+IZA        H161         C16        H163     109.335    1.50
+IZA        H162         C16        H163     109.335    1.50
+IZA         C14         C15        H151     109.481    1.50
+IZA         C14         C15        H152     109.481    1.50
+IZA         C14         C15        H153     109.481    1.50
+IZA        H151         C15        H152     109.335    1.50
+IZA        H151         C15        H153     109.335    1.50
+IZA        H152         C15        H153     109.335    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IZA              const_58          C4          C5          C6          F1     180.000    10.0     2
+IZA              const_61          C3          C4          C5          C6       0.000    10.0     2
+IZA              const_65          C8          C3          C4          C5       0.000    10.0     2
+IZA       const_sp2_sp2_9          C1          C0          C3          C8       0.000     5.0     2
+IZA              const_21          C1          C0          N1          C2       0.000    10.0     2
+IZA              const_24         C14          C2          N1          C0     180.000    10.0     2
+IZA              const_27         C14          C2          N0          C1     180.000    10.0     2
+IZA             sp2_sp3_2          N1          C2         C14         C17     -90.000    10.0     6
+IZA             sp3_sp3_4         C16         C14         C17        H171      60.000    10.0     3
+IZA            sp3_sp3_10         C17         C14         C16        H161     180.000    10.0     3
+IZA            sp3_sp3_22         C17         C14         C15        H151      60.000    10.0     3
+IZA              const_31          O0         C11          N2         C12     180.000    10.0     2
+IZA              const_70          C9         C10         C11          O0     180.000    10.0     2
+IZA              const_33         C13         C12          N2         C11       0.000    10.0     2
+IZA              const_37          N2         C12         C13          C9       0.000    10.0     2
+IZA              const_42         C12         C13          C9          C1     180.000    10.0     2
+IZA       const_sp2_sp2_2          C0          C1          C9         C13     180.000     5.0     2
+IZA              const_45         C11         C10          C9         C13       0.000    10.0     2
+IZA       const_sp2_sp2_5          C3          C0          C1          C9       0.000     5.0     2
+IZA              const_75          C9          C1          N0          C2     180.000    10.0     2
+IZA              const_20         C11         C10          C8          C7       0.000    10.0     2
+IZA              const_14          C4          C3          C8         C10     180.000    10.0     2
+IZA              const_50          C6          C7          C8         C10     180.000    10.0     2
+IZA              const_55          F1          C6          C7          C8     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IZA    chir_1    C14    C2    C17    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IZA    plan-1          C0   0.020
+IZA    plan-1          C1   0.020
+IZA    plan-1         C10   0.020
+IZA    plan-1         C11   0.020
+IZA    plan-1         C12   0.020
+IZA    plan-1         C13   0.020
+IZA    plan-1         C14   0.020
+IZA    plan-1          C2   0.020
+IZA    plan-1          C3   0.020
+IZA    plan-1          C4   0.020
+IZA    plan-1          C5   0.020
+IZA    plan-1          C6   0.020
+IZA    plan-1          C7   0.020
+IZA    plan-1          C8   0.020
+IZA    plan-1          C9   0.020
+IZA    plan-1          F1   0.020
+IZA    plan-1         H12   0.020
+IZA    plan-1         H13   0.020
+IZA    plan-1          H4   0.020
+IZA    plan-1          H5   0.020
+IZA    plan-1          H7   0.020
+IZA    plan-1         HN0   0.020
+IZA    plan-1         HN2   0.020
+IZA    plan-1          N0   0.020
+IZA    plan-1          N1   0.020
+IZA    plan-1          N2   0.020
+IZA    plan-1          O0   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IZA           SMILES              ACDLabs 10.04                                                                                 O=C4NC=Cc3c1c(nc(n1)C(C)(C)C)c2ccc(F)cc2c34
+IZA SMILES_CANONICAL               CACTVS 3.341                                                                                CC(C)(C)c1[nH]c2c3C=CNC(=O)c3c4cc(F)ccc4c2n1
+IZA           SMILES               CACTVS 3.341                                                                                CC(C)(C)c1[nH]c2c3C=CNC(=O)c3c4cc(F)ccc4c2n1
+IZA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                              CC(C)(C)c1[nH]c2c3c(c4cc(ccc4c2n1)F)C(=O)NC=C3
+IZA           SMILES "OpenEye OEToolkits" 1.5.0                                                                              CC(C)(C)c1[nH]c2c3c(c4cc(ccc4c2n1)F)C(=O)NC=C3
+IZA            InChI                InChI  1.03 InChI=1S/C18H16FN3O/c1-18(2,3)17-21-14-10-5-4-9(19)8-12(10)13-11(15(14)22-17)6-7-20-16(13)23/h4-8H,1-3H3,(H,20,23)(H,21,22)
+IZA         InChIKey                InChI  1.03                                                                                                 VNDWQCSOSCCWIP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IZA acedrg               243         "dictionary generator"                  
+IZA acedrg_database      11          "data source"                           
+IZA rdkit                2017.03.2   "Chemoinformatics tool"
+IZA refmac5              5.8.0238    "optimization tool"                     

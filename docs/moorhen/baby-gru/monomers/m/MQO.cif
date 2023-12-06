@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MQO     MQO      8-methoxy-6-methylquinolin-4(1H)-one     NON-POLYMER     25     14     .     
+#
+data_comp_MQO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MQO     CAA     C       CH3     0       12.130      -0.270      -2.549      
+MQO     CAB     C       CH3     0       15.922      -1.962      0.659       
+MQO     CAF     C       CR6     0       15.475      -0.622      0.138       
+MQO     CAG     C       CR16    0       16.125      0.531       0.506       
+MQO     CAI     C       CR16    0       15.924      4.244       -0.119      
+MQO     CAJ     C       CR16    0       14.379      -0.541      -0.735      
+MQO     CAK     C       CR6     0       16.423      3.008       0.429       
+MQO     CAL     C       CR6     0       13.944      0.688       -1.233      
+MQO     CAM     C       CR16    0       14.866      4.264       -0.955      
+MQO     CAN     C       CR66    0       15.718      1.790       0.027       
+MQO     CAO     C       CR66    0       14.619      1.873       -0.849      
+MQO     NAH     N       NR6     0       14.233      3.125       -1.311      
+MQO     OAC     O       O       0       17.398      2.978       1.201       
+MQO     OAE     O       O2      0       12.881      0.860       -2.091      
+MQO     HA2     H       H       0       11.737      -0.727      -1.788      
+MQO     HA3     H       H       0       12.718      -0.878      -3.026      
+MQO     HA1     H       H       0       11.425      0.033       -3.144      
+MQO     HB2     H       H       0       16.879      -1.946      0.823       
+MQO     HB3     H       H       0       15.720      -2.651      0.005       
+MQO     HB1     H       H       0       15.457      -2.161      1.488       
+MQO     HAG     H       H       0       16.857      0.471       1.090       
+MQO     HAI     H       H       0       16.348      5.043       0.114       
+MQO     HAJ     H       H       0       13.940      -1.337      -0.981      
+MQO     HAM     H       H       0       14.557      5.087       -1.302      
+MQO     HAH     H       H       0       13.546      3.194       -1.861      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MQO         CAA         OAE      SINGLE       n     1.429  0.0109     1.429  0.0109
+MQO         CAM         NAH      SINGLE       y     1.342  0.0130     1.342  0.0130
+MQO         CAI         CAM      DOUBLE       y     1.344  0.0100     1.344  0.0100
+MQO         CAO         NAH      SINGLE       y     1.383  0.0100     1.383  0.0100
+MQO         CAL         OAE      SINGLE       n     1.368  0.0115     1.368  0.0115
+MQO         CAI         CAK      SINGLE       y     1.437  0.0109     1.437  0.0109
+MQO         CAL         CAO      DOUBLE       y     1.405  0.0117     1.405  0.0117
+MQO         CAN         CAO      SINGLE       y     1.403  0.0100     1.403  0.0100
+MQO         CAJ         CAL      SINGLE       y     1.372  0.0177     1.372  0.0177
+MQO         CAK         CAN      SINGLE       y     1.460  0.0100     1.460  0.0100
+MQO         CAK         OAC      DOUBLE       n     1.243  0.0128     1.243  0.0128
+MQO         CAG         CAN      DOUBLE       y     1.402  0.0100     1.402  0.0100
+MQO         CAF         CAJ      DOUBLE       y     1.400  0.0100     1.400  0.0100
+MQO         CAF         CAG      SINGLE       y     1.371  0.0100     1.371  0.0100
+MQO         CAB         CAF      SINGLE       n     1.506  0.0100     1.506  0.0100
+MQO         CAA         HA2      SINGLE       n     1.089  0.0100     0.971  0.0157
+MQO         CAA         HA3      SINGLE       n     1.089  0.0100     0.971  0.0157
+MQO         CAA         HA1      SINGLE       n     1.089  0.0100     0.971  0.0157
+MQO         CAB         HB2      SINGLE       n     1.089  0.0100     0.971  0.0135
+MQO         CAB         HB3      SINGLE       n     1.089  0.0100     0.971  0.0135
+MQO         CAB         HB1      SINGLE       n     1.089  0.0100     0.971  0.0135
+MQO         CAG         HAG      SINGLE       n     1.082  0.0130     0.939  0.0158
+MQO         CAI         HAI      SINGLE       n     1.082  0.0130     0.934  0.0100
+MQO         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0168
+MQO         CAM         HAM      SINGLE       n     1.082  0.0130     0.945  0.0200
+MQO         NAH         HAH      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MQO         OAE         CAA         HA2     109.334    1.50
+MQO         OAE         CAA         HA3     109.334    1.50
+MQO         OAE         CAA         HA1     109.334    1.50
+MQO         HA2         CAA         HA3     109.509    1.50
+MQO         HA2         CAA         HA1     109.509    1.50
+MQO         HA3         CAA         HA1     109.509    1.50
+MQO         CAF         CAB         HB2     109.674    1.50
+MQO         CAF         CAB         HB3     109.674    1.50
+MQO         CAF         CAB         HB1     109.674    1.50
+MQO         HB2         CAB         HB3     109.348    1.50
+MQO         HB2         CAB         HB1     109.348    1.50
+MQO         HB3         CAB         HB1     109.348    1.50
+MQO         CAJ         CAF         CAG     118.892    1.50
+MQO         CAJ         CAF         CAB     120.044    1.50
+MQO         CAG         CAF         CAB     121.064    1.50
+MQO         CAN         CAG         CAF     121.412    1.50
+MQO         CAN         CAG         HAG     119.412    1.50
+MQO         CAF         CAG         HAG     119.176    1.50
+MQO         CAM         CAI         CAK     120.689    1.50
+MQO         CAM         CAI         HAI     120.173    1.50
+MQO         CAK         CAI         HAI     119.138    1.50
+MQO         CAL         CAJ         CAF     120.893    1.50
+MQO         CAL         CAJ         HAJ     119.932    1.50
+MQO         CAF         CAJ         HAJ     119.176    1.50
+MQO         CAI         CAK         CAN     116.733    1.50
+MQO         CAI         CAK         OAC     122.253    1.50
+MQO         CAN         CAK         OAC     121.014    1.50
+MQO         OAE         CAL         CAO     115.867    2.53
+MQO         OAE         CAL         CAJ     123.757    1.50
+MQO         CAO         CAL         CAJ     120.377    1.50
+MQO         NAH         CAM         CAI     119.065    2.98
+MQO         NAH         CAM         HAM     119.982    1.50
+MQO         CAI         CAM         HAM     120.953    1.59
+MQO         CAO         CAN         CAK     121.369    1.50
+MQO         CAO         CAN         CAG     118.982    1.50
+MQO         CAK         CAN         CAG     119.649    1.50
+MQO         NAH         CAO         CAL     120.618    1.50
+MQO         NAH         CAO         CAN     119.937    1.50
+MQO         CAL         CAO         CAN     119.445    1.50
+MQO         CAM         NAH         CAO     122.206    1.50
+MQO         CAM         NAH         HAH     118.751    2.03
+MQO         CAO         NAH         HAH     119.043    1.72
+MQO         CAA         OAE         CAL     117.322    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MQO             sp3_sp3_2         HA2         CAA         OAE         CAL     -60.000    10.0     3
+MQO              const_31         CAL         CAO         NAH         CAM     180.000    10.0     2
+MQO             sp2_sp3_1         CAJ         CAF         CAB         HB2     150.000    10.0     6
+MQO              const_43         CAB         CAF         CAG         CAN     180.000    10.0     2
+MQO       const_sp2_sp2_3         CAB         CAF         CAJ         CAL     180.000     5.0     2
+MQO              const_17         CAF         CAG         CAN         CAO       0.000    10.0     2
+MQO              const_38         CAM         CAI         CAK         OAC     180.000    10.0     2
+MQO              const_21         CAK         CAI         CAM         NAH       0.000    10.0     2
+MQO       const_sp2_sp2_6         CAF         CAJ         CAL         OAE     180.000     5.0     2
+MQO              const_35         OAC         CAK         CAN         CAO     180.000    10.0     2
+MQO              const_12         OAE         CAL         CAO         NAH       0.000    10.0     2
+MQO             sp2_sp2_1         CAO         CAL         OAE         CAA     180.000     5.0     2
+MQO              const_25         CAI         CAM         NAH         CAO       0.000    10.0     2
+MQO              const_13         CAK         CAN         CAO         NAH       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MQO    plan-1         CAB   0.020
+MQO    plan-1         CAF   0.020
+MQO    plan-1         CAG   0.020
+MQO    plan-1         CAI   0.020
+MQO    plan-1         CAJ   0.020
+MQO    plan-1         CAK   0.020
+MQO    plan-1         CAL   0.020
+MQO    plan-1         CAM   0.020
+MQO    plan-1         CAN   0.020
+MQO    plan-1         CAO   0.020
+MQO    plan-1         HAG   0.020
+MQO    plan-1         HAH   0.020
+MQO    plan-1         HAI   0.020
+MQO    plan-1         HAJ   0.020
+MQO    plan-1         HAM   0.020
+MQO    plan-1         NAH   0.020
+MQO    plan-1         OAC   0.020
+MQO    plan-1         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MQO           SMILES              ACDLabs 12.01                                                       COc1cc(C)cc2C(C=CNc12)=O
+MQO            InChI                InChI  1.03 InChI=1S/C11H11NO2/c1-7-5-8-9(13)3-4-12-11(8)10(6-7)14-2/h3-6H,1-2H3,(H,12,13)
+MQO         InChIKey                InChI  1.03                                                    GGLHKVAEYHPPGB-UHFFFAOYSA-N
+MQO SMILES_CANONICAL               CACTVS 3.385                                                       COc1cc(C)cc2C(=O)C=CNc12
+MQO           SMILES               CACTVS 3.385                                                       COc1cc(C)cc2C(=O)C=CNc12
+MQO SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                       Cc1cc2c(c(c1)OC)NC=CC2=O
+MQO           SMILES "OpenEye OEToolkits" 2.0.6                                                       Cc1cc2c(c(c1)OC)NC=CC2=O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MQO acedrg               243         "dictionary generator"                  
+MQO acedrg_database      11          "data source"                           
+MQO rdkit                2017.03.2   "Chemoinformatics tool"
+MQO refmac5              5.8.0238    "optimization tool"                     

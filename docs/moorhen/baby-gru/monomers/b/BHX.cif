@@ -1,0 +1,220 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BHX     BHX      "(2S)-2-{[(S)-(2-carboxyethyl)(hydroxy)phosphoryl]methyl}pentanedioic acid"     NON-POLYMER     30     18     .     
+#
+data_comp_BHX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BHX     O3      O       O       0       20.828      45.912      46.562      
+BHX     C2      C       C       0       19.909      46.502      45.960      
+BHX     O2      O       OC      -1      19.534      47.659      46.237      
+BHX     C4      C       CH2     0       19.207      45.772      44.828      
+BHX     C5      C       CH2     0       17.993      44.954      45.257      
+BHX     P6      P       P       0       17.232      44.040      43.886      
+BHX     O61     O       OH1     0       18.387      43.244      43.206      
+BHX     O6      O       O       0       16.168      43.119      44.366      
+BHX     C1      C       CH2     0       16.589      45.188      42.632      
+BHX     CA      C       CH1     0       15.731      44.513      41.543      
+BHX     C       C       C       0       16.576      43.666      40.581      
+BHX     O       O       O       0       17.607      44.169      40.087      
+BHX     OC      O       OC      -1      16.190      42.506      40.336      
+BHX     CB      C       CH2     0       14.860      45.529      40.770      
+BHX     CG      C       CH2     0       15.584      46.701      40.112      
+BHX     CD      C       C       0       14.696      47.675      39.352      
+BHX     OE2     O       OC      -1      13.464      47.473      39.330      
+BHX     OE1     O       O       0       15.243      48.639      38.782      
+BHX     H4      H       H       0       19.853      45.175      44.398      
+BHX     H4A     H       H       0       18.923      46.432      44.163      
+BHX     H5      H       H       0       17.317      45.547      45.643      
+BHX     H5A     H       H       0       18.257      44.311      45.946      
+BHX     H14     H       H       0       18.766      43.685      42.601      
+BHX     H1      H       H       0       17.345      45.646      42.212      
+BHX     H1A     H       H       0       16.047      45.864      43.088      
+BHX     HA      H       H       0       15.115      43.892      41.995      
+BHX     HB      H       H       0       14.194      45.887      41.393      
+BHX     HBA     H       H       0       14.371      45.038      40.077      
+BHX     HG      H       H       0       16.251      46.350      39.486      
+BHX     HGA     H       H       0       16.065      47.205      40.800      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BHX          O3          C2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BHX          C2          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+BHX          C2          C4      SINGLE       n     1.519  0.0109     1.519  0.0109
+BHX          C4          C5      SINGLE       n     1.526  0.0100     1.526  0.0100
+BHX          C5          P6      SINGLE       n     1.814  0.0200     1.814  0.0200
+BHX          P6         O61      SINGLE       n     1.557  0.0168     1.557  0.0168
+BHX          P6          O6      DOUBLE       n     1.485  0.0198     1.485  0.0198
+BHX          P6          C1      SINGLE       n     1.814  0.0200     1.814  0.0200
+BHX          C1          CA      SINGLE       n     1.540  0.0100     1.540  0.0100
+BHX          CA           C      SINGLE       n     1.533  0.0102     1.533  0.0102
+BHX          CA          CB      SINGLE       n     1.543  0.0100     1.543  0.0100
+BHX           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BHX           C          OC      SINGLE       n     1.247  0.0187     1.247  0.0187
+BHX          CB          CG      SINGLE       n     1.521  0.0151     1.521  0.0151
+BHX          CG          CD      SINGLE       n     1.519  0.0109     1.519  0.0109
+BHX          CD         OE2      SINGLE       n     1.247  0.0187     1.247  0.0187
+BHX          CD         OE1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BHX          C4          H4      SINGLE       n     1.089  0.0100     0.979  0.0159
+BHX          C4         H4A      SINGLE       n     1.089  0.0100     0.979  0.0159
+BHX          C5          H5      SINGLE       n     1.089  0.0100     0.979  0.0200
+BHX          C5         H5A      SINGLE       n     1.089  0.0100     0.979  0.0200
+BHX         O61         H14      SINGLE       n     0.970  0.0120     0.839  0.0200
+BHX          C1          H1      SINGLE       n     1.089  0.0100     0.979  0.0200
+BHX          C1         H1A      SINGLE       n     1.089  0.0100     0.979  0.0200
+BHX          CA          HA      SINGLE       n     1.089  0.0100     0.985  0.0200
+BHX          CB          HB      SINGLE       n     1.089  0.0100     0.980  0.0178
+BHX          CB         HBA      SINGLE       n     1.089  0.0100     0.980  0.0178
+BHX          CG          HG      SINGLE       n     1.089  0.0100     0.981  0.0185
+BHX          CG         HGA      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BHX          O3          C2          O2     123.625    1.50
+BHX          O3          C2          C4     118.187    1.67
+BHX          O2          C2          C4     118.187    1.67
+BHX          C2          C4          C5     114.504    2.22
+BHX          C2          C4          H4     108.416    1.50
+BHX          C2          C4         H4A     108.416    1.50
+BHX          C5          C4          H4     108.676    1.50
+BHX          C5          C4         H4A     108.676    1.50
+BHX          H4          C4         H4A     107.694    1.50
+BHX          C4          C5          P6     111.410    2.87
+BHX          C4          C5          H5     109.204    1.50
+BHX          C4          C5         H5A     109.204    1.50
+BHX          P6          C5          H5     107.633    1.97
+BHX          P6          C5         H5A     107.633    1.97
+BHX          H5          C5         H5A     107.498    1.50
+BHX          C5          P6         O61     105.177    2.72
+BHX          C5          P6          O6     110.326    3.00
+BHX          C5          P6          C1     109.194    3.00
+BHX         O61          P6          O6     110.226    3.00
+BHX         O61          P6          C1     105.177    2.72
+BHX          O6          P6          C1     110.326    3.00
+BHX          P6         O61         H14     112.398    3.00
+BHX          P6          C1          CA     111.410    2.87
+BHX          P6          C1          H1     107.633    1.97
+BHX          P6          C1         H1A     107.633    1.97
+BHX          CA          C1          H1     108.507    1.50
+BHX          CA          C1         H1A     108.507    1.50
+BHX          H1          C1         H1A     107.498    1.50
+BHX          C1          CA           C     110.778    2.06
+BHX          C1          CA          CB     111.414    2.37
+BHX          C1          CA          HA     108.236    1.50
+BHX           C          CA          CB     110.778    2.06
+BHX           C          CA          HA     107.706    1.93
+BHX          CB          CA          HA     107.780    1.50
+BHX          CA           C           O     118.051    1.50
+BHX          CA           C          OC     118.051    1.50
+BHX           O           C          OC     123.899    1.50
+BHX          CA          CB          CG     114.526    2.58
+BHX          CA          CB          HB     108.447    1.50
+BHX          CA          CB         HBA     108.447    1.50
+BHX          CG          CB          HB     109.044    1.50
+BHX          CG          CB         HBA     109.044    1.50
+BHX          HB          CB         HBA     107.657    1.50
+BHX          CB          CG          CD     114.629    2.24
+BHX          CB          CG          HG     108.893    1.50
+BHX          CB          CG         HGA     108.893    1.50
+BHX          CD          CG          HG     108.404    1.50
+BHX          CD          CG         HGA     108.404    1.50
+BHX          HG          CG         HGA     107.521    1.50
+BHX          CG          CD         OE2     118.214    1.64
+BHX          CG          CD         OE1     118.214    1.64
+BHX         OE2          CD         OE1     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BHX            sp3_sp3_49          CA          CB          CG          CD     180.000    10.0     3
+BHX            sp2_sp3_14         OE2          CD          CG          CB     120.000    10.0     6
+BHX             sp2_sp3_2          O3          C2          C4          C5     120.000    10.0     6
+BHX             sp3_sp3_1          C2          C4          C5          P6     180.000    10.0     3
+BHX            sp3_sp3_10          C4          C5          P6         O61     180.000    10.0     3
+BHX            sp3_sp3_19         H14         O61          P6          C5     180.000    10.0     3
+BHX            sp3_sp3_22          CA          C1          P6          C5     180.000    10.0     3
+BHX            sp3_sp3_31          P6          C1          CA           C     180.000    10.0     3
+BHX             sp2_sp3_7           O           C          CA          C1       0.000    10.0     6
+BHX            sp3_sp3_40          C1          CA          CB          CG     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BHX    chir_1    P6    O61    O6    C1    positive
+BHX    chir_2    CA    C1    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BHX    plan-1          C2   0.020
+BHX    plan-1          C4   0.020
+BHX    plan-1          O2   0.020
+BHX    plan-1          O3   0.020
+BHX    plan-2           C   0.020
+BHX    plan-2          CA   0.020
+BHX    plan-2           O   0.020
+BHX    plan-2          OC   0.020
+BHX    plan-3          CD   0.020
+BHX    plan-3          CG   0.020
+BHX    plan-3         OE1   0.020
+BHX    plan-3         OE2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BHX           SMILES              ACDLabs 10.04                                                                                       O=C(O)CCC(C(=O)O)CP(=O)(O)CCC(=O)O
+BHX SMILES_CANONICAL               CACTVS 3.341                                                                                OC(=O)CC[C@H](C[P@](O)(=O)CCC(O)=O)C(O)=O
+BHX           SMILES               CACTVS 3.341                                                                                  OC(=O)CC[CH](C[P](O)(=O)CCC(O)=O)C(O)=O
+BHX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                              C(CC(=O)O)[C@H](C[P@](=O)(CCC(=O)O)O)C(=O)O
+BHX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                     C(CC(=O)O)C(CP(=O)(CCC(=O)O)O)C(=O)O
+BHX            InChI                InChI  1.03 InChI=1S/C9H15O8P/c10-7(11)2-1-6(9(14)15)5-18(16,17)4-3-8(12)13/h6H,1-5H2,(H,10,11)(H,12,13)(H,14,15)(H,16,17)/t6-/m1/s1
+BHX         InChIKey                InChI  1.03                                                                                              GZNKYXXCKRYSFH-ZCFIWIBFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BHX acedrg               243         "dictionary generator"                  
+BHX acedrg_database      11          "data source"                           
+BHX rdkit                2017.03.2   "Chemoinformatics tool"
+BHX refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,347 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PQA     PQA      "[5-AMINO-1-(4-FLUOROPHENYL)-1H-PYRAZOL-4-YL][3-(PIPERIDIN-4-YLOXY)PHENYL]METHANONE"     NON-POLYMER     49     28     .     
+#
+data_comp_PQA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PQA     N1      N       NH2     0       -4.107      -1.516      19.781      
+PQA     C2      C       CR5     0       -3.604      -0.560      20.623      
+PQA     C3      C       CR5     0       -3.147      -0.678      21.951      
+PQA     C4      C       CR15    0       -2.750      0.620       22.315      
+PQA     N5      N       NRD5    0       -2.927      1.484       21.327      
+PQA     N6      N       NR5     0       -3.456      0.747       20.280      
+PQA     C7      C       CR6     0       -3.769      1.397       19.049      
+PQA     C8      C       CR16    0       -2.797      2.135       18.390      
+PQA     C9      C       CR16    0       -3.105      2.765       17.191      
+PQA     C10     C       CR6     0       -4.374      2.635       16.689      
+PQA     F11     F       F       0       -4.675      3.253       15.514      
+PQA     C12     C       CR16    0       -5.352      1.911       17.318      
+PQA     C13     C       CR16    0       -5.045      1.282       18.518      
+PQA     C14     C       C       0       -3.109      -1.897      22.765      
+PQA     O15     O       O       0       -3.911      -2.803      22.535      
+PQA     C16     C       CR6     0       -2.114      -2.061      23.862      
+PQA     C17     C       CR16    0       -0.780      -1.702      23.687      
+PQA     C18     C       CR16    0       0.131       -1.872      24.717      
+PQA     C19     C       CR16    0       -0.265      -2.409      25.929      
+PQA     C20     C       CR6     0       -1.591      -2.776      26.108      
+PQA     O21     O       O2      0       -1.872      -3.300      27.343      
+PQA     C22     C       CH1     0       -3.212      -3.697      27.813      
+PQA     C23     C       CH2     0       -3.055      -4.671      28.963      
+PQA     C24     C       CH2     0       -2.979      -3.976      30.307      
+PQA     N25     N       NT1     0       -2.440      -2.611      30.208      
+PQA     C26     C       CH2     0       -3.283      -1.732      29.380      
+PQA     C27     C       CH2     0       -3.967      -2.455      28.235      
+PQA     C28     C       CR16    0       -2.513      -2.607      25.080      
+PQA     HN11    H       H       0       -3.855      -1.537      18.944      
+PQA     HN12    H       H       0       -4.680      -2.104      20.081      
+PQA     H4      H       H       0       -2.398      0.849       23.154      
+PQA     H8      H       H       0       -1.938      2.210       18.753      
+PQA     H9      H       H       0       -2.457      3.270       16.734      
+PQA     H12     H       H       0       -6.213      1.842       16.947      
+PQA     H13     H       H       0       -5.696      0.781       18.965      
+PQA     H17     H       H       0       -0.496      -1.335      22.869      
+PQA     H18     H       H       0       1.027       -1.622      24.593      
+PQA     H19     H       H       0       0.361       -2.523      26.625      
+PQA     H22     H       H       0       -3.712      -4.151      27.077      
+PQA     H231    H       H       0       -3.824      -5.295      28.962      
+PQA     H232    H       H       0       -2.233      -5.206      28.824      
+PQA     H241    H       H       0       -2.402      -4.505      30.913      
+PQA     H242    H       H       0       -3.885      -3.936      30.704      
+PQA     H25     H       H       0       -1.623      -2.647      29.854      
+PQA     H261    H       H       0       -2.719      -1.007      29.011      
+PQA     H262    H       H       0       -3.973      -1.318      29.957      
+PQA     H271    H       H       0       -4.884      -2.710      28.509      
+PQA     H272    H       H       0       -4.043      -1.843      27.459      
+PQA     H28     H       H       0       -3.412      -2.856      25.196      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PQA          N1          C2      SINGLE       n     1.369  0.0193     1.369  0.0193
+PQA          C2          C3      DOUBLE       y     1.419  0.0200     1.419  0.0200
+PQA          C2          N6      SINGLE       y     1.362  0.0171     1.362  0.0171
+PQA          C3          C4      SINGLE       y     1.405  0.0130     1.405  0.0130
+PQA          C3         C14      SINGLE       n     1.459  0.0193     1.459  0.0193
+PQA          C4          N5      DOUBLE       y     1.321  0.0100     1.321  0.0100
+PQA          N5          N6      SINGLE       y     1.384  0.0101     1.384  0.0101
+PQA          N6          C7      SINGLE       n     1.426  0.0100     1.426  0.0100
+PQA          C7          C8      DOUBLE       y     1.383  0.0100     1.383  0.0100
+PQA          C7         C13      SINGLE       y     1.383  0.0100     1.383  0.0100
+PQA          C8          C9      SINGLE       y     1.385  0.0100     1.385  0.0100
+PQA          C9         C10      DOUBLE       y     1.367  0.0100     1.367  0.0100
+PQA         C10         F11      SINGLE       n     1.361  0.0100     1.361  0.0100
+PQA         C10         C12      SINGLE       y     1.367  0.0100     1.367  0.0100
+PQA         C12         C13      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PQA         C14         O15      DOUBLE       n     1.230  0.0133     1.230  0.0133
+PQA         C14         C16      SINGLE       n     1.488  0.0100     1.488  0.0100
+PQA         C16         C17      DOUBLE       y     1.388  0.0100     1.388  0.0100
+PQA         C16         C28      SINGLE       y     1.389  0.0100     1.389  0.0100
+PQA         C17         C18      SINGLE       y     1.382  0.0100     1.382  0.0100
+PQA         C18         C19      DOUBLE       y     1.380  0.0100     1.380  0.0100
+PQA         C19         C20      SINGLE       y     1.384  0.0107     1.384  0.0107
+PQA         C20         O21      SINGLE       n     1.362  0.0148     1.362  0.0148
+PQA         C20         C28      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PQA         O21         C22      SINGLE       n     1.468  0.0151     1.468  0.0151
+PQA         C22         C23      SINGLE       n     1.512  0.0100     1.512  0.0100
+PQA         C22         C27      SINGLE       n     1.512  0.0100     1.512  0.0100
+PQA         C23         C24      SINGLE       n     1.510  0.0144     1.510  0.0144
+PQA         C24         N25      SINGLE       n     1.469  0.0100     1.469  0.0100
+PQA         N25         C26      SINGLE       n     1.469  0.0100     1.469  0.0100
+PQA         C26         C27      SINGLE       n     1.510  0.0144     1.510  0.0144
+PQA          N1        HN11      SINGLE       n     1.016  0.0100     0.874  0.0200
+PQA          N1        HN12      SINGLE       n     1.016  0.0100     0.874  0.0200
+PQA          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0150
+PQA          C8          H8      SINGLE       n     1.082  0.0130     0.935  0.0100
+PQA          C9          H9      SINGLE       n     1.082  0.0130     0.940  0.0138
+PQA         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0138
+PQA         C13         H13      SINGLE       n     1.082  0.0130     0.935  0.0100
+PQA         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+PQA         C18         H18      SINGLE       n     1.082  0.0130     0.938  0.0149
+PQA         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0163
+PQA         C22         H22      SINGLE       n     1.089  0.0100     0.999  0.0100
+PQA         C23        H231      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         C23        H232      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         C24        H241      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         C24        H242      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         N25         H25      SINGLE       n     1.036  0.0160     0.890  0.0200
+PQA         C26        H261      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         C26        H262      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         C27        H271      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         C27        H272      SINGLE       n     1.089  0.0100     0.990  0.0100
+PQA         C28         H28      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PQA          C2          N1        HN11     119.952    1.50
+PQA          C2          N1        HN12     119.952    1.50
+PQA        HN11          N1        HN12     120.096    1.50
+PQA          N1          C2          C3     129.780    2.20
+PQA          N1          C2          N6     123.089    2.04
+PQA          C3          C2          N6     107.131    1.50
+PQA          C2          C3          C4     105.792    1.50
+PQA          C2          C3         C14     128.421    3.00
+PQA          C4          C3         C14     125.786    3.00
+PQA          C3          C4          N5     111.463    1.50
+PQA          C3          C4          H4     124.400    1.50
+PQA          N5          C4          H4     124.137    1.50
+PQA          C4          N5          N6     104.324    1.50
+PQA          C2          N6          N5     111.290    1.50
+PQA          C2          N6          C7     129.323    1.50
+PQA          N5          N6          C7     119.387    1.50
+PQA          N6          C7          C8     119.607    1.50
+PQA          N6          C7         C13     119.607    1.50
+PQA          C8          C7         C13     120.787    1.50
+PQA          C7          C8          C9     119.654    1.50
+PQA          C7          C8          H8     120.175    1.50
+PQA          C9          C8          H8     120.172    1.50
+PQA          C8          C9         C10     118.445    1.50
+PQA          C8          C9          H9     120.743    1.50
+PQA         C10          C9          H9     120.816    1.50
+PQA          C9         C10         F11     118.497    1.50
+PQA          C9         C10         C12     123.007    1.50
+PQA         F11         C10         C12     118.497    1.50
+PQA         C10         C12         C13     118.445    1.50
+PQA         C10         C12         H12     120.816    1.50
+PQA         C13         C12         H12     120.743    1.50
+PQA          C7         C13         C12     119.654    1.50
+PQA          C7         C13         H13     120.175    1.50
+PQA         C12         C13         H13     120.172    1.50
+PQA          C3         C14         O15     120.022    1.50
+PQA          C3         C14         C16     120.111    1.50
+PQA         O15         C14         C16     119.867    1.50
+PQA         C14         C16         C17     120.451    1.93
+PQA         C14         C16         C28     120.462    2.30
+PQA         C17         C16         C28     119.087    1.50
+PQA         C16         C17         C18     120.269    1.50
+PQA         C16         C17         H17     119.907    1.50
+PQA         C18         C17         H17     119.824    1.50
+PQA         C17         C18         C19     120.397    1.50
+PQA         C17         C18         H18     119.941    1.50
+PQA         C19         C18         H18     119.662    1.50
+PQA         C18         C19         C20     118.920    1.50
+PQA         C18         C19         H19     120.419    1.50
+PQA         C20         C19         H19     120.661    1.50
+PQA         C19         C20         O21     118.943    3.00
+PQA         C19         C20         C28     121.218    1.50
+PQA         O21         C20         C28     119.839    3.00
+PQA         C20         O21         C22     118.328    2.49
+PQA         O21         C22         C23     108.743    2.55
+PQA         O21         C22         C27     108.743    2.55
+PQA         O21         C22         H22     109.688    1.50
+PQA         C23         C22         C27     110.953    1.50
+PQA         C23         C22         H22     109.129    1.50
+PQA         C27         C22         H22     109.129    1.50
+PQA         C22         C23         C24     111.257    1.50
+PQA         C22         C23        H231     109.270    1.50
+PQA         C22         C23        H232     109.270    1.50
+PQA         C24         C23        H231     109.562    1.50
+PQA         C24         C23        H232     109.562    1.50
+PQA        H231         C23        H232     108.000    1.50
+PQA         C23         C24         N25     111.116    1.92
+PQA         C23         C24        H241     109.271    1.50
+PQA         C23         C24        H242     109.271    1.50
+PQA         N25         C24        H241     109.046    1.50
+PQA         N25         C24        H242     109.046    1.50
+PQA        H241         C24        H242     108.210    1.50
+PQA         C24         N25         C26     111.207    1.50
+PQA         C24         N25         H25     108.409    1.90
+PQA         C26         N25         H25     108.409    1.90
+PQA         N25         C26         C27     111.116    1.92
+PQA         N25         C26        H261     109.046    1.50
+PQA         N25         C26        H262     109.046    1.50
+PQA         C27         C26        H261     109.271    1.50
+PQA         C27         C26        H262     109.271    1.50
+PQA        H261         C26        H262     108.210    1.50
+PQA         C22         C27         C26     111.257    1.50
+PQA         C22         C27        H271     109.270    1.50
+PQA         C22         C27        H272     109.270    1.50
+PQA         C26         C27        H271     109.562    1.50
+PQA         C26         C27        H272     109.562    1.50
+PQA        H271         C27        H272     108.000    1.50
+PQA         C16         C28         C20     120.109    1.50
+PQA         C16         C28         H28     119.494    1.50
+PQA         C20         C28         H28     120.397    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PQA             sp2_sp2_1          C3          C2          N1        HN11     180.000     5.0     2
+PQA              const_17         C10         C12         C13          C7       0.000    10.0     2
+PQA            sp2_sp2_15         O15         C14         C16         C17       0.000     5.0     2
+PQA              const_23         C14         C16         C17         C18     180.000    10.0     2
+PQA              const_63         C14         C16         C28         C20     180.000    10.0     2
+PQA              const_25         C16         C17         C18         C19       0.000    10.0     2
+PQA              const_29         C17         C18         C19         C20       0.000    10.0     2
+PQA              const_34         C18         C19         C20         O21     180.000    10.0     2
+PQA            sp2_sp2_17         C19         C20         O21         C22     180.000     5.0     2
+PQA              const_39         O21         C20         C28         C16     180.000    10.0     2
+PQA              const_44          N1          C2          C3         C14       0.000    10.0     2
+PQA              const_55          N1          C2          N6          N5     180.000    10.0     2
+PQA            sp3_sp3_40         C23         C22         O21         C20     180.000    10.0     3
+PQA             sp3_sp3_7         O21         C22         C23         C24     180.000    10.0     3
+PQA            sp3_sp3_46         O21         C22         C27         C26      60.000    10.0     3
+PQA            sp3_sp3_10         C22         C23         C24         N25     -60.000    10.0     3
+PQA            sp3_sp3_19         C23         C24         N25         C26      60.000    10.0     3
+PQA            sp3_sp3_25         C27         C26         N25         C24     -60.000    10.0     3
+PQA            sp3_sp3_31         N25         C26         C27         C22      60.000    10.0     3
+PQA             sp2_sp2_7         O15         C14          C3          C2       0.000     5.0     2
+PQA              const_47         C14          C3          C4          N5     180.000    10.0     2
+PQA              const_49          C3          C4          N5          N6       0.000    10.0     2
+PQA              const_51          C4          N5          N6          C2       0.000    10.0     2
+PQA             sp2_sp2_9          C8          C7          N6          C2     180.000     5.0     2
+PQA              const_58         C12         C13          C7          N6     180.000    10.0     2
+PQA       const_sp2_sp2_3          N6          C7          C8          C9     180.000     5.0     2
+PQA       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+PQA              const_11         F11         C10          C9          C8     180.000    10.0     2
+PQA              const_15         F11         C10         C12         C13     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PQA    chir_1    C22    O21    C23    C27    both
+PQA    chir_2    N25    C24    C26    H25    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PQA    plan-1         C10   0.020
+PQA    plan-1         C12   0.020
+PQA    plan-1         C13   0.020
+PQA    plan-1          C7   0.020
+PQA    plan-1          C8   0.020
+PQA    plan-1          C9   0.020
+PQA    plan-1         F11   0.020
+PQA    plan-1         H12   0.020
+PQA    plan-1         H13   0.020
+PQA    plan-1          H8   0.020
+PQA    plan-1          H9   0.020
+PQA    plan-1          N6   0.020
+PQA    plan-2         C14   0.020
+PQA    plan-2         C16   0.020
+PQA    plan-2         C17   0.020
+PQA    plan-2         C18   0.020
+PQA    plan-2         C19   0.020
+PQA    plan-2         C20   0.020
+PQA    plan-2         C28   0.020
+PQA    plan-2         H17   0.020
+PQA    plan-2         H18   0.020
+PQA    plan-2         H19   0.020
+PQA    plan-2         H28   0.020
+PQA    plan-2         O21   0.020
+PQA    plan-3         C14   0.020
+PQA    plan-3          C2   0.020
+PQA    plan-3          C3   0.020
+PQA    plan-3          C4   0.020
+PQA    plan-3          C7   0.020
+PQA    plan-3          H4   0.020
+PQA    plan-3          N1   0.020
+PQA    plan-3          N5   0.020
+PQA    plan-3          N6   0.020
+PQA    plan-4          C2   0.020
+PQA    plan-4        HN11   0.020
+PQA    plan-4        HN12   0.020
+PQA    plan-4          N1   0.020
+PQA    plan-5         C14   0.020
+PQA    plan-5         C16   0.020
+PQA    plan-5          C3   0.020
+PQA    plan-5         O15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PQA           SMILES              ACDLabs 10.04                                                                                            Fc1ccc(cc1)n2ncc(c2N)C(=O)c4cc(OC3CCNCC3)ccc4
+PQA SMILES_CANONICAL               CACTVS 3.341                                                                                            Nc1n(ncc1C(=O)c2cccc(OC3CCNCC3)c2)c4ccc(F)cc4
+PQA           SMILES               CACTVS 3.341                                                                                            Nc1n(ncc1C(=O)c2cccc(OC3CCNCC3)c2)c4ccc(F)cc4
+PQA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                          c1cc(cc(c1)OC2CCNCC2)C(=O)c3cnn(c3N)c4ccc(cc4)F
+PQA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                          c1cc(cc(c1)OC2CCNCC2)C(=O)c3cnn(c3N)c4ccc(cc4)F
+PQA            InChI                InChI  1.03 InChI=1S/C21H21FN4O2/c22-15-4-6-16(7-5-15)26-21(23)19(13-25-26)20(27)14-2-1-3-18(12-14)28-17-8-10-24-11-9-17/h1-7,12-13,17,24H,8-11,23H2
+PQA         InChIKey                InChI  1.03                                                                                                              QKZZJXRGCHXIAI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PQA acedrg               243         "dictionary generator"                  
+PQA acedrg_database      11          "data source"                           
+PQA rdkit                2017.03.2   "Chemoinformatics tool"
+PQA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NMH     NMH      (R)-N-(1-METHYL-HEXYL)-FORMAMIDE     NON-POLYMER     27     10     .     
+#
+data_comp_NMH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NMH     C7      C       CH3     0       17.787      6.846       14.206      
+NMH     C6      C       CH2     0       18.746      5.704       13.967      
+NMH     C5      C       CH2     0       18.177      4.608       13.104      
+NMH     C4      C       CH2     0       19.115      3.448       12.873      
+NMH     C3      C       CH2     0       18.536      2.315       12.060      
+NMH     C2      C       CH1     0       19.558      1.236       11.692      
+NMH     C1      C       CH3     0       19.977      0.405       12.890      
+NMH     N       N       NH1     0       19.009      0.364       10.648      
+NMH     C       C       C1      0       19.521      0.202       9.429       
+NMH     O       O       O       0       20.530      0.754       8.986       
+NMH     HC71    H       H       0       18.216      7.521       14.760      
+NMH     HC72    H       H       0       16.992      6.515       14.658      
+NMH     HC73    H       H       0       17.533      7.241       13.354      
+NMH     HC61    H       H       0       19.006      5.322       14.834      
+NMH     HC62    H       H       0       19.557      6.054       13.539      
+NMH     HC51    H       H       0       17.929      4.989       12.236      
+NMH     HC52    H       H       0       17.358      4.270       13.526      
+NMH     HC41    H       H       0       19.396      3.096       13.744      
+NMH     HC42    H       H       0       19.917      3.781       12.417      
+NMH     HC31    H       H       0       18.155      2.685       11.235      
+NMH     HC32    H       H       0       17.805      1.904       12.569      
+NMH     HC2     H       H       0       20.362      1.688       11.336      
+NMH     HC11    H       H       0       19.773      -0.532      12.728      
+NMH     HC12    H       H       0       19.503      0.705       13.685      
+NMH     HC13    H       H       0       20.935      0.505       13.032      
+NMH     "HN'"   H       H       0       18.287      -0.079      10.856      
+NMH     "HC'"   H       H       0       19.041      -0.408      8.858       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NMH          C7          C6      SINGLE       n     1.510  0.0200     1.510  0.0200
+NMH          C6          C5      SINGLE       n     1.507  0.0200     1.507  0.0200
+NMH          C5          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+NMH          C4          C3      SINGLE       n     1.509  0.0200     1.509  0.0200
+NMH          C3          C2      SINGLE       n     1.528  0.0145     1.528  0.0145
+NMH          C2          C1      SINGLE       n     1.514  0.0111     1.514  0.0111
+NMH          C2           N      SINGLE       n     1.463  0.0106     1.463  0.0106
+NMH           N           C      SINGLE       n     1.327  0.0137     1.327  0.0137
+NMH           C           O      DOUBLE       n     1.232  0.0100     1.232  0.0100
+NMH          C7        HC71      SINGLE       n     1.089  0.0100     0.973  0.0157
+NMH          C7        HC72      SINGLE       n     1.089  0.0100     0.973  0.0157
+NMH          C7        HC73      SINGLE       n     1.089  0.0100     0.973  0.0157
+NMH          C6        HC61      SINGLE       n     1.089  0.0100     0.982  0.0155
+NMH          C6        HC62      SINGLE       n     1.089  0.0100     0.982  0.0155
+NMH          C5        HC51      SINGLE       n     1.089  0.0100     0.981  0.0163
+NMH          C5        HC52      SINGLE       n     1.089  0.0100     0.981  0.0163
+NMH          C4        HC41      SINGLE       n     1.089  0.0100     0.981  0.0163
+NMH          C4        HC42      SINGLE       n     1.089  0.0100     0.981  0.0163
+NMH          C3        HC31      SINGLE       n     1.089  0.0100     0.981  0.0160
+NMH          C3        HC32      SINGLE       n     1.089  0.0100     0.981  0.0160
+NMH          C2         HC2      SINGLE       n     1.089  0.0100     0.989  0.0122
+NMH          C1        HC11      SINGLE       n     1.089  0.0100     0.973  0.0146
+NMH          C1        HC12      SINGLE       n     1.089  0.0100     0.973  0.0146
+NMH          C1        HC13      SINGLE       n     1.089  0.0100     0.973  0.0146
+NMH           N       "HN'"      SINGLE       n     1.016  0.0100     0.872  0.0200
+NMH           C       "HC'"      SINGLE       n     1.082  0.0130     0.964  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NMH          C6          C7        HC71     109.554    1.50
+NMH          C6          C7        HC72     109.554    1.50
+NMH          C6          C7        HC73     109.554    1.50
+NMH        HC71          C7        HC72     109.380    1.50
+NMH        HC71          C7        HC73     109.380    1.50
+NMH        HC72          C7        HC73     109.380    1.50
+NMH          C7          C6          C5     113.719    3.00
+NMH          C7          C6        HC61     108.918    1.50
+NMH          C7          C6        HC62     108.918    1.50
+NMH          C5          C6        HC61     108.758    1.50
+NMH          C5          C6        HC62     108.758    1.50
+NMH        HC61          C6        HC62     107.763    1.50
+NMH          C6          C5          C4     114.362    3.00
+NMH          C6          C5        HC51     108.653    1.50
+NMH          C6          C5        HC52     108.653    1.50
+NMH          C4          C5        HC51     108.698    1.50
+NMH          C4          C5        HC52     108.698    1.50
+NMH        HC51          C5        HC52     107.646    1.50
+NMH          C5          C4          C3     115.138    2.03
+NMH          C5          C4        HC41     108.698    1.50
+NMH          C5          C4        HC42     108.698    1.50
+NMH          C3          C4        HC41     108.601    1.50
+NMH          C3          C4        HC42     108.601    1.50
+NMH        HC41          C4        HC42     107.646    1.50
+NMH          C4          C3          C2     113.103    3.00
+NMH          C4          C3        HC31     108.650    1.50
+NMH          C4          C3        HC32     108.650    1.50
+NMH          C2          C3        HC31     108.930    1.50
+NMH          C2          C3        HC32     108.930    1.50
+NMH        HC31          C3        HC32     107.844    1.50
+NMH          C3          C2          C1     111.070    2.27
+NMH          C3          C2           N     110.353    1.50
+NMH          C3          C2         HC2     108.260    1.50
+NMH          C1          C2           N     109.783    1.50
+NMH          C1          C2         HC2     108.356    1.50
+NMH           N          C2         HC2     108.194    1.50
+NMH          C2          C1        HC11     109.466    1.50
+NMH          C2          C1        HC12     109.466    1.50
+NMH          C2          C1        HC13     109.466    1.50
+NMH        HC11          C1        HC12     109.386    1.50
+NMH        HC11          C1        HC13     109.386    1.50
+NMH        HC12          C1        HC13     109.386    1.50
+NMH          C2           N           C     122.588    2.35
+NMH          C2           N       "HN'"     118.297    3.00
+NMH           C           N       "HN'"     119.115    1.93
+NMH           N           C           O     125.163    1.50
+NMH           N           C       "HC'"     115.820    2.36
+NMH           O           C       "HC'"     119.017    2.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NMH             sp3_sp3_1          C5          C6          C7        HC71     180.000    10.0     3
+NMH            sp3_sp3_10          C4          C5          C6          C7     180.000    10.0     3
+NMH            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+NMH            sp3_sp3_28          C2          C3          C4          C5     180.000    10.0     3
+NMH            sp3_sp3_37          C1          C2          C3          C4     180.000    10.0     3
+NMH            sp3_sp3_46        HC11          C1          C2          C3     180.000    10.0     3
+NMH             sp2_sp3_1           C           N          C2          C3       0.000    10.0     6
+NMH             sp2_sp2_1           O           C           N          C2     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NMH    chir_1    C2    N    C3    C1    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NMH    plan-1           C   0.020
+NMH    plan-1          C2   0.020
+NMH    plan-1       "HN'"   0.020
+NMH    plan-1           N   0.020
+NMH    plan-2           C   0.020
+NMH    plan-2       "HC'"   0.020
+NMH    plan-2           N   0.020
+NMH    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NMH           SMILES              ACDLabs 10.04                                                               O=CNC(CCCCC)C
+NMH SMILES_CANONICAL               CACTVS 3.341                                                          CCCCC[C@@H](C)NC=O
+NMH           SMILES               CACTVS 3.341                                                            CCCCC[CH](C)NC=O
+NMH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          CCCCC[C@@H](C)NC=O
+NMH           SMILES "OpenEye OEToolkits" 1.5.0                                                               CCCCCC(C)NC=O
+NMH            InChI                InChI  1.03 InChI=1S/C8H17NO/c1-3-4-5-6-8(2)9-7-10/h7-8H,3-6H2,1-2H3,(H,9,10)/t8-/m1/s1
+NMH         InChIKey                InChI  1.03                                                 GFVRKPKAQHTAQK-MRVPVSSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NMH acedrg               243         "dictionary generator"                  
+NMH acedrg_database      11          "data source"                           
+NMH rdkit                2017.03.2   "Chemoinformatics tool"
+NMH refmac5              5.8.0238    "optimization tool"                     

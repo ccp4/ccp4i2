@@ -1,0 +1,285 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CBC     CBC      "N'-(5-CHLOROBENZOFURAN-2-CARBONYL)-2-(TRIFLUOROMETHYL)BENZENESULFONOHYDRAZIDE"     NON-POLYMER     37     27     .     
+#
+data_comp_CBC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CBC     F49     F       F       0       32.557      61.447      92.709      
+CBC     C46     C       CT      0       31.238      61.291      92.685      
+CBC     F50     F       F       0       30.868      61.526      91.433      
+CBC     F51     F       F       0       31.036      59.987      92.867      
+CBC     C41     C       CR6     0       30.531      62.170      93.677      
+CBC     C42     C       CR16    0       29.868      61.573      94.759      
+CBC     C43     C       CR16    0       29.201      62.318      95.705      
+CBC     C44     C       CR16    0       29.172      63.689      95.609      
+CBC     C45     C       CR16    0       29.810      64.323      94.563      
+CBC     C40     C       CR6     0       30.497      63.591      93.595      
+CBC     S1      S       S3      0       31.262      64.541      92.314      
+CBC     O38     O       O       0       31.734      65.761      92.889      
+CBC     O39     O       O       0       32.162      63.742      91.545      
+CBC     N33     N       NT1     0       30.078      65.006      91.261      
+CBC     N32     N       NH1     0       29.326      63.924      90.779      
+CBC     C39     C       C       0       29.405      63.540      89.497      
+CBC     O37     O       O       0       30.071      64.151      88.661      
+CBC     C54     C       CR5     0       28.677      62.314      89.143      
+CBC     C53     C       CR15    0       28.026      61.390      89.888      
+CBC     O40     O       O2      0       28.623      61.983      87.803      
+CBC     C51     C       CR56    0       27.908      60.817      87.722      
+CBC     C50     C       CR56    0       27.511      60.403      88.990      
+CBC     C49     C       CR16    0       26.764      59.223      89.120      
+CBC     C52     C       CR16    0       27.609      60.127      86.559      
+CBC     C47     C       CR16    0       26.870      58.963      86.697      
+CBC     C48     C       CR6     0       26.462      58.531      87.965      
+CBC     CL1     CL      CL      0       25.533      57.056      88.082      
+CBC     H42     H       H       0       29.874      60.635      94.847      
+CBC     H43     H       H       0       28.764      61.886      96.421      
+CBC     H44     H       H       0       28.716      64.196      96.256      
+CBC     H45     H       H       0       29.783      65.260      94.506      
+CBC     H33     H       H       0       29.550      65.628      91.610      
+CBC     H32     H       H       0       28.776      63.536      91.358      
+CBC     H53     H       H       0       27.926      61.398      90.823      
+CBC     H49     H       H       0       26.483      58.920      89.964      
+CBC     H52     H       H       0       27.893      60.435      85.713      
+CBC     H47     H       H       0       26.641      58.458      85.933      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CBC         F49         C46      SINGLE       n     1.329  0.0183     1.329  0.0183
+CBC         C46         F50      SINGLE       n     1.329  0.0183     1.329  0.0183
+CBC         C46         F51      SINGLE       n     1.329  0.0183     1.329  0.0183
+CBC         C46         C41      SINGLE       n     1.495  0.0102     1.495  0.0102
+CBC         C41         C42      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CBC         C41         C40      SINGLE       y     1.400  0.0121     1.400  0.0121
+CBC         C42         C43      SINGLE       y     1.375  0.0100     1.375  0.0100
+CBC         C43         C44      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CBC         C44         C45      SINGLE       y     1.379  0.0100     1.379  0.0100
+CBC         C45         C40      DOUBLE       y     1.388  0.0100     1.388  0.0100
+CBC         C40          S1      SINGLE       n     1.759  0.0100     1.759  0.0100
+CBC          S1         O38      DOUBLE       n     1.429  0.0100     1.429  0.0100
+CBC          S1         O39      DOUBLE       n     1.429  0.0100     1.429  0.0100
+CBC          S1         N33      SINGLE       n     1.649  0.0100     1.649  0.0100
+CBC         N33         N32      SINGLE       n     1.401  0.0100     1.401  0.0100
+CBC         N32         C39      SINGLE       n     1.335  0.0112     1.335  0.0112
+CBC         C39         O37      DOUBLE       n     1.230  0.0100     1.230  0.0100
+CBC         C39         C54      SINGLE       n     1.465  0.0107     1.465  0.0107
+CBC         C54         C53      DOUBLE       y     1.351  0.0100     1.351  0.0100
+CBC         C54         O40      SINGLE       y     1.379  0.0100     1.379  0.0100
+CBC         C53         C50      SINGLE       y     1.431  0.0100     1.431  0.0100
+CBC         O40         C51      SINGLE       y     1.371  0.0100     1.371  0.0100
+CBC         C51         C50      DOUBLE       y     1.391  0.0100     1.391  0.0100
+CBC         C51         C52      SINGLE       y     1.380  0.0100     1.380  0.0100
+CBC         C50         C49      SINGLE       y     1.400  0.0100     1.400  0.0100
+CBC         C49         C48      DOUBLE       y     1.377  0.0100     1.377  0.0100
+CBC         C52         C47      DOUBLE       y     1.381  0.0100     1.381  0.0100
+CBC         C47         C48      SINGLE       y     1.396  0.0100     1.396  0.0100
+CBC         C48         CL1      SINGLE       n     1.747  0.0100     1.747  0.0100
+CBC         C42         H42      SINGLE       n     1.082  0.0130     0.943  0.0173
+CBC         C43         H43      SINGLE       n     1.082  0.0130     0.944  0.0175
+CBC         C44         H44      SINGLE       n     1.082  0.0130     0.940  0.0176
+CBC         C45         H45      SINGLE       n     1.082  0.0130     0.940  0.0163
+CBC         N33         H33      SINGLE       n     1.036  0.0160     0.886  0.0200
+CBC         N32         H32      SINGLE       n     1.016  0.0100     0.889  0.0200
+CBC         C53         H53      SINGLE       n     1.082  0.0130     0.940  0.0102
+CBC         C49         H49      SINGLE       n     1.082  0.0130     0.940  0.0125
+CBC         C52         H52      SINGLE       n     1.082  0.0130     0.944  0.0100
+CBC         C47         H47      SINGLE       n     1.082  0.0130     0.944  0.0101
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CBC         F49         C46         F50     105.974    1.50
+CBC         F49         C46         F51     105.974    1.50
+CBC         F49         C46         C41     113.129    1.50
+CBC         F50         C46         F51     105.974    1.50
+CBC         F50         C46         C41     113.129    1.50
+CBC         F51         C46         C41     113.129    1.50
+CBC         C46         C41         C42     120.242    1.50
+CBC         C46         C41         C40     122.231    1.84
+CBC         C42         C41         C40     117.527    1.50
+CBC         C41         C42         C43     121.030    1.50
+CBC         C41         C42         H42     119.308    1.50
+CBC         C43         C42         H42     119.661    1.50
+CBC         C42         C43         C44     120.273    1.50
+CBC         C42         C43         H43     119.818    1.50
+CBC         C44         C43         H43     119.909    1.50
+CBC         C43         C44         C45     120.408    1.50
+CBC         C43         C44         H44     119.897    1.50
+CBC         C45         C44         H44     119.695    1.50
+CBC         C44         C45         C40     120.069    1.50
+CBC         C44         C45         H45     120.150    1.50
+CBC         C40         C45         H45     119.781    1.50
+CBC         C41         C40         C45     120.692    1.50
+CBC         C41         C40          S1     120.252    1.96
+CBC         C45         C40          S1     119.056    1.50
+CBC         C40          S1         O38     108.022    1.50
+CBC         C40          S1         O39     108.022    1.50
+CBC         C40          S1         N33     106.843    1.67
+CBC         O38          S1         O39     119.990    1.50
+CBC         O38          S1         N33     105.185    1.71
+CBC         O39          S1         N33     105.185    1.71
+CBC          S1         N33         N32     109.471    3.00
+CBC          S1         N33         H33     112.116    2.53
+CBC         N32         N33         H33     111.153    3.00
+CBC         N33         N32         C39     120.479    2.19
+CBC         N33         N32         H32     117.959    2.73
+CBC         C39         N32         H32     121.562    2.28
+CBC         N32         C39         O37     122.959    1.50
+CBC         N32         C39         C54     115.343    1.50
+CBC         O37         C39         C54     121.697    1.50
+CBC         C39         C54         C53     132.206    3.00
+CBC         C39         C54         O40     117.191    1.50
+CBC         C53         C54         O40     110.603    1.50
+CBC         C54         C53         C50     107.040    1.50
+CBC         C54         C53         H53     126.467    1.50
+CBC         C50         C53         H53     126.493    1.50
+CBC         C54         O40         C51     106.221    1.50
+CBC         O40         C51         C50     110.624    1.50
+CBC         O40         C51         C52     125.506    1.50
+CBC         C50         C51         C52     123.870    1.50
+CBC         C53         C50         C51     105.512    1.50
+CBC         C53         C50         C49     135.277    1.50
+CBC         C51         C50         C49     119.211    1.50
+CBC         C50         C49         C48     117.609    1.50
+CBC         C50         C49         H49     120.824    1.50
+CBC         C48         C49         H49     121.567    1.50
+CBC         C51         C52         C47     116.348    1.50
+CBC         C51         C52         H52     121.919    1.50
+CBC         C47         C52         H52     121.733    1.50
+CBC         C52         C47         C48     120.084    1.50
+CBC         C52         C47         H47     120.007    1.50
+CBC         C48         C47         H47     119.909    1.50
+CBC         C49         C48         C47     122.879    1.50
+CBC         C49         C48         CL1     118.781    1.50
+CBC         C47         C48         CL1     118.340    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CBC             sp3_sp3_5         N32         N33          S1         O38     180.000    10.0     3
+CBC            sp2_sp3_13         C39         N32         N33          S1       0.000    10.0     6
+CBC             sp2_sp2_3         O37         C39         N32         N33       0.000     5.0     2
+CBC             sp2_sp2_5         N32         C39         C54         C53     180.000     5.0     2
+CBC              const_42         C50         C53         C54         C39     180.000    10.0     2
+CBC              const_56         C39         C54         O40         C51     180.000    10.0     2
+CBC              const_45         C51         C50         C53         C54       0.000    10.0     2
+CBC              const_49         C50         C51         O40         C54       0.000    10.0     2
+CBC             sp2_sp3_1         C42         C41         C46         F49     150.000    10.0     6
+CBC              const_21         C53         C50         C51         O40       0.000    10.0     2
+CBC              const_59         O40         C51         C52         C47     180.000    10.0     2
+CBC              const_26         C48         C49         C50         C53     180.000    10.0     2
+CBC              const_31         CL1         C48         C49         C50     180.000    10.0     2
+CBC              const_37         C48         C47         C52         C51       0.000    10.0     2
+CBC              const_34         C52         C47         C48         CL1     180.000    10.0     2
+CBC       const_sp2_sp2_3         C46         C41         C42         C43     180.000     5.0     2
+CBC              const_54          S1         C40         C41         C46       0.000    10.0     2
+CBC       const_sp2_sp2_5         C41         C42         C43         C44       0.000     5.0     2
+CBC       const_sp2_sp2_9         C42         C43         C44         C45       0.000     5.0     2
+CBC              const_13         C43         C44         C45         C40       0.000    10.0     2
+CBC              const_19          S1         C40         C45         C44     180.000    10.0     2
+CBC             sp2_sp3_7         C41         C40          S1         O38     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CBC    chir_1    C46    F49    F50    F51    both
+CBC    chir_2    S1    O38    O39    N33    both
+CBC    chir_3    N33    S1    N32    H33    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CBC    plan-1         C39   0.020
+CBC    plan-1         C47   0.020
+CBC    plan-1         C48   0.020
+CBC    plan-1         C49   0.020
+CBC    plan-1         C50   0.020
+CBC    plan-1         C51   0.020
+CBC    plan-1         C52   0.020
+CBC    plan-1         C53   0.020
+CBC    plan-1         C54   0.020
+CBC    plan-1         CL1   0.020
+CBC    plan-1         H47   0.020
+CBC    plan-1         H49   0.020
+CBC    plan-1         H52   0.020
+CBC    plan-1         H53   0.020
+CBC    plan-1         O40   0.020
+CBC    plan-2         C40   0.020
+CBC    plan-2         C41   0.020
+CBC    plan-2         C42   0.020
+CBC    plan-2         C43   0.020
+CBC    plan-2         C44   0.020
+CBC    plan-2         C45   0.020
+CBC    plan-2         C46   0.020
+CBC    plan-2         H42   0.020
+CBC    plan-2         H43   0.020
+CBC    plan-2         H44   0.020
+CBC    plan-2         H45   0.020
+CBC    plan-2          S1   0.020
+CBC    plan-3         C39   0.020
+CBC    plan-3         H32   0.020
+CBC    plan-3         N32   0.020
+CBC    plan-3         N33   0.020
+CBC    plan-4         C39   0.020
+CBC    plan-4         C54   0.020
+CBC    plan-4         N32   0.020
+CBC    plan-4         O37   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CBC           SMILES              ACDLabs 10.04                                                                             FC(F)(F)c1ccccc1S(=O)(=O)NNC(=O)c3oc2ccc(Cl)cc2c3
+CBC SMILES_CANONICAL               CACTVS 3.341                                                                           FC(F)(F)c1ccccc1[S](=O)(=O)NNC(=O)c2oc3ccc(Cl)cc3c2
+CBC           SMILES               CACTVS 3.341                                                                           FC(F)(F)c1ccccc1[S](=O)(=O)NNC(=O)c2oc3ccc(Cl)cc3c2
+CBC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         c1ccc(c(c1)C(F)(F)F)S(=O)(=O)NNC(=O)c2cc3cc(ccc3o2)Cl
+CBC           SMILES "OpenEye OEToolkits" 1.5.0                                                                         c1ccc(c(c1)C(F)(F)F)S(=O)(=O)NNC(=O)c2cc3cc(ccc3o2)Cl
+CBC            InChI                InChI  1.03 InChI=1S/C16H10ClF3N2O4S/c17-10-5-6-12-9(7-10)8-13(26-12)15(23)21-22-27(24,25)14-4-2-1-3-11(14)16(18,19)20/h1-8,22H,(H,21,23)
+CBC         InChIKey                InChI  1.03                                                                                                   ZLQBZYKAQQWOTK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CBC acedrg               243         "dictionary generator"                  
+CBC acedrg_database      11          "data source"                           
+CBC rdkit                2017.03.2   "Chemoinformatics tool"
+CBC refmac5              5.8.0238    "optimization tool"                     

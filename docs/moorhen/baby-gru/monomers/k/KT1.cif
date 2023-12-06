@@ -1,0 +1,301 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KT1     KT1      4-{[3-(4-hydroxy-2-methoxyphenyl)propyl]amino}-1H-isoindole-1,3(2H)-dione     NON-POLYMER     42     24     .     
+#
+data_comp_KT1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KT1     C21     C       CR16    0       47.663      -82.530     -37.106     
+KT1     C23     C       CR56    0       46.300      -80.600     -36.907     
+KT1     C22     C       CR16    0       46.872      -81.705     -36.307     
+KT1     C20     C       CR16    0       47.869      -82.253     -38.450     
+KT1     C17     C       CR6     0       46.591      -79.178     -44.977     
+KT1     C19     C       CH3     0       46.045      -77.160     -43.743     
+KT1     C16     C       CR16    0       46.564      -78.602     -46.241     
+KT1     C11     C       CR6     0       46.580      -80.581     -44.831     
+KT1     C10     C       CH2     0       46.618      -81.230     -43.468     
+KT1     C12     C       CR16    0       46.532      -81.361     -45.985     
+KT1     C13     C       CR16    0       46.499      -80.782     -47.245     
+KT1     C14     C       CR6     0       46.514      -79.405     -47.368     
+KT1     C02     C       CR5     0       45.425      -79.561     -36.316     
+KT1     C04     C       CR5     0       45.729      -79.053     -38.538     
+KT1     C05     C       CR56    0       46.486      -80.294     -38.255     
+KT1     C06     C       CR6     0       47.280      -81.125     -39.059     
+KT1     C08     C       CH2     0       47.993      -81.768     -41.385     
+KT1     C09     C       CH2     0       47.991      -81.188     -42.801     
+KT1     N03     N       NR5     0       45.163      -78.666     -37.337     
+KT1     N07     N       NH1     0       47.481      -80.837     -40.391     
+KT1     O01     O       O       0       45.006      -79.474     -35.178     
+KT1     O15     O       OH1     0       46.481      -78.830     -48.615     
+KT1     O18     O       O2      0       46.649      -78.452     -43.810     
+KT1     O24     O       O       0       45.602      -78.457     -39.595     
+KT1     H1      H       H       0       48.069      -83.293     -36.728     
+KT1     H2      H       H       0       46.734      -81.896     -35.394     
+KT1     H3      H       H       0       48.414      -82.839     -38.955     
+KT1     H4      H       H       0       45.161      -77.190     -44.146     
+KT1     H5      H       H       0       46.598      -76.521     -44.222     
+KT1     H6      H       H       0       45.968      -76.888     -42.814     
+KT1     H7      H       H       0       46.575      -77.664     -46.338     
+KT1     H8      H       H       0       46.344      -82.169     -43.554     
+KT1     H9      H       H       0       45.968      -80.788     -42.881     
+KT1     H10     H       H       0       46.521      -82.301     -45.908     
+KT1     H11     H       H       0       46.465      -81.324     -48.016     
+KT1     H12     H       H       0       48.909      -82.017     -41.146     
+KT1     H13     H       H       0       47.448      -82.581     -41.373     
+KT1     H14     H       H       0       48.303      -80.253     -42.760     
+KT1     H15     H       H       0       48.630      -81.702     -43.350     
+KT1     H16     H       H       0       44.685      -77.928     -37.234     
+KT1     H17     H       H       0       47.293      -80.022     -40.664     
+KT1     H18     H       H       0       46.046      -78.098     -48.740     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KT1         C14         O15      SINGLE       n     1.374  0.0155     1.374  0.0155
+KT1         C13         C14      DOUBLE       y     1.380  0.0100     1.380  0.0100
+KT1         C12         C13      SINGLE       y     1.385  0.0100     1.385  0.0100
+KT1         C16         C14      SINGLE       y     1.382  0.0100     1.382  0.0100
+KT1         C11         C12      DOUBLE       y     1.388  0.0107     1.388  0.0107
+KT1         C17         C16      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KT1         C17         C11      SINGLE       y     1.401  0.0105     1.401  0.0105
+KT1         C11         C10      SINGLE       n     1.507  0.0100     1.507  0.0100
+KT1         C17         O18      SINGLE       n     1.365  0.0147     1.365  0.0147
+KT1         C19         O18      SINGLE       n     1.424  0.0117     1.424  0.0117
+KT1         C10         C09      SINGLE       n     1.527  0.0100     1.527  0.0100
+KT1         C08         C09      SINGLE       n     1.529  0.0100     1.529  0.0100
+KT1         C08         N07      SINGLE       n     1.451  0.0113     1.451  0.0113
+KT1         C06         N07      SINGLE       n     1.361  0.0179     1.361  0.0179
+KT1         C04         O24      DOUBLE       n     1.220  0.0108     1.220  0.0108
+KT1         C05         C06      DOUBLE       y     1.395  0.0112     1.395  0.0112
+KT1         C20         C06      SINGLE       y     1.389  0.0186     1.389  0.0186
+KT1         C04         C05      SINGLE       n     1.481  0.0107     1.481  0.0107
+KT1         C04         N03      SINGLE       n     1.383  0.0100     1.383  0.0100
+KT1         C23         C05      SINGLE       y     1.391  0.0100     1.391  0.0100
+KT1         C21         C20      DOUBLE       y     1.384  0.0100     1.384  0.0100
+KT1         C02         N03      SINGLE       n     1.383  0.0100     1.383  0.0100
+KT1         C23         C02      SINGLE       n     1.481  0.0102     1.481  0.0102
+KT1         C23         C22      DOUBLE       y     1.378  0.0100     1.378  0.0100
+KT1         C21         C22      SINGLE       y     1.392  0.0100     1.392  0.0100
+KT1         C02         O01      DOUBLE       n     1.216  0.0100     1.216  0.0100
+KT1         C21          H1      SINGLE       n     1.082  0.0130     0.943  0.0125
+KT1         C22          H2      SINGLE       n     1.082  0.0130     0.943  0.0179
+KT1         C20          H3      SINGLE       n     1.082  0.0130     0.947  0.0138
+KT1         C19          H4      SINGLE       n     1.089  0.0100     0.971  0.0157
+KT1         C19          H5      SINGLE       n     1.089  0.0100     0.971  0.0157
+KT1         C19          H6      SINGLE       n     1.089  0.0100     0.971  0.0157
+KT1         C16          H7      SINGLE       n     1.082  0.0130     0.943  0.0141
+KT1         C10          H8      SINGLE       n     1.089  0.0100     0.981  0.0150
+KT1         C10          H9      SINGLE       n     1.089  0.0100     0.981  0.0150
+KT1         C12         H10      SINGLE       n     1.082  0.0130     0.943  0.0173
+KT1         C13         H11      SINGLE       n     1.082  0.0130     0.943  0.0169
+KT1         C08         H12      SINGLE       n     1.089  0.0100     0.979  0.0121
+KT1         C08         H13      SINGLE       n     1.089  0.0100     0.979  0.0121
+KT1         C09         H14      SINGLE       n     1.089  0.0100     0.987  0.0200
+KT1         C09         H15      SINGLE       n     1.089  0.0100     0.987  0.0200
+KT1         N03         H16      SINGLE       n     1.016  0.0100     0.885  0.0200
+KT1         N07         H17      SINGLE       n     1.016  0.0100     0.880  0.0200
+KT1         O15         H18      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KT1         C20         C21         C22     121.036    1.50
+KT1         C20         C21          H1     119.220    1.50
+KT1         C22         C21          H1     119.745    1.50
+KT1         C05         C23         C02     107.926    1.50
+KT1         C05         C23         C22     122.651    1.50
+KT1         C02         C23         C22     129.423    1.50
+KT1         C23         C22         C21     117.084    1.50
+KT1         C23         C22          H2     121.620    1.50
+KT1         C21         C22          H2     121.296    1.50
+KT1         C06         C20         C21     120.763    1.50
+KT1         C06         C20          H3     119.991    1.53
+KT1         C21         C20          H3     119.246    1.60
+KT1         C16         C17         C11     120.801    1.50
+KT1         C16         C17         O18     123.422    1.50
+KT1         C11         C17         O18     115.777    1.50
+KT1         O18         C19          H4     109.428    1.50
+KT1         O18         C19          H5     109.428    1.50
+KT1         O18         C19          H6     109.428    1.50
+KT1          H4         C19          H5     109.509    1.50
+KT1          H4         C19          H6     109.509    1.50
+KT1          H5         C19          H6     109.509    1.50
+KT1         C14         C16         C17     119.666    1.50
+KT1         C14         C16          H7     120.139    1.50
+KT1         C17         C16          H7     120.196    1.50
+KT1         C12         C11         C17     118.109    1.50
+KT1         C12         C11         C10     121.360    1.50
+KT1         C17         C11         C10     120.531    1.50
+KT1         C11         C10         C09     114.108    2.12
+KT1         C11         C10          H8     109.092    1.50
+KT1         C11         C10          H9     109.092    1.50
+KT1         C09         C10          H8     108.731    1.50
+KT1         C09         C10          H9     108.731    1.50
+KT1          H8         C10          H9     107.745    1.50
+KT1         C13         C12         C11     120.993    1.50
+KT1         C13         C12         H10     119.570    1.50
+KT1         C11         C12         H10     119.438    1.62
+KT1         C14         C13         C12     119.960    1.50
+KT1         C14         C13         H11     119.939    1.50
+KT1         C12         C13         H11     120.101    1.50
+KT1         O15         C14         C13     119.764    3.00
+KT1         O15         C14         C16     119.764    3.00
+KT1         C13         C14         C16     120.472    1.50
+KT1         N03         C02         C23     105.625    1.50
+KT1         N03         C02         O01     125.499    1.50
+KT1         C23         C02         O01     128.876    1.50
+KT1         O24         C04         C05     128.937    1.50
+KT1         O24         C04         N03     124.980    1.50
+KT1         C05         C04         N03     106.084    1.50
+KT1         C06         C05         C04     132.118    2.29
+KT1         C06         C05         C23     119.956    1.79
+KT1         C04         C05         C23     107.926    1.50
+KT1         N07         C06         C05     120.892    2.28
+KT1         N07         C06         C20     120.597    2.08
+KT1         C05         C06         C20     118.511    2.75
+KT1         C09         C08         N07     111.831    1.79
+KT1         C09         C08         H12     109.077    1.50
+KT1         C09         C08         H13     109.077    1.50
+KT1         N07         C08         H12     109.157    1.50
+KT1         N07         C08         H13     109.157    1.50
+KT1         H12         C08         H13     107.909    1.50
+KT1         C10         C09         C08     113.543    1.50
+KT1         C10         C09         H14     109.311    1.50
+KT1         C10         C09         H15     109.311    1.50
+KT1         C08         C09         H14     108.829    1.50
+KT1         C08         C09         H15     108.829    1.50
+KT1         H14         C09         H15     108.509    1.50
+KT1         C04         N03         C02     112.440    1.50
+KT1         C04         N03         H16     123.780    2.51
+KT1         C02         N03         H16     123.780    2.51
+KT1         C08         N07         C06     124.114    1.91
+KT1         C08         N07         H17     118.075    2.37
+KT1         C06         N07         H17     117.815    2.27
+KT1         C14         O15         H18     120.000    3.00
+KT1         C17         O18         C19     118.009    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KT1              const_45         C20         C21         C22         C23       0.000    10.0     2
+KT1       const_sp2_sp2_5         C06         C20         C21         C22       0.000     5.0     2
+KT1              const_30         C12         C13         C14         O15     180.000    10.0     2
+KT1            sp2_sp2_13         C13         C14         O15         H18     180.000     5.0     2
+KT1            sp2_sp2_11         O01         C02         N03         C04     180.000     5.0     2
+KT1             sp2_sp2_4         O24         C04         C05         C06       0.000     5.0     2
+KT1             sp2_sp2_7         O24         C04         N03         C02     180.000     5.0     2
+KT1              const_16         C04         C05         C06         N07       0.000    10.0     2
+KT1            sp2_sp2_17         C05         C06         N07         C08     180.000     5.0     2
+KT1            sp3_sp3_14         N07         C08         C09         C10     180.000    10.0     3
+KT1             sp2_sp3_8         C06         N07         C08         C09     120.000    10.0     6
+KT1            sp2_sp2_23         O01         C02         C23         C05     180.000     5.0     2
+KT1       const_sp2_sp2_2         C06         C05         C23         C02     180.000     5.0     2
+KT1              const_17         C21         C22         C23         C05       0.000    10.0     2
+KT1              const_11         N07         C06         C20         C21     180.000    10.0     2
+KT1            sp2_sp2_15         C16         C17         O18         C19     180.000     5.0     2
+KT1              const_22         C14         C16         C17         O18     180.000    10.0     2
+KT1              const_44         C10         C11         C17         O18       0.000    10.0     2
+KT1             sp3_sp3_2          H4         C19         O18         C17     -60.000    10.0     3
+KT1              const_27         O15         C14         C16         C17     180.000    10.0     2
+KT1             sp2_sp3_2         C12         C11         C10         C09     -90.000    10.0     6
+KT1              const_39         C10         C11         C12         C13     180.000    10.0     2
+KT1             sp3_sp3_5         C08         C09         C10         C11     180.000    10.0     3
+KT1              const_33         C11         C12         C13         C14       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KT1    plan-1         C02   0.020
+KT1    plan-1         C04   0.020
+KT1    plan-1         C05   0.020
+KT1    plan-1         C06   0.020
+KT1    plan-1         C20   0.020
+KT1    plan-1         C21   0.020
+KT1    plan-1         C22   0.020
+KT1    plan-1         C23   0.020
+KT1    plan-1          H1   0.020
+KT1    plan-1          H2   0.020
+KT1    plan-1          H3   0.020
+KT1    plan-1         N07   0.020
+KT1    plan-2         C10   0.020
+KT1    plan-2         C11   0.020
+KT1    plan-2         C12   0.020
+KT1    plan-2         C13   0.020
+KT1    plan-2         C14   0.020
+KT1    plan-2         C16   0.020
+KT1    plan-2         C17   0.020
+KT1    plan-2         H10   0.020
+KT1    plan-2         H11   0.020
+KT1    plan-2          H7   0.020
+KT1    plan-2         O15   0.020
+KT1    plan-2         O18   0.020
+KT1    plan-3         C02   0.020
+KT1    plan-3         C23   0.020
+KT1    plan-3         N03   0.020
+KT1    plan-3         O01   0.020
+KT1    plan-4         C04   0.020
+KT1    plan-4         C05   0.020
+KT1    plan-4         N03   0.020
+KT1    plan-4         O24   0.020
+KT1    plan-5         C02   0.020
+KT1    plan-5         C04   0.020
+KT1    plan-5         H16   0.020
+KT1    plan-5         N03   0.020
+KT1    plan-6         C06   0.020
+KT1    plan-6         C08   0.020
+KT1    plan-6         H17   0.020
+KT1    plan-6         N07   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KT1           SMILES              ACDLabs 12.01                                                                                             c2cc1C(=O)NC(c1c(c2)NCCCc3c(OC)cc(cc3)O)=O
+KT1            InChI                InChI  1.03 InChI=1S/C18H18N2O4/c1-24-15-10-12(21)8-7-11(15)4-3-9-19-14-6-2-5-13-16(14)18(23)20-17(13)22/h2,5-8,10,19,21H,3-4,9H2,1H3,(H,20,22,23)
+KT1         InChIKey                InChI  1.03                                                                                                            MCHANSUEWHRRRQ-UHFFFAOYSA-N
+KT1 SMILES_CANONICAL               CACTVS 3.385                                                                                                 COc1cc(O)ccc1CCCNc2cccc3C(=O)NC(=O)c23
+KT1           SMILES               CACTVS 3.385                                                                                                 COc1cc(O)ccc1CCCNc2cccc3C(=O)NC(=O)c23
+KT1 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                   COc1cc(ccc1CCCNc2cccc3c2C(=O)NC3=O)O
+KT1           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                   COc1cc(ccc1CCCNc2cccc3c2C(=O)NC3=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KT1 acedrg               243         "dictionary generator"                  
+KT1 acedrg_database      11          "data source"                           
+KT1 rdkit                2017.03.2   "Chemoinformatics tool"
+KT1 refmac5              5.8.0238    "optimization tool"                     

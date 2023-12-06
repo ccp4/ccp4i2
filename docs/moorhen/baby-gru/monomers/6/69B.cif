@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+69B     69B      (4R)-6-(3-cyclopropyl-1-methyl-1H-indazol-5-yl)-4-methyl-1,3,4,5-tetrahydro-2H-1,5-benzodiazepin-2-one     NON-POLYMER     48     26     .     
+#
+data_comp_69B
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+69B     CAY     C       CH2     0       -23.670     0.047       21.628      
+69B     CAZ     C       CH2     0       -23.953     -0.953      22.676      
+69B     CAW     C       CH1     0       -22.740     -0.084      22.794      
+69B     CAV     C       CR5     0       -21.410     -0.668      22.589      
+69B     CAR     C       CR56    0       -20.771     -1.664      23.317      
+69B     CAS     C       CR16    0       -21.130     -2.426      24.432      
+69B     NAU     N       NRD5    0       -20.595     -0.264      21.589      
+69B     NAT     N       NR5     0       -19.444     -0.993      21.671      
+69B     CAX     C       CH3     0       -18.364     -0.790      20.725      
+69B     CAQ     C       CR56    0       -19.511     -1.863      22.716      
+69B     CAP     C       CR16    0       -18.601     -2.809      23.209      
+69B     CAO     C       CR16    0       -18.980     -3.550      24.316      
+69B     CAN     C       CR6     0       -20.242     -3.379      24.936      
+69B     CAJ     C       CR6     0       -20.615     -4.191      26.131      
+69B     CAF     C       CR6     0       -20.636     -5.609      26.119      
+69B     NAE     N       NT1     0       -20.303     -6.309      24.985      
+69B     CAD     C       CH1     0       -19.232     -7.308      24.852      
+69B     CAI     C       CH3     0       -19.592     -8.333      23.788      
+69B     CAC     C       CH2     0       -18.861     -7.982      26.168      
+69B     CAB     C       C       0       -20.042     -8.605      26.883      
+69B     OAH     O       O       0       -20.119     -9.815      27.049      
+69B     NAA     N       NH1     0       -21.018     -7.754      27.292      
+69B     CAG     C       CR6     0       -20.992     -6.336      27.285      
+69B     CAM     C       CR16    0       -21.336     -5.618      28.461      
+69B     CAL     C       CR16    0       -21.317     -4.234      28.467      
+69B     CAK     C       CR16    0       -20.962     -3.536      27.323      
+69B     H1      H       H       0       -23.348     -0.281      20.752      
+69B     H2      H       H       0       -24.243     0.853       21.593      
+69B     H3      H       H       0       -24.704     -0.772      23.295      
+69B     H4      H       H       0       -23.808     -1.907      22.454      
+69B     H5      H       H       0       -22.787     0.632       23.464      
+69B     H6      H       H       0       -21.970     -2.302      24.842      
+69B     H7      H       H       0       -17.534     -1.149      21.093      
+69B     H8      H       H       0       -18.255     0.166       20.553      
+69B     H9      H       H       0       -18.572     -1.248      19.887      
+69B     H10     H       H       0       -17.761     -2.938      22.805      
+69B     H11     H       H       0       -18.378     -4.198      24.663      
+69B     H12     H       H       0       -20.791     -6.164      24.271      
+69B     H13     H       H       0       -18.421     -6.834      24.536      
+69B     H14     H       H       0       -19.112     -9.164      23.947      
+69B     H15     H       H       0       -19.351     -7.987      22.911      
+69B     H16     H       H       0       -20.549     -8.505      23.813      
+69B     H17     H       H       0       -18.440     -7.326      26.754      
+69B     H18     H       H       0       -18.204     -8.679      25.988      
+69B     H19     H       H       0       -21.736     -8.124      27.629      
+69B     H20     H       H       0       -21.578     -6.091      29.241      
+69B     H21     H       H       0       -21.545     -3.767      29.251      
+69B     H22     H       H       0       -20.953     -2.593      27.342      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+69B         NAT         CAX      SINGLE       n     1.450  0.0100     1.450  0.0100
+69B         CAY         CAZ      SINGLE       n     1.475  0.0140     1.475  0.0140
+69B         CAY         CAW      SINGLE       n     1.497  0.0142     1.497  0.0142
+69B         NAU         NAT      SINGLE       y     1.364  0.0100     1.364  0.0100
+69B         CAV         NAU      DOUBLE       y     1.343  0.0200     1.343  0.0200
+69B         NAT         CAQ      SINGLE       y     1.363  0.0100     1.363  0.0100
+69B         CAZ         CAW      SINGLE       n     1.497  0.0142     1.497  0.0142
+69B         CAW         CAV      SINGLE       n     1.467  0.0100     1.467  0.0100
+69B         CAV         CAR      SINGLE       y     1.387  0.0200     1.387  0.0200
+69B         CAQ         CAP      DOUBLE       y     1.400  0.0100     1.400  0.0100
+69B         CAR         CAQ      SINGLE       y     1.410  0.0100     1.410  0.0100
+69B         CAP         CAO      SINGLE       y     1.382  0.0100     1.382  0.0100
+69B         CAR         CAS      DOUBLE       y     1.393  0.0100     1.393  0.0100
+69B         CAD         CAI      SINGLE       n     1.516  0.0148     1.516  0.0148
+69B         CAO         CAN      DOUBLE       y     1.412  0.0100     1.412  0.0100
+69B         CAS         CAN      SINGLE       y     1.391  0.0108     1.391  0.0108
+69B         NAE         CAD      SINGLE       n     1.467  0.0113     1.467  0.0113
+69B         CAD         CAC      SINGLE       n     1.521  0.0101     1.521  0.0101
+69B         CAN         CAJ      SINGLE       n     1.491  0.0100     1.491  0.0100
+69B         CAF         NAE      SINGLE       n     1.372  0.0100     1.372  0.0100
+69B         CAJ         CAF      SINGLE       y     1.410  0.0100     1.410  0.0100
+69B         CAJ         CAK      DOUBLE       y     1.399  0.0100     1.399  0.0100
+69B         CAF         CAG      DOUBLE       y     1.410  0.0134     1.410  0.0134
+69B         CAC         CAB      SINGLE       n     1.510  0.0135     1.510  0.0135
+69B         CAB         OAH      DOUBLE       n     1.223  0.0143     1.223  0.0143
+69B         CAB         NAA      SINGLE       n     1.350  0.0120     1.350  0.0120
+69B         CAL         CAK      SINGLE       y     1.384  0.0100     1.384  0.0100
+69B         NAA         CAG      SINGLE       n     1.415  0.0100     1.415  0.0100
+69B         CAG         CAM      SINGLE       y     1.415  0.0147     1.415  0.0147
+69B         CAM         CAL      DOUBLE       y     1.383  0.0100     1.383  0.0100
+69B         CAY          H1      SINGLE       n     1.089  0.0100     0.990  0.0100
+69B         CAY          H2      SINGLE       n     1.089  0.0100     0.990  0.0100
+69B         CAZ          H3      SINGLE       n     1.089  0.0100     0.990  0.0100
+69B         CAZ          H4      SINGLE       n     1.089  0.0100     0.990  0.0100
+69B         CAW          H5      SINGLE       n     1.089  0.0100     0.981  0.0200
+69B         CAS          H6      SINGLE       n     1.082  0.0130     0.943  0.0168
+69B         CAX          H7      SINGLE       n     1.089  0.0100     0.977  0.0200
+69B         CAX          H8      SINGLE       n     1.089  0.0100     0.977  0.0200
+69B         CAX          H9      SINGLE       n     1.089  0.0100     0.977  0.0200
+69B         CAP         H10      SINGLE       n     1.082  0.0130     0.941  0.0154
+69B         CAO         H11      SINGLE       n     1.082  0.0130     0.950  0.0200
+69B         NAE         H12      SINGLE       n     1.016  0.0100     0.876  0.0200
+69B         CAD         H13      SINGLE       n     1.089  0.0100     0.991  0.0164
+69B         CAI         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+69B         CAI         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+69B         CAI         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+69B         CAC         H17      SINGLE       n     1.089  0.0100     0.975  0.0132
+69B         CAC         H18      SINGLE       n     1.089  0.0100     0.975  0.0132
+69B         NAA         H19      SINGLE       n     1.016  0.0100     0.874  0.0200
+69B         CAM         H20      SINGLE       n     1.082  0.0130     0.944  0.0200
+69B         CAL         H21      SINGLE       n     1.082  0.0130     0.940  0.0164
+69B         CAK         H22      SINGLE       n     1.082  0.0130     0.943  0.0154
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+69B         CAZ         CAY         CAW      60.447    1.50
+69B         CAZ         CAY          H1     117.770    1.50
+69B         CAZ         CAY          H2     117.770    1.50
+69B         CAW         CAY          H1     117.297    1.50
+69B         CAW         CAY          H2     117.297    1.50
+69B          H1         CAY          H2     115.244    1.51
+69B         CAY         CAZ         CAW      60.447    1.50
+69B         CAY         CAZ          H3     117.770    1.50
+69B         CAY         CAZ          H4     117.770    1.50
+69B         CAW         CAZ          H3     117.297    1.50
+69B         CAW         CAZ          H4     117.297    1.50
+69B          H3         CAZ          H4     115.244    1.51
+69B         CAY         CAW         CAZ      59.041    1.50
+69B         CAY         CAW         CAV     119.304    1.50
+69B         CAY         CAW          H5     115.981    1.50
+69B         CAZ         CAW         CAV     119.304    1.50
+69B         CAZ         CAW          H5     115.981    1.50
+69B         CAV         CAW          H5     115.352    1.50
+69B         NAU         CAV         CAW     122.785    3.00
+69B         NAU         CAV         CAR     108.506    1.50
+69B         CAW         CAV         CAR     128.709    3.00
+69B         CAV         CAR         CAQ     107.349    1.70
+69B         CAV         CAR         CAS     133.172    1.50
+69B         CAQ         CAR         CAS     119.479    1.50
+69B         CAR         CAS         CAN     119.468    1.50
+69B         CAR         CAS          H6     120.443    1.50
+69B         CAN         CAS          H6     120.090    1.50
+69B         NAT         NAU         CAV     106.835    1.58
+69B         CAX         NAT         NAU     120.852    1.50
+69B         CAX         NAT         CAQ     128.691    1.50
+69B         NAU         NAT         CAQ     110.457    1.50
+69B         NAT         CAX          H7     109.473    1.50
+69B         NAT         CAX          H8     109.473    1.50
+69B         NAT         CAX          H9     109.473    1.50
+69B          H7         CAX          H8     108.986    2.87
+69B          H7         CAX          H9     108.986    2.87
+69B          H8         CAX          H9     108.986    2.87
+69B         NAT         CAQ         CAP     131.323    1.50
+69B         NAT         CAQ         CAR     106.853    1.50
+69B         CAP         CAQ         CAR     121.824    1.50
+69B         CAQ         CAP         CAO     117.940    1.50
+69B         CAQ         CAP         H10     121.245    1.50
+69B         CAO         CAP         H10     120.815    1.50
+69B         CAP         CAO         CAN     121.971    1.50
+69B         CAP         CAO         H11     118.911    1.50
+69B         CAN         CAO         H11     119.118    1.50
+69B         CAO         CAN         CAS     119.319    1.50
+69B         CAO         CAN         CAJ     120.456    1.52
+69B         CAS         CAN         CAJ     120.225    1.77
+69B         CAN         CAJ         CAF     121.926    2.10
+69B         CAN         CAJ         CAK     120.229    1.52
+69B         CAF         CAJ         CAK     117.845    1.50
+69B         NAE         CAF         CAJ     119.999    2.22
+69B         NAE         CAF         CAG     120.060    2.42
+69B         CAJ         CAF         CAG     119.942    2.27
+69B         CAD         NAE         CAF     121.243    3.00
+69B         CAD         NAE         H12     112.625    3.00
+69B         CAF         NAE         H12     113.883    3.00
+69B         CAI         CAD         NAE     111.610    2.35
+69B         CAI         CAD         CAC     110.968    1.78
+69B         CAI         CAD         H13     107.403    1.50
+69B         NAE         CAD         CAC     111.883    2.59
+69B         NAE         CAD         H13     107.785    1.50
+69B         CAC         CAD         H13     107.081    1.50
+69B         CAD         CAI         H14     109.592    1.50
+69B         CAD         CAI         H15     109.592    1.50
+69B         CAD         CAI         H16     109.592    1.50
+69B         H14         CAI         H15     109.386    1.50
+69B         H14         CAI         H16     109.386    1.50
+69B         H15         CAI         H16     109.386    1.50
+69B         CAD         CAC         CAB     113.454    1.50
+69B         CAD         CAC         H17     108.770    1.50
+69B         CAD         CAC         H18     108.770    1.50
+69B         CAB         CAC         H17     108.897    1.50
+69B         CAB         CAC         H18     108.897    1.50
+69B         H17         CAC         H18     108.069    1.50
+69B         CAC         CAB         OAH     122.246    1.50
+69B         CAC         CAB         NAA     114.736    1.50
+69B         OAH         CAB         NAA     123.018    1.50
+69B         CAB         NAA         CAG     125.990    1.50
+69B         CAB         NAA         H19     116.908    1.57
+69B         CAG         NAA         H19     117.102    1.61
+69B         CAF         CAG         NAA     120.031    2.06
+69B         CAF         CAG         CAM     119.251    2.53
+69B         NAA         CAG         CAM     120.718    2.12
+69B         CAG         CAM         CAL     120.753    1.50
+69B         CAG         CAM         H20     119.401    1.50
+69B         CAL         CAM         H20     119.846    1.50
+69B         CAK         CAL         CAM     120.518    1.50
+69B         CAK         CAL         H21     119.830    1.50
+69B         CAM         CAL         H21     119.652    1.50
+69B         CAJ         CAK         CAL     121.691    1.50
+69B         CAJ         CAK         H22     118.936    1.50
+69B         CAL         CAK         H22     119.373    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+69B              const_29         CAN         CAO         CAP         CAQ       0.000    10.0     2
+69B              const_33         CAS         CAN         CAO         CAP       0.000    10.0     2
+69B             sp2_sp2_4         CAK         CAJ         CAN         CAS     180.000     5.0     2
+69B       const_sp2_sp2_4         NAE         CAF         CAJ         CAN       0.000     5.0     2
+69B            sp2_sp3_20         OAH         CAB         CAC         CAD     120.000    10.0     6
+69B             sp2_sp2_8         CAG         CAF         NAE         H12     180.000     5.0     2
+69B       const_sp2_sp2_8         NAE         CAF         CAG         NAA       0.000     5.0     2
+69B            sp2_sp3_16         H12         NAE         CAD         CAI     180.000    10.0     6
+69B            sp3_sp3_31         CAC         CAD         CAI         H14      60.000    10.0     3
+69B            sp3_sp3_40         H17         CAC         CAD         CAI      60.000    10.0     3
+69B            sp2_sp3_23         NAA         CAB         CAC         CAD     -60.000    10.0     6
+69B            sp2_sp2_12         OAH         CAB         NAA         H19     180.000     5.0     2
+69B            sp2_sp2_16         CAM         CAG         NAA         H19     180.000     5.0     2
+69B              const_11         NAA         CAG         CAM         CAL     180.000    10.0     2
+69B              const_13         CAK         CAL         CAM         CAG       0.000    10.0     2
+69B              const_17         CAJ         CAK         CAL         CAM       0.000    10.0     2
+69B            sp2_sp3_11         CAR         CAV         CAW         CAY      90.000    10.0     6
+69B              const_52         CAS         CAR         CAV         CAW       0.000    10.0     2
+69B              const_42         CAW         CAV         NAU         NAT     180.000    10.0     2
+69B            sp3_sp3_29         NAE         CAD         CAI         H15     -60.000    10.0     3
+69B              const_21         NAT         CAQ         CAR         CAV       0.000    10.0     2
+69B              const_37         CAO         CAN         CAS         CAR       0.000    10.0     2
+69B              const_44         CAX         NAT         NAU         CAV     180.000    10.0     2
+69B             sp2_sp3_3         NAU         NAT         CAX          H9      30.000    10.0     6
+69B              const_48         CAP         CAQ         NAT         CAX       0.000    10.0     2
+69B              const_26         CAO         CAP         CAQ         NAT     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+69B    chir_1    CAW    CAV    CAY    CAZ    both
+69B    chir_2    CAD    NAE    CAC    CAI    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+69B    plan-1         CAJ   0.020
+69B    plan-1         CAN   0.020
+69B    plan-1         CAO   0.020
+69B    plan-1         CAP   0.020
+69B    plan-1         CAQ   0.020
+69B    plan-1         CAR   0.020
+69B    plan-1         CAS   0.020
+69B    plan-1         CAV   0.020
+69B    plan-1         CAW   0.020
+69B    plan-1         CAX   0.020
+69B    plan-1         H10   0.020
+69B    plan-1         H11   0.020
+69B    plan-1          H6   0.020
+69B    plan-1         NAT   0.020
+69B    plan-1         NAU   0.020
+69B    plan-2         CAF   0.020
+69B    plan-2         CAG   0.020
+69B    plan-2         CAJ   0.020
+69B    plan-2         CAK   0.020
+69B    plan-2         CAL   0.020
+69B    plan-2         CAM   0.020
+69B    plan-2         CAN   0.020
+69B    plan-2         H20   0.020
+69B    plan-2         H21   0.020
+69B    plan-2         H22   0.020
+69B    plan-2         NAA   0.020
+69B    plan-2         NAE   0.020
+69B    plan-3         CAB   0.020
+69B    plan-3         CAC   0.020
+69B    plan-3         NAA   0.020
+69B    plan-3         OAH   0.020
+69B    plan-4         CAB   0.020
+69B    plan-4         CAG   0.020
+69B    plan-4         H19   0.020
+69B    plan-4         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+69B           SMILES              ACDLabs 12.01                                                                                                                C1CC1c3c2cc(ccc2n(n3)C)c5c4c(NC(CC(N4)C)=O)ccc5
+69B            InChI                InChI  1.03 InChI=1S/C21H22N4O/c1-12-10-19(26)23-17-5-3-4-15(21(17)22-12)14-8-9-18-16(11-14)20(13-6-7-13)24-25(18)2/h3-5,8-9,11-13,22H,6-7,10H2,1-2H3,(H,23,26)/t12-/m1/s1
+69B         InChIKey                InChI  1.03                                                                                                                                    RUOHSEWJRWMCPQ-GFCCVEGCSA-N
+69B SMILES_CANONICAL               CACTVS 3.385                                                                                                             C[C@@H]1CC(=O)Nc2cccc(c3ccc4n(C)nc(C5CC5)c4c3)c2N1
+69B           SMILES               CACTVS 3.385                                                                                                               C[CH]1CC(=O)Nc2cccc(c3ccc4n(C)nc(C5CC5)c4c3)c2N1
+69B SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                             C[C@@H]1CC(=O)Nc2cccc(c2N1)c3ccc4c(c3)c(nn4C)C5CC5
+69B           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                  CC1CC(=O)Nc2cccc(c2N1)c3ccc4c(c3)c(nn4C)C5CC5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+69B acedrg               243         "dictionary generator"                  
+69B acedrg_database      11          "data source"                           
+69B rdkit                2017.03.2   "Chemoinformatics tool"
+69B refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,357 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TC4     TC4      "BUTYL-PHOSPHINIC ACID 2,3-BIS-BUTYLCARBAMOYLOXY-PROPYL ESTER GROUP"     NON-POLYMER     61     26     .     
+#
+data_comp_TC4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TC4     C1      C       CH2     0       23.729      49.729      20.298      
+TC4     C2      C       CH2     0       24.490      50.803      19.538      
+TC4     C3      C       CH2     0       25.130      50.264      18.273      
+TC4     C4      C       CH3     0       25.835      51.327      17.464      
+TC4     C5      C       CH2     0       21.156      51.805      22.808      
+TC4     C6      C       CH1     0       20.257      52.926      22.337      
+TC4     C7      C       C       0       20.876      54.653      20.719      
+TC4     C8      C       CH2     0       21.776      56.483      19.341      
+TC4     C9      C       CH2     0       20.721      57.572      19.421      
+TC4     C10     C       CH2     0       21.036      58.618      20.479      
+TC4     C11     C       CH3     0       20.037      59.750      20.507      
+TC4     C12     C       CH2     0       19.317      53.413      23.419      
+TC4     C13     C       C       0       18.243      55.442      22.666      
+TC4     C14     C       CH2     0       16.950      57.310      21.742      
+TC4     C15     C       CH2     0       15.588      57.613      21.144      
+TC4     C16     C       CH2     0       15.518      58.997      20.518      
+TC4     C17     C       CH3     0       16.095      59.044      19.123      
+TC4     N1      N       NH1     0       21.792      55.622      20.518      
+TC4     N2      N       NH1     0       17.137      55.897      22.048      
+TC4     O1      O       O       0       24.301      50.815      22.724      
+TC4     O2      O       O2      0       22.009      51.350      21.722      
+TC4     O3      O       O2      0       21.119      54.029      21.894      
+TC4     O4      O       O       0       19.966      54.405      19.957      
+TC4     O5      O       O2      0       18.196      54.102      22.800      
+TC4     O6      O       O       0       19.152      56.155      23.035      
+TC4     P1      P       P       0       23.142      50.253      21.945      
+TC4     H11     H       H       0       24.311      48.948      20.404      
+TC4     H12     H       H       0       22.957      49.453      19.760      
+TC4     H21     H       H       0       25.188      51.176      20.117      
+TC4     H22     H       H       0       23.877      51.530      19.303      
+TC4     H31     H       H       0       24.436      49.849      17.716      
+TC4     H32     H       H       0       25.778      49.566      18.515      
+TC4     H41     H       H       0       26.214      50.928      16.662      
+TC4     H42     H       H       0       26.549      51.721      17.996      
+TC4     H43     H       H       0       25.200      52.019      17.212      
+TC4     H51     H       H       0       20.607      51.060      23.129      
+TC4     H52     H       H       0       21.710      52.121      23.552      
+TC4     H6      H       H       0       19.716      52.589      21.581      
+TC4     H81     H       H       0       22.658      56.901      19.243      
+TC4     H82     H       H       0       21.615      55.936      18.543      
+TC4     H91     H       H       0       19.853      57.160      19.620      
+TC4     H92     H       H       0       20.650      58.008      18.545      
+TC4     H101    H       H       0       21.930      58.986      20.309      
+TC4     H102    H       H       0       21.052      58.185      21.361      
+TC4     H111    H       H       0       20.267      60.370      21.220      
+TC4     H112    H       H       0       19.145      59.394      20.664      
+TC4     H113    H       H       0       20.051      60.218      19.654      
+TC4     H121    H       H       0       19.794      54.008      24.042      
+TC4     H122    H       H       0       18.979      52.644      23.934      
+TC4     H141    H       H       0       17.062      57.831      22.565      
+TC4     H142    H       H       0       17.646      57.592      21.112      
+TC4     H151    H       H       0       14.910      57.542      21.849      
+TC4     H152    H       H       0       15.384      56.938      20.462      
+TC4     H161    H       H       0       16.007      59.631      21.087      
+TC4     H162    H       H       0       14.580      59.286      20.485      
+TC4     H171    H       H       0       15.971      59.934      18.749      
+TC4     H172    H       H       0       15.642      58.392      18.561      
+TC4     H173    H       H       0       17.045      58.838      19.156      
+TC4     H1      H       H       0       22.422      55.743      21.111      
+TC4     H2      H       H       0       16.508      55.333      21.823      
+TC4     HP1     H       H       0       22.616      49.239      22.531      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TC4          C1          C2      SINGLE       n     1.520  0.0163     1.520  0.0163
+TC4          C1          P1      SINGLE       n     1.822  0.0194     1.822  0.0194
+TC4          C2          C3      SINGLE       n     1.517  0.0187     1.517  0.0187
+TC4          C3          C4      SINGLE       n     1.510  0.0200     1.510  0.0200
+TC4          C5          C6      SINGLE       n     1.512  0.0104     1.512  0.0104
+TC4          C5          O2      SINGLE       n     1.454  0.0165     1.454  0.0165
+TC4          C6         C12      SINGLE       n     1.512  0.0104     1.512  0.0104
+TC4          C6          O3      SINGLE       n     1.462  0.0112     1.462  0.0112
+TC4          C7          N1      SINGLE       n     1.340  0.0141     1.340  0.0141
+TC4          C7          O3      SINGLE       n     1.347  0.0100     1.347  0.0100
+TC4          C7          O4      DOUBLE       n     1.210  0.0102     1.210  0.0102
+TC4          C8          C9      SINGLE       n     1.517  0.0143     1.517  0.0143
+TC4          C8          N1      SINGLE       n     1.455  0.0131     1.455  0.0131
+TC4          C9         C10      SINGLE       n     1.520  0.0176     1.520  0.0176
+TC4         C10         C11      SINGLE       n     1.510  0.0200     1.510  0.0200
+TC4         C12          O5      SINGLE       n     1.450  0.0101     1.450  0.0101
+TC4         C13          N2      SINGLE       n     1.340  0.0141     1.340  0.0141
+TC4         C13          O5      SINGLE       n     1.341  0.0101     1.341  0.0101
+TC4         C13          O6      DOUBLE       n     1.210  0.0102     1.210  0.0102
+TC4         C14         C15      SINGLE       n     1.517  0.0143     1.517  0.0143
+TC4         C14          N2      SINGLE       n     1.455  0.0131     1.455  0.0131
+TC4         C15         C16      SINGLE       n     1.520  0.0176     1.520  0.0176
+TC4         C16         C17      SINGLE       n     1.510  0.0200     1.510  0.0200
+TC4          O1          P1      DOUBLE       n     1.504  0.0125     1.504  0.0125
+TC4          O2          P1      SINGLE       n     1.590  0.0138     1.590  0.0138
+TC4          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0122
+TC4          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0122
+TC4          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0160
+TC4          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0160
+TC4          C3         H31      SINGLE       n     1.089  0.0100     0.982  0.0155
+TC4          C3         H32      SINGLE       n     1.089  0.0100     0.982  0.0155
+TC4          C4         H41      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4          C4         H42      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4          C4         H43      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0146
+TC4          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0146
+TC4          C6          H6      SINGLE       n     1.089  0.0100     0.990  0.0148
+TC4          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0152
+TC4          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0152
+TC4          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0160
+TC4          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0160
+TC4         C10        H101      SINGLE       n     1.089  0.0100     0.982  0.0155
+TC4         C10        H102      SINGLE       n     1.089  0.0100     0.982  0.0155
+TC4         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4         C12        H121      SINGLE       n     1.089  0.0100     0.985  0.0188
+TC4         C12        H122      SINGLE       n     1.089  0.0100     0.985  0.0188
+TC4         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0152
+TC4         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0152
+TC4         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0160
+TC4         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0160
+TC4         C16        H161      SINGLE       n     1.089  0.0100     0.982  0.0155
+TC4         C16        H162      SINGLE       n     1.089  0.0100     0.982  0.0155
+TC4         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4         C17        H173      SINGLE       n     1.089  0.0100     0.973  0.0157
+TC4          N1          H1      SINGLE       n     1.016  0.0100     0.872  0.0200
+TC4          N2          H2      SINGLE       n     1.016  0.0100     0.872  0.0200
+TC4          P1         HP1      SINGLE       n     1.284  0.0200     1.284  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TC4          C2          C1          P1     114.025    1.50
+TC4          C2          C1         H11     108.554    1.50
+TC4          C2          C1         H12     108.554    1.50
+TC4          P1          C1         H11     108.697    1.50
+TC4          P1          C1         H12     108.697    1.50
+TC4         H11          C1         H12     107.498    1.50
+TC4          C1          C2          C3     112.125    1.58
+TC4          C1          C2         H21     109.217    1.50
+TC4          C1          C2         H22     109.217    1.50
+TC4          C3          C2         H21     109.083    1.50
+TC4          C3          C2         H22     109.083    1.50
+TC4         H21          C2         H22     107.744    1.50
+TC4          C2          C3          C4     113.185    1.50
+TC4          C2          C3         H31     108.966    1.50
+TC4          C2          C3         H32     108.966    1.50
+TC4          C4          C3         H31     108.918    1.50
+TC4          C4          C3         H32     108.918    1.50
+TC4         H31          C3         H32     107.763    1.50
+TC4          C3          C4         H41     109.554    1.50
+TC4          C3          C4         H42     109.554    1.50
+TC4          C3          C4         H43     109.554    1.50
+TC4         H41          C4         H42     109.380    1.50
+TC4         H41          C4         H43     109.380    1.50
+TC4         H42          C4         H43     109.380    1.50
+TC4          C6          C5          O2     109.438    2.56
+TC4          C6          C5         H51     109.582    1.50
+TC4          C6          C5         H52     109.582    1.50
+TC4          O2          C5         H51     109.739    1.50
+TC4          O2          C5         H52     109.739    1.50
+TC4         H51          C5         H52     108.319    1.50
+TC4          C5          C6         C12     113.504    1.50
+TC4          C5          C6          O3     109.042    2.74
+TC4          C5          C6          H6     108.656    1.50
+TC4         C12          C6          O3     109.042    2.74
+TC4         C12          C6          H6     108.656    1.50
+TC4          O3          C6          H6     109.221    1.50
+TC4          N1          C7          O3     110.097    1.50
+TC4          N1          C7          O4     124.620    1.50
+TC4          O3          C7          O4     125.285    1.50
+TC4          C9          C8          N1     112.766    1.50
+TC4          C9          C8         H81     109.197    1.51
+TC4          C9          C8         H82     109.197    1.51
+TC4          N1          C8         H81     109.015    1.50
+TC4          N1          C8         H82     109.015    1.50
+TC4         H81          C8         H82     107.877    1.50
+TC4          C8          C9         C10     112.919    1.70
+TC4          C8          C9         H91     108.956    1.50
+TC4          C8          C9         H92     108.956    1.50
+TC4         C10          C9         H91     109.463    1.50
+TC4         C10          C9         H92     109.463    1.50
+TC4         H91          C9         H92     107.927    1.57
+TC4          C9         C10         C11     112.927    1.64
+TC4          C9         C10        H101     108.966    1.50
+TC4          C9         C10        H102     108.966    1.50
+TC4         C11         C10        H101     108.918    1.50
+TC4         C11         C10        H102     108.918    1.50
+TC4        H101         C10        H102     107.763    1.50
+TC4         C10         C11        H111     109.554    1.50
+TC4         C10         C11        H112     109.554    1.50
+TC4         C10         C11        H113     109.554    1.50
+TC4        H111         C11        H112     109.380    1.50
+TC4        H111         C11        H113     109.380    1.50
+TC4        H112         C11        H113     109.380    1.50
+TC4          C6         C12          O5     108.641    1.70
+TC4          C6         C12        H121     110.376    1.50
+TC4          C6         C12        H122     110.376    1.50
+TC4          O5         C12        H121     109.852    1.50
+TC4          O5         C12        H122     109.852    1.50
+TC4        H121         C12        H122     108.601    1.50
+TC4          N2         C13          O5     110.973    1.50
+TC4          N2         C13          O6     124.362    1.50
+TC4          O5         C13          O6     124.665    1.50
+TC4         C15         C14          N2     112.766    1.50
+TC4         C15         C14        H141     109.197    1.51
+TC4         C15         C14        H142     109.197    1.51
+TC4          N2         C14        H141     109.015    1.50
+TC4          N2         C14        H142     109.015    1.50
+TC4        H141         C14        H142     107.877    1.50
+TC4         C14         C15         C16     112.919    1.70
+TC4         C14         C15        H151     108.956    1.50
+TC4         C14         C15        H152     108.956    1.50
+TC4         C16         C15        H151     109.463    1.50
+TC4         C16         C15        H152     109.463    1.50
+TC4        H151         C15        H152     107.927    1.57
+TC4         C15         C16         C17     112.927    1.64
+TC4         C15         C16        H161     108.966    1.50
+TC4         C15         C16        H162     108.966    1.50
+TC4         C17         C16        H161     108.918    1.50
+TC4         C17         C16        H162     108.918    1.50
+TC4        H161         C16        H162     107.763    1.50
+TC4         C16         C17        H171     109.554    1.50
+TC4         C16         C17        H172     109.554    1.50
+TC4         C16         C17        H173     109.554    1.50
+TC4        H171         C17        H172     109.380    1.50
+TC4        H171         C17        H173     109.380    1.50
+TC4        H172         C17        H173     109.380    1.50
+TC4          C7          N1          C8     121.872    1.50
+TC4          C7          N1          H1     119.301    1.50
+TC4          C8          N1          H1     118.828    1.50
+TC4         C13          N2         C14     121.872    1.50
+TC4         C13          N2          H2     119.301    1.50
+TC4         C14          N2          H2     118.828    1.50
+TC4          C5          O2          P1     122.143    1.53
+TC4          C6          O3          C7     116.876    1.50
+TC4         C12          O5         C13     115.826    1.50
+TC4          C1          P1          O1     107.585    2.44
+TC4          C1          P1          O2     105.177    2.72
+TC4          C1          P1         HP1     104.658    3.00
+TC4          O1          P1          O2     109.115    3.00
+TC4          O1          P1         HP1     108.562    2.72
+TC4          O2          P1         HP1     104.778    2.90
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TC4             sp3_sp3_1          P1          C1          C2          C3     180.000    10.0     3
+TC4            sp3_sp3_10          C2          C1          P1          O1     180.000    10.0     3
+TC4            sp3_sp3_88          C6         C12          O5         C13     180.000    10.0     3
+TC4             sp2_sp2_7          O5         C13          N2         C14     180.000     5.0     2
+TC4            sp2_sp2_11          N2         C13          O5         C12     180.000     5.0     2
+TC4            sp3_sp3_91          N2         C14         C15         C16     180.000    10.0     3
+TC4             sp2_sp3_8         C13          N2         C14         C15     120.000    10.0     6
+TC4           sp3_sp3_100         C14         C15         C16         C17     180.000    10.0     3
+TC4           sp3_sp3_109         C15         C16         C17        H171     180.000    10.0     3
+TC4            sp3_sp3_19          C1          C2          C3          C4     180.000    10.0     3
+TC4           sp3_sp3_118          C5          O2          P1          C1     180.000    10.0     3
+TC4            sp3_sp3_28          C2          C3          C4         H41     180.000    10.0     3
+TC4            sp3_sp3_46          C6          C5          O2          P1     180.000    10.0     3
+TC4            sp3_sp3_37          O2          C5          C6         C12     180.000    10.0     3
+TC4            sp3_sp3_49          O5         C12          C6          C5     180.000    10.0     3
+TC4            sp3_sp3_58          C5          C6          O3          C7     180.000    10.0     3
+TC4             sp2_sp2_1          O3          C7          N1          C8     180.000     5.0     2
+TC4             sp2_sp2_5          N1          C7          O3          C6     180.000     5.0     2
+TC4             sp2_sp3_2          C7          N1          C8          C9     120.000    10.0     6
+TC4            sp3_sp3_61          N1          C8          C9         C10     180.000    10.0     3
+TC4            sp3_sp3_70         C11         C10          C9          C8     180.000    10.0     3
+TC4            sp3_sp3_79          C9         C10         C11        H111     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TC4    chir_1    C6    O3    C5    C12    negative
+TC4    chir_2    P1    O2    O1    C1    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TC4    plan-1          C7   0.020
+TC4    plan-1          N1   0.020
+TC4    plan-1          O3   0.020
+TC4    plan-1          O4   0.020
+TC4    plan-2         C13   0.020
+TC4    plan-2          N2   0.020
+TC4    plan-2          O5   0.020
+TC4    plan-2          O6   0.020
+TC4    plan-3          C7   0.020
+TC4    plan-3          C8   0.020
+TC4    plan-3          H1   0.020
+TC4    plan-3          N1   0.020
+TC4    plan-4         C13   0.020
+TC4    plan-4         C14   0.020
+TC4    plan-4          H2   0.020
+TC4    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TC4           SMILES              ACDLabs 10.04                                                                                                         O=P(OCC(OC(=O)NCCCC)COC(=O)NCCCC)CCCC
+TC4 SMILES_CANONICAL               CACTVS 3.341                                                                                                 CCCCNC(=O)OC[C@H](CO[P@H](=O)CCCC)OC(=O)NCCCC
+TC4           SMILES               CACTVS 3.341                                                                                                   CCCCNC(=O)OC[CH](CO[PH](=O)CCCC)OC(=O)NCCCC
+TC4 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                 CCCCNC(=O)OC[C@H](CO[P@H](=O)CCCC)OC(=O)NCCCC
+TC4           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         CCCCNC(=O)OCC(COP(=O)CCCC)OC(=O)NCCCC
+TC4            InChI                InChI  1.03 InChI=1S/C17H35N2O6P/c1-4-7-10-18-16(20)23-13-15(14-24-26(22)12-9-6-3)25-17(21)19-11-8-5-2/h15,26H,4-14H2,1-3H3,(H,18,20)(H,19,21)/t15-/m1/s1
+TC4         InChIKey                InChI  1.03                                                                                                                   QWIXWBNJNKHHHW-OAHLLOKOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TC4 acedrg               243         "dictionary generator"                  
+TC4 acedrg_database      11          "data source"                           
+TC4 rdkit                2017.03.2   "Chemoinformatics tool"
+TC4 refmac5              5.8.0238    "optimization tool"                     

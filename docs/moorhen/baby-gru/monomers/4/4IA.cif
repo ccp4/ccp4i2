@@ -1,0 +1,196 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4IA     4IA      "4-propan-2-ylbenzoic acid"     NON-POLYMER     23     12     .     
+#
+data_comp_4IA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4IA     C10     C       C       0       4.697       5.574       17.321      
+4IA     C01     C       CH3     0       2.925       -0.353      19.596      
+4IA     C02     C       CH1     0       4.289       -0.035      18.978      
+4IA     C03     C       CH3     0       4.617       -0.998      17.834      
+4IA     C04     C       CR6     0       4.397       1.422       18.549      
+4IA     C05     C       CR16    0       5.323       2.283       19.135      
+4IA     C06     C       CR16    0       5.420       3.609       18.744      
+4IA     C07     C       CR6     0       4.590       4.119       17.751      
+4IA     C08     C       CR16    0       3.663       3.266       17.160      
+4IA     C09     C       CR16    0       3.570       1.940       17.555      
+4IA     O11     O       O       0       3.861       6.013       16.506      
+4IA     O12     O       OC      -1      5.616       6.265       17.803      
+4IA     H011    H       H       0       2.557       0.449       20.007      
+4IA     H012    H       H       0       3.031       -1.041      20.276      
+4IA     H013    H       H       0       2.313       -0.671      18.910      
+4IA     H021    H       H       0       4.972       -0.179      19.686      
+4IA     H031    H       H       0       5.237       -0.572      17.215      
+4IA     H032    H       H       0       3.805       -1.239      17.356      
+4IA     H033    H       H       0       5.029       -1.801      18.196      
+4IA     H051    H       H       0       5.894       1.958       19.811      
+4IA     H061    H       H       0       6.054       4.165       19.159      
+4IA     H081    H       H       0       3.092       3.587       16.485      
+4IA     H091    H       H       0       2.935       1.377       17.143      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4IA         C10         O11      DOUBLE       n     1.244  0.0200     1.244  0.0200
+4IA         C08         C09      SINGLE       y     1.384  0.0100     1.384  0.0100
+4IA         C07         C08      DOUBLE       y     1.385  0.0100     1.385  0.0100
+4IA         C10         O12      SINGLE       n     1.244  0.0200     1.244  0.0200
+4IA         C10         C07      SINGLE       n     1.498  0.0200     1.498  0.0200
+4IA         C04         C09      DOUBLE       y     1.390  0.0100     1.390  0.0100
+4IA         C06         C07      SINGLE       y     1.385  0.0100     1.385  0.0100
+4IA         C02         C03      SINGLE       n     1.527  0.0115     1.527  0.0115
+4IA         C02         C04      SINGLE       n     1.520  0.0100     1.520  0.0100
+4IA         C04         C05      SINGLE       y     1.390  0.0100     1.390  0.0100
+4IA         C05         C06      DOUBLE       y     1.383  0.0100     1.383  0.0100
+4IA         C01         C02      SINGLE       n     1.527  0.0115     1.527  0.0115
+4IA         C01        H011      SINGLE       n     1.089  0.0100     0.973  0.0141
+4IA         C01        H012      SINGLE       n     1.089  0.0100     0.973  0.0141
+4IA         C01        H013      SINGLE       n     1.089  0.0100     0.973  0.0141
+4IA         C02        H021      SINGLE       n     1.089  0.0100     0.994  0.0142
+4IA         C03        H031      SINGLE       n     1.089  0.0100     0.973  0.0141
+4IA         C03        H032      SINGLE       n     1.089  0.0100     0.973  0.0141
+4IA         C03        H033      SINGLE       n     1.089  0.0100     0.973  0.0141
+4IA         C05        H051      SINGLE       n     1.082  0.0130     0.943  0.0173
+4IA         C06        H061      SINGLE       n     1.082  0.0130     0.941  0.0168
+4IA         C08        H081      SINGLE       n     1.082  0.0130     0.941  0.0168
+4IA         C09        H091      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4IA         O11         C10         O12     124.418    1.50
+4IA         O11         C10         C07     117.791    1.50
+4IA         O12         C10         C07     117.791    1.50
+4IA         C02         C01        H011     109.530    1.50
+4IA         C02         C01        H012     109.530    1.50
+4IA         C02         C01        H013     109.530    1.50
+4IA        H011         C01        H012     109.411    1.50
+4IA        H011         C01        H013     109.411    1.50
+4IA        H012         C01        H013     109.411    1.50
+4IA         C03         C02         C04     111.943    1.70
+4IA         C03         C02         C01     110.194    1.50
+4IA         C03         C02        H021     107.649    1.50
+4IA         C04         C02         C01     111.943    1.70
+4IA         C04         C02        H021     107.079    2.04
+4IA         C01         C02        H021     107.649    1.50
+4IA         C02         C03        H031     109.530    1.50
+4IA         C02         C03        H032     109.530    1.50
+4IA         C02         C03        H033     109.530    1.50
+4IA        H031         C03        H032     109.411    1.50
+4IA        H031         C03        H033     109.411    1.50
+4IA        H032         C03        H033     109.411    1.50
+4IA         C09         C04         C02     121.047    1.50
+4IA         C09         C04         C05     117.906    1.50
+4IA         C02         C04         C05     121.047    1.50
+4IA         C04         C05         C06     121.104    1.50
+4IA         C04         C05        H051     119.367    1.50
+4IA         C06         C05        H051     119.529    1.50
+4IA         C07         C06         C05     120.421    1.50
+4IA         C07         C06        H061     119.863    1.50
+4IA         C05         C06        H061     119.716    1.50
+4IA         C08         C07         C10     120.478    1.50
+4IA         C08         C07         C06     119.044    1.50
+4IA         C10         C07         C06     120.478    1.50
+4IA         C09         C08         C07     120.421    1.50
+4IA         C09         C08        H081     119.716    1.50
+4IA         C07         C08        H081     119.863    1.50
+4IA         C08         C09         C04     121.104    1.50
+4IA         C08         C09        H091     119.529    1.50
+4IA         C04         C09        H091     119.367    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4IA             sp2_sp2_1         C08         C07         C10         O11     180.000     5.0     2
+4IA            sp3_sp3_10        H011         C01         C02         C03     180.000    10.0     3
+4IA             sp3_sp3_4         C01         C02         C03        H031      60.000    10.0     3
+4IA             sp2_sp3_2         C09         C04         C02         C03     -90.000    10.0     6
+4IA              const_23         C02         C04         C05         C06     180.000    10.0     2
+4IA       const_sp2_sp2_3         C02         C04         C09         C08     180.000     5.0     2
+4IA              const_17         C04         C05         C06         C07       0.000    10.0     2
+4IA              const_14         C05         C06         C07         C10     180.000    10.0     2
+4IA              const_11         C10         C07         C08         C09     180.000    10.0     2
+4IA       const_sp2_sp2_5         C07         C08         C09         C04       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4IA    chir_1    C02    C04    C03    C01    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4IA    plan-1         C02   0.020
+4IA    plan-1         C04   0.020
+4IA    plan-1         C05   0.020
+4IA    plan-1         C06   0.020
+4IA    plan-1         C07   0.020
+4IA    plan-1         C08   0.020
+4IA    plan-1         C09   0.020
+4IA    plan-1         C10   0.020
+4IA    plan-1        H051   0.020
+4IA    plan-1        H061   0.020
+4IA    plan-1        H081   0.020
+4IA    plan-1        H091   0.020
+4IA    plan-2         C07   0.020
+4IA    plan-2         C10   0.020
+4IA    plan-2         O11   0.020
+4IA    plan-2         O12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4IA            InChI                InChI  1.03 InChI=1S/C10H12O2/c1-7(2)8-3-5-9(6-4-8)10(11)12/h3-7H,1-2H3,(H,11,12)
+4IA         InChIKey                InChI  1.03                                           CKMXAIVXVKGGFM-UHFFFAOYSA-N
+4IA SMILES_CANONICAL               CACTVS 3.385                                                 CC(C)c1ccc(cc1)C(O)=O
+4IA           SMILES               CACTVS 3.385                                                 CC(C)c1ccc(cc1)C(O)=O
+4IA SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                 CC(C)c1ccc(cc1)C(=O)O
+4IA           SMILES "OpenEye OEToolkits" 2.0.5                                                 CC(C)c1ccc(cc1)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4IA acedrg               243         "dictionary generator"                  
+4IA acedrg_database      11          "data source"                           
+4IA rdkit                2017.03.2   "Chemoinformatics tool"
+4IA refmac5              5.8.0238    "optimization tool"                     

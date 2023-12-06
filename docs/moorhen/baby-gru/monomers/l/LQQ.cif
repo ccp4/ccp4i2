@@ -1,0 +1,405 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LQQ     LQQ      6-ACETYL-8-CYCLOPENTYL-5-METHYL-2-[(5-PIPERAZIN-1-YLPYRIDIN-2-YL)AMINO]PYRIDO[2,3-D]PYRIMIDIN-7(8H)-ONE     NON-POLYMER     62     33     .     
+#
+data_comp_LQQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LQQ     O01     O       O       0       32.320      28.572      60.289      
+LQQ     C02     C       C       0       32.948      27.554      60.042      
+LQQ     C01     C       CH3     0       34.233      27.641      59.278      
+LQQ     C03     C       CR6     0       32.439      26.219      60.488      
+LQQ     C04     C       CR6     0       32.393      25.848      61.824      
+LQQ     C05     C       CH3     0       32.875      26.810      62.890      
+LQQ     C06     C       CR66    0       31.869      24.507      62.168      
+LQQ     C07     C       CR16    0       31.761      23.984      63.510      
+LQQ     N01     N       NRD6    0       31.283      22.771      63.770      
+LQQ     C08     C       CR6     0       30.885      22.012      62.727      
+LQQ     N02     N       NRD6    0       30.956      22.409      61.439      
+LQQ     C09     C       CR66    0       31.428      23.637      61.147      
+LQQ     N03     N       NR6     0       31.478      24.016      59.798      
+LQQ     C10     C       CH1     0       30.999      23.073      58.744      
+LQQ     C11     C       CH2     0       29.837      23.607      57.891      
+LQQ     C12     C       CH2     0       30.325      23.642      56.457      
+LQQ     C13     C       CH2     0       31.383      22.583      56.385      
+LQQ     C14     C       CH2     0       32.070      22.629      57.733      
+LQQ     C15     C       CR6     0       31.976      25.300      59.459      
+LQQ     O02     O       O       0       32.017      25.641      58.269      
+LQQ     N04     N       NH1     0       30.394      20.772      63.009      
+LQQ     C16     C       CR6     0       29.661      19.927      62.180      
+LQQ     N05     N       NRD6    0       29.944      18.617      62.278      
+LQQ     C17     C       CR16    0       29.269      17.740      61.509      
+LQQ     C18     C       CR6     0       28.283      18.135      60.606      
+LQQ     C19     C       CR16    0       27.995      19.499      60.510      
+LQQ     C20     C       CR16    0       28.675      20.406      61.305      
+LQQ     N06     N       NT      0       27.607      17.160      59.814      
+LQQ     C21     C       CH2     0       28.395      16.348      58.879      
+LQQ     C22     C       CH2     0       27.666      15.054      58.565      
+LQQ     N07     N       NT1     0       26.345      15.330      58.004      
+LQQ     C23     C       CH2     0       25.552      16.132      58.934      
+LQQ     C24     C       CH2     0       26.262      17.426      59.286      
+LQQ     H011    H       H       0       34.644      26.764      59.227      
+LQQ     H012    H       H       0       34.837      28.252      59.727      
+LQQ     H013    H       H       0       34.056      27.966      58.381      
+LQQ     H051    H       H       0       32.819      26.410      63.765      
+LQQ     H052    H       H       0       32.325      27.613      62.874      
+LQQ     H053    H       H       0       33.801      27.053      62.715      
+LQQ     H1      H       H       0       32.037      24.513      64.232      
+LQQ     H10     H       H       0       30.671      22.254      59.180      
+LQQ     H111    H       H       0       29.057      23.014      57.972      
+LQQ     H112    H       H       0       29.573      24.506      58.187      
+LQQ     H121    H       H       0       30.695      24.519      56.234      
+LQQ     H122    H       H       0       29.595      23.443      55.837      
+LQQ     H131    H       H       0       32.016      22.775      55.664      
+LQQ     H132    H       H       0       30.984      21.705      56.226      
+LQQ     H141    H       H       0       32.413      21.740      57.971      
+LQQ     H142    H       H       0       32.824      23.257      57.716      
+LQQ     H04     H       H       0       30.557      20.464      63.813      
+LQQ     H17     H       H       0       29.479      16.823      61.581      
+LQQ     H19     H       H       0       27.334      19.805      59.914      
+LQQ     H20     H       H       0       28.481      21.340      61.242      
+LQQ     H211    H       H       0       28.542      16.855      58.044      
+LQQ     H212    H       H       0       29.277      16.140      59.271      
+LQQ     H221    H       H       0       27.569      14.522      59.389      
+LQQ     H222    H       H       0       28.194      14.526      57.921      
+LQQ     H07     H       H       0       25.924      14.561      57.835      
+LQQ     H231    H       H       0       25.389      15.613      59.757      
+LQQ     H232    H       H       0       24.679      16.337      58.526      
+LQQ     H241    H       H       0       26.332      17.994      58.480      
+LQQ     H242    H       H       0       25.732      17.916      59.961      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LQQ         O01         C02      DOUBLE       n     1.222  0.0126     1.222  0.0126
+LQQ         C02         C01      SINGLE       n     1.496  0.0103     1.496  0.0103
+LQQ         C02         C03      SINGLE       n     1.485  0.0170     1.485  0.0170
+LQQ         C03         C04      DOUBLE       y     1.365  0.0200     1.365  0.0200
+LQQ         C03         C15      SINGLE       y     1.450  0.0127     1.450  0.0127
+LQQ         C04         C05      SINGLE       n     1.509  0.0100     1.509  0.0100
+LQQ         C04         C06      SINGLE       y     1.440  0.0200     1.440  0.0200
+LQQ         C06         C07      DOUBLE       y     1.417  0.0200     1.417  0.0200
+LQQ         C06         C09      SINGLE       y     1.402  0.0103     1.402  0.0103
+LQQ         C07         N01      SINGLE       y     1.322  0.0151     1.322  0.0151
+LQQ         N01         C08      DOUBLE       y     1.343  0.0119     1.343  0.0119
+LQQ         C08         N02      SINGLE       y     1.343  0.0118     1.343  0.0118
+LQQ         C08         N04      SINGLE       n     1.353  0.0130     1.353  0.0130
+LQQ         N02         C09      DOUBLE       y     1.337  0.0145     1.337  0.0145
+LQQ         C09         N03      SINGLE       y     1.383  0.0127     1.383  0.0127
+LQQ         N03         C10      SINGLE       n     1.477  0.0106     1.477  0.0106
+LQQ         N03         C15      SINGLE       y     1.396  0.0152     1.396  0.0152
+LQQ         C10         C11      SINGLE       n     1.532  0.0100     1.532  0.0100
+LQQ         C10         C14      SINGLE       n     1.532  0.0100     1.532  0.0100
+LQQ         C11         C12      SINGLE       n     1.519  0.0200     1.519  0.0200
+LQQ         C12         C13      SINGLE       n     1.512  0.0200     1.512  0.0200
+LQQ         C13         C14      SINGLE       n     1.519  0.0200     1.519  0.0200
+LQQ         C15         O02      DOUBLE       n     1.235  0.0126     1.235  0.0126
+LQQ         N04         C16      SINGLE       n     1.381  0.0144     1.381  0.0144
+LQQ         C16         N05      DOUBLE       y     1.338  0.0100     1.338  0.0100
+LQQ         C16         C20      SINGLE       y     1.397  0.0100     1.397  0.0100
+LQQ         N05         C17      SINGLE       y     1.342  0.0100     1.342  0.0100
+LQQ         C17         C18      DOUBLE       y     1.390  0.0107     1.390  0.0107
+LQQ         C18         C19      SINGLE       y     1.393  0.0100     1.393  0.0100
+LQQ         C18         N06      SINGLE       n     1.405  0.0196     1.405  0.0196
+LQQ         C19         C20      DOUBLE       y     1.383  0.0100     1.383  0.0100
+LQQ         N06         C21      SINGLE       n     1.464  0.0100     1.464  0.0100
+LQQ         N06         C24      SINGLE       n     1.464  0.0100     1.464  0.0100
+LQQ         C21         C22      SINGLE       n     1.516  0.0100     1.516  0.0100
+LQQ         C22         N07      SINGLE       n     1.460  0.0112     1.460  0.0112
+LQQ         N07         C23      SINGLE       n     1.460  0.0112     1.460  0.0112
+LQQ         C23         C24      SINGLE       n     1.516  0.0100     1.516  0.0100
+LQQ         C01        H011      SINGLE       n     1.089  0.0100     0.970  0.0200
+LQQ         C01        H012      SINGLE       n     1.089  0.0100     0.970  0.0200
+LQQ         C01        H013      SINGLE       n     1.089  0.0100     0.970  0.0200
+LQQ         C05        H051      SINGLE       n     1.089  0.0100     0.973  0.0200
+LQQ         C05        H052      SINGLE       n     1.089  0.0100     0.973  0.0200
+LQQ         C05        H053      SINGLE       n     1.089  0.0100     0.973  0.0200
+LQQ         C07          H1      SINGLE       n     1.082  0.0130     0.943  0.0200
+LQQ         C10         H10      SINGLE       n     1.089  0.0100     0.988  0.0169
+LQQ         C11        H111      SINGLE       n     1.089  0.0100     0.983  0.0154
+LQQ         C11        H112      SINGLE       n     1.089  0.0100     0.983  0.0154
+LQQ         C12        H121      SINGLE       n     1.089  0.0100     0.978  0.0100
+LQQ         C12        H122      SINGLE       n     1.089  0.0100     0.978  0.0100
+LQQ         C13        H131      SINGLE       n     1.089  0.0100     0.978  0.0100
+LQQ         C13        H132      SINGLE       n     1.089  0.0100     0.978  0.0100
+LQQ         C14        H141      SINGLE       n     1.089  0.0100     0.983  0.0154
+LQQ         C14        H142      SINGLE       n     1.089  0.0100     0.983  0.0154
+LQQ         N04         H04      SINGLE       n     1.016  0.0100     0.874  0.0200
+LQQ         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0200
+LQQ         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0150
+LQQ         C20         H20      SINGLE       n     1.082  0.0130     0.957  0.0200
+LQQ         C21        H211      SINGLE       n     1.089  0.0100     0.988  0.0200
+LQQ         C21        H212      SINGLE       n     1.089  0.0100     0.988  0.0200
+LQQ         C22        H221      SINGLE       n     1.089  0.0100     0.986  0.0200
+LQQ         C22        H222      SINGLE       n     1.089  0.0100     0.986  0.0200
+LQQ         N07         H07      SINGLE       n     1.036  0.0160     0.893  0.0200
+LQQ         C23        H231      SINGLE       n     1.089  0.0100     0.986  0.0200
+LQQ         C23        H232      SINGLE       n     1.089  0.0100     0.986  0.0200
+LQQ         C24        H241      SINGLE       n     1.089  0.0100     0.988  0.0200
+LQQ         C24        H242      SINGLE       n     1.089  0.0100     0.988  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LQQ         O01         C02         C01     119.911    1.50
+LQQ         O01         C02         C03     120.618    1.50
+LQQ         C01         C02         C03     119.471    1.57
+LQQ         C02         C01        H011     109.610    1.50
+LQQ         C02         C01        H012     109.610    1.50
+LQQ         C02         C01        H013     109.610    1.50
+LQQ        H011         C01        H012     109.315    1.55
+LQQ        H011         C01        H013     109.315    1.55
+LQQ        H012         C01        H013     109.315    1.55
+LQQ         C02         C03         C04     121.251    2.57
+LQQ         C02         C03         C15     118.732    3.00
+LQQ         C04         C03         C15     120.016    1.61
+LQQ         C03         C04         C05     121.063    1.50
+LQQ         C03         C04         C06     119.151    1.50
+LQQ         C05         C04         C06     119.786    1.70
+LQQ         C04         C05        H051     109.470    1.50
+LQQ         C04         C05        H052     109.470    1.50
+LQQ         C04         C05        H053     109.470    1.50
+LQQ        H051         C05        H052     109.180    1.50
+LQQ        H051         C05        H053     109.180    1.50
+LQQ        H052         C05        H053     109.180    1.50
+LQQ         C04         C06         C07     122.543    1.75
+LQQ         C04         C06         C09     119.343    1.50
+LQQ         C07         C06         C09     118.114    2.01
+LQQ         C06         C07         N01     122.260    1.50
+LQQ         C06         C07          H1     118.815    1.50
+LQQ         N01         C07          H1     118.925    1.50
+LQQ         C07         N01         C08     116.798    1.50
+LQQ         N01         C08         N02     123.808    1.50
+LQQ         N01         C08         N04     118.254    2.95
+LQQ         N02         C08         N04     117.938    2.85
+LQQ         C08         N02         C09     116.925    1.50
+LQQ         C06         C09         N02     122.096    1.50
+LQQ         C06         C09         N03     120.098    1.50
+LQQ         N02         C09         N03     117.806    1.50
+LQQ         C09         N03         C10     119.784    2.51
+LQQ         C09         N03         C15     120.406    1.51
+LQQ         C10         N03         C15     119.810    2.49
+LQQ         N03         C10         C11     113.966    1.57
+LQQ         N03         C10         C14     113.966    1.57
+LQQ         N03         C10         H10     108.870    1.50
+LQQ         C11         C10         C14     102.534    1.50
+LQQ         C11         C10         H10     108.728    1.50
+LQQ         C14         C10         H10     108.728    1.50
+LQQ         C10         C11         C12     104.854    1.66
+LQQ         C10         C11        H111     110.714    1.50
+LQQ         C10         C11        H112     110.714    1.50
+LQQ         C12         C11        H111     110.839    1.50
+LQQ         C12         C11        H112     110.839    1.50
+LQQ        H111         C11        H112     108.877    1.50
+LQQ         C11         C12         C13     105.475    1.91
+LQQ         C11         C12        H121     110.839    1.50
+LQQ         C11         C12        H122     110.839    1.50
+LQQ         C13         C12        H121     110.679    1.50
+LQQ         C13         C12        H122     110.679    1.50
+LQQ        H121         C12        H122     108.634    1.62
+LQQ         C12         C13         C14     105.475    1.91
+LQQ         C12         C13        H131     110.679    1.50
+LQQ         C12         C13        H132     110.679    1.50
+LQQ         C14         C13        H131     110.839    1.50
+LQQ         C14         C13        H132     110.839    1.50
+LQQ        H131         C13        H132     108.634    1.62
+LQQ         C10         C14         C13     104.854    1.66
+LQQ         C10         C14        H141     110.714    1.50
+LQQ         C10         C14        H142     110.714    1.50
+LQQ         C13         C14        H141     110.839    1.50
+LQQ         C13         C14        H142     110.839    1.50
+LQQ        H141         C14        H142     108.877    1.50
+LQQ         C03         C15         N03     120.987    3.00
+LQQ         C03         C15         O02     120.619    1.50
+LQQ         N03         C15         O02     118.394    1.50
+LQQ         C08         N04         C16     124.770    3.00
+LQQ         C08         N04         H04     117.236    1.60
+LQQ         C16         N04         H04     117.994    2.28
+LQQ         N04         C16         N05     117.266    2.42
+LQQ         N04         C16         C20     120.587    2.89
+LQQ         N05         C16         C20     122.147    1.50
+LQQ         C16         N05         C17     117.746    1.50
+LQQ         N05         C17         C18     122.153    1.50
+LQQ         N05         C17         H17     118.805    1.50
+LQQ         C18         C17         H17     119.042    1.50
+LQQ         C17         C18         C19     118.978    1.50
+LQQ         C17         C18         N06     120.182    2.00
+LQQ         C19         C18         N06     120.840    1.50
+LQQ         C18         C19         C20     120.284    1.50
+LQQ         C18         C19         H19     119.816    1.50
+LQQ         C20         C19         H19     119.900    1.50
+LQQ         C16         C20         C19     118.691    1.50
+LQQ         C16         C20         H20     120.970    1.50
+LQQ         C19         C20         H20     120.339    1.50
+LQQ         C18         N06         C21     116.897    2.51
+LQQ         C18         N06         C24     116.897    2.51
+LQQ         C21         N06         C24     110.693    1.50
+LQQ         N06         C21         C22     110.170    1.50
+LQQ         N06         C21        H211     109.558    1.50
+LQQ         N06         C21        H212     109.558    1.50
+LQQ         C22         C21        H211     109.625    1.50
+LQQ         C22         C21        H212     109.625    1.50
+LQQ        H211         C21        H212     108.196    1.50
+LQQ         C21         C22         N07     110.811    1.78
+LQQ         C21         C22        H221     109.527    1.50
+LQQ         C21         C22        H222     109.527    1.50
+LQQ         N07         C22        H221     109.479    1.50
+LQQ         N07         C22        H222     109.479    1.50
+LQQ        H221         C22        H222     108.060    1.50
+LQQ         C22         N07         C23     110.165    1.50
+LQQ         C22         N07         H07     109.673    3.00
+LQQ         C23         N07         H07     109.673    3.00
+LQQ         N07         C23         C24     110.811    1.78
+LQQ         N07         C23        H231     109.479    1.50
+LQQ         N07         C23        H232     109.479    1.50
+LQQ         C24         C23        H231     109.527    1.50
+LQQ         C24         C23        H232     109.527    1.50
+LQQ        H231         C23        H232     108.060    1.50
+LQQ         N06         C24         C23     110.170    1.50
+LQQ         N06         C24        H241     109.558    1.50
+LQQ         N06         C24        H242     109.558    1.50
+LQQ         C23         C24        H241     109.625    1.50
+LQQ         C23         C24        H242     109.625    1.50
+LQQ        H241         C24        H242     108.196    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LQQ              const_31         C06         C09         N02         C08       0.000    10.0     2
+LQQ              const_14         C06         C09         N03         C10     180.000    10.0     2
+LQQ            sp2_sp3_20         C09         N03         C10         C11     -90.000    10.0     6
+LQQ              const_19         O02         C15         N03         C09     180.000    10.0     2
+LQQ             sp3_sp3_7         N03         C10         C11         C12     180.000    10.0     3
+LQQ            sp3_sp3_70         N03         C10         C14         C13      60.000    10.0     3
+LQQ            sp3_sp3_10         C10         C11         C12         C13     -60.000    10.0     3
+LQQ            sp3_sp3_19         C11         C12         C13         C14      60.000    10.0     3
+LQQ            sp3_sp3_28         C12         C13         C14         C10     -60.000    10.0     3
+LQQ             sp2_sp3_7         O01         C02         C01        H011       0.000    10.0     6
+LQQ             sp2_sp2_3         O01         C02         C03         C04       0.000     5.0     2
+LQQ            sp2_sp2_11         N05         C16         N04         C08       0.000     5.0     2
+LQQ              const_34         N04         C16         N05         C17     180.000    10.0     2
+LQQ              const_55         N04         C16         C20         C19     180.000    10.0     2
+LQQ              const_35         C18         C17         N05         C16       0.000    10.0     2
+LQQ              const_37         N05         C17         C18         C19       0.000    10.0     2
+LQQ              const_41         C17         C18         C19         C20       0.000    10.0     2
+LQQ            sp2_sp2_13         C17         C18         N06         C21     180.000     5.0     2
+LQQ              const_45         C18         C19         C20         C16       0.000    10.0     2
+LQQ             sp2_sp3_4         C18         N06         C21         C22     180.000    10.0     6
+LQQ            sp2_sp3_28         C18         N06         C24         C23     180.000    10.0     6
+LQQ            sp3_sp3_37         N06         C21         C22         N07     -60.000    10.0     3
+LQQ            sp3_sp3_46         C21         C22         N07         C23      60.000    10.0     3
+LQQ            sp3_sp3_52         C24         C23         N07         C22     -60.000    10.0     3
+LQQ            sp3_sp3_58         N07         C23         C24         N06      60.000    10.0     3
+LQQ              const_52         C02         C03         C15         O02       0.000    10.0     2
+LQQ       const_sp2_sp2_4         C02         C03         C04         C05       0.000     5.0     2
+LQQ            sp2_sp3_13         C03         C04         C05        H051     150.000    10.0     6
+LQQ       const_sp2_sp2_8         C05         C04         C06         C07       0.000     5.0     2
+LQQ              const_10         C04         C06         C09         N02     180.000    10.0     2
+LQQ              const_23         C04         C06         C07         N01     180.000    10.0     2
+LQQ              const_25         C06         C07         N01         C08       0.000    10.0     2
+LQQ              const_28         N04         C08         N01         C07     180.000    10.0     2
+LQQ              const_30         N04         C08         N02         C09     180.000    10.0     2
+LQQ             sp2_sp2_5         N01         C08         N04         C16     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LQQ    chir_1    C10    N03    C11    C14    both
+LQQ    chir_2    N07    C22    C23    H07    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LQQ    plan-1         C02   0.020
+LQQ    plan-1         C03   0.020
+LQQ    plan-1         C04   0.020
+LQQ    plan-1         C05   0.020
+LQQ    plan-1         C06   0.020
+LQQ    plan-1         C07   0.020
+LQQ    plan-1         C08   0.020
+LQQ    plan-1         C09   0.020
+LQQ    plan-1         C10   0.020
+LQQ    plan-1         C15   0.020
+LQQ    plan-1          H1   0.020
+LQQ    plan-1         N01   0.020
+LQQ    plan-1         N02   0.020
+LQQ    plan-1         N03   0.020
+LQQ    plan-1         N04   0.020
+LQQ    plan-1         O02   0.020
+LQQ    plan-2         C16   0.020
+LQQ    plan-2         C17   0.020
+LQQ    plan-2         C18   0.020
+LQQ    plan-2         C19   0.020
+LQQ    plan-2         C20   0.020
+LQQ    plan-2         H17   0.020
+LQQ    plan-2         H19   0.020
+LQQ    plan-2         H20   0.020
+LQQ    plan-2         N04   0.020
+LQQ    plan-2         N05   0.020
+LQQ    plan-2         N06   0.020
+LQQ    plan-3         C01   0.020
+LQQ    plan-3         C02   0.020
+LQQ    plan-3         C03   0.020
+LQQ    plan-3         O01   0.020
+LQQ    plan-4         C08   0.020
+LQQ    plan-4         C16   0.020
+LQQ    plan-4         H04   0.020
+LQQ    plan-4         N04   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LQQ           SMILES              ACDLabs 10.04                                                                                                                         O=C2N(c1nc(ncc1C(=C2C(=O)C)C)Nc3ncc(cc3)N4CCNCC4)C5CCCC5
+LQQ SMILES_CANONICAL               CACTVS 3.341                                                                                                                         CC(=O)C1=C(C)c2cnc(Nc3ccc(cn3)N4CCNCC4)nc2N(C5CCCC5)C1=O
+LQQ           SMILES               CACTVS 3.341                                                                                                                         CC(=O)C1=C(C)c2cnc(Nc3ccc(cn3)N4CCNCC4)nc2N(C5CCCC5)C1=O
+LQQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                       CC1=C(C(=O)N(c2c1cnc(n2)Nc3ccc(cn3)N4CCNCC4)C5CCCC5)C(=O)C
+LQQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                       CC1=C(C(=O)N(c2c1cnc(n2)Nc3ccc(cn3)N4CCNCC4)C5CCCC5)C(=O)C
+LQQ            InChI                InChI  1.03 InChI=1S/C24H29N7O2/c1-15-19-14-27-24(28-20-8-7-18(13-26-20)30-11-9-25-10-12-30)29-22(19)31(17-5-3-4-6-17)23(33)21(15)16(2)32/h7-8,13-14,17,25H,3-6,9-12H2,1-2H3,(H,26,27,28,29)
+LQQ         InChIKey                InChI  1.03                                                                                                                                                      AHJRHEGDXFFMBM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LQQ acedrg               243         "dictionary generator"                  
+LQQ acedrg_database      11          "data source"                           
+LQQ rdkit                2017.03.2   "Chemoinformatics tool"
+LQQ refmac5              5.8.0238    "optimization tool"                     

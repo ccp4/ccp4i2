@@ -1,0 +1,359 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DWX     DWX      "[3-({4-[(5Z)-5-(3,4-dichlorobenzylidene)-4-oxo-4,5-dihydro-1,3-thiazol-2-yl]piperazin-1-yl}methyl)phenyl]boronic acid"     NON-POLYMER     51     31     .     
+#
+data_comp_DWX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DWX     OBD     O       OH1     0       23.338      36.119      14.826      
+DWX     BBC     B       B       0       23.637      37.427      15.052      
+DWX     OBE     O       OH1     0       24.600      38.020      14.297      
+DWX     CAZ     C       CR6     0       22.886      38.240      16.163      
+DWX     CBA     C       CR16    0       21.756      37.706      16.814      
+DWX     CAY     C       CR16    0       23.303      39.519      16.550      
+DWX     CAX     C       CR16    0       22.629      40.228      17.535      
+DWX     CAW     C       CR16    0       21.523      39.672      18.154      
+DWX     CBB     C       CR6     0       21.074      38.405      17.804      
+DWX     CAV     C       CH2     0       19.864      37.804      18.480      
+DWX     NAS     N       NT      0       18.604      38.472      18.124      
+DWX     CAT     C       CH2     0       17.536      38.174      19.082      
+DWX     CAU     C       CH2     0       16.290      38.969      18.770      
+DWX     CAR     C       CH2     0       18.151      38.105      16.781      
+DWX     CAQ     C       CH2     0       16.943      38.921      16.385      
+DWX     NAP     N       NR6     0       15.857      38.790      17.372      
+DWX     CAJ     C       CR5     0       14.575      38.594      17.029      
+DWX     SAI     S       S2      0       13.911      38.483      15.430      
+DWX     NAK     N       NRD5    0       13.539      38.480      17.835      
+DWX     CAL     C       CR5     0       12.651      37.530      17.364      
+DWX     OAO     O       O       0       11.973      36.786      18.068      
+DWX     CAH     C       CR5     0       12.531      37.569      15.866      
+DWX     CAG     C       C1      0       11.600      36.980      15.093      
+DWX     CAF     C       CR6     0       11.355      37.063      13.662      
+DWX     CAA     C       CR16    0       11.408      38.287      12.989      
+DWX     CAB     C       CR6     0       11.173      38.349      11.629      
+DWX     CLN     CL      CL      0       11.252      39.885      10.839      
+DWX     CAC     C       CR6     0       10.877      37.193      10.913      
+DWX     CLM     CL      CL      0       10.579      37.250      9.210       
+DWX     CAD     C       CR16    0       10.818      35.971      11.565      
+DWX     CAE     C       CR16    0       11.056      35.911      12.930      
+DWX     H1      H       H       0       22.547      36.005      14.604      
+DWX     H2      H       H       0       24.342      38.724      13.943      
+DWX     H3      H       H       0       21.456      36.847      16.570      
+DWX     H4      H       H       0       24.059      39.912      16.136      
+DWX     H5      H       H       0       22.926      41.090      17.783      
+DWX     H6      H       H       0       21.069      40.159      18.823      
+DWX     H7      H       H       0       19.993      37.857      19.452      
+DWX     H8      H       H       0       19.799      36.854      18.242      
+DWX     H10     H       H       0       17.329      37.218      19.054      
+DWX     H11     H       H       0       17.836      38.393      19.986      
+DWX     H12     H       H       0       16.464      39.911      18.924      
+DWX     H13     H       H       0       15.581      38.692      19.370      
+DWX     H14     H       H       0       17.923      37.154      16.759      
+DWX     H15     H       H       0       18.867      38.260      16.134      
+DWX     H16     H       H       0       16.637      38.627      15.514      
+DWX     H17     H       H       0       17.194      39.855      16.318      
+DWX     H18     H       H       0       11.006      36.424      15.557      
+DWX     H20     H       H       0       11.609      39.074      13.464      
+DWX     H21     H       H       0       10.618      35.189      11.080      
+DWX     H22     H       H       0       11.015      35.080      13.371      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DWX         OBD         BBC      SINGLE       n     1.360  0.0112     1.360  0.0112
+DWX         BBC         OBE      SINGLE       n     1.360  0.0112     1.360  0.0112
+DWX         CAZ         CBA      DOUBLE       y     1.406  0.0100     1.406  0.0100
+DWX         CAZ         CAY      SINGLE       y     1.396  0.0100     1.396  0.0100
+DWX         CBA         CBB      SINGLE       y     1.386  0.0100     1.386  0.0100
+DWX         CAY         CAX      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DWX         CAX         CAW      SINGLE       y     1.378  0.0135     1.378  0.0135
+DWX         CAW         CBB      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DWX         CBB         CAV      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWX         CAV         NAS      SINGLE       n     1.465  0.0100     1.465  0.0100
+DWX         NAS         CAT      SINGLE       n     1.462  0.0100     1.462  0.0100
+DWX         NAS         CAR      SINGLE       n     1.462  0.0100     1.462  0.0100
+DWX         CAT         CAU      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWX         CAU         NAP      SINGLE       n     1.466  0.0100     1.466  0.0100
+DWX         CAR         CAQ      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWX         CAQ         NAP      SINGLE       n     1.466  0.0100     1.466  0.0100
+DWX         NAP         CAJ      SINGLE       n     1.333  0.0100     1.333  0.0100
+DWX         CAJ         SAI      SINGLE       n     1.734  0.0200     1.734  0.0200
+DWX         CAJ         NAK      DOUBLE       n     1.304  0.0155     1.304  0.0155
+DWX         SAI         CAH      SINGLE       n     1.734  0.0200     1.734  0.0200
+DWX         NAK         CAL      SINGLE       n     1.363  0.0192     1.363  0.0192
+DWX         CAL         OAO      DOUBLE       n     1.228  0.0100     1.228  0.0100
+DWX         CAL         CAH      SINGLE       n     1.503  0.0100     1.503  0.0100
+DWX         CAH         CAG      DOUBLE       n     1.345  0.0100     1.345  0.0100
+DWX         CAG         CAF      SINGLE       n     1.453  0.0100     1.453  0.0100
+DWX         CAF         CAA      DOUBLE       y     1.395  0.0100     1.395  0.0100
+DWX         CAF         CAE      SINGLE       y     1.395  0.0100     1.395  0.0100
+DWX         CAA         CAB      SINGLE       y     1.377  0.0105     1.377  0.0105
+DWX         CAB         CLN      SINGLE       n     1.729  0.0100     1.729  0.0100
+DWX         CAB         CAC      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DWX         CAC         CLM      SINGLE       n     1.730  0.0100     1.730  0.0100
+DWX         CAC         CAD      SINGLE       y     1.382  0.0100     1.382  0.0100
+DWX         CAD         CAE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+DWX         BBC         CAZ      SINGLE       n     1.567  0.0111     1.567  0.0111
+DWX         OBD          H1      SINGLE       n     0.970  0.0120     0.829  0.0200
+DWX         OBE          H2      SINGLE       n     0.970  0.0120     0.829  0.0200
+DWX         CBA          H3      SINGLE       n     1.082  0.0130     0.943  0.0168
+DWX         CAY          H4      SINGLE       n     1.082  0.0130     0.947  0.0143
+DWX         CAX          H5      SINGLE       n     1.082  0.0130     0.945  0.0100
+DWX         CAW          H6      SINGLE       n     1.082  0.0130     0.944  0.0174
+DWX         CAV          H7      SINGLE       n     1.089  0.0100     0.982  0.0103
+DWX         CAV          H8      SINGLE       n     1.089  0.0100     0.982  0.0103
+DWX         CAT         H10      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWX         CAT         H11      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWX         CAU         H12      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWX         CAU         H13      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWX         CAR         H14      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWX         CAR         H15      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWX         CAQ         H16      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWX         CAQ         H17      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWX         CAG         H18      SINGLE       n     1.082  0.0130     0.937  0.0100
+DWX         CAA         H20      SINGLE       n     1.082  0.0130     0.941  0.0132
+DWX         CAD         H21      SINGLE       n     1.082  0.0130     0.941  0.0134
+DWX         CAE         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DWX         BBC         OBD          H1     112.760    3.00
+DWX         OBD         BBC         OBE     119.315    2.69
+DWX         OBD         BBC         CAZ     120.343    2.68
+DWX         OBE         BBC         CAZ     120.343    2.68
+DWX         BBC         OBE          H2     112.760    3.00
+DWX         CBA         CAZ         CAY     117.306    1.50
+DWX         CBA         CAZ         BBC     120.831    2.04
+DWX         CAY         CAZ         BBC     121.862    1.50
+DWX         CAZ         CBA         CBB     122.127    1.50
+DWX         CAZ         CBA          H3     118.767    1.50
+DWX         CBB         CBA          H3     119.106    1.50
+DWX         CAZ         CAY         CAX     121.287    1.50
+DWX         CAZ         CAY          H4     119.660    1.50
+DWX         CAX         CAY          H4     119.053    1.50
+DWX         CAY         CAX         CAW     119.926    1.50
+DWX         CAY         CAX          H5     120.021    1.50
+DWX         CAW         CAX          H5     120.053    1.50
+DWX         CAX         CAW         CBB     120.679    1.50
+DWX         CAX         CAW          H6     119.663    1.50
+DWX         CBB         CAW          H6     119.658    1.50
+DWX         CBA         CBB         CAW     118.674    1.50
+DWX         CBA         CBB         CAV     120.671    1.50
+DWX         CAW         CBB         CAV     120.655    1.50
+DWX         CBB         CAV         NAS     113.287    1.50
+DWX         CBB         CAV          H7     109.108    1.50
+DWX         CBB         CAV          H8     109.108    1.50
+DWX         NAS         CAV          H7     108.958    1.50
+DWX         NAS         CAV          H8     108.958    1.50
+DWX          H7         CAV          H8     107.841    1.50
+DWX         CAV         NAS         CAT     111.092    1.50
+DWX         CAV         NAS         CAR     111.092    1.50
+DWX         CAT         NAS         CAR     109.260    1.50
+DWX         NAS         CAT         CAU     110.760    1.50
+DWX         NAS         CAT         H10     109.507    1.50
+DWX         NAS         CAT         H11     109.507    1.50
+DWX         CAU         CAT         H10     109.482    1.50
+DWX         CAU         CAT         H11     109.482    1.50
+DWX         H10         CAT         H11     108.187    1.50
+DWX         CAT         CAU         NAP     110.420    1.50
+DWX         CAT         CAU         H12     109.656    1.50
+DWX         CAT         CAU         H13     109.656    1.50
+DWX         NAP         CAU         H12     109.135    1.50
+DWX         NAP         CAU         H13     109.135    1.50
+DWX         H12         CAU         H13     108.431    1.50
+DWX         NAS         CAR         CAQ     110.760    1.50
+DWX         NAS         CAR         H14     109.507    1.50
+DWX         NAS         CAR         H15     109.507    1.50
+DWX         CAQ         CAR         H14     109.482    1.50
+DWX         CAQ         CAR         H15     109.482    1.50
+DWX         H14         CAR         H15     108.187    1.50
+DWX         CAR         CAQ         NAP     110.420    1.50
+DWX         CAR         CAQ         H16     109.656    1.50
+DWX         CAR         CAQ         H17     109.656    1.50
+DWX         NAP         CAQ         H16     109.135    1.50
+DWX         NAP         CAQ         H17     109.135    1.50
+DWX         H16         CAQ         H17     108.431    1.50
+DWX         CAU         NAP         CAQ     114.444    1.52
+DWX         CAU         NAP         CAJ     122.778    1.50
+DWX         CAQ         NAP         CAJ     122.778    1.50
+DWX         NAP         CAJ         SAI     125.862    2.42
+DWX         NAP         CAJ         NAK     127.160    1.98
+DWX         SAI         CAJ         NAK     106.979    2.21
+DWX         CAJ         SAI         CAH     106.979    3.00
+DWX         CAJ         NAK         CAL     107.955    1.51
+DWX         NAK         CAL         OAO     125.568    1.50
+DWX         NAK         CAL         CAH     111.109    1.50
+DWX         OAO         CAL         CAH     123.323    1.50
+DWX         SAI         CAH         CAL     106.979    3.00
+DWX         SAI         CAH         CAG     126.013    3.00
+DWX         CAL         CAH         CAG     127.008    1.50
+DWX         CAH         CAG         CAF     130.922    1.50
+DWX         CAH         CAG         H18     114.511    1.50
+DWX         CAF         CAG         H18     114.567    1.50
+DWX         CAG         CAF         CAA     120.465    2.98
+DWX         CAG         CAF         CAE     120.465    3.00
+DWX         CAA         CAF         CAE     119.070    1.50
+DWX         CAF         CAA         CAB     120.230    1.50
+DWX         CAF         CAA         H20     119.922    1.50
+DWX         CAB         CAA         H20     119.848    1.50
+DWX         CAA         CAB         CLN     119.018    1.50
+DWX         CAA         CAB         CAC     120.071    1.50
+DWX         CLN         CAB         CAC     120.911    1.50
+DWX         CAB         CAC         CLM     121.068    1.50
+DWX         CAB         CAC         CAD     119.738    1.50
+DWX         CLM         CAC         CAD     119.194    1.50
+DWX         CAC         CAD         CAE     119.497    1.50
+DWX         CAC         CAD         H21     120.007    1.50
+DWX         CAE         CAD         H21     120.495    1.50
+DWX         CAF         CAE         CAD     121.394    1.50
+DWX         CAF         CAE         H22     119.264    1.50
+DWX         CAD         CAE         H22     119.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DWX             sp3_sp3_2         CAU         CAT         NAS         CAV     180.000    10.0     3
+DWX            sp3_sp3_32         CAQ         CAR         NAS         CAV     -60.000    10.0     3
+DWX             sp3_sp3_7         NAS         CAT         CAU         NAP     -60.000    10.0     3
+DWX             sp2_sp3_1         CAQ         NAP         CAU         CAT       0.000    10.0     6
+DWX            sp3_sp3_16         NAP         CAQ         CAR         NAS      60.000    10.0     3
+DWX             sp2_sp3_7         CAU         NAP         CAQ         CAR       0.000    10.0     6
+DWX            sp2_sp2_11         SAI         CAJ         NAP         CAU     180.000     5.0     2
+DWX             sp2_sp2_2         NAP         CAJ         SAI         CAH     180.000     5.0     2
+DWX            sp2_sp2_16         NAP         CAJ         NAK         CAL     180.000     5.0     2
+DWX             sp2_sp2_4         CAG         CAH         SAI         CAJ     180.000     5.0     2
+DWX            sp2_sp2_10         OAO         CAL         NAK         CAJ     180.000     5.0     2
+DWX             sp2_sp2_8         CAG         CAH         CAL         OAO       0.000     5.0     2
+DWX            sp2_sp2_25         OBD         BBC         CAZ         CBA     180.000     5.0     2
+DWX            sp2_sp2_18         CAF         CAG         CAH         SAI       0.000     5.0     2
+DWX            sp2_sp2_21         CAA         CAF         CAG         CAH     180.000     5.0     2
+DWX       const_sp2_sp2_2         CAB         CAA         CAF         CAG     180.000     5.0     2
+DWX              const_46         CAD         CAE         CAF         CAG     180.000    10.0     2
+DWX       const_sp2_sp2_6         CAF         CAA         CAB         CLN     180.000     5.0     2
+DWX              const_12         CLN         CAB         CAC         CLM       0.000    10.0     2
+DWX              const_15         CLM         CAC         CAD         CAE     180.000    10.0     2
+DWX              const_17         CAC         CAD         CAE         CAF       0.000    10.0     2
+DWX              const_23         BBC         CAZ         CBA         CBB     180.000    10.0     2
+DWX              const_42         CAX         CAY         CAZ         BBC     180.000    10.0     2
+DWX              const_26         CAZ         CBA         CBB         CAV     180.000    10.0     2
+DWX              const_37         CAW         CAX         CAY         CAZ       0.000    10.0     2
+DWX              const_33         CBB         CAW         CAX         CAY       0.000    10.0     2
+DWX              const_30         CAX         CAW         CBB         CAV     180.000    10.0     2
+DWX            sp2_sp3_18         CBA         CBB         CAV         NAS     -90.000    10.0     6
+DWX            sp3_sp3_26         CBB         CAV         NAS         CAT     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DWX    chir_1    NAS    CAT    CAR    CAV    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DWX    plan-1         CAA   0.020
+DWX    plan-1         CAB   0.020
+DWX    plan-1         CAC   0.020
+DWX    plan-1         CAD   0.020
+DWX    plan-1         CAE   0.020
+DWX    plan-1         CAF   0.020
+DWX    plan-1         CAG   0.020
+DWX    plan-1         CLM   0.020
+DWX    plan-1         CLN   0.020
+DWX    plan-1         H20   0.020
+DWX    plan-1         H21   0.020
+DWX    plan-1         H22   0.020
+DWX    plan-2         BBC   0.020
+DWX    plan-2         CAV   0.020
+DWX    plan-2         CAW   0.020
+DWX    plan-2         CAX   0.020
+DWX    plan-2         CAY   0.020
+DWX    plan-2         CAZ   0.020
+DWX    plan-2         CBA   0.020
+DWX    plan-2         CBB   0.020
+DWX    plan-2          H3   0.020
+DWX    plan-2          H4   0.020
+DWX    plan-2          H5   0.020
+DWX    plan-2          H6   0.020
+DWX    plan-3         BBC   0.020
+DWX    plan-3         CAZ   0.020
+DWX    plan-3         OBD   0.020
+DWX    plan-3         OBE   0.020
+DWX    plan-4         CAJ   0.020
+DWX    plan-4         CAQ   0.020
+DWX    plan-4         CAU   0.020
+DWX    plan-4         NAP   0.020
+DWX    plan-5         CAJ   0.020
+DWX    plan-5         NAK   0.020
+DWX    plan-5         NAP   0.020
+DWX    plan-5         SAI   0.020
+DWX    plan-6         CAH   0.020
+DWX    plan-6         CAL   0.020
+DWX    plan-6         NAK   0.020
+DWX    plan-6         OAO   0.020
+DWX    plan-7         CAG   0.020
+DWX    plan-7         CAH   0.020
+DWX    plan-7         CAL   0.020
+DWX    plan-7         SAI   0.020
+DWX    plan-8         CAF   0.020
+DWX    plan-8         CAG   0.020
+DWX    plan-8         CAH   0.020
+DWX    plan-8         H18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DWX           SMILES              ACDLabs 12.01                                                                                                     Clc1ccc(cc1Cl)\C=C2/SC(=NC2=O)N4CCN(Cc3cccc(B(O)O)c3)CC4
+DWX            InChI                InChI  1.03 InChI=1S/C21H20BCl2N3O3S/c23-17-5-4-14(11-18(17)24)12-19-20(28)25-21(31-19)27-8-6-26(7-9-27)13-15-2-1-3-16(10-15)22(29)30/h1-5,10-12,29-30H,6-9,13H2/b19-12-
+DWX         InChIKey                InChI  1.03                                                                                                                                  ZCKGWOBAJNWRNC-UNOMPAQXSA-N
+DWX SMILES_CANONICAL               CACTVS 3.370                                                                                                 OB(O)c1cccc(CN2CCN(CC2)C3=NC(=O)C(/S3)=C/c4ccc(Cl)c(Cl)c4)c1
+DWX           SMILES               CACTVS 3.370                                                                                                   OB(O)c1cccc(CN2CCN(CC2)C3=NC(=O)C(S3)=Cc4ccc(Cl)c(Cl)c4)c1
+DWX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                              B(c1cccc(c1)CN2CCN(CC2)C3=NC(=O)/C(=C/c4ccc(c(c4)Cl)Cl)/S3)(O)O
+DWX           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                 B(c1cccc(c1)CN2CCN(CC2)C3=NC(=O)C(=Cc4ccc(c(c4)Cl)Cl)S3)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DWX acedrg               243         "dictionary generator"                  
+DWX acedrg_database      11          "data source"                           
+DWX rdkit                2017.03.2   "Chemoinformatics tool"
+DWX refmac5              5.8.0238    "optimization tool"                     

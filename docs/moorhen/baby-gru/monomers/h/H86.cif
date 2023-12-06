@@ -1,0 +1,392 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+H86     H86      3-(decyloxy)-5-(3,5-difluorophenyl)-1-(2,2-diphosphonoethyl)pyridinium     NON-POLYMER     65     35     .     
+#
+data_comp_H86
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+H86     CAA     C       CH3     0       38.386      52.071      13.650      
+H86     CAP     C       CH2     0       37.011      52.657      13.864      
+H86     CAQ     C       CH2     0       35.953      52.049      12.980      
+H86     CAR     C       CH2     0       36.049      52.449      11.529      
+H86     CAS     C       CH2     0       34.903      51.962      10.677      
+H86     CAT     C       CH2     0       34.977      52.389      9.232       
+H86     CAU     C       CH2     0       33.917      51.775      8.351       
+H86     CAV     C       CH2     0       32.517      52.271      8.632       
+H86     CAW     C       CH2     0       31.489      51.807      7.621       
+H86     CAX     C       CH2     0       31.224      50.321      7.627       
+H86     OAZ     O       O2      0       30.706      49.950      8.912       
+H86     CBC     C       CR6     0       30.402      48.642      9.198       
+H86     CAM     C       CR16    0       30.051      48.403      10.513      
+H86     CAN     C       CR16    0       30.421      47.594      8.276       
+H86     NBG     N       NR6     1       30.081      46.309      8.696       
+H86     CAY     C       CH2     0       30.106      45.196      7.722       
+H86     CBF     C       CH1     0       28.948      45.264      6.721       
+H86     PBI     P       P       0       29.150      43.987      5.419       
+H86     OAF     O       O       0       28.191      44.325      4.311       
+H86     OAG     O       OP      -1      30.575      44.025      4.941       
+H86     OAC     O       OP      -1      28.815      42.669      6.060       
+H86     PBH     P       P       0       27.328      45.176      7.580       
+H86     OAD     O       OP      -1      27.474      44.234      8.742       
+H86     OAE     O       OP      -1      27.010      46.573      8.034       
+H86     OAB     O       O       0       26.316      44.670      6.589       
+H86     CAO     C       CR16    0       29.733      46.074      10.022      
+H86     CBE     C       CR6     0       29.713      47.118      10.944      
+H86     CBD     C       CR6     0       29.335      46.869      12.359      
+H86     CAK     C       CR16    0       29.877      45.795      13.062      
+H86     CBA     C       CR6     0       29.507      45.585      14.372      
+H86     FAH     F       F       0       30.045      44.535      15.044      
+H86     CAJ     C       CR16    0       28.614      46.397      15.033      
+H86     CBB     C       CR6     0       28.091      47.451      14.321      
+H86     FAI     F       F       0       27.207      48.273      14.940      
+H86     CAL     C       CR16    0       28.426      47.703      13.008      
+H86     HAA1    H       H       0       39.011      52.467      14.283      
+H86     HAA2    H       H       0       38.683      52.260      12.743      
+H86     HAA3    H       H       0       38.355      51.108      13.786      
+H86     HAP1    H       H       0       37.047      53.623      13.694      
+H86     HAP2    H       H       0       36.752      52.526      14.802      
+H86     HAQ1    H       H       0       35.071      52.311      13.321      
+H86     HAQ2    H       H       0       36.016      51.072      13.042      
+H86     HAR1    H       H       0       36.887      52.097      11.160      
+H86     HAR2    H       H       0       36.088      53.428      11.474      
+H86     HAS1    H       H       0       34.064      52.295      11.061      
+H86     HAS2    H       H       0       34.879      50.982      10.714      
+H86     HAT1    H       H       0       35.859      52.148      8.877       
+H86     HAT2    H       H       0       34.896      53.366      9.188       
+H86     HAU1    H       H       0       33.937      50.802      8.471       
+H86     HAU2    H       H       0       34.137      51.965      7.414       
+H86     HAV1    H       H       0       32.530      53.252      8.641       
+H86     HAV2    H       H       0       32.250      51.970      9.526       
+H86     HAW1    H       H       0       31.791      52.066      6.725       
+H86     HAW2    H       H       0       30.646      52.275      7.795       
+H86     HAX1    H       H       0       32.049      49.828      7.445       
+H86     HAX2    H       H       0       30.573      50.098      6.931       
+H86     HAM     H       H       0       30.039      49.117      11.131      
+H86     HAN     H       H       0       30.656      47.737      7.374       
+H86     HAY1    H       H       0       30.068      44.340      8.197       
+H86     HAY2    H       H       0       30.952      45.229      7.230       
+H86     HBF     H       H       0       29.003      46.150      6.278       
+H86     HAO     H       H       0       29.507      45.199      10.291      
+H86     HAK     H       H       0       30.492      45.216      12.645      
+H86     HAJ     H       H       0       28.373      46.238      15.933      
+H86     HAL     H       H       0       28.046      48.436      12.555      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+H86         PBI         OAF      DOUBLE       n     1.505  0.0200     1.505  0.0200
+H86         PBI         OAG      SINGLE       n     1.505  0.0200     1.505  0.0200
+H86         PBI         OAC      SINGLE       n     1.505  0.0200     1.505  0.0200
+H86         CBF         PBI      SINGLE       n     1.834  0.0163     1.834  0.0163
+H86         PBH         OAB      DOUBLE       n     1.505  0.0200     1.505  0.0200
+H86         PBH         OAD      SINGLE       n     1.505  0.0200     1.505  0.0200
+H86         CBF         PBH      SINGLE       n     1.834  0.0163     1.834  0.0163
+H86         CAY         CBF      SINGLE       n     1.530  0.0136     1.530  0.0136
+H86         PBH         OAE      SINGLE       n     1.505  0.0200     1.505  0.0200
+H86         NBG         CAY      SINGLE       n     1.477  0.0100     1.477  0.0100
+H86         CAN         NBG      SINGLE       y     1.378  0.0177     1.378  0.0177
+H86         NBG         CAO      DOUBLE       y     1.374  0.0200     1.374  0.0200
+H86         CBC         CAN      DOUBLE       y     1.387  0.0108     1.387  0.0108
+H86         CAW         CAX      SINGLE       n     1.506  0.0128     1.506  0.0128
+H86         CAX         OAZ      SINGLE       n     1.432  0.0101     1.432  0.0101
+H86         CAV         CAW      SINGLE       n     1.509  0.0200     1.509  0.0200
+H86         CAT         CAU      SINGLE       n     1.509  0.0200     1.509  0.0200
+H86         CAU         CAV      SINGLE       n     1.509  0.0200     1.509  0.0200
+H86         CAS         CAT      SINGLE       n     1.509  0.0200     1.509  0.0200
+H86         CAO         CBE      SINGLE       y     1.391  0.0111     1.391  0.0111
+H86         OAZ         CBC      SINGLE       n     1.368  0.0103     1.368  0.0103
+H86         CBC         CAM      SINGLE       y     1.378  0.0100     1.378  0.0100
+H86         CAR         CAS      SINGLE       n     1.509  0.0200     1.509  0.0200
+H86         CAQ         CAR      SINGLE       n     1.509  0.0200     1.509  0.0200
+H86         CAM         CBE      DOUBLE       y     1.395  0.0100     1.395  0.0100
+H86         CBE         CBD      SINGLE       n     1.483  0.0100     1.483  0.0100
+H86         CAP         CAQ      SINGLE       n     1.507  0.0200     1.507  0.0200
+H86         CAA         CAP      SINGLE       n     1.510  0.0200     1.510  0.0200
+H86         CBD         CAK      DOUBLE       y     1.390  0.0100     1.390  0.0100
+H86         CBD         CAL      SINGLE       y     1.390  0.0100     1.390  0.0100
+H86         CAK         CBA      SINGLE       y     1.374  0.0106     1.374  0.0106
+H86         CBB         CAL      DOUBLE       y     1.374  0.0106     1.374  0.0106
+H86         CBA         FAH      SINGLE       n     1.357  0.0100     1.357  0.0100
+H86         CBA         CAJ      DOUBLE       y     1.371  0.0100     1.371  0.0100
+H86         CAJ         CBB      SINGLE       y     1.371  0.0100     1.371  0.0100
+H86         CBB         FAI      SINGLE       n     1.357  0.0100     1.357  0.0100
+H86         CAA        HAA1      SINGLE       n     1.089  0.0100     0.973  0.0157
+H86         CAA        HAA2      SINGLE       n     1.089  0.0100     0.973  0.0157
+H86         CAA        HAA3      SINGLE       n     1.089  0.0100     0.973  0.0157
+H86         CAP        HAP1      SINGLE       n     1.089  0.0100     0.982  0.0155
+H86         CAP        HAP2      SINGLE       n     1.089  0.0100     0.982  0.0155
+H86         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAR        HAR1      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAR        HAR2      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAS        HAS1      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAS        HAS2      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAT        HAT1      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAT        HAT2      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAU        HAU1      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAU        HAU2      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAV        HAV1      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAV        HAV2      SINGLE       n     1.089  0.0100     0.981  0.0163
+H86         CAW        HAW1      SINGLE       n     1.089  0.0100     0.980  0.0166
+H86         CAW        HAW2      SINGLE       n     1.089  0.0100     0.980  0.0166
+H86         CAX        HAX1      SINGLE       n     1.089  0.0100     0.979  0.0131
+H86         CAX        HAX2      SINGLE       n     1.089  0.0100     0.979  0.0131
+H86         CAM         HAM      SINGLE       n     1.082  0.0130     0.944  0.0200
+H86         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0169
+H86         CAY        HAY1      SINGLE       n     1.089  0.0100     0.980  0.0157
+H86         CAY        HAY2      SINGLE       n     1.089  0.0100     0.980  0.0157
+H86         CBF         HBF      SINGLE       n     1.089  0.0100     0.992  0.0200
+H86         CAO         HAO      SINGLE       n     1.082  0.0130     0.943  0.0170
+H86         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0153
+H86         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0182
+H86         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+H86         CAP         CAA        HAA1     109.554    1.50
+H86         CAP         CAA        HAA2     109.554    1.50
+H86         CAP         CAA        HAA3     109.554    1.50
+H86        HAA1         CAA        HAA2     109.380    1.50
+H86        HAA1         CAA        HAA3     109.380    1.50
+H86        HAA2         CAA        HAA3     109.380    1.50
+H86         CAQ         CAP         CAA     113.719    3.00
+H86         CAQ         CAP        HAP1     108.758    1.50
+H86         CAQ         CAP        HAP2     108.758    1.50
+H86         CAA         CAP        HAP1     108.918    1.50
+H86         CAA         CAP        HAP2     108.918    1.50
+H86        HAP1         CAP        HAP2     107.763    1.50
+H86         CAR         CAQ         CAP     114.362    3.00
+H86         CAR         CAQ        HAQ1     108.698    1.50
+H86         CAR         CAQ        HAQ2     108.698    1.50
+H86         CAP         CAQ        HAQ1     108.653    1.50
+H86         CAP         CAQ        HAQ2     108.653    1.50
+H86        HAQ1         CAQ        HAQ2     107.646    1.50
+H86         CAS         CAR         CAQ     114.243    1.69
+H86         CAS         CAR        HAR1     108.698    1.50
+H86         CAS         CAR        HAR2     108.698    1.50
+H86         CAQ         CAR        HAR1     108.698    1.50
+H86         CAQ         CAR        HAR2     108.698    1.50
+H86        HAR1         CAR        HAR2     107.646    1.50
+H86         CAT         CAS         CAR     114.243    1.69
+H86         CAT         CAS        HAS1     108.698    1.50
+H86         CAT         CAS        HAS2     108.698    1.50
+H86         CAR         CAS        HAS1     108.698    1.50
+H86         CAR         CAS        HAS2     108.698    1.50
+H86        HAS1         CAS        HAS2     107.646    1.50
+H86         CAU         CAT         CAS     114.243    1.69
+H86         CAU         CAT        HAT1     108.698    1.50
+H86         CAU         CAT        HAT2     108.698    1.50
+H86         CAS         CAT        HAT1     108.698    1.50
+H86         CAS         CAT        HAT2     108.698    1.50
+H86        HAT1         CAT        HAT2     107.646    1.50
+H86         CAT         CAU         CAV     114.243    1.69
+H86         CAT         CAU        HAU1     108.698    1.50
+H86         CAT         CAU        HAU2     108.698    1.50
+H86         CAV         CAU        HAU1     108.698    1.50
+H86         CAV         CAU        HAU2     108.698    1.50
+H86        HAU1         CAU        HAU2     107.646    1.50
+H86         CAW         CAV         CAU     113.259    1.53
+H86         CAW         CAV        HAV1     108.902    1.50
+H86         CAW         CAV        HAV2     108.902    1.50
+H86         CAU         CAV        HAV1     108.698    1.50
+H86         CAU         CAV        HAV2     108.698    1.50
+H86        HAV1         CAV        HAV2     107.646    1.50
+H86         CAX         CAW         CAV     113.147    2.01
+H86         CAX         CAW        HAW1     108.916    1.50
+H86         CAX         CAW        HAW2     108.916    1.50
+H86         CAV         CAW        HAW1     108.944    1.50
+H86         CAV         CAW        HAW2     108.944    1.50
+H86        HAW1         CAW        HAW2     107.788    1.50
+H86         CAW         CAX         OAZ     107.985    2.03
+H86         CAW         CAX        HAX1     110.162    1.50
+H86         CAW         CAX        HAX2     110.162    1.50
+H86         OAZ         CAX        HAX1     109.943    1.50
+H86         OAZ         CAX        HAX2     109.943    1.50
+H86        HAX1         CAX        HAX2     108.474    1.50
+H86         CAX         OAZ         CBC     117.464    1.77
+H86         CAN         CBC         OAZ     119.862    3.00
+H86         CAN         CBC         CAM     120.331    1.50
+H86         OAZ         CBC         CAM     119.807    3.00
+H86         CBC         CAM         CBE     120.868    1.50
+H86         CBC         CAM         HAM     119.800    1.50
+H86         CBE         CAM         HAM     119.332    1.50
+H86         NBG         CAN         CBC     118.213    1.50
+H86         NBG         CAN         HAN     120.271    1.50
+H86         CBC         CAN         HAN     121.516    1.50
+H86         CAY         NBG         CAN     120.161    1.50
+H86         CAY         NBG         CAO     120.161    1.50
+H86         CAN         NBG         CAO     119.679    1.50
+H86         CBF         CAY         NBG     112.079    1.50
+H86         CBF         CAY        HAY1     108.654    1.50
+H86         CBF         CAY        HAY2     108.654    1.50
+H86         NBG         CAY        HAY1     108.980    1.50
+H86         NBG         CAY        HAY2     108.980    1.50
+H86        HAY1         CAY        HAY2     107.893    1.50
+H86         PBI         CBF         PBH     114.813    3.00
+H86         PBI         CBF         CAY     111.410    2.87
+H86         PBI         CBF         HBF     108.528    1.50
+H86         PBH         CBF         CAY     111.410    2.87
+H86         PBH         CBF         HBF     108.528    1.50
+H86         CAY         CBF         HBF     107.699    1.50
+H86         OAF         PBI         OAG     112.502    1.50
+H86         OAF         PBI         OAC     112.502    1.50
+H86         OAF         PBI         CBF     110.326    3.00
+H86         OAG         PBI         OAC     112.502    1.50
+H86         OAG         PBI         CBF     110.326    3.00
+H86         OAC         PBI         CBF     110.326    3.00
+H86         OAB         PBH         OAD     112.502    1.50
+H86         OAB         PBH         CBF     110.326    3.00
+H86         OAB         PBH         OAE     112.502    1.50
+H86         OAD         PBH         CBF     110.326    3.00
+H86         OAD         PBH         OAE     112.502    1.50
+H86         CBF         PBH         OAE     110.326    3.00
+H86         NBG         CAO         CBE     121.069    3.00
+H86         NBG         CAO         HAO     118.916    1.50
+H86         CBE         CAO         HAO     120.014    1.50
+H86         CAO         CBE         CAM     119.840    1.64
+H86         CAO         CBE         CBD     120.061    1.63
+H86         CAM         CBE         CBD     120.099    1.53
+H86         CBE         CBD         CAK     120.311    1.52
+H86         CBE         CBD         CAL     120.311    1.52
+H86         CAK         CBD         CAL     119.377    1.50
+H86         CBD         CAK         CBA     119.750    1.50
+H86         CBD         CAK         HAK     120.166    1.50
+H86         CBA         CAK         HAK     120.084    1.50
+H86         CAK         CBA         FAH     118.963    1.50
+H86         CAK         CBA         CAJ     122.495    1.50
+H86         FAH         CBA         CAJ     118.541    1.50
+H86         CBA         CAJ         CBB     116.131    1.50
+H86         CBA         CAJ         HAJ     121.934    1.50
+H86         CBB         CAJ         HAJ     121.934    1.50
+H86         CAL         CBB         CAJ     122.495    1.50
+H86         CAL         CBB         FAI     118.963    1.50
+H86         CAJ         CBB         FAI     118.541    1.50
+H86         CBD         CAL         CBB     119.750    1.50
+H86         CBD         CAL         HAL     120.166    1.50
+H86         CBB         CAL         HAL     120.084    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+H86           sp3_sp3_103        HAA1         CAA         CAP         CAQ     180.000    10.0     3
+H86             sp2_sp2_1         CAN         CBC         OAZ         CAX     180.000     5.0     2
+H86              const_42         CBE         CAM         CBC         OAZ     180.000    10.0     2
+H86              const_22         NBG         CAN         CBC         OAZ     180.000    10.0     2
+H86              const_37         CBC         CAM         CBE         CAO       0.000    10.0     2
+H86              const_26         CBC         CAN         NBG         CAY     180.000    10.0     2
+H86             sp2_sp3_2         CAN         NBG         CAY         CBF     -90.000    10.0     6
+H86              const_30         CBE         CAO         NBG         CAY     180.000    10.0     2
+H86            sp3_sp3_20         NBG         CAY         CBF         PBI     -60.000    10.0     3
+H86             sp3_sp3_6         PBH         CBF         PBI         OAF     -60.000    10.0     3
+H86            sp3_sp3_12         PBI         CBF         PBH         OAB      60.000    10.0     3
+H86            sp3_sp3_94         CAA         CAP         CAQ         CAR     180.000    10.0     3
+H86              const_33         NBG         CAO         CBE         CAM       0.000    10.0     2
+H86             sp2_sp2_3         CAK         CBD         CBE         CAO     180.000     5.0     2
+H86       const_sp2_sp2_2         CBA         CAK         CBD         CBE     180.000     5.0     2
+H86              const_46         CBB         CAL         CBD         CBE     180.000    10.0     2
+H86       const_sp2_sp2_6         CBD         CAK         CBA         FAH     180.000     5.0     2
+H86              const_10         CBB         CAJ         CBA         FAH     180.000    10.0     2
+H86            sp3_sp3_85         CAP         CAQ         CAR         CAS     180.000    10.0     3
+H86              const_14         CBA         CAJ         CBB         FAI     180.000    10.0     2
+H86              const_18         CBD         CAL         CBB         FAI     180.000    10.0     2
+H86            sp3_sp3_76         CAQ         CAR         CAS         CAT     180.000    10.0     3
+H86            sp3_sp3_67         CAR         CAS         CAT         CAU     180.000    10.0     3
+H86            sp3_sp3_49         CAS         CAT         CAU         CAV     180.000    10.0     3
+H86            sp3_sp3_58         CAT         CAU         CAV         CAW     180.000    10.0     3
+H86            sp3_sp3_40         CAU         CAV         CAW         CAX     180.000    10.0     3
+H86            sp3_sp3_28         CAV         CAW         CAX         OAZ     180.000    10.0     3
+H86            sp3_sp3_37         CAW         CAX         OAZ         CBC     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+H86    chir_1    CBF    PBI    PBH    CAY    both
+H86    chir_2    PBI    OAG    OAC    OAF    both
+H86    chir_3    PBH    OAD    OAE    OAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+H86    plan-1         CAM   0.020
+H86    plan-1         CAN   0.020
+H86    plan-1         CAO   0.020
+H86    plan-1         CAY   0.020
+H86    plan-1         CBC   0.020
+H86    plan-1         CBD   0.020
+H86    plan-1         CBE   0.020
+H86    plan-1         HAM   0.020
+H86    plan-1         HAN   0.020
+H86    plan-1         HAO   0.020
+H86    plan-1         NBG   0.020
+H86    plan-1         OAZ   0.020
+H86    plan-2         CAJ   0.020
+H86    plan-2         CAK   0.020
+H86    plan-2         CAL   0.020
+H86    plan-2         CBA   0.020
+H86    plan-2         CBB   0.020
+H86    plan-2         CBD   0.020
+H86    plan-2         CBE   0.020
+H86    plan-2         FAH   0.020
+H86    plan-2         FAI   0.020
+H86    plan-2         HAJ   0.020
+H86    plan-2         HAK   0.020
+H86    plan-2         HAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+H86           SMILES              ACDLabs 10.04                                                                                                                     O=P(O)(O)C(P(=O)(O)O)C[n+]1cc(cc(OCCCCCCCCCC)c1)c2cc(F)cc(F)c2
+H86 SMILES_CANONICAL               CACTVS 3.341                                                                                                                 CCCCCCCCCCOc1cc(c[n+](CC([P](O)(O)=O)[P](O)(O)=O)c1)c2cc(F)cc(F)c2
+H86           SMILES               CACTVS 3.341                                                                                                                 CCCCCCCCCCOc1cc(c[n+](CC([P](O)(O)=O)[P](O)(O)=O)c1)c2cc(F)cc(F)c2
+H86 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     CCCCCCCCCCOc1cc(c[n+](c1)CC(P(=O)(O)O)P(=O)(O)O)c2cc(cc(c2)F)F
+H86           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                     CCCCCCCCCCOc1cc(c[n+](c1)CC(P(=O)(O)O)P(=O)(O)O)c2cc(cc(c2)F)F
+H86            InChI                InChI  1.03 InChI=1S/C23H33F2NO7P2/c1-2-3-4-5-6-7-8-9-10-33-22-13-19(18-11-20(24)14-21(25)12-18)15-26(16-22)17-23(34(27,28)29)35(30,31)32/h11-16,23H,2-10,17H2,1H3,(H3-,27,28,29,30,31,32)/p+1
+H86         InChIKey                InChI  1.03                                                                                                                                                        JONDYIHZOFRLBH-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+H86 acedrg               243         "dictionary generator"                  
+H86 acedrg_database      11          "data source"                           
+H86 rdkit                2017.03.2   "Chemoinformatics tool"
+H86 refmac5              5.8.0238    "optimization tool"                     

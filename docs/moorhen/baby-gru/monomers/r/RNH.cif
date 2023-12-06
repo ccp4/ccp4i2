@@ -1,0 +1,327 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RNH     RNH      (2R)-N-[3-(heptylamino)-3-oxopropyl]-2,4-dihydroxy-3,3-dimethylbutanamide     NON-POLYMER     54     22     .     
+#
+data_comp_RNH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RNH     CAA     C       CH2     0       35.749      8.446       -16.854     
+RNH     CAB     C       CH3     0       33.211      14.825      -5.155      
+RNH     CAC     C       CH3     0       31.537      14.920      -6.996      
+RNH     OAD     O       O       0       35.185      10.635      -10.157     
+RNH     OAE     O       O       0       33.480      11.710      -5.842      
+RNH     OAG     O       OH1     0       30.149      12.662      -5.601      
+RNH     CAJ     C       CH2     0       34.887      9.055       -15.774     
+RNH     CAK     C       CH2     0       35.578      10.118      -14.954     
+RNH     CAL     C       CH2     0       34.672      10.822      -13.964     
+RNH     CAM     C       CH2     0       34.274      9.944       -12.791     
+RNH     CAN     C       CH2     0       32.617      10.958      -8.459      
+RNH     CAO     C       CH2     0       33.185      11.794      -9.588      
+RNH     CAP     C       CH2     0       30.829      15.304      -4.646      
+RNH     NAQ     N       NH1     0       33.583      10.687      -11.742     
+RNH     NAR     N       NH1     0       31.915      11.769      -7.469      
+RNH     OAS     O       OH1     0       30.939      14.961      -3.269      
+RNH     CAT     C       C       0       34.065      10.987      -10.523     
+RNH     CAU     C       C       0       32.388      12.087      -6.266      
+RNH     CAV     C       CH1     0       31.522      12.975      -5.378      
+RNH     CAW     C       CT      0       31.764      14.489      -5.540      
+RNH     CAY     C       CH2     0       35.074      7.355       -17.646     
+RNH     CAZ     C       CH3     0       35.952      6.750       -18.716     
+RNH     HAA     H       H       0       36.558      8.078       -16.440     
+RNH     HAAA    H       H       0       36.027      9.156       -17.472     
+RNH     HAB     H       H       0       33.424      14.412      -4.300      
+RNH     HABA    H       H       0       33.314      15.789      -5.080      
+RNH     HABB    H       H       0       33.822      14.491      -5.834      
+RNH     HAC     H       H       0       30.696      14.555      -7.319      
+RNH     HACA    H       H       0       32.264      14.596      -7.556      
+RNH     HACB    H       H       0       31.505      15.891      -7.047      
+RNH     HOAG    H       H       0       29.738      12.638      -4.859      
+RNH     HAJ     H       H       0       34.586      8.340       -15.174     
+RNH     HAJA    H       H       0       34.091      9.447       -16.192     
+RNH     HAK     H       H       0       35.959      10.786      -15.564     
+RNH     HAKA    H       H       0       36.321      9.705       -14.465     
+RNH     HAL     H       H       0       33.860      11.118      -14.428     
+RNH     HALA    H       H       0       35.130      11.619      -13.622     
+RNH     HAM     H       H       0       35.077      9.519       -12.421     
+RNH     HAMA    H       H       0       33.682      9.231       -13.114     
+RNH     HAN     H       H       0       33.346      10.463      -8.030      
+RNH     HANA    H       H       0       31.992      10.303      -8.834      
+RNH     HAO     H       H       0       33.710      12.523      -9.214      
+RNH     HAOA    H       H       0       32.455      12.192      -10.093     
+RNH     HAP     H       H       0       31.037      16.261      -4.749      
+RNH     HAPA    H       H       0       29.898      15.166      -4.935      
+RNH     HNAQ    H       H       0       32.774      10.958      -11.924     
+RNH     HNAR    H       H       0       31.124      12.067      -7.687      
+RNH     HOAS    H       H       0       30.562      15.561      -2.807      
+RNH     HAV     H       H       0       31.738      12.745      -4.442      
+RNH     HAY     H       H       0       34.268      7.724       -18.068     
+RNH     HAYA    H       H       0       34.791      6.646       -17.029     
+RNH     HAZ     H       H       0       35.459      6.055       -19.187     
+RNH     HAZA    H       H       0       36.745      6.362       -18.307     
+RNH     HAZB    H       H       0       36.219      7.440       -19.347     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RNH         CAA         CAJ      SINGLE       n     1.509  0.0200     1.509  0.0200
+RNH         CAA         CAY      SINGLE       n     1.507  0.0200     1.507  0.0200
+RNH         CAB         CAW      SINGLE       n     1.531  0.0109     1.531  0.0109
+RNH         CAC         CAW      SINGLE       n     1.531  0.0109     1.531  0.0109
+RNH         OAD         CAT      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RNH         OAE         CAU      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RNH         OAG         CAV      SINGLE       n     1.419  0.0162     1.419  0.0162
+RNH         CAJ         CAK      SINGLE       n     1.509  0.0200     1.509  0.0200
+RNH         CAK         CAL      SINGLE       n     1.514  0.0200     1.514  0.0200
+RNH         CAL         CAM      SINGLE       n     1.517  0.0143     1.517  0.0143
+RNH         CAM         NAQ      SINGLE       n     1.456  0.0109     1.456  0.0109
+RNH         CAN         CAO      SINGLE       n     1.513  0.0195     1.513  0.0195
+RNH         CAN         NAR      SINGLE       n     1.457  0.0100     1.457  0.0100
+RNH         CAO         CAT      SINGLE       n     1.514  0.0100     1.514  0.0100
+RNH         CAP         OAS      SINGLE       n     1.423  0.0111     1.423  0.0111
+RNH         CAP         CAW      SINGLE       n     1.525  0.0104     1.525  0.0104
+RNH         NAQ         CAT      SINGLE       n     1.337  0.0118     1.337  0.0118
+RNH         NAR         CAU      SINGLE       n     1.326  0.0100     1.326  0.0100
+RNH         CAU         CAV      SINGLE       n     1.519  0.0108     1.519  0.0108
+RNH         CAV         CAW      SINGLE       n     1.532  0.0112     1.532  0.0112
+RNH         CAY         CAZ      SINGLE       n     1.510  0.0200     1.510  0.0200
+RNH         CAA         HAA      SINGLE       n     1.089  0.0100     0.981  0.0163
+RNH         CAA        HAAA      SINGLE       n     1.089  0.0100     0.981  0.0163
+RNH         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+RNH         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0146
+RNH         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0146
+RNH         CAC         HAC      SINGLE       n     1.089  0.0100     0.973  0.0146
+RNH         CAC        HACA      SINGLE       n     1.089  0.0100     0.973  0.0146
+RNH         CAC        HACB      SINGLE       n     1.089  0.0100     0.973  0.0146
+RNH         OAG        HOAG      SINGLE       n     0.970  0.0120     0.848  0.0200
+RNH         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0163
+RNH         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0163
+RNH         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0163
+RNH         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0163
+RNH         CAL         HAL      SINGLE       n     1.089  0.0100     0.981  0.0160
+RNH         CAL        HALA      SINGLE       n     1.089  0.0100     0.981  0.0160
+RNH         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0152
+RNH         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0152
+RNH         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0159
+RNH         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0159
+RNH         CAO         HAO      SINGLE       n     1.089  0.0100     0.973  0.0156
+RNH         CAO        HAOA      SINGLE       n     1.089  0.0100     0.973  0.0156
+RNH         CAP         HAP      SINGLE       n     1.089  0.0100     0.985  0.0115
+RNH         CAP        HAPA      SINGLE       n     1.089  0.0100     0.985  0.0115
+RNH         NAQ        HNAQ      SINGLE       n     1.016  0.0100     0.872  0.0200
+RNH         NAR        HNAR      SINGLE       n     1.016  0.0100     0.872  0.0200
+RNH         OAS        HOAS      SINGLE       n     0.970  0.0120     0.846  0.0200
+RNH         CAV         HAV      SINGLE       n     1.089  0.0100     0.988  0.0129
+RNH         CAY         HAY      SINGLE       n     1.089  0.0100     0.982  0.0155
+RNH         CAY        HAYA      SINGLE       n     1.089  0.0100     0.982  0.0155
+RNH         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.973  0.0157
+RNH         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.973  0.0157
+RNH         CAZ        HAZB      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RNH         CAJ         CAA         CAY     114.362    3.00
+RNH         CAJ         CAA         HAA     108.698    1.50
+RNH         CAJ         CAA        HAAA     108.698    1.50
+RNH         CAY         CAA         HAA     108.653    1.50
+RNH         CAY         CAA        HAAA     108.653    1.50
+RNH         HAA         CAA        HAAA     107.646    1.50
+RNH         CAW         CAB         HAB     109.575    1.50
+RNH         CAW         CAB        HABA     109.575    1.50
+RNH         CAW         CAB        HABB     109.575    1.50
+RNH         HAB         CAB        HABA     109.377    1.50
+RNH         HAB         CAB        HABB     109.377    1.50
+RNH        HABA         CAB        HABB     109.377    1.50
+RNH         CAW         CAC         HAC     109.575    1.50
+RNH         CAW         CAC        HACA     109.575    1.50
+RNH         CAW         CAC        HACB     109.575    1.50
+RNH         HAC         CAC        HACA     109.377    1.50
+RNH         HAC         CAC        HACB     109.377    1.50
+RNH        HACA         CAC        HACB     109.377    1.50
+RNH         CAV         OAG        HOAG     108.894    3.00
+RNH         CAA         CAJ         CAK     114.243    1.69
+RNH         CAA         CAJ         HAJ     108.698    1.50
+RNH         CAA         CAJ        HAJA     108.698    1.50
+RNH         CAK         CAJ         HAJ     108.698    1.50
+RNH         CAK         CAJ        HAJA     108.698    1.50
+RNH         HAJ         CAJ        HAJA     107.646    1.50
+RNH         CAJ         CAK         CAL     113.853    2.32
+RNH         CAJ         CAK         HAK     108.698    1.50
+RNH         CAJ         CAK        HAKA     108.698    1.50
+RNH         CAL         CAK         HAK     108.806    1.50
+RNH         CAL         CAK        HAKA     108.806    1.50
+RNH         HAK         CAK        HAKA     107.646    1.50
+RNH         CAK         CAL         CAM     113.159    3.00
+RNH         CAK         CAL         HAL     109.041    1.50
+RNH         CAK         CAL        HALA     109.041    1.50
+RNH         CAM         CAL         HAL     108.956    1.50
+RNH         CAM         CAL        HALA     108.956    1.50
+RNH         HAL         CAL        HALA     107.927    1.57
+RNH         CAL         CAM         NAQ     112.624    1.50
+RNH         CAL         CAM         HAM     109.197    1.51
+RNH         CAL         CAM        HAMA     109.197    1.51
+RNH         NAQ         CAM         HAM     108.979    1.50
+RNH         NAQ         CAM        HAMA     108.979    1.50
+RNH         HAM         CAM        HAMA     107.877    1.50
+RNH         CAO         CAN         NAR     112.257    1.50
+RNH         CAO         CAN         HAN     108.971    1.50
+RNH         CAO         CAN        HANA     108.971    1.50
+RNH         NAR         CAN         HAN     108.979    1.50
+RNH         NAR         CAN        HANA     108.979    1.50
+RNH         HAN         CAN        HANA     107.877    1.50
+RNH         CAN         CAO         CAT     112.120    2.79
+RNH         CAN         CAO         HAO     109.432    1.50
+RNH         CAN         CAO        HAOA     109.432    1.50
+RNH         CAT         CAO         HAO     108.945    1.50
+RNH         CAT         CAO        HAOA     108.945    1.50
+RNH         HAO         CAO        HAOA     107.745    2.07
+RNH         OAS         CAP         CAW     112.722    1.73
+RNH         OAS         CAP         HAP     109.100    1.50
+RNH         OAS         CAP        HAPA     109.100    1.50
+RNH         CAW         CAP         HAP     109.473    1.50
+RNH         CAW         CAP        HAPA     109.473    1.50
+RNH         HAP         CAP        HAPA     108.307    1.50
+RNH         CAM         NAQ         CAT     124.480    2.27
+RNH         CAM         NAQ        HNAQ     118.241    1.90
+RNH         CAT         NAQ        HNAQ     117.279    2.10
+RNH         CAN         NAR         CAU     122.964    1.80
+RNH         CAN         NAR        HNAR     118.351    1.90
+RNH         CAU         NAR        HNAR     118.685    1.94
+RNH         CAP         OAS        HOAS     108.853    2.22
+RNH         OAD         CAT         CAO     120.987    1.50
+RNH         OAD         CAT         NAQ     121.943    1.50
+RNH         CAO         CAT         NAQ     117.070    1.96
+RNH         OAE         CAU         NAR     122.985    1.50
+RNH         OAE         CAU         CAV     119.851    1.78
+RNH         NAR         CAU         CAV     117.147    1.50
+RNH         OAG         CAV         CAU     109.850    1.55
+RNH         OAG         CAV         CAW     109.482    3.00
+RNH         OAG         CAV         HAV     108.675    1.50
+RNH         CAU         CAV         CAW     111.511    2.91
+RNH         CAU         CAV         HAV     108.529    1.70
+RNH         CAW         CAV         HAV     107.825    1.50
+RNH         CAB         CAW         CAC     108.765    1.50
+RNH         CAB         CAW         CAP     109.385    1.50
+RNH         CAB         CAW         CAV     109.534    1.52
+RNH         CAC         CAW         CAP     109.385    1.50
+RNH         CAC         CAW         CAV     109.534    1.52
+RNH         CAP         CAW         CAV     111.094    2.85
+RNH         CAA         CAY         CAZ     113.719    3.00
+RNH         CAA         CAY         HAY     108.758    1.50
+RNH         CAA         CAY        HAYA     108.758    1.50
+RNH         CAZ         CAY         HAY     108.918    1.50
+RNH         CAZ         CAY        HAYA     108.918    1.50
+RNH         HAY         CAY        HAYA     107.763    1.50
+RNH         CAY         CAZ         HAZ     109.554    1.50
+RNH         CAY         CAZ        HAZA     109.554    1.50
+RNH         CAY         CAZ        HAZB     109.554    1.50
+RNH         HAZ         CAZ        HAZA     109.380    1.50
+RNH         HAZ         CAZ        HAZB     109.380    1.50
+RNH        HAZA         CAZ        HAZB     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RNH            sp3_sp3_10         CAJ         CAA         CAY         CAZ     180.000    10.0     3
+RNH             sp3_sp3_1         CAY         CAA         CAJ         CAK     180.000    10.0     3
+RNH            sp3_sp3_67         NAR         CAN         CAO         CAT     180.000    10.0     3
+RNH             sp2_sp3_8         CAU         NAR         CAN         CAO     120.000    10.0     6
+RNH            sp2_sp3_14         OAD         CAT         CAO         CAN     120.000    10.0     6
+RNH            sp3_sp3_76         CAW         CAP         OAS        HOAS     180.000    10.0     3
+RNH            sp3_sp3_80         OAS         CAP         CAW         CAB     -60.000    10.0     3
+RNH             sp2_sp2_3         OAD         CAT         NAQ         CAM       0.000     5.0     2
+RNH             sp2_sp2_7         OAE         CAU         NAR         CAN       0.000     5.0     2
+RNH            sp2_sp3_19         OAE         CAU         CAV         OAG       0.000    10.0     6
+RNH            sp3_sp3_88         OAG         CAV         CAW         CAB     180.000    10.0     3
+RNH            sp3_sp3_21         HAB         CAB         CAW         CAC      60.000    10.0     3
+RNH            sp3_sp3_97         CAA         CAY         CAZ         HAZ     180.000    10.0     3
+RNH            sp3_sp3_30         HAC         CAC         CAW         CAB      60.000    10.0     3
+RNH            sp3_sp3_37         CAU         CAV         OAG        HOAG     180.000    10.0     3
+RNH            sp3_sp3_40         CAA         CAJ         CAK         CAL     180.000    10.0     3
+RNH            sp3_sp3_49         CAJ         CAK         CAL         CAM     180.000    10.0     3
+RNH            sp3_sp3_58         CAK         CAL         CAM         NAQ     180.000    10.0     3
+RNH             sp2_sp3_2         CAT         NAQ         CAM         CAL     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RNH    chir_1    CAV    OAG    CAU    CAW    negative
+RNH    chir_2    CAW    CAV    CAP    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RNH    plan-1         CAM   0.020
+RNH    plan-1         CAT   0.020
+RNH    plan-1        HNAQ   0.020
+RNH    plan-1         NAQ   0.020
+RNH    plan-2         CAN   0.020
+RNH    plan-2         CAU   0.020
+RNH    plan-2        HNAR   0.020
+RNH    plan-2         NAR   0.020
+RNH    plan-3         CAO   0.020
+RNH    plan-3         CAT   0.020
+RNH    plan-3         NAQ   0.020
+RNH    plan-3         OAD   0.020
+RNH    plan-4         CAU   0.020
+RNH    plan-4         CAV   0.020
+RNH    plan-4         NAR   0.020
+RNH    plan-4         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RNH           SMILES              ACDLabs 12.01                                                                                                  O=C(NCCC(=O)NCCCCCCC)C(O)C(C)(C)CO
+RNH            InChI                InChI  1.03 InChI=1S/C16H32N2O4/c1-4-5-6-7-8-10-17-13(20)9-11-18-15(22)14(21)16(2,3)12-19/h14,19,21H,4-12H2,1-3H3,(H,17,20)(H,18,22)/t14-/m0/s1
+RNH         InChIKey                InChI  1.03                                                                                                         HHAVGBXLGVYXFF-AWEZNQCLSA-N
+RNH SMILES_CANONICAL               CACTVS 3.370                                                                                              CCCCCCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO
+RNH           SMILES               CACTVS 3.370                                                                                               CCCCCCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO
+RNH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                             CCCCCCCNC(=O)CCNC(=O)[C@@H](C(C)(C)CO)O
+RNH           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                  CCCCCCCNC(=O)CCNC(=O)C(C(C)(C)CO)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RNH acedrg               243         "dictionary generator"                  
+RNH acedrg_database      11          "data source"                           
+RNH rdkit                2017.03.2   "Chemoinformatics tool"
+RNH refmac5              5.8.0238    "optimization tool"                     

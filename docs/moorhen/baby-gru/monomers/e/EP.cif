@@ -1,0 +1,440 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EP    EP        "EPOTHILONE A"     NON-POLYMER     73     34     .     
+#
+data_comp_EP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EP      C13     C       CR15    0       -6.685      -16.464     15.129      
+EP      S1      S       S2      0       -7.369      -14.982     14.795      
+EP      C15     C       CR5     0       -5.951      -14.129     15.033      
+EP      C16     C       CH3     0       -5.886      -12.661     14.877      
+EP      N20     N       NRD5    0       -4.978      -14.912     15.356      
+EP      C12     C       CR5     0       -5.344      -16.260     15.430      
+EP      C10     C       C1      0       -4.354      -17.256     15.776      
+EP      C5      C       C       0       -4.382      -18.247     16.673      
+EP      C6      C       CH3     0       -5.540      -18.398     17.620      
+EP      C3      C       CH1     0       -3.287      -19.311     16.795      
+EP      C21     C       CH2     0       -2.159      -18.944     17.771      
+EP      C24     C       CH1     0       -1.607      -17.554     17.622      
+EP      O26     O       O2      0       -0.913      -17.239     16.388      
+EP      C27     C       CH1     0       -0.183      -17.202     17.641      
+EP      C32     C       CH2     0       0.914       -18.205     17.870      
+EP      C35     C       CH2     0       1.331       -18.963     16.613      
+EP      C38     C       CH2     0       2.029       -18.101     15.556      
+EP      C41     C       CH1     0       2.995       -18.847     14.612      
+EP      C43     C       CH3     0       3.998       -17.882     13.995      
+EP      C47     C       CH1     0       2.271       -19.714     13.559      
+EP      O49     O       OH1     0       3.221       -20.652     13.050      
+EP      C51     C       CH1     0       1.558       -18.962     12.416      
+EP      C53     C       CH3     0       2.408       -18.807     11.150      
+EP      C57     C       C       0       0.278       -19.721     12.024      
+EP      O58     O       O       0       0.397       -20.884     11.692      
+EP      C59     C       CT      0       -1.126      -19.065     12.037      
+EP      C64     C       CH3     0       -1.214      -18.003     13.151      
+EP      C60     C       CH3     0       -1.321      -18.365     10.679      
+EP      C68     C       CH1     0       -2.260      -20.125     12.250      
+EP      O70     O       OH1     0       -2.260      -21.091     11.182      
+EP      C72     C       CH2     0       -2.215      -20.858     13.594      
+EP      C75     C       C       0       -3.211      -20.346     14.601      
+EP      O2      O       O2      0       -2.618      -19.557     15.526      
+EP      O76     O       O       0       -4.389      -20.602     14.577      
+EP      H13     H       H       0       -7.166      -17.274     15.110      
+EP      H161    H       H       0       -4.984      -12.354     15.059      
+EP      H162    H       H       0       -6.499      -12.240     15.498      
+EP      H163    H       H       0       -6.130      -12.419     13.971      
+EP      H10     H       H       0       -3.564      -17.206     15.274      
+EP      H61     H       H       0       -5.300      -18.998     18.344      
+EP      H62     H       H       0       -6.305      -18.761     17.144      
+EP      H63     H       H       0       -5.776      -17.532     17.990      
+EP      H3      H       H       0       -3.696      -20.154     17.111      
+EP      H211    H       H       0       -2.500      -19.050     18.688      
+EP      H212    H       H       0       -1.432      -19.596     17.654      
+EP      H24     H       H       0       -2.210      -16.843     17.953      
+EP      H27     H       H       0       0.015       -16.294     17.979      
+EP      H321    H       H       0       0.620       -18.847     18.544      
+EP      H322    H       H       0       1.693       -17.739     18.228      
+EP      H351    H       H       0       0.536       -19.376     16.213      
+EP      H352    H       H       0       1.937       -19.688     16.878      
+EP      H381    H       H       0       2.531       -17.396     16.018      
+EP      H382    H       H       0       1.342       -17.662     15.013      
+EP      H41     H       H       0       3.515       -19.477     15.170      
+EP      H431    H       H       0       3.525       -17.184     13.510      
+EP      H432    H       H       0       4.581       -18.363     13.383      
+EP      H433    H       H       0       4.535       -17.478     14.699      
+EP      H47     H       H       0       1.576       -20.235     14.047      
+EP      H49     H       H       0       2.826       -21.269     12.623      
+EP      H51     H       H       0       1.336       -18.054     12.729      
+EP      H531    H       H       0       1.966       -18.192     10.539      
+EP      H532    H       H       0       2.517       -19.669     10.713      
+EP      H533    H       H       0       3.282       -18.453     11.382      
+EP      H641    H       H       0       -2.149      -17.817     13.348      
+EP      H642    H       H       0       -0.779      -17.183     12.862      
+EP      H643    H       H       0       -0.776      -18.338     13.953      
+EP      H601    H       H       0       -2.221      -17.998     10.632      
+EP      H602    H       H       0       -1.195      -19.007     9.960       
+EP      H603    H       H       0       -0.672      -17.646     10.587      
+EP      H68     H       H       0       -3.111      -19.643     12.200      
+EP      H70     H       H       0       -1.624      -21.646     11.275      
+EP      H721    H       H       0       -1.319      -20.797     13.988      
+EP      H722    H       H       0       -2.402      -21.810     13.448      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EP        C13          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+EP        C13         C12      DOUBLE       y     1.379  0.0196     1.379  0.0196
+EP         S1         C15      SINGLE       y     1.695  0.0200     1.695  0.0200
+EP        C15         C16      SINGLE       n     1.478  0.0100     1.478  0.0100
+EP        C15         N20      DOUBLE       y     1.286  0.0100     1.286  0.0100
+EP        N20         C12      SINGLE       y     1.390  0.0100     1.390  0.0100
+EP        C12         C10      SINGLE       n     1.445  0.0186     1.445  0.0186
+EP        C10          C5      DOUBLE       n     1.334  0.0100     1.334  0.0100
+EP         C5          C6      SINGLE       n     1.502  0.0100     1.502  0.0100
+EP         C5          C3      SINGLE       n     1.515  0.0183     1.515  0.0183
+EP         C3         C21      SINGLE       n     1.532  0.0100     1.532  0.0100
+EP         C3          O2      SINGLE       n     1.447  0.0139     1.447  0.0139
+EP        C21         C24      SINGLE       n     1.499  0.0101     1.499  0.0101
+EP        C24         O26      SINGLE       n     1.451  0.0100     1.451  0.0100
+EP        C24         C27      SINGLE       n     1.463  0.0100     1.463  0.0100
+EP        O26         C27      SINGLE       n     1.451  0.0100     1.451  0.0100
+EP        C27         C32      SINGLE       n     1.498  0.0124     1.498  0.0124
+EP        C32         C35      SINGLE       n     1.524  0.0100     1.524  0.0100
+EP        C35         C38      SINGLE       n     1.529  0.0154     1.529  0.0154
+EP        C38         C41      SINGLE       n     1.541  0.0100     1.541  0.0100
+EP        C41         C43      SINGLE       n     1.521  0.0151     1.521  0.0151
+EP        C41         C47      SINGLE       n     1.539  0.0120     1.539  0.0120
+EP        C47         O49      SINGLE       n     1.426  0.0179     1.426  0.0179
+EP        C47         C51      SINGLE       n     1.535  0.0100     1.535  0.0100
+EP        C51         C53      SINGLE       n     1.521  0.0173     1.521  0.0173
+EP        C51         C57      SINGLE       n     1.532  0.0100     1.532  0.0100
+EP        C57         O58      DOUBLE       n     1.209  0.0200     1.209  0.0200
+EP        C57         C59      SINGLE       n     1.542  0.0100     1.542  0.0100
+EP        C59         C64      SINGLE       n     1.538  0.0100     1.538  0.0100
+EP        C59         C60      SINGLE       n     1.538  0.0100     1.538  0.0100
+EP        C59         C68      SINGLE       n     1.550  0.0149     1.550  0.0149
+EP        C68         O70      SINGLE       n     1.437  0.0100     1.437  0.0100
+EP        C68         C72      SINGLE       n     1.522  0.0110     1.522  0.0110
+EP        C72         C75      SINGLE       n     1.502  0.0135     1.502  0.0135
+EP        C75          O2      SINGLE       n     1.334  0.0200     1.334  0.0200
+EP        C75         O76      DOUBLE       n     1.203  0.0150     1.203  0.0150
+EP        C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0200
+EP        C16        H161      SINGLE       n     1.089  0.0100     0.969  0.0144
+EP        C16        H162      SINGLE       n     1.089  0.0100     0.969  0.0144
+EP        C16        H163      SINGLE       n     1.089  0.0100     0.969  0.0144
+EP        C10         H10      SINGLE       n     1.082  0.0130     0.938  0.0170
+EP         C6         H61      SINGLE       n     1.089  0.0100     0.971  0.0140
+EP         C6         H62      SINGLE       n     1.089  0.0100     0.971  0.0140
+EP         C6         H63      SINGLE       n     1.089  0.0100     0.971  0.0140
+EP         C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0134
+EP        C21        H211      SINGLE       n     1.089  0.0100     0.984  0.0108
+EP        C21        H212      SINGLE       n     1.089  0.0100     0.984  0.0108
+EP        C24         H24      SINGLE       n     1.089  0.0100     0.989  0.0200
+EP        C27         H27      SINGLE       n     1.089  0.0100     0.989  0.0200
+EP        C32        H321      SINGLE       n     1.089  0.0100     0.976  0.0131
+EP        C32        H322      SINGLE       n     1.089  0.0100     0.976  0.0131
+EP        C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0160
+EP        C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0160
+EP        C38        H381      SINGLE       n     1.089  0.0100     0.981  0.0160
+EP        C38        H382      SINGLE       n     1.089  0.0100     0.981  0.0160
+EP        C41         H41      SINGLE       n     1.089  0.0100     0.989  0.0162
+EP        C43        H431      SINGLE       n     1.089  0.0100     0.973  0.0146
+EP        C43        H432      SINGLE       n     1.089  0.0100     0.973  0.0146
+EP        C43        H433      SINGLE       n     1.089  0.0100     0.973  0.0146
+EP        C47         H47      SINGLE       n     1.089  0.0100     0.995  0.0200
+EP        O49         H49      SINGLE       n     0.970  0.0120     0.848  0.0200
+EP        C51         H51      SINGLE       n     1.089  0.0100     0.990  0.0142
+EP        C53        H531      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C53        H532      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C53        H533      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C64        H641      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C64        H642      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C64        H643      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C60        H601      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C60        H602      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C60        H603      SINGLE       n     1.089  0.0100     0.973  0.0141
+EP        C68         H68      SINGLE       n     1.089  0.0100     0.978  0.0200
+EP        O70         H70      SINGLE       n     0.970  0.0120     0.848  0.0200
+EP        C72        H721      SINGLE       n     1.089  0.0100     0.981  0.0185
+EP        C72        H722      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EP         S1         C13         C12     108.144    3.00
+EP         S1         C13         H13     123.362    3.00
+EP        C12         C13         H13     128.494    1.50
+EP        C13          S1         C15     108.144    3.00
+EP         S1         C15         C16     123.466    3.00
+EP         S1         C15         N20     108.144    3.00
+EP        C16         C15         N20     128.390    3.00
+EP        C15         C16        H161     109.610    1.50
+EP        C15         C16        H162     109.610    1.50
+EP        C15         C16        H163     109.610    1.50
+EP       H161         C16        H162     109.334    1.50
+EP       H161         C16        H163     109.334    1.50
+EP       H162         C16        H163     109.334    1.50
+EP        C15         N20         C12     107.252    1.65
+EP        C13         C12         N20     108.316    1.50
+EP        C13         C12         C10     129.117    3.00
+EP        N20         C12         C10     122.566    3.00
+EP        C12         C10          C5     129.690    2.42
+EP        C12         C10         H10     115.554    1.96
+EP         C5         C10         H10     114.755    1.50
+EP        C10          C5          C6     120.819    2.85
+EP        C10          C5          C3     122.862    3.00
+EP         C6          C5          C3     116.319    2.45
+EP         C5          C6         H61     109.689    1.50
+EP         C5          C6         H62     109.689    1.50
+EP         C5          C6         H63     109.689    1.50
+EP        H61          C6         H62     109.342    1.50
+EP        H61          C6         H63     109.342    1.50
+EP        H62          C6         H63     109.342    1.50
+EP         C5          C3         C21     111.511    2.91
+EP         C5          C3          O2     110.354    2.51
+EP         C5          C3          H3     109.227    1.50
+EP        C21          C3          O2     104.997    1.62
+EP        C21          C3          H3     108.551    1.50
+EP         O2          C3          H3     109.237    1.50
+EP         C3         C21         C24     112.541    2.49
+EP         C3         C21        H211     108.540    1.50
+EP         C3         C21        H212     108.540    1.50
+EP        C24         C21        H211     109.099    1.50
+EP        C24         C21        H212     109.099    1.50
+EP       H211         C21        H212     107.717    1.63
+EP        C21         C24         O26     117.659    1.50
+EP        C21         C24         C27     123.472    1.82
+EP        C21         C24         H24     114.609    1.50
+EP        O26         C24         C27      59.566    1.50
+EP        O26         C24         H24     115.034    1.50
+EP        C27         C24         H24     115.168    1.50
+EP        C24         O26         C27      60.846    1.50
+EP        C24         C27         O26      59.566    1.50
+EP        C24         C27         C32     122.548    1.50
+EP        C24         C27         H27     115.168    1.50
+EP        O26         C27         C32     117.197    1.50
+EP        O26         C27         H27     115.034    1.50
+EP        C32         C27         H27     115.014    1.50
+EP        C27         C32         C35     112.091    1.50
+EP        C27         C32        H321     109.139    1.50
+EP        C27         C32        H322     109.139    1.50
+EP        C35         C32        H321     109.170    1.50
+EP        C35         C32        H322     109.170    1.50
+EP       H321         C32        H322     108.048    1.50
+EP        C32         C35         C38     114.268    1.50
+EP        C32         C35        H351     108.812    1.50
+EP        C32         C35        H352     108.812    1.50
+EP        C38         C35        H351     108.984    1.50
+EP        C38         C35        H352     108.984    1.50
+EP       H351         C35        H352     107.934    1.50
+EP        C35         C38         C41     115.586    1.50
+EP        C35         C38        H381     108.617    1.50
+EP        C35         C38        H382     108.617    1.50
+EP        C41         C38        H381     108.647    1.58
+EP        C41         C38        H382     108.647    1.58
+EP       H381         C38        H382     107.657    1.50
+EP        C38         C41         C43     111.118    1.50
+EP        C38         C41         C47     113.128    1.50
+EP        C38         C41         H41     107.675    1.50
+EP        C43         C41         C47     112.188    1.82
+EP        C43         C41         H41     107.528    1.50
+EP        C47         C41         H41     106.729    1.51
+EP        C41         C43        H431     109.636    1.50
+EP        C41         C43        H432     109.636    1.50
+EP        C41         C43        H433     109.636    1.50
+EP       H431         C43        H432     109.411    1.50
+EP       H431         C43        H433     109.411    1.50
+EP       H432         C43        H433     109.411    1.50
+EP        C41         C47         O49     108.702    3.00
+EP        C41         C47         C51     115.473    1.51
+EP        C41         C47         H47     107.756    1.50
+EP        O49         C47         C51     109.333    2.45
+EP        O49         C47         H47     108.007    1.50
+EP        C51         C47         H47     107.758    1.74
+EP        C47         O49         H49     110.295    3.00
+EP        C47         C51         C53     112.203    1.50
+EP        C47         C51         C57     109.354    1.50
+EP        C47         C51         H51     108.824    1.50
+EP        C53         C51         C57     107.821    1.77
+EP        C53         C51         H51     108.296    1.70
+EP        C57         C51         H51     109.514    1.50
+EP        C51         C53        H531     109.528    1.50
+EP        C51         C53        H532     109.528    1.50
+EP        C51         C53        H533     109.528    1.50
+EP       H531         C53        H532     109.411    1.50
+EP       H531         C53        H533     109.411    1.50
+EP       H532         C53        H533     109.411    1.50
+EP        C51         C57         O58     118.576    1.50
+EP        C51         C57         C59     120.579    1.50
+EP        O58         C57         C59     120.845    1.50
+EP        C57         C59         C64     108.450    1.62
+EP        C57         C59         C60     108.450    1.62
+EP        C57         C59         C68     111.224    2.89
+EP        C64         C59         C60     109.133    1.50
+EP        C64         C59         C68     110.411    1.50
+EP        C60         C59         C68     110.411    1.50
+EP        C59         C64        H641     109.286    1.50
+EP        C59         C64        H642     109.286    1.50
+EP        C59         C64        H643     109.286    1.50
+EP       H641         C64        H642     109.377    1.50
+EP       H641         C64        H643     109.377    1.50
+EP       H642         C64        H643     109.377    1.50
+EP        C59         C60        H601     109.286    1.50
+EP        C59         C60        H602     109.286    1.50
+EP        C59         C60        H603     109.286    1.50
+EP       H601         C60        H602     109.377    1.50
+EP       H601         C60        H603     109.377    1.50
+EP       H602         C60        H603     109.377    1.50
+EP        C59         C68         O70     109.802    2.24
+EP        C59         C68         C72     113.666    1.50
+EP        C59         C68         H68     107.664    1.50
+EP        O70         C68         C72     108.191    2.93
+EP        O70         C68         H68     108.091    1.55
+EP        C72         C68         H68     108.181    1.50
+EP        C68         O70         H70     107.856    2.97
+EP        C68         C72         C75     112.540    3.00
+EP        C68         C72        H721     109.554    1.98
+EP        C68         C72        H722     109.554    1.98
+EP        C75         C72        H721     108.625    1.50
+EP        C75         C72        H722     108.625    1.50
+EP       H721         C72        H722     107.737    1.50
+EP        C72         C75          O2     112.165    3.00
+EP        C72         C75         O76     124.982    1.50
+EP         O2         C75         O76     122.853    2.43
+EP         C3          O2         C75     116.394    1.84
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EP      const_sp2_sp2_1         C12         C13          S1         C15       0.000     5.0     2
+EP            sp2_sp3_1          S1         C15         C16        H161     150.000    10.0     6
+EP           sp3_sp3_21          C3         C21         C24         H24      60.000    10.0     3
+EP            sp3_sp3_1         C21         C24         O26         C27      60.000    10.0     3
+EP           sp3_sp3_32         O26         C24         C27         C32     180.000    10.0     3
+EP      const_sp2_sp2_9         N20         C12         C13          S1       0.000     5.0     2
+EP           sp3_sp3_40         O26         C27         C32         C35      60.000    10.0     3
+EP           sp3_sp3_49        H321         C32         C35         C38      60.000    10.0     3
+EP           sp3_sp3_58        H351         C35         C38         C41      60.000    10.0     3
+EP           sp3_sp3_67        H381         C38         C41         C43      60.000    10.0     3
+EP           sp3_sp3_76         C47         C41         C43        H431      60.000    10.0     3
+EP           sp3_sp3_85         C43         C41         C47         O49      60.000    10.0     3
+EP           sp3_sp3_94         C41         C47         C51         C53     180.000    10.0     3
+EP           sp3_sp3_97         O49         C47         C51         C53      60.000    10.0     3
+EP      const_sp2_sp2_4         C16         C15          S1         C13     180.000     5.0     2
+EP          sp3_sp3_106         C57         C51         C53        H531      60.000    10.0     3
+EP           sp2_sp3_22         C59         C57         C51         C47     180.000    10.0     6
+EP           sp2_sp3_28         O58         C57         C59         C64     180.000    10.0     6
+EP          sp3_sp3_118         C60         C59         C64        H641     -60.000    10.0     3
+EP          sp3_sp3_124         C68         C59         C60        H601      60.000    10.0     3
+EP          sp3_sp3_133         C64         C59         C68         O70      60.000    10.0     3
+EP          sp3_sp3_142         C59         C68         C72         C75     180.000    10.0     3
+EP          sp3_sp3_145         O70         C68         C72         C75      60.000    10.0     3
+EP            sp2_sp3_3          S1         C15         C16        H163      30.000    10.0     6
+EP      const_sp2_sp2_6         C16         C15         N20         C12     180.000     5.0     2
+EP           sp2_sp3_35         O76         C75         C72         C68     -60.000    10.0     6
+EP            sp2_sp2_9         C72         C75          O2          C3     180.000     5.0     2
+EP      const_sp2_sp2_8         C10         C12         N20         C15     180.000     5.0     2
+EP            sp2_sp2_3         H10         C10         C12         C13       0.000     5.0     2
+EP            sp2_sp2_8         H10         C10          C5          C6     180.000     5.0     2
+EP            sp2_sp3_9         C10          C5          C6         H63    -120.000    10.0     6
+EP           sp2_sp3_15         C10          C5          C3          H3    -120.000    10.0     6
+EP            sp3_sp3_9         C24         C21          C3          H3      60.000    10.0     3
+EP           sp3_sp3_18          H3          C3          O2         C75      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EP   chir_1    C3    O2    C5    C21    positive
+EP   chir_2    C24    O26    C27    C21    positive
+EP   chir_3    C27    O26    C24    C32    negative
+EP   chir_4    C41    C47    C38    C43    positive
+EP   chir_5    C47    O49    C51    C41    positive
+EP   chir_6    C51    C57    C47    C53    negative
+EP   chir_7    C59    C57    C68    C64    both
+EP   chir_8    C68    O70    C59    C72    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EP   plan-1         C10   0.020
+EP   plan-1         C12   0.020
+EP   plan-1         C13   0.020
+EP   plan-1         C15   0.020
+EP   plan-1         C16   0.020
+EP   plan-1         H13   0.020
+EP   plan-1         N20   0.020
+EP   plan-1          S1   0.020
+EP   plan-2         C10   0.020
+EP   plan-2         C12   0.020
+EP   plan-2          C5   0.020
+EP   plan-2         H10   0.020
+EP   plan-3         C10   0.020
+EP   plan-3          C3   0.020
+EP   plan-3          C5   0.020
+EP   plan-3          C6   0.020
+EP   plan-4         C51   0.020
+EP   plan-4         C57   0.020
+EP   plan-4         C59   0.020
+EP   plan-4         O58   0.020
+EP   plan-5         C72   0.020
+EP   plan-5         C75   0.020
+EP   plan-5          O2   0.020
+EP   plan-5         O76   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EP           SMILES              ACDLabs 10.04                                                                                                                                                      O=C1C(C)C(O)C(C)CCCC3OC3CC(OC(=O)CC(O)C1(C)C)/C(=C/c2nc(sc2)C)C
+EP            InChI                InChI  1.03 InChI=1S/C26H39NO6S/c1-14-8-7-9-19-21(32-19)11-20(15(2)10-18-13-34-17(4)27-18)33-23(29)12-22(28)26(5,6)25(31)16(3)24(14)30/h10,13-14,16,19-22,24,28,30H,7-9,11-12H2,1-6H3/b15-10+/t14-,16+,19+,20-,21-,22-,24-/m0/s1
+EP         InChIKey                InChI  1.03                                                                                                                                                                                          HESCAJZNRMSMJG-KKQRBIROSA-N
+EP SMILES_CANONICAL               CACTVS 3.385                                                                                                                          C[C@H]1CCC[C@H]2O[C@H]2C[C@H](OC(=O)C[C@H](O)C(C)(C)C(=O)[C@H](C)[C@H]1O)C(/C)=C/c3csc(C)n3
+EP           SMILES               CACTVS 3.385                                                                                                                                   C[CH]1CCC[CH]2O[CH]2C[CH](OC(=O)C[CH](O)C(C)(C)C(=O)[CH](C)[CH]1O)C(C)=Cc3csc(C)n3
+EP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                                  Cc1nc(cs1)/C=C(\C)/[C@@H]2C[C@H]3[C@H](O3)CCC[C@@H]([C@@H]([C@H](C(=O)C([C@H](CC(=O)O2)O)(C)C)C)O)C
+EP           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                                    Cc1nc(cs1)C=C(C)C2CC3C(O3)CCCC(C(C(C(=O)C(C(CC(=O)O2)O)(C)C)C)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EP  acedrg               243         "dictionary generator"                  
+EP  acedrg_database      11          "data source"                           
+EP  rdkit                2017.03.2   "Chemoinformatics tool"
+EP  refmac5              5.8.0238    "optimization tool"                     

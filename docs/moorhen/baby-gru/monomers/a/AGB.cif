@@ -1,0 +1,370 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AGB     AGB      "N-(1-ADAMANTYL)-N'-(4-GUANIDINOBENZYL)UREA"     NON-POLYMER     53     25     .     
+#
+data_comp_AGB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AGB     C1      C       CH1     0       22.495      11.567      27.606      
+AGB     C2      C       CH2     0       22.739      12.878      28.362      
+AGB     C3      C       CH2     0       23.827      10.810      27.450      
+AGB     C4      C       CH2     0       21.506      10.700      28.391      
+AGB     C5      C       CH2     0       22.327      11.702      30.532      
+AGB     C6      C       CH1     0       23.319      12.565      29.745      
+AGB     C7      C       CH1     0       22.084      10.392      29.777      
+AGB     C8      C       CH2     0       24.646      11.801      29.583      
+AGB     C9      C       CH2     0       23.416      9.636       29.619      
+AGB     C10     C       CT      0       24.426      10.481      28.827      
+AGB     N1      N       NH1     0       27.259      8.144       28.094      
+AGB     C12     C       C       0       25.968      8.560       28.079      
+AGB     N2      N       NH1     0       25.720      9.773       28.689      
+AGB     O1      O       O       0       25.070      7.879       27.543      
+AGB     C11     C       CH2     0       27.662      6.886       27.489      
+AGB     C13     C       CR16    0       29.645      5.626       28.411      
+AGB     C14     C       CR6     0       29.143      6.606       27.563      
+AGB     C15     C       CR16    0       30.041      7.313       26.774      
+AGB     C16     C       CR16    0       31.403      7.057       26.830      
+AGB     C17     C       CR6     0       31.894      6.076       27.684      
+AGB     C18     C       CR16    0       31.004      5.361       28.478      
+AGB     N3      N       NH1     0       33.293      5.834       27.723      
+AGB     N4      N       NH2     1       33.493      3.577       27.192      
+AGB     C19     C       C       0       33.924      4.632       27.859      
+AGB     N5      N       NH2     0       34.974      4.545       28.650      
+AGB     H1      H       H       0       22.121      11.768      26.709      
+AGB     H21     H       H       0       23.367      13.442      27.857      
+AGB     H22     H       H       0       21.892      13.369      28.459      
+AGB     H31     H       H       0       23.673      9.981       26.948      
+AGB     H32     H       H       0       24.462      11.361      26.940      
+AGB     H41     H       H       0       21.341      9.860       27.905      
+AGB     H42     H       H       0       20.649      11.174      28.486      
+AGB     H51     H       H       0       22.690      11.509      31.427      
+AGB     H52     H       H       0       21.478      12.187      30.642      
+AGB     H6      H       H       0       23.482      13.413      30.236      
+AGB     H7      H       H       0       21.442      9.830       30.286      
+AGB     H81     H       H       0       25.027      11.610      30.469      
+AGB     H82     H       H       0       25.289      12.357      29.090      
+AGB     H91     H       H       0       23.256      8.787       29.153      
+AGB     H92     H       H       0       23.787      9.431       30.506      
+AGB     HN1     H       H       0       27.865      8.645       28.478      
+AGB     HN2     H       H       0       26.424      10.196      29.052      
+AGB     H111    H       H       0       27.390      6.893       26.547      
+AGB     H112    H       H       0       27.177      6.159       27.931      
+AGB     H13     H       H       0       29.052      5.133       28.954      
+AGB     H15     H       H       0       29.721      7.980       26.189      
+AGB     H16     H       H       0       31.997      7.548       26.289      
+AGB     H18     H       H       0       31.324      4.694       29.061      
+AGB     HN3     H       H       0       33.805      6.540       27.652      
+AGB     HN4     H       H       0       33.888      2.798       27.295      
+AGB     H5      H       H       0       32.819      3.653       26.632      
+AGB     HN51    H       H       0       35.392      3.776       28.748      
+AGB     HN52    H       H       0       35.262      5.259       29.080      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AGB          C1          C2      SINGLE       n     1.529  0.0100     1.529  0.0100
+AGB          C1          C3      SINGLE       n     1.536  0.0100     1.536  0.0100
+AGB          C1          C4      SINGLE       n     1.529  0.0100     1.529  0.0100
+AGB          C2          C6      SINGLE       n     1.529  0.0100     1.529  0.0100
+AGB          C3         C10      SINGLE       n     1.532  0.0100     1.532  0.0100
+AGB          C4          C7      SINGLE       n     1.529  0.0100     1.529  0.0100
+AGB          C5          C6      SINGLE       n     1.529  0.0100     1.529  0.0100
+AGB          C5          C7      SINGLE       n     1.529  0.0100     1.529  0.0100
+AGB          C6          C8      SINGLE       n     1.536  0.0100     1.536  0.0100
+AGB          C7          C9      SINGLE       n     1.536  0.0100     1.536  0.0100
+AGB          C8         C10      SINGLE       n     1.532  0.0100     1.532  0.0100
+AGB          C9         C10      SINGLE       n     1.532  0.0100     1.532  0.0100
+AGB         C10          N2      SINGLE       n     1.476  0.0100     1.476  0.0100
+AGB          N1         C12      SINGLE       n     1.351  0.0100     1.351  0.0100
+AGB          N1         C11      SINGLE       n     1.450  0.0100     1.450  0.0100
+AGB         C12          N2      SINGLE       n     1.351  0.0200     1.351  0.0200
+AGB         C12          O1      DOUBLE       n     1.243  0.0179     1.243  0.0179
+AGB         C11         C14      SINGLE       n     1.508  0.0100     1.508  0.0100
+AGB         C13         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AGB         C13         C18      SINGLE       y     1.383  0.0100     1.383  0.0100
+AGB         C14         C15      SINGLE       y     1.386  0.0100     1.386  0.0100
+AGB         C15         C16      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AGB         C16         C17      SINGLE       y     1.386  0.0100     1.386  0.0100
+AGB         C17         C18      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AGB         C17          N3      SINGLE       n     1.418  0.0100     1.418  0.0100
+AGB          N3         C19      SINGLE       n     1.358  0.0160     1.358  0.0160
+AGB          N4         C19      DOUBLE       n     1.318  0.0103     1.318  0.0103
+AGB         C19          N5      SINGLE       n     1.316  0.0104     1.316  0.0104
+AGB          C1          H1      SINGLE       n     1.089  0.0100     0.993  0.0148
+AGB          C2         H21      SINGLE       n     1.089  0.0100     0.984  0.0144
+AGB          C2         H22      SINGLE       n     1.089  0.0100     0.984  0.0144
+AGB          C3         H31      SINGLE       n     1.089  0.0100     0.983  0.0150
+AGB          C3         H32      SINGLE       n     1.089  0.0100     0.983  0.0150
+AGB          C4         H41      SINGLE       n     1.089  0.0100     0.984  0.0144
+AGB          C4         H42      SINGLE       n     1.089  0.0100     0.984  0.0144
+AGB          C5         H51      SINGLE       n     1.089  0.0100     0.984  0.0144
+AGB          C5         H52      SINGLE       n     1.089  0.0100     0.984  0.0144
+AGB          C6          H6      SINGLE       n     1.089  0.0100     0.993  0.0148
+AGB          C7          H7      SINGLE       n     1.089  0.0100     0.993  0.0148
+AGB          C8         H81      SINGLE       n     1.089  0.0100     0.983  0.0150
+AGB          C8         H82      SINGLE       n     1.089  0.0100     0.983  0.0150
+AGB          C9         H91      SINGLE       n     1.089  0.0100     0.983  0.0150
+AGB          C9         H92      SINGLE       n     1.089  0.0100     0.983  0.0150
+AGB          N1         HN1      SINGLE       n     1.016  0.0100     0.874  0.0186
+AGB          N2         HN2      SINGLE       n     1.016  0.0100     0.896  0.0200
+AGB         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0169
+AGB         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0169
+AGB         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+AGB         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0173
+AGB         C16         H16      SINGLE       n     1.082  0.0130     0.942  0.0183
+AGB         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0183
+AGB          N3         HN3      SINGLE       n     1.016  0.0100     0.874  0.0200
+AGB          N4         HN4      SINGLE       n     1.016  0.0100     0.879  0.0200
+AGB          N4          H5      SINGLE       n     1.016  0.0100     0.879  0.0200
+AGB          N5        HN51      SINGLE       n     1.016  0.0100     0.881  0.0200
+AGB          N5        HN52      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AGB          C2          C1          C3     109.338    1.50
+AGB          C2          C1          C4     109.627    1.50
+AGB          C2          C1          H1     109.490    1.50
+AGB          C3          C1          C4     109.338    1.50
+AGB          C3          C1          H1     109.474    1.50
+AGB          C4          C1          H1     109.490    1.50
+AGB          C1          C2          C6     109.494    1.50
+AGB          C1          C2         H21     109.767    1.50
+AGB          C1          C2         H22     109.767    1.50
+AGB          C6          C2         H21     109.767    1.50
+AGB          C6          C2         H22     109.767    1.50
+AGB         H21          C2         H22     108.211    1.50
+AGB          C1          C3         C10     110.080    1.50
+AGB          C1          C3         H31     109.746    1.50
+AGB          C1          C3         H32     109.746    1.50
+AGB         C10          C3         H31     109.530    1.50
+AGB         C10          C3         H32     109.530    1.50
+AGB         H31          C3         H32     108.189    1.50
+AGB          C1          C4          C7     109.494    1.50
+AGB          C1          C4         H41     109.767    1.50
+AGB          C1          C4         H42     109.767    1.50
+AGB          C7          C4         H41     109.767    1.50
+AGB          C7          C4         H42     109.767    1.50
+AGB         H41          C4         H42     108.211    1.50
+AGB          C6          C5          C7     109.494    1.50
+AGB          C6          C5         H51     109.767    1.50
+AGB          C6          C5         H52     109.767    1.50
+AGB          C7          C5         H51     109.767    1.50
+AGB          C7          C5         H52     109.767    1.50
+AGB         H51          C5         H52     108.211    1.50
+AGB          C2          C6          C5     109.627    1.50
+AGB          C2          C6          C8     109.338    1.50
+AGB          C2          C6          H6     109.490    1.50
+AGB          C5          C6          C8     109.338    1.50
+AGB          C5          C6          H6     109.490    1.50
+AGB          C8          C6          H6     109.474    1.50
+AGB          C4          C7          C5     109.627    1.50
+AGB          C4          C7          C9     109.338    1.50
+AGB          C4          C7          H7     109.490    1.50
+AGB          C5          C7          C9     109.338    1.50
+AGB          C5          C7          H7     109.490    1.50
+AGB          C9          C7          H7     109.474    1.50
+AGB          C6          C8         C10     110.080    1.50
+AGB          C6          C8         H81     109.746    1.50
+AGB          C6          C8         H82     109.746    1.50
+AGB         C10          C8         H81     109.530    1.50
+AGB         C10          C8         H82     109.530    1.50
+AGB         H81          C8         H82     108.189    1.50
+AGB          C7          C9         C10     110.080    1.50
+AGB          C7          C9         H91     109.746    1.50
+AGB          C7          C9         H92     109.746    1.50
+AGB         C10          C9         H91     109.530    1.50
+AGB         C10          C9         H92     109.530    1.50
+AGB         H91          C9         H92     108.189    1.50
+AGB          C3         C10          C8     109.032    1.50
+AGB          C3         C10          C9     109.032    1.50
+AGB          C3         C10          N2     109.749    2.21
+AGB          C8         C10          C9     109.032    1.50
+AGB          C8         C10          N2     109.749    2.21
+AGB          C9         C10          N2     109.749    2.21
+AGB         C12          N1         C11     121.790    1.50
+AGB         C12          N1         HN1     118.760    1.50
+AGB         C11          N1         HN1     119.451    1.54
+AGB          N1         C12          N2     115.128    1.50
+AGB          N1         C12          O1     122.382    1.50
+AGB          N2         C12          O1     122.490    1.58
+AGB         C10          N2         C12     125.891    2.23
+AGB         C10          N2         HN2     116.218    1.56
+AGB         C12          N2         HN2     117.891    2.02
+AGB          N1         C11         C14     113.692    1.56
+AGB          N1         C11        H111     108.810    1.50
+AGB          N1         C11        H112     108.810    1.50
+AGB         C14         C11        H111     109.073    1.50
+AGB         C14         C11        H112     109.073    1.50
+AGB        H111         C11        H112     107.860    1.50
+AGB         C14         C13         C18     121.198    1.50
+AGB         C14         C13         H13     119.506    1.50
+AGB         C18         C13         H13     119.297    1.50
+AGB         C11         C14         C13     120.809    1.50
+AGB         C11         C14         C15     120.809    1.50
+AGB         C13         C14         C15     118.381    1.50
+AGB         C14         C15         C16     121.198    1.50
+AGB         C14         C15         H15     119.506    1.50
+AGB         C16         C15         H15     119.297    1.50
+AGB         C15         C16         C17     119.967    1.50
+AGB         C15         C16         H16     120.120    1.50
+AGB         C17         C16         H16     119.919    1.50
+AGB         C16         C17         C18     119.279    1.50
+AGB         C16         C17          N3     120.361    2.62
+AGB         C18         C17          N3     120.361    2.62
+AGB         C13         C18         C17     119.967    1.50
+AGB         C13         C18         H18     120.120    1.50
+AGB         C17         C18         H18     119.919    1.50
+AGB         C17          N3         C19     125.815    2.59
+AGB         C17          N3         HN3     116.765    1.63
+AGB         C19          N3         HN3     117.420    1.50
+AGB         C19          N4         HN4     119.922    1.50
+AGB         C19          N4          H5     119.922    1.50
+AGB         HN4          N4          H5     120.156    2.09
+AGB          N3         C19          N4     119.670    1.68
+AGB          N3         C19          N5     119.670    1.68
+AGB          N4         C19          N5     120.661    1.50
+AGB         C19          N5        HN51     119.922    1.50
+AGB         C19          N5        HN52     119.922    1.50
+AGB        HN51          N5        HN52     120.156    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AGB             sp3_sp3_1          C3          C1          C2          C6      60.000    10.0     3
+AGB            sp3_sp3_46          C2          C1          C3         C10      60.000    10.0     3
+AGB           sp3_sp3_100          C2          C1          C4          C7     180.000    10.0     3
+AGB             sp2_sp2_1          N2         C12          N1         C11     180.000     5.0     2
+AGB             sp2_sp3_8         C12          N1         C11         C14     120.000    10.0     6
+AGB             sp2_sp2_5          N1         C12          N2         C10     180.000     5.0     2
+AGB            sp2_sp3_14         C13         C14         C11          N1     -90.000    10.0     6
+AGB       const_sp2_sp2_2         C18         C13         C14         C11     180.000     5.0     2
+AGB              const_21         C14         C13         C18         C17       0.000    10.0     2
+AGB       const_sp2_sp2_7         C11         C14         C15         C16     180.000     5.0     2
+AGB       const_sp2_sp2_9         C14         C15         C16         C17       0.000     5.0     2
+AGB              const_14         C15         C16         C17          N3     180.000    10.0     2
+AGB              const_19          N3         C17         C18         C13     180.000    10.0     2
+AGB             sp2_sp2_9         C16         C17          N3         C19     180.000     5.0     2
+AGB            sp3_sp3_10          C1          C2          C6          C5     -60.000    10.0     3
+AGB            sp2_sp2_13          N4         C19          N3         C17     180.000     5.0     2
+AGB            sp2_sp2_17          N3         C19          N4         HN4     180.000     5.0     2
+AGB            sp2_sp2_21          N3         C19          N5        HN51     180.000     5.0     2
+AGB            sp3_sp3_43          N2         C10          C3          C1     180.000    10.0     3
+AGB            sp3_sp3_73          C1          C4          C7          C5      60.000    10.0     3
+AGB            sp3_sp3_82          C7          C5          C6          C2      60.000    10.0     3
+AGB            sp3_sp3_91          C6          C5          C7          C4     -60.000    10.0     3
+AGB            sp3_sp3_19          C2          C6          C8         C10      60.000    10.0     3
+AGB            sp3_sp3_64          C4          C7          C9         C10     -60.000    10.0     3
+AGB            sp3_sp3_31          N2         C10          C8          C6     180.000    10.0     3
+AGB            sp3_sp3_61          N2         C10          C9          C7     180.000    10.0     3
+AGB             sp2_sp3_2         C12          N2         C10          C3     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AGB    chir_1    C1    C3    C2    C4    both
+AGB    chir_2    C6    C8    C2    C5    both
+AGB    chir_3    C7    C9    C4    C5    both
+AGB    chir_4    C10    N2    C3    C8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AGB    plan-1         C11   0.020
+AGB    plan-1         C13   0.020
+AGB    plan-1         C14   0.020
+AGB    plan-1         C15   0.020
+AGB    plan-1         C16   0.020
+AGB    plan-1         C17   0.020
+AGB    plan-1         C18   0.020
+AGB    plan-1         H13   0.020
+AGB    plan-1         H15   0.020
+AGB    plan-1         H16   0.020
+AGB    plan-1         H18   0.020
+AGB    plan-1          N3   0.020
+AGB    plan-2         C11   0.020
+AGB    plan-2         C12   0.020
+AGB    plan-2         HN1   0.020
+AGB    plan-2          N1   0.020
+AGB    plan-3         C12   0.020
+AGB    plan-3          N1   0.020
+AGB    plan-3          N2   0.020
+AGB    plan-3          O1   0.020
+AGB    plan-4         C10   0.020
+AGB    plan-4         C12   0.020
+AGB    plan-4         HN2   0.020
+AGB    plan-4          N2   0.020
+AGB    plan-5         C17   0.020
+AGB    plan-5         C19   0.020
+AGB    plan-5         HN3   0.020
+AGB    plan-5          N3   0.020
+AGB    plan-6         C19   0.020
+AGB    plan-6          H5   0.020
+AGB    plan-6         HN4   0.020
+AGB    plan-6          N4   0.020
+AGB    plan-7         C19   0.020
+AGB    plan-7          N3   0.020
+AGB    plan-7          N4   0.020
+AGB    plan-7          N5   0.020
+AGB    plan-8         C19   0.020
+AGB    plan-8        HN51   0.020
+AGB    plan-8        HN52   0.020
+AGB    plan-8          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AGB           SMILES              ACDLabs 10.04                                                                                                                O=C(NCc1ccc(NC(=[N@H])N)cc1)NC24CC3CC(CC(C2)C3)C4
+AGB SMILES_CANONICAL               CACTVS 3.341                                                                                                                    NC(=N)Nc1ccc(CNC(=O)NC23CC4CC(CC(C4)C2)C3)cc1
+AGB           SMILES               CACTVS 3.341                                                                                                                    NC(=N)Nc1ccc(CNC(=O)NC23CC4CC(CC(C4)C2)C3)cc1
+AGB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                            "[H]/N=C(/N)\Nc1ccc(cc1)CNC(=O)NC23CC4CC(C2)CC(C4)C3"
+AGB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                               "[H]N=C(N)Nc1ccc(cc1)CNC(=O)NC23CC4CC(C2)CC(C4)C3"
+AGB            InChI                InChI  1.03 InChI=1S/C19H27N5O/c20-17(21)23-16-3-1-12(2-4-16)11-22-18(25)24-19-8-13-5-14(9-19)7-15(6-13)10-19/h1-4,13-15H,5-11H2,(H4,20,21,23)(H2,22,24,25)/t13-,14+,15-,19-
+AGB         InChIKey                InChI  1.03                                                                                                                                      YQPLKJCBEOVDBS-CSVIQDERSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AGB acedrg               243         "dictionary generator"                  
+AGB acedrg_database      11          "data source"                           
+AGB rdkit                2017.03.2   "Chemoinformatics tool"
+AGB refmac5              5.8.0238    "optimization tool"                     

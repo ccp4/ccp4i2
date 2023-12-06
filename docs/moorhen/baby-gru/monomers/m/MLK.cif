@@ -1,0 +1,594 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MLK     MLK      METHYLLYCACONITINE     NON-POLYMER     99     49     .     
+#
+data_comp_MLK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MLK     O8      O       O       0       1.555       -0.620      -13.187     
+MLK     C8      C       CR5     0       0.744       -1.362      -12.686     
+MLK     C9      C       CH2     0       -0.523      -0.990      -11.979     
+MLK     C10     C       CH1     0       -1.221      -2.319      -11.669     
+MLK     C12     C       CH3     0       -1.779      -2.374      -10.254     
+MLK     C11     C       CR5     0       -0.157      -3.354      -11.941     
+MLK     O11     O       O       0       -0.159      -4.508      -11.587     
+MLK     N7      N       NR5     0       0.855       -2.755      -12.680     
+MLK     C6      C       CR6     0       1.880       -3.491      -13.375     
+MLK     C5      C       CR16    0       1.541       -4.112      -14.567     
+MLK     C4      C       CR16    0       2.494       -4.836      -15.269     
+MLK     C3      C       CR16    0       3.783       -4.941      -14.779     
+MLK     C2      C       CR16    0       4.121       -4.326      -13.589     
+MLK     C1      C       CR6     0       3.188       -3.588      -12.861     
+MLK     C13     C       C       0       3.599       -2.942      -11.582     
+MLK     O13     O       O       0       2.961       -3.045      -10.564     
+MLK     O14     O       O2      0       4.745       -2.249      -11.704     
+MLK     C15     C       CH2     0       5.382       -1.730      -10.496     
+MLK     C16     C       CT      0       6.891       -1.463      -10.728     
+MLK     C21     C       CH2     0       7.554       -2.857      -10.855     
+MLK     C20     C       CH2     0       8.665       -2.952      -11.887     
+MLK     C19     C       CH1     0       9.514       -1.686      -11.995     
+MLK     O19     O       O2      0       10.365      -1.622      -10.842     
+MLK     C22     C       CH3     0       11.642      -2.220      -11.011     
+MLK     C18     C       CT      0       8.719       -0.352      -12.150     
+MLK     C17     C       CH1     0       7.163       -0.566      -11.986     
+MLK     C26     C       CH1     0       8.865       0.712       -11.045     
+MLK     N23     N       NT      0       8.660       0.090       -9.717      
+MLK     C24     C       CH2     0       9.031       0.936       -8.548      
+MLK     C25     C       CH3     0       9.839       0.197       -7.503      
+MLK     C23     C       CH2     0       7.425       -0.696      -9.475      
+MLK     C30     C       CH1     0       9.193       0.306       -13.498     
+MLK     C33     C       CH2     0       10.740      0.549       -13.646     
+MLK     C34     C       CH1     0       10.939      2.007       -14.086     
+MLK     C35     C       CH1     0       11.046      2.962       -12.884     
+MLK     O35     O       O2      0       11.809      4.106       -13.294     
+MLK     C37     C       CH3     0       13.214      3.981       -13.084     
+MLK     C36     C       CH2     0       9.692       3.442       -12.318     
+MLK     C31     C       CH1     0       8.605       1.687       -13.913     
+MLK     C38     C       CH1     0       9.668       2.204       -14.911     
+MLK     O38     O       O2      0       9.392       3.526       -15.379     
+MLK     C39     C       CH3     0       8.432       3.587       -16.423     
+MLK     C32     C       CT      0       8.387       2.645       -12.693     
+MLK     O32     O       OH1     0       7.369       3.624       -13.042     
+MLK     C27     C       CT      0       7.829       1.783       -11.499     
+MLK     O27     O       OH1     0       7.444       2.665       -10.431     
+MLK     C28     C       CH1     0       6.593       0.904       -11.812     
+MLK     O28     O       O2      0       5.778       1.418       -12.866     
+MLK     C29     C       CH3     0       4.530       0.756       -13.029     
+MLK     H9C1    H       H       0       -0.328      -0.503      -11.158     
+MLK     H9C2    H       H       0       -1.084      -0.434      -12.548     
+MLK     H10     H       H       0       -1.960      -2.452      -12.312     
+MLK     H121    H       H       0       -1.064      -2.564      -9.627      
+MLK     H122    H       H       0       -2.450      -3.073      -10.196     
+MLK     H123    H       H       0       -2.184      -1.521      -10.030     
+MLK     H5      H       H       0       0.669       -4.039      -14.896     
+MLK     H4      H       H       0       2.260       -5.256      -16.080     
+MLK     H3      H       H       0       4.431       -5.433      -15.256     
+MLK     H2      H       H       0       5.001       -4.403      -13.265     
+MLK     H151    H       H       0       5.283       -2.370      -9.768      
+MLK     H152    H       H       0       4.936       -0.909      -10.233     
+MLK     H211    H       H       0       7.916       -3.113      -9.993      
+MLK     H212    H       H       0       6.876       -3.512      -11.083     
+MLK     H201    H       H       0       8.272       -3.140      -12.758     
+MLK     H202    H       H       0       9.244       -3.700      -11.660     
+MLK     H19     H       H       0       10.093      -1.803      -12.796     
+MLK     H221    H       H       0       12.099      -2.252      -10.155     
+MLK     H222    H       H       0       12.166      -1.695      -11.637     
+MLK     H223    H       H       0       11.537      -3.122      -11.354     
+MLK     H17     H       H       0       6.793       -0.982      -12.789     
+MLK     H26     H       H       0       9.770       1.091       -11.076     
+MLK     H241    H       H       0       8.222       1.283       -8.131      
+MLK     H242    H       H       0       9.549       1.701       -8.857      
+MLK     H251    H       H       0       10.070      0.802       -6.786      
+MLK     H252    H       H       0       10.648      -0.148      -7.906      
+MLK     H253    H       H       0       9.317       -0.537      -7.150      
+MLK     H231    H       H       0       7.602       -1.334      -8.765      
+MLK     H232    H       H       0       6.735       -0.096      -9.151      
+MLK     H30     H       H       0       8.944       -0.323      -14.209     
+MLK     H331    H       H       0       11.204      0.381       -12.798     
+MLK     H332    H       H       0       11.112      -0.058      -14.323     
+MLK     H34     H       H       0       11.743      2.085       -14.662     
+MLK     H35     H       H       0       11.535      2.501       -12.156     
+MLK     H371    H       H       0       13.671      4.732       -13.498     
+MLK     H372    H       H       0       13.531      3.153       -13.480     
+MLK     H373    H       H       0       13.401      3.976       -12.131     
+MLK     H361    H       H       0       9.565       4.364       -12.604     
+MLK     H362    H       H       0       9.772       3.459       -11.349     
+MLK     H31     H       H       0       7.761       1.550       -14.389     
+MLK     H38     H       H       0       9.695       1.596       -15.687     
+MLK     H391    H       H       0       8.257       4.516       -16.646     
+MLK     H392    H       H       0       7.607       3.165       -16.134     
+MLK     H393    H       H       0       8.773       3.127       -17.207     
+MLK     H32     H       H       0       6.708       3.253       -13.362     
+MLK     H27     H       H       0       6.779       3.140       -10.650     
+MLK     H28     H       H       0       6.000       0.923       -11.029     
+MLK     H291    H       H       0       3.991       1.245       -13.672     
+MLK     H292    H       H       0       4.061       0.720       -12.179     
+MLK     H293    H       H       0       4.679       -0.145      -13.356     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MLK          O8          C8      DOUBLE       n     1.207  0.0100     1.207  0.0100
+MLK          C8          C9      SINGLE       n     1.497  0.0100     1.497  0.0100
+MLK          C8          N7      SINGLE       n     1.395  0.0100     1.395  0.0100
+MLK          C9         C10      SINGLE       n     1.531  0.0117     1.531  0.0117
+MLK         C10         C12      SINGLE       n     1.520  0.0158     1.520  0.0158
+MLK         C10         C11      SINGLE       n     1.510  0.0122     1.510  0.0122
+MLK         C11         O11      DOUBLE       n     1.206  0.0131     1.206  0.0131
+MLK         C11          N7      SINGLE       n     1.389  0.0102     1.389  0.0102
+MLK          N7          C6      SINGLE       n     1.438  0.0100     1.438  0.0100
+MLK          C6          C5      DOUBLE       y     1.382  0.0100     1.382  0.0100
+MLK          C6          C1      SINGLE       y     1.400  0.0100     1.400  0.0100
+MLK          C5          C4      SINGLE       y     1.386  0.0100     1.386  0.0100
+MLK          C4          C3      DOUBLE       y     1.381  0.0102     1.381  0.0102
+MLK          C3          C2      SINGLE       y     1.378  0.0104     1.378  0.0104
+MLK          C2          C1      DOUBLE       y     1.388  0.0105     1.388  0.0105
+MLK          C1         C13      SINGLE       n     1.487  0.0105     1.487  0.0105
+MLK         C13         O13      DOUBLE       n     1.204  0.0101     1.204  0.0101
+MLK         C13         O14      SINGLE       n     1.339  0.0100     1.339  0.0100
+MLK         O14         C15      SINGLE       n     1.452  0.0132     1.452  0.0132
+MLK         C15         C16      SINGLE       n     1.541  0.0114     1.541  0.0114
+MLK         C16         C21      SINGLE       n     1.538  0.0100     1.538  0.0100
+MLK         C16         C17      SINGLE       n     1.549  0.0117     1.549  0.0117
+MLK         C16         C23      SINGLE       n     1.539  0.0158     1.539  0.0158
+MLK         C21         C20      SINGLE       n     1.518  0.0115     1.518  0.0115
+MLK         C20         C19      SINGLE       n     1.529  0.0100     1.529  0.0100
+MLK         C19         O19      SINGLE       n     1.431  0.0100     1.431  0.0100
+MLK         C19         C18      SINGLE       n     1.552  0.0100     1.552  0.0100
+MLK         O19         C22      SINGLE       n     1.418  0.0100     1.418  0.0100
+MLK         C18         C17      SINGLE       n     1.567  0.0100     1.567  0.0100
+MLK         C18         C26      SINGLE       n     1.532  0.0149     1.532  0.0149
+MLK         C18         C30      SINGLE       n     1.559  0.0100     1.559  0.0100
+MLK         C17         C28      SINGLE       n     1.548  0.0199     1.548  0.0199
+MLK         C26         N23      SINGLE       n     1.468  0.0121     1.468  0.0121
+MLK         C26         C27      SINGLE       n     1.545  0.0118     1.545  0.0118
+MLK         N23         C24      SINGLE       n     1.470  0.0200     1.470  0.0200
+MLK         N23         C23      SINGLE       n     1.477  0.0103     1.477  0.0103
+MLK         C24         C25      SINGLE       n     1.514  0.0100     1.514  0.0100
+MLK         C30         C33      SINGLE       n     1.564  0.0118     1.564  0.0118
+MLK         C30         C31      SINGLE       n     1.545  0.0200     1.545  0.0200
+MLK         C33         C34      SINGLE       n     1.533  0.0100     1.533  0.0100
+MLK         C34         C35      SINGLE       n     1.533  0.0100     1.533  0.0100
+MLK         C34         C38      SINGLE       n     1.527  0.0108     1.527  0.0108
+MLK         C35         O35      SINGLE       n     1.432  0.0100     1.432  0.0100
+MLK         C35         C36      SINGLE       n     1.537  0.0137     1.537  0.0137
+MLK         O35         C37      SINGLE       n     1.422  0.0156     1.422  0.0156
+MLK         C36         C32      SINGLE       n     1.559  0.0154     1.559  0.0154
+MLK         C31         C38      SINGLE       n     1.537  0.0200     1.537  0.0200
+MLK         C31         C32      SINGLE       n     1.549  0.0169     1.549  0.0169
+MLK         C38         O38      SINGLE       n     1.425  0.0112     1.425  0.0112
+MLK         O38         C39      SINGLE       n     1.418  0.0100     1.418  0.0100
+MLK         C32         O32      SINGLE       n     1.449  0.0115     1.449  0.0115
+MLK         C32         C27      SINGLE       n     1.560  0.0135     1.560  0.0135
+MLK         C27         O27      SINGLE       n     1.435  0.0114     1.435  0.0114
+MLK         C27         C28      SINGLE       n     1.540  0.0123     1.540  0.0123
+MLK         C28         O28      SINGLE       n     1.422  0.0105     1.422  0.0105
+MLK         O28         C29      SINGLE       n     1.414  0.0164     1.414  0.0164
+MLK          C9        H9C1      SINGLE       n     1.089  0.0100     0.974  0.0100
+MLK          C9        H9C2      SINGLE       n     1.089  0.0100     0.974  0.0100
+MLK         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0172
+MLK         C12        H121      SINGLE       n     1.089  0.0100     0.970  0.0163
+MLK         C12        H122      SINGLE       n     1.089  0.0100     0.970  0.0163
+MLK         C12        H123      SINGLE       n     1.089  0.0100     0.970  0.0163
+MLK          C5          H5      SINGLE       n     1.082  0.0130     0.935  0.0124
+MLK          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0172
+MLK          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0180
+MLK          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+MLK         C15        H151      SINGLE       n     1.089  0.0100     0.973  0.0180
+MLK         C15        H152      SINGLE       n     1.089  0.0100     0.973  0.0180
+MLK         C21        H211      SINGLE       n     1.089  0.0100     0.970  0.0100
+MLK         C21        H212      SINGLE       n     1.089  0.0100     0.970  0.0100
+MLK         C20        H201      SINGLE       n     1.089  0.0100     0.973  0.0100
+MLK         C20        H202      SINGLE       n     1.089  0.0100     0.973  0.0100
+MLK         C19         H19      SINGLE       n     1.089  0.0100     0.996  0.0100
+MLK         C22        H221      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C22        H222      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C22        H223      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C17         H17      SINGLE       n     1.089  0.0100     0.978  0.0180
+MLK         C26         H26      SINGLE       n     1.089  0.0100     0.983  0.0126
+MLK         C24        H241      SINGLE       n     1.089  0.0100     0.974  0.0111
+MLK         C24        H242      SINGLE       n     1.089  0.0100     0.974  0.0111
+MLK         C25        H251      SINGLE       n     1.089  0.0100     0.967  0.0131
+MLK         C25        H252      SINGLE       n     1.089  0.0100     0.967  0.0131
+MLK         C25        H253      SINGLE       n     1.089  0.0100     0.967  0.0131
+MLK         C23        H231      SINGLE       n     1.089  0.0100     0.971  0.0100
+MLK         C23        H232      SINGLE       n     1.089  0.0100     0.971  0.0100
+MLK         C30         H30      SINGLE       n     1.089  0.0100     0.981  0.0158
+MLK         C33        H331      SINGLE       n     1.089  0.0100     0.982  0.0103
+MLK         C33        H332      SINGLE       n     1.089  0.0100     0.982  0.0103
+MLK         C34         H34      SINGLE       n     1.089  0.0100     0.992  0.0109
+MLK         C35         H35      SINGLE       n     1.089  0.0100     0.990  0.0106
+MLK         C37        H371      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C37        H372      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C37        H373      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C36        H361      SINGLE       n     1.089  0.0100     0.973  0.0146
+MLK         C36        H362      SINGLE       n     1.089  0.0100     0.973  0.0146
+MLK         C31         H31      SINGLE       n     1.089  0.0100     0.981  0.0154
+MLK         C38         H38      SINGLE       n     1.089  0.0100     0.985  0.0160
+MLK         C39        H391      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C39        H392      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C39        H393      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         O32         H32      SINGLE       n     0.970  0.0120     0.822  0.0180
+MLK         O27         H27      SINGLE       n     0.970  0.0120     0.843  0.0200
+MLK         C28         H28      SINGLE       n     1.089  0.0100     0.988  0.0200
+MLK         C29        H291      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C29        H292      SINGLE       n     1.089  0.0100     0.971  0.0146
+MLK         C29        H293      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MLK          O8          C8          C9     127.779    1.50
+MLK          O8          C8          N7     123.796    1.50
+MLK          C9          C8          N7     108.412    1.50
+MLK          C8          C9         C10     105.697    1.50
+MLK          C8          C9        H9C1     110.665    1.50
+MLK          C8          C9        H9C2     110.665    1.50
+MLK         C10          C9        H9C1     110.554    1.50
+MLK         C10          C9        H9C2     110.554    1.50
+MLK        H9C1          C9        H9C2     108.790    1.50
+MLK          C9         C10         C12     111.720    1.57
+MLK          C9         C10         C11     104.176    1.50
+MLK          C9         C10         H10     108.480    1.50
+MLK         C12         C10         C11     112.590    1.84
+MLK         C12         C10         H10     108.374    1.50
+MLK         C11         C10         H10     107.973    1.50
+MLK         C10         C12        H121     109.611    1.50
+MLK         C10         C12        H122     109.611    1.50
+MLK         C10         C12        H123     109.611    1.50
+MLK        H121         C12        H122     109.347    1.50
+MLK        H121         C12        H123     109.347    1.50
+MLK        H122         C12        H123     109.347    1.50
+MLK         C10         C11         O11     126.821    1.50
+MLK         C10         C11          N7     109.115    1.50
+MLK         O11         C11          N7     124.064    1.50
+MLK          C8          N7         C11     112.765    1.50
+MLK          C8          N7          C6     123.748    1.50
+MLK         C11          N7          C6     123.487    1.50
+MLK          N7          C6          C5     119.068    1.50
+MLK          N7          C6          C1     120.347    1.51
+MLK          C5          C6          C1     120.585    1.50
+MLK          C6          C5          C4     120.021    1.50
+MLK          C6          C5          H5     119.758    1.50
+MLK          C4          C5          H5     120.221    1.50
+MLK          C5          C4          C3     120.534    1.50
+MLK          C5          C4          H4     119.583    1.50
+MLK          C3          C4          H4     119.883    1.50
+MLK          C4          C3          C2     120.233    1.50
+MLK          C4          C3          H3     119.929    1.50
+MLK          C2          C3          H3     119.838    1.50
+MLK          C3          C2          C1     120.973    1.50
+MLK          C3          C2          H2     119.633    1.50
+MLK          C1          C2          H2     119.394    1.50
+MLK          C6          C1          C2     117.653    1.50
+MLK          C6          C1         C13     122.055    1.50
+MLK          C2          C1         C13     120.292    1.89
+MLK          C1         C13         O13     123.533    1.94
+MLK          C1         C13         O14     112.327    1.53
+MLK         O13         C13         O14     124.141    1.50
+MLK         C13         O14         C15     116.389    1.50
+MLK         O14         C15         C16     110.394    1.53
+MLK         O14         C15        H151     109.749    1.50
+MLK         O14         C15        H152     109.749    1.50
+MLK         C16         C15        H151     109.853    1.50
+MLK         C16         C15        H152     109.853    1.50
+MLK        H151         C15        H152     108.483    1.50
+MLK         C15         C16         C21     107.632    2.00
+MLK         C15         C16         C17     111.960    1.50
+MLK         C15         C16         C23     107.873    1.61
+MLK         C21         C16         C17     109.569    2.05
+MLK         C21         C16         C23     112.399    2.36
+MLK         C17         C16         C23     107.860    1.50
+MLK         C16         C21         C20     113.192    1.50
+MLK         C16         C21        H211     108.788    1.50
+MLK         C16         C21        H212     108.788    1.50
+MLK         C20         C21        H211     109.261    1.50
+MLK         C20         C21        H212     109.261    1.50
+MLK        H211         C21        H212     107.950    1.50
+MLK         C21         C20         C19     112.780    1.50
+MLK         C21         C20        H201     109.165    1.50
+MLK         C21         C20        H202     109.165    1.50
+MLK         C19         C20        H201     108.987    1.50
+MLK         C19         C20        H202     108.987    1.50
+MLK        H201         C20        H202     107.785    1.50
+MLK         C20         C19         O19     107.930    1.50
+MLK         C20         C19         C18     115.843    2.05
+MLK         C20         C19         H19     107.507    1.50
+MLK         O19         C19         C18     108.749    1.50
+MLK         O19         C19         H19     107.557    1.50
+MLK         C18         C19         H19     107.501    1.50
+MLK         C19         O19         C22     113.478    1.50
+MLK         O19         C22        H221     109.482    1.50
+MLK         O19         C22        H222     109.482    1.50
+MLK         O19         C22        H223     109.482    1.50
+MLK        H221         C22        H222     109.450    1.50
+MLK        H221         C22        H223     109.450    1.50
+MLK        H222         C22        H223     109.450    1.50
+MLK         C19         C18         C17     112.995    1.50
+MLK         C19         C18         C26     116.746    1.55
+MLK         C19         C18         C30     107.062    1.50
+MLK         C17         C18         C26     100.128    3.00
+MLK         C17         C18         C30     112.428    1.77
+MLK         C26         C18         C30     104.946    3.00
+MLK         C16         C17         C18     108.859    1.50
+MLK         C16         C17         C28     112.419    2.53
+MLK         C16         C17         H17     110.989    1.50
+MLK         C18         C17         C28     101.805    1.50
+MLK         C18         C17         H17     111.141    1.50
+MLK         C28         C17         H17     110.829    1.50
+MLK         C18         C26         N23     110.689    1.50
+MLK         C18         C26         C27     103.503    2.92
+MLK         C18         C26         H26     109.960    1.50
+MLK         N23         C26         C27     114.946    1.50
+MLK         N23         C26         H26     109.933    1.50
+MLK         C27         C26         H26     109.478    2.08
+MLK         C26         N23         C24     113.084    1.50
+MLK         C26         N23         C23     115.551    1.80
+MLK         C24         N23         C23     110.404    1.50
+MLK         N23         C24         C25     113.629    1.50
+MLK         N23         C24        H241     108.845    1.50
+MLK         N23         C24        H242     108.845    1.50
+MLK         C25         C24        H241     108.887    1.50
+MLK         C25         C24        H242     108.887    1.50
+MLK        H241         C24        H242     107.682    1.50
+MLK         C24         C25        H251     109.475    1.50
+MLK         C24         C25        H252     109.475    1.50
+MLK         C24         C25        H253     109.475    1.50
+MLK        H251         C25        H252     109.417    1.50
+MLK        H251         C25        H253     109.417    1.50
+MLK        H252         C25        H253     109.417    1.50
+MLK         C16         C23         N23     113.827    1.63
+MLK         C16         C23        H231     108.796    1.50
+MLK         C16         C23        H232     108.796    1.50
+MLK         N23         C23        H231     108.786    1.50
+MLK         N23         C23        H232     108.786    1.50
+MLK        H231         C23        H232     107.668    1.50
+MLK         C18         C30         C33     115.161    2.20
+MLK         C18         C30         C31     117.540    1.50
+MLK         C18         C30         H30     106.960    1.50
+MLK         C33         C30         C31     103.025    1.50
+MLK         C33         C30         H30     107.013    1.50
+MLK         C31         C30         H30     107.168    1.50
+MLK         C30         C33         C34     106.356    1.50
+MLK         C30         C33        H331     110.510    1.50
+MLK         C30         C33        H332     110.510    1.50
+MLK         C34         C33        H331     110.445    1.50
+MLK         C34         C33        H332     110.445    1.50
+MLK        H331         C33        H332     108.666    1.50
+MLK         C33         C34         C35     111.176    1.50
+MLK         C33         C34         C38     100.324    1.50
+MLK         C33         C34         H34     110.832    1.50
+MLK         C35         C34         C38     111.478    3.00
+MLK         C35         C34         H34     110.793    1.50
+MLK         C38         C34         H34     111.235    1.63
+MLK         C34         C35         O35     108.372    1.76
+MLK         C34         C35         C36     113.392    1.50
+MLK         C34         C35         H35     108.517    1.50
+MLK         O35         C35         C36     109.365    2.21
+MLK         O35         C35         H35     108.545    1.50
+MLK         C36         C35         H35     108.527    1.50
+MLK         C35         O35         C37     113.181    1.50
+MLK         O35         C37        H371     109.463    1.50
+MLK         O35         C37        H372     109.463    1.50
+MLK         O35         C37        H373     109.463    1.50
+MLK        H371         C37        H372     109.450    1.50
+MLK        H371         C37        H373     109.450    1.50
+MLK        H372         C37        H373     109.450    1.50
+MLK         C35         C36         C32     118.153    1.50
+MLK         C35         C36        H361     107.752    1.50
+MLK         C35         C36        H362     107.752    1.50
+MLK         C32         C36        H361     107.768    1.50
+MLK         C32         C36        H362     107.768    1.50
+MLK        H361         C36        H362     107.141    1.50
+MLK         C30         C31         C38     102.074    1.50
+MLK         C30         C31         C32     112.854    1.50
+MLK         C30         C31         H31     110.041    1.50
+MLK         C38         C31         C32     111.867    1.50
+MLK         C38         C31         H31     110.040    1.50
+MLK         C32         C31         H31     110.024    1.50
+MLK         C34         C38         C31     101.491    1.66
+MLK         C34         C38         O38     117.759    1.50
+MLK         C34         C38         H38     110.160    1.65
+MLK         C31         C38         O38     111.624    3.00
+MLK         C31         C38         H38     109.614    1.50
+MLK         O38         C38         H38     109.381    1.50
+MLK         C38         O38         C39     112.953    1.50
+MLK         O38         C39        H391     109.481    1.50
+MLK         O38         C39        H392     109.481    1.50
+MLK         O38         C39        H393     109.481    1.50
+MLK        H391         C39        H392     109.398    1.50
+MLK        H391         C39        H393     109.398    1.50
+MLK        H392         C39        H393     109.398    1.50
+MLK         C36         C32         C31     112.692    1.50
+MLK         C36         C32         O32     108.405    1.50
+MLK         C36         C32         C27     111.840    1.74
+MLK         C31         C32         O32     108.329    2.06
+MLK         C31         C32         C27     109.201    1.50
+MLK         O32         C32         C27     106.951    2.55
+MLK         C32         O32         H32     109.453    1.53
+MLK         C26         C27         C32     112.019    2.49
+MLK         C26         C27         O27     111.624    3.00
+MLK         C26         C27         C28     102.749    2.13
+MLK         C32         C27         O27     109.044    2.29
+MLK         C32         C27         C28     118.276    3.00
+MLK         O27         C27         C28     106.116    2.44
+MLK         C27         O27         H27     109.252    3.00
+MLK         C17         C28         C27     103.503    2.92
+MLK         C17         C28         O28     116.874    1.50
+MLK         C17         C28         H28     108.157    1.50
+MLK         C27         C28         O28     111.465    3.00
+MLK         C27         C28         H28     109.421    1.58
+MLK         O28         C28         H28     107.083    2.12
+MLK         C28         O28         C29     112.467    1.50
+MLK         O28         C29        H291     109.459    1.50
+MLK         O28         C29        H292     109.459    1.50
+MLK         O28         C29        H293     109.459    1.50
+MLK        H291         C29        H292     109.541    1.50
+MLK        H291         C29        H293     109.541    1.50
+MLK        H292         C29        H293     109.541    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MLK       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+MLK              const_13          C1          C2          C3          C4       0.000    10.0     2
+MLK              const_19         C13          C1          C2          C3     180.000    10.0     2
+MLK            sp2_sp2_14          C6          C1         C13         O13       0.000     5.0     2
+MLK            sp2_sp2_18         O13         C13         O14         C15       0.000     5.0     2
+MLK           sp3_sp3_211         C16         C15         O14         C13     180.000    10.0     3
+MLK           sp3_sp3_214         O14         C15         C16         C21     180.000    10.0     3
+MLK            sp3_sp3_13         C15         C16         C21         C20     -60.000    10.0     3
+MLK            sp3_sp3_58         C15         C16         C17         C18     -60.000    10.0     3
+MLK           sp3_sp3_226         C15         C16         C23         N23      60.000    10.0     3
+MLK            sp3_sp3_19         C19         C20         C21         C16     -60.000    10.0     3
+MLK             sp2_sp3_4          O8          C8          C9         C10     180.000    10.0     6
+MLK             sp2_sp2_7          O8          C8          N7         C11     180.000     5.0     2
+MLK            sp3_sp3_31         O19         C19         C20         C21     -60.000    10.0     3
+MLK           sp3_sp3_232         C20         C19         O19         C22     180.000    10.0     3
+MLK            sp3_sp3_38         C17         C18         C19         O19      60.000    10.0     3
+MLK           sp3_sp3_235        H221         C22         O19         C19     180.000    10.0     3
+MLK            sp3_sp3_46         C16         C17         C18         C19      60.000    10.0     3
+MLK            sp3_sp3_67         C19         C18         C26         N23     -60.000    10.0     3
+MLK           sp3_sp3_242         C19         C18         C30         C33     180.000    10.0     3
+MLK            sp3_sp3_89         C16         C17         C28         O28     -60.000    10.0     3
+MLK            sp3_sp3_74         C18         C26         N23         C24      60.000    10.0     3
+MLK           sp3_sp3_104         C18         C26         C27         O27      60.000    10.0     3
+MLK           sp3_sp3_247         C25         C24         N23         C26     180.000    10.0     3
+MLK            sp3_sp3_80         C16         C23         N23         C24     180.000    10.0     3
+MLK           sp3_sp3_253         N23         C24         C25        H251     180.000    10.0     3
+MLK             sp3_sp3_4         C12         C10          C9          C8     180.000    10.0     3
+MLK           sp3_sp3_142         C18         C30         C33         C34     -60.000    10.0     3
+MLK           sp3_sp3_131         C18         C30         C31         C38     180.000    10.0     3
+MLK           sp3_sp3_149         C30         C33         C34         C35      60.000    10.0     3
+MLK           sp3_sp3_179         C33         C34         C35         O35      60.000    10.0     3
+MLK           sp3_sp3_158         C33         C34         C38         O38     180.000    10.0     3
+MLK           sp3_sp3_262         C34         C35         O35         C37     180.000    10.0     3
+MLK           sp3_sp3_187         O35         C35         C36         C32     180.000    10.0     3
+MLK           sp3_sp3_265        H371         C37         O35         C35     180.000    10.0     3
+MLK           sp3_sp3_196         O32         C32         C36         C35     -60.000    10.0     3
+MLK           sp3_sp3_167         C30         C31         C38         O38      60.000    10.0     3
+MLK           sp3_sp3_123         C30         C31         C32         O32     180.000    10.0     3
+MLK           sp3_sp3_268         C34         C38         O38         C39     180.000    10.0     3
+MLK           sp3_sp3_202          C9         C10         C12        H121     180.000    10.0     3
+MLK            sp2_sp3_11         O11         C11         C10         C12     -60.000    10.0     6
+MLK           sp3_sp3_271        H391         C39         O38         C38     180.000    10.0     3
+MLK           sp3_sp3_274         C36         C32         O32         H32     180.000    10.0     3
+MLK           sp3_sp3_117         O27         C27         C32         O32     180.000    10.0     3
+MLK           sp3_sp3_277         C26         C27         O27         H27     180.000    10.0     3
+MLK           sp3_sp3_101         O27         C27         C28         O28     -60.000    10.0     3
+MLK           sp3_sp3_280         C17         C28         O28         C29     180.000    10.0     3
+MLK           sp3_sp3_283        H291         C29         O28         C28     180.000    10.0     3
+MLK             sp2_sp2_3         O11         C11          N7          C8     180.000     5.0     2
+MLK             sp2_sp2_9          C5          C6          N7          C8     180.000     5.0     2
+MLK              const_24         C13          C1          C6          N7       0.000    10.0     2
+MLK       const_sp2_sp2_2          C4          C5          C6          N7     180.000     5.0     2
+MLK       const_sp2_sp2_5          C3          C4          C5          C6       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MLK    chir_1    C10    C11    C9    C12    positive
+MLK    chir_2    C16    C15    C23    C17    positive
+MLK    chir_3    C19    O19    C18    C20    positive
+MLK    chir_4    C18    C19    C26    C17    positive
+MLK    chir_5    C17    C28    C18    C16    negative
+MLK    chir_6    C26    N23    C27    C18    positive
+MLK    chir_7    N23    C26    C23    C24    positive
+MLK    chir_8    C30    C18    C31    C33    negative
+MLK    chir_9    C34    C38    C35    C33    negative
+MLK    chir_10    C35    O35    C34    C36    positive
+MLK    chir_11    C31    C32    C38    C30    negative
+MLK    chir_12    C38    O38    C31    C34    positive
+MLK    chir_13    C32    O32    C27    C31    negative
+MLK    chir_14    C27    O27    C32    C28    positive
+MLK    chir_15    C28    O28    C27    C17    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MLK    plan-1          C1   0.020
+MLK    plan-1         C13   0.020
+MLK    plan-1          C2   0.020
+MLK    plan-1          C3   0.020
+MLK    plan-1          C4   0.020
+MLK    plan-1          C5   0.020
+MLK    plan-1          C6   0.020
+MLK    plan-1          H2   0.020
+MLK    plan-1          H3   0.020
+MLK    plan-1          H4   0.020
+MLK    plan-1          H5   0.020
+MLK    plan-1          N7   0.020
+MLK    plan-2          C8   0.020
+MLK    plan-2          C9   0.020
+MLK    plan-2          N7   0.020
+MLK    plan-2          O8   0.020
+MLK    plan-3         C10   0.020
+MLK    plan-3         C11   0.020
+MLK    plan-3          N7   0.020
+MLK    plan-3         O11   0.020
+MLK    plan-4         C11   0.020
+MLK    plan-4          C6   0.020
+MLK    plan-4          C8   0.020
+MLK    plan-4          N7   0.020
+MLK    plan-5          C1   0.020
+MLK    plan-5         C13   0.020
+MLK    plan-5         O13   0.020
+MLK    plan-5         O14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MLK           SMILES              ACDLabs 10.04                                                                                                                                                                                                                O=C1N(C(=O)C(C)C1)c2ccccc2C(=O)OCC43C5C6(C(OC)CC3)C(N(CC)C4)C(O)(C5OC)C8(O)CC(OC)C7CC6C8C7OC
+MLK SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                      CCN1C[C@@]2(CC[C@H](OC)[C@@]34[C@@H]5C[C@@H]6[C@H](C[C@@](O)([C@H]5[C@H]6OC)[C@@](O)([C@@H](OC)[C@H]23)[C@@H]14)OC)COC(=O)c7ccccc7N8C(=O)C[C@H](C)C8=O
+MLK           SMILES               CACTVS 3.341                                                                                                                                                                            CCN1C[C]2(CC[CH](OC)[C]34[CH]5C[CH]6[CH](C[C](O)([CH]5[CH]6OC)[C](O)([CH](OC)[CH]23)[CH]14)OC)COC(=O)c7ccccc7N8C(=O)C[CH](C)C8=O
+MLK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                   CC[N@]1C[C@@]2(CC[C@@H]([C@@]34[C@@H]2[C@@H]([C@@]([C@H]31)([C@]5(C[C@@H]([C@H]6C[C@@H]4[C@@H]5[C@H]6OC)OC)O)O)OC)OC)COC(=O)c7ccccc7N8C(=O)C[C@@H](C8=O)C
+MLK           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                    CCN1CC2(CCC(C34C2C(C(C31)(C5(CC(C6CC4C5C6OC)OC)O)O)OC)OC)COC(=O)c7ccccc7N8C(=O)CC(C8=O)C
+MLK            InChI                InChI  1.03 InChI=1S/C37H50N2O10/c1-7-38-17-34(18-49-32(42)20-10-8-9-11-23(20)39-26(40)14-19(2)31(39)41)13-12-25(46-4)36-22-15-21-24(45-3)16-35(43,27(22)28(21)47-5)37(44,33(36)38)30(48-6)29(34)36/h8-11,19,21-22,24-25,27-30,33,43-44H,7,12-18H2,1-6H3/t19-,21+,22+,24-,25-,27+,28-,29+,30-,33-,34-,35+,36-,37+/m0/s1
+MLK         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                 XLTANAWLDBYGFU-VTLKBQQISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MLK acedrg               243         "dictionary generator"                  
+MLK acedrg_database      11          "data source"                           
+MLK rdkit                2017.03.2   "Chemoinformatics tool"
+MLK refmac5              5.8.0238    "optimization tool"                     

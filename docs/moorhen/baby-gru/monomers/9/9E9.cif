@@ -1,0 +1,133 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9E9     9E9      "5-chloro thiophene-2-carboxylic acid"     NON-POLYMER     11     9     .     
+#
+data_comp_9E9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9E9     C1      C       C       0       142.084     31.701      43.441      
+9E9     C2      C       CR5     0       142.760     32.810      42.748      
+9E9     C5      C       CR5     0       143.980     34.149      41.102      
+9E9     C6      C       CR15    0       143.650     34.879      42.198      
+9E9     C7      C       CR15    0       142.936     34.094      43.162      
+9E9     O8      O       O       0       142.019     30.601      42.917      
+9E9     O9      O       OC      -1      141.607     31.934      44.537      
+9E9     S1      S       S2      0       143.443     32.582      41.242      
+9E9     CL1     CL      CL      0       144.819     34.648      39.716      
+9E9     H6      H       H       0       143.861     35.789      42.317      
+9E9     H7      H       H       0       142.626     34.432      43.985      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9E9          C5         CL1      SINGLE       n     1.695  0.0100     1.695  0.0100
+9E9          C5          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+9E9          C5          C6      DOUBLE       y     1.343  0.0200     1.343  0.0200
+9E9          C2          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+9E9          C6          C7      SINGLE       y     1.400  0.0176     1.400  0.0176
+9E9          C2          C7      DOUBLE       y     1.352  0.0140     1.352  0.0140
+9E9          C1          C2      SINGLE       n     1.463  0.0200     1.463  0.0200
+9E9          C1          O8      DOUBLE       n     1.217  0.0200     1.217  0.0200
+9E9          C1          O9      SINGLE       n     1.217  0.0200     1.217  0.0200
+9E9          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0153
+9E9          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0154
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9E9          C2          C1          O8     118.485    3.00
+9E9          C2          C1          O9     118.485    3.00
+9E9          O8          C1          O9     123.030    1.50
+9E9          S1          C2          C7     108.336    3.00
+9E9          S1          C2          C1     120.318    3.00
+9E9          C7          C2          C1     131.347    2.74
+9E9         CL1          C5          S1     122.202    3.00
+9E9         CL1          C5          C6     129.462    2.18
+9E9          S1          C5          C6     108.336    3.00
+9E9          C5          C6          C7     107.373    1.50
+9E9          C5          C6          H6     126.679    1.50
+9E9          C7          C6          H6     125.949    1.50
+9E9          C6          C7          C2     107.620    1.50
+9E9          C6          C7          H7     125.837    1.50
+9E9          C2          C7          H7     126.542    1.56
+9E9          C5          S1          C2     108.336    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9E9             sp2_sp2_2          O8          C1          C2          S1       0.000     5.0     2
+9E9              const_15          C1          C2          C7          C6     180.000    10.0     2
+9E9       const_sp2_sp2_2          C1          C2          S1          C5     180.000     5.0     2
+9E9       const_sp2_sp2_7         CL1          C5          C6          C7     180.000     5.0     2
+9E9       const_sp2_sp2_4         CL1          C5          S1          C2     180.000     5.0     2
+9E9       const_sp2_sp2_9          C5          C6          C7          C2       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9E9    plan-1          C1   0.020
+9E9    plan-1          C2   0.020
+9E9    plan-1          C5   0.020
+9E9    plan-1          C6   0.020
+9E9    plan-1          C7   0.020
+9E9    plan-1         CL1   0.020
+9E9    plan-1          H6   0.020
+9E9    plan-1          H7   0.020
+9E9    plan-1          S1   0.020
+9E9    plan-2          C1   0.020
+9E9    plan-2          C2   0.020
+9E9    plan-2          O8   0.020
+9E9    plan-2          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9E9            InChI                InChI  1.03 InChI=1S/C5H3ClO2S/c6-4-2-1-3(9-4)5(7)8/h1-2H,(H,7,8)
+9E9         InChIKey                InChI  1.03                           QZLSBOVWPHXCLT-UHFFFAOYSA-N
+9E9 SMILES_CANONICAL               CACTVS 3.385                                     OC(=O)c1sc(Cl)cc1
+9E9           SMILES               CACTVS 3.385                                     OC(=O)c1sc(Cl)cc1
+9E9 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                     c1cc(sc1C(=O)O)Cl
+9E9           SMILES "OpenEye OEToolkits" 2.0.6                                     c1cc(sc1C(=O)O)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9E9 acedrg               243         "dictionary generator"                  
+9E9 acedrg_database      11          "data source"                           
+9E9 rdkit                2017.03.2   "Chemoinformatics tool"
+9E9 refmac5              5.8.0238    "optimization tool"                     

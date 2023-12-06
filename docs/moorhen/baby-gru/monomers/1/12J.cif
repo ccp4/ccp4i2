@@ -1,0 +1,270 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+12J     12J      2-iodo-N-[3-(1-methylethoxy)phenyl]benzamide     NON-POLYMER     36     20     .     
+#
+data_comp_12J
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+12J     I       I       I       0       23.094      -27.408     -58.212     
+12J     N       N       NH1     0       21.119      -24.266     -60.831     
+12J     C1      C       CR6     0       23.962      -26.296     -59.772     
+12J     O1      O       O       0       21.076      -26.431     -60.147     
+12J     C2      C       CR6     0       23.206      -25.519     -60.653     
+12J     O2      O       O2      0       17.268      -21.515     -60.698     
+12J     C3      C       CR16    0       23.884      -24.817     -61.669     
+12J     C4      C       CR16    0       25.265      -24.886     -61.782     
+12J     C5      C       CR16    0       25.997      -25.662     -60.893     
+12J     C6      C       CR16    0       25.349      -26.367     -59.890     
+12J     C7      C       C       0       21.710      -25.451     -60.525     
+12J     C8      C       CR6     0       19.780      -24.056     -61.264     
+12J     C9      C       CR16    0       19.115      -22.919     -60.816     
+12J     C10     C       CR6     0       17.804      -22.675     -61.215     
+12J     C11     C       CR16    0       17.155      -23.572     -62.065     
+12J     C12     C       CR16    0       17.829      -24.697     -62.504     
+12J     C13     C       CR16    0       19.136      -24.948     -62.115     
+12J     C14     C       CH1     0       15.914      -21.074     -60.997     
+12J     C15     C       CH3     0       15.549      -20.068     -59.934     
+12J     C16     C       CH3     0       15.869      -20.474     -62.381     
+12J     HN      H       H       0       21.603      -23.541     -60.731     
+12J     H3      H       H       0       23.395      -24.288     -62.274     
+12J     H4      H       H       0       25.706      -24.408     -62.465     
+12J     H5      H       H       0       26.936      -25.712     -60.970     
+12J     H6      H       H       0       25.846      -26.895     -59.284     
+12J     H9      H       H       0       19.553      -22.314     -60.241     
+12J     H11     H       H       0       16.270      -23.417     -62.343     
+12J     H12     H       H       0       17.393      -25.302     -63.079     
+12J     H13     H       H       0       19.581      -25.720     -62.421     
+12J     H14     H       H       0       15.285      -21.845     -60.945     
+12J     H15     H       H       0       14.637      -19.757     -60.078     
+12J     H15A    H       H       0       16.159      -19.311     -59.978     
+12J     H15B    H       H       0       15.613      -20.484     -59.055     
+12J     H16     H       H       0       16.015      -21.169     -63.046     
+12J     H16A    H       H       0       16.563      -19.796     -62.465     
+12J     H16B    H       H       0       14.998      -20.064     -62.530     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+12J           I          C1      SINGLE       n     2.103  0.0100     2.103  0.0100
+12J           N          C7      SINGLE       n     1.351  0.0126     1.351  0.0126
+12J           N          C8      SINGLE       n     1.419  0.0100     1.419  0.0100
+12J          C1          C2      DOUBLE       y     1.389  0.0117     1.389  0.0117
+12J          C1          C6      SINGLE       y     1.390  0.0100     1.390  0.0100
+12J          O1          C7      DOUBLE       n     1.226  0.0100     1.226  0.0100
+12J          C2          C3      SINGLE       y     1.400  0.0131     1.400  0.0131
+12J          C2          C7      SINGLE       n     1.498  0.0104     1.498  0.0104
+12J          O2         C10      SINGLE       n     1.373  0.0100     1.373  0.0100
+12J          O2         C14      SINGLE       n     1.450  0.0130     1.450  0.0130
+12J          C3          C4      DOUBLE       y     1.385  0.0100     1.385  0.0100
+12J          C4          C5      SINGLE       y     1.379  0.0192     1.379  0.0192
+12J          C5          C6      DOUBLE       y     1.380  0.0150     1.380  0.0150
+12J          C8          C9      DOUBLE       y     1.387  0.0100     1.387  0.0100
+12J          C8         C13      SINGLE       y     1.387  0.0100     1.387  0.0100
+12J          C9         C10      SINGLE       y     1.387  0.0100     1.387  0.0100
+12J         C10         C11      DOUBLE       y     1.386  0.0109     1.386  0.0109
+12J         C11         C12      SINGLE       y     1.380  0.0102     1.380  0.0102
+12J         C12         C13      DOUBLE       y     1.384  0.0100     1.384  0.0100
+12J         C14         C15      SINGLE       n     1.508  0.0128     1.508  0.0128
+12J         C14         C16      SINGLE       n     1.508  0.0128     1.508  0.0128
+12J           N          HN      SINGLE       n     1.016  0.0100     0.876  0.0200
+12J          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+12J          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+12J          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0146
+12J          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0136
+12J          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0154
+12J         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0163
+12J         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0141
+12J         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0178
+12J         C14         H14      SINGLE       n     1.089  0.0100     0.998  0.0200
+12J         C15         H15      SINGLE       n     1.089  0.0100     0.974  0.0145
+12J         C15        H15A      SINGLE       n     1.089  0.0100     0.974  0.0145
+12J         C15        H15B      SINGLE       n     1.089  0.0100     0.974  0.0145
+12J         C16         H16      SINGLE       n     1.089  0.0100     0.974  0.0145
+12J         C16        H16A      SINGLE       n     1.089  0.0100     0.974  0.0145
+12J         C16        H16B      SINGLE       n     1.089  0.0100     0.974  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+12J          C7           N          C8     126.750    1.50
+12J          C7           N          HN     117.086    2.38
+12J          C8           N          HN     116.164    1.66
+12J           I          C1          C2     122.385    1.50
+12J           I          C1          C6     116.905    1.50
+12J          C2          C1          C6     120.710    1.50
+12J          C1          C2          C3     118.583    1.50
+12J          C1          C2          C7     121.533    2.22
+12J          C3          C2          C7     119.884    2.89
+12J         C10          O2         C14     119.181    1.50
+12J          C2          C3          C4     120.794    1.50
+12J          C2          C3          H3     119.577    1.50
+12J          C4          C3          H3     119.621    1.50
+12J          C3          C4          C5     120.099    1.50
+12J          C3          C4          H4     119.907    1.50
+12J          C5          C4          H4     119.998    1.50
+12J          C4          C5          C6     120.072    1.50
+12J          C4          C5          H5     120.077    1.50
+12J          C6          C5          H5     119.851    1.50
+12J          C1          C6          C5     119.746    1.50
+12J          C1          C6          H6     119.988    1.50
+12J          C5          C6          H6     120.266    1.50
+12J           N          C7          O1     123.170    1.50
+12J           N          C7          C2     115.889    1.50
+12J          O1          C7          C2     120.941    1.50
+12J           N          C8          C9     119.963    3.00
+12J           N          C8         C13     119.787    2.93
+12J          C9          C8         C13     120.250    1.50
+12J          C8          C9         C10     119.264    1.50
+12J          C8          C9          H9     120.324    1.50
+12J         C10          C9          H9     120.412    1.50
+12J          O2         C10          C9     120.363    3.00
+12J          O2         C10         C11     119.200    3.00
+12J          C9         C10         C11     120.437    1.50
+12J         C10         C11         C12     119.166    1.50
+12J         C10         C11         H11     120.382    1.50
+12J         C12         C11         H11     120.451    1.50
+12J         C11         C12         C13     121.159    1.50
+12J         C11         C12         H12     119.377    1.50
+12J         C13         C12         H12     119.464    1.50
+12J          C8         C13         C12     119.724    1.50
+12J          C8         C13         H13     120.072    1.50
+12J         C12         C13         H13     120.204    1.50
+12J          O2         C14         C15     107.975    2.95
+12J          O2         C14         C16     107.975    2.95
+12J          O2         C14         H14     109.471    1.50
+12J         C15         C14         C16     112.490    1.50
+12J         C15         C14         H14     109.438    1.50
+12J         C16         C14         H14     109.438    1.50
+12J         C14         C15         H15     109.624    1.50
+12J         C14         C15        H15A     109.624    1.50
+12J         C14         C15        H15B     109.624    1.50
+12J         H15         C15        H15A     109.425    1.50
+12J         H15         C15        H15B     109.425    1.50
+12J        H15A         C15        H15B     109.425    1.50
+12J         C14         C16         H16     109.624    1.50
+12J         C14         C16        H16A     109.624    1.50
+12J         C14         C16        H16B     109.624    1.50
+12J         H16         C16        H16A     109.425    1.50
+12J         H16         C16        H16B     109.425    1.50
+12J        H16A         C16        H16B     109.425    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+12J       const_sp2_sp2_3           N          C8          C9         C10     180.000     5.0     2
+12J              const_46         C12         C13          C8           N     180.000    10.0     2
+12J       const_sp2_sp2_7          O2         C10          C9          C8     180.000     5.0     2
+12J              const_11          O2         C10         C11         C12     180.000    10.0     2
+12J              const_13         C10         C11         C12         C13       0.000    10.0     2
+12J              const_17         C11         C12         C13          C8       0.000    10.0     2
+12J             sp3_sp3_4          O2         C14         C15         H15     180.000    10.0     3
+12J            sp3_sp3_16          O2         C14         C16         H16      60.000    10.0     3
+12J             sp2_sp2_3          O1          C7           N          C8       0.000     5.0     2
+12J             sp2_sp2_5          C9          C8           N          C7     180.000     5.0     2
+12J              const_24           I          C1          C2          C7       0.000    10.0     2
+12J              const_43           I          C1          C6          C5     180.000    10.0     2
+12J             sp2_sp2_9          C1          C2          C7           N     180.000     5.0     2
+12J              const_27          C7          C2          C3          C4     180.000    10.0     2
+12J            sp2_sp2_13          C9         C10          O2         C14     180.000     5.0     2
+12J             sp3_sp3_1         C15         C14          O2         C10     180.000    10.0     3
+12J              const_29          C2          C3          C4          C5       0.000    10.0     2
+12J              const_33          C3          C4          C5          C6       0.000    10.0     2
+12J              const_37          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+12J    chir_1    C14    O2    C15    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+12J    plan-1         C10   0.020
+12J    plan-1         C11   0.020
+12J    plan-1         C12   0.020
+12J    plan-1         C13   0.020
+12J    plan-1          C8   0.020
+12J    plan-1          C9   0.020
+12J    plan-1         H11   0.020
+12J    plan-1         H12   0.020
+12J    plan-1         H13   0.020
+12J    plan-1          H9   0.020
+12J    plan-1           N   0.020
+12J    plan-1          O2   0.020
+12J    plan-2          C1   0.020
+12J    plan-2          C2   0.020
+12J    plan-2          C3   0.020
+12J    plan-2          C4   0.020
+12J    plan-2          C5   0.020
+12J    plan-2          C6   0.020
+12J    plan-2          C7   0.020
+12J    plan-2          H3   0.020
+12J    plan-2          H4   0.020
+12J    plan-2          H5   0.020
+12J    plan-2          H6   0.020
+12J    plan-2           I   0.020
+12J    plan-3          C7   0.020
+12J    plan-3          C8   0.020
+12J    plan-3          HN   0.020
+12J    plan-3           N   0.020
+12J    plan-4          C2   0.020
+12J    plan-4          C7   0.020
+12J    plan-4           N   0.020
+12J    plan-4          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+12J SMILES_CANONICAL               CACTVS 3.352                                                                      CC(C)Oc1cccc(NC(=O)c2ccccc2I)c1
+12J           SMILES               CACTVS 3.352                                                                      CC(C)Oc1cccc(NC(=O)c2ccccc2I)c1
+12J SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                      CC(C)Oc1cccc(c1)NC(=O)c2ccccc2I
+12J           SMILES "OpenEye OEToolkits" 1.7.0                                                                      CC(C)Oc1cccc(c1)NC(=O)c2ccccc2I
+12J            InChI                InChI  1.03 InChI=1S/C16H16INO2/c1-11(2)20-13-7-5-6-12(10-13)18-16(19)14-8-3-4-9-15(14)17/h3-11H,1-2H3,(H,18,19)
+12J         InChIKey                InChI  1.03                                                                          NBAUMFNNRDRNGY-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+12J acedrg               243         "dictionary generator"                  
+12J acedrg_database      11          "data source"                           
+12J rdkit                2017.03.2   "Chemoinformatics tool"
+12J refmac5              5.8.0238    "optimization tool"                     

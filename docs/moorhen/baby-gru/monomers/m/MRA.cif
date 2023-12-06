@@ -1,0 +1,272 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MRA     MRA      2-[(4-ETHYNYL-2-FLUOROPHENYL)AMINO]-3,4-DIFLUORO-N-(2-HYDROXYETHOXY)BENZAMIDE     NON-POLYMER     38     25     .     
+#
+data_comp_MRA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MRA     C1      C       CR16    0       46.010      27.540      -8.382      
+MRA     C2      C       CR6     0       47.382      27.396      -8.344      
+MRA     C3      C       CR6     0       48.087      27.326      -7.147      
+MRA     C4      C       CR16    0       47.370      27.403      -5.946      
+MRA     C5      C       CR16    0       45.998      27.547      -5.970      
+MRA     C6      C       CR6     0       45.302      27.617      -7.180      
+MRA     C7      C       CSP     0       43.868      27.767      -7.189      
+MRA     C8      C       CSP     0       42.694      27.851      -7.204      
+MRA     N1      N       NH1     0       49.488      27.178      -7.164      
+MRA     C9      C       CR6     0       50.284      26.416      -6.300      
+MRA     C10     C       CR6     0       51.283      27.039      -5.510      
+MRA     C11     C       CR16    0       52.061      26.247      -4.666      
+MRA     C12     C       CR16    0       51.870      24.875      -4.583      
+MRA     C13     C       CR6     0       50.897      24.285      -5.353      
+MRA     C14     C       CR6     0       50.108      25.030      -6.204      
+MRA     F1      F       F       0       49.170      24.414      -6.939      
+MRA     F2      F       F       0       50.688      22.951      -5.294      
+MRA     C15     C       C       0       51.540      28.514      -5.559      
+MRA     O1      O       O       0       51.816      29.073      -6.630      
+MRA     N2      N       NH1     0       51.466      29.149      -4.393      
+MRA     O2      O       O2      0       51.758      30.518      -4.386      
+MRA     C16     C       CH2     0       53.142      30.744      -4.052      
+MRA     C17     C       CH2     0       53.489      32.198      -3.975      
+MRA     O3      O       OH1     0       52.932      32.817      -2.832      
+MRA     F3      F       F       0       48.058      27.323      -9.515      
+MRA     H1      H       H       0       45.549      27.587      -9.205      
+MRA     H4      H       H       0       47.826      27.358      -5.123      
+MRA     H5      H       H       0       45.526      27.598      -5.158      
+MRA     H8      H       H       0       41.754      27.888      -7.196      
+MRA     HN1     H       H       0       49.911      27.609      -7.792      
+MRA     H11     H       H       0       52.726      26.654      -4.139      
+MRA     H12     H       H       0       52.400      24.350      -4.007      
+MRA     HN2     H       H       0       51.244      28.775      -3.636      
+MRA     H161    H       H       0       53.709      30.309      -4.732      
+MRA     H162    H       H       0       53.335      30.315      -3.186      
+MRA     H171    H       H       0       53.159      32.656      -4.776      
+MRA     H172    H       H       0       54.463      32.301      -3.948      
+MRA     HO3     H       H       0       53.179      33.625      -2.803      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MRA          C1          C2      DOUBLE       y     1.375  0.0112     1.375  0.0112
+MRA          C1          C6      SINGLE       y     1.394  0.0100     1.394  0.0100
+MRA          C2          F3      SINGLE       n     1.354  0.0100     1.354  0.0100
+MRA          C2          C3      SINGLE       y     1.384  0.0119     1.384  0.0119
+MRA          C3          N1      SINGLE       n     1.400  0.0200     1.400  0.0200
+MRA          C3          C4      DOUBLE       y     1.397  0.0100     1.397  0.0100
+MRA          C4          C5      SINGLE       y     1.377  0.0100     1.377  0.0100
+MRA          C5          C6      DOUBLE       y     1.394  0.0102     1.394  0.0102
+MRA          C6          C7      SINGLE       n     1.442  0.0134     1.442  0.0134
+MRA          C7          C8      TRIPLE       n     1.177  0.0147     1.177  0.0147
+MRA          N1          C9      SINGLE       n     1.392  0.0200     1.392  0.0200
+MRA          C9         C14      SINGLE       y     1.395  0.0133     1.395  0.0133
+MRA          C9         C10      DOUBLE       y     1.411  0.0108     1.411  0.0108
+MRA         C10         C15      SINGLE       n     1.496  0.0103     1.496  0.0103
+MRA         C10         C11      SINGLE       y     1.385  0.0124     1.385  0.0124
+MRA         C11         C12      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MRA         C12         C13      SINGLE       y     1.371  0.0101     1.371  0.0101
+MRA         C13         C14      DOUBLE       y     1.376  0.0100     1.376  0.0100
+MRA         C13          F2      SINGLE       n     1.352  0.0100     1.352  0.0100
+MRA         C14          F1      SINGLE       n     1.342  0.0100     1.342  0.0100
+MRA         C15          O1      DOUBLE       n     1.238  0.0100     1.238  0.0100
+MRA         C15          N2      SINGLE       n     1.327  0.0100     1.327  0.0100
+MRA          N2          O2      SINGLE       n     1.398  0.0102     1.398  0.0102
+MRA          O2         C16      SINGLE       n     1.442  0.0100     1.442  0.0100
+MRA         C16         C17      SINGLE       n     1.496  0.0200     1.496  0.0200
+MRA         C17          O3      SINGLE       n     1.414  0.0200     1.414  0.0200
+MRA          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0200
+MRA          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0186
+MRA          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+MRA          C8          H8      SINGLE       n     1.048  0.0100     0.940  0.0200
+MRA          N1         HN1      SINGLE       n     1.016  0.0100     0.870  0.0200
+MRA         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+MRA         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0184
+MRA          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+MRA         C16        H161      SINGLE       n     1.089  0.0100     0.986  0.0100
+MRA         C16        H162      SINGLE       n     1.089  0.0100     0.986  0.0100
+MRA         C17        H171      SINGLE       n     1.089  0.0100     0.980  0.0144
+MRA         C17        H172      SINGLE       n     1.089  0.0100     0.980  0.0144
+MRA          O3         HO3      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MRA          C2          C1          C6     118.643    1.50
+MRA          C2          C1          H1     121.212    1.50
+MRA          C6          C1          H1     120.145    1.50
+MRA          C1          C2          F3     118.778    1.50
+MRA          C1          C2          C3     121.814    1.82
+MRA          F3          C2          C3     119.408    1.50
+MRA          C2          C3          N1     120.829    3.00
+MRA          C2          C3          C4     118.604    1.59
+MRA          N1          C3          C4     120.567    2.70
+MRA          C3          C4          C5     120.124    1.50
+MRA          C3          C4          H4     119.761    1.50
+MRA          C5          C4          H4     120.120    1.50
+MRA          C4          C5          C6     121.408    1.50
+MRA          C4          C5          H5     119.126    1.50
+MRA          C6          C5          H5     119.466    1.50
+MRA          C1          C6          C5     119.401    1.50
+MRA          C1          C6          C7     120.226    1.50
+MRA          C5          C6          C7     120.373    1.50
+MRA          C6          C7          C8     178.059    1.50
+MRA          C7          C8          H8     178.126    3.00
+MRA          C3          N1          C9     126.603    2.45
+MRA          C3          N1         HN1     116.699    2.39
+MRA          C9          N1         HN1     116.699    2.39
+MRA          N1          C9         C14     120.270    3.00
+MRA          N1          C9         C10     119.974    1.50
+MRA         C14          C9         C10     119.756    1.80
+MRA          C9         C10         C15     121.692    2.15
+MRA          C9         C10         C11     118.451    1.50
+MRA         C15         C10         C11     119.856    2.89
+MRA         C10         C11         C12     120.569    1.50
+MRA         C10         C11         H11     119.544    1.50
+MRA         C12         C11         H11     119.886    1.50
+MRA         C11         C12         C13     118.700    1.50
+MRA         C11         C12         H12     120.890    1.50
+MRA         C13         C12         H12     120.409    1.50
+MRA         C12         C13         C14     121.550    1.50
+MRA         C12         C13          F2     120.423    1.50
+MRA         C14         C13          F2     118.027    1.50
+MRA          C9         C14         C13     120.973    1.53
+MRA          C9         C14          F1     119.703    1.50
+MRA         C13         C14          F1     119.324    1.50
+MRA         C10         C15          O1     121.266    1.50
+MRA         C10         C15          N2     115.202    1.50
+MRA          O1         C15          N2     123.533    1.50
+MRA         C15          N2          O2     116.483    2.10
+MRA         C15          N2         HN2     124.298    3.00
+MRA          O2          N2         HN2     119.219    3.00
+MRA          N2          O2         C16     110.591    2.29
+MRA          O2         C16         C17     113.096    1.64
+MRA          O2         C16        H161     109.064    1.50
+MRA          O2         C16        H162     109.064    1.50
+MRA         C17         C16        H161     109.701    1.50
+MRA         C17         C16        H162     109.701    1.50
+MRA        H161         C16        H162     107.840    1.50
+MRA         C16         C17          O3     112.772    3.00
+MRA         C16         C17        H171     109.701    1.50
+MRA         C16         C17        H172     109.701    1.50
+MRA          O3         C17        H171     109.012    1.50
+MRA          O3         C17        H172     109.012    1.50
+MRA        H171         C17        H172     108.093    1.50
+MRA         C17          O3         HO3     109.347    1.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MRA              const_22          C6          C1          C2          F3     180.000    10.0     2
+MRA              const_42          C2          C1          C6          C7     180.000    10.0     2
+MRA              const_19         C15         C10         C11         C12     180.000    10.0     2
+MRA            sp2_sp2_10          C9         C10         C15          O1       0.000     5.0     2
+MRA              const_13         C10         C11         C12         C13       0.000    10.0     2
+MRA              const_10         C11         C12         C13          F2     180.000    10.0     2
+MRA       const_sp2_sp2_8          F2         C13         C14          F1       0.000     5.0     2
+MRA            sp2_sp2_15          O1         C15          N2          O2       0.000     5.0     2
+MRA              const_28          F3          C2          C3          N1       0.000    10.0     2
+MRA             sp3_sp3_1         C17         C16          O2          N2     180.000    10.0     3
+MRA             sp3_sp3_4          O2         C16         C17          O3     180.000    10.0     3
+MRA            sp3_sp3_13         C16         C17          O3         HO3     180.000    10.0     3
+MRA              const_31          N1          C3          C4          C5     180.000    10.0     2
+MRA             sp2_sp2_1          C2          C3          N1          C9     180.000     5.0     2
+MRA              const_33          C3          C4          C5          C6       0.000    10.0     2
+MRA              const_38          C4          C5          C6          C7     180.000    10.0     2
+MRA           other_tor_1          C8          C7          C6          C1      90.000    10.0     1
+MRA           other_tor_3          C6          C7          C8          H8     180.000    10.0     1
+MRA             sp2_sp2_5         C14          C9          N1          C3     180.000     5.0     2
+MRA              const_48         C15         C10          C9          N1       0.000    10.0     2
+MRA       const_sp2_sp2_4          F1         C14          C9          N1       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MRA    plan-1          C1   0.020
+MRA    plan-1          C2   0.020
+MRA    plan-1          C3   0.020
+MRA    plan-1          C4   0.020
+MRA    plan-1          C5   0.020
+MRA    plan-1          C6   0.020
+MRA    plan-1          C7   0.020
+MRA    plan-1          F3   0.020
+MRA    plan-1          H1   0.020
+MRA    plan-1          H4   0.020
+MRA    plan-1          H5   0.020
+MRA    plan-1          N1   0.020
+MRA    plan-2         C10   0.020
+MRA    plan-2         C11   0.020
+MRA    plan-2         C12   0.020
+MRA    plan-2         C13   0.020
+MRA    plan-2         C14   0.020
+MRA    plan-2         C15   0.020
+MRA    plan-2          C9   0.020
+MRA    plan-2          F1   0.020
+MRA    plan-2          F2   0.020
+MRA    plan-2         H11   0.020
+MRA    plan-2         H12   0.020
+MRA    plan-2          N1   0.020
+MRA    plan-3          C3   0.020
+MRA    plan-3          C9   0.020
+MRA    plan-3         HN1   0.020
+MRA    plan-3          N1   0.020
+MRA    plan-4         C10   0.020
+MRA    plan-4         C15   0.020
+MRA    plan-4          N2   0.020
+MRA    plan-4          O1   0.020
+MRA    plan-5         C15   0.020
+MRA    plan-5         HN2   0.020
+MRA    plan-5          N2   0.020
+MRA    plan-5          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MRA           SMILES              ACDLabs 10.04                                                                                      O=C(NOCCO)c1c(c(F)c(F)cc1)Nc2ccc(C#C)cc2F
+MRA SMILES_CANONICAL               CACTVS 3.341                                                                                        OCCONC(=O)c1ccc(F)c(F)c1Nc2ccc(cc2F)C#C
+MRA           SMILES               CACTVS 3.341                                                                                        OCCONC(=O)c1ccc(F)c(F)c1Nc2ccc(cc2F)C#C
+MRA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      C#Cc1ccc(c(c1)F)Nc2c(ccc(c2F)F)C(=O)NOCCO
+MRA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      C#Cc1ccc(c(c1)F)Nc2c(ccc(c2F)F)C(=O)NOCCO
+MRA            InChI                InChI  1.03 InChI=1S/C17H13F3N2O3/c1-2-10-3-6-14(13(19)9-10)21-16-11(4-5-12(18)15(16)20)17(24)22-25-8-7-23/h1,3-6,9,21,23H,7-8H2,(H,22,24)
+MRA         InChIKey                InChI  1.03                                                                                                    AMNKRBRQQAMACZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MRA acedrg               243         "dictionary generator"                  
+MRA acedrg_database      11          "data source"                           
+MRA rdkit                2017.03.2   "Chemoinformatics tool"
+MRA refmac5              5.8.0238    "optimization tool"                     

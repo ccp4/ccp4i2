@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JSR     JSR      6-{[(3R,4S)-4-(2-{[2-(3-fluorophenyl)ethyl]amino}ethoxy)pyrrolidin-3-yl]methyl}-4-methylpyridin-2-amine     NON-POLYMER     56     27     .     
+#
+data_comp_JSR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JSR     C1      C       CH2     0       12.123      16.913      34.742      
+JSR     O1      O       O2      0       11.768      15.576      34.355      
+JSR     C2      C       CH2     0       13.520      17.243      34.276      
+JSR     N2      N       NT1     0       14.519      16.372      34.890      
+JSR     C3      C       CH2     0       15.891      16.661      34.458      
+JSR     C4      C       CH2     0       16.880      15.627      34.988      
+JSR     "N1'"   N       NT1     0       9.738       13.594      36.562      
+JSR     C11     C       CR6     0       16.983      15.651      36.496      
+JSR     C12     C       CR16    0       17.585      16.723      37.144      
+JSR     C13     C       CR6     0       17.666      16.721      38.518      
+JSR     F13     F       F       0       18.258      17.778      39.135      
+JSR     C14     C       CR16    0       17.179      15.701      39.291      
+JSR     C15     C       CR16    0       16.581      14.634      38.649      
+JSR     C16     C       CR16    0       16.481      14.605      37.263      
+JSR     N1A     N       NRD6    0       7.522       12.549      32.436      
+JSR     "C2'"   C       CH2     0       10.923      14.412      36.285      
+JSR     C2A     C       CR6     0       8.764       13.008      32.174      
+JSR     "C3'"   C       CH1     0       10.594      15.043      34.961      
+JSR     C3A     C       CR16    0       9.581       12.396      31.232      
+JSR     "C4'"   C       CH1     0       10.059      13.841      34.186      
+JSR     C4A     C       CR6     0       9.125       11.285      30.529      
+JSR     "C5'"   C       CH2     0       9.297       13.064      35.260      
+JSR     C5A     C       CR16    0       7.849       10.814      30.795      
+JSR     C6A     C       CR6     0       7.063       11.472      31.762      
+JSR     N6A     N       NH2     0       5.825       11.047      32.048      
+JSR     C7A     C       CH2     0       9.222       14.210      32.956      
+JSR     C8A     C       CH3     0       9.996       10.606      29.500      
+JSR     H1      H       H       0       12.072      16.996      35.716      
+JSR     H1A     H       H       0       11.486      17.544      34.348      
+JSR     H2      H       H       0       13.718      18.176      34.501      
+JSR     H2A     H       H       0       13.560      17.149      33.302      
+JSR     HN2     H       H       0       14.317      15.530      34.649      
+JSR     H3      H       H       0       16.152      17.552      34.778      
+JSR     H3A     H       H       0       15.927      16.667      33.477      
+JSR     H4      H       H       0       17.764      15.804      34.602      
+JSR     H4A     H       H       0       16.598      14.735      34.695      
+JSR     "HN1'"  H       H       0       9.990       12.920      37.051      
+JSR     H12     H       H       0       17.939      17.458      36.637      
+JSR     H14     H       H       0       17.249      15.728      40.233      
+JSR     H15     H       H       0       16.235      13.917      39.159      
+JSR     H16     H       H       0       16.070      13.870      36.838      
+JSR     "H2'"   H       H       0       11.049      15.089      36.984      
+JSR     "H2'A"  H       H       0       11.726      13.852      36.226      
+JSR     "H3'"   H       H       0       9.900       15.740      35.061      
+JSR     H3AA    H       H       0       10.447      12.730      31.063      
+JSR     "H4'"   H       H       0       10.838      13.300      33.887      
+JSR     "H5'"   H       H       0       8.330       13.190      35.157      
+JSR     "H5'A"  H       H       0       9.498       12.106      35.200      
+JSR     H5A     H       H       0       7.516       10.063      30.333      
+JSR     HN6A    H       H       0       5.540       10.282      31.726      
+JSR     HN6B    H       H       0       5.301       11.535      32.557      
+JSR     H7A     H       H       0       8.439       14.723      33.249      
+JSR     H7AA    H       H       0       9.757       14.787      32.372      
+JSR     H8A     H       H       0       9.771       9.663       29.455      
+JSR     H8AA    H       H       0       10.929      10.703      29.749      
+JSR     H8AB    H       H       0       9.850       11.014      28.631      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JSR          C1          O1      SINGLE       n     1.434  0.0200     1.434  0.0200
+JSR          C1          C2      SINGLE       n     1.509  0.0103     1.509  0.0103
+JSR          O1       "C3'"      SINGLE       n     1.423  0.0100     1.423  0.0100
+JSR          C2          N2      SINGLE       n     1.460  0.0138     1.460  0.0138
+JSR          N2          C3      SINGLE       n     1.467  0.0127     1.467  0.0127
+JSR          C3          C4      SINGLE       n     1.525  0.0180     1.525  0.0180
+JSR          C4         C11      SINGLE       n     1.511  0.0100     1.511  0.0100
+JSR       "N1'"       "C5'"      SINGLE       n     1.466  0.0121     1.466  0.0121
+JSR       "N1'"       "C2'"      SINGLE       n     1.466  0.0121     1.466  0.0121
+JSR         C11         C12      DOUBLE       y     1.385  0.0109     1.385  0.0109
+JSR         C11         C16      SINGLE       y     1.385  0.0110     1.385  0.0110
+JSR         C12         C13      SINGLE       y     1.374  0.0100     1.374  0.0100
+JSR         C13         F13      SINGLE       n     1.359  0.0106     1.359  0.0106
+JSR         C13         C14      DOUBLE       y     1.364  0.0125     1.364  0.0125
+JSR         C14         C15      SINGLE       y     1.375  0.0128     1.375  0.0128
+JSR         C15         C16      DOUBLE       y     1.385  0.0100     1.385  0.0100
+JSR         N1A         C6A      DOUBLE       y     1.343  0.0133     1.343  0.0133
+JSR         N1A         C2A      SINGLE       y     1.345  0.0100     1.345  0.0100
+JSR       "C2'"       "C3'"      SINGLE       n     1.512  0.0154     1.512  0.0154
+JSR         C2A         C3A      DOUBLE       y     1.383  0.0127     1.383  0.0127
+JSR         C2A         C7A      SINGLE       n     1.505  0.0100     1.505  0.0100
+JSR       "C3'"       "C4'"      SINGLE       n     1.534  0.0166     1.534  0.0166
+JSR         C3A         C4A      SINGLE       y     1.388  0.0100     1.388  0.0100
+JSR       "C4'"         C7A      SINGLE       n     1.532  0.0100     1.532  0.0100
+JSR       "C4'"       "C5'"      SINGLE       n     1.527  0.0100     1.527  0.0100
+JSR         C4A         C8A      SINGLE       n     1.509  0.0144     1.509  0.0144
+JSR         C4A         C5A      DOUBLE       y     1.383  0.0100     1.383  0.0100
+JSR         C5A         C6A      SINGLE       y     1.398  0.0169     1.398  0.0169
+JSR         C6A         N6A      SINGLE       n     1.335  0.0166     1.335  0.0166
+JSR          C1          H1      SINGLE       n     1.089  0.0100     0.979  0.0200
+JSR          C1         H1A      SINGLE       n     1.089  0.0100     0.979  0.0200
+JSR          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0143
+JSR          C2         H2A      SINGLE       n     1.089  0.0100     0.980  0.0143
+JSR          N2         HN2      SINGLE       n     1.036  0.0160     0.899  0.0200
+JSR          C3          H3      SINGLE       n     1.089  0.0100     0.982  0.0143
+JSR          C3         H3A      SINGLE       n     1.089  0.0100     0.982  0.0143
+JSR          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0158
+JSR          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0158
+JSR       "N1'"      "HN1'"      SINGLE       n     1.036  0.0160     0.869  0.0200
+JSR         C12         H12      SINGLE       n     1.082  0.0130     0.961  0.0200
+JSR         C14         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+JSR         C15         H15      SINGLE       n     1.082  0.0130     0.946  0.0200
+JSR         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+JSR       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JSR       "C2'"      "H2'A"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JSR       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.988  0.0200
+JSR         C3A        H3AA      SINGLE       n     1.082  0.0130     0.943  0.0168
+JSR       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+JSR       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JSR       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JSR         C5A         H5A      SINGLE       n     1.082  0.0130     0.943  0.0168
+JSR         N6A        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+JSR         N6A        HN6B      SINGLE       n     1.016  0.0100     0.877  0.0200
+JSR         C7A         H7A      SINGLE       n     1.089  0.0100     0.980  0.0157
+JSR         C7A        H7AA      SINGLE       n     1.089  0.0100     0.980  0.0157
+JSR         C8A         H8A      SINGLE       n     1.089  0.0100     0.971  0.0135
+JSR         C8A        H8AA      SINGLE       n     1.089  0.0100     0.971  0.0135
+JSR         C8A        H8AB      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JSR          O1          C1          C2     111.960    2.63
+JSR          O1          C1          H1     109.660    1.50
+JSR          O1          C1         H1A     109.660    1.50
+JSR          C2          C1          H1     110.114    1.50
+JSR          C2          C1         H1A     110.114    1.50
+JSR          H1          C1         H1A     108.500    1.50
+JSR          C1          O1       "C3'"     114.719    2.29
+JSR          C1          C2          N2     112.102    1.50
+JSR          C1          C2          H2     109.005    1.50
+JSR          C1          C2         H2A     109.005    1.50
+JSR          N2          C2          H2     109.542    1.51
+JSR          N2          C2         H2A     109.542    1.51
+JSR          H2          C2         H2A     108.238    1.99
+JSR          C2          N2          C3     113.474    1.55
+JSR          C2          N2         HN2     107.057    3.00
+JSR          C3          N2         HN2     108.280    3.00
+JSR          N2          C3          C4     111.644    2.18
+JSR          N2          C3          H3     109.402    1.50
+JSR          N2          C3         H3A     109.402    1.50
+JSR          C4          C3          H3     109.189    1.50
+JSR          C4          C3         H3A     109.189    1.50
+JSR          H3          C3         H3A     108.162    1.50
+JSR          C3          C4         C11     112.139    1.84
+JSR          C3          C4          H4     109.025    1.50
+JSR          C3          C4         H4A     109.025    1.50
+JSR         C11          C4          H4     109.239    1.50
+JSR         C11          C4         H4A     109.239    1.50
+JSR          H4          C4         H4A     107.823    1.50
+JSR       "C5'"       "N1'"       "C2'"     103.992    1.50
+JSR       "C5'"       "N1'"      "HN1'"     107.738    2.27
+JSR       "C2'"       "N1'"      "HN1'"     107.738    2.27
+JSR          C4         C11         C12     120.562    1.50
+JSR          C4         C11         C16     120.805    1.50
+JSR         C12         C11         C16     118.633    1.50
+JSR         C11         C12         C13     119.366    1.50
+JSR         C11         C12         H12     120.251    1.50
+JSR         C13         C12         H12     120.383    1.50
+JSR         C12         C13         F13     118.372    1.50
+JSR         C12         C13         C14     123.191    1.50
+JSR         F13         C13         C14     118.436    1.50
+JSR         C13         C14         C15     117.830    1.50
+JSR         C13         C14         H14     121.001    1.50
+JSR         C15         C14         H14     121.169    1.50
+JSR         C14         C15         C16     120.526    1.50
+JSR         C14         C15         H15     119.626    1.50
+JSR         C16         C15         H15     119.848    1.50
+JSR         C11         C16         C15     120.454    1.50
+JSR         C11         C16         H16     119.676    1.50
+JSR         C15         C16         H16     119.871    1.50
+JSR         C6A         N1A         C2A     118.635    1.50
+JSR       "N1'"       "C2'"       "C3'"     103.104    2.01
+JSR       "N1'"       "C2'"       "H2'"     110.393    1.50
+JSR       "N1'"       "C2'"      "H2'A"     110.393    1.50
+JSR       "C3'"       "C2'"       "H2'"     111.050    1.50
+JSR       "C3'"       "C2'"      "H2'A"     111.050    1.50
+JSR       "H2'"       "C2'"      "H2'A"     109.055    1.50
+JSR         N1A         C2A         C3A     121.464    1.50
+JSR         N1A         C2A         C7A     116.685    1.50
+JSR         C3A         C2A         C7A     121.851    1.70
+JSR          O1       "C3'"       "C2'"     109.088    3.00
+JSR          O1       "C3'"       "C4'"     110.722    2.96
+JSR          O1       "C3'"       "H3'"     110.257    1.68
+JSR       "C2'"       "C3'"       "C4'"     104.443    2.26
+JSR       "C2'"       "C3'"       "H3'"     110.749    1.50
+JSR       "C4'"       "C3'"       "H3'"     110.816    1.58
+JSR         C2A         C3A         C4A     120.185    1.50
+JSR         C2A         C3A        H3AA     120.325    1.50
+JSR         C4A         C3A        H3AA     119.490    1.50
+JSR       "C3'"       "C4'"         C7A     113.745    2.48
+JSR       "C3'"       "C4'"       "C5'"     102.159    1.62
+JSR       "C3'"       "C4'"       "H4'"     107.749    1.50
+JSR         C7A       "C4'"       "C5'"     113.745    2.48
+JSR         C7A       "C4'"       "H4'"     108.365    1.61
+JSR       "C5'"       "C4'"       "H4'"     108.836    1.50
+JSR         C3A         C4A         C8A     120.917    1.50
+JSR         C3A         C4A         C5A     118.497    1.50
+JSR         C8A         C4A         C5A     120.586    1.50
+JSR       "N1'"       "C5'"       "C4'"     103.104    2.01
+JSR       "N1'"       "C5'"       "H5'"     110.393    1.50
+JSR       "N1'"       "C5'"      "H5'A"     110.393    1.50
+JSR       "C4'"       "C5'"       "H5'"     110.966    1.50
+JSR       "C4'"       "C5'"      "H5'A"     110.966    1.50
+JSR       "H5'"       "C5'"      "H5'A"     109.055    1.50
+JSR         C4A         C5A         C6A     119.340    1.50
+JSR         C4A         C5A         H5A     120.018    1.50
+JSR         C6A         C5A         H5A     120.642    1.50
+JSR         N1A         C6A         C5A     121.879    1.50
+JSR         N1A         C6A         N6A     117.161    1.55
+JSR         C5A         C6A         N6A     120.961    1.50
+JSR         C6A         N6A        HN6A     119.818    1.59
+JSR         C6A         N6A        HN6B     119.818    1.59
+JSR        HN6A         N6A        HN6B     120.363    1.85
+JSR         C2A         C7A       "C4'"     113.066    2.20
+JSR         C2A         C7A         H7A     108.985    1.50
+JSR         C2A         C7A        H7AA     108.985    1.50
+JSR       "C4'"         C7A         H7A     108.728    1.50
+JSR       "C4'"         C7A        H7AA     108.728    1.50
+JSR         H7A         C7A        H7AA     107.752    1.50
+JSR         C4A         C8A         H8A     109.567    1.50
+JSR         C4A         C8A        H8AA     109.567    1.50
+JSR         C4A         C8A        H8AB     109.567    1.50
+JSR         H8A         C8A        H8AA     109.348    1.50
+JSR         H8A         C8A        H8AB     109.348    1.50
+JSR        H8AA         C8A        H8AB     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JSR            sp3_sp3_34          C2          C1          O1       "C3'"     180.000    10.0     3
+JSR            sp3_sp3_37          O1          C1          C2          N2     180.000    10.0     3
+JSR              const_13         C13         C14         C15         C16       0.000    10.0     2
+JSR              const_17         C14         C15         C16         C11       0.000    10.0     2
+JSR              const_44         C7A         C2A         N1A         C6A     180.000    10.0     2
+JSR              const_22         N6A         C6A         N1A         C2A     180.000    10.0     2
+JSR            sp3_sp3_26       "N1'"       "C2'"       "C3'"          O1      60.000    10.0     3
+JSR              const_37         C7A         C2A         C3A         C4A     180.000    10.0     2
+JSR             sp2_sp3_8         N1A         C2A         C7A       "C4'"     -90.000    10.0     6
+JSR            sp3_sp3_20          O1       "C3'"       "C4'"         C7A      60.000    10.0     3
+JSR              const_32         C2A         C3A         C4A         C8A     180.000    10.0     2
+JSR            sp3_sp3_10         C7A       "C4'"       "C5'"       "N1'"     180.000    10.0     3
+JSR            sp3_sp3_76       "C3'"       "C4'"         C7A         C2A     180.000    10.0     3
+JSR            sp3_sp3_46       "C2'"       "C3'"          O1          C1     180.000    10.0     3
+JSR              const_29         C8A         C4A         C5A         C6A     180.000    10.0     2
+JSR            sp2_sp3_13         C3A         C4A         C8A         H8A     150.000    10.0     6
+JSR              const_24         C4A         C5A         C6A         N6A     180.000    10.0     2
+JSR             sp2_sp2_3         N1A         C6A         N6A        HN6A       0.000     5.0     2
+JSR            sp3_sp3_50          C1          C2          N2          C3     -60.000    10.0     3
+JSR            sp3_sp3_55          C4          C3          N2          C2     180.000    10.0     3
+JSR            sp3_sp3_61          N2          C3          C4         C11     180.000    10.0     3
+JSR             sp2_sp3_2         C12         C11          C4          C3     -90.000    10.0     6
+JSR            sp3_sp3_70       "C3'"       "C2'"       "N1'"       "C5'"     180.000    10.0     3
+JSR             sp3_sp3_1       "C4'"       "C5'"       "N1'"       "C2'"      60.000    10.0     3
+JSR              const_41          C4         C11         C16         C15     180.000    10.0     2
+JSR       const_sp2_sp2_3          C4         C11         C12         C13     180.000     5.0     2
+JSR       const_sp2_sp2_6         C11         C12         C13         F13     180.000     5.0     2
+JSR              const_11         F13         C13         C14         C15     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JSR    chir_1    "C3'"    O1    "C2'"    "C4'"    positive
+JSR    chir_2    "C4'"    "C3'"    "C5'"    C7A    negative
+JSR    chir_3    N2    C2    C3    HN2    both
+JSR    chir_4    "N1'"    "C2'"    "C5'"    "HN1'"    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JSR    plan-1         C11   0.020
+JSR    plan-1         C12   0.020
+JSR    plan-1         C13   0.020
+JSR    plan-1         C14   0.020
+JSR    plan-1         C15   0.020
+JSR    plan-1         C16   0.020
+JSR    plan-1          C4   0.020
+JSR    plan-1         F13   0.020
+JSR    plan-1         H12   0.020
+JSR    plan-1         H14   0.020
+JSR    plan-1         H15   0.020
+JSR    plan-1         H16   0.020
+JSR    plan-2         C2A   0.020
+JSR    plan-2         C3A   0.020
+JSR    plan-2         C4A   0.020
+JSR    plan-2         C5A   0.020
+JSR    plan-2         C6A   0.020
+JSR    plan-2         C7A   0.020
+JSR    plan-2         C8A   0.020
+JSR    plan-2        H3AA   0.020
+JSR    plan-2         H5A   0.020
+JSR    plan-2         N1A   0.020
+JSR    plan-2         N6A   0.020
+JSR    plan-3         C6A   0.020
+JSR    plan-3        HN6A   0.020
+JSR    plan-3        HN6B   0.020
+JSR    plan-3         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JSR           SMILES              ACDLabs 12.01                                                                                                                              Fc1cccc(c1)CCNCCOC2C(CNC2)Cc3nc(N)cc(c3)C
+JSR SMILES_CANONICAL               CACTVS 3.370                                                                                                                       Cc1cc(N)nc(C[C@@H]2CNC[C@H]2OCCNCCc3cccc(F)c3)c1
+JSR           SMILES               CACTVS 3.370                                                                                                                          Cc1cc(N)nc(C[CH]2CNC[CH]2OCCNCCc3cccc(F)c3)c1
+JSR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                       Cc1cc(nc(c1)N)C[C@@H]2CNC[C@H]2OCCNCCc3cccc(c3)F
+JSR           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                Cc1cc(nc(c1)N)CC2CNCC2OCCNCCc3cccc(c3)F
+JSR            InChI                InChI  1.03 InChI=1S/C21H29FN4O/c1-15-9-19(26-21(23)10-15)12-17-13-25-14-20(17)27-8-7-24-6-5-16-3-2-4-18(22)11-16/h2-4,9-11,17,20,24-25H,5-8,12-14H2,1H3,(H2,23,26)/t17-,20-/m1/s1
+JSR         InChIKey                InChI  1.03                                                                                                                                            NESZTSPBRDBHCW-YLJYHZDGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JSR acedrg               243         "dictionary generator"                  
+JSR acedrg_database      11          "data source"                           
+JSR rdkit                2017.03.2   "Chemoinformatics tool"
+JSR refmac5              5.8.0238    "optimization tool"                     

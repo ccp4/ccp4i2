@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9UP     9UP      "methyl (7-carbamimidoylnaphthalen-1-yl)carbamate"     NON-POLYMER     31     18     .     
+#
+data_comp_9UP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9UP     CAA     C       CH3     0       -24.943     -19.843     -2.914      
+9UP     OAL     O       O2      0       -23.895     -19.891     -3.907      
+9UP     CAN     C       C       0       -23.391     -18.707     -4.324      
+9UP     OAD     O       O       0       -23.344     -17.708     -3.645      
+9UP     N1      N       NH1     0       -22.937     -18.829     -5.600      
+9UP     CAP     C       CR6     0       -22.530     -17.781     -6.473      
+9UP     CAR     C       CR66    0       -21.164     -17.750     -6.907      
+9UP     CAJ     C       CR16    0       -20.190     -18.709     -6.512      
+9UP     CAF     C       CR16    0       -23.421     -16.826     -6.889      
+9UP     CAE     C       CR16    0       -23.011     -15.795     -7.752      
+9UP     CAH     C       CR16    0       -21.724     -15.727     -8.188      
+9UP     CAQ     C       CR66    0       -20.765     -16.691     -7.785      
+9UP     CAI     C       CR16    0       -19.419     -16.638     -8.229      
+9UP     CAG     C       CR16    0       -18.509     -17.577     -7.829      
+9UP     CAO     C       CR6     0       -18.892     -18.634     -6.957      
+9UP     CAM     C       C       0       -17.891     -19.648     -6.531      
+9UP     N2      N       NH2     0       -18.141     -20.940     -6.832      
+9UP     N3      N       NH1     0       -16.812     -19.331     -5.893      
+9UP     H1      H       H       0       -25.653     -19.255     -3.218      
+9UP     H2      H       H       0       -24.581     -19.511     -2.078      
+9UP     H3      H       H       0       -25.299     -20.736     -2.780      
+9UP     H4      H       H       0       -22.879     -19.639     -5.927      
+9UP     H5      H       H       0       -20.436     -19.417     -5.931      
+9UP     H6      H       H       0       -24.319     -16.861     -6.594      
+9UP     H7      H       H       0       -23.638     -15.142     -8.031      
+9UP     H8      H       H       0       -21.463     -15.028     -8.767      
+9UP     H9      H       H       0       -19.148     -15.943     -8.808      
+9UP     H10     H       H       0       -17.618     -17.523     -8.136      
+9UP     H11     H       H       0       -18.880     -21.161     -7.272      
+9UP     H12     H       H       0       -17.565     -21.570     -6.589      
+9UP     H13     H       H       0       -16.703     -18.530     -5.733      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9UP         CAI         CAG      DOUBLE       y     1.364  0.0100     1.364  0.0100
+9UP         CAQ         CAI      SINGLE       y     1.415  0.0105     1.415  0.0105
+9UP         CAH         CAQ      DOUBLE       y     1.415  0.0105     1.415  0.0105
+9UP         CAE         CAH      SINGLE       y     1.358  0.0103     1.358  0.0103
+9UP         CAG         CAO      SINGLE       y     1.420  0.0100     1.420  0.0100
+9UP         CAR         CAQ      SINGLE       y     1.425  0.0100     1.425  0.0100
+9UP         CAF         CAE      DOUBLE       y     1.403  0.0100     1.403  0.0100
+9UP         CAO         CAM      SINGLE       n     1.485  0.0100     1.485  0.0100
+9UP         CAJ         CAO      DOUBLE       y     1.369  0.0112     1.369  0.0112
+9UP         CAM          N3      DOUBLE       n     1.287  0.0200     1.287  0.0200
+9UP         CAR         CAJ      SINGLE       y     1.417  0.0100     1.417  0.0100
+9UP         CAP         CAR      DOUBLE       y     1.425  0.0115     1.425  0.0115
+9UP         CAM          N2      SINGLE       n     1.347  0.0152     1.347  0.0152
+9UP         CAP         CAF      SINGLE       y     1.367  0.0100     1.367  0.0100
+9UP          N1         CAP      SINGLE       n     1.421  0.0123     1.421  0.0123
+9UP         CAN          N1      SINGLE       n     1.357  0.0110     1.357  0.0110
+9UP         OAL         CAN      SINGLE       n     1.348  0.0108     1.348  0.0108
+9UP         CAN         OAD      DOUBLE       n     1.207  0.0101     1.207  0.0101
+9UP         CAA         OAL      SINGLE       n     1.443  0.0101     1.443  0.0101
+9UP         CAA          H1      SINGLE       n     1.089  0.0100     0.970  0.0175
+9UP         CAA          H2      SINGLE       n     1.089  0.0100     0.970  0.0175
+9UP         CAA          H3      SINGLE       n     1.089  0.0100     0.970  0.0175
+9UP          N1          H4      SINGLE       n     1.016  0.0100     0.874  0.0200
+9UP         CAJ          H5      SINGLE       n     1.082  0.0130     0.949  0.0100
+9UP         CAF          H6      SINGLE       n     1.082  0.0130     0.946  0.0200
+9UP         CAE          H7      SINGLE       n     1.082  0.0130     0.947  0.0200
+9UP         CAH          H8      SINGLE       n     1.082  0.0130     0.944  0.0192
+9UP         CAI          H9      SINGLE       n     1.082  0.0130     0.944  0.0160
+9UP         CAG         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+9UP          N2         H11      SINGLE       n     1.016  0.0100     0.887  0.0200
+9UP          N2         H12      SINGLE       n     1.016  0.0100     0.887  0.0200
+9UP          N3         H13      SINGLE       n     1.016  0.0100     0.823  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9UP         OAL         CAA          H1     109.384    1.50
+9UP         OAL         CAA          H2     109.384    1.50
+9UP         OAL         CAA          H3     109.384    1.50
+9UP          H1         CAA          H2     109.532    1.53
+9UP          H1         CAA          H3     109.532    1.53
+9UP          H2         CAA          H3     109.532    1.53
+9UP         CAN         OAL         CAA     115.454    1.50
+9UP          N1         CAN         OAL     109.363    1.50
+9UP          N1         CAN         OAD     126.484    1.50
+9UP         OAL         CAN         OAD     124.154    1.50
+9UP         CAP          N1         CAN     127.030    2.22
+9UP         CAP          N1          H4     116.407    2.56
+9UP         CAN          N1          H4     116.562    1.76
+9UP         CAR         CAP         CAF     120.760    1.50
+9UP         CAR         CAP          N1     117.320    1.50
+9UP         CAF         CAP          N1     121.920    2.38
+9UP         CAQ         CAR         CAJ     118.913    1.50
+9UP         CAQ         CAR         CAP     118.111    1.50
+9UP         CAJ         CAR         CAP     122.976    1.55
+9UP         CAO         CAJ         CAR     121.159    1.50
+9UP         CAO         CAJ          H5     119.304    1.50
+9UP         CAR         CAJ          H5     119.537    1.50
+9UP         CAE         CAF         CAP     120.508    1.50
+9UP         CAE         CAF          H6     119.686    1.50
+9UP         CAP         CAF          H6     119.805    1.50
+9UP         CAH         CAE         CAF     120.634    1.50
+9UP         CAH         CAE          H7     119.818    1.50
+9UP         CAF         CAE          H7     119.549    1.50
+9UP         CAQ         CAH         CAE     120.978    1.50
+9UP         CAQ         CAH          H8     119.396    1.50
+9UP         CAE         CAH          H8     119.624    1.50
+9UP         CAI         CAQ         CAH     122.054    1.50
+9UP         CAI         CAQ         CAR     118.935    1.50
+9UP         CAH         CAQ         CAR     119.011    1.50
+9UP         CAG         CAI         CAQ     120.896    1.50
+9UP         CAG         CAI          H9     119.640    1.50
+9UP         CAQ         CAI          H9     119.464    1.50
+9UP         CAI         CAG         CAO     120.666    1.50
+9UP         CAI         CAG         H10     119.602    1.50
+9UP         CAO         CAG         H10     119.731    1.50
+9UP         CAG         CAO         CAM     120.233    1.66
+9UP         CAG         CAO         CAJ     119.431    1.50
+9UP         CAM         CAO         CAJ     120.336    1.72
+9UP         CAO         CAM          N3     121.847    3.00
+9UP         CAO         CAM          N2     117.501    1.50
+9UP          N3         CAM          N2     120.652    2.66
+9UP         CAM          N2         H11     119.893    1.50
+9UP         CAM          N2         H12     119.893    1.50
+9UP         H11          N2         H12     120.214    2.70
+9UP         CAM          N3         H13     114.748    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9UP             sp3_sp3_2          H1         CAA         OAL         CAN     -60.000    10.0     3
+9UP              const_10         CAE         CAH         CAQ         CAI     180.000    10.0     2
+9UP              const_22         CAG         CAI         CAQ         CAH     180.000    10.0     2
+9UP              const_25         CAO         CAG         CAI         CAQ       0.000    10.0     2
+9UP              const_30         CAI         CAG         CAO         CAM     180.000    10.0     2
+9UP             sp2_sp2_3          N3         CAM         CAO         CAG       0.000     5.0     2
+9UP             sp2_sp2_9          N3         CAM          N2         H11       0.000     5.0     2
+9UP             sp2_sp2_6          N2         CAM          N3         H13       0.000     5.0     2
+9UP            sp2_sp2_19          N1         CAN         OAL         CAA     180.000     5.0     2
+9UP            sp2_sp2_15         OAL         CAN          N1         CAP     180.000     5.0     2
+9UP            sp2_sp2_11         CAR         CAP          N1         CAN     180.000     5.0     2
+9UP       const_sp2_sp2_3          N1         CAP         CAR         CAQ     180.000     5.0     2
+9UP              const_42         CAE         CAF         CAP          N1     180.000    10.0     2
+9UP       const_sp2_sp2_5         CAI         CAQ         CAR         CAJ       0.000     5.0     2
+9UP              const_37         CAO         CAJ         CAR         CAQ       0.000    10.0     2
+9UP              const_34         CAR         CAJ         CAO         CAM     180.000    10.0     2
+9UP              const_17         CAH         CAE         CAF         CAP       0.000    10.0     2
+9UP              const_13         CAF         CAE         CAH         CAQ       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9UP    plan-1         CAE   0.020
+9UP    plan-1         CAF   0.020
+9UP    plan-1         CAG   0.020
+9UP    plan-1         CAH   0.020
+9UP    plan-1         CAI   0.020
+9UP    plan-1         CAJ   0.020
+9UP    plan-1         CAM   0.020
+9UP    plan-1         CAO   0.020
+9UP    plan-1         CAP   0.020
+9UP    plan-1         CAQ   0.020
+9UP    plan-1         CAR   0.020
+9UP    plan-1         H10   0.020
+9UP    plan-1          H5   0.020
+9UP    plan-1          H6   0.020
+9UP    plan-1          H7   0.020
+9UP    plan-1          H8   0.020
+9UP    plan-1          H9   0.020
+9UP    plan-1          N1   0.020
+9UP    plan-2         CAN   0.020
+9UP    plan-2          N1   0.020
+9UP    plan-2         OAD   0.020
+9UP    plan-2         OAL   0.020
+9UP    plan-3         CAN   0.020
+9UP    plan-3         CAP   0.020
+9UP    plan-3          H4   0.020
+9UP    plan-3          N1   0.020
+9UP    plan-4         CAM   0.020
+9UP    plan-4         CAO   0.020
+9UP    plan-4          N2   0.020
+9UP    plan-4          N3   0.020
+9UP    plan-5         CAM   0.020
+9UP    plan-5         H11   0.020
+9UP    plan-5         H12   0.020
+9UP    plan-5          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9UP           SMILES              ACDLabs 12.01                                                                   O=C(OC)Nc2cccc1ccc(cc12)C(=[N@H])N
+9UP            InChI                InChI  1.03 InChI=1S/C13H13N3O2/c1-18-13(17)16-11-4-2-3-8-5-6-9(12(14)15)7-10(8)11/h2-7H,1H3,(H3,14,15)(H,16,17)
+9UP         InChIKey                InChI  1.03                                                                          QRWVPIXNCDJOGY-UHFFFAOYSA-N
+9UP SMILES_CANONICAL               CACTVS 3.370                                                                       COC(=O)Nc1cccc2ccc(cc12)C(N)=N
+9UP           SMILES               CACTVS 3.370                                                                       COC(=O)Nc1cccc2ccc(cc12)C(N)=N
+9UP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                               "[H]/N=C(\c1ccc2cccc(c2c1)NC(=O)OC)/N"
+9UP           SMILES "OpenEye OEToolkits" 1.7.6                                                                       COC(=O)Nc1cccc2c1cc(cc2)C(=N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9UP acedrg               243         "dictionary generator"                  
+9UP acedrg_database      11          "data source"                           
+9UP rdkit                2017.03.2   "Chemoinformatics tool"
+9UP refmac5              5.8.0238    "optimization tool"                     

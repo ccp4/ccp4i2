@@ -1,0 +1,531 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KNI     KNI      (4R)-N-tert-butyl-3-[(2S,3S)-2-hydroxy-3-({N-[(isoquinolin-5-yloxy)acetyl]-S-methyl-L-cysteinyl}amino)-4-phenylbutanoyl]-1,3-thiazolidine-4-carboxamide     NON-POLYMER     87     46     .     
+#
+data_comp_KNI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KNI     C1      C       CR16    0       6.839       0.870       6.449       
+KNI     C2      C       CR16    0       6.394       1.786       7.354       
+KNI     C3      C       CR66    0       7.176       2.945       7.613       
+KNI     C4      C       CR66    0       8.401       3.089       6.904       
+KNI     C5      C       CR16    0       8.750       2.055       5.985       
+KNI     C6      C       CR6     0       6.802       3.967       8.548       
+KNI     C7      C       CR16    0       7.616       5.061       8.734       
+KNI     C8      C       CR16    0       8.823       5.174       8.018       
+KNI     C9      C       CR16    0       9.213       4.224       7.128       
+KNI     C10     C       CH2     0       5.264       4.488       10.349      
+KNI     C11     C       C       0       4.012       3.941       10.977      
+KNI     N1      N       NRD6    0       8.014       0.985       5.755       
+KNI     O1      O       O2      0       5.608       3.751       9.176       
+KNI     O3      O       O       0       3.057       4.696       11.158      
+KNI     N2      N       NH1     0       4.024       2.643       11.289      
+KNI     C26     C       CH1     0       2.937       1.956       11.970      
+KNI     C12     C       CH2     0       1.787       1.659       11.009      
+KNI     S1      S       S2      0       0.240       1.195       11.835      
+KNI     C27     C       CH3     0       -0.559      2.795       11.955      
+KNI     C13     C       C       0       3.404       0.688       12.702      
+KNI     O6      O       O       0       3.070       -0.425      12.296      
+KNI     C17     C       C       0       5.037       -1.701      16.460      
+KNI     N3      N       NH1     0       4.185       0.884       13.775      
+KNI     O4      O       O       0       5.875       -1.543      17.348      
+KNI     C15     C       CH1     0       4.365       -0.473      15.849      
+KNI     C28     C       CR6     0       7.027       0.562       13.147      
+KNI     C16     C       CH2     0       6.440       0.277       14.512      
+KNI     C31     C       CR16    0       8.105       1.079       10.621      
+KNI     C14     C       CH1     0       4.960       -0.151      14.459      
+KNI     O2      O       OH1     0       4.495       0.675       16.683      
+KNI     C29     C       CR16    0       7.413       1.848       12.787      
+KNI     C33     C       CR16    0       7.189       -0.459      12.217      
+KNI     C30     C       CR16    0       7.950       2.105       11.531      
+KNI     C32     C       CR16    0       7.725       -0.201      10.962      
+KNI     N4      N       NR5     0       4.710       -2.938      16.023      
+KNI     C20     C       CH2     0       3.482       -3.269      15.267      
+KNI     C18     C       CH1     0       5.572       -4.090      16.322      
+KNI     C19     C       CH2     0       4.723       -5.341      16.198      
+KNI     S2      S       S2      0       3.625       -5.025      14.810      
+KNI     C21     C       C       0       6.797       -4.089      15.402      
+KNI     O5      O       O       0       6.649       -4.058      14.179      
+KNI     N5      N       NH1     0       7.996       -4.094      16.012      
+KNI     C22     C       CT      0       9.338       -4.002      15.369      
+KNI     C23     C       CH3     0       9.419       -2.719      14.545      
+KNI     C24     C       CH3     0       9.530       -5.213      14.459      
+KNI     C25     C       CH3     0       10.429      -3.991      16.447      
+KNI     H1      H       H       0       6.313       0.106       6.286       
+KNI     H2      H       H       0       5.557       1.652       7.814       
+KNI     H5      H       H       0       9.564       2.141       5.507       
+KNI     H7      H       H       0       7.376       5.738       9.343       
+KNI     H8      H       H       0       9.369       5.925       8.160       
+KNI     H9      H       H       0       10.025      4.325       6.662       
+KNI     H101    H       H       0       5.997       4.438       10.993      
+KNI     H102    H       H       0       5.128       5.427       10.114      
+KNI     HN2     H       H       0       4.721       2.159       11.074      
+KNI     H26     H       H       0       2.591       2.569       12.656      
+KNI     H121    H       H       0       2.049       0.944       10.408      
+KNI     H122    H       H       0       1.620       2.448       10.471      
+KNI     H271    H       H       0       -1.432      2.689       12.353      
+KNI     H272    H       H       0       -0.651      3.175       11.073      
+KNI     H273    H       H       0       -0.023      3.381       12.504      
+KNI     HN3     H       H       0       4.247       1.688       14.108      
+KNI     H15     H       H       0       3.399       -0.650      15.747      
+KNI     H161    H       H       0       6.521       1.081       15.067      
+KNI     H162    H       H       0       6.967       -0.433      14.935      
+KNI     H31     H       H       0       8.469       1.254       9.768       
+KNI     H14     H       H       0       4.911       -0.982      13.925      
+KNI     HO2     H       H       0       4.032       0.568       17.386      
+KNI     H29     H       H       0       7.310       2.555       13.404      
+KNI     H33     H       H       0       6.931       -1.339      12.444      
+KNI     H30     H       H       0       8.209       2.983       11.301      
+KNI     H32     H       H       0       7.830       -0.905      10.342      
+KNI     H201    H       H       0       2.697       -3.116      15.831      
+KNI     H202    H       H       0       3.410       -2.718      14.462      
+KNI     H18     H       H       0       5.860       -4.056      17.266      
+KNI     H191    H       H       0       4.210       -5.492      16.997      
+KNI     H192    H       H       0       5.263       -6.118      16.022      
+KNI     HN5     H       H       0       7.995       -4.175      16.899      
+KNI     H231    H       H       0       9.109       -1.968      15.083      
+KNI     H232    H       H       0       8.861       -2.798      13.752      
+KNI     H233    H       H       0       10.340      -2.561      14.272      
+KNI     H241    H       H       0       9.287       -6.023      14.942      
+KNI     H242    H       H       0       10.461      -5.270      14.181      
+KNI     H243    H       H       0       8.966       -5.127      13.671      
+KNI     H251    H       H       0       10.028      -3.968      17.333      
+KNI     H252    H       H       0       10.996      -3.206      16.340      
+KNI     H253    H       H       0       10.980      -4.791      16.371      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KNI          C1          C2      DOUBLE       y     1.358  0.0100     1.358  0.0100
+KNI          C1          N1      SINGLE       y     1.365  0.0100     1.365  0.0100
+KNI          C2          C3      SINGLE       y     1.414  0.0110     1.414  0.0110
+KNI          C3          C4      DOUBLE       y     1.417  0.0100     1.417  0.0100
+KNI          C3          C6      SINGLE       y     1.427  0.0100     1.427  0.0100
+KNI          C4          C5      SINGLE       y     1.419  0.0200     1.419  0.0200
+KNI          C4          C9      SINGLE       y     1.411  0.0100     1.411  0.0100
+KNI          C5          N1      DOUBLE       y     1.307  0.0186     1.307  0.0186
+KNI          C6          C7      DOUBLE       y     1.369  0.0100     1.369  0.0100
+KNI          C6          O1      SINGLE       n     1.360  0.0105     1.360  0.0105
+KNI          C7          C8      SINGLE       y     1.403  0.0115     1.403  0.0115
+KNI          C8          C9      DOUBLE       y     1.356  0.0100     1.356  0.0100
+KNI         C10         C11      SINGLE       n     1.501  0.0167     1.501  0.0167
+KNI         C10          O1      SINGLE       n     1.424  0.0100     1.424  0.0100
+KNI         C11          N2      SINGLE       n     1.332  0.0100     1.332  0.0100
+KNI         C11          O3      DOUBLE       n     1.229  0.0102     1.229  0.0102
+KNI         C26         C12      SINGLE       n     1.524  0.0100     1.524  0.0100
+KNI         C12          S1      SINGLE       n     1.813  0.0103     1.813  0.0103
+KNI         C26         C13      SINGLE       n     1.528  0.0129     1.528  0.0129
+KNI         C13          N3      SINGLE       n     1.337  0.0102     1.337  0.0102
+KNI         C13          O6      DOUBLE       n     1.229  0.0102     1.229  0.0102
+KNI         C15         C14      SINGLE       n     1.542  0.0115     1.542  0.0115
+KNI         C16         C14      SINGLE       n     1.538  0.0100     1.538  0.0100
+KNI          N3         C14      SINGLE       n     1.459  0.0104     1.459  0.0104
+KNI         C17         C15      SINGLE       n     1.523  0.0100     1.523  0.0100
+KNI         C15          O2      SINGLE       n     1.423  0.0113     1.423  0.0113
+KNI         C28         C16      SINGLE       n     1.512  0.0103     1.512  0.0103
+KNI         C17          N4      SINGLE       n     1.343  0.0100     1.343  0.0100
+KNI         C17          O4      DOUBLE       n     1.227  0.0149     1.227  0.0149
+KNI         C18         C19      SINGLE       n     1.514  0.0200     1.514  0.0200
+KNI         C18         C21      SINGLE       n     1.526  0.0105     1.526  0.0105
+KNI          N4         C18      SINGLE       n     1.463  0.0100     1.463  0.0100
+KNI         C19          S2      SINGLE       n     1.806  0.0170     1.806  0.0170
+KNI          N4         C20      SINGLE       n     1.470  0.0138     1.470  0.0138
+KNI         C20          S2      SINGLE       n     1.823  0.0161     1.823  0.0161
+KNI         C21          N5      SINGLE       n     1.336  0.0100     1.336  0.0100
+KNI         C21          O5      DOUBLE       n     1.231  0.0100     1.231  0.0100
+KNI         C22         C23      SINGLE       n     1.522  0.0113     1.522  0.0113
+KNI         C22         C24      SINGLE       n     1.522  0.0113     1.522  0.0113
+KNI         C22         C25      SINGLE       n     1.522  0.0113     1.522  0.0113
+KNI          N5         C22      SINGLE       n     1.481  0.0100     1.481  0.0100
+KNI          N2         C26      SINGLE       n     1.452  0.0100     1.452  0.0100
+KNI          S1         C27      SINGLE       n     1.792  0.0100     1.792  0.0100
+KNI         C28         C29      DOUBLE       y     1.385  0.0111     1.385  0.0111
+KNI         C28         C33      SINGLE       y     1.385  0.0111     1.385  0.0111
+KNI         C29         C30      SINGLE       y     1.386  0.0100     1.386  0.0100
+KNI         C31         C30      DOUBLE       y     1.376  0.0124     1.376  0.0124
+KNI         C31         C32      SINGLE       y     1.374  0.0127     1.374  0.0127
+KNI         C33         C32      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KNI          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0128
+KNI          C2          H2      SINGLE       n     1.082  0.0130     0.965  0.0200
+KNI          C5          H5      SINGLE       n     1.082  0.0130     0.948  0.0200
+KNI          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0143
+KNI          C8          H8      SINGLE       n     1.082  0.0130     0.940  0.0144
+KNI          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0169
+KNI         C10        H101      SINGLE       n     1.089  0.0100     0.977  0.0137
+KNI         C10        H102      SINGLE       n     1.089  0.0100     0.977  0.0137
+KNI          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0200
+KNI         C26         H26      SINGLE       n     1.089  0.0100     0.983  0.0100
+KNI         C12        H121      SINGLE       n     1.089  0.0100     0.970  0.0100
+KNI         C12        H122      SINGLE       n     1.089  0.0100     0.970  0.0100
+KNI         C27        H271      SINGLE       n     1.089  0.0100     0.965  0.0170
+KNI         C27        H272      SINGLE       n     1.089  0.0100     0.965  0.0170
+KNI         C27        H273      SINGLE       n     1.089  0.0100     0.965  0.0170
+KNI          N3         HN3      SINGLE       n     1.016  0.0100     0.872  0.0200
+KNI         C15         H15      SINGLE       n     1.089  0.0100     0.989  0.0200
+KNI         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0150
+KNI         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0150
+KNI         C31         H31      SINGLE       n     1.082  0.0130     0.944  0.0161
+KNI         C14         H14      SINGLE       n     1.089  0.0100     0.990  0.0141
+KNI          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+KNI         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0174
+KNI         C33         H33      SINGLE       n     1.082  0.0130     0.944  0.0174
+KNI         C30         H30      SINGLE       n     1.082  0.0130     0.944  0.0175
+KNI         C32         H32      SINGLE       n     1.082  0.0130     0.944  0.0175
+KNI         C20        H201      SINGLE       n     1.089  0.0100     0.979  0.0200
+KNI         C20        H202      SINGLE       n     1.089  0.0100     0.979  0.0200
+KNI         C18         H18      SINGLE       n     1.089  0.0100     0.988  0.0200
+KNI         C19        H191      SINGLE       n     1.089  0.0100     0.962  0.0200
+KNI         C19        H192      SINGLE       n     1.089  0.0100     0.962  0.0200
+KNI          N5         HN5      SINGLE       n     1.016  0.0100     0.893  0.0200
+KNI         C23        H231      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C23        H232      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C23        H233      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C24        H241      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C24        H242      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C24        H243      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C25        H251      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C25        H252      SINGLE       n     1.089  0.0100     0.974  0.0147
+KNI         C25        H253      SINGLE       n     1.089  0.0100     0.974  0.0147
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KNI          C2          C1          N1     123.515    1.50
+KNI          C2          C1          H1     118.870    1.51
+KNI          N1          C1          H1     117.615    1.50
+KNI          C1          C2          C3     119.112    1.50
+KNI          C1          C2          H2     120.940    1.50
+KNI          C3          C2          H2     119.948    1.50
+KNI          C2          C3          C4     118.726    1.50
+KNI          C2          C3          C6     122.447    1.50
+KNI          C4          C3          C6     118.826    1.50
+KNI          C3          C4          C5     117.761    1.50
+KNI          C3          C4          C9     119.305    1.50
+KNI          C5          C4          C9     122.935    1.50
+KNI          C4          C5          N1     124.423    1.50
+KNI          C4          C5          H5     117.901    1.50
+KNI          N1          C5          H5     117.676    1.50
+KNI          C3          C6          C7     121.074    1.50
+KNI          C3          C6          O1     114.224    1.50
+KNI          C7          C6          O1     124.702    1.50
+KNI          C6          C7          C8     119.766    1.50
+KNI          C6          C7          H7     120.259    1.50
+KNI          C8          C7          H7     119.976    1.50
+KNI          C7          C8          C9     121.239    1.50
+KNI          C7          C8          H8     119.159    1.50
+KNI          C9          C8          H8     119.601    1.50
+KNI          C4          C9          C8     119.790    1.50
+KNI          C4          C9          H9     120.339    1.50
+KNI          C8          C9          H9     119.871    1.50
+KNI         C11         C10          O1     110.691    1.50
+KNI         C11         C10        H101     109.413    1.50
+KNI         C11         C10        H102     109.413    1.50
+KNI          O1         C10        H101     109.376    1.50
+KNI          O1         C10        H102     109.376    1.50
+KNI        H101         C10        H102     108.122    1.50
+KNI         C10         C11          N2     116.510    1.50
+KNI         C10         C11          O3     119.199    1.50
+KNI          N2         C11          O3     124.291    1.50
+KNI          C1          N1          C5     116.463    1.50
+KNI          C6          O1         C10     116.730    1.77
+KNI         C11          N2         C26     122.282    1.76
+KNI         C11          N2         HN2     120.098    3.00
+KNI         C26          N2         HN2     117.620    3.00
+KNI         C12         C26         C13     109.498    1.55
+KNI         C12         C26          N2     111.529    1.50
+KNI         C12         C26         H26     107.802    1.50
+KNI         C13         C26          N2     114.061    1.50
+KNI         C13         C26         H26     107.555    1.50
+KNI          N2         C26         H26     107.419    1.50
+KNI         C26         C12          S1     112.239    3.00
+KNI         C26         C12        H121     108.695    1.50
+KNI         C26         C12        H122     108.695    1.50
+KNI          S1         C12        H121     108.654    1.50
+KNI          S1         C12        H122     108.654    1.50
+KNI        H121         C12        H122     107.812    1.50
+KNI         C12          S1         C27     100.600    1.50
+KNI          S1         C27        H271     109.425    1.50
+KNI          S1         C27        H272     109.425    1.50
+KNI          S1         C27        H273     109.425    1.50
+KNI        H271         C27        H272     109.509    1.50
+KNI        H271         C27        H273     109.509    1.50
+KNI        H272         C27        H273     109.509    1.50
+KNI         C26         C13          N3     116.884    1.50
+KNI         C26         C13          O6     119.494    1.50
+KNI          N3         C13          O6     123.622    1.50
+KNI         C15         C17          N4     118.444    1.83
+KNI         C15         C17          O4     120.464    1.58
+KNI          N4         C17          O4     121.092    1.54
+KNI         C13          N3         C14     123.632    1.63
+KNI         C13          N3         HN3     118.879    1.83
+KNI         C14          N3         HN3     117.489    3.00
+KNI         C14         C15         C17     111.511    2.91
+KNI         C14         C15          O2     107.818    2.27
+KNI         C14         C15         H15     108.474    1.50
+KNI         C17         C15          O2     110.427    2.31
+KNI         C17         C15         H15     108.451    1.50
+KNI          O2         C15         H15     107.439    1.50
+KNI         C16         C28         C29     120.970    1.50
+KNI         C16         C28         C33     120.970    1.50
+KNI         C29         C28         C33     118.060    1.50
+KNI         C14         C16         C28     113.215    1.50
+KNI         C14         C16        H161     108.892    1.50
+KNI         C14         C16        H162     108.892    1.50
+KNI         C28         C16        H161     108.862    1.50
+KNI         C28         C16        H162     108.862    1.50
+KNI        H161         C16        H162     107.782    1.50
+KNI         C30         C31         C32     120.043    1.50
+KNI         C30         C31         H31     119.979    1.50
+KNI         C32         C31         H31     119.979    1.50
+KNI         C15         C14         C16     111.094    2.85
+KNI         C15         C14          N3     111.504    1.50
+KNI         C15         C14         H14     107.601    1.50
+KNI         C16         C14          N3     110.274    1.50
+KNI         C16         C14         H14     108.431    1.50
+KNI          N3         C14         H14     108.194    1.50
+KNI         C15          O2         HO2     109.453    1.50
+KNI         C28         C29         C30     120.624    1.50
+KNI         C28         C29         H29     119.591    1.50
+KNI         C30         C29         H29     119.786    1.50
+KNI         C28         C33         C32     120.624    1.50
+KNI         C28         C33         H33     119.591    1.50
+KNI         C32         C33         H33     119.786    1.50
+KNI         C29         C30         C31     120.325    1.50
+KNI         C29         C30         H30     119.792    1.50
+KNI         C31         C30         H30     119.883    1.50
+KNI         C31         C32         C33     120.325    1.50
+KNI         C31         C32         H32     119.883    1.50
+KNI         C33         C32         H32     119.792    1.50
+KNI         C17          N4         C18     121.931    3.00
+KNI         C17          N4         C20     124.497    3.00
+KNI         C18          N4         C20     113.572    1.77
+KNI          N4         C20          S2     104.373    1.50
+KNI          N4         C20        H201     109.837    2.86
+KNI          N4         C20        H202     109.837    2.86
+KNI          S2         C20        H201     111.204    3.00
+KNI          S2         C20        H202     111.204    3.00
+KNI        H201         C20        H202     109.116    1.50
+KNI         C19         C18         C21     113.374    1.50
+KNI         C19         C18          N4     106.092    1.50
+KNI         C19         C18         H18     109.476    2.47
+KNI         C21         C18          N4     111.278    1.96
+KNI         C21         C18         H18     109.935    1.50
+KNI          N4         C18         H18     110.172    1.50
+KNI         C18         C19          S2     104.492    1.50
+KNI         C18         C19        H191     111.325    3.00
+KNI         C18         C19        H192     111.325    3.00
+KNI          S2         C19        H191     110.175    1.50
+KNI          S2         C19        H192     110.175    1.50
+KNI        H191         C19        H192     109.038    1.50
+KNI         C19          S2         C20      92.210    1.96
+KNI         C18         C21          N5     115.630    1.64
+KNI         C18         C21          O5     121.273    1.50
+KNI          N5         C21          O5     123.098    1.50
+KNI         C21          N5         C22     124.963    1.50
+KNI         C21          N5         HN5     118.832    2.56
+KNI         C22          N5         HN5     116.205    1.50
+KNI         C23         C22         C24     110.075    1.50
+KNI         C23         C22         C25     110.075    1.50
+KNI         C23         C22          N5     108.618    1.86
+KNI         C24         C22         C25     110.075    1.50
+KNI         C24         C22          N5     108.618    1.86
+KNI         C25         C22          N5     108.618    1.86
+KNI         C22         C23        H231     109.538    1.50
+KNI         C22         C23        H232     109.538    1.50
+KNI         C22         C23        H233     109.538    1.50
+KNI        H231         C23        H232     109.412    1.50
+KNI        H231         C23        H233     109.412    1.50
+KNI        H232         C23        H233     109.412    1.50
+KNI         C22         C24        H241     109.538    1.50
+KNI         C22         C24        H242     109.538    1.50
+KNI         C22         C24        H243     109.538    1.50
+KNI        H241         C24        H242     109.412    1.50
+KNI        H241         C24        H243     109.412    1.50
+KNI        H242         C24        H243     109.412    1.50
+KNI         C22         C25        H251     109.538    1.50
+KNI         C22         C25        H252     109.538    1.50
+KNI         C22         C25        H253     109.538    1.50
+KNI        H251         C25        H252     109.412    1.50
+KNI        H251         C25        H253     109.412    1.50
+KNI        H252         C25        H253     109.412    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KNI       const_sp2_sp2_1          N1          C1          C2          C3       0.000     5.0     2
+KNI              const_55          C2          C1          N1          C5       0.000    10.0     2
+KNI             sp2_sp2_3         C10         C11          N2         C26     180.000     5.0     2
+KNI            sp2_sp3_55         C11          N2         C26         C12       0.000    10.0     6
+KNI            sp3_sp3_19          S1         C12         C26         C13     180.000    10.0     3
+KNI            sp2_sp3_13          N3         C13         C26         C12       0.000    10.0     6
+KNI            sp3_sp3_28         C26         C12          S1         C27     180.000    10.0     3
+KNI            sp3_sp3_79        H271         C27          S1         C12     180.000    10.0     3
+KNI             sp2_sp2_7         C26         C13          N3         C14     180.000     5.0     2
+KNI       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+KNI            sp2_sp3_28          O4         C17         C15         C14     180.000    10.0     6
+KNI            sp2_sp2_11         C15         C17          N4         C18     180.000     5.0     2
+KNI            sp2_sp3_19         C13          N3         C14         C15       0.000    10.0     6
+KNI            sp3_sp3_31         C16         C14         C15         C17     180.000    10.0     3
+KNI            sp3_sp3_49         C14         C15          O2         HO2     180.000    10.0     3
+KNI            sp2_sp3_32         C29         C28         C16         C14     -90.000    10.0     6
+KNI              const_21         C16         C28         C29         C30     180.000    10.0     2
+KNI              const_63         C16         C28         C33         C32     180.000    10.0     2
+KNI            sp3_sp3_40         C15         C14         C16         C28     180.000    10.0     3
+KNI              const_27         C29         C30         C31         C32       0.000    10.0     2
+KNI              const_31         C30         C31         C32         C33       0.000    10.0     2
+KNI       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+KNI              const_60          C2          C3          C6          O1       0.000    10.0     2
+KNI              const_23         C28         C29         C30         C31       0.000    10.0     2
+KNI              const_35         C31         C32         C33         C28       0.000    10.0     2
+KNI            sp2_sp3_46         C17          N4         C20          S2     180.000    10.0     6
+KNI             sp2_sp3_5         C17          N4         C18         C21     -60.000    10.0     6
+KNI            sp3_sp3_13          N4         C20          S2         C19     -60.000    10.0     3
+KNI             sp3_sp3_4         C21         C18         C19          S2     180.000    10.0     3
+KNI            sp2_sp3_37          N5         C21         C18         C19       0.000    10.0     6
+KNI            sp3_sp3_10         C18         C19          S2         C20      60.000    10.0     3
+KNI            sp2_sp2_17          O5         C21          N5         C22       0.000     5.0     2
+KNI              const_13          C3          C4          C5          N1       0.000    10.0     2
+KNI              const_39          C3          C4          C9          C8       0.000    10.0     2
+KNI            sp2_sp3_50         C21          N5         C22         C23     120.000    10.0     6
+KNI            sp3_sp3_55         C24         C22         C23        H231      60.000    10.0     3
+KNI            sp3_sp3_61         C23         C22         C24        H241     180.000    10.0     3
+KNI            sp3_sp3_73         C23         C22         C25        H251      60.000    10.0     3
+KNI              const_17          C4          C5          N1          C1       0.000    10.0     2
+KNI             sp2_sp2_1          C3          C6          O1         C10     180.000     5.0     2
+KNI              const_53          O1          C6          C7          C8     180.000    10.0     2
+KNI              const_47          C6          C7          C8          C9       0.000    10.0     2
+KNI              const_43          C7          C8          C9          C4       0.000    10.0     2
+KNI             sp2_sp3_8          N2         C11         C10          O1     120.000    10.0     6
+KNI            sp3_sp3_16         C11         C10          O1          C6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KNI    chir_1    C26    N2    C12    C13    negative
+KNI    chir_2    C15    O2    C17    C14    positive
+KNI    chir_3    C14    N3    C15    C16    positive
+KNI    chir_4    C18    N4    C19    C21    negative
+KNI    chir_5    C22    N5    C23    C24    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KNI    plan-1          C1   0.020
+KNI    plan-1          C2   0.020
+KNI    plan-1          C3   0.020
+KNI    plan-1          C4   0.020
+KNI    plan-1          C5   0.020
+KNI    plan-1          C6   0.020
+KNI    plan-1          C7   0.020
+KNI    plan-1          C8   0.020
+KNI    plan-1          C9   0.020
+KNI    plan-1          H1   0.020
+KNI    plan-1          H2   0.020
+KNI    plan-1          H5   0.020
+KNI    plan-1          H7   0.020
+KNI    plan-1          H8   0.020
+KNI    plan-1          H9   0.020
+KNI    plan-1          N1   0.020
+KNI    plan-1          O1   0.020
+KNI    plan-2         C16   0.020
+KNI    plan-2         C28   0.020
+KNI    plan-2         C29   0.020
+KNI    plan-2         C30   0.020
+KNI    plan-2         C31   0.020
+KNI    plan-2         C32   0.020
+KNI    plan-2         C33   0.020
+KNI    plan-2         H29   0.020
+KNI    plan-2         H30   0.020
+KNI    plan-2         H31   0.020
+KNI    plan-2         H32   0.020
+KNI    plan-2         H33   0.020
+KNI    plan-3         C10   0.020
+KNI    plan-3         C11   0.020
+KNI    plan-3          N2   0.020
+KNI    plan-3          O3   0.020
+KNI    plan-4         C11   0.020
+KNI    plan-4         C26   0.020
+KNI    plan-4         HN2   0.020
+KNI    plan-4          N2   0.020
+KNI    plan-5         C13   0.020
+KNI    plan-5         C26   0.020
+KNI    plan-5          N3   0.020
+KNI    plan-5          O6   0.020
+KNI    plan-6         C15   0.020
+KNI    plan-6         C17   0.020
+KNI    plan-6          N4   0.020
+KNI    plan-6          O4   0.020
+KNI    plan-7         C13   0.020
+KNI    plan-7         C14   0.020
+KNI    plan-7         HN3   0.020
+KNI    plan-7          N3   0.020
+KNI    plan-8         C17   0.020
+KNI    plan-8         C18   0.020
+KNI    plan-8         C20   0.020
+KNI    plan-8          N4   0.020
+KNI    plan-9         C18   0.020
+KNI    plan-9         C21   0.020
+KNI    plan-9          N5   0.020
+KNI    plan-9          O5   0.020
+KNI   plan-10         C21   0.020
+KNI   plan-10         C22   0.020
+KNI   plan-10         HN5   0.020
+KNI   plan-10          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KNI           SMILES              ACDLabs 12.01                                                                                                                                                                                O=C(NC(C)(C)C)C4N(C(=O)C(O)C(NC(=O)C(NC(=O)COc2c1ccncc1ccc2)CSC)Cc3ccccc3)CSC4
+KNI SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                 CSC[C@H](NC(=O)COc1cccc2cnccc12)C(=O)N[C@@H](Cc3ccccc3)[C@H](O)C(=O)N4CSC[C@H]4C(=O)NC(C)(C)C
+KNI           SMILES               CACTVS 3.370                                                                                                                                                                      CSC[CH](NC(=O)COc1cccc2cnccc12)C(=O)N[CH](Cc3ccccc3)[CH](O)C(=O)N4CSC[CH]4C(=O)NC(C)(C)C
+KNI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                 CC(C)(C)NC(=O)[C@@H]1CSCN1C(=O)[C@H]([C@H](Cc2ccccc2)NC(=O)[C@H](CSC)NC(=O)COc3cccc4c3ccnc4)O
+KNI           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                  CC(C)(C)NC(=O)C1CSCN1C(=O)C(C(Cc2ccccc2)NC(=O)C(CSC)NC(=O)COc3cccc4c3ccnc4)O
+KNI            InChI                InChI  1.03 InChI=1S/C33H41N5O6S2/c1-33(2,3)37-31(42)26-19-46-20-38(26)32(43)29(40)24(15-21-9-6-5-7-10-21)36-30(41)25(18-45-4)35-28(39)17-44-27-12-8-11-22-16-34-14-13-23(22)27/h5-14,16,24-26,29,40H,15,17-20H2,1-4H3,(H,35,39)(H,36,41)(H,37,42)/t24-,25-,26-,29-/m0/s1
+KNI         InChIKey                InChI  1.03                                                                                                                                                                                                                                   NJBBLOIWMSYVCQ-VZTVMPNDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KNI acedrg               243         "dictionary generator"                  
+KNI acedrg_database      11          "data source"                           
+KNI rdkit                2017.03.2   "Chemoinformatics tool"
+KNI refmac5              5.8.0238    "optimization tool"                     

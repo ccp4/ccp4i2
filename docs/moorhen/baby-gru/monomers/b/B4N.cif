@@ -1,0 +1,249 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B4N     B4N      "bis(4-nitrophenyl) hydrogen phosphate"     NON-POLYMER     31     23     .     
+#
+data_comp_B4N
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B4N     CAG     C       CR16    0       -18.270     1.852       -13.333     
+B4N     CAK     C       CR16    0       -19.353     2.570       -13.805     
+B4N     CAS     C       CR6     0       -19.181     3.915       -14.135     
+B4N     NAU     N       N       1       -20.320     4.676       -14.633     
+B4N     OAD     O       O       0       -20.870     4.294       -15.654     
+B4N     OAA     O       OC      -1      -20.674     5.663       -14.006     
+B4N     CAL     C       CR16    0       -17.947     4.552       -13.999     
+B4N     CAH     C       CR16    0       -16.869     3.827       -13.526     
+B4N     CAQ     C       CR6     0       -17.032     2.483       -13.195     
+B4N     OAO     O       O2      0       -15.862     1.857       -12.725     
+B4N     PAW     P       P       0       -15.701     0.304       -12.297     
+B4N     OAF     O       OP      -1      -16.154     -0.547      -13.438     
+B4N     OAC     O       O       0       -14.331     0.113       -11.735     
+B4N     OAP     O       O2      0       -16.772     0.146       -11.092     
+B4N     CAR     C       CR6     0       -16.813     0.896       -9.900      
+B4N     CAI     C       CR16    0       -17.877     0.576       -9.059      
+B4N     CAM     C       CR16    0       -18.025     1.244       -7.857      
+B4N     CAT     C       CR6     0       -17.098     2.228       -7.514      
+B4N     NAV     N       N       1       -17.249     2.934       -6.249      
+B4N     OAE     O       O       0       -17.167     2.291       -5.214      
+B4N     OAB     O       OC      -1      -17.450     4.138       -6.279      
+B4N     CAN     C       CR16    0       -16.029     2.553       -8.350      
+B4N     CAJ     C       CR16    0       -15.888     1.880       -9.550      
+B4N     HAG     H       H       0       -18.378     0.945       -13.109     
+B4N     HAK     H       H       0       -20.191     2.153       -13.902     
+B4N     HAL     H       H       0       -17.845     5.460       -14.224     
+B4N     HAH     H       H       0       -16.030     4.245       -13.429     
+B4N     HAI     H       H       0       -18.496     -0.090      -9.304      
+B4N     HAM     H       H       0       -18.742     1.034       -7.285      
+B4N     HAN     H       H       0       -15.411     3.219       -8.106      
+B4N     HAJ     H       H       0       -15.170     2.095       -10.119     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B4N         CAG         CAK      DOUBLE       y     1.379  0.0100     1.379  0.0100
+B4N         CAG         CAQ      SINGLE       y     1.389  0.0100     1.389  0.0100
+B4N         CAK         CAS      SINGLE       y     1.393  0.0100     1.393  0.0100
+B4N         CAS         NAU      SINGLE       n     1.457  0.0200     1.457  0.0200
+B4N         CAS         CAL      DOUBLE       y     1.393  0.0100     1.393  0.0100
+B4N         NAU         OAD      DOUBLE       n     1.221  0.0162     1.221  0.0162
+B4N         NAU         OAA      SINGLE       n     1.221  0.0162     1.221  0.0162
+B4N         CAL         CAH      SINGLE       y     1.379  0.0100     1.379  0.0100
+B4N         CAH         CAQ      DOUBLE       y     1.389  0.0100     1.389  0.0100
+B4N         CAQ         OAO      SINGLE       n     1.398  0.0160     1.398  0.0160
+B4N         OAO         PAW      SINGLE       n     1.616  0.0121     1.616  0.0121
+B4N         PAW         OAF      SINGLE       n     1.493  0.0157     1.493  0.0157
+B4N         PAW         OAC      DOUBLE       n     1.493  0.0157     1.493  0.0157
+B4N         PAW         OAP      SINGLE       n     1.616  0.0121     1.616  0.0121
+B4N         OAP         CAR      SINGLE       n     1.398  0.0160     1.398  0.0160
+B4N         CAR         CAI      DOUBLE       y     1.389  0.0100     1.389  0.0100
+B4N         CAR         CAJ      SINGLE       y     1.389  0.0100     1.389  0.0100
+B4N         CAI         CAM      SINGLE       y     1.379  0.0100     1.379  0.0100
+B4N         CAM         CAT      DOUBLE       y     1.393  0.0100     1.393  0.0100
+B4N         CAT         NAV      SINGLE       n     1.457  0.0200     1.457  0.0200
+B4N         CAT         CAN      SINGLE       y     1.393  0.0100     1.393  0.0100
+B4N         NAV         OAE      DOUBLE       n     1.221  0.0162     1.221  0.0162
+B4N         NAV         OAB      SINGLE       n     1.221  0.0162     1.221  0.0162
+B4N         CAN         CAJ      DOUBLE       y     1.379  0.0100     1.379  0.0100
+B4N         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0151
+B4N         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0200
+B4N         CAL         HAL      SINGLE       n     1.082  0.0130     0.941  0.0200
+B4N         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0151
+B4N         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0151
+B4N         CAM         HAM      SINGLE       n     1.082  0.0130     0.941  0.0200
+B4N         CAN         HAN      SINGLE       n     1.082  0.0130     0.941  0.0200
+B4N         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0151
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B4N         CAK         CAG         CAQ     119.253    1.50
+B4N         CAK         CAG         HAG     120.062    1.50
+B4N         CAQ         CAG         HAG     120.686    1.50
+B4N         CAG         CAK         CAS     118.918    1.50
+B4N         CAG         CAK         HAK     120.181    1.50
+B4N         CAS         CAK         HAK     120.901    1.50
+B4N         CAK         CAS         NAU     118.911    1.50
+B4N         CAK         CAS         CAL     122.179    1.50
+B4N         NAU         CAS         CAL     118.902    1.50
+B4N         CAS         NAU         OAD     118.257    1.50
+B4N         CAS         NAU         OAA     118.257    1.50
+B4N         OAD         NAU         OAA     123.486    1.50
+B4N         CAS         CAL         CAH     118.918    1.50
+B4N         CAS         CAL         HAL     120.901    1.50
+B4N         CAH         CAL         HAL     120.181    1.50
+B4N         CAL         CAH         CAQ     119.253    1.50
+B4N         CAL         CAH         HAH     120.062    1.50
+B4N         CAQ         CAH         HAH     120.686    1.50
+B4N         CAG         CAQ         CAH     121.480    1.50
+B4N         CAG         CAQ         OAO     119.260    3.00
+B4N         CAH         CAQ         OAO     119.260    3.00
+B4N         CAQ         OAO         PAW     124.276    1.50
+B4N         OAO         PAW         OAF     108.480    2.71
+B4N         OAO         PAW         OAC     108.480    2.71
+B4N         OAO         PAW         OAP     101.502    3.00
+B4N         OAF         PAW         OAC     119.847    1.50
+B4N         OAF         PAW         OAP     108.480    2.71
+B4N         OAC         PAW         OAP     108.480    2.71
+B4N         PAW         OAP         CAR     124.276    1.50
+B4N         OAP         CAR         CAI     119.260    3.00
+B4N         OAP         CAR         CAJ     119.260    3.00
+B4N         CAI         CAR         CAJ     121.480    1.50
+B4N         CAR         CAI         CAM     119.253    1.50
+B4N         CAR         CAI         HAI     120.686    1.50
+B4N         CAM         CAI         HAI     120.062    1.50
+B4N         CAI         CAM         CAT     118.918    1.50
+B4N         CAI         CAM         HAM     120.181    1.50
+B4N         CAT         CAM         HAM     120.901    1.50
+B4N         CAM         CAT         NAV     118.911    1.50
+B4N         CAM         CAT         CAN     122.179    1.50
+B4N         NAV         CAT         CAN     118.902    1.50
+B4N         CAT         NAV         OAE     118.257    1.50
+B4N         CAT         NAV         OAB     118.257    1.50
+B4N         OAE         NAV         OAB     123.486    1.50
+B4N         CAT         CAN         CAJ     118.918    1.50
+B4N         CAT         CAN         HAN     120.901    1.50
+B4N         CAJ         CAN         HAN     120.181    1.50
+B4N         CAR         CAJ         CAN     119.253    1.50
+B4N         CAR         CAJ         HAJ     120.686    1.50
+B4N         CAN         CAJ         HAJ     120.062    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B4N       const_sp2_sp2_1         CAQ         CAG         CAK         CAS       0.000     5.0     2
+B4N              const_42         CAK         CAG         CAQ         OAO     180.000    10.0     2
+B4N             sp3_sp3_4         OAO         PAW         OAP         CAR     180.000    10.0     3
+B4N             sp2_sp2_7         CAI         CAR         OAP         PAW     180.000     5.0     2
+B4N              const_22         CAM         CAI         CAR         OAP     180.000    10.0     2
+B4N              const_46         CAN         CAJ         CAR         OAP     180.000    10.0     2
+B4N              const_25         CAR         CAI         CAM         CAT       0.000    10.0     2
+B4N              const_30         CAI         CAM         CAT         NAV     180.000    10.0     2
+B4N             sp2_sp2_9         CAM         CAT         NAV         OAE     180.000     5.0     2
+B4N              const_34         CAJ         CAN         CAT         NAV     180.000    10.0     2
+B4N       const_sp2_sp2_6         CAG         CAK         CAS         NAU     180.000     5.0     2
+B4N              const_37         CAR         CAJ         CAN         CAT       0.000    10.0     2
+B4N             sp2_sp2_1         CAK         CAS         NAU         OAD     180.000     5.0     2
+B4N              const_10         CAH         CAL         CAS         NAU     180.000    10.0     2
+B4N              const_13         CAQ         CAH         CAL         CAS       0.000    10.0     2
+B4N              const_18         CAL         CAH         CAQ         OAO     180.000    10.0     2
+B4N             sp2_sp2_5         CAG         CAQ         OAO         PAW     180.000     5.0     2
+B4N             sp3_sp3_1         OAF         PAW         OAO         CAQ     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+B4N    chir_1    PAW    OAO    OAP    OAF    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B4N    plan-1         CAG   0.020
+B4N    plan-1         CAH   0.020
+B4N    plan-1         CAK   0.020
+B4N    plan-1         CAL   0.020
+B4N    plan-1         CAQ   0.020
+B4N    plan-1         CAS   0.020
+B4N    plan-1         HAG   0.020
+B4N    plan-1         HAH   0.020
+B4N    plan-1         HAK   0.020
+B4N    plan-1         HAL   0.020
+B4N    plan-1         NAU   0.020
+B4N    plan-1         OAO   0.020
+B4N    plan-2         CAI   0.020
+B4N    plan-2         CAJ   0.020
+B4N    plan-2         CAM   0.020
+B4N    plan-2         CAN   0.020
+B4N    plan-2         CAR   0.020
+B4N    plan-2         CAT   0.020
+B4N    plan-2         HAI   0.020
+B4N    plan-2         HAJ   0.020
+B4N    plan-2         HAM   0.020
+B4N    plan-2         HAN   0.020
+B4N    plan-2         NAV   0.020
+B4N    plan-2         OAP   0.020
+B4N    plan-3         CAS   0.020
+B4N    plan-3         NAU   0.020
+B4N    plan-3         OAA   0.020
+B4N    plan-3         OAD   0.020
+B4N    plan-4         CAT   0.020
+B4N    plan-4         NAV   0.020
+B4N    plan-4         OAB   0.020
+B4N    plan-4         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B4N           SMILES              ACDLabs 10.04                                              "[O-][N+](=O)c2ccc(OP(=O)(Oc1ccc(cc1)[N+]([O-])=O)O)cc2"
+B4N SMILES_CANONICAL               CACTVS 3.341                                              O[P](=O)(Oc1ccc(cc1)[N+]([O-])=O)Oc2ccc(cc2)[N+]([O-])=O
+B4N           SMILES               CACTVS 3.341                                              O[P](=O)(Oc1ccc(cc1)[N+]([O-])=O)Oc2ccc(cc2)[N+]([O-])=O
+B4N SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                c1cc(ccc1[N+](=O)[O-])OP(=O)(O)Oc2ccc(cc2)[N+](=O)[O-]
+B4N           SMILES "OpenEye OEToolkits" 1.5.0                                                c1cc(ccc1[N+](=O)[O-])OP(=O)(O)Oc2ccc(cc2)[N+](=O)[O-]
+B4N            InChI                InChI  1.03 InChI=1S/C12H9N2O8P/c15-13(16)9-1-5-11(6-2-9)21-23(19,20)22-12-7-3-10(4-8-12)14(17)18/h1-8H,(H,19,20)
+B4N         InChIKey                InChI  1.03                                                                           MHSVUSZEHNVFKW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B4N acedrg               243         "dictionary generator"                  
+B4N acedrg_database      11          "data source"                           
+B4N rdkit                2017.03.2   "Chemoinformatics tool"
+B4N refmac5              5.8.0238    "optimization tool"                     

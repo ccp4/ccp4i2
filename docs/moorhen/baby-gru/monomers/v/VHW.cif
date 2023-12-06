@@ -1,0 +1,539 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VHW     VHW      "methyl (1S,3E)-3-{(2R)-2-[(1R,3aS,4E,7aR)-4-{(2Z)-2-[(3R,4S,5R)-3,5-dihydroxy-4-(3-hydroxypropoxy)-2-methylidenecyclohexylidene]ethylidene}-7a-methyloctahydro-1H-inden-1-yl]propylidene}-1-ethyl-2-oxocyclopentanecarboxylate (non-preferred name)"     NON-POLYMER     91     41     .     
+#
+data_comp_VHW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VHW     C1      C       CH2     0       13.173      -1.587      -34.763     
+VHW     C2      C       CH2     0       14.403      -2.220      -34.098     
+VHW     C3      C       CR6     0       14.160      -2.557      -32.647     
+VHW     C4      C       CH2     0       12.583      -0.436      -33.945     
+VHW     C5      C       CT      0       12.273      -0.820      -32.497     
+VHW     C6      C       CH1     0       13.592      -1.380      -31.884     
+VHW     C7      C       CH2     0       13.294      -1.424      -30.388     
+VHW     C8      C       CH2     0       12.389      -0.201      -30.139     
+VHW     C9      C       CH1     0       12.002      0.376       -31.527     
+VHW     C10     C       C1      0       14.402      -3.739      -32.064     
+VHW     C11     C       C1      0       14.801      -4.916      -32.644     
+VHW     C12     C       CR6     0       14.525      -6.259      -32.189     
+VHW     C13     C       CH2     0       15.222      -7.424      -32.850     
+VHW     C14     C       CH1     0       15.621      -8.526      -31.881     
+VHW     C15     C       CH1     0       14.430      -9.008      -31.074     
+VHW     C16     C       CH1     0       13.752      -7.856      -30.331     
+VHW     C17     C       CR6     0       13.514      -6.641      -31.196     
+VHW     C18     C       C2      0       12.455      -5.883      -30.951     
+VHW     O19     O       OH1     0       16.633      -8.045      -30.999     
+VHW     O20     O       OH1     0       12.545      -8.329      -29.725     
+VHW     C21     C       CH1     0       10.659      1.135       -31.590     
+VHW     C22     C       CH3     0       11.134      -1.860      -32.456     
+VHW     C23     C       C1      0       9.414       0.393       -31.124     
+VHW     C24     C       CH3     0       10.753      2.412       -30.754     
+VHW     C25     C       CR5     0       8.344       0.138       -31.888     
+VHW     C26     C       CH2     0       8.104       0.592       -33.296     
+VHW     C27     C       CH2     0       6.604       0.424       -33.496     
+VHW     C28     C       CT      0       6.190       -0.770      -32.603     
+VHW     C29     C       CR5     0       7.215       -0.693      -31.454     
+VHW     O30     O       O       0       7.104       -1.248      -30.378     
+VHW     C31     C       CH2     0       6.322       -2.128      -33.322     
+VHW     C32     C       C       0       4.744       -0.570      -32.131     
+VHW     C33     C       CH3     0       5.945       -3.381      -32.537     
+VHW     O34     O       O2      0       3.910       -0.494      -33.171     
+VHW     O35     O       O       0       4.403       -0.485      -30.977     
+VHW     C36     C       CH3     0       2.503       -0.272      -32.896     
+VHW     O37     O       O2      0       13.497      -9.636      -31.952     
+VHW     C38     C       CH2     0       13.563      -11.061     -32.015     
+VHW     C39     C       CH2     0       12.753      -11.647     -30.895     
+VHW     C40     C       CH2     0       12.781      -13.164     -30.834     
+VHW     O41     O       OH1     0       11.982      -13.658     -29.774     
+VHW     H1      H       H       0       13.427      -1.252      -35.641     
+VHW     H1A     H       H       0       12.493      -2.271      -34.894     
+VHW     H2      H       H       0       14.644      -3.022      -34.587     
+VHW     H2A     H       H       0       15.148      -1.601      -34.157     
+VHW     H4      H       H       0       11.753      -0.127      -34.383     
+VHW     H4A     H       H       0       13.220      0.319       -33.952     
+VHW     H6      H       H       0       14.251      -0.661      -31.988     
+VHW     H7      H       H       0       14.112      -1.362      -29.871     
+VHW     H7A     H       H       0       12.836      -2.245      -30.150     
+VHW     H8      H       H       0       12.867      0.473       -29.616     
+VHW     H8A     H       H       0       11.591      -0.469      -29.643     
+VHW     H9      H       H       0       12.700      1.039       -31.742     
+VHW     H10     H       H       0       14.314      -3.751      -31.130     
+VHW     H11     H       H       0       15.331      -4.849      -33.415     
+VHW     H13     H       H       0       14.635      -7.801      -33.530     
+VHW     H13A    H       H       0       16.026      -7.101      -33.298     
+VHW     H14     H       H       0       15.983      -9.279      -32.391     
+VHW     H15     H       H       0       14.758      -9.683      -30.391     
+VHW     H16     H       H       0       14.351      -7.578      -29.592     
+VHW     H18     H       H       0       11.897      -5.601      -31.661     
+VHW     H18A    H       H       0       12.252      -5.619      -30.066     
+VHW     HO19    H       H       0       16.981      -8.694      -30.593     
+VHW     HO20    H       H       0       12.036      -8.645      -30.320     
+VHW     H21     H       H       0       10.521      1.419       -32.520     
+VHW     H22     H       H       0       10.821      -1.983      -31.544     
+VHW     H22A    H       H       0       11.447      -2.712      -32.800     
+VHW     H22B    H       H       0       10.395      -1.550      -33.008     
+VHW     H23     H       H       0       9.384       0.098       -30.231     
+VHW     H24     H       H       0       10.856      2.182       -29.814     
+VHW     H24A    H       H       0       9.940       2.935       -30.869     
+VHW     H24B    H       H       0       11.518      2.939       -31.044     
+VHW     H26     H       H       0       8.369       1.525       -33.411     
+VHW     H26A    H       H       0       8.607       0.042       -33.928     
+VHW     H27     H       H       0       6.400       0.235       -34.435     
+VHW     H27A    H       H       0       6.129       1.240       -33.227     
+VHW     H31     H       H       0       7.259       -2.225      -33.615     
+VHW     H31A    H       H       0       5.769       -2.100      -34.138     
+VHW     H33     H       H       0       6.086       -4.164      -33.097     
+VHW     H33A    H       H       0       5.009       -3.339      -32.276     
+VHW     H33B    H       H       0       6.501       -3.452      -31.743     
+VHW     H36     H       H       0       2.394       0.567       -32.421     
+VHW     H36A    H       H       0       2.159       -1.001      -32.354     
+VHW     H36B    H       H       0       2.015       -0.235      -33.734     
+VHW     H38     H       H       0       14.493      -11.362     -31.948     
+VHW     H38A    H       H       0       13.207      -11.369     -32.873     
+VHW     H39     H       H       0       11.810      -11.392     -31.006     
+VHW     H39A    H       H       0       13.108      -11.335     -30.033     
+VHW     H40     H       H       0       13.707      -13.464     -30.710     
+VHW     H40A    H       H       0       12.453      -13.526     -31.685     
+VHW     HO41    H       H       0       12.014      -14.504     -29.784     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VHW          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+VHW          C1          C4      SINGLE       n     1.527  0.0100     1.527  0.0100
+VHW          C2          C3      SINGLE       n     1.504  0.0100     1.504  0.0100
+VHW          C3          C6      SINGLE       n     1.506  0.0107     1.506  0.0107
+VHW          C3         C10      DOUBLE       n     1.334  0.0110     1.334  0.0110
+VHW          C4          C5      SINGLE       n     1.528  0.0100     1.528  0.0100
+VHW          C5          C6      SINGLE       n     1.554  0.0100     1.554  0.0100
+VHW          C5          C9      SINGLE       n     1.550  0.0170     1.550  0.0170
+VHW          C5         C22      SINGLE       n     1.537  0.0100     1.537  0.0100
+VHW          C6          C7      SINGLE       n     1.522  0.0100     1.522  0.0100
+VHW          C7          C8      SINGLE       n     1.540  0.0100     1.540  0.0100
+VHW          C8          C9      SINGLE       n     1.550  0.0100     1.550  0.0100
+VHW          C9         C21      SINGLE       n     1.529  0.0153     1.529  0.0153
+VHW         C10         C11      SINGLE       n     1.362  0.0200     1.362  0.0200
+VHW         C11         C12      DOUBLE       n     1.432  0.0200     1.432  0.0200
+VHW         C12         C13      SINGLE       n     1.507  0.0100     1.507  0.0100
+VHW         C12         C17      SINGLE       n     1.446  0.0200     1.446  0.0200
+VHW         C13         C14      SINGLE       n     1.518  0.0142     1.518  0.0142
+VHW         C14         C15      SINGLE       n     1.515  0.0100     1.515  0.0100
+VHW         C14         O19      SINGLE       n     1.426  0.0104     1.426  0.0104
+VHW         C15         C16      SINGLE       n     1.527  0.0100     1.527  0.0100
+VHW         C15         O37      SINGLE       n     1.423  0.0100     1.423  0.0100
+VHW         C16         C17      SINGLE       n     1.505  0.0100     1.505  0.0100
+VHW         C16         O20      SINGLE       n     1.427  0.0123     1.427  0.0123
+VHW         C17         C18      DOUBLE       n     1.323  0.0100     1.323  0.0100
+VHW         C21         C23      SINGLE       n     1.518  0.0104     1.518  0.0104
+VHW         C21         C24      SINGLE       n     1.529  0.0100     1.529  0.0100
+VHW         C23         C25      DOUBLE       n     1.330  0.0152     1.330  0.0152
+VHW         C25         C26      SINGLE       n     1.499  0.0100     1.499  0.0100
+VHW         C25         C29      SINGLE       n     1.468  0.0200     1.468  0.0200
+VHW         C26         C27      SINGLE       n     1.522  0.0107     1.522  0.0107
+VHW         C27         C28      SINGLE       n     1.540  0.0157     1.540  0.0157
+VHW         C28         C29      SINGLE       n     1.537  0.0129     1.537  0.0129
+VHW         C28         C31      SINGLE       n     1.538  0.0100     1.538  0.0100
+VHW         C28         C32      SINGLE       n     1.528  0.0100     1.528  0.0100
+VHW         C29         O30      DOUBLE       n     1.214  0.0147     1.214  0.0147
+VHW         C31         C33      SINGLE       n     1.521  0.0146     1.521  0.0146
+VHW         C32         O34      SINGLE       n     1.331  0.0100     1.331  0.0100
+VHW         C32         O35      DOUBLE       n     1.202  0.0140     1.202  0.0140
+VHW         O34         C36      SINGLE       n     1.448  0.0108     1.448  0.0108
+VHW         O37         C38      SINGLE       n     1.425  0.0100     1.425  0.0100
+VHW         C38         C39      SINGLE       n     1.498  0.0200     1.498  0.0200
+VHW         C39         C40      SINGLE       n     1.518  0.0102     1.518  0.0102
+VHW         C40         O41      SINGLE       n     1.417  0.0200     1.417  0.0200
+VHW          C1          H1      SINGLE       n     1.089  0.0100     0.974  0.0100
+VHW          C1         H1A      SINGLE       n     1.089  0.0100     0.974  0.0100
+VHW          C2          H2      SINGLE       n     1.089  0.0100     0.970  0.0100
+VHW          C2         H2A      SINGLE       n     1.089  0.0100     0.970  0.0100
+VHW          C4          H4      SINGLE       n     1.089  0.0100     0.988  0.0200
+VHW          C4         H4A      SINGLE       n     1.089  0.0100     0.988  0.0200
+VHW          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0100
+VHW          C7          H7      SINGLE       n     1.089  0.0100     0.970  0.0100
+VHW          C7         H7A      SINGLE       n     1.089  0.0100     0.970  0.0100
+VHW          C8          H8      SINGLE       n     1.089  0.0100     0.978  0.0141
+VHW          C8         H8A      SINGLE       n     1.089  0.0100     0.978  0.0141
+VHW          C9          H9      SINGLE       n     1.089  0.0100     0.987  0.0107
+VHW         C10         H10      SINGLE       n     1.082  0.0130     0.940  0.0103
+VHW         C11         H11      SINGLE       n     1.082  0.0130     0.938  0.0146
+VHW         C13         H13      SINGLE       n     1.089  0.0100     0.975  0.0100
+VHW         C13        H13A      SINGLE       n     1.089  0.0100     0.975  0.0100
+VHW         C14         H14      SINGLE       n     1.089  0.0100     0.980  0.0100
+VHW         C15         H15      SINGLE       n     1.089  0.0100     1.014  0.0200
+VHW         C16         H16      SINGLE       n     1.089  0.0100     0.991  0.0200
+VHW         C18         H18      SINGLE       n     1.082  0.0130     0.946  0.0200
+VHW         C18        H18A      SINGLE       n     1.082  0.0130     0.946  0.0200
+VHW         O19        HO19      SINGLE       n     0.970  0.0120     0.841  0.0200
+VHW         O20        HO20      SINGLE       n     0.970  0.0120     0.843  0.0200
+VHW         C21         H21      SINGLE       n     1.089  0.0100     0.986  0.0200
+VHW         C22         H22      SINGLE       n     1.089  0.0100     0.974  0.0200
+VHW         C22        H22A      SINGLE       n     1.089  0.0100     0.974  0.0200
+VHW         C22        H22B      SINGLE       n     1.089  0.0100     0.974  0.0200
+VHW         C23         H23      SINGLE       n     1.082  0.0130     0.942  0.0183
+VHW         C24         H24      SINGLE       n     1.089  0.0100     0.973  0.0141
+VHW         C24        H24A      SINGLE       n     1.089  0.0100     0.973  0.0141
+VHW         C24        H24B      SINGLE       n     1.089  0.0100     0.973  0.0141
+VHW         C26         H26      SINGLE       n     1.089  0.0100     0.977  0.0200
+VHW         C26        H26A      SINGLE       n     1.089  0.0100     0.977  0.0200
+VHW         C27         H27      SINGLE       n     1.089  0.0100     0.980  0.0177
+VHW         C27        H27A      SINGLE       n     1.089  0.0100     0.980  0.0177
+VHW         C31         H31      SINGLE       n     1.089  0.0100     0.986  0.0125
+VHW         C31        H31A      SINGLE       n     1.089  0.0100     0.986  0.0125
+VHW         C33         H33      SINGLE       n     1.089  0.0100     0.973  0.0146
+VHW         C33        H33A      SINGLE       n     1.089  0.0100     0.973  0.0146
+VHW         C33        H33B      SINGLE       n     1.089  0.0100     0.973  0.0146
+VHW         C36         H36      SINGLE       n     1.089  0.0100     0.970  0.0175
+VHW         C36        H36A      SINGLE       n     1.089  0.0100     0.970  0.0175
+VHW         C36        H36B      SINGLE       n     1.089  0.0100     0.970  0.0175
+VHW         C38         H38      SINGLE       n     1.089  0.0100     0.979  0.0200
+VHW         C38        H38A      SINGLE       n     1.089  0.0100     0.979  0.0200
+VHW         C39         H39      SINGLE       n     1.089  0.0100     0.983  0.0175
+VHW         C39        H39A      SINGLE       n     1.089  0.0100     0.983  0.0175
+VHW         C40         H40      SINGLE       n     1.089  0.0100     0.981  0.0174
+VHW         C40        H40A      SINGLE       n     1.089  0.0100     0.981  0.0174
+VHW         O41        HO41      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VHW          C2          C1          C4     111.930    1.50
+VHW          C2          C1          H1     109.240    1.50
+VHW          C2          C1         H1A     109.240    1.50
+VHW          C4          C1          H1     109.250    1.50
+VHW          C4          C1         H1A     109.250    1.50
+VHW          H1          C1         H1A     107.912    1.50
+VHW          C1          C2          C3     111.193    1.50
+VHW          C1          C2          H2     109.046    1.50
+VHW          C1          C2         H2A     109.046    1.50
+VHW          C3          C2          H2     108.984    1.50
+VHW          C3          C2         H2A     108.984    1.50
+VHW          H2          C2         H2A     107.904    1.50
+VHW          C2          C3          C6     113.430    2.23
+VHW          C2          C3         C10     124.694    1.50
+VHW          C6          C3         C10     121.876    1.50
+VHW          C1          C4          C5     112.828    1.50
+VHW          C1          C4          H4     109.396    1.50
+VHW          C1          C4         H4A     109.396    1.50
+VHW          C5          C4          H4     109.703    1.50
+VHW          C5          C4         H4A     109.703    1.50
+VHW          H4          C4         H4A     107.912    1.50
+VHW          C4          C5          C6     107.382    1.50
+VHW          C4          C5          C9     116.563    1.50
+VHW          C4          C5         C22     111.010    1.50
+VHW          C6          C5          C9     102.638    2.08
+VHW          C6          C5         C22     110.993    1.50
+VHW          C9          C5         C22     110.477    1.50
+VHW          C3          C6          C5     113.565    1.50
+VHW          C3          C6          C7     119.251    3.00
+VHW          C3          C6          H6     107.579    1.77
+VHW          C5          C6          C7     103.847    1.50
+VHW          C5          C6          H6     105.939    1.50
+VHW          C7          C6          H6     105.970    1.50
+VHW          C6          C7          C8     103.717    1.50
+VHW          C6          C7          H7     111.016    1.50
+VHW          C6          C7         H7A     111.016    1.50
+VHW          C8          C7          H7     111.137    1.50
+VHW          C8          C7         H7A     111.137    1.50
+VHW          H7          C7         H7A     108.883    1.50
+VHW          C7          C8          C9     107.063    1.50
+VHW          C7          C8          H8     110.337    1.50
+VHW          C7          C8         H8A     110.337    1.50
+VHW          C9          C8          H8     110.194    1.50
+VHW          C9          C8         H8A     110.194    1.50
+VHW          H8          C8         H8A     108.534    1.50
+VHW          C5          C9          C8     103.557    1.50
+VHW          C5          C9         C21     116.119    3.00
+VHW          C5          C9          H9     106.586    1.50
+VHW          C8          C9         C21     113.745    2.48
+VHW          C8          C9          H9     107.200    1.50
+VHW         C21          C9          H9     108.599    1.67
+VHW          C3         C10         C11     125.644    2.77
+VHW          C3         C10         H10     116.291    1.53
+VHW         C11         C10         H10     118.064    1.56
+VHW         C10         C11         C12     127.182    1.50
+VHW         C10         C11         H11     116.854    1.56
+VHW         C12         C11         H11     115.964    1.50
+VHW         C11         C12         C13     120.382    1.50
+VHW         C11         C12         C17     124.971    1.50
+VHW         C13         C12         C17     114.648    1.50
+VHW         C12         C13         C14     112.021    2.38
+VHW         C12         C13         H13     109.066    1.50
+VHW         C12         C13        H13A     109.066    1.50
+VHW         C14         C13         H13     108.743    1.50
+VHW         C14         C13        H13A     108.743    1.50
+VHW         H13         C13        H13A     107.887    1.50
+VHW         C13         C14         C15     110.811    1.64
+VHW         C13         C14         O19     109.943    1.55
+VHW         C13         C14         H14     109.453    2.12
+VHW         C15         C14         O19     110.081    2.02
+VHW         C15         C14         H14     109.166    1.50
+VHW         O19         C14         H14     108.933    1.50
+VHW         C14         C15         C16     111.124    1.57
+VHW         C14         C15         O37     109.116    2.14
+VHW         C14         C15         H15     109.166    1.50
+VHW         C16         C15         O37     110.129    1.85
+VHW         C16         C15         H15     109.434    1.50
+VHW         O37         C15         H15     109.096    1.50
+VHW         C15         C16         C17     111.572    2.52
+VHW         C15         C16         O20     110.170    1.75
+VHW         C15         C16         H16     108.836    1.50
+VHW         C17         C16         O20     111.629    1.74
+VHW         C17         C16         H16     108.629    1.67
+VHW         O20         C16         H16     107.721    1.50
+VHW         C12         C17         C16     119.583    3.00
+VHW         C12         C17         C18     121.391    1.50
+VHW         C16         C17         C18     119.026    1.50
+VHW         C17         C18         H18     120.257    1.50
+VHW         C17         C18        H18A     120.257    1.50
+VHW         H18         C18        H18A     119.487    2.66
+VHW         C14         O19        HO19     109.387    3.00
+VHW         C16         O20        HO20     109.283    1.50
+VHW          C9         C21         C23     112.778    2.78
+VHW          C9         C21         C24     112.518    2.73
+VHW          C9         C21         H21     109.253    1.50
+VHW         C23         C21         C24     109.185    1.82
+VHW         C23         C21         H21     108.794    1.50
+VHW         C24         C21         H21     107.869    1.50
+VHW          C5         C22         H22     109.618    1.50
+VHW          C5         C22        H22A     109.618    1.50
+VHW          C5         C22        H22B     109.618    1.50
+VHW         H22         C22        H22A     109.337    1.50
+VHW         H22         C22        H22B     109.337    1.50
+VHW        H22A         C22        H22B     109.337    1.50
+VHW         C21         C23         C25     122.726    3.00
+VHW         C21         C23         H23     119.133    1.50
+VHW         C25         C23         H23     118.141    1.54
+VHW         C21         C24         H24     109.472    1.50
+VHW         C21         C24        H24A     109.472    1.50
+VHW         C21         C24        H24B     109.472    1.50
+VHW         H24         C24        H24A     109.345    1.50
+VHW         H24         C24        H24B     109.345    1.50
+VHW        H24A         C24        H24B     109.345    1.50
+VHW         C23         C25         C26     125.069    3.00
+VHW         C23         C25         C29     124.131    2.76
+VHW         C26         C25         C29     110.800    1.54
+VHW         C25         C26         C27     104.519    1.50
+VHW         C25         C26         H26     110.804    1.50
+VHW         C25         C26        H26A     110.804    1.50
+VHW         C27         C26         H26     111.122    1.50
+VHW         C27         C26        H26A     111.122    1.50
+VHW         H26         C26        H26A     108.777    1.50
+VHW         C26         C27         C28     104.443    2.26
+VHW         C26         C27         H27     110.691    1.50
+VHW         C26         C27        H27A     110.691    1.50
+VHW         C28         C27         H27     110.440    1.50
+VHW         C28         C27        H27A     110.440    1.50
+VHW         H27         C27        H27A     108.820    1.50
+VHW         C27         C28         C29     104.009    1.83
+VHW         C27         C28         C31     114.373    1.50
+VHW         C27         C28         C32     110.785    2.12
+VHW         C29         C28         C31     111.539    2.78
+VHW         C29         C28         C32     110.231    3.00
+VHW         C31         C28         C32     108.788    2.50
+VHW         C25         C29         C28     109.749    2.72
+VHW         C25         C29         O30     125.824    1.50
+VHW         C28         C29         O30     124.427    1.50
+VHW         C28         C31         C33     112.518    2.73
+VHW         C28         C31         H31     108.512    1.50
+VHW         C28         C31        H31A     108.512    1.50
+VHW         C33         C31         H31     108.515    1.50
+VHW         C33         C31        H31A     108.515    1.50
+VHW         H31         C31        H31A     107.509    1.50
+VHW         C28         C32         O34     111.169    1.50
+VHW         C28         C32         O35     124.599    1.50
+VHW         O34         C32         O35     124.232    1.50
+VHW         C31         C33         H33     109.478    1.50
+VHW         C31         C33        H33A     109.478    1.50
+VHW         C31         C33        H33B     109.478    1.50
+VHW         H33         C33        H33A     109.441    1.50
+VHW         H33         C33        H33B     109.441    1.50
+VHW        H33A         C33        H33B     109.441    1.50
+VHW         C32         O34         C36     116.158    1.50
+VHW         O34         C36         H36     109.361    1.50
+VHW         O34         C36        H36A     109.361    1.50
+VHW         O34         C36        H36B     109.361    1.50
+VHW         H36         C36        H36A     109.532    1.53
+VHW         H36         C36        H36B     109.532    1.53
+VHW        H36A         C36        H36B     109.532    1.53
+VHW         C15         O37         C38     113.954    1.50
+VHW         O37         C38         C39     109.183    2.40
+VHW         O37         C38         H38     109.999    1.50
+VHW         O37         C38        H38A     109.999    1.50
+VHW         C39         C38         H38     110.004    1.50
+VHW         C39         C38        H38A     110.004    1.50
+VHW         H38         C38        H38A     108.316    1.50
+VHW         C38         C39         C40     113.392    1.50
+VHW         C38         C39         H39     108.566    1.50
+VHW         C38         C39        H39A     108.566    1.50
+VHW         C40         C39         H39     103.378    3.00
+VHW         C40         C39        H39A     103.378    3.00
+VHW         H39         C39        H39A     108.411    3.00
+VHW         C39         C40         O41     111.314    3.00
+VHW         C39         C40         H40     109.103    1.50
+VHW         C39         C40        H40A     109.103    1.50
+VHW         O41         C40         H40     109.258    1.50
+VHW         O41         C40        H40A     109.258    1.50
+VHW         H40         C40        H40A     108.120    1.50
+VHW         C40         O41        HO41     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VHW            sp3_sp3_28          C4          C1          C2          C3      60.000    10.0     3
+VHW           sp3_sp3_100          C2          C1          C4          C5     180.000    10.0     3
+VHW             sp2_sp2_9         C10         C11         C12         C13     180.000     5.0     2
+VHW             sp2_sp3_4         C11         C12         C13         C14     180.000    10.0     6
+VHW            sp2_sp2_16         C11         C12         C17         C18       0.000     5.0     2
+VHW             sp3_sp3_2         C12         C13         C14         O19      60.000    10.0     3
+VHW            sp3_sp3_14         O19         C14         C15         O37      60.000    10.0     3
+VHW           sp3_sp3_136         C13         C14         O19        HO19     180.000    10.0     3
+VHW            sp3_sp3_23         O37         C15         C16         O20     -60.000    10.0     3
+VHW           sp3_sp3_139         C14         C15         O37         C38     180.000    10.0     3
+VHW            sp2_sp3_11         C18         C17         C16         O20     -60.000    10.0     6
+VHW           sp3_sp3_142         C15         C16         O20        HO20     180.000    10.0     3
+VHW            sp2_sp2_19         C12         C17         C18         H18       0.000     5.0     2
+VHW            sp2_sp3_16         C10          C3          C2          C1     180.000    10.0     6
+VHW            sp2_sp3_38         C25         C23         C21         C24     120.000    10.0     6
+VHW           sp3_sp3_148         C23         C21         C24         H24      60.000    10.0     3
+VHW            sp2_sp2_21         C21         C23         C25         C26     180.000     5.0     2
+VHW            sp2_sp3_28         C23         C25         C26         C27     180.000    10.0     6
+VHW            sp2_sp2_28         C23         C25         C29         O30       0.000     5.0     2
+VHW            sp3_sp3_55         C25         C26         C27         C28     -60.000    10.0     3
+VHW            sp3_sp3_65         C26         C27         C28         C31     180.000    10.0     3
+VHW            sp2_sp3_35         O30         C29         C28         C31     -60.000    10.0     6
+VHW           sp3_sp3_160         C32         C28         C31         C33     -60.000    10.0     3
+VHW            sp2_sp3_45         O34         C32         C28         C31    -120.000    10.0     6
+VHW            sp2_sp3_22         C10          C3          C6          C5     180.000    10.0     6
+VHW             sp2_sp2_1         C11         C10          C3          C2     180.000     5.0     2
+VHW           sp3_sp3_163         C28         C31         C33         H33     180.000    10.0     3
+VHW            sp2_sp2_30         O35         C32         O34         C36       0.000     5.0     2
+VHW           sp3_sp3_173         H36         C36         O34         C32     -60.000    10.0     3
+VHW           sp3_sp3_176         C39         C38         O37         C15     180.000    10.0     3
+VHW           sp3_sp3_179         O37         C38         C39         C40     180.000    10.0     3
+VHW           sp3_sp3_188         C38         C39         C40         O41     180.000    10.0     3
+VHW           sp3_sp3_197         C39         C40         O41        HO41     180.000    10.0     3
+VHW            sp3_sp3_48          C1          C4          C5         C22     -60.000    10.0     3
+VHW           sp3_sp3_118         H22         C22          C5          C4     180.000    10.0     3
+VHW            sp3_sp3_43         C22          C5          C6          C3      60.000    10.0     3
+VHW           sp3_sp3_116         C22          C5          C9         C21      60.000    10.0     3
+VHW            sp3_sp3_76          C3          C6          C7          C8     180.000    10.0     3
+VHW            sp3_sp3_82          C6          C7          C8          C9      60.000    10.0     3
+VHW            sp3_sp3_92          C7          C8          C9         C21      60.000    10.0     3
+VHW           sp3_sp3_127         C23         C21          C9          C5     180.000    10.0     3
+VHW             sp2_sp2_5          C3         C10         C11         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VHW    chir_1    C5    C6    C9    C4    negative
+VHW    chir_2    C6    C3    C5    C7    negative
+VHW    chir_3    C9    C5    C21    C8    negative
+VHW    chir_4    C14    O19    C15    C13    negative
+VHW    chir_5    C15    O37    C16    C14    positive
+VHW    chir_6    C16    O20    C15    C17    negative
+VHW    chir_7    C21    C23    C9    C24    positive
+VHW    chir_8    C28    C32    C29    C27    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VHW    plan-1         C10   0.020
+VHW    plan-1          C2   0.020
+VHW    plan-1          C3   0.020
+VHW    plan-1          C6   0.020
+VHW    plan-2         C10   0.020
+VHW    plan-2         C11   0.020
+VHW    plan-2          C3   0.020
+VHW    plan-2         H10   0.020
+VHW    plan-3         C10   0.020
+VHW    plan-3         C11   0.020
+VHW    plan-3         C12   0.020
+VHW    plan-3         H11   0.020
+VHW    plan-4         C11   0.020
+VHW    plan-4         C12   0.020
+VHW    plan-4         C13   0.020
+VHW    plan-4         C17   0.020
+VHW    plan-5         C12   0.020
+VHW    plan-5         C16   0.020
+VHW    plan-5         C17   0.020
+VHW    plan-5         C18   0.020
+VHW    plan-6         C17   0.020
+VHW    plan-6         C18   0.020
+VHW    plan-6         H18   0.020
+VHW    plan-6        H18A   0.020
+VHW    plan-7         C21   0.020
+VHW    plan-7         C23   0.020
+VHW    plan-7         C25   0.020
+VHW    plan-7         H23   0.020
+VHW    plan-8         C23   0.020
+VHW    plan-8         C25   0.020
+VHW    plan-8         C26   0.020
+VHW    plan-8         C29   0.020
+VHW    plan-9         C25   0.020
+VHW    plan-9         C28   0.020
+VHW    plan-9         C29   0.020
+VHW    plan-9         O30   0.020
+VHW   plan-10         C28   0.020
+VHW   plan-10         C32   0.020
+VHW   plan-10         O34   0.020
+VHW   plan-10         O35   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VHW           SMILES              ACDLabs 12.01                                                                                                                                                                                   O=C(OC)C4(C(=O)\C(=C\C(C)C2CCC3C(=C\C=C1/C(=C)C(O)C(OCCCO)C(O)C1)\CCCC23C)CC4)CC
+VHW            InChI                InChI  1.03 InChI=1S/C34H50O7/c1-6-34(32(39)40-5)16-14-25(31(34)38)19-21(2)26-12-13-27-23(9-7-15-33(26,27)4)10-11-24-20-28(36)30(29(37)22(24)3)41-18-8-17-35/h10-11,19,21,26-30,35-37H,3,6-9,12-18,20H2,1-2,4-5H3/b23-10+,24-11-,25-19+/t21-,26-,27+,28-,29-,30+,33-,34+/m1/s1
+VHW         InChIKey                InChI  1.03                                                                                                                                                                                                                                        RRTPTPSZIBNWCN-ZZGOIYGKSA-N
+VHW SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                      CC[C@@]1(CC\C(=C/[C@@H](C)[C@H]2CC[C@H]3C(/CCC[C@]23C)=C/C=C4/C[C@@H](O)[C@H](OCCCO)[C@H](O)C4=C)C1=O)C(=O)OC
+VHW           SMILES               CACTVS 3.370                                                                                                                                                                      CC[C]1(CCC(=C[CH](C)[CH]2CC[CH]3C(CCC[C]23C)=CC=C4C[CH](O)[CH](OCCCO)[CH](O)C4=C)C1=O)C(=O)OC
+VHW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                                    CCC1(CC/C(=C\[C@@H](C)[C@H]2CC[C@@H]\3[C@@]2(CCC/C3=C\C=C/4\C[C@H]([C@@H]([C@@H](C4=C)O)OCCCO)O)C)/C1=O)C(=O)OC
+VHW           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                            CCC1(CCC(=CC(C)C2CCC3C2(CCCC3=CC=C4CC(C(C(C4=C)O)OCCCO)O)C)C1=O)C(=O)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VHW acedrg               243         "dictionary generator"                  
+VHW acedrg_database      11          "data source"                           
+VHW rdkit                2017.03.2   "Chemoinformatics tool"
+VHW refmac5              5.8.0238    "optimization tool"                     

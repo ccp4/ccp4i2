@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K44     K44      5,6,7,8-TETRABROMO-1-METHYL-2,3-DIHYDRO-1H-IMIDAZO[1,2-A]BENZIMIDAZOLE     NON-POLYMER     24     17     .     
+#
+data_comp_K44
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K44     C1      C       CR6     0       22.709      8.142       18.058      
+K44     C2      C       CR6     0       21.725      8.745       18.865      
+K44     C3      C       CR6     0       21.460      8.255       20.139      
+K44     C4      C       CR6     0       23.430      7.048       18.520      
+K44     N5      N       NRD5    0       23.751      5.482       20.475      
+K44     C6      C       CR56    0       23.163      6.555       19.803      
+K44     C7      C       CR56    0       22.182      7.158       20.607      
+K44     N8      N       NT      0       22.147      6.463       21.794      
+K44     C9      C       CR55    0       23.065      5.495       21.699      
+K44     N10     N       NT      0       23.106      4.731       22.859      
+K44     C11     C       CH3     0       23.546      3.349       22.891      
+K44     C12     C       CH2     0       21.446      6.457       23.075      
+K44     C14     C       CH2     0       21.991      5.180       23.720      
+K44     BR10    BR      BR      0       24.749      6.238       17.441      
+K44     BR11    BR      BR      0       23.067      8.814       16.319      
+K44     BR12    BR      BR      0       20.744      10.239      18.225      
+K44     BR13    BR      BR      0       20.127      9.093       21.198      
+K44     H111    H       H       0       23.022      2.854       23.543      
+K44     H112    H       H       0       24.485      3.315       23.139      
+K44     H113    H       H       0       23.429      2.949       22.012      
+K44     H121    H       H       0       20.476      6.410       22.946      
+K44     H122    H       H       0       21.668      7.251       23.603      
+K44     H141    H       H       0       22.315      5.364       24.637      
+K44     H142    H       H       0       21.288      4.485       23.766      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K44          C1          C2      DOUBLE       y     1.393  0.0161     1.393  0.0161
+K44          C1          C4      SINGLE       y     1.379  0.0134     1.379  0.0134
+K44          C1        BR11      SINGLE       n     1.897  0.0105     1.897  0.0105
+K44          C2          C3      SINGLE       y     1.379  0.0134     1.379  0.0134
+K44          C2        BR12      SINGLE       n     1.897  0.0105     1.897  0.0105
+K44          C3          C7      DOUBLE       y     1.391  0.0100     1.391  0.0100
+K44          C3        BR13      SINGLE       n     1.896  0.0109     1.896  0.0109
+K44          C4          C6      DOUBLE       y     1.397  0.0114     1.397  0.0114
+K44          C4        BR10      SINGLE       n     1.884  0.0167     1.884  0.0167
+K44          N5          C6      SINGLE       y     1.390  0.0100     1.390  0.0100
+K44          N5          C9      DOUBLE       y     1.406  0.0102     1.406  0.0102
+K44          C6          C7      SINGLE       y     1.396  0.0100     1.396  0.0100
+K44          C7          N8      SINGLE       y     1.377  0.0100     1.377  0.0100
+K44          N8          C9      SINGLE       y     1.379  0.0173     1.379  0.0173
+K44          N8         C12      SINGLE       n     1.462  0.0100     1.462  0.0100
+K44          C9         N10      SINGLE       n     1.402  0.0200     1.402  0.0200
+K44         N10         C11      SINGLE       n     1.449  0.0140     1.449  0.0140
+K44         N10         C14      SINGLE       n     1.472  0.0111     1.472  0.0111
+K44         C12         C14      SINGLE       n     1.521  0.0130     1.521  0.0130
+K44         C11        H111      SINGLE       n     1.089  0.0100     0.972  0.0143
+K44         C11        H112      SINGLE       n     1.089  0.0100     0.972  0.0143
+K44         C11        H113      SINGLE       n     1.089  0.0100     0.972  0.0143
+K44         C12        H121      SINGLE       n     1.089  0.0100     0.979  0.0113
+K44         C12        H122      SINGLE       n     1.089  0.0100     0.979  0.0113
+K44         C14        H141      SINGLE       n     1.089  0.0100     0.990  0.0100
+K44         C14        H142      SINGLE       n     1.089  0.0100     0.990  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K44          C2          C1          C4     120.241    1.50
+K44          C2          C1        BR11     120.707    1.50
+K44          C4          C1        BR11     119.052    1.50
+K44          C1          C2          C3     120.241    1.50
+K44          C1          C2        BR12     120.707    1.50
+K44          C3          C2        BR12     119.052    1.50
+K44          C2          C3          C7     119.104    1.50
+K44          C2          C3        BR13     118.884    1.50
+K44          C7          C3        BR13     122.012    2.22
+K44          C1          C4          C6     118.704    1.50
+K44          C1          C4        BR10     120.422    1.50
+K44          C6          C4        BR10     120.874    1.50
+K44          C6          N5          C9     103.397    1.50
+K44          C4          C6          N5     129.319    1.50
+K44          C4          C6          C7     120.962    1.99
+K44          N5          C6          C7     109.719    1.50
+K44          C3          C7          C6     120.748    1.84
+K44          C3          C7          N8     130.191    3.00
+K44          C6          C7          N8     109.061    2.01
+K44          C7          N8          C9     108.209    1.50
+K44          C7          N8         C12     126.048    3.00
+K44          C9          N8         C12     113.635    1.79
+K44          N5          C9          N8     118.645    1.94
+K44          N5          C9         N10     126.765    3.00
+K44          N8          C9         N10     114.590    1.89
+K44          C9         N10         C11     122.301    2.95
+K44          C9         N10         C14     108.683    1.88
+K44         C11         N10         C14     118.819    2.97
+K44         N10         C11        H111     109.511    1.50
+K44         N10         C11        H112     109.511    1.50
+K44         N10         C11        H113     109.511    1.50
+K44        H111         C11        H112     109.465    1.50
+K44        H111         C11        H113     109.465    1.50
+K44        H112         C11        H113     109.465    1.50
+K44          N8         C12         C14     100.927    2.33
+K44          N8         C12        H121     110.907    1.50
+K44          N8         C12        H122     110.907    1.50
+K44         C14         C12        H121     111.317    1.50
+K44         C14         C12        H122     111.317    1.50
+K44        H121         C12        H122     109.266    1.50
+K44         N10         C14         C12     104.376    1.50
+K44         N10         C14        H141     110.771    1.50
+K44         N10         C14        H142     110.771    1.50
+K44         C12         C14        H141     110.962    1.50
+K44         C12         C14        H142     110.962    1.50
+K44        H141         C14        H142     109.055    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K44       const_sp2_sp2_8        BR11          C1          C2        BR12       0.000     5.0     2
+K44              const_34        BR11          C1          C4        BR10       0.000    10.0     2
+K44             sp3_sp3_1          N8         C12         C14         N10     -60.000    10.0     3
+K44              const_12        BR12          C2          C3        BR13       0.000    10.0     2
+K44              const_15        BR13          C3          C7          C6     180.000    10.0     2
+K44              const_24        BR10          C4          C6          N5       0.000    10.0     2
+K44              const_26          C4          C6          N5          C9     180.000    10.0     2
+K44              const_35          N8          C9          N5          C6       0.000    10.0     2
+K44              const_17          C4          C6          C7          C3       0.000    10.0     2
+K44              const_29          C3          C7          N8          C9     180.000    10.0     2
+K44            sp2_sp3_10          C7          N8         C12         C14     180.000    10.0     6
+K44       const_sp2_sp2_1          N5          C9          N8          C7       0.000     5.0     2
+K44             sp2_sp2_4          N5          C9         N10         C11       0.000     5.0     2
+K44            sp2_sp3_13          C9         N10         C11        H111     150.000    10.0     6
+K44             sp2_sp3_4         C11         N10         C14         C12     180.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K44    plan-1        BR10   0.020
+K44    plan-1        BR11   0.020
+K44    plan-1        BR12   0.020
+K44    plan-1        BR13   0.020
+K44    plan-1          C1   0.020
+K44    plan-1         C12   0.020
+K44    plan-1          C2   0.020
+K44    plan-1          C3   0.020
+K44    plan-1          C4   0.020
+K44    plan-1          C6   0.020
+K44    plan-1          C7   0.020
+K44    plan-1          C9   0.020
+K44    plan-1         N10   0.020
+K44    plan-1          N5   0.020
+K44    plan-1          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K44           SMILES              ACDLabs 10.04                                                 Brc1c2nc3n(c2c(Br)c(Br)c1Br)CCN3C
+K44 SMILES_CANONICAL               CACTVS 3.341                                               CN1CCn2c1nc3c(Br)c(Br)c(Br)c(Br)c23
+K44           SMILES               CACTVS 3.341                                               CN1CCn2c1nc3c(Br)c(Br)c(Br)c(Br)c23
+K44 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             C[N@@]1CCn2c1nc3c2c(c(c(c3Br)Br)Br)Br
+K44           SMILES "OpenEye OEToolkits" 1.5.0                                                 CN1CCn2c1nc3c2c(c(c(c3Br)Br)Br)Br
+K44            InChI                InChI  1.03 InChI=1S/C10H7Br4N3/c1-16-2-3-17-9-7(14)5(12)4(11)6(13)8(9)15-10(16)17/h2-3H2,1H3
+K44         InChIKey                InChI  1.03                                                       QHCZROILDUNGRT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K44 acedrg               243         "dictionary generator"                  
+K44 acedrg_database      11          "data source"                           
+K44 rdkit                2017.03.2   "Chemoinformatics tool"
+K44 refmac5              5.8.0238    "optimization tool"                     

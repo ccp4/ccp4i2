@@ -1,0 +1,313 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BSM     BSM      5-(5-CHLORO-2,4-DIHYDROXYPHENYL)-N-ETHYL-4-(4-METHOXYPHENYL)-1H-PYRAZOLE-3-CARBOXAMIDE     NON-POLYMER     45     27     .     
+#
+data_comp_BSM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BSM     C22     C       CH3     0       35.145      5.712       21.384      
+BSM     O21     O       O2      0       35.409      6.079       22.738      
+BSM     C18     C       CR6     0       34.422      6.653       23.501      
+BSM     C19     C       CR16    0       33.089      6.824       23.128      
+BSM     C20     C       CR16    0       32.192      7.418       24.001      
+BSM     C17     C       CR16    0       34.835      7.081       24.758      
+BSM     C16     C       CR16    0       33.934      7.674       25.627      
+BSM     C7      C       CR6     0       32.598      7.852       25.264      
+BSM     C3      C       CR5     0       31.635      8.487       26.196      
+BSM     C2      C       CR5     0       31.291      8.111       27.496      
+BSM     C8      C       C       0       31.775      6.979       28.318      
+BSM     O9      O       O       0       32.223      5.955       27.787      
+BSM     N10     N       NH1     0       31.702      7.113       29.646      
+BSM     C26     C       CH2     0       32.127      6.089       30.587      
+BSM     C27     C       CH3     0       33.618      6.034       30.738      
+BSM     N1      N       NRD5    0       30.374      8.962       27.985      
+BSM     N5      N       NR5     0       30.139      9.867       27.022      
+BSM     C4      C       CR5     0       30.877      9.623       25.917      
+BSM     C6      C       CR6     0       30.797      10.475      24.712      
+BSM     C11     C       CR16    0       31.974      10.994      24.152      
+BSM     C12     C       CR6     0       31.911      11.788      23.022      
+BSM     CL25    CL      CL      0       33.382      12.418      22.351      
+BSM     C13     C       CR6     0       30.692      12.092      22.416      
+BSM     O24     O       OH1     0       30.643      12.884      21.293      
+BSM     C14     C       CR16    0       29.519      11.580      22.964      
+BSM     C15     C       CR6     0       29.565      10.778      24.100      
+BSM     O23     O       OH1     0       28.380      10.296      24.605      
+BSM     H221    H       H       0       34.845      6.492       20.889      
+BSM     H222    H       H       0       34.456      5.028       21.362      
+BSM     H223    H       H       0       35.958      5.366       20.981      
+BSM     H19     H       H       0       32.792      6.539       22.283      
+BSM     H20     H       H       0       31.296      7.529       23.738      
+BSM     H17     H       H       0       35.732      6.969       25.020      
+BSM     H16     H       H       0       34.228      7.960       26.473      
+BSM     H10     H       H       0       31.382      7.856       29.978      
+BSM     H261    H       H       0       31.798      5.216       30.284      
+BSM     H262    H       H       0       31.722      6.275       31.461      
+BSM     H271    H       H       0       33.859      5.283       31.304      
+BSM     H272    H       H       0       33.934      6.857       31.144      
+BSM     H273    H       H       0       34.030      5.925       29.866      
+BSM     H5      H       H       0       29.557      10.533      27.134      
+BSM     H11     H       H       0       32.797      10.799      24.545      
+BSM     H24     H       H       0       29.908      13.272      21.065      
+BSM     H14     H       H       0       28.691      11.781      22.560      
+BSM     H23     H       H       0       27.767      10.013      24.070      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BSM         C22         O21      SINGLE       n     1.424  0.0117     1.424  0.0117
+BSM         O21         C18      SINGLE       n     1.369  0.0100     1.369  0.0100
+BSM         C18         C19      DOUBLE       y     1.386  0.0109     1.386  0.0109
+BSM         C18         C17      SINGLE       y     1.386  0.0109     1.386  0.0109
+BSM         C19         C20      SINGLE       y     1.382  0.0100     1.382  0.0100
+BSM         C20          C7      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BSM         C17         C16      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BSM         C16          C7      SINGLE       y     1.393  0.0100     1.393  0.0100
+BSM          C7          C3      SINGLE       n     1.483  0.0100     1.483  0.0100
+BSM          C3          C2      SINGLE       y     1.394  0.0200     1.394  0.0200
+BSM          C3          C4      DOUBLE       y     1.402  0.0181     1.402  0.0181
+BSM          C2          C8      SINGLE       n     1.474  0.0142     1.474  0.0142
+BSM          C2          N1      DOUBLE       y     1.340  0.0100     1.340  0.0100
+BSM          C8          O9      DOUBLE       n     1.235  0.0149     1.235  0.0149
+BSM          C8         N10      SINGLE       n     1.332  0.0105     1.332  0.0105
+BSM         N10         C26      SINGLE       n     1.452  0.0100     1.452  0.0100
+BSM         C26         C27      SINGLE       n     1.499  0.0200     1.499  0.0200
+BSM          N1          N5      SINGLE       y     1.340  0.0100     1.340  0.0100
+BSM          N5          C4      SINGLE       y     1.352  0.0100     1.352  0.0100
+BSM          C4          C6      SINGLE       n     1.476  0.0100     1.476  0.0100
+BSM          C6         C11      DOUBLE       y     1.396  0.0140     1.396  0.0140
+BSM          C6         C15      SINGLE       y     1.403  0.0100     1.403  0.0100
+BSM         C11         C12      SINGLE       y     1.379  0.0110     1.379  0.0110
+BSM         C12        CL25      SINGLE       n     1.735  0.0100     1.735  0.0100
+BSM         C12         C13      DOUBLE       y     1.391  0.0100     1.391  0.0100
+BSM         C13         O24      SINGLE       n     1.374  0.0155     1.374  0.0155
+BSM         C13         C14      SINGLE       y     1.388  0.0100     1.388  0.0100
+BSM         C14         C15      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BSM         C15         O23      SINGLE       n     1.374  0.0155     1.374  0.0155
+BSM         C22        H221      SINGLE       n     1.089  0.0100     0.971  0.0157
+BSM         C22        H222      SINGLE       n     1.089  0.0100     0.971  0.0157
+BSM         C22        H223      SINGLE       n     1.089  0.0100     0.971  0.0157
+BSM         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0179
+BSM         C20         H20      SINGLE       n     1.082  0.0130     0.940  0.0144
+BSM         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0179
+BSM         C16         H16      SINGLE       n     1.082  0.0130     0.940  0.0144
+BSM         N10         H10      SINGLE       n     1.016  0.0100     0.873  0.0200
+BSM         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0142
+BSM         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0142
+BSM         C27        H271      SINGLE       n     1.089  0.0100     0.971  0.0145
+BSM         C27        H272      SINGLE       n     1.089  0.0100     0.971  0.0145
+BSM         C27        H273      SINGLE       n     1.089  0.0100     0.971  0.0145
+BSM          N5          H5      SINGLE       n     1.016  0.0100     0.892  0.0200
+BSM         C11         H11      SINGLE       n     1.082  0.0130     0.933  0.0100
+BSM         O24         H24      SINGLE       n     0.966  0.0059     0.861  0.0200
+BSM         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0179
+BSM         O23         H23      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BSM         O21         C22        H221     109.428    1.50
+BSM         O21         C22        H222     109.428    1.50
+BSM         O21         C22        H223     109.428    1.50
+BSM        H221         C22        H222     109.509    1.50
+BSM        H221         C22        H223     109.509    1.50
+BSM        H222         C22        H223     109.509    1.50
+BSM         C22         O21         C18     117.529    1.50
+BSM         O21         C18         C19     120.020    3.00
+BSM         O21         C18         C17     120.020    3.00
+BSM         C19         C18         C17     119.960    1.50
+BSM         C18         C19         C20     120.035    1.50
+BSM         C18         C19         H19     120.001    1.50
+BSM         C20         C19         H19     119.964    1.50
+BSM         C19         C20          C7     120.826    1.50
+BSM         C19         C20         H20     119.474    1.50
+BSM          C7         C20         H20     119.700    1.50
+BSM         C18         C17         C16     120.035    1.50
+BSM         C18         C17         H17     120.001    1.50
+BSM         C16         C17         H17     119.964    1.50
+BSM         C17         C16          C7     120.826    1.50
+BSM         C17         C16         H16     119.474    1.50
+BSM          C7         C16         H16     119.700    1.50
+BSM         C20          C7         C16     118.318    1.50
+BSM         C20          C7          C3     120.841    1.50
+BSM         C16          C7          C3     120.841    1.50
+BSM          C7          C3          C2     128.121    2.89
+BSM          C7          C3          C4     125.169    2.00
+BSM          C2          C3          C4     106.709    1.50
+BSM          C3          C2          C8     130.198    3.00
+BSM          C3          C2          N1     109.501    1.50
+BSM          C8          C2          N1     120.301    1.50
+BSM          C2          C8          O9     121.443    1.50
+BSM          C2          C8         N10     116.750    1.69
+BSM          O9          C8         N10     121.807    1.50
+BSM          C8         N10         C26     122.441    2.29
+BSM          C8         N10         H10     119.039    1.50
+BSM         C26         N10         H10     118.520    1.89
+BSM         N10         C26         C27     112.470    1.50
+BSM         N10         C26        H261     109.052    1.50
+BSM         N10         C26        H262     109.052    1.50
+BSM         C27         C26        H261     109.375    1.50
+BSM         C27         C26        H262     109.375    1.50
+BSM        H261         C26        H262     108.054    1.50
+BSM         C26         C27        H271     109.548    1.50
+BSM         C26         C27        H272     109.548    1.50
+BSM         C26         C27        H273     109.548    1.50
+BSM        H271         C27        H272     109.415    1.50
+BSM        H271         C27        H273     109.415    1.50
+BSM        H272         C27        H273     109.415    1.50
+BSM          C2          N1          N5     105.199    1.50
+BSM          N1          N5          C4     111.494    1.50
+BSM          N1          N5          H5     121.993    2.48
+BSM          C4          N5          H5     126.513    2.94
+BSM          C3          C4          N5     107.097    1.50
+BSM          C3          C4          C6     130.977    2.03
+BSM          N5          C4          C6     121.925    1.50
+BSM          C4          C6         C11     119.769    1.50
+BSM          C4          C6         C15     121.237    1.50
+BSM         C11          C6         C15     118.994    1.50
+BSM          C6         C11         C12     120.145    1.50
+BSM          C6         C11         H11     119.592    1.50
+BSM         C12         C11         H11     120.263    1.50
+BSM         C11         C12        CL25     119.077    1.50
+BSM         C11         C12         C13     121.560    1.50
+BSM        CL25         C12         C13     119.364    1.50
+BSM         C12         C13         O24     120.528    3.00
+BSM         C12         C13         C14     118.943    1.50
+BSM         O24         C13         C14     120.528    3.00
+BSM         C13         O24         H24     120.000    3.00
+BSM         C13         C14         C15     119.836    1.50
+BSM         C13         C14         H14     119.751    1.50
+BSM         C15         C14         H14     120.413    1.50
+BSM          C6         C15         C14     120.522    1.50
+BSM          C6         C15         O23     119.739    3.00
+BSM         C14         C15         O23     119.739    3.00
+BSM         C15         O23         H23     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BSM             sp3_sp3_2        H221         C22         O21         C18     -60.000    10.0     3
+BSM            sp2_sp2_13          O9          C8         N10         C26       0.000     5.0     2
+BSM             sp2_sp3_2          C8         N10         C26         C27     120.000    10.0     6
+BSM             sp3_sp3_5         N10         C26         C27        H271     180.000    10.0     3
+BSM              const_47          C2          N1          N5          C4       0.000    10.0     2
+BSM              const_49          C3          C4          N5          N1       0.000    10.0     2
+BSM            sp2_sp2_15          C3          C4          C6         C11     180.000     5.0     2
+BSM       const_sp2_sp2_2         C12         C11          C6          C4     180.000     5.0     2
+BSM              const_64         O23         C15          C6          C4       0.000    10.0     2
+BSM       const_sp2_sp2_6          C6         C11         C12        CL25     180.000     5.0     2
+BSM             sp2_sp2_1         C19         C18         O21         C22     180.000     5.0     2
+BSM              const_12        CL25         C12         C13         O24       0.000    10.0     2
+BSM            sp2_sp2_19         C12         C13         O24         H24     180.000     5.0     2
+BSM              const_15         O24         C13         C14         C15     180.000    10.0     2
+BSM              const_18         C13         C14         C15         O23     180.000    10.0     2
+BSM            sp2_sp2_21          C6         C15         O23         H23     180.000     5.0     2
+BSM              const_23         O21         C18         C19         C20     180.000    10.0     2
+BSM              const_54         C16         C17         C18         O21     180.000    10.0     2
+BSM              const_25         C18         C19         C20          C7       0.000    10.0     2
+BSM              const_29         C19         C20          C7         C16       0.000    10.0     2
+BSM              const_37          C7         C16         C17         C18       0.000    10.0     2
+BSM              const_33         C17         C16          C7         C20       0.000    10.0     2
+BSM             sp2_sp2_3          C2          C3          C7         C20     180.000     5.0     2
+BSM              const_59          C7          C3          C4          N5     180.000    10.0     2
+BSM              const_44          C8          C2          C3          C7       0.000    10.0     2
+BSM             sp2_sp2_8          C3          C2          C8          O9       0.000     5.0     2
+BSM              const_46          C8          C2          N1          N5     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BSM    plan-1          C2   0.020
+BSM    plan-1          C3   0.020
+BSM    plan-1          C4   0.020
+BSM    plan-1          C6   0.020
+BSM    plan-1          C7   0.020
+BSM    plan-1          C8   0.020
+BSM    plan-1          H5   0.020
+BSM    plan-1          N1   0.020
+BSM    plan-1          N5   0.020
+BSM    plan-2         C11   0.020
+BSM    plan-2         C12   0.020
+BSM    plan-2         C13   0.020
+BSM    plan-2         C14   0.020
+BSM    plan-2         C15   0.020
+BSM    plan-2          C4   0.020
+BSM    plan-2          C6   0.020
+BSM    plan-2        CL25   0.020
+BSM    plan-2         H11   0.020
+BSM    plan-2         H14   0.020
+BSM    plan-2         O23   0.020
+BSM    plan-2         O24   0.020
+BSM    plan-3         C16   0.020
+BSM    plan-3         C17   0.020
+BSM    plan-3         C18   0.020
+BSM    plan-3         C19   0.020
+BSM    plan-3         C20   0.020
+BSM    plan-3          C3   0.020
+BSM    plan-3          C7   0.020
+BSM    plan-3         H16   0.020
+BSM    plan-3         H17   0.020
+BSM    plan-3         H19   0.020
+BSM    plan-3         H20   0.020
+BSM    plan-3         O21   0.020
+BSM    plan-4          C2   0.020
+BSM    plan-4          C8   0.020
+BSM    plan-4         N10   0.020
+BSM    plan-4          O9   0.020
+BSM    plan-5         C26   0.020
+BSM    plan-5          C8   0.020
+BSM    plan-5         H10   0.020
+BSM    plan-5         N10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BSM           SMILES              ACDLabs 10.04                                                                                                Clc3c(O)cc(O)c(c1c(c(nn1)C(=O)NCC)c2ccc(OC)cc2)c3
+BSM SMILES_CANONICAL               CACTVS 3.341                                                                                                 CCNC(=O)c1n[nH]c(c2cc(Cl)c(O)cc2O)c1c3ccc(OC)cc3
+BSM           SMILES               CACTVS 3.341                                                                                                 CCNC(=O)c1n[nH]c(c2cc(Cl)c(O)cc2O)c1c3ccc(OC)cc3
+BSM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                               CCNC(=O)c1c(c([nH]n1)c2cc(c(cc2O)O)Cl)c3ccc(cc3)OC
+BSM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                               CCNC(=O)c1c(c([nH]n1)c2cc(c(cc2O)O)Cl)c3ccc(cc3)OC
+BSM            InChI                InChI  1.03 InChI=1S/C19H18ClN3O4/c1-3-21-19(26)18-16(10-4-6-11(27-2)7-5-10)17(22-23-18)12-8-13(20)15(25)9-14(12)24/h4-9,24-25H,3H2,1-2H3,(H,21,26)(H,22,23)
+BSM         InChIKey                InChI  1.03                                                                                                                      HUNAOTXNHVALTN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BSM acedrg               243         "dictionary generator"                  
+BSM acedrg_database      11          "data source"                           
+BSM rdkit                2017.03.2   "Chemoinformatics tool"
+BSM refmac5              5.8.0238    "optimization tool"                     

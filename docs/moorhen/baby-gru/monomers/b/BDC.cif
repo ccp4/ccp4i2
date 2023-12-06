@@ -1,0 +1,631 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BDC     BDC      BIS-(9-OCTYLAMINO(2-DIMETHYLAMINOETHYL)ACRIDINE-4-CARBOXAMIDE     NON-POLYMER     108     54     .     
+#
+data_comp_BDC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BDC     C5      C       CR16    0       7.412       -3.797      -1.106      
+BDC     C6      C       CR16    0       7.345       -5.108      -0.730      
+BDC     C7      C       CR16    0       6.121       -5.797      -0.742      
+BDC     C8      C       CR16    0       4.976       -5.158      -1.132      
+BDC     C9      C       CR6     0       3.838       -3.071      -1.950      
+BDC     C1      C       CR16    0       2.874       -0.905      -2.760      
+BDC     C2      C       CR16    0       3.044       0.401       -3.117      
+BDC     C3      C       CR16    0       4.324       0.998       -3.067      
+BDC     C4      C       CR6     0       5.434       0.290       -2.665      
+BDC     C14     C       CR66    0       6.242       -3.093      -1.520      
+BDC     C13     C       CR66    0       4.991       -3.792      -1.533      
+BDC     C11     C       CR66    0       3.969       -1.706      -2.330      
+BDC     C12     C       CR66    0       5.278       -1.106      -2.278      
+BDC     N10     N       NRD6    0       6.373       -1.798      -1.882      
+BDC     N9      N       NT1     0       2.601       -3.698      -1.982      
+BDC     CD1     C       C       0       6.769       1.003       -2.640      
+BDC     OD1     O       O       0       7.400       1.069       -1.584      
+BDC     CE1     C       CH2     0       1.792       -3.935      -0.801      
+BDC     CE3     C       CH2     0       0.244       -2.875      0.895       
+BDC     CE2     C       CH2     0       0.991       -2.707      -0.410      
+BDC     CE4     C       CH2     0       -0.596      -1.682      1.278       
+BDC     ND1     N       NH1     0       7.188       1.567       -3.778      
+BDC     CD2     C       CH2     0       8.386       2.387       -3.875      
+BDC     CD3     C       CH2     0       9.625       1.546       -4.108      
+BDC     ND2     N       NT      0       10.833      2.361       -4.274      
+BDC     CD7     C       CH3     0       11.825      1.692       -5.126      
+BDC     CD8     C       CH3     0       11.434      2.700       -2.977      
+BDC     CF4     C       CH2     0       -1.339      -1.843      2.580       
+BDC     CF3     C       CH2     0       -2.183      -0.652      2.963       
+BDC     CF2     C       CH2     0       -2.647      -0.670      4.404       
+BDC     CF1     C       CH2     0       -3.542      0.501       4.766       
+BDC     "N9'"   N       NH1     0       -2.782      1.623       5.287       
+BDC     "C5'"   C       CR16    0       -4.151      5.889       3.354       
+BDC     "C6'"   C       CR16    0       -5.432      5.719       3.798       
+BDC     "C7'"   C       CR16    0       -5.793      4.569       4.520       
+BDC     "C8'"   C       CR16    0       -4.862      3.603       4.787       
+BDC     "C9'"   C       CR6     0       -2.498      2.764       4.587       
+BDC     "C1'"   C       CR16    0       -0.099      2.095       4.292       
+BDC     "C2'"   C       CR16    0       1.148       2.363       3.804       
+BDC     "C3'"   C       CR16    0       1.398       3.556       3.089       
+BDC     "C4'"   C       CR6     0       0.403       4.478       2.860       
+BDC     "CE'"   C       CR66    0       -3.150      4.906       3.611       
+BDC     "CD'"   C       CR66    0       -3.514      3.730       4.346       
+BDC     "CB'"   C       CR66    0       -1.181      3.000       4.100       
+BDC     "CC'"   C       CR66    0       -0.933      4.218       3.374       
+BDC     "NA'"   N       NRD6    0       -1.903      5.134       3.144       
+BDC     CB1     C       C       0       0.741       5.740       2.094       
+BDC     O1X     O       O       0       1.715       6.408       2.440       
+BDC     NB1     N       NH1     0       -0.073      6.101       1.097       
+BDC     CB2     C       CH2     0       0.040       7.376       0.405       
+BDC     CB3     C       CH2     0       -0.404      8.526       1.289       
+BDC     NB2     N       NT      0       -0.562      9.786       0.558       
+BDC     CB7     C       CH3     0       0.731       10.451      0.346       
+BDC     CB8     C       CH3     0       -1.479      10.697      1.257       
+BDC     H5      H       H       0       8.240       -3.346      -1.094      
+BDC     H6      H       H       0       8.131       -5.556      -0.459      
+BDC     H7      H       H       0       6.088       -6.703      -0.479      
+BDC     H8      H       H       0       4.164       -5.630      -1.135      
+BDC     H1      H       H       0       2.015       -1.284      -2.799      
+BDC     H2      H       H       0       2.300       0.910       -3.398      
+BDC     H3      H       H       0       4.418       1.897       -3.318      
+BDC     H9      H       H       0       2.173       -3.675      -2.746      
+BDC     HE11    H       H       0       2.376       -4.193      -0.059      
+BDC     HE12    H       H       0       1.181       -4.680      -0.976      
+BDC     HE31    H       H       0       0.892       -3.046      1.611       
+BDC     HE32    H       H       0       -0.339      -3.661      0.827       
+BDC     HE21    H       H       0       0.349       -2.509      -1.124      
+BDC     HE22    H       H       0       1.603       -1.943      -0.333      
+BDC     HE41    H       H       0       -1.246      -1.512      0.563       
+BDC     HE42    H       H       0       -0.014      -0.895      1.343       
+BDC     HD1     H       H       0       6.729       1.435       -4.510      
+BDC     HD21    H       H       0       8.493       2.910       -3.054      
+BDC     HD22    H       H       0       8.279       3.016       -4.618      
+BDC     HD31    H       H       0       9.486       1.000       -4.911      
+BDC     HD32    H       H       0       9.744       0.935       -3.351      
+BDC     HD71    H       H       0       12.641      2.228       -5.163      
+BDC     HD72    H       H       0       11.465      1.590       -6.029      
+BDC     HD73    H       H       0       12.031      0.811       -4.757      
+BDC     HD81    H       H       0       11.776      1.889       -2.552      
+BDC     HD82    H       H       0       10.761      3.109       -2.399      
+BDC     HD83    H       H       0       12.169      3.329       -3.112      
+BDC     "H4'1"  H       H       0       -0.689      -2.010      3.295       
+BDC     "H4'2"  H       H       0       -1.920      -2.631      2.516       
+BDC     "H3'1"  H       H       0       -2.968      -0.621      2.376       
+BDC     "H3'2"  H       H       0       -1.663      0.165       2.807       
+BDC     "H2'1"  H       H       0       -1.863      -0.661      4.993       
+BDC     "H2'2"  H       H       0       -3.138      -1.503      4.570       
+BDC     "H1'1"  H       H       0       -4.192      0.216       5.441       
+BDC     "H1'2"  H       H       0       -4.042      0.789       3.975       
+BDC     "H9'"   H       H       0       -2.481      1.567       6.112       
+BDC     "H5'"   H       H       0       -3.920      6.665       2.871       
+BDC     "H6'"   H       H       0       -6.079      6.382       3.618       
+BDC     "H7'"   H       H       0       -6.681      4.463       4.821       
+BDC     "H8'"   H       H       0       -5.118      2.839       5.270       
+BDC     "H1'"   H       H       0       -0.246      1.296       4.764       
+BDC     "H2'"   H       H       0       1.848       1.746       3.945       
+BDC     "H3'"   H       H       0       2.263       3.721       2.763       
+BDC     "HD1'"  H       H       0       -0.698      5.550       0.835       
+BDC     "H'21"  H       H       0       -0.513      7.352       -0.402      
+BDC     "H'22"  H       H       0       0.970       7.512       0.130       
+BDC     "H'31"  H       H       0       0.252       8.648       2.007       
+BDC     "H'32"  H       H       0       -1.257      8.284       1.708       
+BDC     "H'71"  H       H       0       0.602       11.248      -0.203      
+BDC     "H'72"  H       H       0       1.344       9.842       -0.109      
+BDC     "H'73"  H       H       0       1.111       10.710      1.208       
+BDC     "H'81"  H       H       0       -1.157      10.851      2.166       
+BDC     "H'82"  H       H       0       -2.372      10.300      1.292       
+BDC     "H'83"  H       H       0       -1.525      11.549      0.781       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BDC          C5          C6      DOUBLE       y     1.363  0.0103     1.363  0.0103
+BDC          C5         C14      SINGLE       y     1.423  0.0100     1.423  0.0100
+BDC          C6          C7      SINGLE       y     1.401  0.0132     1.401  0.0132
+BDC          C7          C8      DOUBLE       y     1.363  0.0129     1.363  0.0129
+BDC          C8         C13      SINGLE       y     1.418  0.0111     1.418  0.0111
+BDC          C9         C13      SINGLE       y     1.418  0.0100     1.418  0.0100
+BDC          C9         C11      DOUBLE       y     1.418  0.0100     1.418  0.0100
+BDC          C9          N9      SINGLE       n     1.380  0.0200     1.380  0.0200
+BDC          C1          C2      DOUBLE       y     1.361  0.0115     1.361  0.0115
+BDC          C1         C11      SINGLE       y     1.418  0.0111     1.418  0.0111
+BDC          C2          C3      SINGLE       y     1.409  0.0100     1.409  0.0100
+BDC          C3          C4      DOUBLE       y     1.372  0.0100     1.372  0.0100
+BDC          C4         C12      SINGLE       y     1.439  0.0180     1.439  0.0180
+BDC          C4         CD1      SINGLE       n     1.511  0.0100     1.511  0.0100
+BDC         C14         C13      DOUBLE       y     1.426  0.0107     1.426  0.0107
+BDC         C14         N10      SINGLE       y     1.347  0.0100     1.347  0.0100
+BDC         C11         C12      SINGLE       y     1.429  0.0125     1.429  0.0125
+BDC         C12         N10      DOUBLE       y     1.346  0.0118     1.346  0.0118
+BDC          N9         CE1      SINGLE       n     1.451  0.0101     1.451  0.0101
+BDC         CD1         OD1      DOUBLE       n     1.230  0.0114     1.230  0.0114
+BDC         CD1         ND1      SINGLE       n     1.332  0.0109     1.332  0.0109
+BDC         CE1         CE2      SINGLE       n     1.517  0.0140     1.517  0.0140
+BDC         CE3         CE2      SINGLE       n     1.514  0.0200     1.514  0.0200
+BDC         CE3         CE4      SINGLE       n     1.509  0.0200     1.509  0.0200
+BDC         CE4         CF4      SINGLE       n     1.509  0.0200     1.509  0.0200
+BDC         ND1         CD2      SINGLE       n     1.453  0.0100     1.453  0.0100
+BDC         CD2         CD3      SINGLE       n     1.515  0.0157     1.515  0.0157
+BDC         CD3         ND2      SINGLE       n     1.461  0.0111     1.461  0.0111
+BDC         ND2         CD7      SINGLE       n     1.466  0.0117     1.466  0.0117
+BDC         ND2         CD8      SINGLE       n     1.466  0.0117     1.466  0.0117
+BDC         CF4         CF3      SINGLE       n     1.509  0.0200     1.509  0.0200
+BDC         CF3         CF2      SINGLE       n     1.514  0.0200     1.514  0.0200
+BDC         CF2         CF1      SINGLE       n     1.517  0.0140     1.517  0.0140
+BDC         CF1       "N9'"      SINGLE       n     1.451  0.0113     1.451  0.0113
+BDC       "N9'"       "C9'"      SINGLE       n     1.361  0.0179     1.361  0.0179
+BDC       "C5'"       "C6'"      DOUBLE       y     1.363  0.0103     1.363  0.0103
+BDC       "C5'"       "CE'"      SINGLE       y     1.423  0.0100     1.423  0.0100
+BDC       "C6'"       "C7'"      SINGLE       y     1.401  0.0132     1.401  0.0132
+BDC       "C7'"       "C8'"      DOUBLE       y     1.363  0.0129     1.363  0.0129
+BDC       "C8'"       "CD'"      SINGLE       y     1.418  0.0111     1.418  0.0111
+BDC       "C9'"       "CD'"      SINGLE       y     1.418  0.0100     1.418  0.0100
+BDC       "C9'"       "CB'"      DOUBLE       y     1.418  0.0100     1.418  0.0100
+BDC       "C1'"       "C2'"      DOUBLE       y     1.361  0.0115     1.361  0.0115
+BDC       "C1'"       "CB'"      SINGLE       y     1.418  0.0111     1.418  0.0111
+BDC       "C2'"       "C3'"      SINGLE       y     1.409  0.0100     1.409  0.0100
+BDC       "C3'"       "C4'"      DOUBLE       y     1.372  0.0100     1.372  0.0100
+BDC       "C4'"       "CC'"      SINGLE       y     1.439  0.0180     1.439  0.0180
+BDC       "C4'"         CB1      SINGLE       n     1.511  0.0100     1.511  0.0100
+BDC       "CE'"       "CD'"      DOUBLE       y     1.426  0.0107     1.426  0.0107
+BDC       "CE'"       "NA'"      SINGLE       y     1.347  0.0100     1.347  0.0100
+BDC       "CB'"       "CC'"      SINGLE       y     1.429  0.0125     1.429  0.0125
+BDC       "CC'"       "NA'"      DOUBLE       y     1.346  0.0118     1.346  0.0118
+BDC         CB1         O1X      DOUBLE       n     1.230  0.0114     1.230  0.0114
+BDC         CB1         NB1      SINGLE       n     1.332  0.0109     1.332  0.0109
+BDC         NB1         CB2      SINGLE       n     1.453  0.0100     1.453  0.0100
+BDC         CB2         CB3      SINGLE       n     1.515  0.0157     1.515  0.0157
+BDC         CB3         NB2      SINGLE       n     1.461  0.0111     1.461  0.0111
+BDC         NB2         CB7      SINGLE       n     1.466  0.0117     1.466  0.0117
+BDC         NB2         CB8      SINGLE       n     1.466  0.0117     1.466  0.0117
+BDC          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0197
+BDC          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0200
+BDC          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0184
+BDC          C8          H8      SINGLE       n     1.082  0.0130     0.940  0.0117
+BDC          C1          H1      SINGLE       n     1.082  0.0130     0.940  0.0117
+BDC          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0158
+BDC          C3          H3      SINGLE       n     1.082  0.0130     0.938  0.0129
+BDC          N9          H9      SINGLE       n     1.016  0.0100     0.876  0.0200
+BDC         CE1        HE11      SINGLE       n     1.089  0.0100     0.979  0.0121
+BDC         CE1        HE12      SINGLE       n     1.089  0.0100     0.979  0.0121
+BDC         CE3        HE31      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         CE3        HE32      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         CE2        HE21      SINGLE       n     1.089  0.0100     0.981  0.0160
+BDC         CE2        HE22      SINGLE       n     1.089  0.0100     0.981  0.0160
+BDC         CE4        HE41      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         CE4        HE42      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         ND1         HD1      SINGLE       n     1.016  0.0100     0.873  0.0200
+BDC         CD2        HD21      SINGLE       n     1.089  0.0100     0.979  0.0148
+BDC         CD2        HD22      SINGLE       n     1.089  0.0100     0.979  0.0148
+BDC         CD3        HD31      SINGLE       n     1.089  0.0100     0.980  0.0143
+BDC         CD3        HD32      SINGLE       n     1.089  0.0100     0.980  0.0143
+BDC         CD7        HD71      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CD7        HD72      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CD7        HD73      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CD8        HD81      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CD8        HD82      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CD8        HD83      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CF4      "H4'1"      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         CF4      "H4'2"      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         CF3      "H3'1"      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         CF3      "H3'2"      SINGLE       n     1.089  0.0100     0.981  0.0163
+BDC         CF2      "H2'1"      SINGLE       n     1.089  0.0100     0.981  0.0160
+BDC         CF2      "H2'2"      SINGLE       n     1.089  0.0100     0.981  0.0160
+BDC         CF1      "H1'1"      SINGLE       n     1.089  0.0100     0.979  0.0121
+BDC         CF1      "H1'2"      SINGLE       n     1.089  0.0100     0.979  0.0121
+BDC       "N9'"       "H9'"      SINGLE       n     1.016  0.0100     0.880  0.0200
+BDC       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.943  0.0197
+BDC       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.944  0.0200
+BDC       "C7'"       "H7'"      SINGLE       n     1.082  0.0130     0.944  0.0184
+BDC       "C8'"       "H8'"      SINGLE       n     1.082  0.0130     0.940  0.0117
+BDC       "C1'"       "H1'"      SINGLE       n     1.082  0.0130     0.940  0.0117
+BDC       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.944  0.0158
+BDC       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.938  0.0129
+BDC         NB1      "HD1'"      SINGLE       n     1.016  0.0100     0.873  0.0200
+BDC         CB2      "H'21"      SINGLE       n     1.089  0.0100     0.979  0.0148
+BDC         CB2      "H'22"      SINGLE       n     1.089  0.0100     0.979  0.0148
+BDC         CB3      "H'31"      SINGLE       n     1.089  0.0100     0.980  0.0143
+BDC         CB3      "H'32"      SINGLE       n     1.089  0.0100     0.980  0.0143
+BDC         CB7      "H'71"      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CB7      "H'72"      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CB7      "H'73"      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CB8      "H'81"      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CB8      "H'82"      SINGLE       n     1.089  0.0100     0.977  0.0113
+BDC         CB8      "H'83"      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BDC          C6          C5         C14     120.754    1.50
+BDC          C6          C5          H5     119.977    1.50
+BDC         C14          C5          H5     119.269    1.50
+BDC          C5          C6          C7     120.825    1.50
+BDC          C5          C6          H6     119.514    1.50
+BDC          C7          C6          H6     119.661    1.50
+BDC          C6          C7          C8     120.430    1.50
+BDC          C6          C7          H7     119.757    1.50
+BDC          C8          C7          H7     119.813    1.50
+BDC          C7          C8         C13     121.450    1.50
+BDC          C7          C8          H8     119.521    1.50
+BDC         C13          C8          H8     119.029    1.50
+BDC         C13          C9         C11     120.257    1.80
+BDC         C13          C9          N9     119.872    1.78
+BDC         C11          C9          N9     119.872    1.78
+BDC          C2          C1         C11     121.315    1.50
+BDC          C2          C1          H1     119.589    1.50
+BDC         C11          C1          H1     119.096    1.50
+BDC          C1          C2          C3     119.988    1.50
+BDC          C1          C2          H2     119.980    1.50
+BDC          C3          C2          H2     120.032    1.50
+BDC          C2          C3          C4     120.907    1.50
+BDC          C2          C3          H3     119.495    1.50
+BDC          C4          C3          H3     119.598    1.50
+BDC          C3          C4         C12     119.063    1.53
+BDC          C3          C4         CD1     119.170    1.66
+BDC         C12          C4         CD1     121.766    2.03
+BDC          C5         C14         C13     118.281    1.50
+BDC          C5         C14         N10     118.361    1.50
+BDC         C13         C14         N10     123.358    1.50
+BDC          C8         C13          C9     123.379    1.50
+BDC          C8         C13         C14     118.260    1.50
+BDC          C9         C13         C14     118.360    1.50
+BDC          C9         C11          C1     122.622    1.50
+BDC          C9         C11         C12     118.360    1.50
+BDC          C1         C11         C12     119.018    1.50
+BDC          C4         C12         C11     119.708    1.50
+BDC          C4         C12         N10     118.467    1.50
+BDC         C11         C12         N10     121.824    1.50
+BDC         C14         N10         C12     117.840    1.50
+BDC          C9          N9         CE1     122.507    2.65
+BDC          C9          N9          H9     114.803    3.00
+BDC         CE1          N9          H9     114.913    3.00
+BDC          C4         CD1         OD1     120.214    2.07
+BDC          C4         CD1         ND1     117.197    2.27
+BDC         OD1         CD1         ND1     122.589    1.50
+BDC          N9         CE1         CE2     111.856    2.54
+BDC          N9         CE1        HE11     109.145    1.50
+BDC          N9         CE1        HE12     109.145    1.50
+BDC         CE2         CE1        HE11     109.537    1.50
+BDC         CE2         CE1        HE12     109.537    1.50
+BDC        HE11         CE1        HE12     107.909    1.50
+BDC         CE2         CE3         CE4     113.853    2.32
+BDC         CE2         CE3        HE31     108.806    1.50
+BDC         CE2         CE3        HE32     108.806    1.50
+BDC         CE4         CE3        HE31     108.698    1.50
+BDC         CE4         CE3        HE32     108.698    1.50
+BDC        HE31         CE3        HE32     107.646    1.50
+BDC         CE1         CE2         CE3     113.252    1.84
+BDC         CE1         CE2        HE21     108.722    1.50
+BDC         CE1         CE2        HE22     108.722    1.50
+BDC         CE3         CE2        HE21     109.041    1.50
+BDC         CE3         CE2        HE22     109.041    1.50
+BDC        HE21         CE2        HE22     107.927    1.57
+BDC         CE3         CE4         CF4     114.243    1.69
+BDC         CE3         CE4        HE41     108.698    1.50
+BDC         CE3         CE4        HE42     108.698    1.50
+BDC         CF4         CE4        HE41     108.698    1.50
+BDC         CF4         CE4        HE42     108.698    1.50
+BDC        HE41         CE4        HE42     107.646    1.50
+BDC         CD1         ND1         CD2     122.323    1.53
+BDC         CD1         ND1         HD1     119.166    1.82
+BDC         CD2         ND1         HD1     118.511    1.89
+BDC         ND1         CD2         CD3     111.436    1.65
+BDC         ND1         CD2        HD21     108.997    1.50
+BDC         ND1         CD2        HD22     108.997    1.50
+BDC         CD3         CD2        HD21     109.409    1.50
+BDC         CD3         CD2        HD22     109.409    1.50
+BDC        HD21         CD2        HD22     107.909    1.50
+BDC         CD2         CD3         ND2     112.718    1.89
+BDC         CD2         CD3        HD31     109.068    1.50
+BDC         CD2         CD3        HD32     109.068    1.50
+BDC         ND2         CD3        HD31     109.093    1.50
+BDC         ND2         CD3        HD32     109.093    1.50
+BDC        HD31         CD3        HD32     107.844    1.50
+BDC         CD3         ND2         CD7     110.776    1.50
+BDC         CD3         ND2         CD8     110.776    1.50
+BDC         CD7         ND2         CD8     109.730    1.50
+BDC         ND2         CD7        HD71     109.516    1.50
+BDC         ND2         CD7        HD72     109.516    1.50
+BDC         ND2         CD7        HD73     109.516    1.50
+BDC        HD71         CD7        HD72     109.408    1.50
+BDC        HD71         CD7        HD73     109.408    1.50
+BDC        HD72         CD7        HD73     109.408    1.50
+BDC         ND2         CD8        HD81     109.516    1.50
+BDC         ND2         CD8        HD82     109.516    1.50
+BDC         ND2         CD8        HD83     109.516    1.50
+BDC        HD81         CD8        HD82     109.408    1.50
+BDC        HD81         CD8        HD83     109.408    1.50
+BDC        HD82         CD8        HD83     109.408    1.50
+BDC         CE4         CF4         CF3     114.243    1.69
+BDC         CE4         CF4      "H4'1"     108.698    1.50
+BDC         CE4         CF4      "H4'2"     108.698    1.50
+BDC         CF3         CF4      "H4'1"     108.698    1.50
+BDC         CF3         CF4      "H4'2"     108.698    1.50
+BDC      "H4'1"         CF4      "H4'2"     107.646    1.50
+BDC         CF4         CF3         CF2     113.853    2.32
+BDC         CF4         CF3      "H3'1"     108.698    1.50
+BDC         CF4         CF3      "H3'2"     108.698    1.50
+BDC         CF2         CF3      "H3'1"     108.806    1.50
+BDC         CF2         CF3      "H3'2"     108.806    1.50
+BDC      "H3'1"         CF3      "H3'2"     107.646    1.50
+BDC         CF3         CF2         CF1     113.252    1.84
+BDC         CF3         CF2      "H2'1"     109.041    1.50
+BDC         CF3         CF2      "H2'2"     109.041    1.50
+BDC         CF1         CF2      "H2'1"     108.722    1.50
+BDC         CF1         CF2      "H2'2"     108.722    1.50
+BDC      "H2'1"         CF2      "H2'2"     107.927    1.57
+BDC         CF2         CF1       "N9'"     111.831    1.79
+BDC         CF2         CF1      "H1'1"     109.537    1.50
+BDC         CF2         CF1      "H1'2"     109.537    1.50
+BDC       "N9'"         CF1      "H1'1"     109.157    1.50
+BDC       "N9'"         CF1      "H1'2"     109.157    1.50
+BDC      "H1'1"         CF1      "H1'2"     107.909    1.50
+BDC         CF1       "N9'"       "C9'"     124.114    1.91
+BDC         CF1       "N9'"       "H9'"     118.075    2.37
+BDC       "C9'"       "N9'"       "H9'"     117.815    2.27
+BDC       "C6'"       "C5'"       "CE'"     120.754    1.50
+BDC       "C6'"       "C5'"       "H5'"     119.977    1.50
+BDC       "CE'"       "C5'"       "H5'"     119.269    1.50
+BDC       "C5'"       "C6'"       "C7'"     120.825    1.50
+BDC       "C5'"       "C6'"       "H6'"     119.514    1.50
+BDC       "C7'"       "C6'"       "H6'"     119.661    1.50
+BDC       "C6'"       "C7'"       "C8'"     120.430    1.50
+BDC       "C6'"       "C7'"       "H7'"     119.757    1.50
+BDC       "C8'"       "C7'"       "H7'"     119.813    1.50
+BDC       "C7'"       "C8'"       "CD'"     121.450    1.50
+BDC       "C7'"       "C8'"       "H8'"     119.521    1.50
+BDC       "CD'"       "C8'"       "H8'"     119.029    1.50
+BDC       "N9'"       "C9'"       "CD'"     119.872    1.57
+BDC       "N9'"       "C9'"       "CB'"     119.872    1.57
+BDC       "CD'"       "C9'"       "CB'"     120.257    1.80
+BDC       "C2'"       "C1'"       "CB'"     121.315    1.50
+BDC       "C2'"       "C1'"       "H1'"     119.589    1.50
+BDC       "CB'"       "C1'"       "H1'"     119.096    1.50
+BDC       "C1'"       "C2'"       "C3'"     119.988    1.50
+BDC       "C1'"       "C2'"       "H2'"     119.980    1.50
+BDC       "C3'"       "C2'"       "H2'"     120.032    1.50
+BDC       "C2'"       "C3'"       "C4'"     120.907    1.50
+BDC       "C2'"       "C3'"       "H3'"     119.495    1.50
+BDC       "C4'"       "C3'"       "H3'"     119.598    1.50
+BDC       "C3'"       "C4'"       "CC'"     119.063    1.53
+BDC       "C3'"       "C4'"         CB1     119.170    1.66
+BDC       "CC'"       "C4'"         CB1     121.766    2.03
+BDC       "C5'"       "CE'"       "CD'"     118.281    1.50
+BDC       "C5'"       "CE'"       "NA'"     118.361    1.50
+BDC       "CD'"       "CE'"       "NA'"     123.358    1.50
+BDC       "C8'"       "CD'"       "C9'"     123.379    1.50
+BDC       "C8'"       "CD'"       "CE'"     118.260    1.50
+BDC       "C9'"       "CD'"       "CE'"     118.360    1.50
+BDC       "C9'"       "CB'"       "C1'"     122.622    1.50
+BDC       "C9'"       "CB'"       "CC'"     118.360    1.50
+BDC       "C1'"       "CB'"       "CC'"     119.018    1.50
+BDC       "C4'"       "CC'"       "CB'"     119.708    1.50
+BDC       "C4'"       "CC'"       "NA'"     118.467    1.50
+BDC       "CB'"       "CC'"       "NA'"     121.824    1.50
+BDC       "CE'"       "NA'"       "CC'"     117.840    1.50
+BDC       "C4'"         CB1         O1X     120.214    2.07
+BDC       "C4'"         CB1         NB1     117.197    2.27
+BDC         O1X         CB1         NB1     122.589    1.50
+BDC         CB1         NB1         CB2     122.323    1.53
+BDC         CB1         NB1      "HD1'"     119.166    1.82
+BDC         CB2         NB1      "HD1'"     118.511    1.89
+BDC         NB1         CB2         CB3     111.436    1.65
+BDC         NB1         CB2      "H'21"     108.997    1.50
+BDC         NB1         CB2      "H'22"     108.997    1.50
+BDC         CB3         CB2      "H'21"     109.409    1.50
+BDC         CB3         CB2      "H'22"     109.409    1.50
+BDC      "H'21"         CB2      "H'22"     107.909    1.50
+BDC         CB2         CB3         NB2     112.718    1.89
+BDC         CB2         CB3      "H'31"     109.068    1.50
+BDC         CB2         CB3      "H'32"     109.068    1.50
+BDC         NB2         CB3      "H'31"     109.093    1.50
+BDC         NB2         CB3      "H'32"     109.093    1.50
+BDC      "H'31"         CB3      "H'32"     107.844    1.50
+BDC         CB3         NB2         CB7     110.776    1.50
+BDC         CB3         NB2         CB8     110.776    1.50
+BDC         CB7         NB2         CB8     109.730    1.50
+BDC         NB2         CB7      "H'71"     109.516    1.50
+BDC         NB2         CB7      "H'72"     109.516    1.50
+BDC         NB2         CB7      "H'73"     109.516    1.50
+BDC      "H'71"         CB7      "H'72"     109.408    1.50
+BDC      "H'71"         CB7      "H'73"     109.408    1.50
+BDC      "H'72"         CB7      "H'73"     109.408    1.50
+BDC         NB2         CB8      "H'81"     109.516    1.50
+BDC         NB2         CB8      "H'82"     109.516    1.50
+BDC         NB2         CB8      "H'83"     109.516    1.50
+BDC      "H'81"         CB8      "H'82"     109.408    1.50
+BDC      "H'81"         CB8      "H'83"     109.408    1.50
+BDC      "H'82"         CB8      "H'83"     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BDC              const_53         C14          C5          C6          C7       0.000    10.0     2
+BDC              const_97         C13         C14          C5          C6       0.000    10.0     2
+BDC              const_34          C9         C11         C12          C4     180.000    10.0     2
+BDC              const_32          C4         C12         N10         C14     180.000    10.0     2
+BDC             sp2_sp3_2          C9          N9         CE1         CE2     120.000    10.0     6
+BDC            sp2_sp2_11         OD1         CD1         ND1         CD2       0.000     5.0     2
+BDC             sp3_sp3_1          N9         CE1         CE2         CE3     180.000    10.0     3
+BDC            sp3_sp3_10         CE1         CE2         CE3         CE4     180.000    10.0     3
+BDC            sp3_sp3_19         CE2         CE3         CE4         CF4     180.000    10.0     3
+BDC              const_57          C5          C6          C7          C8       0.000    10.0     2
+BDC            sp3_sp3_28         CE3         CE4         CF4         CF3     180.000    10.0     3
+BDC             sp2_sp3_8         CD1         ND1         CD2         CD3     120.000    10.0     6
+BDC            sp3_sp3_37         ND1         CD2         CD3         ND2     180.000    10.0     3
+BDC            sp3_sp3_47         CD2         CD3         ND2         CD7     -60.000    10.0     3
+BDC            sp3_sp3_52        HD71         CD7         ND2         CD3     180.000    10.0     3
+BDC            sp3_sp3_59        HD81         CD8         ND2         CD3     -60.000    10.0     3
+BDC            sp3_sp3_64         CF2         CF3         CF4         CE4     180.000    10.0     3
+BDC            sp3_sp3_73         CF1         CF2         CF3         CF4     180.000    10.0     3
+BDC            sp3_sp3_82       "N9'"         CF1         CF2         CF3     180.000    10.0     3
+BDC              const_61          C6          C7          C8         C13       0.000    10.0     2
+BDC            sp2_sp3_14       "C9'"       "N9'"         CF1         CF2     120.000    10.0     6
+BDC            sp2_sp2_13       "CD'"       "C9'"       "N9'"         CF1     180.000     5.0     2
+BDC              const_69       "CE'"       "C5'"       "C6'"       "C7'"       0.000    10.0     2
+BDC             const_109       "C6'"       "C5'"       "CE'"       "CD'"       0.000    10.0     2
+BDC              const_73       "C5'"       "C6'"       "C7'"       "C8'"       0.000    10.0     2
+BDC              const_77       "C6'"       "C7'"       "C8'"       "CD'"       0.000    10.0     2
+BDC              const_82       "C7'"       "C8'"       "CD'"       "C9'"     180.000    10.0     2
+BDC              const_92       "N9'"       "C9'"       "CD'"       "C8'"       0.000    10.0     2
+BDC             const_116       "N9'"       "C9'"       "CB'"       "C1'"       0.000    10.0     2
+BDC       const_sp2_sp2_1       "CB'"       "C1'"       "C2'"       "C3'"       0.000     5.0     2
+BDC             const_118       "C2'"       "C1'"       "CB'"       "C9'"     180.000    10.0     2
+BDC       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+BDC              const_10       "C2'"       "C3'"       "C4'"         CB1     180.000    10.0     2
+BDC              const_67          C9         C13          C8          C7     180.000    10.0     2
+BDC              const_15         CB1       "C4'"       "CC'"       "CB'"     180.000    10.0     2
+BDC            sp2_sp2_18       "C3'"       "C4'"         CB1         O1X       0.000     5.0     2
+BDC              const_85       "C8'"       "CD'"       "CE'"       "C5'"       0.000    10.0     2
+BDC              const_94       "C5'"       "CE'"       "NA'"       "CC'"     180.000    10.0     2
+BDC              const_18       "C9'"       "CB'"       "CC'"       "C4'"     180.000    10.0     2
+BDC              const_96       "C4'"       "CC'"       "NA'"       "CE'"     180.000    10.0     2
+BDC            sp2_sp2_23         O1X         CB1         NB1         CB2       0.000     5.0     2
+BDC            sp2_sp3_20         CB1         NB1         CB2         CB3     120.000    10.0     6
+BDC            sp3_sp3_91         NB1         CB2         CB3         NB2     180.000    10.0     3
+BDC              const_24          C8         C13          C9          N9       0.000    10.0     2
+BDC             const_104          C1         C11          C9          N9       0.000    10.0     2
+BDC             sp2_sp2_1         C13          C9          N9         CE1     180.000     5.0     2
+BDC           sp3_sp3_101         CB2         CB3         NB2         CB7     -60.000    10.0     3
+BDC           sp3_sp3_106      "H'71"         CB7         NB2         CB3     180.000    10.0     3
+BDC           sp3_sp3_113      "H'81"         CB8         NB2         CB3     -60.000    10.0     3
+BDC             const_106          C2          C1         C11          C9     180.000    10.0     2
+BDC              const_37         C11          C1          C2          C3       0.000    10.0     2
+BDC              const_41          C1          C2          C3          C4       0.000    10.0     2
+BDC              const_46          C2          C3          C4         CD1     180.000    10.0     2
+BDC              const_50         C11         C12          C4         CD1     180.000    10.0     2
+BDC             sp2_sp2_6          C3          C4         CD1         OD1       0.000     5.0     2
+BDC              const_25          C8         C13         C14          C5       0.000    10.0     2
+BDC              const_30          C5         C14         N10         C12     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BDC    chir_1    ND2    CD3    CD7    CD8    both
+BDC    chir_2    NB2    CB3    CB7    CB8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BDC    plan-1          C1   0.020
+BDC    plan-1         C11   0.020
+BDC    plan-1         C12   0.020
+BDC    plan-1         C13   0.020
+BDC    plan-1         C14   0.020
+BDC    plan-1          C2   0.020
+BDC    plan-1          C3   0.020
+BDC    plan-1          C4   0.020
+BDC    plan-1          C5   0.020
+BDC    plan-1          C6   0.020
+BDC    plan-1          C7   0.020
+BDC    plan-1          C8   0.020
+BDC    plan-1          C9   0.020
+BDC    plan-1         CD1   0.020
+BDC    plan-1          H1   0.020
+BDC    plan-1          H2   0.020
+BDC    plan-1          H3   0.020
+BDC    plan-1          H5   0.020
+BDC    plan-1          H6   0.020
+BDC    plan-1          H7   0.020
+BDC    plan-1          H8   0.020
+BDC    plan-1         N10   0.020
+BDC    plan-1          N9   0.020
+BDC    plan-2       "C1'"   0.020
+BDC    plan-2       "C2'"   0.020
+BDC    plan-2       "C3'"   0.020
+BDC    plan-2       "C4'"   0.020
+BDC    plan-2       "C5'"   0.020
+BDC    plan-2       "C6'"   0.020
+BDC    plan-2       "C7'"   0.020
+BDC    plan-2       "C8'"   0.020
+BDC    plan-2       "C9'"   0.020
+BDC    plan-2       "CB'"   0.020
+BDC    plan-2         CB1   0.020
+BDC    plan-2       "CC'"   0.020
+BDC    plan-2       "CD'"   0.020
+BDC    plan-2       "CE'"   0.020
+BDC    plan-2       "H1'"   0.020
+BDC    plan-2       "H2'"   0.020
+BDC    plan-2       "H3'"   0.020
+BDC    plan-2       "H5'"   0.020
+BDC    plan-2       "H6'"   0.020
+BDC    plan-2       "H7'"   0.020
+BDC    plan-2       "H8'"   0.020
+BDC    plan-2       "N9'"   0.020
+BDC    plan-2       "NA'"   0.020
+BDC    plan-3          C4   0.020
+BDC    plan-3         CD1   0.020
+BDC    plan-3         ND1   0.020
+BDC    plan-3         OD1   0.020
+BDC    plan-4         CD1   0.020
+BDC    plan-4         CD2   0.020
+BDC    plan-4         HD1   0.020
+BDC    plan-4         ND1   0.020
+BDC    plan-5       "C9'"   0.020
+BDC    plan-5         CF1   0.020
+BDC    plan-5       "H9'"   0.020
+BDC    plan-5       "N9'"   0.020
+BDC    plan-6       "C4'"   0.020
+BDC    plan-6         CB1   0.020
+BDC    plan-6         NB1   0.020
+BDC    plan-6         O1X   0.020
+BDC    plan-7         CB1   0.020
+BDC    plan-7         CB2   0.020
+BDC    plan-7      "HD1'"   0.020
+BDC    plan-7         NB1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BDC           SMILES              ACDLabs 10.04                                                                                                                                                                                        O=C(NCCN(C)C)c3c2nc1c(cccc1)c(c2ccc3)NCCCCCCCCNc4c6c(nc5c4cccc5C(=O)NCCN(C)C)cccc6
+BDC SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                          CN(C)CCNC(=O)c1cccc2c(NCCCCCCCCNc3c4ccccc4nc5c(cccc35)C(=O)NCCN(C)C)c6ccccc6nc12
+BDC           SMILES               CACTVS 3.341                                                                                                                                                                                          CN(C)CCNC(=O)c1cccc2c(NCCCCCCCCNc3c4ccccc4nc5c(cccc35)C(=O)NCCN(C)C)c6ccccc6nc12
+BDC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                              CN(C)CCNC(=O)c1cccc2c1nc3ccccc3c2NCCCCCCCCNc4c5ccccc5nc6c4cccc6C(=O)NCCN(C)C
+BDC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                              CN(C)CCNC(=O)c1cccc2c1nc3ccccc3c2NCCCCCCCCNc4c5ccccc5nc6c4cccc6C(=O)NCCN(C)C
+BDC            InChI                InChI  1.03 InChI=1S/C44H54N8O2/c1-51(2)29-27-47-43(53)35-21-15-19-33-39(31-17-9-11-23-37(31)49-41(33)35)45-25-13-7-5-6-8-14-26-46-40-32-18-10-12-24-38(32)50-42-34(40)20-16-22-36(42)44(54)48-28-30-52(3)4/h9-12,15-24H,5-8,13-14,25-30H2,1-4H3,(H,45,49)(H,46,50)(H,47,53)(H,48,54)
+BDC         InChIKey                InChI  1.03                                                                                                                                                                                                                                               UUXARTGDSXDSRM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BDC acedrg               243         "dictionary generator"                  
+BDC acedrg_database      11          "data source"                           
+BDC rdkit                2017.03.2   "Chemoinformatics tool"
+BDC refmac5              5.8.0238    "optimization tool"                     

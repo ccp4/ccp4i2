@@ -1,0 +1,233 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CX4     CX4      7-chloro-N-(cyclopropylmethyl)quinazolin-4-amine     NON-POLYMER     28     16     .     
+#
+data_comp_CX4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CX4     CAF     C       CH2     0       -34.263     -15.319     -5.772      
+CX4     CAG     C       CH2     0       -35.244     -16.404     -6.062      
+CX4     CAP     C       CH1     0       -34.612     -15.653     -7.181      
+CX4     CAH     C       CH2     0       -33.592     -16.329     -8.050      
+CX4     NAK     N       NH1     0       -34.216     -17.025     -9.169      
+CX4     C6      C       CR6     0       -34.887     -16.404     -10.172     
+CX4     C5      C       CR66    0       -35.820     -17.131     -11.014     
+CX4     CAD     C       CR16    0       -36.142     -18.514     -10.892     
+CX4     CAB     C       CR16    0       -37.042     -19.109     -11.738     
+CX4     CAL     C       CR6     0       -37.656     -18.344     -12.738     
+CX4     CLAA    CL      CL      0       -38.796     -19.127     -13.798     
+CX4     CAE     C       CR16    0       -37.388     -17.016     -12.902     
+CX4     C4      C       CR66    0       -36.461     -16.374     -12.042     
+CX4     N3      N       NRD6    0       -36.205     -15.027     -12.227     
+CX4     C2      C       CR16    0       -35.337     -14.499     -11.396     
+CX4     N1      N       NRD6    0       -34.663     -15.096     -10.389     
+CX4     HAF     H       H       0       -34.606     -14.481     -5.404      
+CX4     HAFA    H       H       0       -33.378     -15.581     -5.448      
+CX4     HAG     H       H       0       -34.959     -17.328     -5.914      
+CX4     HAGA    H       H       0       -36.187     -16.228     -5.870      
+CX4     HAP     H       H       0       -35.196     -14.996     -7.646      
+CX4     HAH     H       H       0       -33.094     -16.971     -7.518      
+CX4     HAHA    H       H       0       -32.965     -15.671     -8.388      
+CX4     HNAK    H       H       0       -34.113     -17.895     -9.200      
+CX4     HAD     H       H       0       -35.732     -19.032     -10.222     
+CX4     HAB     H       H       0       -37.248     -20.031     -11.647     
+CX4     HAE     H       H       0       -37.819     -16.520     -13.588     
+CX4     H2      H       H       0       -35.160     -13.585     -11.518     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CX4         CAF         CAP      SINGLE       n     1.489  0.0100     1.489  0.0100
+CX4         CAF         CAG      SINGLE       n     1.491  0.0140     1.491  0.0140
+CX4         CAG         CAP      SINGLE       n     1.489  0.0100     1.489  0.0100
+CX4         CAP         CAH      SINGLE       n     1.500  0.0100     1.500  0.0100
+CX4         CAH         NAK      SINGLE       n     1.455  0.0100     1.455  0.0100
+CX4         NAK          C6      SINGLE       n     1.342  0.0151     1.342  0.0151
+CX4          C6          C5      SINGLE       y     1.443  0.0100     1.443  0.0100
+CX4          C6          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+CX4          C5          C4      SINGLE       y     1.421  0.0100     1.421  0.0100
+CX4          C5         CAD      DOUBLE       y     1.418  0.0111     1.418  0.0111
+CX4         CAD         CAB      SINGLE       y     1.367  0.0100     1.367  0.0100
+CX4         CAB         CAL      DOUBLE       y     1.397  0.0100     1.397  0.0100
+CX4         CAL        CLAA      SINGLE       n     1.743  0.0100     1.743  0.0100
+CX4         CAL         CAE      SINGLE       y     1.362  0.0100     1.362  0.0100
+CX4         CAE          C4      DOUBLE       y     1.415  0.0100     1.415  0.0100
+CX4          C4          N3      SINGLE       y     1.380  0.0100     1.380  0.0100
+CX4          N3          C2      DOUBLE       y     1.310  0.0100     1.310  0.0100
+CX4          C2          N1      SINGLE       y     1.348  0.0100     1.348  0.0100
+CX4         CAF         HAF      SINGLE       n     1.089  0.0100     0.978  0.0171
+CX4         CAF        HAFA      SINGLE       n     1.089  0.0100     0.978  0.0171
+CX4         CAG         HAG      SINGLE       n     1.089  0.0100     0.978  0.0171
+CX4         CAG        HAGA      SINGLE       n     1.089  0.0100     0.978  0.0171
+CX4         CAP         HAP      SINGLE       n     1.089  0.0100     0.994  0.0108
+CX4         CAH         HAH      SINGLE       n     1.089  0.0100     0.970  0.0100
+CX4         CAH        HAHA      SINGLE       n     1.089  0.0100     0.970  0.0100
+CX4         NAK        HNAK      SINGLE       n     1.016  0.0100     0.880  0.0200
+CX4         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0175
+CX4         CAB         HAB      SINGLE       n     1.082  0.0130     0.949  0.0100
+CX4         CAE         HAE      SINGLE       n     1.082  0.0130     0.950  0.0100
+CX4          C2          H2      SINGLE       n     1.082  0.0130     0.939  0.0106
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CX4         CAP         CAF         CAG      59.948    1.50
+CX4         CAP         CAF         HAF     117.780    1.50
+CX4         CAP         CAF        HAFA     117.780    1.50
+CX4         CAG         CAF         HAF     117.759    1.50
+CX4         CAG         CAF        HAFA     117.759    1.50
+CX4         HAF         CAF        HAFA     114.868    1.50
+CX4         CAF         CAG         CAP      59.948    1.50
+CX4         CAF         CAG         HAG     117.759    1.50
+CX4         CAF         CAG        HAGA     117.759    1.50
+CX4         CAP         CAG         HAG     117.780    1.50
+CX4         CAP         CAG        HAGA     117.780    1.50
+CX4         HAG         CAG        HAGA     114.868    1.50
+CX4         CAF         CAP         CAG      60.105    1.50
+CX4         CAF         CAP         CAH     119.540    1.50
+CX4         CAF         CAP         HAP     115.657    1.50
+CX4         CAG         CAP         CAH     119.540    1.50
+CX4         CAG         CAP         HAP     115.657    1.50
+CX4         CAH         CAP         HAP     115.124    1.50
+CX4         CAP         CAH         NAK     110.346    1.51
+CX4         CAP         CAH         HAH     109.378    1.50
+CX4         CAP         CAH        HAHA     109.378    1.50
+CX4         NAK         CAH         HAH     109.052    1.50
+CX4         NAK         CAH        HAHA     109.052    1.50
+CX4         HAH         CAH        HAHA     108.065    1.50
+CX4         CAH         NAK          C6     121.735    2.30
+CX4         CAH         NAK        HNAK     118.988    1.91
+CX4          C6         NAK        HNAK     119.277    1.50
+CX4         NAK          C6          C5     119.387    2.28
+CX4         NAK          C6          N1     119.505    1.50
+CX4          C5          C6          N1     121.108    1.50
+CX4          C6          C5          C4     116.698    1.50
+CX4          C6          C5         CAD     123.978    1.72
+CX4          C4          C5         CAD     119.324    1.50
+CX4          C5         CAD         CAB     120.681    1.50
+CX4          C5         CAD         HAD     119.673    1.50
+CX4         CAB         CAD         HAD     119.645    1.50
+CX4         CAD         CAB         CAL     118.916    1.50
+CX4         CAD         CAB         HAB     120.562    1.50
+CX4         CAL         CAB         HAB     120.522    1.50
+CX4         CAB         CAL        CLAA     118.398    1.50
+CX4         CAB         CAL         CAE     122.044    1.50
+CX4        CLAA         CAL         CAE     119.557    1.50
+CX4         CAL         CAE          C4     119.651    1.50
+CX4         CAL         CAE         HAE     120.391    1.50
+CX4          C4         CAE         HAE     119.958    1.50
+CX4          C5          C4         CAE     119.384    1.50
+CX4          C5          C4          N3     121.576    1.50
+CX4         CAE          C4          N3     119.040    1.50
+CX4          C4          N3          C2     114.967    1.50
+CX4          N3          C2          N1     128.611    1.50
+CX4          N3          C2          H2     115.734    1.50
+CX4          N1          C2          H2     115.655    1.50
+CX4          C6          N1          C2     117.040    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CX4             sp3_sp3_1         CAG         CAF         CAP         CAH      60.000    10.0     3
+CX4              const_15          C5          C4         CAE         CAL       0.000    10.0     2
+CX4       const_sp2_sp2_9          C5          C4          N3          C2       0.000     5.0     2
+CX4              const_11          N1          C2          N3          C4       0.000    10.0     2
+CX4              const_13          N3          C2          N1          C6       0.000    10.0     2
+CX4            sp3_sp3_13         HAG         CAG         CAP         CAF     180.000    10.0     3
+CX4            sp3_sp3_32         HAH         CAH         CAP         CAF     180.000    10.0     3
+CX4             sp2_sp3_5        HNAK         NAK         CAH         CAP     -60.000    10.0     6
+CX4             sp2_sp2_4          N1          C6         NAK        HNAK     180.000     5.0     2
+CX4              const_35          C6          C5         CAD         CAB     180.000    10.0     2
+CX4       const_sp2_sp2_2          C4          C5          C6         NAK     180.000     5.0     2
+CX4       const_sp2_sp2_6         CAE          C4          C5          C6     180.000     5.0     2
+CX4              const_35          C4          C5          C6         NAK     180.000    10.0     2
+CX4              const_27         CAL         CAB         CAD          C5       0.000    10.0     2
+CX4              const_24         CAD         CAB         CAL        CLAA     180.000    10.0     2
+CX4              const_20          C4         CAE         CAL        CLAA     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CX4    chir_1    CAP    CAH    CAF    CAG    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CX4    plan-1          C2   0.020
+CX4    plan-1          C4   0.020
+CX4    plan-1          C5   0.020
+CX4    plan-1          C6   0.020
+CX4    plan-1         CAB   0.020
+CX4    plan-1         CAD   0.020
+CX4    plan-1         CAE   0.020
+CX4    plan-1         CAL   0.020
+CX4    plan-1        CLAA   0.020
+CX4    plan-1          H2   0.020
+CX4    plan-1         HAB   0.020
+CX4    plan-1         HAD   0.020
+CX4    plan-1         HAE   0.020
+CX4    plan-1          N1   0.020
+CX4    plan-1          N3   0.020
+CX4    plan-1         NAK   0.020
+CX4    plan-2          C6   0.020
+CX4    plan-2         CAH   0.020
+CX4    plan-2        HNAK   0.020
+CX4    plan-2         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CX4           SMILES              ACDLabs 10.04                                                                         Clc3ccc1c(ncnc1NCC2CC2)c3
+CX4 SMILES_CANONICAL               CACTVS 3.341                                                                         Clc1ccc2c(NCC3CC3)ncnc2c1
+CX4           SMILES               CACTVS 3.341                                                                         Clc1ccc2c(NCC3CC3)ncnc2c1
+CX4 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         c1cc2c(cc1Cl)ncnc2NCC3CC3
+CX4           SMILES "OpenEye OEToolkits" 1.5.0                                                                         c1cc2c(cc1Cl)ncnc2NCC3CC3
+CX4            InChI                InChI  1.03 InChI=1S/C12H12ClN3/c13-9-3-4-10-11(5-9)15-7-16-12(10)14-6-8-1-2-8/h3-5,7-8H,1-2,6H2,(H,14,15,16)
+CX4         InChIKey                InChI  1.03                                                                       ZXFUVGWLRJOTTC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CX4 acedrg               243         "dictionary generator"                  
+CX4 acedrg_database      11          "data source"                           
+CX4 rdkit                2017.03.2   "Chemoinformatics tool"
+CX4 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,141 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EAP     EAP      2-AMINO-VINYL-PHOSPHATE     NON-POLYMER     12     8     .     
+#
+data_comp_EAP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EAP     O1      O       O       0       57.197      61.140      58.947      
+EAP     O2      O       OP      -1      57.104      58.661      58.925      
+EAP     O3      O       OP      -1      58.846      59.836      60.259      
+EAP     O4      O       O2      0       56.447      59.949      60.986      
+EAP     P       P       P       0       57.435      59.879      59.742      
+EAP     C1      C       C1      0       56.642      60.780      62.019      
+EAP     C2      C       C1      0       55.583      60.758      63.045      
+EAP     N3      N       NH2     0       55.660      61.528      64.125      
+EAP     H11     H       H       0       57.408      61.339      62.077      
+EAP     H21     H       H       0       54.839      60.185      62.927      
+EAP     HN31    H       H       0       55.031      61.507      64.724      
+EAP     HN32    H       H       0       56.341      62.057      64.238      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EAP          O1           P      DOUBLE       n     1.509  0.0200     1.509  0.0200
+EAP          O2           P      SINGLE       n     1.509  0.0200     1.509  0.0200
+EAP          O3           P      SINGLE       n     1.509  0.0200     1.509  0.0200
+EAP          O4           P      SINGLE       n     1.595  0.0200     1.595  0.0200
+EAP          O4          C1      SINGLE       n     1.340  0.0143     1.340  0.0143
+EAP          C1          C2      DOUBLE       n     1.474  0.0200     1.474  0.0200
+EAP          C2          N3      SINGLE       n     1.328  0.0146     1.328  0.0146
+EAP          C1         H11      SINGLE       n     1.082  0.0130     0.950  0.0200
+EAP          C2         H21      SINGLE       n     1.082  0.0130     0.946  0.0100
+EAP          N3        HN31      SINGLE       n     1.016  0.0100     0.869  0.0149
+EAP          N3        HN32      SINGLE       n     1.016  0.0100     0.869  0.0149
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EAP           P          O4          C1     122.808    2.93
+EAP          O1           P          O2     112.864    1.69
+EAP          O1           P          O3     112.864    1.69
+EAP          O1           P          O4     112.304    3.00
+EAP          O2           P          O3     112.864    1.69
+EAP          O2           P          O4     112.304    3.00
+EAP          O3           P          O4     112.304    3.00
+EAP          O4          C1          C2     114.871    2.32
+EAP          O4          C1         H11     121.864    2.47
+EAP          C2          C1         H11     123.265    2.33
+EAP          C1          C2          N3     120.911    3.00
+EAP          C1          C2         H21     119.169    2.36
+EAP          N3          C2         H21     119.920    2.25
+EAP          C2          N3        HN31     120.236    1.50
+EAP          C2          N3        HN32     120.236    1.50
+EAP        HN31          N3        HN32     119.527    2.31
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EAP             sp3_sp3_1          O1           P          O4          C1     180.000    10.0     3
+EAP             sp2_sp2_1          C2          C1          O4           P     180.000     5.0     2
+EAP             sp2_sp2_3          O4          C1          C2          N3     180.000     5.0     2
+EAP             sp2_sp2_7          C1          C2          N3        HN31     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EAP    chir_1    P    O4    O2    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EAP    plan-1          C1   0.020
+EAP    plan-1          C2   0.020
+EAP    plan-1         H11   0.020
+EAP    plan-1          O4   0.020
+EAP    plan-2          C1   0.020
+EAP    plan-2          C2   0.020
+EAP    plan-2         H21   0.020
+EAP    plan-2          N3   0.020
+EAP    plan-3          C2   0.020
+EAP    plan-3        HN31   0.020
+EAP    plan-3        HN32   0.020
+EAP    plan-3          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EAP           SMILES              ACDLabs 10.04                                              O=P(O\C=C\N)(O)O
+EAP SMILES_CANONICAL               CACTVS 3.341                                            N/C=C/O[P](O)(O)=O
+EAP           SMILES               CACTVS 3.341                                              NC=CO[P](O)(O)=O
+EAP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              C(=COP(=O)(O)O)N
+EAP           SMILES "OpenEye OEToolkits" 1.5.0                                              C(=COP(=O)(O)O)N
+EAP            InChI                InChI  1.03 InChI=1S/C2H6NO4P/c3-1-2-7-8(4,5)6/h1-2H,3H2,(H2,4,5,6)/b2-1+
+EAP         InChIKey                InChI  1.03                                   KYMLMTPYCDIFEC-OWOJBTEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EAP acedrg               243         "dictionary generator"                  
+EAP acedrg_database      11          "data source"                           
+EAP rdkit                2017.03.2   "Chemoinformatics tool"
+EAP refmac5              5.8.0238    "optimization tool"                     

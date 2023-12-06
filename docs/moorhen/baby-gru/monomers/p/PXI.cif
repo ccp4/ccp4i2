@@ -1,0 +1,439 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PXI     PXI      4-{[4-(DIMETHYLAMINO)-3-HYDROXY-6-METHYLTETRAHYDRO-2H-PYRAN-2-YL]OXY}-12-ETHYL-3,5,7,11-TETRAMETHYLOXACYCLODODEC-9-ENE-2,8-DIONE     NON-POLYMER     75     32     .     
+#
+data_comp_PXI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PXI     C1      C       CH3     0       -23.778     32.995      63.445      
+PXI     C2      C       CH2     0       -22.803     33.488      62.396      
+PXI     C3      C       CH1     0       -23.405     34.435      61.368      
+PXI     O1      O       O2      0       -23.643     35.719      62.044      
+PXI     C4      C       C       0       -24.906     36.147      62.271      
+PXI     O2      O       O       0       -25.849     35.438      62.513      
+PXI     C5      C       CH1     0       -25.008     37.679      62.230      
+PXI     C6      C       CH3     0       -25.040     38.167      63.682      
+PXI     C7      C       CH1     0       -26.197     38.240      61.368      
+PXI     O3      O       O2      0       -26.122     39.742      61.430      
+PXI     C8      C       CH1     0       -27.275     40.504      61.741      
+PXI     O4      O       O2      0       -28.447     39.863      61.276      
+PXI     C9      C       CH1     0       -29.650     40.615      61.498      
+PXI     C10     C       CH3     0       -30.755     39.830      60.845      
+PXI     C11     C       CH2     0       -29.849     40.824      62.975      
+PXI     C12     C       CH1     0       -28.616     41.500      63.618      
+PXI     N1      N       NT      0       -28.651     41.779      65.077      
+PXI     C13     C       CH3     0       -28.225     43.139      65.426      
+PXI     C14     C       CH3     0       -29.880     41.449      65.807      
+PXI     C15     C       CH1     0       -27.355     40.703      63.250      
+PXI     O5      O       OH1     0       -26.180     41.387      63.705      
+PXI     C16     C       CH1     0       -26.167     37.757      59.905      
+PXI     C17     C       CH3     0       -27.517     37.893      59.210      
+PXI     C18     C       CH2     0       -25.066     38.450      59.076      
+PXI     C19     C       CH1     0       -24.720     37.870      57.684      
+PXI     C20     C       CH3     0       -25.433     38.645      56.568      
+PXI     C21     C       C       0       -24.948     36.371      57.520      
+PXI     O6      O       O       0       -25.787     35.937      56.750      
+PXI     C22     C       C1      0       -24.160     35.409      58.321      
+PXI     C23     C       C1      0       -23.206     35.679      59.200      
+PXI     C24     C       CH1     0       -22.545     34.688      60.121      
+PXI     C25     C       CH3     0       -21.130     35.158      60.448      
+PXI     H1C1    H       H       0       -23.578     32.068      63.663      
+PXI     H1C2    H       H       0       -24.688     33.057      63.108      
+PXI     H1C3    H       H       0       -23.693     33.539      64.248      
+PXI     H2C1    H       H       0       -22.429     32.715      61.922      
+PXI     H2C2    H       H       0       -22.063     33.948      62.846      
+PXI     H3      H       H       0       -24.261     34.057      61.059      
+PXI     H5      H       H       0       -24.184     38.006      61.818      
+PXI     H6C1    H       H       0       -25.924     38.013      64.057      
+PXI     H6C2    H       H       0       -24.836     39.116      63.710      
+PXI     H6C3    H       H       0       -24.378     37.682      64.206      
+PXI     H7      H       H       0       -27.030     37.912      61.780      
+PXI     H8      H       H       0       -27.209     41.377      61.313      
+PXI     H9      H       H       0       -29.592     41.492      61.071      
+PXI     H101    H       H       0       -31.543     39.838      61.412      
+PXI     H102    H       H       0       -30.473     38.911      60.705      
+PXI     H103    H       H       0       -30.975     40.231      59.989      
+PXI     H111    H       H       0       -30.004     39.965      63.398      
+PXI     H112    H       H       0       -30.632     41.379      63.113      
+PXI     H12     H       H       0       -28.522     42.369      63.180      
+PXI     H131    H       H       0       -27.404     43.365      64.948      
+PXI     H132    H       H       0       -28.061     43.196      66.387      
+PXI     H133    H       H       0       -28.926     43.773      65.179      
+PXI     H141    H       H       0       -30.626     41.966      65.446      
+PXI     H142    H       H       0       -29.771     41.662      66.755      
+PXI     H143    H       H       0       -30.071     40.495      65.718      
+PXI     H15     H       H       0       -27.398     39.830      63.681      
+PXI     HA      H       H       0       -25.997     41.137      64.488      
+PXI     H16     H       H       0       -25.964     36.796      59.928      
+PXI     H171    H       H       0       -27.657     38.820      58.949      
+PXI     H172    H       H       0       -28.228     37.616      59.814      
+PXI     H173    H       H       0       -27.534     37.331      58.417      
+PXI     H181    H       H       0       -24.242     38.454      59.601      
+PXI     H182    H       H       0       -25.328     39.386      58.950      
+PXI     H19     H       H       0       -23.751     38.000      57.556      
+PXI     H201    H       H       0       -25.162     38.293      55.703      
+PXI     H202    H       H       0       -25.191     39.586      56.620      
+PXI     H203    H       H       0       -26.396     38.554      56.668      
+PXI     H22     H       H       0       -24.358     34.496      58.191      
+PXI     H23     H       H       0       -22.894     36.566      59.250      
+PXI     H24     H       H       0       -22.474     33.827      59.638      
+PXI     H251    H       H       0       -20.694     35.476      59.637      
+PXI     H252    H       H       0       -20.615     34.419      60.817      
+PXI     H253    H       H       0       -21.163     35.881      61.097      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PXI          C1          C2      SINGLE       n     1.511  0.0200     1.511  0.0200
+PXI          C2          C3      SINGLE       n     1.520  0.0100     1.520  0.0100
+PXI          C3          O1      SINGLE       n     1.465  0.0100     1.465  0.0100
+PXI          C3         C24      SINGLE       n     1.532  0.0100     1.532  0.0100
+PXI          O1          C4      SINGLE       n     1.343  0.0132     1.343  0.0132
+PXI          C4          O2      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PXI          C4          C5      SINGLE       n     1.521  0.0200     1.521  0.0200
+PXI          C5          C6      SINGLE       n     1.531  0.0104     1.531  0.0104
+PXI          C5          C7      SINGLE       n     1.566  0.0101     1.566  0.0101
+PXI          C7          O3      SINGLE       n     1.479  0.0200     1.479  0.0200
+PXI          C7         C16      SINGLE       n     1.525  0.0139     1.525  0.0139
+PXI          O3          C8      SINGLE       n     1.398  0.0150     1.398  0.0150
+PXI          C8          O4      SINGLE       n     1.410  0.0116     1.410  0.0116
+PXI          C8         C15      SINGLE       n     1.521  0.0111     1.521  0.0111
+PXI          O4          C9      SINGLE       n     1.428  0.0168     1.428  0.0168
+PXI          C9         C10      SINGLE       n     1.499  0.0149     1.499  0.0149
+PXI          C9         C11      SINGLE       n     1.501  0.0130     1.501  0.0130
+PXI         C11         C12      SINGLE       n     1.528  0.0200     1.528  0.0200
+PXI         C12          N1      SINGLE       n     1.464  0.0149     1.464  0.0149
+PXI         C12         C15      SINGLE       n     1.532  0.0100     1.532  0.0100
+PXI          N1         C13      SINGLE       n     1.461  0.0113     1.461  0.0113
+PXI          N1         C14      SINGLE       n     1.461  0.0113     1.461  0.0113
+PXI         C15          O5      SINGLE       n     1.432  0.0200     1.432  0.0200
+PXI         C16         C17      SINGLE       n     1.521  0.0151     1.521  0.0151
+PXI         C16         C18      SINGLE       n     1.536  0.0100     1.536  0.0100
+PXI         C18         C19      SINGLE       n     1.539  0.0100     1.539  0.0100
+PXI         C19         C20      SINGLE       n     1.531  0.0100     1.531  0.0100
+PXI         C19         C21      SINGLE       n     1.518  0.0100     1.518  0.0100
+PXI         C21          O6      DOUBLE       n     1.218  0.0100     1.218  0.0100
+PXI         C21         C22      SINGLE       n     1.467  0.0200     1.467  0.0200
+PXI         C22         C23      DOUBLE       n     1.324  0.0105     1.324  0.0105
+PXI         C23         C24      SINGLE       n     1.505  0.0125     1.505  0.0125
+PXI         C24         C25      SINGLE       n     1.521  0.0173     1.521  0.0173
+PXI          C1        H1C1      SINGLE       n     1.089  0.0100     0.973  0.0157
+PXI          C1        H1C2      SINGLE       n     1.089  0.0100     0.973  0.0157
+PXI          C1        H1C3      SINGLE       n     1.089  0.0100     0.973  0.0157
+PXI          C2        H2C1      SINGLE       n     1.089  0.0100     0.981  0.0160
+PXI          C2        H2C2      SINGLE       n     1.089  0.0100     0.981  0.0160
+PXI          C3          H3      SINGLE       n     1.089  0.0100     0.986  0.0160
+PXI          C5          H5      SINGLE       n     1.089  0.0100     0.979  0.0200
+PXI          C6        H6C1      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI          C6        H6C2      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI          C6        H6C3      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI          C7          H7      SINGLE       n     1.089  0.0100     0.987  0.0200
+PXI          C8          H8      SINGLE       n     1.089  0.0100     0.974  0.0190
+PXI          C9          H9      SINGLE       n     1.089  0.0100     0.977  0.0131
+PXI         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0171
+PXI         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0171
+PXI         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0171
+PXI         C11        H111      SINGLE       n     1.089  0.0100     0.970  0.0143
+PXI         C11        H112      SINGLE       n     1.089  0.0100     0.970  0.0143
+PXI         C12         H12      SINGLE       n     1.089  0.0100     0.977  0.0149
+PXI         C13        H131      SINGLE       n     1.089  0.0100     0.977  0.0113
+PXI         C13        H132      SINGLE       n     1.089  0.0100     0.977  0.0113
+PXI         C13        H133      SINGLE       n     1.089  0.0100     0.977  0.0113
+PXI         C14        H141      SINGLE       n     1.089  0.0100     0.977  0.0113
+PXI         C14        H142      SINGLE       n     1.089  0.0100     0.977  0.0113
+PXI         C14        H143      SINGLE       n     1.089  0.0100     0.977  0.0113
+PXI         C15         H15      SINGLE       n     1.089  0.0100     0.975  0.0196
+PXI          O5          HA      SINGLE       n     0.970  0.0120     0.841  0.0200
+PXI         C16         H16      SINGLE       n     1.089  0.0100     0.989  0.0162
+PXI         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0146
+PXI         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0146
+PXI         C17        H173      SINGLE       n     1.089  0.0100     0.973  0.0146
+PXI         C18        H181      SINGLE       n     1.089  0.0100     0.980  0.0160
+PXI         C18        H182      SINGLE       n     1.089  0.0100     0.980  0.0160
+PXI         C19         H19      SINGLE       n     1.089  0.0100     0.986  0.0117
+PXI         C20        H201      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI         C20        H202      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI         C20        H203      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0200
+PXI         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0181
+PXI         C24         H24      SINGLE       n     1.089  0.0100     0.990  0.0142
+PXI         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXI         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PXI          C2          C1        H1C1     109.517    1.50
+PXI          C2          C1        H1C2     109.517    1.50
+PXI          C2          C1        H1C3     109.517    1.50
+PXI        H1C1          C1        H1C2     109.380    1.50
+PXI        H1C1          C1        H1C3     109.380    1.50
+PXI        H1C2          C1        H1C3     109.380    1.50
+PXI          C1          C2          C3     113.852    1.50
+PXI          C1          C2        H2C1     108.955    1.50
+PXI          C1          C2        H2C2     108.955    1.50
+PXI          C3          C2        H2C1     108.468    1.50
+PXI          C3          C2        H2C2     108.468    1.50
+PXI        H2C1          C2        H2C2     107.797    1.50
+PXI          C2          C3          O1     107.570    1.96
+PXI          C2          C3         C24     115.497    1.50
+PXI          C2          C3          H3     108.603    1.50
+PXI          O1          C3         C24     106.864    2.42
+PXI          O1          C3          H3     109.024    1.50
+PXI         C24          C3          H3     107.902    1.50
+PXI          C3          O1          C4     117.944    1.50
+PXI          O1          C4          O2     124.099    2.59
+PXI          O1          C4          C5     111.965    1.81
+PXI          O2          C4          C5     123.936    2.15
+PXI          C4          C5          C6     110.113    2.62
+PXI          C4          C5          C7     111.511    2.91
+PXI          C4          C5          H5     107.456    2.04
+PXI          C6          C5          C7     113.369    1.50
+PXI          C6          C5          H5     109.059    1.50
+PXI          C7          C5          H5     107.392    1.66
+PXI          C5          C6        H6C1     109.532    1.50
+PXI          C5          C6        H6C2     109.532    1.50
+PXI          C5          C6        H6C3     109.532    1.50
+PXI        H6C1          C6        H6C2     109.411    1.50
+PXI        H6C1          C6        H6C3     109.411    1.50
+PXI        H6C2          C6        H6C3     109.411    1.50
+PXI          C5          C7          O3     109.482    3.00
+PXI          C5          C7         C16     111.094    2.85
+PXI          C5          C7          H7     107.983    1.75
+PXI          O3          C7         C16     109.589    2.91
+PXI          O3          C7          H7     109.507    2.54
+PXI         C16          C7          H7     107.653    3.00
+PXI          C7          O3          C8     115.520    1.50
+PXI          O3          C8          O4     108.210    1.50
+PXI          O3          C8         C15     108.249    1.50
+PXI          O3          C8          H8     110.234    1.50
+PXI          O4          C8         C15     110.164    1.50
+PXI          O4          C8          H8     109.385    1.50
+PXI         C15          C8          H8     109.599    1.50
+PXI          C8          O4          C9     113.152    1.70
+PXI          O4          C9         C10     105.507    1.50
+PXI          O4          C9         C11     109.660    1.50
+PXI          O4          C9          H9     111.893    2.82
+PXI         C10          C9         C11     113.501    1.50
+PXI         C10          C9          H9     109.172    1.60
+PXI         C11          C9          H9     108.575    1.50
+PXI          C9         C10        H101     109.721    1.50
+PXI          C9         C10        H102     109.721    1.50
+PXI          C9         C10        H103     109.721    1.50
+PXI        H101         C10        H102     109.383    1.59
+PXI        H101         C10        H103     109.383    1.59
+PXI        H102         C10        H103     109.383    1.59
+PXI          C9         C11         C12     111.124    1.57
+PXI          C9         C11        H111     109.078    1.50
+PXI          C9         C11        H112     109.078    1.50
+PXI         C12         C11        H111     109.115    1.50
+PXI         C12         C11        H112     109.115    1.50
+PXI        H111         C11        H112     108.019    1.50
+PXI         C11         C12          N1     114.485    2.28
+PXI         C11         C12         C15     110.196    1.50
+PXI         C11         C12         H12     107.655    1.50
+PXI          N1         C12         C15     111.773    3.00
+PXI          N1         C12         H12     106.228    1.50
+PXI         C15         C12         H12     107.258    1.68
+PXI         C12          N1         C13     112.278    2.47
+PXI         C12          N1         C14     112.278    2.47
+PXI         C13          N1         C14     110.179    1.50
+PXI          N1         C13        H131     109.516    1.94
+PXI          N1         C13        H132     109.516    1.94
+PXI          N1         C13        H133     109.516    1.94
+PXI        H131         C13        H132     109.377    1.50
+PXI        H131         C13        H133     109.377    1.50
+PXI        H132         C13        H133     109.377    1.50
+PXI          N1         C14        H141     109.516    1.94
+PXI          N1         C14        H142     109.516    1.94
+PXI          N1         C14        H143     109.516    1.94
+PXI        H141         C14        H142     109.377    1.50
+PXI        H141         C14        H143     109.377    1.50
+PXI        H142         C14        H143     109.377    1.50
+PXI          C8         C15         C12     111.124    1.57
+PXI          C8         C15          O5     109.976    1.78
+PXI          C8         C15         H15     108.925    1.50
+PXI         C12         C15          O5     110.124    1.87
+PXI         C12         C15         H15     108.987    1.50
+PXI          O5         C15         H15     108.790    1.50
+PXI         C15          O5          HA     109.099    3.00
+PXI          C7         C16         C17     111.574    2.29
+PXI          C7         C16         C18     111.094    2.85
+PXI          C7         C16         H16     108.552    2.23
+PXI         C17         C16         C18     111.118    1.50
+PXI         C17         C16         H16     107.528    1.50
+PXI         C18         C16         H16     107.675    1.50
+PXI         C16         C17        H171     109.636    1.50
+PXI         C16         C17        H172     109.636    1.50
+PXI         C16         C17        H173     109.636    1.50
+PXI        H171         C17        H172     109.411    1.50
+PXI        H171         C17        H173     109.411    1.50
+PXI        H172         C17        H173     109.411    1.50
+PXI         C16         C18         C19     115.572    1.50
+PXI         C16         C18        H181     108.588    1.50
+PXI         C16         C18        H182     108.588    1.50
+PXI         C19         C18        H181     108.032    1.50
+PXI         C19         C18        H182     108.032    1.50
+PXI        H181         C18        H182     107.599    1.50
+PXI         C18         C19         C20     111.474    1.79
+PXI         C18         C19         C21     111.591    2.33
+PXI         C18         C19         H19     107.780    1.50
+PXI         C20         C19         C21     109.495    2.07
+PXI         C20         C19         H19     108.374    1.60
+PXI         C21         C19         H19     107.425    2.18
+PXI         C19         C20        H201     109.507    1.50
+PXI         C19         C20        H202     109.507    1.50
+PXI         C19         C20        H203     109.507    1.50
+PXI        H201         C20        H202     109.411    1.50
+PXI        H201         C20        H203     109.411    1.50
+PXI        H202         C20        H203     109.411    1.50
+PXI         C19         C21          O6     120.661    1.78
+PXI         C19         C21         C22     117.528    2.48
+PXI          O6         C21         C22     121.811    2.74
+PXI         C21         C22         C23     124.256    3.00
+PXI         C21         C22         H22     117.761    1.99
+PXI         C23         C22         H22     117.982    2.29
+PXI         C22         C23         C24     126.663    2.55
+PXI         C22         C23         H23     116.899    2.02
+PXI         C24         C23         H23     116.438    1.50
+PXI          C3         C24         C23     111.475    2.22
+PXI          C3         C24         C25     112.124    1.77
+PXI          C3         C24         H24     107.398    1.50
+PXI         C23         C24         C25     109.455    2.23
+PXI         C23         C24         H24     108.126    1.50
+PXI         C25         C24         H24     108.191    1.50
+PXI         C24         C25        H251     109.820    1.50
+PXI         C24         C25        H252     109.820    1.50
+PXI         C24         C25        H253     109.820    1.50
+PXI        H251         C25        H252     109.411    1.50
+PXI        H251         C25        H253     109.411    1.50
+PXI        H252         C25        H253     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PXI            sp3_sp3_34        H1C1          C1          C2          C3     180.000    10.0     3
+PXI             sp3_sp3_2          O3          C8          O4          C9      60.000    10.0     3
+PXI           sp3_sp3_101          O5         C15          C8          O3     -60.000    10.0     3
+PXI             sp3_sp3_5         C10          C9          O4          C8     180.000    10.0     3
+PXI           sp3_sp3_106        H101         C10          C9          O4     180.000    10.0     3
+PXI             sp3_sp3_8         C12         C11          C9         C10      60.000    10.0     3
+PXI            sp3_sp3_17          C9         C11         C12          N1     180.000    10.0     3
+PXI           sp3_sp3_116         C11         C12          N1         C13     -60.000    10.0     3
+PXI            sp3_sp3_29          N1         C12         C15          O5     180.000    10.0     3
+PXI           sp3_sp3_122        H131         C13          N1         C14     -60.000    10.0     3
+PXI           sp3_sp3_127        H141         C14          N1         C13     180.000    10.0     3
+PXI           sp3_sp3_133          C8         C15          O5          HA     180.000    10.0     3
+PXI            sp3_sp3_43          C1          C2          C3          O1     180.000    10.0     3
+PXI           sp3_sp3_136          C7         C16         C17        H171     180.000    10.0     3
+PXI           sp3_sp3_145          C7         C16         C18         C19     180.000    10.0     3
+PXI           sp3_sp3_154         C16         C18         C19         C20     180.000    10.0     3
+PXI           sp3_sp3_163         C18         C19         C20        H201     180.000    10.0     3
+PXI             sp2_sp3_7          O6         C21         C19         C18       0.000    10.0     6
+PXI             sp2_sp2_3         C19         C21         C22         C23     180.000     5.0     2
+PXI             sp2_sp2_7         C21         C22         C23         C24     180.000     5.0     2
+PXI            sp2_sp3_13         C22         C23         C24          C3       0.000    10.0     6
+PXI            sp3_sp3_52          C2          C3          O1          C4     180.000    10.0     3
+PXI            sp3_sp3_55         C23         C24          C3          C2     180.000    10.0     3
+PXI           sp3_sp3_172          C3         C24         C25        H251     180.000    10.0     3
+PXI             sp2_sp2_1          O2          C4          O1          C3     180.000     5.0     2
+PXI             sp2_sp3_1          O1          C4          C5          C6       0.000    10.0     6
+PXI            sp3_sp3_64          C4          C5          C6        H6C1     180.000    10.0     3
+PXI            sp3_sp3_73          C4          C5          C7          O3     180.000    10.0     3
+PXI            sp3_sp3_85         C17         C16          C7          C5     180.000    10.0     3
+PXI            sp3_sp3_82          C5          C7          O3          C8     180.000    10.0     3
+PXI            sp3_sp3_94          O4          C8          O3          C7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PXI    chir_1    C3    O1    C24    C2    negative
+PXI    chir_2    C5    C4    C7    C6    negative
+PXI    chir_3    C7    O3    C5    C16    positive
+PXI    chir_4    C8    O3    O4    C15    negative
+PXI    chir_5    C9    O4    C11    C10    positive
+PXI    chir_6    C12    N1    C15    C11    negative
+PXI    chir_7    N1    C12    C13    C14    both
+PXI    chir_8    C15    O5    C8    C12    positive
+PXI    chir_9    C16    C7    C18    C17    positive
+PXI    chir_10    C19    C21    C18    C20    positive
+PXI    chir_11    C24    C3    C23    C25    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PXI    plan-1          C4   0.020
+PXI    plan-1          C5   0.020
+PXI    plan-1          O1   0.020
+PXI    plan-1          O2   0.020
+PXI    plan-2         C19   0.020
+PXI    plan-2         C21   0.020
+PXI    plan-2         C22   0.020
+PXI    plan-2          O6   0.020
+PXI    plan-3         C21   0.020
+PXI    plan-3         C22   0.020
+PXI    plan-3         C23   0.020
+PXI    plan-3         H22   0.020
+PXI    plan-4         C22   0.020
+PXI    plan-4         C23   0.020
+PXI    plan-4         C24   0.020
+PXI    plan-4         H23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PXI           SMILES              ACDLabs 10.04                                                                                                                                                         O=C2OC(CC)C(C=CC(=O)C(C)CC(C(OC1OC(CC(N(C)C)C1O)C)C2C)C)C
+PXI SMILES_CANONICAL               CACTVS 3.341                                                                                                           CC[C@H]1OC(=O)[C@H](C)[C@@H](O[C@H]2O[C@@H](C)C[C@H]([C@@H]2O)N(C)C)[C@@H](C)C[C@H](C)C(=O)\C=C\[C@H]1C
+PXI           SMILES               CACTVS 3.341                                                                                                                           CC[CH]1OC(=O)[CH](C)[CH](O[CH]2O[CH](C)C[CH]([CH]2O)N(C)C)[CH](C)C[CH](C)C(=O)C=C[CH]1C
+PXI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                    CC[C@@H]1[C@@H](\C=C\C(=O)[C@H](C[C@@H]([C@@H]([C@H](C(=O)O1)C)O[C@@H]2[C@H]([C@@H](C[C@@H](O2)C)N(C)C)O)C)C)C
+PXI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                     CCC1C(C=CC(=O)C(CC(C(C(C(=O)O1)C)OC2C(C(CC(O2)C)N(C)C)O)C)C)C
+PXI            InChI                InChI  1.03 InChI=1S/C25H43NO6/c1-9-21-14(2)10-11-20(27)15(3)12-16(4)23(18(6)24(29)31-21)32-25-22(28)19(26(7)8)13-17(5)30-25/h10-11,14-19,21-23,25,28H,9,12-13H2,1-8H3/b11-10+/t14-,15+,16+,17+,18-,19-,21-,22+,23+,25-/m1/s1
+PXI         InChIKey                InChI  1.03                                                                                                                                                                                       DZGHWPQKGWXOHD-OYZFACIPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PXI acedrg               243         "dictionary generator"                  
+PXI acedrg_database      11          "data source"                           
+PXI rdkit                2017.03.2   "Chemoinformatics tool"
+PXI refmac5              5.8.0238    "optimization tool"                     

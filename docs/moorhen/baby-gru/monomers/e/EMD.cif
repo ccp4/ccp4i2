@@ -1,0 +1,367 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EMD     EMD      5-[1-(3,4-DIMETHOXY-BENZOYL)-1,2,3,4-TETRAHYDRO-QUINOLIN-6-YL]-6-METHYL-3,6-DIHYDRO-[1,3,4]THIADIAZIN-2-ONE     NON-POLYMER     53     30     .     
+#
+data_comp_EMD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EMD     S1      S       S2      0       61.829      1.289       1.317       
+EMD     C2      C       CR6     0       62.374      1.825       -0.242      
+EMD     O2      O       O       0       63.447      1.431       -0.651      
+EMD     N3      N       NR6     0       61.575      2.670       -0.937      
+EMD     N4      N       NRD6    0       60.698      3.573       -0.362      
+EMD     C5      C       CR6     0       59.959      3.204       0.640       
+EMD     C6      C       CH1     0       60.209      2.059       1.600       
+EMD     C7      C       CH3     0       59.133      1.001       1.501       
+EMD     C8      C       CR6     0       58.751      4.035       0.872       
+EMD     C9      C       CR16    0       58.579      4.714       2.079       
+EMD     C10     C       CR66    0       57.440      5.511       2.310       
+EMD     C11     C       CR66    0       56.461      5.632       1.299       
+EMD     C12     C       CR16    0       56.652      4.945       0.091       
+EMD     C13     C       CR16    0       57.774      4.165       -0.120      
+EMD     N14     N       NR6     0       55.295      6.443       1.529       
+EMD     C15     C       CH2     0       55.176      7.204       2.799       
+EMD     C16     C       CH2     0       56.510      7.503       3.459       
+EMD     C17     C       CH2     0       57.287      6.223       3.625       
+EMD     C18     C       C       0       54.224      6.553       0.673       
+EMD     O18     O       O       0       53.502      5.579       0.475       
+EMD     C19     C       CR6     0       53.949      7.852       -0.034      
+EMD     C20     C       CR16    0       54.945      8.824       -0.176      
+EMD     C21     C       CR6     0       54.688      10.020      -0.817      
+EMD     O21     O       O2      0       55.606      11.020      -1.005      
+EMD     C22     C       CR6     0       53.402      10.265      -1.356      
+EMD     O22     O       O2      0       53.251      11.481      -1.968      
+EMD     C23     C       CR16    0       52.409      9.300       -1.211      
+EMD     C24     C       CR16    0       52.685      8.107       -0.558      
+EMD     C25     C       CH3     0       56.526      11.316      0.046       
+EMD     C26     C       CH3     0       52.196      11.671      -2.911      
+EMD     H3      H       H       0       61.603      2.658       -1.823      
+EMD     H6      H       H       0       60.194      2.411       2.526       
+EMD     H71     H       H       0       58.713      1.039       0.626       
+EMD     H72     H       H       0       58.464      1.159       2.186       
+EMD     H73     H       H       0       59.523      0.120       1.632       
+EMD     H9      H       H       0       59.236      4.635       2.760       
+EMD     H12     H       H       0       56.011      5.011       -0.594      
+EMD     H13     H       H       0       57.883      3.714       -0.940      
+EMD     H151    H       H       0       54.628      6.687       3.423       
+EMD     H152    H       H       0       54.718      8.051       2.631       
+EMD     H161    H       H       0       56.353      7.921       4.331       
+EMD     H162    H       H       0       57.011      8.136       2.904       
+EMD     H171    H       H       0       58.173      6.421       3.992       
+EMD     H172    H       H       0       56.825      5.638       4.259       
+EMD     H20     H       H       0       55.802      8.662       0.173       
+EMD     H23     H       H       0       51.548      9.452       -1.555      
+EMD     H24     H       H       0       52.003      7.465       -0.471      
+EMD     H251    H       H       0       57.208      10.626      0.080       
+EMD     H252    H       H       0       56.054      11.347      0.895       
+EMD     H253    H       H       0       56.944      12.176      -0.123      
+EMD     H261    H       H       0       51.343      11.664      -2.447      
+EMD     H262    H       H       0       52.214      10.957      -3.569      
+EMD     H263    H       H       0       52.313      12.525      -3.357      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EMD          S1          C2      SINGLE       n     1.753  0.0200     1.753  0.0200
+EMD          S1          C6      SINGLE       n     1.812  0.0175     1.812  0.0175
+EMD          C2          O2      DOUBLE       n     1.214  0.0115     1.214  0.0115
+EMD          C2          N3      SINGLE       n     1.356  0.0200     1.356  0.0200
+EMD          N3          N4      SINGLE       n     1.366  0.0200     1.366  0.0200
+EMD          N4          C5      DOUBLE       n     1.291  0.0100     1.291  0.0100
+EMD          C5          C6      SINGLE       n     1.501  0.0136     1.501  0.0136
+EMD          C5          C8      SINGLE       n     1.482  0.0133     1.482  0.0133
+EMD          C6          C7      SINGLE       n     1.508  0.0113     1.508  0.0113
+EMD          C8          C9      DOUBLE       y     1.394  0.0130     1.394  0.0130
+EMD          C8         C13      SINGLE       y     1.396  0.0115     1.396  0.0115
+EMD          C9         C10      SINGLE       y     1.397  0.0200     1.397  0.0200
+EMD         C10         C11      DOUBLE       y     1.401  0.0100     1.401  0.0100
+EMD         C10         C17      SINGLE       n     1.502  0.0100     1.502  0.0100
+EMD         C11         C12      SINGLE       y     1.393  0.0100     1.393  0.0100
+EMD         C11         N14      SINGLE       n     1.424  0.0114     1.424  0.0114
+EMD         C12         C13      DOUBLE       y     1.379  0.0100     1.379  0.0100
+EMD         N14         C15      SINGLE       n     1.478  0.0100     1.478  0.0100
+EMD         N14         C18      SINGLE       n     1.370  0.0110     1.370  0.0110
+EMD         C15         C16      SINGLE       n     1.521  0.0151     1.521  0.0151
+EMD         C16         C17      SINGLE       n     1.512  0.0142     1.512  0.0142
+EMD         C18         O18      DOUBLE       n     1.227  0.0100     1.227  0.0100
+EMD         C18         C19      SINGLE       n     1.498  0.0100     1.498  0.0100
+EMD         C19         C20      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EMD         C19         C24      SINGLE       y     1.388  0.0100     1.388  0.0100
+EMD         C20         C21      SINGLE       y     1.374  0.0100     1.374  0.0100
+EMD         C21         O21      SINGLE       n     1.367  0.0100     1.367  0.0100
+EMD         C21         C22      DOUBLE       y     1.408  0.0100     1.408  0.0100
+EMD         O21         C25      SINGLE       n     1.424  0.0117     1.424  0.0117
+EMD         C22         O22      SINGLE       n     1.364  0.0100     1.364  0.0100
+EMD         C22         C23      SINGLE       y     1.386  0.0100     1.386  0.0100
+EMD         O22         C26      SINGLE       n     1.424  0.0117     1.424  0.0117
+EMD         C23         C24      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EMD          N3          H3      SINGLE       n     1.016  0.0100     0.887  0.0200
+EMD          C6          H6      SINGLE       n     1.089  0.0100     0.991  0.0200
+EMD          C7         H71      SINGLE       n     1.089  0.0100     0.971  0.0163
+EMD          C7         H72      SINGLE       n     1.089  0.0100     0.971  0.0163
+EMD          C7         H73      SINGLE       n     1.089  0.0100     0.971  0.0163
+EMD          C9          H9      SINGLE       n     1.082  0.0130     0.949  0.0196
+EMD         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0164
+EMD         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0177
+EMD         C15        H151      SINGLE       n     1.089  0.0100     0.978  0.0132
+EMD         C15        H152      SINGLE       n     1.089  0.0100     0.978  0.0132
+EMD         C16        H161      SINGLE       n     1.089  0.0100     0.979  0.0104
+EMD         C16        H162      SINGLE       n     1.089  0.0100     0.979  0.0104
+EMD         C17        H171      SINGLE       n     1.089  0.0100     0.979  0.0132
+EMD         C17        H172      SINGLE       n     1.089  0.0100     0.979  0.0132
+EMD         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0168
+EMD         C23         H23      SINGLE       n     1.082  0.0130     0.940  0.0196
+EMD         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0168
+EMD         C25        H251      SINGLE       n     1.089  0.0100     0.971  0.0157
+EMD         C25        H252      SINGLE       n     1.089  0.0100     0.971  0.0157
+EMD         C25        H253      SINGLE       n     1.089  0.0100     0.971  0.0157
+EMD         C26        H261      SINGLE       n     1.089  0.0100     0.971  0.0157
+EMD         C26        H262      SINGLE       n     1.089  0.0100     0.971  0.0157
+EMD         C26        H263      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EMD          C2          S1          C6     120.000    3.00
+EMD          S1          C2          O2     117.114    1.50
+EMD          S1          C2          N3     121.384    2.19
+EMD          O2          C2          N3     121.502    1.61
+EMD          C2          N3          N4     124.861    2.47
+EMD          C2          N3          H3     118.926    2.28
+EMD          N4          N3          H3     116.213    2.24
+EMD          N3          N4          C5     117.415    1.50
+EMD          N4          C5          C6     124.593    3.00
+EMD          N4          C5          C8     116.469    1.50
+EMD          C6          C5          C8     118.938    2.31
+EMD          S1          C6          C5     111.432    2.83
+EMD          S1          C6          C7     107.685    3.00
+EMD          S1          C6          H6     108.338    1.74
+EMD          C5          C6          C7     110.115    2.66
+EMD          C5          C6          H6     108.678    1.50
+EMD          C7          C6          H6     107.769    3.00
+EMD          C6          C7         H71     109.411    1.50
+EMD          C6          C7         H72     109.411    1.50
+EMD          C6          C7         H73     109.411    1.50
+EMD         H71          C7         H72     109.418    1.50
+EMD         H71          C7         H73     109.418    1.50
+EMD         H72          C7         H73     109.418    1.50
+EMD          C5          C8          C9     120.169    1.50
+EMD          C5          C8         C13     120.169    1.50
+EMD          C9          C8         C13     119.662    1.64
+EMD          C8          C9         C10     121.038    1.51
+EMD          C8          C9          H9     119.660    1.50
+EMD         C10          C9          H9     119.302    1.50
+EMD          C9         C10         C11     119.120    1.50
+EMD          C9         C10         C17     121.249    1.75
+EMD         C11         C10         C17     119.631    1.56
+EMD         C10         C11         C12     119.487    1.50
+EMD         C10         C11         N14     118.227    1.50
+EMD         C12         C11         N14     122.286    1.50
+EMD         C11         C12         C13     120.191    1.50
+EMD         C11         C12         H12     120.052    1.50
+EMD         C13         C12         H12     119.757    1.50
+EMD          C8         C13         C12     120.502    1.50
+EMD          C8         C13         H13     119.626    1.50
+EMD         C12         C13         H13     119.873    1.50
+EMD         C11         N14         C15     115.895    2.83
+EMD         C11         N14         C18     126.805    1.50
+EMD         C15         N14         C18     117.300    1.50
+EMD         N14         C15         C16     112.886    1.50
+EMD         N14         C15        H151     109.123    1.50
+EMD         N14         C15        H152     109.123    1.50
+EMD         C16         C15        H151     109.111    1.50
+EMD         C16         C15        H152     109.111    1.50
+EMD        H151         C15        H152     108.248    1.50
+EMD         C15         C16         C17     112.105    3.00
+EMD         C15         C16        H161     108.359    2.31
+EMD         C15         C16        H162     108.359    2.31
+EMD         C17         C16        H161     109.959    1.50
+EMD         C17         C16        H162     109.959    1.50
+EMD        H161         C16        H162     107.754    1.50
+EMD         C10         C17         C16     111.084    2.48
+EMD         C10         C17        H171     109.423    1.50
+EMD         C10         C17        H172     109.423    1.50
+EMD         C16         C17        H171     109.616    1.50
+EMD         C16         C17        H172     109.616    1.50
+EMD        H171         C17        H172     107.825    1.50
+EMD         N14         C18         O18     120.687    1.50
+EMD         N14         C18         C19     119.128    1.50
+EMD         O18         C18         C19     120.186    2.21
+EMD         C18         C19         C20     120.335    2.22
+EMD         C18         C19         C24     120.349    2.40
+EMD         C20         C19         C24     119.316    1.50
+EMD         C19         C20         C21     120.396    1.50
+EMD         C19         C20         H20     119.768    1.50
+EMD         C21         C20         H20     119.835    1.50
+EMD         C20         C21         O21     124.992    1.50
+EMD         C20         C21         C22     119.595    1.50
+EMD         O21         C21         C22     115.413    1.50
+EMD         C21         O21         C25     117.276    1.50
+EMD         C21         C22         O22     115.254    1.50
+EMD         C21         C22         C23     119.776    1.50
+EMD         O22         C22         C23     124.970    1.50
+EMD         C22         O22         C26     117.276    1.50
+EMD         C22         C23         C24     119.984    1.50
+EMD         C22         C23         H23     119.878    1.50
+EMD         C24         C23         H23     120.135    1.50
+EMD         C19         C24         C23     120.934    1.50
+EMD         C19         C24         H24     119.767    1.50
+EMD         C23         C24         H24     119.299    1.50
+EMD         O21         C25        H251     109.428    1.50
+EMD         O21         C25        H252     109.428    1.50
+EMD         O21         C25        H253     109.428    1.50
+EMD        H251         C25        H252     109.509    1.50
+EMD        H251         C25        H253     109.509    1.50
+EMD        H252         C25        H253     109.509    1.50
+EMD         O22         C26        H261     109.428    1.50
+EMD         O22         C26        H262     109.428    1.50
+EMD         O22         C26        H263     109.428    1.50
+EMD        H261         C26        H262     109.509    1.50
+EMD        H261         C26        H263     109.509    1.50
+EMD        H262         C26        H263     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EMD             sp2_sp2_6          O2          C2          S1          C6     180.000     5.0     2
+EMD            sp3_sp3_20          C7          C6          S1          C2     180.000    10.0     3
+EMD       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+EMD            sp2_sp3_16          C9         C10         C17         C16     180.000    10.0     6
+EMD              const_13         C10         C11         C12         C13       0.000    10.0     2
+EMD             sp2_sp2_2         C10         C11         N14         C18     180.000     5.0     2
+EMD              const_17         C11         C12         C13          C8       0.000    10.0     2
+EMD             sp2_sp3_4         C18         N14         C15         C16     180.000    10.0     6
+EMD            sp2_sp2_22         O18         C18         N14         C11     180.000     5.0     2
+EMD             sp3_sp3_1         N14         C15         C16         C17     -60.000    10.0     3
+EMD            sp3_sp3_10         C15         C16         C17         C10      60.000    10.0     3
+EMD            sp2_sp2_25         O18         C18         C19         C20       0.000     5.0     2
+EMD             sp2_sp2_9          O2          C2          N3          N4     180.000     5.0     2
+EMD              const_23         C18         C19         C20         C21     180.000    10.0     2
+EMD              const_47         C18         C19         C24         C23     180.000    10.0     2
+EMD              const_26         C19         C20         C21         O21     180.000    10.0     2
+EMD            sp2_sp2_27         C20         C21         O21         C25     180.000     5.0     2
+EMD              const_32         O21         C21         C22         O22       0.000    10.0     2
+EMD            sp3_sp3_32        H251         C25         O21         C21     -60.000    10.0     3
+EMD            sp2_sp2_29         C21         C22         O22         C26     180.000     5.0     2
+EMD              const_35         O22         C22         C23         C24     180.000    10.0     2
+EMD            sp3_sp3_36        H261         C26         O22         C22     -60.000    10.0     3
+EMD              const_37         C22         C23         C24         C19       0.000    10.0     2
+EMD            sp2_sp2_11          C2          N3          N4          C5       0.000     5.0     2
+EMD            sp2_sp2_13          C6          C5          N4          N3       0.000     5.0     2
+EMD             sp2_sp3_8          N4          C5          C6          C7     120.000    10.0     6
+EMD            sp2_sp2_17          N4          C5          C8          C9       0.000     5.0     2
+EMD            sp3_sp3_22          S1          C6          C7         H71     180.000    10.0     3
+EMD              const_42         C12         C13          C8          C5     180.000    10.0     2
+EMD       const_sp2_sp2_3          C5          C8          C9         C10     180.000     5.0     2
+EMD       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EMD    chir_1    C6    S1    C5    C7    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EMD    plan-1         C10   0.020
+EMD    plan-1         C11   0.020
+EMD    plan-1         C12   0.020
+EMD    plan-1         C13   0.020
+EMD    plan-1         C17   0.020
+EMD    plan-1          C5   0.020
+EMD    plan-1          C8   0.020
+EMD    plan-1          C9   0.020
+EMD    plan-1         H12   0.020
+EMD    plan-1         H13   0.020
+EMD    plan-1          H9   0.020
+EMD    plan-1         N14   0.020
+EMD    plan-2         C18   0.020
+EMD    plan-2         C19   0.020
+EMD    plan-2         C20   0.020
+EMD    plan-2         C21   0.020
+EMD    plan-2         C22   0.020
+EMD    plan-2         C23   0.020
+EMD    plan-2         C24   0.020
+EMD    plan-2         H20   0.020
+EMD    plan-2         H23   0.020
+EMD    plan-2         H24   0.020
+EMD    plan-2         O21   0.020
+EMD    plan-2         O22   0.020
+EMD    plan-3          C2   0.020
+EMD    plan-3          N3   0.020
+EMD    plan-3          O2   0.020
+EMD    plan-3          S1   0.020
+EMD    plan-4          C2   0.020
+EMD    plan-4          H3   0.020
+EMD    plan-4          N3   0.020
+EMD    plan-4          N4   0.020
+EMD    plan-5          C5   0.020
+EMD    plan-5          C6   0.020
+EMD    plan-5          C8   0.020
+EMD    plan-5          N4   0.020
+EMD    plan-6         C11   0.020
+EMD    plan-6         C15   0.020
+EMD    plan-6         C18   0.020
+EMD    plan-6         N14   0.020
+EMD    plan-7         C18   0.020
+EMD    plan-7         C19   0.020
+EMD    plan-7         N14   0.020
+EMD    plan-7         O18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EMD           SMILES              ACDLabs 10.04                                                                                                            O=C1SC(C(=NN1)c2cc4c(cc2)N(C(=O)c3ccc(OC)c(OC)c3)CCC4)C
+EMD SMILES_CANONICAL               CACTVS 3.341                                                                                                             COc1ccc(cc1OC)C(=O)N2CCCc3cc(ccc23)C4=NNC(=O)S[C@@H]4C
+EMD           SMILES               CACTVS 3.341                                                                                                               COc1ccc(cc1OC)C(=O)N2CCCc3cc(ccc23)C4=NNC(=O)S[CH]4C
+EMD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                         C[C@@H]1C(=NNC(=O)S1)c2ccc3c(c2)CCCN3C(=O)c4ccc(c(c4)OC)OC
+EMD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                              CC1C(=NNC(=O)S1)c2ccc3c(c2)CCCN3C(=O)c4ccc(c(c4)OC)OC
+EMD            InChI                InChI  1.03 InChI=1S/C22H23N3O4S/c1-13-20(23-24-22(27)30-13)15-6-8-17-14(11-15)5-4-10-25(17)21(26)16-7-9-18(28-2)19(12-16)29-3/h6-9,11-13H,4-5,10H2,1-3H3,(H,24,27)/t13-/m1/s1
+EMD         InChIKey                InChI  1.03                                                                                                                                        IZLRMTJLQCLMKF-CYBMUJFWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EMD acedrg               243         "dictionary generator"                  
+EMD acedrg_database      11          "data source"                           
+EMD rdkit                2017.03.2   "Chemoinformatics tool"
+EMD refmac5              5.8.0238    "optimization tool"                     

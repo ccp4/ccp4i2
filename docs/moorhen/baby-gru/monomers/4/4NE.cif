@@ -1,0 +1,304 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4NE     4NE      tetrabutylphosphonium     NON-POLYMER     53     17     .     
+#
+data_comp_4NE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4NE     C10     C       CH2     0       25.620      37.451      64.431      
+4NE     C13     C       CH3     0       25.992      33.620      63.977      
+4NE     C15     C       CH2     0       28.217      39.876      66.838      
+4NE     C17     C       CH3     0       28.472      41.100      69.033      
+4NE     P01     P       P       1       25.906      38.646      65.758      
+4NE     C02     C       CH2     0       25.428      40.297      65.194      
+4NE     C03     C       CH2     0       26.065      40.743      63.891      
+4NE     C04     C       CH2     0       25.736      42.185      63.554      
+4NE     C05     C       CH3     0       26.376      42.657      62.270      
+4NE     C06     C       CH2     0       24.904      38.180      67.190      
+4NE     C07     C       CH2     0       23.430      37.964      66.896      
+4NE     C08     C       CH2     0       22.650      37.541      68.129      
+4NE     C09     C       CH3     0       21.173      37.333      67.869      
+4NE     C11     C       CH2     0       25.926      36.009      64.794      
+4NE     C12     C       CH2     0       25.689      35.059      63.636      
+4NE     C14     C       CH2     0       27.664      38.611      66.198      
+4NE     C16     C       CH2     0       27.649      40.126      68.223      
+4NE     H10     H       H       0       26.174      37.700      63.658      
+4NE     H10A    H       H       0       24.679      37.508      64.153      
+4NE     H13     H       H       0       25.814      33.057      63.204      
+4NE     H13A    H       H       0       25.431      33.336      64.719      
+4NE     H13B    H       H       0       26.928      33.535      64.229      
+4NE     H15     H       H       0       28.015      40.644      66.264      
+4NE     H15A    H       H       0       29.192      39.801      66.901      
+4NE     H17     H       H       0       28.093      41.183      69.925      
+4NE     H17A    H       H       0       28.467      41.970      68.598      
+4NE     H17B    H       H       0       29.387      40.777      69.099      
+4NE     H02     H       H       0       25.663      40.948      65.892      
+4NE     H02A    H       H       0       24.451      40.321      65.084      
+4NE     H03     H       H       0       25.752      40.164      63.165      
+4NE     H03A    H       H       0       27.038      40.642      63.958      
+4NE     H04     H       H       0       26.037      42.762      64.290      
+4NE     H04A    H       H       0       24.762      42.281      63.478      
+4NE     H05     H       H       0       26.128      43.583      62.104      
+4NE     H05A    H       H       0       26.070      42.103      61.531      
+4NE     H05B    H       H       0       27.344      42.590      62.345      
+4NE     H06     H       H       0       24.984      38.882      67.873      
+4NE     H06A    H       H       0       25.268      37.351      67.572      
+4NE     H07     H       H       0       23.337      37.276      66.205      
+4NE     H07A    H       H       0       23.048      38.795      66.544      
+4NE     H08     H       H       0       22.757      38.227      68.823      
+4NE     H08A    H       H       0       23.032      36.705      68.475      
+4NE     H09     H       H       0       20.930      36.417      68.089      
+4NE     H09A    H       H       0       20.975      37.502      66.931      
+4NE     H09B    H       H       0       20.657      37.944      68.423      
+4NE     H11     H       H       0       25.362      35.742      65.550      
+4NE     H11A    H       H       0       26.862      35.941      65.079      
+4NE     H12     H       H       0       24.751      35.129      63.353      
+4NE     H12A    H       H       0       26.251      35.333      62.879      
+4NE     H14     H       H       0       27.815      37.862      66.817      
+4NE     H14A    H       H       0       28.184      38.427      65.385      
+4NE     H16     H       H       0       27.599      39.273      68.708      
+4NE     H16A    H       H       0       26.736      40.476      68.136      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4NE         C10         P01      SINGLE       n     1.809  0.0164     1.809  0.0164
+4NE         C10         C11      SINGLE       n     1.518  0.0200     1.518  0.0200
+4NE         C13         C12      SINGLE       n     1.510  0.0200     1.510  0.0200
+4NE         C15         C14      SINGLE       n     1.518  0.0200     1.518  0.0200
+4NE         C15         C16      SINGLE       n     1.517  0.0200     1.517  0.0200
+4NE         C17         C16      SINGLE       n     1.510  0.0200     1.510  0.0200
+4NE         P01         C02      SINGLE       n     1.809  0.0164     1.809  0.0164
+4NE         P01         C06      SINGLE       n     1.809  0.0164     1.809  0.0164
+4NE         P01         C14      SINGLE       n     1.809  0.0164     1.809  0.0164
+4NE         C02         C03      SINGLE       n     1.518  0.0200     1.518  0.0200
+4NE         C03         C04      SINGLE       n     1.517  0.0200     1.517  0.0200
+4NE         C04         C05      SINGLE       n     1.510  0.0200     1.510  0.0200
+4NE         C06         C07      SINGLE       n     1.518  0.0200     1.518  0.0200
+4NE         C07         C08      SINGLE       n     1.517  0.0200     1.517  0.0200
+4NE         C08         C09      SINGLE       n     1.510  0.0200     1.510  0.0200
+4NE         C11         C12      SINGLE       n     1.517  0.0200     1.517  0.0200
+4NE         C10         H10      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C10        H10A      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C13         H13      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C13        H13A      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C13        H13B      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C15         H15      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C15        H15A      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C17         H17      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C17        H17A      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C17        H17B      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C02         H02      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C02        H02A      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C03         H03      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C03        H03A      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C04         H04      SINGLE       n     1.089  0.0100     0.982  0.0155
+4NE         C04        H04A      SINGLE       n     1.089  0.0100     0.982  0.0155
+4NE         C05         H05      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C05        H05A      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C05        H05B      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C06         H06      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C06        H06A      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C07         H07      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C07        H07A      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C08         H08      SINGLE       n     1.089  0.0100     0.982  0.0155
+4NE         C08        H08A      SINGLE       n     1.089  0.0100     0.982  0.0155
+4NE         C09         H09      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C09        H09A      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C09        H09B      SINGLE       n     1.089  0.0100     0.973  0.0157
+4NE         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C11        H11A      SINGLE       n     1.089  0.0100     0.980  0.0146
+4NE         C12         H12      SINGLE       n     1.089  0.0100     0.982  0.0155
+4NE         C12        H12A      SINGLE       n     1.089  0.0100     0.982  0.0155
+4NE         C14         H14      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C14        H14A      SINGLE       n     1.089  0.0100     0.983  0.0170
+4NE         C16         H16      SINGLE       n     1.089  0.0100     0.982  0.0155
+4NE         C16        H16A      SINGLE       n     1.089  0.0100     0.982  0.0155
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4NE         P01         C10         C11     114.986    1.64
+4NE         P01         C10         H10     108.546    1.50
+4NE         P01         C10        H10A     108.546    1.50
+4NE         C11         C10         H10     108.252    1.50
+4NE         C11         C10        H10A     108.252    1.50
+4NE         H10         C10        H10A     107.421    1.50
+4NE         C12         C13         H13     109.554    1.50
+4NE         C12         C13        H13A     109.554    1.50
+4NE         C12         C13        H13B     109.554    1.50
+4NE         H13         C13        H13A     109.380    1.50
+4NE         H13         C13        H13B     109.380    1.50
+4NE        H13A         C13        H13B     109.380    1.50
+4NE         C14         C15         C16     112.157    1.50
+4NE         C14         C15         H15     109.035    1.50
+4NE         C14         C15        H15A     109.035    1.50
+4NE         C16         C15         H15     109.083    1.50
+4NE         C16         C15        H15A     109.083    1.50
+4NE         H15         C15        H15A     107.744    1.50
+4NE         C16         C17         H17     109.554    1.50
+4NE         C16         C17        H17A     109.554    1.50
+4NE         C16         C17        H17B     109.554    1.50
+4NE         H17         C17        H17A     109.380    1.50
+4NE         H17         C17        H17B     109.380    1.50
+4NE        H17A         C17        H17B     109.380    1.50
+4NE         C10         P01         C02     109.524    2.11
+4NE         C10         P01         C06     109.524    2.11
+4NE         C10         P01         C14     109.524    2.11
+4NE         C02         P01         C06     109.524    2.11
+4NE         C02         P01         C14     109.524    2.11
+4NE         C06         P01         C14     109.524    2.11
+4NE         P01         C02         C03     114.986    1.64
+4NE         P01         C02         H02     108.546    1.50
+4NE         P01         C02        H02A     108.546    1.50
+4NE         C03         C02         H02     108.252    1.50
+4NE         C03         C02        H02A     108.252    1.50
+4NE         H02         C02        H02A     107.421    1.50
+4NE         C02         C03         C04     112.157    1.50
+4NE         C02         C03         H03     109.035    1.50
+4NE         C02         C03        H03A     109.035    1.50
+4NE         C04         C03         H03     109.083    1.50
+4NE         C04         C03        H03A     109.083    1.50
+4NE         H03         C03        H03A     107.744    1.50
+4NE         C03         C04         C05     113.185    1.50
+4NE         C03         C04         H04     108.966    1.50
+4NE         C03         C04        H04A     108.966    1.50
+4NE         C05         C04         H04     108.918    1.50
+4NE         C05         C04        H04A     108.918    1.50
+4NE         H04         C04        H04A     107.763    1.50
+4NE         C04         C05         H05     109.554    1.50
+4NE         C04         C05        H05A     109.554    1.50
+4NE         C04         C05        H05B     109.554    1.50
+4NE         H05         C05        H05A     109.380    1.50
+4NE         H05         C05        H05B     109.380    1.50
+4NE        H05A         C05        H05B     109.380    1.50
+4NE         P01         C06         C07     114.986    1.64
+4NE         P01         C06         H06     108.546    1.50
+4NE         P01         C06        H06A     108.546    1.50
+4NE         C07         C06         H06     108.252    1.50
+4NE         C07         C06        H06A     108.252    1.50
+4NE         H06         C06        H06A     107.421    1.50
+4NE         C06         C07         C08     112.157    1.50
+4NE         C06         C07         H07     109.035    1.50
+4NE         C06         C07        H07A     109.035    1.50
+4NE         C08         C07         H07     109.083    1.50
+4NE         C08         C07        H07A     109.083    1.50
+4NE         H07         C07        H07A     107.744    1.50
+4NE         C07         C08         C09     113.185    1.50
+4NE         C07         C08         H08     108.966    1.50
+4NE         C07         C08        H08A     108.966    1.50
+4NE         C09         C08         H08     108.918    1.50
+4NE         C09         C08        H08A     108.918    1.50
+4NE         H08         C08        H08A     107.763    1.50
+4NE         C08         C09         H09     109.554    1.50
+4NE         C08         C09        H09A     109.554    1.50
+4NE         C08         C09        H09B     109.554    1.50
+4NE         H09         C09        H09A     109.380    1.50
+4NE         H09         C09        H09B     109.380    1.50
+4NE        H09A         C09        H09B     109.380    1.50
+4NE         C10         C11         C12     112.157    1.50
+4NE         C10         C11         H11     109.035    1.50
+4NE         C10         C11        H11A     109.035    1.50
+4NE         C12         C11         H11     109.083    1.50
+4NE         C12         C11        H11A     109.083    1.50
+4NE         H11         C11        H11A     107.744    1.50
+4NE         C13         C12         C11     113.185    1.50
+4NE         C13         C12         H12     108.918    1.50
+4NE         C13         C12        H12A     108.918    1.50
+4NE         C11         C12         H12     108.966    1.50
+4NE         C11         C12        H12A     108.966    1.50
+4NE         H12         C12        H12A     107.763    1.50
+4NE         C15         C14         P01     114.986    1.64
+4NE         C15         C14         H14     108.252    1.50
+4NE         C15         C14        H14A     108.252    1.50
+4NE         P01         C14         H14     108.546    1.50
+4NE         P01         C14        H14A     108.546    1.50
+4NE         H14         C14        H14A     107.421    1.50
+4NE         C15         C16         C17     113.185    1.50
+4NE         C15         C16         H16     108.966    1.50
+4NE         C15         C16        H16A     108.966    1.50
+4NE         C17         C16         H16     108.918    1.50
+4NE         C17         C16        H16A     108.918    1.50
+4NE         H16         C16        H16A     107.763    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4NE            sp3_sp3_10         P01         C10         C11         C12     180.000    10.0     3
+4NE             sp3_sp3_2         C11         C10         P01         C02     -60.000    10.0     3
+4NE           sp3_sp3_118         C06         C07         C08         C09     180.000    10.0     3
+4NE           sp3_sp3_127         C07         C08         C09         H09     180.000    10.0     3
+4NE           sp3_sp3_136         C10         C11         C12         C13     180.000    10.0     3
+4NE            sp3_sp3_19         C11         C12         C13         H13     180.000    10.0     3
+4NE            sp3_sp3_28         P01         C14         C15         C16     180.000    10.0     3
+4NE            sp3_sp3_37         C14         C15         C16         C17     180.000    10.0     3
+4NE            sp3_sp3_46         C15         C16         C17         H17     180.000    10.0     3
+4NE            sp3_sp3_73         C15         C14         P01         C10     180.000    10.0     3
+4NE            sp3_sp3_55         C03         C02         P01         C10     180.000    10.0     3
+4NE            sp3_sp3_65         C07         C06         P01         C10     -60.000    10.0     3
+4NE            sp3_sp3_82         P01         C02         C03         C04     180.000    10.0     3
+4NE            sp3_sp3_91         C02         C03         C04         C05     180.000    10.0     3
+4NE           sp3_sp3_100         C03         C04         C05         H05     180.000    10.0     3
+4NE           sp3_sp3_109         P01         C06         C07         C08     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4NE    chir_1    P01    C10    C02    C06    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4NE           SMILES              ACDLabs 12.01                                                      CCCC[P+](CCCC)(CCCC)CCCC
+4NE            InChI                InChI  1.03 InChI=1S/C16H36P/c1-5-9-13-17(14-10-6-2,15-11-7-3)16-12-8-4/h5-16H2,1-4H3/q+1
+4NE         InChIKey                InChI  1.03                                                   BJQWBACJIAKDTJ-UHFFFAOYSA-N
+4NE SMILES_CANONICAL               CACTVS 3.370                                                      CCCC[P+](CCCC)(CCCC)CCCC
+4NE           SMILES               CACTVS 3.370                                                      CCCC[P+](CCCC)(CCCC)CCCC
+4NE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                      CCCC[P+](CCCC)(CCCC)CCCC
+4NE           SMILES "OpenEye OEToolkits" 1.7.6                                                      CCCC[P+](CCCC)(CCCC)CCCC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4NE acedrg               243         "dictionary generator"                  
+4NE acedrg_database      11          "data source"                           
+4NE rdkit                2017.03.2   "Chemoinformatics tool"
+4NE refmac5              5.8.0238    "optimization tool"                     

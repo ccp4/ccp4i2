@@ -1,0 +1,288 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BAG     BAG      N-[(E)-2-AMINO-1-(3-{[AMINO(IMINO)METHYL]AMINO}PROPYL)-2-HYDROXYVINYL]BENZAMIDE     NON-POLYMER     40     20     .     
+#
+data_comp_BAG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BAG     O9      O       O       0       22.527      51.477      22.317      
+BAG     C8      C       C       0       23.416      50.958      22.991      
+BAG     C10     C       CR6     0       24.488      51.796      23.605      
+BAG     C11     C       CR16    0       25.375      52.525      22.817      
+BAG     C13     C       CR16    0       26.359      53.304      23.408      
+BAG     C15     C       CR16    0       26.463      53.366      24.784      
+BAG     C14     C       CR16    0       25.586      52.651      25.574      
+BAG     C12     C       CR16    0       24.600      51.870      24.991      
+BAG     N16     N       NH1     0       23.456      49.606      23.274      
+BAG     C17     C       C       0       22.514      48.600      23.084      
+BAG     C1      C       C       0       21.109      48.813      22.930      
+BAG     N18     N       NH2     0       20.422      49.931      23.181      
+BAG     O2      O       OH1     0       20.331      47.758      22.437      
+BAG     C3      C       CH2     0       23.076      47.209      22.984      
+BAG     C4      C       CH2     0       23.431      46.825      21.555      
+BAG     CD      C       CH2     0       23.949      45.410      21.420      
+BAG     NE      N       NH1     0       24.487      45.146      20.088      
+BAG     CZ      C       C       0       24.967      43.977      19.656      
+BAG     NH2     N       NH2     0       25.419      43.872      18.415      
+BAG     NH1     N       NH2     1       25.005      42.915      20.450      
+BAG     H11     H       H       0       25.309      52.487      21.879      
+BAG     H13     H       H       0       26.958      53.792      22.869      
+BAG     H15     H       H       0       27.134      53.897      25.183      
+BAG     H14     H       H       0       25.658      52.693      26.513      
+BAG     H12     H       H       0       24.005      51.385      25.536      
+BAG     H16     H       H       0       24.191      49.328      23.645      
+BAG     H181    H       H       0       19.557      49.968      22.997      
+BAG     H182    H       H       0       20.806      50.620      23.568      
+BAG     HO2     H       H       0       19.761      47.900      21.808      
+BAG     H31     H       H       0       22.422      46.569      23.335      
+BAG     H32     H       H       0       23.879      47.140      23.542      
+BAG     H41     H       H       0       24.114      47.445      21.223      
+BAG     H42     H       H       0       22.635      46.926      20.993      
+BAG     HD1     H       H       0       23.218      44.781      21.603      
+BAG     HD2     H       H       0       24.651      45.257      22.088      
+BAG     HNE     H       H       0       24.495      45.813      19.524      
+BAG     HH21    H       H       0       25.736      43.104      18.124      
+BAG     HH22    H       H       0       25.403      44.570      17.876      
+BAG     HH1     H       H       0       25.320      42.151      20.148      
+BAG     HH2     H       H       0       24.723      42.962      21.279      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BAG          O9          C8      DOUBLE       n     1.230  0.0110     1.230  0.0110
+BAG          C8         C10      SINGLE       n     1.492  0.0100     1.492  0.0100
+BAG          C8         N16      SINGLE       n     1.377  0.0104     1.377  0.0104
+BAG         C10         C11      DOUBLE       y     1.389  0.0100     1.389  0.0100
+BAG         C10         C12      SINGLE       y     1.389  0.0100     1.389  0.0100
+BAG         C11         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+BAG         C13         C15      DOUBLE       y     1.376  0.0114     1.376  0.0114
+BAG         C15         C14      SINGLE       y     1.376  0.0114     1.376  0.0114
+BAG         C14         C12      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BAG         N16         C17      SINGLE       n     1.359  0.0200     1.359  0.0200
+BAG         C17          C1      DOUBLE       n     1.402  0.0200     1.402  0.0200
+BAG         C17          C3      SINGLE       n     1.500  0.0100     1.500  0.0100
+BAG          C1         N18      SINGLE       n     1.330  0.0161     1.330  0.0161
+BAG          C1          O2      SINGLE       n     1.395  0.0200     1.395  0.0200
+BAG          C3          C4      SINGLE       n     1.522  0.0200     1.522  0.0200
+BAG          C4          CD      SINGLE       n     1.512  0.0200     1.512  0.0200
+BAG          CD          NE      SINGLE       n     1.456  0.0136     1.456  0.0136
+BAG          NE          CZ      SINGLE       n     1.328  0.0112     1.328  0.0112
+BAG          CZ         NH2      SINGLE       n     1.321  0.0100     1.321  0.0100
+BAG          CZ         NH1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+BAG         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+BAG         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0180
+BAG         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0161
+BAG         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0180
+BAG         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+BAG         N16         H16      SINGLE       n     1.016  0.0100     0.868  0.0200
+BAG         N18        H181      SINGLE       n     1.016  0.0100     0.884  0.0200
+BAG         N18        H182      SINGLE       n     1.016  0.0100     0.884  0.0200
+BAG          O2         HO2      SINGLE       n     0.966  0.0059     0.861  0.0200
+BAG          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0185
+BAG          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0185
+BAG          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0160
+BAG          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0160
+BAG          CD         HD1      SINGLE       n     1.089  0.0100     0.981  0.0152
+BAG          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0152
+BAG          NE         HNE      SINGLE       n     1.016  0.0100     0.872  0.0200
+BAG         NH2        HH21      SINGLE       n     1.016  0.0100     0.881  0.0200
+BAG         NH2        HH22      SINGLE       n     1.016  0.0100     0.881  0.0200
+BAG         NH1         HH1      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAG         NH1         HH2      SINGLE       n     1.016  0.0100     0.879  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BAG          O9          C8         C10     121.307    1.50
+BAG          O9          C8         N16     122.697    1.50
+BAG         C10          C8         N16     115.996    1.50
+BAG          C8         C10         C11     120.497    2.80
+BAG          C8         C10         C12     120.497    2.80
+BAG         C11         C10         C12     119.007    1.50
+BAG         C10         C11         C13     120.300    1.50
+BAG         C10         C11         H11     119.925    1.50
+BAG         C13         C11         H11     119.776    1.50
+BAG         C11         C13         C15     120.226    1.50
+BAG         C11         C13         H13     119.842    1.50
+BAG         C15         C13         H13     119.933    1.50
+BAG         C13         C15         C14     119.943    1.50
+BAG         C13         C15         H15     120.028    1.50
+BAG         C14         C15         H15     120.028    1.50
+BAG         C15         C14         C12     120.226    1.50
+BAG         C15         C14         H14     119.933    1.50
+BAG         C12         C14         H14     119.842    1.50
+BAG         C10         C12         C14     120.300    1.50
+BAG         C10         C12         H12     119.925    1.50
+BAG         C14         C12         H12     119.776    1.50
+BAG          C8         N16         C17     126.602    2.86
+BAG          C8         N16         H16     116.852    1.74
+BAG         C17         N16         H16     116.532    3.00
+BAG         N16         C17          C1     119.513    3.00
+BAG         N16         C17          C3     116.737    1.98
+BAG          C1         C17          C3     123.750    3.00
+BAG         C17          C1         N18     124.888    3.00
+BAG         C17          C1          O2     119.291    3.00
+BAG         N18          C1          O2     115.820    1.61
+BAG          C1         N18        H181     120.084    2.28
+BAG          C1         N18        H182     120.084    2.28
+BAG        H181         N18        H182     119.832    2.38
+BAG          C1          O2         HO2     120.000    3.00
+BAG         C17          C3          C4     113.123    1.50
+BAG         C17          C3         H31     108.709    1.50
+BAG         C17          C3         H32     108.709    1.50
+BAG          C4          C3         H31     108.844    1.50
+BAG          C4          C3         H32     108.844    1.50
+BAG         H31          C3         H32     107.424    1.50
+BAG          C3          C4          CD     113.078    1.50
+BAG          C3          C4         H41     108.915    1.50
+BAG          C3          C4         H42     108.915    1.50
+BAG          CD          C4         H41     108.956    1.50
+BAG          CD          C4         H42     108.956    1.50
+BAG         H41          C4         H42     107.927    1.57
+BAG          C4          CD          NE     112.382    2.90
+BAG          C4          CD         HD1     109.197    1.51
+BAG          C4          CD         HD2     109.197    1.51
+BAG          NE          CD         HD1     109.183    1.50
+BAG          NE          CD         HD2     109.183    1.50
+BAG         HD1          CD         HD2     107.877    1.50
+BAG          CD          NE          CZ     124.510    1.50
+BAG          CD          NE         HNE     117.883    1.50
+BAG          CZ          NE         HNE     117.606    1.50
+BAG          NE          CZ         NH2     120.052    1.50
+BAG          NE          CZ         NH1     120.052    1.50
+BAG         NH2          CZ         NH1     119.896    1.50
+BAG          CZ         NH2        HH21     119.855    2.01
+BAG          CZ         NH2        HH22     119.855    2.01
+BAG        HH21         NH2        HH22     120.290    2.09
+BAG          CZ         NH1         HH1     119.855    2.01
+BAG          CZ         NH1         HH2     119.855    2.01
+BAG         HH1         NH1         HH2     120.290    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BAG            sp2_sp2_17         C17          C1         N18        H181     180.000     5.0     2
+BAG            sp2_sp2_21         C17          C1          O2         HO2     180.000     5.0     2
+BAG             sp3_sp3_1         C17          C3          C4          CD     180.000    10.0     3
+BAG            sp3_sp3_10          C3          C4          CD          NE     180.000    10.0     3
+BAG             sp2_sp3_8          CZ          NE          CD          C4     120.000    10.0     6
+BAG            sp2_sp2_23         NH2          CZ          NE          CD     180.000     5.0     2
+BAG            sp2_sp2_27          NE          CZ         NH2        HH21     180.000     5.0     2
+BAG            sp2_sp2_31          NE          CZ         NH1         HH1     180.000     5.0     2
+BAG             sp2_sp2_2         C11         C10          C8          O9       0.000     5.0     2
+BAG             sp2_sp2_7          O9          C8         N16         C17       0.000     5.0     2
+BAG       const_sp2_sp2_3          C8         C10         C11         C13     180.000     5.0     2
+BAG              const_23          C8         C10         C12         C14     180.000    10.0     2
+BAG       const_sp2_sp2_5         C10         C11         C13         C15       0.000     5.0     2
+BAG       const_sp2_sp2_9         C11         C13         C15         C14       0.000     5.0     2
+BAG              const_13         C12         C14         C15         C13       0.000    10.0     2
+BAG              const_17         C10         C12         C14         C15       0.000    10.0     2
+BAG            sp2_sp2_11          C1         C17         N16          C8       0.000     5.0     2
+BAG            sp2_sp2_14         N18          C1         C17         N16       0.000     5.0     2
+BAG             sp2_sp3_2         N16         C17          C3          C4     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BAG    plan-1         C10   0.020
+BAG    plan-1         C11   0.020
+BAG    plan-1         C12   0.020
+BAG    plan-1         C13   0.020
+BAG    plan-1         C14   0.020
+BAG    plan-1         C15   0.020
+BAG    plan-1          C8   0.020
+BAG    plan-1         H11   0.020
+BAG    plan-1         H12   0.020
+BAG    plan-1         H13   0.020
+BAG    plan-1         H14   0.020
+BAG    plan-1         H15   0.020
+BAG    plan-2         C10   0.020
+BAG    plan-2          C8   0.020
+BAG    plan-2         N16   0.020
+BAG    plan-2          O9   0.020
+BAG    plan-3         C17   0.020
+BAG    plan-3          C8   0.020
+BAG    plan-3         H16   0.020
+BAG    plan-3         N16   0.020
+BAG    plan-4          C1   0.020
+BAG    plan-4         C17   0.020
+BAG    plan-4          C3   0.020
+BAG    plan-4         N16   0.020
+BAG    plan-5          C1   0.020
+BAG    plan-5         C17   0.020
+BAG    plan-5         N18   0.020
+BAG    plan-5          O2   0.020
+BAG    plan-6          C1   0.020
+BAG    plan-6        H181   0.020
+BAG    plan-6        H182   0.020
+BAG    plan-6         N18   0.020
+BAG    plan-7          CD   0.020
+BAG    plan-7          CZ   0.020
+BAG    plan-7         HNE   0.020
+BAG    plan-7          NE   0.020
+BAG    plan-8          CZ   0.020
+BAG    plan-8          NE   0.020
+BAG    plan-8         NH1   0.020
+BAG    plan-8         NH2   0.020
+BAG    plan-9          CZ   0.020
+BAG    plan-9        HH21   0.020
+BAG    plan-9        HH22   0.020
+BAG    plan-9         NH2   0.020
+BAG   plan-10          CZ   0.020
+BAG   plan-10         HH1   0.020
+BAG   plan-10         HH2   0.020
+BAG   plan-10         NH1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BAG           SMILES              ACDLabs 10.04                                                                                  O=C(N/C(=C(/O)N)CCCNC(=[N@H])N)c1ccccc1
+BAG SMILES_CANONICAL               CACTVS 3.341                                                                                      N\C(O)=C(CCCNC(N)=N)/NC(=O)c1ccccc1
+BAG           SMILES               CACTVS 3.341                                                                                        NC(O)=C(CCCNC(N)=N)NC(=O)c1ccccc1
+BAG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      c1ccc(cc1)C(=O)NC(=C(N)O)CCCNC(=N)N
+BAG           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      c1ccc(cc1)C(=O)NC(=C(N)O)CCCNC(=N)N
+BAG            InChI                InChI  1.03 InChI=1S/C13H19N5O2/c14-11(19)10(7-4-8-17-13(15)16)18-12(20)9-5-2-1-3-6-9/h1-3,5-6,19H,4,7-8,14H2,(H,18,20)(H4,15,16,17)
+BAG         InChIKey                InChI  1.03                                                                                              YRINIXCRGISJPA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BAG acedrg               243         "dictionary generator"                  
+BAG acedrg_database      11          "data source"                           
+BAG rdkit                2017.03.2   "Chemoinformatics tool"
+BAG refmac5              5.8.0238    "optimization tool"                     

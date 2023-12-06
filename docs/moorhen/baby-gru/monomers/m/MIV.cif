@@ -1,0 +1,824 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MIV     MIV      "MYCINAMICIN IV"     NON-POLYMER     110     49     .     
+#
+data_comp_MIV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MIV     O5      O       O       0       24.706      14.979      90.314      
+MIV     C24     C       C       0       24.297      15.313      91.413      
+MIV     C23     C       C1      0       25.145      15.461      92.620      
+MIV     C22     C       C1      0       26.451      15.234      92.666      
+MIV     C20     C       CH1     0       27.352      15.438      93.860      
+MIV     C21     C       CH3     0       27.923      16.848      93.750      
+MIV     C11     C       CH1     0       28.438      14.361      94.025      
+MIV     O2      O       O2      0       29.401      14.763      95.094      
+MIV     C12     C       CH1     0       30.679      15.155      94.671      
+MIV     O4      O       O2      0       31.375      14.007      94.229      
+MIV     C18     C       CH1     0       32.718      14.265      93.791      
+MIV     C19     C       CH3     0       33.238      12.955      93.272      
+MIV     C17     C       CH2     0       33.521      14.819      94.934      
+MIV     C14     C       CH1     0       32.864      16.091      95.500      
+MIV     N       N       NT      0       33.592      16.765      96.595      
+MIV     C16     C       CH3     0       33.997      15.906      97.712      
+MIV     C15     C       CH3     0       34.720      17.579      96.131      
+MIV     C13     C       CH1     0       31.400      15.795      95.852      
+MIV     O3      O       OH1     0       30.729      17.003      96.236      
+MIV     C9      C       CH1     0       27.922      12.951      94.351      
+MIV     C10     C       CH3     0       29.004      11.903      94.116      
+MIV     C8      C       CH2     0       27.347      12.805      95.774      
+MIV     C6      C       CH1     0       26.609      11.488      96.103      
+MIV     C7      C       CH3     0       25.931      11.548      97.478      
+MIV     C5      C       C       0       25.594      11.088      95.043      
+MIV     O1      O       O       0       25.660      9.997       94.503      
+MIV     C4      C       C1      0       24.615      12.079      94.688      
+MIV     C3      C       C1      0       23.703      11.992      93.664      
+MIV     C2      C       C1      0       22.784      12.991      93.218      
+MIV     C1      C       C1      0       21.997      12.937      92.156      
+MIV     O6      O       O2      0       23.020      15.614      91.688      
+MIV     C25     C       CH1     0       21.919      15.093      90.850      
+MIV     C26     C       CH2     0       21.121      16.303      90.386      
+MIV     C27     C       CH3     0       21.946      17.375      89.705      
+MIV     C28     C       CH1     0       21.117      14.048      91.653      
+MIV     C29     C       CH2     0       19.945      13.464      90.881      
+MIV     O7      O       O2      0       20.357      12.975      89.592      
+MIV     C30     C       CH1     0       20.338      11.583      89.402      
+MIV     O11     O       O2      0       21.427      11.249      88.566      
+MIV     C36     C       CH1     0       21.614      9.826       88.394      
+MIV     C37     C       CH3     0       22.890      9.660       87.601      
+MIV     C35     C       CH1     0       20.400      9.209       87.702      
+MIV     O10     O       OH1     0       20.476      7.787       87.821      
+MIV     C33     C       CH1     0       19.031      9.720       88.222      
+MIV     O9      O       O2      0       18.477      8.828       89.206      
+MIV     C34     C       CH3     0       19.105      8.692       90.486      
+MIV     C31     C       CH1     0       19.039      11.189      88.707      
+MIV     O8      O       O2      0       17.932      11.401      89.575      
+MIV     C32     C       CH3     0       16.708      11.733      88.921      
+MIV     H23     H       H       0       24.731      15.747      93.418      
+MIV     H22     H       H       0       26.865      14.935      91.874      
+MIV     H20     H       H       0       26.786      15.409      94.670      
+MIV     H211    H       H       0       28.639      16.861      93.090      
+MIV     H212    H       H       0       28.277      17.128      94.612      
+MIV     H213    H       H       0       27.224      17.468      93.477      
+MIV     H11     H       H       0       28.912      14.296      93.161      
+MIV     H12     H       H       0       30.613      15.796      93.941      
+MIV     H18     H       H       0       32.729      14.919      93.064      
+MIV     H191    H       H       0       34.205      12.929      93.360      
+MIV     H192    H       H       0       33.000      12.858      92.336      
+MIV     H193    H       H       0       32.852      12.221      93.779      
+MIV     H171    H       H       0       34.418      15.026      94.627      
+MIV     H172    H       H       0       33.585      14.147      95.631      
+MIV     H14     H       H       0       32.835      16.739      94.768      
+MIV     H161    H       H       0       33.274      15.290      97.939      
+MIV     H162    H       H       0       34.203      16.460      98.490      
+MIV     H163    H       H       0       34.791      15.393      97.462      
+MIV     H151    H       H       0       35.178      17.125      95.397      
+MIV     H152    H       H       0       35.353      17.731      96.860      
+MIV     H153    H       H       0       34.384      18.441      95.816      
+MIV     H13     H       H       0       31.375      15.175      96.603      
+MIV     H3      H       H       0       30.743      17.552      95.598      
+MIV     H9      H       H       0       27.197      12.760      93.711      
+MIV     H101    H       H       0       29.659      11.945      94.834      
+MIV     H102    H       H       0       29.447      12.070      93.266      
+MIV     H103    H       H       0       28.602      11.018      94.099      
+MIV     H81C    H       H       0       26.730      13.545      95.938      
+MIV     H82C    H       H       0       28.084      12.895      96.414      
+MIV     H6      H       H       0       27.286      10.771      96.133      
+MIV     H71C    H       H       0       25.121      11.007      97.474      
+MIV     H72C    H       H       0       25.699      12.469      97.693      
+MIV     H73C    H       H       0       26.541      11.205      98.154      
+MIV     H4      H       H       0       24.607      12.891      95.165      
+MIV     HA      H       H       0       23.716      11.187      93.174      
+MIV     H2      H       H       0       22.778      13.789      93.722      
+MIV     H1      H       H       0       22.007      12.143      91.651      
+MIV     H25     H       H       0       22.287      14.643      90.055      
+MIV     H261    H       H       0       20.673      16.696      91.166      
+MIV     H262    H       H       0       20.426      16.000      89.765      
+MIV     H271    H       H       0       22.756      16.981      89.338      
+MIV     H272    H       H       0       22.185      18.062      90.352      
+MIV     H273    H       H       0       21.428      17.776      88.986      
+MIV     H28     H       H       0       20.758      14.516      92.448      
+MIV     H291    H       H       0       19.267      14.161      90.756      
+MIV     H292    H       H       0       19.539      12.743      91.407      
+MIV     H30     H       H       0       20.426      11.119      90.247      
+MIV     H36     H       H       0       21.736      9.405       89.279      
+MIV     H371    H       H       0       22.889      8.795       87.160      
+MIV     H372    H       H       0       23.653      9.715       88.200      
+MIV     H373    H       H       0       22.954      10.362      86.932      
+MIV     H35     H       H       0       20.457      9.435       86.744      
+MIV     H10     H       H       0       19.893      7.431       87.330      
+MIV     H33     H       H       0       18.414      9.687       87.449      
+MIV     H341    H       H       0       20.056      8.562       90.381      
+MIV     H342    H       H       0       18.728      7.923       90.943      
+MIV     H343    H       H       0       18.942      9.487       91.018      
+MIV     H31     H       H       0       18.922      11.777      87.919      
+MIV     H321    H       H       0       16.560      11.128      88.175      
+MIV     H322    H       H       0       16.754      12.645      88.593      
+MIV     H323    H       H       0       15.974      11.652      89.551      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MIV          O5         C24      DOUBLE       n     1.216  0.0164     1.216  0.0164
+MIV         C24         C23      SINGLE       n     1.469  0.0200     1.469  0.0200
+MIV         C24          O6      SINGLE       n     1.333  0.0100     1.333  0.0100
+MIV         C23         C22      DOUBLE       n     1.321  0.0124     1.321  0.0124
+MIV         C22         C20      SINGLE       n     1.505  0.0125     1.505  0.0125
+MIV         C20         C21      SINGLE       n     1.521  0.0173     1.521  0.0173
+MIV         C20         C11      SINGLE       n     1.525  0.0149     1.525  0.0149
+MIV         C11          O2      SINGLE       n     1.479  0.0200     1.479  0.0200
+MIV         C11          C9      SINGLE       n     1.525  0.0139     1.525  0.0139
+MIV          O2         C12      SINGLE       n     1.398  0.0150     1.398  0.0150
+MIV         C12          O4      SINGLE       n     1.410  0.0116     1.410  0.0116
+MIV         C12         C13      SINGLE       n     1.521  0.0111     1.521  0.0111
+MIV          O4         C18      SINGLE       n     1.428  0.0168     1.428  0.0168
+MIV         C18         C19      SINGLE       n     1.499  0.0149     1.499  0.0149
+MIV         C18         C17      SINGLE       n     1.501  0.0130     1.501  0.0130
+MIV         C17         C14      SINGLE       n     1.528  0.0200     1.528  0.0200
+MIV         C14           N      SINGLE       n     1.464  0.0149     1.464  0.0149
+MIV         C14         C13      SINGLE       n     1.532  0.0100     1.532  0.0100
+MIV           N         C16      SINGLE       n     1.461  0.0113     1.461  0.0113
+MIV           N         C15      SINGLE       n     1.461  0.0113     1.461  0.0113
+MIV         C13          O3      SINGLE       n     1.432  0.0200     1.432  0.0200
+MIV          C9         C10      SINGLE       n     1.521  0.0151     1.521  0.0151
+MIV          C9          C8      SINGLE       n     1.536  0.0100     1.536  0.0100
+MIV          C8          C6      SINGLE       n     1.539  0.0100     1.539  0.0100
+MIV          C6          C7      SINGLE       n     1.531  0.0100     1.531  0.0100
+MIV          C6          C5      SINGLE       n     1.518  0.0100     1.518  0.0100
+MIV          C5          O1      DOUBLE       n     1.218  0.0100     1.218  0.0100
+MIV          C5          C4      SINGLE       n     1.435  0.0200     1.435  0.0200
+MIV          C4          C3      DOUBLE       n     1.379  0.0195     1.379  0.0195
+MIV          C3          C2      SINGLE       n     1.439  0.0200     1.439  0.0200
+MIV          C2          C1      DOUBLE       n     1.325  0.0126     1.325  0.0126
+MIV          C1         C28      SINGLE       n     1.503  0.0106     1.503  0.0106
+MIV          O6         C25      SINGLE       n     1.461  0.0148     1.461  0.0148
+MIV         C25         C26      SINGLE       n     1.520  0.0100     1.520  0.0100
+MIV         C25         C28      SINGLE       n     1.536  0.0100     1.536  0.0100
+MIV         C26         C27      SINGLE       n     1.511  0.0200     1.511  0.0200
+MIV         C28         C29      SINGLE       n     1.515  0.0117     1.515  0.0117
+MIV         C29          O7      SINGLE       n     1.430  0.0132     1.430  0.0132
+MIV          O7         C30      SINGLE       n     1.399  0.0118     1.399  0.0118
+MIV         C30         O11      SINGLE       n     1.415  0.0124     1.415  0.0124
+MIV         C30         C31      SINGLE       n     1.523  0.0117     1.523  0.0117
+MIV         O11         C36      SINGLE       n     1.445  0.0100     1.445  0.0100
+MIV         C36         C37      SINGLE       n     1.510  0.0100     1.510  0.0100
+MIV         C36         C35      SINGLE       n     1.523  0.0102     1.523  0.0102
+MIV         C35         O10      SINGLE       n     1.425  0.0176     1.425  0.0176
+MIV         C35         C33      SINGLE       n     1.522  0.0154     1.522  0.0154
+MIV         C33          O9      SINGLE       n     1.427  0.0100     1.427  0.0100
+MIV         C33         C31      SINGLE       n     1.522  0.0154     1.522  0.0154
+MIV          O9         C34      SINGLE       n     1.422  0.0156     1.422  0.0156
+MIV         C31          O8      SINGLE       n     1.419  0.0100     1.419  0.0100
+MIV          O8         C32      SINGLE       n     1.422  0.0156     1.422  0.0156
+MIV         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0200
+MIV         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0181
+MIV         C20         H20      SINGLE       n     1.089  0.0100     0.990  0.0142
+MIV         C21        H211      SINGLE       n     1.089  0.0100     0.973  0.0141
+MIV         C21        H212      SINGLE       n     1.089  0.0100     0.973  0.0141
+MIV         C21        H213      SINGLE       n     1.089  0.0100     0.973  0.0141
+MIV         C11         H11      SINGLE       n     1.089  0.0100     0.987  0.0200
+MIV         C12         H12      SINGLE       n     1.089  0.0100     0.974  0.0190
+MIV         C18         H18      SINGLE       n     1.089  0.0100     0.977  0.0131
+MIV         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0171
+MIV         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0171
+MIV         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0171
+MIV         C17        H171      SINGLE       n     1.089  0.0100     0.970  0.0143
+MIV         C17        H172      SINGLE       n     1.089  0.0100     0.970  0.0143
+MIV         C14         H14      SINGLE       n     1.089  0.0100     0.977  0.0149
+MIV         C16        H161      SINGLE       n     1.089  0.0100     0.977  0.0113
+MIV         C16        H162      SINGLE       n     1.089  0.0100     0.977  0.0113
+MIV         C16        H163      SINGLE       n     1.089  0.0100     0.977  0.0113
+MIV         C15        H151      SINGLE       n     1.089  0.0100     0.977  0.0113
+MIV         C15        H152      SINGLE       n     1.089  0.0100     0.977  0.0113
+MIV         C15        H153      SINGLE       n     1.089  0.0100     0.977  0.0113
+MIV         C13         H13      SINGLE       n     1.089  0.0100     0.975  0.0196
+MIV          O3          H3      SINGLE       n     0.970  0.0120     0.841  0.0200
+MIV          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0162
+MIV         C10        H101      SINGLE       n     1.089  0.0100     0.973  0.0146
+MIV         C10        H102      SINGLE       n     1.089  0.0100     0.973  0.0146
+MIV         C10        H103      SINGLE       n     1.089  0.0100     0.973  0.0146
+MIV          C8        H81C      SINGLE       n     1.089  0.0100     0.980  0.0160
+MIV          C8        H82C      SINGLE       n     1.089  0.0100     0.980  0.0160
+MIV          C6          H6      SINGLE       n     1.089  0.0100     0.986  0.0117
+MIV          C7        H71C      SINGLE       n     1.089  0.0100     0.973  0.0141
+MIV          C7        H72C      SINGLE       n     1.089  0.0100     0.973  0.0141
+MIV          C7        H73C      SINGLE       n     1.089  0.0100     0.973  0.0141
+MIV          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0111
+MIV          C3          HA      SINGLE       n     1.082  0.0130     0.943  0.0196
+MIV          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0200
+MIV          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0181
+MIV         C25         H25      SINGLE       n     1.089  0.0100     0.986  0.0160
+MIV         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0160
+MIV         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0160
+MIV         C27        H271      SINGLE       n     1.089  0.0100     0.973  0.0157
+MIV         C27        H272      SINGLE       n     1.089  0.0100     0.973  0.0157
+MIV         C27        H273      SINGLE       n     1.089  0.0100     0.973  0.0157
+MIV         C28         H28      SINGLE       n     1.089  0.0100     0.990  0.0142
+MIV         C29        H291      SINGLE       n     1.089  0.0100     0.980  0.0146
+MIV         C29        H292      SINGLE       n     1.089  0.0100     0.980  0.0146
+MIV         C30         H30      SINGLE       n     1.089  0.0100     0.971  0.0193
+MIV         C36         H36      SINGLE       n     1.089  0.0100     0.989  0.0117
+MIV         C37        H371      SINGLE       n     1.089  0.0100     0.971  0.0171
+MIV         C37        H372      SINGLE       n     1.089  0.0100     0.971  0.0171
+MIV         C37        H373      SINGLE       n     1.089  0.0100     0.971  0.0171
+MIV         C35         H35      SINGLE       n     1.089  0.0100     0.986  0.0131
+MIV         O10         H10      SINGLE       n     0.970  0.0120     0.841  0.0200
+MIV         C33         H33      SINGLE       n     1.089  0.0100     0.989  0.0181
+MIV         C34        H341      SINGLE       n     1.089  0.0100     0.971  0.0146
+MIV         C34        H342      SINGLE       n     1.089  0.0100     0.971  0.0146
+MIV         C34        H343      SINGLE       n     1.089  0.0100     0.971  0.0146
+MIV         C31         H31      SINGLE       n     1.089  0.0100     0.989  0.0181
+MIV         C32        H321      SINGLE       n     1.089  0.0100     0.971  0.0146
+MIV         C32        H322      SINGLE       n     1.089  0.0100     0.971  0.0146
+MIV         C32        H323      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MIV          O5         C24         C23     125.153    1.50
+MIV          O5         C24          O6     123.533    1.50
+MIV         C23         C24          O6     111.314    1.62
+MIV         C24         C23         C22     123.453    2.44
+MIV         C24         C23         H23     118.327    1.62
+MIV         C22         C23         H23     118.220    2.29
+MIV         C23         C22         C20     126.663    2.55
+MIV         C23         C22         H22     116.899    2.02
+MIV         C20         C22         H22     116.438    1.50
+MIV         C22         C20         C21     109.455    2.23
+MIV         C22         C20         C11     111.511    2.91
+MIV         C22         C20         H20     108.126    1.50
+MIV         C21         C20         C11     113.369    1.50
+MIV         C21         C20         H20     108.191    1.50
+MIV         C11         C20         H20     107.392    1.66
+MIV         C20         C21        H211     109.820    1.50
+MIV         C20         C21        H212     109.820    1.50
+MIV         C20         C21        H213     109.820    1.50
+MIV        H211         C21        H212     109.411    1.50
+MIV        H211         C21        H213     109.411    1.50
+MIV        H212         C21        H213     109.411    1.50
+MIV         C20         C11          O2     109.482    3.00
+MIV         C20         C11          C9     111.094    2.85
+MIV         C20         C11         H11     107.983    1.75
+MIV          O2         C11          C9     109.589    2.91
+MIV          O2         C11         H11     109.507    2.54
+MIV          C9         C11         H11     107.653    3.00
+MIV         C11          O2         C12     115.520    1.50
+MIV          O2         C12          O4     108.210    1.50
+MIV          O2         C12         C13     108.249    1.50
+MIV          O2         C12         H12     110.234    1.50
+MIV          O4         C12         C13     110.164    1.50
+MIV          O4         C12         H12     109.385    1.50
+MIV         C13         C12         H12     109.599    1.50
+MIV         C12          O4         C18     113.152    1.70
+MIV          O4         C18         C19     105.507    1.50
+MIV          O4         C18         C17     109.660    1.50
+MIV          O4         C18         H18     111.893    2.82
+MIV         C19         C18         C17     113.501    1.50
+MIV         C19         C18         H18     109.172    1.60
+MIV         C17         C18         H18     108.575    1.50
+MIV         C18         C19        H191     109.721    1.50
+MIV         C18         C19        H192     109.721    1.50
+MIV         C18         C19        H193     109.721    1.50
+MIV        H191         C19        H192     109.383    1.59
+MIV        H191         C19        H193     109.383    1.59
+MIV        H192         C19        H193     109.383    1.59
+MIV         C18         C17         C14     111.124    1.57
+MIV         C18         C17        H171     109.078    1.50
+MIV         C18         C17        H172     109.078    1.50
+MIV         C14         C17        H171     109.115    1.50
+MIV         C14         C17        H172     109.115    1.50
+MIV        H171         C17        H172     108.019    1.50
+MIV         C17         C14           N     114.485    2.28
+MIV         C17         C14         C13     110.196    1.50
+MIV         C17         C14         H14     107.655    1.50
+MIV           N         C14         C13     111.773    3.00
+MIV           N         C14         H14     106.228    1.50
+MIV         C13         C14         H14     107.258    1.68
+MIV         C14           N         C16     112.278    2.47
+MIV         C14           N         C15     112.278    2.47
+MIV         C16           N         C15     110.179    1.50
+MIV           N         C16        H161     109.516    1.94
+MIV           N         C16        H162     109.516    1.94
+MIV           N         C16        H163     109.516    1.94
+MIV        H161         C16        H162     109.377    1.50
+MIV        H161         C16        H163     109.377    1.50
+MIV        H162         C16        H163     109.377    1.50
+MIV           N         C15        H151     109.516    1.94
+MIV           N         C15        H152     109.516    1.94
+MIV           N         C15        H153     109.516    1.94
+MIV        H151         C15        H152     109.377    1.50
+MIV        H151         C15        H153     109.377    1.50
+MIV        H152         C15        H153     109.377    1.50
+MIV         C12         C13         C14     111.124    1.57
+MIV         C12         C13          O3     109.976    1.78
+MIV         C12         C13         H13     108.925    1.50
+MIV         C14         C13          O3     110.124    1.87
+MIV         C14         C13         H13     108.987    1.50
+MIV          O3         C13         H13     108.790    1.50
+MIV         C13          O3          H3     109.099    3.00
+MIV         C11          C9         C10     111.574    2.29
+MIV         C11          C9          C8     111.094    2.85
+MIV         C11          C9          H9     108.552    2.23
+MIV         C10          C9          C8     111.118    1.50
+MIV         C10          C9          H9     107.528    1.50
+MIV          C8          C9          H9     107.675    1.50
+MIV          C9         C10        H101     109.636    1.50
+MIV          C9         C10        H102     109.636    1.50
+MIV          C9         C10        H103     109.636    1.50
+MIV        H101         C10        H102     109.411    1.50
+MIV        H101         C10        H103     109.411    1.50
+MIV        H102         C10        H103     109.411    1.50
+MIV          C9          C8          C6     115.572    1.50
+MIV          C9          C8        H81C     108.588    1.50
+MIV          C9          C8        H82C     108.588    1.50
+MIV          C6          C8        H81C     108.032    1.50
+MIV          C6          C8        H82C     108.032    1.50
+MIV        H81C          C8        H82C     107.599    1.50
+MIV          C8          C6          C7     111.474    1.79
+MIV          C8          C6          C5     111.591    2.33
+MIV          C8          C6          H6     107.780    1.50
+MIV          C7          C6          C5     109.495    2.07
+MIV          C7          C6          H6     108.374    1.60
+MIV          C5          C6          H6     107.425    2.18
+MIV          C6          C7        H71C     109.507    1.50
+MIV          C6          C7        H72C     109.507    1.50
+MIV          C6          C7        H73C     109.507    1.50
+MIV        H71C          C7        H72C     109.411    1.50
+MIV        H71C          C7        H73C     109.411    1.50
+MIV        H72C          C7        H73C     109.411    1.50
+MIV          C6          C5          O1     120.661    1.78
+MIV          C6          C5          C4     117.528    2.48
+MIV          O1          C5          C4     121.811    2.74
+MIV          C5          C4          C3     124.513    2.42
+MIV          C5          C4          H4     119.118    1.99
+MIV          C3          C4          H4     116.369    1.72
+MIV          C4          C3          C2     129.211    1.50
+MIV          C4          C3          HA     114.990    1.50
+MIV          C2          C3          HA     115.799    1.85
+MIV          C3          C2          C1     126.097    2.95
+MIV          C3          C2          H2     116.032    1.85
+MIV          C1          C2          H2     117.870    1.50
+MIV          C2          C1         C28     126.807    2.55
+MIV          C2          C1          H1     117.024    1.85
+MIV         C28          C1          H1     116.169    1.50
+MIV         C24          O6         C25     117.586    1.50
+MIV          O6         C25         C26     107.570    1.96
+MIV          O6         C25         C28     106.864    2.42
+MIV          O6         C25         H25     109.024    1.50
+MIV         C26         C25         C28     115.497    1.50
+MIV         C26         C25         H25     108.603    1.50
+MIV         C28         C25         H25     107.902    1.50
+MIV         C25         C26         C27     113.852    1.50
+MIV         C25         C26        H261     108.468    1.50
+MIV         C25         C26        H262     108.468    1.50
+MIV         C27         C26        H261     108.955    1.50
+MIV         C27         C26        H262     108.955    1.50
+MIV        H261         C26        H262     107.797    1.50
+MIV         C26         C27        H271     109.517    1.50
+MIV         C26         C27        H272     109.517    1.50
+MIV         C26         C27        H273     109.517    1.50
+MIV        H271         C27        H272     109.380    1.50
+MIV        H271         C27        H273     109.380    1.50
+MIV        H272         C27        H273     109.380    1.50
+MIV          C1         C28         C25     111.475    2.22
+MIV          C1         C28         C29     111.511    2.91
+MIV          C1         C28         H28     107.709    1.50
+MIV         C25         C28         C29     111.094    2.85
+MIV         C25         C28         H28     107.398    1.50
+MIV         C29         C28         H28     108.763    1.50
+MIV         C28         C29          O7     109.482    3.00
+MIV         C28         C29        H291     109.493    1.50
+MIV         C28         C29        H292     109.493    1.50
+MIV          O7         C29        H291     109.586    1.50
+MIV          O7         C29        H292     109.586    1.50
+MIV        H291         C29        H292     108.484    1.50
+MIV         C29          O7         C30     113.687    1.50
+MIV          O7         C30         O11     108.518    1.66
+MIV          O7         C30         C31     109.101    1.50
+MIV          O7         C30         H30     109.834    1.50
+MIV         O11         C30         C31     110.135    2.04
+MIV         O11         C30         H30     109.385    1.50
+MIV         C31         C30         H30     109.805    1.50
+MIV         C30         O11         C36     113.444    1.50
+MIV         O11         C36         C37     106.787    1.50
+MIV         O11         C36         C35     109.213    1.50
+MIV         O11         C36         H36     109.141    1.50
+MIV         C37         C36         C35     113.299    1.50
+MIV         C37         C36         H36     109.193    1.50
+MIV         C35         C36         H36     108.992    1.50
+MIV         C36         C37        H371     109.468    1.50
+MIV         C36         C37        H372     109.468    1.50
+MIV         C36         C37        H373     109.468    1.50
+MIV        H371         C37        H372     109.383    1.59
+MIV        H371         C37        H373     109.383    1.59
+MIV        H372         C37        H373     109.383    1.59
+MIV         C36         C35         O10     109.789    1.62
+MIV         C36         C35         C33     110.316    1.64
+MIV         C36         C35         H35     108.901    1.50
+MIV         O10         C35         C33     110.191    1.50
+MIV         O10         C35         H35     109.194    1.50
+MIV         C33         C35         H35     109.014    1.50
+MIV         C35         O10         H10     109.564    3.00
+MIV         C35         C33          O9     107.616    2.06
+MIV         C35         C33         C31     111.521    1.54
+MIV         C35         C33         H33     109.558    1.50
+MIV          O9         C33         C31     109.449    1.54
+MIV          O9         C33         H33     109.278    1.50
+MIV         C31         C33         H33     109.721    1.50
+MIV         C33          O9         C34     114.651    1.50
+MIV          O9         C34        H341     109.431    1.50
+MIV          O9         C34        H342     109.431    1.50
+MIV          O9         C34        H343     109.431    1.50
+MIV        H341         C34        H342     109.450    1.50
+MIV        H341         C34        H343     109.450    1.50
+MIV        H342         C34        H343     109.450    1.50
+MIV         C30         C31         C33     110.210    1.80
+MIV         C30         C31          O8     110.871    2.40
+MIV         C30         C31         H31     109.841    1.50
+MIV         C33         C31          O8     108.536    1.50
+MIV         C33         C31         H31     109.842    1.50
+MIV          O8         C31         H31     108.710    1.50
+MIV         C31          O8         C32     113.659    1.50
+MIV          O8         C32        H321     109.431    1.50
+MIV          O8         C32        H322     109.431    1.50
+MIV          O8         C32        H323     109.431    1.50
+MIV        H321         C32        H322     109.450    1.50
+MIV        H321         C32        H323     109.450    1.50
+MIV        H322         C32        H323     109.450    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MIV                   nu0         C36         O11         C30         C31     -70.013    10.0     3
+MIV                   nu1         O11         C30         C31         C33      55.588    10.0     3
+MIV                   nu2         C30         C31         C33         C35     -40.308    10.0     3
+MIV                   nu3         C31         C33         C35         C36      37.307    10.0     3
+MIV                   nu4         C33         C35         C36         O11     -48.979    10.0     3
+MIV                   nu5         C35         C36         O11         C30      66.256    10.0     3
+MIV             sp3_sp3_1         C13         C12          O4         C18     -60.000    10.0     3
+MIV             sp3_sp3_2          O2         C12          O4         C18      60.000    10.0     3
+MIV             sp3_sp3_3         H12         C12          O4         C18     180.000    10.0     3
+MIV             sp3_sp3_4         C17         C18          O4         C12      60.000    10.0     3
+MIV             sp3_sp3_5         C19         C18          O4         C12     180.000    10.0     3
+MIV             sp3_sp3_6         H18         C18          O4         C12      60.000    10.0     3
+MIV             sp3_sp3_7         C14         C17         C18          O4     -60.000    10.0     3
+MIV             sp3_sp3_8         C14         C17         C18         C19      60.000    10.0     3
+MIV             sp3_sp3_9         C14         C17         C18         H18     180.000    10.0     3
+MIV            sp3_sp3_10        H171         C17         C18          O4      60.000    10.0     3
+MIV            sp3_sp3_11        H171         C17         C18         C19     180.000    10.0     3
+MIV            sp3_sp3_12        H171         C17         C18         H18     -60.000    10.0     3
+MIV            sp3_sp3_13        H172         C17         C18          O4     180.000    10.0     3
+MIV            sp3_sp3_14        H172         C17         C18         C19     -60.000    10.0     3
+MIV            sp3_sp3_15        H172         C17         C18         H18      60.000    10.0     3
+MIV            sp3_sp3_16         C13         C14         C17         C18      60.000    10.0     3
+MIV            sp3_sp3_17         C13         C14         C17        H171     180.000    10.0     3
+MIV            sp3_sp3_18         C13         C14         C17        H172     -60.000    10.0     3
+MIV            sp3_sp3_19           N         C14         C17         C18     180.000    10.0     3
+MIV            sp3_sp3_20           N         C14         C17        H171     -60.000    10.0     3
+MIV            sp3_sp3_21           N         C14         C17        H172      60.000    10.0     3
+MIV            sp3_sp3_22         H14         C14         C17         C18     -60.000    10.0     3
+MIV            sp3_sp3_23         H14         C14         C17        H171      60.000    10.0     3
+MIV            sp3_sp3_24         H14         C14         C17        H172     180.000    10.0     3
+MIV            sp3_sp3_25         C12         C13         C14         C17     -60.000    10.0     3
+MIV            sp3_sp3_26         C12         C13         C14           N      60.000    10.0     3
+MIV            sp3_sp3_27         C12         C13         C14         H14     180.000    10.0     3
+MIV            sp3_sp3_28          O3         C13         C14         C17      60.000    10.0     3
+MIV            sp3_sp3_29          O3         C13         C14           N     180.000    10.0     3
+MIV            sp3_sp3_30          O3         C13         C14         H14     -60.000    10.0     3
+MIV            sp3_sp3_31         H13         C13         C14         C17     180.000    10.0     3
+MIV            sp3_sp3_32         H13         C13         C14           N     -60.000    10.0     3
+MIV            sp3_sp3_33         H13         C13         C14         H14      60.000    10.0     3
+MIV             sp2_sp2_1         C22         C23         C24          O6     180.000     5.0     2
+MIV             sp2_sp2_2         C22         C23         C24          O5       0.000     5.0     2
+MIV             sp2_sp2_3         H23         C23         C24          O6       0.000     5.0     2
+MIV             sp2_sp2_4         H23         C23         C24          O5     180.000     5.0     2
+MIV             sp2_sp2_5          O5         C24          O6         C25     180.000     5.0     2
+MIV             sp2_sp2_6         C23         C24          O6         C25       0.000     5.0     2
+MIV             sp2_sp2_7         C20         C22         C23         C24     180.000     5.0     2
+MIV             sp2_sp2_8         C20         C22         C23         H23       0.000     5.0     2
+MIV             sp2_sp2_9         H22         C22         C23         C24       0.000     5.0     2
+MIV            sp2_sp2_10         H22         C22         C23         H23     180.000     5.0     2
+MIV             sp2_sp3_1         C23         C22         C20         C21       0.000    10.0     6
+MIV             sp2_sp3_2         C23         C22         C20         C11     120.000    10.0     6
+MIV             sp2_sp3_3         C23         C22         C20         H20    -120.000    10.0     6
+MIV             sp2_sp3_4         H22         C22         C20         C21     180.000    10.0     6
+MIV             sp2_sp3_5         H22         C22         C20         C11     -60.000    10.0     6
+MIV             sp2_sp3_6         H22         C22         C20         H20      60.000    10.0     6
+MIV            sp3_sp3_67         C22         C20         C21        H211     180.000    10.0     3
+MIV            sp3_sp3_68         C22         C20         C21        H212     -60.000    10.0     3
+MIV            sp3_sp3_69         C22         C20         C21        H213      60.000    10.0     3
+MIV            sp3_sp3_70         C11         C20         C21        H211      60.000    10.0     3
+MIV            sp3_sp3_71         C11         C20         C21        H212     180.000    10.0     3
+MIV            sp3_sp3_72         C11         C20         C21        H213     -60.000    10.0     3
+MIV            sp3_sp3_73         H20         C20         C21        H211     -60.000    10.0     3
+MIV            sp3_sp3_74         H20         C20         C21        H212      60.000    10.0     3
+MIV            sp3_sp3_75         H20         C20         C21        H213     180.000    10.0     3
+MIV            sp3_sp3_76          O2         C11         C20         C22     180.000    10.0     3
+MIV            sp3_sp3_77          O2         C11         C20         C21     -60.000    10.0     3
+MIV            sp3_sp3_78          O2         C11         C20         H20      60.000    10.0     3
+MIV            sp3_sp3_79          C9         C11         C20         C22      60.000    10.0     3
+MIV            sp3_sp3_80          C9         C11         C20         C21     180.000    10.0     3
+MIV            sp3_sp3_81          C9         C11         C20         H20     -60.000    10.0     3
+MIV            sp3_sp3_82         H11         C11         C20         C22     -60.000    10.0     3
+MIV            sp3_sp3_83         H11         C11         C20         C21      60.000    10.0     3
+MIV            sp3_sp3_84         H11         C11         C20         H20     180.000    10.0     3
+MIV            sp3_sp3_85         C20         C11          O2         C12     180.000    10.0     3
+MIV            sp3_sp3_86          C9         C11          O2         C12      60.000    10.0     3
+MIV            sp3_sp3_87         H11         C11          O2         C12     -60.000    10.0     3
+MIV            sp3_sp3_88         C20         C11          C9         C10     180.000    10.0     3
+MIV            sp3_sp3_89         C20         C11          C9          C8     -60.000    10.0     3
+MIV            sp3_sp3_90         C20         C11          C9          H9      60.000    10.0     3
+MIV            sp3_sp3_91          O2         C11          C9         C10      60.000    10.0     3
+MIV            sp3_sp3_92          O2         C11          C9          C8     180.000    10.0     3
+MIV            sp3_sp3_93          O2         C11          C9          H9     -60.000    10.0     3
+MIV            sp3_sp3_94         H11         C11          C9         C10     -60.000    10.0     3
+MIV            sp3_sp3_95         H11         C11          C9          C8      60.000    10.0     3
+MIV            sp3_sp3_96         H11         C11          C9          H9     180.000    10.0     3
+MIV            sp3_sp3_97          O4         C12          O2         C11     180.000    10.0     3
+MIV            sp3_sp3_98         C13         C12          O2         C11      60.000    10.0     3
+MIV            sp3_sp3_99         H12         C12          O2         C11     -60.000    10.0     3
+MIV           sp3_sp3_100          O4         C12         C13         C14      60.000    10.0     3
+MIV           sp3_sp3_101          O4         C12         C13          O3     180.000    10.0     3
+MIV           sp3_sp3_102          O4         C12         C13         H13     -60.000    10.0     3
+MIV           sp3_sp3_103          O2         C12         C13         C14     180.000    10.0     3
+MIV           sp3_sp3_104          O2         C12         C13          O3     -60.000    10.0     3
+MIV           sp3_sp3_105          O2         C12         C13         H13      60.000    10.0     3
+MIV           sp3_sp3_106         H12         C12         C13         C14     -60.000    10.0     3
+MIV           sp3_sp3_107         H12         C12         C13          O3      60.000    10.0     3
+MIV           sp3_sp3_108         H12         C12         C13         H13     180.000    10.0     3
+MIV           sp3_sp3_109          O4         C18         C19        H191     180.000    10.0     3
+MIV           sp3_sp3_110          O4         C18         C19        H192     -60.000    10.0     3
+MIV           sp3_sp3_111          O4         C18         C19        H193      60.000    10.0     3
+MIV           sp3_sp3_112         C17         C18         C19        H191      60.000    10.0     3
+MIV           sp3_sp3_113         C17         C18         C19        H192     180.000    10.0     3
+MIV           sp3_sp3_114         C17         C18         C19        H193     -60.000    10.0     3
+MIV           sp3_sp3_115         H18         C18         C19        H191     -60.000    10.0     3
+MIV           sp3_sp3_116         H18         C18         C19        H192      60.000    10.0     3
+MIV           sp3_sp3_117         H18         C18         C19        H193     180.000    10.0     3
+MIV           sp3_sp3_118         C17         C14           N         C15     180.000    10.0     3
+MIV           sp3_sp3_119         C17         C14           N         C16     -60.000    10.0     3
+MIV           sp3_sp3_120         C13         C14           N         C15      60.000    10.0     3
+MIV           sp3_sp3_121         C13         C14           N         C16     180.000    10.0     3
+MIV           sp3_sp3_122         H14         C14           N         C15     -60.000    10.0     3
+MIV           sp3_sp3_123         H14         C14           N         C16      60.000    10.0     3
+MIV           sp3_sp3_124        H161         C16           N         C14     180.000    10.0     3
+MIV           sp3_sp3_125        H161         C16           N         C15     -60.000    10.0     3
+MIV           sp3_sp3_126        H162         C16           N         C14      60.000    10.0     3
+MIV           sp3_sp3_127        H162         C16           N         C15     180.000    10.0     3
+MIV           sp3_sp3_128        H163         C16           N         C14     -60.000    10.0     3
+MIV           sp3_sp3_129        H163         C16           N         C15      60.000    10.0     3
+MIV           sp3_sp3_130        H151         C15           N         C16     180.000    10.0     3
+MIV           sp3_sp3_131        H151         C15           N         C14     -60.000    10.0     3
+MIV           sp3_sp3_132        H152         C15           N         C16      60.000    10.0     3
+MIV           sp3_sp3_133        H152         C15           N         C14     180.000    10.0     3
+MIV           sp3_sp3_134        H153         C15           N         C16     -60.000    10.0     3
+MIV           sp3_sp3_135        H153         C15           N         C14      60.000    10.0     3
+MIV           sp3_sp3_136         C12         C13          O3          H3     180.000    10.0     3
+MIV           sp3_sp3_137         C14         C13          O3          H3      60.000    10.0     3
+MIV           sp3_sp3_138         H13         C13          O3          H3     -60.000    10.0     3
+MIV           sp3_sp3_139        H101         C10          C9         C11     180.000    10.0     3
+MIV           sp3_sp3_140        H101         C10          C9          C8     -60.000    10.0     3
+MIV           sp3_sp3_141        H101         C10          C9          H9      60.000    10.0     3
+MIV           sp3_sp3_142        H102         C10          C9         C11      60.000    10.0     3
+MIV           sp3_sp3_143        H102         C10          C9          C8     180.000    10.0     3
+MIV           sp3_sp3_144        H102         C10          C9          H9     -60.000    10.0     3
+MIV           sp3_sp3_145        H103         C10          C9         C11     -60.000    10.0     3
+MIV           sp3_sp3_146        H103         C10          C9          C8      60.000    10.0     3
+MIV           sp3_sp3_147        H103         C10          C9          H9     180.000    10.0     3
+MIV           sp3_sp3_148          C6          C8          C9         C11     180.000    10.0     3
+MIV           sp3_sp3_149          C6          C8          C9         C10     -60.000    10.0     3
+MIV           sp3_sp3_150          C6          C8          C9          H9      60.000    10.0     3
+MIV           sp3_sp3_151        H81C          C8          C9         C11      60.000    10.0     3
+MIV           sp3_sp3_152        H81C          C8          C9         C10     180.000    10.0     3
+MIV           sp3_sp3_153        H81C          C8          C9          H9     -60.000    10.0     3
+MIV           sp3_sp3_154        H82C          C8          C9         C11     -60.000    10.0     3
+MIV           sp3_sp3_155        H82C          C8          C9         C10      60.000    10.0     3
+MIV           sp3_sp3_156        H82C          C8          C9          H9     180.000    10.0     3
+MIV           sp3_sp3_157          C7          C6          C8          C9     180.000    10.0     3
+MIV           sp3_sp3_158          C7          C6          C8        H81C     -60.000    10.0     3
+MIV           sp3_sp3_159          C7          C6          C8        H82C      60.000    10.0     3
+MIV           sp3_sp3_160          C5          C6          C8          C9      60.000    10.0     3
+MIV           sp3_sp3_161          C5          C6          C8        H81C     180.000    10.0     3
+MIV           sp3_sp3_162          C5          C6          C8        H82C     -60.000    10.0     3
+MIV           sp3_sp3_163          H6          C6          C8          C9     -60.000    10.0     3
+MIV           sp3_sp3_164          H6          C6          C8        H81C      60.000    10.0     3
+MIV           sp3_sp3_165          H6          C6          C8        H82C     180.000    10.0     3
+MIV           sp3_sp3_166          C8          C6          C7        H71C     180.000    10.0     3
+MIV           sp3_sp3_167          C8          C6          C7        H72C     -60.000    10.0     3
+MIV           sp3_sp3_168          C8          C6          C7        H73C      60.000    10.0     3
+MIV           sp3_sp3_169          C5          C6          C7        H71C      60.000    10.0     3
+MIV           sp3_sp3_170          C5          C6          C7        H72C     180.000    10.0     3
+MIV           sp3_sp3_171          C5          C6          C7        H73C     -60.000    10.0     3
+MIV           sp3_sp3_172          H6          C6          C7        H71C     -60.000    10.0     3
+MIV           sp3_sp3_173          H6          C6          C7        H72C      60.000    10.0     3
+MIV           sp3_sp3_174          H6          C6          C7        H73C     180.000    10.0     3
+MIV             sp2_sp3_7          O1          C5          C6          C8       0.000    10.0     6
+MIV             sp2_sp3_8          O1          C5          C6          C7     120.000    10.0     6
+MIV             sp2_sp3_9          O1          C5          C6          H6    -120.000    10.0     6
+MIV            sp2_sp3_10          C4          C5          C6          C8     180.000    10.0     6
+MIV            sp2_sp3_11          C4          C5          C6          C7     -60.000    10.0     6
+MIV            sp2_sp3_12          C4          C5          C6          H6      60.000    10.0     6
+MIV            sp2_sp2_11          C3          C4          C5          C6     180.000     5.0     2
+MIV            sp2_sp2_12          C3          C4          C5          O1       0.000     5.0     2
+MIV            sp2_sp2_13          H4          C4          C5          C6       0.000     5.0     2
+MIV            sp2_sp2_14          H4          C4          C5          O1     180.000     5.0     2
+MIV            sp2_sp2_15          C2          C3          C4          C5     180.000     5.0     2
+MIV            sp2_sp2_16          C2          C3          C4          H4       0.000     5.0     2
+MIV            sp2_sp2_17          HA          C3          C4          C5       0.000     5.0     2
+MIV            sp2_sp2_18          HA          C3          C4          H4     180.000     5.0     2
+MIV            sp2_sp2_19          C1          C2          C3          C4     180.000     5.0     2
+MIV            sp2_sp2_20          C1          C2          C3          HA       0.000     5.0     2
+MIV            sp2_sp2_21          H2          C2          C3          C4       0.000     5.0     2
+MIV            sp2_sp2_22          H2          C2          C3          HA     180.000     5.0     2
+MIV            sp2_sp2_23         C28          C1          C2          C3     180.000     5.0     2
+MIV            sp2_sp2_24         C28          C1          C2          H2       0.000     5.0     2
+MIV            sp2_sp2_25          H1          C1          C2          C3       0.000     5.0     2
+MIV            sp2_sp2_26          H1          C1          C2          H2     180.000     5.0     2
+MIV            sp2_sp3_13          C2          C1         C28         C25       0.000    10.0     6
+MIV            sp2_sp3_14          C2          C1         C28         C29     120.000    10.0     6
+MIV            sp2_sp3_15          C2          C1         C28         H28    -120.000    10.0     6
+MIV            sp2_sp3_16          H1          C1         C28         C25     180.000    10.0     6
+MIV            sp2_sp3_17          H1          C1         C28         C29     -60.000    10.0     6
+MIV            sp2_sp3_18          H1          C1         C28         H28      60.000    10.0     6
+MIV           sp3_sp3_175         C26         C25          O6         C24     180.000    10.0     3
+MIV           sp3_sp3_176         C28         C25          O6         C24     -60.000    10.0     3
+MIV           sp3_sp3_177         H25         C25          O6         C24      60.000    10.0     3
+MIV           sp3_sp3_178          O6         C25         C26         C27     180.000    10.0     3
+MIV           sp3_sp3_179          O6         C25         C26        H261     -60.000    10.0     3
+MIV           sp3_sp3_180          O6         C25         C26        H262      60.000    10.0     3
+MIV           sp3_sp3_181         C28         C25         C26         C27      60.000    10.0     3
+MIV           sp3_sp3_182         C28         C25         C26        H261     180.000    10.0     3
+MIV           sp3_sp3_183         C28         C25         C26        H262     -60.000    10.0     3
+MIV           sp3_sp3_184         H25         C25         C26         C27     -60.000    10.0     3
+MIV           sp3_sp3_185         H25         C25         C26        H261      60.000    10.0     3
+MIV           sp3_sp3_186         H25         C25         C26        H262     180.000    10.0     3
+MIV           sp3_sp3_187          O6         C25         C28          C1     180.000    10.0     3
+MIV           sp3_sp3_188          O6         C25         C28         C29     -60.000    10.0     3
+MIV           sp3_sp3_189          O6         C25         C28         H28      60.000    10.0     3
+MIV           sp3_sp3_190         C26         C25         C28          C1      60.000    10.0     3
+MIV           sp3_sp3_191         C26         C25         C28         C29     180.000    10.0     3
+MIV           sp3_sp3_192         C26         C25         C28         H28     -60.000    10.0     3
+MIV           sp3_sp3_193         H25         C25         C28          C1     -60.000    10.0     3
+MIV           sp3_sp3_194         H25         C25         C28         C29      60.000    10.0     3
+MIV           sp3_sp3_195         H25         C25         C28         H28     180.000    10.0     3
+MIV           sp3_sp3_196         C25         C26         C27        H271     180.000    10.0     3
+MIV           sp3_sp3_197         C25         C26         C27        H272     -60.000    10.0     3
+MIV           sp3_sp3_198         C25         C26         C27        H273      60.000    10.0     3
+MIV           sp3_sp3_199        H261         C26         C27        H271      60.000    10.0     3
+MIV           sp3_sp3_200        H261         C26         C27        H272     180.000    10.0     3
+MIV           sp3_sp3_201        H261         C26         C27        H273     -60.000    10.0     3
+MIV           sp3_sp3_202        H262         C26         C27        H271     -60.000    10.0     3
+MIV           sp3_sp3_203        H262         C26         C27        H272      60.000    10.0     3
+MIV           sp3_sp3_204        H262         C26         C27        H273     180.000    10.0     3
+MIV           sp3_sp3_205          C1         C28         C29          O7     180.000    10.0     3
+MIV           sp3_sp3_206          C1         C28         C29        H291     -60.000    10.0     3
+MIV           sp3_sp3_207          C1         C28         C29        H292      60.000    10.0     3
+MIV           sp3_sp3_208         C25         C28         C29          O7      60.000    10.0     3
+MIV           sp3_sp3_209         C25         C28         C29        H291     180.000    10.0     3
+MIV           sp3_sp3_210         C25         C28         C29        H292     -60.000    10.0     3
+MIV           sp3_sp3_211         H28         C28         C29          O7     -60.000    10.0     3
+MIV           sp3_sp3_212         H28         C28         C29        H291      60.000    10.0     3
+MIV           sp3_sp3_213         H28         C28         C29        H292     180.000    10.0     3
+MIV           sp3_sp3_214         C28         C29          O7         C30     180.000    10.0     3
+MIV           sp3_sp3_215        H291         C29          O7         C30      60.000    10.0     3
+MIV           sp3_sp3_216        H292         C29          O7         C30     -60.000    10.0     3
+MIV           sp3_sp3_217         O11         C30          O7         C29     180.000    10.0     3
+MIV           sp3_sp3_218         C31         C30          O7         C29      60.000    10.0     3
+MIV           sp3_sp3_219         H30         C30          O7         C29     -60.000    10.0     3
+MIV           sp3_sp3_229         O11         C36         C37        H371     180.000    10.0     3
+MIV           sp3_sp3_230         O11         C36         C37        H372     -60.000    10.0     3
+MIV           sp3_sp3_231         O11         C36         C37        H373      60.000    10.0     3
+MIV           sp3_sp3_232         C35         C36         C37        H371      60.000    10.0     3
+MIV           sp3_sp3_233         C35         C36         C37        H372     180.000    10.0     3
+MIV           sp3_sp3_234         C35         C36         C37        H373     -60.000    10.0     3
+MIV           sp3_sp3_235         H36         C36         C37        H371     -60.000    10.0     3
+MIV           sp3_sp3_236         H36         C36         C37        H372      60.000    10.0     3
+MIV           sp3_sp3_237         H36         C36         C37        H373     180.000    10.0     3
+MIV           sp3_sp3_238         C36         C35         O10         H10     180.000    10.0     3
+MIV           sp3_sp3_239         C33         C35         O10         H10      60.000    10.0     3
+MIV           sp3_sp3_240         H35         C35         O10         H10     -60.000    10.0     3
+MIV           sp3_sp3_241         C35         C33          O9         C34     180.000    10.0     3
+MIV           sp3_sp3_242         C31         C33          O9         C34      60.000    10.0     3
+MIV           sp3_sp3_243         H33         C33          O9         C34     -60.000    10.0     3
+MIV           sp3_sp3_244        H341         C34          O9         C33     180.000    10.0     3
+MIV           sp3_sp3_245        H342         C34          O9         C33      60.000    10.0     3
+MIV           sp3_sp3_246        H343         C34          O9         C33     -60.000    10.0     3
+MIV           sp3_sp3_247         C30         C31          O8         C32     180.000    10.0     3
+MIV           sp3_sp3_248         C33         C31          O8         C32      60.000    10.0     3
+MIV           sp3_sp3_249         H31         C31          O8         C32     -60.000    10.0     3
+MIV           sp3_sp3_250        H321         C32          O8         C31     180.000    10.0     3
+MIV           sp3_sp3_251        H322         C32          O8         C31      60.000    10.0     3
+MIV           sp3_sp3_252        H323         C32          O8         C31     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MIV    chir_1    C20    C11    C22    C21    positive
+MIV    chir_2    C11    O2    C20    C9    positive
+MIV    chir_3    C12    O2    O4    C13    positive
+MIV    chir_4    C18    O4    C17    C19    negative
+MIV    chir_5    C14    N    C13    C17    positive
+MIV    chir_6    N    C14    C16    C15    both
+MIV    chir_7    C13    O3    C12    C14    negative
+MIV    chir_8    C9    C11    C8    C10    positive
+MIV    chir_9    C6    C5    C8    C7    negative
+MIV    chir_10    C25    O6    C28    C26    negative
+MIV    chir_11    C28    C25    C29    C1    negative
+MIV    chir_12    C30    O11    O7    C31    negative
+MIV    chir_13    C36    O11    C35    C37    negative
+MIV    chir_14    C35    O10    C33    C36    negative
+MIV    chir_15    C33    O9    C31    C35    negative
+MIV    chir_16    C31    O8    C30    C33    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MIV    plan-1         C23   0.020
+MIV    plan-1         C24   0.020
+MIV    plan-1          O5   0.020
+MIV    plan-1          O6   0.020
+MIV    plan-2         C22   0.020
+MIV    plan-2         C23   0.020
+MIV    plan-2         C24   0.020
+MIV    plan-2         H23   0.020
+MIV    plan-3         C20   0.020
+MIV    plan-3         C22   0.020
+MIV    plan-3         C23   0.020
+MIV    plan-3         H22   0.020
+MIV    plan-4          C4   0.020
+MIV    plan-4          C5   0.020
+MIV    plan-4          C6   0.020
+MIV    plan-4          O1   0.020
+MIV    plan-5          C3   0.020
+MIV    plan-5          C4   0.020
+MIV    plan-5          C5   0.020
+MIV    plan-5          H4   0.020
+MIV    plan-6          C2   0.020
+MIV    plan-6          C3   0.020
+MIV    plan-6          C4   0.020
+MIV    plan-6          HA   0.020
+MIV    plan-7          C1   0.020
+MIV    plan-7          C2   0.020
+MIV    plan-7          C3   0.020
+MIV    plan-7          H2   0.020
+MIV    plan-8          C1   0.020
+MIV    plan-8          C2   0.020
+MIV    plan-8         C28   0.020
+MIV    plan-8          H1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MIV SMILES_CANONICAL               CACTVS 3.352                                                                                                                                                  CC[C@H]1OC(=O)\C=C\[C@H](C)[C@@H](O[C@@H]2O[C@H](C)C[C@@H]([C@H]2O)N(C)C)[C@@H](C)C[C@@H](C)C(=O)\C=C\C=C\[C@@H]1CO[C@@H]3O[C@H](C)[C@@H](O)[C@@H](OC)[C@H]3OC
+MIV           SMILES               CACTVS 3.352                                                                                                                                                                               CC[CH]1OC(=O)C=C[CH](C)[CH](O[CH]2O[CH](C)C[CH]([CH]2O)N(C)C)[CH](C)C[CH](C)C(=O)C=CC=C[CH]1CO[CH]3O[CH](C)[CH](O)[CH](OC)[CH]3OC
+MIV SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                                                                                             CC[C@@H]1[C@H](\C=C\C=C\C(=O)[C@@H](C[C@@H]([C@@H]([C@H](\C=C\C(=O)O1)C)O[C@H]2[C@@H]([C@H](C[C@H](O2)C)N(C)C)O)C)C)CO[C@H]3[C@@H]([C@@H]([C@@H]([C@H](O3)C)O)OC)OC
+MIV           SMILES "OpenEye OEToolkits" 1.6.1                                                                                                                                                                                                                      CCC1C(C=CC=CC(=O)C(CC(C(C(C=CC(=O)O1)C)OC2C(C(CC(O2)C)N(C)C)O)C)C)COC3C(C(C(C(O3)C)O)OC)OC
+MIV            InChI                InChI  1.03 InChI=1S/C37H61NO11/c1-11-29-26(20-45-37-35(44-10)34(43-9)31(41)25(6)47-37)14-12-13-15-28(39)22(3)18-23(4)33(21(2)16-17-30(40)48-29)49-36-32(42)27(38(7)8)19-24(5)46-36/h12-17,21-27,29,31-37,41-42H,11,18-20H2,1-10H3/b14-12+,15-13+,17-16+/t21-,22+,23-,24+,25+,26+,27-,29+,31+,32+,33+,34+,35+,36-,37+/m0/s1
+MIV         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                     DBTIHDIIXPQOFR-JMHKOBKLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MIV acedrg               243         "dictionary generator"                  
+MIV acedrg_database      11          "data source"                           
+MIV rdkit                2017.03.2   "Chemoinformatics tool"
+MIV refmac5              5.8.0238    "optimization tool"                     

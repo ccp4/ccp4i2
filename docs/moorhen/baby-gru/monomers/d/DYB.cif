@@ -1,0 +1,183 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DYB     DYB      4-(1,3,2-DIOXABOROLAN-2-YLOXY)BUTAN-1-AMINIUM     NON-POLYMER     26     11     .     
+#
+data_comp_DYB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DYB     BD      B       B       0       35.466      27.245      7.700       
+DYB     OE1     O       O2      0       34.782      27.283      8.862       
+DYB     OE2     O       O2      0       36.743      26.826      7.950       
+DYB     CZ2     C       CH2     0       37.108      25.904      6.904       
+DYB     OE3     O       O2      0       34.822      26.406      6.833       
+DYB     CZ3     C       CH2     0       35.824      25.607      6.177       
+DYB     CZ1     C       CH2     0       34.176      28.518      9.348       
+DYB     CH      C       CH2     0       33.543      28.194      10.667      
+DYB     CQ      C       CH2     0       32.894      29.400      11.331      
+DYB     CI      C       CH2     0       32.223      29.006      12.631      
+DYB     NK      N       NT3     1       31.591      30.161      13.315      
+DYB     HZ22    H       H       0       37.491      25.080      7.282       
+DYB     HZ23    H       H       0       37.766      26.308      6.294       
+DYB     HZ32    H       H       0       35.605      24.649      6.240       
+DYB     HZ33    H       H       0       35.901      25.851      5.227       
+DYB     HZ12    H       H       0       33.501      28.837      8.714       
+DYB     HZ13    H       H       0       34.859      29.211      9.458       
+DYB     HH2     H       H       0       34.227      27.829      11.266      
+DYB     HH3     H       H       0       32.864      27.500      10.530      
+DYB     HQ2     H       H       0       32.226      29.785      10.724      
+DYB     HQ3     H       H       0       33.578      30.080      11.511      
+DYB     HI2     H       H       0       32.885      28.610      13.229      
+DYB     HI3     H       H       0       31.539      28.333      12.452      
+DYB     HK1     H       H       0       30.793      29.911      13.665      
+DYB     HK2     H       H       0       31.453      30.840      12.728      
+DYB     HK3     H       H       0       32.128      30.453      13.985      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DYB          BD         OE1      SINGLE       n     1.349  0.0101     1.349  0.0101
+DYB          BD         OE2      SINGLE       n     1.367  0.0100     1.367  0.0100
+DYB          BD         OE3      SINGLE       n     1.367  0.0100     1.367  0.0100
+DYB         OE1         CZ1      SINGLE       n     1.459  0.0100     1.459  0.0100
+DYB         OE2         CZ2      SINGLE       n     1.441  0.0106     1.441  0.0106
+DYB         CZ2         CZ3      SINGLE       n     1.508  0.0200     1.508  0.0200
+DYB         OE3         CZ3      SINGLE       n     1.441  0.0106     1.441  0.0106
+DYB         CZ1          CH      SINGLE       n     1.498  0.0200     1.498  0.0200
+DYB          CH          CQ      SINGLE       n     1.522  0.0187     1.522  0.0187
+DYB          CQ          CI      SINGLE       n     1.514  0.0111     1.514  0.0111
+DYB          CI          NK      SINGLE       n     1.482  0.0123     1.482  0.0123
+DYB         CZ2        HZ22      SINGLE       n     1.089  0.0100     0.984  0.0100
+DYB         CZ2        HZ23      SINGLE       n     1.089  0.0100     0.984  0.0100
+DYB         CZ3        HZ32      SINGLE       n     1.089  0.0100     0.984  0.0100
+DYB         CZ3        HZ33      SINGLE       n     1.089  0.0100     0.984  0.0100
+DYB         CZ1        HZ12      SINGLE       n     1.089  0.0100     0.979  0.0200
+DYB         CZ1        HZ13      SINGLE       n     1.089  0.0100     0.979  0.0200
+DYB          CH         HH2      SINGLE       n     1.089  0.0100     0.980  0.0166
+DYB          CH         HH3      SINGLE       n     1.089  0.0100     0.980  0.0166
+DYB          CQ         HQ2      SINGLE       n     1.089  0.0100     0.981  0.0160
+DYB          CQ         HQ3      SINGLE       n     1.089  0.0100     0.981  0.0160
+DYB          CI         HI2      SINGLE       n     1.089  0.0100     0.976  0.0165
+DYB          CI         HI3      SINGLE       n     1.089  0.0100     0.976  0.0165
+DYB          NK         HK1      SINGLE       n     1.036  0.0160     0.907  0.0200
+DYB          NK         HK2      SINGLE       n     1.036  0.0160     0.907  0.0200
+DYB          NK         HK3      SINGLE       n     1.036  0.0160     0.907  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DYB         OE1          BD         OE2     109.471    3.00
+DYB         OE1          BD         OE3     109.471    3.00
+DYB         OE2          BD         OE3     109.471    3.00
+DYB          BD         OE1         CZ1     121.237    3.00
+DYB          BD         OE2         CZ2     107.105    1.50
+DYB         OE2         CZ2         CZ3     105.156    2.45
+DYB         OE2         CZ2        HZ22     110.920    1.50
+DYB         OE2         CZ2        HZ23     110.920    1.50
+DYB         CZ3         CZ2        HZ22     110.612    1.50
+DYB         CZ3         CZ2        HZ23     110.612    1.50
+DYB        HZ22         CZ2        HZ23     108.757    1.50
+DYB          BD         OE3         CZ3     107.105    1.50
+DYB         CZ2         CZ3         OE3     105.156    2.45
+DYB         CZ2         CZ3        HZ32     110.612    1.50
+DYB         CZ2         CZ3        HZ33     110.612    1.50
+DYB         OE3         CZ3        HZ32     110.920    1.50
+DYB         OE3         CZ3        HZ33     110.920    1.50
+DYB        HZ32         CZ3        HZ33     108.757    1.50
+DYB         OE1         CZ1          CH     106.320    1.50
+DYB         OE1         CZ1        HZ12     109.985    1.50
+DYB         OE1         CZ1        HZ13     109.985    1.50
+DYB          CH         CZ1        HZ12     110.123    1.50
+DYB          CH         CZ1        HZ13     110.123    1.50
+DYB        HZ12         CZ1        HZ13     108.500    1.50
+DYB         CZ1          CH          CQ     113.301    2.18
+DYB         CZ1          CH         HH2     108.893    1.50
+DYB         CZ1          CH         HH3     108.893    1.50
+DYB          CQ          CH         HH2     109.064    1.50
+DYB          CQ          CH         HH3     109.064    1.50
+DYB         HH2          CH         HH3     107.788    1.50
+DYB          CH          CQ          CI     110.438    1.51
+DYB          CH          CQ         HQ2     108.937    1.50
+DYB          CH          CQ         HQ3     108.937    1.50
+DYB          CI          CQ         HQ2     108.889    1.50
+DYB          CI          CQ         HQ3     108.889    1.50
+DYB         HQ2          CQ         HQ3     107.927    1.57
+DYB          CQ          CI          NK     111.734    1.84
+DYB          CQ          CI         HI2     109.576    1.50
+DYB          CQ          CI         HI3     109.576    1.50
+DYB          NK          CI         HI2     108.989    1.50
+DYB          NK          CI         HI3     108.989    1.50
+DYB         HI2          CI         HI3     108.067    1.50
+DYB          CI          NK         HK1     109.775    1.81
+DYB          CI          NK         HK2     109.775    1.81
+DYB          CI          NK         HK3     109.775    1.81
+DYB         HK1          NK         HK2     109.021    2.83
+DYB         HK1          NK         HK3     109.021    2.83
+DYB         HK2          NK         HK3     109.021    2.83
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DYB            sp3_sp3_18         OE2          BD         OE1         CZ1     180.000    10.0     3
+DYB             sp3_sp3_2         OE1          BD         OE2         CZ2     -60.000    10.0     3
+DYB            sp3_sp3_21         OE1          BD         OE3         CZ3      60.000    10.0     3
+DYB            sp3_sp3_22          CH         CZ1         OE1          BD     180.000    10.0     3
+DYB             sp3_sp3_3         CZ3         CZ2         OE2          BD     -60.000    10.0     3
+DYB             sp3_sp3_6         OE2         CZ2         CZ3         OE3      60.000    10.0     3
+DYB            sp3_sp3_15         CZ2         CZ3         OE3          BD     -60.000    10.0     3
+DYB            sp3_sp3_25          CQ          CH         CZ1         OE1     180.000    10.0     3
+DYB            sp3_sp3_34         CZ1          CH          CQ          CI     180.000    10.0     3
+DYB            sp3_sp3_43          NK          CI          CQ          CH     180.000    10.0     3
+DYB            sp3_sp3_52          CQ          CI          NK         HK1     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DYB           SMILES              ACDLabs 10.04                                       O(B1OCCO1)CCCC[NH3+]
+DYB SMILES_CANONICAL               CACTVS 3.341                                       "[NH3+]CCCCOB1OCCO1"
+DYB           SMILES               CACTVS 3.341                                       "[NH3+]CCCCOB1OCCO1"
+DYB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                       B1(OCCO1)OCCCC[NH3+]
+DYB           SMILES "OpenEye OEToolkits" 1.5.0                                       B1(OCCO1)OCCCC[NH3+]
+DYB            InChI                InChI  1.03 InChI=1S/C6H14BNO3/c8-3-1-2-4-9-7-10-5-6-11-7/h1-6,8H2/p+1
+DYB         InChIKey                InChI  1.03                                KTZDASPSWBAPAR-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DYB acedrg               243         "dictionary generator"                  
+DYB acedrg_database      11          "data source"                           
+DYB rdkit                2017.03.2   "Chemoinformatics tool"
+DYB refmac5              5.8.0238    "optimization tool"                     

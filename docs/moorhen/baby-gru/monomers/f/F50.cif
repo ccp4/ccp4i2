@@ -1,0 +1,112 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+F50     F50      "ETHANEPEROXOIC ACID"     NON-POLYMER     9     5     .     
+#
+data_comp_F50
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+F50     C       C       C       0       -26.304     71.521      -3.370      
+F50     OX1     O       OH1     0       -25.271     70.747      -5.461      
+F50     O       O       O       0       -25.881     71.946      -2.327      
+F50     OXT     O       O2      0       -25.684     70.536      -4.063      
+F50     CH3     C       CH3     0       -27.538     71.985      -4.058      
+F50     HX1     H       H       0       -24.781     71.446      -5.515      
+F50     HH31    H       H       0       -28.116     72.433      -3.420      
+F50     HH32    H       H       0       -28.006     71.222      -4.437      
+F50     HH33    H       H       0       -27.301     72.603      -4.769      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+F50           C           O      DOUBLE       n     1.203  0.0150     1.203  0.0150
+F50           C         OXT      SINGLE       n     1.352  0.0200     1.352  0.0200
+F50           C         CH3      SINGLE       n     1.487  0.0165     1.487  0.0165
+F50         OX1         OXT      SINGLE       n     1.472  0.0200     1.472  0.0200
+F50         OX1         HX1      SINGLE       n     0.970  0.0120     0.855  0.0200
+F50         CH3        HH31      SINGLE       n     1.089  0.0100     0.971  0.0140
+F50         CH3        HH32      SINGLE       n     1.089  0.0100     0.971  0.0140
+F50         CH3        HH33      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+F50           O           C         OXT     122.757    3.00
+F50           O           C         CH3     125.740    2.35
+F50         OXT           C         CH3     111.504    1.62
+F50         OXT         OX1         HX1     109.471    3.00
+F50           C         OXT         OX1     120.000    3.00
+F50           C         CH3        HH31     109.529    1.50
+F50           C         CH3        HH32     109.529    1.50
+F50           C         CH3        HH33     109.529    1.50
+F50        HH31         CH3        HH32     109.424    1.50
+F50        HH31         CH3        HH33     109.424    1.50
+F50        HH32         CH3        HH33     109.424    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+F50             sp2_sp2_1           O           C         OXT         OX1     180.000     5.0     2
+F50             sp2_sp3_1           O           C         CH3        HH31       0.000    10.0     6
+F50             sp3_sp3_2         HX1         OX1         OXT           C     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+F50    plan-1           C   0.020
+F50    plan-1         CH3   0.020
+F50    plan-1           O   0.020
+F50    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+F50           SMILES              ACDLabs 10.04                           O=C(OO)C
+F50 SMILES_CANONICAL               CACTVS 3.341                           CC(=O)OO
+F50           SMILES               CACTVS 3.341                           CC(=O)OO
+F50 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                           CC(=O)OO
+F50           SMILES "OpenEye OEToolkits" 1.5.0                           CC(=O)OO
+F50            InChI                InChI  1.03 InChI=1S/C2H4O3/c1-2(3)5-4/h4H,1H3
+F50         InChIKey                InChI  1.03        KFSLWBXXFJQRDL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+F50 acedrg               243         "dictionary generator"                  
+F50 acedrg_database      11          "data source"                           
+F50 rdkit                2017.03.2   "Chemoinformatics tool"
+F50 refmac5              5.8.0238    "optimization tool"                     

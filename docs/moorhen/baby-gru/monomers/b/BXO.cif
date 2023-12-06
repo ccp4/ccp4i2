@@ -1,0 +1,138 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BXO     BXO      "(1Z)-butanal oxime"     NON-POLYMER     15     6     .     
+#
+data_comp_BXO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BXO     C4      C       CH3     0       67.708      19.234      54.396      
+BXO     C3      C       CH2     0       67.563      20.718      54.668      
+BXO     C2      C       CH2     0       68.864      21.382      55.088      
+BXO     C1      C       C1      0       69.271      21.052      56.500      
+BXO     N1      N       N       0       70.315      21.456      57.096      
+BXO     O1      O       OH1     0       71.119      22.297      56.282      
+BXO     H4      H       H       0       66.854      18.872      54.102      
+BXO     H4A     H       H       0       67.989      18.780      55.209      
+BXO     H4B     H       H       0       68.375      19.094      53.701      
+BXO     H3      H       H       0       66.897      20.847      55.375      
+BXO     H3A     H       H       0       67.229      21.158      53.858      
+BXO     H2      H       H       0       68.765      22.355      55.001      
+BXO     H2A     H       H       0       69.575      21.101      54.473      
+BXO     H1      H       H       0       68.696      20.493      56.986      
+BXO     HO1     H       H       0       70.908      23.125      56.179      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BXO          C4          C3      SINGLE       n     1.515  0.0200     1.515  0.0200
+BXO          C3          C2      SINGLE       n     1.520  0.0200     1.520  0.0200
+BXO          C2          C1      SINGLE       n     1.501  0.0148     1.501  0.0148
+BXO          C1          N1      DOUBLE       n     1.264  0.0100     1.264  0.0100
+BXO          N1          O1      SINGLE       n     1.415  0.0195     1.415  0.0195
+BXO          C4          H4      SINGLE       n     1.089  0.0100     0.973  0.0157
+BXO          C4         H4A      SINGLE       n     1.089  0.0100     0.973  0.0157
+BXO          C4         H4B      SINGLE       n     1.089  0.0100     0.973  0.0157
+BXO          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+BXO          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+BXO          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+BXO          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0185
+BXO          C1          H1      SINGLE       n     1.082  0.0130     0.938  0.0120
+BXO          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BXO          C3          C4          H4     109.554    1.50
+BXO          C3          C4         H4A     109.554    1.50
+BXO          C3          C4         H4B     109.554    1.50
+BXO          H4          C4         H4A     109.380    1.50
+BXO          H4          C4         H4B     109.380    1.50
+BXO         H4A          C4         H4B     109.380    1.50
+BXO          C4          C3          C2     113.346    1.50
+BXO          C4          C3          H3     108.918    1.50
+BXO          C4          C3         H3A     108.918    1.50
+BXO          C2          C3          H3     108.910    1.50
+BXO          C2          C3         H3A     108.910    1.50
+BXO          H3          C3         H3A     107.763    1.50
+BXO          C3          C2          C1     113.932    1.92
+BXO          C3          C2          H2     109.184    1.50
+BXO          C3          C2         H2A     109.184    1.50
+BXO          C1          C2          H2     109.374    1.50
+BXO          C1          C2         H2A     109.374    1.50
+BXO          H2          C2         H2A     107.795    1.50
+BXO          C2          C1          N1     122.296    3.00
+BXO          C2          C1          H1     120.009    3.00
+BXO          N1          C1          H1     117.695    1.58
+BXO          C1          N1          O1     110.625    1.59
+BXO          N1          O1         HO1     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BXO             sp3_sp3_1          C2          C3          C4          H4     180.000    10.0     3
+BXO            sp3_sp3_10          C1          C2          C3          C4     180.000    10.0     3
+BXO             sp2_sp3_2          N1          C1          C2          C3     120.000    10.0     6
+BXO             sp2_sp2_1          C2          C1          N1          O1     180.000     5.0     2
+BXO             sp2_sp2_3          C1          N1          O1         HO1     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BXO    plan-1          C1   0.020
+BXO    plan-1          C2   0.020
+BXO    plan-1          H1   0.020
+BXO    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BXO           SMILES              ACDLabs 10.04                                        N(/O)=C/CCC
+BXO SMILES_CANONICAL               CACTVS 3.341                                          CCC\C=N/O
+BXO           SMILES               CACTVS 3.341                                            CCCC=NO
+BXO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          CCC\C=N/O
+BXO           SMILES "OpenEye OEToolkits" 1.5.0                                            CCCC=NO
+BXO            InChI                InChI  1.03 InChI=1S/C4H9NO/c1-2-3-4-5-6/h4,6H,2-3H2,1H3/b5-4-
+BXO         InChIKey                InChI  1.03                        KGGVGTQEGGOZRN-PLNGDYQASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BXO acedrg               243         "dictionary generator"                  
+BXO acedrg_database      11          "data source"                           
+BXO rdkit                2017.03.2   "Chemoinformatics tool"
+BXO refmac5              5.8.0238    "optimization tool"                     

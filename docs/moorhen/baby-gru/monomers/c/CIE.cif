@@ -1,0 +1,302 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CIE     CIE      "2-[[[[(4-CHLORO-6-METHOXY-2-PYRIMIDINYL)AMINO]CARBONYL]AMINO]SULFONYL]BENZOIC ACID ETHYL ESTER"     NON-POLYMER     42     27     .     
+#
+data_comp_CIE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CIE     C1      C       CR6     0       -10.629     105.694     54.563      
+CIE     C2      C       CR6     0       -11.838     104.970     54.688      
+CIE     C3      C       CR16    0       -12.761     105.328     55.668      
+CIE     C4      C       CR16    0       -12.499     106.387     56.525      
+CIE     C5      C       CR16    0       -11.323     107.099     56.415      
+CIE     C6      C       CR16    0       -10.398     106.757     55.444      
+CIE     C7      C       C       0       -9.578      105.402     53.551      
+CIE     O7      O       O       0       -9.732      105.501     52.360      
+CIE     O8      O       O2      0       -8.427      105.043     54.128      
+CIE     C9      C       CH2     0       -7.375      104.479     53.283      
+CIE     C10     C       CH3     0       -6.195      104.211     54.132      
+CIE     S11     S       S3      0       -12.255     103.610     53.639      
+CIE     OBA     O       O       0       -13.372     102.899     54.177      
+CIE     OBB     O       O       0       -12.313     104.068     52.287      
+CIE     N12     N       NH1     0       -10.983     102.587     53.725      
+CIE     C13     C       C       0       -10.564     101.948     54.855      
+CIE     O13     O       O       0       -11.168     102.012     55.905      
+CIE     N14     N       NH1     0       -9.378      101.242     54.743      
+CIE     "N1'"   N       NRD6    0       -8.238      102.028     56.629      
+CIE     "C2'"   C       CR6     0       -8.219      101.284     55.508      
+CIE     "N3'"   N       NRD6    0       -7.165      100.572     55.061      
+CIE     "C4'"   C       CR6     0       -6.066      100.618     55.799      
+CIE     "CL4'"  CL      CL      0       -4.702      99.701      55.230      
+CIE     "C5'"   C       CR16    0       -5.985      101.348     56.960      
+CIE     "C6'"   C       CR6     0       -7.121      102.056     57.359      
+CIE     "O7'"   O       O2      0       -7.230      102.831     58.459      
+CIE     "C8'"   C       CH3     0       -6.250      102.740     59.507      
+CIE     H3      H       H       0       -13.563     104.852     55.752      
+CIE     H4      H       H       0       -13.127     106.619     57.184      
+CIE     H5      H       H       0       -11.149     107.818     56.999      
+CIE     H6      H       H       0       -9.597      107.247     55.373      
+CIE     H91     H       H       0       -7.137      105.110     52.572      
+CIE     H92     H       H       0       -7.688      103.647     52.869      
+CIE     H101    H       H       0       -5.491      103.815     53.594      
+CIE     H102    H       H       0       -6.440      103.597     54.844      
+CIE     H103    H       H       0       -5.878      105.043     54.519      
+CIE     H12     H       H       0       -10.542     102.439     52.991      
+CIE     H14     H       H       0       -9.367      100.674     54.076      
+CIE     "H5'"   H       H       0       -5.199      101.369     57.467      
+CIE     "H8'1"  H       H       0       -5.397      103.070     59.181      
+CIE     "H8'2"  H       H       0       -6.156      101.814     59.785      
+CIE     "H8'3"  H       H       0       -6.538      103.277     60.263      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CIE          C1          C2      DOUBLE       y     1.405  0.0109     1.405  0.0109
+CIE          C1          C6      SINGLE       y     1.396  0.0100     1.396  0.0100
+CIE          C1          C7      SINGLE       n     1.485  0.0112     1.485  0.0112
+CIE          C2          C3      SINGLE       y     1.386  0.0100     1.386  0.0100
+CIE          C2         S11      SINGLE       n     1.763  0.0100     1.763  0.0100
+CIE          C3          C4      DOUBLE       y     1.383  0.0100     1.383  0.0100
+CIE          C4          C5      SINGLE       y     1.376  0.0124     1.376  0.0124
+CIE          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+CIE          C7          O7      DOUBLE       n     1.204  0.0101     1.204  0.0101
+CIE          C7          O8      SINGLE       n     1.332  0.0117     1.332  0.0117
+CIE          O8          C9      SINGLE       n     1.458  0.0149     1.458  0.0149
+CIE          C9         C10      SINGLE       n     1.478  0.0200     1.478  0.0200
+CIE         S11         OBA      DOUBLE       n     1.429  0.0100     1.429  0.0100
+CIE         S11         OBB      DOUBLE       n     1.429  0.0100     1.429  0.0100
+CIE         S11         N12      SINGLE       n     1.630  0.0155     1.630  0.0155
+CIE         N12         C13      SINGLE       n     1.351  0.0200     1.351  0.0200
+CIE         C13         O13      DOUBLE       n     1.212  0.0100     1.212  0.0100
+CIE         C13         N14      SINGLE       n     1.382  0.0100     1.382  0.0100
+CIE         N14       "C2'"      SINGLE       n     1.386  0.0100     1.386  0.0100
+CIE       "N1'"       "C2'"      DOUBLE       y     1.335  0.0101     1.335  0.0101
+CIE       "N1'"       "C6'"      SINGLE       y     1.329  0.0107     1.329  0.0107
+CIE       "C2'"       "N3'"      SINGLE       y     1.339  0.0101     1.339  0.0101
+CIE       "N3'"       "C4'"      DOUBLE       y     1.322  0.0100     1.322  0.0100
+CIE       "C4'"      "CL4'"      SINGLE       n     1.739  0.0100     1.739  0.0100
+CIE       "C4'"       "C5'"      SINGLE       y     1.375  0.0136     1.375  0.0136
+CIE       "C5'"       "C6'"      DOUBLE       y     1.392  0.0133     1.392  0.0133
+CIE       "C6'"       "O7'"      SINGLE       n     1.345  0.0100     1.345  0.0100
+CIE       "O7'"       "C8'"      SINGLE       n     1.435  0.0110     1.435  0.0110
+CIE          C3          H3      SINGLE       n     1.082  0.0130     0.937  0.0111
+CIE          C4          H4      SINGLE       n     1.082  0.0130     0.940  0.0176
+CIE          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+CIE          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+CIE          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0148
+CIE          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0148
+CIE         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0156
+CIE         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0156
+CIE         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0156
+CIE         N12         H12      SINGLE       n     1.016  0.0100     0.868  0.0105
+CIE         N14         H14      SINGLE       n     1.016  0.0100     0.874  0.0200
+CIE       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.935  0.0100
+CIE       "C8'"      "H8'1"      SINGLE       n     1.089  0.0100     0.971  0.0157
+CIE       "C8'"      "H8'2"      SINGLE       n     1.089  0.0100     0.971  0.0157
+CIE       "C8'"      "H8'3"      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CIE          C2          C1          C6     118.372    1.50
+CIE          C2          C1          C7     123.373    1.50
+CIE          C6          C1          C7     118.255    1.50
+CIE          C1          C2          C3     120.250    1.50
+CIE          C1          C2         S11     122.438    1.78
+CIE          C3          C2         S11     117.312    1.50
+CIE          C2          C3          C4     119.859    1.50
+CIE          C2          C3          H3     119.886    1.50
+CIE          C4          C3          H3     120.255    1.50
+CIE          C3          C4          C5     120.202    1.50
+CIE          C3          C4          H4     119.796    1.50
+CIE          C5          C4          H4     119.998    1.50
+CIE          C4          C5          C6     120.062    1.50
+CIE          C4          C5          H5     120.014    1.50
+CIE          C6          C5          H5     119.923    1.50
+CIE          C1          C6          C5     121.258    1.50
+CIE          C1          C6          H6     119.156    1.50
+CIE          C5          C6          H6     119.586    1.50
+CIE          C1          C7          O7     124.802    1.50
+CIE          C1          C7          O8     112.007    1.50
+CIE          O7          C7          O8     123.192    1.50
+CIE          C7          O8          C9     116.490    1.50
+CIE          O8          C9         C10     108.242    2.13
+CIE          O8          C9         H91     109.800    1.89
+CIE          O8          C9         H92     109.800    1.89
+CIE         C10          C9         H91     110.009    1.50
+CIE         C10          C9         H92     110.009    1.50
+CIE         H91          C9         H92     108.453    1.50
+CIE          C9         C10        H101     109.517    1.50
+CIE          C9         C10        H102     109.517    1.50
+CIE          C9         C10        H103     109.517    1.50
+CIE        H101         C10        H102     109.410    1.50
+CIE        H101         C10        H103     109.410    1.50
+CIE        H102         C10        H103     109.410    1.50
+CIE          C2         S11         OBA     109.218    1.50
+CIE          C2         S11         OBB     109.218    1.50
+CIE          C2         S11         N12     105.557    1.50
+CIE         OBA         S11         OBB     119.599    1.50
+CIE         OBA         S11         N12     106.840    2.68
+CIE         OBB         S11         N12     106.840    2.68
+CIE         S11         N12         C13     124.271    1.97
+CIE         S11         N12         H12     117.816    1.50
+CIE         C13         N12         H12     117.913    1.50
+CIE         N12         C13         O13     122.334    1.50
+CIE         N12         C13         N14     115.642    2.00
+CIE         O13         C13         N14     122.024    1.50
+CIE         C13         N14       "C2'"     130.537    1.50
+CIE         C13         N14         H14     114.173    1.50
+CIE       "C2'"         N14         H14     115.289    1.50
+CIE       "C2'"       "N1'"       "C6'"     114.790    1.50
+CIE         N14       "C2'"       "N1'"     118.038    2.82
+CIE         N14       "C2'"       "N3'"     118.036    2.81
+CIE       "N1'"       "C2'"       "N3'"     123.926    1.50
+CIE       "C2'"       "N3'"       "C4'"     115.399    1.50
+CIE       "N3'"       "C4'"      "CL4'"     116.192    1.50
+CIE       "N3'"       "C4'"       "C5'"     123.619    1.50
+CIE      "CL4'"       "C4'"       "C5'"     120.189    1.50
+CIE       "C4'"       "C5'"       "C6'"     119.663    1.50
+CIE       "C4'"       "C5'"       "H5'"     120.640    1.50
+CIE       "C6'"       "C5'"       "H5'"     119.696    1.50
+CIE       "N1'"       "C6'"       "C5'"     122.603    1.50
+CIE       "N1'"       "C6'"       "O7'"     117.663    3.00
+CIE       "C5'"       "C6'"       "O7'"     119.734    3.00
+CIE       "C6'"       "O7'"       "C8'"     117.596    1.50
+CIE       "O7'"       "C8'"      "H8'1"     109.390    1.50
+CIE       "O7'"       "C8'"      "H8'2"     109.390    1.50
+CIE       "O7'"       "C8'"      "H8'3"     109.390    1.50
+CIE      "H8'1"       "C8'"      "H8'2"     109.509    1.50
+CIE      "H8'1"       "C8'"      "H8'3"     109.509    1.50
+CIE      "H8'2"       "C8'"      "H8'3"     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CIE       const_sp2_sp2_4          C7          C1          C2         S11       0.000     5.0     2
+CIE              const_37          C7          C1          C6          C5     180.000    10.0     2
+CIE             sp2_sp2_2          C2          C1          C7          O7       0.000     5.0     2
+CIE             sp2_sp3_8         C13         N12         S11         OBA     120.000    10.0     6
+CIE             sp2_sp2_9         O13         C13         N12         S11       0.000     5.0     2
+CIE            sp2_sp2_11         N12         C13         N14       "C2'"     180.000     5.0     2
+CIE            sp2_sp2_15       "N1'"       "C2'"         N14         C13     180.000     5.0     2
+CIE              const_22         N14       "C2'"       "N1'"       "C6'"     180.000    10.0     2
+CIE              const_40       "O7'"       "C6'"       "N1'"       "C2'"     180.000    10.0     2
+CIE              const_24         N14       "C2'"       "N3'"       "C4'"     180.000    10.0     2
+CIE             sp2_sp3_1          C1          C2         S11         OBA     150.000    10.0     6
+CIE       const_sp2_sp2_7         S11          C2          C3          C4     180.000     5.0     2
+CIE              const_26      "CL4'"       "C4'"       "N3'"       "C2'"     180.000    10.0     2
+CIE              const_29      "CL4'"       "C4'"       "C5'"       "C6'"     180.000    10.0     2
+CIE              const_32       "C4'"       "C5'"       "C6'"       "O7'"     180.000    10.0     2
+CIE            sp2_sp2_19       "N1'"       "C6'"       "O7'"       "C8'"     180.000     5.0     2
+CIE            sp3_sp3_14      "H8'1"       "C8'"       "O7'"       "C6'"     -60.000    10.0     3
+CIE       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+CIE              const_13          C3          C4          C5          C6       0.000    10.0     2
+CIE              const_17          C4          C5          C6          C1       0.000    10.0     2
+CIE             sp2_sp2_6          O7          C7          O8          C9       0.000     5.0     2
+CIE             sp3_sp3_1         C10          C9          O8          C7     180.000    10.0     3
+CIE             sp3_sp3_4        H101         C10          C9          O8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CIE    chir_1    S11    OBA    OBB    N12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CIE    plan-1          C1   0.020
+CIE    plan-1          C2   0.020
+CIE    plan-1          C3   0.020
+CIE    plan-1          C4   0.020
+CIE    plan-1          C5   0.020
+CIE    plan-1          C6   0.020
+CIE    plan-1          C7   0.020
+CIE    plan-1          H3   0.020
+CIE    plan-1          H4   0.020
+CIE    plan-1          H5   0.020
+CIE    plan-1          H6   0.020
+CIE    plan-1         S11   0.020
+CIE    plan-2       "C2'"   0.020
+CIE    plan-2       "C4'"   0.020
+CIE    plan-2       "C5'"   0.020
+CIE    plan-2       "C6'"   0.020
+CIE    plan-2      "CL4'"   0.020
+CIE    plan-2       "H5'"   0.020
+CIE    plan-2       "N1'"   0.020
+CIE    plan-2         N14   0.020
+CIE    plan-2       "N3'"   0.020
+CIE    plan-2       "O7'"   0.020
+CIE    plan-3          C1   0.020
+CIE    plan-3          C7   0.020
+CIE    plan-3          O7   0.020
+CIE    plan-3          O8   0.020
+CIE    plan-4         C13   0.020
+CIE    plan-4         H12   0.020
+CIE    plan-4         N12   0.020
+CIE    plan-4         S11   0.020
+CIE    plan-5         C13   0.020
+CIE    plan-5         N12   0.020
+CIE    plan-5         N14   0.020
+CIE    plan-5         O13   0.020
+CIE    plan-6         C13   0.020
+CIE    plan-6       "C2'"   0.020
+CIE    plan-6         H14   0.020
+CIE    plan-6         N14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CIE           SMILES              ACDLabs 10.04                                                                                         O=C(Nc1nc(OC)cc(Cl)n1)NS(=O)(=O)c2ccccc2C(=O)OCC
+CIE SMILES_CANONICAL               CACTVS 3.341                                                                                       CCOC(=O)c1ccccc1[S](=O)(=O)NC(=O)Nc2nc(Cl)cc(OC)n2
+CIE           SMILES               CACTVS 3.341                                                                                       CCOC(=O)c1ccccc1[S](=O)(=O)NC(=O)Nc2nc(Cl)cc(OC)n2
+CIE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                         CCOC(=O)c1ccccc1S(=O)(=O)NC(=O)Nc2nc(cc(n2)Cl)OC
+CIE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                         CCOC(=O)c1ccccc1S(=O)(=O)NC(=O)Nc2nc(cc(n2)Cl)OC
+CIE            InChI                InChI  1.03 InChI=1S/C15H15ClN4O6S/c1-3-26-13(21)9-6-4-5-7-10(9)27(23,24)20-15(22)19-14-17-11(16)8-12(18-14)25-2/h4-8H,3H2,1-2H3,(H2,17,18,19,20,22)
+CIE         InChIKey                InChI  1.03                                                                                                              NSWAMPCUPHPTTC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CIE acedrg               243         "dictionary generator"                  
+CIE acedrg_database      11          "data source"                           
+CIE rdkit                2017.03.2   "Chemoinformatics tool"
+CIE refmac5              5.8.0238    "optimization tool"                     

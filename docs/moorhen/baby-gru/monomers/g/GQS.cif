@@ -1,0 +1,195 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GQS     GQS      N-(3-fluorophenyl)-5-methyl-1,3,4-thiadiazol-2-amine     NON-POLYMER     22     14     .     
+#
+data_comp_GQS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GQS     N1      N       NRD5    0       13.394      44.131      68.373      
+GQS     N3      N       NH1     0       14.911      41.147      69.708      
+GQS     C4      C       CR6     0       14.290      40.556      70.817      
+GQS     C5      C       CR16    0       15.046      40.238      71.938      
+GQS     C6      C       CR16    0       14.437      39.649      73.037      
+GQS     C7      C       CR16    0       13.082      39.369      73.037      
+GQS     C8      C       CR6     0       12.365      39.692      71.915      
+GQS     C1      C       CH3     0       14.212      44.806      66.105      
+GQS     C2      C       CR5     0       14.127      43.980      67.328      
+GQS     C3      C       CR5     0       14.494      42.237      68.987      
+GQS     C9      C       CR16    0       12.924      40.275      70.801      
+GQS     F1      F       F       0       11.034      39.425      71.894      
+GQS     N2      N       NRD5    0       13.594      43.128      69.348      
+GQS     S1      S       S2      0       15.086      42.623      67.480      
+GQS     H1      H       H       0       15.666      40.774      69.438      
+GQS     H2      H       H       0       15.970      40.424      71.952      
+GQS     H3      H       H       0       14.954      39.438      73.796      
+GQS     H4      H       H       0       12.665      38.968      73.784      
+GQS     H5      H       H       0       13.327      45.113      65.858      
+GQS     H6      H       H       0       14.582      44.280      65.379      
+GQS     H7      H       H       0       14.783      45.572      66.269      
+GQS     H9      H       H       0       12.402      40.486      70.044      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GQS          C1          C2      SINGLE       n     1.478  0.0100     1.478  0.0100
+GQS          C2          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+GQS          N1          C2      DOUBLE       y     1.281  0.0100     1.281  0.0100
+GQS          C3          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+GQS          N1          N2      SINGLE       y     1.395  0.0133     1.395  0.0133
+GQS          C3          N2      DOUBLE       y     1.301  0.0200     1.301  0.0200
+GQS          N3          C3      SINGLE       n     1.367  0.0190     1.367  0.0190
+GQS          N3          C4      SINGLE       n     1.397  0.0200     1.397  0.0200
+GQS          C4          C9      SINGLE       y     1.390  0.0110     1.390  0.0110
+GQS          C8          C9      DOUBLE       y     1.373  0.0102     1.373  0.0102
+GQS          C4          C5      DOUBLE       y     1.385  0.0107     1.385  0.0107
+GQS          C8          F1      SINGLE       n     1.358  0.0100     1.358  0.0100
+GQS          C7          C8      SINGLE       y     1.367  0.0100     1.367  0.0100
+GQS          C5          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+GQS          C6          C7      DOUBLE       y     1.379  0.0100     1.379  0.0100
+GQS          N3          H1      SINGLE       n     1.016  0.0100     0.884  0.0200
+GQS          C5          H2      SINGLE       n     1.082  0.0130     0.943  0.0178
+GQS          C6          H3      SINGLE       n     1.082  0.0130     0.942  0.0166
+GQS          C7          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+GQS          C1          H5      SINGLE       n     1.089  0.0100     0.969  0.0144
+GQS          C1          H6      SINGLE       n     1.089  0.0100     0.969  0.0144
+GQS          C1          H7      SINGLE       n     1.089  0.0100     0.969  0.0144
+GQS          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GQS          C2          N1          N2     107.531    1.50
+GQS          C3          N3          C4     126.633    3.00
+GQS          C3          N3          H1     116.554    2.70
+GQS          C4          N3          H1     116.813    2.03
+GQS          N3          C4          C9     120.023    2.40
+GQS          N3          C4          C5     120.023    2.40
+GQS          C9          C4          C5     119.953    2.01
+GQS          C4          C5          C6     119.769    1.50
+GQS          C4          C5          H2     120.034    1.50
+GQS          C6          C5          H2     120.196    1.50
+GQS          C5          C6          C7     120.811    1.50
+GQS          C5          C6          H3     119.610    1.50
+GQS          C7          C6          H3     119.579    1.50
+GQS          C8          C7          C6     117.548    1.50
+GQS          C8          C7          H4     121.142    1.50
+GQS          C6          C7          H4     121.310    1.50
+GQS          C9          C8          F1     117.909    1.50
+GQS          C9          C8          C7     123.559    1.50
+GQS          F1          C8          C7     118.537    1.50
+GQS          C2          C1          H5     109.610    1.50
+GQS          C2          C1          H6     109.610    1.50
+GQS          C2          C1          H7     109.610    1.50
+GQS          H5          C1          H6     109.334    1.50
+GQS          H5          C1          H7     109.334    1.50
+GQS          H6          C1          H7     109.334    1.50
+GQS          C1          C2          S1     121.248    3.00
+GQS          C1          C2          N1     130.359    1.50
+GQS          S1          C2          N1     108.393    3.00
+GQS          S1          C3          N2     108.393    3.00
+GQS          S1          C3          N3     124.628    3.00
+GQS          N2          C3          N3     126.979    3.00
+GQS          C4          C9          C8     118.360    1.50
+GQS          C4          C9          H9     120.370    1.50
+GQS          C8          C9          H9     121.270    1.50
+GQS          N1          N2          C3     107.290    1.50
+GQS          C2          S1          C3     108.393    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GQS              const_29          C2          N1          N2          C3       0.000    10.0     2
+GQS       const_sp2_sp2_2          C1          C2          N1          N2     180.000     5.0     2
+GQS             sp2_sp2_5          C9          C4          N3          C3     180.000     5.0     2
+GQS             sp2_sp2_1          S1          C3          N3          C4     180.000     5.0     2
+GQS              const_11          N3          C4          C9          C8     180.000    10.0     2
+GQS              const_32          N3          C4          C5          C6     180.000    10.0     2
+GQS              const_25          C4          C5          C6          C7       0.000    10.0     2
+GQS              const_21          C5          C6          C7          C8       0.000    10.0     2
+GQS              const_18          C6          C7          C8          F1     180.000    10.0     2
+GQS              const_15          F1          C8          C9          C4     180.000    10.0     2
+GQS             sp2_sp3_1          S1          C2          C1          H5     150.000    10.0     6
+GQS       const_sp2_sp2_4          C1          C2          S1          C3     180.000     5.0     2
+GQS       const_sp2_sp2_8          N3          C3          N2          N1     180.000     5.0     2
+GQS       const_sp2_sp2_6          N3          C3          S1          C2     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GQS    plan-1          C1   0.020
+GQS    plan-1          C2   0.020
+GQS    plan-1          C3   0.020
+GQS    plan-1          N1   0.020
+GQS    plan-1          N2   0.020
+GQS    plan-1          N3   0.020
+GQS    plan-1          S1   0.020
+GQS    plan-2          C4   0.020
+GQS    plan-2          C5   0.020
+GQS    plan-2          C6   0.020
+GQS    plan-2          C7   0.020
+GQS    plan-2          C8   0.020
+GQS    plan-2          C9   0.020
+GQS    plan-2          F1   0.020
+GQS    plan-2          H2   0.020
+GQS    plan-2          H3   0.020
+GQS    plan-2          H4   0.020
+GQS    plan-2          H9   0.020
+GQS    plan-2          N3   0.020
+GQS    plan-3          C3   0.020
+GQS    plan-3          C4   0.020
+GQS    plan-3          H1   0.020
+GQS    plan-3          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GQS           SMILES              ACDLabs 12.01                                                      n2nc(Nc1cccc(c1)F)sc2C
+GQS            InChI                InChI  1.03 InChI=1S/C9H8FN3S/c1-6-12-13-9(14-6)11-8-4-2-3-7(10)5-8/h2-5H,1H3,(H,11,13)
+GQS         InChIKey                InChI  1.03                                                 YJCLSQDDYPKKDX-UHFFFAOYSA-N
+GQS SMILES_CANONICAL               CACTVS 3.385                                                      Cc1sc(Nc2cccc(F)c2)nn1
+GQS           SMILES               CACTVS 3.385                                                      Cc1sc(Nc2cccc(F)c2)nn1
+GQS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                      Cc1nnc(s1)Nc2cccc(c2)F
+GQS           SMILES "OpenEye OEToolkits" 2.0.6                                                      Cc1nnc(s1)Nc2cccc(c2)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GQS acedrg               243         "dictionary generator"                  
+GQS acedrg_database      11          "data source"                           
+GQS rdkit                2017.03.2   "Chemoinformatics tool"
+GQS refmac5              5.8.0238    "optimization tool"                     

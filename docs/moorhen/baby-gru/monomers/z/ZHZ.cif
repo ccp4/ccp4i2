@@ -1,0 +1,191 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZHZ     ZHZ      2-(4-METHOXYPHENYL)ACETAMIDE     NON-POLYMER     23     12     .     
+#
+data_comp_ZHZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZHZ     O2      O       O       0       2.857       -4.290      40.379      
+ZHZ     CA      C       C       0       3.129       -3.124      40.071      
+ZHZ     N2      N       NH2     0       3.663       -2.259      40.924      
+ZHZ     CB      C       CH2     0       2.859       -2.601      38.671      
+ZHZ     CG      C       CR6     0       4.070       -2.735      37.778      
+ZHZ     CD2     C       CR16    0       5.164       -1.890      37.920      
+ZHZ     CE2     C       CR16    0       6.282       -2.002      37.104      
+ZHZ     CZ      C       CR6     0       6.323       -2.983      36.113      
+ZHZ     O1      O       O2      0       7.356       -3.210      35.236      
+ZHZ     CF1     C       CH3     0       8.547       -2.429      35.314      
+ZHZ     CE1     C       CR16    0       5.235       -3.836      35.958      
+ZHZ     CD1     C       CR16    0       4.127       -3.706      36.785      
+ZHZ     HN21    H       H       0       3.834       -2.503      41.757      
+ZHZ     HN22    H       H       0       3.858       -1.435      40.670      
+ZHZ     HB1     H       H       0       2.598       -1.661      38.723      
+ZHZ     HB2     H       H       0       2.114       -3.100      38.283      
+ZHZ     HD2     H       H       0       5.148       -1.223      38.586      
+ZHZ     HE2     H       H       0       7.009       -1.414      37.225      
+ZHZ     HF11    H       H       0       8.948       -2.534      36.192      
+ZHZ     HF12    H       H       0       8.331       -1.493      35.165      
+ZHZ     HF13    H       H       0       9.173       -2.727      34.634      
+ZHZ     HE1     H       H       0       5.250       -4.503      35.292      
+ZHZ     HD1     H       H       0       3.397       -4.291      36.669      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZHZ          O2          CA      DOUBLE       n     1.236  0.0100     1.236  0.0100
+ZHZ          CA          N2      SINGLE       n     1.325  0.0106     1.325  0.0106
+ZHZ          CA          CB      SINGLE       n     1.517  0.0100     1.517  0.0100
+ZHZ          CB          CG      SINGLE       n     1.510  0.0100     1.510  0.0100
+ZHZ          CG         CD2      DOUBLE       y     1.387  0.0100     1.387  0.0100
+ZHZ          CG         CD1      SINGLE       y     1.387  0.0100     1.387  0.0100
+ZHZ         CD2         CE2      SINGLE       y     1.385  0.0100     1.385  0.0100
+ZHZ         CE2          CZ      DOUBLE       y     1.386  0.0109     1.386  0.0109
+ZHZ          CZ          O1      SINGLE       n     1.369  0.0100     1.369  0.0100
+ZHZ          CZ         CE1      SINGLE       y     1.386  0.0109     1.386  0.0109
+ZHZ          O1         CF1      SINGLE       n     1.424  0.0117     1.424  0.0117
+ZHZ         CE1         CD1      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ZHZ          N2        HN21      SINGLE       n     1.016  0.0100     0.884  0.0200
+ZHZ          N2        HN22      SINGLE       n     1.016  0.0100     0.884  0.0200
+ZHZ          CB         HB1      SINGLE       n     1.089  0.0100     0.977  0.0143
+ZHZ          CB         HB2      SINGLE       n     1.089  0.0100     0.977  0.0143
+ZHZ         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZHZ         CE2         HE2      SINGLE       n     1.082  0.0130     0.943  0.0169
+ZHZ         CF1        HF11      SINGLE       n     1.089  0.0100     0.971  0.0157
+ZHZ         CF1        HF12      SINGLE       n     1.089  0.0100     0.971  0.0157
+ZHZ         CF1        HF13      SINGLE       n     1.089  0.0100     0.971  0.0157
+ZHZ         CE1         HE1      SINGLE       n     1.082  0.0130     0.943  0.0169
+ZHZ         CD1         HD1      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZHZ          O2          CA          N2     123.196    1.50
+ZHZ          O2          CA          CB     121.459    1.50
+ZHZ          N2          CA          CB     115.345    1.97
+ZHZ          CA          N2        HN21     120.359    1.50
+ZHZ          CA          N2        HN22     120.359    1.50
+ZHZ        HN21          N2        HN22     119.283    2.38
+ZHZ          CA          CB          CG     111.650    2.25
+ZHZ          CA          CB         HB1     109.114    1.50
+ZHZ          CA          CB         HB2     109.114    1.50
+ZHZ          CG          CB         HB1     109.288    1.50
+ZHZ          CG          CB         HB2     109.288    1.50
+ZHZ         HB1          CB         HB2     108.049    1.50
+ZHZ          CB          CG         CD2     121.080    1.50
+ZHZ          CB          CG         CD1     121.080    1.50
+ZHZ         CD2          CG         CD1     117.841    1.50
+ZHZ          CG         CD2         CE2     121.479    1.50
+ZHZ          CG         CD2         HD2     119.314    1.50
+ZHZ         CE2         CD2         HD2     119.207    1.50
+ZHZ         CD2         CE2          CZ     119.690    1.50
+ZHZ         CD2         CE2         HE2     120.174    1.50
+ZHZ          CZ         CE2         HE2     120.137    1.50
+ZHZ         CE2          CZ          O1     120.089    3.00
+ZHZ         CE2          CZ         CE1     119.823    1.50
+ZHZ          O1          CZ         CE1     120.089    3.00
+ZHZ          CZ          O1         CF1     117.529    1.50
+ZHZ          O1         CF1        HF11     109.428    1.50
+ZHZ          O1         CF1        HF12     109.428    1.50
+ZHZ          O1         CF1        HF13     109.428    1.50
+ZHZ        HF11         CF1        HF12     109.509    1.50
+ZHZ        HF11         CF1        HF13     109.509    1.50
+ZHZ        HF12         CF1        HF13     109.509    1.50
+ZHZ          CZ         CE1         CD1     119.690    1.50
+ZHZ          CZ         CE1         HE1     120.137    1.50
+ZHZ         CD1         CE1         HE1     120.174    1.50
+ZHZ          CG         CD1         CE1     121.479    1.50
+ZHZ          CG         CD1         HD1     119.314    1.50
+ZHZ         CE1         CD1         HD1     119.207    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZHZ              const_17          CG         CD1         CE1          CZ       0.000    10.0     2
+ZHZ             sp2_sp2_3          O2          CA          N2        HN21       0.000     5.0     2
+ZHZ             sp2_sp3_2          O2          CA          CB          CG     120.000    10.0     6
+ZHZ             sp2_sp3_8         CD2          CG          CB          CA     -90.000    10.0     6
+ZHZ              const_22         CE1         CD1          CG          CB     180.000    10.0     2
+ZHZ       const_sp2_sp2_2         CE2         CD2          CG          CB     180.000     5.0     2
+ZHZ       const_sp2_sp2_5          CG         CD2         CE2          CZ       0.000     5.0     2
+ZHZ              const_10         CD2         CE2          CZ          O1     180.000    10.0     2
+ZHZ              const_14         CD1         CE1          CZ          O1     180.000    10.0     2
+ZHZ             sp2_sp2_5         CE2          CZ          O1         CF1     180.000     5.0     2
+ZHZ             sp3_sp3_2        HF11         CF1          O1          CZ     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZHZ    plan-1          CB   0.020
+ZHZ    plan-1         CD1   0.020
+ZHZ    plan-1         CD2   0.020
+ZHZ    plan-1         CE1   0.020
+ZHZ    plan-1         CE2   0.020
+ZHZ    plan-1          CG   0.020
+ZHZ    plan-1          CZ   0.020
+ZHZ    plan-1         HD1   0.020
+ZHZ    plan-1         HD2   0.020
+ZHZ    plan-1         HE1   0.020
+ZHZ    plan-1         HE2   0.020
+ZHZ    plan-1          O1   0.020
+ZHZ    plan-2          CA   0.020
+ZHZ    plan-2          CB   0.020
+ZHZ    plan-2          N2   0.020
+ZHZ    plan-2          O2   0.020
+ZHZ    plan-3          CA   0.020
+ZHZ    plan-3        HN21   0.020
+ZHZ    plan-3        HN22   0.020
+ZHZ    plan-3          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZHZ           SMILES              ACDLabs 10.04                                                      O=C(N)Cc1ccc(OC)cc1
+ZHZ SMILES_CANONICAL               CACTVS 3.341                                                      COc1ccc(CC(N)=O)cc1
+ZHZ           SMILES               CACTVS 3.341                                                      COc1ccc(CC(N)=O)cc1
+ZHZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      COc1ccc(cc1)CC(=O)N
+ZHZ           SMILES "OpenEye OEToolkits" 1.5.0                                                      COc1ccc(cc1)CC(=O)N
+ZHZ            InChI                InChI  1.03 InChI=1S/C9H11NO2/c1-12-8-4-2-7(3-5-8)6-9(10)11/h2-5H,6H2,1H3,(H2,10,11)
+ZHZ         InChIKey                InChI  1.03                                              OLKQIWCQICCYQS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZHZ acedrg               243         "dictionary generator"                  
+ZHZ acedrg_database      11          "data source"                           
+ZHZ rdkit                2017.03.2   "Chemoinformatics tool"
+ZHZ refmac5              5.8.0238    "optimization tool"                     

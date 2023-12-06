@@ -1,0 +1,290 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DZ9     DZ9      3-amino-N-(3-fluorophenyl)-6-thiophen-2-ylthieno[2,3-b]pyridine-2-carboxamide     NON-POLYMER     37     25     .     
+#
+data_comp_DZ9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DZ9     CAL     C       CR16    0       13.415      -17.991     -8.467      
+DZ9     CAR     C       CR6     0       12.382      -18.859     -8.742      
+DZ9     FAC     F       F       0       12.263      -19.969     -7.970      
+DZ9     CAG     C       CR16    0       11.472      -18.662     -9.748      
+DZ9     CAE     C       CR16    0       11.608      -17.526     -10.524     
+DZ9     CAH     C       CR16    0       12.630      -16.619     -10.291     
+DZ9     CAS     C       CR6     0       13.536      -16.847     -9.256      
+DZ9     NAN     N       NH1     0       14.577      -15.944     -9.014      
+DZ9     CAQ     C       C       0       15.905      -16.164     -9.207      
+DZ9     OAB     O       O       0       16.358      -17.155     -9.779      
+DZ9     CAW     C       CR5     0       16.823      -15.134     -8.688      
+DZ9     CAT     C       CR5     0       18.199      -15.191     -8.587      
+DZ9     NAA     N       NH2     0       18.982      -16.293     -8.976      
+DZ9     SAP     S       S2      0       16.261      -13.657     -8.125      
+DZ9     CAY     C       CR56    0       17.754      -13.033     -7.727      
+DZ9     NAM     N       NRD6    0       18.051      -11.828     -7.196      
+DZ9     CAX     C       CR56    0       18.749      -13.999     -8.039      
+DZ9     CAK     C       CR16    0       20.079      -13.637     -7.766      
+DZ9     CAJ     C       CR16    0       20.362      -12.402     -7.224      
+DZ9     CAU     C       CR6     0       19.327      -11.510     -6.946      
+DZ9     CAV     C       CR5     0       19.600      -10.182     -6.366      
+DZ9     CAI     C       CR15    0       20.815      -9.620      -6.009      
+DZ9     CAD     C       CR15    0       20.662      -8.294      -5.475      
+DZ9     CAF     C       CR15    0       19.362      -7.910      -5.448      
+DZ9     SAO     S       S2      0       18.367      -9.102      -6.044      
+DZ9     HAL     H       H       0       14.020      -18.164     -7.765      
+DZ9     HAG     H       H       0       10.776      -19.282     -9.904      
+DZ9     HAE     H       H       0       10.995      -17.366     -11.221     
+DZ9     HAH     H       H       0       12.711      -15.848     -10.828     
+DZ9     HNAN    H       H       0       14.342      -15.156     -8.712      
+DZ9     HNAA    H       H       0       19.833      -16.277     -8.855      
+DZ9     HNAB    H       H       0       18.611      -16.981     -9.334      
+DZ9     HAK     H       H       0       20.776      -14.242     -7.954      
+DZ9     HAJ     H       H       0       21.256      -12.170     -7.045      
+DZ9     HAI     H       H       0       21.648      -10.050     -6.103      
+DZ9     HAD     H       H       0       21.382      -7.762      -5.180      
+DZ9     HAF     H       H       0       19.015      -7.089      -5.142      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DZ9         CAL         CAR      DOUBLE       y     1.373  0.0102     1.373  0.0102
+DZ9         CAL         CAS      SINGLE       y     1.391  0.0100     1.391  0.0100
+DZ9         CAR         CAG      SINGLE       y     1.367  0.0100     1.367  0.0100
+DZ9         CAR         FAC      SINGLE       n     1.358  0.0100     1.358  0.0100
+DZ9         CAG         CAE      DOUBLE       y     1.379  0.0100     1.379  0.0100
+DZ9         CAE         CAH      SINGLE       y     1.383  0.0100     1.383  0.0100
+DZ9         CAH         CAS      DOUBLE       y     1.390  0.0100     1.390  0.0100
+DZ9         CAS         NAN      SINGLE       n     1.399  0.0100     1.399  0.0100
+DZ9         NAN         CAQ      SINGLE       n     1.356  0.0102     1.356  0.0102
+DZ9         CAQ         OAB      DOUBLE       n     1.229  0.0124     1.229  0.0124
+DZ9         CAQ         CAW      SINGLE       n     1.469  0.0113     1.469  0.0113
+DZ9         CAW         CAT      DOUBLE       y     1.375  0.0100     1.375  0.0100
+DZ9         CAW         SAP      SINGLE       y     1.695  0.0200     1.695  0.0200
+DZ9         CAT         NAA      SINGLE       n     1.402  0.0200     1.402  0.0200
+DZ9         CAT         CAX      SINGLE       y     1.411  0.0113     1.411  0.0113
+DZ9         SAP         CAY      SINGLE       y     1.695  0.0200     1.695  0.0200
+DZ9         CAY         CAX      DOUBLE       y     1.401  0.0200     1.401  0.0200
+DZ9         CAY         NAM      SINGLE       y     1.338  0.0188     1.338  0.0188
+DZ9         NAM         CAU      DOUBLE       y     1.333  0.0109     1.333  0.0109
+DZ9         CAX         CAK      SINGLE       y     1.401  0.0100     1.401  0.0100
+DZ9         CAK         CAJ      DOUBLE       y     1.373  0.0102     1.373  0.0102
+DZ9         CAJ         CAU      SINGLE       y     1.386  0.0125     1.386  0.0125
+DZ9         CAU         CAV      SINGLE       n     1.469  0.0104     1.469  0.0104
+DZ9         CAV         CAI      DOUBLE       y     1.363  0.0200     1.363  0.0200
+DZ9         CAV         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+DZ9         CAI         CAD      SINGLE       y     1.413  0.0154     1.413  0.0154
+DZ9         CAD         CAF      DOUBLE       y     1.343  0.0200     1.343  0.0200
+DZ9         CAF         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+DZ9         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0121
+DZ9         CAG         HAG      SINGLE       n     1.082  0.0130     0.945  0.0200
+DZ9         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0166
+DZ9         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0178
+DZ9         NAN        HNAN      SINGLE       n     1.016  0.0100     0.874  0.0200
+DZ9         NAA        HNAA      SINGLE       n     1.016  0.0100     0.860  0.0100
+DZ9         NAA        HNAB      SINGLE       n     1.016  0.0100     0.860  0.0100
+DZ9         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0182
+DZ9         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0177
+DZ9         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0154
+DZ9         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0153
+DZ9         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DZ9         CAR         CAL         CAS     117.741    1.50
+DZ9         CAR         CAL         HAL     121.080    1.50
+DZ9         CAS         CAL         HAL     121.179    1.50
+DZ9         CAL         CAR         CAG     123.856    1.50
+DZ9         CAL         CAR         FAC     117.761    1.50
+DZ9         CAG         CAR         FAC     118.384    1.50
+DZ9         CAR         CAG         CAE     117.844    1.50
+DZ9         CAR         CAG         HAG     120.993    1.50
+DZ9         CAE         CAG         HAG     121.162    1.50
+DZ9         CAG         CAE         CAH     121.108    1.50
+DZ9         CAG         CAE         HAE     119.431    1.50
+DZ9         CAH         CAE         HAE     119.462    1.50
+DZ9         CAE         CAH         CAS     119.808    1.50
+DZ9         CAE         CAH         HAH     120.162    1.50
+DZ9         CAS         CAH         HAH     120.030    1.50
+DZ9         CAL         CAS         CAH     119.642    1.50
+DZ9         CAL         CAS         NAN     120.246    3.00
+DZ9         CAH         CAS         NAN     120.111    3.00
+DZ9         CAS         NAN         CAQ     127.265    2.35
+DZ9         CAS         NAN        HNAN     116.236    1.71
+DZ9         CAQ         NAN        HNAN     116.498    1.98
+DZ9         NAN         CAQ         OAB     124.297    1.50
+DZ9         NAN         CAQ         CAW     114.856    1.50
+DZ9         OAB         CAQ         CAW     120.847    1.72
+DZ9         CAQ         CAW         CAT     131.412    3.00
+DZ9         CAQ         CAW         SAP     120.385    3.00
+DZ9         CAT         CAW         SAP     108.203    3.00
+DZ9         CAW         CAT         NAA     127.455    2.46
+DZ9         CAW         CAT         CAX     107.603    1.50
+DZ9         NAA         CAT         CAX     124.943    1.53
+DZ9         CAT         NAA        HNAA     119.884    1.50
+DZ9         CAT         NAA        HNAB     119.884    1.50
+DZ9        HNAA         NAA        HNAB     120.232    1.82
+DZ9         CAW         SAP         CAY     108.203    3.00
+DZ9         SAP         CAY         CAX     108.203    3.00
+DZ9         SAP         CAY         NAM     128.865    3.00
+DZ9         CAX         CAY         NAM     122.932    2.68
+DZ9         CAY         NAM         CAU     118.256    2.19
+DZ9         CAT         CAX         CAY     107.788    1.70
+DZ9         CAT         CAX         CAK     132.958    1.50
+DZ9         CAY         CAX         CAK     119.254    2.44
+DZ9         CAX         CAK         CAJ     118.998    1.50
+DZ9         CAX         CAK         HAK     120.287    1.50
+DZ9         CAJ         CAK         HAK     120.715    1.50
+DZ9         CAK         CAJ         CAU     119.192    1.50
+DZ9         CAK         CAJ         HAJ     120.073    1.50
+DZ9         CAU         CAJ         HAJ     120.736    1.50
+DZ9         NAM         CAU         CAJ     121.369    1.50
+DZ9         NAM         CAU         CAV     117.266    1.64
+DZ9         CAJ         CAU         CAV     121.365    1.64
+DZ9         CAU         CAV         CAI     130.777    3.00
+DZ9         CAU         CAV         SAO     120.865    3.00
+DZ9         CAI         CAV         SAO     108.358    3.00
+DZ9         CAV         CAI         CAD     107.531    1.50
+DZ9         CAV         CAI         HAI     126.619    1.50
+DZ9         CAD         CAI         HAI     125.850    1.50
+DZ9         CAI         CAD         CAF     107.395    1.50
+DZ9         CAI         CAD         HAD     125.937    1.50
+DZ9         CAF         CAD         HAD     126.667    1.50
+DZ9         CAD         CAF         SAO     108.358    3.00
+DZ9         CAD         CAF         HAF     128.449    2.40
+DZ9         SAO         CAF         HAF     123.193    3.00
+DZ9         CAV         SAO         CAF     108.358    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DZ9              const_16         CAS         CAL         CAR         FAC     180.000    10.0     2
+DZ9              const_64         CAR         CAL         CAS         NAN     180.000    10.0     2
+DZ9              const_56         NAA         CAT         CAW         CAQ       0.000    10.0     2
+DZ9              const_68         CAQ         CAW         SAP         CAY     180.000    10.0     2
+DZ9            sp2_sp2_13         CAW         CAT         NAA        HNAA     180.000     5.0     2
+DZ9              const_59         NAA         CAT         CAX         CAY     180.000    10.0     2
+DZ9              const_61         CAX         CAY         SAP         CAW       0.000    10.0     2
+DZ9              const_70         SAP         CAY         NAM         CAU     180.000    10.0     2
+DZ9              const_35         CAT         CAX         CAY         SAP       0.000    10.0     2
+DZ9              const_51         CAJ         CAU         NAM         CAY       0.000    10.0     2
+DZ9              const_40         CAJ         CAK         CAX         CAT     180.000    10.0     2
+DZ9              const_43         CAU         CAJ         CAK         CAX       0.000    10.0     2
+DZ9              const_47         CAK         CAJ         CAU         NAM       0.000    10.0     2
+DZ9            sp2_sp2_19         NAM         CAU         CAV         CAI       0.000     5.0     2
+DZ9              const_20         CAE         CAG         CAR         FAC     180.000    10.0     2
+DZ9       const_sp2_sp2_2         CAD         CAI         CAV         CAU     180.000     5.0     2
+DZ9              const_72         CAU         CAV         SAO         CAF     180.000    10.0     2
+DZ9       const_sp2_sp2_5         CAF         CAD         CAI         CAV       0.000     5.0     2
+DZ9       const_sp2_sp2_9         CAI         CAD         CAF         SAO       0.000     5.0     2
+DZ9              const_13         CAD         CAF         SAO         CAV       0.000    10.0     2
+DZ9              const_23         CAH         CAE         CAG         CAR       0.000    10.0     2
+DZ9              const_27         CAG         CAE         CAH         CAS       0.000    10.0     2
+DZ9              const_32         CAE         CAH         CAS         NAN     180.000    10.0     2
+DZ9             sp2_sp2_1         CAL         CAS         NAN         CAQ     180.000     5.0     2
+DZ9             sp2_sp2_7         OAB         CAQ         NAN         CAS       0.000     5.0     2
+DZ9             sp2_sp2_9         NAN         CAQ         CAW         CAT     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DZ9    plan-1         CAJ   0.020
+DZ9    plan-1         CAK   0.020
+DZ9    plan-1         CAQ   0.020
+DZ9    plan-1         CAT   0.020
+DZ9    plan-1         CAU   0.020
+DZ9    plan-1         CAV   0.020
+DZ9    plan-1         CAW   0.020
+DZ9    plan-1         CAX   0.020
+DZ9    plan-1         CAY   0.020
+DZ9    plan-1         HAJ   0.020
+DZ9    plan-1         HAK   0.020
+DZ9    plan-1         NAA   0.020
+DZ9    plan-1         NAM   0.020
+DZ9    plan-1         SAP   0.020
+DZ9    plan-2         CAE   0.020
+DZ9    plan-2         CAG   0.020
+DZ9    plan-2         CAH   0.020
+DZ9    plan-2         CAL   0.020
+DZ9    plan-2         CAR   0.020
+DZ9    plan-2         CAS   0.020
+DZ9    plan-2         FAC   0.020
+DZ9    plan-2         HAE   0.020
+DZ9    plan-2         HAG   0.020
+DZ9    plan-2         HAH   0.020
+DZ9    plan-2         HAL   0.020
+DZ9    plan-2         NAN   0.020
+DZ9    plan-3         CAD   0.020
+DZ9    plan-3         CAF   0.020
+DZ9    plan-3         CAI   0.020
+DZ9    plan-3         CAU   0.020
+DZ9    plan-3         CAV   0.020
+DZ9    plan-3         HAD   0.020
+DZ9    plan-3         HAF   0.020
+DZ9    plan-3         HAI   0.020
+DZ9    plan-3         SAO   0.020
+DZ9    plan-4         CAQ   0.020
+DZ9    plan-4         CAS   0.020
+DZ9    plan-4        HNAN   0.020
+DZ9    plan-4         NAN   0.020
+DZ9    plan-5         CAQ   0.020
+DZ9    plan-5         CAW   0.020
+DZ9    plan-5         NAN   0.020
+DZ9    plan-5         OAB   0.020
+DZ9    plan-6         CAT   0.020
+DZ9    plan-6        HNAA   0.020
+DZ9    plan-6        HNAB   0.020
+DZ9    plan-6         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DZ9           SMILES              ACDLabs 10.04                                                                                  Fc1cccc(c1)NC(=O)c3sc2nc(ccc2c3N)c4sccc4
+DZ9 SMILES_CANONICAL               CACTVS 3.341                                                                                Nc1c(sc2nc(ccc12)c3sccc3)C(=O)Nc4cccc(F)c4
+DZ9           SMILES               CACTVS 3.341                                                                                Nc1c(sc2nc(ccc12)c3sccc3)C(=O)Nc4cccc(F)c4
+DZ9 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                              c1cc(cc(c1)F)NC(=O)c2c(c3ccc(nc3s2)c4cccs4)N
+DZ9           SMILES "OpenEye OEToolkits" 1.5.0                                                                              c1cc(cc(c1)F)NC(=O)c2c(c3ccc(nc3s2)c4cccs4)N
+DZ9            InChI                InChI  1.03 InChI=1S/C18H12FN3OS2/c19-10-3-1-4-11(9-10)21-17(23)16-15(20)12-6-7-13(22-18(12)25-16)14-5-2-8-24-14/h1-9H,20H2,(H,21,23)
+DZ9         InChIKey                InChI  1.03                                                                                               UCTSEHMMSSIODN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DZ9 acedrg               243         "dictionary generator"                  
+DZ9 acedrg_database      11          "data source"                           
+DZ9 rdkit                2017.03.2   "Chemoinformatics tool"
+DZ9 refmac5              5.8.0238    "optimization tool"                     

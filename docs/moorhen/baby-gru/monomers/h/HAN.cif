@@ -1,0 +1,260 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HAN     HAN      "2-AMINO-5,6-DIMETHYL-BENZIMIDAZOLE-1-PENTANOIC ACID"     NON-POLYMER     37     19     .     
+#
+data_comp_HAN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HAN     N1      N       NT      0       -0.236      116.782     61.228      
+HAN     C2      C       CR5     0       0.417       118.002     61.109      
+HAN     N3      N       NRD5    0       1.218       118.256     62.126      
+HAN     C4      C       CR16    0       1.710       116.873     64.186      
+HAN     C5      C       CR6     0       1.423       115.684     64.841      
+HAN     C6      C       CR6     0       0.500       114.751     64.269      
+HAN     C7      C       CR16    0       -0.112      115.028     63.049      
+HAN     C9      C       CR56    0       1.094       117.149     62.963      
+HAN     C8      C       CR56    0       0.196       116.231     62.412      
+HAN     C10     C       CH3     0       2.106       115.418     66.162      
+HAN     C11     C       CH3     0       0.172       113.452     64.967      
+HAN     N12     N       NH2     0       0.250       118.832     60.070      
+HAN     C13     C       CH2     0       -1.189      116.148     60.313      
+HAN     C14     C       CH2     0       -0.508      115.274     59.275      
+HAN     C15     C       CH2     0       -1.492      114.532     58.383      
+HAN     C16     C       CH2     0       -2.034      115.358     57.254      
+HAN     C17     C       C       0       -2.745      114.559     56.175      
+HAN     O18     O       O       0       -2.365      114.690     54.993      
+HAN     O19     O       OC      -1      -3.679      113.807     56.518      
+HAN     H4      H       H       0       2.316       117.487     64.564      
+HAN     H7      H       H       0       -0.725      114.413     62.662      
+HAN     H101    H       H       0       2.084       114.472     66.373      
+HAN     H102    H       H       0       1.656       115.914     66.865      
+HAN     H103    H       H       0       3.031       115.708     66.110      
+HAN     H111    H       H       0       -0.529      112.985     64.485      
+HAN     H112    H       H       0       -0.129      113.636     65.871      
+HAN     H113    H       H       0       0.965       112.892     65.000      
+HAN     H121    H       H       0       0.681       119.592     60.054      
+HAN     H122    H       H       0       -0.278      118.612     59.412      
+HAN     H131    H       H       0       -1.705      116.845     59.862      
+HAN     H132    H       H       0       -1.811      115.604     60.835      
+HAN     H141    H       H       0       0.060       114.620     59.734      
+HAN     H142    H       H       0       0.072       115.835     58.717      
+HAN     H151    H       H       0       -2.239      114.217     58.934      
+HAN     H152    H       H       0       -1.045      113.742     58.014      
+HAN     H161    H       H       0       -1.296      115.853     56.838      
+HAN     H162    H       H       0       -2.663      116.016     57.618      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HAN          N1          C2      SINGLE       y     1.379  0.0173     1.379  0.0173
+HAN          N1          C8      SINGLE       y     1.375  0.0116     1.375  0.0116
+HAN          N1         C13      SINGLE       n     1.464  0.0101     1.464  0.0101
+HAN          C2          N3      DOUBLE       y     1.318  0.0100     1.318  0.0100
+HAN          C2         N12      SINGLE       n     1.338  0.0108     1.338  0.0108
+HAN          N3          C9      SINGLE       y     1.394  0.0100     1.394  0.0100
+HAN          C4          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+HAN          C4          C9      DOUBLE       y     1.395  0.0100     1.395  0.0100
+HAN          C5          C6      DOUBLE       y     1.422  0.0100     1.422  0.0100
+HAN          C5         C10      SINGLE       n     1.508  0.0100     1.508  0.0100
+HAN          C6          C7      SINGLE       y     1.387  0.0100     1.387  0.0100
+HAN          C6         C11      SINGLE       n     1.507  0.0100     1.507  0.0100
+HAN          C7          C8      DOUBLE       y     1.393  0.0100     1.393  0.0100
+HAN          C9          C8      SINGLE       y     1.397  0.0100     1.397  0.0100
+HAN         C13         C14      SINGLE       n     1.518  0.0169     1.518  0.0169
+HAN         C14         C15      SINGLE       n     1.519  0.0164     1.519  0.0164
+HAN         C15         C16      SINGLE       n     1.497  0.0200     1.497  0.0200
+HAN         C16         C17      SINGLE       n     1.519  0.0109     1.519  0.0109
+HAN         C17         O18      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HAN         C17         O19      SINGLE       n     1.247  0.0187     1.247  0.0187
+HAN          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0173
+HAN          C7          H7      SINGLE       n     1.082  0.0130     0.950  0.0100
+HAN         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0135
+HAN         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0135
+HAN         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0135
+HAN         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0135
+HAN         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0135
+HAN         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0135
+HAN         N12        H121      SINGLE       n     1.016  0.0100     0.874  0.0194
+HAN         N12        H122      SINGLE       n     1.016  0.0100     0.874  0.0194
+HAN         C13        H131      SINGLE       n     1.089  0.0100     0.978  0.0180
+HAN         C13        H132      SINGLE       n     1.089  0.0100     0.978  0.0180
+HAN         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0160
+HAN         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0160
+HAN         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0160
+HAN         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0160
+HAN         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0185
+HAN         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HAN          C2          N1          C8     105.978    1.50
+HAN          C2          N1         C13     127.671    1.81
+HAN          C8          N1         C13     124.544    1.50
+HAN          N1          C2          N3     112.886    1.50
+HAN          N1          C2         N12     122.696    1.75
+HAN          N3          C2         N12     124.418    1.50
+HAN          C2          N3          C9     104.499    1.50
+HAN          C5          C4          C9     119.042    1.50
+HAN          C5          C4          H4     120.362    1.50
+HAN          C9          C4          H4     120.596    1.50
+HAN          C4          C5          C6     120.471    1.50
+HAN          C4          C5         C10     119.542    1.50
+HAN          C6          C5         C10     119.987    1.50
+HAN          C5          C6          C7     120.471    1.50
+HAN          C5          C6         C11     119.987    1.50
+HAN          C7          C6         C11     119.542    1.50
+HAN          C6          C7          C8     117.780    1.50
+HAN          C6          C7          H7     120.856    1.50
+HAN          C8          C7          H7     121.364    1.50
+HAN          N3          C9          C4     129.760    1.50
+HAN          N3          C9          C8     110.153    1.50
+HAN          C4          C9          C8     120.087    1.50
+HAN          N1          C8          C7     131.553    1.50
+HAN          N1          C8          C9     106.297    1.50
+HAN          C7          C8          C9     122.150    1.50
+HAN          C5         C10        H101     109.625    1.50
+HAN          C5         C10        H102     109.625    1.50
+HAN          C5         C10        H103     109.625    1.50
+HAN        H101         C10        H102     109.348    1.50
+HAN        H101         C10        H103     109.348    1.50
+HAN        H102         C10        H103     109.348    1.50
+HAN          C6         C11        H111     109.625    1.50
+HAN          C6         C11        H112     109.625    1.50
+HAN          C6         C11        H113     109.625    1.50
+HAN        H111         C11        H112     109.348    1.50
+HAN        H111         C11        H113     109.348    1.50
+HAN        H112         C11        H113     109.348    1.50
+HAN          C2         N12        H121     119.586    1.87
+HAN          C2         N12        H122     119.586    1.87
+HAN        H121         N12        H122     120.828    2.45
+HAN          N1         C13         C14     112.729    1.50
+HAN          N1         C13        H131     108.458    1.53
+HAN          N1         C13        H132     108.458    1.53
+HAN         C14         C13        H131     109.079    1.50
+HAN         C14         C13        H132     109.079    1.50
+HAN        H131         C13        H132     107.797    1.50
+HAN         C13         C14         C15     112.575    1.89
+HAN         C13         C14        H141     108.983    1.50
+HAN         C13         C14        H142     108.983    1.50
+HAN         C15         C14        H141     108.980    1.50
+HAN         C15         C14        H142     108.980    1.50
+HAN        H141         C14        H142     107.897    1.50
+HAN         C14         C15         C16     113.314    2.25
+HAN         C14         C15        H151     108.846    1.50
+HAN         C14         C15        H152     108.846    1.50
+HAN         C16         C15        H151     109.164    1.50
+HAN         C16         C15        H152     109.164    1.50
+HAN        H151         C15        H152     107.646    1.50
+HAN         C15         C16         C17     114.612    2.19
+HAN         C15         C16        H161     108.815    1.50
+HAN         C15         C16        H162     108.815    1.50
+HAN         C17         C16        H161     108.404    1.50
+HAN         C17         C16        H162     108.404    1.50
+HAN        H161         C16        H162     107.521    1.50
+HAN         C16         C17         O18     118.214    1.64
+HAN         C16         C17         O19     118.214    1.64
+HAN         O18         C17         O19     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HAN       const_sp2_sp2_4         N12          C2          N1         C13       0.000     5.0     2
+HAN             sp2_sp3_2          C2          N1         C13         C14     -90.000    10.0     6
+HAN              const_32          C7          C8          N1         C13       0.000    10.0     2
+HAN             sp3_sp3_1          N1         C13         C14         C15     180.000    10.0     3
+HAN            sp3_sp3_10         C13         C14         C15         C16     180.000    10.0     3
+HAN            sp3_sp3_19         C14         C15         C16         C17     180.000    10.0     3
+HAN            sp2_sp3_20         O18         C17         C16         C15     120.000    10.0     6
+HAN             sp2_sp2_1          N1          C2         N12        H121     180.000     5.0     2
+HAN       const_sp2_sp2_6         N12          C2          N3          C9     180.000     5.0     2
+HAN       const_sp2_sp2_8          C4          C9          N3          C2     180.000     5.0     2
+HAN              const_14          C9          C4          C5         C10     180.000    10.0     2
+HAN              const_34          C5          C4          C9          N3     180.000    10.0     2
+HAN              const_20         C10          C5          C6         C11       0.000    10.0     2
+HAN             sp2_sp3_7          C4          C5         C10        H101     150.000    10.0     6
+HAN            sp2_sp3_13          C5          C6         C11        H111     150.000    10.0     6
+HAN              const_23         C11          C6          C7          C8     180.000    10.0     2
+HAN              const_26          C6          C7          C8          N1     180.000    10.0     2
+HAN       const_sp2_sp2_9          N1          C8          C9          N3       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HAN    plan-1         C10   0.020
+HAN    plan-1         C11   0.020
+HAN    plan-1         C13   0.020
+HAN    plan-1          C2   0.020
+HAN    plan-1          C4   0.020
+HAN    plan-1          C5   0.020
+HAN    plan-1          C6   0.020
+HAN    plan-1          C7   0.020
+HAN    plan-1          C8   0.020
+HAN    plan-1          C9   0.020
+HAN    plan-1          H4   0.020
+HAN    plan-1          H7   0.020
+HAN    plan-1          N1   0.020
+HAN    plan-1         N12   0.020
+HAN    plan-1          N3   0.020
+HAN    plan-2          C2   0.020
+HAN    plan-2        H121   0.020
+HAN    plan-2        H122   0.020
+HAN    plan-2         N12   0.020
+HAN    plan-3         C16   0.020
+HAN    plan-3         C17   0.020
+HAN    plan-3         O18   0.020
+HAN    plan-3         O19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HAN           SMILES              ACDLabs 10.04                                                                                  O=C(O)CCCCn1c2cc(c(cc2nc1N)C)C
+HAN SMILES_CANONICAL               CACTVS 3.341                                                                                  Cc1cc2nc(N)n(CCCCC(O)=O)c2cc1C
+HAN           SMILES               CACTVS 3.341                                                                                  Cc1cc2nc(N)n(CCCCC(O)=O)c2cc1C
+HAN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                Cc1cc2c(cc1C)n(c(n2)N)CCCCC(=O)O
+HAN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                Cc1cc2c(cc1C)n(c(n2)N)CCCCC(=O)O
+HAN            InChI                InChI  1.03 InChI=1S/C14H19N3O2/c1-9-7-11-12(8-10(9)2)17(14(15)16-11)6-4-3-5-13(18)19/h7-8H,3-6H2,1-2H3,(H2,15,16)(H,18,19)
+HAN         InChIKey                InChI  1.03                                                                                     ONFQTORHROMJSV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HAN acedrg               243         "dictionary generator"                  
+HAN acedrg_database      11          "data source"                           
+HAN rdkit                2017.03.2   "Chemoinformatics tool"
+HAN refmac5              5.8.0238    "optimization tool"                     

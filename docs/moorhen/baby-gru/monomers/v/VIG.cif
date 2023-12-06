@@ -1,0 +1,173 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VIG     VIG      "4-AMINO HEXANOIC ACID"     NON-POLYMER     21     9     .     
+#
+data_comp_VIG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VIG     "C1'"   C       C       0       12.083      -3.169      17.014      
+VIG     "O1'"   O       OC      -1      12.281      -4.115      17.802      
+VIG     "O2'"   O       O       0       11.993      -3.310      15.778      
+VIG     C1      C       CH2     0       11.945      -1.771      17.590      
+VIG     C2      C       CH2     0       10.524      -1.374      17.947      
+VIG     C3      C       CH1     0       10.394      -0.078      18.763      
+VIG     C4      C       CH2     0       10.577      1.149       17.880      
+VIG     C5      C       CH3     0       10.668      2.455       18.636      
+VIG     N3      N       NT2     0       9.094       -0.022      19.467      
+VIG     H1C1    H       H       0       12.299      -1.131      16.936      
+VIG     H1C2    H       H       0       12.504      -1.710      18.394      
+VIG     H2C1    H       H       0       10.116      -2.105      18.457      
+VIG     H2C2    H       H       0       10.010      -1.268      17.119      
+VIG     H3      H       H       0       11.114      -0.073      19.445      
+VIG     H4C1    H       H       0       9.823       1.196       17.254      
+VIG     H4C2    H       H       0       11.395      1.033       17.352      
+VIG     H5C1    H       H       0       10.931      3.166       18.027      
+VIG     H5C2    H       H       0       11.330      2.376       19.345      
+VIG     H5C3    H       H       0       9.802       2.666       19.025      
+VIG     H3N1    H       H       0       9.101       0.626       20.074      
+VIG     H3N2    H       H       0       8.941       -0.779      19.905      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VIG       "C1'"       "O1'"      SINGLE       n     1.247  0.0187     1.247  0.0187
+VIG       "C1'"       "O2'"      DOUBLE       n     1.247  0.0187     1.247  0.0187
+VIG       "C1'"          C1      SINGLE       n     1.519  0.0109     1.519  0.0109
+VIG          C1          C2      SINGLE       n     1.517  0.0200     1.517  0.0200
+VIG          C2          C3      SINGLE       n     1.530  0.0200     1.530  0.0200
+VIG          C3          C4      SINGLE       n     1.517  0.0200     1.517  0.0200
+VIG          C3          N3      SINGLE       n     1.476  0.0134     1.476  0.0134
+VIG          C4          C5      SINGLE       n     1.511  0.0200     1.511  0.0200
+VIG          C1        H1C1      SINGLE       n     1.089  0.0100     0.981  0.0185
+VIG          C1        H1C2      SINGLE       n     1.089  0.0100     0.981  0.0185
+VIG          C2        H2C1      SINGLE       n     1.089  0.0100     0.980  0.0160
+VIG          C2        H2C2      SINGLE       n     1.089  0.0100     0.980  0.0160
+VIG          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0135
+VIG          C4        H4C1      SINGLE       n     1.089  0.0100     0.981  0.0160
+VIG          C4        H4C2      SINGLE       n     1.089  0.0100     0.981  0.0160
+VIG          C5        H5C1      SINGLE       n     1.089  0.0100     0.973  0.0157
+VIG          C5        H5C2      SINGLE       n     1.089  0.0100     0.973  0.0157
+VIG          C5        H5C3      SINGLE       n     1.089  0.0100     0.973  0.0157
+VIG          N3        H3N1      SINGLE       n     1.036  0.0160     0.888  0.0200
+VIG          N3        H3N2      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VIG       "O1'"       "C1'"       "O2'"     123.571    1.50
+VIG       "O1'"       "C1'"          C1     118.214    1.64
+VIG       "O2'"       "C1'"          C1     118.214    1.64
+VIG       "C1'"          C1          C2     114.629    2.24
+VIG       "C1'"          C1        H1C1     108.404    1.50
+VIG       "C1'"          C1        H1C2     108.404    1.50
+VIG          C2          C1        H1C1     108.906    1.50
+VIG          C2          C1        H1C2     108.906    1.50
+VIG        H1C1          C1        H1C2     107.521    1.50
+VIG          C1          C2          C3     115.067    1.50
+VIG          C1          C2        H2C1     108.890    1.50
+VIG          C1          C2        H2C2     108.890    1.50
+VIG          C3          C2        H2C1     108.489    1.50
+VIG          C3          C2        H2C2     108.489    1.50
+VIG        H2C1          C2        H2C2     107.844    1.50
+VIG          C2          C3          C4     111.414    2.37
+VIG          C2          C3          N3     110.129    2.63
+VIG          C2          C3          H3     107.815    1.50
+VIG          C4          C3          N3     110.129    2.63
+VIG          C4          C3          H3     107.815    1.50
+VIG          N3          C3          H3     107.944    1.55
+VIG          C3          C4          C5     114.046    1.50
+VIG          C3          C4        H4C1     108.489    1.50
+VIG          C3          C4        H4C2     108.489    1.50
+VIG          C5          C4        H4C1     108.917    1.50
+VIG          C5          C4        H4C2     108.917    1.50
+VIG        H4C1          C4        H4C2     107.741    1.50
+VIG          C4          C5        H5C1     109.526    1.50
+VIG          C4          C5        H5C2     109.526    1.50
+VIG          C4          C5        H5C3     109.526    1.50
+VIG        H5C1          C5        H5C2     109.380    1.50
+VIG        H5C1          C5        H5C3     109.380    1.50
+VIG        H5C2          C5        H5C3     109.380    1.50
+VIG          C3          N3        H3N1     109.715    3.00
+VIG          C3          N3        H3N2     109.715    3.00
+VIG        H3N1          N3        H3N2     107.559    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VIG             sp2_sp3_2       "O1'"       "C1'"          C1          C2     120.000    10.0     6
+VIG             sp3_sp3_1       "C1'"          C1          C2          C3     180.000    10.0     3
+VIG            sp3_sp3_10          C1          C2          C3          C4     180.000    10.0     3
+VIG            sp3_sp3_19          C2          C3          C4          C5     180.000    10.0     3
+VIG            sp3_sp3_28          C2          C3          N3        H3N1     180.000    10.0     3
+VIG            sp3_sp3_34          C3          C4          C5        H5C1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VIG    chir_1    C3    N3    C2    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VIG    plan-1          C1   0.020
+VIG    plan-1       "C1'"   0.020
+VIG    plan-1       "O1'"   0.020
+VIG    plan-1       "O2'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VIG           SMILES              ACDLabs 10.04                                                         O=C(O)CCC(N)CC
+VIG SMILES_CANONICAL               CACTVS 3.341                                                    CC[C@@H](N)CCC(O)=O
+VIG           SMILES               CACTVS 3.341                                                      CC[CH](N)CCC(O)=O
+VIG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                     CC[C@H](CCC(=O)O)N
+VIG           SMILES "OpenEye OEToolkits" 1.5.0                                                         CCC(CCC(=O)O)N
+VIG            InChI                InChI  1.03 InChI=1S/C6H13NO2/c1-2-5(7)3-4-6(8)9/h5H,2-4,7H2,1H3,(H,8,9)/t5-/m1/s1
+VIG         InChIKey                InChI  1.03                                            ROFNJLCLYMMXCT-RXMQYKEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VIG acedrg               243         "dictionary generator"                  
+VIG acedrg_database      11          "data source"                           
+VIG rdkit                2017.03.2   "Chemoinformatics tool"
+VIG refmac5              5.8.0238    "optimization tool"                     

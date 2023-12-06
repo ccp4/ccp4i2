@@ -1,0 +1,526 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YAS     YAS      "~{S}-[2-[3-[[(2~{R})-4-[[[(2~{S},3~{R},4~{S},5~{R})-5-(6-aminopurin-9-yl)-4-oxidanyl-3-phosphonooxy-oxolan-2-yl]methoxy-oxidanyl-phosphoryl]oxy-oxidanyl-phosphoryl]oxy-3,3-dimethyl-2-oxidanyl-butanoyl]amino]propanoylamino]ethyl] butanethioate"     NON-POLYMER     91     53     .     
+#
+data_comp_YAS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YAS     C1B     C       CH1     0       -17.068     8.892       -4.975      
+YAS     C2A     C       CR16    0       -15.080     12.775      -5.523      
+YAS     C2B     C       CH1     0       -18.497     8.863       -4.430      
+YAS     C2P     C       CH2     0       -16.010     -11.214     -5.488      
+YAS     C3B     C       CH1     0       -18.560     7.452       -3.835      
+YAS     C3P     C       CH2     0       -16.948     -10.912     -4.341      
+YAS     C4A     C       CR56    0       -16.199     10.972      -6.155      
+YAS     C4B     C       CH1     0       -17.731     6.644       -4.827      
+YAS     C5A     C       CR56    0       -16.250     11.404      -7.470      
+YAS     C5B     C       CH2     0       -17.015     5.449       -4.242      
+YAS     C5P     C       C       0       -16.658     -8.497      -3.883      
+YAS     C6A     C       CR6     0       -15.642     12.642      -7.771      
+YAS     C6P     C       CH2     0       -17.111     -7.101      -4.256      
+YAS     C7P     C       CH2     0       -18.170     -6.529      -3.338      
+YAS     C8A     C       CR15    0       -17.256     9.528       -7.423      
+YAS     C9P     C       C       0       -17.450     -4.200      -2.990      
+YAS     CAD     C       C       0       -18.071     -12.039     -7.554      
+YAS     CAF     C       CH2     0       -19.135     -11.453     -8.438      
+YAS     CAI     C       CH3     0       -20.188     -11.272     -10.703     
+YAS     CAJ     C       CH2     0       -18.934     -11.625     -9.929      
+YAS     CAP     C       CH1     0       -17.657     -2.732      -3.343      
+YAS     CBP     C       CT      0       -16.947     -2.272      -4.633      
+YAS     CCP     C       CH2     0       -17.204     -0.790      -4.920      
+YAS     CDP     C       CH3     0       -17.438     -3.087      -5.838      
+YAS     CEP     C       CH3     0       -15.432     -2.484      -4.493      
+YAS     N1A     N       NRD6    0       -15.053     13.318      -6.751      
+YAS     N3A     N       NRD6    0       -15.621     11.622      -5.126      
+YAS     N4P     N       NH1     0       -17.382     -9.521      -4.357      
+YAS     N6A     N       NH2     0       -15.619     13.175      -8.991      
+YAS     N7A     N       NRD5    0       -16.924     10.481      -8.256      
+YAS     N8P     N       NH1     0       -18.306     -5.085      -3.494      
+YAS     N9A     N       NR5     0       -16.860     9.765       -6.129      
+YAS     O1A     O       O       0       -20.139     3.384       -4.604      
+YAS     O2A     O       OP      -1      -18.206     3.731       -6.244      
+YAS     O2B     O       OH1     0       -19.501     9.099       -5.396      
+YAS     O3A     O       O2      0       -18.026     2.042       -4.386      
+YAS     O3B     O       O2      0       -19.894     6.938       -3.774      
+YAS     O4A     O       OP      -1      -16.166     2.198       -2.689      
+YAS     O4B     O       O2      0       -16.754     7.572       -5.362      
+YAS     O5A     O       O       0       -15.635     1.848       -5.179      
+YAS     O5B     O       O2      0       -17.989     4.457       -3.816      
+YAS     O5P     O       O       0       -15.673     -8.662      -3.165      
+YAS     O6A     O       O2      0       -16.706     0.019       -3.815      
+YAS     O7A     O       OP      -1      -20.433     8.544       -1.901      
+YAS     O8A     O       O       0       -22.079     6.752       -2.548      
+YAS     O9A     O       OP      -1      -19.930     6.129       -1.393      
+YAS     O9P     O       O       0       -16.509     -4.512      -2.261      
+YAS     OAE     O       O       0       -18.036     -13.201     -7.228      
+YAS     OAP     O       OH1     0       -19.053     -2.458      -3.415      
+YAS     P1A     P       P       0       -18.669     3.435       -4.855      
+YAS     P2A     P       P       0       -16.530     1.603       -4.009      
+YAS     P3B     P       P       0       -20.618     7.101       -2.334      
+YAS     S1P     S       S2      0       -16.864     -10.867     -7.040      
+YAS     H1      H       H       0       -16.464     9.168       -4.250      
+YAS     H2      H       H       0       -14.658     13.280      -4.846      
+YAS     H3      H       H       0       -18.589     9.527       -3.697      
+YAS     H4      H       H       0       -15.740     -12.154     -5.458      
+YAS     H5      H       H       0       -15.209     -10.657     -5.416      
+YAS     H6      H       H       0       -18.135     7.439       -2.946      
+YAS     H7      H       H       0       -16.500     -11.110     -3.492      
+YAS     H8      H       H       0       -17.735     -11.494     -4.411      
+YAS     H9      H       H       0       -18.309     6.336       -5.556      
+YAS     H10     H       H       0       -16.474     5.738       -3.466      
+YAS     H11     H       H       0       -16.407     5.061       -4.917      
+YAS     H12     H       H       0       -17.454     -7.118      -5.167      
+YAS     H13     H       H       0       -16.334     -6.515      -4.255      
+YAS     H14     H       H       0       -17.939     -6.736      -2.408      
+YAS     H15     H       H       0       -19.030     -6.954      -3.537      
+YAS     H16     H       H       0       -17.735     8.759       -7.682      
+YAS     H17     H       H       0       -19.202     -10.524     -8.246      
+YAS     H18     H       H       0       -19.961     -11.853     -8.197      
+YAS     H19     H       H       0       -20.020     -11.361     -11.657     
+YAS     H20     H       H       0       -20.446     -10.355     -10.504     
+YAS     H21     H       H       0       -20.909     -11.873     -10.445     
+YAS     H22     H       H       0       -18.687     -12.554     -10.118     
+YAS     H23     H       H       0       -18.199     -11.048     -10.226     
+YAS     H24     H       H       0       -17.283     -2.201      -2.599      
+YAS     H25     H       H       0       -18.162     -0.636      -5.040      
+YAS     H26     H       H       0       -16.751     -0.534      -5.748      
+YAS     H27     H       H       0       -18.410     -3.092      -5.858      
+YAS     H28     H       H       0       -17.113     -4.002      -5.777      
+YAS     H29     H       H       0       -17.105     -2.686      -6.660      
+YAS     H30     H       H       0       -15.138     -2.169      -3.621      
+YAS     H31     H       H       0       -14.966     -1.986      -5.187      
+YAS     H32     H       H       0       -15.218     -3.429      -4.581      
+YAS     H33     H       H       0       -18.167     -9.340      -4.694      
+YAS     H34     H       H       0       -16.151     12.860      -9.614      
+YAS     H35     H       H       0       -15.071     13.838      -9.168      
+YAS     H36     H       H       0       -18.992     -4.788      -3.944      
+YAS     H38     H       H       0       -19.497     8.481       -5.978      
+YAS     H42     H       H       0       -19.366     -2.411      -2.628      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YAS         CAI         CAJ      SINGLE       n     1.515  0.0200     1.515  0.0200
+YAS         CAF         CAJ      SINGLE       n     1.520  0.0200     1.520  0.0200
+YAS         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+YAS         CAD         CAF      SINGLE       n     1.502  0.0151     1.502  0.0151
+YAS         CAD         S1P      SINGLE       n     1.762  0.0200     1.762  0.0200
+YAS         C2P         S1P      SINGLE       n     1.809  0.0191     1.809  0.0191
+YAS         CAD         OAE      DOUBLE       n     1.207  0.0100     1.207  0.0100
+YAS         C6A         N1A      SINGLE       y     1.354  0.0100     1.354  0.0100
+YAS         C5A         C6A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+YAS         C2A         N1A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+YAS         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+YAS         C8A         N7A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+YAS         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+YAS         C2P         C3P      SINGLE       n     1.510  0.0158     1.510  0.0158
+YAS         C2A         N3A      SINGLE       y     1.330  0.0100     1.330  0.0100
+YAS         C8A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+YAS         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+YAS         C4A         N3A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+YAS         C4A         N9A      SINGLE       y     1.374  0.0101     1.374  0.0101
+YAS         C3P         N4P      SINGLE       n     1.455  0.0100     1.455  0.0100
+YAS         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+YAS         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+YAS         C5P         C6P      SINGLE       n     1.514  0.0100     1.514  0.0100
+YAS         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YAS         C6P         C7P      SINGLE       n     1.513  0.0195     1.513  0.0195
+YAS         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+YAS         O1A         P1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+YAS         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+YAS         CBP         CCP      SINGLE       n     1.526  0.0108     1.526  0.0108
+YAS         CAP         CBP      SINGLE       n     1.532  0.0112     1.532  0.0112
+YAS         CCP         O6A      SINGLE       n     1.454  0.0165     1.454  0.0165
+YAS         O2A         P1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+YAS         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+YAS         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+YAS         C2B         C3B      SINGLE       n     1.529  0.0125     1.529  0.0125
+YAS         C7P         N8P      SINGLE       n     1.457  0.0100     1.457  0.0100
+YAS         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+YAS         O3A         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+YAS         O5B         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+YAS         O5A         P2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+YAS         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+YAS         C9P         CAP      SINGLE       n     1.519  0.0108     1.519  0.0108
+YAS         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YAS         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+YAS         O6A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+YAS         C3B         C4B      SINGLE       n     1.525  0.0133     1.525  0.0133
+YAS         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+YAS         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+YAS         O4A         P2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+YAS         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+YAS         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+YAS         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+YAS         O8A         P3B      DOUBLE       n     1.517  0.0192     1.517  0.0192
+YAS         O7A         P3B      SINGLE       n     1.517  0.0192     1.517  0.0192
+YAS         O9A         P3B      SINGLE       n     1.517  0.0192     1.517  0.0192
+YAS         C1B          H1      SINGLE       n     1.089  0.0100     0.984  0.0200
+YAS         C2A          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+YAS         C2B          H3      SINGLE       n     1.089  0.0100     0.994  0.0200
+YAS         C2P          H4      SINGLE       n     1.089  0.0100     0.978  0.0177
+YAS         C2P          H5      SINGLE       n     1.089  0.0100     0.978  0.0177
+YAS         C3B          H6      SINGLE       n     1.089  0.0100     0.985  0.0119
+YAS         C3P          H7      SINGLE       n     1.089  0.0100     0.981  0.0127
+YAS         C3P          H8      SINGLE       n     1.089  0.0100     0.981  0.0127
+YAS         C4B          H9      SINGLE       n     1.089  0.0100     0.981  0.0200
+YAS         C5B         H10      SINGLE       n     1.089  0.0100     0.989  0.0200
+YAS         C5B         H11      SINGLE       n     1.089  0.0100     0.989  0.0200
+YAS         C6P         H12      SINGLE       n     1.089  0.0100     0.973  0.0156
+YAS         C6P         H13      SINGLE       n     1.089  0.0100     0.973  0.0156
+YAS         C7P         H14      SINGLE       n     1.089  0.0100     0.980  0.0159
+YAS         C7P         H15      SINGLE       n     1.089  0.0100     0.980  0.0159
+YAS         C8A         H16      SINGLE       n     1.082  0.0130     0.942  0.0170
+YAS         CAF         H17      SINGLE       n     1.089  0.0100     0.950  0.0162
+YAS         CAF         H18      SINGLE       n     1.089  0.0100     0.950  0.0162
+YAS         CAI         H19      SINGLE       n     1.089  0.0100     0.973  0.0157
+YAS         CAI         H20      SINGLE       n     1.089  0.0100     0.973  0.0157
+YAS         CAI         H21      SINGLE       n     1.089  0.0100     0.973  0.0157
+YAS         CAJ         H22      SINGLE       n     1.089  0.0100     0.980  0.0160
+YAS         CAJ         H23      SINGLE       n     1.089  0.0100     0.980  0.0160
+YAS         CAP         H24      SINGLE       n     1.089  0.0100     0.988  0.0129
+YAS         CCP         H25      SINGLE       n     1.089  0.0100     0.978  0.0102
+YAS         CCP         H26      SINGLE       n     1.089  0.0100     0.978  0.0102
+YAS         CDP         H27      SINGLE       n     1.089  0.0100     0.973  0.0146
+YAS         CDP         H28      SINGLE       n     1.089  0.0100     0.973  0.0146
+YAS         CDP         H29      SINGLE       n     1.089  0.0100     0.973  0.0146
+YAS         CEP         H30      SINGLE       n     1.089  0.0100     0.973  0.0146
+YAS         CEP         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+YAS         CEP         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+YAS         N4P         H33      SINGLE       n     1.016  0.0100     0.872  0.0200
+YAS         N6A         H34      SINGLE       n     1.016  0.0100     0.877  0.0200
+YAS         N6A         H35      SINGLE       n     1.016  0.0100     0.877  0.0200
+YAS         N8P         H36      SINGLE       n     1.016  0.0100     0.872  0.0200
+YAS         O2B         H38      SINGLE       n     0.970  0.0120     0.849  0.0200
+YAS         OAP         H42      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YAS         N9A         C1B         C2B     113.824    1.50
+YAS         N9A         C1B         O4B     108.477    1.50
+YAS         N9A         C1B          H1     109.561    1.50
+YAS         C2B         C1B         O4B     106.047    1.50
+YAS         C2B         C1B          H1     109.015    1.50
+YAS         O4B         C1B          H1     109.807    1.50
+YAS         N1A         C2A         N3A     129.332    1.50
+YAS         N1A         C2A          H2     115.313    1.50
+YAS         N3A         C2A          H2     115.355    1.50
+YAS         O2B         C2B         C1B     111.715    2.69
+YAS         O2B         C2B         C3B     112.463    2.73
+YAS         O2B         C2B          H3     110.448    1.97
+YAS         C1B         C2B         C3B     101.388    1.50
+YAS         C1B         C2B          H3     110.636    1.70
+YAS         C3B         C2B          H3     110.255    2.04
+YAS         S1P         C2P         C3P     112.239    3.00
+YAS         S1P         C2P          H4     109.066    1.50
+YAS         S1P         C2P          H5     109.066    1.50
+YAS         C3P         C2P          H4     108.964    1.50
+YAS         C3P         C2P          H5     108.964    1.50
+YAS          H4         C2P          H5     107.807    1.50
+YAS         C2B         C3B         C4B     102.352    1.50
+YAS         C2B         C3B         O3B     110.766    3.00
+YAS         C2B         C3B          H6     110.255    2.04
+YAS         C4B         C3B         O3B     110.864    2.31
+YAS         C4B         C3B          H6     110.624    1.81
+YAS         O3B         C3B          H6     110.343    1.64
+YAS         C2P         C3P         N4P     112.117    1.54
+YAS         C2P         C3P          H7     109.038    1.50
+YAS         C2P         C3P          H8     109.038    1.50
+YAS         N4P         C3P          H7     109.102    1.50
+YAS         N4P         C3P          H8     109.102    1.50
+YAS          H7         C3P          H8     107.995    1.50
+YAS         C5A         C4A         N3A     126.489    1.50
+YAS         C5A         C4A         N9A     105.616    1.50
+YAS         N3A         C4A         N9A     127.895    1.50
+YAS         O4B         C4B         C3B     105.508    1.50
+YAS         O4B         C4B         C5B     109.123    1.50
+YAS         O4B         C4B          H9     108.947    1.50
+YAS         C3B         C4B         C5B     114.866    1.63
+YAS         C3B         C4B          H9     109.143    1.50
+YAS         C5B         C4B          H9     108.268    1.50
+YAS         C6A         C5A         N7A     132.250    1.50
+YAS         C6A         C5A         C4A     117.267    1.50
+YAS         N7A         C5A         C4A     110.483    1.50
+YAS         C4B         C5B         O5B     109.342    1.50
+YAS         C4B         C5B         H10     109.624    1.50
+YAS         C4B         C5B         H11     109.624    1.50
+YAS         O5B         C5B         H10     109.845    1.50
+YAS         O5B         C5B         H11     109.845    1.50
+YAS         H10         C5B         H11     108.472    1.50
+YAS         N4P         C5P         C6P     117.070    1.96
+YAS         N4P         C5P         O5P     121.943    1.50
+YAS         C6P         C5P         O5P     120.987    1.50
+YAS         N6A         C6A         N1A     118.799    1.50
+YAS         N6A         C6A         C5A     123.792    1.50
+YAS         N1A         C6A         C5A     117.409    1.50
+YAS         C5P         C6P         C7P     112.120    2.79
+YAS         C5P         C6P         H12     108.945    1.50
+YAS         C5P         C6P         H13     108.945    1.50
+YAS         C7P         C6P         H12     109.432    1.50
+YAS         C7P         C6P         H13     109.432    1.50
+YAS         H12         C6P         H13     107.745    2.07
+YAS         C6P         C7P         N8P     112.257    1.50
+YAS         C6P         C7P         H14     108.971    1.50
+YAS         C6P         C7P         H15     108.971    1.50
+YAS         N8P         C7P         H14     108.979    1.50
+YAS         N8P         C7P         H15     108.979    1.50
+YAS         H14         C7P         H15     107.877    1.50
+YAS         N7A         C8A         N9A     113.469    1.50
+YAS         N7A         C8A         H16     123.326    1.50
+YAS         N9A         C8A         H16     123.206    1.50
+YAS         N8P         C9P         CAP     117.155    1.50
+YAS         N8P         C9P         O9P     122.977    1.50
+YAS         CAP         C9P         O9P     119.851    1.78
+YAS         CAF         CAD         S1P     113.307    2.65
+YAS         CAF         CAD         OAE     123.766    1.64
+YAS         S1P         CAD         OAE     122.927    2.65
+YAS         CAJ         CAF         CAD     113.932    1.92
+YAS         CAJ         CAF         H17     108.844    1.50
+YAS         CAJ         CAF         H18     108.844    1.50
+YAS         CAD         CAF         H17     108.026    1.59
+YAS         CAD         CAF         H18     108.026    1.59
+YAS         H17         CAF         H18     107.705    1.50
+YAS         CAJ         CAI         H19     109.554    1.50
+YAS         CAJ         CAI         H20     109.554    1.50
+YAS         CAJ         CAI         H21     109.554    1.50
+YAS         H19         CAI         H20     109.380    1.50
+YAS         H19         CAI         H21     109.380    1.50
+YAS         H20         CAI         H21     109.380    1.50
+YAS         CAI         CAJ         CAF     113.036    2.11
+YAS         CAI         CAJ         H22     108.918    1.50
+YAS         CAI         CAJ         H23     108.918    1.50
+YAS         CAF         CAJ         H22     108.915    1.50
+YAS         CAF         CAJ         H23     108.915    1.50
+YAS         H22         CAJ         H23     107.763    1.50
+YAS         CBP         CAP         OAP     109.482    3.00
+YAS         CBP         CAP         C9P     111.511    2.91
+YAS         CBP         CAP         H24     107.825    1.50
+YAS         OAP         CAP         C9P     109.850    1.55
+YAS         OAP         CAP         H24     108.675    1.50
+YAS         C9P         CAP         H24     108.529    1.70
+YAS         CDP         CBP         CEP     108.765    1.50
+YAS         CDP         CBP         CCP     109.385    1.50
+YAS         CDP         CBP         CAP     109.534    1.52
+YAS         CEP         CBP         CCP     109.385    1.50
+YAS         CEP         CBP         CAP     109.534    1.52
+YAS         CCP         CBP         CAP     111.094    2.85
+YAS         CBP         CCP         O6A     108.435    1.69
+YAS         CBP         CCP         H25     109.473    1.50
+YAS         CBP         CCP         H26     109.473    1.50
+YAS         O6A         CCP         H25     109.739    1.50
+YAS         O6A         CCP         H26     109.739    1.50
+YAS         H25         CCP         H26     108.108    1.50
+YAS         CBP         CDP         H27     109.575    1.50
+YAS         CBP         CDP         H28     109.575    1.50
+YAS         CBP         CDP         H29     109.575    1.50
+YAS         H27         CDP         H28     109.377    1.50
+YAS         H27         CDP         H29     109.377    1.50
+YAS         H28         CDP         H29     109.377    1.50
+YAS         CBP         CEP         H30     109.575    1.50
+YAS         CBP         CEP         H31     109.575    1.50
+YAS         CBP         CEP         H32     109.575    1.50
+YAS         H30         CEP         H31     109.377    1.50
+YAS         H30         CEP         H32     109.377    1.50
+YAS         H31         CEP         H32     109.377    1.50
+YAS         C6A         N1A         C2A     118.521    1.50
+YAS         C2A         N3A         C4A     110.982    1.50
+YAS         C3P         N4P         C5P     123.437    1.80
+YAS         C3P         N4P         H33     118.700    1.83
+YAS         C5P         N4P         H33     117.862    2.10
+YAS         C6A         N6A         H34     119.723    1.50
+YAS         C6A         N6A         H35     119.723    1.50
+YAS         H34         N6A         H35     120.554    1.88
+YAS         C5A         N7A         C8A     104.739    1.50
+YAS         C7P         N8P         C9P     122.964    1.80
+YAS         C7P         N8P         H36     118.351    1.90
+YAS         C9P         N8P         H36     118.685    1.94
+YAS         C8A         N9A         C4A     105.693    1.50
+YAS         C8A         N9A         C1B     126.848    1.91
+YAS         C4A         N9A         C1B     127.459    1.80
+YAS         C2B         O2B         H38     109.103    2.13
+YAS         P1A         O3A         P2A     132.542    3.00
+YAS         C3B         O3B         P3B     109.471    3.00
+YAS         C1B         O4B         C4B     109.903    1.50
+YAS         P1A         O5B         C5B     118.553    2.41
+YAS         CCP         O6A         P2A     119.251    1.51
+YAS         CAP         OAP         H42     108.894    3.00
+YAS         O1A         P1A         O2A     118.411    2.35
+YAS         O1A         P1A         O3A     108.816    2.14
+YAS         O1A         P1A         O5B     109.410    1.50
+YAS         O2A         P1A         O3A     108.816    2.14
+YAS         O2A         P1A         O5B     109.410    1.50
+YAS         O3A         P1A         O5B     101.065    1.97
+YAS         O5A         P2A         O6A     107.912    2.57
+YAS         O5A         P2A         O3A     108.816    2.14
+YAS         O5A         P2A         O4A     118.411    2.35
+YAS         O6A         P2A         O3A     101.065    1.97
+YAS         O6A         P2A         O4A     107.912    2.57
+YAS         O3A         P2A         O4A     108.816    2.14
+YAS         O3B         P3B         O8A     106.518    3.00
+YAS         O3B         P3B         O7A     106.518    3.00
+YAS         O3B         P3B         O9A     106.518    3.00
+YAS         O8A         P3B         O7A     112.139    1.52
+YAS         O8A         P3B         O9A     112.139    1.52
+YAS         O7A         P3B         O9A     112.139    1.52
+YAS         CAD         S1P         C2P     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YAS             sp3_sp3_5         N9A         C1B         C2B         O2B      60.000    10.0     3
+YAS            sp2_sp3_13         C8A         N9A         C1B         C2B     150.000    10.0     6
+YAS           sp3_sp3_113         N9A         C1B         O4B         C4B      60.000    10.0     3
+YAS            sp2_sp3_20         N4P         C5P         C6P         C7P     120.000    10.0     6
+YAS             sp2_sp2_7         C6P         C5P         N4P         C3P     180.000     5.0     2
+YAS       const_sp2_sp2_4         N6A         C6A         N1A         C2A     180.000     5.0     2
+YAS             sp2_sp2_3         N1A         C6A         N6A         H34       0.000     5.0     2
+YAS            sp3_sp3_70         C5P         C6P         C7P         N8P     180.000    10.0     3
+YAS            sp2_sp3_26         C9P         N8P         C7P         C6P     120.000    10.0     6
+YAS              const_17         N9A         C8A         N7A         C5A       0.000    10.0     2
+YAS              const_19         N7A         C8A         N9A         C4A       0.000    10.0     2
+YAS            sp2_sp3_31         N8P         C9P         CAP         CBP       0.000    10.0     6
+YAS            sp2_sp2_11         CAP         C9P         N8P         C7P     180.000     5.0     2
+YAS             sp2_sp3_2         S1P         CAD         CAF         CAJ     120.000    10.0     6
+YAS             sp2_sp2_5         CAF         CAD         S1P         C2P     180.000     5.0     2
+YAS            sp3_sp3_40         CAD         CAF         CAJ         CAI     180.000    10.0     3
+YAS            sp3_sp3_31         H19         CAI         CAJ         CAF     180.000    10.0     3
+YAS       const_sp2_sp2_1         N3A         C2A         N1A         C6A       0.000     5.0     2
+YAS              const_23         N1A         C2A         N3A         C4A       0.000    10.0     2
+YAS           sp3_sp3_100         OAP         CAP         CBP         CDP     180.000    10.0     3
+YAS           sp3_sp3_121         CBP         CAP         OAP         H42     180.000    10.0     3
+YAS            sp3_sp3_94         CDP         CBP         CCP         O6A      60.000    10.0     3
+YAS            sp3_sp3_67         CEP         CBP         CDP         H27     -60.000    10.0     3
+YAS            sp3_sp3_88         CDP         CBP         CEP         H30     -60.000    10.0     3
+YAS           sp3_sp3_109         CBP         CCP         O6A         P2A     180.000    10.0     3
+YAS            sp3_sp3_79         C1B         C2B         O2B         H38     180.000    10.0     3
+YAS            sp3_sp3_14         O2B         C2B         C3B         O3B     -60.000    10.0     3
+YAS           sp3_sp3_117         P2A         O3A         P1A         O1A      60.000    10.0     3
+YAS           sp3_sp3_138         P1A         O3A         P2A         O5A      60.000    10.0     3
+YAS           sp3_sp3_147         C3B         O3B         P3B         O8A      60.000    10.0     3
+YAS            sp3_sp3_52         S1P         C2P         C3P         N4P     180.000    10.0     3
+YAS            sp3_sp3_49         C3P         C2P         S1P         CAD     180.000    10.0     3
+YAS           sp3_sp3_120         C5B         O5B         P1A         O1A      60.000    10.0     3
+YAS           sp3_sp3_126         CCP         O6A         P2A         O5A      60.000    10.0     3
+YAS           sp3_sp3_139         C2B         C3B         O3B         P3B     180.000    10.0     3
+YAS            sp3_sp3_23         O3B         C3B         C4B         C5B      60.000    10.0     3
+YAS             sp2_sp3_8         C5P         N4P         C3P         C2P     120.000    10.0     6
+YAS              const_13         C5A         C4A         N3A         C2A       0.000    10.0     2
+YAS              const_25         C5A         C4A         N9A         C8A       0.000    10.0     2
+YAS       const_sp2_sp2_9         N3A         C4A         C5A         C6A       0.000     5.0     2
+YAS            sp3_sp3_29         C5B         C4B         O4B         C1B     180.000    10.0     3
+YAS           sp3_sp3_127         O4B         C4B         C5B         O5B     180.000    10.0     3
+YAS       const_sp2_sp2_8         N7A         C5A         C6A         N6A       0.000     5.0     2
+YAS              const_16         C6A         C5A         N7A         C8A     180.000    10.0     2
+YAS           sp3_sp3_142         C4B         C5B         O5B         P1A     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YAS    chir_1    C1B    O4B    N9A    C2B    negative
+YAS    chir_2    C2B    O2B    C1B    C3B    positive
+YAS    chir_3    C3B    O3B    C4B    C2B    negative
+YAS    chir_4    C4B    O4B    C3B    C5B    positive
+YAS    chir_5    CAP    OAP    C9P    CBP    negative
+YAS    chir_6    CBP    CAP    CCP    CDP    both
+YAS    chir_7    P1A    O3A    O5B    O2A    both
+YAS    chir_8    P2A    O3A    O6A    O4A    both
+YAS    chir_9    P3B    O3B    O7A    O9A    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YAS    plan-1         C1B   0.020
+YAS    plan-1         C2A   0.020
+YAS    plan-1         C4A   0.020
+YAS    plan-1         C5A   0.020
+YAS    plan-1         C6A   0.020
+YAS    plan-1         C8A   0.020
+YAS    plan-1         H16   0.020
+YAS    plan-1          H2   0.020
+YAS    plan-1         N1A   0.020
+YAS    plan-1         N3A   0.020
+YAS    plan-1         N6A   0.020
+YAS    plan-1         N7A   0.020
+YAS    plan-1         N9A   0.020
+YAS    plan-2         C5P   0.020
+YAS    plan-2         C6P   0.020
+YAS    plan-2         N4P   0.020
+YAS    plan-2         O5P   0.020
+YAS    plan-3         C9P   0.020
+YAS    plan-3         CAP   0.020
+YAS    plan-3         N8P   0.020
+YAS    plan-3         O9P   0.020
+YAS    plan-4         CAD   0.020
+YAS    plan-4         CAF   0.020
+YAS    plan-4         OAE   0.020
+YAS    plan-4         S1P   0.020
+YAS    plan-5         C3P   0.020
+YAS    plan-5         C5P   0.020
+YAS    plan-5         H33   0.020
+YAS    plan-5         N4P   0.020
+YAS    plan-6         C6A   0.020
+YAS    plan-6         H34   0.020
+YAS    plan-6         H35   0.020
+YAS    plan-6         N6A   0.020
+YAS    plan-7         C7P   0.020
+YAS    plan-7         C9P   0.020
+YAS    plan-7         H36   0.020
+YAS    plan-7         N8P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YAS            InChI                InChI  1.03 InChI=1S/C25H42N7O17P3S/c1-4-5-16(34)53-9-8-27-15(33)6-7-28-23(37)20(36)25(2,3)11-46-52(43,44)49-51(41,42)45-10-14-19(48-50(38,39)40)18(35)24(47-14)32-13-31-17-21(26)29-12-30-22(17)32/h12-14,18-20,24,35-36H,4-11H2,1-3H3,(H,27,33)(H,28,37)(H,41,42)(H,43,44)(H2,26,29,30)(H2,38,39,40)/t14-,18-,19-,20-,24+/m0/s1
+YAS         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                           CRFNGMNYKDXRTN-JSFVJHESSA-N
+YAS SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                           CCCC(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[C@@H]1O[C@H]([C@@H](O)[C@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+YAS           SMILES               CACTVS 3.385                                                                                                                                                                                                  CCCC(=O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+YAS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                               CCCC(=O)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@H]1[C@@H]([C@@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+YAS           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                                       CCCC(=O)SCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YAS acedrg               243         "dictionary generator"                  
+YAS acedrg_database      11          "data source"                           
+YAS rdkit                2017.03.2   "Chemoinformatics tool"
+YAS refmac5              5.8.0238    "optimization tool"                     

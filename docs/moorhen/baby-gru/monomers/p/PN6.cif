@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PN6     PN6      (3Z,6Z)-3-benzylidene-6-[(5-tert-butyl-1H-imidazol-4-yl)methylidene]piperazine-2,5-dione     NON-POLYMER     45     25     .     
+#
+data_comp_PN6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PN6     C6      C       C1      0       -14.980     -65.414     39.979      
+PN6     C2      C       CR5     0       -15.285     -65.238     41.394      
+PN6     C4      C       CR15    0       -15.947     -64.210     43.168      
+PN6     C23     C       CH3     0       -14.879     -68.209     43.826      
+PN6     C22     C       CT      0       -14.673     -67.570     42.448      
+PN6     C24     C       CH3     0       -13.177     -67.607     42.106      
+PN6     C25     C       CH3     0       -15.455     -68.400     41.425      
+PN6     C1      C       CR5     0       -15.171     -66.129     42.437      
+PN6     N5      N       NR5     0       -15.591     -65.450     43.549      
+PN6     N3      N       NRD5    0       -15.783     -64.032     41.876      
+PN6     C7      C       CR6     0       -15.879     -65.101     38.879      
+PN6     C8      C       CR6     0       -15.371     -64.915     37.540      
+PN6     O20     O       O       0       -14.170     -65.001     37.252      
+PN6     N9      N       NR6     0       -16.259     -64.625     36.534      
+PN6     N12     N       NR6     0       -17.245     -64.987     39.106      
+PN6     C11     C       CR6     0       -18.131     -64.697     38.099      
+PN6     O21     O       O       0       -19.334     -64.610     38.383      
+PN6     C10     C       CR6     0       -17.623     -64.511     36.762      
+PN6     C13     C       C1      0       -18.527     -64.196     35.658      
+PN6     C14     C       CR6     0       -18.256     -64.491     34.230      
+PN6     C15     C       CR16    0       -17.849     -65.756     33.812      
+PN6     C16     C       CR16    0       -17.600     -66.008     32.470      
+PN6     C17     C       CR16    0       -17.754     -65.003     31.535      
+PN6     C18     C       CR16    0       -18.156     -63.744     31.936      
+PN6     C19     C       CR16    0       -18.407     -63.486     33.276      
+PN6     H1      H       H       0       -14.132     -65.765     39.764      
+PN6     H2      H       H       0       -16.276     -63.551     43.760      
+PN6     H3      H       H       0       -15.814     -68.133     44.085      
+PN6     H4      H       H       0       -14.325     -67.755     44.483      
+PN6     H5      H       H       0       -14.631     -69.150     43.792      
+PN6     H6      H       H       0       -12.766     -66.753     42.328      
+PN6     H7      H       H       0       -13.056     -67.779     41.156      
+PN6     H8      H       H       0       -12.738     -68.312     42.614      
+PN6     H9      H       H       0       -16.410     -68.292     41.580      
+PN6     H10     H       H       0       -15.220     -69.340     41.518      
+PN6     H11     H       H       0       -15.243     -68.106     40.524      
+PN6     H12     H       H       0       -15.630     -65.759     44.378      
+PN6     H13     H       H       0       -15.939     -64.510     35.723      
+PN6     H14     H       H       0       -17.568     -65.101     39.916      
+PN6     H15     H       H       0       -19.347     -63.771     35.845      
+PN6     H17     H       H       0       -17.742     -66.445     34.444      
+PN6     H18     H       H       0       -17.325     -66.867     32.197      
+PN6     H19     H       H       0       -17.584     -65.177     30.623      
+PN6     H20     H       H       0       -18.261     -63.058     31.298      
+PN6     H21     H       H       0       -18.680     -62.626     33.543      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PN6         C17         C18      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PN6         C16         C17      SINGLE       y     1.376  0.0114     1.376  0.0114
+PN6         C18         C19      SINGLE       y     1.384  0.0100     1.384  0.0100
+PN6         C15         C16      DOUBLE       y     1.384  0.0100     1.384  0.0100
+PN6         C14         C19      DOUBLE       y     1.390  0.0100     1.390  0.0100
+PN6         C14         C15      SINGLE       y     1.390  0.0100     1.390  0.0100
+PN6         C13         C14      SINGLE       n     1.480  0.0192     1.480  0.0192
+PN6         C10         C13      DOUBLE       n     1.450  0.0200     1.450  0.0200
+PN6          N9         C10      SINGLE       y     1.376  0.0165     1.376  0.0165
+PN6          C8          N9      SINGLE       y     1.368  0.0109     1.368  0.0109
+PN6         C11         C10      SINGLE       y     1.426  0.0200     1.426  0.0200
+PN6          C8         O20      DOUBLE       n     1.237  0.0119     1.237  0.0119
+PN6          C7          C8      SINGLE       y     1.426  0.0200     1.426  0.0200
+PN6         C11         O21      DOUBLE       n     1.237  0.0119     1.237  0.0119
+PN6         N12         C11      SINGLE       y     1.368  0.0109     1.368  0.0109
+PN6          C7         N12      SINGLE       y     1.376  0.0165     1.376  0.0165
+PN6          C6          C7      DOUBLE       n     1.439  0.0200     1.439  0.0200
+PN6          C6          C2      SINGLE       n     1.453  0.0200     1.453  0.0200
+PN6          C2          N3      SINGLE       y     1.391  0.0100     1.391  0.0100
+PN6          C2          C1      DOUBLE       y     1.375  0.0100     1.375  0.0100
+PN6          C4          N3      DOUBLE       y     1.315  0.0100     1.315  0.0100
+PN6         C22         C25      SINGLE       n     1.530  0.0100     1.530  0.0100
+PN6         C22          C1      SINGLE       n     1.518  0.0100     1.518  0.0100
+PN6          C1          N5      SINGLE       y     1.366  0.0105     1.366  0.0105
+PN6         C22         C24      SINGLE       n     1.530  0.0100     1.530  0.0100
+PN6         C23         C22      SINGLE       n     1.530  0.0100     1.530  0.0100
+PN6          C4          N5      SINGLE       y     1.345  0.0194     1.345  0.0194
+PN6          C6          H1      SINGLE       n     1.082  0.0130     0.943  0.0200
+PN6          C4          H2      SINGLE       n     1.082  0.0130     0.945  0.0100
+PN6         C23          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C23          H4      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C23          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C24          H6      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C24          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C24          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C25          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C25         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6         C25         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+PN6          N5         H12      SINGLE       n     1.016  0.0100     0.887  0.0200
+PN6          N9         H13      SINGLE       n     1.016  0.0100     0.880  0.0200
+PN6         N12         H14      SINGLE       n     1.016  0.0100     0.880  0.0200
+PN6         C13         H15      SINGLE       n     1.082  0.0130     0.943  0.0200
+PN6         C15         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+PN6         C16         H18      SINGLE       n     1.082  0.0130     0.943  0.0180
+PN6         C17         H19      SINGLE       n     1.082  0.0130     0.944  0.0161
+PN6         C18         H20      SINGLE       n     1.082  0.0130     0.943  0.0180
+PN6         C19         H21      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PN6          C7          C6          C2     123.702    3.00
+PN6          C7          C6          H1     118.133    1.50
+PN6          C2          C6          H1     118.165    1.81
+PN6          C6          C2          N3     122.142    2.60
+PN6          C6          C2          C1     128.776    3.00
+PN6          N3          C2          C1     109.082    1.50
+PN6          N3          C4          N5     111.384    1.50
+PN6          N3          C4          H2     124.521    1.50
+PN6          N5          C4          H2     124.094    1.50
+PN6         C22         C23          H3     109.656    1.50
+PN6         C22         C23          H4     109.656    1.50
+PN6         C22         C23          H5     109.656    1.50
+PN6          H3         C23          H4     109.335    1.50
+PN6          H3         C23          H5     109.335    1.50
+PN6          H4         C23          H5     109.335    1.50
+PN6         C25         C22          C1     109.976    1.50
+PN6         C25         C22         C24     109.134    1.50
+PN6         C25         C22         C23     109.134    1.50
+PN6          C1         C22         C24     109.976    1.50
+PN6          C1         C22         C23     109.976    1.50
+PN6         C24         C22         C23     109.134    1.50
+PN6         C22         C24          H6     109.656    1.50
+PN6         C22         C24          H7     109.656    1.50
+PN6         C22         C24          H8     109.656    1.50
+PN6          H6         C24          H7     109.335    1.50
+PN6          H6         C24          H8     109.335    1.50
+PN6          H7         C24          H8     109.335    1.50
+PN6         C22         C25          H9     109.656    1.50
+PN6         C22         C25         H10     109.656    1.50
+PN6         C22         C25         H11     109.656    1.50
+PN6          H9         C25         H10     109.335    1.50
+PN6          H9         C25         H11     109.335    1.50
+PN6         H10         C25         H11     109.335    1.50
+PN6          C2          C1         C22     130.616    3.00
+PN6          C2          C1          N5     107.082    2.30
+PN6         C22          C1          N5     122.301    1.88
+PN6          C1          N5          C4     107.352    2.04
+PN6          C1          N5         H12     126.111    1.79
+PN6          C4          N5         H12     126.536    2.69
+PN6          C2          N3          C4     105.099    1.50
+PN6          C8          C7         N12     119.869    1.64
+PN6          C8          C7          C6     121.205    2.75
+PN6         N12          C7          C6     118.926    3.00
+PN6          N9          C8         O20     118.530    1.50
+PN6          N9          C8          C7     118.502    3.00
+PN6         O20          C8          C7     122.968    1.85
+PN6         C10          N9          C8     121.629    1.60
+PN6         C10          N9         H13     119.981    2.44
+PN6          C8          N9         H13     118.390    1.78
+PN6         C11         N12          C7     121.629    1.60
+PN6         C11         N12         H14     118.390    1.78
+PN6          C7         N12         H14     119.981    2.44
+PN6         C10         C11         O21     122.968    1.85
+PN6         C10         C11         N12     118.502    3.00
+PN6         O21         C11         N12     118.530    1.50
+PN6         C13         C10          N9     118.926    3.00
+PN6         C13         C10         C11     121.205    2.75
+PN6          N9         C10         C11     119.869    1.64
+PN6         C14         C13         C10     123.622    2.22
+PN6         C14         C13         H15     116.842    1.77
+PN6         C10         C13         H15     119.536    1.50
+PN6         C19         C14         C15     119.018    1.50
+PN6         C19         C14         C13     120.491    3.00
+PN6         C15         C14         C13     120.491    3.00
+PN6         C16         C15         C14     120.496    1.50
+PN6         C16         C15         H17     119.752    1.50
+PN6         C14         C15         H17     119.752    1.50
+PN6         C17         C16         C15     120.093    1.50
+PN6         C17         C16         H18     119.998    1.50
+PN6         C15         C16         H18     119.907    1.50
+PN6         C18         C17         C16     119.808    1.50
+PN6         C18         C17         H19     120.096    1.50
+PN6         C16         C17         H19     120.096    1.50
+PN6         C17         C18         C19     120.093    1.50
+PN6         C17         C18         H20     119.998    1.50
+PN6         C19         C18         H20     119.907    1.50
+PN6         C18         C19         C14     120.496    1.50
+PN6         C18         C19         H21     119.752    1.50
+PN6         C14         C19         H21     119.752    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PN6            sp2_sp2_15          N3          C2          C6          C7       0.000     5.0     2
+PN6             sp2_sp2_9          C2          C6          C7          C8     180.000     5.0     2
+PN6       const_sp2_sp2_4          C6          C7          C8         O20       0.000     5.0     2
+PN6              const_59          C6          C7         N12         C11     180.000    10.0     2
+PN6       const_sp2_sp2_7         O20          C8          N9         C10     180.000     5.0     2
+PN6              const_11         C13         C10          N9          C8     180.000    10.0     2
+PN6              const_19         O21         C11         N12          C7     180.000    10.0     2
+PN6              const_16         C13         C10         C11         O21       0.000    10.0     2
+PN6             sp2_sp2_5          N9         C10         C13         C14     180.000     5.0     2
+PN6             sp2_sp2_1         C10         C13         C14         C19     180.000     5.0     2
+PN6              const_55         C13         C14         C15         C16     180.000    10.0     2
+PN6              const_23         C13         C14         C19         C18     180.000    10.0     2
+PN6              const_64         C22          C1          C2          C6       0.000    10.0     2
+PN6              const_42          C6          C2          N3          C4     180.000    10.0     2
+PN6              const_37         C14         C15         C16         C17       0.000    10.0     2
+PN6              const_33         C15         C16         C17         C18       0.000    10.0     2
+PN6              const_29         C16         C17         C18         C19       0.000    10.0     2
+PN6              const_25         C17         C18         C19         C14       0.000    10.0     2
+PN6              const_45          N3          C4          N5          C1       0.000    10.0     2
+PN6              const_43          N5          C4          N3          C2       0.000    10.0     2
+PN6            sp3_sp3_22         C25         C22         C23          H3      60.000    10.0     3
+PN6            sp3_sp3_10         C25         C22         C24          H6     180.000    10.0     3
+PN6             sp3_sp3_4         C24         C22         C25          H9      60.000    10.0     3
+PN6             sp2_sp3_2          C2          C1         C22         C25     -90.000    10.0     6
+PN6              const_51         C22          C1          N5          C4     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PN6    chir_1    C22    C1    C25    C24    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PN6    plan-1         C10   0.020
+PN6    plan-1         C11   0.020
+PN6    plan-1         C13   0.020
+PN6    plan-1          C6   0.020
+PN6    plan-1          C7   0.020
+PN6    plan-1          C8   0.020
+PN6    plan-1         H13   0.020
+PN6    plan-1         H14   0.020
+PN6    plan-1         N12   0.020
+PN6    plan-1          N9   0.020
+PN6    plan-1         O20   0.020
+PN6    plan-1         O21   0.020
+PN6    plan-2         C13   0.020
+PN6    plan-2         C14   0.020
+PN6    plan-2         C15   0.020
+PN6    plan-2         C16   0.020
+PN6    plan-2         C17   0.020
+PN6    plan-2         C18   0.020
+PN6    plan-2         C19   0.020
+PN6    plan-2         H17   0.020
+PN6    plan-2         H18   0.020
+PN6    plan-2         H19   0.020
+PN6    plan-2         H20   0.020
+PN6    plan-2         H21   0.020
+PN6    plan-3          C1   0.020
+PN6    plan-3          C2   0.020
+PN6    plan-3         C22   0.020
+PN6    plan-3          C4   0.020
+PN6    plan-3          C6   0.020
+PN6    plan-3         H12   0.020
+PN6    plan-3          H2   0.020
+PN6    plan-3          N3   0.020
+PN6    plan-3          N5   0.020
+PN6    plan-4          C2   0.020
+PN6    plan-4          C6   0.020
+PN6    plan-4          C7   0.020
+PN6    plan-4          H1   0.020
+PN6    plan-5         C10   0.020
+PN6    plan-5         C13   0.020
+PN6    plan-5         C14   0.020
+PN6    plan-5         H15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PN6           SMILES              ACDLabs 12.01                                                                                                "[C@H](c1ncnc1C(C)(C)C)=C2NC(=O)C(NC2=O)=[C@H]c3ccccc3"
+PN6            InChI                InChI  1.03 InChI=1S/C19H20N4O2/c1-19(2,3)16-13(20-11-21-16)10-15-18(25)22-14(17(24)23-15)9-12-7-5-4-6-8-12/h4-11H,1-3H3,(H,20,21)(H,22,25)(H,23,24)/b14-9-,15-10-
+PN6         InChIKey                InChI  1.03                                                                                                                            UNRCMCRRFYFGFX-TYPNBTCFSA-N
+PN6 SMILES_CANONICAL               CACTVS 3.385                                                                                                    CC(C)(C)c1[nH]cnc1/C=C/2NC(=O)C(/NC/2=O)=C/c3ccccc3
+PN6           SMILES               CACTVS 3.385                                                                                                         CC(C)(C)c1[nH]cnc1C=C2NC(=O)C(NC2=O)=Cc3ccccc3
+PN6 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                               CC(C)(C)c1c(nc[nH]1)/C=C\2/C(=O)N/C(=C\c3ccccc3)/C(=O)N2
+PN6           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                     CC(C)(C)c1c(nc[nH]1)C=C2C(=O)NC(=Cc3ccccc3)C(=O)N2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PN6 acedrg               243         "dictionary generator"                  
+PN6 acedrg_database      11          "data source"                           
+PN6 rdkit                2017.03.2   "Chemoinformatics tool"
+PN6 refmac5              5.8.0238    "optimization tool"                     

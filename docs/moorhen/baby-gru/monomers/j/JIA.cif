@@ -1,0 +1,585 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JIA     JIA      "(2~{R},3~{R},4~{R},5~{R})-2-[(1~{S},2~{S},3~{R},4~{S},6~{R})-3-[(2~{R},3~{R},4~{R},5~{S},6~{R})-6-(aminomethyl)-3-azanyl-4,5-bis(oxidanyl)oxan-2-yl]oxy-4,6-bis(azanyl)-2-oxidanyl-cyclohexyl]oxy-5-methyl-4-(methylamino)oxane-3,5-diol"     NON-POLYMER     75     33     .     
+#
+data_comp_JIA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JIA     C15     C       CH3     0       54.264      -10.238     -22.918     
+JIA     C16     C       CH3     0       52.838      -9.335      -27.214     
+JIA     C17     C       CH2     0       48.548      -10.133     -19.002     
+JIA     C18     C       CH1     0       49.406      -9.651      -17.834     
+JIA     C19     C       CH1     0       50.281      -8.470      -18.247     
+JIA     C20     C       CH1     0       51.152      -8.888      -19.429     
+JIA     C21     C       CT      0       53.642      -9.208      -23.858     
+JIA     C22     C       CH2     0       53.023      -8.053      -23.059     
+JIA     C23     C       CH1     0       50.288      -9.282      -20.626     
+JIA     C24     C       CH1     0       52.588      -9.840      -24.811     
+JIA     C06     C       CH2     0       48.937      -6.025      -14.116     
+JIA     C07     C       CH1     0       50.893      -9.208      -23.017     
+JIA     C08     C       CH1     0       49.383      -10.449     -20.241     
+JIA     C09     C       CH1     0       51.318      -6.709      -16.883     
+JIA     C10     C       CH1     0       52.676      -6.533      -16.210     
+JIA     C11     C       CH1     0       52.634      -6.992      -14.749     
+JIA     C12     C       CH1     0       51.309      -10.249     -24.063     
+JIA     C13     C       CH1     0       51.474      -6.322      -14.020     
+JIA     C14     C       CH1     0       50.170      -6.648      -14.747     
+JIA     N01     N       NT2     0       53.755      -7.207      -16.947     
+JIA     N02     N       NT3     1       48.989      -4.547      -14.005     
+JIA     N03     N       NT3     1       48.526      -9.269      -16.684     
+JIA     N04     N       NT3     1       48.474      -10.782     -21.382     
+JIA     N05     N       NT1     0       52.312      -8.919      -25.933     
+JIA     O25     O       OH1     0       51.414      -6.800      -12.678     
+JIA     O26     O       OH1     0       53.878      -6.720      -14.114     
+JIA     O27     O       OH1     0       51.488      -11.542     -23.459     
+JIA     O28     O       O2      0       51.132      -9.701      -21.714     
+JIA     O29     O       O2      0       51.595      -7.969      -23.229     
+JIA     O30     O       O2      0       50.239      -6.170      -16.108     
+JIA     O31     O       OH1     0       52.030      -7.823      -19.792     
+JIA     O32     O       O2      0       51.110      -8.085      -17.135     
+JIA     O33     O       OH1     0       54.712      -8.670      -24.655     
+JIA     H1      H       H       0       55.050      -9.857      -22.494     
+JIA     H2      H       H       0       54.523      -11.026     -23.422     
+JIA     H3      H       H       0       53.623      -10.490     -22.235     
+JIA     H4      H       H       0       53.779      -9.580      -27.117     
+JIA     H5      H       H       0       52.759      -8.599      -27.852     
+JIA     H6      H       H       0       52.333      -10.104     -27.540     
+JIA     H7      H       H       0       48.054      -10.938     -18.731     
+JIA     H8      H       H       0       47.887      -9.441      -19.225     
+JIA     H9      H       H       0       50.000      -10.402     -17.545     
+JIA     H10     H       H       0       49.697      -7.718      -18.517     
+JIA     H11     H       H       0       51.701      -9.668      -19.161     
+JIA     H12     H       H       0       53.228      -8.163      -22.121     
+JIA     H13     H       H       0       53.419      -7.217      -23.351     
+JIA     H14     H       H       0       49.728      -8.512      -20.896     
+JIA     H15     H       H       0       52.983      -10.669     -25.178     
+JIA     H16     H       H       0       48.817      -6.402      -13.218     
+JIA     H17     H       H       0       48.153      -6.269      -14.654     
+JIA     H18     H       H       0       49.921      -9.034      -23.121     
+JIA     H19     H       H       0       49.955      -11.246     -20.045     
+JIA     H20     H       H       0       51.345      -6.242      -17.754     
+JIA     H21     H       H       0       52.874      -5.565      -16.202     
+JIA     H22     H       H       0       52.483      -7.973      -14.732     
+JIA     H23     H       H       0       50.585      -10.328     -24.712     
+JIA     H24     H       H       0       51.611      -5.340      -14.010     
+JIA     H25     H       H       0       50.049      -7.630      -14.753     
+JIA     H26     H       H       0       53.652      -8.089      -16.897     
+JIA     H27     H       H       0       53.735      -6.966      -17.803     
+JIA     H29     H       H       0       49.373      -4.188      -14.744     
+JIA     H30     H       H       0       49.474      -4.303      -13.278     
+JIA     H31     H       H       0       48.151      -4.209      -13.921     
+JIA     H32     H       H       0       48.227      -8.427      -16.786     
+JIA     H33     H       H       0       48.988      -9.328      -15.917     
+JIA     H34     H       H       0       47.820      -9.825      -16.635     
+JIA     H35     H       H       0       48.036      -10.044     -21.650     
+JIA     H36     H       H       0       47.874      -11.402     -21.126     
+JIA     H37     H       H       0       48.952      -11.107     -22.069     
+JIA     H38     H       H       0       51.425      -8.714      -25.996     
+JIA     H40     H       H       0       51.289      -7.633      -12.668     
+JIA     H41     H       H       0       53.901      -5.911      -13.877     
+JIA     H42     H       H       0       51.431      -12.134     -24.053     
+JIA     H43     H       H       0       51.576      -7.152      -20.022     
+JIA     H44     H       H       0       55.058      -9.280      -25.122     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JIA         C16         N05      SINGLE       n     1.444  0.0128     1.444  0.0128
+JIA         C24         N05      SINGLE       n     1.468  0.0132     1.468  0.0132
+JIA         C24         C12      SINGLE       n     1.532  0.0100     1.532  0.0100
+JIA         C21         C24      SINGLE       n     1.551  0.0112     1.551  0.0112
+JIA         C21         O33      SINGLE       n     1.436  0.0120     1.436  0.0120
+JIA         C12         O27      SINGLE       n     1.432  0.0200     1.432  0.0200
+JIA         C07         C12      SINGLE       n     1.522  0.0129     1.522  0.0129
+JIA         C15         C21      SINGLE       n     1.525  0.0100     1.525  0.0100
+JIA         C21         C22      SINGLE       n     1.529  0.0100     1.529  0.0100
+JIA         C07         O29      SINGLE       n     1.419  0.0200     1.419  0.0200
+JIA         C22         O29      SINGLE       n     1.435  0.0103     1.435  0.0103
+JIA         C07         O28      SINGLE       n     1.406  0.0136     1.406  0.0136
+JIA         C23         O28      SINGLE       n     1.436  0.0105     1.436  0.0105
+JIA         C08         N04      SINGLE       n     1.496  0.0100     1.496  0.0100
+JIA         C23         C08      SINGLE       n     1.524  0.0103     1.524  0.0103
+JIA         C20         C23      SINGLE       n     1.521  0.0165     1.521  0.0165
+JIA         C17         C08      SINGLE       n     1.525  0.0100     1.525  0.0100
+JIA         C20         O31      SINGLE       n     1.427  0.0125     1.427  0.0125
+JIA         C19         C20      SINGLE       n     1.521  0.0165     1.521  0.0165
+JIA         C17         C18      SINGLE       n     1.525  0.0100     1.525  0.0100
+JIA         C18         C19      SINGLE       n     1.524  0.0103     1.524  0.0103
+JIA         C19         O32      SINGLE       n     1.436  0.0105     1.436  0.0105
+JIA         C18         N03      SINGLE       n     1.496  0.0100     1.496  0.0100
+JIA         C09         O32      SINGLE       n     1.406  0.0151     1.406  0.0151
+JIA         C09         O30      SINGLE       n     1.422  0.0172     1.422  0.0172
+JIA         C09         C10      SINGLE       n     1.512  0.0200     1.512  0.0200
+JIA         C10         N01      SINGLE       n     1.470  0.0107     1.470  0.0107
+JIA         C14         O30      SINGLE       n     1.441  0.0100     1.441  0.0100
+JIA         C10         C11      SINGLE       n     1.532  0.0100     1.532  0.0100
+JIA         C06         C14      SINGLE       n     1.518  0.0100     1.518  0.0100
+JIA         C13         C14      SINGLE       n     1.524  0.0192     1.524  0.0192
+JIA         C06         N02      SINGLE       n     1.483  0.0133     1.483  0.0133
+JIA         C11         C13      SINGLE       n     1.523  0.0100     1.523  0.0100
+JIA         C11         O26      SINGLE       n     1.421  0.0106     1.421  0.0106
+JIA         C13         O25      SINGLE       n     1.425  0.0100     1.425  0.0100
+JIA         C15          H1      SINGLE       n     1.089  0.0100     0.971  0.0171
+JIA         C15          H2      SINGLE       n     1.089  0.0100     0.971  0.0171
+JIA         C15          H3      SINGLE       n     1.089  0.0100     0.971  0.0171
+JIA         C16          H4      SINGLE       n     1.089  0.0100     0.977  0.0113
+JIA         C16          H5      SINGLE       n     1.089  0.0100     0.977  0.0113
+JIA         C16          H6      SINGLE       n     1.089  0.0100     0.977  0.0113
+JIA         C17          H7      SINGLE       n     1.089  0.0100     0.983  0.0138
+JIA         C17          H8      SINGLE       n     1.089  0.0100     0.983  0.0138
+JIA         C18          H9      SINGLE       n     1.089  0.0100     1.000  0.0100
+JIA         C19         H10      SINGLE       n     1.089  0.0100     0.989  0.0181
+JIA         C20         H11      SINGLE       n     1.089  0.0100     0.990  0.0140
+JIA         C22         H12      SINGLE       n     1.089  0.0100     0.969  0.0200
+JIA         C22         H13      SINGLE       n     1.089  0.0100     0.969  0.0200
+JIA         C23         H14      SINGLE       n     1.089  0.0100     0.989  0.0181
+JIA         C24         H15      SINGLE       n     1.089  0.0100     0.988  0.0199
+JIA         C06         H16      SINGLE       n     1.089  0.0100     0.982  0.0165
+JIA         C06         H17      SINGLE       n     1.089  0.0100     0.982  0.0165
+JIA         C07         H18      SINGLE       n     1.089  0.0100     0.992  0.0126
+JIA         C08         H19      SINGLE       n     1.089  0.0100     1.000  0.0100
+JIA         C09         H20      SINGLE       n     1.089  0.0100     0.989  0.0183
+JIA         C10         H21      SINGLE       n     1.089  0.0100     0.988  0.0199
+JIA         C11         H22      SINGLE       n     1.089  0.0100     0.992  0.0104
+JIA         C12         H23      SINGLE       n     1.089  0.0100     0.975  0.0196
+JIA         C13         H24      SINGLE       n     1.089  0.0100     0.991  0.0105
+JIA         C14         H25      SINGLE       n     1.089  0.0100     0.990  0.0106
+JIA         N01         H26      SINGLE       n     1.036  0.0160     0.889  0.0200
+JIA         N01         H27      SINGLE       n     1.036  0.0160     0.889  0.0200
+JIA         N02         H29      SINGLE       n     1.036  0.0160     0.907  0.0200
+JIA         N02         H30      SINGLE       n     1.036  0.0160     0.907  0.0200
+JIA         N02         H31      SINGLE       n     1.036  0.0160     0.907  0.0200
+JIA         N03         H32      SINGLE       n     1.036  0.0160     0.899  0.0200
+JIA         N03         H33      SINGLE       n     1.036  0.0160     0.899  0.0200
+JIA         N03         H34      SINGLE       n     1.036  0.0160     0.899  0.0200
+JIA         N04         H35      SINGLE       n     1.036  0.0160     0.899  0.0200
+JIA         N04         H36      SINGLE       n     1.036  0.0160     0.899  0.0200
+JIA         N04         H37      SINGLE       n     1.036  0.0160     0.899  0.0200
+JIA         N05         H38      SINGLE       n     1.036  0.0160     0.911  0.0200
+JIA         O25         H40      SINGLE       n     0.970  0.0120     0.841  0.0200
+JIA         O26         H41      SINGLE       n     0.970  0.0120     0.841  0.0200
+JIA         O27         H42      SINGLE       n     0.970  0.0120     0.841  0.0200
+JIA         O31         H43      SINGLE       n     0.970  0.0120     0.841  0.0200
+JIA         O33         H44      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JIA         C21         C15          H1     109.584    1.50
+JIA         C21         C15          H2     109.584    1.50
+JIA         C21         C15          H3     109.584    1.50
+JIA          H1         C15          H2     109.376    1.50
+JIA          H1         C15          H3     109.376    1.50
+JIA          H2         C15          H3     109.376    1.50
+JIA         N05         C16          H4     109.483    1.50
+JIA         N05         C16          H5     109.483    1.50
+JIA         N05         C16          H6     109.483    1.50
+JIA          H4         C16          H5     109.459    1.50
+JIA          H4         C16          H6     109.459    1.50
+JIA          H5         C16          H6     109.459    1.50
+JIA         C08         C17         C18     112.567    1.88
+JIA         C08         C17          H7     109.552    1.50
+JIA         C08         C17          H8     109.552    1.50
+JIA         C18         C17          H7     109.552    1.50
+JIA         C18         C17          H8     109.552    1.50
+JIA          H7         C17          H8     107.784    1.50
+JIA         C17         C18         C19     111.392    1.50
+JIA         C17         C18         N03     109.461    1.50
+JIA         C17         C18          H9     108.719    1.50
+JIA         C19         C18         N03     109.671    1.50
+JIA         C19         C18          H9     108.763    1.50
+JIA         N03         C18          H9     108.734    1.50
+JIA         C20         C19         C18     108.862    1.50
+JIA         C20         C19         O32     108.580    2.45
+JIA         C20         C19         H10     109.166    1.50
+JIA         C18         C19         O32     107.953    1.94
+JIA         C18         C19         H10     108.664    1.50
+JIA         O32         C19         H10     109.522    1.50
+JIA         C23         C20         O31     110.081    2.02
+JIA         C23         C20         C19     110.796    1.54
+JIA         C23         C20         H11     109.166    1.50
+JIA         O31         C20         C19     110.081    2.02
+JIA         O31         C20         H11     108.767    1.50
+JIA         C19         C20         H11     109.166    1.50
+JIA         C24         C21         O33     109.365    2.30
+JIA         C24         C21         C15     112.539    1.50
+JIA         C24         C21         C22     111.124    1.57
+JIA         O33         C21         C15     109.198    1.92
+JIA         O33         C21         C22     109.247    2.43
+JIA         C15         C21         C22     111.163    2.25
+JIA         C21         C22         O29     110.767    1.50
+JIA         C21         C22         H12     109.200    1.50
+JIA         C21         C22         H13     109.200    1.50
+JIA         O29         C22         H12     109.216    1.50
+JIA         O29         C22         H13     109.216    1.50
+JIA         H12         C22         H13     108.242    1.50
+JIA         O28         C23         C08     107.953    1.94
+JIA         O28         C23         C20     108.580    2.45
+JIA         O28         C23         H14     109.522    1.50
+JIA         C08         C23         C20     108.862    1.50
+JIA         C08         C23         H14     108.664    1.50
+JIA         C20         C23         H14     109.166    1.50
+JIA         N05         C24         C12     110.827    2.19
+JIA         N05         C24         C21     111.865    2.42
+JIA         N05         C24         H15     108.110    1.50
+JIA         C12         C24         C21     111.124    1.57
+JIA         C12         C24         H15     107.258    1.68
+JIA         C21         C24         H15     107.529    1.50
+JIA         C14         C06         N02     113.823    1.83
+JIA         C14         C06         H16     108.444    1.50
+JIA         C14         C06         H17     108.444    1.50
+JIA         N02         C06         H16     108.377    1.50
+JIA         N02         C06         H17     108.377    1.50
+JIA         H16         C06         H17     107.850    1.50
+JIA         C12         C07         O29     110.164    1.50
+JIA         C12         C07         O28     108.473    2.03
+JIA         C12         C07         H18     109.599    1.50
+JIA         O29         C07         O28     110.325    1.95
+JIA         O29         C07         H18     109.272    1.61
+JIA         O28         C07         H18     109.369    1.50
+JIA         N04         C08         C23     109.671    1.50
+JIA         N04         C08         C17     109.461    1.50
+JIA         N04         C08         H19     108.734    1.50
+JIA         C23         C08         C17     111.392    1.50
+JIA         C23         C08         H19     108.763    1.50
+JIA         C17         C08         H19     108.719    1.50
+JIA         O32         C09         O30     110.325    1.95
+JIA         O32         C09         C10     108.367    1.50
+JIA         O32         C09         H20     107.875    2.12
+JIA         O30         C09         C10     111.350    3.00
+JIA         O30         C09         H20     109.272    1.61
+JIA         C10         C09         H20     108.848    1.50
+JIA         C09         C10         N01     111.865    2.42
+JIA         C09         C10         C11     111.124    1.57
+JIA         C09         C10         H21     107.511    1.55
+JIA         N01         C10         C11     111.315    2.25
+JIA         N01         C10         H21     108.113    1.50
+JIA         C11         C10         H21     107.258    1.68
+JIA         C10         C11         C13     110.742    1.50
+JIA         C10         C11         O26     110.124    1.87
+JIA         C10         C11         H22     108.987    1.50
+JIA         C13         C11         O26     110.984    1.55
+JIA         C13         C11         H22     108.714    1.50
+JIA         O26         C11         H22     108.954    1.50
+JIA         C24         C12         O27     110.124    1.87
+JIA         C24         C12         C07     111.124    1.57
+JIA         C24         C12         H23     108.987    1.50
+JIA         O27         C12         C07     109.976    1.78
+JIA         O27         C12         H23     108.790    1.50
+JIA         C07         C12         H23     108.925    1.50
+JIA         C14         C13         C11     110.072    1.92
+JIA         C14         C13         O25     109.153    2.02
+JIA         C14         C13         H24     109.550    1.50
+JIA         C11         C13         O25     109.301    2.14
+JIA         C11         C13         H24     109.514    1.50
+JIA         O25         C13         H24     109.194    1.50
+JIA         O30         C14         C06     107.878    2.44
+JIA         O30         C14         C13     109.378    1.54
+JIA         O30         C14         H25     108.995    1.50
+JIA         C06         C14         C13     113.587    1.96
+JIA         C06         C14         H25     108.699    2.22
+JIA         C13         C14         H25     108.898    1.50
+JIA         C10         N01         H26     109.984    3.00
+JIA         C10         N01         H27     109.984    3.00
+JIA         H26         N01         H27     108.673    3.00
+JIA         C06         N02         H29     110.335    2.25
+JIA         C06         N02         H30     110.335    2.25
+JIA         C06         N02         H31     110.335    2.25
+JIA         H29         N02         H30     108.820    2.86
+JIA         H29         N02         H31     108.820    2.86
+JIA         H30         N02         H31     108.820    2.86
+JIA         C18         N03         H32     109.908    1.75
+JIA         C18         N03         H33     109.908    1.75
+JIA         C18         N03         H34     109.908    1.75
+JIA         H32         N03         H33     109.122    2.58
+JIA         H32         N03         H34     109.122    2.58
+JIA         H33         N03         H34     109.122    2.58
+JIA         C08         N04         H35     109.908    1.75
+JIA         C08         N04         H36     109.908    1.75
+JIA         C08         N04         H37     109.908    1.75
+JIA         H35         N04         H36     109.122    2.58
+JIA         H35         N04         H37     109.122    2.58
+JIA         H36         N04         H37     109.122    2.58
+JIA         C16         N05         C24     114.006    1.50
+JIA         C16         N05         H38     110.410    2.59
+JIA         C24         N05         H38     107.785    2.86
+JIA         C13         O25         H40     109.564    3.00
+JIA         C11         O26         H41     108.064    2.53
+JIA         C12         O27         H42     109.099    3.00
+JIA         C07         O28         C23     117.169    1.96
+JIA         C07         O29         C22     111.784    1.50
+JIA         C09         O30         C14     113.097    1.50
+JIA         C20         O31         H43     108.895    2.41
+JIA         C19         O32         C09     117.169    1.96
+JIA         C21         O33         H44     108.747    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JIA                   nu0         C14         O30         C09         C10     -58.610    10.0     3
+JIA                   nu1         O30         C09         C10         C11      52.977    10.0     3
+JIA                   nu2         C09         C10         C11         C13     -51.224    10.0     3
+JIA                   nu3         C10         C11         C13         C14      53.964    10.0     3
+JIA                   nu4         C11         C13         C14         O30     -60.211    10.0     3
+JIA                   nu5         C13         C14         O30         C09      62.953    10.0     3
+JIA             sp3_sp3_1         C22         C21         C24         C12     -60.000    10.0     3
+JIA             sp3_sp3_2         C22         C21         C24         N05      60.000    10.0     3
+JIA             sp3_sp3_3         C22         C21         C24         H15     180.000    10.0     3
+JIA             sp3_sp3_4         O33         C21         C24         C12      60.000    10.0     3
+JIA             sp3_sp3_5         O33         C21         C24         N05     180.000    10.0     3
+JIA             sp3_sp3_6         O33         C21         C24         H15     -60.000    10.0     3
+JIA             sp3_sp3_7         C15         C21         C24         C12     180.000    10.0     3
+JIA             sp3_sp3_8         C15         C21         C24         N05     -60.000    10.0     3
+JIA             sp3_sp3_9         C15         C21         C24         H15      60.000    10.0     3
+JIA            sp3_sp3_10         C07         C12         C24         C21      60.000    10.0     3
+JIA            sp3_sp3_11         C07         C12         C24         N05     180.000    10.0     3
+JIA            sp3_sp3_12         C07         C12         C24         H15     -60.000    10.0     3
+JIA            sp3_sp3_13         O27         C12         C24         C21     180.000    10.0     3
+JIA            sp3_sp3_14         O27         C12         C24         N05     -60.000    10.0     3
+JIA            sp3_sp3_15         O27         C12         C24         H15      60.000    10.0     3
+JIA            sp3_sp3_16         H23         C12         C24         C21     -60.000    10.0     3
+JIA            sp3_sp3_17         H23         C12         C24         N05      60.000    10.0     3
+JIA            sp3_sp3_18         H23         C12         C24         H15     180.000    10.0     3
+JIA            sp3_sp3_19         O29         C07         C12         C24     -60.000    10.0     3
+JIA            sp3_sp3_20         O29         C07         C12         O27      60.000    10.0     3
+JIA            sp3_sp3_21         O29         C07         C12         H23     180.000    10.0     3
+JIA            sp3_sp3_22         O28         C07         C12         C24      60.000    10.0     3
+JIA            sp3_sp3_23         O28         C07         C12         O27     180.000    10.0     3
+JIA            sp3_sp3_24         O28         C07         C12         H23     -60.000    10.0     3
+JIA            sp3_sp3_25         H18         C07         C12         C24     180.000    10.0     3
+JIA            sp3_sp3_26         H18         C07         C12         O27     -60.000    10.0     3
+JIA            sp3_sp3_27         H18         C07         C12         H23      60.000    10.0     3
+JIA            sp3_sp3_28         C12         C07         O29         C22      60.000    10.0     3
+JIA            sp3_sp3_29         O28         C07         O29         C22     180.000    10.0     3
+JIA            sp3_sp3_30         H18         C07         O29         C22      60.000    10.0     3
+JIA            sp3_sp3_31         C21         C22         O29         C07     -60.000    10.0     3
+JIA            sp3_sp3_32         H12         C22         O29         C07      60.000    10.0     3
+JIA            sp3_sp3_33         H13         C22         O29         C07     180.000    10.0     3
+JIA            sp3_sp3_34         C23         C08         C17         C18      60.000    10.0     3
+JIA            sp3_sp3_35         C23         C08         C17          H7     180.000    10.0     3
+JIA            sp3_sp3_36         C23         C08         C17          H8     -60.000    10.0     3
+JIA            sp3_sp3_37         N04         C08         C17         C18     -60.000    10.0     3
+JIA            sp3_sp3_38         N04         C08         C17          H7      60.000    10.0     3
+JIA            sp3_sp3_39         N04         C08         C17          H8     180.000    10.0     3
+JIA            sp3_sp3_40         H19         C08         C17         C18     180.000    10.0     3
+JIA            sp3_sp3_41         H19         C08         C17          H7     -60.000    10.0     3
+JIA            sp3_sp3_42         H19         C08         C17          H8      60.000    10.0     3
+JIA            sp3_sp3_43         C17         C08         C23         C20     -60.000    10.0     3
+JIA            sp3_sp3_44         C17         C08         C23         O28      60.000    10.0     3
+JIA            sp3_sp3_45         C17         C08         C23         H14     180.000    10.0     3
+JIA            sp3_sp3_46         N04         C08         C23         C20     180.000    10.0     3
+JIA            sp3_sp3_47         N04         C08         C23         O28     -60.000    10.0     3
+JIA            sp3_sp3_48         N04         C08         C23         H14      60.000    10.0     3
+JIA            sp3_sp3_49         H19         C08         C23         C20      60.000    10.0     3
+JIA            sp3_sp3_50         H19         C08         C23         O28     180.000    10.0     3
+JIA            sp3_sp3_51         H19         C08         C23         H14     -60.000    10.0     3
+JIA            sp3_sp3_52         C19         C20         C23         C08      60.000    10.0     3
+JIA            sp3_sp3_53         C19         C20         C23         O28     180.000    10.0     3
+JIA            sp3_sp3_54         C19         C20         C23         H14     -60.000    10.0     3
+JIA            sp3_sp3_55         O31         C20         C23         C08     -60.000    10.0     3
+JIA            sp3_sp3_56         O31         C20         C23         O28      60.000    10.0     3
+JIA            sp3_sp3_57         O31         C20         C23         H14     180.000    10.0     3
+JIA            sp3_sp3_58         H11         C20         C23         C08     180.000    10.0     3
+JIA            sp3_sp3_59         H11         C20         C23         O28     -60.000    10.0     3
+JIA            sp3_sp3_60         H11         C20         C23         H14      60.000    10.0     3
+JIA            sp3_sp3_61         C18         C19         C20         C23     -60.000    10.0     3
+JIA            sp3_sp3_62         C18         C19         C20         O31      60.000    10.0     3
+JIA            sp3_sp3_63         C18         C19         C20         H11     180.000    10.0     3
+JIA            sp3_sp3_64         O32         C19         C20         C23     180.000    10.0     3
+JIA            sp3_sp3_65         O32         C19         C20         O31     -60.000    10.0     3
+JIA            sp3_sp3_66         O32         C19         C20         H11      60.000    10.0     3
+JIA            sp3_sp3_67         H10         C19         C20         C23      60.000    10.0     3
+JIA            sp3_sp3_68         H10         C19         C20         O31     180.000    10.0     3
+JIA            sp3_sp3_69         H10         C19         C20         H11     -60.000    10.0     3
+JIA            sp3_sp3_70         C17         C18         C19         C20      60.000    10.0     3
+JIA            sp3_sp3_71         C17         C18         C19         O32     180.000    10.0     3
+JIA            sp3_sp3_72         C17         C18         C19         H10     -60.000    10.0     3
+JIA            sp3_sp3_73         N03         C18         C19         C20     -60.000    10.0     3
+JIA            sp3_sp3_74         N03         C18         C19         O32      60.000    10.0     3
+JIA            sp3_sp3_75         N03         C18         C19         H10     180.000    10.0     3
+JIA            sp3_sp3_76          H9         C18         C19         C20     180.000    10.0     3
+JIA            sp3_sp3_77          H9         C18         C19         O32     -60.000    10.0     3
+JIA            sp3_sp3_78          H9         C18         C19         H10      60.000    10.0     3
+JIA           sp3_sp3_112          H4         C16         N05         C24     180.000    10.0     3
+JIA           sp3_sp3_113          H4         C16         N05         H38     -60.000    10.0     3
+JIA           sp3_sp3_114          H5         C16         N05         C24      60.000    10.0     3
+JIA           sp3_sp3_115          H5         C16         N05         H38     180.000    10.0     3
+JIA           sp3_sp3_116          H6         C16         N05         C24     -60.000    10.0     3
+JIA           sp3_sp3_117          H6         C16         N05         H38      60.000    10.0     3
+JIA           sp3_sp3_118         C12         C24         N05         H38     180.000    10.0     3
+JIA           sp3_sp3_119         C12         C24         N05         C16     -60.000    10.0     3
+JIA           sp3_sp3_120         C21         C24         N05         H38      60.000    10.0     3
+JIA           sp3_sp3_121         C21         C24         N05         C16     180.000    10.0     3
+JIA           sp3_sp3_122         H15         C24         N05         H38     -60.000    10.0     3
+JIA           sp3_sp3_123         H15         C24         N05         C16      60.000    10.0     3
+JIA           sp3_sp3_124         C24         C21         O33         H44     180.000    10.0     3
+JIA           sp3_sp3_125         C15         C21         O33         H44      60.000    10.0     3
+JIA           sp3_sp3_126         C22         C21         O33         H44     -60.000    10.0     3
+JIA           sp3_sp3_127         C24         C12         O27         H42     180.000    10.0     3
+JIA           sp3_sp3_128         C07         C12         O27         H42      60.000    10.0     3
+JIA           sp3_sp3_129         H23         C12         O27         H42     -60.000    10.0     3
+JIA           sp3_sp3_130          H1         C15         C21         C24     180.000    10.0     3
+JIA           sp3_sp3_131          H1         C15         C21         O33     -60.000    10.0     3
+JIA           sp3_sp3_132          H1         C15         C21         C22      60.000    10.0     3
+JIA           sp3_sp3_133          H2         C15         C21         C24      60.000    10.0     3
+JIA           sp3_sp3_134          H2         C15         C21         O33     180.000    10.0     3
+JIA           sp3_sp3_135          H2         C15         C21         C22     -60.000    10.0     3
+JIA           sp3_sp3_136          H3         C15         C21         C24     -60.000    10.0     3
+JIA           sp3_sp3_137          H3         C15         C21         O33      60.000    10.0     3
+JIA           sp3_sp3_138          H3         C15         C21         C22     180.000    10.0     3
+JIA           sp3_sp3_139         C24         C21         C22         O29      60.000    10.0     3
+JIA           sp3_sp3_140         C24         C21         C22         H12     180.000    10.0     3
+JIA           sp3_sp3_141         C24         C21         C22         H13     -60.000    10.0     3
+JIA           sp3_sp3_142         O33         C21         C22         O29     180.000    10.0     3
+JIA           sp3_sp3_143         O33         C21         C22         H12     -60.000    10.0     3
+JIA           sp3_sp3_144         O33         C21         C22         H13      60.000    10.0     3
+JIA           sp3_sp3_145         C15         C21         C22         O29     -60.000    10.0     3
+JIA           sp3_sp3_146         C15         C21         C22         H12      60.000    10.0     3
+JIA           sp3_sp3_147         C15         C21         C22         H13     180.000    10.0     3
+JIA           sp3_sp3_148         C12         C07         O28         C23     180.000    10.0     3
+JIA           sp3_sp3_149         O29         C07         O28         C23      60.000    10.0     3
+JIA           sp3_sp3_150         H18         C07         O28         C23     -60.000    10.0     3
+JIA           sp3_sp3_151         C08         C23         O28         C07     180.000    10.0     3
+JIA           sp3_sp3_152         C20         C23         O28         C07      60.000    10.0     3
+JIA           sp3_sp3_153         H14         C23         O28         C07     -60.000    10.0     3
+JIA           sp3_sp3_154         C23         C08         N04         H35     180.000    10.0     3
+JIA           sp3_sp3_155         C23         C08         N04         H36     -60.000    10.0     3
+JIA           sp3_sp3_156         C23         C08         N04         H37      60.000    10.0     3
+JIA           sp3_sp3_157         C17         C08         N04         H35      60.000    10.0     3
+JIA           sp3_sp3_158         C17         C08         N04         H36     180.000    10.0     3
+JIA           sp3_sp3_159         C17         C08         N04         H37     -60.000    10.0     3
+JIA           sp3_sp3_160         H19         C08         N04         H35     -60.000    10.0     3
+JIA           sp3_sp3_161         H19         C08         N04         H36      60.000    10.0     3
+JIA           sp3_sp3_162         H19         C08         N04         H37     180.000    10.0     3
+JIA           sp3_sp3_163         C23         C20         O31         H43     180.000    10.0     3
+JIA           sp3_sp3_164         C19         C20         O31         H43      60.000    10.0     3
+JIA           sp3_sp3_165         H11         C20         O31         H43     -60.000    10.0     3
+JIA           sp3_sp3_166         C08         C17         C18         C19     180.000    10.0     3
+JIA           sp3_sp3_167         C08         C17         C18         N03     -60.000    10.0     3
+JIA           sp3_sp3_168         C08         C17         C18          H9      60.000    10.0     3
+JIA           sp3_sp3_169          H7         C17         C18         C19      60.000    10.0     3
+JIA           sp3_sp3_170          H7         C17         C18         N03     180.000    10.0     3
+JIA           sp3_sp3_171          H7         C17         C18          H9     -60.000    10.0     3
+JIA           sp3_sp3_172          H8         C17         C18         C19     -60.000    10.0     3
+JIA           sp3_sp3_173          H8         C17         C18         N03      60.000    10.0     3
+JIA           sp3_sp3_174          H8         C17         C18          H9     180.000    10.0     3
+JIA           sp3_sp3_175         C20         C19         O32         C09     180.000    10.0     3
+JIA           sp3_sp3_176         C18         C19         O32         C09      60.000    10.0     3
+JIA           sp3_sp3_177         H10         C19         O32         C09     -60.000    10.0     3
+JIA           sp3_sp3_178         C17         C18         N03         H32     180.000    10.0     3
+JIA           sp3_sp3_179         C17         C18         N03         H33     -60.000    10.0     3
+JIA           sp3_sp3_180         C17         C18         N03         H34      60.000    10.0     3
+JIA           sp3_sp3_181         C19         C18         N03         H32      60.000    10.0     3
+JIA           sp3_sp3_182         C19         C18         N03         H33     180.000    10.0     3
+JIA           sp3_sp3_183         C19         C18         N03         H34     -60.000    10.0     3
+JIA           sp3_sp3_184          H9         C18         N03         H32     -60.000    10.0     3
+JIA           sp3_sp3_185          H9         C18         N03         H33      60.000    10.0     3
+JIA           sp3_sp3_186          H9         C18         N03         H34     180.000    10.0     3
+JIA           sp3_sp3_187         O30         C09         O32         C19     180.000    10.0     3
+JIA           sp3_sp3_188         C10         C09         O32         C19      60.000    10.0     3
+JIA           sp3_sp3_189         H20         C09         O32         C19     -60.000    10.0     3
+JIA           sp3_sp3_199         C09         C10         N01         H26     180.000    10.0     3
+JIA           sp3_sp3_200         C09         C10         N01         H27     -60.000    10.0     3
+JIA           sp3_sp3_201         C11         C10         N01         H26      60.000    10.0     3
+JIA           sp3_sp3_202         C11         C10         N01         H27     180.000    10.0     3
+JIA           sp3_sp3_203         H21         C10         N01         H26     -60.000    10.0     3
+JIA           sp3_sp3_204         H21         C10         N01         H27      60.000    10.0     3
+JIA           sp3_sp3_205         N02         C06         C14         O30     180.000    10.0     3
+JIA           sp3_sp3_206         N02         C06         C14         C13     -60.000    10.0     3
+JIA           sp3_sp3_207         N02         C06         C14         H25      60.000    10.0     3
+JIA           sp3_sp3_208         H16         C06         C14         O30      60.000    10.0     3
+JIA           sp3_sp3_209         H16         C06         C14         C13     180.000    10.0     3
+JIA           sp3_sp3_210         H16         C06         C14         H25     -60.000    10.0     3
+JIA           sp3_sp3_211         H17         C06         C14         O30     -60.000    10.0     3
+JIA           sp3_sp3_212         H17         C06         C14         C13      60.000    10.0     3
+JIA           sp3_sp3_213         H17         C06         C14         H25     180.000    10.0     3
+JIA           sp3_sp3_214         C14         C06         N02         H29     180.000    10.0     3
+JIA           sp3_sp3_215         C14         C06         N02         H30     -60.000    10.0     3
+JIA           sp3_sp3_216         C14         C06         N02         H31      60.000    10.0     3
+JIA           sp3_sp3_217         H16         C06         N02         H29      60.000    10.0     3
+JIA           sp3_sp3_218         H16         C06         N02         H30     180.000    10.0     3
+JIA           sp3_sp3_219         H16         C06         N02         H31     -60.000    10.0     3
+JIA           sp3_sp3_220         H17         C06         N02         H29     -60.000    10.0     3
+JIA           sp3_sp3_221         H17         C06         N02         H30      60.000    10.0     3
+JIA           sp3_sp3_222         H17         C06         N02         H31     180.000    10.0     3
+JIA           sp3_sp3_223         C10         C11         O26         H41     180.000    10.0     3
+JIA           sp3_sp3_224         C13         C11         O26         H41      60.000    10.0     3
+JIA           sp3_sp3_225         H22         C11         O26         H41     -60.000    10.0     3
+JIA           sp3_sp3_226         C14         C13         O25         H40     180.000    10.0     3
+JIA           sp3_sp3_227         C11         C13         O25         H40      60.000    10.0     3
+JIA           sp3_sp3_228         H24         C13         O25         H40     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JIA    chir_1    C18    N03    C19    C17    positive
+JIA    chir_2    C19    O32    C20    C18    negative
+JIA    chir_3    C20    O31    C23    C19    positive
+JIA    chir_4    C21    O33    C22    C24    negative
+JIA    chir_5    C23    O28    C20    C08    positive
+JIA    chir_6    C24    N05    C21    C12    negative
+JIA    chir_7    C07    O28    O29    C12    negative
+JIA    chir_8    C08    N04    C23    C17    negative
+JIA    chir_9    C09    O32    O30    C10    negative
+JIA    chir_10    C10    N01    C09    C11    negative
+JIA    chir_11    C11    O26    C13    C10    negative
+JIA    chir_12    C12    O27    C07    C24    negative
+JIA    chir_13    C13    O25    C14    C11    positive
+JIA    chir_14    C14    O30    C13    C06    negative
+JIA    chir_15    N05    C24    C16    H38    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JIA            InChI                InChI  1.03 InChI=1S/C19H39N5O9/c1-19(29)5-30-18(13(28)16(19)24-2)33-15-7(22)3-6(21)14(12(15)27)32-17-9(23)11(26)10(25)8(4-20)31-17/h6-18,24-29H,3-5,20-23H2,1-2H3/t6-,7+,8+,9+,10+,11+,12-,13+,14+,15-,16+,17+,18+,19-/m0/s1
+JIA         InChIKey                InChI  1.03                                                                                                                                                                                       YQGZDAPJXRYYLX-ZFAMMYHGSA-N
+JIA SMILES_CANONICAL               CACTVS 3.385                                                                                             CN[C@@H]1[C@@H](O)[C@H](OC[C@]1(C)O)O[C@H]2[C@H](N)C[C@H](N)[C@@H](O[C@H]3O[C@H](CN)[C@@H](O)[C@H](O)[C@H]3N)[C@@H]2O
+JIA           SMILES               CACTVS 3.385                                                                                                                CN[CH]1[CH](O)[CH](OC[C]1(C)O)O[CH]2[CH](N)C[CH](N)[CH](O[CH]3O[CH](CN)[CH](O)[CH](O)[CH]3N)[CH]2O
+JIA SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       C[C@@]1(CO[C@@H]([C@@H]([C@H]1NC)O)O[C@H]2[C@@H](C[C@@H]([C@H]([C@@H]2O)O[C@@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CN)O)O)N)N)N)O
+JIA           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                       CC1(COC(C(C1NC)O)OC2C(CC(C(C2O)OC3C(C(C(C(O3)CN)O)O)N)N)N)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JIA acedrg               243         "dictionary generator"                  
+JIA acedrg_database      11          "data source"                           
+JIA rdkit                2017.03.2   "Chemoinformatics tool"
+JIA refmac5              5.8.0238    "optimization tool"                     

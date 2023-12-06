@@ -1,0 +1,282 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PCE     PCE      "2-(3-AMINO-4-CYCLOHEXYL-2-HYDROXY-BUTYL)-PENT-4-YNOIC ACID"     NON-POLYMER     44     19     .     
+#
+data_comp_PCE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PCE     N       N       NT3     1       -17.167     64.450      38.054      
+PCE     CA      C       CH1     0       -16.817     64.972      39.415      
+PCE     CB      C       CH2     0       -17.349     64.021      40.496      
+PCE     CG      C       CH1     0       -18.847     63.716      40.482      
+PCE     CD1     C       CH2     0       -19.694     64.946      40.797      
+PCE     CD2     C       CH2     0       -19.193     62.590      41.452      
+PCE     CE1     C       CH2     0       -21.191     64.635      40.810      
+PCE     CE2     C       CH2     0       -20.687     62.268      41.462      
+PCE     CZ      C       CH2     0       -21.517     63.503      41.768      
+PCE     CH      C       CH1     0       -15.308     65.271      39.528      
+PCE     OH      O       OH1     0       -14.575     64.057      39.325      
+PCE     CM      C       CH2     0       -14.823     65.927      40.822      
+PCE     CA2     C       CH1     0       -15.353     67.317      41.258      
+PCE     CB2     C       CH2     0       -15.464     68.303      40.096      
+PCE     CG2     C       CSP     0       -14.159     68.552      39.471      
+PCE     CD3     C       CSP     0       -13.086     68.723      39.009      
+PCE     C       C       C       0       -16.671     67.192      42.039      
+PCE     O       O       O       0       -17.734     67.561      41.494      
+PCE     OXT     O       OC      -1      -16.616     66.726      43.195      
+PCE     H       H       H       0       -16.652     64.846      37.422      
+PCE     H2      H       H       0       -18.036     64.628      37.868      
+PCE     H3      H       H       0       -17.035     63.553      38.020      
+PCE     HA      H       H       0       -17.281     65.828      39.521      
+PCE     HB2     H       H       0       -17.129     64.396      41.374      
+PCE     HB3     H       H       0       -16.869     63.170      40.417      
+PCE     HG      H       H       0       -19.081     63.411      39.578      
+PCE     HD12    H       H       0       -19.433     65.302      41.670      
+PCE     HD13    H       H       0       -19.521     65.638      40.129      
+PCE     HD23    H       H       0       -18.915     62.846      42.354      
+PCE     HD22    H       H       0       -18.694     61.787      41.203      
+PCE     HE12    H       H       0       -21.479     64.388      39.905      
+PCE     HE13    H       H       0       -21.687     65.439      41.078      
+PCE     HE23    H       H       0       -20.867     61.580      42.139      
+PCE     HE22    H       H       0       -20.948     61.909      40.586      
+PCE     HZ2     H       H       0       -22.470     63.280      41.696      
+PCE     HZ3     H       H       0       -21.342     63.793      42.688      
+PCE     HH      H       H       0       -15.077     65.882      38.782      
+PCE     HO      H       H       0       -14.581     63.586      40.031      
+PCE     HM1     H       H       0       -13.845     65.997      40.760      
+PCE     HM2     H       H       0       -14.998     65.299      41.558      
+PCE     HA2     H       H       0       -14.694     67.687      41.891      
+PCE     HB21    H       H       0       -15.828     69.157      40.429      
+PCE     HB22    H       H       0       -16.087     67.952      39.419      
+PCE     HD31    H       H       0       -12.218     68.823      38.628      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PCE           N          CA      SINGLE       n     1.497  0.0100     1.497  0.0100
+PCE          CA          CB      SINGLE       n     1.517  0.0200     1.517  0.0200
+PCE          CA          CH      SINGLE       n     1.536  0.0128     1.536  0.0128
+PCE          CB          CG      SINGLE       n     1.526  0.0115     1.526  0.0115
+PCE          CG         CD1      SINGLE       n     1.524  0.0100     1.524  0.0100
+PCE          CG         CD2      SINGLE       n     1.524  0.0100     1.524  0.0100
+PCE         CD1         CE1      SINGLE       n     1.527  0.0100     1.527  0.0100
+PCE         CD2         CE2      SINGLE       n     1.527  0.0100     1.527  0.0100
+PCE         CE1          CZ      SINGLE       n     1.517  0.0112     1.517  0.0112
+PCE         CE2          CZ      SINGLE       n     1.517  0.0112     1.517  0.0112
+PCE          CH          OH      SINGLE       n     1.424  0.0199     1.424  0.0199
+PCE          CH          CM      SINGLE       n     1.525  0.0100     1.525  0.0100
+PCE          CM         CA2      SINGLE       n     1.530  0.0200     1.530  0.0200
+PCE         CA2         CB2      SINGLE       n     1.520  0.0145     1.520  0.0145
+PCE         CA2           C      SINGLE       n     1.533  0.0100     1.533  0.0100
+PCE         CB2         CG2      SINGLE       n     1.467  0.0186     1.467  0.0186
+PCE         CG2         CD3      TRIPLE       n     1.180  0.0167     1.180  0.0167
+PCE           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PCE           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+PCE           N           H      SINGLE       n     1.036  0.0160     0.907  0.0200
+PCE           N          H2      SINGLE       n     1.036  0.0160     0.907  0.0200
+PCE           N          H3      SINGLE       n     1.036  0.0160     0.907  0.0200
+PCE          CA          HA      SINGLE       n     1.089  0.0100     0.982  0.0200
+PCE          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0140
+PCE          CB         HB3      SINGLE       n     1.089  0.0100     0.981  0.0140
+PCE          CG          HG      SINGLE       n     1.089  0.0100     0.983  0.0100
+PCE         CD1        HD12      SINGLE       n     1.089  0.0100     0.978  0.0143
+PCE         CD1        HD13      SINGLE       n     1.089  0.0100     0.978  0.0143
+PCE         CD2        HD23      SINGLE       n     1.089  0.0100     0.978  0.0143
+PCE         CD2        HD22      SINGLE       n     1.089  0.0100     0.978  0.0143
+PCE         CE1        HE12      SINGLE       n     1.089  0.0100     0.982  0.0142
+PCE         CE1        HE13      SINGLE       n     1.089  0.0100     0.982  0.0142
+PCE         CE2        HE23      SINGLE       n     1.089  0.0100     0.982  0.0142
+PCE         CE2        HE22      SINGLE       n     1.089  0.0100     0.982  0.0142
+PCE          CZ         HZ2      SINGLE       n     1.089  0.0100     0.981  0.0138
+PCE          CZ         HZ3      SINGLE       n     1.089  0.0100     0.981  0.0138
+PCE          CH          HH      SINGLE       n     1.089  0.0100     0.992  0.0184
+PCE          OH          HO      SINGLE       n     0.970  0.0120     0.848  0.0200
+PCE          CM         HM1      SINGLE       n     1.089  0.0100     0.983  0.0100
+PCE          CM         HM2      SINGLE       n     1.089  0.0100     0.983  0.0100
+PCE         CA2         HA2      SINGLE       n     1.089  0.0100     0.986  0.0200
+PCE         CB2        HB21      SINGLE       n     1.089  0.0100     0.986  0.0178
+PCE         CB2        HB22      SINGLE       n     1.089  0.0100     0.986  0.0178
+PCE         CD3        HD31      SINGLE       n     1.048  0.0100     0.950  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PCE          CA           N           H     109.950    1.71
+PCE          CA           N          H2     109.950    1.71
+PCE          CA           N          H3     109.950    1.71
+PCE           H           N          H2     109.028    2.41
+PCE           H           N          H3     109.028    2.41
+PCE          H2           N          H3     109.028    2.41
+PCE           N          CA          CB     109.471    3.00
+PCE           N          CA          CH     112.810    3.00
+PCE           N          CA          HA     108.026    2.07
+PCE          CB          CA          CH     113.128    1.50
+PCE          CB          CA          HA     107.680    1.50
+PCE          CH          CA          HA     107.235    1.50
+PCE          CA          CB          CG     113.198    2.74
+PCE          CA          CB         HB2     108.394    1.50
+PCE          CA          CB         HB3     108.394    1.50
+PCE          CG          CB         HB2     108.361    1.50
+PCE          CG          CB         HB3     108.361    1.50
+PCE         HB2          CB         HB3     107.474    1.50
+PCE          CB          CG         CD1     111.907    1.50
+PCE          CB          CG         CD2     111.907    1.50
+PCE          CB          CG          HG     107.292    1.50
+PCE         CD1          CG         CD2     109.635    1.50
+PCE         CD1          CG          HG     107.897    1.50
+PCE         CD2          CG          HG     107.897    1.50
+PCE          CG         CD1         CE1     112.229    1.50
+PCE          CG         CD1        HD12     109.293    1.50
+PCE          CG         CD1        HD13     109.293    1.50
+PCE         CE1         CD1        HD12     109.267    1.50
+PCE         CE1         CD1        HD13     109.267    1.50
+PCE        HD12         CD1        HD13     107.919    1.50
+PCE          CG         CD2         CE2     112.229    1.50
+PCE          CG         CD2        HD23     109.293    1.50
+PCE          CG         CD2        HD22     109.293    1.50
+PCE         CE2         CD2        HD23     109.267    1.50
+PCE         CE2         CD2        HD22     109.267    1.50
+PCE        HD23         CD2        HD22     107.919    1.50
+PCE         CD1         CE1          CZ     111.360    1.50
+PCE         CD1         CE1        HE12     109.388    1.50
+PCE         CD1         CE1        HE13     109.388    1.50
+PCE          CZ         CE1        HE12     109.386    1.50
+PCE          CZ         CE1        HE13     109.386    1.50
+PCE        HE12         CE1        HE13     108.036    1.50
+PCE         CD2         CE2          CZ     111.360    1.50
+PCE         CD2         CE2        HE23     109.388    1.50
+PCE         CD2         CE2        HE22     109.388    1.50
+PCE          CZ         CE2        HE23     109.386    1.50
+PCE          CZ         CE2        HE22     109.386    1.50
+PCE        HE23         CE2        HE22     108.036    1.50
+PCE         CE1          CZ         CE2     111.038    1.50
+PCE         CE1          CZ         HZ2     109.386    1.50
+PCE         CE1          CZ         HZ3     109.386    1.50
+PCE         CE2          CZ         HZ2     109.386    1.50
+PCE         CE2          CZ         HZ3     109.386    1.50
+PCE         HZ2          CZ         HZ3     108.036    1.50
+PCE          CA          CH          OH     109.668    2.07
+PCE          CA          CH          CM     115.501    2.07
+PCE          CA          CH          HH     108.159    1.50
+PCE          OH          CH          CM     109.024    2.32
+PCE          OH          CH          HH     108.700    1.50
+PCE          CM          CH          HH     108.603    1.50
+PCE          CH          OH          HO     108.640    2.32
+PCE          CH          CM         CA2     117.566    3.00
+PCE          CH          CM         HM1     108.468    1.50
+PCE          CH          CM         HM2     108.468    1.50
+PCE         CA2          CM         HM1     108.447    1.50
+PCE         CA2          CM         HM2     108.447    1.50
+PCE         HM1          CM         HM2     106.914    1.50
+PCE          CM         CA2         CB2     111.102    1.80
+PCE          CM         CA2           C     110.778    2.06
+PCE          CM         CA2         HA2     107.780    1.50
+PCE         CB2         CA2           C     111.425    1.50
+PCE         CB2         CA2         HA2     108.078    1.50
+PCE           C         CA2         HA2     107.706    1.93
+PCE         CA2         CB2         CG2     110.326    2.62
+PCE         CA2         CB2        HB21     109.297    1.50
+PCE         CA2         CB2        HB22     109.297    1.50
+PCE         CG2         CB2        HB21     109.115    1.50
+PCE         CG2         CB2        HB22     109.115    1.50
+PCE        HB21         CB2        HB22     107.947    1.50
+PCE         CB2         CG2         CD3     177.449    1.50
+PCE         CG2         CD3        HD31     179.884    1.50
+PCE         CA2           C           O     118.051    1.50
+PCE         CA2           C         OXT     118.051    1.50
+PCE           O           C         OXT     123.899    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PCE            sp3_sp3_46          CB          CA           N           H     180.000    10.0     3
+PCE           sp3_sp3_103         CB2         CA2          CM          CH     180.000    10.0     3
+PCE           sp3_sp3_112          CM         CA2         CB2         CG2     180.000    10.0     3
+PCE             sp2_sp3_1           O           C         CA2          CM       0.000    10.0     6
+PCE           sp3_sp3_121         CD3         CG2         CB2         CA2     180.000    10.0     3
+PCE           other_tor_1        HD31         CD3         CG2         CB2     180.000    10.0     1
+PCE            sp3_sp3_55           N          CA          CB          CG     180.000    10.0     3
+PCE            sp3_sp3_64           N          CA          CH          OH     180.000    10.0     3
+PCE            sp3_sp3_74          CA          CB          CG         CD1     -60.000    10.0     3
+PCE             sp3_sp3_3         CE1         CD1          CG          CB     -60.000    10.0     3
+PCE            sp3_sp3_83         CE2         CD2          CG          CB     -60.000    10.0     3
+PCE            sp3_sp3_10          CG         CD1         CE1          CZ     -60.000    10.0     3
+PCE            sp3_sp3_37          CG         CD2         CE2          CZ      60.000    10.0     3
+PCE            sp3_sp3_19         CD1         CE1          CZ         CE2      60.000    10.0     3
+PCE            sp3_sp3_28         CD2         CE2          CZ         CE1     -60.000    10.0     3
+PCE            sp3_sp3_91          CA          CH          OH          HO     180.000    10.0     3
+PCE            sp3_sp3_94          CA          CH          CM         CA2     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PCE    chir_1    CA    N    CH    CB    positive
+PCE    chir_2    CG    CB    CD1    CD2    both
+PCE    chir_3    CH    OH    CA    CM    negative
+PCE    chir_4    CA2    C    CM    CB2    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PCE    plan-1           C   0.020
+PCE    plan-1         CA2   0.020
+PCE    plan-1           O   0.020
+PCE    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PCE           SMILES              ACDLabs 10.04                                                                                            O=C(O)C(CC#C)CC(O)C(N)CC1CCCCC1
+PCE SMILES_CANONICAL               CACTVS 3.341                                                                              N[C@@H](CC1CCCCC1)[C@H](O)C[C@@H](CC#C)C(O)=O
+PCE           SMILES               CACTVS 3.341                                                                                   N[CH](CC1CCCCC1)[CH](O)C[CH](CC#C)C(O)=O
+PCE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                    C#CCC(C[C@H]([C@H](CC1CCCCC1)N)O)C(=O)O
+PCE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                            C#CCC(CC(C(CC1CCCCC1)N)O)C(=O)O
+PCE            InChI                InChI  1.03 InChI=1S/C15H25NO3/c1-2-6-12(15(18)19)10-14(17)13(16)9-11-7-4-3-5-8-11/h1,11-14,17H,3-10,16H2,(H,18,19)/t12-,13+,14-/m1/s1
+PCE         InChIKey                InChI  1.03                                                                                                LBVTXTJVEPPIKK-HZSPNIEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PCE acedrg               243         "dictionary generator"                  
+PCE acedrg_database      11          "data source"                           
+PCE rdkit                2017.03.2   "Chemoinformatics tool"
+PCE refmac5              5.8.0238    "optimization tool"                     

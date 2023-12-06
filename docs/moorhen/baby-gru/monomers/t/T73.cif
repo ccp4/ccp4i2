@@ -1,0 +1,295 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+T73     T73      "(1S,2R,4S)-1,7,7-trimethylbicyclo[2.2.1]heptan-2-yl 4-hydroxybenzoate"     NON-POLYMER     42     20     .     
+#
+data_comp_T73
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+T73     O1      O       O       0       6.556       44.098      16.964      
+T73     C8      C       C       0       7.572       43.570      16.592      
+T73     O       O       O2      0       7.790       42.242      16.688      
+T73     C6      C       CH1     0       8.894       41.641      17.438      
+T73     C7      C       CH2     0       8.713       40.102      17.470      
+T73     C2      C       CH1     0       8.776       39.762      18.980      
+T73     C5      C       CT      0       8.902       42.007      18.939      
+T73     C15     C       CH3     0       9.396       43.410      19.217      
+T73     C4      C       CH2     0       7.495       41.725      19.515      
+T73     C3      C       CH2     0       7.418       40.179      19.579      
+T73     C1      C       CT      0       9.752       40.819      19.547      
+T73     C16     C       CH3     0       9.866       40.795      21.083      
+T73     C       C       CH3     0       11.189      40.689      19.010      
+T73     C9      C       CR6     0       8.710       44.303      15.976      
+T73     C14     C       CR16    0       9.049       45.563      16.459      
+T73     C13     C       CR16    0       10.098      46.279      15.909      
+T73     C12     C       CR6     0       10.828      45.740      14.854      
+T73     O2      O       OH1     0       11.870      46.447      14.305      
+T73     C11     C       CR16    0       10.495      44.483      14.359      
+T73     C10     C       CR16    0       9.441       43.777      14.914      
+T73     H1      H       H       0       9.754       41.878      17.021      
+T73     H2      H       H       0       7.858       39.843      17.075      
+T73     H3      H       H       0       9.421       39.656      16.968      
+T73     H4      H       H       0       9.035       38.832      19.166      
+T73     H5      H       H       0       9.847       43.437      20.082      
+T73     H6      H       H       0       8.640       44.026      19.230      
+T73     H7      H       H       0       10.023      43.682      18.520      
+T73     H8      H       H       0       6.795       42.081      18.943      
+T73     H9      H       H       0       7.393       42.116      20.401      
+T73     H10     H       H       0       6.674       39.838      19.048      
+T73     H11     H       H       0       7.320       39.864      20.497      
+T73     H12     H       H       0       9.173       41.331      21.488      
+T73     H13     H       H       0       10.727      41.147      21.362      
+T73     H14     H       H       0       9.781       39.879      21.395      
+T73     H15     H       H       0       11.507      41.557      18.712      
+T73     H16     H       H       0       11.215      40.071      18.267      
+T73     H17     H       H       0       11.782      40.356      19.704      
+T73     H18     H       H       0       8.561       45.936      17.173      
+T73     H19     H       H       0       10.319      47.129      16.248      
+T73     H20     H       H       0       12.573      46.033      14.029      
+T73     H21     H       H       0       10.986      44.115      13.645      
+T73     H22     H       H       0       9.227       42.926      14.573      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+T73         C12          O2      SINGLE       n     1.374  0.0155     1.374  0.0155
+T73         C13         C12      SINGLE       y     1.388  0.0100     1.388  0.0100
+T73         C12         C11      DOUBLE       y     1.388  0.0100     1.388  0.0100
+T73         C14         C13      DOUBLE       y     1.381  0.0100     1.381  0.0100
+T73         C11         C10      SINGLE       y     1.381  0.0100     1.381  0.0100
+T73          C9         C14      SINGLE       y     1.388  0.0100     1.388  0.0100
+T73          C9         C10      DOUBLE       y     1.388  0.0100     1.388  0.0100
+T73          C8          C9      SINGLE       n     1.482  0.0115     1.482  0.0115
+T73          C8           O      SINGLE       n     1.344  0.0100     1.344  0.0100
+T73          O1          C8      DOUBLE       n     1.204  0.0100     1.204  0.0100
+T73           O          C6      SINGLE       n     1.449  0.0137     1.449  0.0137
+T73          C6          C7      SINGLE       n     1.548  0.0100     1.548  0.0100
+T73          C7          C2      SINGLE       n     1.540  0.0145     1.540  0.0145
+T73          C6          C5      SINGLE       n     1.534  0.0100     1.534  0.0100
+T73          C2          C3      SINGLE       n     1.533  0.0179     1.533  0.0179
+T73          C2          C1      SINGLE       n     1.541  0.0100     1.541  0.0100
+T73          C1           C      SINGLE       n     1.528  0.0102     1.528  0.0102
+T73          C4          C3      SINGLE       n     1.549  0.0100     1.549  0.0100
+T73          C5          C1      SINGLE       n     1.555  0.0162     1.555  0.0162
+T73          C5          C4      SINGLE       n     1.536  0.0131     1.536  0.0131
+T73          C5         C15      SINGLE       n     1.509  0.0117     1.509  0.0117
+T73          C1         C16      SINGLE       n     1.528  0.0102     1.528  0.0102
+T73          C6          H1      SINGLE       n     1.089  0.0100     0.986  0.0200
+T73          C7          H2      SINGLE       n     1.089  0.0100     0.977  0.0200
+T73          C7          H3      SINGLE       n     1.089  0.0100     0.977  0.0200
+T73          C2          H4      SINGLE       n     1.089  0.0100     0.983  0.0199
+T73         C15          H5      SINGLE       n     1.089  0.0100     0.976  0.0200
+T73         C15          H6      SINGLE       n     1.089  0.0100     0.976  0.0200
+T73         C15          H7      SINGLE       n     1.089  0.0100     0.976  0.0200
+T73          C4          H8      SINGLE       n     1.089  0.0100     0.975  0.0180
+T73          C4          H9      SINGLE       n     1.089  0.0100     0.975  0.0180
+T73          C3         H10      SINGLE       n     1.089  0.0100     0.976  0.0199
+T73          C3         H11      SINGLE       n     1.089  0.0100     0.976  0.0199
+T73         C16         H12      SINGLE       n     1.089  0.0100     0.971  0.0193
+T73         C16         H13      SINGLE       n     1.089  0.0100     0.971  0.0193
+T73         C16         H14      SINGLE       n     1.089  0.0100     0.971  0.0193
+T73           C         H15      SINGLE       n     1.089  0.0100     0.971  0.0193
+T73           C         H16      SINGLE       n     1.089  0.0100     0.971  0.0193
+T73           C         H17      SINGLE       n     1.089  0.0100     0.971  0.0193
+T73         C14         H18      SINGLE       n     1.082  0.0130     0.941  0.0168
+T73         C13         H19      SINGLE       n     1.082  0.0130     0.941  0.0179
+T73          O2         H20      SINGLE       n     0.966  0.0059     0.861  0.0200
+T73         C11         H21      SINGLE       n     1.082  0.0130     0.941  0.0179
+T73         C10         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+T73          C9          C8           O     111.083    1.50
+T73          C9          C8          O1     124.812    1.50
+T73           O          C8          O1     124.105    1.50
+T73          C8           O          C6     117.048    1.98
+T73           O          C6          C7     111.548    2.03
+T73           O          C6          C5     109.275    1.51
+T73           O          C6          H1     110.067    1.57
+T73          C7          C6          C5     102.919    1.50
+T73          C7          C6          H1     110.506    1.76
+T73          C5          C6          H1     110.018    1.50
+T73          C6          C7          C2     103.577    1.50
+T73          C6          C7          H2     110.902    1.50
+T73          C6          C7          H3     110.902    1.50
+T73          C2          C7          H2     111.600    1.50
+T73          C2          C7          H3     111.600    1.50
+T73          H2          C7          H3     108.481    2.06
+T73          C7          C2          C3     106.959    1.50
+T73          C7          C2          C1     102.750    1.50
+T73          C7          C2          H4     113.729    2.12
+T73          C3          C2          C1     102.880    1.50
+T73          C3          C2          H4     114.453    1.59
+T73          C1          C2          H4     114.273    1.50
+T73          C6          C5          C1     102.208    1.50
+T73          C6          C5          C4     108.383    2.69
+T73          C6          C5         C15     113.459    1.50
+T73          C1          C5          C4     101.732    1.50
+T73          C1          C5         C15     118.130    1.50
+T73          C4          C5         C15     114.203    1.50
+T73          C5         C15          H5     109.500    1.50
+T73          C5         C15          H6     109.500    1.50
+T73          C5         C15          H7     109.500    1.50
+T73          H5         C15          H6     109.442    1.50
+T73          H5         C15          H7     109.442    1.50
+T73          H6         C15          H7     109.442    1.50
+T73          C3          C4          C5     104.314    1.50
+T73          C3          C4          H8     111.004    1.50
+T73          C3          C4          H9     111.004    1.50
+T73          C5          C4          H8     111.067    1.50
+T73          C5          C4          H9     111.067    1.50
+T73          H8          C4          H9     108.924    1.50
+T73          C2          C3          C4     102.768    1.50
+T73          C2          C3         H10     111.213    1.50
+T73          C2          C3         H11     111.213    1.50
+T73          C4          C3         H10     111.251    1.50
+T73          C4          C3         H11     111.251    1.50
+T73         H10          C3         H11     108.958    1.50
+T73          C2          C1           C     113.722    1.50
+T73          C2          C1          C5      93.683    1.50
+T73          C2          C1         C16     113.722    1.50
+T73           C          C1          C5     114.662    1.50
+T73           C          C1         C16     107.501    1.50
+T73          C5          C1         C16     114.662    1.50
+T73          C1         C16         H12     109.558    1.50
+T73          C1         C16         H13     109.558    1.50
+T73          C1         C16         H14     109.558    1.50
+T73         H12         C16         H13     109.384    1.50
+T73         H12         C16         H14     109.384    1.50
+T73         H13         C16         H14     109.384    1.50
+T73          C1           C         H15     109.558    1.50
+T73          C1           C         H16     109.558    1.50
+T73          C1           C         H17     109.558    1.50
+T73         H15           C         H16     109.384    1.50
+T73         H15           C         H17     109.384    1.50
+T73         H16           C         H17     109.384    1.50
+T73         C14          C9         C10     119.057    1.50
+T73         C14          C9          C8     120.471    2.03
+T73         C10          C9          C8     120.471    2.03
+T73         C13         C14          C9     120.841    1.50
+T73         C13         C14         H18     119.378    1.50
+T73          C9         C14         H18     119.781    1.50
+T73         C12         C13         C14     119.838    1.50
+T73         C12         C13         H19     120.000    1.50
+T73         C14         C13         H19     120.162    1.50
+T73          O2         C12         C13     120.208    3.00
+T73          O2         C12         C11     120.208    3.00
+T73         C13         C12         C11     119.584    1.50
+T73         C12          O2         H20     120.000    3.00
+T73         C12         C11         C10     119.838    1.50
+T73         C12         C11         H21     120.000    1.50
+T73         C10         C11         H21     120.162    1.50
+T73         C11         C10          C9     120.841    1.50
+T73         C11         C10         H22     119.378    1.50
+T73          C9         C10         H22     119.781    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+T73           sp3_sp3_100           C          C1         C16         H12     -60.000    10.0     3
+T73            sp3_sp3_78         H15           C          C1         C16      60.000    10.0     3
+T73       const_sp2_sp2_2         C13         C14          C9          C8     180.000     5.0     2
+T73              const_22         C11         C10          C9          C8     180.000    10.0     2
+T73       const_sp2_sp2_5         C12         C13         C14          C9       0.000     5.0     2
+T73              const_11          O2         C12         C13         C14     180.000    10.0     2
+T73             sp2_sp2_1         C13         C12          O2         H20     180.000     5.0     2
+T73              const_14         C10         C11         C12          O2     180.000    10.0     2
+T73              const_17          C9         C10         C11         C12       0.000    10.0     2
+T73             sp2_sp2_3           O          C8          C9         C14     180.000     5.0     2
+T73             sp2_sp2_8          O1          C8           O          C6       0.000     5.0     2
+T73            sp3_sp3_64          C7          C6           O          C8     180.000    10.0     3
+T73            sp3_sp3_40           O          C6          C7          C2     -60.000    10.0     3
+T73            sp3_sp3_74         C15          C5          C6           O      60.000    10.0     3
+T73            sp3_sp3_46          C3          C2          C7          C6     -60.000    10.0     3
+T73            sp3_sp3_58           C          C1          C2          C7     -60.000    10.0     3
+T73             sp3_sp3_1          C7          C2          C3          C4      60.000    10.0     3
+T73            sp3_sp3_36           C          C1          C5         C15     -60.000    10.0     3
+T73            sp3_sp3_85          H5         C15          C5          C6     180.000    10.0     3
+T73            sp3_sp3_21          C3          C4          C5         C15     -60.000    10.0     3
+T73            sp3_sp3_10          C2          C3          C4          C5     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+T73    chir_1    C6    O    C5    C7    negative
+T73    chir_2    C2    C1    C7    C3    positive
+T73    chir_3    C5    C6    C1    C4    positive
+T73    chir_4    C1    C5    C2    C    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+T73    plan-1         C10   0.020
+T73    plan-1         C11   0.020
+T73    plan-1         C12   0.020
+T73    plan-1         C13   0.020
+T73    plan-1         C14   0.020
+T73    plan-1          C8   0.020
+T73    plan-1          C9   0.020
+T73    plan-1         H18   0.020
+T73    plan-1         H19   0.020
+T73    plan-1         H21   0.020
+T73    plan-1         H22   0.020
+T73    plan-1          O2   0.020
+T73    plan-2          C8   0.020
+T73    plan-2          C9   0.020
+T73    plan-2           O   0.020
+T73    plan-2          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+T73           SMILES              ACDLabs 12.01                                                                                       O=C(OC1C2(C(C(C1)CC2)(C)C)C)c3ccc(cc3)O
+T73            InChI                InChI  1.03 InChI=1S/C17H22O3/c1-16(2)12-8-9-17(16,3)14(10-12)20-15(19)11-4-6-13(18)7-5-11/h4-7,12,14,18H,8-10H2,1-3H3/t12-,14+,17+/m0/s1
+T73         InChIKey                InChI  1.03                                                                                                   WZBMPPVYPMMRNT-DXCKQFNASA-N
+T73 SMILES_CANONICAL               CACTVS 3.385                                                                             CC1(C)[C@H]2CC[C@]1(C)[C@@H](C2)OC(=O)c3ccc(O)cc3
+T73           SMILES               CACTVS 3.385                                                                                 CC1(C)[CH]2CC[C]1(C)[CH](C2)OC(=O)c3ccc(O)cc3
+T73 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                C[C@]12CC[C@H](C1(C)C)C[C@H]2OC(=O)c3ccc(cc3)O
+T73           SMILES "OpenEye OEToolkits" 2.0.4                                                                                         CC1(C2CCC1(C(C2)OC(=O)c3ccc(cc3)O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+T73 acedrg               243         "dictionary generator"                  
+T73 acedrg_database      11          "data source"                           
+T73 rdkit                2017.03.2   "Chemoinformatics tool"
+T73 refmac5              5.8.0238    "optimization tool"                     

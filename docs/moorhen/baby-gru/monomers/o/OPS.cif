@@ -1,0 +1,159 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OPS     OPS      3-OXO-3-[(3-OXOPROPYL)SULFANYL]PROPANE-1-THIOLATE     NON-POLYMER     19     10     .     
+#
+data_comp_OPS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OPS     CL      C       C1      0       26.565      21.056      127.975     
+OPS     OM      O       O       0       26.884      21.818      128.835     
+OPS     CN      C       CH2     0       25.168      20.753      127.553     
+OPS     CO      C       CH2     0       24.354      20.084      128.635     
+OPS     SR      S       S2      0       24.030      18.330      128.305     
+OPS     CS      C       C       0       23.794      17.120      129.573     
+OPS     OT      O       O       0       23.558      15.969      129.299     
+OPS     CU      C       CH2     0       23.918      17.619      130.988     
+OPS     CV      C       CH2     0       22.611      17.903      131.675     
+OPS     SW      S       S1      -1      21.965      19.469      131.196     
+OPS     HL      H       H       0       27.258      20.606      127.521     
+OPS     HN1     H       H       0       25.194      20.175      126.761     
+OPS     HN2     H       H       0       24.726      21.590      127.295     
+OPS     HO1     H       H       0       23.498      20.551      128.722     
+OPS     HO2     H       H       0       24.824      20.165      129.489     
+OPS     HU1     H       H       0       24.466      18.431      130.985     
+OPS     HU2     H       H       0       24.404      16.939      131.502     
+OPS     HV1     H       H       0       22.747      17.903      132.638     
+OPS     HV2     H       H       0       21.966      17.213      131.443     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OPS          CL          OM      DOUBLE       n     1.192  0.0200     1.192  0.0200
+OPS          CL          CN      SINGLE       n     1.490  0.0115     1.490  0.0115
+OPS          CN          CO      SINGLE       n     1.501  0.0200     1.501  0.0200
+OPS          CO          SR      SINGLE       n     1.809  0.0191     1.809  0.0191
+OPS          SR          CS      SINGLE       n     1.762  0.0200     1.762  0.0200
+OPS          CS          OT      DOUBLE       n     1.207  0.0100     1.207  0.0100
+OPS          CS          CU      SINGLE       n     1.502  0.0151     1.502  0.0151
+OPS          CU          CV      SINGLE       n     1.498  0.0200     1.498  0.0200
+OPS          CV          SW      SINGLE       n     1.758  0.0200     1.758  0.0200
+OPS          CL          HL      SINGLE       n     1.082  0.0130     0.943  0.0105
+OPS          CN         HN1      SINGLE       n     1.089  0.0100     0.981  0.0185
+OPS          CN         HN2      SINGLE       n     1.089  0.0100     0.981  0.0185
+OPS          CO         HO1      SINGLE       n     1.089  0.0100     0.979  0.0200
+OPS          CO         HO2      SINGLE       n     1.089  0.0100     0.979  0.0200
+OPS          CU         HU1      SINGLE       n     1.089  0.0100     0.981  0.0185
+OPS          CU         HU2      SINGLE       n     1.089  0.0100     0.981  0.0185
+OPS          CV         HV1      SINGLE       n     1.089  0.0100     0.973  0.0148
+OPS          CV         HV2      SINGLE       n     1.089  0.0100     0.973  0.0148
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OPS          OM          CL          CN     125.770    1.96
+OPS          OM          CL          HL     117.130    1.50
+OPS          CN          CL          HL     117.100    1.50
+OPS          CL          CN          CO     111.511    2.91
+OPS          CL          CN         HN1     108.942    1.50
+OPS          CL          CN         HN2     108.942    1.50
+OPS          CO          CN         HN1     109.073    1.50
+OPS          CO          CN         HN2     109.073    1.50
+OPS         HN1          CN         HN2     107.705    1.50
+OPS          CN          CO          SR     112.239    3.00
+OPS          CN          CO         HO1     109.263    1.50
+OPS          CN          CO         HO2     109.263    1.50
+OPS          SR          CO         HO1     109.066    1.50
+OPS          SR          CO         HO2     109.066    1.50
+OPS         HO1          CO         HO2     107.939    1.50
+OPS          CO          SR          CS     120.000    3.00
+OPS          SR          CS          OT     122.927    2.65
+OPS          SR          CS          CU     113.307    2.65
+OPS          OT          CS          CU     123.766    1.64
+OPS          CS          CU          CV     113.614    3.00
+OPS          CS          CU         HU1     108.026    1.59
+OPS          CS          CU         HU2     108.026    1.59
+OPS          CV          CU         HU1     109.085    1.50
+OPS          CV          CU         HU2     109.085    1.50
+OPS         HU1          CU         HU2     107.705    1.50
+OPS          CU          CV          SW     109.471    3.00
+OPS          CU          CV         HV1     109.537    1.50
+OPS          CU          CV         HV2     109.537    1.50
+OPS          SW          CV         HV1     109.471    3.00
+OPS          SW          CV         HV2     109.471    3.00
+OPS         HV1          CV         HV2     109.401    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OPS             sp2_sp3_2          OM          CL          CN          CO     120.000    10.0     6
+OPS             sp3_sp3_1          CL          CN          CO          SR     180.000    10.0     3
+OPS            sp3_sp3_10          CN          CO          SR          CS     180.000    10.0     3
+OPS             sp2_sp2_1          OT          CS          SR          CO     180.000     5.0     2
+OPS             sp2_sp3_8          SR          CS          CU          CV     120.000    10.0     6
+OPS            sp3_sp3_13          CS          CU          CV          SW     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OPS    plan-1          CL   0.020
+OPS    plan-1          CN   0.020
+OPS    plan-1          HL   0.020
+OPS    plan-1          OM   0.020
+OPS    plan-2          CS   0.020
+OPS    plan-2          CU   0.020
+OPS    plan-2          OT   0.020
+OPS    plan-2          SR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OPS           SMILES              ACDLabs 10.04                                            O=C(SCCC=O)CC[S-]
+OPS SMILES_CANONICAL               CACTVS 3.341                                          "[S-]CCC(=O)SCCC=O"
+OPS           SMILES               CACTVS 3.341                                          "[S-]CCC(=O)SCCC=O"
+OPS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          C(CSC(=O)CC[S-])C=O
+OPS           SMILES "OpenEye OEToolkits" 1.5.0                                          C(CSC(=O)CC[S-])C=O
+OPS            InChI                InChI  1.03 InChI=1S/C6H10O2S2/c7-3-1-5-10-6(8)2-4-9/h3,9H,1-2,4-5H2/p-1
+OPS         InChIKey                InChI  1.03                                  LHLHVBHXBHTTIV-UHFFFAOYSA-M
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OPS acedrg               243         "dictionary generator"                  
+OPS acedrg_database      11          "data source"                           
+OPS rdkit                2017.03.2   "Chemoinformatics tool"
+OPS refmac5              5.8.0238    "optimization tool"                     

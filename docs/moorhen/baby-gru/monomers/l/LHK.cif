@@ -1,0 +1,233 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LHK     LHK      "(2~{S})-2-[[(2~{S})-1,4-bis(oxidanyl)-1,4-bis(oxidanylidene)butan-2-yl]sulfamoylamino]pentanedioic acid"     NON-POLYMER     32     22     .     
+#
+data_comp_LHK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LHK     OAB     O       O       0       22.260      43.316      46.475      
+LHK     CAQ     C       C       0       21.100      42.929      46.231      
+LHK     OAH     O       OC      -1      20.514      42.034      46.872      
+LHK     CAM     C       CH2     0       20.353      43.588      45.084      
+LHK     CAU     C       CH1     0       19.366      44.670      45.537      
+LHK     CAS     C       C       0       20.065      45.882      46.185      
+LHK     OAJ     O       OC      -1      19.484      46.416      47.150      
+LHK     OAD     O       O       0       21.160      46.253      45.710      
+LHK     NAO     N       NT1     0       18.435      45.063      44.472      
+LHK     SAV     S       S3      0       18.910      45.562      42.998      
+LHK     OAE     O       O       0       19.437      44.435      42.301      
+LHK     OAF     O       O       0       19.705      46.734      43.163      
+LHK     N       N       NT1     0       17.593      46.047      42.188      
+LHK     CA      C       CH1     0       16.570      45.084      41.742      
+LHK     C       C       C       0       16.923      44.381      40.417      
+LHK     OXT     O       O       0       16.425      43.255      40.219      
+LHK     O       O       OC      -1      17.680      44.986      39.631      
+LHK     CB      C       CH2     0       15.192      45.754      41.623      
+LHK     CG      C       CH2     0       15.133      46.915      40.638      
+LHK     CD      C       C       0       13.785      47.613      40.582      
+LHK     OE2     O       O       0       12.785      46.939      40.264      
+LHK     OE1     O       OC      -1      13.738      48.828      40.857      
+LHK     H2      H       H       0       19.864      42.891      44.601      
+LHK     H3      H       H       0       21.010      43.976      44.470      
+LHK     H4      H       H       0       18.824      44.256      46.244      
+LHK     H6      H       H       0       17.740      44.507      44.433      
+LHK     H7      H       H       0       17.236      46.768      42.575      
+LHK     H8      H       H       0       16.494      44.380      42.433      
+LHK     H10     H       H       0       14.929      46.080      42.509      
+LHK     H11     H       H       0       14.540      45.076      41.349      
+LHK     H12     H       H       0       15.344      46.588      39.738      
+LHK     H13     H       H       0       15.813      47.578      40.879      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LHK           C         OXT      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LHK          CD         OE2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LHK           C           O      SINGLE       n     1.247  0.0187     1.247  0.0187
+LHK          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+LHK          CD         OE1      SINGLE       n     1.247  0.0187     1.247  0.0187
+LHK          CG          CD      SINGLE       n     1.519  0.0109     1.519  0.0109
+LHK          CB          CG      SINGLE       n     1.518  0.0153     1.518  0.0153
+LHK          CA          CB      SINGLE       n     1.533  0.0100     1.533  0.0100
+LHK           N          CA      SINGLE       n     1.469  0.0127     1.469  0.0127
+LHK         SAV         OAE      DOUBLE       n     1.426  0.0100     1.426  0.0100
+LHK         SAV           N      SINGLE       n     1.617  0.0151     1.617  0.0151
+LHK         SAV         OAF      DOUBLE       n     1.426  0.0100     1.426  0.0100
+LHK         NAO         SAV      SINGLE       n     1.617  0.0151     1.617  0.0151
+LHK         CAU         NAO      SINGLE       n     1.463  0.0100     1.463  0.0100
+LHK         CAM         CAU      SINGLE       n     1.530  0.0100     1.530  0.0100
+LHK         CAQ         CAM      SINGLE       n     1.519  0.0109     1.519  0.0109
+LHK         CAU         CAS      SINGLE       n     1.539  0.0100     1.539  0.0100
+LHK         CAS         OAD      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LHK         CAS         OAJ      SINGLE       n     1.247  0.0187     1.247  0.0187
+LHK         OAB         CAQ      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LHK         CAQ         OAH      SINGLE       n     1.247  0.0187     1.247  0.0187
+LHK         CAM          H2      SINGLE       n     1.089  0.0100     0.979  0.0159
+LHK         CAM          H3      SINGLE       n     1.089  0.0100     0.979  0.0159
+LHK         CAU          H4      SINGLE       n     1.089  0.0100     0.983  0.0100
+LHK         NAO          H6      SINGLE       n     1.036  0.0160     0.892  0.0200
+LHK           N          H7      SINGLE       n     1.036  0.0160     0.892  0.0200
+LHK          CA          H8      SINGLE       n     1.089  0.0100     0.990  0.0200
+LHK          CB         H10      SINGLE       n     1.089  0.0100     0.980  0.0178
+LHK          CB         H11      SINGLE       n     1.089  0.0100     0.980  0.0178
+LHK          CG         H12      SINGLE       n     1.089  0.0100     0.981  0.0185
+LHK          CG         H13      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LHK         CAM         CAQ         OAB     117.986    1.50
+LHK         CAM         CAQ         OAH     117.986    1.50
+LHK         OAB         CAQ         OAH     124.027    1.50
+LHK         CAU         CAM         CAQ     111.511    2.91
+LHK         CAU         CAM          H2     108.988    1.50
+LHK         CAU         CAM          H3     108.988    1.50
+LHK         CAQ         CAM          H2     107.840    2.14
+LHK         CAQ         CAM          H3     107.840    2.14
+LHK          H2         CAM          H3     107.891    1.66
+LHK         NAO         CAU         CAM     111.883    2.59
+LHK         NAO         CAU         CAS     113.481    2.07
+LHK         NAO         CAU          H4     108.621    1.50
+LHK         CAM         CAU         CAS     111.511    2.91
+LHK         CAM         CAU          H4     107.587    1.50
+LHK         CAS         CAU          H4     108.169    1.50
+LHK         CAU         CAS         OAD     117.226    1.56
+LHK         CAU         CAS         OAJ     117.226    1.56
+LHK         OAD         CAS         OAJ     125.548    1.50
+LHK         SAV         NAO         CAU     120.430    1.66
+LHK         SAV         NAO          H6     112.257    3.00
+LHK         CAU         NAO          H6     111.283    3.00
+LHK         OAE         SAV           N     107.117    2.40
+LHK         OAE         SAV         OAF     120.361    1.50
+LHK         OAE         SAV         NAO     107.117    2.40
+LHK           N         SAV         OAF     107.117    2.40
+LHK           N         SAV         NAO     108.724    2.52
+LHK         OAF         SAV         NAO     107.117    2.40
+LHK          CA           N         SAV     120.430    1.66
+LHK          CA           N          H7     111.283    3.00
+LHK         SAV           N          H7     112.257    3.00
+LHK           C          CA          CB     110.328    1.98
+LHK           C          CA           N     113.481    2.07
+LHK           C          CA          H8     108.169    1.50
+LHK          CB          CA           N     109.731    2.61
+LHK          CB          CA          H8     108.223    1.50
+LHK           N          CA          H8     108.621    1.50
+LHK         OXT           C           O     125.548    1.50
+LHK         OXT           C          CA     117.226    1.56
+LHK           O           C          CA     117.226    1.56
+LHK          CG          CB          CA     113.079    1.50
+LHK          CG          CB         H10     108.890    1.50
+LHK          CG          CB         H11     108.890    1.50
+LHK          CA          CB         H10     108.562    1.50
+LHK          CA          CB         H11     108.562    1.50
+LHK         H10          CB         H11     107.844    1.50
+LHK          CD          CG          CB     114.629    2.24
+LHK          CD          CG         H12     108.404    1.50
+LHK          CD          CG         H13     108.404    1.50
+LHK          CB          CG         H12     108.906    1.50
+LHK          CB          CG         H13     108.906    1.50
+LHK         H12          CG         H13     107.521    1.50
+LHK         OE2          CD         OE1     123.571    1.50
+LHK         OE2          CD          CG     118.214    1.64
+LHK         OE1          CD          CG     118.214    1.64
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LHK            sp3_sp3_19           C          CA           N         SAV     180.000    10.0     3
+LHK             sp2_sp3_1         OXT           C          CA          CB       0.000    10.0     6
+LHK            sp3_sp3_10           C          CA          CB          CG     180.000    10.0     3
+LHK             sp3_sp3_1          CA          CB          CG          CD     180.000    10.0     3
+LHK             sp2_sp3_8         OE2          CD          CG          CB     120.000    10.0     6
+LHK            sp2_sp3_14         OAB         CAQ         CAM         CAU     120.000    10.0     6
+LHK            sp3_sp3_43         CAQ         CAM         CAU         NAO     180.000    10.0     3
+LHK            sp2_sp3_19         OAD         CAS         CAU         NAO       0.000    10.0     6
+LHK            sp3_sp3_37         CAM         CAU         NAO         SAV     180.000    10.0     3
+LHK            sp3_sp3_35         CAU         NAO         SAV         OAE     180.000    10.0     3
+LHK            sp3_sp3_28          CA           N         SAV         OAE      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LHK    chir_1    CAU    NAO    CAS    CAM    positive
+LHK    chir_2    SAV    OAE    OAF    NAO    both
+LHK    chir_3    CA    N    C    CB    positive
+LHK    chir_4    NAO    SAV    CAU    H6    both
+LHK    chir_5    N    SAV    CA    H7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LHK    plan-1         CAM   0.020
+LHK    plan-1         CAQ   0.020
+LHK    plan-1         OAB   0.020
+LHK    plan-1         OAH   0.020
+LHK    plan-2         CAS   0.020
+LHK    plan-2         CAU   0.020
+LHK    plan-2         OAD   0.020
+LHK    plan-2         OAJ   0.020
+LHK    plan-3           C   0.020
+LHK    plan-3          CA   0.020
+LHK    plan-3           O   0.020
+LHK    plan-3         OXT   0.020
+LHK    plan-4          CD   0.020
+LHK    plan-4          CG   0.020
+LHK    plan-4         OE1   0.020
+LHK    plan-4         OE2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LHK            InChI                InChI  1.03 InChI=1S/C9H14N2O10S/c12-6(13)2-1-4(8(16)17)10-22(20,21)11-5(9(18)19)3-7(14)15/h4-5,10-11H,1-3H2,(H,12,13)(H,14,15)(H,16,17)(H,18,19)/t4-,5-/m0/s1
+LHK         InChIKey                InChI  1.03                                                                                                                        YMLMAINCBMGBCN-WHFBIAKZSA-N
+LHK SMILES_CANONICAL               CACTVS 3.385                                                                                            OC(=O)CC[C@H](N[S](=O)(=O)N[C@@H](CC(O)=O)C(O)=O)C(O)=O
+LHK           SMILES               CACTVS 3.385                                                                                               OC(=O)CC[CH](N[S](=O)(=O)N[CH](CC(O)=O)C(O)=O)C(O)=O
+LHK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                           C(CC(=O)O)[C@@H](C(=O)O)NS(=O)(=O)N[C@@H](CC(=O)O)C(=O)O
+LHK           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                     C(CC(=O)O)C(C(=O)O)NS(=O)(=O)NC(CC(=O)O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LHK acedrg               243         "dictionary generator"                  
+LHK acedrg_database      11          "data source"                           
+LHK rdkit                2017.03.2   "Chemoinformatics tool"
+LHK refmac5              5.8.0238    "optimization tool"                     

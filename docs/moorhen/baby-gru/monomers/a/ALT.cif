@@ -1,0 +1,138 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ALT     ALT      THIOALANINE     NON-POLYMER     13     6     .     
+#
+data_comp_ALT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ALT     N       N       NT2     0       3.233       59.081      62.849      
+ALT     CA      C       CH1     0       1.796       59.280      63.043      
+ALT     CB      C       CH3     0       1.072       57.939      63.142      
+ALT     C       C       C       0       1.478       60.155      64.252      
+ALT     S       S       S1      0       2.126       59.826      65.760      
+ALT     OXT     O       OH1     0       0.658       61.165      63.960      
+ALT     H       H       H       0       3.587       58.692      63.582      
+ALT     H2      H       H       0       3.374       58.528      62.150      
+ALT     HA      H       H       0       1.451       59.746      62.240      
+ALT     HB1     H       H       0       0.393       57.977      63.838      
+ALT     HB2     H       H       0       1.710       57.237      63.355      
+ALT     HB3     H       H       0       0.647       57.738      62.292      
+ALT     HXT     H       H       0       0.572       61.823      64.509      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ALT           N          CA      SINGLE       n     1.463  0.0141     1.463  0.0141
+ALT          CA          CB      SINGLE       n     1.524  0.0118     1.524  0.0118
+ALT          CA           C      SINGLE       n     1.524  0.0100     1.524  0.0100
+ALT           C           S      DOUBLE       n     1.674  0.0200     1.674  0.0200
+ALT           C         OXT      SINGLE       n     1.332  0.0155     1.332  0.0155
+ALT           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+ALT           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+ALT          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+ALT          CB         HB1      SINGLE       n     1.089  0.0100     0.972  0.0152
+ALT          CB         HB2      SINGLE       n     1.089  0.0100     0.972  0.0152
+ALT          CB         HB3      SINGLE       n     1.089  0.0100     0.972  0.0152
+ALT         OXT         HXT      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ALT          CA           N           H     109.453    3.00
+ALT          CA           N          H2     109.453    3.00
+ALT           H           N          H2     107.559    3.00
+ALT           N          CA          CB     111.883    2.59
+ALT           N          CA           C     113.647    1.50
+ALT           N          CA          HA     108.372    1.54
+ALT          CB          CA           C     110.558    1.50
+ALT          CB          CA          HA     108.342    1.50
+ALT           C          CA          HA     107.912    1.50
+ALT          CA          CB         HB1     109.572    1.50
+ALT          CA          CB         HB2     109.572    1.50
+ALT          CA          CB         HB3     109.572    1.50
+ALT         HB1          CB         HB2     109.386    1.50
+ALT         HB1          CB         HB3     109.386    1.50
+ALT         HB2          CB         HB3     109.386    1.50
+ALT          CA           C           S     121.548    2.68
+ALT          CA           C         OXT     112.454    1.62
+ALT           S           C         OXT     125.998    3.00
+ALT           C         OXT         HXT     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ALT             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+ALT             sp3_sp3_7           N          CA          CB         HB1     180.000    10.0     3
+ALT             sp2_sp3_1           S           C          CA           N       0.000    10.0     6
+ALT             sp2_sp2_1          CA           C         OXT         HXT     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ALT    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ALT    plan-1           C   0.020
+ALT    plan-1          CA   0.020
+ALT    plan-1         OXT   0.020
+ALT    plan-1           S   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ALT           SMILES              ACDLabs 10.04                                                 S=C(O)C(N)C
+ALT SMILES_CANONICAL               CACTVS 3.341                                             C[C@H](N)C(O)=S
+ALT           SMILES               CACTVS 3.341                                              C[CH](N)C(O)=S
+ALT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            C[C@@H](C(=S)O)N
+ALT           SMILES "OpenEye OEToolkits" 1.5.0                                                 CC(C(=S)O)N
+ALT            InChI                InChI  1.03 InChI=1S/C3H7NOS/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1
+ALT         InChIKey                InChI  1.03                                 YXXURDJTDAAEPH-REOHCLBHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ALT acedrg               243         "dictionary generator"                  
+ALT acedrg_database      11          "data source"                           
+ALT rdkit                2017.03.2   "Chemoinformatics tool"
+ALT refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,292 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WST     WST      (3AS,4R,9BR)-4-(4-HYDROXYPHENYL)-1,2,3,3A,4,9B-HEXAHYDROCYCLOPENTA[C]CHROMEN-9-OL     NON-POLYMER     39     21     .     
+#
+data_comp_WST
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WST     C1      C       CR66    0       27.267      28.821      69.588      
+WST     C2      C       CR6     0       27.560      30.103      70.085      
+WST     O3      O       OH1     0       28.482      30.901      69.448      
+WST     C4      C       CR16    0       26.921      30.596      71.213      
+WST     C5      C       CR16    0       25.992      29.814      71.873      
+WST     C6      C       CR16    0       25.687      28.546      71.422      
+WST     C7      C       CR66    0       26.329      28.054      70.286      
+WST     O8      O       O2      0       25.978      26.776      69.897      
+WST     C9      C       CH1     0       26.988      26.035      69.167      
+WST     C11     C       CH1     0       27.471      26.857      67.966      
+WST     C13     C       CH1     0       27.961      28.265      68.361      
+WST     C15     C       CH2     0       27.789      29.112      67.075      
+WST     C16     C       CH2     0       26.989      28.254      66.101      
+WST     C17     C       CH2     0       26.384      27.127      66.924      
+WST     C18     C       CR6     0       26.458      24.676      68.787      
+WST     C19     C       CR16    0       25.107      24.452      68.538      
+WST     C20     C       CR16    0       24.640      23.193      68.184      
+WST     C21     C       CR6     0       25.525      22.133      68.067      
+WST     O22     O       OH1     0       25.067      20.886      67.717      
+WST     C23     C       CR16    0       26.875      22.339      68.306      
+WST     C24     C       CR16    0       27.330      23.601      68.660      
+WST     HO3     H       H       0       29.017      31.394      69.909      
+WST     H4      H       H       0       27.123      31.462      71.530      
+WST     H5      H       H       0       25.559      30.159      72.647      
+WST     H6      H       H       0       25.054      28.016      71.873      
+WST     H9      H       H       0       27.745      25.912      69.777      
+WST     H11     H       H       0       28.219      26.383      67.524      
+WST     H13     H       H       0       28.918      28.213      68.562      
+WST     H151    H       H       0       28.664      29.336      66.697      
+WST     H152    H       H       0       27.311      29.943      67.265      
+WST     H161    H       H       0       27.575      27.888      65.398      
+WST     H162    H       H       0       26.277      28.785      65.675      
+WST     H171    H       H       0       25.543      27.408      67.348      
+WST     H172    H       H       0       26.217      26.331      66.370      
+WST     H19     H       H       0       24.495      25.158      68.611      
+WST     H20     H       H       0       23.721      23.059      68.023      
+WST     HO22    H       H       0       25.564      20.361      67.248      
+WST     H23     H       H       0       27.482      21.622      68.229      
+WST     H24     H       H       0       28.246      23.728      68.819      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WST          C1         C13      SINGLE       n     1.506  0.0100     1.506  0.0100
+WST          C1          C2      DOUBLE       y     1.397  0.0108     1.397  0.0108
+WST          C1          C7      SINGLE       y     1.390  0.0100     1.390  0.0100
+WST          C2          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+WST          C2          C4      SINGLE       y     1.383  0.0103     1.383  0.0103
+WST          C4          C5      DOUBLE       y     1.378  0.0143     1.378  0.0143
+WST          C5          C6      SINGLE       y     1.378  0.0100     1.378  0.0100
+WST          C6          C7      DOUBLE       y     1.391  0.0100     1.391  0.0100
+WST          C7          O8      SINGLE       n     1.380  0.0100     1.380  0.0100
+WST          O8          C9      SINGLE       n     1.448  0.0118     1.448  0.0118
+WST          C9         C11      SINGLE       n     1.532  0.0107     1.532  0.0107
+WST          C9         C18      SINGLE       n     1.504  0.0100     1.504  0.0100
+WST         C11         C17      SINGLE       n     1.532  0.0102     1.532  0.0102
+WST         C11         C13      SINGLE       n     1.533  0.0125     1.533  0.0125
+WST         C13         C15      SINGLE       n     1.528  0.0161     1.528  0.0161
+WST         C15         C16      SINGLE       n     1.523  0.0184     1.523  0.0184
+WST         C16         C17      SINGLE       n     1.530  0.0142     1.530  0.0142
+WST         C18         C24      SINGLE       y     1.386  0.0100     1.386  0.0100
+WST         C18         C19      DOUBLE       y     1.386  0.0100     1.386  0.0100
+WST         C19         C20      SINGLE       y     1.384  0.0104     1.384  0.0104
+WST         C20         C21      DOUBLE       y     1.383  0.0100     1.383  0.0100
+WST         C21         O22      SINGLE       n     1.374  0.0155     1.374  0.0155
+WST         C21         C23      SINGLE       y     1.383  0.0100     1.383  0.0100
+WST         C23         C24      DOUBLE       y     1.384  0.0104     1.384  0.0104
+WST          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+WST          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0124
+WST          C5          H5      SINGLE       n     1.082  0.0130     0.951  0.0161
+WST          C6          H6      SINGLE       n     1.082  0.0130     0.940  0.0177
+WST          C9          H9      SINGLE       n     1.089  0.0100     0.980  0.0100
+WST         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0175
+WST         C13         H13      SINGLE       n     1.089  0.0100     0.979  0.0144
+WST         C15        H151      SINGLE       n     1.089  0.0100     0.979  0.0200
+WST         C15        H152      SINGLE       n     1.089  0.0100     0.979  0.0200
+WST         C16        H161      SINGLE       n     1.089  0.0100     0.985  0.0100
+WST         C16        H162      SINGLE       n     1.089  0.0100     0.985  0.0100
+WST         C17        H171      SINGLE       n     1.089  0.0100     0.984  0.0200
+WST         C17        H172      SINGLE       n     1.089  0.0100     0.984  0.0200
+WST         C19         H19      SINGLE       n     1.082  0.0130     0.938  0.0100
+WST         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0169
+WST         O22        HO22      SINGLE       n     0.966  0.0059     0.861  0.0200
+WST         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0169
+WST         C24         H24      SINGLE       n     1.082  0.0130     0.938  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WST         C13          C1          C2     121.628    1.75
+WST         C13          C1          C7     120.271    2.25
+WST          C2          C1          C7     118.101    1.50
+WST          C1          C2          O3     118.247    2.42
+WST          C1          C2          C4     120.626    1.50
+WST          O3          C2          C4     121.127    3.00
+WST          C2          O3         HO3     120.000    3.00
+WST          C2          C4          C5     119.797    1.50
+WST          C2          C4          H4     120.007    1.50
+WST          C5          C4          H4     120.196    1.50
+WST          C4          C5          C6     121.102    1.50
+WST          C4          C5          H5     119.146    1.50
+WST          C6          C5          H5     119.753    1.50
+WST          C5          C6          C7     119.232    1.50
+WST          C5          C6          H6     120.663    1.50
+WST          C7          C6          H6     120.104    1.50
+WST          C1          C7          C6     121.143    1.50
+WST          C1          C7          O8     122.198    1.50
+WST          C6          C7          O8     116.660    1.50
+WST          C7          O8          C9     115.778    1.90
+WST          O8          C9         C11     110.889    1.75
+WST          O8          C9         C18     108.268    1.60
+WST          O8          C9          H9     107.265    1.50
+WST         C11          C9         C18     113.587    2.22
+WST         C11          C9          H9     108.793    1.50
+WST         C18          C9          H9     108.952    1.50
+WST          C9         C11         C17     114.678    3.00
+WST          C9         C11         C13     111.036    2.95
+WST          C9         C11         H11     109.655    1.50
+WST         C17         C11         C13     103.768    1.88
+WST         C17         C11         H11     108.766    1.50
+WST         C13         C11         H11     108.523    1.71
+WST          C1         C13         C11     109.226    2.69
+WST          C1         C13         C15     114.036    3.00
+WST          C1         C13         H13     108.477    1.50
+WST         C11         C13         C15     102.638    2.08
+WST         C11         C13         H13     109.153    1.50
+WST         C15         C13         H13     109.367    1.94
+WST         C13         C15         C16     104.108    1.50
+WST         C13         C15        H151     110.807    1.50
+WST         C13         C15        H152     110.807    1.50
+WST         C16         C15        H151     110.980    1.50
+WST         C16         C15        H152     110.980    1.50
+WST        H151         C15        H152     108.967    1.50
+WST         C15         C16         C17     106.235    1.50
+WST         C15         C16        H161     110.546    1.50
+WST         C15         C16        H162     110.546    1.50
+WST         C17         C16        H161     110.157    1.50
+WST         C17         C16        H162     110.157    1.50
+WST        H161         C16        H162     108.596    1.50
+WST         C11         C17         C16     103.713    1.50
+WST         C11         C17        H171     110.907    1.50
+WST         C11         C17        H172     110.907    1.50
+WST         C16         C17        H171     110.943    1.50
+WST         C16         C17        H172     110.943    1.50
+WST        H171         C17        H172     108.883    1.50
+WST          C9         C18         C24     120.819    1.50
+WST          C9         C18         C19     120.819    1.50
+WST         C24         C18         C19     118.361    1.50
+WST         C18         C19         C20     121.186    1.50
+WST         C18         C19         H19     119.607    1.50
+WST         C20         C19         H19     119.207    1.50
+WST         C19         C20         C21     119.872    1.50
+WST         C19         C20         H20     120.125    1.50
+WST         C21         C20         H20     120.003    1.50
+WST         C20         C21         O22     120.239    3.00
+WST         C20         C21         C23     119.522    1.50
+WST         O22         C21         C23     120.239    3.00
+WST         C21         O22        HO22     120.000    3.00
+WST         C21         C23         C24     119.872    1.50
+WST         C21         C23         H23     120.003    1.50
+WST         C24         C23         H23     120.125    1.50
+WST         C18         C24         C23     121.186    1.50
+WST         C18         C24         H24     119.607    1.50
+WST         C23         C24         H24     119.207    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WST              const_24         C13          C1          C2          O3       0.000    10.0     2
+WST             sp2_sp3_4          C2          C1         C13         C11     180.000    10.0     6
+WST              const_42         C13          C1          C7          C6     180.000    10.0     2
+WST            sp3_sp3_31          C1         C13         C15         C16     180.000    10.0     3
+WST            sp3_sp3_19         C13         C15         C16         C17      60.000    10.0     3
+WST            sp3_sp3_10         C15         C16         C17         C11     -60.000    10.0     3
+WST              const_47          C9         C18         C19         C20     180.000    10.0     2
+WST       const_sp2_sp2_3          C9         C18         C24         C23     180.000     5.0     2
+WST              const_17         C18         C19         C20         C21       0.000    10.0     2
+WST              const_14         C19         C20         C21         O22     180.000    10.0     2
+WST             sp2_sp2_5         C20         C21         O22        HO22     180.000     5.0     2
+WST              const_11         O22         C21         C23         C24     180.000    10.0     2
+WST       const_sp2_sp2_5         C21         C23         C24         C18       0.000     5.0     2
+WST             sp2_sp2_3          C1          C2          O3         HO3     180.000     5.0     2
+WST              const_27          O3          C2          C4          C5     180.000    10.0     2
+WST              const_29          C2          C4          C5          C6       0.000    10.0     2
+WST              const_33          C4          C5          C6          C7       0.000    10.0     2
+WST              const_37          C5          C6          C7          C1       0.000    10.0     2
+WST             sp2_sp2_1          C1          C7          O8          C9       0.000     5.0     2
+WST            sp3_sp3_55         C11          C9          O8          C7     -60.000    10.0     3
+WST             sp2_sp3_7         C24         C18          C9          O8     150.000    10.0     6
+WST            sp3_sp3_49         C17         C11          C9          O8     -60.000    10.0     3
+WST            sp3_sp3_37          C9         C11         C13          C1     -60.000    10.0     3
+WST             sp3_sp3_4          C9         C11         C17         C16     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WST    chir_1    C9    O8    C18    C11    negative
+WST    chir_2    C11    C9    C13    C17    positive
+WST    chir_3    C13    C1    C11    C15    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WST    plan-1          C1   0.020
+WST    plan-1         C13   0.020
+WST    plan-1          C2   0.020
+WST    plan-1          C4   0.020
+WST    plan-1          C5   0.020
+WST    plan-1          C6   0.020
+WST    plan-1          C7   0.020
+WST    plan-1          H4   0.020
+WST    plan-1          H5   0.020
+WST    plan-1          H6   0.020
+WST    plan-1          O3   0.020
+WST    plan-1          O8   0.020
+WST    plan-2         C18   0.020
+WST    plan-2         C19   0.020
+WST    plan-2         C20   0.020
+WST    plan-2         C21   0.020
+WST    plan-2         C23   0.020
+WST    plan-2         C24   0.020
+WST    plan-2          C9   0.020
+WST    plan-2         H19   0.020
+WST    plan-2         H20   0.020
+WST    plan-2         H23   0.020
+WST    plan-2         H24   0.020
+WST    plan-2         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WST           SMILES              ACDLabs 10.04                                                                                                  Oc1ccc(cc1)C4Oc2c(c(O)ccc2)C3CCCC34
+WST SMILES_CANONICAL               CACTVS 3.341                                                                                      Oc1ccc(cc1)[C@@H]2Oc3cccc(O)c3[C@@H]4CCC[C@H]24
+WST           SMILES               CACTVS 3.341                                                                                           Oc1ccc(cc1)[CH]2Oc3cccc(O)c3[CH]4CCC[CH]24
+WST SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                   c1cc(c2c(c1)O[C@H]([C@@H]3[C@H]2CCC3)c4ccc(cc4)O)O
+WST           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                c1cc(c2c(c1)OC(C3C2CCC3)c4ccc(cc4)O)O
+WST            InChI                InChI  1.03 InChI=1S/C18H18O3/c19-12-9-7-11(8-10-12)18-14-4-1-3-13(14)17-15(20)5-2-6-16(17)21-18/h2,5-10,13-14,18-20H,1,3-4H2/t13-,14+,18+/m1/s1
+WST         InChIKey                InChI  1.03                                                                                                          FSYFYSFYUHBIHE-GLJUWKHASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WST acedrg               243         "dictionary generator"                  
+WST acedrg_database      11          "data source"                           
+WST rdkit                2017.03.2   "Chemoinformatics tool"
+WST refmac5              5.8.0238    "optimization tool"                     

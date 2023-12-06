@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+6FH     6FH      "(6~{S})-6-methyloctanoic acid"     NON-POLYMER     28     11     .     
+#
+data_comp_6FH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+6FH     CAA     C       CH3     0       5.158       -0.307      -0.609      
+6FH     CAB     C       CH2     0       3.846       -0.790      -0.032      
+6FH     CAC     C       CH1     0       2.717       0.222       -0.061      
+6FH     CAD     C       CH3     0       2.987       1.392       0.886       
+6FH     CAE     C       CH2     0       1.357       -0.439      0.222       
+6FH     CAF     C       CH2     0       0.144       0.400       -0.103      
+6FH     CAG     C       CH2     0       -1.189      -0.329      -0.005      
+6FH     CAH     C       CH2     0       -2.361      0.569       -0.276      
+6FH     CAI     C       C       0       -3.732      -0.085      -0.202      
+6FH     OAJ     O       O       0       -3.808      -1.293      0.108       
+6FH     O1      O       OC      -1      -4.729      0.620       -0.457      
+6FH     H1      H       H       0       5.777       -1.054      -0.680      
+6FH     H2      H       H       0       5.539       0.374       -0.027      
+6FH     H3      H       H       0       5.005       0.072       -1.492      
+6FH     H4      H       H       0       3.994       -1.063      0.899       
+6FH     H5      H       H       0       3.563       -1.585      -0.533      
+6FH     H6      H       H       0       2.665       0.587       -0.979      
+6FH     H7      H       H       0       2.254       1.483       1.519       
+6FH     H8      H       H       0       3.066       2.214       0.370       
+6FH     H9      H       H       0       3.814       1.243       1.377       
+6FH     H10     H       H       0       1.322       -0.680      1.172       
+6FH     H11     H       H       0       1.301       -1.270      -0.296      
+6FH     H12     H       H       0       0.241       0.750       -1.014      
+6FH     H13     H       H       0       0.123       1.169       0.506       
+6FH     H14     H       H       0       -1.275      -0.711      0.894       
+6FH     H15     H       H       0       -1.193      -1.069      -0.647      
+6FH     H16     H       H       0       -2.256      0.958       -1.170      
+6FH     H17     H       H       0       -2.342      1.310       0.367       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+6FH         CAF         CAG      SINGLE       n     1.523  0.0117     1.523  0.0117
+6FH         CAE         CAF      SINGLE       n     1.509  0.0200     1.509  0.0200
+6FH         CAA         CAB      SINGLE       n     1.511  0.0200     1.511  0.0200
+6FH         CAB         CAC      SINGLE       n     1.507  0.0200     1.507  0.0200
+6FH         CAG         CAH      SINGLE       n     1.497  0.0200     1.497  0.0200
+6FH         CAC         CAE      SINGLE       n     1.530  0.0200     1.530  0.0200
+6FH         CAH         CAI      SINGLE       n     1.519  0.0109     1.519  0.0109
+6FH         CAC         CAD      SINGLE       n     1.521  0.0151     1.521  0.0151
+6FH         CAI         OAJ      DOUBLE       n     1.247  0.0187     1.247  0.0187
+6FH         CAI          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+6FH         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+6FH         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+6FH         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+6FH         CAB          H4      SINGLE       n     1.089  0.0100     0.981  0.0160
+6FH         CAB          H5      SINGLE       n     1.089  0.0100     0.981  0.0160
+6FH         CAC          H6      SINGLE       n     1.089  0.0100     0.989  0.0162
+6FH         CAD          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+6FH         CAD          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+6FH         CAD          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+6FH         CAE         H10      SINGLE       n     1.089  0.0100     0.981  0.0160
+6FH         CAE         H11      SINGLE       n     1.089  0.0100     0.981  0.0160
+6FH         CAF         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+6FH         CAF         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+6FH         CAG         H14      SINGLE       n     1.089  0.0100     0.980  0.0160
+6FH         CAG         H15      SINGLE       n     1.089  0.0100     0.980  0.0160
+6FH         CAH         H16      SINGLE       n     1.089  0.0100     0.981  0.0185
+6FH         CAH         H17      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+6FH         CAB         CAA          H1     109.566    1.50
+6FH         CAB         CAA          H2     109.566    1.50
+6FH         CAB         CAA          H3     109.566    1.50
+6FH          H1         CAA          H2     109.380    1.50
+6FH          H1         CAA          H3     109.380    1.50
+6FH          H2         CAA          H3     109.380    1.50
+6FH         CAA         CAB         CAC     115.201    3.00
+6FH         CAA         CAB          H4     108.717    1.50
+6FH         CAA         CAB          H5     108.717    1.50
+6FH         CAC         CAB          H4     108.414    1.50
+6FH         CAC         CAB          H5     108.414    1.50
+6FH          H4         CAB          H5     107.862    1.50
+6FH         CAB         CAC         CAE     111.631    1.85
+6FH         CAB         CAC         CAD     110.047    3.00
+6FH         CAB         CAC          H6     108.152    1.50
+6FH         CAE         CAC         CAD     111.605    1.50
+6FH         CAE         CAC          H6     107.002    1.69
+6FH         CAD         CAC          H6     108.064    1.50
+6FH         CAC         CAD          H7     109.656    1.50
+6FH         CAC         CAD          H8     109.656    1.50
+6FH         CAC         CAD          H9     109.656    1.50
+6FH          H7         CAD          H8     109.411    1.50
+6FH          H7         CAD          H9     109.411    1.50
+6FH          H8         CAD          H9     109.411    1.50
+6FH         CAF         CAE         CAC     115.586    1.50
+6FH         CAF         CAE         H10     108.469    1.50
+6FH         CAF         CAE         H11     108.469    1.50
+6FH         CAC         CAE         H10     108.410    1.50
+6FH         CAC         CAE         H11     108.410    1.50
+6FH         H10         CAE         H11     107.657    1.50
+6FH         CAG         CAF         CAE     115.535    2.06
+6FH         CAG         CAF         H12     108.698    1.50
+6FH         CAG         CAF         H13     108.698    1.50
+6FH         CAE         CAF         H12     108.762    1.50
+6FH         CAE         CAF         H13     108.762    1.50
+6FH         H12         CAF         H13     107.646    1.50
+6FH         CAF         CAG         CAH     112.553    1.50
+6FH         CAF         CAG         H14     108.698    1.50
+6FH         CAF         CAG         H15     108.698    1.50
+6FH         CAH         CAG         H14     109.164    1.50
+6FH         CAH         CAG         H15     109.164    1.50
+6FH         H14         CAG         H15     107.646    1.50
+6FH         CAG         CAH         CAI     114.612    2.19
+6FH         CAG         CAH         H16     108.815    1.50
+6FH         CAG         CAH         H17     108.815    1.50
+6FH         CAI         CAH         H16     108.404    1.50
+6FH         CAI         CAH         H17     108.404    1.50
+6FH         H16         CAH         H17     107.521    1.50
+6FH         CAH         CAI         OAJ     118.214    1.64
+6FH         CAH         CAI          O1     118.214    1.64
+6FH         OAJ         CAI          O1     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+6FH            sp3_sp3_19          H1         CAA         CAB         CAC     180.000    10.0     3
+6FH            sp3_sp3_28         CAA         CAB         CAC         CAE     180.000    10.0     3
+6FH            sp3_sp3_55         CAB         CAC         CAD          H7     180.000    10.0     3
+6FH            sp3_sp3_46         CAB         CAC         CAE         CAF     180.000    10.0     3
+6FH            sp3_sp3_10         CAC         CAE         CAF         CAG     180.000    10.0     3
+6FH             sp3_sp3_1         CAE         CAF         CAG         CAH     180.000    10.0     3
+6FH            sp3_sp3_37         CAF         CAG         CAH         CAI     180.000    10.0     3
+6FH             sp2_sp3_2         OAJ         CAI         CAH         CAG     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+6FH    chir_1    CAC    CAE    CAB    CAD    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+6FH    plan-1         CAH   0.020
+6FH    plan-1         CAI   0.020
+6FH    plan-1          O1   0.020
+6FH    plan-1         OAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+6FH            InChI                InChI  1.03 InChI=1S/C9H18O2/c1-3-8(2)6-4-5-7-9(10)11/h8H,3-7H2,1-2H3,(H,10,11)/t8-/m0/s1
+6FH         InChIKey                InChI  1.03                                                   GPOPHQSTNHUENT-QMMMGPOBSA-N
+6FH SMILES_CANONICAL               CACTVS 3.385                                                          CC[C@H](C)CCCCC(O)=O
+6FH           SMILES               CACTVS 3.385                                                           CC[CH](C)CCCCC(O)=O
+6FH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                          CC[C@H](C)CCCCC(=O)O
+6FH           SMILES "OpenEye OEToolkits" 2.0.5                                                              CCC(C)CCCCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+6FH acedrg               243         "dictionary generator"                  
+6FH acedrg_database      11          "data source"                           
+6FH rdkit                2017.03.2   "Chemoinformatics tool"
+6FH refmac5              5.8.0238    "optimization tool"                     

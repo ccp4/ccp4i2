@@ -1,0 +1,367 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KVC     KVC      "(5R)-8-amino-3-fluoro-5,19-dimethyl-20-oxo-5,18,19,20-tetrahydro-11,7-(azeno)pyrido[2',1':2,3]imidazo[4,5-h][2,5,11]benzoxadiazacyclotetradecine-14-carbonitrile"     NON-POLYMER     51     33     .     
+#
+data_comp_KVC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KVC     C1      C       CR6     0       30.127      44.700      9.413       
+KVC     C2      C       CR6     0       29.297      44.572      10.565      
+KVC     N3      N       NRD6    0       28.420      45.559      10.880      
+KVC     C4      C       CR16    0       28.361      46.635      10.087      
+KVC     C5      C       CR6     0       29.169      46.746      8.958       
+KVC     N6      N       NRD6    0       30.041      45.775      8.639       
+KVC     O7      O       O2      0       30.991      43.685      9.141       
+KVC     C8      C       CH1     0       32.132      43.931      8.283       
+KVC     C9      C       CR6     0       33.102      44.916      8.914       
+KVC     C10     C       CR6     0       33.492      46.112      8.277       
+KVC     C11     C       CR16    0       34.408      46.967      8.924       
+KVC     C12     C       CR16    0       34.902      46.667      10.184      
+KVC     C13     C       CR6     0       34.492      45.505      10.779      
+KVC     C14     C       CR16    0       33.612      44.631      10.182      
+KVC     C15     C       C       0       33.022      46.525      6.905       
+KVC     F16     F       F       0       34.974      45.199      12.012      
+KVC     N17     N       NH2     0       29.358      43.501      11.355      
+KVC     C18     C       CH3     0       32.759      42.573      8.046       
+KVC     C19     C       CR6     0       25.654      49.022      7.088       
+KVC     C20     C       CR16    0       26.061      50.098      6.292       
+KVC     C21     C       CR16    0       27.409      50.386      6.132       
+KVC     C22     C       CR56    0       28.377      49.566      6.792       
+KVC     N23     N       NT      0       27.974      48.503      7.579       
+KVC     C24     C       CR16    0       26.598      48.231      7.725       
+KVC     N25     N       NRD5    0       29.731      49.667      6.777       
+KVC     C26     C       CR5     0       30.206      48.632      7.569       
+KVC     C27     C       CR5     0       29.138      47.914      8.077       
+KVC     C28     C       CSP     0       24.260      48.724      7.254       
+KVC     N29     N       NSP     0       23.136      48.487      7.309       
+KVC     C30     C       CH2     0       31.672      48.443      7.783       
+KVC     N31     N       N       0       32.351      47.687      6.710       
+KVC     C32     C       CH3     0       32.327      48.290      5.383       
+KVC     O33     O       O       0       33.361      45.816      5.957       
+KVC     H4      H       H       0       27.760      47.316      10.296      
+KVC     H8      H       H       0       31.815      44.273      7.411       
+KVC     H11     H       H       0       34.676      47.764      8.503       
+KVC     H12     H       H       0       35.505      47.244      10.618      
+KVC     H14     H       H       0       33.344      43.822      10.627      
+KVC     HN17    H       H       0       28.617      43.137      11.653      
+KVC     HN1A    H       H       0       30.137      43.164      11.574      
+KVC     H18     H       H       0       33.609      42.683      7.597       
+KVC     H18A    H       H       0       32.170      42.037      7.495       
+KVC     H18B    H       H       0       32.898      42.128      8.895       
+KVC     H20     H       H       0       25.422      50.634      5.859       
+KVC     H21     H       H       0       27.684      51.107      5.598       
+KVC     H24     H       H       0       26.322      47.508      8.260       
+KVC     H30     H       H       0       31.801      47.991      8.638       
+KVC     H30A    H       H       0       32.095      49.324      7.849       
+KVC     H32     H       H       0       33.206      48.228      4.974       
+KVC     H32A    H       H       0       32.076      49.226      5.445       
+KVC     H32B    H       H       0       31.682      47.823      4.828       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KVC          C1          N6      SINGLE       y     1.318  0.0157     1.318  0.0157
+KVC          C1          O7      SINGLE       n     1.355  0.0108     1.355  0.0108
+KVC          C1          C2      DOUBLE       y     1.419  0.0116     1.419  0.0116
+KVC          C2          N3      SINGLE       y     1.343  0.0178     1.343  0.0178
+KVC          C2         N17      SINGLE       n     1.331  0.0151     1.331  0.0151
+KVC          N3          C4      DOUBLE       y     1.333  0.0100     1.333  0.0100
+KVC          C4          C5      SINGLE       y     1.389  0.0100     1.389  0.0100
+KVC          C5         C27      SINGLE       n     1.463  0.0102     1.463  0.0102
+KVC          C5          N6      DOUBLE       y     1.342  0.0100     1.342  0.0100
+KVC          O7          C8      SINGLE       n     1.441  0.0129     1.441  0.0129
+KVC          C8         C18      SINGLE       n     1.515  0.0126     1.515  0.0126
+KVC          C8          C9      SINGLE       n     1.513  0.0100     1.513  0.0100
+KVC          C9         C10      DOUBLE       y     1.398  0.0100     1.398  0.0100
+KVC          C9         C14      SINGLE       y     1.392  0.0100     1.392  0.0100
+KVC         C10         C15      SINGLE       n     1.502  0.0100     1.502  0.0100
+KVC         C10         C11      SINGLE       y     1.400  0.0130     1.400  0.0130
+KVC         C11         C12      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KVC         C12         C13      SINGLE       y     1.367  0.0111     1.367  0.0111
+KVC         C13         C14      DOUBLE       y     1.374  0.0100     1.374  0.0100
+KVC         C13         F16      SINGLE       n     1.359  0.0106     1.359  0.0106
+KVC         C15         O33      DOUBLE       n     1.230  0.0114     1.230  0.0114
+KVC         C15         N31      SINGLE       n     1.343  0.0100     1.343  0.0100
+KVC         C19         C20      SINGLE       y     1.395  0.0102     1.395  0.0102
+KVC         C19         C28      SINGLE       n     1.435  0.0100     1.435  0.0100
+KVC         C19         C24      DOUBLE       y     1.379  0.0200     1.379  0.0200
+KVC         C20         C21      DOUBLE       y     1.370  0.0200     1.370  0.0200
+KVC         C21         C22      SINGLE       y     1.416  0.0189     1.416  0.0189
+KVC         C22         N25      DOUBLE       y     1.345  0.0200     1.345  0.0200
+KVC         C22         N23      SINGLE       y     1.380  0.0168     1.380  0.0168
+KVC         N23         C24      SINGLE       y     1.400  0.0200     1.400  0.0200
+KVC         N23         C27      SINGLE       y     1.402  0.0125     1.402  0.0125
+KVC         N25         C26      SINGLE       y     1.373  0.0185     1.373  0.0185
+KVC         C26         C30      SINGLE       n     1.490  0.0100     1.490  0.0100
+KVC         C26         C27      DOUBLE       y     1.384  0.0102     1.384  0.0102
+KVC         C28         N29      TRIPLE       n     1.149  0.0200     1.149  0.0200
+KVC         C30         N31      SINGLE       n     1.462  0.0131     1.462  0.0131
+KVC         N31         C32      SINGLE       n     1.453  0.0100     1.453  0.0100
+KVC          C4          H4      SINGLE       n     1.082  0.0130     0.933  0.0100
+KVC          C8          H8      SINGLE       n     1.089  0.0100     0.991  0.0100
+KVC         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+KVC         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0154
+KVC         C14         H14      SINGLE       n     1.082  0.0130     0.961  0.0200
+KVC         N17        HN17      SINGLE       n     1.016  0.0100     0.877  0.0200
+KVC         N17        HN1A      SINGLE       n     1.016  0.0100     0.877  0.0200
+KVC         C18         H18      SINGLE       n     1.089  0.0100     0.968  0.0129
+KVC         C18        H18A      SINGLE       n     1.089  0.0100     0.968  0.0129
+KVC         C18        H18B      SINGLE       n     1.089  0.0100     0.968  0.0129
+KVC         C20         H20      SINGLE       n     1.082  0.0130     0.940  0.0200
+KVC         C21         H21      SINGLE       n     1.082  0.0130     0.939  0.0160
+KVC         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0200
+KVC         C30         H30      SINGLE       n     1.089  0.0100     0.979  0.0148
+KVC         C30        H30A      SINGLE       n     1.089  0.0100     0.979  0.0148
+KVC         C32         H32      SINGLE       n     1.089  0.0100     0.971  0.0181
+KVC         C32        H32A      SINGLE       n     1.089  0.0100     0.971  0.0181
+KVC         C32        H32B      SINGLE       n     1.089  0.0100     0.971  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KVC          N6          C1          O7     120.893    2.62
+KVC          N6          C1          C2     121.426    1.50
+KVC          O7          C1          C2     117.681    1.50
+KVC          C1          C2          N3     120.246    1.50
+KVC          C1          C2         N17     121.030    2.27
+KVC          N3          C2         N17     118.724    1.55
+KVC          C2          N3          C4     117.825    1.50
+KVC          N3          C4          C5     121.299    1.50
+KVC          N3          C4          H4     118.907    1.50
+KVC          C5          C4          H4     119.795    1.50
+KVC          C4          C5         C27     121.822    1.64
+KVC          C4          C5          N6     120.838    1.50
+KVC         C27          C5          N6     117.340    1.55
+KVC          C1          N6          C5     118.367    1.50
+KVC          C1          O7          C8     117.287    1.50
+KVC          O7          C8         C18     105.917    1.50
+KVC          O7          C8          C9     109.467    2.55
+KVC          O7          C8          H8     109.225    1.50
+KVC         C18          C8          C9     113.414    2.03
+KVC         C18          C8          H8     108.242    1.50
+KVC          C9          C8          H8     108.968    1.50
+KVC          C8          C9         C10     120.548    1.56
+KVC          C8          C9         C14     120.434    1.50
+KVC         C10          C9         C14     119.018    1.50
+KVC          C9         C10         C15     121.531    1.82
+KVC          C9         C10         C11     119.259    1.50
+KVC         C15         C10         C11     119.211    2.00
+KVC         C10         C11         C12     120.657    1.50
+KVC         C10         C11         H11     119.736    1.50
+KVC         C12         C11         H11     119.607    1.50
+KVC         C11         C12         C13     118.318    1.50
+KVC         C11         C12         H12     120.911    1.50
+KVC         C13         C12         H12     120.771    1.50
+KVC         C12         C13         C14     123.287    1.50
+KVC         C12         C13         F16     118.389    1.50
+KVC         C14         C13         F16     118.325    1.50
+KVC          C9         C14         C13     119.461    1.50
+KVC          C9         C14         H14     119.592    1.50
+KVC         C13         C14         H14     120.947    1.50
+KVC         C10         C15         O33     119.213    1.50
+KVC         C10         C15         N31     118.755    1.50
+KVC         O33         C15         N31     122.032    1.50
+KVC          C2         N17        HN17     119.797    1.61
+KVC          C2         N17        HN1A     119.797    1.61
+KVC        HN17         N17        HN1A     120.406    1.85
+KVC          C8         C18         H18     109.453    1.50
+KVC          C8         C18        H18A     109.453    1.50
+KVC          C8         C18        H18B     109.453    1.50
+KVC         H18         C18        H18A     109.395    1.50
+KVC         H18         C18        H18B     109.395    1.50
+KVC        H18A         C18        H18B     109.395    1.50
+KVC         C20         C19         C28     120.709    1.50
+KVC         C20         C19         C24     119.779    1.56
+KVC         C28         C19         C24     119.512    2.15
+KVC         C19         C20         C21     119.607    1.50
+KVC         C19         C20         H20     120.662    1.50
+KVC         C21         C20         H20     119.732    1.50
+KVC         C20         C21         C22     117.894    1.55
+KVC         C20         C21         H21     121.235    1.50
+KVC         C22         C21         H21     120.872    1.50
+KVC         C21         C22         N25     130.121    3.00
+KVC         C21         C22         N23     119.714    1.50
+KVC         N25         C22         N23     110.165    1.50
+KVC         C22         N23         C24     109.471    3.00
+KVC         C22         N23         C27     106.056    1.50
+KVC         C24         N23         C27     125.931    2.87
+KVC         C19         C24         N23     119.930    3.00
+KVC         C19         C24         H24     120.140    1.50
+KVC         N23         C24         H24     119.930    3.00
+KVC         C22         N25         C26     103.688    1.50
+KVC         N25         C26         C30     121.108    1.99
+KVC         N25         C26         C27     108.536    1.50
+KVC         C30         C26         C27     130.357    1.50
+KVC          C5         C27         N23     123.679    1.50
+KVC          C5         C27         C26     128.639    3.00
+KVC         N23         C27         C26     107.682    1.70
+KVC         C19         C28         N29     177.512    1.74
+KVC         C26         C30         N31     112.515    2.05
+KVC         C26         C30         H30     108.907    1.50
+KVC         C26         C30        H30A     108.907    1.50
+KVC         N31         C30         H30     108.354    1.50
+KVC         N31         C30        H30A     108.354    1.50
+KVC         H30         C30        H30A     107.734    1.50
+KVC         C15         N31         C30     120.954    1.50
+KVC         C15         N31         C32     121.400    2.73
+KVC         C30         N31         C32     117.646    2.02
+KVC         N31         C32         H32     109.804    1.95
+KVC         N31         C32        H32A     109.804    1.95
+KVC         N31         C32        H32B     109.804    1.95
+KVC         H32         C32        H32A     109.408    1.50
+KVC         H32         C32        H32B     109.408    1.50
+KVC        H32A         C32        H32B     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KVC              const_52          O7          C1          C2         N17       0.000    10.0     2
+KVC              const_26          O7          C1          N6          C5     180.000    10.0     2
+KVC            sp2_sp2_17          N6          C1          O7          C8     180.000     5.0     2
+KVC       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+KVC              const_14         C11         C12         C13         F16     180.000    10.0     2
+KVC              const_19         F16         C13         C14          C9     180.000    10.0     2
+KVC            sp2_sp2_33         O33         C15         N31         C30       0.000     5.0     2
+KVC             sp2_sp2_3         C28         C19         C20         C21     180.000     5.0     2
+KVC            sp2_sp2_37         C28         C19         C24         N23     180.000     5.0     2
+KVC           other_tor_1         N29         C28         C19         C20      90.000    10.0     1
+KVC             sp2_sp2_5         C19         C20         C21         C22       0.000     5.0     2
+KVC            sp2_sp2_19          C1          C2         N17        HN17     180.000     5.0     2
+KVC              const_36         N17          C2          N3          C4     180.000    10.0     2
+KVC            sp2_sp2_10         C20         C21         C22         N25     180.000     5.0     2
+KVC              const_21         C21         C22         N23         C24       0.000    10.0     2
+KVC              const_38         C21         C22         N25         C26     180.000    10.0     2
+KVC            sp2_sp2_13         C19         C24         N23         C22       0.000     5.0     2
+KVC              const_47          C5         C27         N23         C22     180.000    10.0     2
+KVC              const_40         C30         C26         N25         C22     180.000    10.0     2
+KVC              const_44         C30         C26         C27          C5       0.000    10.0     2
+KVC             sp2_sp3_8         N25         C26         C30         N31     -90.000    10.0     6
+KVC            sp2_sp3_14         C15         N31         C30         C26     120.000    10.0     6
+KVC              const_33          C5          C4          N3          C2       0.000    10.0     2
+KVC            sp2_sp3_19         C15         N31         C32         H32       0.000    10.0     6
+KVC              const_30          N3          C4          C5         C27     180.000    10.0     2
+KVC            sp2_sp2_23         N23         C27          C5          C4     180.000     5.0     2
+KVC              const_27          C4          C5          N6          C1       0.000    10.0     2
+KVC             sp3_sp3_1         C18          C8          O7          C1     180.000    10.0     3
+KVC             sp3_sp3_4         H18         C18          C8          O7     180.000    10.0     3
+KVC             sp2_sp3_1         C10          C9          C8          O7     150.000    10.0     6
+KVC              const_54         C13         C14          C9          C8     180.000    10.0     2
+KVC       const_sp2_sp2_4         C15         C10          C9          C8       0.000     5.0     2
+KVC       const_sp2_sp2_7         C15         C10         C11         C12     180.000     5.0     2
+KVC            sp2_sp2_28          C9         C10         C15         O33       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KVC    chir_1    C8    O7    C9    C18    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KVC    plan-1         C19   0.020
+KVC    plan-1         C20   0.020
+KVC    plan-1         C21   0.020
+KVC    plan-1         C22   0.020
+KVC    plan-1         C24   0.020
+KVC    plan-1         C26   0.020
+KVC    plan-1         C27   0.020
+KVC    plan-1         C28   0.020
+KVC    plan-1         C30   0.020
+KVC    plan-1          C5   0.020
+KVC    plan-1         H20   0.020
+KVC    plan-1         H21   0.020
+KVC    plan-1         H24   0.020
+KVC    plan-1         N23   0.020
+KVC    plan-1         N25   0.020
+KVC    plan-2          C1   0.020
+KVC    plan-2          C2   0.020
+KVC    plan-2         C27   0.020
+KVC    plan-2          C4   0.020
+KVC    plan-2          C5   0.020
+KVC    plan-2          H4   0.020
+KVC    plan-2         N17   0.020
+KVC    plan-2          N3   0.020
+KVC    plan-2          N6   0.020
+KVC    plan-2          O7   0.020
+KVC    plan-3         C10   0.020
+KVC    plan-3         C11   0.020
+KVC    plan-3         C12   0.020
+KVC    plan-3         C13   0.020
+KVC    plan-3         C14   0.020
+KVC    plan-3         C15   0.020
+KVC    plan-3          C8   0.020
+KVC    plan-3          C9   0.020
+KVC    plan-3         F16   0.020
+KVC    plan-3         H11   0.020
+KVC    plan-3         H12   0.020
+KVC    plan-3         H14   0.020
+KVC    plan-4         C10   0.020
+KVC    plan-4         C15   0.020
+KVC    plan-4         N31   0.020
+KVC    plan-4         O33   0.020
+KVC    plan-5          C2   0.020
+KVC    plan-5        HN17   0.020
+KVC    plan-5        HN1A   0.020
+KVC    plan-5         N17   0.020
+KVC    plan-6         C15   0.020
+KVC    plan-6         C30   0.020
+KVC    plan-6         C32   0.020
+KVC    plan-6         N31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KVC           SMILES              ACDLabs 12.01                                                                                                                     Fc3ccc2C(=O)N(Cc1nc5ccc(C#N)cn5c1c4nc(OC(c2c3)C)c(nc4)N)C
+KVC            InChI                InChI  1.03 InChI=1S/C23H18FN7O2/c1-12-16-7-14(24)4-5-15(16)23(32)30(2)11-18-20(17-9-27-21(26)22(29-17)33-12)31-10-13(8-25)3-6-19(31)28-18/h3-7,9-10,12H,11H2,1-2H3,(H2,26,27)/t12-/m1/s1
+KVC         InChIKey                InChI  1.03                                                                                                                                                   MOENETCLMCOREY-GFCCVEGCSA-N
+KVC SMILES_CANONICAL               CACTVS 3.385                                                                                                                   C[C@H]1Oc2nc(cnc2N)c3n4cc(ccc4nc3CN(C)C(=O)c5ccc(F)cc15)C#N
+KVC           SMILES               CACTVS 3.385                                                                                                                    C[CH]1Oc2nc(cnc2N)c3n4cc(ccc4nc3CN(C)C(=O)c5ccc(F)cc15)C#N
+KVC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                             C[C@@H]1c2cc(ccc2C(=O)N(Cc3c(n4cc(ccc4n3)C#N)-c5cnc(c(n5)O1)N)C)F
+KVC           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                  CC1c2cc(ccc2C(=O)N(Cc3c(n4cc(ccc4n3)C#N)-c5cnc(c(n5)O1)N)C)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KVC acedrg               243         "dictionary generator"                  
+KVC acedrg_database      11          "data source"                           
+KVC rdkit                2017.03.2   "Chemoinformatics tool"
+KVC refmac5              5.8.0238    "optimization tool"                     

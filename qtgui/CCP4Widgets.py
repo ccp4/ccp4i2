@@ -1075,12 +1075,20 @@ class CViewWidget(QtWidgets.QFrame, CBaseWidget):
         else:
             if value is None:
                 return
-            for item in list(value.keys()):
-                w = self.widgets.get(item,None)
-                if w is not None:
-                    w.blockSignals(True)
-                    w.setValue(value[item])
-                    w.blockSignals(False)
+            if isinstance(value, list):
+              for item in value:
+                  w = self.widgets.get(item,None)
+                  if w is not None:
+                      w.blockSignals(True)
+                      w.setValue(value[item])
+                      w.blockSignals(False)
+            else:
+              for item in list(value.keys()):
+                  w = self.widgets.get(item,None)
+                  if w is not None:
+                      w.blockSignals(True)
+                      w.setValue(value[item])
+                      w.blockSignals(False)
         self.lastWarning = None
 
     def getValue(self):

@@ -1,0 +1,226 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+20D     20D      2-(4-fluorophenyl)-4H-chromen-4-one     NON-POLYMER     27     18     .     
+#
+data_comp_20D
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+20D     CAJ     C       CR16    0       -37.913     -11.076     12.821      
+20D     CAG     C       CR6     0       -37.858     -11.338     14.241      
+20D     OAK     O       O       0       -37.031     -10.790     14.980      
+20D     CAF     C       CR66    0       -38.856     -12.299     14.732      
+20D     CAA     C       CR16    0       -38.954     -12.677     16.084      
+20D     CAB     C       CR16    0       -39.907     -13.581     16.489      
+20D     CAC     C       CR16    0       -40.788     -14.134     15.563      
+20D     CAD     C       CR16    0       -40.720     -13.785     14.231      
+20D     CAE     C       CR66    0       -39.752     -12.869     13.831      
+20D     OAH     O       O2      0       -39.729     -12.557     12.492      
+20D     CAI     C       CR6     0       -38.812     -11.668     12.010      
+20D     CAL     C       CR6     0       -38.905     -11.432     10.560      
+20D     CAM     C       CR16    0       -38.853     -10.135     10.041      
+20D     CAN     C       CR16    0       -38.939     -9.909      8.673       
+20D     CAO     C       CR6     0       -39.077     -10.989     7.840       
+20D     FAR     F       F       0       -39.162     -10.771     6.499       
+20D     CAP     C       CR16    0       -39.133     -12.280     8.299       
+20D     CAQ     C       CR16    0       -39.045     -12.500     9.667       
+20D     H1      H       H       0       -37.301     -10.470     12.449      
+20D     H2      H       H       0       -38.363     -12.308     16.716      
+20D     H3      H       H       0       -39.965     -13.829     17.398      
+20D     H4      H       H       0       -41.438     -14.752     15.848      
+20D     H5      H       H       0       -41.313     -14.157     13.605      
+20D     H6      H       H       0       -38.758     -9.401      10.627      
+20D     H7      H       H       0       -38.904     -9.035      8.326       
+20D     H8      H       H       0       -39.228     -13.000     7.700       
+20D     H9      H       H       0       -39.082     -13.383     9.998       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+20D         CAO         FAR      SINGLE       n     1.361  0.0100     1.361  0.0100
+20D         CAO         CAP      DOUBLE       y     1.368  0.0100     1.368  0.0100
+20D         CAN         CAO      SINGLE       y     1.368  0.0100     1.368  0.0100
+20D         CAP         CAQ      SINGLE       y     1.385  0.0100     1.385  0.0100
+20D         CAM         CAN      DOUBLE       y     1.385  0.0100     1.385  0.0100
+20D         CAL         CAQ      DOUBLE       y     1.394  0.0100     1.394  0.0100
+20D         CAL         CAM      SINGLE       y     1.394  0.0100     1.394  0.0100
+20D         CAI         CAL      SINGLE       n     1.471  0.0100     1.471  0.0100
+20D         OAH         CAI      SINGLE       y     1.361  0.0100     1.361  0.0100
+20D         CAJ         CAI      DOUBLE       y     1.345  0.0100     1.345  0.0100
+20D         CAE         OAH      SINGLE       y     1.372  0.0100     1.372  0.0100
+20D         CAJ         CAG      SINGLE       y     1.441  0.0100     1.441  0.0100
+20D         CAD         CAE      SINGLE       y     1.388  0.0100     1.388  0.0100
+20D         CAF         CAE      DOUBLE       y     1.387  0.0100     1.387  0.0100
+20D         CAC         CAD      DOUBLE       y     1.375  0.0100     1.375  0.0100
+20D         CAG         CAF      SINGLE       y     1.466  0.0100     1.466  0.0100
+20D         CAG         OAK      DOUBLE       n     1.237  0.0100     1.237  0.0100
+20D         CAF         CAA      SINGLE       y     1.402  0.0100     1.402  0.0100
+20D         CAB         CAC      SINGLE       y     1.389  0.0100     1.389  0.0100
+20D         CAA         CAB      DOUBLE       y     1.372  0.0100     1.372  0.0100
+20D         CAJ          H1      SINGLE       n     1.082  0.0130     0.938  0.0200
+20D         CAA          H2      SINGLE       n     1.082  0.0130     0.941  0.0146
+20D         CAB          H3      SINGLE       n     1.082  0.0130     0.944  0.0184
+20D         CAC          H4      SINGLE       n     1.082  0.0130     0.941  0.0149
+20D         CAD          H5      SINGLE       n     1.082  0.0130     0.939  0.0151
+20D         CAM          H6      SINGLE       n     1.082  0.0130     0.944  0.0171
+20D         CAN          H7      SINGLE       n     1.082  0.0130     0.941  0.0154
+20D         CAP          H8      SINGLE       n     1.082  0.0130     0.941  0.0154
+20D         CAQ          H9      SINGLE       n     1.082  0.0130     0.944  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+20D         CAI         CAJ         CAG     122.337    1.50
+20D         CAI         CAJ          H1     118.702    1.50
+20D         CAG         CAJ          H1     118.962    1.50
+20D         CAJ         CAG         CAF     114.715    1.50
+20D         CAJ         CAG         OAK     122.507    1.50
+20D         CAF         CAG         OAK     122.778    1.50
+20D         CAE         CAF         CAG     119.676    1.50
+20D         CAE         CAF         CAA     117.837    1.50
+20D         CAG         CAF         CAA     122.488    1.50
+20D         CAF         CAA         CAB     120.525    1.50
+20D         CAF         CAA          H2     119.675    1.50
+20D         CAB         CAA          H2     119.800    1.50
+20D         CAC         CAB         CAA     120.362    1.50
+20D         CAC         CAB          H3     119.795    1.50
+20D         CAA         CAB          H3     119.851    1.50
+20D         CAD         CAC         CAB     120.844    1.50
+20D         CAD         CAC          H4     119.498    1.50
+20D         CAB         CAC          H4     119.659    1.50
+20D         CAE         CAD         CAC     118.507    1.50
+20D         CAE         CAD          H5     120.587    1.50
+20D         CAC         CAD          H5     120.906    1.50
+20D         OAH         CAE         CAD     116.061    1.50
+20D         OAH         CAE         CAF     122.020    1.50
+20D         CAD         CAE         CAF     121.919    1.50
+20D         CAI         OAH         CAE     119.709    1.50
+20D         CAL         CAI         OAH     114.130    1.50
+20D         CAL         CAI         CAJ     124.326    1.68
+20D         OAH         CAI         CAJ     121.543    1.50
+20D         CAQ         CAL         CAM     118.484    1.50
+20D         CAQ         CAL         CAI     120.758    1.50
+20D         CAM         CAL         CAI     120.758    1.50
+20D         CAN         CAM         CAL     120.839    1.50
+20D         CAN         CAM          H6     119.487    1.50
+20D         CAL         CAM          H6     119.675    1.50
+20D         CAO         CAN         CAM     118.386    1.50
+20D         CAO         CAN          H7     120.782    1.50
+20D         CAM         CAN          H7     120.832    1.50
+20D         FAR         CAO         CAP     118.466    1.50
+20D         FAR         CAO         CAN     118.466    1.50
+20D         CAP         CAO         CAN     123.067    1.50
+20D         CAO         CAP         CAQ     118.386    1.50
+20D         CAO         CAP          H8     120.782    1.50
+20D         CAQ         CAP          H8     120.832    1.50
+20D         CAP         CAQ         CAL     120.839    1.50
+20D         CAP         CAQ          H9     119.487    1.50
+20D         CAL         CAQ          H9     119.675    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+20D              const_59         OAK         CAG         CAJ         CAI     180.000    10.0     2
+20D              const_23         CAL         CAI         CAJ         CAG     180.000    10.0     2
+20D             sp2_sp2_3         OAH         CAI         CAL         CAQ       0.000     5.0     2
+20D              const_53         CAQ         CAL         CAM         CAN       0.000    10.0     2
+20D              const_33         CAM         CAL         CAQ         CAP       0.000    10.0     2
+20D              const_49         CAL         CAM         CAN         CAO       0.000    10.0     2
+20D              const_46         CAM         CAN         CAO         FAR     180.000    10.0     2
+20D              const_43         FAR         CAO         CAP         CAQ     180.000    10.0     2
+20D              const_37         CAO         CAP         CAQ         CAL       0.000    10.0     2
+20D              const_30         CAE         CAF         CAG         OAK     180.000    10.0     2
+20D              const_61         CAB         CAA         CAF         CAE       0.000    10.0     2
+20D       const_sp2_sp2_1         OAH         CAE         CAF         CAG       0.000     5.0     2
+20D              const_17         CAF         CAA         CAB         CAC       0.000    10.0     2
+20D              const_13         CAA         CAB         CAC         CAD       0.000    10.0     2
+20D       const_sp2_sp2_9         CAB         CAC         CAD         CAE       0.000     5.0     2
+20D       const_sp2_sp2_6         CAC         CAD         CAE         OAH     180.000     5.0     2
+20D              const_28         CAD         CAE         OAH         CAI     180.000    10.0     2
+20D              const_26         CAL         CAI         OAH         CAE     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+20D    plan-1         CAA   0.020
+20D    plan-1         CAB   0.020
+20D    plan-1         CAC   0.020
+20D    plan-1         CAD   0.020
+20D    plan-1         CAE   0.020
+20D    plan-1         CAF   0.020
+20D    plan-1         CAG   0.020
+20D    plan-1         CAI   0.020
+20D    plan-1         CAJ   0.020
+20D    plan-1         CAL   0.020
+20D    plan-1          H1   0.020
+20D    plan-1          H2   0.020
+20D    plan-1          H3   0.020
+20D    plan-1          H4   0.020
+20D    plan-1          H5   0.020
+20D    plan-1         OAH   0.020
+20D    plan-1         OAK   0.020
+20D    plan-2         CAI   0.020
+20D    plan-2         CAL   0.020
+20D    plan-2         CAM   0.020
+20D    plan-2         CAN   0.020
+20D    plan-2         CAO   0.020
+20D    plan-2         CAP   0.020
+20D    plan-2         CAQ   0.020
+20D    plan-2         FAR   0.020
+20D    plan-2          H6   0.020
+20D    plan-2          H7   0.020
+20D    plan-2          H8   0.020
+20D    plan-2          H9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+20D           SMILES              ACDLabs 12.01                                                Fc3ccc(C=2Oc1ccccc1C(=O)C=2)cc3
+20D            InChI                InChI  1.03 InChI=1S/C15H9FO2/c16-11-7-5-10(6-8-11)15-9-13(17)12-3-1-2-4-14(12)18-15/h1-9H
+20D         InChIKey                InChI  1.03                                                    ZHXIMGYEMBZGOI-UHFFFAOYSA-N
+20D SMILES_CANONICAL               CACTVS 3.370                                                 Fc1ccc(cc1)C2=CC(=O)c3ccccc3O2
+20D           SMILES               CACTVS 3.370                                                 Fc1ccc(cc1)C2=CC(=O)c3ccccc3O2
+20D SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                             c1ccc2c(c1)C(=O)C=C(O2)c3ccc(cc3)F
+20D           SMILES "OpenEye OEToolkits" 1.7.6                                             c1ccc2c(c1)C(=O)C=C(O2)c3ccc(cc3)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+20D acedrg               243         "dictionary generator"                  
+20D acedrg_database      11          "data source"                           
+20D rdkit                2017.03.2   "Chemoinformatics tool"
+20D refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,205 @@
+# /home/mihaela/Downloads/acedrg243/FCB_unimodal.cif
+# modified by Privateer
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FCB      FCB 'BETA-D-FUCOSE                       ' pyranose           23  11 .
+
+data_comp_FCB
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FCB C1 C CH1 0 14.162 56.374 55.232
+FCB C2 C CH1 0 12.708 56.763 55.005
+FCB C3 C CH1 0 12.150 56.148 53.724
+FCB C4 C CH1 0 13.077 56.399 52.537
+FCB C5 C CH1 0 14.485 55.925 52.883
+FCB C6 C CH3 0 15.495 56.171 51.785
+FCB O1 O OH1 0 14.666 57.096 56.310
+FCB O2 O OH1 0 11.924 56.384 56.133
+FCB O3 O OH1 0 10.854 56.685 53.464
+FCB O4 O OH1 0 13.089 57.788 52.194
+FCB O5 O O2 0 14.950 56.630 54.058
+FCB H1 H H 0 14.213 55.408 55.442
+FCB H2 H H 0 12.677 57.745 54.919
+FCB H3 H H 0 12.066 55.169 53.855
+FCB H4 H H 0 12.750 55.882 51.764
+FCB H5 H H 0 14.455 54.956 53.080
+FCB H61 H H 0 15.997 56.981 51.974
+FCB H62 H H 0 15.035 56.270 50.934
+FCB H63 H H 0 16.106 55.418 51.733
+FCB HO1 H H 0 15.454 56.831 56.467
+FCB HO2 H H 0 11.154 56.714 56.057
+FCB HO3 H H 0 10.498 56.248 52.839
+FCB HO4 H H 0 13.550 58.236 52.738
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FCB C1 C2 SINGLE n 1.516 0.0200 1.516 0.0200
+FCB C1 O1 SINGLE n 1.392 0.0200 1.392 0.0200
+FCB C1 O5 SINGLE n 1.431 0.0165 1.431 0.0165
+FCB C2 C3 SINGLE n 1.519 0.0200 1.519 0.0200
+FCB C2 O2 SINGLE n 1.425 0.0112 1.425 0.0112
+FCB C3 C4 SINGLE n 1.520 0.0158 1.520 0.0158
+FCB C3 O3 SINGLE n 1.427 0.0138 1.427 0.0138
+FCB C4 C5 SINGLE n 1.523 0.0102 1.523 0.0102
+FCB C4 O4 SINGLE n 1.425 0.0176 1.425 0.0176
+FCB C5 C6 SINGLE n 1.510 0.0100 1.510 0.0100
+FCB C5 O5 SINGLE n 1.445 0.0100 1.445 0.0100
+FCB C1 H1 SINGLE n 1.089 0.0100 0.990 0.0200
+FCB C2 H2 SINGLE n 1.089 0.0100 0.987 0.0140
+FCB C3 H3 SINGLE n 1.089 0.0100 0.991 0.0121
+FCB C4 H4 SINGLE n 1.089 0.0100 0.986 0.0131
+FCB C5 H5 SINGLE n 1.089 0.0100 0.989 0.0117
+FCB C6 H61 SINGLE n 1.089 0.0100 0.971 0.0171
+FCB C6 H62 SINGLE n 1.089 0.0100 0.971 0.0171
+FCB C6 H63 SINGLE n 1.089 0.0100 0.971 0.0171
+FCB O1 HO1 SINGLE n 0.970 0.0120 0.846 0.0200
+FCB O2 HO2 SINGLE n 0.970 0.0120 0.841 0.0200
+FCB O3 HO3 SINGLE n 0.970 0.0120 0.841 0.0200
+FCB O4 HO4 SINGLE n 0.970 0.0120 0.841 0.0200
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FCB C2 C1 O1 109.304 2.75
+FCB C2 C1 O5 110.495 2.07
+FCB C2 C1 H1 109.287 1.97
+FCB O1 C1 O5 110.093 3.00
+FCB O1 C1 H1 108.897 1.73
+FCB O5 C1 H1 108.645 1.60
+FCB C1 C2 C3 111.543 1.84
+FCB C1 C2 O2 109.956 1.70
+FCB C1 C2 H2 107.431 2.02
+FCB C3 C2 O2 111.053 2.62
+FCB C3 C2 H2 108.505 1.50
+FCB O2 C2 H2 108.551 1.50
+FCB C2 C3 C4 110.687 1.67
+FCB C2 C3 O3 109.587 2.09
+FCB C2 C3 H3 108.712 1.50
+FCB C4 C3 O3 110.243 1.88
+FCB C4 C3 H3 108.653 1.50
+FCB O3 C3 H3 108.767 1.50
+FCB C3 C4 C5 109.500 1.50
+FCB C3 C4 O4 110.101 1.97
+FCB C3 C4 H4 109.032 1.50
+FCB C5 C4 O4 109.789 1.62
+FCB C5 C4 H4 108.901 1.50
+FCB O4 C4 H4 109.194 1.50
+FCB C4 C5 C6 113.299 1.50
+FCB C4 C5 O5 109.213 1.50
+FCB C4 C5 H5 108.992 1.50
+FCB C6 C5 O5 106.787 1.50
+FCB C6 C5 H5 109.193 1.50
+FCB O5 C5 H5 109.141 1.50
+FCB C5 C6 H61 109.468 1.50
+FCB C5 C6 H62 109.468 1.50
+FCB C5 C6 H63 109.468 1.50
+FCB H61 C6 H62 109.383 1.59
+FCB H61 C6 H63 109.383 1.59
+FCB H62 C6 H63 109.383 1.59
+FCB C1 O1 HO1 108.606 2.51
+FCB C2 O2 HO2 109.126 2.06
+FCB C3 O3 HO3 108.895 2.41
+FCB C4 O4 HO4 109.564 3.00
+FCB C1 O5 C5 113.152 1.70
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FCB tors_21 C2 C1 O1 HO1 175.673767 10.0 3
+FCB tors_20 O5 C1 O1 HO1 -62.437561 10.0 3
+FCB tors_19 H1 C1 O1 HO1 56.434464 10.0 3
+FCB tors_18 C1 C2 O2 HO2 170.654968 10.0 3
+FCB tors_17 C3 C2 O2 HO2 -65.292419 10.0 3
+FCB tors_16 H2 C2 O2 HO2 53.662273 10.0 3
+FCB tors_15 C2 C3 O3 HO3 -170.193176 10.0 3
+FCB tors_14 C4 C3 O3 HO3 66.902412 10.0 3
+FCB tors_13 H3 C3 O3 HO3 -51.852726 10.0 3
+FCB tors_12 C3 C4 O4 HO4 75.990067 10.0 3
+FCB tors_11 C5 C4 O4 HO4 -45.253227 10.0 3
+FCB tors_10 H4 C4 O4 HO4 -164.546906 10.0 3
+FCB tors_9 C4 C5 C6 H61 98.392776 10.0 3
+FCB tors_8 C4 C5 C6 H62 -21.680206 10.0 3
+FCB tors_7 C4 C5 C6 H63 -141.501205 10.0 3
+FCB tors_6 O5 C5 C6 H61 -22.412033 10.0 3
+FCB tors_5 O5 C5 C6 H62 -142.485016 10.0 3
+FCB tors_4 O5 C5 C6 H63 97.693985 10.0 3
+FCB tors_3 H5 C5 C6 H61 -140.190262 10.0 3
+FCB tors_2 H5 C5 C6 H62 99.736763 10.0 3
+FCB tors_1 H5 C5 C6 H63 -20.084242 10.0 3
+FCB ring_1 C5 O5 C1 C2 -58.582996 3.0 1
+FCB ring_2 O5 C1 C2 C3 51.018398 3.0 1
+FCB ring_3 C1 C2 C3 C4 -49.879166 3.0 1
+FCB ring_4 C2 C3 C4 C5 53.382511 3.0 1
+FCB ring_5 C3 C4 C5 O5 -58.456284 3.0 1
+FCB ring_6 C4 C5 O5 C1 62.656849 3.0 1
+
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FCB chir_1 C1 O5 O1 C2 negative
+FCB chir_2 C2 O2 C1 C3 negative
+FCB chir_3 C3 O3 C2 C4 positive
+FCB chir_4 C4 O4 C5 C3 negative
+FCB chir_5 C5 O5 C4 C6 negative
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FCB SMILES ACDLabs 10.04 OC1C(O)C(OC(O)C1O)C
+FCB SMILES_CANONICAL CACTVS 3.341 C[C@H]1O[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O
+FCB SMILES CACTVS 3.341 C[CH]1O[CH](O)[CH](O)[CH](O)[CH]1O
+FCB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0 C[C@@H]1[C@@H]([C@@H]([C@H]([C@@H](O1)O)O)O)O
+FCB SMILES "OpenEye OEToolkits" 1.5.0 CC1C(C(C(C(O1)O)O)O)O
+FCB InChI InChI 1.03 InChI=1S/C6H12O5/c1-2-3(7)4(8)5(9)6(10)11-2/h2-10H,1H3/t2-,3+,4+,5-,6-/m1/s1
+FCB InChIKey InChI 1.03 SHZGCJCMOBCMKK-FPRJBGLDSA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FCB acedrg 243 "dictionary generator"
+FCB acedrg_database 11 "data source"
+FCB rdkit 2017.03.2 "Chemoinformatics tool"
+FCB refmac5 5.8.0238 "optimization tool"

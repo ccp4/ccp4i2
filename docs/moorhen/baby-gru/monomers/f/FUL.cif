@@ -1,0 +1,205 @@
+# /home/mihaela/Downloads/acedrg243/FUL_unimodal.cif
+# modified by Privateer
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FUL      FUL 'BETA-L-FUCOSE                       ' pyranose           23  11 .
+
+data_comp_FUL
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FUL C1 C CH1 0 9.783 38.681 10.173
+FUL C2 C CH1 0 10.595 38.640 8.885
+FUL O2 O OH1 0 9.890 37.903 7.890
+FUL C3 C CH1 0 10.935 40.042 8.386
+FUL O3 O OH1 0 11.840 39.949 7.286
+FUL C4 C CH1 0 11.536 40.898 9.498
+FUL O4 O OH1 0 12.834 40.415 9.858
+FUL C5 C CH1 0 10.609 40.884 10.710
+FUL C6 C CH3 0 11.146 41.661 11.890
+FUL O5 O O2 0 10.420 39.519 11.151
+FUL O1 O OH1 0 9.632 37.386 10.668
+FUL H1 H H 0 8.886 39.052 9.977
+FUL H2 H H 0 11.439 38.167 9.084
+FUL HO2 H H 0 10.396 37.777 7.230
+FUL H3 H H 0 10.100 40.475 8.073
+FUL HO3 H H 0 11.915 40.708 6.931
+FUL H4 H H 0 11.619 41.826 9.174
+FUL HO4 H H 0 12.784 39.717 10.326
+FUL H5 H H 0 9.734 41.262 10.446
+FUL H61 H H 0 11.706 41.084 12.434
+FUL H62 H H 0 10.405 41.990 12.424
+FUL H63 H H 0 11.672 42.413 11.571
+FUL HO1 H H 0 10.382 37.103 10.942
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FUL C1 C2 SINGLE n 1.516 0.0200 1.516 0.0200
+FUL C1 O5 SINGLE n 1.431 0.0165 1.431 0.0165
+FUL C1 O1 SINGLE n 1.392 0.0200 1.392 0.0200
+FUL C2 O2 SINGLE n 1.425 0.0112 1.425 0.0112
+FUL C2 C3 SINGLE n 1.519 0.0200 1.519 0.0200
+FUL C3 O3 SINGLE n 1.427 0.0138 1.427 0.0138
+FUL C3 C4 SINGLE n 1.520 0.0158 1.520 0.0158
+FUL C4 O4 SINGLE n 1.425 0.0176 1.425 0.0176
+FUL C4 C5 SINGLE n 1.523 0.0102 1.523 0.0102
+FUL C5 C6 SINGLE n 1.510 0.0100 1.510 0.0100
+FUL C5 O5 SINGLE n 1.445 0.0100 1.445 0.0100
+FUL C1 H1 SINGLE n 1.089 0.0100 0.990 0.0200
+FUL C2 H2 SINGLE n 1.089 0.0100 0.987 0.0140
+FUL O2 HO2 SINGLE n 0.970 0.0120 0.841 0.0200
+FUL C3 H3 SINGLE n 1.089 0.0100 0.991 0.0121
+FUL O3 HO3 SINGLE n 0.970 0.0120 0.841 0.0200
+FUL C4 H4 SINGLE n 1.089 0.0100 0.986 0.0131
+FUL O4 HO4 SINGLE n 0.970 0.0120 0.841 0.0200
+FUL C5 H5 SINGLE n 1.089 0.0100 0.989 0.0117
+FUL C6 H61 SINGLE n 1.089 0.0100 0.971 0.0171
+FUL C6 H62 SINGLE n 1.089 0.0100 0.971 0.0171
+FUL C6 H63 SINGLE n 1.089 0.0100 0.971 0.0171
+FUL O1 HO1 SINGLE n 0.970 0.0120 0.846 0.0200
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FUL C2 C1 O5 110.495 2.07
+FUL C2 C1 O1 109.304 2.75
+FUL C2 C1 H1 109.287 1.97
+FUL O5 C1 O1 110.093 3.00
+FUL O5 C1 H1 108.645 1.60
+FUL O1 C1 H1 108.897 1.73
+FUL C1 C2 O2 109.956 1.70
+FUL C1 C2 C3 111.543 1.84
+FUL C1 C2 H2 107.431 2.02
+FUL O2 C2 C3 111.053 2.62
+FUL O2 C2 H2 108.551 1.50
+FUL C3 C2 H2 108.505 1.50
+FUL C2 O2 HO2 109.126 2.06
+FUL C2 C3 O3 109.587 2.09
+FUL C2 C3 C4 110.687 1.67
+FUL C2 C3 H3 108.712 1.50
+FUL O3 C3 C4 110.243 1.88
+FUL O3 C3 H3 108.767 1.50
+FUL C4 C3 H3 108.653 1.50
+FUL C3 O3 HO3 108.895 2.41
+FUL C3 C4 O4 110.101 1.97
+FUL C3 C4 C5 109.500 1.50
+FUL C3 C4 H4 109.032 1.50
+FUL O4 C4 C5 109.789 1.62
+FUL O4 C4 H4 109.194 1.50
+FUL C5 C4 H4 108.901 1.50
+FUL C4 O4 HO4 109.564 3.00
+FUL C4 C5 C6 113.299 1.50
+FUL C4 C5 O5 109.213 1.50
+FUL C4 C5 H5 108.992 1.50
+FUL C6 C5 O5 106.787 1.50
+FUL C6 C5 H5 109.193 1.50
+FUL O5 C5 H5 109.141 1.50
+FUL C5 C6 H61 109.468 1.50
+FUL C5 C6 H62 109.468 1.50
+FUL C5 C6 H63 109.468 1.50
+FUL H61 C6 H62 109.383 1.59
+FUL H61 C6 H63 109.383 1.59
+FUL H62 C6 H63 109.383 1.59
+FUL C1 O5 C5 113.152 1.70
+FUL C1 O1 HO1 108.606 2.51
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FUL tors_21 C2 C1 O1 HO1 69.142921 10.0 3
+FUL tors_20 O5 C1 O1 HO1 -53.033329 10.0 3
+FUL tors_19 H1 C1 O1 HO1 -171.927887 10.0 3
+FUL tors_18 C1 C2 O2 HO2 -170.707031 10.0 3
+FUL tors_17 C3 C2 O2 HO2 65.218170 10.0 3
+FUL tors_16 H2 C2 O2 HO2 -53.662312 10.0 3
+FUL tors_15 C2 C3 O3 HO3 170.015427 10.0 3
+FUL tors_14 C4 C3 O3 HO3 -67.040802 10.0 3
+FUL tors_13 H3 C3 O3 HO3 51.748970 10.0 3
+FUL tors_12 C3 C4 O4 HO4 -75.933884 10.0 3
+FUL tors_11 C5 C4 O4 HO4 45.401386 10.0 3
+FUL tors_10 H4 C4 O4 HO4 164.651230 10.0 3
+FUL tors_9 C4 C5 C6 H61 -87.709503 10.0 3
+FUL tors_8 C4 C5 C6 H62 152.179520 10.0 3
+FUL tors_7 C4 C5 C6 H63 32.324379 10.0 3
+FUL tors_6 O5 C5 C6 H61 32.984570 10.0 3
+FUL tors_5 O5 C5 C6 H62 -87.126389 10.0 3
+FUL tors_4 O5 C5 C6 H63 153.018448 10.0 3
+FUL tors_3 H5 C5 C6 H61 150.829422 10.0 3
+FUL tors_2 H5 C5 C6 H62 30.718449 10.0 3
+FUL tors_1 H5 C5 C6 H63 -89.136703 10.0 3
+FUL ring_1 C5 O5 C1 C2 58.762951 3.0 1
+FUL ring_2 O5 C1 C2 C3 -51.263073 3.0 1
+FUL ring_3 C1 C2 C3 C4 49.976913 3.0 1
+FUL ring_4 C2 C3 C4 C5 -53.239357 3.0 1
+FUL ring_5 C3 C4 C5 O5 58.204994 3.0 1
+FUL ring_6 C4 C5 O5 C1 -62.584614 3.0 1
+
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FUL chir_1 C1 O5 O1 C2 positive
+FUL chir_2 C2 O2 C1 C3 positive
+FUL chir_3 C3 O3 C2 C4 negative
+FUL chir_4 C4 O4 C5 C3 positive
+FUL chir_5 C5 O5 C4 C6 positive
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FUL SMILES ACDLabs 10.04 OC1C(O)C(OC(O)C1O)C
+FUL SMILES_CANONICAL CACTVS 3.341 C[C@@H]1O[C@H](O)[C@@H](O)[C@H](O)[C@@H]1O
+FUL SMILES CACTVS 3.341 C[CH]1O[CH](O)[CH](O)[CH](O)[CH]1O
+FUL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0 C[C@H]1[C@H]([C@H]([C@@H]([C@H](O1)O)O)O)O
+FUL SMILES "OpenEye OEToolkits" 1.5.0 CC1C(C(C(C(O1)O)O)O)O
+FUL InChI InChI 1.03 InChI=1S/C6H12O5/c1-2-3(7)4(8)5(9)6(10)11-2/h2-10H,1H3/t2-,3+,4+,5-,6-/m0/s1
+FUL InChIKey InChI 1.03 SHZGCJCMOBCMKK-KGJVWPDLSA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FUL acedrg 243 "dictionary generator"
+FUL acedrg_database 11 "data source"
+FUL rdkit 2017.03.2 "Chemoinformatics tool"
+FUL refmac5 5.8.0238 "optimization tool"

@@ -1,0 +1,167 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+APB     APB      "M-AMINOPHENYLBORONIC ACID"     NON-POLYMER     18     10     .     
+#
+data_comp_APB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+APB     B       B       B       0       78.957      5.417       28.689      
+APB     O1      O       OH1     0       79.683      4.561       29.458      
+APB     O2      O       OH1     0       78.447      6.539       29.264      
+APB     C1      C       CR6     0       78.710      5.120       27.169      
+APB     C2      C       CR16    0       79.350      4.040       26.545      
+APB     C3      C       CR6     0       79.135      3.768       25.188      
+APB     C4      C       CR16    0       78.274      4.578       24.444      
+APB     C5      C       CR16    0       77.634      5.650       25.052      
+APB     C6      C       CR16    0       77.852      5.916       26.402      
+APB     N1      N       NH2     0       79.773      2.702       24.589      
+APB     HO1     H       H       0       79.354      4.448       30.211      
+APB     HO2     H       H       0       77.619      6.563       29.242      
+APB     H2      H       H       0       79.930      3.495       27.045      
+APB     H4      H       H       0       78.129      4.394       23.531      
+APB     H5      H       H       0       77.053      6.197       24.551      
+APB     H6      H       H       0       77.408      6.650       26.802      
+APB     HN11    H       H       0       79.669      2.555       23.731      
+APB     HN12    H       H       0       80.282      2.172       25.068      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+APB           B          O1      SINGLE       n     1.360  0.0112     1.360  0.0112
+APB           B          O2      SINGLE       n     1.360  0.0112     1.360  0.0112
+APB           B          C1      SINGLE       n     1.567  0.0111     1.567  0.0111
+APB          C1          C2      DOUBLE       y     1.396  0.0100     1.396  0.0100
+APB          C1          C6      SINGLE       y     1.394  0.0107     1.394  0.0107
+APB          C2          C3      SINGLE       y     1.396  0.0102     1.396  0.0102
+APB          C3          C4      DOUBLE       y     1.394  0.0100     1.394  0.0100
+APB          C3          N1      SINGLE       n     1.376  0.0195     1.376  0.0195
+APB          C4          C5      SINGLE       y     1.387  0.0100     1.387  0.0100
+APB          C5          C6      DOUBLE       y     1.390  0.0100     1.390  0.0100
+APB          O1         HO1      SINGLE       n     0.970  0.0120     0.829  0.0200
+APB          O2         HO2      SINGLE       n     0.970  0.0120     0.829  0.0200
+APB          C2          H2      SINGLE       n     1.082  0.0130     0.940  0.0107
+APB          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0178
+APB          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0150
+APB          C6          H6      SINGLE       n     1.082  0.0130     0.947  0.0143
+APB          N1        HN11      SINGLE       n     1.016  0.0100     0.877  0.0200
+APB          N1        HN12      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+APB          O1           B          O2     119.315    2.69
+APB          O1           B          C1     120.343    2.68
+APB          O2           B          C1     120.343    2.68
+APB           B          O1         HO1     112.760    3.00
+APB           B          O2         HO2     112.760    3.00
+APB           B          C1          C2     120.651    2.04
+APB           B          C1          C6     121.690    1.50
+APB          C2          C1          C6     117.668    1.50
+APB          C1          C2          C3     119.911    1.81
+APB          C1          C2          H2     119.672    1.50
+APB          C3          C2          H2     120.417    1.50
+APB          C2          C3          C4     120.167    2.01
+APB          C2          C3          N1     119.790    1.50
+APB          C4          C3          N1     120.043    1.50
+APB          C3          C4          C5     120.561    1.50
+APB          C3          C4          H4     119.466    1.50
+APB          C5          C4          H4     119.973    1.50
+APB          C4          C5          C6     120.517    1.50
+APB          C4          C5          H5     119.662    1.50
+APB          C6          C5          H5     119.821    1.50
+APB          C1          C6          C5     121.176    1.50
+APB          C1          C6          H6     119.715    1.50
+APB          C5          C6          H6     119.108    1.50
+APB          C3          N1        HN11     119.811    2.73
+APB          C3          N1        HN12     119.811    2.73
+APB        HN11          N1        HN12     120.379    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+APB             sp2_sp2_1          O1           B          C1          C2     180.000     5.0     2
+APB       const_sp2_sp2_3           B          C1          C2          C3     180.000     5.0     2
+APB              const_23           B          C1          C6          C5     180.000    10.0     2
+APB       const_sp2_sp2_6          C1          C2          C3          N1     180.000     5.0     2
+APB              const_11          N1          C3          C4          C5     180.000    10.0     2
+APB             sp2_sp2_5          C2          C3          N1        HN11     180.000     5.0     2
+APB              const_13          C3          C4          C5          C6       0.000    10.0     2
+APB              const_17          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+APB    plan-1           B   0.020
+APB    plan-1          C1   0.020
+APB    plan-1          C2   0.020
+APB    plan-1          C3   0.020
+APB    plan-1          C4   0.020
+APB    plan-1          C5   0.020
+APB    plan-1          C6   0.020
+APB    plan-1          H2   0.020
+APB    plan-1          H4   0.020
+APB    plan-1          H5   0.020
+APB    plan-1          H6   0.020
+APB    plan-1          N1   0.020
+APB    plan-2           B   0.020
+APB    plan-2          C1   0.020
+APB    plan-2          O1   0.020
+APB    plan-2          O2   0.020
+APB    plan-3          C3   0.020
+APB    plan-3        HN11   0.020
+APB    plan-3        HN12   0.020
+APB    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+APB           SMILES              ACDLabs 10.04                                         OB(O)c1cccc(N)c1
+APB SMILES_CANONICAL               CACTVS 3.341                                         Nc1cccc(c1)B(O)O
+APB           SMILES               CACTVS 3.341                                         Nc1cccc(c1)B(O)O
+APB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                       B(c1cccc(c1)N)(O)O
+APB           SMILES "OpenEye OEToolkits" 1.5.0                                       B(c1cccc(c1)N)(O)O
+APB            InChI                InChI  1.03 InChI=1S/C6H8BNO2/c8-6-3-1-2-5(4-6)7(9)10/h1-4,9-10H,8H2
+APB         InChIKey                InChI  1.03                              JMZFEHDNIAQMNB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+APB acedrg               243         "dictionary generator"                  
+APB acedrg_database      11          "data source"                           
+APB rdkit                2017.03.2   "Chemoinformatics tool"
+APB refmac5              5.8.0238    "optimization tool"                     

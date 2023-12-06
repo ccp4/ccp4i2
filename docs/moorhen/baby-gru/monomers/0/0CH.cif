@@ -1,0 +1,174 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0CH     0CH      "4-hydroxybutyl trihydrogen diphosphate"     NON-POLYMER     23     14     .     
+#
+data_comp_0CH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0CH     O20     O       O       0       -25.791     0.527       -18.854     
+0CH     P17     P       P       0       -26.874     0.310       -17.826     
+0CH     O19     O       OP      -1      -28.229     0.779       -18.298     
+0CH     O18     O       OP      -1      -26.508     0.857       -16.469     
+0CH     O16     O       O2      0       -26.998     -1.289      -17.641     
+0CH     P13     P       P       0       -26.033     -2.374      -16.958     
+0CH     O15     O       OP      -1      -24.621     -1.906      -17.075     
+0CH     O14     O       O       0       -26.378     -3.734      -17.470     
+0CH     O29     O       O2      0       -26.466     -2.264      -15.415     
+0CH     C28     C       CH2     0       -27.816     -2.627      -14.999     
+0CH     C27     C       CH2     0       -28.599     -1.369      -14.722     
+0CH     C30     C       CH2     0       -28.088     -0.569      -13.537     
+0CH     C13     C       CH2     0       -28.931     0.641       -13.225     
+0CH     O33     O       OH1     0       -28.397     1.382       -12.142     
+0CH     H4      H       H       0       -27.774     -3.178      -14.189     
+0CH     H5      H       H       0       -28.260     -3.149      -15.701     
+0CH     H6      H       H       0       -29.534     -1.614      -14.558     
+0CH     H7      H       H       0       -28.576     -0.803      -15.520     
+0CH     H8      H       H       0       -27.171     -0.276      -13.722     
+0CH     H9      H       H       0       -28.064     -1.149      -12.748     
+0CH     H10     H       H       0       -29.842     0.353       -13.002     
+0CH     H11     H       H       0       -28.978     1.216       -14.019     
+0CH     H12     H       H       0       -28.899     2.048       -11.997     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0CH         O20         P17      DOUBLE       n     1.509  0.0200     1.509  0.0200
+0CH         P13         O14      DOUBLE       n     1.493  0.0122     1.493  0.0122
+0CH         P17         O16      SINGLE       n     1.614  0.0178     1.614  0.0178
+0CH         P17         O19      SINGLE       n     1.509  0.0200     1.509  0.0200
+0CH         P17         O18      SINGLE       n     1.509  0.0200     1.509  0.0200
+0CH         P13         O15      SINGLE       n     1.493  0.0122     1.493  0.0122
+0CH         O16         P13      SINGLE       n     1.604  0.0133     1.604  0.0133
+0CH         P13         O29      SINGLE       n     1.604  0.0133     1.604  0.0133
+0CH         O29         C28      SINGLE       n     1.456  0.0100     1.456  0.0100
+0CH         C28         C27      SINGLE       n     1.507  0.0151     1.507  0.0151
+0CH         C27         C30      SINGLE       n     1.518  0.0119     1.518  0.0119
+0CH         C30         C13      SINGLE       n     1.508  0.0200     1.508  0.0200
+0CH         C13         O33      SINGLE       n     1.417  0.0200     1.417  0.0200
+0CH         C28          H4      SINGLE       n     1.089  0.0100     0.981  0.0100
+0CH         C28          H5      SINGLE       n     1.089  0.0100     0.981  0.0100
+0CH         C27          H6      SINGLE       n     1.089  0.0100     0.980  0.0166
+0CH         C27          H7      SINGLE       n     1.089  0.0100     0.980  0.0166
+0CH         C30          H8      SINGLE       n     1.089  0.0100     0.980  0.0166
+0CH         C30          H9      SINGLE       n     1.089  0.0100     0.980  0.0166
+0CH         C13         H10      SINGLE       n     1.089  0.0100     0.981  0.0174
+0CH         C13         H11      SINGLE       n     1.089  0.0100     0.981  0.0174
+0CH         O33         H12      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0CH         O20         P17         O16     105.965    2.38
+0CH         O20         P17         O19     112.716    1.50
+0CH         O20         P17         O18     112.716    1.50
+0CH         O16         P17         O19     105.965    2.38
+0CH         O16         P17         O18     105.965    2.38
+0CH         O19         P17         O18     112.716    1.50
+0CH         P17         O16         P13     132.584    3.00
+0CH         O14         P13         O15     118.411    2.35
+0CH         O14         P13         O16     108.816    2.14
+0CH         O14         P13         O29     107.912    2.57
+0CH         O15         P13         O16     108.816    2.14
+0CH         O15         P13         O29     107.912    2.57
+0CH         O16         P13         O29     101.065    1.97
+0CH         P13         O29         C28     119.251    1.51
+0CH         O29         C28         C27     108.936    1.50
+0CH         O29         C28          H4     109.902    1.50
+0CH         O29         C28          H5     109.902    1.50
+0CH         C27         C28          H4     110.079    1.50
+0CH         C27         C28          H5     110.079    1.50
+0CH          H4         C28          H5     108.388    1.50
+0CH         C28         C27         C30     113.691    3.00
+0CH         C28         C27          H6     108.650    1.50
+0CH         C28         C27          H7     108.650    1.50
+0CH         C30         C27          H6     108.920    1.50
+0CH         C30         C27          H7     108.920    1.50
+0CH          H6         C27          H7     107.788    1.50
+0CH         C27         C30         C13     113.345    1.50
+0CH         C27         C30          H8     108.920    1.50
+0CH         C27         C30          H9     108.920    1.50
+0CH         C13         C30          H8     108.717    1.50
+0CH         C13         C30          H9     108.717    1.50
+0CH          H8         C30          H9     107.788    1.50
+0CH         C30         C13         O33     111.456    3.00
+0CH         C30         C13         H10     109.269    1.50
+0CH         C30         C13         H11     109.269    1.50
+0CH         O33         C13         H10     109.258    1.50
+0CH         O33         C13         H11     109.258    1.50
+0CH         H10         C13         H11     108.120    1.50
+0CH         C13         O33         H12     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0CH            sp3_sp3_22         C28         C27         C30         C13     180.000    10.0     3
+0CH            sp3_sp3_31         O33         C13         C30         C27     180.000    10.0     3
+0CH            sp3_sp3_40         C30         C13         O33         H12     180.000    10.0     3
+0CH             sp3_sp3_3         P13         O16         P17         O20      60.000    10.0     3
+0CH             sp3_sp3_6         P17         O16         P13         O14      60.000    10.0     3
+0CH             sp3_sp3_9         C28         O29         P13         O14      60.000    10.0     3
+0CH            sp3_sp3_10         C27         C28         O29         P13     180.000    10.0     3
+0CH            sp3_sp3_13         C30         C27         C28         O29     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+0CH    chir_1    P17    O16    O19    O18    both
+0CH    chir_2    P13    O16    O29    O15    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0CH           SMILES              ACDLabs 12.01                                                          O=P(O)(O)OP(=O)(OCCCCO)O
+0CH            InChI                InChI  1.03 InChI=1S/C4H12O8P2/c5-3-1-2-4-11-14(9,10)12-13(6,7)8/h5H,1-4H2,(H,9,10)(H2,6,7,8)
+0CH         InChIKey                InChI  1.03                                                       OLLDOFHGCGXIPA-UHFFFAOYSA-N
+0CH SMILES_CANONICAL               CACTVS 3.370                                                      OCCCCO[P](O)(=O)O[P](O)(O)=O
+0CH           SMILES               CACTVS 3.370                                                      OCCCCO[P](O)(=O)O[P](O)(O)=O
+0CH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                        C(CCOP(=O)(O)OP(=O)(O)O)CO
+0CH           SMILES "OpenEye OEToolkits" 1.7.6                                                        C(CCOP(=O)(O)OP(=O)(O)O)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0CH acedrg               243         "dictionary generator"                  
+0CH acedrg_database      11          "data source"                           
+0CH rdkit                2017.03.2   "Chemoinformatics tool"
+0CH refmac5              5.8.0238    "optimization tool"                     

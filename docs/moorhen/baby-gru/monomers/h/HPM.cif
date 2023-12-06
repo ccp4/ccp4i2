@@ -1,0 +1,450 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HPM     HPM      N-{5-[(7-{[(2S)-2-HYDROXY-3-PIPERIDIN-1-YLPROPYL]OXY}-6-METHOXYQUINAZOLIN-4-YL)AMINO]PYRIMIDIN-2-YL}BENZAMIDE     NON-POLYMER     70     39     .     
+#
+data_comp_HPM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HPM     C1      C       CH2     0       21.339      83.566      79.338      
+HPM     C2      C       CH2     0       21.394      82.154      79.896      
+HPM     C3      C       CH2     0       20.165      81.357      79.501      
+HPM     C4      C       CH2     0       19.952      81.422      78.001      
+HPM     C5      C       CH2     0       19.937      82.859      77.511      
+HPM     N6      N       NT      0       21.174      83.565      77.876      
+HPM     C7      C       CH2     0       21.217      84.924      77.309      
+HPM     C8      C       CH1     0       21.680      84.978      75.857      
+HPM     C9      C       CH2     0       21.774      86.412      75.383      
+HPM     O10     O       O2      0       22.187      86.413      74.007      
+HPM     C11     C       CR6     0       22.343      87.587      73.327      
+HPM     C12     C       CR6     0       22.736      87.418      71.951      
+HPM     C13     C       CR16    0       22.923      88.521      71.147      
+HPM     C14     C       CR66    0       22.745      89.839      71.654      
+HPM     C15     C       CR66    0       22.359      89.985      73.020      
+HPM     C16     C       CR16    0       22.166      88.844      73.829      
+HPM     N17     N       NRD6    0       22.161      91.224      73.598      
+HPM     C18     C       CR16    0       22.353      92.250      72.803      
+HPM     N19     N       NRD6    0       22.719      92.256      71.503      
+HPM     C20     C       CR6     0       22.909      91.074      70.915      
+HPM     N21     N       NH1     0       23.288      91.058      69.599      
+HPM     C22     C       CR6     0       23.067      92.024      68.575      
+HPM     C23     C       CR16    0       24.068      92.278      67.648      
+HPM     N24     N       NRD6    0       23.921      93.168      66.668      
+HPM     C25     C       CR6     0       22.748      93.823      66.601      
+HPM     N26     N       NRD6    0       21.721      93.642      67.452      
+HPM     C27     C       CR16    0       21.890      92.746      68.428      
+HPM     N28     N       NH1     0       22.569      94.754      65.574      
+HPM     C29     C       C       0       23.314      94.998      64.453      
+HPM     C30     C       CR6     0       23.039      96.263      63.691      
+HPM     C31     C       CR16    0       22.593      97.439      64.295      
+HPM     C32     C       CR16    0       22.364      98.580      63.538      
+HPM     C33     C       CR16    0       22.590      98.572      62.177      
+HPM     C34     C       CR16    0       23.041      97.421      61.566      
+HPM     C35     C       CR16    0       23.268      96.275      62.314      
+HPM     O36     O       O       0       24.179      94.226      64.051      
+HPM     O37     O       O2      0       22.873      86.108      71.576      
+HPM     C38     C       CH3     0       23.459      85.784      70.315      
+HPM     O39     O       OH1     0       22.947      84.334      75.717      
+HPM     H1C1    H       H       0       20.596      84.045      79.744      
+HPM     H1C2    H       H       0       22.161      84.032      79.571      
+HPM     H2C1    H       H       0       22.196      81.703      79.560      
+HPM     H2C2    H       H       0       21.456      82.193      80.873      
+HPM     H3C1    H       H       0       19.377      81.717      79.962      
+HPM     H3C2    H       H       0       20.277      80.422      79.777      
+HPM     H4C1    H       H       0       19.101      80.993      77.774      
+HPM     H4C2    H       H       0       20.669      80.932      77.548      
+HPM     H5C1    H       H       0       19.176      83.324      77.901      
+HPM     H5C2    H       H       0       19.834      82.869      76.544      
+HPM     H7C1    H       H       0       21.822      85.477      77.846      
+HPM     H7C2    H       H       0       20.324      85.323      77.371      
+HPM     H8      H       H       0       21.021      84.500      75.289      
+HPM     H9C1    H       H       0       22.424      86.903      75.925      
+HPM     H9C2    H       H       0       20.903      86.851      75.466      
+HPM     H13     H       H       0       23.176      88.402      70.253      
+HPM     H16     H       H       0       21.913      88.959      74.723      
+HPM     H18     H       H       0       22.220      93.095      73.191      
+HPM     H21     H       H       0       23.764      90.390      69.344      
+HPM     H23     H       H       0       24.954      91.772      67.711      
+HPM     H27     H       H       0       21.121      92.597      69.085      
+HPM     H28     H       H       0       21.857      95.221      65.660      
+HPM     H31     H       H       0       22.434      97.458      65.221      
+HPM     H32     H       H       0       22.056      99.366      63.957      
+HPM     H33     H       H       0       22.435      99.350      61.666      
+HPM     H34     H       H       0       23.195      97.412      60.635      
+HPM     H35     H       H       0       23.576      95.497      61.882      
+HPM     H381    H       H       0       24.332      86.202      70.244      
+HPM     H382    H       H       0       22.885      86.105      69.600      
+HPM     H383    H       H       0       23.555      84.820      70.243      
+HPM     H39     H       H       0       23.524      84.721      76.205      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HPM          C1          C2      SINGLE       n     1.513  0.0163     1.513  0.0163
+HPM          C1          N6      SINGLE       n     1.462  0.0143     1.462  0.0143
+HPM          C2          C3      SINGLE       n     1.515  0.0113     1.515  0.0113
+HPM          C3          C4      SINGLE       n     1.515  0.0113     1.515  0.0113
+HPM          C4          C5      SINGLE       n     1.513  0.0163     1.513  0.0163
+HPM          C5          N6      SINGLE       n     1.462  0.0143     1.462  0.0143
+HPM          N6          C7      SINGLE       n     1.467  0.0106     1.467  0.0106
+HPM          C7          C8      SINGLE       n     1.521  0.0128     1.521  0.0128
+HPM          C8          C9      SINGLE       n     1.510  0.0121     1.510  0.0121
+HPM          C8         O39      SINGLE       n     1.424  0.0199     1.424  0.0199
+HPM          C9         O10      SINGLE       n     1.432  0.0101     1.432  0.0101
+HPM         O10         C11      SINGLE       n     1.357  0.0100     1.357  0.0100
+HPM         C11         C12      DOUBLE       y     1.431  0.0100     1.431  0.0100
+HPM         C11         C16      SINGLE       y     1.358  0.0100     1.358  0.0100
+HPM         C12         C13      SINGLE       y     1.368  0.0100     1.368  0.0100
+HPM         C12         O37      SINGLE       n     1.363  0.0100     1.363  0.0100
+HPM         C13         C14      DOUBLE       y     1.417  0.0100     1.417  0.0100
+HPM         C14         C15      SINGLE       y     1.421  0.0100     1.421  0.0100
+HPM         C14         C20      SINGLE       y     1.437  0.0100     1.437  0.0100
+HPM         C15         C16      DOUBLE       y     1.410  0.0100     1.410  0.0100
+HPM         C15         N17      SINGLE       y     1.379  0.0100     1.379  0.0100
+HPM         N17         C18      DOUBLE       y     1.310  0.0100     1.310  0.0100
+HPM         C18         N19      SINGLE       y     1.348  0.0100     1.348  0.0100
+HPM         N19         C20      DOUBLE       y     1.328  0.0100     1.328  0.0100
+HPM         C20         N21      SINGLE       n     1.363  0.0101     1.363  0.0101
+HPM         N21         C22      SINGLE       n     1.404  0.0200     1.404  0.0200
+HPM         C22         C23      DOUBLE       y     1.382  0.0128     1.382  0.0128
+HPM         C22         C27      SINGLE       y     1.382  0.0128     1.382  0.0128
+HPM         C23         N24      SINGLE       y     1.328  0.0100     1.328  0.0100
+HPM         N24         C25      DOUBLE       y     1.339  0.0100     1.339  0.0100
+HPM         C25         N26      SINGLE       y     1.339  0.0100     1.339  0.0100
+HPM         C25         N28      SINGLE       n     1.389  0.0100     1.389  0.0100
+HPM         N26         C27      DOUBLE       y     1.328  0.0100     1.328  0.0100
+HPM         N28         C29      SINGLE       n     1.353  0.0127     1.353  0.0127
+HPM         C29         C30      SINGLE       n     1.494  0.0100     1.494  0.0100
+HPM         C29         O36      DOUBLE       n     1.226  0.0100     1.226  0.0100
+HPM         C30         C31      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HPM         C30         C35      SINGLE       y     1.389  0.0100     1.389  0.0100
+HPM         C31         C32      SINGLE       y     1.384  0.0100     1.384  0.0100
+HPM         C32         C33      DOUBLE       y     1.376  0.0114     1.376  0.0114
+HPM         C33         C34      SINGLE       y     1.376  0.0124     1.376  0.0124
+HPM         C34         C35      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HPM         O37         C38      SINGLE       n     1.424  0.0117     1.424  0.0117
+HPM          C1        H1C1      SINGLE       n     1.089  0.0100     0.973  0.0129
+HPM          C1        H1C2      SINGLE       n     1.089  0.0100     0.973  0.0129
+HPM          C2        H2C1      SINGLE       n     1.089  0.0100     0.980  0.0120
+HPM          C2        H2C2      SINGLE       n     1.089  0.0100     0.980  0.0120
+HPM          C3        H3C1      SINGLE       n     1.089  0.0100     0.981  0.0121
+HPM          C3        H3C2      SINGLE       n     1.089  0.0100     0.981  0.0121
+HPM          C4        H4C1      SINGLE       n     1.089  0.0100     0.980  0.0120
+HPM          C4        H4C2      SINGLE       n     1.089  0.0100     0.980  0.0120
+HPM          C5        H5C1      SINGLE       n     1.089  0.0100     0.973  0.0129
+HPM          C5        H5C2      SINGLE       n     1.089  0.0100     0.973  0.0129
+HPM          C7        H7C1      SINGLE       n     1.089  0.0100     0.980  0.0112
+HPM          C7        H7C2      SINGLE       n     1.089  0.0100     0.980  0.0112
+HPM          C8          H8      SINGLE       n     1.089  0.0100     0.992  0.0184
+HPM          C9        H9C1      SINGLE       n     1.089  0.0100     0.979  0.0131
+HPM          C9        H9C2      SINGLE       n     1.089  0.0100     0.979  0.0131
+HPM         C13         H13      SINGLE       n     1.082  0.0130     0.938  0.0100
+HPM         C16         H16      SINGLE       n     1.082  0.0130     0.936  0.0100
+HPM         C18         H18      SINGLE       n     1.082  0.0130     0.939  0.0106
+HPM         N21         H21      SINGLE       n     1.016  0.0100     0.862  0.0200
+HPM         C23         H23      SINGLE       n     1.082  0.0130     1.022  0.0200
+HPM         C27         H27      SINGLE       n     1.082  0.0130     1.022  0.0200
+HPM         N28         H28      SINGLE       n     1.016  0.0100     0.856  0.0100
+HPM         C31         H31      SINGLE       n     1.082  0.0130     0.941  0.0168
+HPM         C32         H32      SINGLE       n     1.082  0.0130     0.943  0.0180
+HPM         C33         H33      SINGLE       n     1.082  0.0130     0.944  0.0161
+HPM         C34         H34      SINGLE       n     1.082  0.0130     0.943  0.0180
+HPM         C35         H35      SINGLE       n     1.082  0.0130     0.941  0.0168
+HPM         C38        H381      SINGLE       n     1.089  0.0100     0.971  0.0157
+HPM         C38        H382      SINGLE       n     1.089  0.0100     0.971  0.0157
+HPM         C38        H383      SINGLE       n     1.089  0.0100     0.971  0.0157
+HPM         O39         H39      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HPM          C2          C1          N6     111.218    1.50
+HPM          C2          C1        H1C1     109.566    1.50
+HPM          C2          C1        H1C2     109.566    1.50
+HPM          N6          C1        H1C1     109.353    1.50
+HPM          N6          C1        H1C2     109.353    1.50
+HPM        H1C1          C1        H1C2     108.159    1.50
+HPM          C1          C2          C3     111.021    1.50
+HPM          C1          C2        H2C1     109.380    1.50
+HPM          C1          C2        H2C2     109.380    1.50
+HPM          C3          C2        H2C1     109.453    1.50
+HPM          C3          C2        H2C2     109.453    1.50
+HPM        H2C1          C2        H2C2     108.022    1.50
+HPM          C2          C3          C4     110.168    1.50
+HPM          C2          C3        H3C1     109.613    1.50
+HPM          C2          C3        H3C2     109.613    1.50
+HPM          C4          C3        H3C1     109.613    1.50
+HPM          C4          C3        H3C2     109.613    1.50
+HPM        H3C1          C3        H3C2     108.036    1.50
+HPM          C3          C4          C5     111.021    1.50
+HPM          C3          C4        H4C1     109.453    1.50
+HPM          C3          C4        H4C2     109.453    1.50
+HPM          C5          C4        H4C1     109.380    1.50
+HPM          C5          C4        H4C2     109.380    1.50
+HPM        H4C1          C4        H4C2     108.022    1.50
+HPM          C4          C5          N6     111.218    1.50
+HPM          C4          C5        H5C1     109.566    1.50
+HPM          C4          C5        H5C2     109.566    1.50
+HPM          N6          C5        H5C1     109.353    1.50
+HPM          N6          C5        H5C2     109.353    1.50
+HPM        H5C1          C5        H5C2     108.159    1.50
+HPM          C1          N6          C5     109.788    1.50
+HPM          C1          N6          C7     111.219    1.66
+HPM          C5          N6          C7     111.219    1.66
+HPM          N6          C7          C8     112.648    2.60
+HPM          N6          C7        H7C1     108.913    1.50
+HPM          N6          C7        H7C2     108.913    1.50
+HPM          C8          C7        H7C1     109.194    1.50
+HPM          C8          C7        H7C2     109.194    1.50
+HPM        H7C1          C7        H7C2     107.868    1.50
+HPM          C7          C8          C9     111.094    2.85
+HPM          C7          C8         O39     109.698    2.33
+HPM          C7          C8          H8     108.757    1.75
+HPM          C9          C8         O39     108.982    2.42
+HPM          C9          C8          H8     108.409    1.50
+HPM         O39          C8          H8     108.183    1.96
+HPM          C8          C9         O10     107.544    1.67
+HPM          C8          C9        H9C1     110.412    1.50
+HPM          C8          C9        H9C2     110.412    1.50
+HPM         O10          C9        H9C1     109.978    1.50
+HPM         O10          C9        H9C2     109.978    1.50
+HPM        H9C1          C9        H9C2     108.824    1.50
+HPM          C9         O10         C11     117.464    1.77
+HPM         O10         C11         C12     114.097    1.50
+HPM         O10         C11         C16     125.828    1.50
+HPM         C12         C11         C16     120.075    1.50
+HPM         C11         C12         C13     119.974    1.50
+HPM         C11         C12         O37     114.450    1.50
+HPM         C13         C12         O37     125.576    1.50
+HPM         C12         C13         C14     120.418    1.50
+HPM         C12         C13         H13     119.568    1.50
+HPM         C14         C13         H13     120.014    1.50
+HPM         C13         C14         C15     119.179    1.50
+HPM         C13         C14         C20     124.811    1.72
+HPM         C15         C14         C20     116.010    1.50
+HPM         C14         C15         C16     119.983    1.50
+HPM         C14         C15         N17     121.867    1.50
+HPM         C16         C15         N17     118.151    1.50
+HPM         C11         C16         C15     120.372    1.50
+HPM         C11         C16         H16     119.887    1.50
+HPM         C15         C16         H16     119.741    1.50
+HPM         C15         N17         C18     115.257    1.50
+HPM         N17         C18         N19     128.901    1.50
+HPM         N17         C18         H18     115.589    1.50
+HPM         N19         C18         H18     115.510    1.50
+HPM         C18         N19         C20     116.574    1.50
+HPM         C14         C20         N19     121.391    1.50
+HPM         C14         C20         N21     119.261    1.50
+HPM         N19         C20         N21     119.348    1.50
+HPM         C20         N21         C22     128.087    2.16
+HPM         C20         N21         H21     116.336    3.00
+HPM         C22         N21         H21     115.577    2.39
+HPM         N21         C22         C23     120.974    3.00
+HPM         N21         C22         C27     120.974    3.00
+HPM         C23         C22         C27     118.053    2.04
+HPM         C22         C23         N24     121.848    1.50
+HPM         C22         C23         H23     119.641    1.50
+HPM         N24         C23         H23     118.511    2.84
+HPM         C23         N24         C25     116.217    1.50
+HPM         N24         C25         N26     125.817    1.50
+HPM         N24         C25         N28     117.091    2.85
+HPM         N26         C25         N28     117.091    2.85
+HPM         C25         N26         C27     116.217    1.50
+HPM         C22         C27         N26     121.848    1.50
+HPM         C22         C27         H27     119.641    1.50
+HPM         N26         C27         H27     118.511    2.84
+HPM         C25         N28         C29     129.627    2.25
+HPM         C25         N28         H28     114.198    1.81
+HPM         C29         N28         H28     116.176    2.27
+HPM         N28         C29         C30     115.694    1.50
+HPM         N28         C29         O36     123.552    1.50
+HPM         C30         C29         O36     120.754    1.50
+HPM         C29         C30         C31     120.497    2.90
+HPM         C29         C30         C35     120.497    2.90
+HPM         C31         C30         C35     119.007    1.50
+HPM         C30         C31         C32     120.300    1.50
+HPM         C30         C31         H31     119.925    1.50
+HPM         C32         C31         H31     119.776    1.50
+HPM         C31         C32         C33     120.226    1.50
+HPM         C31         C32         H32     119.842    1.50
+HPM         C33         C32         H32     119.933    1.50
+HPM         C32         C33         C34     119.943    1.50
+HPM         C32         C33         H33     120.028    1.50
+HPM         C34         C33         H33     120.028    1.50
+HPM         C33         C34         C35     120.226    1.50
+HPM         C33         C34         H34     119.933    1.50
+HPM         C35         C34         H34     119.842    1.50
+HPM         C30         C35         C34     120.300    1.50
+HPM         C30         C35         H35     119.925    1.50
+HPM         C34         C35         H35     119.776    1.50
+HPM         C12         O37         C38     117.238    1.50
+HPM         O37         C38        H381     109.428    1.50
+HPM         O37         C38        H382     109.428    1.50
+HPM         O37         C38        H383     109.428    1.50
+HPM        H381         C38        H382     109.509    1.50
+HPM        H381         C38        H383     109.509    1.50
+HPM        H382         C38        H383     109.509    1.50
+HPM          C8         O39         H39     109.265    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HPM             sp3_sp3_1          N6          C1          C2          C3      60.000    10.0     3
+HPM            sp3_sp3_44          C2          C1          N6          C7     -60.000    10.0     3
+HPM       const_sp2_sp2_4         O10         C11         C12         O37       0.000     5.0     2
+HPM              const_63         O10         C11         C16         C15     180.000    10.0     2
+HPM       const_sp2_sp2_7         O37         C12         C13         C14     180.000     5.0     2
+HPM             sp2_sp2_3         C11         C12         O37         C38     180.000     5.0     2
+HPM       const_sp2_sp2_9         C12         C13         C14         C15       0.000     5.0     2
+HPM              const_13         C13         C14         C15         C16       0.000    10.0     2
+HPM              const_68         C13         C14         C20         N21       0.000    10.0     2
+HPM              const_17         C14         C15         C16         C11       0.000    10.0     2
+HPM              const_21         C14         C15         N17         C18       0.000    10.0     2
+HPM              const_23         N19         C18         N17         C15       0.000    10.0     2
+HPM              const_25         N17         C18         N19         C20       0.000    10.0     2
+HPM              const_28         N21         C20         N19         C18     180.000    10.0     2
+HPM             sp2_sp2_5         C14         C20         N21         C22     180.000     5.0     2
+HPM            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+HPM             sp2_sp2_9         C23         C22         N21         C20     180.000     5.0     2
+HPM              const_31         N21         C22         C23         N24     180.000    10.0     2
+HPM              const_71         N21         C22         C27         N26     180.000    10.0     2
+HPM              const_33         C22         C23         N24         C25       0.000    10.0     2
+HPM              const_36         N28         C25         N24         C23     180.000    10.0     2
+HPM              const_38         N28         C25         N26         C27     180.000    10.0     2
+HPM            sp2_sp2_13         N24         C25         N28         C29     180.000     5.0     2
+HPM              const_39         C22         C27         N26         C25       0.000    10.0     2
+HPM            sp2_sp2_19         O36         C29         N28         C25       0.000     5.0     2
+HPM            sp2_sp2_21         N28         C29         C30         C31     180.000     5.0     2
+HPM              const_43         C29         C30         C31         C32     180.000    10.0     2
+HPM              const_75         C29         C30         C35         C34     180.000    10.0     2
+HPM            sp3_sp3_19          C2          C3          C4          C5      60.000    10.0     3
+HPM              const_45         C30         C31         C32         C33       0.000    10.0     2
+HPM              const_49         C31         C32         C33         C34       0.000    10.0     2
+HPM              const_53         C32         C33         C34         C35       0.000    10.0     2
+HPM              const_57         C33         C34         C35         C30       0.000    10.0     2
+HPM            sp3_sp3_80        H381         C38         O37         C12     -60.000    10.0     3
+HPM            sp3_sp3_28          C3          C4          C5          N6     -60.000    10.0     3
+HPM            sp3_sp3_38          C4          C5          N6          C7     180.000    10.0     3
+HPM            sp3_sp3_50          C8          C7          N6          C1     -60.000    10.0     3
+HPM            sp3_sp3_55          N6          C7          C8          C9     180.000    10.0     3
+HPM            sp3_sp3_73          C7          C8         O39         H39     180.000    10.0     3
+HPM            sp3_sp3_64          C7          C8          C9         O10     180.000    10.0     3
+HPM            sp3_sp3_76          C8          C9         O10         C11     180.000    10.0     3
+HPM             sp2_sp2_1         C12         C11         O10          C9     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HPM    chir_1    N6    C7    C1    C5    both
+HPM    chir_2    C8    O39    C9    C7    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HPM    plan-1         C11   0.020
+HPM    plan-1         C12   0.020
+HPM    plan-1         C13   0.020
+HPM    plan-1         C14   0.020
+HPM    plan-1         C15   0.020
+HPM    plan-1         C16   0.020
+HPM    plan-1         C18   0.020
+HPM    plan-1         C20   0.020
+HPM    plan-1         H13   0.020
+HPM    plan-1         H16   0.020
+HPM    plan-1         H18   0.020
+HPM    plan-1         N17   0.020
+HPM    plan-1         N19   0.020
+HPM    plan-1         N21   0.020
+HPM    plan-1         O10   0.020
+HPM    plan-1         O37   0.020
+HPM    plan-2         C22   0.020
+HPM    plan-2         C23   0.020
+HPM    plan-2         C25   0.020
+HPM    plan-2         C27   0.020
+HPM    plan-2         H23   0.020
+HPM    plan-2         H27   0.020
+HPM    plan-2         N21   0.020
+HPM    plan-2         N24   0.020
+HPM    plan-2         N26   0.020
+HPM    plan-2         N28   0.020
+HPM    plan-3         C29   0.020
+HPM    plan-3         C30   0.020
+HPM    plan-3         C31   0.020
+HPM    plan-3         C32   0.020
+HPM    plan-3         C33   0.020
+HPM    plan-3         C34   0.020
+HPM    plan-3         C35   0.020
+HPM    plan-3         H31   0.020
+HPM    plan-3         H32   0.020
+HPM    plan-3         H33   0.020
+HPM    plan-3         H34   0.020
+HPM    plan-3         H35   0.020
+HPM    plan-4         C20   0.020
+HPM    plan-4         C22   0.020
+HPM    plan-4         H21   0.020
+HPM    plan-4         N21   0.020
+HPM    plan-5         C25   0.020
+HPM    plan-5         C29   0.020
+HPM    plan-5         H28   0.020
+HPM    plan-5         N28   0.020
+HPM    plan-6         C29   0.020
+HPM    plan-6         C30   0.020
+HPM    plan-6         N28   0.020
+HPM    plan-6         O36   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HPM           SMILES              ACDLabs 10.04                                                                                                                                                                              O=C(c1ccccc1)Nc2ncc(cn2)Nc5ncnc4cc(OCC(O)CN3CCCCC3)c(OC)cc45
+HPM SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                           COc1cc2c(Nc3cnc(NC(=O)c4ccccc4)nc3)ncnc2cc1OC[C@@H](O)CN5CCCCC5
+HPM           SMILES               CACTVS 3.341                                                                                                                                                                             COc1cc2c(Nc3cnc(NC(=O)c4ccccc4)nc3)ncnc2cc1OC[CH](O)CN5CCCCC5
+HPM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                            COc1cc2c(cc1OC[C@H](CN3CCCCC3)O)ncnc2Nc4cnc(nc4)NC(=O)c5ccccc5
+HPM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                COc1cc2c(cc1OCC(CN3CCCCC3)O)ncnc2Nc4cnc(nc4)NC(=O)c5ccccc5
+HPM            InChI                InChI  1.03 InChI=1S/C28H31N7O4/c1-38-24-12-22-23(13-25(24)39-17-21(36)16-35-10-6-3-7-11-35)31-18-32-26(22)33-20-14-29-28(30-15-20)34-27(37)19-8-4-2-5-9-19/h2,4-5,8-9,12-15,18,21,36H,3,6-7,10-11,16-17H2,1H3,(H,31,32,33)(H,29,30,34,37)/t21-/m0/s1
+HPM         InChIKey                InChI  1.03                                                                                                                                                                                                               WHHFZOIADLFZRX-NRFANRHFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HPM acedrg               243         "dictionary generator"                  
+HPM acedrg_database      11          "data source"                           
+HPM rdkit                2017.03.2   "Chemoinformatics tool"
+HPM refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,258 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GOW     GOW      3-benzamido-4-methyl-~{N}-oxidanyl-benzamide     NON-POLYMER     34     20     .     
+#
+data_comp_GOW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GOW     O14     O       O       0       45.511      37.581      87.076      
+GOW     C13     C       C       0       44.786      36.976      87.860      
+GOW     C15     C       CR6     0       44.169      37.691      89.028      
+GOW     C20     C       CR16    0       44.771      38.866      89.481      
+GOW     C19     C       CR16    0       44.237      39.569      90.551      
+GOW     C18     C       CR16    0       43.096      39.117      91.180      
+GOW     C17     C       CR16    0       42.485      37.961      90.743      
+GOW     C16     C       CR16    0       43.010      37.252      89.671      
+GOW     N12     N       NH1     0       44.499      35.657      87.697      
+GOW     C11     C       CR6     0       44.688      34.883      86.514      
+GOW     C02     C       CR6     0       44.005      35.211      85.331      
+GOW     C01     C       CH3     0       43.045      36.363      85.245      
+GOW     C10     C       CR16    0       45.577      33.802      86.558      
+GOW     C05     C       CR6     0       45.793      33.021      85.426      
+GOW     C04     C       CR16    0       45.125      33.346      84.248      
+GOW     C03     C       CR16    0       44.245      34.416      84.206      
+GOW     C06     C       C       0       46.756      31.876      85.493      
+GOW     O07     O       O       0       47.831      31.983      86.099      
+GOW     N08     N       NH1     0       46.406      30.772      84.842      
+GOW     O09     O       OH1     0       47.296      29.709      84.722      
+GOW     H1      H       H       0       45.550      39.187      89.064      
+GOW     H2      H       H       0       44.657      40.358      90.850      
+GOW     H3      H       H       0       42.735      39.597      91.909      
+GOW     H4      H       H       0       41.704      37.651      91.172      
+GOW     H5      H       H       0       42.581      36.467      89.385      
+GOW     H6      H       H       0       44.213      35.205      88.388      
+GOW     H7      H       H       0       42.469      36.367      86.027      
+GOW     H8      H       H       0       42.500      36.279      84.446      
+GOW     H9      H       H       0       43.541      37.197      85.208      
+GOW     H10     H       H       0       46.022      33.608      87.362      
+GOW     H11     H       H       0       45.263      32.828      83.474      
+GOW     H12     H       H       0       43.798      34.614      83.400      
+GOW     H13     H       H       0       45.623      30.624      84.467      
+GOW     H14     H       H       0       47.437      29.391      85.518      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GOW         C04         C03      SINGLE       y     1.383  0.0100     1.383  0.0100
+GOW         C02         C03      DOUBLE       y     1.393  0.0100     1.393  0.0100
+GOW         C05         C04      DOUBLE       y     1.389  0.0100     1.389  0.0100
+GOW         C02         C01      SINGLE       n     1.499  0.0139     1.499  0.0139
+GOW         C11         C02      SINGLE       y     1.395  0.0105     1.395  0.0105
+GOW         N08         O09      SINGLE       n     1.390  0.0100     1.390  0.0100
+GOW         C06         N08      SINGLE       n     1.325  0.0100     1.325  0.0100
+GOW         C05         C06      SINGLE       n     1.495  0.0106     1.495  0.0106
+GOW         C10         C05      SINGLE       y     1.390  0.0100     1.390  0.0100
+GOW         C06         O07      DOUBLE       n     1.238  0.0100     1.238  0.0100
+GOW         C11         C10      DOUBLE       y     1.394  0.0127     1.394  0.0127
+GOW         N12         C11      SINGLE       n     1.419  0.0147     1.419  0.0147
+GOW         O14         C13      DOUBLE       n     1.226  0.0100     1.226  0.0100
+GOW         C13         N12      SINGLE       n     1.351  0.0126     1.351  0.0126
+GOW         C13         C15      SINGLE       n     1.494  0.0100     1.494  0.0100
+GOW         C15         C20      DOUBLE       y     1.389  0.0100     1.389  0.0100
+GOW         C15         C16      SINGLE       y     1.389  0.0100     1.389  0.0100
+GOW         C20         C19      SINGLE       y     1.384  0.0100     1.384  0.0100
+GOW         C17         C16      DOUBLE       y     1.384  0.0100     1.384  0.0100
+GOW         C19         C18      DOUBLE       y     1.376  0.0124     1.376  0.0124
+GOW         C18         C17      SINGLE       y     1.376  0.0114     1.376  0.0114
+GOW         C20          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+GOW         C19          H2      SINGLE       n     1.082  0.0130     0.943  0.0180
+GOW         C18          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+GOW         C17          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+GOW         C16          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+GOW         N12          H6      SINGLE       n     1.016  0.0100     0.876  0.0200
+GOW         C01          H7      SINGLE       n     1.089  0.0100     0.971  0.0135
+GOW         C01          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+GOW         C01          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+GOW         C10         H10      SINGLE       n     1.082  0.0130     0.939  0.0130
+GOW         C04         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+GOW         C03         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+GOW         N08         H13      SINGLE       n     1.016  0.0100     0.880  0.0200
+GOW         O09         H14      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GOW         O14         C13         N12     123.137    1.50
+GOW         O14         C13         C15     120.916    1.50
+GOW         N12         C13         C15     115.948    1.50
+GOW         C13         C15         C20     120.497    2.90
+GOW         C13         C15         C16     120.497    2.90
+GOW         C20         C15         C16     119.007    1.50
+GOW         C15         C20         C19     120.300    1.50
+GOW         C15         C20          H1     119.925    1.50
+GOW         C19         C20          H1     119.776    1.50
+GOW         C20         C19         C18     120.226    1.50
+GOW         C20         C19          H2     119.842    1.50
+GOW         C18         C19          H2     119.933    1.50
+GOW         C19         C18         C17     119.943    1.50
+GOW         C19         C18          H3     120.028    1.50
+GOW         C17         C18          H3     120.028    1.50
+GOW         C16         C17         C18     120.226    1.50
+GOW         C16         C17          H4     119.842    1.50
+GOW         C18         C17          H4     119.933    1.50
+GOW         C15         C16         C17     120.300    1.50
+GOW         C15         C16          H5     119.925    1.50
+GOW         C17         C16          H5     119.776    1.50
+GOW         C11         N12         C13     126.952    2.53
+GOW         C11         N12          H6     115.931    2.19
+GOW         C13         N12          H6     117.117    2.38
+GOW         C02         C11         C10     120.826    1.78
+GOW         C02         C11         N12     118.777    1.50
+GOW         C10         C11         N12     120.397    3.00
+GOW         C03         C02         C01     120.779    1.50
+GOW         C03         C02         C11     117.465    1.50
+GOW         C01         C02         C11     121.755    1.50
+GOW         C02         C01          H7     109.584    1.50
+GOW         C02         C01          H8     109.584    1.50
+GOW         C02         C01          H9     109.584    1.50
+GOW          H7         C01          H8     109.348    1.50
+GOW          H7         C01          H9     109.348    1.50
+GOW          H8         C01          H9     109.348    1.50
+GOW         C05         C10         C11     120.296    1.50
+GOW         C05         C10         H10     120.485    1.50
+GOW         C11         C10         H10     119.219    1.50
+GOW         C04         C05         C06     120.190    2.89
+GOW         C04         C05         C10     119.619    1.50
+GOW         C06         C05         C10     120.187    2.89
+GOW         C03         C04         C05     120.693    1.50
+GOW         C03         C04         H11     119.556    1.50
+GOW         C05         C04         H11     119.750    1.50
+GOW         C04         C03         C02     121.107    1.50
+GOW         C04         C03         H12     119.576    1.50
+GOW         C02         C03         H12     119.309    1.50
+GOW         N08         C06         C05     115.502    1.50
+GOW         N08         C06         O07     122.932    1.50
+GOW         C05         C06         O07     121.566    1.50
+GOW         O09         N08         C06     120.186    1.50
+GOW         O09         N08         H13     115.154    3.00
+GOW         C06         N08         H13     124.661    3.00
+GOW         N08         O09         H14     106.924    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GOW             sp2_sp3_1         C03         C02         C01          H7     150.000    10.0     6
+GOW       const_sp2_sp2_7         C01         C02         C03         C04     180.000     5.0     2
+GOW              const_19         C06         C05         C10         C11     180.000    10.0     2
+GOW              const_14         C03         C04         C05         C06     180.000    10.0     2
+GOW             sp2_sp2_5         C04         C05         C06         N08     180.000     5.0     2
+GOW       const_sp2_sp2_9         C02         C03         C04         C05       0.000     5.0     2
+GOW             sp2_sp2_3         O07         C06         N08         O09       0.000     5.0     2
+GOW            sp2_sp2_19         O14         C13         C15         C20       0.000     5.0     2
+GOW            sp2_sp2_15         O14         C13         N12         C11       0.000     5.0     2
+GOW              const_23         C13         C15         C20         C19     180.000    10.0     2
+GOW              const_47         C13         C15         C16         C17     180.000    10.0     2
+GOW              const_25         C18         C19         C20         C15       0.000    10.0     2
+GOW              const_29         C17         C18         C19         C20       0.000    10.0     2
+GOW              const_33         C16         C17         C18         C19       0.000    10.0     2
+GOW              const_37         C15         C16         C17         C18       0.000    10.0     2
+GOW             sp2_sp2_9         C02         C11         N12         C13     180.000     5.0     2
+GOW       const_sp2_sp2_4         C01         C02         C11         N12       0.000     5.0     2
+GOW              const_42         C05         C10         C11         N12     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GOW    plan-1         C01   0.020
+GOW    plan-1         C02   0.020
+GOW    plan-1         C03   0.020
+GOW    plan-1         C04   0.020
+GOW    plan-1         C05   0.020
+GOW    plan-1         C06   0.020
+GOW    plan-1         C10   0.020
+GOW    plan-1         C11   0.020
+GOW    plan-1         H10   0.020
+GOW    plan-1         H11   0.020
+GOW    plan-1         H12   0.020
+GOW    plan-1         N12   0.020
+GOW    plan-2         C13   0.020
+GOW    plan-2         C15   0.020
+GOW    plan-2         C16   0.020
+GOW    plan-2         C17   0.020
+GOW    plan-2         C18   0.020
+GOW    plan-2         C19   0.020
+GOW    plan-2         C20   0.020
+GOW    plan-2          H1   0.020
+GOW    plan-2          H2   0.020
+GOW    plan-2          H3   0.020
+GOW    plan-2          H4   0.020
+GOW    plan-2          H5   0.020
+GOW    plan-3         C13   0.020
+GOW    plan-3         C15   0.020
+GOW    plan-3         N12   0.020
+GOW    plan-3         O14   0.020
+GOW    plan-4         C11   0.020
+GOW    plan-4         C13   0.020
+GOW    plan-4          H6   0.020
+GOW    plan-4         N12   0.020
+GOW    plan-5         C05   0.020
+GOW    plan-5         C06   0.020
+GOW    plan-5         N08   0.020
+GOW    plan-5         O07   0.020
+GOW    plan-6         C06   0.020
+GOW    plan-6         H13   0.020
+GOW    plan-6         N08   0.020
+GOW    plan-6         O09   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GOW            InChI                InChI  1.03 InChI=1S/C15H14N2O3/c1-10-7-8-12(15(19)17-20)9-13(10)16-14(18)11-5-3-2-4-6-11/h2-9,20H,1H3,(H,16,18)(H,17,19)
+GOW         InChIKey                InChI  1.03                                                                                   ROYNQMDXPFEFHJ-UHFFFAOYSA-N
+GOW SMILES_CANONICAL               CACTVS 3.385                                                                              Cc1ccc(cc1NC(=O)c2ccccc2)C(=O)NO
+GOW           SMILES               CACTVS 3.385                                                                              Cc1ccc(cc1NC(=O)c2ccccc2)C(=O)NO
+GOW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                              Cc1ccc(cc1NC(=O)c2ccccc2)C(=O)NO
+GOW           SMILES "OpenEye OEToolkits" 2.0.6                                                                              Cc1ccc(cc1NC(=O)c2ccccc2)C(=O)NO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GOW acedrg               243         "dictionary generator"                  
+GOW acedrg_database      11          "data source"                           
+GOW rdkit                2017.03.2   "Chemoinformatics tool"
+GOW refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,343 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IPX     IPX      "4-[(1R,2R)-2-{[(5-fluoro-1H-indol-2-yl)carbonyl]amino}-2,3-dihydro-1H-inden-1-yl]butanoic acid"     NON-POLYMER     48     28     .     
+#
+data_comp_IPX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IPX     C1      C       CH1     0       11.339      -4.693      0.683       
+IPX     C2      C       CR56    0       10.830      -1.069      -4.147      
+IPX     C3      C       CR56    0       9.654       -1.084      -3.357      
+IPX     C4      C       CR16    0       10.885      -0.240      -5.280      
+IPX     C5      C       CR16    0       8.543       -0.296      -3.671      
+IPX     C6      C       CR6     0       9.785       0.512       -5.553      
+IPX     C7      C       CR16    0       8.621       0.511       -4.789      
+IPX     N8      N       NR5     0       9.851       -1.963      -2.327      
+IPX     C9      C       CR5     0       11.117      -2.500      -2.432      
+IPX     C10     C       CR15    0       11.736      -1.978      -3.539      
+IPX     F11     F       F       0       9.817       1.325       -6.649      
+IPX     C12     C       C       0       11.642      -3.492      -1.480      
+IPX     O13     O       O       0       12.623      -4.164      -1.803      
+IPX     N14     N       NH1     0       11.023      -3.658      -0.293      
+IPX     C15     C       CH2     0       12.737      -4.506      1.312       
+IPX     C16     C       CR56    0       13.515      -5.724      0.893       
+IPX     C17     C       CR56    0       12.702      -6.642      0.233       
+IPX     C18     C       CH1     0       11.276      -6.145      0.128       
+IPX     C19     C       CR16    0       14.867      -5.995      1.094       
+IPX     C20     C       CR16    0       15.392      -7.190      0.625       
+IPX     C21     C       CR16    0       14.587      -8.105      -0.033      
+IPX     C22     C       CR16    0       13.234      -7.843      -0.237      
+IPX     C23     C       CH2     0       10.294      -7.042      0.891       
+IPX     C24     C       CH2     0       8.824       -6.762      0.581       
+IPX     C25     C       CH2     0       7.841       -7.690      1.272       
+IPX     C26     C       C       0       7.759       -9.085      0.678       
+IPX     O27     O       O       0       7.366       -9.202      -0.500      
+IPX     O28     O       OC      -1      8.089       -10.051     1.394       
+IPX     H1      H       H       0       10.677      -4.615      1.417       
+IPX     H4      H       H       0       11.663      -0.212      -5.825      
+IPX     H5      H       H       0       7.767       -0.315      -3.138      
+IPX     H7      H       H       0       7.894       1.055       -5.033      
+IPX     HN8     H       H       0       9.259       -2.147      -1.698      
+IPX     H10     H       H       0       12.607      -2.180      -3.842      
+IPX     HN14    H       H       0       10.409      -3.086      -0.073      
+IPX     H15     H       H       0       13.165      -3.686      0.983       
+IPX     H15A    H       H       0       12.674      -4.451      2.291       
+IPX     H18     H       H       0       11.003      -6.106      -0.827      
+IPX     H19     H       H       0       15.415      -5.371      1.543       
+IPX     H20     H       H       0       16.306      -7.383      0.756       
+IPX     H21     H       H       0       14.959      -8.914      -0.346      
+IPX     H22     H       H       0       12.682      -8.468      -0.688      
+IPX     H23     H       H       0       10.439      -6.926      1.853       
+IPX     H23A    H       H       0       10.486      -7.978      0.673       
+IPX     H24     H       H       0       8.691       -6.831      -0.388      
+IPX     H24A    H       H       0       8.620       -5.839      0.841       
+IPX     H25     H       H       0       6.947       -7.286      1.238       
+IPX     H25A    H       H       0       8.093       -7.770      2.217       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IPX          C1         N14      SINGLE       n     1.451  0.0100     1.451  0.0100
+IPX          C1         C15      SINGLE       n     1.540  0.0174     1.540  0.0174
+IPX          C1         C18      SINGLE       n     1.546  0.0137     1.546  0.0137
+IPX          C2          C3      SINGLE       y     1.414  0.0100     1.414  0.0100
+IPX          C2          C4      DOUBLE       y     1.401  0.0100     1.401  0.0100
+IPX          C2         C10      SINGLE       y     1.420  0.0100     1.420  0.0100
+IPX          C3          C5      DOUBLE       y     1.394  0.0100     1.394  0.0100
+IPX          C3          N8      SINGLE       y     1.369  0.0100     1.369  0.0100
+IPX          C4          C6      SINGLE       y     1.357  0.0100     1.357  0.0100
+IPX          C5          C7      SINGLE       y     1.377  0.0100     1.377  0.0100
+IPX          C6          C7      DOUBLE       y     1.389  0.0100     1.389  0.0100
+IPX          C6         F11      SINGLE       n     1.365  0.0100     1.365  0.0100
+IPX          N8          C9      SINGLE       y     1.377  0.0100     1.377  0.0100
+IPX          C9         C10      DOUBLE       y     1.371  0.0100     1.371  0.0100
+IPX          C9         C12      SINGLE       n     1.467  0.0100     1.467  0.0100
+IPX         C12         O13      DOUBLE       n     1.231  0.0100     1.231  0.0100
+IPX         C12         N14      SINGLE       n     1.341  0.0100     1.341  0.0100
+IPX         C15         C16      SINGLE       n     1.506  0.0100     1.506  0.0100
+IPX         C16         C17      DOUBLE       y     1.389  0.0100     1.389  0.0100
+IPX         C16         C19      SINGLE       y     1.389  0.0100     1.389  0.0100
+IPX         C17         C18      SINGLE       n     1.513  0.0100     1.513  0.0100
+IPX         C17         C22      SINGLE       y     1.390  0.0100     1.390  0.0100
+IPX         C18         C23      SINGLE       n     1.533  0.0100     1.533  0.0100
+IPX         C19         C20      DOUBLE       y     1.384  0.0100     1.384  0.0100
+IPX         C20         C21      SINGLE       y     1.382  0.0104     1.382  0.0104
+IPX         C21         C22      DOUBLE       y     1.390  0.0100     1.390  0.0100
+IPX         C23         C24      SINGLE       n     1.528  0.0174     1.528  0.0174
+IPX         C24         C25      SINGLE       n     1.518  0.0200     1.518  0.0200
+IPX         C25         C26      SINGLE       n     1.519  0.0109     1.519  0.0109
+IPX         C26         O27      DOUBLE       n     1.247  0.0187     1.247  0.0187
+IPX         C26         O28      SINGLE       n     1.247  0.0187     1.247  0.0187
+IPX          C1          H1      SINGLE       n     1.089  0.0100     0.991  0.0166
+IPX          C4          H4      SINGLE       n     1.082  0.0130     0.951  0.0100
+IPX          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0103
+IPX          C7          H7      SINGLE       n     1.082  0.0130     0.940  0.0122
+IPX          N8         HN8      SINGLE       n     1.016  0.0100     0.885  0.0200
+IPX         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+IPX         N14        HN14      SINGLE       n     1.016  0.0100     0.872  0.0200
+IPX         C15         H15      SINGLE       n     1.089  0.0100     0.982  0.0165
+IPX         C15        H15A      SINGLE       n     1.089  0.0100     0.982  0.0165
+IPX         C18         H18      SINGLE       n     1.089  0.0100     0.995  0.0200
+IPX         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0145
+IPX         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0193
+IPX         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0193
+IPX         C22         H22      SINGLE       n     1.082  0.0130     0.948  0.0135
+IPX         C23         H23      SINGLE       n     1.089  0.0100     0.980  0.0118
+IPX         C23        H23A      SINGLE       n     1.089  0.0100     0.980  0.0118
+IPX         C24         H24      SINGLE       n     1.089  0.0100     0.980  0.0160
+IPX         C24        H24A      SINGLE       n     1.089  0.0100     0.980  0.0160
+IPX         C25         H25      SINGLE       n     1.089  0.0100     0.981  0.0185
+IPX         C25        H25A      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IPX         N14          C1         C15     112.360    2.19
+IPX         N14          C1         C18     112.360    2.19
+IPX         N14          C1          H1     108.663    1.50
+IPX         C15          C1         C18     104.443    2.26
+IPX         C15          C1          H1     108.352    1.50
+IPX         C18          C1          H1     109.020    1.50
+IPX          C3          C2          C4     119.236    1.50
+IPX          C3          C2         C10     106.588    1.50
+IPX          C4          C2         C10     134.175    1.50
+IPX          C2          C3          C5     122.152    1.50
+IPX          C2          C3          N8     107.759    1.50
+IPX          C5          C3          N8     130.089    1.50
+IPX          C2          C4          C6     117.029    1.50
+IPX          C2          C4          H4     120.879    1.50
+IPX          C6          C4          H4     122.093    1.50
+IPX          C3          C5          C7     117.603    1.50
+IPX          C3          C5          H5     121.189    1.50
+IPX          C7          C5          H5     121.208    1.50
+IPX          C4          C6          C7     124.630    1.50
+IPX          C4          C6         F11     118.078    1.50
+IPX          C7          C6         F11     117.282    1.50
+IPX          C5          C7          C6     119.361    1.50
+IPX          C5          C7          H7     120.376    1.50
+IPX          C6          C7          H7     120.264    1.50
+IPX          C3          N8          C9     108.793    1.50
+IPX          C3          N8         HN8     125.480    1.50
+IPX          C9          N8         HN8     125.727    1.50
+IPX          N8          C9         C10     109.609    1.50
+IPX          N8          C9         C12     118.980    2.61
+IPX         C10          C9         C12     131.411    2.58
+IPX          C2         C10          C9     107.250    1.50
+IPX          C2         C10         H10     126.211    1.50
+IPX          C9         C10         H10     126.539    1.50
+IPX          C9         C12         O13     120.907    1.50
+IPX          C9         C12         N14     116.612    2.63
+IPX         O13         C12         N14     122.481    1.58
+IPX          C1         N14         C12     122.572    1.92
+IPX          C1         N14        HN14     118.793    1.50
+IPX         C12         N14        HN14     118.635    2.02
+IPX          C1         C15         C16     103.269    1.50
+IPX          C1         C15         H15     111.120    1.50
+IPX          C1         C15        H15A     111.120    1.50
+IPX         C16         C15         H15     111.158    1.50
+IPX         C16         C15        H15A     111.158    1.50
+IPX         H15         C15        H15A     108.769    1.50
+IPX         C15         C16         C17     110.392    1.50
+IPX         C15         C16         C19     129.255    1.78
+IPX         C17         C16         C19     120.353    1.50
+IPX         C16         C17         C18     110.577    1.50
+IPX         C16         C17         C22     120.436    1.50
+IPX         C18         C17         C22     128.987    1.50
+IPX          C1         C18         C17     102.246    1.50
+IPX          C1         C18         C23     112.632    1.50
+IPX          C1         C18         H18     107.997    1.50
+IPX         C17         C18         C23     112.145    2.32
+IPX         C17         C18         H18     109.694    1.57
+IPX         C23         C18         H18     109.223    1.50
+IPX         C16         C19         C20     118.856    1.50
+IPX         C16         C19         H19     120.302    1.50
+IPX         C20         C19         H19     120.842    1.50
+IPX         C19         C20         C21     120.885    1.50
+IPX         C19         C20         H20     119.598    1.50
+IPX         C21         C20         H20     119.517    1.50
+IPX         C20         C21         C22     120.885    1.50
+IPX         C20         C21         H21     119.517    1.50
+IPX         C22         C21         H21     119.598    1.50
+IPX         C17         C22         C21     118.586    1.50
+IPX         C17         C22         H22     120.509    1.50
+IPX         C21         C22         H22     120.905    1.50
+IPX         C18         C23         C24     114.103    1.50
+IPX         C18         C23         H23     108.730    1.50
+IPX         C18         C23        H23A     108.730    1.50
+IPX         C24         C23         H23     108.506    1.50
+IPX         C24         C23        H23A     108.506    1.50
+IPX         H23         C23        H23A     107.535    1.50
+IPX         C23         C24         C25     115.088    2.06
+IPX         C23         C24         H24     108.816    1.50
+IPX         C23         C24        H24A     108.816    1.50
+IPX         C25         C24         H24     108.915    1.50
+IPX         C25         C24        H24A     108.915    1.50
+IPX         H24         C24        H24A     107.696    1.50
+IPX         C24         C25         C26     114.629    2.24
+IPX         C24         C25         H25     108.844    1.50
+IPX         C24         C25        H25A     108.844    1.50
+IPX         C26         C25         H25     108.404    1.50
+IPX         C26         C25        H25A     108.404    1.50
+IPX         H25         C25        H25A     107.521    1.50
+IPX         C25         C26         O27     118.214    1.64
+IPX         C25         C26         O28     118.214    1.64
+IPX         O27         C26         O28     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IPX            sp2_sp3_13         C12         N14          C1         C15       0.000    10.0     6
+IPX             sp3_sp3_4         N14          C1         C15         C16     -60.000    10.0     3
+IPX            sp3_sp3_14         N14          C1         C18         C23     180.000    10.0     3
+IPX             sp2_sp2_7         O13         C12         N14          C1       0.000     5.0     2
+IPX             sp2_sp3_1         C17         C16         C15          C1       0.000    10.0     6
+IPX              const_17         C15         C16         C17         C18       0.000    10.0     2
+IPX              const_63         C15         C16         C19         C20     180.000    10.0     2
+IPX             sp2_sp3_8         C16         C17         C18         C23     120.000    10.0     6
+IPX              const_21         C16         C17         C22         C21       0.000    10.0     2
+IPX            sp3_sp3_19          C1         C18         C23         C24     180.000    10.0     3
+IPX              const_33         C16         C19         C20         C21       0.000    10.0     2
+IPX              const_29         C19         C20         C21         C22       0.000    10.0     2
+IPX       const_sp2_sp2_1          C4          C2          C3          C5       0.000     5.0     2
+IPX              const_53          C3          C2          C4          C6       0.000    10.0     2
+IPX              const_57          C9         C10          C2          C3       0.000    10.0     2
+IPX              const_25         C20         C21         C22         C17       0.000    10.0     2
+IPX            sp3_sp3_28         C18         C23         C24         C25     180.000    10.0     3
+IPX            sp3_sp3_37         C23         C24         C25         C26     180.000    10.0     3
+IPX            sp2_sp3_20         O27         C26         C25         C24     120.000    10.0     6
+IPX              const_37          C2          C3          C5          C7       0.000    10.0     2
+IPX       const_sp2_sp2_5          C2          C3          N8          C9       0.000     5.0     2
+IPX              const_50          C2          C4          C6         F11     180.000    10.0     2
+IPX              const_41          C3          C5          C7          C6       0.000    10.0     2
+IPX              const_47         F11          C6          C7          C5     180.000    10.0     2
+IPX              const_11         C12          C9          N8          C3     180.000    10.0     2
+IPX             sp2_sp2_3         O13         C12          C9          N8       0.000     5.0     2
+IPX              const_14          C2         C10          C9         C12     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IPX    chir_1    C1    N14    C18    C15    negative
+IPX    chir_2    C18    C1    C17    C23    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IPX    plan-1         C10   0.020
+IPX    plan-1         C12   0.020
+IPX    plan-1          C2   0.020
+IPX    plan-1          C3   0.020
+IPX    plan-1          C4   0.020
+IPX    plan-1          C5   0.020
+IPX    plan-1          C6   0.020
+IPX    plan-1          C7   0.020
+IPX    plan-1          C9   0.020
+IPX    plan-1         F11   0.020
+IPX    plan-1         H10   0.020
+IPX    plan-1          H4   0.020
+IPX    plan-1          H5   0.020
+IPX    plan-1          H7   0.020
+IPX    plan-1         HN8   0.020
+IPX    plan-1          N8   0.020
+IPX    plan-2         C15   0.020
+IPX    plan-2         C16   0.020
+IPX    plan-2         C17   0.020
+IPX    plan-2         C18   0.020
+IPX    plan-2         C19   0.020
+IPX    plan-2         C20   0.020
+IPX    plan-2         C21   0.020
+IPX    plan-2         C22   0.020
+IPX    plan-2         H19   0.020
+IPX    plan-2         H20   0.020
+IPX    plan-2         H21   0.020
+IPX    plan-2         H22   0.020
+IPX    plan-3         C12   0.020
+IPX    plan-3          C9   0.020
+IPX    plan-3         N14   0.020
+IPX    plan-3         O13   0.020
+IPX    plan-4          C1   0.020
+IPX    plan-4         C12   0.020
+IPX    plan-4        HN14   0.020
+IPX    plan-4         N14   0.020
+IPX    plan-5         C25   0.020
+IPX    plan-5         C26   0.020
+IPX    plan-5         O27   0.020
+IPX    plan-5         O28   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IPX           SMILES              ACDLabs 12.01                                                                                                                                         O=C(O)CCCC4c1ccccc1CC4NC(=O)c3cc2cc(F)ccc2n3
+IPX SMILES_CANONICAL               CACTVS 3.370                                                                                                                           OC(=O)CCC[C@H]1[C@@H](Cc2ccccc12)NC(=O)c3[nH]c4ccc(F)cc4c3
+IPX           SMILES               CACTVS 3.370                                                                                                                              OC(=O)CCC[CH]1[CH](Cc2ccccc12)NC(=O)c3[nH]c4ccc(F)cc4c3
+IPX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                         c1ccc2c(c1)C[C@H]([C@@H]2CCCC(=O)O)NC(=O)c3cc4cc(ccc4[nH]3)F
+IPX           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                  c1ccc2c(c1)CC(C2CCCC(=O)O)NC(=O)c3cc4cc(ccc4[nH]3)F
+IPX            InChI                InChI  1.03 InChI=1S/C22H21FN2O3/c23-15-8-9-18-14(10-15)12-20(24-18)22(28)25-19-11-13-4-1-2-5-16(13)17(19)6-3-7-21(26)27/h1-2,4-5,8-10,12,17,19,24H,3,6-7,11H2,(H,25,28)(H,26,27)/t17-,19-/m1/s1
+IPX         InChIKey                InChI  1.03                                                                                                                                                          DLZZNQTXKPJOKN-IEBWSBKVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IPX acedrg               243         "dictionary generator"                  
+IPX acedrg_database      11          "data source"                           
+IPX rdkit                2017.03.2   "Chemoinformatics tool"
+IPX refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,311 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KDJ     KDJ      "(1,1-difluoro-2-oxo-2-{[(1s,2R,3S,4s,5R,6S)-2,3,4,5,6-pentakis(phosphonooxy)cyclohexyl]amino}ethyl)phosphonic acid"     NON-POLYMER     48     41     .     
+#
+data_comp_KDJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KDJ     N15     N       NH1     0       1.308       22.213      13.202      
+KDJ     C3      C       CH1     0       -1.224      20.292      11.083      
+KDJ     C4      C       CH1     0       -0.697      21.400      11.983      
+KDJ     C5      C       CH1     0       0.779       21.171      12.327      
+KDJ     C6      C       CH1     0       1.615       21.057      11.048      
+KDJ     C1      C       CH1     0       1.088       19.949      10.150      
+KDJ     C2      C       CH1     0       -0.385      20.149      9.820       
+KDJ     O75     O       OP      -1      3.993       21.540      15.695      
+KDJ     PB5     P       P       0       3.763       23.024      15.606      
+KDJ     O85     O       O       0       4.516       23.638      14.458      
+KDJ     O95     O       OP      -1      4.074       23.714      16.906      
+KDJ     C45     C       CT      0       1.996       23.288      15.279      
+KDJ     F55     F       F       0       1.855       24.443      14.572      
+KDJ     F65     F       F       0       1.364       23.488      16.469      
+KDJ     C25     C       C       0       1.346       22.136      14.542      
+KDJ     O35     O       O       0       0.895       21.183      15.165      
+KDJ     O14     O       O2      0       -1.464      21.387      13.233      
+KDJ     PA4     P       P       0       -2.397      22.619      13.704      
+KDJ     O34     O       OP      -1      -1.471      23.796      13.948      
+KDJ     O44     O       OP      -1      -3.099      22.172      14.972      
+KDJ     O24     O       O       0       -3.372      22.884      12.573      
+KDJ     O13     O       O2      0       -2.599      20.623      10.698      
+KDJ     PA3     P       P       0       -3.797      19.540      10.702      
+KDJ     O33     O       O       0       -3.341      18.384      9.832       
+KDJ     O43     O       OP      -1      -5.017      20.239      10.131      
+KDJ     O23     O       OP      -1      -4.000      19.123      12.147      
+KDJ     O12     O       O2      0       -0.527      21.369      9.018       
+KDJ     PA2     P       P       0       -1.099      21.366      7.508       
+KDJ     O32     O       O       0       -0.147      20.519      6.684       
+KDJ     O42     O       OP      -1      -1.122      22.812      7.049       
+KDJ     O22     O       OP      -1      -2.490      20.764      7.572       
+KDJ     O11     O       O2      0       1.856       19.961      8.901       
+KDJ     PA1     P       P       0       2.445       18.621      8.218       
+KDJ     O31     O       OP      -1      1.254       17.736      7.901       
+KDJ     O41     O       O       0       3.182       19.059      6.967       
+KDJ     O21     O       OP      -1      3.373       17.987      9.237       
+KDJ     O16     O       O2      0       2.991       20.733      11.438      
+KDJ     PA6     P       P       0       4.259       21.645      11.023      
+KDJ     O36     O       OP      -1      3.949       23.056      11.489      
+KDJ     O46     O       O       0       4.383       21.555      9.514       
+KDJ     O26     O       OP      -1      5.465       21.060      11.733      
+KDJ     H1      H       H       0       1.617       22.938      12.814      
+KDJ     H2      H       H       0       -1.215      19.427      11.585      
+KDJ     H3      H       H       0       -0.799      22.272      11.533      
+KDJ     H4      H       H       0       0.843       20.299      12.791      
+KDJ     H5      H       H       0       1.595       21.917      10.564      
+KDJ     H6      H       H       0       1.207       19.068      10.609      
+KDJ     H7      H       H       0       -0.713      19.363      9.296       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KDJ         PA2         O32      DOUBLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PA2         O42      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PA1         O41      DOUBLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PA1         O31      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PA2         O22      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         O12         PA2      SINGLE       n     1.614  0.0178     1.614  0.0178
+KDJ         O11         PA1      SINGLE       n     1.614  0.0178     1.614  0.0178
+KDJ         PA1         O21      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ          C1         O11      SINGLE       n     1.465  0.0114     1.465  0.0114
+KDJ          C2         O12      SINGLE       n     1.465  0.0114     1.465  0.0114
+KDJ         PA6         O46      DOUBLE       n     1.517  0.0192     1.517  0.0192
+KDJ          C1          C2      SINGLE       n     1.519  0.0100     1.519  0.0100
+KDJ          C3          C2      SINGLE       n     1.519  0.0100     1.519  0.0100
+KDJ          C6          C1      SINGLE       n     1.519  0.0100     1.519  0.0100
+KDJ         PA3         O33      DOUBLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PA3         O43      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         O13         PA3      SINGLE       n     1.614  0.0178     1.614  0.0178
+KDJ          C3         O13      SINGLE       n     1.465  0.0114     1.465  0.0114
+KDJ          C6         O16      SINGLE       n     1.465  0.0114     1.465  0.0114
+KDJ          C5          C6      SINGLE       n     1.531  0.0100     1.531  0.0100
+KDJ         PA6         O36      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         O16         PA6      SINGLE       n     1.614  0.0178     1.614  0.0178
+KDJ         PA6         O26      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PA3         O23      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ          C3          C4      SINGLE       n     1.519  0.0100     1.519  0.0100
+KDJ          C4          C5      SINGLE       n     1.531  0.0100     1.531  0.0100
+KDJ          C4         O14      SINGLE       n     1.465  0.0114     1.465  0.0114
+KDJ         PA4         O24      DOUBLE       n     1.517  0.0192     1.517  0.0192
+KDJ         N15          C5      SINGLE       n     1.456  0.0100     1.456  0.0100
+KDJ         N15         C25      SINGLE       n     1.336  0.0100     1.336  0.0100
+KDJ         O14         PA4      SINGLE       n     1.614  0.0178     1.614  0.0178
+KDJ         PA4         O34      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PA4         O44      SINGLE       n     1.517  0.0192     1.517  0.0192
+KDJ         PB5         O85      DOUBLE       n     1.505  0.0200     1.505  0.0200
+KDJ         C25         O35      DOUBLE       n     1.223  0.0130     1.223  0.0130
+KDJ         C45         C25      SINGLE       n     1.509  0.0134     1.509  0.0134
+KDJ         C45         F55      SINGLE       n     1.361  0.0180     1.361  0.0180
+KDJ         PB5         C45      SINGLE       n     1.816  0.0200     1.816  0.0200
+KDJ         C45         F65      SINGLE       n     1.361  0.0180     1.361  0.0180
+KDJ         PB5         O95      SINGLE       n     1.505  0.0200     1.505  0.0200
+KDJ         O75         PB5      SINGLE       n     1.505  0.0200     1.505  0.0200
+KDJ         N15          H1      SINGLE       n     1.016  0.0100     0.876  0.0200
+KDJ          C3          H2      SINGLE       n     1.089  0.0100     1.000  0.0100
+KDJ          C4          H3      SINGLE       n     1.089  0.0100     0.987  0.0166
+KDJ          C5          H4      SINGLE       n     1.089  0.0100     0.990  0.0147
+KDJ          C6          H5      SINGLE       n     1.089  0.0100     0.987  0.0166
+KDJ          C1          H6      SINGLE       n     1.089  0.0100     1.000  0.0100
+KDJ          C2          H7      SINGLE       n     1.089  0.0100     1.000  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KDJ          C5         N15         C25     123.256    1.53
+KDJ          C5         N15          H1     118.199    2.07
+KDJ         C25         N15          H1     118.546    2.17
+KDJ          C2          C3         O13     108.118    1.66
+KDJ          C2          C3          C4     110.796    1.54
+KDJ          C2          C3          H2     109.166    1.50
+KDJ         O13          C3          C4     108.118    1.66
+KDJ         O13          C3          H2     109.322    1.50
+KDJ          C4          C3          H2     109.166    1.50
+KDJ          C3          C4          C5     110.742    1.50
+KDJ          C3          C4         O14     108.118    1.66
+KDJ          C3          C4          H3     109.166    1.50
+KDJ          C5          C4         O14     107.272    1.50
+KDJ          C5          C4          H3     108.987    1.50
+KDJ         O14          C4          H3     109.322    1.50
+KDJ          C6          C5          C4     111.932    2.44
+KDJ          C6          C5         N15     110.454    2.38
+KDJ          C6          C5          H4     107.258    1.68
+KDJ          C4          C5         N15     110.454    2.38
+KDJ          C4          C5          H4     107.258    1.68
+KDJ         N15          C5          H4     108.143    1.50
+KDJ          C1          C6         O16     108.118    1.66
+KDJ          C1          C6          C5     110.742    1.50
+KDJ          C1          C6          H5     109.166    1.50
+KDJ         O16          C6          C5     107.272    1.50
+KDJ         O16          C6          H5     109.322    1.50
+KDJ          C5          C6          H5     108.987    1.50
+KDJ         O11          C1          C2     108.118    1.66
+KDJ         O11          C1          C6     108.118    1.66
+KDJ         O11          C1          H6     109.322    1.50
+KDJ          C2          C1          C6     110.796    1.54
+KDJ          C2          C1          H6     109.166    1.50
+KDJ          C6          C1          H6     109.166    1.50
+KDJ         O12          C2          C1     108.118    1.66
+KDJ         O12          C2          C3     108.118    1.66
+KDJ         O12          C2          H7     109.322    1.50
+KDJ          C1          C2          C3     110.796    1.54
+KDJ          C1          C2          H7     109.166    1.50
+KDJ          C3          C2          H7     109.166    1.50
+KDJ         O85         PB5         C45     110.326    3.00
+KDJ         O85         PB5         O95     112.502    1.50
+KDJ         O85         PB5         O75     112.502    1.50
+KDJ         C45         PB5         O95     110.326    3.00
+KDJ         C45         PB5         O75     110.326    3.00
+KDJ         O95         PB5         O75     112.502    1.50
+KDJ         C25         C45         F55     109.757    2.13
+KDJ         C25         C45         PB5     113.247    3.00
+KDJ         C25         C45         F65     109.757    2.13
+KDJ         F55         C45         PB5     108.594    1.85
+KDJ         F55         C45         F65     106.488    1.50
+KDJ         PB5         C45         F65     108.594    1.85
+KDJ         N15         C25         O35     122.638    1.56
+KDJ         N15         C25         C45     116.210    2.12
+KDJ         O35         C25         C45     121.152    1.50
+KDJ          C4         O14         PA4     122.306    2.63
+KDJ         O24         PA4         O14     106.518    3.00
+KDJ         O24         PA4         O34     112.139    1.52
+KDJ         O24         PA4         O44     112.139    1.52
+KDJ         O14         PA4         O34     106.518    3.00
+KDJ         O14         PA4         O44     106.518    3.00
+KDJ         O34         PA4         O44     112.139    1.52
+KDJ         PA3         O13          C3     122.306    2.63
+KDJ         O33         PA3         O43     112.139    1.52
+KDJ         O33         PA3         O13     106.518    3.00
+KDJ         O33         PA3         O23     112.139    1.52
+KDJ         O43         PA3         O13     106.518    3.00
+KDJ         O43         PA3         O23     112.139    1.52
+KDJ         O13         PA3         O23     106.518    3.00
+KDJ         PA2         O12          C2     122.306    2.63
+KDJ         O32         PA2         O42     112.139    1.52
+KDJ         O32         PA2         O22     112.139    1.52
+KDJ         O32         PA2         O12     106.518    3.00
+KDJ         O42         PA2         O22     112.139    1.52
+KDJ         O42         PA2         O12     106.518    3.00
+KDJ         O22         PA2         O12     106.518    3.00
+KDJ         PA1         O11          C1     122.306    2.63
+KDJ         O41         PA1         O31     112.139    1.52
+KDJ         O41         PA1         O11     106.518    3.00
+KDJ         O41         PA1         O21     112.139    1.52
+KDJ         O31         PA1         O11     106.518    3.00
+KDJ         O31         PA1         O21     112.139    1.52
+KDJ         O11         PA1         O21     106.518    3.00
+KDJ          C6         O16         PA6     122.306    2.63
+KDJ         O46         PA6         O36     112.139    1.52
+KDJ         O46         PA6         O16     106.518    3.00
+KDJ         O46         PA6         O26     112.139    1.52
+KDJ         O36         PA6         O16     106.518    3.00
+KDJ         O36         PA6         O26     112.139    1.52
+KDJ         O16         PA6         O26     106.518    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KDJ             sp2_sp2_3         O35         C25         N15          C5       0.000     5.0     2
+KDJ             sp2_sp3_1         C25         N15          C5          C6       0.000    10.0     6
+KDJ             sp2_sp3_8         N15         C25         C45         F55     120.000    10.0     6
+KDJ            sp3_sp3_84          C4         O14         PA4         O24      60.000    10.0     3
+KDJ            sp3_sp3_74         O13          C3          C4         O14     180.000    10.0     3
+KDJ            sp3_sp3_61          C2          C3         O13         PA3     180.000    10.0     3
+KDJ             sp3_sp3_5         O12          C2          C3         O13      60.000    10.0     3
+KDJ            sp3_sp3_60          C3         O13         PA3         O33      60.000    10.0     3
+KDJ            sp3_sp3_48          C2         O12         PA2         O32      60.000    10.0     3
+KDJ            sp3_sp3_79          C3          C4         O14         PA4     180.000    10.0     3
+KDJ            sp3_sp3_41         O14          C4          C5         N15      60.000    10.0     3
+KDJ            sp3_sp3_51          C1         O11         PA1         O41      60.000    10.0     3
+KDJ            sp3_sp3_69          C6         O16         PA6         O46      60.000    10.0     3
+KDJ            sp3_sp3_32         N15          C5          C6         O16     -60.000    10.0     3
+KDJ            sp3_sp3_64          C1          C6         O16         PA6     180.000    10.0     3
+KDJ            sp3_sp3_23         O11          C1          C6         O16      60.000    10.0     3
+KDJ            sp3_sp3_52          C2          C1         O11         PA1     180.000    10.0     3
+KDJ            sp3_sp3_14         O11          C1          C2         O12     -60.000    10.0     3
+KDJ            sp3_sp3_55          C1          C2         O12         PA2     180.000    10.0     3
+KDJ            sp3_sp3_93         C25         C45         PB5         O85     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KDJ    chir_1    C3    O13    C2    C4    negative
+KDJ    chir_2    C4    O14    C3    C5    positive
+KDJ    chir_3    C5    N15    C6    C4    positive
+KDJ    chir_4    C6    O16    C1    C5    negative
+KDJ    chir_5    C1    O11    C2    C6    positive
+KDJ    chir_6    C2    O12    C3    C1    positive
+KDJ    chir_7    PB5    O95    O75    O85    both
+KDJ    chir_8    C45    PB5    F55    F65    both
+KDJ    chir_9    PA4    O14    O34    O44    both
+KDJ    chir_10    PA3    O13    O43    O23    both
+KDJ    chir_11    PA2    O12    O42    O22    both
+KDJ    chir_12    PA1    O11    O31    O21    both
+KDJ    chir_13    PA6    O16    O36    O26    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KDJ    plan-1         C25   0.020
+KDJ    plan-1          C5   0.020
+KDJ    plan-1          H1   0.020
+KDJ    plan-1         N15   0.020
+KDJ    plan-2         C25   0.020
+KDJ    plan-2         C45   0.020
+KDJ    plan-2         N15   0.020
+KDJ    plan-2         O35   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KDJ           SMILES              ACDLabs 12.01                                                                                                                                                                   N(C(C(P(O)(O)=O)(F)F)=O)C1C(C(C(C(C1OP(O)(O)=O)OP(O)(O)=O)OP(O)(=O)O)OP(O)(=O)O)OP(O)(O)=O
+KDJ            InChI                InChI  1.03 InChI=1S/C8H19F2NO24P6/c9-8(10,36(13,14)15)7(12)11-1-2(31-37(16,17)18)4(33-39(22,23)24)6(35-41(28,29)30)5(34-40(25,26)27)3(1)32-38(19,20)21/h1-6H,(H,11,12)(H2,13,14,15)(H2,16,17,18)(H2,19,20,21)(H2,22,23,24)(H2,25,26,27)(H2,28,29,30)/t1-,2-,3+,4+,5-,6+
+KDJ         InChIKey                InChI  1.03                                                                                                                                                                                                                                  XBHZOGSBYRIXJA-QWBQGLJISA-N
+KDJ SMILES_CANONICAL               CACTVS 3.385                                                                                                                               O[P](O)(=O)O[C@H]1[C@H](NC(=O)C(F)(F)[P](O)(O)=O)[C@@H](O[P](O)(O)=O)[C@H](O[P](O)(O)=O)[C@H](O[P](O)(O)=O)[C@@H]1O[P](O)(O)=O
+KDJ           SMILES               CACTVS 3.385                                                                                                                                       O[P](O)(=O)O[CH]1[CH](NC(=O)C(F)(F)[P](O)(O)=O)[CH](O[P](O)(O)=O)[CH](O[P](O)(O)=O)[CH](O[P](O)(O)=O)[CH]1O[P](O)(O)=O
+KDJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                "[C@H]1([C@H](C([C@H]([C@@H](C1NC(=O)C(F)(F)P(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O"
+KDJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                   C1(C(C(C(C(C1OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)NC(=O)C(F)(F)P(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KDJ acedrg               243         "dictionary generator"                  
+KDJ acedrg_database      11          "data source"                           
+KDJ rdkit                2017.03.2   "Chemoinformatics tool"
+KDJ refmac5              5.8.0238    "optimization tool"                     

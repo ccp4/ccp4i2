@@ -1,0 +1,196 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+E5E     E5E      Noradrenaline     NON-POLYMER     24     12     .     
+#
+data_comp_E5E
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+E5E     OAC     O       OH1     0       -10.514     5.593       -28.092     
+E5E     CAJ     C       CR6     0       -11.295     4.488       -28.338     
+E5E     CAG     C       CR16    0       -12.643     4.651       -28.622     
+E5E     CAI     C       CR6     0       -10.741     3.207       -28.305     
+E5E     OAB     O       OH1     0       -9.406      3.032       -28.025     
+E5E     CAE     C       CR16    0       -11.537     2.103       -28.556     
+E5E     CAF     C       CR16    0       -12.890     2.279       -28.840     
+E5E     CAK     C       CR6     0       -13.454     3.549       -28.875     
+E5E     CAL     C       CH1     0       -14.932     3.735       -29.187     
+E5E     OAD     O       OH1     0       -15.309     3.093       -30.393     
+E5E     CAH     C       CH2     0       -15.775     3.171       -28.068     
+E5E     NAA     N       NT3     1       -17.211     3.485       -28.264     
+E5E     HOAC    H       H       0       -9.803      5.730       -28.557     
+E5E     HAG     H       H       0       -13.012     5.521       -28.643     
+E5E     HOAB    H       H       0       -8.817      3.531       -28.407     
+E5E     HAE     H       H       0       -11.163     1.236       -28.533     
+E5E     HAF     H       H       0       -13.429     1.524       -29.009     
+E5E     HAL     H       H       0       -15.123     4.699       -29.268     
+E5E     HOAD    H       H       0       -14.980     3.526       -31.044     
+E5E     HAH     H       H       0       -15.474     3.545       -27.213     
+E5E     HAHA    H       H       0       -15.658     2.197       -28.031     
+E5E     HNAA    H       H       0       -17.698     3.125       -27.589     
+E5E     HNAB    H       H       0       -17.494     3.140       -29.054     
+E5E     HNAC    H       H       0       -17.329     4.384       -28.271     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+E5E         CAL         OAD      SINGLE       n     1.417  0.0143     1.417  0.0143
+E5E         CAK         CAL      SINGLE       n     1.521  0.0100     1.521  0.0100
+E5E         CAL         CAH      SINGLE       n     1.508  0.0200     1.508  0.0200
+E5E         CAF         CAK      DOUBLE       y     1.387  0.0111     1.387  0.0111
+E5E         CAG         CAK      SINGLE       y     1.386  0.0116     1.386  0.0116
+E5E         CAE         CAF      SINGLE       y     1.391  0.0100     1.391  0.0100
+E5E         CAJ         CAG      DOUBLE       y     1.383  0.0100     1.383  0.0100
+E5E         CAI         CAE      DOUBLE       y     1.381  0.0100     1.381  0.0100
+E5E         CAJ         CAI      SINGLE       y     1.391  0.0100     1.391  0.0100
+E5E         OAC         CAJ      SINGLE       n     1.374  0.0155     1.374  0.0155
+E5E         CAI         OAB      SINGLE       n     1.374  0.0155     1.374  0.0155
+E5E         CAH         NAA      SINGLE       n     1.483  0.0110     1.483  0.0110
+E5E         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+E5E         CAG         HAG      SINGLE       n     1.082  0.0130     0.945  0.0164
+E5E         OAB        HOAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+E5E         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0200
+E5E         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0173
+E5E         CAL         HAL      SINGLE       n     1.089  0.0100     0.986  0.0120
+E5E         OAD        HOAD      SINGLE       n     0.970  0.0120     0.848  0.0200
+E5E         CAH         HAH      SINGLE       n     1.089  0.0100     0.981  0.0101
+E5E         CAH        HAHA      SINGLE       n     1.089  0.0100     0.981  0.0101
+E5E         NAA        HNAA      SINGLE       n     1.036  0.0160     0.907  0.0200
+E5E         NAA        HNAB      SINGLE       n     1.036  0.0160     0.907  0.0200
+E5E         NAA        HNAC      SINGLE       n     1.036  0.0160     0.907  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+E5E         CAJ         OAC        HOAC     120.000    3.00
+E5E         CAG         CAJ         CAI     119.289    1.50
+E5E         CAG         CAJ         OAC     120.356    3.00
+E5E         CAI         CAJ         OAC     120.356    3.00
+E5E         CAK         CAG         CAJ     120.417    1.50
+E5E         CAK         CAG         HAG     119.942    1.50
+E5E         CAJ         CAG         HAG     119.642    1.50
+E5E         CAE         CAI         CAJ     119.723    1.50
+E5E         CAE         CAI         OAB     120.139    3.00
+E5E         CAJ         CAI         OAB     120.139    3.00
+E5E         CAI         OAB        HOAB     120.000    3.00
+E5E         CAF         CAE         CAI     119.759    1.50
+E5E         CAF         CAE         HAE     120.298    1.50
+E5E         CAI         CAE         HAE     119.943    1.50
+E5E         CAK         CAF         CAE     121.481    1.50
+E5E         CAK         CAF         HAF     119.404    1.50
+E5E         CAE         CAF         HAF     119.115    1.50
+E5E         CAL         CAK         CAF     120.731    1.50
+E5E         CAL         CAK         CAG     119.938    1.50
+E5E         CAF         CAK         CAG     119.331    1.50
+E5E         OAD         CAL         CAK     112.088    1.90
+E5E         OAD         CAL         CAH     108.224    1.64
+E5E         OAD         CAL         HAL     108.687    1.50
+E5E         CAK         CAL         CAH     109.948    1.50
+E5E         CAK         CAL         HAL     108.561    1.50
+E5E         CAH         CAL         HAL     108.562    1.50
+E5E         CAL         OAD        HOAD     108.665    2.27
+E5E         CAL         CAH         NAA     111.322    1.50
+E5E         CAL         CAH         HAH     109.359    1.50
+E5E         CAL         CAH        HAHA     109.359    1.50
+E5E         NAA         CAH         HAH     109.364    1.50
+E5E         NAA         CAH        HAHA     109.364    1.50
+E5E         HAH         CAH        HAHA     108.008    1.50
+E5E         CAH         NAA        HNAA     109.657    1.50
+E5E         CAH         NAA        HNAB     109.657    1.50
+E5E         CAH         NAA        HNAC     109.657    1.50
+E5E        HNAA         NAA        HNAB     109.021    2.83
+E5E        HNAA         NAA        HNAC     109.021    2.83
+E5E        HNAB         NAA        HNAC     109.021    2.83
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+E5E             sp2_sp2_1         CAG         CAJ         OAC        HOAC     180.000     5.0     2
+E5E            sp3_sp3_13         CAL         CAH         NAA        HNAA     180.000    10.0     3
+E5E       const_sp2_sp2_2         CAK         CAG         CAJ         OAC     180.000     5.0     2
+E5E              const_24         OAB         CAI         CAJ         OAC       0.000    10.0     2
+E5E       const_sp2_sp2_6         CAJ         CAG         CAK         CAL     180.000     5.0     2
+E5E             sp2_sp2_3         CAE         CAI         OAB        HOAB     180.000     5.0     2
+E5E              const_18         CAF         CAE         CAI         OAB     180.000    10.0     2
+E5E              const_13         CAI         CAE         CAF         CAK       0.000    10.0     2
+E5E              const_10         CAE         CAF         CAK         CAL     180.000    10.0     2
+E5E             sp2_sp3_1         CAF         CAK         CAL         OAD     150.000    10.0     6
+E5E             sp3_sp3_4         NAA         CAH         CAL         OAD     180.000    10.0     3
+E5E             sp3_sp3_2         CAH         CAL         OAD        HOAD      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+E5E    chir_1    CAL    OAD    CAH    CAK    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+E5E    plan-1         CAE   0.020
+E5E    plan-1         CAF   0.020
+E5E    plan-1         CAG   0.020
+E5E    plan-1         CAI   0.020
+E5E    plan-1         CAJ   0.020
+E5E    plan-1         CAK   0.020
+E5E    plan-1         CAL   0.020
+E5E    plan-1         HAE   0.020
+E5E    plan-1         HAF   0.020
+E5E    plan-1         HAG   0.020
+E5E    plan-1         OAB   0.020
+E5E    plan-1         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+E5E            InChI                InChI  1.03 InChI=1S/C8H11NO3/c9-4-8(12)5-1-2-6(10)7(11)3-5/h1-3,8,10-12H,4,9H2/p+1/t8-/m0/s1
+E5E         InChIKey                InChI  1.03                                                       SFLSHLFXELFNJZ-QMMMGPOBSA-O
+E5E SMILES_CANONICAL               CACTVS 3.385                                                   "[NH3+]C[C@H](O)c1ccc(O)c(O)c1"
+E5E           SMILES               CACTVS 3.385                                                    "[NH3+]C[CH](O)c1ccc(O)c(O)c1"
+E5E SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                     c1cc(c(cc1[C@H](C[NH3+])O)O)O
+E5E           SMILES "OpenEye OEToolkits" 2.0.6                                                         c1cc(c(cc1C(C[NH3+])O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+E5E acedrg               243         "dictionary generator"                  
+E5E acedrg_database      11          "data source"                           
+E5E rdkit                2017.03.2   "Chemoinformatics tool"
+E5E refmac5              5.8.0238    "optimization tool"                     

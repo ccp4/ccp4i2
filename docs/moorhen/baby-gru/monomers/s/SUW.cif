@@ -1,0 +1,395 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SUW     SUW      ME-A-9-N-(NAPHTHYL-2-CARBONYL)-AMINO-9-DEOXY-NEU5AC     NON-POLYMER     61     34     .     
+#
+data_comp_SUW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SUW     CX1     C       C       0       0.964       0.890       0.057       
+SUW     O1A     O       O       0       1.840       0.356       -0.582      
+SUW     O1B     O       OC      -1      -0.173      0.487       -0.021      
+SUW     CX2     C       CT      0       1.306       2.095       0.949       
+SUW     OX2     O       O2      0       1.013       3.275       0.175       
+SUW     CO2     C       CH3     0       2.011       3.736       -0.744      
+SUW     CX3     C       CH2     0       0.425       2.194       2.182       
+SUW     CX4     C       CH1     0       0.758       1.124       3.210       
+SUW     OX4     O       OH1     0       -0.025      1.327       4.387       
+SUW     CX5     C       CH1     0       2.245       1.163       3.551       
+SUW     NX5     N       NH1     0       2.558       0.131       4.536       
+SUW     C10     C       C       0       3.307       0.320       5.634       
+SUW     O10     O       O       0       3.807       1.406       5.915       
+SUW     C11     C       CH3     0       3.515       -0.880      6.508       
+SUW     CX6     C       CH1     0       3.097       1.038       2.279       
+SUW     OX6     O       O2      0       2.697       2.055       1.330       
+SUW     CX7     C       CH1     0       4.587       1.229       2.543       
+SUW     OX7     O       OH1     0       4.830       2.546       3.047       
+SUW     CX8     C       CH1     0       5.508       0.985       1.331       
+SUW     OX8     O       OH1     0       5.301       -0.336      0.839       
+SUW     CX9     C       CH2     0       6.995       1.151       1.638       
+SUW     NX6     N       NH1     0       7.433       0.274       2.720       
+SUW     C12     C       C       0       7.527       0.659       4.002       
+SUW     O12     O       O       0       7.552       1.845       4.331       
+SUW     C25     C       CR16    0       8.066       -0.244      6.261       
+SUW     C26     C       CR6     0       7.431       -0.416      5.047       
+SUW     C27     C       CR16    0       6.660       -1.594      4.833       
+SUW     C28     C       CR16    0       6.568       -2.556      5.799       
+SUW     C2B     C       CR66    0       7.221       -2.405      7.046       
+SUW     C21     C       CR16    0       7.142       -3.391      8.075       
+SUW     C22     C       CR16    0       7.784       -3.212      9.264       
+SUW     C23     C       CR16    0       8.538       -2.046      9.497       
+SUW     C24     C       CR16    0       8.636       -1.083      8.537       
+SUW     C2A     C       CR66    0       7.985       -1.228      7.286       
+SUW     HO21    H       H       0       1.613       4.383       -1.349      
+SUW     HO22    H       H       0       2.362       2.991       -1.259      
+SUW     HO23    H       H       0       2.734       4.160       -0.253      
+SUW     HX31    H       H       0       0.548       3.078       2.589       
+SUW     HX32    H       H       0       -0.517      2.113       1.920       
+SUW     HX4     H       H       0       0.536       0.229       2.835       
+SUW     HA      H       H       0       0.165       2.073       4.729       
+SUW     HX5     H       H       0       2.428       2.053       3.940       
+SUW     HB      H       H       0       2.223       -0.666      4.391       
+SUW     H111    H       H       0       3.614       -1.674      5.957       
+SUW     H112    H       H       0       2.751       -0.990      7.097       
+SUW     H113    H       H       0       4.317       -0.758      7.041       
+SUW     HX6     H       H       0       2.956       0.142       1.886       
+SUW     HX7     H       H       0       4.849       0.586       3.251       
+SUW     HC      H       H       0       4.607       3.119       2.462       
+SUW     HX8     H       H       0       5.266       1.618       0.607       
+SUW     HD      H       H       0       5.631       -0.400      0.060       
+SUW     HX91    H       H       0       7.177       2.092       1.869       
+SUW     HX92    H       H       0       7.512       0.937       0.826       
+SUW     HE      H       H       0       7.672       -0.538      2.502       
+SUW     H25     H       H       0       8.570       0.537       6.416       
+SUW     H27     H       H       0       6.217       -1.719      4.009       
+SUW     H28     H       H       0       6.060       -3.335      5.633       
+SUW     H21     H       H       0       6.639       -4.176      7.929       
+SUW     H22     H       H       0       7.723       -3.873      9.935       
+SUW     H23     H       H       0       8.979       -1.931      10.323      
+SUW     H24     H       H       0       9.146       -0.306      8.706       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SUW         CX1         O1A      DOUBLE       n     1.207  0.0200     1.207  0.0200
+SUW         CX1         O1B      SINGLE       n     1.207  0.0200     1.207  0.0200
+SUW         CX1         CX2      SINGLE       n     1.525  0.0154     1.525  0.0154
+SUW         CX2         OX2      SINGLE       n     1.423  0.0200     1.423  0.0200
+SUW         CX2         CX3      SINGLE       n     1.514  0.0100     1.514  0.0100
+SUW         CX2         OX6      SINGLE       n     1.435  0.0100     1.435  0.0100
+SUW         OX2         CO2      SINGLE       n     1.423  0.0156     1.423  0.0156
+SUW         CX3         CX4      SINGLE       n     1.519  0.0100     1.519  0.0100
+SUW         CX4         OX4      SINGLE       n     1.427  0.0100     1.427  0.0100
+SUW         CX4         CX5      SINGLE       n     1.525  0.0100     1.525  0.0100
+SUW         CX5         NX5      SINGLE       n     1.456  0.0100     1.456  0.0100
+SUW         CX5         CX6      SINGLE       n     1.532  0.0100     1.532  0.0100
+SUW         NX5         C10      SINGLE       n     1.334  0.0119     1.334  0.0119
+SUW         C10         O10      DOUBLE       n     1.227  0.0100     1.227  0.0100
+SUW         C10         C11      SINGLE       n     1.498  0.0100     1.498  0.0100
+SUW         CX6         OX6      SINGLE       n     1.440  0.0109     1.440  0.0109
+SUW         CX6         CX7      SINGLE       n     1.521  0.0100     1.521  0.0100
+SUW         CX7         OX7      SINGLE       n     1.430  0.0100     1.430  0.0100
+SUW         CX7         CX8      SINGLE       n     1.531  0.0169     1.531  0.0169
+SUW         CX8         OX8      SINGLE       n     1.424  0.0199     1.424  0.0199
+SUW         CX8         CX9      SINGLE       n     1.524  0.0100     1.524  0.0100
+SUW         CX9         NX6      SINGLE       n     1.457  0.0100     1.457  0.0100
+SUW         NX6         C12      SINGLE       n     1.333  0.0111     1.333  0.0111
+SUW         C12         O12      DOUBLE       n     1.230  0.0114     1.230  0.0114
+SUW         C12         C26      SINGLE       n     1.498  0.0100     1.498  0.0100
+SUW         C25         C26      DOUBLE       y     1.376  0.0100     1.376  0.0100
+SUW         C25         C2A      SINGLE       y     1.417  0.0129     1.417  0.0129
+SUW         C26         C27      SINGLE       y     1.419  0.0100     1.419  0.0100
+SUW         C27         C28      DOUBLE       y     1.364  0.0100     1.364  0.0100
+SUW         C28         C2B      SINGLE       y     1.413  0.0104     1.413  0.0104
+SUW         C2B         C21      SINGLE       y     1.421  0.0157     1.421  0.0157
+SUW         C2B         C2A      DOUBLE       y     1.418  0.0100     1.418  0.0100
+SUW         C21         C22      DOUBLE       y     1.358  0.0118     1.358  0.0118
+SUW         C22         C23      SINGLE       y     1.402  0.0131     1.402  0.0131
+SUW         C23         C24      DOUBLE       y     1.358  0.0118     1.358  0.0118
+SUW         C24         C2A      SINGLE       y     1.415  0.0100     1.415  0.0100
+SUW         CO2        HO21      SINGLE       n     1.089  0.0100     0.971  0.0146
+SUW         CO2        HO22      SINGLE       n     1.089  0.0100     0.971  0.0146
+SUW         CO2        HO23      SINGLE       n     1.089  0.0100     0.971  0.0146
+SUW         CX3        HX31      SINGLE       n     1.089  0.0100     0.981  0.0170
+SUW         CX3        HX32      SINGLE       n     1.089  0.0100     0.981  0.0170
+SUW         CX4         HX4      SINGLE       n     1.089  0.0100     0.995  0.0100
+SUW         OX4          HA      SINGLE       n     0.970  0.0120     0.841  0.0200
+SUW         CX5         HX5      SINGLE       n     1.089  0.0100     0.990  0.0147
+SUW         NX5          HB      SINGLE       n     1.016  0.0100     0.876  0.0200
+SUW         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0140
+SUW         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0140
+SUW         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0140
+SUW         CX6         HX6      SINGLE       n     1.089  0.0100     0.989  0.0172
+SUW         CX7         HX7      SINGLE       n     1.089  0.0100     0.995  0.0157
+SUW         OX7          HC      SINGLE       n     0.970  0.0120     0.848  0.0200
+SUW         CX8         HX8      SINGLE       n     1.089  0.0100     0.992  0.0184
+SUW         OX8          HD      SINGLE       n     0.970  0.0120     0.848  0.0200
+SUW         CX9        HX91      SINGLE       n     1.089  0.0100     0.986  0.0100
+SUW         CX9        HX92      SINGLE       n     1.089  0.0100     0.986  0.0100
+SUW         NX6          HE      SINGLE       n     1.016  0.0100     0.873  0.0200
+SUW         C25         H25      SINGLE       n     1.082  0.0130     0.942  0.0163
+SUW         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0200
+SUW         C28         H28      SINGLE       n     1.082  0.0130     0.944  0.0160
+SUW         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0192
+SUW         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0184
+SUW         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0184
+SUW         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0192
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SUW         O1A         CX1         O1B     120.713    1.50
+SUW         O1A         CX1         CX2     119.643    2.54
+SUW         O1B         CX1         CX2     119.643    2.54
+SUW         CX1         CX2         OX2     108.672    2.53
+SUW         CX1         CX2         CX3     111.056    2.52
+SUW         CX1         CX2         OX6     107.807    2.54
+SUW         OX2         CX2         CX3     109.247    2.43
+SUW         OX2         CX2         OX6     110.254    2.24
+SUW         CX3         CX2         OX6     110.767    1.50
+SUW         CX2         OX2         CO2     114.605    1.66
+SUW         OX2         CO2        HO21     109.437    1.50
+SUW         OX2         CO2        HO22     109.437    1.50
+SUW         OX2         CO2        HO23     109.437    1.50
+SUW        HO21         CO2        HO22     109.450    1.50
+SUW        HO21         CO2        HO23     109.450    1.50
+SUW        HO22         CO2        HO23     109.450    1.50
+SUW         CX2         CX3         CX4     111.124    1.57
+SUW         CX2         CX3        HX31     109.068    1.50
+SUW         CX2         CX3        HX32     109.068    1.50
+SUW         CX4         CX3        HX31     109.270    1.50
+SUW         CX4         CX3        HX32     109.270    1.50
+SUW        HX31         CX3        HX32     108.019    1.50
+SUW         CX3         CX4         OX4     109.687    1.93
+SUW         CX3         CX4         CX5     110.472    1.50
+SUW         CX3         CX4         HX4     109.129    1.50
+SUW         OX4         CX4         CX5     110.124    1.87
+SUW         OX4         CX4         HX4     108.626    1.50
+SUW         CX5         CX4         HX4     108.987    1.50
+SUW         CX4         OX4          HA     109.344    1.84
+SUW         CX4         CX5         NX5     110.454    2.38
+SUW         CX4         CX5         CX6     111.124    1.57
+SUW         CX4         CX5         HX5     107.258    1.68
+SUW         NX5         CX5         CX6     110.829    2.03
+SUW         NX5         CX5         HX5     108.143    1.50
+SUW         CX6         CX5         HX5     106.721    1.50
+SUW         CX5         NX5         C10     123.128    1.53
+SUW         CX5         NX5          HB     118.071    2.07
+SUW         C10         NX5          HB     118.802    2.66
+SUW         NX5         C10         O10     121.945    1.50
+SUW         NX5         C10         C11     115.988    1.50
+SUW         O10         C10         C11     122.067    1.50
+SUW         C10         C11        H111     109.527    1.50
+SUW         C10         C11        H112     109.527    1.50
+SUW         C10         C11        H113     109.527    1.50
+SUW        H111         C11        H112     109.365    1.50
+SUW        H111         C11        H113     109.365    1.50
+SUW        H112         C11        H113     109.365    1.50
+SUW         CX5         CX6         OX6     107.969    1.58
+SUW         CX5         CX6         CX7     111.163    2.25
+SUW         CX5         CX6         HX6     108.738    2.27
+SUW         OX6         CX6         CX7     106.618    1.87
+SUW         OX6         CX6         HX6     108.995    1.50
+SUW         CX7         CX6         HX6     108.632    1.50
+SUW         CX2         OX6         CX6     111.559    2.21
+SUW         CX6         CX7         OX7     109.970    1.76
+SUW         CX6         CX7         CX8     113.198    2.74
+SUW         CX6         CX7         HX7     108.382    1.50
+SUW         OX7         CX7         CX8     109.285    2.10
+SUW         OX7         CX7         HX7     107.882    1.57
+SUW         CX8         CX7         HX7     108.089    1.50
+SUW         CX7         OX7          HC     109.010    3.00
+SUW         CX7         CX8         OX8     109.285    2.10
+SUW         CX7         CX8         CX9     112.748    1.86
+SUW         CX7         CX8         HX8     109.350    1.50
+SUW         OX8         CX8         CX9     109.290    2.07
+SUW         OX8         CX8         HX8     108.183    1.96
+SUW         CX9         CX8         HX8     108.552    1.50
+SUW         CX8         OX8          HD     109.265    3.00
+SUW         CX8         CX9         NX6     111.308    2.28
+SUW         CX8         CX9        HX91     109.093    1.50
+SUW         CX8         CX9        HX92     109.093    1.50
+SUW         NX6         CX9        HX91     109.060    1.50
+SUW         NX6         CX9        HX92     109.060    1.50
+SUW        HX91         CX9        HX92     107.997    1.50
+SUW         CX9         NX6         C12     122.257    1.53
+SUW         CX9         NX6          HE     118.387    1.89
+SUW         C12         NX6          HE     119.356    1.77
+SUW         NX6         C12         O12     122.048    1.50
+SUW         NX6         C12         C26     116.752    1.50
+SUW         O12         C12         C26     121.200    1.50
+SUW         C26         C25         C2A     121.295    1.50
+SUW         C26         C25         H25     119.526    1.50
+SUW         C2A         C25         H25     119.179    1.50
+SUW         C12         C26         C25     119.477    2.01
+SUW         C12         C26         C27     120.974    2.35
+SUW         C25         C26         C27     119.550    1.50
+SUW         C26         C27         C28     120.601    1.50
+SUW         C26         C27         H27     119.682    1.50
+SUW         C28         C27         H27     119.717    1.50
+SUW         C27         C28         C2B     121.002    1.50
+SUW         C27         C28         H28     119.587    1.50
+SUW         C2B         C28         H28     119.411    1.50
+SUW         C28         C2B         C21     122.354    1.50
+SUW         C28         C2B         C2A     118.872    1.50
+SUW         C21         C2B         C2A     118.775    1.50
+SUW         C2B         C21         C22     120.911    1.50
+SUW         C2B         C21         H21     119.431    1.50
+SUW         C22         C21         H21     119.659    1.50
+SUW         C21         C22         C23     120.314    1.50
+SUW         C21         C22         H22     119.871    1.50
+SUW         C23         C22         H22     119.815    1.50
+SUW         C22         C23         C24     120.314    1.50
+SUW         C22         C23         H23     119.815    1.50
+SUW         C24         C23         H23     119.871    1.50
+SUW         C23         C24         C2A     120.911    1.50
+SUW         C23         C24         H24     119.659    1.50
+SUW         C2A         C24         H24     119.431    1.50
+SUW         C25         C2A         C2B     118.680    1.50
+SUW         C25         C2A         C24     122.545    1.50
+SUW         C2B         C2A         C24     118.775    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SUW             sp2_sp3_1         O1A         CX1         CX2         OX2       0.000    10.0     6
+SUW             sp2_sp2_3         O10         C10         NX5         CX5       0.000     5.0     2
+SUW            sp2_sp3_13         NX5         C10         C11        H111       0.000    10.0     6
+SUW            sp3_sp3_38         CX7         CX6         OX6         CX2     -60.000    10.0     3
+SUW            sp3_sp3_52         CX5         CX6         CX7         OX7     180.000    10.0     3
+SUW            sp3_sp3_62         CX8         CX7         OX7          HC      60.000    10.0     3
+SUW            sp3_sp3_67         OX7         CX7         CX8         OX8      60.000    10.0     3
+SUW            sp3_sp3_73         CX7         CX8         OX8          HD     180.000    10.0     3
+SUW            sp3_sp3_76         CX7         CX8         CX9         NX6     180.000    10.0     3
+SUW            sp2_sp3_20         C12         NX6         CX9         CX8     120.000    10.0     6
+SUW             sp2_sp2_7         O12         C12         NX6         CX9       0.000     5.0     2
+SUW             sp2_sp2_9         NX6         C12         C26         C25     180.000     5.0     2
+SUW              const_22         C2A         C25         C26         C12     180.000    10.0     2
+SUW              const_41         C26         C25         C2A         C2B       0.000    10.0     2
+SUW              const_27         C12         C26         C27         C28     180.000    10.0     2
+SUW              const_29         C26         C27         C28         C2B       0.000    10.0     2
+SUW              const_34         C27         C28         C2B         C21     180.000    10.0     2
+SUW       const_sp2_sp2_2         C22         C21         C2B         C28     180.000     5.0     2
+SUW              const_37         C25         C2A         C2B         C28       0.000    10.0     2
+SUW       const_sp2_sp2_5         C2B         C21         C22         C23       0.000     5.0     2
+SUW       const_sp2_sp2_9         C21         C22         C23         C24       0.000     5.0     2
+SUW              const_13         C22         C23         C24         C2A       0.000    10.0     2
+SUW              const_18         C23         C24         C2A         C25     180.000    10.0     2
+SUW            sp3_sp3_44         CX1         CX2         OX6         CX6      60.000    10.0     3
+SUW            sp3_sp3_40         CX1         CX2         OX2         CO2     180.000    10.0     3
+SUW             sp3_sp3_4         CX1         CX2         CX3         CX4     180.000    10.0     3
+SUW            sp3_sp3_46        HO21         CO2         OX2         CX2     180.000    10.0     3
+SUW            sp3_sp3_11         CX2         CX3         CX4         OX4      60.000    10.0     3
+SUW            sp3_sp3_49         CX3         CX4         OX4          HA     180.000    10.0     3
+SUW            sp3_sp3_23         OX4         CX4         CX5         NX5     -60.000    10.0     3
+SUW             sp2_sp3_7         C10         NX5         CX5         CX4       0.000    10.0     6
+SUW            sp3_sp3_32         NX5         CX5         CX6         CX7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SUW    chir_1    CX2    OX6    OX2    CX1    negative
+SUW    chir_2    CX4    OX4    CX5    CX3    positive
+SUW    chir_3    CX5    NX5    CX6    CX4    negative
+SUW    chir_4    CX6    OX6    CX7    CX5    negative
+SUW    chir_5    CX7    OX7    CX6    CX8    negative
+SUW    chir_6    CX8    OX8    CX7    CX9    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SUW    plan-1         C12   0.020
+SUW    plan-1         C21   0.020
+SUW    plan-1         C22   0.020
+SUW    plan-1         C23   0.020
+SUW    plan-1         C24   0.020
+SUW    plan-1         C25   0.020
+SUW    plan-1         C26   0.020
+SUW    plan-1         C27   0.020
+SUW    plan-1         C28   0.020
+SUW    plan-1         C2A   0.020
+SUW    plan-1         C2B   0.020
+SUW    plan-1         H21   0.020
+SUW    plan-1         H22   0.020
+SUW    plan-1         H23   0.020
+SUW    plan-1         H24   0.020
+SUW    plan-1         H25   0.020
+SUW    plan-1         H27   0.020
+SUW    plan-1         H28   0.020
+SUW    plan-2         CX1   0.020
+SUW    plan-2         CX2   0.020
+SUW    plan-2         O1A   0.020
+SUW    plan-2         O1B   0.020
+SUW    plan-3         C10   0.020
+SUW    plan-3         CX5   0.020
+SUW    plan-3          HB   0.020
+SUW    plan-3         NX5   0.020
+SUW    plan-4         C10   0.020
+SUW    plan-4         C11   0.020
+SUW    plan-4         NX5   0.020
+SUW    plan-4         O10   0.020
+SUW    plan-5         C12   0.020
+SUW    plan-5         CX9   0.020
+SUW    plan-5          HE   0.020
+SUW    plan-5         NX6   0.020
+SUW    plan-6         C12   0.020
+SUW    plan-6         C26   0.020
+SUW    plan-6         NX6   0.020
+SUW    plan-6         O12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SUW           SMILES              ACDLabs 10.04                                                                                                                                                           O=C(c2cc1ccccc1cc2)NCC(O)C(O)C3OC(OC)(C(=O)O)CC(O)C3NC(=O)C
+SUW SMILES_CANONICAL               CACTVS 3.341                                                                                                                               CO[C@@]1(C[C@H](O)[C@@H](NC(C)=O)[C@@H](O1)[C@H](O)[C@H](O)CNC(=O)c2ccc3ccccc3c2)C(O)=O
+SUW           SMILES               CACTVS 3.341                                                                                                                                        CO[C]1(C[CH](O)[CH](NC(C)=O)[CH](O1)[CH](O)[CH](O)CNC(=O)c2ccc3ccccc3c2)C(O)=O
+SUW SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                CC(=O)N[C@@H]1[C@H](C[C@@](O[C@H]1[C@@H]([C@@H](CNC(=O)c2ccc3ccccc3c2)O)O)(C(=O)O)OC)O
+SUW           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                           CC(=O)NC1C(CC(OC1C(C(CNC(=O)c2ccc3ccccc3c2)O)O)(C(=O)O)OC)O
+SUW            InChI                InChI  1.03 InChI=1S/C23H28N2O9/c1-12(26)25-18-16(27)10-23(33-2,22(31)32)34-20(18)19(29)17(28)11-24-21(30)15-8-7-13-5-3-4-6-14(13)9-15/h3-9,16-20,27-29H,10-11H2,1-2H3,(H,24,30)(H,25,26)(H,31,32)/t16-,17+,18+,19+,20+,23+/m0/s1
+SUW         InChIKey                InChI  1.03                                                                                                                                                                                           NCJJDBXUFQPTHE-GCIBVHORSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SUW acedrg               243         "dictionary generator"                  
+SUW acedrg_database      11          "data source"                           
+SUW rdkit                2017.03.2   "Chemoinformatics tool"
+SUW refmac5              5.8.0238    "optimization tool"                     

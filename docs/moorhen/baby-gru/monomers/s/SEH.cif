@@ -1,0 +1,222 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SEH     SEH      "S-BENZYL PHENYLACETOTHIOHYDROXIMATE-O-SULFATE"     NON-POLYMER     29     17     .     
+#
+data_comp_SEH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SEH     C1      C       CH2     0       47.346      119.793     51.600      
+SEH     S1      S       S2      0       47.783      119.171     49.957      
+SEH     C2      C       CH3     0       47.040      118.668     52.536      
+SEH     CB      C       CH2     0       46.077      120.844     48.501      
+SEH     CG      C       CR6     0       46.544      122.126     47.848      
+SEH     CD1     C       CR16    0       46.758      123.277     48.599      
+SEH     CD2     C       CR16    0       46.754      122.190     46.474      
+SEH     CE1     C       CR16    0       47.181      124.455     47.994      
+SEH     CE2     C       CR16    0       47.179      123.367     45.871      
+SEH     CZ      C       CR16    0       47.391      124.498     46.631      
+SEH     C13     C       C       0       47.060      119.690     48.419      
+SEH     N17     N       N       0       47.297      119.116     47.280      
+SEH     O18     O       O2      0       48.173      118.007     47.403      
+SEH     S19     S       S3      0       47.590      116.481     47.413      
+SEH     O20     O       O       0       47.415      116.103     46.030      
+SEH     O21     O       O       0       48.582      115.675     48.086      
+SEH     O22     O       OS      -1      46.339      116.530     48.134      
+SEH     H1C1    H       H       0       46.567      120.378     51.529      
+SEH     H1C2    H       H       0       48.091      120.318     51.953      
+SEH     H2C1    H       H       0       46.628      119.018     53.340      
+SEH     H2C2    H       H       0       47.861      118.208     52.768      
+SEH     H2C3    H       H       0       46.433      118.046     52.107      
+SEH     HBC1    H       H       0       45.243      120.568     48.076      
+SEH     HBC2    H       H       0       45.876      121.024     49.438      
+SEH     HD1     H       H       0       46.618      123.257     49.532      
+SEH     HD2     H       H       0       46.612      121.421     45.946      
+SEH     HE1     H       H       0       47.326      125.226     48.518      
+SEH     HE2     H       H       0       47.320      123.393     44.938      
+SEH     HZ      H       H       0       47.679      125.299     46.221      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SEH          C1          S1      SINGLE       n     1.809  0.0191     1.809  0.0191
+SEH          C1          C2      SINGLE       n     1.495  0.0200     1.495  0.0200
+SEH          S1         C13      SINGLE       n     1.762  0.0200     1.762  0.0200
+SEH          CB          CG      SINGLE       n     1.510  0.0100     1.510  0.0100
+SEH          CB         C13      SINGLE       n     1.509  0.0187     1.509  0.0187
+SEH          CG         CD1      DOUBLE       y     1.386  0.0100     1.386  0.0100
+SEH          CG         CD2      SINGLE       y     1.386  0.0100     1.386  0.0100
+SEH         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+SEH         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+SEH         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+SEH         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+SEH         C13         N17      DOUBLE       n     1.283  0.0200     1.283  0.0200
+SEH         N17         O18      SINGLE       n     1.417  0.0115     1.417  0.0115
+SEH         O18         S19      SINGLE       n     1.631  0.0200     1.631  0.0200
+SEH         S19         O20      DOUBLE       n     1.445  0.0158     1.445  0.0158
+SEH         S19         O21      DOUBLE       n     1.445  0.0158     1.445  0.0158
+SEH         S19         O22      SINGLE       n     1.445  0.0158     1.445  0.0158
+SEH          C1        H1C1      SINGLE       n     1.089  0.0100     0.977  0.0104
+SEH          C1        H1C2      SINGLE       n     1.089  0.0100     0.977  0.0104
+SEH          C2        H2C1      SINGLE       n     1.089  0.0100     0.969  0.0134
+SEH          C2        H2C2      SINGLE       n     1.089  0.0100     0.969  0.0134
+SEH          C2        H2C3      SINGLE       n     1.089  0.0100     0.969  0.0134
+SEH          CB        HBC1      SINGLE       n     1.089  0.0100     0.976  0.0140
+SEH          CB        HBC2      SINGLE       n     1.089  0.0100     0.976  0.0140
+SEH         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+SEH         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+SEH         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+SEH         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+SEH          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SEH          S1          C1          C2     112.239    3.00
+SEH          S1          C1        H1C1     109.066    1.50
+SEH          S1          C1        H1C2     109.066    1.50
+SEH          C2          C1        H1C1     109.420    1.50
+SEH          C2          C1        H1C2     109.420    1.50
+SEH        H1C1          C1        H1C2     108.153    1.50
+SEH          C1          S1         C13     120.000    3.00
+SEH          C1          C2        H2C1     109.476    1.50
+SEH          C1          C2        H2C2     109.476    1.50
+SEH          C1          C2        H2C3     109.476    1.50
+SEH        H2C1          C2        H2C2     109.451    1.50
+SEH        H2C1          C2        H2C3     109.451    1.50
+SEH        H2C2          C2        H2C3     109.451    1.50
+SEH          CG          CB         C13     113.302    2.95
+SEH          CG          CB        HBC1     108.957    1.50
+SEH          CG          CB        HBC2     108.957    1.50
+SEH         C13          CB        HBC1     108.890    1.50
+SEH         C13          CB        HBC2     108.890    1.50
+SEH        HBC1          CB        HBC2     107.685    1.56
+SEH          CB          CG         CD1     120.970    1.50
+SEH          CB          CG         CD2     120.970    1.50
+SEH         CD1          CG         CD2     118.060    1.50
+SEH          CG         CD1         CE1     120.624    1.50
+SEH          CG         CD1         HD1     119.591    1.50
+SEH         CE1         CD1         HD1     119.786    1.50
+SEH          CG         CD2         CE2     120.624    1.50
+SEH          CG         CD2         HD2     119.591    1.50
+SEH         CE2         CD2         HD2     119.786    1.50
+SEH         CD1         CE1          CZ     120.325    1.50
+SEH         CD1         CE1         HE1     119.792    1.50
+SEH          CZ         CE1         HE1     119.883    1.50
+SEH         CD2         CE2          CZ     120.325    1.50
+SEH         CD2         CE2         HE2     119.792    1.50
+SEH          CZ         CE2         HE2     119.883    1.50
+SEH         CE1          CZ         CE2     120.043    1.50
+SEH         CE1          CZ          HZ     119.979    1.50
+SEH         CE2          CZ          HZ     119.979    1.50
+SEH          S1         C13          CB     114.241    2.65
+SEH          S1         C13         N17     122.605    3.00
+SEH          CB         C13         N17     123.154    3.00
+SEH         C13         N17         O18     110.625    1.59
+SEH         N17         O18         S19     120.000    3.00
+SEH         O18         S19         O20     106.980    3.00
+SEH         O18         S19         O21     106.980    3.00
+SEH         O18         S19         O22     106.980    3.00
+SEH         O20         S19         O21     112.746    1.50
+SEH         O20         S19         O22     112.746    1.50
+SEH         O21         S19         O22     112.746    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SEH             sp3_sp3_1          C2          C1          S1         C13     180.000    10.0     3
+SEH             sp3_sp3_4          S1          C1          C2        H2C1     180.000    10.0     3
+SEH             sp2_sp2_3          S1         C13         N17         O18     180.000     5.0     2
+SEH             sp2_sp2_5         C13         N17         O18         S19     180.000     5.0     2
+SEH            sp3_sp3_13         O20         S19         O18         N17      90.000    10.0     3
+SEH             sp2_sp2_1          CB         C13          S1          C1     180.000     5.0     2
+SEH             sp2_sp3_8          S1         C13          CB          CG     120.000    10.0     6
+SEH             sp2_sp3_2         CD1          CG          CB         C13     -90.000    10.0     6
+SEH       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+SEH              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+SEH       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+SEH              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+SEH       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+SEH              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SEH    chir_1    S19    O20    O21    O18    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SEH    plan-1          CB   0.020
+SEH    plan-1         CD1   0.020
+SEH    plan-1         CD2   0.020
+SEH    plan-1         CE1   0.020
+SEH    plan-1         CE2   0.020
+SEH    plan-1          CG   0.020
+SEH    plan-1          CZ   0.020
+SEH    plan-1         HD1   0.020
+SEH    plan-1         HD2   0.020
+SEH    plan-1         HE1   0.020
+SEH    plan-1         HE2   0.020
+SEH    plan-1          HZ   0.020
+SEH    plan-2         C13   0.020
+SEH    plan-2          CB   0.020
+SEH    plan-2         N17   0.020
+SEH    plan-2          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SEH           SMILES              ACDLabs 10.04                                                                         O=S(=O)(O)O\N=C(/SCC)Cc1ccccc1
+SEH SMILES_CANONICAL               CACTVS 3.341                                                                       CCS\C(Cc1ccccc1)=N/O[S](O)(=O)=O
+SEH           SMILES               CACTVS 3.341                                                                         CCSC(Cc1ccccc1)=NO[S](O)(=O)=O
+SEH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        CCS/C(=N\OS(=O)(=O)O)/Cc1ccccc1
+SEH           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CCSC(=NOS(=O)(=O)O)Cc1ccccc1
+SEH            InChI                InChI  1.03 InChI=1S/C10H13NO4S2/c1-2-16-10(11-15-17(12,13)14)8-9-6-4-3-5-7-9/h3-7H,2,8H2,1H3,(H,12,13,14)/b11-10-
+SEH         InChIKey                InChI  1.03                                                                            VZFUNHITNWTQFU-KHPPLWFESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SEH acedrg               243         "dictionary generator"                  
+SEH acedrg_database      11          "data source"                           
+SEH rdkit                2017.03.2   "Chemoinformatics tool"
+SEH refmac5              5.8.0238    "optimization tool"                     

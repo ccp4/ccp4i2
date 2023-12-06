@@ -1,0 +1,279 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NLH     NLH      "(2R,5S)-5-amino-2-butyl-4,4-dihydroxynonanoic acid"     NON-POLYMER     45     18     .     
+#
+data_comp_NLH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NLH     OC      O       OC      -1      -4.583      1.741       -12.968     
+NLH     N       N       NT3     1       -5.676      -3.199      -16.710     
+NLH     CA      C       CH1     0       -4.567      -2.367      -16.132     
+NLH     CB      C       CH2     0       -3.475      -2.222      -17.195     
+NLH     CG      C       CH2     0       -2.902      -3.515      -17.757     
+NLH     CD      C       CH2     0       -2.234      -4.428      -16.752     
+NLH     CE      C       CH3     0       -1.065      -3.812      -16.017     
+NLH     CW      C       CT      0       -5.032      -1.008      -15.572     
+NLH     OA      O       OH1     0       -5.843      -0.404      -16.526     
+NLH     OB      O       OH1     0       -3.936      -0.189      -15.329     
+NLH     CZ      C       CH2     0       -5.797      -1.215      -14.247     
+NLH     CJ      C       CH1     0       -6.211      0.074       -13.496     
+NLH     CL      C       CH2     0       -7.457      -0.154      -12.622     
+NLH     CX      C       CH2     0       -8.048      1.102       -11.989     
+NLH     CV      C       CH2     0       -7.704      1.290       -10.528     
+NLH     CY      C       CH3     0       -8.484      0.401       -9.589      
+NLH     C       C       C       0       -5.060      0.634       -12.648     
+NLH     O       O       O       0       -4.654      -0.042      -11.681     
+NLH     HN      H       H       0       -6.439      -3.098      -16.236     
+NLH     HNA     H       H       0       -5.448      -4.076      -16.691     
+NLH     H1      H       H       0       -5.837      -2.955      -17.570     
+NLH     HA      H       H       0       -4.188      -2.888      -15.394     
+NLH     HB      H       H       0       -2.732      -1.706      -16.818     
+NLH     HBA     H       H       0       -3.842      -1.702      -17.942     
+NLH     HG      H       H       0       -2.243      -3.283      -18.446     
+NLH     HGA     H       H       0       -3.622      -4.012      -18.199     
+NLH     HD      H       H       0       -1.919      -5.230      -17.223     
+NLH     HDA     H       H       0       -2.903      -4.717      -16.095     
+NLH     HE      H       H       0       -0.602      -4.498      -15.506     
+NLH     HEA     H       H       0       -1.387      -3.121      -15.412     
+NLH     HEB     H       H       0       -0.449      -3.417      -16.659     
+NLH     HOA     H       H       0       -6.629      -0.725      -16.526     
+NLH     HOB     H       H       0       -3.404      -0.563      -14.781     
+NLH     HZ      H       H       0       -5.233      -1.759      -13.641     
+NLH     HZA     H       H       0       -6.615      -1.739      -14.434     
+NLH     HJ      H       H       0       -6.442      0.760       -14.171     
+NLH     HL      H       H       0       -7.226      -0.786      -11.910     
+NLH     HLA     H       H       0       -8.151      -0.572      -13.174     
+NLH     HX      H       H       0       -9.025      1.068       -12.078     
+NLH     HXA     H       H       0       -7.733      1.886       -12.488     
+NLH     HV      H       H       0       -7.870      2.227       -10.286     
+NLH     HVA     H       H       0       -6.747      1.116       -10.403     
+NLH     HY      H       H       0       -8.205      0.573       -8.672      
+NLH     HYA     H       H       0       -8.316      -0.532      -9.807      
+NLH     HYB     H       H       0       -9.434      0.588       -9.678      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NLH          OC           C      SINGLE       n     1.247  0.0187     1.247  0.0187
+NLH           N          CA      SINGLE       n     1.497  0.0100     1.497  0.0100
+NLH          CA          CB      SINGLE       n     1.524  0.0100     1.524  0.0100
+NLH          CA          CW      SINGLE       n     1.525  0.0139     1.525  0.0139
+NLH          CB          CG      SINGLE       n     1.509  0.0200     1.509  0.0200
+NLH          CG          CD      SINGLE       n     1.507  0.0200     1.507  0.0200
+NLH          CD          CE      SINGLE       n     1.510  0.0200     1.510  0.0200
+NLH          CW          OA      SINGLE       n     1.385  0.0185     1.385  0.0185
+NLH          CW          OB      SINGLE       n     1.385  0.0185     1.385  0.0185
+NLH          CW          CZ      SINGLE       n     1.537  0.0100     1.537  0.0100
+NLH          CZ          CJ      SINGLE       n     1.528  0.0200     1.528  0.0200
+NLH          CJ          CL      SINGLE       n     1.528  0.0200     1.528  0.0200
+NLH          CJ           C      SINGLE       n     1.533  0.0100     1.533  0.0100
+NLH          CL          CX      SINGLE       n     1.523  0.0116     1.523  0.0116
+NLH          CX          CV      SINGLE       n     1.507  0.0200     1.507  0.0200
+NLH          CV          CY      SINGLE       n     1.510  0.0200     1.510  0.0200
+NLH           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+NLH           N          HN      SINGLE       n     1.036  0.0160     0.907  0.0200
+NLH           N         HNA      SINGLE       n     1.036  0.0160     0.907  0.0200
+NLH           N          H1      SINGLE       n     1.036  0.0160     0.907  0.0200
+NLH          CA          HA      SINGLE       n     1.089  0.0100     0.982  0.0200
+NLH          CB          HB      SINGLE       n     1.089  0.0100     0.981  0.0160
+NLH          CB         HBA      SINGLE       n     1.089  0.0100     0.981  0.0160
+NLH          CG          HG      SINGLE       n     1.089  0.0100     0.981  0.0163
+NLH          CG         HGA      SINGLE       n     1.089  0.0100     0.981  0.0163
+NLH          CD          HD      SINGLE       n     1.089  0.0100     0.982  0.0155
+NLH          CD         HDA      SINGLE       n     1.089  0.0100     0.982  0.0155
+NLH          CE          HE      SINGLE       n     1.089  0.0100     0.973  0.0157
+NLH          CE         HEA      SINGLE       n     1.089  0.0100     0.973  0.0157
+NLH          CE         HEB      SINGLE       n     1.089  0.0100     0.973  0.0157
+NLH          OA         HOA      SINGLE       n     0.970  0.0120     0.848  0.0200
+NLH          OB         HOB      SINGLE       n     0.970  0.0120     0.848  0.0200
+NLH          CZ          HZ      SINGLE       n     1.089  0.0100     0.990  0.0100
+NLH          CZ         HZA      SINGLE       n     1.089  0.0100     0.990  0.0100
+NLH          CJ          HJ      SINGLE       n     1.089  0.0100     0.990  0.0142
+NLH          CL          HL      SINGLE       n     1.089  0.0100     0.980  0.0160
+NLH          CL         HLA      SINGLE       n     1.089  0.0100     0.980  0.0160
+NLH          CX          HX      SINGLE       n     1.089  0.0100     0.981  0.0163
+NLH          CX         HXA      SINGLE       n     1.089  0.0100     0.981  0.0163
+NLH          CV          HV      SINGLE       n     1.089  0.0100     0.982  0.0155
+NLH          CV         HVA      SINGLE       n     1.089  0.0100     0.982  0.0155
+NLH          CY          HY      SINGLE       n     1.089  0.0100     0.973  0.0157
+NLH          CY         HYA      SINGLE       n     1.089  0.0100     0.973  0.0157
+NLH          CY         HYB      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NLH          CA           N          HN     109.950    1.71
+NLH          CA           N         HNA     109.950    1.71
+NLH          CA           N          H1     109.950    1.71
+NLH          HN           N         HNA     109.028    2.41
+NLH          HN           N          H1     109.028    2.41
+NLH         HNA           N          H1     109.028    2.41
+NLH           N          CA          CB     108.954    1.50
+NLH           N          CA          CW     112.810    3.00
+NLH           N          CA          HA     108.026    2.07
+NLH          CB          CA          CW     111.094    2.85
+NLH          CB          CA          HA     108.119    1.50
+NLH          CW          CA          HA     109.155    1.50
+NLH          CA          CB          CG     114.945    1.70
+NLH          CA          CB          HB     108.660    1.50
+NLH          CA          CB         HBA     108.660    1.50
+NLH          CG          CB          HB     108.650    1.50
+NLH          CG          CB         HBA     108.650    1.50
+NLH          HB          CB         HBA     107.844    1.50
+NLH          CB          CG          CD     112.280    2.92
+NLH          CB          CG          HG     108.601    1.50
+NLH          CB          CG         HGA     108.601    1.50
+NLH          CD          CG          HG     108.653    1.50
+NLH          CD          CG         HGA     108.653    1.50
+NLH          HG          CG         HGA     107.646    1.50
+NLH          CG          CD          CE     113.719    3.00
+NLH          CG          CD          HD     108.758    1.50
+NLH          CG          CD         HDA     108.758    1.50
+NLH          CE          CD          HD     108.918    1.50
+NLH          CE          CD         HDA     108.918    1.50
+NLH          HD          CD         HDA     107.763    1.50
+NLH          CD          CE          HE     109.554    1.50
+NLH          CD          CE         HEA     109.554    1.50
+NLH          CD          CE         HEB     109.554    1.50
+NLH          HE          CE         HEA     109.380    1.50
+NLH          HE          CE         HEB     109.380    1.50
+NLH         HEA          CE         HEB     109.380    1.50
+NLH          CA          CW          OA     109.482    3.00
+NLH          CA          CW          OB     109.482    3.00
+NLH          CA          CW          CZ     111.094    2.85
+NLH          OA          CW          OB     113.458    2.75
+NLH          OA          CW          CZ     111.123    2.23
+NLH          OB          CW          CZ     111.123    2.23
+NLH          CW          OA         HOA     108.906    3.00
+NLH          CW          OB         HOB     108.906    3.00
+NLH          CW          CZ          CJ     111.094    2.85
+NLH          CW          CZ          HZ     108.725    1.50
+NLH          CW          CZ         HZA     108.725    1.50
+NLH          CJ          CZ          HZ     108.447    1.50
+NLH          CJ          CZ         HZA     108.447    1.50
+NLH          HZ          CZ         HZA     107.715    1.50
+NLH          CZ          CJ          CL     111.110    1.87
+NLH          CZ          CJ           C     110.778    2.06
+NLH          CZ          CJ          HJ     107.780    1.50
+NLH          CL          CJ           C     110.778    2.06
+NLH          CL          CJ          HJ     107.780    1.50
+NLH           C          CJ          HJ     107.706    1.93
+NLH          CJ          CL          CX     114.798    1.57
+NLH          CJ          CL          HL     108.447    1.50
+NLH          CJ          CL         HLA     108.447    1.50
+NLH          CX          CL          HL     108.469    1.50
+NLH          CX          CL         HLA     108.469    1.50
+NLH          HL          CL         HLA     107.657    1.50
+NLH          CL          CX          CV     112.909    2.09
+NLH          CL          CX          HX     108.762    1.50
+NLH          CL          CX         HXA     108.762    1.50
+NLH          CV          CX          HX     108.653    1.50
+NLH          CV          CX         HXA     108.653    1.50
+NLH          HX          CX         HXA     107.646    1.50
+NLH          CX          CV          CY     113.719    3.00
+NLH          CX          CV          HV     108.758    1.50
+NLH          CX          CV         HVA     108.758    1.50
+NLH          CY          CV          HV     108.918    1.50
+NLH          CY          CV         HVA     108.918    1.50
+NLH          HV          CV         HVA     107.763    1.50
+NLH          CV          CY          HY     109.554    1.50
+NLH          CV          CY         HYA     109.554    1.50
+NLH          CV          CY         HYB     109.554    1.50
+NLH          HY          CY         HYA     109.380    1.50
+NLH          HY          CY         HYB     109.380    1.50
+NLH         HYA          CY         HYB     109.380    1.50
+NLH          OC           C          CJ     118.051    1.50
+NLH          OC           C           O     123.899    1.50
+NLH          CJ           C           O     118.051    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NLH            sp3_sp3_70          CL          CJ          CZ          CW     180.000    10.0     3
+NLH            sp3_sp3_79          CZ          CJ          CL          CX     180.000    10.0     3
+NLH             sp2_sp3_1          OC           C          CJ          CZ       0.000    10.0     6
+NLH            sp3_sp3_88          CJ          CL          CX          CV     180.000    10.0     3
+NLH            sp3_sp3_97          CY          CV          CX          CL     180.000    10.0     3
+NLH           sp3_sp3_106          CX          CV          CY          HY     180.000    10.0     3
+NLH             sp3_sp3_1          CB          CA           N          HN     180.000    10.0     3
+NLH            sp3_sp3_10           N          CA          CB          CG     180.000    10.0     3
+NLH            sp3_sp3_20           N          CA          CW          OA     -60.000    10.0     3
+NLH            sp3_sp3_28          CA          CB          CG          CD     180.000    10.0     3
+NLH            sp3_sp3_37          CE          CD          CG          CB     180.000    10.0     3
+NLH            sp3_sp3_46          CG          CD          CE          HE     180.000    10.0     3
+NLH            sp3_sp3_67          CA          CW          CZ          CJ     -60.000    10.0     3
+NLH            sp3_sp3_55          CA          CW          OA         HOA     180.000    10.0     3
+NLH            sp3_sp3_59          CA          CW          OB         HOB      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NLH    chir_1    CA    N    CW    CB    positive
+NLH    chir_2    CW    OA    OB    CA    both
+NLH    chir_3    CJ    C    CZ    CL    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NLH    plan-1           C   0.020
+NLH    plan-1          CJ   0.020
+NLH    plan-1           O   0.020
+NLH    plan-1          OC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NLH           SMILES              ACDLabs 10.04                                                                                          O=C(O)C(CCCC)CC(O)(O)C(N)CCCC
+NLH SMILES_CANONICAL               CACTVS 3.341                                                                                 CCCC[C@H](N)C(O)(O)C[C@@H](CCCC)C(O)=O
+NLH           SMILES               CACTVS 3.341                                                                                    CCCC[CH](N)C(O)(O)C[CH](CCCC)C(O)=O
+NLH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  CCCC[C@H](CC([C@H](CCCC)N)(O)O)C(=O)O
+NLH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                          CCCCC(CC(C(CCCC)N)(O)O)C(=O)O
+NLH            InChI                InChI  1.03 InChI=1S/C13H27NO4/c1-3-5-7-10(12(15)16)9-13(17,18)11(14)8-6-4-2/h10-11,17-18H,3-9,14H2,1-2H3,(H,15,16)/t10-,11+/m1/s1
+NLH         InChIKey                InChI  1.03                                                                                            XSBUNABCRFGTDE-MNOVXSKESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NLH acedrg               243         "dictionary generator"                  
+NLH acedrg_database      11          "data source"                           
+NLH rdkit                2017.03.2   "Chemoinformatics tool"
+NLH refmac5              5.8.0238    "optimization tool"                     

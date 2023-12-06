@@ -1,0 +1,134 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ETX     ETX      2-ETHOXYETHANOL     NON-POLYMER     16     6     .     
+#
+data_comp_ETX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ETX     C2      C       CH2     0       71.721      16.979      15.144      
+ETX     O2      O       O2      0       70.343      16.663      15.322      
+ETX     C3      C       CH2     0       69.548      16.847      14.154      
+ETX     C4      C       CH3     0       69.005      18.213      14.122      
+ETX     O1      O       OH1     0       73.831      17.033      16.322      
+ETX     C1      C       CH2     0       72.428      16.919      16.461      
+ETX     H21     H       H       0       71.810      17.879      14.762      
+ETX     H22     H       H       0       72.129      16.339      14.521      
+ETX     H31     H       H       0       68.811      16.199      14.162      
+ETX     H32     H       H       0       70.090      16.684      13.352      
+ETX     H41     H       H       0       68.506      18.343      13.299      
+ETX     H42     H       H       0       69.733      18.853      14.161      
+ETX     H43     H       H       0       68.416      18.346      14.882      
+ETX     HO1     H       H       0       74.022      17.804      16.031      
+ETX     H11     H       H       0       72.219      16.069      16.901      
+ETX     H12     H       H       0       72.104      17.645      17.034      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ETX          C2          O2      SINGLE       n     1.423  0.0106     1.423  0.0106
+ETX          C2          C1      SINGLE       n     1.496  0.0200     1.496  0.0200
+ETX          O2          C3      SINGLE       n     1.422  0.0115     1.422  0.0115
+ETX          C3          C4      SINGLE       n     1.469  0.0200     1.469  0.0200
+ETX          O1          C1      SINGLE       n     1.414  0.0200     1.414  0.0200
+ETX          C2         H21      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETX          C2         H22      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETX          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0174
+ETX          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0174
+ETX          C4         H41      SINGLE       n     1.089  0.0100     0.971  0.0156
+ETX          C4         H42      SINGLE       n     1.089  0.0100     0.971  0.0156
+ETX          C4         H43      SINGLE       n     1.089  0.0100     0.971  0.0156
+ETX          O1         HO1      SINGLE       n     0.970  0.0120     0.846  0.0200
+ETX          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0144
+ETX          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0144
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ETX          O2          C2          C1     109.904    1.68
+ETX          O2          C2         H21     109.691    1.50
+ETX          O2          C2         H22     109.691    1.50
+ETX          C1          C2         H21     109.795    1.50
+ETX          C1          C2         H22     109.795    1.50
+ETX         H21          C2         H22     108.274    1.50
+ETX          C2          O2          C3     112.948    1.50
+ETX          O2          C3          C4     110.435    3.00
+ETX          O2          C3         H31     109.448    1.50
+ETX          O2          C3         H32     109.448    1.50
+ETX          C4          C3         H31     110.009    1.50
+ETX          C4          C3         H32     110.009    1.50
+ETX         H31          C3         H32     108.453    1.50
+ETX          C3          C4         H41     109.517    1.50
+ETX          C3          C4         H42     109.517    1.50
+ETX          C3          C4         H43     109.517    1.50
+ETX         H41          C4         H42     109.410    1.50
+ETX         H41          C4         H43     109.410    1.50
+ETX         H42          C4         H43     109.410    1.50
+ETX          C1          O1         HO1     109.347    1.86
+ETX          C2          C1          O1     112.284    1.56
+ETX          C2          C1         H11     109.198    1.50
+ETX          C2          C1         H12     109.198    1.50
+ETX          O1          C1         H11     109.012    1.50
+ETX          O1          C1         H12     109.012    1.50
+ETX         H11          C1         H12     108.093    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ETX             sp3_sp3_1          C1          C2          O2          C3     180.000    10.0     3
+ETX             sp3_sp3_4          O1          C1          C2          O2     180.000    10.0     3
+ETX            sp3_sp3_13          C4          C3          O2          C2     180.000    10.0     3
+ETX            sp3_sp3_16          O2          C3          C4         H41     180.000    10.0     3
+ETX            sp3_sp3_25          C2          C1          O1         HO1     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ETX           SMILES              ACDLabs 10.04                                      OCCOCC
+ETX SMILES_CANONICAL               CACTVS 3.341                                      CCOCCO
+ETX           SMILES               CACTVS 3.341                                      CCOCCO
+ETX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                      CCOCCO
+ETX           SMILES "OpenEye OEToolkits" 1.5.0                                      CCOCCO
+ETX            InChI                InChI  1.03 InChI=1S/C4H10O2/c1-2-6-4-3-5/h5H,2-4H2,1H3
+ETX         InChIKey                InChI  1.03                 ZNQVEEAIQZEUHB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ETX acedrg               243         "dictionary generator"                  
+ETX acedrg_database      11          "data source"                           
+ETX rdkit                2017.03.2   "Chemoinformatics tool"
+ETX refmac5              5.8.0238    "optimization tool"                     

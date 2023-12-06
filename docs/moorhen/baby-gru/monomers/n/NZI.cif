@@ -1,0 +1,298 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NZI     NZI      "[(2~{R},3~{S},5~{R})-3-oxidanyl-5-(2-oxidanylidene-3~{H}-benzimidazol-1-yl)oxolan-2-yl]methyl [oxidanyl(phosphonooxy)phosphoryl] hydrogen phosphate"     NON-POLYMER     43     30     .     
+#
+data_comp_NZI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NZI     N       N       NT      0       19.317      -19.309     -6.944      
+NZI     C       C       CH1     0       18.756      -20.680     -10.342     
+NZI     O       O       OH1     0       19.268      -21.997     -10.537     
+NZI     C1      C       CH2     0       18.261      -20.477     -8.913      
+NZI     C10     C       CR16    0       18.499      -15.371     -5.925      
+NZI     C11     C       CR16    0       18.630      -16.379     -4.978      
+NZI     C2      C       CH1     0       19.534      -20.068     -8.191      
+NZI     C3      C       CH1     0       19.859      -19.627     -10.471     
+NZI     C4      C       CH2     0       19.442      -18.379     -11.212     
+NZI     C5      C       CR5     0       19.335      -19.860     -5.664      
+NZI     C6      C       CR56    0       18.902      -17.652     -5.448      
+NZI     C7      C       CR56    0       19.039      -17.923     -6.814      
+NZI     C8      C       CR16    0       18.906      -16.911     -7.753      
+NZI     C9      C       CR16    0       18.635      -15.631     -7.281      
+NZI     N1      N       NR5     0       19.087      -18.850     -4.779      
+NZI     O1      O       O2      0       20.265      -19.277     -9.128      
+NZI     O10     O       OP      -1      19.307      -12.915     -13.334     
+NZI     O11     O       OP      -1      17.024      -11.903     -13.603     
+NZI     O12     O       O       0       19.545      -21.052     -5.412      
+NZI     O2      O       O2      0       20.506      -17.394     -11.156     
+NZI     O3      O       OP      -1      21.568      -15.183     -11.766     
+NZI     O4      O       O       0       19.917      -16.303     -13.364     
+NZI     O5      O       O2      0       19.130      -15.325     -11.169     
+NZI     O6      O       OP      -1      16.900      -15.222     -10.017     
+NZI     O7      O       O       0       17.120      -16.290     -12.353     
+NZI     O8      O       O2      0       17.376      -13.806     -12.031     
+NZI     O9      O       O       0       17.491      -14.204     -14.496     
+NZI     P       P       P       0       20.343      -16.015     -11.962     
+NZI     P1      P       P       0       17.541      -15.252     -11.365     
+NZI     P2      P       P       0       17.825      -13.172     -13.447     
+NZI     H       H       H       0       18.029      -20.499     -10.987     
+NZI     H3      H       H       0       19.944      -22.127     -10.039     
+NZI     H4      H       H       0       17.584      -19.774     -8.868      
+NZI     H5      H       H       0       17.893      -21.304     -8.544      
+NZI     H15     H       H       0       18.314      -14.494     -5.640      
+NZI     H16     H       H       0       18.538      -16.202     -4.059      
+NZI     H1      H       H       0       20.060      -20.878     -7.988      
+NZI     H2      H       H       0       20.630      -20.022     -10.944     
+NZI     H7      H       H       0       18.622      -18.013     -10.804     
+NZI     H6      H       H       0       19.246      -18.607     -12.154     
+NZI     H13     H       H       0       18.996      -17.078     -8.668      
+NZI     H14     H       H       0       18.540      -14.926     -7.896      
+NZI     H12     H       H       0       19.050      -18.956     -3.890      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NZI           N          C2      SINGLE       n     1.458  0.0200     1.458  0.0200
+NZI           N          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+NZI           N          C7      SINGLE       y     1.404  0.0199     1.404  0.0199
+NZI           C           O      SINGLE       n     1.424  0.0100     1.424  0.0100
+NZI           C          C1      SINGLE       n     1.526  0.0101     1.526  0.0101
+NZI           C          C3      SINGLE       n     1.526  0.0115     1.526  0.0115
+NZI          C1          C2      SINGLE       n     1.523  0.0111     1.523  0.0111
+NZI         C10         C11      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NZI         C10          C9      SINGLE       y     1.385  0.0100     1.385  0.0100
+NZI         C11          C6      SINGLE       y     1.380  0.0100     1.380  0.0100
+NZI          C2          O1      SINGLE       n     1.427  0.0105     1.427  0.0105
+NZI          C3          C4      SINGLE       n     1.509  0.0100     1.509  0.0100
+NZI          C3          O1      SINGLE       n     1.442  0.0100     1.442  0.0100
+NZI          C4          O2      SINGLE       n     1.450  0.0166     1.450  0.0166
+NZI          C5          N1      SINGLE       y     1.365  0.0100     1.365  0.0100
+NZI          C5         O12      DOUBLE       n     1.235  0.0131     1.235  0.0131
+NZI          C6          C7      DOUBLE       y     1.397  0.0100     1.397  0.0100
+NZI          C6          N1      SINGLE       y     1.386  0.0100     1.386  0.0100
+NZI          C7          C8      SINGLE       y     1.381  0.0100     1.381  0.0100
+NZI          C8          C9      DOUBLE       y     1.388  0.0100     1.388  0.0100
+NZI         O10          P2      SINGLE       n     1.509  0.0200     1.509  0.0200
+NZI         O11          P2      SINGLE       n     1.509  0.0200     1.509  0.0200
+NZI          O2           P      SINGLE       n     1.604  0.0133     1.604  0.0133
+NZI          O3           P      SINGLE       n     1.493  0.0122     1.493  0.0122
+NZI          O4           P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+NZI          O5           P      SINGLE       n     1.604  0.0133     1.604  0.0133
+NZI          O5          P1      SINGLE       n     1.601  0.0114     1.601  0.0114
+NZI          O6          P1      SINGLE       n     1.493  0.0157     1.493  0.0157
+NZI          O7          P1      DOUBLE       n     1.493  0.0157     1.493  0.0157
+NZI          O8          P1      SINGLE       n     1.601  0.0114     1.601  0.0114
+NZI          O8          P2      SINGLE       n     1.614  0.0178     1.614  0.0178
+NZI          O9          P2      DOUBLE       n     1.509  0.0200     1.509  0.0200
+NZI           C           H      SINGLE       n     1.089  0.0100     0.988  0.0189
+NZI           O          H3      SINGLE       n     0.970  0.0120     0.849  0.0200
+NZI          C1          H4      SINGLE       n     1.089  0.0100     0.977  0.0113
+NZI          C1          H5      SINGLE       n     1.089  0.0100     0.977  0.0113
+NZI         C10         H15      SINGLE       n     1.082  0.0130     0.941  0.0181
+NZI         C11         H16      SINGLE       n     1.082  0.0130     0.941  0.0200
+NZI          C2          H1      SINGLE       n     1.089  0.0100     0.987  0.0122
+NZI          C3          H2      SINGLE       n     1.089  0.0100     0.987  0.0170
+NZI          C4          H7      SINGLE       n     1.089  0.0100     0.989  0.0200
+NZI          C4          H6      SINGLE       n     1.089  0.0100     0.989  0.0200
+NZI          C8         H13      SINGLE       n     1.082  0.0130     0.936  0.0137
+NZI          C9         H14      SINGLE       n     1.082  0.0130     0.941  0.0181
+NZI          N1         H12      SINGLE       n     1.016  0.0100     0.896  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NZI          C2           N          C5     126.078    2.46
+NZI          C2           N          C7     125.158    1.54
+NZI          C5           N          C7     107.594    1.50
+NZI           O           C          C1     111.424    1.96
+NZI           O           C          C3     110.527    2.37
+NZI           O           C           H     110.713    1.50
+NZI          C1           C          C3     102.433    1.50
+NZI          C1           C           H     110.846    1.50
+NZI          C3           C           H     110.775    1.50
+NZI           C           O          H3     109.026    2.38
+NZI           C          C1          C2     102.663    1.50
+NZI           C          C1          H4     111.194    1.50
+NZI           C          C1          H5     111.194    1.50
+NZI          C2          C1          H4     111.213    1.50
+NZI          C2          C1          H5     111.213    1.50
+NZI          H4          C1          H5     109.148    1.50
+NZI         C11         C10          C9     121.799    1.50
+NZI         C11         C10         H15     119.046    1.50
+NZI          C9         C10         H15     119.155    1.50
+NZI         C10         C11          C6     116.885    1.50
+NZI         C10         C11         H16     121.488    1.50
+NZI          C6         C11         H16     121.628    1.50
+NZI           N          C2          C1     113.752    2.20
+NZI           N          C2          O1     108.167    1.51
+NZI           N          C2          H1     109.246    1.50
+NZI          C1          C2          O1     106.035    1.50
+NZI          C1          C2          H1     109.272    1.50
+NZI          O1          C2          H1     109.059    1.50
+NZI           C          C3          C4     114.866    1.63
+NZI           C          C3          O1     105.506    1.50
+NZI           C          C3          H2     109.069    1.50
+NZI          C4          C3          O1     109.123    1.50
+NZI          C4          C3          H2     108.268    1.50
+NZI          O1          C3          H2     108.947    1.50
+NZI          C3          C4          O2     109.342    1.50
+NZI          C3          C4          H7     109.624    1.50
+NZI          C3          C4          H6     109.624    1.50
+NZI          O2          C4          H7     109.845    1.50
+NZI          O2          C4          H6     109.845    1.50
+NZI          H7          C4          H6     108.472    1.50
+NZI           N          C5          N1     106.566    1.50
+NZI           N          C5         O12     125.067    1.81
+NZI          N1          C5         O12     128.367    1.50
+NZI         C11          C6          C7     121.436    1.50
+NZI         C11          C6          N1     131.231    1.50
+NZI          C7          C6          N1     107.333    1.50
+NZI           N          C7          C6     108.454    1.69
+NZI           N          C7          C8     130.597    1.52
+NZI          C6          C7          C8     120.949    1.50
+NZI          C7          C8          C9     117.133    1.50
+NZI          C7          C8         H13     121.477    1.50
+NZI          C9          C8         H13     121.390    1.50
+NZI         C10          C9          C8     121.799    1.50
+NZI         C10          C9         H14     119.155    1.50
+NZI          C8          C9         H14     119.046    1.50
+NZI          C5          N1          C6     110.211    1.50
+NZI          C5          N1         H12     124.440    1.50
+NZI          C6          N1         H12     125.349    1.53
+NZI          C2          O1          C3     108.795    1.50
+NZI          C4          O2           P     118.553    2.41
+NZI           P          O5          P1     132.542    3.00
+NZI          P1          O8          P2     132.584    3.00
+NZI          O2           P          O3     109.410    1.50
+NZI          O2           P          O4     109.410    1.50
+NZI          O2           P          O5     101.065    1.97
+NZI          O3           P          O4     118.411    2.35
+NZI          O3           P          O5     108.816    2.14
+NZI          O4           P          O5     108.816    2.14
+NZI          O5          P1          O6     108.678    2.29
+NZI          O5          P1          O7     108.678    2.29
+NZI          O5          P1          O8     100.890    2.10
+NZI          O6          P1          O7     119.630    1.50
+NZI          O6          P1          O8     108.678    2.29
+NZI          O7          P1          O8     108.678    2.29
+NZI         O10          P2         O11     112.716    1.50
+NZI         O10          P2          O8     105.965    2.38
+NZI         O10          P2          O9     112.716    1.50
+NZI         O11          P2          O8     105.965    2.38
+NZI         O11          P2          O9     112.716    1.50
+NZI          O8          P2          O9     105.965    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NZI              const_34          C6          C7           N          C2     180.000    10.0     2
+NZI             sp2_sp3_1          C5           N          C2          C1     150.000    10.0     6
+NZI              const_24         O12          C5           N          C2       0.000    10.0     2
+NZI              const_10         C11          C6          C7           N     180.000    10.0     2
+NZI              const_31         C11          C6          N1          C5     180.000    10.0     2
+NZI              const_15           N          C7          C8          C9     180.000    10.0     2
+NZI              const_17          C7          C8          C9         C10       0.000    10.0     2
+NZI            sp3_sp3_50          C4          O2           P          O3     -60.000    10.0     3
+NZI            sp3_sp3_25          C1           C           O          H3     180.000    10.0     3
+NZI             sp3_sp3_4           O           C          C1          C2     -60.000    10.0     3
+NZI            sp3_sp3_32           O           C          C3          C4     180.000    10.0     3
+NZI            sp3_sp3_53          P1          O5           P          O2     -60.000    10.0     3
+NZI            sp3_sp3_55           P          O5          P1          O6     180.000    10.0     3
+NZI            sp3_sp3_58          P2          O8          P1          O5     180.000    10.0     3
+NZI            sp3_sp3_62          P1          O8          P2         O10     -60.000    10.0     3
+NZI            sp3_sp3_11           C          C1          C2           N      60.000    10.0     3
+NZI              const_37         C11         C10          C9          C8       0.000    10.0     2
+NZI       const_sp2_sp2_1          C9         C10         C11          C6       0.000     5.0     2
+NZI       const_sp2_sp2_5         C10         C11          C6          C7       0.000     5.0     2
+NZI            sp3_sp3_20           N          C2          O1          C3     -60.000    10.0     3
+NZI            sp3_sp3_23          C4          C3          O1          C2     180.000    10.0     3
+NZI            sp3_sp3_37           C          C3          C4          O2     180.000    10.0     3
+NZI            sp3_sp3_46          C3          C4          O2           P     180.000    10.0     3
+NZI              const_27         O12          C5          N1          C6     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NZI    chir_1    C    O    C3    C1    positive
+NZI    chir_2    C2    O1    N    C1    negative
+NZI    chir_3    C3    O1    C    C4    negative
+NZI    chir_4    P    O5    O2    O3    both
+NZI    chir_5    P1    O5    O8    O6    both
+NZI    chir_6    P2    O8    O10    O11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NZI    plan-1         C10   0.020
+NZI    plan-1         C11   0.020
+NZI    plan-1          C2   0.020
+NZI    plan-1          C5   0.020
+NZI    plan-1          C6   0.020
+NZI    plan-1          C7   0.020
+NZI    plan-1          C8   0.020
+NZI    plan-1          C9   0.020
+NZI    plan-1         H12   0.020
+NZI    plan-1         H13   0.020
+NZI    plan-1         H14   0.020
+NZI    plan-1         H15   0.020
+NZI    plan-1         H16   0.020
+NZI    plan-1           N   0.020
+NZI    plan-1          N1   0.020
+NZI    plan-1         O12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NZI            InChI                InChI  1.03 InChI=1S/C12H17N2O13P3/c15-9-5-11(14-8-4-2-1-3-7(8)13-12(14)16)25-10(9)6-24-29(20,21)27-30(22,23)26-28(17,18)19/h1-4,9-11,15H,5-6H2,(H,13,16)(H,20,21)(H,22,23)(H2,17,18,19)/t9-,10+,11+/m0/s1
+NZI         InChIKey                InChI  1.03                                                                                                                                                                    OMCWLYQAPHJDBD-HBNTYKKESA-N
+NZI SMILES_CANONICAL               CACTVS 3.385                                                                                                                   O[C@H]1C[C@@H](O[C@@H]1CO[P](O)(=O)O[P](O)(=O)O[P](O)(O)=O)N2C(=O)Nc3ccccc23
+NZI           SMILES               CACTVS 3.385                                                                                                                        O[CH]1C[CH](O[CH]1CO[P](O)(=O)O[P](O)(=O)O[P](O)(O)=O)N2C(=O)Nc3ccccc23
+NZI SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                      c1ccc2c(c1)NC(=O)N2[C@H]3C[C@@H]([C@H](O3)COP(=O)(O)OP(=O)(O)OP(=O)(O)O)O
+NZI           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                   c1ccc2c(c1)NC(=O)N2C3CC(C(O3)COP(=O)(O)OP(=O)(O)OP(=O)(O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NZI acedrg               243         "dictionary generator"                  
+NZI acedrg_database      11          "data source"                           
+NZI rdkit                2017.03.2   "Chemoinformatics tool"
+NZI refmac5              5.8.0238    "optimization tool"                     

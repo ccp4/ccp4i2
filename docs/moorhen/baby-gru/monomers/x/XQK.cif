@@ -1,0 +1,202 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XQK     XQK      "METHYL 5-ISOXAZOL-5-YL-3-METHYL-1H-PYRAZOLE-4-CARBOXYLATE"     NON-POLYMER     24     15     .     
+#
+data_comp_XQK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XQK     C1      C       CR15    0       6.383       9.711       21.840      
+XQK     C4      C       CR5     0       6.694       11.255      23.388      
+XQK     C5      C       CR15    0       5.995       10.976      22.268      
+XQK     C6      C       CR5     0       6.770       12.362      24.308      
+XQK     C9      C       CR5     0       6.369       14.087      25.654      
+XQK     C10     C       CR5     0       5.736       13.174      24.798      
+XQK     C11     C       C       0       4.305       13.065      24.468      
+XQK     C13     C       CH3     0       2.347       14.392      24.199      
+XQK     C15     C       CH3     0       5.779       15.198      26.464      
+XQK     O14     O       O       0       3.683       12.033      24.491      
+XQK     O12     O       O2      0       3.785       14.249      24.125      
+XQK     N8      N       NRD5    0       7.679       13.861      25.690      
+XQK     N7      N       NR5     0       7.918       12.809      24.868      
+XQK     NAF     N       NRD5    0       7.275       9.223       22.645      
+XQK     O3      O       O2      0       7.493       10.196      23.650      
+XQK     H1      H       H       0       6.052       9.266       21.077      
+XQK     H5      H       H       0       5.361       11.540      21.857      
+XQK     H131    H       H       0       2.037       14.115      25.077      
+XQK     H132    H       H       0       1.932       13.838      23.519      
+XQK     H133    H       H       0       2.108       15.320      24.050      
+XQK     H151    H       H       0       6.290       15.312      27.281      
+XQK     H152    H       H       0       4.860       14.985      26.689      
+XQK     H153    H       H       0       5.802       16.022      25.953      
+XQK     H7      H       H       0       8.740       12.485      24.741      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XQK          C1          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+XQK          C1         NAF      DOUBLE       y     1.294  0.0100     1.294  0.0100
+XQK          C4          C5      DOUBLE       y     1.353  0.0115     1.353  0.0115
+XQK          C4          C6      SINGLE       n     1.442  0.0198     1.442  0.0198
+XQK          C4          O3      SINGLE       y     1.354  0.0100     1.354  0.0100
+XQK          C6         C10      DOUBLE       y     1.411  0.0200     1.411  0.0200
+XQK          C6          N7      SINGLE       y     1.352  0.0100     1.352  0.0100
+XQK          C9         C10      SINGLE       y     1.405  0.0134     1.405  0.0134
+XQK          C9         C15      SINGLE       n     1.496  0.0100     1.496  0.0100
+XQK          C9          N8      DOUBLE       y     1.329  0.0100     1.329  0.0100
+XQK         C10         C11      SINGLE       n     1.472  0.0113     1.472  0.0113
+XQK         C11         O14      DOUBLE       n     1.204  0.0100     1.204  0.0100
+XQK         C11         O12      SINGLE       n     1.334  0.0113     1.334  0.0113
+XQK         C13         O12      SINGLE       n     1.445  0.0100     1.445  0.0100
+XQK          N8          N7      SINGLE       y     1.354  0.0100     1.354  0.0100
+XQK         NAF          O3      SINGLE       y     1.414  0.0100     1.414  0.0100
+XQK          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0171
+XQK          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0154
+XQK         C13        H131      SINGLE       n     1.089  0.0100     0.970  0.0175
+XQK         C13        H132      SINGLE       n     1.089  0.0100     0.970  0.0175
+XQK         C13        H133      SINGLE       n     1.089  0.0100     0.970  0.0175
+XQK         C15        H151      SINGLE       n     1.089  0.0100     0.970  0.0153
+XQK         C15        H152      SINGLE       n     1.089  0.0100     0.970  0.0153
+XQK         C15        H153      SINGLE       n     1.089  0.0100     0.970  0.0153
+XQK          N7          H7      SINGLE       n     1.016  0.0100     0.893  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XQK          C5          C1         NAF     108.872    2.56
+XQK          C5          C1          H1     126.243    2.10
+XQK         NAF          C1          H1     124.885    1.50
+XQK          C5          C4          C6     134.923    2.73
+XQK          C5          C4          O3     108.864    1.50
+XQK          C6          C4          O3     116.213    1.70
+XQK          C1          C5          C4     107.924    2.27
+XQK          C1          C5          H5     126.436    1.50
+XQK          C4          C5          H5     125.640    1.50
+XQK          C4          C6         C10     129.093    3.00
+XQK          C4          C6          N7     124.015    3.00
+XQK         C10          C6          N7     106.892    1.50
+XQK         C10          C9         C15     129.467    1.50
+XQK         C10          C9          N8     110.473    1.50
+XQK         C15          C9          N8     120.060    1.50
+XQK          C6         C10          C9     106.957    3.00
+XQK          C6         C10         C11     126.155    3.00
+XQK          C9         C10         C11     126.888    3.00
+XQK         C10         C11         O14     124.586    1.50
+XQK         C10         C11         O12     111.906    1.50
+XQK         O14         C11         O12     123.508    1.50
+XQK         O12         C13        H131     109.345    1.50
+XQK         O12         C13        H132     109.345    1.50
+XQK         O12         C13        H133     109.345    1.50
+XQK        H131         C13        H132     109.532    1.53
+XQK        H131         C13        H133     109.532    1.53
+XQK        H132         C13        H133     109.532    1.53
+XQK          C9         C15        H151     109.638    1.50
+XQK          C9         C15        H152     109.638    1.50
+XQK          C9         C15        H153     109.638    1.50
+XQK        H151         C15        H152     109.354    1.50
+XQK        H151         C15        H153     109.354    1.50
+XQK        H152         C15        H153     109.354    1.50
+XQK         C11         O12         C13     115.897    1.50
+XQK          C9          N8          N7     105.630    1.50
+XQK          C6          N7          N8     110.047    1.50
+XQK          C6          N7          H7     127.494    3.00
+XQK          N8          N7          H7     122.459    3.00
+XQK          C1         NAF          O3     105.769    1.50
+XQK          C4          O3         NAF     108.572    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XQK              const_24          C5          C1         NAF          O3       0.000    10.0     2
+XQK              const_13         NAF          C1          C5          C4       0.000    10.0     2
+XQK              const_11          C6          N7          N8          C9       0.000    10.0     2
+XQK              const_23          C1         NAF          O3          C4       0.000    10.0     2
+XQK              const_21          C5          C4          O3         NAF       0.000    10.0     2
+XQK              const_19          C6          C4          C5          C1     180.000    10.0     2
+XQK             sp2_sp2_1          C5          C4          C6         C10     180.000     5.0     2
+XQK              const_28          C4          C6          N7          N8     180.000    10.0     2
+XQK       const_sp2_sp2_4         C11         C10          C6          C4       0.000     5.0     2
+XQK              const_10         C15          C9          N8          N7     180.000    10.0     2
+XQK       const_sp2_sp2_8         C11         C10          C9         C15       0.000     5.0     2
+XQK             sp2_sp3_1         C10          C9         C15        H151     150.000    10.0     6
+XQK             sp2_sp2_6          C6         C10         C11         O14       0.000     5.0     2
+XQK            sp2_sp2_10         O14         C11         O12         C13       0.000     5.0     2
+XQK             sp3_sp3_2        H131         C13         O12         C11     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XQK    plan-1          C1   0.020
+XQK    plan-1          C4   0.020
+XQK    plan-1          C5   0.020
+XQK    plan-1          C6   0.020
+XQK    plan-1          H1   0.020
+XQK    plan-1          H5   0.020
+XQK    plan-1         NAF   0.020
+XQK    plan-1          O3   0.020
+XQK    plan-2         C10   0.020
+XQK    plan-2         C11   0.020
+XQK    plan-2         C15   0.020
+XQK    plan-2          C4   0.020
+XQK    plan-2          C6   0.020
+XQK    plan-2          C9   0.020
+XQK    plan-2          H7   0.020
+XQK    plan-2          N7   0.020
+XQK    plan-2          N8   0.020
+XQK    plan-3         C10   0.020
+XQK    plan-3         C11   0.020
+XQK    plan-3         O12   0.020
+XQK    plan-3         O14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XQK           SMILES              ACDLabs 12.01                                                         O=C(OC)c2c(nnc2c1oncc1)C
+XQK SMILES_CANONICAL               CACTVS 3.370                                                      COC(=O)c1c(C)n[nH]c1c2oncc2
+XQK           SMILES               CACTVS 3.370                                                      COC(=O)c1c(C)n[nH]c1c2oncc2
+XQK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                    Cc1c(c([nH]n1)c2ccno2)C(=O)OC
+XQK           SMILES "OpenEye OEToolkits" 1.7.0                                                    Cc1c(c([nH]n1)c2ccno2)C(=O)OC
+XQK            InChI                InChI  1.03 InChI=1S/C9H9N3O3/c1-5-7(9(13)14-2)8(12-11-5)6-3-4-10-15-6/h3-4H,1-2H3,(H,11,12)
+XQK         InChIKey                InChI  1.03                                                      ATKIWUMRVKGZOO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XQK acedrg               243         "dictionary generator"                  
+XQK acedrg_database      11          "data source"                           
+XQK rdkit                2017.03.2   "Chemoinformatics tool"
+XQK refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,210 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ADM     ADM      ADAMANTANE     NON-POLYMER     26     10     .     
+#
+data_comp_ADM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ADM     C1      C       CH1     0       46.245      44.931      14.961      
+ADM     C2      C       CH2     0       44.891      44.339      14.547      
+ADM     C3      C       CH1     0       45.071      43.478      13.289      
+ADM     C4      C       CH2     0       45.619      44.347      12.149      
+ADM     C5      C       CH1     0       46.973      44.940      12.562      
+ADM     C6      C       CH2     0       47.960      43.802      12.858      
+ADM     C7      C       CH1     0       47.413      42.932      13.998      
+ADM     C8      C       CH2     0       47.232      43.793      15.256      
+ADM     C9      C       CH2     0       46.793      45.800      13.820      
+ADM     C10     C       CH2     0       46.058      42.340      13.585      
+ADM     H1      H       H       0       46.128      45.485      15.771      
+ADM     H21     H       H       0       44.531      43.788      15.278      
+ADM     H22     H       H       0       44.251      45.064      14.365      
+ADM     H3      H       H       0       44.198      43.096      13.022      
+ADM     H41     H       H       0       45.728      43.802      11.337      
+ADM     H42     H       H       0       44.985      45.073      11.949      
+ADM     H5      H       H       0       47.326      45.500      11.827      
+ADM     H61     H       H       0       48.833      44.176      13.114      
+ADM     H62     H       H       0       48.086      43.252      12.051      
+ADM     H7      H       H       0       48.049      42.199      14.188      
+ADM     H81     H       H       0       48.099      44.168      15.530      
+ADM     H82     H       H       0       46.889      43.238      15.993      
+ADM     H91     H       H       0       47.657      46.189      14.084      
+ADM     H92     H       H       0       46.168      46.536      13.633      
+ADM     H101    H       H       0       46.170      41.780      12.784      
+ADM     H102    H       H       0       45.707      41.775      14.309      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ADM          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C1          C8      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C1          C9      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C2          C3      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C3          C4      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C3         C10      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C4          C5      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C5          C6      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C5          C9      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C6          C7      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C7          C8      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C7         C10      SINGLE       n     1.532  0.0100     1.532  0.0100
+ADM          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0143
+ADM          C2         H21      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C2         H22      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0143
+ADM          C4         H41      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C4         H42      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C5          H5      SINGLE       n     1.089  0.0100     0.989  0.0143
+ADM          C6         H61      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C6         H62      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C7          H7      SINGLE       n     1.089  0.0100     0.989  0.0143
+ADM          C8         H81      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C8         H82      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C9         H91      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM          C9         H92      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM         C10        H101      SINGLE       n     1.089  0.0100     0.984  0.0144
+ADM         C10        H102      SINGLE       n     1.089  0.0100     0.984  0.0144
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ADM          C2          C1          C8     109.627    1.50
+ADM          C2          C1          C9     109.627    1.50
+ADM          C2          C1          H1     109.490    1.50
+ADM          C8          C1          C9     109.627    1.50
+ADM          C8          C1          H1     109.490    1.50
+ADM          C9          C1          H1     109.490    1.50
+ADM          C1          C2          C3     109.494    1.50
+ADM          C1          C2         H21     109.767    1.50
+ADM          C1          C2         H22     109.767    1.50
+ADM          C3          C2         H21     109.767    1.50
+ADM          C3          C2         H22     109.767    1.50
+ADM         H21          C2         H22     108.211    1.50
+ADM          C2          C3          C4     109.627    1.50
+ADM          C2          C3         C10     109.627    1.50
+ADM          C2          C3          H3     109.490    1.50
+ADM          C4          C3         C10     109.627    1.50
+ADM          C4          C3          H3     109.490    1.50
+ADM         C10          C3          H3     109.490    1.50
+ADM          C3          C4          C5     109.494    1.50
+ADM          C3          C4         H41     109.767    1.50
+ADM          C3          C4         H42     109.767    1.50
+ADM          C5          C4         H41     109.767    1.50
+ADM          C5          C4         H42     109.767    1.50
+ADM         H41          C4         H42     108.211    1.50
+ADM          C4          C5          C6     109.627    1.50
+ADM          C4          C5          C9     109.627    1.50
+ADM          C4          C5          H5     109.490    1.50
+ADM          C6          C5          C9     109.627    1.50
+ADM          C6          C5          H5     109.490    1.50
+ADM          C9          C5          H5     109.490    1.50
+ADM          C5          C6          C7     109.494    1.50
+ADM          C5          C6         H61     109.767    1.50
+ADM          C5          C6         H62     109.767    1.50
+ADM          C7          C6         H61     109.767    1.50
+ADM          C7          C6         H62     109.767    1.50
+ADM         H61          C6         H62     108.211    1.50
+ADM          C6          C7          C8     109.627    1.50
+ADM          C6          C7         C10     109.627    1.50
+ADM          C6          C7          H7     109.490    1.50
+ADM          C8          C7         C10     109.627    1.50
+ADM          C8          C7          H7     109.490    1.50
+ADM         C10          C7          H7     109.490    1.50
+ADM          C1          C8          C7     109.494    1.50
+ADM          C1          C8         H81     109.767    1.50
+ADM          C1          C8         H82     109.767    1.50
+ADM          C7          C8         H81     109.767    1.50
+ADM          C7          C8         H82     109.767    1.50
+ADM         H81          C8         H82     108.211    1.50
+ADM          C1          C9          C5     109.494    1.50
+ADM          C1          C9         H91     109.767    1.50
+ADM          C1          C9         H92     109.767    1.50
+ADM          C5          C9         H91     109.767    1.50
+ADM          C5          C9         H92     109.767    1.50
+ADM         H91          C9         H92     108.211    1.50
+ADM          C3         C10          C7     109.494    1.50
+ADM          C3         C10        H101     109.767    1.50
+ADM          C3         C10        H102     109.767    1.50
+ADM          C7         C10        H101     109.767    1.50
+ADM          C7         C10        H102     109.767    1.50
+ADM        H101         C10        H102     108.211    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ADM             sp3_sp3_1          C8          C1          C2          C3      60.000    10.0     3
+ADM            sp3_sp3_91          C2          C1          C8          C7      60.000    10.0     3
+ADM           sp3_sp3_100          C2          C1          C9          C5     180.000    10.0     3
+ADM            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+ADM            sp3_sp3_46          C2          C3          C4          C5      60.000    10.0     3
+ADM            sp3_sp3_19          C7         C10          C3          C2      60.000    10.0     3
+ADM            sp3_sp3_55          C3          C4          C5          C6     -60.000    10.0     3
+ADM            sp3_sp3_64          C4          C5          C6          C7      60.000    10.0     3
+ADM            sp3_sp3_82          C4          C5          C9          C1      60.000    10.0     3
+ADM            sp3_sp3_73          C5          C6          C7          C8     -60.000    10.0     3
+ADM            sp3_sp3_37          C6          C7          C8          C1      60.000    10.0     3
+ADM            sp3_sp3_28          C3         C10          C7          C6     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ADM    chir_1    C1    C2    C8    C9    both
+ADM    chir_2    C3    C2    C4    C10    both
+ADM    chir_3    C5    C4    C6    C9    both
+ADM    chir_4    C7    C6    C8    C10    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ADM           SMILES              ACDLabs 10.04                                                     C1C2CC3CC1CC(C2)C3
+ADM SMILES_CANONICAL               CACTVS 3.341                                                     C1C2CC3CC1CC(C2)C3
+ADM           SMILES               CACTVS 3.341                                                     C1C2CC3CC1CC(C2)C3
+ADM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                     C1C2CC3CC1CC(C2)C3
+ADM           SMILES "OpenEye OEToolkits" 1.5.0                                                     C1C2CC3CC1CC(C2)C3
+ADM            InChI                InChI  1.03 InChI=1S/C10H16/c1-7-2-9-4-8(1)5-10(3-7)6-9/h7-10H,1-6H2/t7-,8+,9-,10+
+ADM         InChIKey                InChI  1.03                                            ORILYTVJVMAKLC-YNFQOJQRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ADM acedrg               243         "dictionary generator"                  
+ADM acedrg_database      11          "data source"                           
+ADM rdkit                2017.03.2   "Chemoinformatics tool"
+ADM refmac5              5.8.0238    "optimization tool"                     

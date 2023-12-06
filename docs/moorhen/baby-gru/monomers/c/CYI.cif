@@ -1,0 +1,162 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CYI     CYI      "CYCLOHEXYL ISOCYANIDE"     NON-POLYMER     19     8     .     
+#
+data_comp_CYI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CYI     C1      C       CH2     0       106.997     24.600      19.929      
+CYI     C2      C       CH2     0       108.278     24.398      19.139      
+CYI     C3      C       CH2     0       108.926     23.051      19.457      
+CYI     C4      C       CH1     0       107.961     21.896      19.234      
+CYI     C5      C       CH2     0       106.684     22.103      20.033      
+CYI     C6      C       CH2     0       106.031     23.448      19.716      
+CYI     N       N       NSP     1       108.598     20.643      19.652      
+CYI     C       C       C       -1      109.211     19.483      19.988      
+CYI     H11     H       H       0       107.212     24.672      20.884      
+CYI     H12     H       H       0       106.571     25.438      19.650      
+CYI     H21     H       H       0       108.077     24.443      18.178      
+CYI     H22     H       H       0       108.908     25.120      19.351      
+CYI     H31     H       H       0       109.224     23.046      20.392      
+CYI     H32     H       H       0       109.715     22.927      18.887      
+CYI     H4      H       H       0       107.737     21.841      18.269      
+CYI     H51     H       H       0       106.892     22.060      20.991      
+CYI     H52     H       H       0       106.054     21.379      19.828      
+CYI     H61     H       H       0       105.725     23.449      18.783      
+CYI     H62     H       H       0       105.245     23.571      20.293      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CYI          C1          C2      SINGLE       n     1.517  0.0100     1.517  0.0100
+CYI          C1          C6      SINGLE       n     1.517  0.0100     1.517  0.0100
+CYI          C2          C3      SINGLE       n     1.527  0.0100     1.527  0.0100
+CYI          C3          C4      SINGLE       n     1.519  0.0120     1.519  0.0120
+CYI          C4          C5      SINGLE       n     1.519  0.0120     1.519  0.0120
+CYI          C4           N      SINGLE       n     1.467  0.0161     1.467  0.0161
+CYI          C5          C6      SINGLE       n     1.527  0.0100     1.527  0.0100
+CYI           N           C      TRIPLE       n     1.349  0.0200     1.349  0.0200
+CYI          C1         H11      SINGLE       n     1.089  0.0100     0.981  0.0138
+CYI          C1         H12      SINGLE       n     1.089  0.0100     0.981  0.0138
+CYI          C2         H21      SINGLE       n     1.089  0.0100     0.982  0.0136
+CYI          C2         H22      SINGLE       n     1.089  0.0100     0.982  0.0136
+CYI          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0166
+CYI          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0166
+CYI          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0124
+CYI          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0166
+CYI          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0166
+CYI          C6         H61      SINGLE       n     1.089  0.0100     0.982  0.0136
+CYI          C6         H62      SINGLE       n     1.089  0.0100     0.982  0.0136
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CYI          C2          C1          C6     111.038    1.50
+CYI          C2          C1         H11     109.386    1.50
+CYI          C2          C1         H12     109.386    1.50
+CYI          C6          C1         H11     109.386    1.50
+CYI          C6          C1         H12     109.386    1.50
+CYI         H11          C1         H12     108.036    1.50
+CYI          C1          C2          C3     111.328    1.50
+CYI          C1          C2         H21     109.386    1.50
+CYI          C1          C2         H22     109.386    1.50
+CYI          C3          C2         H21     109.340    1.50
+CYI          C3          C2         H22     109.340    1.50
+CYI         H21          C2         H22     108.036    1.50
+CYI          C2          C3          C4     111.546    1.50
+CYI          C2          C3         H31     109.472    1.50
+CYI          C2          C3         H32     109.472    1.50
+CYI          C4          C3         H31     109.275    1.50
+CYI          C4          C3         H32     109.275    1.50
+CYI         H31          C3         H32     108.076    1.50
+CYI          C3          C4          C5     110.317    1.50
+CYI          C3          C4           N     109.374    1.91
+CYI          C3          C4          H4     109.174    1.50
+CYI          C5          C4           N     109.374    1.91
+CYI          C5          C4          H4     109.174    1.50
+CYI           N          C4          H4     109.136    1.53
+CYI          C4          C5          C6     111.546    1.50
+CYI          C4          C5         H51     109.275    1.50
+CYI          C4          C5         H52     109.275    1.50
+CYI          C6          C5         H51     109.472    1.50
+CYI          C6          C5         H52     109.472    1.50
+CYI         H51          C5         H52     108.076    1.50
+CYI          C1          C6          C5     111.328    1.50
+CYI          C1          C6         H61     109.386    1.50
+CYI          C1          C6         H62     109.386    1.50
+CYI          C5          C6         H61     109.340    1.50
+CYI          C5          C6         H62     109.340    1.50
+CYI         H61          C6         H62     108.036    1.50
+CYI          C4           N           C     180.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CYI             sp3_sp3_1          C6          C1          C2          C3      60.000    10.0     3
+CYI            sp3_sp3_46          C2          C1          C6          C5     180.000    10.0     3
+CYI            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+CYI            sp3_sp3_21          C2          C3          C4           N     -60.000    10.0     3
+CYI            sp3_sp3_31           N          C4          C5          C6     180.000    10.0     3
+CYI            sp3_sp3_37          C4          C5          C6          C1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CYI    chir_1    C4    N    C3    C5    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CYI           SMILES              ACDLabs 10.04                          isocyanocyclohexane
+CYI SMILES_CANONICAL               CACTVS 3.341                          "[C-]#[N+]C1CCCCC1"
+CYI           SMILES               CACTVS 3.341                          "[C-]#[N+]C1CCCCC1"
+CYI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                          "[C-]#[N+]C1CCCCC1"
+CYI           SMILES "OpenEye OEToolkits" 1.5.0                          "[C-]#[N+]C1CCCCC1"
+CYI            InChI                InChI  1.03 InChI=1S/C7H11N/c1-8-7-5-3-2-4-6-7/h7H,2-6H2
+CYI         InChIKey                InChI  1.03                  XYZMOVWWVXBHDP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CYI acedrg               243         "dictionary generator"                  
+CYI acedrg_database      11          "data source"                           
+CYI rdkit                2017.03.2   "Chemoinformatics tool"
+CYI refmac5              5.8.0238    "optimization tool"                     

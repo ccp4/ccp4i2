@@ -1,0 +1,149 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+23W     23W      "methyl 2-(hydroxymethyl)prop-2-enoate"     NON-POLYMER     16     8     .     
+#
+data_comp_23W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+23W     CAB     C       CH3     0       -42.875     -16.929     129.957     
+23W     OAF     O       O2      0       -42.067     -15.774     129.613     
+23W     CAH     C       C       0       -41.788     -14.892     130.590     
+23W     OAC     O       O       0       -42.193     -15.013     131.736     
+23W     CAG     C       C       0       -40.929     -13.740     130.166     
+23W     CAA     C       C2      0       -40.480     -13.643     128.914     
+23W     CAE     C       CH2     0       -40.563     -12.672     131.167     
+23W     OAD     O       OH1     0       -39.448     -13.078     131.934     
+23W     H1      H       H       0       -43.741     -16.635     130.281     
+23W     H2      H       H       0       -42.427     -17.445     130.647     
+23W     H3      H       H       0       -42.996     -17.482     129.169     
+23W     H4      H       H       0       -40.699     -14.298     128.268     
+23W     H5      H       H       0       -39.931     -12.911     128.664     
+23W     H6      H       H       0       -41.324     -12.498     131.766     
+23W     H7      H       H       0       -40.350     -11.831     130.703     
+23W     H8      H       H       0       -39.245     -12.465     132.483     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+23W         CAG         CAA      DOUBLE       n     1.317  0.0200     1.317  0.0200
+23W         CAB         OAF      SINGLE       n     1.447  0.0130     1.447  0.0130
+23W         OAF         CAH      SINGLE       n     1.332  0.0165     1.332  0.0165
+23W         CAH         CAG      SINGLE       n     1.491  0.0100     1.491  0.0100
+23W         CAG         CAE      SINGLE       n     1.507  0.0100     1.507  0.0100
+23W         CAH         OAC      DOUBLE       n     1.216  0.0164     1.216  0.0164
+23W         CAE         OAD      SINGLE       n     1.413  0.0200     1.413  0.0200
+23W         CAB          H1      SINGLE       n     1.089  0.0100     0.970  0.0175
+23W         CAB          H2      SINGLE       n     1.089  0.0100     0.970  0.0175
+23W         CAB          H3      SINGLE       n     1.089  0.0100     0.970  0.0175
+23W         CAA          H4      SINGLE       n     1.082  0.0130     0.948  0.0200
+23W         CAA          H5      SINGLE       n     1.082  0.0130     0.948  0.0200
+23W         CAE          H6      SINGLE       n     1.089  0.0100     0.984  0.0119
+23W         CAE          H7      SINGLE       n     1.089  0.0100     0.984  0.0119
+23W         OAD          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+23W         OAF         CAB          H1     109.367    1.50
+23W         OAF         CAB          H2     109.367    1.50
+23W         OAF         CAB          H3     109.367    1.50
+23W          H1         CAB          H2     109.532    1.53
+23W          H1         CAB          H3     109.532    1.53
+23W          H2         CAB          H3     109.532    1.53
+23W         CAB         OAF         CAH     115.802    1.50
+23W         OAF         CAH         CAG     113.141    1.92
+23W         OAF         CAH         OAC     123.243    1.50
+23W         CAG         CAH         OAC     123.615    1.67
+23W         CAA         CAG         CAH     117.628    1.88
+23W         CAA         CAG         CAE     121.186    3.00
+23W         CAH         CAG         CAE     121.186    3.00
+23W         CAG         CAA          H4     120.111    1.50
+23W         CAG         CAA          H5     120.111    1.50
+23W          H4         CAA          H5     119.778    1.57
+23W         CAG         CAE         OAD     110.427    2.31
+23W         CAG         CAE          H6     109.862    1.50
+23W         CAG         CAE          H7     109.862    1.50
+23W         OAD         CAE          H6     109.361    1.50
+23W         OAD         CAE          H7     109.361    1.50
+23W          H6         CAE          H7     107.740    1.50
+23W         CAE         OAD          H8     109.406    2.02
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+23W             sp3_sp3_2          H1         CAB         OAF         CAH     -60.000    10.0     3
+23W             sp2_sp2_5         CAG         CAH         OAF         CAB     180.000     5.0     2
+23W             sp2_sp2_9         CAA         CAG         CAH         OAF       0.000     5.0     2
+23W             sp2_sp2_2          H4         CAA         CAG         CAH       0.000     5.0     2
+23W             sp2_sp3_2         CAA         CAG         CAE         OAD     120.000    10.0     6
+23W             sp3_sp3_5         CAG         CAE         OAD          H8     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+23W    plan-1         CAG   0.020
+23W    plan-1         CAH   0.020
+23W    plan-1         OAC   0.020
+23W    plan-1         OAF   0.020
+23W    plan-2         CAA   0.020
+23W    plan-2         CAE   0.020
+23W    plan-2         CAG   0.020
+23W    plan-2         CAH   0.020
+23W    plan-3         CAA   0.020
+23W    plan-3         CAG   0.020
+23W    plan-3          H4   0.020
+23W    plan-3          H5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+23W           SMILES              ACDLabs 12.01                                O=C(OC)/C(=C)CO
+23W            InChI                InChI  1.03 InChI=1S/C5H8O3/c1-4(3-6)5(7)8-2/h6H,1,3H2,2H3
+23W         InChIKey                InChI  1.03                    RFUCOAQWQVDBEU-UHFFFAOYSA-N
+23W SMILES_CANONICAL               CACTVS 3.385                                 COC(=O)C(=C)CO
+23W           SMILES               CACTVS 3.385                                 COC(=O)C(=C)CO
+23W SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                 COC(=O)C(=C)CO
+23W           SMILES "OpenEye OEToolkits" 1.7.6                                 COC(=O)C(=C)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+23W acedrg               243         "dictionary generator"                  
+23W acedrg_database      11          "data source"                           
+23W rdkit                2017.03.2   "Chemoinformatics tool"
+23W refmac5              5.8.0238    "optimization tool"                     

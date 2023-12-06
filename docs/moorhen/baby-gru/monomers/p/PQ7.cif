@@ -1,0 +1,489 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PQ7     PQ7      4-(dimethylamino)-1-{4-[4-(4-{[4-(pyrrolidin-1-yl)pyridinium-1-yl]methyl}phenyl)butyl]benzyl}pyridinium     NON-POLYMER     80     38     .     
+#
+data_comp_PQ7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PQ7     CAA     C       CH2     0       10.342      -18.369     3.411       
+PQ7     NAB     N       NR6     1       10.296      -18.164     4.873       
+PQ7     CAC     C       CR16    0       9.101       -17.980     5.519       
+PQ7     CAD     C       CR16    0       9.041       -17.774     6.888       
+PQ7     CAE     C       CR6     0       10.218      -17.740     7.669       
+PQ7     CAF     C       CR16    0       11.435      -17.924     6.978       
+PQ7     CAG     C       CR16    0       11.452      -18.126     5.608       
+PQ7     NAH     N       N       0       10.181      -17.540     9.026       
+PQ7     NAI     N       NR6     1       16.115      -23.737     4.936       
+PQ7     CAJ     C       CR16    0       15.847      -24.433     6.084       
+PQ7     CAK     C       CR16    0       14.998      -23.927     7.054       
+PQ7     CAL     C       CR6     0       14.337      -22.686     6.867       
+PQ7     CAM     C       CR16    0       14.594      -22.018     5.644       
+PQ7     CAN     C       CR16    0       15.453      -22.560     4.709       
+PQ7     NAO     N       NR5     0       13.469      -22.165     7.800       
+PQ7     CAP     C       CH2     0       12.812      -20.870     7.662       
+PQ7     CAQ     C       CH2     0       11.918      -20.759     8.879       
+PQ7     CAR     C       CH3     0       11.069      -16.591     9.670       
+PQ7     CAS     C       CH3     0       9.256       -18.273     9.869       
+PQ7     CAT     C       CH2     0       13.038      -22.856     9.010       
+PQ7     CAU     C       CH2     0       11.749      -22.158     9.381       
+PQ7     CAV     C       CH2     0       16.949      -24.315     3.867       
+PQ7     CAW     C       CR6     0       16.000      -24.807     2.797       
+PQ7     CAX     C       CR16    0       15.175      -25.894     3.055       
+PQ7     CAY     C       CR16    0       14.238      -26.307     2.121       
+PQ7     CAZ     C       CR6     0       14.076      -25.625     0.923       
+PQ7     CBA     C       CR16    0       14.862      -24.501     0.696       
+PQ7     CBB     C       CR16    0       15.800      -24.083     1.629       
+PQ7     CBC     C       CH2     0       13.029      -26.058     -0.075      
+PQ7     CBD     C       CH2     0       11.598      -25.785     0.407       
+PQ7     CBE     C       CH2     0       11.269      -24.297     0.542       
+PQ7     CBF     C       CH2     0       10.370      -23.977     1.742       
+PQ7     CBG     C       CR6     0       10.363      -22.526     2.169       
+PQ7     CBH     C       CR16    0       9.353       -21.661     1.764       
+PQ7     CBI     C       CR16    0       9.344       -20.330     2.160       
+PQ7     CBJ     C       CR6     0       10.343      -19.826     2.987       
+PQ7     CBK     C       CR16    0       11.357      -20.688     3.391       
+PQ7     CBL     C       CR16    0       11.361      -22.017     2.992       
+PQ7     HAA     H       H       0       11.151      -17.941     3.062       
+PQ7     HAAA    H       H       0       9.572       -17.919     3.006       
+PQ7     HAC     H       H       0       8.304       -17.999     5.017       
+PQ7     HAD     H       H       0       8.205       -17.657     7.301       
+PQ7     HAF     H       H       0       12.246      -17.912     7.452       
+PQ7     HAG     H       H       0       12.276      -18.248     5.166       
+PQ7     HAJ     H       H       0       16.279      -25.259     6.229       
+PQ7     HAK     H       H       0       14.866      -24.424     7.851       
+PQ7     HAM     H       H       0       14.181      -21.184     5.458       
+PQ7     HAN     H       H       0       15.610      -22.100     3.901       
+PQ7     HAP     H       H       0       13.474      -20.143     7.645       
+PQ7     HAPA    H       H       0       12.280      -20.834     6.835       
+PQ7     HAQ     H       H       0       11.051      -20.374     8.636       
+PQ7     HAQA    H       H       0       12.332      -20.194     9.562       
+PQ7     HAR     H       H       0       11.299      -15.880     9.048       
+PQ7     HARA    H       H       0       11.880      -17.044     9.952       
+PQ7     HARB    H       H       0       10.630      -16.206     10.446      
+PQ7     HAS     H       H       0       9.658       -18.427     10.740      
+PQ7     HASA    H       H       0       9.043       -19.129     9.459       
+PQ7     HASB    H       H       0       8.440       -17.759     9.979       
+PQ7     HAT     H       H       0       13.709      -22.766     9.725       
+PQ7     HATA    H       H       0       12.876      -23.811     8.839       
+PQ7     HAU     H       H       0       10.983      -22.592     8.953       
+PQ7     HAUA    H       H       0       11.616      -22.166     10.351      
+PQ7     HAV     H       H       0       17.484      -25.057     4.215       
+PQ7     HAVA    H       H       0       17.547      -23.631     3.501       
+PQ7     HAX     H       H       0       15.274      -26.375     3.859       
+PQ7     HAY     H       H       0       13.709      -27.066     2.298       
+PQ7     HBA     H       H       0       14.761      -24.020     -0.107      
+PQ7     HBB     H       H       0       16.328      -23.323     1.452       
+PQ7     HBC     H       H       0       13.128      -27.019     -0.244      
+PQ7     HBCA    H       H       0       13.175      -25.585     -0.922      
+PQ7     HBD     H       H       0       11.473      -26.229     1.271       
+PQ7     HBDA    H       H       0       10.973      -26.194     -0.227      
+PQ7     HBE     H       H       0       10.816      -23.996     -0.273      
+PQ7     HBEA    H       H       0       12.095      -23.779     0.626       
+PQ7     HBF     H       H       0       10.658      -24.521     2.505       
+PQ7     HBFA    H       H       0       9.452       -24.242     1.520       
+PQ7     HBH     H       H       0       8.664       -21.984     1.209       
+PQ7     HBI     H       H       0       8.649       -19.765     1.869       
+PQ7     HBK     H       H       0       12.048      -20.368     3.946       
+PQ7     HBL     H       H       0       12.054      -22.586     3.281       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PQ7         CAA         NAB      SINGLE       n     1.475  0.0100     1.475  0.0100
+PQ7         CAA         CBJ      SINGLE       n     1.515  0.0100     1.515  0.0100
+PQ7         NAB         CAC      DOUBLE       y     1.367  0.0113     1.367  0.0113
+PQ7         NAB         CAG      SINGLE       y     1.367  0.0113     1.367  0.0113
+PQ7         CAC         CAD      SINGLE       y     1.380  0.0128     1.380  0.0128
+PQ7         CAD         CAE      DOUBLE       y     1.407  0.0100     1.407  0.0100
+PQ7         CAE         CAF      SINGLE       y     1.407  0.0100     1.407  0.0100
+PQ7         CAE         NAH      SINGLE       n     1.367  0.0113     1.367  0.0113
+PQ7         CAF         CAG      DOUBLE       y     1.380  0.0128     1.380  0.0128
+PQ7         NAH         CAR      SINGLE       n     1.447  0.0119     1.447  0.0119
+PQ7         NAH         CAS      SINGLE       n     1.447  0.0119     1.447  0.0119
+PQ7         NAI         CAJ      DOUBLE       y     1.367  0.0113     1.367  0.0113
+PQ7         NAI         CAN      SINGLE       y     1.367  0.0113     1.367  0.0113
+PQ7         NAI         CAV      SINGLE       n     1.475  0.0100     1.475  0.0100
+PQ7         CAJ         CAK      SINGLE       y     1.380  0.0129     1.380  0.0129
+PQ7         CAK         CAL      DOUBLE       y     1.410  0.0100     1.410  0.0100
+PQ7         CAL         CAM      SINGLE       y     1.410  0.0100     1.410  0.0100
+PQ7         CAL         NAO      SINGLE       n     1.367  0.0100     1.367  0.0100
+PQ7         CAM         CAN      DOUBLE       y     1.380  0.0129     1.380  0.0129
+PQ7         NAO         CAP      SINGLE       n     1.456  0.0100     1.456  0.0100
+PQ7         NAO         CAT      SINGLE       n     1.456  0.0100     1.456  0.0100
+PQ7         CAP         CAQ      SINGLE       n     1.514  0.0135     1.514  0.0135
+PQ7         CAQ         CAU      SINGLE       n     1.500  0.0200     1.500  0.0200
+PQ7         CAT         CAU      SINGLE       n     1.514  0.0135     1.514  0.0135
+PQ7         CAV         CAW      SINGLE       n     1.515  0.0100     1.515  0.0100
+PQ7         CAW         CAX      DOUBLE       y     1.387  0.0100     1.387  0.0100
+PQ7         CAW         CBB      SINGLE       y     1.387  0.0100     1.387  0.0100
+PQ7         CAX         CAY      SINGLE       y     1.384  0.0100     1.384  0.0100
+PQ7         CAY         CAZ      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PQ7         CAZ         CBA      SINGLE       y     1.385  0.0110     1.385  0.0110
+PQ7         CAZ         CBC      SINGLE       n     1.510  0.0100     1.510  0.0100
+PQ7         CBA         CBB      DOUBLE       y     1.384  0.0100     1.384  0.0100
+PQ7         CBC         CBD      SINGLE       n     1.519  0.0200     1.519  0.0200
+PQ7         CBD         CBE      SINGLE       n     1.524  0.0100     1.524  0.0100
+PQ7         CBE         CBF      SINGLE       n     1.519  0.0200     1.519  0.0200
+PQ7         CBF         CBG      SINGLE       n     1.510  0.0100     1.510  0.0100
+PQ7         CBG         CBH      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PQ7         CBG         CBL      SINGLE       y     1.385  0.0110     1.385  0.0110
+PQ7         CBH         CBI      SINGLE       y     1.384  0.0100     1.384  0.0100
+PQ7         CBI         CBJ      DOUBLE       y     1.387  0.0100     1.387  0.0100
+PQ7         CBJ         CBK      SINGLE       y     1.387  0.0100     1.387  0.0100
+PQ7         CBK         CBL      DOUBLE       y     1.384  0.0100     1.384  0.0100
+PQ7         CAA         HAA      SINGLE       n     1.089  0.0100     0.979  0.0161
+PQ7         CAA        HAAA      SINGLE       n     1.089  0.0100     0.979  0.0161
+PQ7         CAC         HAC      SINGLE       n     1.082  0.0130     0.943  0.0169
+PQ7         CAD         HAD      SINGLE       n     1.082  0.0130     0.940  0.0164
+PQ7         CAF         HAF      SINGLE       n     1.082  0.0130     0.940  0.0164
+PQ7         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0169
+PQ7         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0169
+PQ7         CAK         HAK      SINGLE       n     1.082  0.0130     0.950  0.0100
+PQ7         CAM         HAM      SINGLE       n     1.082  0.0130     0.950  0.0100
+PQ7         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0169
+PQ7         CAP         HAP      SINGLE       n     1.089  0.0100     0.984  0.0172
+PQ7         CAP        HAPA      SINGLE       n     1.089  0.0100     0.984  0.0172
+PQ7         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.979  0.0132
+PQ7         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.979  0.0132
+PQ7         CAR         HAR      SINGLE       n     1.089  0.0100     0.971  0.0181
+PQ7         CAR        HARA      SINGLE       n     1.089  0.0100     0.971  0.0181
+PQ7         CAR        HARB      SINGLE       n     1.089  0.0100     0.971  0.0181
+PQ7         CAS         HAS      SINGLE       n     1.089  0.0100     0.971  0.0181
+PQ7         CAS        HASA      SINGLE       n     1.089  0.0100     0.971  0.0181
+PQ7         CAS        HASB      SINGLE       n     1.089  0.0100     0.971  0.0181
+PQ7         CAT         HAT      SINGLE       n     1.089  0.0100     0.984  0.0172
+PQ7         CAT        HATA      SINGLE       n     1.089  0.0100     0.984  0.0172
+PQ7         CAU         HAU      SINGLE       n     1.089  0.0100     0.979  0.0132
+PQ7         CAU        HAUA      SINGLE       n     1.089  0.0100     0.979  0.0132
+PQ7         CAV         HAV      SINGLE       n     1.089  0.0100     0.979  0.0161
+PQ7         CAV        HAVA      SINGLE       n     1.089  0.0100     0.979  0.0161
+PQ7         CAX         HAX      SINGLE       n     1.082  0.0130     0.942  0.0167
+PQ7         CAY         HAY      SINGLE       n     1.082  0.0130     0.942  0.0167
+PQ7         CBA         HBA      SINGLE       n     1.082  0.0130     0.942  0.0167
+PQ7         CBB         HBB      SINGLE       n     1.082  0.0130     0.942  0.0167
+PQ7         CBC         HBC      SINGLE       n     1.089  0.0100     0.981  0.0150
+PQ7         CBC        HBCA      SINGLE       n     1.089  0.0100     0.981  0.0150
+PQ7         CBD         HBD      SINGLE       n     1.089  0.0100     0.980  0.0160
+PQ7         CBD        HBDA      SINGLE       n     1.089  0.0100     0.980  0.0160
+PQ7         CBE         HBE      SINGLE       n     1.089  0.0100     0.980  0.0160
+PQ7         CBE        HBEA      SINGLE       n     1.089  0.0100     0.980  0.0160
+PQ7         CBF         HBF      SINGLE       n     1.089  0.0100     0.981  0.0150
+PQ7         CBF        HBFA      SINGLE       n     1.089  0.0100     0.981  0.0150
+PQ7         CBH         HBH      SINGLE       n     1.082  0.0130     0.942  0.0167
+PQ7         CBI         HBI      SINGLE       n     1.082  0.0130     0.942  0.0167
+PQ7         CBK         HBK      SINGLE       n     1.082  0.0130     0.942  0.0167
+PQ7         CBL         HBL      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PQ7         NAB         CAA         CBJ     113.143    1.57
+PQ7         NAB         CAA         HAA     108.836    1.50
+PQ7         NAB         CAA        HAAA     108.836    1.50
+PQ7         CBJ         CAA         HAA     109.014    1.50
+PQ7         CBJ         CAA        HAAA     109.014    1.50
+PQ7         HAA         CAA        HAAA     107.859    1.50
+PQ7         CAA         NAB         CAC     120.417    1.70
+PQ7         CAA         NAB         CAG     120.417    1.70
+PQ7         CAC         NAB         CAG     119.166    1.50
+PQ7         NAB         CAC         CAD     121.757    1.50
+PQ7         NAB         CAC         HAC     118.764    1.50
+PQ7         CAD         CAC         HAC     119.478    1.54
+PQ7         CAC         CAD         CAE     120.619    1.50
+PQ7         CAC         CAD         HAD     119.613    1.50
+PQ7         CAE         CAD         HAD     119.768    1.50
+PQ7         CAD         CAE         CAF     116.081    1.50
+PQ7         CAD         CAE         NAH     121.960    1.50
+PQ7         CAF         CAE         NAH     121.960    1.50
+PQ7         CAE         CAF         CAG     120.619    1.50
+PQ7         CAE         CAF         HAF     119.768    1.50
+PQ7         CAG         CAF         HAF     119.613    1.50
+PQ7         NAB         CAG         CAF     121.757    1.50
+PQ7         NAB         CAG         HAG     118.764    1.50
+PQ7         CAF         CAG         HAG     119.478    1.54
+PQ7         CAE         NAH         CAR     121.018    1.50
+PQ7         CAE         NAH         CAS     121.018    1.50
+PQ7         CAR         NAH         CAS     117.963    1.50
+PQ7         CAJ         NAI         CAN     119.017    1.50
+PQ7         CAJ         NAI         CAV     120.492    1.70
+PQ7         CAN         NAI         CAV     120.492    1.70
+PQ7         NAI         CAJ         CAK     121.608    1.50
+PQ7         NAI         CAJ         HAJ     118.839    1.50
+PQ7         CAK         CAJ         HAJ     119.553    1.54
+PQ7         CAJ         CAK         CAL     120.470    1.50
+PQ7         CAJ         CAK         HAK     119.635    1.50
+PQ7         CAL         CAK         HAK     119.895    1.50
+PQ7         CAK         CAL         CAM     116.827    1.56
+PQ7         CAK         CAL         NAO     121.587    1.50
+PQ7         CAM         CAL         NAO     121.587    1.50
+PQ7         CAL         CAM         CAN     120.470    1.50
+PQ7         CAL         CAM         HAM     119.895    1.50
+PQ7         CAN         CAM         HAM     119.635    1.50
+PQ7         NAI         CAN         CAM     121.608    1.50
+PQ7         NAI         CAN         HAN     118.839    1.50
+PQ7         CAM         CAN         HAN     119.553    1.54
+PQ7         CAL         NAO         CAP     123.638    1.50
+PQ7         CAL         NAO         CAT     123.638    1.50
+PQ7         CAP         NAO         CAT     112.723    1.50
+PQ7         NAO         CAP         CAQ     103.849    1.50
+PQ7         NAO         CAP         HAP     110.981    1.50
+PQ7         NAO         CAP        HAPA     110.981    1.50
+PQ7         CAQ         CAP         HAP     111.096    1.50
+PQ7         CAQ         CAP        HAPA     111.096    1.50
+PQ7         HAP         CAP        HAPA     109.052    1.50
+PQ7         CAP         CAQ         CAU     104.689    2.29
+PQ7         CAP         CAQ         HAQ     110.806    1.50
+PQ7         CAP         CAQ        HAQA     110.806    1.50
+PQ7         CAU         CAQ         HAQ     110.800    1.50
+PQ7         CAU         CAQ        HAQA     110.800    1.50
+PQ7         HAQ         CAQ        HAQA     108.899    1.50
+PQ7         NAH         CAR         HAR     109.662    1.50
+PQ7         NAH         CAR        HARA     109.662    1.50
+PQ7         NAH         CAR        HARB     109.662    1.50
+PQ7         HAR         CAR        HARA     109.352    1.56
+PQ7         HAR         CAR        HARB     109.352    1.56
+PQ7        HARA         CAR        HARB     109.352    1.56
+PQ7         NAH         CAS         HAS     109.662    1.50
+PQ7         NAH         CAS        HASA     109.662    1.50
+PQ7         NAH         CAS        HASB     109.662    1.50
+PQ7         HAS         CAS        HASA     109.352    1.56
+PQ7         HAS         CAS        HASB     109.352    1.56
+PQ7        HASA         CAS        HASB     109.352    1.56
+PQ7         NAO         CAT         CAU     103.849    1.50
+PQ7         NAO         CAT         HAT     110.981    1.50
+PQ7         NAO         CAT        HATA     110.981    1.50
+PQ7         CAU         CAT         HAT     111.096    1.50
+PQ7         CAU         CAT        HATA     111.096    1.50
+PQ7         HAT         CAT        HATA     109.052    1.50
+PQ7         CAQ         CAU         CAT     104.689    2.29
+PQ7         CAQ         CAU         HAU     110.800    1.50
+PQ7         CAQ         CAU        HAUA     110.800    1.50
+PQ7         CAT         CAU         HAU     110.806    1.50
+PQ7         CAT         CAU        HAUA     110.806    1.50
+PQ7         HAU         CAU        HAUA     108.899    1.50
+PQ7         NAI         CAV         CAW     113.143    1.57
+PQ7         NAI         CAV         HAV     108.836    1.50
+PQ7         NAI         CAV        HAVA     108.836    1.50
+PQ7         CAW         CAV         HAV     109.014    1.50
+PQ7         CAW         CAV        HAVA     109.014    1.50
+PQ7         HAV         CAV        HAVA     107.859    1.50
+PQ7         CAV         CAW         CAX     120.699    1.50
+PQ7         CAV         CAW         CBB     120.699    1.50
+PQ7         CAX         CAW         CBB     118.601    1.50
+PQ7         CAW         CAX         CAY     120.708    1.50
+PQ7         CAW         CAX         HAX     119.700    1.50
+PQ7         CAY         CAX         HAX     119.592    1.50
+PQ7         CAX         CAY         CAZ     121.056    1.50
+PQ7         CAX         CAY         HAY     119.547    1.50
+PQ7         CAZ         CAY         HAY     119.397    1.50
+PQ7         CAY         CAZ         CBA     117.871    1.50
+PQ7         CAY         CAZ         CBC     121.064    1.50
+PQ7         CBA         CAZ         CBC     121.064    1.50
+PQ7         CAZ         CBA         CBB     121.056    1.50
+PQ7         CAZ         CBA         HBA     119.397    1.50
+PQ7         CBB         CBA         HBA     119.547    1.50
+PQ7         CAW         CBB         CBA     120.708    1.50
+PQ7         CAW         CBB         HBB     119.700    1.50
+PQ7         CBA         CBB         HBB     119.592    1.50
+PQ7         CAZ         CBC         CBD     114.548    2.35
+PQ7         CAZ         CBC         HBC     108.803    1.50
+PQ7         CAZ         CBC        HBCA     108.803    1.50
+PQ7         CBD         CBC         HBC     108.665    1.50
+PQ7         CBD         CBC        HBCA     108.665    1.50
+PQ7         HBC         CBC        HBCA     107.745    1.50
+PQ7         CBC         CBD         CBE     112.279    1.50
+PQ7         CBC         CBD         HBD     108.763    1.50
+PQ7         CBC         CBD        HBDA     108.763    1.50
+PQ7         CBE         CBD         HBD     109.260    1.50
+PQ7         CBE         CBD        HBDA     109.260    1.50
+PQ7         HBD         CBD        HBDA     107.749    1.50
+PQ7         CBD         CBE         CBF     112.279    1.50
+PQ7         CBD         CBE         HBE     109.260    1.50
+PQ7         CBD         CBE        HBEA     109.260    1.50
+PQ7         CBF         CBE         HBE     108.763    1.50
+PQ7         CBF         CBE        HBEA     108.763    1.50
+PQ7         HBE         CBE        HBEA     107.749    1.50
+PQ7         CBE         CBF         CBG     114.548    2.35
+PQ7         CBE         CBF         HBF     108.665    1.50
+PQ7         CBE         CBF        HBFA     108.665    1.50
+PQ7         CBG         CBF         HBF     108.803    1.50
+PQ7         CBG         CBF        HBFA     108.803    1.50
+PQ7         HBF         CBF        HBFA     107.745    1.50
+PQ7         CBF         CBG         CBH     121.064    1.50
+PQ7         CBF         CBG         CBL     121.064    1.50
+PQ7         CBH         CBG         CBL     117.871    1.50
+PQ7         CBG         CBH         CBI     121.056    1.50
+PQ7         CBG         CBH         HBH     119.397    1.50
+PQ7         CBI         CBH         HBH     119.547    1.50
+PQ7         CBH         CBI         CBJ     120.708    1.50
+PQ7         CBH         CBI         HBI     119.592    1.50
+PQ7         CBJ         CBI         HBI     119.700    1.50
+PQ7         CAA         CBJ         CBI     120.699    1.50
+PQ7         CAA         CBJ         CBK     120.699    1.50
+PQ7         CBI         CBJ         CBK     118.601    1.50
+PQ7         CBJ         CBK         CBL     120.708    1.50
+PQ7         CBJ         CBK         HBK     119.700    1.50
+PQ7         CBL         CBK         HBK     119.592    1.50
+PQ7         CBG         CBL         CBK     121.056    1.50
+PQ7         CBG         CBL         HBL     119.397    1.50
+PQ7         CBK         CBL         HBL     119.547    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PQ7             sp2_sp3_8         CAC         NAB         CAA         CBJ     -90.000    10.0     6
+PQ7            sp2_sp3_14         CBI         CBJ         CAA         NAB     -90.000    10.0     6
+PQ7              const_29         CAJ         CAK         CAL         CAM       0.000    10.0     2
+PQ7              const_33         CAK         CAL         CAM         CAN       0.000    10.0     2
+PQ7             sp2_sp2_5         CAK         CAL         NAO         CAP     180.000     5.0     2
+PQ7              const_37         CAL         CAM         CAN         NAI       0.000    10.0     2
+PQ7             sp2_sp3_4         CAL         NAO         CAP         CAQ     180.000    10.0     6
+PQ7            sp2_sp3_40         CAL         NAO         CAT         CAU     180.000    10.0     6
+PQ7             sp3_sp3_1         NAO         CAP         CAQ         CAU     -60.000    10.0     3
+PQ7            sp3_sp3_10         CAP         CAQ         CAU         CAT      60.000    10.0     3
+PQ7            sp3_sp3_19         NAO         CAT         CAU         CAQ     -60.000    10.0     3
+PQ7       const_sp2_sp2_2         CAD         CAC         NAB         CAA     180.000     5.0     2
+PQ7              const_82         CAF         CAG         NAB         CAA     180.000    10.0     2
+PQ7            sp2_sp3_44         CAX         CAW         CAV         NAI     -90.000    10.0     6
+PQ7              const_43         CAV         CAW         CAX         CAY     180.000    10.0     2
+PQ7              const_91         CAV         CAW         CBB         CBA     180.000    10.0     2
+PQ7              const_45         CAW         CAX         CAY         CAZ       0.000    10.0     2
+PQ7              const_50         CAX         CAY         CAZ         CBC     180.000    10.0     2
+PQ7              const_55         CBC         CAZ         CBA         CBB     180.000    10.0     2
+PQ7            sp2_sp3_50         CAY         CAZ         CBC         CBD     -90.000    10.0     6
+PQ7              const_57         CAZ         CBA         CBB         CAW       0.000    10.0     2
+PQ7            sp3_sp3_28         CAZ         CBC         CBD         CBE     180.000    10.0     3
+PQ7            sp3_sp3_37         CBC         CBD         CBE         CBF     180.000    10.0     3
+PQ7       const_sp2_sp2_5         NAB         CAC         CAD         CAE       0.000     5.0     2
+PQ7            sp3_sp3_46         CBD         CBE         CBF         CBG     180.000    10.0     3
+PQ7            sp2_sp3_56         CBH         CBG         CBF         CBE     -90.000    10.0     6
+PQ7              const_63         CBF         CBG         CBH         CBI     180.000    10.0     2
+PQ7              const_95         CBF         CBG         CBL         CBK     180.000    10.0     2
+PQ7              const_65         CBG         CBH         CBI         CBJ       0.000    10.0     2
+PQ7              const_70         CBH         CBI         CBJ         CAA     180.000    10.0     2
+PQ7              const_75         CAA         CBJ         CBK         CBL     180.000    10.0     2
+PQ7              const_77         CBJ         CBK         CBL         CBG       0.000    10.0     2
+PQ7              const_10         CAC         CAD         CAE         NAH     180.000    10.0     2
+PQ7              const_15         NAH         CAE         CAF         CAG     180.000    10.0     2
+PQ7             sp2_sp2_1         CAD         CAE         NAH         CAR     180.000     5.0     2
+PQ7              const_17         CAE         CAF         CAG         NAB       0.000    10.0     2
+PQ7            sp2_sp3_22         CAS         NAH         CAR         HAR     180.000    10.0     6
+PQ7            sp2_sp3_28         CAR         NAH         CAS         HAS     180.000    10.0     6
+PQ7              const_86         CAM         CAN         NAI         CAV     180.000    10.0     2
+PQ7            sp2_sp3_32         CAJ         NAI         CAV         CAW     -90.000    10.0     6
+PQ7              const_22         CAK         CAJ         NAI         CAV     180.000    10.0     2
+PQ7              const_25         NAI         CAJ         CAK         CAL       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PQ7    plan-1         CAJ   0.020
+PQ7    plan-1         CAK   0.020
+PQ7    plan-1         CAL   0.020
+PQ7    plan-1         CAM   0.020
+PQ7    plan-1         CAN   0.020
+PQ7    plan-1         CAV   0.020
+PQ7    plan-1         HAJ   0.020
+PQ7    plan-1         HAK   0.020
+PQ7    plan-1         HAM   0.020
+PQ7    plan-1         HAN   0.020
+PQ7    plan-1         NAI   0.020
+PQ7    plan-1         NAO   0.020
+PQ7    plan-2         CAA   0.020
+PQ7    plan-2         CAC   0.020
+PQ7    plan-2         CAD   0.020
+PQ7    plan-2         CAE   0.020
+PQ7    plan-2         CAF   0.020
+PQ7    plan-2         CAG   0.020
+PQ7    plan-2         HAC   0.020
+PQ7    plan-2         HAD   0.020
+PQ7    plan-2         HAF   0.020
+PQ7    plan-2         HAG   0.020
+PQ7    plan-2         NAB   0.020
+PQ7    plan-2         NAH   0.020
+PQ7    plan-3         CAV   0.020
+PQ7    plan-3         CAW   0.020
+PQ7    plan-3         CAX   0.020
+PQ7    plan-3         CAY   0.020
+PQ7    plan-3         CAZ   0.020
+PQ7    plan-3         CBA   0.020
+PQ7    plan-3         CBB   0.020
+PQ7    plan-3         CBC   0.020
+PQ7    plan-3         HAX   0.020
+PQ7    plan-3         HAY   0.020
+PQ7    plan-3         HBA   0.020
+PQ7    plan-3         HBB   0.020
+PQ7    plan-4         CAA   0.020
+PQ7    plan-4         CBF   0.020
+PQ7    plan-4         CBG   0.020
+PQ7    plan-4         CBH   0.020
+PQ7    plan-4         CBI   0.020
+PQ7    plan-4         CBJ   0.020
+PQ7    plan-4         CBK   0.020
+PQ7    plan-4         CBL   0.020
+PQ7    plan-4         HBH   0.020
+PQ7    plan-4         HBI   0.020
+PQ7    plan-4         HBK   0.020
+PQ7    plan-4         HBL   0.020
+PQ7    plan-5         CAE   0.020
+PQ7    plan-5         CAR   0.020
+PQ7    plan-5         CAS   0.020
+PQ7    plan-5         NAH   0.020
+PQ7    plan-6         CAL   0.020
+PQ7    plan-6         CAP   0.020
+PQ7    plan-6         CAT   0.020
+PQ7    plan-6         NAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PQ7           SMILES              ACDLabs 12.01                                                                                                                  C([n+]1ccc(cc1)N(C)C)c5ccc(CCCCc4ccc(C[n+]2ccc(cc2)N3CCCC3)cc4)cc5
+PQ7            InChI                InChI  1.03 InChI=1S/C34H42N4/c1-35(2)33-17-23-36(24-18-33)27-31-13-9-29(10-14-31)7-3-4-8-30-11-15-32(16-12-30)28-37-25-19-34(20-26-37)38-21-5-6-22-38/h9-20,23-26H,3-8,21-22,27-28H2,1-2H3/q+2
+PQ7         InChIKey                InChI  1.03                                                                                                                                                         OXXBKOUHROTSGV-UHFFFAOYSA-N
+PQ7 SMILES_CANONICAL               CACTVS 3.385                                                                                                                    CN(C)c1cc[n+](Cc2ccc(CCCCc3ccc(C[n+]4ccc(cc4)N5CCCC5)cc3)cc2)cc1
+PQ7           SMILES               CACTVS 3.385                                                                                                                    CN(C)c1cc[n+](Cc2ccc(CCCCc3ccc(C[n+]4ccc(cc4)N5CCCC5)cc3)cc2)cc1
+PQ7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                    CN(C)c1cc[n+](cc1)Cc2ccc(cc2)CCCCc3ccc(cc3)C[n+]4ccc(cc4)N5CCCC5
+PQ7           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                    CN(C)c1cc[n+](cc1)Cc2ccc(cc2)CCCCc3ccc(cc3)C[n+]4ccc(cc4)N5CCCC5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PQ7 acedrg               243         "dictionary generator"                  
+PQ7 acedrg_database      11          "data source"                           
+PQ7 rdkit                2017.03.2   "Chemoinformatics tool"
+PQ7 refmac5              5.8.0238    "optimization tool"                     

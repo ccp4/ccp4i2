@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EYP     EYP      "3,3'-(benzo[1,2-d:5,4-d']bis[1,3]thiazole-2,6-diyl)dipropanoic acid"     NON-POLYMER     32     22     .     
+#
+data_comp_EYP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EYP     O1      O       OC      -1      -6.181      6.615       7.844       
+EYP     C1      C       CH2     0       -7.402      5.084       6.496       
+EYP     C2      C       CH2     0       -6.768      4.083       5.553       
+EYP     C3      C       CR5     0       -5.487      3.531       6.052       
+EYP     C4      C       CR56    0       -3.298      3.103       6.270       
+EYP     C5      C       CR16    0       -1.919      3.148       6.022       
+EYP     C6      C       CR56    0       -1.069      2.387       6.839       
+EYP     C7      C       CR5     0       0.818       1.503       7.660       
+EYP     C8      C       CH2     0       2.250       1.180       7.858       
+EYP     C9      C       CH2     0       2.937       2.102       8.842       
+EYP     C10     C       C       0       3.101       3.527       8.343       
+EYP     O2      O       OC      -1      2.545       4.442       8.982       
+EYP     O3      O       O       0       3.785       3.718       7.317       
+EYP     N1      N       NRD5    0       0.327       2.292       6.760       
+EYP     S       S       S2      0       -0.356      0.838       8.643       
+EYP     C11     C       CR56    0       -1.604      1.612       7.867       
+EYP     C12     C       CR16    0       -2.962      1.563       8.117       
+EYP     C13     C       CR56    0       -3.792      2.315       7.309       
+EYP     N       N       NRD5    0       -4.310      3.782       5.577       
+EYP     S1      S       S2      0       -5.445      2.473       7.344       
+EYP     C       C       C       0       -6.589      6.352       6.695       
+EYP     O       O       O       0       -6.366      7.072       5.702       
+EYP     H2      H       H       0       -7.542      4.666       7.374       
+EYP     H3      H       H       0       -8.287      5.339       6.152       
+EYP     H4      H       H       0       -6.605      4.510       4.689       
+EYP     H5      H       H       0       -7.388      3.340       5.406       
+EYP     H6      H       H       0       -1.571      3.675       5.325       
+EYP     H7      H       H       0       2.703       1.233       6.993       
+EYP     H8      H       H       0       2.319       0.257       8.176       
+EYP     H9      H       H       0       3.827       1.745       9.056       
+EYP     H10     H       H       0       2.424       2.125       9.680       
+EYP     H12     H       H       0       -3.310      1.035       8.815       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EYP          C1          C2      SINGLE       n     1.511  0.0176     1.511  0.0176
+EYP          C2          C3      SINGLE       n     1.481  0.0100     1.481  0.0100
+EYP           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EYP          C1           C      SINGLE       n     1.519  0.0109     1.519  0.0109
+EYP          C3           N      DOUBLE       y     1.289  0.0100     1.289  0.0100
+EYP          C4           N      SINGLE       y     1.391  0.0100     1.391  0.0100
+EYP          C3          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+EYP          C4          C5      DOUBLE       y     1.397  0.0114     1.397  0.0114
+EYP          C5          C6      SINGLE       y     1.397  0.0114     1.397  0.0114
+EYP          O1           C      SINGLE       n     1.247  0.0187     1.247  0.0187
+EYP          C4         C13      SINGLE       y     1.385  0.0119     1.385  0.0119
+EYP          C6          N1      SINGLE       y     1.391  0.0100     1.391  0.0100
+EYP          C7          N1      DOUBLE       y     1.289  0.0100     1.289  0.0100
+EYP          C6         C11      DOUBLE       y     1.385  0.0119     1.385  0.0119
+EYP         C10          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EYP          C7          C8      SINGLE       n     1.481  0.0100     1.481  0.0100
+EYP          C8          C9      SINGLE       n     1.511  0.0176     1.511  0.0176
+EYP         C13          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+EYP          C7           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+EYP         C12         C13      DOUBLE       y     1.378  0.0100     1.378  0.0100
+EYP         C11         C12      SINGLE       y     1.378  0.0100     1.378  0.0100
+EYP           S         C11      SINGLE       y     1.695  0.0200     1.695  0.0200
+EYP          C9         C10      SINGLE       n     1.519  0.0109     1.519  0.0109
+EYP         C10          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+EYP          C1          H2      SINGLE       n     1.089  0.0100     0.983  0.0139
+EYP          C1          H3      SINGLE       n     1.089  0.0100     0.983  0.0139
+EYP          C2          H4      SINGLE       n     1.089  0.0100     0.978  0.0121
+EYP          C2          H5      SINGLE       n     1.089  0.0100     0.978  0.0121
+EYP          C5          H6      SINGLE       n     1.082  0.0130     0.941  0.0200
+EYP          C8          H7      SINGLE       n     1.089  0.0100     0.978  0.0121
+EYP          C8          H8      SINGLE       n     1.089  0.0100     0.978  0.0121
+EYP          C9          H9      SINGLE       n     1.089  0.0100     0.983  0.0139
+EYP          C9         H10      SINGLE       n     1.089  0.0100     0.983  0.0139
+EYP         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0105
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EYP          C2          C1           C     113.936    1.58
+EYP          C2          C1          H2     109.544    1.50
+EYP          C2          C1          H3     109.544    1.50
+EYP           C          C1          H2     108.416    1.50
+EYP           C          C1          H3     108.416    1.50
+EYP          H2          C1          H3     107.356    1.50
+EYP          C1          C2          C3     112.857    1.50
+EYP          C1          C2          H4     109.247    1.50
+EYP          C1          C2          H5     109.247    1.50
+EYP          C3          C2          H4     108.392    1.50
+EYP          C3          C2          H5     108.392    1.50
+EYP          H4          C2          H5     107.724    1.50
+EYP          C2          C3           N     129.009    3.00
+EYP          C2          C3          S1     122.730    3.00
+EYP           N          C3          S1     108.261    3.00
+EYP           N          C4          C5     129.493    1.50
+EYP           N          C4         C13     109.135    1.50
+EYP          C5          C4         C13     121.371    1.92
+EYP          C4          C5          C6     117.258    1.50
+EYP          C4          C5          H6     121.371    1.50
+EYP          C6          C5          H6     121.371    1.50
+EYP          C5          C6          N1     129.493    1.50
+EYP          C5          C6         C11     121.371    1.92
+EYP          N1          C6         C11     109.135    1.50
+EYP          N1          C7          C8     129.009    3.00
+EYP          N1          C7           S     108.261    3.00
+EYP          C8          C7           S     122.730    3.00
+EYP          C7          C8          C9     112.857    1.50
+EYP          C7          C8          H7     108.392    1.50
+EYP          C7          C8          H8     108.392    1.50
+EYP          C9          C8          H7     109.247    1.50
+EYP          C9          C8          H8     109.247    1.50
+EYP          H7          C8          H8     107.724    1.50
+EYP          C8          C9         C10     113.936    1.58
+EYP          C8          C9          H9     109.544    1.50
+EYP          C8          C9         H10     109.544    1.50
+EYP         C10          C9          H9     108.416    1.50
+EYP         C10          C9         H10     108.416    1.50
+EYP          H9          C9         H10     107.356    1.50
+EYP          O3         C10          C9     118.187    1.67
+EYP          O3         C10          O2     123.625    1.50
+EYP          C9         C10          O2     118.187    1.67
+EYP          C6          N1          C7     106.081    1.50
+EYP          C7           S         C11     108.261    3.00
+EYP          C6         C11         C12     121.371    1.92
+EYP          C6         C11           S     108.261    3.00
+EYP         C12         C11           S     130.367    3.00
+EYP         C13         C12         C11     117.258    1.50
+EYP         C13         C12         H12     121.371    1.50
+EYP         C11         C12         H12     121.371    1.50
+EYP          C4         C13          S1     108.261    3.00
+EYP          C4         C13         C12     121.371    1.92
+EYP          S1         C13         C12     130.367    3.00
+EYP          C3           N          C4     106.081    1.50
+EYP          C3          S1         C13     108.261    3.00
+EYP           O           C          C1     118.187    1.67
+EYP           O           C          O1     123.625    1.50
+EYP          C1           C          O1     118.187    1.67
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EYP              const_27          C6         C11           S          C7       0.000    10.0     2
+EYP              const_13          C6         C11         C12         C13       0.000    10.0     2
+EYP              const_17         C11         C12         C13          C4       0.000    10.0     2
+EYP              const_37          C4         C13          S1          C3       0.000    10.0     2
+EYP             sp3_sp3_1           C          C1          C2          C3     180.000    10.0     3
+EYP             sp2_sp3_8           O           C          C1          C2     120.000    10.0     6
+EYP             sp2_sp3_2           N          C3          C2          C1     -90.000    10.0     6
+EYP              const_30          C2          C3           N          C4     180.000    10.0     2
+EYP              const_40          C2          C3          S1         C13     180.000    10.0     2
+EYP              const_33          S1         C13          C4           N       0.000    10.0     2
+EYP              const_32          C5          C4           N          C3     180.000    10.0     2
+EYP       const_sp2_sp2_3           N          C4          C5          C6     180.000     5.0     2
+EYP       const_sp2_sp2_6          C4          C5          C6          N1     180.000     5.0     2
+EYP              const_22          C5          C6          N1          C7     180.000    10.0     2
+EYP       const_sp2_sp2_9         C12         C11          C6          C5       0.000     5.0     2
+EYP              const_24          C8          C7          N1          C6     180.000    10.0     2
+EYP              const_26          C8          C7           S         C11     180.000    10.0     2
+EYP            sp2_sp3_14          N1          C7          C8          C9     -90.000    10.0     6
+EYP            sp3_sp3_10          C7          C8          C9         C10     180.000    10.0     3
+EYP            sp2_sp3_20          O3         C10          C9          C8     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EYP    plan-1         C11   0.020
+EYP    plan-1         C12   0.020
+EYP    plan-1         C13   0.020
+EYP    plan-1          C2   0.020
+EYP    plan-1          C3   0.020
+EYP    plan-1          C4   0.020
+EYP    plan-1          C5   0.020
+EYP    plan-1          C6   0.020
+EYP    plan-1          C7   0.020
+EYP    plan-1          C8   0.020
+EYP    plan-1         H12   0.020
+EYP    plan-1          H6   0.020
+EYP    plan-1           N   0.020
+EYP    plan-1          N1   0.020
+EYP    plan-1           S   0.020
+EYP    plan-1          S1   0.020
+EYP    plan-2         C10   0.020
+EYP    plan-2          C9   0.020
+EYP    plan-2          O2   0.020
+EYP    plan-2          O3   0.020
+EYP    plan-3           C   0.020
+EYP    plan-3          C1   0.020
+EYP    plan-3           O   0.020
+EYP    plan-3          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EYP           SMILES              ACDLabs 12.01                                                                              OC(CCc3sc2c(cc1c(sc(CCC(O)=O)n1)c2)n3)=O
+EYP            InChI                InChI  1.03 InChI=1S/C14H12N2O4S2/c17-13(18)3-1-11-15-7-5-8-10(6-9(7)21-11)22-12(16-8)2-4-14(19)20/h5-6H,1-4H2,(H,17,18)(H,19,20)
+EYP         InChIKey                InChI  1.03                                                                                           RNLHVOCFLIRTNO-UHFFFAOYSA-N
+EYP SMILES_CANONICAL               CACTVS 3.385                                                                                  OC(=O)CCc1sc2cc3sc(CCC(O)=O)nc3cc2n1
+EYP           SMILES               CACTVS 3.385                                                                                  OC(=O)CCc1sc2cc3sc(CCC(O)=O)nc3cc2n1
+EYP SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                              c1c2c(cc3c1nc(s3)CCC(=O)O)sc(n2)CCC(=O)O
+EYP           SMILES "OpenEye OEToolkits" 2.0.6                                                                              c1c2c(cc3c1nc(s3)CCC(=O)O)sc(n2)CCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EYP acedrg               243         "dictionary generator"                  
+EYP acedrg_database      11          "data source"                           
+EYP rdkit                2017.03.2   "Chemoinformatics tool"
+EYP refmac5              5.8.0238    "optimization tool"                     

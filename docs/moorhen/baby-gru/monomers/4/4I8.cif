@@ -1,0 +1,186 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4I8     4I8      "methyl 2-oxidanylidene-3~{H}-1,3-benzoxazole-6-carboxylate"     NON-POLYMER     21     14     .     
+#
+data_comp_4I8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4I8     CAA     C       CH3     0       0.973       20.267      71.756      
+4I8     CAD     C       CR16    0       2.306       22.629      74.969      
+4I8     CAE     C       CR16    0       2.785       23.411      76.003      
+4I8     CAF     C       CR16    0       0.064       22.715      75.872      
+4I8     CAJ     C       C       0       0.415       21.424      73.771      
+4I8     CAK     C       CR6     0       0.939       22.268      74.884      
+4I8     CAL     C       CR5     0       0.800       24.728      78.709      
+4I8     CAM     C       CR56    0       1.884       23.835      76.965      
+4I8     CAN     C       CR56    0       0.553       23.483      76.882      
+4I8     NAG     N       NR5     0       2.003       24.610      78.113      
+4I8     OAB     O       O       0       -0.714      21.001      73.724      
+4I8     OAC     O       O       0       0.491       25.318      79.720      
+4I8     OAH     O       O2      0       1.327       21.186      72.821      
+4I8     OAI     O       O2      0       -0.119      24.033      77.959      
+4I8     H1      H       H       0       0.231       20.631      71.248      
+4I8     H2      H       H       0       0.718       19.410      72.136      
+4I8     H3      H       H       0       1.736       20.145      71.171      
+4I8     H4      H       H       0       2.910       22.334      74.310      
+4I8     H5      H       H       0       3.696       23.646      76.051      
+4I8     H6      H       H       0       -0.844      22.487      75.835      
+4I8     H7      H       H       0       2.733       24.979      78.428      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4I8         CAA         OAH      SINGLE       n     1.448  0.0100     1.448  0.0100
+4I8         CAJ         OAH      SINGLE       n     1.332  0.0114     1.332  0.0114
+4I8         CAJ         OAB      DOUBLE       n     1.204  0.0101     1.204  0.0101
+4I8         CAJ         CAK      SINGLE       n     1.485  0.0100     1.485  0.0100
+4I8         CAD         CAK      DOUBLE       y     1.409  0.0100     1.409  0.0100
+4I8         CAF         CAK      SINGLE       y     1.383  0.0129     1.383  0.0129
+4I8         CAD         CAE      SINGLE       y     1.378  0.0100     1.378  0.0100
+4I8         CAF         CAN      DOUBLE       y     1.355  0.0118     1.355  0.0118
+4I8         CAE         CAM      DOUBLE       y     1.381  0.0100     1.381  0.0100
+4I8         CAM         CAN      SINGLE       y     1.377  0.0102     1.377  0.0102
+4I8         CAN         OAI      SINGLE       y     1.384  0.0109     1.384  0.0109
+4I8         CAM         NAG      SINGLE       y     1.391  0.0100     1.391  0.0100
+4I8         CAL         OAI      SINGLE       y     1.374  0.0100     1.374  0.0100
+4I8         CAL         NAG      SINGLE       y     1.347  0.0100     1.347  0.0100
+4I8         CAL         OAC      DOUBLE       n     1.211  0.0100     1.211  0.0100
+4I8         CAA          H1      SINGLE       n     1.089  0.0100     0.970  0.0175
+4I8         CAA          H2      SINGLE       n     1.089  0.0100     0.970  0.0175
+4I8         CAA          H3      SINGLE       n     1.089  0.0100     0.970  0.0175
+4I8         CAD          H4      SINGLE       n     1.082  0.0130     0.942  0.0147
+4I8         CAE          H5      SINGLE       n     1.082  0.0130     0.942  0.0200
+4I8         CAF          H6      SINGLE       n     1.082  0.0130     0.937  0.0100
+4I8         NAG          H7      SINGLE       n     1.016  0.0100     0.876  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4I8         OAH         CAA          H1     109.389    1.50
+4I8         OAH         CAA          H2     109.389    1.50
+4I8         OAH         CAA          H3     109.389    1.50
+4I8          H1         CAA          H2     109.532    1.53
+4I8          H1         CAA          H3     109.532    1.53
+4I8          H2         CAA          H3     109.532    1.53
+4I8         CAK         CAD         CAE     121.455    1.50
+4I8         CAK         CAD          H4     119.424    1.50
+4I8         CAE         CAD          H4     119.121    1.50
+4I8         CAD         CAE         CAM     117.506    1.50
+4I8         CAD         CAE          H5     121.174    1.50
+4I8         CAM         CAE          H5     121.320    1.50
+4I8         CAK         CAF         CAN     118.429    1.50
+4I8         CAK         CAF          H6     120.116    1.50
+4I8         CAN         CAF          H6     121.455    1.50
+4I8         OAH         CAJ         OAB     123.280    1.50
+4I8         OAH         CAJ         CAK     112.327    1.50
+4I8         OAB         CAJ         CAK     124.394    1.50
+4I8         CAJ         CAK         CAD     120.346    1.83
+4I8         CAJ         CAK         CAF     119.782    1.78
+4I8         CAD         CAK         CAF     119.872    1.50
+4I8         OAI         CAL         NAG     108.022    1.50
+4I8         OAI         CAL         OAC     122.138    1.50
+4I8         NAG         CAL         OAC     129.839    1.50
+4I8         CAE         CAM         CAN     120.445    1.50
+4I8         CAE         CAM         NAG     133.467    1.50
+4I8         CAN         CAM         NAG     106.089    1.50
+4I8         CAF         CAN         CAM     122.293    1.50
+4I8         CAF         CAN         OAI     128.875    1.50
+4I8         CAM         CAN         OAI     108.832    1.50
+4I8         CAM         NAG         CAL     109.688    1.50
+4I8         CAM         NAG          H7     127.059    2.75
+4I8         CAL         NAG          H7     123.253    2.75
+4I8         CAA         OAH         CAJ     115.869    1.50
+4I8         CAN         OAI         CAL     107.370    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4I8             sp3_sp3_2          H1         CAA         OAH         CAJ     -60.000    10.0     3
+4I8              const_29         CAK         CAD         CAE         CAM       0.000    10.0     2
+4I8       const_sp2_sp2_2         CAE         CAD         CAK         CAJ     180.000     5.0     2
+4I8              const_17         CAD         CAE         CAM         CAN       0.000    10.0     2
+4I8       const_sp2_sp2_6         CAN         CAF         CAK         CAJ     180.000     5.0     2
+4I8       const_sp2_sp2_9         CAK         CAF         CAN         CAM       0.000     5.0     2
+4I8             sp2_sp2_1         OAB         CAJ         OAH         CAA     180.000     5.0     2
+4I8             sp2_sp2_3         OAH         CAJ         CAK         CAD     180.000     5.0     2
+4I8              const_22         OAC         CAL         OAI         CAN     180.000    10.0     2
+4I8              const_35         OAC         CAL         NAG         CAM     180.000    10.0     2
+4I8              const_13         CAE         CAM         CAN         CAF       0.000    10.0     2
+4I8              const_27         CAE         CAM         NAG         CAL     180.000    10.0     2
+4I8              const_24         CAF         CAN         OAI         CAL     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4I8    plan-1         CAD   0.020
+4I8    plan-1         CAE   0.020
+4I8    plan-1         CAF   0.020
+4I8    plan-1         CAJ   0.020
+4I8    plan-1         CAK   0.020
+4I8    plan-1         CAL   0.020
+4I8    plan-1         CAM   0.020
+4I8    plan-1         CAN   0.020
+4I8    plan-1          H4   0.020
+4I8    plan-1          H5   0.020
+4I8    plan-1          H6   0.020
+4I8    plan-1          H7   0.020
+4I8    plan-1         NAG   0.020
+4I8    plan-1         OAC   0.020
+4I8    plan-1         OAI   0.020
+4I8    plan-2         CAJ   0.020
+4I8    plan-2         CAK   0.020
+4I8    plan-2         OAB   0.020
+4I8    plan-2         OAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4I8            InChI                InChI  1.03 InChI=1S/C9H7NO4/c1-13-8(11)5-2-3-6-7(4-5)14-9(12)10-6/h2-4H,1H3,(H,10,12)
+4I8         InChIKey                InChI  1.03                                                FUJBKRLYHYJMNF-UHFFFAOYSA-N
+4I8 SMILES_CANONICAL               CACTVS 3.385                                                   COC(=O)c1ccc2NC(=O)Oc2c1
+4I8           SMILES               CACTVS 3.385                                                   COC(=O)c1ccc2NC(=O)Oc2c1
+4I8 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                 COC(=O)c1ccc2c(c1)OC(=O)N2
+4I8           SMILES "OpenEye OEToolkits" 2.0.6                                                 COC(=O)c1ccc2c(c1)OC(=O)N2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4I8 acedrg               243         "dictionary generator"                  
+4I8 acedrg_database      11          "data source"                           
+4I8 rdkit                2017.03.2   "Chemoinformatics tool"
+4I8 refmac5              5.8.0238    "optimization tool"                     

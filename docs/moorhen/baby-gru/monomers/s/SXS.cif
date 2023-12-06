@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SXS     SXS      "6-amino-1,2-benzothiazol-3(2H)-one 1,1-dioxide"     NON-POLYMER     19     13     .     
+#
+data_comp_SXS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SXS     O1      O       O       0       17.012      0.128       14.048      
+SXS     C2      C       CR5     0       16.412      0.799       14.845      
+SXS     N3      N       NR5     0       15.789      0.306       15.970      
+SXS     C4      C       CR56    0       16.221      2.269       14.783      
+SXS     C5      C       CR16    0       16.692      3.141       13.807      
+SXS     C6      C       CR16    0       16.410      4.495       13.920      
+SXS     C7      C       CR6     0       15.660      4.976       15.005      
+SXS     N8      N       NH2     0       15.384      6.333       15.109      
+SXS     C11     C       CR16    0       15.191      4.099       15.981      
+SXS     C12     C       CR56    0       15.481      2.749       15.852      
+SXS     S13     S       S3      0       15.032      1.427       16.906      
+SXS     O14     O       O       0       13.616      1.204       16.906      
+SXS     O15     O       O       0       15.672      1.525       18.185      
+SXS     HN3     H       H       0       15.785      -0.544      16.191      
+SXS     H5      H       H       0       17.195      2.817       13.079      
+SXS     H6      H       H       0       16.721      5.099       13.268      
+SXS     HN8     H       H       0       14.916      6.630       15.790      
+SXS     HN8A    H       H       0       15.678      6.884       14.493      
+SXS     H11     H       H       0       14.685      4.420       16.714      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SXS          O1          C2      DOUBLE       n     1.203  0.0200     1.203  0.0200
+SXS          C2          N3      SINGLE       n     1.375  0.0139     1.375  0.0139
+SXS          C2          C4      SINGLE       n     1.484  0.0123     1.484  0.0123
+SXS          N3         S13      SINGLE       n     1.643  0.0200     1.643  0.0200
+SXS          C4          C5      SINGLE       y     1.385  0.0100     1.385  0.0100
+SXS          C4         C12      DOUBLE       y     1.383  0.0100     1.383  0.0100
+SXS          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+SXS          C6          C7      SINGLE       y     1.397  0.0137     1.397  0.0137
+SXS          C7          N8      SINGLE       n     1.385  0.0200     1.385  0.0200
+SXS          C7         C11      DOUBLE       y     1.392  0.0100     1.392  0.0100
+SXS         C11         C12      SINGLE       y     1.385  0.0100     1.385  0.0100
+SXS         C12         S13      SINGLE       n     1.751  0.0191     1.751  0.0191
+SXS         S13         O14      DOUBLE       n     1.434  0.0100     1.434  0.0100
+SXS         S13         O15      DOUBLE       n     1.434  0.0100     1.434  0.0100
+SXS          N3         HN3      SINGLE       n     1.016  0.0100     0.879  0.0200
+SXS          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0183
+SXS          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0100
+SXS          N8         HN8      SINGLE       n     1.016  0.0100     0.877  0.0200
+SXS          N8        HN8A      SINGLE       n     1.016  0.0100     0.877  0.0200
+SXS         C11         H11      SINGLE       n     1.082  0.0130     0.947  0.0101
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SXS          O1          C2          N3     124.609    1.50
+SXS          O1          C2          C4     126.087    1.58
+SXS          N3          C2          C4     109.304    1.50
+SXS          C2          N3         S13     115.344    1.50
+SXS          C2          N3         HN3     123.665    1.55
+SXS         S13          N3         HN3     120.991    2.03
+SXS          C2          C4          C5     127.377    1.50
+SXS          C2          C4         C12     112.729    1.50
+SXS          C5          C4         C12     119.894    1.50
+SXS          C4          C5          C6     118.094    1.50
+SXS          C4          C5          H5     121.013    1.50
+SXS          C6          C5          H5     120.893    1.50
+SXS          C5          C6          C7     119.896    1.50
+SXS          C5          C6          H6     120.416    1.50
+SXS          C7          C6          H6     119.688    1.50
+SXS          C6          C7          N8     119.572    1.50
+SXS          C6          C7         C11     121.195    2.03
+SXS          N8          C7         C11     119.233    1.59
+SXS          C7          N8         HN8     119.557    1.50
+SXS          C7          N8        HN8A     119.557    1.50
+SXS         HN8          N8        HN8A     120.886    3.00
+SXS          C7         C11         C12     119.280    1.50
+SXS          C7         C11         H11     120.180    1.50
+SXS         C12         C11         H11     120.541    1.50
+SXS          C4         C12         C11     121.642    1.50
+SXS          C4         C12         S13     110.052    1.50
+SXS         C11         C12         S13     128.307    1.50
+SXS          N3         S13         C12      93.296    1.59
+SXS          N3         S13         O14     110.336    1.50
+SXS          N3         S13         O15     110.336    1.50
+SXS         C12         S13         O14     111.676    1.80
+SXS         C12         S13         O15     111.676    1.80
+SXS         O14         S13         O15     116.778    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SXS             sp2_sp2_3          O1          C2          N3         S13     180.000     5.0     2
+SXS             sp2_sp2_8          O1          C2          C4          C5       0.000     5.0     2
+SXS             sp2_sp3_3          C2          N3         S13         O14    -120.000    10.0     6
+SXS       const_sp2_sp2_3          C2          C4          C5          C6     180.000     5.0     2
+SXS              const_22         C11         C12          C4          C2     180.000    10.0     2
+SXS       const_sp2_sp2_5          C4          C5          C6          C7       0.000     5.0     2
+SXS              const_10          C5          C6          C7          N8     180.000    10.0     2
+SXS             sp2_sp2_9          C6          C7          N8         HN8     180.000     5.0     2
+SXS              const_14         C12         C11          C7          N8     180.000    10.0     2
+SXS              const_17          C7         C11         C12          C4       0.000    10.0     2
+SXS             sp2_sp3_8          C4         C12         S13         O14     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SXS    chir_1    S13    O14    O15    N3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SXS    plan-1         C11   0.020
+SXS    plan-1         C12   0.020
+SXS    plan-1          C2   0.020
+SXS    plan-1          C4   0.020
+SXS    plan-1          C5   0.020
+SXS    plan-1          C6   0.020
+SXS    plan-1          C7   0.020
+SXS    plan-1         H11   0.020
+SXS    plan-1          H5   0.020
+SXS    plan-1          H6   0.020
+SXS    plan-1          N8   0.020
+SXS    plan-1         S13   0.020
+SXS    plan-2          C2   0.020
+SXS    plan-2          C4   0.020
+SXS    plan-2          N3   0.020
+SXS    plan-2          O1   0.020
+SXS    plan-3          C2   0.020
+SXS    plan-3         HN3   0.020
+SXS    plan-3          N3   0.020
+SXS    plan-3         S13   0.020
+SXS    plan-4          C7   0.020
+SXS    plan-4         HN8   0.020
+SXS    plan-4        HN8A   0.020
+SXS    plan-4          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SXS           SMILES              ACDLabs 12.01                                               O=C2c1ccc(cc1S(=O)(=O)N2)N
+SXS            InChI                InChI  1.03 InChI=1S/C7H6N2O3S/c8-4-1-2-5-6(3-4)13(11,12)9-7(5)10/h1-3H,8H2,(H,9,10)
+SXS         InChIKey                InChI  1.03                                              SSRKZHLPNHLAKM-UHFFFAOYSA-N
+SXS SMILES_CANONICAL               CACTVS 3.385                                             Nc1ccc2C(=O)N[S](=O)(=O)c2c1
+SXS           SMILES               CACTVS 3.385                                             Nc1ccc2C(=O)N[S](=O)(=O)c2c1
+SXS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                               c1cc2c(cc1N)S(=O)(=O)NC2=O
+SXS           SMILES "OpenEye OEToolkits" 1.7.6                                               c1cc2c(cc1N)S(=O)(=O)NC2=O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SXS acedrg               243         "dictionary generator"                  
+SXS acedrg_database      11          "data source"                           
+SXS rdkit                2017.03.2   "Chemoinformatics tool"
+SXS refmac5              5.8.0238    "optimization tool"                     

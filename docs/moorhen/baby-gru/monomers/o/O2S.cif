@@ -1,0 +1,196 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+O2S     O2S      "(2~{R})-4-methyl-2-[(1~{S})-1-sulfanylethyl]pentanoic acid"     NON-POLYMER     26     11     .     
+#
+data_comp_O2S
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+O2S     O01     O       OC      -1      71.429      -51.021     11.187      
+O2S     C02     C       C       0       71.727      -50.289     12.152      
+O2S     O03     O       O       0       72.190      -49.138     12.034      
+O2S     C04     C       CH1     0       71.511      -50.838     13.568      
+O2S     C05     C       CH2     0       72.852      -50.950     14.325      
+O2S     C06     C       CH1     0       73.960      -51.794     13.672      
+O2S     C07     C       CH3     0       75.243      -51.755     14.502      
+O2S     C08     C       CH3     0       73.508      -53.233     13.447      
+O2S     C09     C       CH1     0       70.445      -50.006     14.303      
+O2S     S10     S       SH1     0       68.934      -49.807     13.308      
+O2S     C11     C       CH3     0       70.080      -50.571     15.652      
+O2S     H2      H       H       0       71.144      -51.752     13.471      
+O2S     H3      H       H       0       72.677      -51.328     15.212      
+O2S     H4      H       H       0       73.202      -50.044     14.458      
+O2S     H5      H       H       0       74.168      -51.401     12.789      
+O2S     H6      H       H       0       75.141      -51.130     15.241      
+O2S     H7      H       H       0       75.982      -51.467     13.939      
+O2S     H8      H       H       0       75.436      -52.641     14.857      
+O2S     H9      H       H       0       74.267      -53.772     13.163      
+O2S     H10     H       H       0       72.823      -53.256     12.757      
+O2S     H11     H       H       0       73.146      -53.594     14.275      
+O2S     H12     H       H       0       70.832      -49.107     14.458      
+O2S     H13     H       HSH1    0       68.368      -49.013     14.023      
+O2S     H14     H       H       0       70.239      -51.531     15.659      
+O2S     H15     H       H       0       69.140      -50.398     15.836      
+O2S     H16     H       H       0       70.626      -50.148     16.337      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+O2S         C02         O03      DOUBLE       n     1.247  0.0187     1.247  0.0187
+O2S         O01         C02      SINGLE       n     1.247  0.0187     1.247  0.0187
+O2S         C02         C04      SINGLE       n     1.533  0.0100     1.533  0.0100
+O2S         C06         C08      SINGLE       n     1.521  0.0151     1.521  0.0151
+O2S         C09         S10      SINGLE       n     1.818  0.0138     1.818  0.0138
+O2S         C05         C06      SINGLE       n     1.534  0.0100     1.534  0.0100
+O2S         C06         C07      SINGLE       n     1.521  0.0151     1.521  0.0151
+O2S         C04         C09      SINGLE       n     1.536  0.0100     1.536  0.0100
+O2S         C04         C05      SINGLE       n     1.530  0.0184     1.530  0.0184
+O2S         C09         C11      SINGLE       n     1.503  0.0163     1.503  0.0163
+O2S         C04          H2      SINGLE       n     1.089  0.0100     0.990  0.0142
+O2S         C05          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+O2S         C05          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+O2S         C06          H5      SINGLE       n     1.089  0.0100     0.989  0.0162
+O2S         C07          H6      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C07          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C07          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C08          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C08         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C08         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C09         H12      SINGLE       n     1.089  0.0100     0.991  0.0193
+O2S         S10         H13      SINGLE       n     1.338  0.0100     1.209  0.0200
+O2S         C11         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C11         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+O2S         C11         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+O2S         O03         C02         O01     123.899    1.50
+O2S         O03         C02         C04     118.051    1.50
+O2S         O01         C02         C04     118.051    1.50
+O2S         C02         C04         C09     111.511    2.91
+O2S         C02         C04         C05     110.778    2.06
+O2S         C02         C04          H2     107.706    1.93
+O2S         C09         C04         C05     114.157    1.56
+O2S         C09         C04          H2     107.529    1.50
+O2S         C05         C04          H2     107.780    1.50
+O2S         C06         C05         C04     115.330    1.50
+O2S         C06         C05          H3     108.194    1.50
+O2S         C06         C05          H4     108.194    1.50
+O2S         C04         C05          H3     108.447    1.50
+O2S         C04         C05          H4     108.447    1.50
+O2S          H3         C05          H4     107.599    1.50
+O2S         C08         C06         C05     111.049    1.51
+O2S         C08         C06         C07     110.507    1.50
+O2S         C08         C06          H5     108.052    1.50
+O2S         C05         C06         C07     111.049    1.51
+O2S         C05         C06          H5     108.023    1.50
+O2S         C07         C06          H5     108.052    1.50
+O2S         C06         C07          H6     109.488    1.50
+O2S         C06         C07          H7     109.488    1.50
+O2S         C06         C07          H8     109.488    1.50
+O2S          H6         C07          H7     109.411    1.50
+O2S          H6         C07          H8     109.411    1.50
+O2S          H7         C07          H8     109.411    1.50
+O2S         C06         C08          H9     109.488    1.50
+O2S         C06         C08         H10     109.488    1.50
+O2S         C06         C08         H11     109.488    1.50
+O2S          H9         C08         H10     109.411    1.50
+O2S          H9         C08         H11     109.411    1.50
+O2S         H10         C08         H11     109.411    1.50
+O2S         S10         C09         C04     112.239    3.00
+O2S         S10         C09         C11     112.239    3.00
+O2S         S10         C09         H12     109.066    1.50
+O2S         C04         C09         C11     113.131    1.50
+O2S         C04         C09         H12     108.167    1.50
+O2S         C11         C09         H12     108.175    1.50
+O2S         C09         S10         H13      97.885    3.00
+O2S         C09         C11         H14     109.479    1.50
+O2S         C09         C11         H15     109.479    1.50
+O2S         C09         C11         H16     109.479    1.50
+O2S         H14         C11         H15     109.455    1.50
+O2S         H14         C11         H16     109.455    1.50
+O2S         H15         C11         H16     109.455    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+O2S             sp2_sp3_1         O03         C02         C04         C09       0.000    10.0     6
+O2S            sp3_sp3_40         C02         C04         C05         C06     180.000    10.0     3
+O2S            sp3_sp3_31         C02         C04         C09         S10     180.000    10.0     3
+O2S            sp3_sp3_14         C04         C05         C06         C08     -60.000    10.0     3
+O2S            sp3_sp3_22         C08         C06         C07          H6     180.000    10.0     3
+O2S             sp3_sp3_1         C05         C06         C08          H9     180.000    10.0     3
+O2S            sp3_sp3_49         S10         C09         C11         H14     180.000    10.0     3
+O2S            sp3_sp3_10         C04         C09         S10         H13     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+O2S    chir_1    C04    C09    C02    C05    negative
+O2S    chir_2    C06    C05    C08    C07    both
+O2S    chir_3    C09    S10    C04    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+O2S    plan-1         C02   0.020
+O2S    plan-1         C04   0.020
+O2S    plan-1         O01   0.020
+O2S    plan-1         O03   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+O2S            InChI                InChI  1.03 InChI=1S/C8H16O2S/c1-5(2)4-7(6(3)11)8(9)10/h5-7,11H,4H2,1-3H3,(H,9,10)/t6-,7-/m0/s1
+O2S         InChIKey                InChI  1.03                                                         SKKLDDQIMOJPLA-BQBZGAKWSA-N
+O2S SMILES_CANONICAL               CACTVS 3.385                                                       CC(C)C[C@@H]([C@H](C)S)C(O)=O
+O2S           SMILES               CACTVS 3.385                                                          CC(C)C[CH]([CH](C)S)C(O)=O
+O2S SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                       C[C@@H]([C@H](CC(C)C)C(=O)O)S
+O2S           SMILES "OpenEye OEToolkits" 2.0.6                                                                CC(C)CC(C(C)S)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+O2S acedrg               243         "dictionary generator"                  
+O2S acedrg_database      11          "data source"                           
+O2S rdkit                2017.03.2   "Chemoinformatics tool"
+O2S refmac5              5.8.0238    "optimization tool"                     

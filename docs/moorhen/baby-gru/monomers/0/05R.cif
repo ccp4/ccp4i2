@@ -1,0 +1,162 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+05R     05R      "2-(3,4-dichlorophenyl)ethanoic acid"     NON-POLYMER     17     12     .     
+#
+data_comp_05R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+05R     CBE     C       C       0       48.355      -27.390     -22.873     
+05R     OBF     O       O       0       49.033      -27.020     -23.848     
+05R     CBG     C       CH2     0       47.932      -28.854     -22.806     
+05R     CBH     C       CR6     0       48.987      -29.755     -22.210     
+05R     CBI     C       CR16    0       49.674      -30.673     -22.995     
+05R     CBJ     C       CR16    0       50.643      -31.503     -22.455     
+05R     CBK     C       CR6     0       50.939      -31.420     -21.106     
+05R     CLL     CL      CL      0       52.152      -32.463     -20.446     
+05R     CBM     C       CR6     0       50.264      -30.510     -20.308     
+05R     CLN     CL      CL      0       50.612      -30.383     -18.618     
+05R     CBO     C       CR16    0       49.295      -29.682     -20.853     
+05R     OXT     O       OC      -1      48.001      -26.635     -21.950     
+05R     HBG     H       H       0       47.719      -29.159     -23.707     
+05R     HBGA    H       H       0       47.119      -28.920     -22.272     
+05R     HBI     H       H       0       49.477      -30.734     -23.915     
+05R     HBJ     H       H       0       51.099      -32.119     -22.998     
+05R     HBO     H       H       0       48.845      -29.070     -20.304     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+05R         CBE         OBF      DOUBLE       n     1.244  0.0200     1.244  0.0200
+05R         CBE         CBG      SINGLE       n     1.525  0.0126     1.525  0.0126
+05R         CBG         CBH      SINGLE       n     1.509  0.0100     1.509  0.0100
+05R         CBH         CBI      DOUBLE       y     1.386  0.0100     1.386  0.0100
+05R         CBH         CBO      SINGLE       y     1.389  0.0108     1.389  0.0108
+05R         CBI         CBJ      SINGLE       y     1.382  0.0100     1.382  0.0100
+05R         CBJ         CBK      DOUBLE       y     1.380  0.0100     1.380  0.0100
+05R         CBK         CLL      SINGLE       n     1.730  0.0100     1.730  0.0100
+05R         CBK         CBM      SINGLE       y     1.383  0.0100     1.383  0.0100
+05R         CBM         CBO      DOUBLE       y     1.382  0.0100     1.382  0.0100
+05R         CBM         CLN      SINGLE       n     1.729  0.0117     1.729  0.0117
+05R         CBE         OXT      SINGLE       n     1.244  0.0200     1.244  0.0200
+05R         CBG         HBG      SINGLE       n     1.089  0.0100     0.975  0.0113
+05R         CBG        HBGA      SINGLE       n     1.089  0.0100     0.975  0.0113
+05R         CBI         HBI      SINGLE       n     1.082  0.0130     0.943  0.0173
+05R         CBJ         HBJ      SINGLE       n     1.082  0.0130     0.939  0.0109
+05R         CBO         HBO      SINGLE       n     1.082  0.0130     0.937  0.0118
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+05R         OBF         CBE         CBG     118.115    1.50
+05R         OBF         CBE         OXT     123.770    1.50
+05R         CBG         CBE         OXT     118.115    1.50
+05R         CBE         CBG         CBH     113.444    2.96
+05R         CBE         CBG         HBG     108.710    1.50
+05R         CBE         CBG        HBGA     108.710    1.50
+05R         CBH         CBG         HBG     109.081    1.50
+05R         CBH         CBG        HBGA     109.081    1.50
+05R         HBG         CBG        HBGA     107.676    1.52
+05R         CBG         CBH         CBI     121.016    1.50
+05R         CBG         CBH         CBO     120.683    1.50
+05R         CBI         CBH         CBO     118.301    1.50
+05R         CBH         CBI         CBJ     121.652    1.50
+05R         CBH         CBI         HBI     119.162    1.50
+05R         CBJ         CBI         HBI     119.186    1.50
+05R         CBI         CBJ         CBK     119.724    1.50
+05R         CBI         CBJ         HBJ     120.382    1.50
+05R         CBK         CBJ         HBJ     119.894    1.50
+05R         CBJ         CBK         CLL     119.081    1.50
+05R         CBJ         CBK         CBM     119.964    1.50
+05R         CLL         CBK         CBM     120.955    1.50
+05R         CBK         CBM         CBO     120.297    1.50
+05R         CBK         CBM         CLN     120.798    1.50
+05R         CBO         CBM         CLN     118.905    1.50
+05R         CBH         CBO         CBM     120.062    1.50
+05R         CBH         CBO         HBO     120.083    1.50
+05R         CBM         CBO         HBO     119.855    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+05R             sp2_sp3_2         OBF         CBE         CBG         CBH     120.000    10.0     6
+05R             sp2_sp3_8         CBI         CBH         CBG         CBE     -90.000    10.0     6
+05R              const_23         CBG         CBH         CBO         CBM     180.000    10.0     2
+05R       const_sp2_sp2_3         CBG         CBH         CBI         CBJ     180.000     5.0     2
+05R       const_sp2_sp2_5         CBH         CBI         CBJ         CBK       0.000     5.0     2
+05R              const_10         CBI         CBJ         CBK         CLL     180.000    10.0     2
+05R              const_16         CLL         CBK         CBM         CLN       0.000    10.0     2
+05R              const_19         CLN         CBM         CBO         CBH     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+05R    plan-1         CBG   0.020
+05R    plan-1         CBH   0.020
+05R    plan-1         CBI   0.020
+05R    plan-1         CBJ   0.020
+05R    plan-1         CBK   0.020
+05R    plan-1         CBM   0.020
+05R    plan-1         CBO   0.020
+05R    plan-1         CLL   0.020
+05R    plan-1         CLN   0.020
+05R    plan-1         HBI   0.020
+05R    plan-1         HBJ   0.020
+05R    plan-1         HBO   0.020
+05R    plan-2         CBE   0.020
+05R    plan-2         CBG   0.020
+05R    plan-2         OBF   0.020
+05R    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+05R           SMILES              ACDLabs 12.01                                                Clc1ccc(cc1Cl)CC(=O)O
+05R            InChI                InChI  1.03 InChI=1S/C8H6Cl2O2/c9-6-2-1-5(3-7(6)10)4-8(11)12/h1-3H,4H2,(H,11,12)
+05R         InChIKey                InChI  1.03                                          ZOUPGSMSNQLUNW-UHFFFAOYSA-N
+05R SMILES_CANONICAL               CACTVS 3.385                                              OC(=O)Cc1ccc(Cl)c(Cl)c1
+05R           SMILES               CACTVS 3.385                                              OC(=O)Cc1ccc(Cl)c(Cl)c1
+05R SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                              c1cc(c(cc1CC(=O)O)Cl)Cl
+05R           SMILES "OpenEye OEToolkits" 1.9.2                                              c1cc(c(cc1CC(=O)O)Cl)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+05R acedrg               243         "dictionary generator"                  
+05R acedrg_database      11          "data source"                           
+05R rdkit                2017.03.2   "Chemoinformatics tool"
+05R refmac5              5.8.0238    "optimization tool"                     

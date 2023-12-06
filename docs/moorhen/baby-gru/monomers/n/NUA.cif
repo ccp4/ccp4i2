@@ -1,0 +1,231 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NUA     NUA      N-(1-ethyl-1H-pyrazol-4-yl)cyclobutanecarboxamide     NON-POLYMER     29     14     .     
+#
+data_comp_NUA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NUA     N1      N       NT      0       35.437      -48.055     16.400      
+NUA     N3      N       NRD5    0       34.790      -48.488     15.272      
+NUA     C4      C       CR5     0       35.525      -46.367     14.995      
+NUA     C5      C       C       0       36.685      -44.191     14.722      
+NUA     C6      C       CH1     0       36.360      -42.772     14.334      
+NUA     C7      C       CH2     0       36.601      -41.698     15.413      
+NUA     C8      C       CH2     0       37.821      -41.213     14.625      
+NUA     C10     C       CR15    0       34.850      -47.462     14.436      
+NUA     C1      C       CH3     0       34.526      -48.677     18.586      
+NUA     C2      C       CH2     0       35.568      -48.938     17.548      
+NUA     C3      C       CR15    0       35.890      -46.784     16.268      
+NUA     C9      C       CH2     0       37.394      -42.071     13.430      
+NUA     N2      N       NH1     0       35.760      -45.128     14.369      
+NUA     O1      O       O       0       37.734      -44.466     15.302      
+NUA     H1      H       H       0       35.450      -42.685     13.956      
+NUA     H2      H       H       0       35.877      -41.032     15.480      
+NUA     H3      H       H       0       36.819      -42.067     16.300      
+NUA     H4      H       H       0       38.677      -41.483     15.018      
+NUA     H5      H       H       0       37.813      -40.250     14.441      
+NUA     H6      H       H       0       34.468      -47.507     13.568      
+NUA     H7      H       H       0       34.712      -49.221     19.371      
+NUA     H8      H       H       0       33.651      -48.907     18.228      
+NUA     H9      H       H       0       34.544      -47.735     18.828      
+NUA     H10     H       H       0       36.448      -48.814     17.943      
+NUA     H11     H       H       0       35.497      -49.860     17.251      
+NUA     H12     H       H       0       36.364      -46.289     16.919      
+NUA     H13     H       H       0       36.993      -41.557     12.692      
+NUA     H14     H       H       0       38.101      -42.670     13.096      
+NUA     H15     H       H       0       35.263      -44.952     13.663      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NUA          C6          C9      SINGLE       n     1.541  0.0144     1.541  0.0144
+NUA          C8          C9      SINGLE       n     1.532  0.0141     1.532  0.0141
+NUA          C5          C6      SINGLE       n     1.504  0.0101     1.504  0.0101
+NUA          C6          C7      SINGLE       n     1.541  0.0144     1.541  0.0144
+NUA          C7          C8      SINGLE       n     1.532  0.0141     1.532  0.0141
+NUA          C5          N2      SINGLE       n     1.353  0.0171     1.353  0.0171
+NUA          C4          N2      SINGLE       n     1.406  0.0100     1.406  0.0100
+NUA          C4         C10      SINGLE       y     1.396  0.0200     1.396  0.0200
+NUA          N3         C10      DOUBLE       y     1.323  0.0100     1.323  0.0100
+NUA          C5          O1      DOUBLE       n     1.229  0.0108     1.229  0.0108
+NUA          C4          C3      DOUBLE       y     1.390  0.0200     1.390  0.0200
+NUA          N1          N3      SINGLE       y     1.371  0.0100     1.371  0.0100
+NUA          N1          C3      SINGLE       y     1.357  0.0100     1.357  0.0100
+NUA          N1          C2      SINGLE       n     1.454  0.0100     1.454  0.0100
+NUA          C1          C2      SINGLE       n     1.493  0.0200     1.493  0.0200
+NUA          C6          H1      SINGLE       n     1.089  0.0100     0.989  0.0200
+NUA          C7          H2      SINGLE       n     1.089  0.0100     0.985  0.0184
+NUA          C7          H3      SINGLE       n     1.089  0.0100     0.985  0.0184
+NUA          C8          H4      SINGLE       n     1.089  0.0100     0.980  0.0119
+NUA          C8          H5      SINGLE       n     1.089  0.0100     0.980  0.0119
+NUA         C10          H6      SINGLE       n     1.082  0.0130     0.949  0.0120
+NUA          C1          H7      SINGLE       n     1.089  0.0100     0.973  0.0158
+NUA          C1          H8      SINGLE       n     1.089  0.0100     0.973  0.0158
+NUA          C1          H9      SINGLE       n     1.089  0.0100     0.973  0.0158
+NUA          C2         H10      SINGLE       n     1.089  0.0100     0.972  0.0189
+NUA          C2         H11      SINGLE       n     1.089  0.0100     0.972  0.0189
+NUA          C3         H12      SINGLE       n     1.082  0.0130     0.945  0.0191
+NUA          C9         H13      SINGLE       n     1.089  0.0100     0.985  0.0184
+NUA          C9         H14      SINGLE       n     1.089  0.0100     0.985  0.0184
+NUA          N2         H15      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NUA          N3          N1          C3     111.649    1.50
+NUA          N3          N1          C2     118.244    2.18
+NUA          C3          N1          C2     124.795    3.00
+NUA         C10          N3          N1     103.919    1.50
+NUA          N2          C4         C10     127.865    2.73
+NUA          N2          C4          C3     127.178    3.00
+NUA         C10          C4          C3     104.957    1.50
+NUA          C6          C5          N2     115.393    1.61
+NUA          C6          C5          O1     121.627    1.50
+NUA          N2          C5          O1     122.980    1.50
+NUA          C9          C6          C5     115.594    2.10
+NUA          C9          C6          C7      88.246    1.50
+NUA          C9          C6          H1     110.492    1.66
+NUA          C5          C6          C7     115.594    2.10
+NUA          C5          C6          H1     111.477    1.98
+NUA          C7          C6          H1     110.492    1.66
+NUA          C6          C7          C8      88.138    1.50
+NUA          C6          C7          H2     113.700    1.50
+NUA          C6          C7          H3     113.700    1.50
+NUA          C8          C7          H2     113.877    1.50
+NUA          C8          C7          H3     113.877    1.50
+NUA          H2          C7          H3     110.670    1.50
+NUA          C9          C8          C7      89.467    1.50
+NUA          C9          C8          H4     113.763    1.50
+NUA          C9          C8          H5     113.763    1.50
+NUA          C7          C8          H4     113.763    1.50
+NUA          C7          C8          H5     113.763    1.50
+NUA          H4          C8          H5     110.794    1.50
+NUA          C4         C10          N3     111.033    1.50
+NUA          C4         C10          H6     126.956    2.33
+NUA          N3         C10          H6     122.012    2.56
+NUA          C2          C1          H7     108.362    3.00
+NUA          C2          C1          H8     108.362    3.00
+NUA          C2          C1          H9     108.362    3.00
+NUA          H7          C1          H8     109.442    1.50
+NUA          H7          C1          H9     109.442    1.50
+NUA          H8          C1          H9     109.442    1.50
+NUA          N1          C2          C1     111.989    1.71
+NUA          N1          C2         H10     108.815    1.50
+NUA          N1          C2         H11     108.815    1.50
+NUA          C1          C2         H10     108.970    1.50
+NUA          C1          C2         H11     108.970    1.50
+NUA         H10          C2         H11     107.991    1.50
+NUA          C4          C3          N1     107.254    2.05
+NUA          C4          C3         H12     126.646    2.60
+NUA          N1          C3         H12     126.100    1.50
+NUA          C6          C9          C8      88.138    1.50
+NUA          C6          C9         H13     113.700    1.50
+NUA          C6          C9         H14     113.700    1.50
+NUA          C8          C9         H13     113.877    1.50
+NUA          C8          C9         H14     113.877    1.50
+NUA         H13          C9         H14     110.670    1.50
+NUA          C5          N2          C4     124.406    2.96
+NUA          C5          N2         H15     117.316    2.44
+NUA          C4          N2         H15     118.278    2.72
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NUA       const_sp2_sp2_2          C2          N1          N3         C10     180.000     5.0     2
+NUA              const_14          C4          C3          N1          C2     180.000    10.0     2
+NUA             sp2_sp3_8          N3          N1          C2          C1     -90.000    10.0     6
+NUA       const_sp2_sp2_3          C4         C10          N3          N1       0.000     5.0     2
+NUA              const_10          N1          C3          C4          N2     180.000    10.0     2
+NUA             sp2_sp2_5         C10          C4          N2          C5     180.000     5.0     2
+NUA       const_sp2_sp2_6          N3         C10          C4          N2     180.000     5.0     2
+NUA             sp2_sp2_3          O1          C5          N2          C4       0.000     5.0     2
+NUA             sp2_sp3_2          N2          C5          C6          C9     120.000    10.0     6
+NUA             sp3_sp3_7          C5          C6          C9          C8     180.000    10.0     3
+NUA            sp3_sp3_31          C5          C6          C7          C8      60.000    10.0     3
+NUA            sp3_sp3_19          C6          C7          C8          C9      60.000    10.0     3
+NUA            sp3_sp3_10          C7          C8          C9          C6     -60.000    10.0     3
+NUA            sp3_sp3_37          H7          C1          C2          N1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NUA    chir_1    C6    C5    C9    C7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NUA    plan-1         C10   0.020
+NUA    plan-1          C2   0.020
+NUA    plan-1          C3   0.020
+NUA    plan-1          C4   0.020
+NUA    plan-1         H12   0.020
+NUA    plan-1          H6   0.020
+NUA    plan-1          N1   0.020
+NUA    plan-1          N2   0.020
+NUA    plan-1          N3   0.020
+NUA    plan-2          C5   0.020
+NUA    plan-2          C6   0.020
+NUA    plan-2          N2   0.020
+NUA    plan-2          O1   0.020
+NUA    plan-3          C4   0.020
+NUA    plan-3          C5   0.020
+NUA    plan-3         H15   0.020
+NUA    plan-3          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NUA           SMILES              ACDLabs 12.01                                                           n1(CC)ncc(c1)NC(=O)C2CCC2
+NUA            InChI                InChI  1.03 InChI=1S/C10H15N3O/c1-2-13-7-9(6-11-13)12-10(14)8-4-3-5-8/h6-8H,2-5H2,1H3,(H,12,14)
+NUA         InChIKey                InChI  1.03                                                         UVTFDTBDFQZRHD-UHFFFAOYSA-N
+NUA SMILES_CANONICAL               CACTVS 3.385                                                             CCn1cc(NC(=O)C2CCC2)cn1
+NUA           SMILES               CACTVS 3.385                                                             CCn1cc(NC(=O)C2CCC2)cn1
+NUA SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                             CCn1cc(cn1)NC(=O)C2CCC2
+NUA           SMILES "OpenEye OEToolkits" 2.0.6                                                             CCn1cc(cn1)NC(=O)C2CCC2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NUA acedrg               243         "dictionary generator"                  
+NUA acedrg_database      11          "data source"                           
+NUA rdkit                2017.03.2   "Chemoinformatics tool"
+NUA refmac5              5.8.0238    "optimization tool"                     

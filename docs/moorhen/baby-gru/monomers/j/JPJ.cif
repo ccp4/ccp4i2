@@ -1,0 +1,287 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JPJ     JPJ      2-(2,4-DICHLOROPHENOXY)-5-(2-PHENYLETHYL)PHENOL     NON-POLYMER     40     24     .     
+#
+data_comp_JPJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JPJ     CL20    CL      CL      0       50.375      88.861      34.985      
+JPJ     C15     C       CR6     0       51.574      89.887      34.272      
+JPJ     C16     C       CR16    0       52.694      89.308      33.705      
+JPJ     C17     C       CR6     0       53.653      90.129      33.135      
+JPJ     CL21    CL      CL      0       55.066      89.415      32.418      
+JPJ     C22     C       CR16    0       53.504      91.497      33.127      
+JPJ     C19     C       CR16    0       52.374      92.066      33.701      
+JPJ     C14     C       CR6     0       51.396      91.263      34.279      
+JPJ     O13     O       O2      0       50.238      91.755      34.873      
+JPJ     C2      C       CR6     0       49.890      93.102      34.850      
+JPJ     C1      C       CR6     0       49.350      93.643      33.666      
+JPJ     O22     O       OH1     0       49.148      92.854      32.558      
+JPJ     C3      C       CR16    0       50.089      93.915      35.941      
+JPJ     C4      C       CR16    0       49.743      95.264      35.875      
+JPJ     C5      C       CR6     0       49.197      95.813      34.722      
+JPJ     C6      C       CR16    0       49.012      94.986      33.618      
+JPJ     C7      C       CH2     0       48.839      97.277      34.647      
+JPJ     C18     C       CH2     0       50.067      98.197      34.393      
+JPJ     C28     C       CR6     0       50.930      97.755      33.233      
+JPJ     C27     C       CR16    0       50.583      98.072      31.924      
+JPJ     C26     C       CR16    0       51.374      97.659      30.859      
+JPJ     C25     C       CR16    0       52.517      96.923      31.088      
+JPJ     C24     C       CR16    0       52.873      96.597      32.380      
+JPJ     C23     C       CR16    0       52.085      97.010      33.447      
+JPJ     H16     H       H       0       52.800      88.377      33.707      
+JPJ     H22     H       H       0       54.161      92.043      32.738      
+JPJ     H19     H       H       0       52.278      92.996      33.694      
+JPJ     HO22    H       H       0       49.278      93.177      31.770      
+JPJ     H3      H       H       0       50.454      93.559      36.735      
+JPJ     H4      H       H       0       49.879      95.813      36.630      
+JPJ     H6      H       H       0       48.647      95.346      32.824      
+JPJ     H71     H       H       0       48.412      97.547      35.490      
+JPJ     H72     H       H       0       48.187      97.414      33.925      
+JPJ     H181    H       H       0       50.615      98.223      35.209      
+JPJ     H182    H       H       0       49.746      99.111      34.224      
+JPJ     H27     H       H       0       49.802      98.575      31.759      
+JPJ     H26     H       H       0       51.127      97.884      29.976      
+JPJ     H25     H       H       0       53.054      96.644      30.363      
+JPJ     H24     H       H       0       53.656      96.094      32.541      
+JPJ     H23     H       H       0       52.334      96.783      34.329      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JPJ        CL20         C15      SINGLE       n     1.731  0.0100     1.731  0.0100
+JPJ         C15         C16      DOUBLE       y     1.379  0.0100     1.379  0.0100
+JPJ         C15         C14      SINGLE       y     1.383  0.0100     1.383  0.0100
+JPJ         C16         C17      SINGLE       y     1.383  0.0100     1.383  0.0100
+JPJ         C17        CL21      SINGLE       n     1.738  0.0100     1.738  0.0100
+JPJ         C17         C22      DOUBLE       y     1.373  0.0100     1.373  0.0100
+JPJ         C22         C19      SINGLE       y     1.385  0.0100     1.385  0.0100
+JPJ         C19         C14      DOUBLE       y     1.382  0.0100     1.382  0.0100
+JPJ         C14         O13      SINGLE       n     1.383  0.0127     1.383  0.0127
+JPJ         O13          C2      SINGLE       n     1.389  0.0100     1.389  0.0100
+JPJ          C2          C1      DOUBLE       y     1.405  0.0100     1.405  0.0100
+JPJ          C2          C3      SINGLE       y     1.372  0.0100     1.372  0.0100
+JPJ          C1         O22      SINGLE       n     1.374  0.0155     1.374  0.0155
+JPJ          C1          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+JPJ          C3          C4      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JPJ          C4          C5      SINGLE       y     1.385  0.0110     1.385  0.0110
+JPJ          C5          C6      DOUBLE       y     1.388  0.0100     1.388  0.0100
+JPJ          C5          C7      SINGLE       n     1.508  0.0100     1.508  0.0100
+JPJ          C7         C18      SINGLE       n     1.546  0.0200     1.546  0.0200
+JPJ         C18         C28      SINGLE       n     1.511  0.0100     1.511  0.0100
+JPJ         C28         C27      DOUBLE       y     1.385  0.0111     1.385  0.0111
+JPJ         C28         C23      SINGLE       y     1.385  0.0111     1.385  0.0111
+JPJ         C27         C26      SINGLE       y     1.386  0.0100     1.386  0.0100
+JPJ         C26         C25      DOUBLE       y     1.374  0.0127     1.374  0.0127
+JPJ         C25         C24      SINGLE       y     1.376  0.0124     1.376  0.0124
+JPJ         C24         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+JPJ         C16         H16      SINGLE       n     1.082  0.0130     0.937  0.0113
+JPJ         C22         H22      SINGLE       n     1.082  0.0130     0.939  0.0186
+JPJ         C19         H19      SINGLE       n     1.082  0.0130     0.935  0.0105
+JPJ         O22        HO22      SINGLE       n     0.966  0.0059     0.861  0.0200
+JPJ          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0200
+JPJ          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+JPJ          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0164
+JPJ          C7         H71      SINGLE       n     1.089  0.0100     0.983  0.0181
+JPJ          C7         H72      SINGLE       n     1.089  0.0100     0.983  0.0181
+JPJ         C18        H181      SINGLE       n     1.089  0.0100     0.983  0.0181
+JPJ         C18        H182      SINGLE       n     1.089  0.0100     0.983  0.0181
+JPJ         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0174
+JPJ         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0175
+JPJ         C25         H25      SINGLE       n     1.082  0.0130     0.944  0.0161
+JPJ         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0175
+JPJ         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JPJ        CL20         C15         C16     119.215    1.50
+JPJ        CL20         C15         C14     119.451    1.50
+JPJ         C16         C15         C14     121.334    1.50
+JPJ         C15         C16         C17     118.851    1.50
+JPJ         C15         C16         H16     120.373    1.50
+JPJ         C17         C16         H16     120.776    1.50
+JPJ         C16         C17        CL21     119.112    1.50
+JPJ         C16         C17         C22     121.332    1.50
+JPJ        CL21         C17         C22     119.557    1.50
+JPJ         C17         C22         C19     119.352    1.50
+JPJ         C17         C22         H22     120.402    1.50
+JPJ         C19         C22         H22     120.246    1.50
+JPJ         C22         C19         C14     119.870    1.50
+JPJ         C22         C19         H19     120.039    1.50
+JPJ         C14         C19         H19     120.090    1.50
+JPJ         C15         C14         C19     119.261    1.50
+JPJ         C15         C14         O13     119.148    2.14
+JPJ         C19         C14         O13     121.591    2.47
+JPJ         C14         O13          C2     118.469    2.57
+JPJ         O13          C2          C1     118.488    2.23
+JPJ         O13          C2          C3     121.895    2.43
+JPJ          C1          C2          C3     119.617    1.50
+JPJ          C2          C1         O22     120.191    3.00
+JPJ          C2          C1          C6     119.617    1.50
+JPJ         O22          C1          C6     120.191    3.00
+JPJ          C1         O22        HO22     120.000    3.00
+JPJ          C2          C3          C4     119.940    1.50
+JPJ          C2          C3          H3     119.976    1.50
+JPJ          C4          C3          H3     120.084    1.50
+JPJ          C3          C4          C5     121.457    1.50
+JPJ          C3          C4          H4     119.218    1.50
+JPJ          C5          C4          H4     119.325    1.50
+JPJ          C4          C5          C6     118.407    1.50
+JPJ          C4          C5          C7     121.192    1.50
+JPJ          C6          C5          C7     120.401    1.50
+JPJ          C1          C6          C5     120.961    1.50
+JPJ          C1          C6          H6     119.584    1.50
+JPJ          C5          C6          H6     119.455    1.50
+JPJ          C5          C7         C18     113.191    1.54
+JPJ          C5          C7         H71     109.088    1.58
+JPJ          C5          C7         H72     109.088    1.58
+JPJ         C18          C7         H71     108.746    1.50
+JPJ         C18          C7         H72     108.746    1.50
+JPJ         H71          C7         H72     107.732    2.63
+JPJ          C7         C18         C28     113.191    1.54
+JPJ          C7         C18        H181     108.746    1.50
+JPJ          C7         C18        H182     108.746    1.50
+JPJ         C28         C18        H181     109.088    1.58
+JPJ         C28         C18        H182     109.088    1.58
+JPJ        H181         C18        H182     107.732    2.63
+JPJ         C18         C28         C27     120.970    1.50
+JPJ         C18         C28         C23     120.970    1.50
+JPJ         C27         C28         C23     118.060    1.50
+JPJ         C28         C27         C26     120.624    1.50
+JPJ         C28         C27         H27     119.591    1.50
+JPJ         C26         C27         H27     119.786    1.50
+JPJ         C27         C26         C25     120.325    1.50
+JPJ         C27         C26         H26     119.792    1.50
+JPJ         C25         C26         H26     119.883    1.50
+JPJ         C26         C25         C24     120.043    1.50
+JPJ         C26         C25         H25     119.979    1.50
+JPJ         C24         C25         H25     119.979    1.50
+JPJ         C25         C24         C23     120.325    1.50
+JPJ         C25         C24         H24     119.883    1.50
+JPJ         C23         C24         H24     119.792    1.50
+JPJ         C28         C23         C24     120.624    1.50
+JPJ         C28         C23         H23     119.591    1.50
+JPJ         C24         C23         H23     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JPJ             sp2_sp2_5          C2          C1         O22        HO22     180.000     5.0     2
+JPJ              const_27         O22          C1          C6          C5     180.000    10.0     2
+JPJ              const_37          C2          C3          C4          C5       0.000    10.0     2
+JPJ              const_34          C3          C4          C5          C7     180.000    10.0     2
+JPJ              const_31          C7          C5          C6          C1     180.000    10.0     2
+JPJ             sp2_sp3_2          C4          C5          C7         C18     -90.000    10.0     6
+JPJ             sp3_sp3_1         C28         C18          C7          C5     180.000    10.0     3
+JPJ             sp2_sp3_8         C27         C28         C18          C7     -90.000    10.0     6
+JPJ              const_42         C26         C27         C28         C18     180.000    10.0     2
+JPJ              const_70         C24         C23         C28         C18     180.000    10.0     2
+JPJ              const_45         C25         C26         C27         C28       0.000    10.0     2
+JPJ       const_sp2_sp2_3        CL20         C15         C16         C17     180.000     5.0     2
+JPJ              const_64         O13         C14         C15        CL20       0.000    10.0     2
+JPJ              const_49         C24         C25         C26         C27       0.000    10.0     2
+JPJ              const_53         C23         C24         C25         C26       0.000    10.0     2
+JPJ              const_57         C28         C23         C24         C25       0.000    10.0     2
+JPJ       const_sp2_sp2_6         C15         C16         C17        CL21     180.000     5.0     2
+JPJ              const_11        CL21         C17         C22         C19     180.000    10.0     2
+JPJ              const_13         C14         C19         C22         C17       0.000    10.0     2
+JPJ              const_19         O13         C14         C19         C22     180.000    10.0     2
+JPJ             sp2_sp2_1         C15         C14         O13          C2     180.000     5.0     2
+JPJ             sp2_sp2_3          C1          C2         O13         C14     180.000     5.0     2
+JPJ              const_24         O22          C1          C2         O13       0.000    10.0     2
+JPJ              const_67         O13          C2          C3          C4     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JPJ    plan-1          C1   0.020
+JPJ    plan-1          C2   0.020
+JPJ    plan-1          C3   0.020
+JPJ    plan-1          C4   0.020
+JPJ    plan-1          C5   0.020
+JPJ    plan-1          C6   0.020
+JPJ    plan-1          C7   0.020
+JPJ    plan-1          H3   0.020
+JPJ    plan-1          H4   0.020
+JPJ    plan-1          H6   0.020
+JPJ    plan-1         O13   0.020
+JPJ    plan-1         O22   0.020
+JPJ    plan-2         C18   0.020
+JPJ    plan-2         C23   0.020
+JPJ    plan-2         C24   0.020
+JPJ    plan-2         C25   0.020
+JPJ    plan-2         C26   0.020
+JPJ    plan-2         C27   0.020
+JPJ    plan-2         C28   0.020
+JPJ    plan-2         H23   0.020
+JPJ    plan-2         H24   0.020
+JPJ    plan-2         H25   0.020
+JPJ    plan-2         H26   0.020
+JPJ    plan-2         H27   0.020
+JPJ    plan-3         C14   0.020
+JPJ    plan-3         C15   0.020
+JPJ    plan-3         C16   0.020
+JPJ    plan-3         C17   0.020
+JPJ    plan-3         C19   0.020
+JPJ    plan-3         C22   0.020
+JPJ    plan-3        CL20   0.020
+JPJ    plan-3        CL21   0.020
+JPJ    plan-3         H16   0.020
+JPJ    plan-3         H19   0.020
+JPJ    plan-3         H22   0.020
+JPJ    plan-3         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JPJ           SMILES              ACDLabs 10.04                                                                              Clc3cc(Cl)ccc3Oc1ccc(cc1O)CCc2ccccc2
+JPJ SMILES_CANONICAL               CACTVS 3.341                                                                              Oc1cc(CCc2ccccc2)ccc1Oc3ccc(Cl)cc3Cl
+JPJ           SMILES               CACTVS 3.341                                                                              Oc1cc(CCc2ccccc2)ccc1Oc3ccc(Cl)cc3Cl
+JPJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                          c1ccc(cc1)CCc2ccc(c(c2)O)Oc3ccc(cc3Cl)Cl
+JPJ           SMILES "OpenEye OEToolkits" 1.5.0                                                                          c1ccc(cc1)CCc2ccc(c(c2)O)Oc3ccc(cc3Cl)Cl
+JPJ            InChI                InChI  1.03 InChI=1S/C20H16Cl2O2/c21-16-9-11-19(17(22)13-16)24-20-10-8-15(12-18(20)23)7-6-14-4-2-1-3-5-14/h1-5,8-13,23H,6-7H2
+JPJ         InChIKey                InChI  1.03                                                                                       SOSAEWQXZFTNAQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JPJ acedrg               243         "dictionary generator"                  
+JPJ acedrg_database      11          "data source"                           
+JPJ rdkit                2017.03.2   "Chemoinformatics tool"
+JPJ refmac5              5.8.0238    "optimization tool"                     

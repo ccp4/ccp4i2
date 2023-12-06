@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IFA     IFA      "METHYL N-[(2',4'-DIFLUORO-4-HYDROXY-5-IODOBIPHENYL-3-YL)CARBONYL]-BETA-ALANINATE"     NON-POLYMER     39     25     .     
+#
+data_comp_IFA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IFA     FAF     F       F       0       20.861      -2.083      -8.544      
+IFA     CAT     C       CR6     0       21.047      -0.786      -8.892      
+IFA     CAJ     C       CR16    0       21.142      -0.504      -10.240     
+IFA     CAS     C       CR6     0       21.330      0.812       -10.591     
+IFA     FAE     F       F       0       21.427      1.118       -11.909     
+IFA     CAH     C       CR16    0       21.424      1.822       -9.669      
+IFA     CAI     C       CR16    0       21.323      1.492       -8.323      
+IFA     CAY     C       CR6     0       21.131      0.176       -7.887      
+IFA     CAW     C       CR6     0       21.028      -0.140      -6.443      
+IFA     CAL     C       CR16    0       19.981      0.373       -5.673      
+IFA     CAK     C       CR16    0       21.971      -0.957      -5.820      
+IFA     CAU     C       CR6     0       21.863      -1.247      -4.471      
+IFA     IAG     I       I       0       23.297      -2.477      -3.573      
+IFA     CAV     C       CR6     0       20.814      -0.735      -3.702      
+IFA     OAD     O       OH1     0       20.729      -1.036      -2.362      
+IFA     CAX     C       CR6     0       19.855      0.096       -4.312      
+IFA     CAR     C       C       0       18.698      0.686       -3.572      
+IFA     OAC     O       O       0       17.565      0.569       -4.040      
+IFA     NAO     N       NH1     0       18.930      1.300       -2.406      
+IFA     CAM     C       CH2     0       17.858      1.818       -1.561      
+IFA     CAN     C       CH2     0       17.082      0.711       -0.875      
+IFA     CAQ     C       C       0       16.037      1.213       0.080       
+IFA     OAB     O       O       0       15.921      2.356       0.451       
+IFA     OAP     O       O2      0       15.245      0.216       0.481       
+IFA     CAA     C       CH3     0       14.064      0.552       1.254       
+IFA     HAJ     H       H       0       21.080      -1.184      -10.889     
+IFA     HAH     H       H       0       21.553      2.713       -9.941      
+IFA     HAI     H       H       0       21.385      2.175       -7.680      
+IFA     HAL     H       H       0       19.338      0.928       -6.093      
+IFA     HAK     H       H       0       22.683      -1.312      -6.325      
+IFA     HOAD    H       H       0       20.043      -1.458      -2.059      
+IFA     HNAO    H       H       0       19.754      1.407       -2.137      
+IFA     HAM1    H       H       0       17.245      2.353       -2.107      
+IFA     HAM2    H       H       0       18.247      2.407       -0.882      
+IFA     HAN1    H       H       0       17.708      0.142       -0.389      
+IFA     HAN2    H       H       0       16.650      0.159       -1.553      
+IFA     HAA1    H       H       0       13.515      1.176       0.753       
+IFA     HAA2    H       H       0       14.332      0.956       2.094       
+IFA     HAA3    H       H       0       13.556      -0.255      1.431       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IFA         FAF         CAT      SINGLE       n     1.355  0.0100     1.355  0.0100
+IFA         CAT         CAJ      DOUBLE       y     1.377  0.0100     1.377  0.0100
+IFA         CAT         CAY      SINGLE       y     1.389  0.0100     1.389  0.0100
+IFA         CAJ         CAS      SINGLE       y     1.371  0.0101     1.371  0.0101
+IFA         CAS         FAE      SINGLE       n     1.357  0.0100     1.357  0.0100
+IFA         CAS         CAH      DOUBLE       y     1.367  0.0100     1.367  0.0100
+IFA         CAH         CAI      SINGLE       y     1.386  0.0100     1.386  0.0100
+IFA         CAI         CAY      DOUBLE       y     1.396  0.0100     1.396  0.0100
+IFA         CAY         CAW      SINGLE       n     1.481  0.0109     1.481  0.0109
+IFA         CAW         CAL      DOUBLE       y     1.393  0.0110     1.393  0.0110
+IFA         CAW         CAK      SINGLE       y     1.392  0.0100     1.392  0.0100
+IFA         CAL         CAX      SINGLE       y     1.389  0.0100     1.389  0.0100
+IFA         CAK         CAU      DOUBLE       y     1.379  0.0120     1.379  0.0120
+IFA         CAU         IAG      SINGLE       n     2.092  0.0100     2.092  0.0100
+IFA         CAU         CAV      SINGLE       y     1.392  0.0115     1.392  0.0115
+IFA         CAV         CAX      DOUBLE       y     1.402  0.0106     1.402  0.0106
+IFA         CAV         OAD      SINGLE       n     1.374  0.0155     1.374  0.0155
+IFA         CAX         CAR      SINGLE       n     1.492  0.0102     1.492  0.0102
+IFA         CAR         OAC      DOUBLE       n     1.230  0.0114     1.230  0.0114
+IFA         CAR         NAO      SINGLE       n     1.333  0.0111     1.333  0.0111
+IFA         NAO         CAM      SINGLE       n     1.457  0.0100     1.457  0.0100
+IFA         CAM         CAN      SINGLE       n     1.515  0.0100     1.515  0.0100
+IFA         CAN         CAQ      SINGLE       n     1.500  0.0100     1.500  0.0100
+IFA         CAQ         OAP      SINGLE       n     1.328  0.0136     1.328  0.0136
+IFA         CAQ         OAB      DOUBLE       n     1.203  0.0150     1.203  0.0150
+IFA         OAP         CAA      SINGLE       n     1.447  0.0130     1.447  0.0130
+IFA         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0108
+IFA         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0154
+IFA         CAI         HAI      SINGLE       n     1.082  0.0130     0.940  0.0128
+IFA         CAL         HAL      SINGLE       n     1.082  0.0130     0.947  0.0154
+IFA         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0177
+IFA         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+IFA         NAO        HNAO      SINGLE       n     1.016  0.0100     0.873  0.0200
+IFA         CAM        HAM1      SINGLE       n     1.089  0.0100     0.980  0.0159
+IFA         CAM        HAM2      SINGLE       n     1.089  0.0100     0.980  0.0159
+IFA         CAN        HAN1      SINGLE       n     1.089  0.0100     0.975  0.0162
+IFA         CAN        HAN2      SINGLE       n     1.089  0.0100     0.975  0.0162
+IFA         CAA        HAA1      SINGLE       n     1.089  0.0100     0.970  0.0175
+IFA         CAA        HAA2      SINGLE       n     1.089  0.0100     0.970  0.0175
+IFA         CAA        HAA3      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IFA         FAF         CAT         CAJ     117.222    1.50
+IFA         FAF         CAT         CAY     118.769    1.50
+IFA         CAJ         CAT         CAY     124.009    1.50
+IFA         CAT         CAJ         CAS     116.864    1.50
+IFA         CAT         CAJ         HAJ     121.484    1.50
+IFA         CAS         CAJ         HAJ     121.652    1.50
+IFA         CAJ         CAS         FAE     118.217    1.50
+IFA         CAJ         CAS         CAH     123.035    1.50
+IFA         FAE         CAS         CAH     118.748    1.50
+IFA         CAS         CAH         CAI     118.220    1.50
+IFA         CAS         CAH         HAH     120.865    1.50
+IFA         CAI         CAH         HAH     120.915    1.50
+IFA         CAH         CAI         CAY     122.222    1.50
+IFA         CAH         CAI         HAI     119.090    1.50
+IFA         CAY         CAI         HAI     118.689    1.50
+IFA         CAT         CAY         CAI     115.650    1.50
+IFA         CAT         CAY         CAW     123.370    1.50
+IFA         CAI         CAY         CAW     120.980    1.53
+IFA         CAY         CAW         CAL     120.680    1.50
+IFA         CAY         CAW         CAK     120.868    1.52
+IFA         CAL         CAW         CAK     118.451    1.50
+IFA         CAW         CAL         CAX     122.176    1.50
+IFA         CAW         CAL         HAL     118.693    1.50
+IFA         CAX         CAL         HAL     119.131    1.50
+IFA         CAW         CAK         CAU     120.334    1.50
+IFA         CAW         CAK         HAK     119.501    1.50
+IFA         CAU         CAK         HAK     120.165    1.50
+IFA         CAK         CAU         IAG     119.392    1.50
+IFA         CAK         CAU         CAV     121.257    1.50
+IFA         IAG         CAU         CAV     119.351    1.50
+IFA         CAU         CAV         CAX     119.146    1.50
+IFA         CAU         CAV         OAD     120.427    3.00
+IFA         CAX         CAV         OAD     120.427    3.00
+IFA         CAV         OAD        HOAD     120.000    3.00
+IFA         CAL         CAX         CAV     118.636    1.50
+IFA         CAL         CAX         CAR     118.783    2.89
+IFA         CAV         CAX         CAR     122.581    3.00
+IFA         CAX         CAR         OAC     119.811    1.50
+IFA         CAX         CAR         NAO     118.378    1.50
+IFA         OAC         CAR         NAO     121.812    1.50
+IFA         CAR         NAO         CAM     121.796    1.50
+IFA         CAR         NAO        HNAO     119.379    1.77
+IFA         CAM         NAO        HNAO     118.813    1.50
+IFA         NAO         CAM         CAN     112.092    1.50
+IFA         NAO         CAM        HAM1     109.020    1.50
+IFA         NAO         CAM        HAM2     109.020    1.50
+IFA         CAN         CAM        HAM1     109.149    1.50
+IFA         CAN         CAM        HAM2     109.149    1.50
+IFA        HAM1         CAM        HAM2     107.877    1.50
+IFA         CAM         CAN         CAQ     112.771    1.50
+IFA         CAM         CAN        HAN1     108.953    1.50
+IFA         CAM         CAN        HAN2     108.953    1.50
+IFA         CAQ         CAN        HAN1     109.146    1.50
+IFA         CAQ         CAN        HAN2     109.146    1.50
+IFA        HAN1         CAN        HAN2     107.647    1.50
+IFA         CAN         CAQ         OAP     111.467    1.50
+IFA         CAN         CAQ         OAB     125.320    1.50
+IFA         OAP         CAQ         OAB     123.213    1.50
+IFA         CAQ         OAP         CAA     116.218    1.50
+IFA         OAP         CAA        HAA1     109.367    1.50
+IFA         OAP         CAA        HAA2     109.367    1.50
+IFA         OAP         CAA        HAA3     109.367    1.50
+IFA        HAA1         CAA        HAA2     109.532    1.53
+IFA        HAA1         CAA        HAA3     109.532    1.53
+IFA        HAA2         CAA        HAA3     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IFA              const_38         CAW         CAK         CAU         IAG     180.000    10.0     2
+IFA              const_36         IAG         CAU         CAV         OAD       0.000    10.0     2
+IFA             sp2_sp2_5         CAU         CAV         OAD        HOAD     180.000     5.0     2
+IFA              const_32         OAD         CAV         CAX         CAR       0.000    10.0     2
+IFA             sp2_sp2_9         OAC         CAR         CAX         CAL       0.000     5.0     2
+IFA            sp2_sp2_13         OAC         CAR         NAO         CAM       0.000     5.0     2
+IFA             sp2_sp3_2         CAR         NAO         CAM         CAN     120.000    10.0     6
+IFA             sp3_sp3_1         NAO         CAM         CAN         CAQ     180.000    10.0     3
+IFA       const_sp2_sp2_2         CAS         CAJ         CAT         FAF     180.000     5.0     2
+IFA              const_43         FAF         CAT         CAY         CAI     180.000    10.0     2
+IFA             sp2_sp3_8         OAP         CAQ         CAN         CAM     120.000    10.0     6
+IFA            sp2_sp2_15         CAN         CAQ         OAP         CAA     180.000     5.0     2
+IFA            sp3_sp3_11        HAA1         CAA         OAP         CAQ     -60.000    10.0     3
+IFA       const_sp2_sp2_6         CAT         CAJ         CAS         FAE     180.000     5.0     2
+IFA              const_10         CAI         CAH         CAS         FAE     180.000    10.0     2
+IFA              const_13         CAS         CAH         CAI         CAY       0.000    10.0     2
+IFA              const_17         CAH         CAI         CAY         CAT       0.000    10.0     2
+IFA             sp2_sp2_1         CAL         CAW         CAY         CAT     180.000     5.0     2
+IFA              const_46         CAU         CAK         CAW         CAY     180.000    10.0     2
+IFA              const_22         CAX         CAL         CAW         CAY     180.000    10.0     2
+IFA              const_26         CAW         CAL         CAX         CAR     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IFA    plan-1         CAK   0.020
+IFA    plan-1         CAL   0.020
+IFA    plan-1         CAR   0.020
+IFA    plan-1         CAU   0.020
+IFA    plan-1         CAV   0.020
+IFA    plan-1         CAW   0.020
+IFA    plan-1         CAX   0.020
+IFA    plan-1         CAY   0.020
+IFA    plan-1         HAK   0.020
+IFA    plan-1         HAL   0.020
+IFA    plan-1         IAG   0.020
+IFA    plan-1         OAD   0.020
+IFA    plan-2         CAH   0.020
+IFA    plan-2         CAI   0.020
+IFA    plan-2         CAJ   0.020
+IFA    plan-2         CAS   0.020
+IFA    plan-2         CAT   0.020
+IFA    plan-2         CAW   0.020
+IFA    plan-2         CAY   0.020
+IFA    plan-2         FAE   0.020
+IFA    plan-2         FAF   0.020
+IFA    plan-2         HAH   0.020
+IFA    plan-2         HAI   0.020
+IFA    plan-2         HAJ   0.020
+IFA    plan-3         CAR   0.020
+IFA    plan-3         CAX   0.020
+IFA    plan-3         NAO   0.020
+IFA    plan-3         OAC   0.020
+IFA    plan-4         CAM   0.020
+IFA    plan-4         CAR   0.020
+IFA    plan-4        HNAO   0.020
+IFA    plan-4         NAO   0.020
+IFA    plan-5         CAN   0.020
+IFA    plan-5         CAQ   0.020
+IFA    plan-5         OAB   0.020
+IFA    plan-5         OAP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IFA           SMILES              ACDLabs 10.04                                                                                       Ic2cc(c1ccc(F)cc1F)cc(C(=O)NCCC(=O)OC)c2O
+IFA SMILES_CANONICAL               CACTVS 3.341                                                                                       COC(=O)CCNC(=O)c1cc(cc(I)c1O)c2ccc(F)cc2F
+IFA           SMILES               CACTVS 3.341                                                                                       COC(=O)CCNC(=O)c1cc(cc(I)c1O)c2ccc(F)cc2F
+IFA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                       COC(=O)CCNC(=O)c1cc(cc(c1O)I)c2ccc(cc2F)F
+IFA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                       COC(=O)CCNC(=O)c1cc(cc(c1O)I)c2ccc(cc2F)F
+IFA            InChI                InChI  1.03 InChI=1S/C17H14F2INO4/c1-25-15(22)4-5-21-17(24)12-6-9(7-14(20)16(12)23)11-3-2-10(18)8-13(11)19/h2-3,6-8,23H,4-5H2,1H3,(H,21,24)
+IFA         InChIKey                InChI  1.03                                                                                                     ZMRRBWRMQPQQAN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IFA acedrg               243         "dictionary generator"                  
+IFA acedrg_database      11          "data source"                           
+IFA rdkit                2017.03.2   "Chemoinformatics tool"
+IFA refmac5              5.8.0238    "optimization tool"                     

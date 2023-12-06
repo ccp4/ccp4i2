@@ -1,0 +1,368 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+D2K     D2K      "ethyl 4-{3-[(2,4-diamino-5-methylpyrido[2,3-d]pyrimidin-6-yl)methyl]-4-methoxyphenoxy}butanoate"     NON-POLYMER     58     31     .     
+#
+data_comp_D2K
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+D2K     N1      N       NRD6    0       10.394      -1.842      11.066      
+D2K     C2      C       CR6     0       10.500      -1.755      9.720       
+D2K     N3      N       NRD6    0       11.205      -0.805      9.062       
+D2K     C4      C       CR66    0       11.860      0.139       9.797       
+D2K     C5      C       CR66    0       11.803      0.124       11.241      
+D2K     C6      C       CR6     0       11.017      -0.941      11.839      
+D2K     CAA     C       CH3     0       15.472      0.290       5.011       
+D2K     CAB     C       CH3     0       15.846      0.464       13.739      
+D2K     CAC     C       CH3     0       12.513      1.210       13.481      
+D2K     NAD     N       NH2     0       9.864       -2.672      8.988       
+D2K     NAE     N       NH2     0       10.866      -1.090      13.163      
+D2K     OAF     O       O       0       15.119      4.188       4.673       
+D2K     CAG     C       CR16    0       18.298      2.805       11.033      
+D2K     CAH     C       CR16    0       17.722      2.250       12.169      
+D2K     CAI     C       CR16    0       13.211      2.016       9.750       
+D2K     CAJ     C       CR16    0       16.151      3.647       10.367      
+D2K     CAK     C       CH2     0       15.645      1.349       6.030       
+D2K     CAL     C       CH2     0       17.429      4.963       6.982       
+D2K     CAM     C       CH2     0       17.817      5.256       8.411       
+D2K     CAN     C       CH2     0       16.071      4.308       6.879       
+D2K     CAO     C       CH2     0       14.058      3.282       11.717      
+D2K     NAP     N       NRD6    0       12.557      1.076       9.090       
+D2K     OAS     O       O2      0       15.737      1.866       13.503      
+D2K     OAT     O       O2      0       16.336      2.477       5.426       
+D2K     OAU     O       O2      0       18.184      4.010       9.026       
+D2K     CAV     C       C       0       15.777      3.681       5.543       
+D2K     CAX     C       CR6     0       17.517      3.519       10.131      
+D2K     CAZ     C       CR6     0       12.525      1.161       11.962      
+D2K     CBA     C       CR6     0       13.237      2.115       11.188      
+D2K     CBB     C       CR6     0       15.552      3.101       11.502      
+D2K     CBC     C       CR6     0       16.361      2.392       12.404      
+D2K     HAA     H       H       0       15.374      -0.570      5.452       
+D2K     HAAA    H       H       0       16.249      0.267       4.429       
+D2K     HAAB    H       H       0       14.679      0.475       4.483       
+D2K     HAB     H       H       0       16.751      0.254       14.023      
+D2K     HABA    H       H       0       15.642      -0.022      12.923      
+D2K     HABB    H       H       0       15.221      0.204       14.435      
+D2K     HAC     H       H       0       13.054      1.936       13.805      
+D2K     HACA    H       H       0       12.866      0.376       13.836      
+D2K     HACB    H       H       0       11.601      1.334       13.795      
+D2K     HNAD    H       H       0       9.396       -2.425      8.289       
+D2K     HNAA    H       H       0       9.917       -3.520      9.208       
+D2K     HNAE    H       H       0       11.457      -1.554      13.621      
+D2K     HNAB    H       H       0       10.178      -0.723      13.569      
+D2K     HAG     H       H       0       19.221      2.704       10.878      
+D2K     HAH     H       H       0       18.259      1.773       12.781      
+D2K     HAI     H       H       0       13.690      2.659       9.251       
+D2K     HAJ     H       H       0       15.612      4.124       9.757       
+D2K     HAK     H       H       0       16.171      1.004       6.781       
+D2K     HAKA    H       H       0       14.768      1.627       6.371       
+D2K     HAL     H       H       0       18.104      4.375       6.583       
+D2K     HALA    H       H       0       17.424      5.802       6.475       
+D2K     HAM     H       H       0       17.074      5.680       8.885       
+D2K     HAMA    H       H       0       18.580      5.869       8.430       
+D2K     HAN     H       H       0       15.385      4.983       7.071       
+D2K     HANA    H       H       0       16.004      3.620       7.568       
+D2K     HAO     H       H       0       13.880      3.425       12.668      
+D2K     HAOA    H       H       0       13.772      4.096       11.245      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+D2K          N1          C2      DOUBLE       y     1.348  0.0113     1.348  0.0113
+D2K          N1          C6      SINGLE       y     1.335  0.0100     1.335  0.0100
+D2K          C2          N3      SINGLE       y     1.349  0.0118     1.349  0.0118
+D2K          C2         NAD      SINGLE       n     1.335  0.0101     1.335  0.0101
+D2K          N3          C4      DOUBLE       y     1.362  0.0100     1.362  0.0100
+D2K          C4          C5      SINGLE       y     1.430  0.0145     1.430  0.0145
+D2K          C4         NAP      SINGLE       y     1.362  0.0100     1.362  0.0100
+D2K          C5          C6      DOUBLE       y     1.443  0.0100     1.443  0.0100
+D2K          C5         CAZ      SINGLE       y     1.432  0.0135     1.432  0.0135
+D2K          C6         NAE      SINGLE       n     1.341  0.0100     1.341  0.0100
+D2K         CAA         CAK      SINGLE       n     1.478  0.0200     1.478  0.0200
+D2K         CAB         OAS      SINGLE       n     1.424  0.0117     1.424  0.0117
+D2K         CAC         CAZ      SINGLE       n     1.514  0.0100     1.514  0.0100
+D2K         OAF         CAV      DOUBLE       n     1.203  0.0150     1.203  0.0150
+D2K         CAG         CAH      DOUBLE       y     1.387  0.0100     1.387  0.0100
+D2K         CAG         CAX      SINGLE       y     1.386  0.0109     1.386  0.0109
+D2K         CAH         CBC      SINGLE       y     1.385  0.0100     1.385  0.0100
+D2K         CAI         NAP      DOUBLE       y     1.320  0.0100     1.320  0.0100
+D2K         CAI         CBA      SINGLE       y     1.435  0.0196     1.435  0.0196
+D2K         CAJ         CAX      DOUBLE       y     1.386  0.0100     1.386  0.0100
+D2K         CAJ         CBB      SINGLE       y     1.391  0.0100     1.391  0.0100
+D2K         CAK         OAT      SINGLE       n     1.451  0.0100     1.451  0.0100
+D2K         CAL         CAM      SINGLE       n     1.507  0.0127     1.507  0.0127
+D2K         CAL         CAN      SINGLE       n     1.510  0.0100     1.510  0.0100
+D2K         CAM         OAU      SINGLE       n     1.432  0.0101     1.432  0.0101
+D2K         CAN         CAV      SINGLE       n     1.503  0.0174     1.503  0.0174
+D2K         CAO         CBA      SINGLE       n     1.517  0.0100     1.517  0.0100
+D2K         CAO         CBB      SINGLE       n     1.517  0.0100     1.517  0.0100
+D2K         OAS         CBC      SINGLE       n     1.365  0.0147     1.365  0.0147
+D2K         OAT         CAV      SINGLE       n     1.329  0.0116     1.329  0.0116
+D2K         OAU         CAX      SINGLE       n     1.375  0.0105     1.375  0.0105
+D2K         CAZ         CBA      DOUBLE       y     1.396  0.0152     1.396  0.0152
+D2K         CBB         CBC      DOUBLE       y     1.397  0.0100     1.397  0.0100
+D2K         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+D2K         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+D2K         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0156
+D2K         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+D2K         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0157
+D2K         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0157
+D2K         CAC         HAC      SINGLE       n     1.089  0.0100     0.973  0.0200
+D2K         CAC        HACA      SINGLE       n     1.089  0.0100     0.973  0.0200
+D2K         CAC        HACB      SINGLE       n     1.089  0.0100     0.973  0.0200
+D2K         NAD        HNAD      SINGLE       n     1.016  0.0100     0.877  0.0200
+D2K         NAD        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+D2K         NAE        HNAE      SINGLE       n     1.016  0.0100     0.880  0.0200
+D2K         NAE        HNAB      SINGLE       n     1.016  0.0100     0.880  0.0200
+D2K         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0174
+D2K         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0200
+D2K         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0200
+D2K         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0164
+D2K         CAK         HAK      SINGLE       n     1.089  0.0100     0.980  0.0148
+D2K         CAK        HAKA      SINGLE       n     1.089  0.0100     0.980  0.0148
+D2K         CAL         HAL      SINGLE       n     1.089  0.0100     0.980  0.0160
+D2K         CAL        HALA      SINGLE       n     1.089  0.0100     0.980  0.0160
+D2K         CAM         HAM      SINGLE       n     1.089  0.0100     0.979  0.0131
+D2K         CAM        HAMA      SINGLE       n     1.089  0.0100     0.979  0.0131
+D2K         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0185
+D2K         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0185
+D2K         CAO         HAO      SINGLE       n     1.089  0.0100     0.983  0.0146
+D2K         CAO        HAOA      SINGLE       n     1.089  0.0100     0.983  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+D2K          C2          N1          C6     117.787    1.50
+D2K          N1          C2          N3     124.057    1.50
+D2K          N1          C2         NAD     117.970    1.50
+D2K          N3          C2         NAD     117.973    1.50
+D2K          C2          N3          C4     117.476    1.50
+D2K          N3          C4          C5     121.170    1.50
+D2K          N3          C4         NAP     117.041    1.50
+D2K          C5          C4         NAP     121.790    1.50
+D2K          C4          C5          C6     118.899    1.50
+D2K          C4          C5         CAZ     118.694    1.50
+D2K          C6          C5         CAZ     122.407    1.75
+D2K          N1          C6          C5     120.612    1.50
+D2K          N1          C6         NAE     118.060    1.50
+D2K          C5          C6         NAE     121.328    1.50
+D2K         CAK         CAA         HAA     109.517    1.50
+D2K         CAK         CAA        HAAA     109.517    1.50
+D2K         CAK         CAA        HAAB     109.517    1.50
+D2K         HAA         CAA        HAAA     109.410    1.50
+D2K         HAA         CAA        HAAB     109.410    1.50
+D2K        HAAA         CAA        HAAB     109.410    1.50
+D2K         OAS         CAB         HAB     109.428    1.50
+D2K         OAS         CAB        HABA     109.428    1.50
+D2K         OAS         CAB        HABB     109.428    1.50
+D2K         HAB         CAB        HABA     109.509    1.50
+D2K         HAB         CAB        HABB     109.509    1.50
+D2K        HABA         CAB        HABB     109.509    1.50
+D2K         CAZ         CAC         HAC     109.470    1.50
+D2K         CAZ         CAC        HACA     109.470    1.50
+D2K         CAZ         CAC        HACB     109.470    1.50
+D2K         HAC         CAC        HACA     109.180    1.50
+D2K         HAC         CAC        HACB     109.180    1.50
+D2K        HACA         CAC        HACB     109.180    1.50
+D2K          C2         NAD        HNAD     119.843    1.50
+D2K          C2         NAD        HNAA     119.843    1.50
+D2K        HNAD         NAD        HNAA     120.314    1.96
+D2K          C6         NAE        HNAE     119.848    1.50
+D2K          C6         NAE        HNAB     119.848    1.50
+D2K        HNAE         NAE        HNAB     120.304    1.50
+D2K         CAH         CAG         CAX     120.074    1.50
+D2K         CAH         CAG         HAG     119.870    1.50
+D2K         CAX         CAG         HAG     120.056    1.50
+D2K         CAG         CAH         CBC     120.101    1.50
+D2K         CAG         CAH         HAH     119.857    1.50
+D2K         CBC         CAH         HAH     120.042    1.50
+D2K         NAP         CAI         CBA     123.295    1.51
+D2K         NAP         CAI         HAI     118.412    1.50
+D2K         CBA         CAI         HAI     118.293    1.50
+D2K         CAX         CAJ         CBB     120.750    1.50
+D2K         CAX         CAJ         HAJ     119.877    1.50
+D2K         CBB         CAJ         HAJ     119.369    1.50
+D2K         CAA         CAK         OAT     108.459    2.39
+D2K         CAA         CAK         HAK     110.009    1.50
+D2K         CAA         CAK        HAKA     110.009    1.50
+D2K         OAT         CAK         HAK     109.826    1.50
+D2K         OAT         CAK        HAKA     109.826    1.50
+D2K         HAK         CAK        HAKA     108.453    1.50
+D2K         CAM         CAL         CAN     111.523    1.50
+D2K         CAM         CAL         HAL     108.916    1.50
+D2K         CAM         CAL        HALA     108.916    1.50
+D2K         CAN         CAL         HAL     109.297    1.50
+D2K         CAN         CAL        HALA     109.297    1.50
+D2K         HAL         CAL        HALA     107.788    1.50
+D2K         CAL         CAM         OAU     107.985    2.03
+D2K         CAL         CAM         HAM     110.162    1.50
+D2K         CAL         CAM        HAMA     110.162    1.50
+D2K         OAU         CAM         HAM     109.943    1.50
+D2K         OAU         CAM        HAMA     109.943    1.50
+D2K         HAM         CAM        HAMA     108.474    1.50
+D2K         CAL         CAN         CAV     114.046    1.93
+D2K         CAL         CAN         HAN     108.567    1.50
+D2K         CAL         CAN        HANA     108.567    1.50
+D2K         CAV         CAN         HAN     108.883    1.50
+D2K         CAV         CAN        HANA     108.883    1.50
+D2K         HAN         CAN        HANA     107.521    1.50
+D2K         CBA         CAO         CBB     113.189    2.84
+D2K         CBA         CAO         HAO     108.909    1.50
+D2K         CBA         CAO        HAOA     108.909    1.50
+D2K         CBB         CAO         HAO     108.987    1.50
+D2K         CBB         CAO        HAOA     108.987    1.50
+D2K         HAO         CAO        HAOA     107.770    1.50
+D2K          C4         NAP         CAI     117.269    1.50
+D2K         CAB         OAS         CBC     118.009    1.50
+D2K         CAK         OAT         CAV     116.497    1.50
+D2K         CAM         OAU         CAX     118.103    1.50
+D2K         OAF         CAV         CAN     125.251    2.71
+D2K         OAF         CAV         OAT     123.233    1.50
+D2K         CAN         CAV         OAT     111.516    1.50
+D2K         CAG         CAX         CAJ     119.968    1.50
+D2K         CAG         CAX         OAU     120.289    3.00
+D2K         CAJ         CAX         OAU     119.743    3.00
+D2K          C5         CAZ         CAC     120.239    1.70
+D2K          C5         CAZ         CBA     119.177    1.50
+D2K         CAC         CAZ         CBA     120.584    1.50
+D2K         CAI         CBA         CAO     119.213    3.00
+D2K         CAI         CBA         CAZ     119.776    1.50
+D2K         CAO         CBA         CAZ     121.011    1.78
+D2K         CAJ         CBB         CAO     120.632    1.50
+D2K         CAJ         CBB         CBC     118.249    1.50
+D2K         CAO         CBB         CBC     121.119    1.50
+D2K         CAH         CBC         OAS     123.503    1.50
+D2K         CAH         CBC         CBB     120.861    1.50
+D2K         OAS         CBC         CBB     115.636    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+D2K       const_sp2_sp2_2         NAD          C2          N1          C6     180.000     5.0     2
+D2K              const_50         NAE          C6          N1          C2     180.000    10.0     2
+D2K              const_29         CAX         CAG         CAH         CBC       0.000    10.0     2
+D2K              const_54         CAH         CAG         CAX         OAU     180.000    10.0     2
+D2K              const_34         CAG         CAH         CBC         OAS     180.000    10.0     2
+D2K              const_27         CBA         CAI         NAP          C4       0.000    10.0     2
+D2K              const_24         NAP         CAI         CBA         CAO     180.000    10.0     2
+D2K              const_46         CBB         CAJ         CAX         OAU     180.000    10.0     2
+D2K              const_42         CAX         CAJ         CBB         CAO     180.000    10.0     2
+D2K            sp3_sp3_14         CAA         CAK         OAT         CAV     180.000    10.0     3
+D2K            sp3_sp3_17         CAN         CAL         CAM         OAU     180.000    10.0     3
+D2K            sp3_sp3_26         CAM         CAL         CAN         CAV     180.000    10.0     3
+D2K            sp3_sp3_35         CAL         CAM         OAU         CAX     180.000    10.0     3
+D2K             sp2_sp3_8         OAF         CAV         CAN         CAL     120.000    10.0     6
+D2K       const_sp2_sp2_4         NAD          C2          N3          C4     180.000     5.0     2
+D2K             sp2_sp2_1          N1          C2         NAD        HNAD     180.000     5.0     2
+D2K            sp2_sp3_14         CAI         CBA         CAO         CBB     -90.000    10.0     6
+D2K            sp2_sp3_20         CAJ         CBB         CAO         CBA     -90.000    10.0     6
+D2K             sp2_sp2_9         CAH         CBC         OAS         CAB     180.000     5.0     2
+D2K            sp2_sp2_11         OAF         CAV         OAT         CAK     180.000     5.0     2
+D2K            sp2_sp2_13         CAG         CAX         OAU         CAM     180.000     5.0     2
+D2K              const_22         CAC         CAZ         CBA         CAO       0.000    10.0     2
+D2K              const_40         CAO         CBB         CBC         OAS       0.000    10.0     2
+D2K       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+D2K              const_52          N3          C4         NAP         CAI     180.000    10.0     2
+D2K       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+D2K              const_16          C4          C5         CAZ         CAC     180.000    10.0     2
+D2K              const_12          C4          C5          C6         NAE     180.000    10.0     2
+D2K             sp2_sp2_7          N1          C6         NAE        HNAE       0.000     5.0     2
+D2K             sp3_sp3_1         HAA         CAA         CAK         OAT     180.000    10.0     3
+D2K            sp3_sp3_11         HAB         CAB         OAS         CBC     -60.000    10.0     3
+D2K             sp2_sp3_1          C5         CAZ         CAC         HAC     150.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+D2K    plan-1          C2   0.020
+D2K    plan-1          C4   0.020
+D2K    plan-1          C5   0.020
+D2K    plan-1          C6   0.020
+D2K    plan-1         CAC   0.020
+D2K    plan-1         CAI   0.020
+D2K    plan-1         CAO   0.020
+D2K    plan-1         CAZ   0.020
+D2K    plan-1         CBA   0.020
+D2K    plan-1         HAI   0.020
+D2K    plan-1          N1   0.020
+D2K    plan-1          N3   0.020
+D2K    plan-1         NAD   0.020
+D2K    plan-1         NAE   0.020
+D2K    plan-1         NAP   0.020
+D2K    plan-2         CAG   0.020
+D2K    plan-2         CAH   0.020
+D2K    plan-2         CAJ   0.020
+D2K    plan-2         CAO   0.020
+D2K    plan-2         CAX   0.020
+D2K    plan-2         CBB   0.020
+D2K    plan-2         CBC   0.020
+D2K    plan-2         HAG   0.020
+D2K    plan-2         HAH   0.020
+D2K    plan-2         HAJ   0.020
+D2K    plan-2         OAS   0.020
+D2K    plan-2         OAU   0.020
+D2K    plan-3          C2   0.020
+D2K    plan-3        HNAA   0.020
+D2K    plan-3        HNAD   0.020
+D2K    plan-3         NAD   0.020
+D2K    plan-4          C6   0.020
+D2K    plan-4        HNAB   0.020
+D2K    plan-4        HNAE   0.020
+D2K    plan-4         NAE   0.020
+D2K    plan-5         CAN   0.020
+D2K    plan-5         CAV   0.020
+D2K    plan-5         OAF   0.020
+D2K    plan-5         OAT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+D2K           SMILES              ACDLabs 12.01                                                                                                                 O=C(OCC)CCCOc1cc(c(OC)cc1)Cc2c(c3c(nc2)nc(nc3N)N)C
+D2K SMILES_CANONICAL               CACTVS 3.370                                                                                                                   CCOC(=O)CCCOc1ccc(OC)c(Cc2cnc3nc(N)nc(N)c3c2C)c1
+D2K           SMILES               CACTVS 3.370                                                                                                                   CCOC(=O)CCCOc1ccc(OC)c(Cc2cnc3nc(N)nc(N)c3c2C)c1
+D2K SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                 CCOC(=O)CCCOc1ccc(c(c1)Cc2cnc3c(c2C)c(nc(n3)N)N)OC
+D2K           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                 CCOC(=O)CCCOc1ccc(c(c1)Cc2cnc3c(c2C)c(nc(n3)N)N)OC
+D2K            InChI                InChI  1.03 InChI=1S/C22H27N5O4/c1-4-30-18(28)6-5-9-31-16-7-8-17(29-3)14(11-16)10-15-12-25-21-19(13(15)2)20(23)26-22(24)27-21/h7-8,11-12H,4-6,9-10H2,1-3H3,(H4,23,24,25,26,27)
+D2K         InChIKey                InChI  1.03                                                                                                                                        OJXNTDHQQMJPKJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+D2K acedrg               243         "dictionary generator"                  
+D2K acedrg_database      11          "data source"                           
+D2K rdkit                2017.03.2   "Chemoinformatics tool"
+D2K refmac5              5.8.0238    "optimization tool"                     

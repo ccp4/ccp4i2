@@ -1,0 +1,384 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ADF     ADF      "4-{[(2R,5S)-5-{[(2S)-2-(AMINOMETHYL)PYRROLIDIN-1-YL]CARBONYL}PYRROLIDIN-2-YL]METHOXY}-3-TERT-BUTYLBENZOIC ACID"     NON-POLYMER     61     29     .     
+#
+data_comp_ADF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ADF     C1      C       C       0       3.491       1.194       0.840       
+ADF     C2      C       CH1     0       3.607       2.066       2.088       
+ADF     C4      C       CH2     0       4.713       1.526       3.004       
+ADF     C5      C       CH2     0       4.298       2.005       4.379       
+ADF     C6      C       CH1     0       2.764       1.911       4.376       
+ADF     C9      C       CH2     0       2.232       0.637       5.006       
+ADF     O3      O       O       0       2.718       0.236       0.838       
+ADF     N7      N       NT1     0       2.408       2.018       2.946       
+ADF     N8      N       NR5     0       4.283       1.475       -0.217      
+ADF     C10     C       CR6     0       2.057       -0.317      7.284       
+ADF     O11     O       O2      0       2.559       0.644       6.406       
+ADF     C12     C       CH1     0       4.326       0.564       -1.382      
+ADF     C13     C       CH2     0       4.968       1.424       -2.467      
+ADF     C14     C       CH2     0       5.849       2.419       -1.724      
+ADF     C15     C       CH2     0       5.155       2.657       -0.398      
+ADF     C16     C       CR6     0       2.237       -0.088      8.673       
+ADF     C17     C       CR16    0       1.724       -1.079      9.524       
+ADF     C18     C       CR6     0       1.082       -2.225      9.054       
+ADF     C19     C       CR16    0       0.935       -2.405      7.686       
+ADF     C20     C       CR16    0       1.421       -1.463      6.810       
+ADF     C21     C       CH2     0       5.091       -0.728      -1.088      
+ADF     N22     N       NT2     0       6.471       -0.493      -0.657      
+ADF     C23     C       C       0       0.557       -3.247      10.018      
+ADF     C24     C       CT      0       2.946       1.175       9.231       
+ADF     C25     C       CH3     0       2.145       2.440       8.888       
+ADF     C26     C       CH3     0       4.366       1.312       8.651       
+ADF     C27     C       CH3     0       3.091       1.161       10.764      
+ADF     O28     O       OC      -1      -0.123      -2.843      10.978      
+ADF     O29     O       O       0       0.832       -4.442      9.805       
+ADF     H2      H       H       0       3.788       3.010       1.853       
+ADF     H41     H       H       0       4.754       0.545       2.974       
+ADF     H42     H       H       0       5.588       1.892       2.754       
+ADF     H51     H       H       0       4.589       2.932       4.528       
+ADF     H52     H       H       0       4.686       1.434       5.078       
+ADF     H6      H       H       0       2.386       2.692       4.855       
+ADF     H91     H       H       0       2.638       -0.143      4.560       
+ADF     H92     H       H       0       1.254       0.593       4.879       
+ADF     HN7     H       H       0       1.859       1.359       2.697       
+ADF     H12     H       H       0       3.406       0.332       -1.661      
+ADF     H131    H       H       0       4.281       1.891       -2.991      
+ADF     H132    H       H       0       5.506       0.870       -3.076      
+ADF     H141    H       H       0       5.927       3.262       -2.232      
+ADF     H142    H       H       0       6.753       2.050       -1.584      
+ADF     H151    H       H       0       5.806       2.721       0.335       
+ADF     H152    H       H       0       4.620       3.480       -0.421      
+ADF     H17     H       H       0       1.817       -0.968      10.453      
+ADF     H19     H       H       0       0.504       -3.173      7.354       
+ADF     H20     H       H       0       1.314       -1.600      5.886       
+ADF     H211    H       H       0       5.101       -1.283      -1.897      
+ADF     H212    H       H       0       4.620       -1.226      -0.384      
+ADF     H221    H       H       0       6.929       -1.254      -0.676      
+ADF     H222    H       H       0       6.483       -0.201      0.181       
+ADF     H251    H       H       0       1.216       2.315       9.150       
+ADF     H252    H       H       0       2.187       2.616       7.934       
+ADF     H253    H       H       0       2.513       3.202       9.368       
+ADF     H261    H       H       0       4.738       0.427       8.487       
+ADF     H262    H       H       0       4.940       1.786       9.278       
+ADF     H263    H       H       0       4.340       1.807       7.815       
+ADF     H271    H       H       0       3.603       0.381       11.040      
+ADF     H272    H       H       0       2.211       1.140       11.178      
+ADF     H273    H       H       0       3.556       1.965       11.056      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ADF          C1          C2      SINGLE       n     1.517  0.0137     1.517  0.0137
+ADF          C1          O3      DOUBLE       n     1.229  0.0108     1.229  0.0108
+ADF          C1          N8      SINGLE       n     1.343  0.0100     1.343  0.0100
+ADF          C2          C4      SINGLE       n     1.534  0.0126     1.534  0.0126
+ADF          C2          N7      SINGLE       n     1.468  0.0148     1.468  0.0148
+ADF          C4          C5      SINGLE       n     1.518  0.0200     1.518  0.0200
+ADF          C5          C6      SINGLE       n     1.535  0.0123     1.535  0.0123
+ADF          C6          C9      SINGLE       n     1.515  0.0106     1.515  0.0106
+ADF          C6          N7      SINGLE       n     1.475  0.0100     1.475  0.0100
+ADF          C9         O11      SINGLE       n     1.433  0.0125     1.433  0.0125
+ADF          N8         C12      SINGLE       n     1.476  0.0100     1.476  0.0100
+ADF          N8         C15      SINGLE       n     1.477  0.0115     1.477  0.0115
+ADF         C10         O11      SINGLE       n     1.376  0.0162     1.376  0.0162
+ADF         C10         C16      DOUBLE       y     1.401  0.0100     1.401  0.0100
+ADF         C10         C20      SINGLE       y     1.385  0.0100     1.385  0.0100
+ADF         C12         C13      SINGLE       n     1.526  0.0100     1.526  0.0100
+ADF         C12         C21      SINGLE       n     1.528  0.0102     1.528  0.0102
+ADF         C13         C14      SINGLE       n     1.523  0.0139     1.523  0.0139
+ADF         C14         C15      SINGLE       n     1.516  0.0137     1.516  0.0137
+ADF         C16         C17      SINGLE       y     1.388  0.0100     1.388  0.0100
+ADF         C16         C24      SINGLE       n     1.535  0.0100     1.535  0.0100
+ADF         C17         C18      DOUBLE       y     1.393  0.0100     1.393  0.0100
+ADF         C18         C19      SINGLE       y     1.391  0.0100     1.391  0.0100
+ADF         C18         C23      SINGLE       n     1.498  0.0200     1.498  0.0200
+ADF         C19         C20      DOUBLE       y     1.377  0.0111     1.377  0.0111
+ADF         C21         N22      SINGLE       n     1.464  0.0200     1.464  0.0200
+ADF         C23         O28      SINGLE       n     1.244  0.0200     1.244  0.0200
+ADF         C23         O29      DOUBLE       n     1.244  0.0200     1.244  0.0200
+ADF         C24         C25      SINGLE       n     1.532  0.0112     1.532  0.0112
+ADF         C24         C26      SINGLE       n     1.532  0.0112     1.532  0.0112
+ADF         C24         C27      SINGLE       n     1.532  0.0112     1.532  0.0112
+ADF          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0121
+ADF          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0193
+ADF          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0193
+ADF          C5         H51      SINGLE       n     1.089  0.0100     0.983  0.0200
+ADF          C5         H52      SINGLE       n     1.089  0.0100     0.983  0.0200
+ADF          C6          H6      SINGLE       n     1.089  0.0100     0.990  0.0135
+ADF          C9         H91      SINGLE       n     1.089  0.0100     0.987  0.0100
+ADF          C9         H92      SINGLE       n     1.089  0.0100     0.987  0.0100
+ADF          N7         HN7      SINGLE       n     1.036  0.0160     0.890  0.0200
+ADF         C12         H12      SINGLE       n     1.089  0.0100     0.989  0.0157
+ADF         C13        H131      SINGLE       n     1.089  0.0100     0.983  0.0200
+ADF         C13        H132      SINGLE       n     1.089  0.0100     0.983  0.0200
+ADF         C14        H141      SINGLE       n     1.089  0.0100     0.987  0.0200
+ADF         C14        H142      SINGLE       n     1.089  0.0100     0.987  0.0200
+ADF         C15        H151      SINGLE       n     1.089  0.0100     0.982  0.0130
+ADF         C15        H152      SINGLE       n     1.089  0.0100     0.982  0.0130
+ADF         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0147
+ADF         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0168
+ADF         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0200
+ADF         C21        H211      SINGLE       n     1.089  0.0100     0.982  0.0100
+ADF         C21        H212      SINGLE       n     1.089  0.0100     0.982  0.0100
+ADF         N22        H221      SINGLE       n     1.036  0.0160     0.888  0.0200
+ADF         N22        H222      SINGLE       n     1.036  0.0160     0.888  0.0200
+ADF         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C26        H261      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C26        H262      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C26        H263      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C27        H271      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C27        H272      SINGLE       n     1.089  0.0100     0.973  0.0141
+ADF         C27        H273      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ADF          C2          C1          O3     120.713    1.50
+ADF          C2          C1          N8     117.464    1.50
+ADF          O3          C1          N8     121.824    1.50
+ADF          C1          C2          C4     110.246    1.50
+ADF          C1          C2          N7     111.420    2.45
+ADF          C1          C2          H2     111.169    1.50
+ADF          C4          C2          N7     103.430    2.23
+ADF          C4          C2          H2     110.393    1.50
+ADF          N7          C2          H2     109.296    1.50
+ADF          C2          C4          C5     103.507    1.50
+ADF          C2          C4         H41     110.853    1.50
+ADF          C2          C4         H42     110.853    1.50
+ADF          C5          C4         H41     110.811    1.50
+ADF          C5          C4         H42     110.811    1.50
+ADF         H41          C4         H42     108.922    1.50
+ADF          C4          C5          C6     104.634    1.50
+ADF          C4          C5         H51     110.811    1.50
+ADF          C4          C5         H52     110.811    1.50
+ADF          C6          C5         H51     110.817    1.50
+ADF          C6          C5         H52     110.817    1.50
+ADF         H51          C5         H52     108.922    1.50
+ADF          C5          C6          C9     113.168    1.59
+ADF          C5          C6          N7     103.453    1.87
+ADF          C5          C6          H6     109.529    1.50
+ADF          C9          C6          N7     111.633    2.37
+ADF          C9          C6          H6     109.324    1.50
+ADF          N7          C6          H6     108.836    1.79
+ADF          C6          C9         O11     107.840    2.29
+ADF          C6          C9         H91     109.608    1.50
+ADF          C6          C9         H92     109.608    1.50
+ADF         O11          C9         H91     110.526    1.50
+ADF         O11          C9         H92     110.526    1.50
+ADF         H91          C9         H92     108.335    1.56
+ADF          C2          N7          C6     109.056    3.00
+ADF          C2          N7         HN7     109.307    3.00
+ADF          C6          N7         HN7     110.078    2.70
+ADF          C1          N8         C12     120.260    1.50
+ADF          C1          N8         C15     126.855    3.00
+ADF         C12          N8         C15     112.885    1.77
+ADF         O11         C10         C16     116.531    2.07
+ADF         O11         C10         C20     121.950    1.71
+ADF         C16         C10         C20     121.519    1.50
+ADF          C9         O11         C10     116.702    1.86
+ADF          N8         C12         C13     102.363    1.50
+ADF          N8         C12         C21     112.293    1.58
+ADF          N8         C12         H12     109.977    1.62
+ADF         C13         C12         C21     113.583    1.63
+ADF         C13         C12         H12     109.529    1.50
+ADF         C21         C12         H12     109.171    1.55
+ADF         C12         C13         C14     104.634    1.50
+ADF         C12         C13        H131     110.817    1.50
+ADF         C12         C13        H132     110.817    1.50
+ADF         C14         C13        H131     110.886    1.50
+ADF         C14         C13        H132     110.886    1.50
+ADF        H131         C13        H132     108.922    1.50
+ADF         C13         C14         C15     104.327    2.00
+ADF         C13         C14        H141     110.864    1.50
+ADF         C13         C14        H142     110.864    1.50
+ADF         C15         C14        H141     110.793    1.50
+ADF         C15         C14        H142     110.793    1.50
+ADF        H141         C14        H142     108.899    1.50
+ADF          N8         C15         C14     103.435    1.50
+ADF          N8         C15        H151     110.669    1.50
+ADF          N8         C15        H152     110.669    1.50
+ADF         C14         C15        H151     111.171    1.50
+ADF         C14         C15        H152     111.171    1.50
+ADF        H151         C15        H152     108.998    1.50
+ADF         C10         C16         C17     115.879    1.50
+ADF         C10         C16         C24     122.576    1.50
+ADF         C17         C16         C24     121.545    1.50
+ADF         C16         C17         C18     121.388    1.50
+ADF         C16         C17         H17     118.385    1.50
+ADF         C18         C17         H17     120.227    1.50
+ADF         C17         C18         C19     119.622    1.50
+ADF         C17         C18         C23     120.109    1.50
+ADF         C19         C18         C23     120.269    1.50
+ADF         C18         C19         C20     121.233    1.50
+ADF         C18         C19         H19     119.585    1.50
+ADF         C20         C19         H19     119.182    1.50
+ADF         C10         C20         C19     120.359    1.50
+ADF         C10         C20         H20     119.801    1.50
+ADF         C19         C20         H20     119.840    1.50
+ADF         C12         C21         N22     110.786    2.77
+ADF         C12         C21        H211     108.875    1.50
+ADF         C12         C21        H212     108.875    1.50
+ADF         N22         C21        H211     108.847    1.50
+ADF         N22         C21        H212     108.847    1.50
+ADF        H211         C21        H212     108.010    1.71
+ADF         C21         N22        H221     109.971    3.00
+ADF         C21         N22        H222     109.971    3.00
+ADF        H221         N22        H222     107.163    3.00
+ADF         C18         C23         O28     117.791    1.50
+ADF         C18         C23         O29     117.791    1.50
+ADF         O28         C23         O29     124.418    1.50
+ADF         C16         C24         C25     110.727    1.50
+ADF         C16         C24         C26     110.727    1.50
+ADF         C16         C24         C27     110.727    1.50
+ADF         C25         C24         C26     108.339    1.50
+ADF         C25         C24         C27     108.339    1.50
+ADF         C26         C24         C27     108.339    1.50
+ADF         C24         C25        H251     109.561    1.50
+ADF         C24         C25        H252     109.561    1.50
+ADF         C24         C25        H253     109.561    1.50
+ADF        H251         C25        H252     109.375    1.50
+ADF        H251         C25        H253     109.375    1.50
+ADF        H252         C25        H253     109.375    1.50
+ADF         C24         C26        H261     109.561    1.50
+ADF         C24         C26        H262     109.561    1.50
+ADF         C24         C26        H263     109.561    1.50
+ADF        H261         C26        H262     109.375    1.50
+ADF        H261         C26        H263     109.375    1.50
+ADF        H262         C26        H263     109.375    1.50
+ADF         C24         C27        H271     109.561    1.50
+ADF         C24         C27        H272     109.561    1.50
+ADF         C24         C27        H273     109.561    1.50
+ADF        H271         C27        H272     109.375    1.50
+ADF        H271         C27        H273     109.375    1.50
+ADF        H272         C27        H273     109.375    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ADF             sp2_sp3_7          O3          C1          C2          C4       0.000    10.0     6
+ADF             sp2_sp2_3          O3          C1          N8         C12       0.000     5.0     2
+ADF             sp3_sp3_4         C21         C12         C13         C14     180.000    10.0     3
+ADF            sp3_sp3_79          N8         C12         C21         N22     180.000    10.0     3
+ADF            sp3_sp3_10         C12         C13         C14         C15      60.000    10.0     3
+ADF            sp3_sp3_19         C13         C14         C15          N8     -60.000    10.0     3
+ADF       const_sp2_sp2_7         C24         C16         C17         C18     180.000     5.0     2
+ADF            sp2_sp3_20         C10         C16         C24         C25     -90.000    10.0     6
+ADF              const_10         C16         C17         C18         C23     180.000    10.0     2
+ADF              const_15         C23         C18         C19         C20     180.000    10.0     2
+ADF             sp2_sp2_7         C17         C18         C23         O28     180.000     5.0     2
+ADF              const_17         C18         C19         C20         C10       0.000    10.0     2
+ADF            sp3_sp3_31          C1          C2          C4          C5     -60.000    10.0     3
+ADF            sp3_sp3_63          C1          C2          N7          C6      60.000    10.0     3
+ADF            sp3_sp3_88         C12         C21         N22        H221     180.000    10.0     3
+ADF            sp3_sp3_97         C26         C24         C25        H251      60.000    10.0     3
+ADF           sp3_sp3_103         C25         C24         C26        H261     180.000    10.0     3
+ADF           sp3_sp3_115         C25         C24         C27        H271      60.000    10.0     3
+ADF            sp3_sp3_37          C2          C4          C5          C6     -60.000    10.0     3
+ADF            sp3_sp3_47          C4          C5          C6          C9     180.000    10.0     3
+ADF            sp3_sp3_67          C5          C6          C9         O11     180.000    10.0     3
+ADF            sp3_sp3_57          C9          C6          N7          C2     180.000    10.0     3
+ADF            sp3_sp3_76          C6          C9         O11         C10     180.000    10.0     3
+ADF             sp2_sp3_5          C1          N8         C12         C21     -60.000    10.0     6
+ADF            sp2_sp3_16          C1          N8         C15         C14     180.000    10.0     6
+ADF             sp2_sp2_5         C16         C10         O11          C9     180.000     5.0     2
+ADF       const_sp2_sp2_4         O11         C10         C16         C24       0.000     5.0     2
+ADF              const_23         O11         C10         C20         C19     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ADF    chir_1    C2    N7    C1    C4    positive
+ADF    chir_2    C6    N7    C9    C5    negative
+ADF    chir_3    C12    N8    C21    C13    positive
+ADF    chir_4    C24    C16    C25    C26    both
+ADF    chir_5    N7    C2    C6    HN7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ADF    plan-1         C10   0.020
+ADF    plan-1         C16   0.020
+ADF    plan-1         C17   0.020
+ADF    plan-1         C18   0.020
+ADF    plan-1         C19   0.020
+ADF    plan-1         C20   0.020
+ADF    plan-1         C23   0.020
+ADF    plan-1         C24   0.020
+ADF    plan-1         H17   0.020
+ADF    plan-1         H19   0.020
+ADF    plan-1         H20   0.020
+ADF    plan-1         O11   0.020
+ADF    plan-2          C1   0.020
+ADF    plan-2          C2   0.020
+ADF    plan-2          N8   0.020
+ADF    plan-2          O3   0.020
+ADF    plan-3          C1   0.020
+ADF    plan-3         C12   0.020
+ADF    plan-3         C15   0.020
+ADF    plan-3          N8   0.020
+ADF    plan-4         C18   0.020
+ADF    plan-4         C23   0.020
+ADF    plan-4         O28   0.020
+ADF    plan-4         O29   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ADF           SMILES              ACDLabs 10.04                                                                                                                                     O=C(O)c3ccc(OCC2NC(C(=O)N1C(CN)CCC1)CC2)c(c3)C(C)(C)C
+ADF SMILES_CANONICAL               CACTVS 3.341                                                                                                                             CC(C)(C)c1cc(ccc1OC[C@H]2CC[C@H](N2)C(=O)N3CCC[C@H]3CN)C(O)=O
+ADF           SMILES               CACTVS 3.341                                                                                                                                CC(C)(C)c1cc(ccc1OC[CH]2CC[CH](N2)C(=O)N3CCC[CH]3CN)C(O)=O
+ADF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                             CC(C)(C)c1cc(ccc1OC[C@H]2CC[C@H](N2)C(=O)N3CCC[C@H]3CN)C(=O)O
+ADF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                         CC(C)(C)c1cc(ccc1OCC2CCC(N2)C(=O)N3CCCC3CN)C(=O)O
+ADF            InChI                InChI  1.03 InChI=1S/C22H33N3O4/c1-22(2,3)17-11-14(21(27)28)6-9-19(17)29-13-15-7-8-18(24-15)20(26)25-10-4-5-16(25)12-23/h6,9,11,15-16,18,24H,4-5,7-8,10,12-13,23H2,1-3H3,(H,27,28)/t15-,16+,18+/m1/s1
+ADF         InChIKey                InChI  1.03                                                                                                                                                               HSZIDSCIKNQFGX-RYRKJORJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ADF acedrg               243         "dictionary generator"                  
+ADF acedrg_database      11          "data source"                           
+ADF rdkit                2017.03.2   "Chemoinformatics tool"
+ADF refmac5              5.8.0238    "optimization tool"                     

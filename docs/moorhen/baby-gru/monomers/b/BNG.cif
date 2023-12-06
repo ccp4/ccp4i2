@@ -1,0 +1,394 @@
+# /home/mihaela/Downloads/acedrg243/BNG_unimodal.cif
+# modified by Privateer
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BNG      BNG 'B-NONYLGLUCOSIDE                    ' pyranose           51  21 .
+
+data_comp_BNG
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BNG C1 C CH1 0 98.251 10.532 31.331
+BNG C2 C CH1 0 98.481 9.630 32.539
+BNG C3 C CH1 0 98.387 8.164 32.128
+BNG C4 C CH1 0 97.094 7.885 31.369
+BNG C5 C CH1 0 96.933 8.873 30.208
+BNG C6 C CH2 0 95.603 8.745 29.498
+BNG "C1'" C CH2 0 98.416 12.836 30.721
+BNG "C2'" C CH2 0 98.234 14.210 31.288
+BNG "C3'" C CH2 0 96.810 14.488 31.703
+BNG "C4'" C CH2 0 96.577 15.919 32.121
+BNG "C5'" C CH2 0 95.181 16.196 32.623
+BNG "C6'" C CH2 0 94.958 17.617 33.079
+BNG "C7'" C CH2 0 93.559 17.896 33.572
+BNG "C8'" C CH2 0 93.332 19.318 34.025
+BNG "C9'" C CH3 0 91.931 19.603 34.521
+BNG O1 O O2 0 98.220 11.864 31.763
+BNG O2 O OH1 0 99.747 9.914 33.127
+BNG O3 O OH1 0 98.462 7.340 33.290
+BNG O4 O OH1 0 97.105 6.552 30.860
+BNG O5 O O2 0 97.010 10.227 30.715
+BNG O6 O OH1 0 95.483 9.691 28.437
+BNG H1 H H 0 98.971 10.404 30.690
+BNG H2 H H 0 97.777 9.814 33.206
+BNG H3 H H 0 99.153 7.951 31.537
+BNG H4 H H 0 96.333 7.988 31.987
+BNG H5 H H 0 97.664 8.728 29.559
+BNG H61 H H 0 94.877 8.887 30.141
+BNG H62 H H 0 95.514 7.840 29.134
+BNG "H1'1" H H 0 99.318 12.743 30.351
+BNG "H1'2" H H 0 97.772 12.684 30.000
+BNG "H2'1" H H 0 98.507 14.870 30.616
+BNG "H2'2" H H 0 98.821 14.313 32.066
+BNG "H3'1" H H 0 96.574 13.899 32.450
+BNG "H3'2" H H 0 96.212 14.277 30.954
+BNG "H4'1" H H 0 96.758 16.504 31.355
+BNG "H4'2" H H 0 97.217 16.148 32.829
+BNG "H5'1" H H 0 94.991 15.592 33.372
+BNG "H5'2" H H 0 94.543 15.992 31.907
+BNG "H6'1" H H 0 95.154 18.222 32.332
+BNG "H6'2" H H 0 95.591 17.820 33.800
+BNG "H7'1" H H 0 93.363 17.294 34.321
+BNG "H7'2" H H 0 92.925 17.691 32.852
+BNG "H8'1" H H 0 93.529 19.920 33.275
+BNG "H8'2" H H 0 93.968 19.522 34.744
+BNG "H9'1" H H 0 91.391 18.794 34.471
+BNG "H9'2" H H 0 91.526 20.295 33.970
+BNG "H9'3" H H 0 91.969 19.908 35.444
+BNG HO2 H H 0 99.817 9.488 33.849
+BNG HO3 H H 0 98.549 6.538 33.051
+BNG HO4 H H 0 97.746 6.447 30.324
+BNG HO6 H H 0 96.070 9.529 27.846
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BNG C1 C2 SINGLE n 1.523 0.0106 1.523 0.0106
+BNG C1 O1 SINGLE n 1.399 0.0118 1.399 0.0118
+BNG C1 O5 SINGLE n 1.415 0.0124 1.415 0.0124
+BNG C2 C3 SINGLE n 1.519 0.0200 1.519 0.0200
+BNG C2 O2 SINGLE n 1.425 0.0112 1.425 0.0112
+BNG C3 C4 SINGLE n 1.520 0.0158 1.520 0.0158
+BNG C3 O3 SINGLE n 1.427 0.0138 1.427 0.0138
+BNG C4 C5 SINGLE n 1.524 0.0200 1.524 0.0200
+BNG C4 O4 SINGLE n 1.425 0.0176 1.425 0.0176
+BNG C5 C6 SINGLE n 1.511 0.0142 1.511 0.0142
+BNG C5 O5 SINGLE n 1.440 0.0195 1.440 0.0195
+BNG C6 O6 SINGLE n 1.426 0.0200 1.426 0.0200
+BNG "C1'" "C2'" SINGLE n 1.497 0.0200 1.497 0.0200
+BNG "C1'" O1 SINGLE n 1.437 0.0100 1.437 0.0100
+BNG "C2'" "C3'" SINGLE n 1.509 0.0200 1.509 0.0200
+BNG "C3'" "C4'" SINGLE n 1.509 0.0200 1.509 0.0200
+BNG "C4'" "C5'" SINGLE n 1.509 0.0200 1.509 0.0200
+BNG "C5'" "C6'" SINGLE n 1.509 0.0200 1.509 0.0200
+BNG "C6'" "C7'" SINGLE n 1.509 0.0200 1.509 0.0200
+BNG "C7'" "C8'" SINGLE n 1.507 0.0200 1.507 0.0200
+BNG "C8'" "C9'" SINGLE n 1.510 0.0200 1.510 0.0200
+BNG C1 H1 SINGLE n 1.089 0.0100 0.971 0.0193
+BNG C2 H2 SINGLE n 1.089 0.0100 0.987 0.0140
+BNG C3 H3 SINGLE n 1.089 0.0100 0.991 0.0121
+BNG C4 H4 SINGLE n 1.089 0.0100 0.986 0.0131
+BNG C5 H5 SINGLE n 1.089 0.0100 0.988 0.0182
+BNG C6 H61 SINGLE n 1.089 0.0100 0.980 0.0184
+BNG C6 H62 SINGLE n 1.089 0.0100 0.980 0.0184
+BNG "C1'" "H1'1" SINGLE n 1.089 0.0100 0.979 0.0200
+BNG "C1'" "H1'2" SINGLE n 1.089 0.0100 0.979 0.0200
+BNG "C2'" "H2'1" SINGLE n 1.089 0.0100 0.980 0.0166
+BNG "C2'" "H2'2" SINGLE n 1.089 0.0100 0.980 0.0166
+BNG "C3'" "H3'1" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C3'" "H3'2" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C4'" "H4'1" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C4'" "H4'2" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C5'" "H5'1" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C5'" "H5'2" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C6'" "H6'1" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C6'" "H6'2" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C7'" "H7'1" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C7'" "H7'2" SINGLE n 1.089 0.0100 0.981 0.0163
+BNG "C8'" "H8'1" SINGLE n 1.089 0.0100 0.982 0.0155
+BNG "C8'" "H8'2" SINGLE n 1.089 0.0100 0.982 0.0155
+BNG "C9'" "H9'1" SINGLE n 1.089 0.0100 0.973 0.0157
+BNG "C9'" "H9'2" SINGLE n 1.089 0.0100 0.973 0.0157
+BNG "C9'" "H9'3" SINGLE n 1.089 0.0100 0.973 0.0157
+BNG O2 HO2 SINGLE n 0.970 0.0120 0.841 0.0200
+BNG O3 HO3 SINGLE n 0.970 0.0120 0.841 0.0200
+BNG O4 HO4 SINGLE n 0.970 0.0120 0.841 0.0200
+BNG O6 HO6 SINGLE n 0.970 0.0120 0.848 0.0200
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BNG C2 C1 O1 108.855 1.50
+BNG C2 C1 O5 110.404 1.50
+BNG C2 C1 H1 109.511 1.50
+BNG O1 C1 O5 108.518 1.66
+BNG O1 C1 H1 109.834 1.50
+BNG O5 C1 H1 109.385 1.50
+BNG C1 C2 C3 110.084 1.50
+BNG C1 C2 O2 110.083 1.70
+BNG C1 C2 H2 108.545 1.50
+BNG C3 C2 O2 111.053 2.62
+BNG C3 C2 H2 108.505 1.50
+BNG O2 C2 H2 108.551 1.50
+BNG C2 C3 C4 110.687 1.67
+BNG C2 C3 O3 109.587 2.09
+BNG C2 C3 H3 108.712 1.50
+BNG C4 C3 O3 110.243 1.88
+BNG C4 C3 H3 108.653 1.50
+BNG O3 C3 H3 108.767 1.50
+BNG C3 C4 C5 110.272 1.76
+BNG C3 C4 O4 110.101 1.97
+BNG C3 C4 H4 109.032 1.50
+BNG C5 C4 O4 109.072 2.07
+BNG C5 C4 H4 109.223 1.50
+BNG O4 C4 H4 109.194 1.50
+BNG C4 C5 C6 112.996 1.59
+BNG C4 C5 O5 109.140 1.86
+BNG C4 C5 H5 108.960 1.50
+BNG C6 C5 O5 106.879 1.50
+BNG C6 C5 H5 109.269 1.50
+BNG O5 C5 H5 109.134 1.50
+BNG C5 C6 O6 111.299 2.09
+BNG C5 C6 H61 109.363 1.50
+BNG C5 C6 H62 109.363 1.50
+BNG O6 C6 H61 109.265 1.50
+BNG O6 C6 H62 109.265 1.50
+BNG H61 C6 H62 108.155 1.50
+BNG "C2'" "C1'" O1 109.508 2.51
+BNG "C2'" "C1'" "H1'1" 110.103 1.50
+BNG "C2'" "C1'" "H1'2" 110.103 1.50
+BNG O1 "C1'" "H1'1" 109.567 1.50
+BNG O1 "C1'" "H1'2" 109.567 1.50
+BNG "H1'1" "C1'" "H1'2" 108.316 1.50
+BNG "C1'" "C2'" "C3'" 112.740 1.50
+BNG "C1'" "C2'" "H2'1" 108.815 1.50
+BNG "C1'" "C2'" "H2'2" 108.815 1.50
+BNG "C3'" "C2'" "H2'1" 108.944 1.50
+BNG "C3'" "C2'" "H2'2" 108.944 1.50
+BNG "H2'1" "C2'" "H2'2" 107.788 1.50
+BNG "C2'" "C3'" "C4'" 113.259 1.53
+BNG "C2'" "C3'" "H3'1" 108.902 1.50
+BNG "C2'" "C3'" "H3'2" 108.902 1.50
+BNG "C4'" "C3'" "H3'1" 108.698 1.50
+BNG "C4'" "C3'" "H3'2" 108.698 1.50
+BNG "H3'1" "C3'" "H3'2" 107.646 1.50
+BNG "C3'" "C4'" "C5'" 114.243 1.69
+BNG "C3'" "C4'" "H4'1" 108.698 1.50
+BNG "C3'" "C4'" "H4'2" 108.698 1.50
+BNG "C5'" "C4'" "H4'1" 108.698 1.50
+BNG "C5'" "C4'" "H4'2" 108.698 1.50
+BNG "H4'1" "C4'" "H4'2" 107.646 1.50
+BNG "C4'" "C5'" "C6'" 114.243 1.69
+BNG "C4'" "C5'" "H5'1" 108.698 1.50
+BNG "C4'" "C5'" "H5'2" 108.698 1.50
+BNG "C6'" "C5'" "H5'1" 108.698 1.50
+BNG "C6'" "C5'" "H5'2" 108.698 1.50
+BNG "H5'1" "C5'" "H5'2" 107.646 1.50
+BNG "C5'" "C6'" "C7'" 114.243 1.69
+BNG "C5'" "C6'" "H6'1" 108.698 1.50
+BNG "C5'" "C6'" "H6'2" 108.698 1.50
+BNG "C7'" "C6'" "H6'1" 108.698 1.50
+BNG "C7'" "C6'" "H6'2" 108.698 1.50
+BNG "H6'1" "C6'" "H6'2" 107.646 1.50
+BNG "C6'" "C7'" "C8'" 114.362 3.00
+BNG "C6'" "C7'" "H7'1" 108.698 1.50
+BNG "C6'" "C7'" "H7'2" 108.698 1.50
+BNG "C8'" "C7'" "H7'1" 108.653 1.50
+BNG "C8'" "C7'" "H7'2" 108.653 1.50
+BNG "H7'1" "C7'" "H7'2" 107.646 1.50
+BNG "C7'" "C8'" "C9'" 113.719 3.00
+BNG "C7'" "C8'" "H8'1" 108.758 1.50
+BNG "C7'" "C8'" "H8'2" 108.758 1.50
+BNG "C9'" "C8'" "H8'1" 108.918 1.50
+BNG "C9'" "C8'" "H8'2" 108.918 1.50
+BNG "H8'1" "C8'" "H8'2" 107.763 1.50
+BNG "C8'" "C9'" "H9'1" 109.554 1.50
+BNG "C8'" "C9'" "H9'2" 109.554 1.50
+BNG "C8'" "C9'" "H9'3" 109.554 1.50
+BNG "H9'1" "C9'" "H9'2" 109.380 1.50
+BNG "H9'1" "C9'" "H9'3" 109.380 1.50
+BNG "H9'2" "C9'" "H9'3" 109.380 1.50
+BNG C1 O1 "C1'" 113.687 1.50
+BNG C2 O2 HO2 109.126 2.06
+BNG C3 O3 HO3 108.895 2.41
+BNG C4 O4 HO4 109.564 3.00
+BNG C1 O5 C5 112.999 1.58
+BNG C6 O6 HO6 109.472 2.41
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BNG tors_99 C2 C1 O1 "C1'" 162.060501 10.0 3
+BNG tors_98 O5 C1 O1 "C1'" -77.750092 10.0 3
+BNG tors_97 H1 C1 O1 "C1'" 42.129692 10.0 3
+BNG tors_96 C1 C2 O2 HO2 172.325531 10.0 3
+BNG tors_95 C3 C2 O2 HO2 -65.401413 10.0 3
+BNG tors_94 H2 C2 O2 HO2 53.716984 10.0 3
+BNG tors_93 C2 C3 O3 HO3 -169.937408 10.0 3
+BNG tors_92 C4 C3 O3 HO3 67.496735 10.0 3
+BNG tors_91 H3 C3 O3 HO3 -51.417244 10.0 3
+BNG tors_90 C3 C4 O4 HO4 -61.123894 10.0 3
+BNG tors_89 C5 C4 O4 HO4 60.284641 10.0 3
+BNG tors_88 H4 C4 O4 HO4 179.523773 10.0 3
+BNG tors_87 C4 C5 C6 O6 179.219513 10.0 3
+BNG tors_86 C4 C5 C6 H61 58.307816 10.0 3
+BNG tors_85 C4 C5 C6 H62 -59.878136 10.0 3
+BNG tors_84 O5 C5 C6 O6 58.761707 10.0 3
+BNG tors_83 O5 C5 C6 H61 -62.149986 10.0 3
+BNG tors_82 O5 C5 C6 H62 179.664062 10.0 3
+BNG tors_81 H5 C5 C6 O6 -59.190521 10.0 3
+BNG tors_80 H5 C5 C6 H61 179.897781 10.0 3
+BNG tors_79 H5 C5 C6 H62 61.711830 10.0 3
+BNG tors_78 C5 C6 O6 HO6 63.795143 10.0 3
+BNG tors_77 H61 C6 O6 HO6 -175.241867 10.0 3
+BNG tors_76 H62 C6 O6 HO6 -57.239662 10.0 3
+BNG tors_75 O1 "C1'" "C2'" "C3'" -67.648956 10.0 3
+BNG tors_74 O1 "C1'" "C2'" "H2'1" 171.058014 10.0 3
+BNG tors_73 O1 "C1'" "C2'" "H2'2" 53.672169 10.0 3
+BNG tors_72 "H1'1" "C1'" "C2'" "C3'" 172.053589 10.0 3
+BNG tors_71 "H1'1" "C1'" "C2'" "H2'1" 50.760555 10.0 3
+BNG tors_70 "H1'1" "C1'" "C2'" "H2'2" -66.625290 10.0 3
+BNG tors_69 "H1'2" "C1'" "C2'" "C3'" 52.930855 10.0 3
+BNG tors_68 "H1'2" "C1'" "C2'" "H2'1" -68.362175 10.0 3
+BNG tors_67 "H1'2" "C1'" "C2'" "H2'2" 174.251984 10.0 3
+BNG tors_66 "C2'" "C1'" O1 C1 174.775513 10.0 3
+BNG tors_65 "H1'1" "C1'" O1 C1 -64.662315 10.0 3
+BNG tors_64 "H1'2" "C1'" O1 C1 54.106220 10.0 3
+BNG tors_63 "C1'" "C2'" "C3'" "C4'" -173.097382 10.0 3
+BNG tors_62 "C1'" "C2'" "C3'" "H3'1" 65.595009 10.0 3
+BNG tors_61 "C1'" "C2'" "C3'" "H3'2" -51.844688 10.0 3
+BNG tors_60 "H2'1" "C2'" "C3'" "C4'" -51.905422 10.0 3
+BNG tors_59 "H2'1" "C2'" "C3'" "H3'1" -173.213028 10.0 3
+BNG tors_58 "H2'1" "C2'" "C3'" "H3'2" 69.347282 10.0 3
+BNG tors_57 "H2'2" "C2'" "C3'" "C4'" 65.695244 10.0 3
+BNG tors_56 "H2'2" "C2'" "C3'" "H3'1" -55.612362 10.0 3
+BNG tors_55 "H2'2" "C2'" "C3'" "H3'2" -173.052048 10.0 3
+BNG tors_54 "C2'" "C3'" "C4'" "C5'" -176.304642 10.0 3
+BNG tors_53 "C2'" "C3'" "C4'" "H4'1" 62.139164 10.0 3
+BNG tors_52 "C2'" "C3'" "C4'" "H4'2" -54.817924 10.0 3
+BNG tors_51 "H3'1" "C3'" "C4'" "C5'" -54.844311 10.0 3
+BNG tors_50 "H3'1" "C3'" "C4'" "H4'1" -176.400497 10.0 3
+BNG tors_49 "H3'1" "C3'" "C4'" "H4'2" 66.642418 10.0 3
+BNG tors_48 "H3'2" "C3'" "C4'" "C5'" 62.297642 10.0 3
+BNG tors_47 "H3'2" "C3'" "C4'" "H4'1" -59.258545 10.0 3
+BNG tors_46 "H3'2" "C3'" "C4'" "H4'2" -176.215622 10.0 3
+BNG tors_45 "C3'" "C4'" "C5'" "C6'" 178.313919 10.0 3
+BNG tors_44 "C3'" "C4'" "C5'" "H5'1" 56.784046 10.0 3
+BNG tors_43 "C3'" "C4'" "C5'" "H5'2" -60.134823 10.0 3
+BNG tors_42 "H4'1" "C4'" "C5'" "C6'" -60.136810 10.0 3
+BNG tors_41 "H4'1" "C4'" "C5'" "H5'1" 178.333313 10.0 3
+BNG tors_40 "H4'1" "C4'" "C5'" "H5'2" 61.414452 10.0 3
+BNG tors_39 "H4'2" "C4'" "C5'" "C6'" 56.826733 10.0 3
+BNG tors_38 "H4'2" "C4'" "C5'" "H5'1" -64.703133 10.0 3
+BNG tors_37 "H4'2" "C4'" "C5'" "H5'2" 178.378006 10.0 3
+BNG tors_36 "C4'" "C5'" "C6'" "C7'" 179.597031 10.0 3
+BNG tors_35 "C4'" "C5'" "C6'" "H6'1" 58.088818 10.0 3
+BNG tors_34 "C4'" "C5'" "C6'" "H6'2" -58.869469 10.0 3
+BNG tors_33 "H5'1" "C5'" "C6'" "C7'" -58.884418 10.0 3
+BNG tors_32 "H5'1" "C5'" "C6'" "H6'1" 179.607376 10.0 3
+BNG tors_31 "H5'1" "C5'" "C6'" "H6'2" 62.649090 10.0 3
+BNG tors_30 "H5'2" "C5'" "C6'" "C7'" 58.033680 10.0 3
+BNG tors_29 "H5'2" "C5'" "C6'" "H6'1" -63.474525 10.0 3
+BNG tors_28 "H5'2" "C5'" "C6'" "H6'2" 179.567184 10.0 3
+BNG tors_27 "C5'" "C6'" "C7'" "C8'" -179.827881 10.0 3
+BNG tors_26 "C5'" "C6'" "C7'" "H7'1" 58.655418 10.0 3
+BNG tors_25 "C5'" "C6'" "C7'" "H7'2" -58.264320 10.0 3
+BNG tors_24 "H6'1" "C6'" "C7'" "C8'" -58.278816 10.0 3
+BNG tors_23 "H6'1" "C6'" "C7'" "H7'1" -179.795517 10.0 3
+BNG tors_22 "H6'1" "C6'" "C7'" "H7'2" 63.284740 10.0 3
+BNG tors_21 "H6'2" "C6'" "C7'" "C8'" 58.577362 10.0 3
+BNG tors_20 "H6'2" "C6'" "C7'" "H7'1" -62.939346 10.0 3
+BNG tors_19 "H6'2" "C6'" "C7'" "H7'2" -179.859085 10.0 3
+BNG tors_18 "C6'" "C7'" "C8'" "C9'" -179.970047 10.0 3
+BNG tors_17 "C6'" "C7'" "C8'" "H8'1" 58.368076 10.0 3
+BNG tors_16 "C6'" "C7'" "C8'" "H8'2" -58.307343 10.0 3
+BNG tors_15 "H7'1" "C7'" "C8'" "C9'" -58.378571 10.0 3
+BNG tors_14 "H7'1" "C7'" "C8'" "H8'1" 179.959549 10.0 3
+BNG tors_13 "H7'1" "C7'" "C8'" "H8'2" 63.284126 10.0 3
+BNG tors_12 "H7'2" "C7'" "C8'" "C9'" 58.441078 10.0 3
+BNG tors_11 "H7'2" "C7'" "C8'" "H8'1" -63.220798 10.0 3
+BNG tors_10 "H7'2" "C7'" "C8'" "H8'2" -179.896225 10.0 3
+BNG tors_9 "C7'" "C8'" "C9'" "H9'1" 0.446242 10.0 3
+BNG tors_8 "C7'" "C8'" "C9'" "H9'2" -119.641502 10.0 3
+BNG tors_7 "C7'" "C8'" "C9'" "H9'3" 120.527061 10.0 3
+BNG tors_6 "H8'1" "C8'" "C9'" "H9'1" 122.025848 10.0 3
+BNG tors_5 "H8'1" "C8'" "C9'" "H9'2" 1.938099 10.0 3
+BNG tors_4 "H8'1" "C8'" "C9'" "H9'3" -117.893326 10.0 3
+BNG tors_3 "H8'2" "C8'" "C9'" "H9'1" -121.134087 10.0 3
+BNG tors_2 "H8'2" "C8'" "C9'" "H9'2" 118.778168 10.0 3
+BNG tors_1 "H8'2" "C8'" "C9'" "H9'3" -1.053259 10.0 3
+BNG ring_1 C5 O5 C1 C2 -61.717205 3.0 1
+BNG ring_2 O5 C1 C2 C3 55.504086 3.0 1
+BNG ring_3 C1 C2 C3 C4 -51.950008 3.0 1
+BNG ring_4 C2 C3 C4 C5 52.254471 3.0 1
+BNG ring_5 C3 C4 C5 O5 -55.097755 3.0 1
+BNG ring_6 C4 C5 O5 C1 61.332722 3.0 1
+
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BNG chir_1 C1 O5 O1 C2 negative
+BNG chir_2 C2 O2 C1 C3 negative
+BNG chir_3 C3 O3 C2 C4 positive
+BNG chir_4 C4 O4 C5 C3 positive
+BNG chir_5 C5 O5 C4 C6 negative
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BNG SMILES ACDLabs 10.04 O(CCCCCCCCC)C1OC(C(O)C(O)C1O)CO
+BNG SMILES_CANONICAL CACTVS 3.341 CCCCCCCCCO[C@@H]1O[C@H](CO)[C@@H](O)[C@H](O)[C@H]1O
+BNG SMILES CACTVS 3.341 CCCCCCCCCO[CH]1O[CH](CO)[CH](O)[CH](O)[CH]1O
+BNG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0 CCCCCCCCCO[C@H]1[C@@H]([C@H]([C@@H]([C@H](O1)CO)O)O)O
+BNG SMILES "OpenEye OEToolkits" 1.5.0 CCCCCCCCCOC1C(C(C(C(O1)CO)O)O)O
+BNG InChI InChI 1.03 InChI=1S/C15H30O6/c1-2-3-4-5-6-7-8-9-20-15-14(19)13(18)12(17)11(10-16)21-15/h11-19H,2-10H2,1H3/t11-,12-,13+,14-,15-/m1/s1
+BNG InChIKey InChI 1.03 QFAPUKLCALRPLH-UXXRCYHCSA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BNG acedrg 243 "dictionary generator"
+BNG acedrg_database 11 "data source"
+BNG rdkit 2017.03.2 "Chemoinformatics tool"
+BNG refmac5 5.8.0238 "optimization tool"

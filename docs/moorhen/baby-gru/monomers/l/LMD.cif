@@ -1,0 +1,612 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LMD     LMD      "tetradecyl 4-O-alpha-D-glucopyranosyl-beta-D-glucopyranoside"     NON-POLYMER     87     37     .     
+#
+data_comp_LMD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LMD     CBK     C       CH3     0       61.335      -23.211     46.323      
+LMD     CBJ     C       CH2     0       60.565      -23.820     45.171      
+LMD     CBI     C       CH2     0       59.085      -23.525     45.181      
+LMD     CBH     C       CH2     0       58.322      -24.133     44.030      
+LMD     CBG     C       CH2     0       56.842      -23.836     44.044      
+LMD     CBF     C       CH2     0       56.077      -24.445     42.894      
+LMD     CBE     C       CH2     0       54.598      -24.147     42.909      
+LMD     CBD     C       CH2     0       53.830      -24.757     41.761      
+LMD     CBC     C       CH2     0       52.349      -24.467     41.786      
+LMD     CBB     C       CH2     0       51.573      -25.101     40.658      
+LMD     CBA     C       CH2     0       50.101      -24.769     40.659      
+LMD     CAZ     C       CH2     0       49.341      -25.309     39.471      
+LMD     CAY     C       CH2     0       47.845      -25.136     39.585      
+LMD     CAX     C       CH2     0       47.409      -23.709     39.440      
+LMD     OAS     O       O2      0       45.973      -23.656     39.306      
+LMD     CAM     C       CH1     0       45.446      -23.406     38.025      
+LMD     CAN     C       CH1     0       45.580      -21.921     37.695      
+LMD     OAT     O       OH1     0       44.857      -21.142     38.644      
+LMD     CAO     C       CH1     0       45.082      -21.649     36.279      
+LMD     OAU     O       OH1     0       45.309      -20.280     35.941      
+LMD     OAV     O       O2      0       46.109      -24.207     37.055      
+LMD     CAQ     C       CH1     0       45.602      -24.032     35.710      
+LMD     CAR     C       CH2     0       46.347      -25.010     34.829      
+LMD     OAW     O       OH1     0       46.133      -26.357     35.249      
+LMD     CAP     C       CH1     0       45.785      -22.574     35.293      
+LMD     O1      O       O2      0       45.207      -22.367     33.995      
+LMD     C1      C       CH1     0       45.986      -21.710     33.020      
+LMD     O5      O       O2      0       47.042      -22.571     32.591      
+LMD     C5      C       CH1     0       48.033      -21.942     31.730      
+LMD     C6      C       CH2     0       49.119      -21.407     32.636      
+LMD     O6      O       OH1     0       49.765      -22.459     33.351      
+LMD     C4      C       CH1     0       47.400      -20.853     30.844      
+LMD     O4      O       OH1     0       48.132      -20.765     29.624      
+LMD     C3      C       CH1     0       45.938      -21.171     30.549      
+LMD     O3      O       OH1     0       45.375      -20.148     29.727      
+LMD     C2      C       CH1     0       45.109      -21.309     31.835      
+LMD     O2      O       OH1     0       44.056      -22.251     31.634      
+LMD     H1      H       H       0       60.728      -22.718     46.903      
+LMD     H2      H       H       0       62.013      -22.604     45.976      
+LMD     H3      H       H       0       61.767      -23.917     46.835      
+LMD     H4      H       H       0       60.689      -24.794     45.189      
+LMD     H5      H       H       0       60.944      -23.489     44.328      
+LMD     H6      H       H       0       58.960      -22.552     45.162      
+LMD     H7      H       H       0       58.705      -23.857     46.022      
+LMD     H8      H       H       0       58.448      -25.106     44.049      
+LMD     H9      H       H       0       58.702      -23.800     43.190      
+LMD     H10     H       H       0       56.717      -22.864     44.025      
+LMD     H11     H       H       0       56.463      -24.169     44.885      
+LMD     H12     H       H       0       56.203      -25.417     42.912      
+LMD     H13     H       H       0       56.457      -24.112     42.053      
+LMD     H14     H       H       0       54.473      -23.174     42.888      
+LMD     H15     H       H       0       54.220      -24.477     43.751      
+LMD     H16     H       H       0       53.961      -25.729     41.777      
+LMD     H17     H       H       0       54.203      -24.420     40.919      
+LMD     H18     H       H       0       52.219      -23.495     41.750      
+LMD     H19     H       H       0       51.981      -24.785     42.638      
+LMD     H20     H       H       0       51.676      -26.075     40.713      
+LMD     H21     H       H       0       51.961      -24.808     39.805      
+LMD     H22     H       H       0       50.000      -23.794     40.680      
+LMD     H23     H       H       0       49.698      -25.127     41.478      
+LMD     H24     H       H       0       49.545      -26.264     39.374      
+LMD     H25     H       H       0       49.655      -24.853     38.661      
+LMD     H26     H       H       0       47.551      -25.471     40.458      
+LMD     H27     H       H       0       47.407      -25.675     38.894      
+LMD     H28     H       H       0       47.845      -23.305     38.664      
+LMD     H29     H       H       0       47.676      -23.201     40.233      
+LMD     H30     H       H       0       44.503      -23.639     38.022      
+LMD     H31     H       H       0       46.531      -21.665     37.740      
+LMD     H32     H       H       0       45.027      -20.327     38.519      
+LMD     H33     H       H       0       44.107      -21.826     36.247      
+LMD     H34     H       H       0       46.136      -20.123     35.949      
+LMD     H35     H       H       0       44.639      -24.253     35.697      
+LMD     H36     H       H       0       47.305      -24.810     34.861      
+LMD     H37     H       H       0       46.044      -24.911     33.903      
+LMD     H38     H       H       0       45.314      -26.556     35.155      
+LMD     H39     H       H       0       46.758      -22.356     35.272      
+LMD     H40     H       H       0       46.378      -20.894     33.425      
+LMD     H41     H       H       0       48.424      -22.635     31.143      
+LMD     H42     H       H       0       48.729      -20.774     33.274      
+LMD     H43     H       H       0       49.783      -20.927     32.098      
+LMD     H44     H       H       0       49.208      -22.831     33.871      
+LMD     H45     H       H       0       47.450      -19.985     31.310      
+LMD     H46     H       H       0       47.954      -20.038     29.240      
+LMD     H47     H       H       0       45.900      -22.029     30.053      
+LMD     H48     H       H       0       44.632      -20.412     29.435      
+LMD     H49     H       H       0       44.703      -20.432     32.036      
+LMD     H50     H       H       0       44.380      -23.025     31.560      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LMD          C4          O4      SINGLE       n     1.425  0.0176     1.425  0.0176
+LMD          C6          O6      SINGLE       n     1.426  0.0200     1.426  0.0200
+LMD          C5          C6      SINGLE       n     1.511  0.0142     1.511  0.0142
+LMD          C5          C4      SINGLE       n     1.524  0.0200     1.524  0.0200
+LMD          O5          C5      SINGLE       n     1.440  0.0195     1.440  0.0195
+LMD          C4          C3      SINGLE       n     1.520  0.0158     1.520  0.0158
+LMD          C3          O3      SINGLE       n     1.427  0.0138     1.427  0.0138
+LMD          C3          C2      SINGLE       n     1.519  0.0200     1.519  0.0200
+LMD          C1          O5      SINGLE       n     1.422  0.0169     1.422  0.0169
+LMD          C2          O2      SINGLE       n     1.425  0.0112     1.425  0.0112
+LMD          C1          C2      SINGLE       n     1.522  0.0111     1.522  0.0111
+LMD          O1          C1      SINGLE       n     1.406  0.0135     1.406  0.0135
+LMD         CAP          O1      SINGLE       n     1.434  0.0104     1.434  0.0104
+LMD         CAO         OAU      SINGLE       n     1.427  0.0138     1.427  0.0138
+LMD         CAO         CAP      SINGLE       n     1.522  0.0126     1.522  0.0126
+LMD         CAQ         CAP      SINGLE       n     1.526  0.0115     1.526  0.0115
+LMD         CAQ         CAR      SINGLE       n     1.511  0.0142     1.511  0.0142
+LMD         CAR         OAW      SINGLE       n     1.426  0.0200     1.426  0.0200
+LMD         CAN         CAO      SINGLE       n     1.519  0.0200     1.519  0.0200
+LMD         OAV         CAQ      SINGLE       n     1.440  0.0195     1.440  0.0195
+LMD         CAN         OAT      SINGLE       n     1.425  0.0112     1.425  0.0112
+LMD         CAM         CAN      SINGLE       n     1.523  0.0106     1.523  0.0106
+LMD         CAM         OAV      SINGLE       n     1.415  0.0124     1.415  0.0124
+LMD         OAS         CAM      SINGLE       n     1.399  0.0118     1.399  0.0118
+LMD         CAX         OAS      SINGLE       n     1.437  0.0100     1.437  0.0100
+LMD         CAY         CAX      SINGLE       n     1.497  0.0200     1.497  0.0200
+LMD         CAZ         CAY      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBA         CAZ      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBB         CBA      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBC         CBB      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBD         CBC      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBE         CBD      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBF         CBE      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBG         CBF      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBH         CBG      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBI         CBH      SINGLE       n     1.509  0.0200     1.509  0.0200
+LMD         CBJ         CBI      SINGLE       n     1.507  0.0200     1.507  0.0200
+LMD         CBK         CBJ      SINGLE       n     1.510  0.0200     1.510  0.0200
+LMD         CBK          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+LMD         CBK          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+LMD         CBK          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+LMD         CBJ          H4      SINGLE       n     1.089  0.0100     0.982  0.0155
+LMD         CBJ          H5      SINGLE       n     1.089  0.0100     0.982  0.0155
+LMD         CBI          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBI          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBH          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBH          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBG         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBG         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBF         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBF         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBE         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBE         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBD         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBD         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBC         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBC         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBB         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBB         H21      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBA         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CBA         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CAZ         H24      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CAZ         H25      SINGLE       n     1.089  0.0100     0.981  0.0163
+LMD         CAY         H26      SINGLE       n     1.089  0.0100     0.980  0.0166
+LMD         CAY         H27      SINGLE       n     1.089  0.0100     0.980  0.0166
+LMD         CAX         H28      SINGLE       n     1.089  0.0100     0.979  0.0200
+LMD         CAX         H29      SINGLE       n     1.089  0.0100     0.979  0.0200
+LMD         CAM         H30      SINGLE       n     1.089  0.0100     0.971  0.0193
+LMD         CAN         H31      SINGLE       n     1.089  0.0100     0.987  0.0140
+LMD         OAT         H32      SINGLE       n     0.970  0.0120     0.841  0.0200
+LMD         CAO         H33      SINGLE       n     1.089  0.0100     0.991  0.0121
+LMD         OAU         H34      SINGLE       n     0.970  0.0120     0.841  0.0200
+LMD         CAQ         H35      SINGLE       n     1.089  0.0100     0.988  0.0182
+LMD         CAR         H36      SINGLE       n     1.089  0.0100     0.980  0.0184
+LMD         CAR         H37      SINGLE       n     1.089  0.0100     0.980  0.0184
+LMD         OAW         H38      SINGLE       n     0.970  0.0120     0.848  0.0200
+LMD         CAP         H39      SINGLE       n     1.089  0.0100     0.997  0.0100
+LMD          C1         H40      SINGLE       n     1.089  0.0100     0.992  0.0127
+LMD          C5         H41      SINGLE       n     1.089  0.0100     0.988  0.0182
+LMD          C6         H42      SINGLE       n     1.089  0.0100     0.980  0.0184
+LMD          C6         H43      SINGLE       n     1.089  0.0100     0.980  0.0184
+LMD          O6         H44      SINGLE       n     0.970  0.0120     0.848  0.0200
+LMD          C4         H45      SINGLE       n     1.089  0.0100     0.986  0.0131
+LMD          O4         H46      SINGLE       n     0.970  0.0120     0.841  0.0200
+LMD          C3         H47      SINGLE       n     1.089  0.0100     0.991  0.0121
+LMD          O3         H48      SINGLE       n     0.970  0.0120     0.841  0.0200
+LMD          C2         H49      SINGLE       n     1.089  0.0100     0.987  0.0140
+LMD          O2         H50      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LMD         CBJ         CBK          H1     109.554    1.50
+LMD         CBJ         CBK          H2     109.554    1.50
+LMD         CBJ         CBK          H3     109.554    1.50
+LMD          H1         CBK          H2     109.380    1.50
+LMD          H1         CBK          H3     109.380    1.50
+LMD          H2         CBK          H3     109.380    1.50
+LMD         CBI         CBJ         CBK     113.719    3.00
+LMD         CBI         CBJ          H4     108.758    1.50
+LMD         CBI         CBJ          H5     108.758    1.50
+LMD         CBK         CBJ          H4     108.918    1.50
+LMD         CBK         CBJ          H5     108.918    1.50
+LMD          H4         CBJ          H5     107.763    1.50
+LMD         CBH         CBI         CBJ     114.362    3.00
+LMD         CBH         CBI          H6     108.698    1.50
+LMD         CBH         CBI          H7     108.698    1.50
+LMD         CBJ         CBI          H6     108.653    1.50
+LMD         CBJ         CBI          H7     108.653    1.50
+LMD          H6         CBI          H7     107.646    1.50
+LMD         CBG         CBH         CBI     114.243    1.69
+LMD         CBG         CBH          H8     108.698    1.50
+LMD         CBG         CBH          H9     108.698    1.50
+LMD         CBI         CBH          H8     108.698    1.50
+LMD         CBI         CBH          H9     108.698    1.50
+LMD          H8         CBH          H9     107.646    1.50
+LMD         CBF         CBG         CBH     114.243    1.69
+LMD         CBF         CBG         H10     108.698    1.50
+LMD         CBF         CBG         H11     108.698    1.50
+LMD         CBH         CBG         H10     108.698    1.50
+LMD         CBH         CBG         H11     108.698    1.50
+LMD         H10         CBG         H11     107.646    1.50
+LMD         CBE         CBF         CBG     114.243    1.69
+LMD         CBE         CBF         H12     108.698    1.50
+LMD         CBE         CBF         H13     108.698    1.50
+LMD         CBG         CBF         H12     108.698    1.50
+LMD         CBG         CBF         H13     108.698    1.50
+LMD         H12         CBF         H13     107.646    1.50
+LMD         CBD         CBE         CBF     114.243    1.69
+LMD         CBD         CBE         H14     108.698    1.50
+LMD         CBD         CBE         H15     108.698    1.50
+LMD         CBF         CBE         H14     108.698    1.50
+LMD         CBF         CBE         H15     108.698    1.50
+LMD         H14         CBE         H15     107.646    1.50
+LMD         CBC         CBD         CBE     114.243    1.69
+LMD         CBC         CBD         H16     108.698    1.50
+LMD         CBC         CBD         H17     108.698    1.50
+LMD         CBE         CBD         H16     108.698    1.50
+LMD         CBE         CBD         H17     108.698    1.50
+LMD         H16         CBD         H17     107.646    1.50
+LMD         CBB         CBC         CBD     114.243    1.69
+LMD         CBB         CBC         H18     108.698    1.50
+LMD         CBB         CBC         H19     108.698    1.50
+LMD         CBD         CBC         H18     108.698    1.50
+LMD         CBD         CBC         H19     108.698    1.50
+LMD         H18         CBC         H19     107.646    1.50
+LMD         CBA         CBB         CBC     114.243    1.69
+LMD         CBA         CBB         H20     108.698    1.50
+LMD         CBA         CBB         H21     108.698    1.50
+LMD         CBC         CBB         H20     108.698    1.50
+LMD         CBC         CBB         H21     108.698    1.50
+LMD         H20         CBB         H21     107.646    1.50
+LMD         CAZ         CBA         CBB     114.243    1.69
+LMD         CAZ         CBA         H22     108.698    1.50
+LMD         CAZ         CBA         H23     108.698    1.50
+LMD         CBB         CBA         H22     108.698    1.50
+LMD         CBB         CBA         H23     108.698    1.50
+LMD         H22         CBA         H23     107.646    1.50
+LMD         CAY         CAZ         CBA     113.259    1.53
+LMD         CAY         CAZ         H24     108.902    1.50
+LMD         CAY         CAZ         H25     108.902    1.50
+LMD         CBA         CAZ         H24     108.698    1.50
+LMD         CBA         CAZ         H25     108.698    1.50
+LMD         H24         CAZ         H25     107.646    1.50
+LMD         CAX         CAY         CAZ     112.740    1.50
+LMD         CAX         CAY         H26     108.815    1.50
+LMD         CAX         CAY         H27     108.815    1.50
+LMD         CAZ         CAY         H26     108.944    1.50
+LMD         CAZ         CAY         H27     108.944    1.50
+LMD         H26         CAY         H27     107.788    1.50
+LMD         OAS         CAX         CAY     109.508    2.51
+LMD         OAS         CAX         H28     109.567    1.50
+LMD         OAS         CAX         H29     109.567    1.50
+LMD         CAY         CAX         H28     110.103    1.50
+LMD         CAY         CAX         H29     110.103    1.50
+LMD         H28         CAX         H29     108.316    1.50
+LMD         CAM         OAS         CAX     113.687    1.50
+LMD         CAN         CAM         OAV     110.404    1.50
+LMD         CAN         CAM         OAS     108.855    1.50
+LMD         CAN         CAM         H30     109.511    1.50
+LMD         OAV         CAM         OAS     108.518    1.66
+LMD         OAV         CAM         H30     109.385    1.50
+LMD         OAS         CAM         H30     109.834    1.50
+LMD         CAO         CAN         OAT     111.053    2.62
+LMD         CAO         CAN         CAM     110.084    1.50
+LMD         CAO         CAN         H31     108.505    1.50
+LMD         OAT         CAN         CAM     110.083    1.70
+LMD         OAT         CAN         H31     108.551    1.50
+LMD         CAM         CAN         H31     108.545    1.50
+LMD         CAN         OAT         H32     109.126    2.06
+LMD         OAU         CAO         CAP     110.741    1.50
+LMD         OAU         CAO         CAN     109.587    2.09
+LMD         OAU         CAO         H33     108.767    1.50
+LMD         CAP         CAO         CAN     110.047    1.50
+LMD         CAP         CAO         H33     109.015    1.50
+LMD         CAN         CAO         H33     108.712    1.50
+LMD         CAO         OAU         H34     108.895    2.41
+LMD         CAQ         OAV         CAM     112.999    1.58
+LMD         CAP         CAQ         CAR     113.430    1.57
+LMD         CAP         CAQ         OAV     109.386    1.50
+LMD         CAP         CAQ         H35     109.100    1.50
+LMD         CAR         CAQ         OAV     106.879    1.50
+LMD         CAR         CAQ         H35     109.269    1.50
+LMD         OAV         CAQ         H35     109.134    1.50
+LMD         CAQ         CAR         OAW     111.299    2.09
+LMD         CAQ         CAR         H36     109.363    1.50
+LMD         CAQ         CAR         H37     109.363    1.50
+LMD         OAW         CAR         H36     109.265    1.50
+LMD         OAW         CAR         H37     109.265    1.50
+LMD         H36         CAR         H37     108.155    1.50
+LMD         CAR         OAW         H38     109.472    2.41
+LMD          O1         CAP         CAO     108.105    2.53
+LMD          O1         CAP         CAQ     109.005    2.24
+LMD          O1         CAP         H39     109.684    1.50
+LMD         CAO         CAP         CAQ     110.928    1.50
+LMD         CAO         CAP         H39     109.617    1.50
+LMD         CAQ         CAP         H39     109.688    1.50
+LMD          C1          O1         CAP     117.488    1.88
+LMD          O5          C1          C2     110.316    1.50
+LMD          O5          C1          O1     110.157    1.98
+LMD          O5          C1         H40     109.132    1.50
+LMD          C2          C1          O1     108.782    1.93
+LMD          C2          C1         H40     109.438    1.50
+LMD          O1          C1         H40     109.369    1.50
+LMD          C5          O5          C1     113.300    1.50
+LMD          C6          C5          C4     112.996    1.59
+LMD          C6          C5          O5     106.879    1.50
+LMD          C6          C5         H41     109.269    1.50
+LMD          C4          C5          O5     109.140    1.86
+LMD          C4          C5         H41     108.960    1.50
+LMD          O5          C5         H41     109.134    1.50
+LMD          O6          C6          C5     111.299    2.09
+LMD          O6          C6         H42     109.265    1.50
+LMD          O6          C6         H43     109.265    1.50
+LMD          C5          C6         H42     109.363    1.50
+LMD          C5          C6         H43     109.363    1.50
+LMD         H42          C6         H43     108.155    1.50
+LMD          C6          O6         H44     109.472    2.41
+LMD          O4          C4          C5     109.072    2.07
+LMD          O4          C4          C3     110.101    1.97
+LMD          O4          C4         H45     109.194    1.50
+LMD          C5          C4          C3     110.272    1.76
+LMD          C5          C4         H45     109.223    1.50
+LMD          C3          C4         H45     109.032    1.50
+LMD          C4          O4         H46     109.564    3.00
+LMD          C4          C3          O3     110.243    1.88
+LMD          C4          C3          C2     110.687    1.67
+LMD          C4          C3         H47     108.653    1.50
+LMD          O3          C3          C2     109.587    2.09
+LMD          O3          C3         H47     108.767    1.50
+LMD          C2          C3         H47     108.712    1.50
+LMD          C3          O3         H48     108.895    2.41
+LMD          C3          C2          O2     111.053    2.62
+LMD          C3          C2          C1     109.880    1.85
+LMD          C3          C2         H49     108.505    1.50
+LMD          O2          C2          C1     109.907    1.90
+LMD          O2          C2         H49     108.551    1.50
+LMD          C1          C2         H49     108.647    1.50
+LMD          C2          O2         H50     109.126    2.06
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LMD                  nu0V         CAQ         OAV         CAM         CAN     -63.072    10.0     3
+LMD                  nu1V         OAV         CAM         CAN         CAO      55.874    10.0     3
+LMD                  nu2V         CAM         CAN         CAO         CAP     -50.895    10.0     3
+LMD                  nu3V         CAN         CAO         CAP         CAQ      52.354    10.0     3
+LMD                  nu4V         CAO         CAP         CAQ         OAV     -59.001    10.0     3
+LMD                  nu5V         CAP         CAQ         OAV         CAM      64.575    10.0     3
+LMD                  nu05          C5          O5          C1          C2      70.665    10.0     3
+LMD                  nu15          O5          C1          C2          C3     -38.040    10.0     3
+LMD                  nu25          C1          C2          C3          C4     -23.472    10.0     3
+LMD                  nu35          C2          C3          C4          C5      56.550    10.0     3
+LMD                  nu45          C3          C4          C5          O5     -28.519    10.0     3
+LMD                  nu55          C4          C5          O5          C1     -34.444    10.0     3
+LMD            sp3_sp3_73          C5          C4          O4         H46     180.000    10.0     3
+LMD            sp3_sp3_74          C3          C4          O4         H46      60.000    10.0     3
+LMD            sp3_sp3_75         H45          C4          O4         H46     -60.000    10.0     3
+LMD            sp3_sp3_76          C5          C6          O6         H44     180.000    10.0     3
+LMD            sp3_sp3_77         H42          C6          O6         H44      60.000    10.0     3
+LMD            sp3_sp3_78         H43          C6          O6         H44     -60.000    10.0     3
+LMD            sp3_sp3_79          C4          C5          C6          O6     180.000    10.0     3
+LMD            sp3_sp3_80          C4          C5          C6         H42     -60.000    10.0     3
+LMD            sp3_sp3_81          C4          C5          C6         H43      60.000    10.0     3
+LMD            sp3_sp3_82          O5          C5          C6          O6      60.000    10.0     3
+LMD            sp3_sp3_83          O5          C5          C6         H42     180.000    10.0     3
+LMD            sp3_sp3_84          O5          C5          C6         H43     -60.000    10.0     3
+LMD            sp3_sp3_85         H41          C5          C6          O6     -60.000    10.0     3
+LMD            sp3_sp3_86         H41          C5          C6         H42      60.000    10.0     3
+LMD            sp3_sp3_87         H41          C5          C6         H43     180.000    10.0     3
+LMD            sp3_sp3_88          C4          C3          O3         H48     180.000    10.0     3
+LMD            sp3_sp3_89          C2          C3          O3         H48      60.000    10.0     3
+LMD            sp3_sp3_90         H47          C3          O3         H48     -60.000    10.0     3
+LMD            sp3_sp3_91          C3          C2          O2         H50     180.000    10.0     3
+LMD            sp3_sp3_92          C1          C2          O2         H50      60.000    10.0     3
+LMD            sp3_sp3_93         H49          C2          O2         H50     -60.000    10.0     3
+LMD           sp3_sp3_103          O5          C1          O1         CAP     180.000    10.0     3
+LMD           sp3_sp3_104          C2          C1          O1         CAP      60.000    10.0     3
+LMD           sp3_sp3_105         H40          C1          O1         CAP     -60.000    10.0     3
+LMD           sp3_sp3_106         CAO         CAP          O1          C1     180.000    10.0     3
+LMD           sp3_sp3_107         CAQ         CAP          O1          C1      60.000    10.0     3
+LMD           sp3_sp3_108         H39         CAP          O1          C1     -60.000    10.0     3
+LMD           sp3_sp3_109         CAP         CAO         OAU         H34     180.000    10.0     3
+LMD           sp3_sp3_110         CAN         CAO         OAU         H34      60.000    10.0     3
+LMD           sp3_sp3_111         H33         CAO         OAU         H34     -60.000    10.0     3
+LMD           sp3_sp3_112         CAP         CAQ         CAR         OAW     180.000    10.0     3
+LMD           sp3_sp3_113         CAP         CAQ         CAR         H36     -60.000    10.0     3
+LMD           sp3_sp3_114         CAP         CAQ         CAR         H37      60.000    10.0     3
+LMD           sp3_sp3_115         OAV         CAQ         CAR         OAW      60.000    10.0     3
+LMD           sp3_sp3_116         OAV         CAQ         CAR         H36     180.000    10.0     3
+LMD           sp3_sp3_117         OAV         CAQ         CAR         H37     -60.000    10.0     3
+LMD           sp3_sp3_118         H35         CAQ         CAR         OAW     -60.000    10.0     3
+LMD           sp3_sp3_119         H35         CAQ         CAR         H36      60.000    10.0     3
+LMD           sp3_sp3_120         H35         CAQ         CAR         H37     180.000    10.0     3
+LMD           sp3_sp3_121         CAQ         CAR         OAW         H38     180.000    10.0     3
+LMD           sp3_sp3_122         H36         CAR         OAW         H38      60.000    10.0     3
+LMD           sp3_sp3_123         H37         CAR         OAW         H38     -60.000    10.0     3
+LMD           sp3_sp3_124         CAO         CAN         OAT         H32     180.000    10.0     3
+LMD           sp3_sp3_125         CAM         CAN         OAT         H32      60.000    10.0     3
+LMD           sp3_sp3_126         H31         CAN         OAT         H32     -60.000    10.0     3
+LMD           sp3_sp3_130         CAN         CAM         OAS         CAX     180.000    10.0     3
+LMD           sp3_sp3_131         OAV         CAM         OAS         CAX      60.000    10.0     3
+LMD           sp3_sp3_132         H30         CAM         OAS         CAX     -60.000    10.0     3
+LMD           sp3_sp3_133         CAY         CAX         OAS         CAM     180.000    10.0     3
+LMD           sp3_sp3_134         H28         CAX         OAS         CAM      60.000    10.0     3
+LMD           sp3_sp3_135         H29         CAX         OAS         CAM     -60.000    10.0     3
+LMD           sp3_sp3_136         OAS         CAX         CAY         CAZ     180.000    10.0     3
+LMD           sp3_sp3_137         OAS         CAX         CAY         H26     -60.000    10.0     3
+LMD           sp3_sp3_138         OAS         CAX         CAY         H27      60.000    10.0     3
+LMD           sp3_sp3_139         H28         CAX         CAY         CAZ      60.000    10.0     3
+LMD           sp3_sp3_140         H28         CAX         CAY         H26     180.000    10.0     3
+LMD           sp3_sp3_141         H28         CAX         CAY         H27     -60.000    10.0     3
+LMD           sp3_sp3_142         H29         CAX         CAY         CAZ     -60.000    10.0     3
+LMD           sp3_sp3_143         H29         CAX         CAY         H26      60.000    10.0     3
+LMD           sp3_sp3_144         H29         CAX         CAY         H27     180.000    10.0     3
+LMD           sp3_sp3_145         CAX         CAY         CAZ         CBA     180.000    10.0     3
+LMD           sp3_sp3_146         CAX         CAY         CAZ         H24     -60.000    10.0     3
+LMD           sp3_sp3_147         CAX         CAY         CAZ         H25      60.000    10.0     3
+LMD           sp3_sp3_148         H26         CAY         CAZ         CBA      60.000    10.0     3
+LMD           sp3_sp3_149         H26         CAY         CAZ         H24     180.000    10.0     3
+LMD           sp3_sp3_150         H26         CAY         CAZ         H25     -60.000    10.0     3
+LMD           sp3_sp3_151         H27         CAY         CAZ         CBA     -60.000    10.0     3
+LMD           sp3_sp3_152         H27         CAY         CAZ         H24      60.000    10.0     3
+LMD           sp3_sp3_153         H27         CAY         CAZ         H25     180.000    10.0     3
+LMD           sp3_sp3_154         CAY         CAZ         CBA         CBB     180.000    10.0     3
+LMD           sp3_sp3_155         CAY         CAZ         CBA         H22     -60.000    10.0     3
+LMD           sp3_sp3_156         CAY         CAZ         CBA         H23      60.000    10.0     3
+LMD           sp3_sp3_157         H24         CAZ         CBA         CBB      60.000    10.0     3
+LMD           sp3_sp3_158         H24         CAZ         CBA         H22     180.000    10.0     3
+LMD           sp3_sp3_159         H24         CAZ         CBA         H23     -60.000    10.0     3
+LMD           sp3_sp3_160         H25         CAZ         CBA         CBB     -60.000    10.0     3
+LMD           sp3_sp3_161         H25         CAZ         CBA         H22      60.000    10.0     3
+LMD           sp3_sp3_162         H25         CAZ         CBA         H23     180.000    10.0     3
+LMD           sp3_sp3_163         CAZ         CBA         CBB         CBC     180.000    10.0     3
+LMD           sp3_sp3_164         CAZ         CBA         CBB         H20     -60.000    10.0     3
+LMD           sp3_sp3_165         CAZ         CBA         CBB         H21      60.000    10.0     3
+LMD           sp3_sp3_166         H22         CBA         CBB         CBC      60.000    10.0     3
+LMD           sp3_sp3_167         H22         CBA         CBB         H20     180.000    10.0     3
+LMD           sp3_sp3_168         H22         CBA         CBB         H21     -60.000    10.0     3
+LMD           sp3_sp3_169         H23         CBA         CBB         CBC     -60.000    10.0     3
+LMD           sp3_sp3_170         H23         CBA         CBB         H20      60.000    10.0     3
+LMD           sp3_sp3_171         H23         CBA         CBB         H21     180.000    10.0     3
+LMD           sp3_sp3_172         CBA         CBB         CBC         CBD     180.000    10.0     3
+LMD           sp3_sp3_173         CBA         CBB         CBC         H18     -60.000    10.0     3
+LMD           sp3_sp3_174         CBA         CBB         CBC         H19      60.000    10.0     3
+LMD           sp3_sp3_175         H20         CBB         CBC         CBD      60.000    10.0     3
+LMD           sp3_sp3_176         H20         CBB         CBC         H18     180.000    10.0     3
+LMD           sp3_sp3_177         H20         CBB         CBC         H19     -60.000    10.0     3
+LMD           sp3_sp3_178         H21         CBB         CBC         CBD     -60.000    10.0     3
+LMD           sp3_sp3_179         H21         CBB         CBC         H18      60.000    10.0     3
+LMD           sp3_sp3_180         H21         CBB         CBC         H19     180.000    10.0     3
+LMD           sp3_sp3_181         CBB         CBC         CBD         CBE     180.000    10.0     3
+LMD           sp3_sp3_182         CBB         CBC         CBD         H16     -60.000    10.0     3
+LMD           sp3_sp3_183         CBB         CBC         CBD         H17      60.000    10.0     3
+LMD           sp3_sp3_184         H18         CBC         CBD         CBE      60.000    10.0     3
+LMD           sp3_sp3_185         H18         CBC         CBD         H16     180.000    10.0     3
+LMD           sp3_sp3_186         H18         CBC         CBD         H17     -60.000    10.0     3
+LMD           sp3_sp3_187         H19         CBC         CBD         CBE     -60.000    10.0     3
+LMD           sp3_sp3_188         H19         CBC         CBD         H16      60.000    10.0     3
+LMD           sp3_sp3_189         H19         CBC         CBD         H17     180.000    10.0     3
+LMD           sp3_sp3_190         CBC         CBD         CBE         CBF     180.000    10.0     3
+LMD           sp3_sp3_191         CBC         CBD         CBE         H14     -60.000    10.0     3
+LMD           sp3_sp3_192         CBC         CBD         CBE         H15      60.000    10.0     3
+LMD           sp3_sp3_193         H16         CBD         CBE         CBF      60.000    10.0     3
+LMD           sp3_sp3_194         H16         CBD         CBE         H14     180.000    10.0     3
+LMD           sp3_sp3_195         H16         CBD         CBE         H15     -60.000    10.0     3
+LMD           sp3_sp3_196         H17         CBD         CBE         CBF     -60.000    10.0     3
+LMD           sp3_sp3_197         H17         CBD         CBE         H14      60.000    10.0     3
+LMD           sp3_sp3_198         H17         CBD         CBE         H15     180.000    10.0     3
+LMD           sp3_sp3_199         CBD         CBE         CBF         CBG     180.000    10.0     3
+LMD           sp3_sp3_200         CBD         CBE         CBF         H12     -60.000    10.0     3
+LMD           sp3_sp3_201         CBD         CBE         CBF         H13      60.000    10.0     3
+LMD           sp3_sp3_202         H14         CBE         CBF         CBG      60.000    10.0     3
+LMD           sp3_sp3_203         H14         CBE         CBF         H12     180.000    10.0     3
+LMD           sp3_sp3_204         H14         CBE         CBF         H13     -60.000    10.0     3
+LMD           sp3_sp3_205         H15         CBE         CBF         CBG     -60.000    10.0     3
+LMD           sp3_sp3_206         H15         CBE         CBF         H12      60.000    10.0     3
+LMD           sp3_sp3_207         H15         CBE         CBF         H13     180.000    10.0     3
+LMD           sp3_sp3_208         CBE         CBF         CBG         CBH     180.000    10.0     3
+LMD           sp3_sp3_209         CBE         CBF         CBG         H10     -60.000    10.0     3
+LMD           sp3_sp3_210         CBE         CBF         CBG         H11      60.000    10.0     3
+LMD           sp3_sp3_211         H12         CBF         CBG         CBH      60.000    10.0     3
+LMD           sp3_sp3_212         H12         CBF         CBG         H10     180.000    10.0     3
+LMD           sp3_sp3_213         H12         CBF         CBG         H11     -60.000    10.0     3
+LMD           sp3_sp3_214         H13         CBF         CBG         CBH     -60.000    10.0     3
+LMD           sp3_sp3_215         H13         CBF         CBG         H10      60.000    10.0     3
+LMD           sp3_sp3_216         H13         CBF         CBG         H11     180.000    10.0     3
+LMD           sp3_sp3_217         CBF         CBG         CBH         CBI     180.000    10.0     3
+LMD           sp3_sp3_218         CBF         CBG         CBH          H8     -60.000    10.0     3
+LMD           sp3_sp3_219         CBF         CBG         CBH          H9      60.000    10.0     3
+LMD           sp3_sp3_220         H10         CBG         CBH         CBI      60.000    10.0     3
+LMD           sp3_sp3_221         H10         CBG         CBH          H8     180.000    10.0     3
+LMD           sp3_sp3_222         H10         CBG         CBH          H9     -60.000    10.0     3
+LMD           sp3_sp3_223         H11         CBG         CBH         CBI     -60.000    10.0     3
+LMD           sp3_sp3_224         H11         CBG         CBH          H8      60.000    10.0     3
+LMD           sp3_sp3_225         H11         CBG         CBH          H9     180.000    10.0     3
+LMD           sp3_sp3_226         CBG         CBH         CBI         CBJ     180.000    10.0     3
+LMD           sp3_sp3_227         CBG         CBH         CBI          H6     -60.000    10.0     3
+LMD           sp3_sp3_228         CBG         CBH         CBI          H7      60.000    10.0     3
+LMD           sp3_sp3_229          H8         CBH         CBI         CBJ      60.000    10.0     3
+LMD           sp3_sp3_230          H8         CBH         CBI          H6     180.000    10.0     3
+LMD           sp3_sp3_231          H8         CBH         CBI          H7     -60.000    10.0     3
+LMD           sp3_sp3_232          H9         CBH         CBI         CBJ     -60.000    10.0     3
+LMD           sp3_sp3_233          H9         CBH         CBI          H6      60.000    10.0     3
+LMD           sp3_sp3_234          H9         CBH         CBI          H7     180.000    10.0     3
+LMD           sp3_sp3_235         CBH         CBI         CBJ         CBK     180.000    10.0     3
+LMD           sp3_sp3_236         CBH         CBI         CBJ          H4     -60.000    10.0     3
+LMD           sp3_sp3_237         CBH         CBI         CBJ          H5      60.000    10.0     3
+LMD           sp3_sp3_238          H6         CBI         CBJ         CBK      60.000    10.0     3
+LMD           sp3_sp3_239          H6         CBI         CBJ          H4     180.000    10.0     3
+LMD           sp3_sp3_240          H6         CBI         CBJ          H5     -60.000    10.0     3
+LMD           sp3_sp3_241          H7         CBI         CBJ         CBK     -60.000    10.0     3
+LMD           sp3_sp3_242          H7         CBI         CBJ          H4      60.000    10.0     3
+LMD           sp3_sp3_243          H7         CBI         CBJ          H5     180.000    10.0     3
+LMD           sp3_sp3_244         CBI         CBJ         CBK          H1     180.000    10.0     3
+LMD           sp3_sp3_245         CBI         CBJ         CBK          H2     -60.000    10.0     3
+LMD           sp3_sp3_246         CBI         CBJ         CBK          H3      60.000    10.0     3
+LMD           sp3_sp3_247          H4         CBJ         CBK          H1      60.000    10.0     3
+LMD           sp3_sp3_248          H4         CBJ         CBK          H2     180.000    10.0     3
+LMD           sp3_sp3_249          H4         CBJ         CBK          H3     -60.000    10.0     3
+LMD           sp3_sp3_250          H5         CBJ         CBK          H1     -60.000    10.0     3
+LMD           sp3_sp3_251          H5         CBJ         CBK          H2      60.000    10.0     3
+LMD           sp3_sp3_252          H5         CBJ         CBK          H3     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LMD    chir_1    CAM    OAV    OAS    CAN    negative
+LMD    chir_2    CAN    OAT    CAM    CAO    negative
+LMD    chir_3    CAO    OAU    CAP    CAN    negative
+LMD    chir_4    CAQ    OAV    CAP    CAR    negative
+LMD    chir_5    CAP    O1    CAQ    CAO    positive
+LMD    chir_6    C1    O1    O5    C2    negative
+LMD    chir_7    C5    O5    C4    C6    negative
+LMD    chir_8    C4    O4    C5    C3    positive
+LMD    chir_9    C3    O3    C2    C4    positive
+LMD    chir_10    C2    O2    C1    C3    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LMD           SMILES              ACDLabs 12.01                                                                                                                                           O(CCCCCCCCCCCCCC)C2OC(C(OC1OC(CO)C(O)C(O)C1O)C(O)C2O)CO
+LMD            InChI                InChI  1.03 InChI=1S/C26H50O11/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-34-25-23(33)21(31)24(18(16-28)36-25)37-26-22(32)20(30)19(29)17(15-27)35-26/h17-33H,2-16H2,1H3/t17-,18-,19-,20+,21-,22-,23-,24-,25-,26-/m1/s1
+LMD         InChIKey                InChI  1.03                                                                                                                                                                       UKPROSIGWJBJGA-IWODYCRQSA-N
+LMD SMILES_CANONICAL               CACTVS 3.370                                                                                                  CCCCCCCCCCCCCCO[C@@H]1O[C@H](CO)[C@@H](O[C@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O)[C@H](O)[C@H]1O
+LMD           SMILES               CACTVS 3.370                                                                                                               CCCCCCCCCCCCCCO[CH]1O[CH](CO)[CH](O[CH]2O[CH](CO)[CH](O)[CH](O)[CH]2O)[CH](O)[CH]1O
+LMD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                            CCCCCCCCCCCCCCO[C@H]1[C@@H]([C@H]([C@@H]([C@H](O1)CO)O[C@@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CO)O)O)O)O)O
+LMD           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                         CCCCCCCCCCCCCCOC1C(C(C(C(O1)CO)OC2C(C(C(C(O2)CO)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LMD acedrg               243         "dictionary generator"                  
+LMD acedrg_database      11          "data source"                           
+LMD rdkit                2017.03.2   "Chemoinformatics tool"
+LMD refmac5              5.8.0238    "optimization tool"                     

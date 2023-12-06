@@ -1,0 +1,255 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LAE     LAE      "3-OXO-OCTANOIC ACID (2-OXO-TETRAHYDRO-FURAN-3-YL)-AMIDE"     NON-POLYMER     36     17     .     
+#
+data_comp_LAE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LAE     C1      C       CH1     0       21.947      22.517      21.259      
+LAE     C2      C       CR5     0       20.463      22.647      21.560      
+LAE     O3      O       O2      0       20.167      23.908      21.877      
+LAE     C4      C       CH2     0       21.218      24.796      21.407      
+LAE     C5      C       CH2     0       22.460      23.947      21.345      
+LAE     O10     O       O       0       19.630      21.785      21.534      
+LAE     N11     N       NH1     0       22.189      21.860      19.994      
+LAE     C13     C       C       0       23.092      20.881      19.805      
+LAE     C14     C       CH2     0       23.170      20.299      18.412      
+LAE     C15     C       C       0       22.260      19.134      18.188      
+LAE     C18     C       CH2     0       20.775      19.401      18.188      
+LAE     C19     C       CH2     0       20.053      18.840      19.374      
+LAE     C22     C       CH2     0       18.559      19.112      19.382      
+LAE     C25     C       CH2     0       17.855      18.667      20.638      
+LAE     C28     C       CH3     0       17.708      17.168      20.752      
+LAE     O35     O       O       0       23.830      20.466      20.689      
+LAE     O36     O       O       0       22.697      18.015      18.011      
+LAE     H11     H       H       0       22.360      21.989      21.983      
+LAE     H41     H       H       0       21.331      25.545      22.033      
+LAE     H42     H       H       0       20.987      25.154      20.521      
+LAE     H51     H       H       0       23.006      24.181      20.548      
+LAE     H52     H       H       0       23.017      24.080      22.157      
+LAE     H111    H       H       0       21.719      22.122      19.302      
+LAE     H141    H       H       0       24.078      20.015      18.238      
+LAE     H142    H       H       0       22.960      20.982      17.761      
+LAE     H181    H       H       0       20.392      19.015      17.372      
+LAE     H182    H       H       0       20.631      20.370      18.157      
+LAE     H191    H       H       0       20.445      19.219      20.189      
+LAE     H192    H       H       0       20.196      17.871      19.399      
+LAE     H221    H       H       0       18.152      18.655      18.615      
+LAE     H222    H       H       0       18.413      20.075      19.265      
+LAE     H251    H       H       0       16.962      19.076      20.661      
+LAE     H252    H       H       0       18.356      18.997      21.415      
+LAE     H281    H       H       0       17.221      16.950      21.566      
+LAE     H282    H       H       0       18.589      16.756      20.783      
+LAE     H283    H       H       0       17.219      16.829      19.982      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LAE          C1          C2      SINGLE       n     1.518  0.0100     1.518  0.0100
+LAE          C1          C5      SINGLE       n     1.520  0.0111     1.520  0.0111
+LAE          C1         N11      SINGLE       n     1.442  0.0100     1.442  0.0100
+LAE          C2          O3      SINGLE       n     1.335  0.0100     1.335  0.0100
+LAE          C2         O10      DOUBLE       n     1.199  0.0114     1.199  0.0114
+LAE          O3          C4      SINGLE       n     1.456  0.0100     1.456  0.0100
+LAE          C4          C5      SINGLE       n     1.508  0.0160     1.508  0.0160
+LAE         N11         C13      SINGLE       n     1.339  0.0100     1.339  0.0100
+LAE         C13         C14      SINGLE       n     1.509  0.0100     1.509  0.0100
+LAE         C13         O35      DOUBLE       n     1.223  0.0130     1.223  0.0130
+LAE         C14         C15      SINGLE       n     1.491  0.0200     1.491  0.0200
+LAE         C15         C18      SINGLE       n     1.508  0.0100     1.508  0.0100
+LAE         C15         O36      DOUBLE       n     1.214  0.0100     1.214  0.0100
+LAE         C18         C19      SINGLE       n     1.497  0.0200     1.497  0.0200
+LAE         C19         C22      SINGLE       n     1.519  0.0164     1.519  0.0164
+LAE         C22         C25      SINGLE       n     1.507  0.0200     1.507  0.0200
+LAE         C25         C28      SINGLE       n     1.510  0.0200     1.510  0.0200
+LAE          C1         H11      SINGLE       n     1.089  0.0100     0.987  0.0200
+LAE          C4         H41      SINGLE       n     1.089  0.0100     0.983  0.0118
+LAE          C4         H42      SINGLE       n     1.089  0.0100     0.983  0.0118
+LAE          C5         H51      SINGLE       n     1.089  0.0100     0.994  0.0200
+LAE          C5         H52      SINGLE       n     1.089  0.0100     0.994  0.0200
+LAE         N11        H111      SINGLE       n     1.016  0.0100     0.876  0.0106
+LAE         C14        H141      SINGLE       n     1.089  0.0100     0.967  0.0200
+LAE         C14        H142      SINGLE       n     1.089  0.0100     0.967  0.0200
+LAE         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0185
+LAE         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0185
+LAE         C19        H191      SINGLE       n     1.089  0.0100     0.980  0.0160
+LAE         C19        H192      SINGLE       n     1.089  0.0100     0.980  0.0160
+LAE         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+LAE         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+LAE         C25        H251      SINGLE       n     1.089  0.0100     0.982  0.0155
+LAE         C25        H252      SINGLE       n     1.089  0.0100     0.982  0.0155
+LAE         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0157
+LAE         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0157
+LAE         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LAE          C2          C1          C5     102.605    1.51
+LAE          C2          C1         N11     112.784    1.71
+LAE          C2          C1         H11     108.696    1.61
+LAE          C5          C1         N11     115.151    1.50
+LAE          C5          C1         H11     109.017    1.50
+LAE         N11          C1         H11     108.491    1.50
+LAE          C1          C2          O3     109.602    1.50
+LAE          C1          C2         O10     128.076    1.50
+LAE          O3          C2         O10     122.323    1.50
+LAE          C2          O3          C4     110.225    1.50
+LAE          O3          C4          C5     105.831    1.50
+LAE          O3          C4         H41     109.230    2.87
+LAE          O3          C4         H42     109.230    2.87
+LAE          C5          C4         H41     110.960    1.50
+LAE          C5          C4         H42     110.960    1.50
+LAE         H41          C4         H42     108.637    1.50
+LAE          C1          C5          C4     104.443    2.26
+LAE          C1          C5         H51     111.538    1.50
+LAE          C1          C5         H52     111.538    1.50
+LAE          C4          C5         H51     111.107    1.50
+LAE          C4          C5         H52     111.107    1.50
+LAE         H51          C5         H52     108.862    1.50
+LAE          C1         N11         C13     122.414    1.92
+LAE          C1         N11        H111     119.145    1.50
+LAE         C13         N11        H111     118.441    1.50
+LAE         N11         C13         C14     115.983    1.98
+LAE         N11         C13         O35     122.748    1.50
+LAE         C14         C13         O35     121.269    1.50
+LAE         C13         C14         C15     113.463    3.00
+LAE         C13         C14        H141     109.356    1.50
+LAE         C13         C14        H142     109.356    1.50
+LAE         C15         C14        H141     108.453    1.62
+LAE         C15         C14        H142     108.453    1.62
+LAE        H141         C14        H142     107.018    1.59
+LAE         C14         C15         C18     116.951    2.07
+LAE         C14         C15         O36     121.627    1.57
+LAE         C18         C15         O36     121.422    1.50
+LAE         C15         C18         C19     114.261    2.06
+LAE         C15         C18        H181     108.377    1.50
+LAE         C15         C18        H182     108.377    1.50
+LAE         C19         C18        H181     108.866    1.50
+LAE         C19         C18        H182     108.866    1.50
+LAE        H181         C18        H182     107.764    1.50
+LAE         C18         C19         C22     114.272    1.50
+LAE         C18         C19        H191     108.724    1.50
+LAE         C18         C19        H192     108.724    1.50
+LAE         C22         C19        H191     108.698    1.50
+LAE         C22         C19        H192     108.698    1.50
+LAE        H191         C19        H192     107.646    1.50
+LAE         C19         C22         C25     114.362    3.00
+LAE         C19         C22        H221     108.698    1.50
+LAE         C19         C22        H222     108.698    1.50
+LAE         C25         C22        H221     108.653    1.50
+LAE         C25         C22        H222     108.653    1.50
+LAE        H221         C22        H222     107.646    1.50
+LAE         C22         C25         C28     113.719    3.00
+LAE         C22         C25        H251     108.758    1.50
+LAE         C22         C25        H252     108.758    1.50
+LAE         C28         C25        H251     108.918    1.50
+LAE         C28         C25        H252     108.918    1.50
+LAE        H251         C25        H252     107.763    1.50
+LAE         C25         C28        H281     109.554    1.50
+LAE         C25         C28        H282     109.554    1.50
+LAE         C25         C28        H283     109.554    1.50
+LAE        H281         C28        H282     109.380    1.50
+LAE        H281         C28        H283     109.380    1.50
+LAE        H282         C28        H283     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LAE             sp2_sp3_5         O10          C2          C1         N11     -60.000    10.0     6
+LAE            sp3_sp3_16         N11          C1          C5          C4      60.000    10.0     3
+LAE             sp2_sp3_7         C13         N11          C1          C2       0.000    10.0     6
+LAE            sp3_sp3_22         C15         C18         C19         C22     180.000    10.0     3
+LAE            sp3_sp3_31         C18         C19         C22         C25     180.000    10.0     3
+LAE            sp3_sp3_40         C19         C22         C25         C28     180.000    10.0     3
+LAE            sp3_sp3_49         C22         C25         C28        H281     180.000    10.0     3
+LAE             sp2_sp2_2         O10          C2          O3          C4     180.000     5.0     2
+LAE             sp3_sp3_1          C5          C4          O3          C2      60.000    10.0     3
+LAE             sp3_sp3_4          O3          C4          C5          C1     -60.000    10.0     3
+LAE             sp2_sp2_3         C14         C13         N11          C1     180.000     5.0     2
+LAE            sp2_sp3_14         N11         C13         C14         C15     120.000    10.0     6
+LAE            sp2_sp3_20         C18         C15         C14         C13     120.000    10.0     6
+LAE            sp2_sp3_26         C14         C15         C18         C19     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LAE    chir_1    C1    N11    C2    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LAE    plan-1          C1   0.020
+LAE    plan-1          C2   0.020
+LAE    plan-1         O10   0.020
+LAE    plan-1          O3   0.020
+LAE    plan-2          C1   0.020
+LAE    plan-2         C13   0.020
+LAE    plan-2        H111   0.020
+LAE    plan-2         N11   0.020
+LAE    plan-3         C13   0.020
+LAE    plan-3         C14   0.020
+LAE    plan-3         N11   0.020
+LAE    plan-3         O35   0.020
+LAE    plan-4         C14   0.020
+LAE    plan-4         C15   0.020
+LAE    plan-4         C18   0.020
+LAE    plan-4         O36   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LAE           SMILES              ACDLabs 10.04                                                                           O=C1OCCC1NC(=O)CC(=O)CCCCC
+LAE SMILES_CANONICAL               CACTVS 3.341                                                                       CCCCCC(=O)CC(=O)N[C@H]1CCOC1=O
+LAE           SMILES               CACTVS 3.341                                                                        CCCCCC(=O)CC(=O)N[CH]1CCOC1=O
+LAE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                       CCCCCC(=O)CC(=O)N[C@H]1CCOC1=O
+LAE           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CCCCCC(=O)CC(=O)NC1CCOC1=O
+LAE            InChI                InChI  1.03 InChI=1S/C12H19NO4/c1-2-3-4-5-9(14)8-11(15)13-10-6-7-17-12(10)16/h10H,2-8H2,1H3,(H,13,15)/t10-/m0/s1
+LAE         InChIKey                InChI  1.03                                                                          FXCMGCFNLNFLSH-JTQLQIEISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LAE acedrg               243         "dictionary generator"                  
+LAE acedrg_database      11          "data source"                           
+LAE rdkit                2017.03.2   "Chemoinformatics tool"
+LAE refmac5              5.8.0238    "optimization tool"                     

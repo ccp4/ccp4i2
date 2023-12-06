@@ -1,0 +1,301 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PN4     PN4      (2R)-2,4-dihydroxy-3,3-dimethyl-N-[3-oxo-3-(pentylamino)propyl]butanamide     NON-POLYMER     48     20     .     
+#
+data_comp_PN4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PN4     CAU     C       C       0       -42.070     -39.860     -50.266     
+PN4     OAE     O       O       0       -41.756     -40.813     -49.553     
+PN4     CAV     C       CH1     0       -41.216     -38.596     -50.235     
+PN4     OAG     O       OH1     0       -39.843     -38.971     -50.172     
+PN4     CAW     C       CT      0       -41.549     -37.607     -49.102     
+PN4     CAC     C       CH3     0       -41.364     -38.262     -47.726     
+PN4     CAB     C       CH3     0       -43.007     -37.146     -49.229     
+PN4     CAP     C       CH2     0       -40.645     -36.379     -49.192     
+PN4     OAS     O       OH1     0       -39.269     -36.682     -48.987     
+PN4     NAR     N       NH1     0       -43.112     -39.880     -51.096     
+PN4     CAN     C       CH2     0       -43.982     -41.033     -51.309     
+PN4     CAO     C       CH2     0       -43.609     -41.835     -52.546     
+PN4     CAT     C       C       0       -42.184     -42.352     -52.543     
+PN4     OAD     O       O       0       -41.397     -42.011     -53.424     
+PN4     CAA     C       CH3     0       -41.332     -48.669     -50.853     
+PN4     CAJ     C       CH2     0       -40.620     -47.575     -51.614     
+PN4     CAK     C       CH2     0       -40.965     -46.188     -51.139     
+PN4     CAL     C       CH2     0       -40.297     -45.079     -51.926     
+PN4     CAM     C       CH2     0       -40.493     -43.709     -51.305     
+PN4     NAQ     N       NH1     0       -41.828     -43.171     -51.541     
+PN4     HAV     H       H       0       -41.358     -38.115     -51.086     
+PN4     HOAG    H       H       0       -39.391     -38.494     -50.710     
+PN4     HAC     H       H       0       -40.499     -38.705     -47.684     
+PN4     HACA    H       H       0       -42.068     -38.916     -47.573     
+PN4     HACB    H       H       0       -41.406     -37.579     -47.035     
+PN4     HAB     H       H       0       -43.190     -36.897     -50.151     
+PN4     HABA    H       H       0       -43.159     -36.377     -48.652     
+PN4     HABB    H       H       0       -43.607     -37.865     -48.965     
+PN4     HAP     H       H       0       -40.925     -35.720     -48.515     
+PN4     HAPA    H       H       0       -40.749     -35.966     -50.080     
+PN4     HOAS    H       H       0       -38.810     -35.988     -49.139     
+PN4     HNAR    H       H       0       -43.302     -39.154     -51.541     
+PN4     HAN     H       H       0       -44.904     -40.716     -51.407     
+PN4     HANA    H       H       0       -43.953     -41.621     -50.526     
+PN4     HAO     H       H       0       -43.736     -41.279     -53.335     
+PN4     HAOA    H       H       0       -44.214     -42.592     -52.629     
+PN4     HAA     H       H       0       -41.069     -49.536     -51.207     
+PN4     HAAA    H       H       0       -42.294     -48.559     -50.949     
+PN4     HAAB    H       H       0       -41.093     -48.618     -49.911     
+PN4     HAJ     H       H       0       -40.849     -47.649     -52.566     
+PN4     HAJA    H       H       0       -39.651     -47.707     -51.528     
+PN4     HAK     H       H       0       -40.707     -46.107     -50.196     
+PN4     HAKA    H       H       0       -41.938     -46.071     -51.192     
+PN4     HAL     H       H       0       -40.661     -45.071     -52.837     
+PN4     HALA    H       H       0       -39.336     -45.266     -51.987     
+PN4     HAM     H       H       0       -39.823     -43.091     -51.670     
+PN4     HAMA    H       H       0       -40.344     -43.771     -50.337     
+PN4     HNAQ    H       H       0       -42.456     -43.412     -50.986     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PN4         CAA         CAJ      SINGLE       n     1.510  0.0200     1.510  0.0200
+PN4         CAW         CAB      SINGLE       n     1.531  0.0109     1.531  0.0109
+PN4         CAW         CAC      SINGLE       n     1.531  0.0109     1.531  0.0109
+PN4         CAT         OAD      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PN4         CAU         OAE      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PN4         CAV         OAG      SINGLE       n     1.419  0.0162     1.419  0.0162
+PN4         CAJ         CAK      SINGLE       n     1.507  0.0200     1.507  0.0200
+PN4         CAK         CAL      SINGLE       n     1.514  0.0200     1.514  0.0200
+PN4         CAL         CAM      SINGLE       n     1.517  0.0143     1.517  0.0143
+PN4         CAM         NAQ      SINGLE       n     1.456  0.0109     1.456  0.0109
+PN4         CAN         CAO      SINGLE       n     1.513  0.0195     1.513  0.0195
+PN4         NAR         CAN      SINGLE       n     1.457  0.0100     1.457  0.0100
+PN4         CAO         CAT      SINGLE       n     1.514  0.0100     1.514  0.0100
+PN4         CAW         CAP      SINGLE       n     1.525  0.0104     1.525  0.0104
+PN4         CAP         OAS      SINGLE       n     1.423  0.0111     1.423  0.0111
+PN4         CAT         NAQ      SINGLE       n     1.337  0.0118     1.337  0.0118
+PN4         CAU         NAR      SINGLE       n     1.326  0.0100     1.326  0.0100
+PN4         CAU         CAV      SINGLE       n     1.519  0.0108     1.519  0.0108
+PN4         CAV         CAW      SINGLE       n     1.532  0.0112     1.532  0.0112
+PN4         CAV         HAV      SINGLE       n     1.089  0.0100     0.988  0.0129
+PN4         OAG        HOAG      SINGLE       n     0.970  0.0120     0.848  0.0200
+PN4         CAC         HAC      SINGLE       n     1.089  0.0100     0.973  0.0146
+PN4         CAC        HACA      SINGLE       n     1.089  0.0100     0.973  0.0146
+PN4         CAC        HACB      SINGLE       n     1.089  0.0100     0.973  0.0146
+PN4         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+PN4         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0146
+PN4         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0146
+PN4         CAP         HAP      SINGLE       n     1.089  0.0100     0.985  0.0115
+PN4         CAP        HAPA      SINGLE       n     1.089  0.0100     0.985  0.0115
+PN4         OAS        HOAS      SINGLE       n     0.970  0.0120     0.846  0.0200
+PN4         NAR        HNAR      SINGLE       n     1.016  0.0100     0.872  0.0200
+PN4         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0159
+PN4         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0159
+PN4         CAO         HAO      SINGLE       n     1.089  0.0100     0.973  0.0156
+PN4         CAO        HAOA      SINGLE       n     1.089  0.0100     0.973  0.0156
+PN4         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+PN4         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+PN4         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0157
+PN4         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.982  0.0155
+PN4         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.982  0.0155
+PN4         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0163
+PN4         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0163
+PN4         CAL         HAL      SINGLE       n     1.089  0.0100     0.981  0.0160
+PN4         CAL        HALA      SINGLE       n     1.089  0.0100     0.981  0.0160
+PN4         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0152
+PN4         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0152
+PN4         NAQ        HNAQ      SINGLE       n     1.016  0.0100     0.872  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PN4         OAE         CAU         NAR     122.985    1.50
+PN4         OAE         CAU         CAV     119.851    1.78
+PN4         NAR         CAU         CAV     117.147    1.50
+PN4         OAG         CAV         CAU     109.850    1.55
+PN4         OAG         CAV         CAW     109.482    3.00
+PN4         OAG         CAV         HAV     108.675    1.50
+PN4         CAU         CAV         CAW     111.511    2.91
+PN4         CAU         CAV         HAV     108.529    1.70
+PN4         CAW         CAV         HAV     107.825    1.50
+PN4         CAV         OAG        HOAG     108.894    3.00
+PN4         CAB         CAW         CAC     108.765    1.50
+PN4         CAB         CAW         CAP     109.385    1.50
+PN4         CAB         CAW         CAV     109.534    1.52
+PN4         CAC         CAW         CAP     109.385    1.50
+PN4         CAC         CAW         CAV     109.534    1.52
+PN4         CAP         CAW         CAV     111.094    2.85
+PN4         CAW         CAC         HAC     109.575    1.50
+PN4         CAW         CAC        HACA     109.575    1.50
+PN4         CAW         CAC        HACB     109.575    1.50
+PN4         HAC         CAC        HACA     109.377    1.50
+PN4         HAC         CAC        HACB     109.377    1.50
+PN4        HACA         CAC        HACB     109.377    1.50
+PN4         CAW         CAB         HAB     109.575    1.50
+PN4         CAW         CAB        HABA     109.575    1.50
+PN4         CAW         CAB        HABB     109.575    1.50
+PN4         HAB         CAB        HABA     109.377    1.50
+PN4         HAB         CAB        HABB     109.377    1.50
+PN4        HABA         CAB        HABB     109.377    1.50
+PN4         CAW         CAP         OAS     112.722    1.73
+PN4         CAW         CAP         HAP     109.473    1.50
+PN4         CAW         CAP        HAPA     109.473    1.50
+PN4         OAS         CAP         HAP     109.100    1.50
+PN4         OAS         CAP        HAPA     109.100    1.50
+PN4         HAP         CAP        HAPA     108.307    1.50
+PN4         CAP         OAS        HOAS     108.853    2.22
+PN4         CAN         NAR         CAU     122.964    1.80
+PN4         CAN         NAR        HNAR     118.351    1.90
+PN4         CAU         NAR        HNAR     118.685    1.94
+PN4         CAO         CAN         NAR     112.257    1.50
+PN4         CAO         CAN         HAN     108.971    1.50
+PN4         CAO         CAN        HANA     108.971    1.50
+PN4         NAR         CAN         HAN     108.979    1.50
+PN4         NAR         CAN        HANA     108.979    1.50
+PN4         HAN         CAN        HANA     107.877    1.50
+PN4         CAN         CAO         CAT     112.120    2.79
+PN4         CAN         CAO         HAO     109.432    1.50
+PN4         CAN         CAO        HAOA     109.432    1.50
+PN4         CAT         CAO         HAO     108.945    1.50
+PN4         CAT         CAO        HAOA     108.945    1.50
+PN4         HAO         CAO        HAOA     107.745    2.07
+PN4         OAD         CAT         CAO     120.987    1.50
+PN4         OAD         CAT         NAQ     121.943    1.50
+PN4         CAO         CAT         NAQ     117.070    1.96
+PN4         CAJ         CAA         HAA     109.554    1.50
+PN4         CAJ         CAA        HAAA     109.554    1.50
+PN4         CAJ         CAA        HAAB     109.554    1.50
+PN4         HAA         CAA        HAAA     109.380    1.50
+PN4         HAA         CAA        HAAB     109.380    1.50
+PN4        HAAA         CAA        HAAB     109.380    1.50
+PN4         CAA         CAJ         CAK     113.719    3.00
+PN4         CAA         CAJ         HAJ     108.918    1.50
+PN4         CAA         CAJ        HAJA     108.918    1.50
+PN4         CAK         CAJ         HAJ     108.758    1.50
+PN4         CAK         CAJ        HAJA     108.758    1.50
+PN4         HAJ         CAJ        HAJA     107.763    1.50
+PN4         CAJ         CAK         CAL     114.022    2.49
+PN4         CAJ         CAK         HAK     108.653    1.50
+PN4         CAJ         CAK        HAKA     108.653    1.50
+PN4         CAL         CAK         HAK     108.806    1.50
+PN4         CAL         CAK        HAKA     108.806    1.50
+PN4         HAK         CAK        HAKA     107.646    1.50
+PN4         CAK         CAL         CAM     113.159    3.00
+PN4         CAK         CAL         HAL     109.041    1.50
+PN4         CAK         CAL        HALA     109.041    1.50
+PN4         CAM         CAL         HAL     108.956    1.50
+PN4         CAM         CAL        HALA     108.956    1.50
+PN4         HAL         CAL        HALA     107.927    1.57
+PN4         CAL         CAM         NAQ     112.624    1.50
+PN4         CAL         CAM         HAM     109.197    1.51
+PN4         CAL         CAM        HAMA     109.197    1.51
+PN4         NAQ         CAM         HAM     108.979    1.50
+PN4         NAQ         CAM        HAMA     108.979    1.50
+PN4         HAM         CAM        HAMA     107.877    1.50
+PN4         CAM         NAQ         CAT     124.480    2.27
+PN4         CAM         NAQ        HNAQ     118.241    1.90
+PN4         CAT         NAQ        HNAQ     117.279    2.10
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PN4            sp2_sp3_19         OAE         CAU         CAV         OAG       0.000    10.0     6
+PN4             sp2_sp2_7         OAE         CAU         NAR         CAN       0.000     5.0     2
+PN4            sp3_sp3_58         NAR         CAN         CAO         CAT     180.000    10.0     3
+PN4            sp2_sp3_14         OAD         CAT         CAO         CAN     120.000    10.0     6
+PN4             sp2_sp2_3         OAD         CAT         NAQ         CAM       0.000     5.0     2
+PN4             sp3_sp3_1         HAA         CAA         CAJ         CAK     180.000    10.0     3
+PN4            sp3_sp3_31         CAA         CAJ         CAK         CAL     180.000    10.0     3
+PN4            sp3_sp3_40         CAJ         CAK         CAL         CAM     180.000    10.0     3
+PN4            sp3_sp3_49         CAK         CAL         CAM         NAQ     180.000    10.0     3
+PN4             sp2_sp3_2         CAT         NAQ         CAM         CAL     120.000    10.0     6
+PN4            sp3_sp3_28         CAU         CAV         OAG        HOAG     180.000    10.0     3
+PN4            sp3_sp3_79         OAG         CAV         CAW         CAB     180.000    10.0     3
+PN4            sp3_sp3_21         HAC         CAC         CAW         CAB      60.000    10.0     3
+PN4            sp3_sp3_12         HAB         CAB         CAW         CAC      60.000    10.0     3
+PN4            sp3_sp3_68         OAS         CAP         CAW         CAB     -60.000    10.0     3
+PN4            sp3_sp3_76         CAW         CAP         OAS        HOAS     180.000    10.0     3
+PN4             sp2_sp3_8         CAU         NAR         CAN         CAO     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PN4    chir_1    CAV    OAG    CAU    CAW    negative
+PN4    chir_2    CAW    CAV    CAP    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PN4    plan-1         CAU   0.020
+PN4    plan-1         CAV   0.020
+PN4    plan-1         NAR   0.020
+PN4    plan-1         OAE   0.020
+PN4    plan-2         CAN   0.020
+PN4    plan-2         CAU   0.020
+PN4    plan-2        HNAR   0.020
+PN4    plan-2         NAR   0.020
+PN4    plan-3         CAO   0.020
+PN4    plan-3         CAT   0.020
+PN4    plan-3         NAQ   0.020
+PN4    plan-3         OAD   0.020
+PN4    plan-4         CAM   0.020
+PN4    plan-4         CAT   0.020
+PN4    plan-4        HNAQ   0.020
+PN4    plan-4         NAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PN4           SMILES              ACDLabs 12.01                                                                                              O=C(NCCC(=O)NCCCCC)C(O)C(C)(C)CO
+PN4            InChI                InChI  1.03 InChI=1S/C14H28N2O4/c1-4-5-6-8-15-11(18)7-9-16-13(20)12(19)14(2,3)10-17/h12,17,19H,4-10H2,1-3H3,(H,15,18)(H,16,20)/t12-/m0/s1
+PN4         InChIKey                InChI  1.03                                                                                                   HWNKKPMQPCHGBA-LBPRGKRZSA-N
+PN4 SMILES_CANONICAL               CACTVS 3.370                                                                                          CCCCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO
+PN4           SMILES               CACTVS 3.370                                                                                           CCCCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO
+PN4 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                         CCCCCNC(=O)CCNC(=O)[C@@H](C(C)(C)CO)O
+PN4           SMILES "OpenEye OEToolkits" 1.7.6                                                                                              CCCCCNC(=O)CCNC(=O)C(C(C)(C)CO)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PN4 acedrg               243         "dictionary generator"                  
+PN4 acedrg_database      11          "data source"                           
+PN4 rdkit                2017.03.2   "Chemoinformatics tool"
+PN4 refmac5              5.8.0238    "optimization tool"                     

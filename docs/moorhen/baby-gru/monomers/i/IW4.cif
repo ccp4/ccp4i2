@@ -1,0 +1,243 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IW4     IW4      4-[(E)-2-(3-aminophenyl)ethenyl]-2,6-dibromoaniline     NON-POLYMER     30     18     .     
+#
+data_comp_IW4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IW4     NAA     N       NH2     0       -2.017      0.209       -0.819      
+IW4     NAB     N       NH2     0       0.071       -0.018      -11.540     
+IW4     BRAC    BR      BR      0       0.587       -2.811      -10.291     
+IW4     BRAD    BR      BR      0       -0.585      2.797       -10.411     
+IW4     CAE     C       C1      0       0.402       -0.705      -5.009      
+IW4     CAF     C       C1      0       -0.265      0.055       -5.880      
+IW4     CAG     C       CR16    0       1.402       -1.017      -1.405      
+IW4     CAH     C       CR16    0       0.259       -0.602      -0.752      
+IW4     CAI     C       CR16    0       1.439       -1.046      -2.790      
+IW4     CAJ     C       CR16    0       -0.827      -0.242      -2.877      
+IW4     CAK     C       CR16    0       0.112       -1.166      -8.031      
+IW4     CAL     C       CR16    0       -0.379      1.193       -8.082      
+IW4     CAM     C       CR6     0       -0.869      -0.208      -1.476      
+IW4     CAN     C       CR6     0       0.194       -1.179      -9.405      
+IW4     CAO     C       CR6     0       -0.299      1.182       -9.456      
+IW4     CAP     C       CR6     0       -0.009      -0.005      -10.187     
+IW4     CAQ     C       CR6     0       0.330       -0.657      -3.548      
+IW4     CAR     C       CR6     0       -0.171      0.022       -7.348      
+IW4     HNAA    H       H       0       -2.655      0.613       -1.267      
+IW4     HNAB    H       H       0       -2.104      0.069       0.042       
+IW4     HNAC    H       H       0       -0.640      0.164       -12.021     
+IW4     HNAD    H       H       0       0.832       -0.208      -11.931     
+IW4     HAE     H       H       0       0.998       -1.344      -5.374      
+IW4     HAF     H       H       0       -0.862      0.695       -5.517      
+IW4     HAG     H       H       0       2.156       -1.279      -0.909      
+IW4     HAH     H       H       0       0.236       -0.582      0.191       
+IW4     HAI     H       H       0       2.222       -1.330      -3.229      
+IW4     HAJ     H       H       0       -1.586      0.024       -3.361      
+IW4     HAK     H       H       0       0.252       -1.955      -7.552      
+IW4     HAL     H       H       0       -0.572      1.990       -7.634      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IW4         NAA         CAM      SINGLE       n     1.386  0.0200     1.386  0.0200
+IW4         NAB         CAP      SINGLE       n     1.354  0.0200     1.354  0.0200
+IW4        BRAC         CAN      SINGLE       n     1.898  0.0100     1.898  0.0100
+IW4        BRAD         CAO      SINGLE       n     1.898  0.0100     1.898  0.0100
+IW4         CAE         CAF      DOUBLE       n     1.326  0.0177     1.326  0.0177
+IW4         CAE         CAQ      SINGLE       n     1.461  0.0100     1.461  0.0100
+IW4         CAF         CAR      SINGLE       n     1.470  0.0108     1.470  0.0108
+IW4         CAG         CAI      DOUBLE       y     1.384  0.0100     1.384  0.0100
+IW4         CAG         CAH      SINGLE       y     1.379  0.0100     1.379  0.0100
+IW4         CAH         CAM      DOUBLE       y     1.394  0.0100     1.394  0.0100
+IW4         CAI         CAQ      SINGLE       y     1.395  0.0100     1.395  0.0100
+IW4         CAJ         CAQ      DOUBLE       y     1.394  0.0100     1.394  0.0100
+IW4         CAJ         CAM      SINGLE       y     1.397  0.0100     1.397  0.0100
+IW4         CAK         CAN      DOUBLE       y     1.371  0.0120     1.371  0.0120
+IW4         CAK         CAR      SINGLE       y     1.395  0.0100     1.395  0.0100
+IW4         CAL         CAO      SINGLE       y     1.371  0.0120     1.371  0.0120
+IW4         CAL         CAR      DOUBLE       y     1.395  0.0100     1.395  0.0100
+IW4         CAN         CAP      SINGLE       y     1.410  0.0176     1.410  0.0176
+IW4         CAO         CAP      DOUBLE       y     1.410  0.0176     1.410  0.0176
+IW4         NAA        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+IW4         NAA        HNAB      SINGLE       n     1.016  0.0100     0.877  0.0200
+IW4         NAB        HNAC      SINGLE       n     1.016  0.0100     0.877  0.0200
+IW4         NAB        HNAD      SINGLE       n     1.016  0.0100     0.877  0.0200
+IW4         CAE         HAE      SINGLE       n     1.082  0.0130     0.948  0.0200
+IW4         CAF         HAF      SINGLE       n     1.082  0.0130     0.948  0.0200
+IW4         CAG         HAG      SINGLE       n     1.082  0.0130     0.940  0.0164
+IW4         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0178
+IW4         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0168
+IW4         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.939  0.0130
+IW4         CAK         HAK      SINGLE       n     1.082  0.0130     0.934  0.0100
+IW4         CAL         HAL      SINGLE       n     1.082  0.0130     0.934  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IW4         CAM         NAA        HNAA     119.811    2.73
+IW4         CAM         NAA        HNAB     119.811    2.73
+IW4        HNAA         NAA        HNAB     120.379    3.00
+IW4         CAP         NAB        HNAC     119.860    1.50
+IW4         CAP         NAB        HNAD     119.860    1.50
+IW4        HNAC         NAB        HNAD     120.280    3.00
+IW4         CAF         CAE         CAQ     126.568    1.76
+IW4         CAF         CAE         HAE     116.867    1.50
+IW4         CAQ         CAE         HAE     116.565    1.50
+IW4         CAE         CAF         CAR     126.568    1.76
+IW4         CAE         CAF         HAF     116.867    1.50
+IW4         CAR         CAF         HAF     116.565    1.50
+IW4         CAI         CAG         CAH     120.773    1.50
+IW4         CAI         CAG         HAG     119.709    1.50
+IW4         CAH         CAG         HAG     119.518    1.50
+IW4         CAG         CAH         CAM     120.956    1.50
+IW4         CAG         CAH         HAH     119.776    1.50
+IW4         CAM         CAH         HAH     119.269    1.50
+IW4         CAG         CAI         CAQ     121.220    1.50
+IW4         CAG         CAI         HAI     119.506    1.50
+IW4         CAQ         CAI         HAI     119.274    1.50
+IW4         CAQ         CAJ         CAM     119.803    1.50
+IW4         CAQ         CAJ         HAJ     120.800    2.94
+IW4         CAM         CAJ         HAJ     119.397    1.50
+IW4         CAN         CAK         CAR     120.607    1.50
+IW4         CAN         CAK         HAK     119.804    1.50
+IW4         CAR         CAK         HAK     119.589    1.50
+IW4         CAO         CAL         CAR     120.607    1.50
+IW4         CAO         CAL         HAL     119.804    1.50
+IW4         CAR         CAL         HAL     119.589    1.50
+IW4         NAA         CAM         CAH     120.670    1.50
+IW4         NAA         CAM         CAJ     120.455    1.50
+IW4         CAH         CAM         CAJ     118.876    1.50
+IW4        BRAC         CAN         CAK     119.337    1.50
+IW4        BRAC         CAN         CAP     118.752    1.50
+IW4         CAK         CAN         CAP     121.911    1.50
+IW4        BRAD         CAO         CAL     119.337    1.50
+IW4        BRAD         CAO         CAP     118.752    1.50
+IW4         CAL         CAO         CAP     121.911    1.50
+IW4         NAB         CAP         CAN     122.335    1.50
+IW4         NAB         CAP         CAO     122.335    1.50
+IW4         CAN         CAP         CAO     115.329    1.50
+IW4         CAE         CAQ         CAI     120.931    2.07
+IW4         CAE         CAQ         CAJ     120.696    2.30
+IW4         CAI         CAQ         CAJ     118.373    1.50
+IW4         CAF         CAR         CAK     120.182    1.80
+IW4         CAF         CAR         CAL     120.182    1.80
+IW4         CAK         CAR         CAL     119.635    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IW4             sp2_sp2_1         CAH         CAM         NAA        HNAA     180.000     5.0     2
+IW4              const_22         CAR         CAK         CAN        BRAC     180.000    10.0     2
+IW4              const_46         CAN         CAK         CAR         CAF     180.000    10.0     2
+IW4              const_34         CAR         CAL         CAO        BRAD     180.000    10.0     2
+IW4              const_38         CAO         CAL         CAR         CAF     180.000    10.0     2
+IW4              const_28        BRAC         CAN         CAP         NAB       0.000    10.0     2
+IW4              const_32        BRAD         CAO         CAP         NAB       0.000    10.0     2
+IW4             sp2_sp2_5         CAN         CAP         NAB        HNAC     180.000     5.0     2
+IW4            sp2_sp2_13         CAF         CAE         CAQ         CAI     180.000     5.0     2
+IW4             sp2_sp2_9         CAQ         CAE         CAF         CAR     180.000     5.0     2
+IW4            sp2_sp2_17         CAE         CAF         CAR         CAK     180.000     5.0     2
+IW4              const_41         CAI         CAG         CAH         CAM       0.000    10.0     2
+IW4       const_sp2_sp2_1         CAH         CAG         CAI         CAQ       0.000     5.0     2
+IW4              const_18         CAG         CAH         CAM         NAA     180.000    10.0     2
+IW4       const_sp2_sp2_6         CAG         CAI         CAQ         CAE     180.000     5.0     2
+IW4              const_14         CAQ         CAJ         CAM         NAA     180.000    10.0     2
+IW4              const_10         CAM         CAJ         CAQ         CAE     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IW4    plan-1        BRAC   0.020
+IW4    plan-1        BRAD   0.020
+IW4    plan-1         CAF   0.020
+IW4    plan-1         CAK   0.020
+IW4    plan-1         CAL   0.020
+IW4    plan-1         CAN   0.020
+IW4    plan-1         CAO   0.020
+IW4    plan-1         CAP   0.020
+IW4    plan-1         CAR   0.020
+IW4    plan-1         HAK   0.020
+IW4    plan-1         HAL   0.020
+IW4    plan-1         NAB   0.020
+IW4    plan-2         CAE   0.020
+IW4    plan-2         CAG   0.020
+IW4    plan-2         CAH   0.020
+IW4    plan-2         CAI   0.020
+IW4    plan-2         CAJ   0.020
+IW4    plan-2         CAM   0.020
+IW4    plan-2         CAQ   0.020
+IW4    plan-2         HAG   0.020
+IW4    plan-2         HAH   0.020
+IW4    plan-2         HAI   0.020
+IW4    plan-2         HAJ   0.020
+IW4    plan-2         NAA   0.020
+IW4    plan-3         CAM   0.020
+IW4    plan-3        HNAA   0.020
+IW4    plan-3        HNAB   0.020
+IW4    plan-3         NAA   0.020
+IW4    plan-4         CAP   0.020
+IW4    plan-4        HNAC   0.020
+IW4    plan-4        HNAD   0.020
+IW4    plan-4         NAB   0.020
+IW4    plan-5         CAE   0.020
+IW4    plan-5         CAF   0.020
+IW4    plan-5         CAQ   0.020
+IW4    plan-5         HAE   0.020
+IW4    plan-6         CAE   0.020
+IW4    plan-6         CAF   0.020
+IW4    plan-6         CAR   0.020
+IW4    plan-6         HAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IW4           SMILES              ACDLabs 11.02                                                           Brc1cc(cc(Br)c1N)\C=C\c2cccc(N)c2
+IW4 SMILES_CANONICAL               CACTVS 3.352                                                         Nc1cccc(/C=C/c2cc(Br)c(N)c(Br)c2)c1
+IW4           SMILES               CACTVS 3.352                                                           Nc1cccc(C=Cc2cc(Br)c(N)c(Br)c2)c1
+IW4 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                       c1cc(cc(c1)N)/C=C/c2cc(c(c(c2)Br)N)Br
+IW4           SMILES "OpenEye OEToolkits" 1.7.0                                                         c1cc(cc(c1)N)C=Cc2cc(c(c(c2)Br)N)Br
+IW4            InChI                InChI  1.03 InChI=1S/C14H12Br2N2/c15-12-7-10(8-13(16)14(12)18)5-4-9-2-1-3-11(17)6-9/h1-8H,17-18H2/b5-4+
+IW4         InChIKey                InChI  1.03                                                                 KYCYQIDURIMUDR-SNAWJCMRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IW4 acedrg               243         "dictionary generator"                  
+IW4 acedrg_database      11          "data source"                           
+IW4 rdkit                2017.03.2   "Chemoinformatics tool"
+IW4 refmac5              5.8.0238    "optimization tool"                     

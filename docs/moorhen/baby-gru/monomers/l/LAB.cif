@@ -1,0 +1,368 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LAB     LAB      "LATRUNCULIN B"     NON-POLYMER     56     27     .     
+#
+data_comp_LAB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LAB     O5      O       O       0       9.918       11.875      33.051      
+LAB     C18     C       CR5     0       9.639       12.401      32.002      
+LAB     N1      N       NR5     0       9.435       11.827      30.807      
+LAB     C16     C       CH1     0       9.329       12.725      29.604      
+LAB     C17     C       CH2     0       8.882       14.095      30.129      
+LAB     S1      S       S2      0       9.365       14.077      31.847      
+LAB     C15     C       CT      0       10.644      12.732      28.782      
+LAB     O4      O       OH1     0       11.659      13.233      29.617      
+LAB     C14     C       CH2     0       11.038      11.326      28.336      
+LAB     C13     C       CH1     0       12.139      11.332      27.295      
+LAB     O2      O       O2      0       13.402      11.789      27.897      
+LAB     C12     C       CH2     0       11.803      12.276      26.166      
+LAB     C11     C       CH1     0       11.508      13.660      26.712      
+LAB     O3      O       O2      0       10.410      13.586      27.648      
+LAB     C10     C       CH2     0       11.168      14.697      25.655      
+LAB     C9      C       CH2     0       11.205      16.152      26.133      
+LAB     C8      C       CH1     0       12.461      16.615      26.895      
+LAB     C20     C       CH3     0       12.438      18.125      27.159      
+LAB     C7      C       C1      0       13.707      16.226      26.137      
+LAB     C6      C       C1      0       14.731      15.487      26.523      
+LAB     C5      C       CH2     0       14.974      14.830      27.853      
+LAB     C4      C       CH2     0       15.774      13.543      27.720      
+LAB     C3      C       C       0       15.939      12.757      29.002      
+LAB     C19     C       CH3     0       16.904      13.402      29.958      
+LAB     C2      C       C1      0       15.301      11.612      29.261      
+LAB     C1      C       C       0       14.118      10.968      28.661      
+LAB     O1      O       O       0       13.820      9.808       28.844      
+LAB     HN1     H       H       0       9.369       10.963      30.749      
+LAB     H16     H       H       0       8.622       12.381      29.000      
+LAB     H171    H       H       0       7.916       14.203      30.049      
+LAB     H172    H       H       0       9.324       14.827      29.660      
+LAB     HO4     H       H       0       11.690      14.073      29.575      
+LAB     H141    H       H       0       11.329      10.814      29.120      
+LAB     H142    H       H       0       10.247      10.881      27.963      
+LAB     H13     H       H       0       12.240      10.421      26.926      
+LAB     H121    H       H       0       11.013      11.936      25.675      
+LAB     H122    H       H       0       12.564      12.322      25.535      
+LAB     H11     H       H       0       12.308      13.969      27.183      
+LAB     H101    H       H       0       10.272      14.502      25.307      
+LAB     H102    H       H       0       11.786      14.591      24.900      
+LAB     H91     H       H       0       10.428      16.300      26.712      
+LAB     H92     H       H       0       11.096      16.730      25.349      
+LAB     H8      H       H       0       12.473      16.156      27.767      
+LAB     H201    H       H       0       13.114      18.566      26.615      
+LAB     H202    H       H       0       12.623      18.290      28.100      
+LAB     H203    H       H       0       11.561      18.484      26.936      
+LAB     H7      H       H       0       13.761      16.561      25.255      
+LAB     H6      H       H       0       15.406      15.352      25.876      
+LAB     H51     H       H       0       14.121      14.634      28.284      
+LAB     H52     H       H       0       15.466      15.452      28.428      
+LAB     H41     H       H       0       16.666      13.771      27.387      
+LAB     H42     H       H       0       15.360      12.978      27.041      
+LAB     H191    H       H       0       16.969      12.872      30.770      
+LAB     H192    H       H       0       16.593      14.294      30.182      
+LAB     H193    H       H       0       17.780      13.462      29.544      
+LAB     H2      H       H       0       15.697      11.123      29.964      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LAB          O5         C18      DOUBLE       n     1.206  0.0103     1.206  0.0103
+LAB         C18          N1      SINGLE       n     1.331  0.0149     1.331  0.0149
+LAB         C18          S1      SINGLE       n     1.734  0.0200     1.734  0.0200
+LAB          N1         C16      SINGLE       n     1.466  0.0198     1.466  0.0198
+LAB         C16         C15      SINGLE       n     1.541  0.0200     1.541  0.0200
+LAB         C16         C17      SINGLE       n     1.527  0.0106     1.527  0.0106
+LAB         C17          S1      SINGLE       n     1.817  0.0200     1.817  0.0200
+LAB         C15          O3      SINGLE       n     1.428  0.0135     1.428  0.0135
+LAB         C15         C14      SINGLE       n     1.522  0.0108     1.522  0.0108
+LAB         C15          O4      SINGLE       n     1.405  0.0101     1.405  0.0101
+LAB         C14         C13      SINGLE       n     1.507  0.0123     1.507  0.0123
+LAB         C13         C12      SINGLE       n     1.507  0.0123     1.507  0.0123
+LAB         C13          O2      SINGLE       n     1.465  0.0100     1.465  0.0100
+LAB          O2          C1      SINGLE       n     1.327  0.0100     1.327  0.0100
+LAB         C12         C11      SINGLE       n     1.516  0.0100     1.516  0.0100
+LAB         C11         C10      SINGLE       n     1.518  0.0100     1.518  0.0100
+LAB         C11          O3      SINGLE       n     1.437  0.0151     1.437  0.0151
+LAB         C10          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+LAB          C9          C8      SINGLE       n     1.534  0.0118     1.534  0.0118
+LAB          C8          C7      SINGLE       n     1.506  0.0100     1.506  0.0100
+LAB          C8         C20      SINGLE       n     1.530  0.0100     1.530  0.0100
+LAB          C7          C6      DOUBLE       n     1.317  0.0100     1.317  0.0100
+LAB          C6          C5      SINGLE       n     1.498  0.0156     1.498  0.0156
+LAB          C5          C4      SINGLE       n     1.516  0.0200     1.516  0.0200
+LAB          C4          C3      SINGLE       n     1.509  0.0100     1.509  0.0100
+LAB          C3          C2      DOUBLE       n     1.326  0.0109     1.326  0.0109
+LAB          C3         C19      SINGLE       n     1.502  0.0100     1.502  0.0100
+LAB          C2          C1      SINGLE       n     1.466  0.0113     1.466  0.0113
+LAB          C1          O1      DOUBLE       n     1.207  0.0162     1.207  0.0162
+LAB          N1         HN1      SINGLE       n     1.016  0.0100     0.868  0.0200
+LAB         C16         H16      SINGLE       n     1.089  0.0100     0.991  0.0166
+LAB         C17        H171      SINGLE       n     1.089  0.0100     0.975  0.0120
+LAB         C17        H172      SINGLE       n     1.089  0.0100     0.975  0.0120
+LAB          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+LAB         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0147
+LAB         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0147
+LAB         C13         H13      SINGLE       n     1.089  0.0100     0.988  0.0148
+LAB         C12        H121      SINGLE       n     1.089  0.0100     0.990  0.0100
+LAB         C12        H122      SINGLE       n     1.089  0.0100     0.990  0.0100
+LAB         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0172
+LAB         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0140
+LAB         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0140
+LAB          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0160
+LAB          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0160
+LAB          C8          H8      SINGLE       n     1.089  0.0100     0.988  0.0135
+LAB         C20        H201      SINGLE       n     1.089  0.0100     0.973  0.0141
+LAB         C20        H202      SINGLE       n     1.089  0.0100     0.973  0.0141
+LAB         C20        H203      SINGLE       n     1.089  0.0100     0.973  0.0141
+LAB          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0200
+LAB          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+LAB          C5         H51      SINGLE       n     1.089  0.0100     0.979  0.0159
+LAB          C5         H52      SINGLE       n     1.089  0.0100     0.979  0.0159
+LAB          C4         H41      SINGLE       n     1.089  0.0100     0.979  0.0159
+LAB          C4         H42      SINGLE       n     1.089  0.0100     0.979  0.0159
+LAB         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0140
+LAB         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0140
+LAB         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0140
+LAB          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LAB          O5         C18          N1     128.083    1.50
+LAB          O5         C18          S1     122.518    1.58
+LAB          N1         C18          S1     109.398    2.60
+LAB         C18          N1         C16     112.553    2.00
+LAB         C18          N1         HN1     123.273    3.00
+LAB         C16          N1         HN1     124.174    2.18
+LAB          N1         C16         C15     112.827    1.50
+LAB          N1         C16         C17     102.354    1.84
+LAB          N1         C16         H16     110.672    1.50
+LAB         C15         C16         C17     115.076    2.88
+LAB         C15         C16         H16     108.813    1.90
+LAB         C17         C16         H16     109.535    1.50
+LAB         C16         C17          S1     106.724    2.64
+LAB         C16         C17        H171     110.653    1.50
+LAB         C16         C17        H172     110.653    1.50
+LAB          S1         C17        H171     109.925    1.50
+LAB          S1         C17        H172     109.925    1.50
+LAB        H171         C17        H172     108.699    1.50
+LAB         C18          S1         C17     120.000    3.00
+LAB         C16         C15          O3     106.497    2.36
+LAB         C16         C15         C14     112.371    2.45
+LAB         C16         C15          O4     107.503    2.58
+LAB          O3         C15         C14     110.767    1.50
+LAB          O3         C15          O4     110.254    2.24
+LAB         C14         C15          O4     108.722    2.07
+LAB         C15          O4         HO4     109.021    3.00
+LAB         C15         C14         C13     111.124    1.57
+LAB         C15         C14        H141     108.868    1.50
+LAB         C15         C14        H142     108.868    1.50
+LAB         C13         C14        H141     109.270    1.50
+LAB         C13         C14        H142     109.270    1.50
+LAB        H141         C14        H142     108.019    1.50
+LAB         C14         C13         C12     110.953    1.50
+LAB         C14         C13          O2     108.255    1.95
+LAB         C14         C13         H13     109.129    1.50
+LAB         C12         C13          O2     108.255    1.95
+LAB         C12         C13         H13     109.129    1.50
+LAB          O2         C13         H13     110.216    1.50
+LAB         C13          O2          C1     117.190    1.50
+LAB         C13         C12         C11     111.124    1.57
+LAB         C13         C12        H121     109.270    1.50
+LAB         C13         C12        H122     109.270    1.50
+LAB         C11         C12        H121     109.454    1.50
+LAB         C11         C12        H122     109.454    1.50
+LAB        H121         C12        H122     108.036    1.50
+LAB         C12         C11         C10     113.809    1.66
+LAB         C12         C11          O3     109.660    1.50
+LAB         C12         C11         H11     108.575    1.50
+LAB         C10         C11          O3     107.751    2.26
+LAB         C10         C11         H11     108.902    2.40
+LAB          O3         C11         H11     108.995    1.50
+LAB         C15          O3         C11     111.559    2.21
+LAB         C11         C10          C9     114.098    1.61
+LAB         C11         C10        H101     108.469    1.50
+LAB         C11         C10        H102     108.469    1.50
+LAB          C9         C10        H101     108.814    1.50
+LAB          C9         C10        H102     108.814    1.50
+LAB        H101         C10        H102     106.573    3.00
+LAB         C10          C9          C8     115.594    1.53
+LAB         C10          C9         H91     108.734    1.50
+LAB         C10          C9         H92     108.734    1.50
+LAB          C8          C9         H91     108.672    1.50
+LAB          C8          C9         H92     108.672    1.50
+LAB         H91          C9         H92     107.901    1.50
+LAB          C9          C8          C7     109.635    1.50
+LAB          C9          C8         C20     111.474    1.79
+LAB          C9          C8          H8     107.780    1.50
+LAB          C7          C8         C20     110.393    1.50
+LAB          C7          C8          H8     107.709    1.50
+LAB         C20          C8          H8     108.370    1.50
+LAB          C8         C20        H201     109.470    1.50
+LAB          C8         C20        H202     109.470    1.50
+LAB          C8         C20        H203     109.470    1.50
+LAB        H201         C20        H202     109.411    1.50
+LAB        H201         C20        H203     109.411    1.50
+LAB        H202         C20        H203     109.411    1.50
+LAB          C8          C7          C6     126.473    2.23
+LAB          C8          C7          H7     115.838    1.50
+LAB          C6          C7          H7     117.689    2.70
+LAB          C7          C6          C5     125.350    2.53
+LAB          C7          C6          H6     118.085    2.22
+LAB          C5          C6          H6     116.564    1.61
+LAB          C6          C5          C4     112.930    2.60
+LAB          C6          C5         H51     108.886    1.50
+LAB          C6          C5         H52     108.886    1.50
+LAB          C4          C5         H51     109.013    1.50
+LAB          C4          C5         H52     109.013    1.50
+LAB         H51          C5         H52     107.922    1.50
+LAB          C5          C4          C3     113.520    2.62
+LAB          C5          C4         H41     108.867    1.50
+LAB          C5          C4         H42     108.867    1.50
+LAB          C3          C4         H41     108.816    1.50
+LAB          C3          C4         H42     108.816    1.50
+LAB         H41          C4         H42     107.710    1.94
+LAB          C4          C3          C2     119.984    1.79
+LAB          C4          C3         C19     114.973    1.50
+LAB          C2          C3         C19     125.042    1.50
+LAB          C3         C19        H191     109.541    1.50
+LAB          C3         C19        H192     109.541    1.50
+LAB          C3         C19        H193     109.541    1.50
+LAB        H191         C19        H192     109.342    1.50
+LAB        H191         C19        H193     109.342    1.50
+LAB        H192         C19        H193     109.342    1.50
+LAB          C3          C2          C1     124.483    3.00
+LAB          C3          C2          H2     116.964    1.58
+LAB          C1          C2          H2     118.554    1.50
+LAB          O2          C1          C2     111.239    1.70
+LAB          O2          C1          O1     123.234    1.73
+LAB          C2          C1          O1     125.528    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LAB             sp2_sp2_7          C2          C1          O2         C13     180.000     5.0     2
+LAB            sp3_sp3_10         C10         C11         C12         C13      60.000    10.0     3
+LAB             sp3_sp3_5         C10         C11          O3         C15     180.000    10.0     3
+LAB            sp3_sp3_70          C9         C10         C11         C12     180.000    10.0     3
+LAB            sp3_sp3_79         C11         C10          C9          C8     180.000    10.0     3
+LAB            sp3_sp3_88          C7          C8          C9         C10     180.000    10.0     3
+LAB            sp3_sp3_97        H201         C20          C8          C9     180.000    10.0     3
+LAB             sp2_sp3_7          C6          C7          C8          C9       0.000    10.0     6
+LAB             sp2_sp2_9          C5          C6          C7          C8     180.000     5.0     2
+LAB            sp2_sp3_14          C7          C6          C5          C4     120.000    10.0     6
+LAB             sp2_sp2_3          O5         C18          N1         C16     180.000     5.0     2
+LAB             sp2_sp2_6          O5         C18          S1         C17     180.000     5.0     2
+LAB           sp3_sp3_106          C3          C4          C5          C6     180.000    10.0     3
+LAB            sp2_sp3_20          C2          C3          C4          C5     120.000    10.0     6
+LAB            sp2_sp3_25          C4          C3         C19        H191       0.000    10.0     6
+LAB            sp2_sp2_13          C1          C2          C3          C4     180.000     5.0     2
+LAB            sp2_sp2_17          O2          C1          C2          C3     180.000     5.0     2
+LAB             sp2_sp3_2         C18          N1         C16         C15     120.000    10.0     6
+LAB            sp3_sp3_34          N1         C16         C17          S1      60.000    10.0     3
+LAB            sp3_sp3_52          O4         C15         C16          N1     -60.000    10.0     3
+LAB            sp3_sp3_43         C16         C17          S1         C18     -60.000    10.0     3
+LAB             sp3_sp3_3          O4         C15          O3         C11     180.000    10.0     3
+LAB            sp3_sp3_64         C16         C15          O4         HO4     180.000    10.0     3
+LAB            sp3_sp3_57         C13         C14         C15          O4     -60.000    10.0     3
+LAB            sp3_sp3_28          O2         C13         C14         C15      60.000    10.0     3
+LAB            sp3_sp3_67         C14         C13          O2          C1     180.000    10.0     3
+LAB            sp3_sp3_17         C11         C12         C13          O2     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LAB    chir_1    C16    N1    C17    C15    negative
+LAB    chir_2    C15    O3    O4    C16    negative
+LAB    chir_3    C13    O2    C14    C12    negative
+LAB    chir_4    C11    O3    C12    C10    negative
+LAB    chir_5    C8    C7    C9    C20    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LAB    plan-1         C18   0.020
+LAB    plan-1          N1   0.020
+LAB    plan-1          O5   0.020
+LAB    plan-1          S1   0.020
+LAB    plan-2         C16   0.020
+LAB    plan-2         C18   0.020
+LAB    plan-2         HN1   0.020
+LAB    plan-2          N1   0.020
+LAB    plan-3          C6   0.020
+LAB    plan-3          C7   0.020
+LAB    plan-3          C8   0.020
+LAB    plan-3          H7   0.020
+LAB    plan-4          C5   0.020
+LAB    plan-4          C6   0.020
+LAB    plan-4          C7   0.020
+LAB    plan-4          H6   0.020
+LAB    plan-5         C19   0.020
+LAB    plan-5          C2   0.020
+LAB    plan-5          C3   0.020
+LAB    plan-5          C4   0.020
+LAB    plan-6          C1   0.020
+LAB    plan-6          C2   0.020
+LAB    plan-6          C3   0.020
+LAB    plan-6          H2   0.020
+LAB    plan-7          C1   0.020
+LAB    plan-7          C2   0.020
+LAB    plan-7          O1   0.020
+LAB    plan-7          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LAB           SMILES              ACDLabs 10.04                                                                                                                                              O=C3OC2CC(OC(O)(C1NC(=O)SC1)C2)CCC(C=CCCC(=C3)C)C
+LAB SMILES_CANONICAL               CACTVS 3.341                                                                                                                   C[C@H]\1CC[C@@H]2C[C@H](C[C@@](O)(O2)[C@@H]3CSC(=O)N3)OC(=O)\C=C(C)/CC\C=C\1
+LAB           SMILES               CACTVS 3.341                                                                                                                                C[CH]1CC[CH]2C[CH](C[C](O)(O2)[CH]3CSC(=O)N3)OC(=O)C=C(C)CCC=C1
+LAB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                   C[C@H]\1CC[C@@H]2C[C@H](C[C@@](O2)([C@@H]3CSC(=O)N3)O)OC(=O)\C=C(/CC\C=C1)\C
+LAB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                              CC1CCC2CC(CC(O2)(C3CSC(=O)N3)O)OC(=O)C=C(CCC=C1)C
+LAB            InChI                InChI  1.03 InChI=1S/C20H29NO5S/c1-13-5-3-4-6-14(2)9-18(22)25-16-10-15(8-7-13)26-20(24,11-16)17-12-27-19(23)21-17/h3,5,9,13,15-17,24H,4,6-8,10-12H2,1-2H3,(H,21,23)/b5-3-,14-9-/t13-,15-,16-,17+,20-/m1/s1
+LAB         InChIKey                InChI  1.03                                                                                                                                                                    NSHPHXHGRHSMIK-JRIKCGFMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LAB acedrg               243         "dictionary generator"                  
+LAB acedrg_database      11          "data source"                           
+LAB rdkit                2017.03.2   "Chemoinformatics tool"
+LAB refmac5              5.8.0238    "optimization tool"                     

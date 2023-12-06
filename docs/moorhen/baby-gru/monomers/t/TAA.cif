@@ -1,0 +1,368 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TAA     TAA      "[4-(2,2,2-TRIFLUORO-ACETYLAMINO)-BENZYL]-PHOSPHONIC ACID MONO-[2-(2,2-DICHLORO-1-HYDROXY-ETHYLAMINO)-3-HYDROXY-1-(4-NITRO-PHENYL)-PROPYL] ESTER"     NON-POLYMER     57     37     .     
+#
+data_comp_TAA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TAA     P1      P       P       0       59.640      30.307      31.188      
+TAA     O1      O       O2      0       59.084      31.564      30.379      
+TAA     O2      O       OP      -1      59.510      29.092      30.312      
+TAA     O3      O       O       0       58.917      30.239      32.505      
+TAA     C1      C       CH2     0       61.396      30.581      31.514      
+TAA     C2      C       CR6     0       62.158      29.347      31.941      
+TAA     C3      C       CR16    0       61.916      28.763      33.177      
+TAA     C7      C       CR16    0       63.094      28.757      31.103      
+TAA     C4      C       CR16    0       62.599      27.625      33.576      
+TAA     C5      C       CR6     0       63.539      27.044      32.733      
+TAA     C6      C       CR16    0       63.783      27.619      31.492      
+TAA     N1      N       NH1     0       64.234      25.881      33.142      
+TAA     C8      C       C       0       64.316      24.720      32.479      
+TAA     O4      O       O       0       63.713      24.403      31.479      
+TAA     C9      C       CT      0       65.286      23.692      33.083      
+TAA     F1      F       F       0       64.666      22.869      33.916      
+TAA     F2      F       F       0       66.266      24.269      33.763      
+TAA     F3      F       F       0       65.854      22.942      32.149      
+TAA     C10     C       CH1     0       57.849      31.481      29.656      
+TAA     C11     C       CH1     0       57.091      32.813      29.818      
+TAA     C12     C       CH2     0       56.818      33.136      31.285      
+TAA     O5      O       OH1     0       55.891      34.199      31.423      
+TAA     N2      N       NT1     0       57.778      33.944      29.150      
+TAA     C13     C       CH1     0       57.125      34.417      27.918      
+TAA     O6      O       OH1     0       55.906      35.084      28.195      
+TAA     C14     C       CH1     0       58.036      35.355      27.158      
+TAA     CL1     CL      CL      0       57.295      35.829      25.614      
+TAA     CL2     CL      CL      0       58.407      36.794      28.133      
+TAA     C15     C       CR6     0       58.088      31.102      28.212      
+TAA     C16     C       CR16    0       57.236      30.200      27.572      
+TAA     C20     C       CR16    0       59.161      31.636      27.494      
+TAA     C17     C       CR16    0       57.434      29.835      26.250      
+TAA     C18     C       CR6     0       58.514      30.388      25.556      
+TAA     C19     C       CR16    0       59.386      31.292      26.171      
+TAA     N3      N       N       1       58.740      30.008      24.142      
+TAA     O7      O       O       0       59.382      30.763      23.425      
+TAA     O8      O       OC      -1      58.277      28.951      23.738      
+TAA     HC11    H       H       0       61.479      31.257      32.217      
+TAA     HC12    H       H       0       61.809      30.944      30.706      
+TAA     HC3     H       H       0       61.280      29.148      33.757      
+TAA     HC7     H       H       0       63.269      29.137      30.257      
+TAA     HC4     H       H       0       62.427      27.243      34.419      
+TAA     HC6     H       H       0       64.419      27.232      30.914      
+TAA     HN1     H       H       0       64.642      25.947      33.915      
+TAA     H10     H       H       0       57.295      30.778      30.066      
+TAA     H11     H       H       0       56.214      32.685      29.388      
+TAA     H121    H       H       0       57.659      33.380      31.728      
+TAA     H122    H       H       0       56.463      32.337      31.730      
+TAA     HO5     H       H       0       55.568      34.175      32.205      
+TAA     HN2     H       H       0       57.896      34.617      29.736      
+TAA     H13     H       H       0       56.926      33.638      27.347      
+TAA     HO6     H       H       0       55.443      35.116      27.485      
+TAA     H14     H       H       0       58.882      34.901      26.959      
+TAA     H16     H       H       0       56.509      29.831      28.045      
+TAA     H20     H       H       0       59.743      32.247      27.914      
+TAA     H17     H       H       0       56.847      29.228      25.835      
+TAA     H19     H       H       0       60.113      31.663      25.705      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TAA          P1          O1      SINGLE       n     1.594  0.0100     1.594  0.0100
+TAA          P1          O2      SINGLE       n     1.504  0.0124     1.504  0.0124
+TAA          P1          O3      DOUBLE       n     1.504  0.0124     1.504  0.0124
+TAA          P1          C1      SINGLE       n     1.807  0.0100     1.807  0.0100
+TAA          O1         C10      SINGLE       n     1.429  0.0113     1.429  0.0113
+TAA          C1          C2      SINGLE       n     1.511  0.0100     1.511  0.0100
+TAA          C2          C3      DOUBLE       y     1.384  0.0100     1.384  0.0100
+TAA          C2          C7      SINGLE       y     1.384  0.0100     1.384  0.0100
+TAA          C3          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+TAA          C7          C6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+TAA          C4          C5      DOUBLE       y     1.386  0.0100     1.386  0.0100
+TAA          C5          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+TAA          C5          N1      SINGLE       n     1.414  0.0100     1.414  0.0100
+TAA          N1          C8      SINGLE       n     1.335  0.0100     1.335  0.0100
+TAA          C8          O4      DOUBLE       n     1.209  0.0100     1.209  0.0100
+TAA          C8          C9      SINGLE       n     1.534  0.0100     1.534  0.0100
+TAA          C9          F1      SINGLE       n     1.325  0.0124     1.325  0.0124
+TAA          C9          F2      SINGLE       n     1.325  0.0124     1.325  0.0124
+TAA          C9          F3      SINGLE       n     1.325  0.0124     1.325  0.0124
+TAA         C10         C11      SINGLE       n     1.538  0.0101     1.538  0.0101
+TAA         C10         C15      SINGLE       n     1.509  0.0100     1.509  0.0100
+TAA         C11         C12      SINGLE       n     1.523  0.0127     1.523  0.0127
+TAA         C11          N2      SINGLE       n     1.477  0.0103     1.477  0.0103
+TAA         C12          O5      SINGLE       n     1.417  0.0200     1.417  0.0200
+TAA          N2         C13      SINGLE       n     1.469  0.0137     1.469  0.0137
+TAA         C13          O6      SINGLE       n     1.417  0.0135     1.417  0.0135
+TAA         C13         C14      SINGLE       n     1.513  0.0158     1.513  0.0158
+TAA         C14         CL1      SINGLE       n     1.777  0.0167     1.777  0.0167
+TAA         C14         CL2      SINGLE       n     1.777  0.0167     1.777  0.0167
+TAA         C15         C16      DOUBLE       y     1.392  0.0100     1.392  0.0100
+TAA         C15         C20      SINGLE       y     1.392  0.0100     1.392  0.0100
+TAA         C16         C17      SINGLE       y     1.382  0.0100     1.382  0.0100
+TAA         C20         C19      DOUBLE       y     1.382  0.0100     1.382  0.0100
+TAA         C17         C18      DOUBLE       y     1.393  0.0100     1.393  0.0100
+TAA         C18         C19      SINGLE       y     1.393  0.0100     1.393  0.0100
+TAA         C18          N3      SINGLE       n     1.457  0.0200     1.457  0.0200
+TAA          N3          O7      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TAA          N3          O8      SINGLE       n     1.221  0.0162     1.221  0.0162
+TAA          C1        HC11      SINGLE       n     1.089  0.0100     0.978  0.0126
+TAA          C1        HC12      SINGLE       n     1.089  0.0100     0.978  0.0126
+TAA          C3         HC3      SINGLE       n     1.082  0.0130     0.943  0.0173
+TAA          C7         HC7      SINGLE       n     1.082  0.0130     0.943  0.0173
+TAA          C4         HC4      SINGLE       n     1.082  0.0130     0.942  0.0183
+TAA          C6         HC6      SINGLE       n     1.082  0.0130     0.942  0.0183
+TAA          N1         HN1      SINGLE       n     1.016  0.0100     0.874  0.0200
+TAA         C10         H10      SINGLE       n     1.089  0.0100     0.983  0.0157
+TAA         C11         H11      SINGLE       n     1.089  0.0100     0.985  0.0149
+TAA         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0174
+TAA         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0174
+TAA          O5         HO5      SINGLE       n     0.970  0.0120     0.846  0.0200
+TAA          N2         HN2      SINGLE       n     1.036  0.0160     0.899  0.0200
+TAA         C13         H13      SINGLE       n     1.089  0.0100     0.987  0.0180
+TAA          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+TAA         C14         H14      SINGLE       n     1.089  0.0100     0.981  0.0200
+TAA         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0173
+TAA         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0173
+TAA         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0200
+TAA         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TAA          O1          P1          O2     108.773    3.00
+TAA          O1          P1          O3     108.773    3.00
+TAA          O1          P1          C1     105.177    2.72
+TAA          O2          P1          O3     115.915    1.71
+TAA          O2          P1          C1     109.003    2.17
+TAA          O3          P1          C1     109.003    2.17
+TAA          P1          O1         C10     121.496    2.55
+TAA          P1          C1          C2     115.691    1.60
+TAA          P1          C1        HC11     108.430    1.50
+TAA          P1          C1        HC12     108.430    1.50
+TAA          C2          C1        HC11     108.564    1.50
+TAA          C2          C1        HC12     108.564    1.50
+TAA        HC11          C1        HC12     107.558    1.50
+TAA          C1          C2          C3     120.761    1.50
+TAA          C1          C2          C7     120.761    1.50
+TAA          C3          C2          C7     118.479    1.50
+TAA          C2          C3          C4     120.897    1.50
+TAA          C2          C3         HC3     119.688    1.50
+TAA          C4          C3         HC3     119.415    1.50
+TAA          C2          C7          C6     120.897    1.50
+TAA          C2          C7         HC7     119.688    1.50
+TAA          C6          C7         HC7     119.415    1.50
+TAA          C3          C4          C5     120.140    1.50
+TAA          C3          C4         HC4     120.030    1.50
+TAA          C5          C4         HC4     119.830    1.50
+TAA          C4          C5          C6     119.447    1.50
+TAA          C4          C5          N1     120.277    3.00
+TAA          C6          C5          N1     120.277    3.00
+TAA          C7          C6          C5     120.140    1.50
+TAA          C7          C6         HC6     120.030    1.50
+TAA          C5          C6         HC6     119.830    1.50
+TAA          C5          N1          C8     127.064    2.00
+TAA          C5          N1         HN1     115.568    1.69
+TAA          C8          N1         HN1     117.368    2.31
+TAA          N1          C8          O4     127.740    1.50
+TAA          N1          C8          C9     114.157    1.50
+TAA          O4          C8          C9     118.103    1.50
+TAA          C8          C9          F1     111.619    1.79
+TAA          C8          C9          F2     111.619    1.79
+TAA          C8          C9          F3     111.619    1.79
+TAA          F1          C9          F2     107.116    1.50
+TAA          F1          C9          F3     107.116    1.50
+TAA          F2          C9          F3     107.116    1.50
+TAA          O1         C10         C11     107.003    2.30
+TAA          O1         C10         C15     110.865    2.39
+TAA          O1         C10         H10     108.976    1.50
+TAA         C11         C10         C15     113.018    1.62
+TAA         C11         C10         H10     108.286    1.50
+TAA         C15         C10         H10     108.608    1.50
+TAA         C10         C11         C12     112.177    1.50
+TAA         C10         C11          N2     111.883    2.59
+TAA         C10         C11         H11     107.161    1.50
+TAA         C12         C11          N2     109.353    2.35
+TAA         C12         C11         H11     107.627    1.50
+TAA          N2         C11         H11     108.459    1.50
+TAA         C11         C12          O5     111.903    1.66
+TAA         C11         C12        H121     109.343    1.50
+TAA         C11         C12        H122     109.343    1.50
+TAA          O5         C12        H121     109.411    1.50
+TAA          O5         C12        H122     109.411    1.50
+TAA        H121         C12        H122     108.070    1.50
+TAA         C12          O5         HO5     108.529    2.94
+TAA         C11          N2         C13     112.615    2.70
+TAA         C11          N2         HN2     108.160    2.24
+TAA         C13          N2         HN2     111.861    3.00
+TAA          N2         C13          O6     112.111    1.50
+TAA          N2         C13         C14     111.883    2.59
+TAA          N2         C13         H13     109.140    1.50
+TAA          O6         C13         C14     109.613    1.68
+TAA          O6         C13         H13     108.654    1.50
+TAA         C14         C13         H13     109.365    1.50
+TAA         C13          O6         HO6     108.906    3.00
+TAA         C13         C14         CL1     110.626    1.50
+TAA         C13         C14         CL2     110.626    1.50
+TAA         C13         C14         H14     109.548    1.50
+TAA         CL1         C14         CL2     110.510    2.80
+TAA         CL1         C14         H14     107.874    1.50
+TAA         CL2         C14         H14     107.874    1.50
+TAA         C10         C15         C16     120.619    1.50
+TAA         C10         C15         C20     120.619    1.50
+TAA         C16         C15         C20     118.763    1.50
+TAA         C15         C16         C17     120.938    1.50
+TAA         C15         C16         H16     119.666    1.50
+TAA         C17         C16         H16     119.396    1.50
+TAA         C15         C20         C19     120.938    1.50
+TAA         C15         C20         H20     119.666    1.50
+TAA         C19         C20         H20     119.396    1.50
+TAA         C16         C17         C18     118.489    1.50
+TAA         C16         C17         H17     120.487    1.50
+TAA         C18         C17         H17     121.025    1.50
+TAA         C17         C18         C19     122.384    1.50
+TAA         C17         C18          N3     118.808    1.50
+TAA         C19         C18          N3     118.808    1.50
+TAA         C20         C19         C18     118.489    1.50
+TAA         C20         C19         H19     120.487    1.50
+TAA         C18         C19         H19     121.025    1.50
+TAA         C18          N3          O7     118.257    1.50
+TAA         C18          N3          O8     118.257    1.50
+TAA          O7          N3          O8     123.486    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TAA             sp3_sp3_2         C10          O1          P1          O2     -60.000    10.0     3
+TAA             sp3_sp3_4          C2          C1          P1          O1     180.000    10.0     3
+TAA             sp2_sp2_7          O4          C8          N1          C5       0.000     5.0     2
+TAA             sp2_sp3_7          N1          C8          C9          F1       0.000    10.0     6
+TAA            sp3_sp3_16          O1         C10         C11         C12     180.000    10.0     3
+TAA            sp2_sp3_13         C16         C15         C10          O1     150.000    10.0     6
+TAA            sp3_sp3_25         C10         C11         C12          O5     180.000    10.0     3
+TAA            sp3_sp3_34         C10         C11          N2         C13     180.000    10.0     3
+TAA            sp3_sp3_13         C11         C10          O1          P1     180.000    10.0     3
+TAA            sp3_sp3_40         C11         C12          O5         HO5     180.000    10.0     3
+TAA            sp3_sp3_44          O6         C13          N2         C11     -60.000    10.0     3
+TAA            sp3_sp3_49          N2         C13          O6         HO6     180.000    10.0     3
+TAA            sp3_sp3_52          N2         C13         C14         CL1     180.000    10.0     3
+TAA       const_sp2_sp2_3         C10         C15         C16         C17     180.000     5.0     2
+TAA              const_47         C10         C15         C20         C19     180.000    10.0     2
+TAA       const_sp2_sp2_5         C15         C16         C17         C18       0.000     5.0     2
+TAA              const_17         C18         C19         C20         C15       0.000    10.0     2
+TAA              const_10         C16         C17         C18          N3     180.000    10.0     2
+TAA              const_15          N3         C18         C19         C20     180.000    10.0     2
+TAA             sp2_sp2_9         C17         C18          N3          O7     180.000     5.0     2
+TAA             sp2_sp3_2          C3          C2          C1          P1     -90.000    10.0     6
+TAA              const_23          C1          C2          C3          C4     180.000    10.0     2
+TAA              const_43          C1          C2          C7          C6     180.000    10.0     2
+TAA              const_25          C2          C3          C4          C5       0.000    10.0     2
+TAA              const_37          C5          C6          C7          C2       0.000    10.0     2
+TAA              const_30          C3          C4          C5          N1     180.000    10.0     2
+TAA              const_35          N1          C5          C6          C7     180.000    10.0     2
+TAA             sp2_sp2_1          C4          C5          N1          C8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TAA    chir_1    P1    O1    O2    O3    both
+TAA    chir_2    C10    O1    C11    C15    negative
+TAA    chir_3    C11    N2    C10    C12    negative
+TAA    chir_4    C13    O6    N2    C14    positive
+TAA    chir_5    N2    C13    C11    HN2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TAA    plan-1          C1   0.020
+TAA    plan-1          C2   0.020
+TAA    plan-1          C3   0.020
+TAA    plan-1          C4   0.020
+TAA    plan-1          C5   0.020
+TAA    plan-1          C6   0.020
+TAA    plan-1          C7   0.020
+TAA    plan-1         HC3   0.020
+TAA    plan-1         HC4   0.020
+TAA    plan-1         HC6   0.020
+TAA    plan-1         HC7   0.020
+TAA    plan-1          N1   0.020
+TAA    plan-2         C10   0.020
+TAA    plan-2         C15   0.020
+TAA    plan-2         C16   0.020
+TAA    plan-2         C17   0.020
+TAA    plan-2         C18   0.020
+TAA    plan-2         C19   0.020
+TAA    plan-2         C20   0.020
+TAA    plan-2         H16   0.020
+TAA    plan-2         H17   0.020
+TAA    plan-2         H19   0.020
+TAA    plan-2         H20   0.020
+TAA    plan-2          N3   0.020
+TAA    plan-3          C5   0.020
+TAA    plan-3          C8   0.020
+TAA    plan-3         HN1   0.020
+TAA    plan-3          N1   0.020
+TAA    plan-4          C8   0.020
+TAA    plan-4          C9   0.020
+TAA    plan-4          N1   0.020
+TAA    plan-4          O4   0.020
+TAA    plan-5         C18   0.020
+TAA    plan-5          N3   0.020
+TAA    plan-5          O7   0.020
+TAA    plan-5          O8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TAA           SMILES              ACDLabs 10.04                                                                                                                             FC(F)(F)C(=O)Nc1ccc(cc1)CP(=O)(OC(c2ccc(cc2)[N+]([O-])=O)C(NC(O)C(Cl)Cl)CO)O
+TAA SMILES_CANONICAL               CACTVS 3.341                                                                                                            OC[C@@H](N[C@@H](O)C(Cl)Cl)[C@H](O[P@](O)(=O)Cc1ccc(NC(=O)C(F)(F)F)cc1)c2ccc(cc2)[N+]([O-])=O
+TAA           SMILES               CACTVS 3.341                                                                                                                  OC[CH](N[CH](O)C(Cl)Cl)[CH](O[P](O)(=O)Cc1ccc(NC(=O)C(F)(F)F)cc1)c2ccc(cc2)[N+]([O-])=O
+TAA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                 c1cc(ccc1C[P@](=O)(O)O[C@H](c2ccc(cc2)[N+](=O)[O-])[C@@H](CO)NC(C(Cl)Cl)O)NC(=O)C(F)(F)F
+TAA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                             c1cc(ccc1CP(=O)(O)OC(c2ccc(cc2)[N+](=O)[O-])C(CO)NC(C(Cl)Cl)O)NC(=O)C(F)(F)F
+TAA            InChI                InChI  1.03 InChI=1S/C20H21Cl2F3N3O8P/c21-17(22)18(30)27-15(9-29)16(12-3-7-14(8-4-12)28(32)33)36-37(34,35)10-11-1-5-13(6-2-11)26-19(31)20(23,24)25/h1-8,15-18,27,29-30H,9-10H2,(H,26,31)(H,34,35)/t15-,16-,18+/m1/s1
+TAA         InChIKey                InChI  1.03                                                                                                                                                                              PXDSVFRUDNCBRZ-NUJGCVRESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TAA acedrg               243         "dictionary generator"                  
+TAA acedrg_database      11          "data source"                           
+TAA rdkit                2017.03.2   "Chemoinformatics tool"
+TAA refmac5              5.8.0238    "optimization tool"                     

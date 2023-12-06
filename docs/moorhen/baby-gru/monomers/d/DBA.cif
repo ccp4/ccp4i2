@@ -1,0 +1,192 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DBA     DBA      "(2,6-DIMETHYL-PHENOXY)-ACETIC ACID"     NON-POLYMER     24     13     .     
+#
+data_comp_DBA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DBA     C1      C       C       0       50.977      22.909      6.107       
+DBA     C2      C       CH2     0       50.771      22.942      7.612       
+DBA     "C1'"   C       CR6     0       51.880      23.402      9.657       
+DBA     "C2'"   C       CR6     0       51.619      24.666      10.199      
+DBA     "C3'"   C       CR16    0       51.531      24.763      11.586      
+DBA     "C4'"   C       CR16    0       51.696      23.655      12.397      
+DBA     "C5'"   C       CR16    0       51.954      22.421      11.830      
+DBA     "C6'"   C       CR6     0       52.054      22.262      10.449      
+DBA     CM2     C       CH3     0       51.439      25.872      9.320       
+DBA     CM6     C       CH3     0       52.334      20.915      9.843       
+DBA     O1      O       O       0       51.508      21.888      5.626       
+DBA     O2      O       OC      -1      50.602      23.906      5.458       
+DBA     "O1'"   O       O2      0       51.972      23.280      8.291       
+DBA     H21     H       H       0       50.463      22.068      7.913       
+DBA     H22     H       H       0       50.080      23.595      7.827       
+DBA     "H3'"   H       H       0       51.355      25.602      11.978      
+DBA     "H4'"   H       H       0       51.633      23.742      13.336      
+DBA     "H5'"   H       H       0       52.065      21.669      12.388      
+DBA     HM21    H       H       0       51.273      26.657      9.868       
+DBA     HM22    H       H       0       50.685      25.732      8.725       
+DBA     HM23    H       H       0       52.243      26.013      8.793       
+DBA     HM61    H       H       0       52.625      20.298      10.535      
+DBA     HM62    H       H       0       53.033      20.997      9.173       
+DBA     HM63    H       H       0       51.527      20.571      9.426       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DBA          C1          C2      SINGLE       n     1.520  0.0100     1.520  0.0100
+DBA          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DBA          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+DBA          C2       "O1'"      SINGLE       n     1.420  0.0100     1.420  0.0100
+DBA       "C1'"       "C2'"      DOUBLE       y     1.394  0.0100     1.394  0.0100
+DBA       "C1'"       "C6'"      SINGLE       y     1.394  0.0100     1.394  0.0100
+DBA       "C1'"       "O1'"      SINGLE       n     1.371  0.0120     1.371  0.0120
+DBA       "C2'"       "C3'"      SINGLE       y     1.389  0.0107     1.389  0.0107
+DBA       "C2'"         CM2      SINGLE       n     1.502  0.0100     1.502  0.0100
+DBA       "C3'"       "C4'"      DOUBLE       y     1.379  0.0103     1.379  0.0103
+DBA       "C4'"       "C5'"      SINGLE       y     1.379  0.0103     1.379  0.0103
+DBA       "C5'"       "C6'"      DOUBLE       y     1.389  0.0107     1.389  0.0107
+DBA       "C6'"         CM6      SINGLE       n     1.502  0.0100     1.502  0.0100
+DBA          C2         H21      SINGLE       n     1.089  0.0100     0.974  0.0102
+DBA          C2         H22      SINGLE       n     1.089  0.0100     0.974  0.0102
+DBA       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.943  0.0173
+DBA       "C4'"       "H4'"      SINGLE       n     1.082  0.0130     0.945  0.0132
+DBA       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.943  0.0173
+DBA         CM2        HM21      SINGLE       n     1.089  0.0100     0.971  0.0135
+DBA         CM2        HM22      SINGLE       n     1.089  0.0100     0.971  0.0135
+DBA         CM2        HM23      SINGLE       n     1.089  0.0100     0.971  0.0135
+DBA         CM6        HM61      SINGLE       n     1.089  0.0100     0.971  0.0135
+DBA         CM6        HM62      SINGLE       n     1.089  0.0100     0.971  0.0135
+DBA         CM6        HM63      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DBA          C2          C1          O1     117.215    2.48
+DBA          C2          C1          O2     117.215    2.48
+DBA          O1          C1          O2     125.570    1.50
+DBA          C1          C2       "O1'"     111.607    2.58
+DBA          C1          C2         H21     109.314    1.50
+DBA          C1          C2         H22     109.314    1.50
+DBA       "O1'"          C2         H21     109.378    1.50
+DBA       "O1'"          C2         H22     109.378    1.50
+DBA         H21          C2         H22     108.052    1.50
+DBA       "C2'"       "C1'"       "C6'"     122.844    1.50
+DBA       "C2'"       "C1'"       "O1'"     118.578    1.50
+DBA       "C6'"       "C1'"       "O1'"     118.578    1.50
+DBA       "C1'"       "C2'"       "C3'"     117.399    1.71
+DBA       "C1'"       "C2'"         CM2     121.221    1.50
+DBA       "C3'"       "C2'"         CM2     121.380    1.50
+DBA       "C2'"       "C3'"       "C4'"     121.275    1.50
+DBA       "C2'"       "C3'"       "H3'"     119.138    1.50
+DBA       "C4'"       "C3'"       "H3'"     119.587    1.50
+DBA       "C3'"       "C4'"       "C5'"     119.809    1.50
+DBA       "C3'"       "C4'"       "H4'"     120.096    1.50
+DBA       "C5'"       "C4'"       "H4'"     120.096    1.50
+DBA       "C4'"       "C5'"       "C6'"     121.275    1.50
+DBA       "C4'"       "C5'"       "H5'"     119.587    1.50
+DBA       "C6'"       "C5'"       "H5'"     119.138    1.50
+DBA       "C1'"       "C6'"       "C5'"     117.399    1.71
+DBA       "C1'"       "C6'"         CM6     121.221    1.50
+DBA       "C5'"       "C6'"         CM6     121.380    1.50
+DBA       "C2'"         CM2        HM21     109.597    1.50
+DBA       "C2'"         CM2        HM22     109.597    1.50
+DBA       "C2'"         CM2        HM23     109.597    1.50
+DBA        HM21         CM2        HM22     109.348    1.50
+DBA        HM21         CM2        HM23     109.348    1.50
+DBA        HM22         CM2        HM23     109.348    1.50
+DBA       "C6'"         CM6        HM61     109.597    1.50
+DBA       "C6'"         CM6        HM62     109.597    1.50
+DBA       "C6'"         CM6        HM63     109.597    1.50
+DBA        HM61         CM6        HM62     109.348    1.50
+DBA        HM61         CM6        HM63     109.348    1.50
+DBA        HM62         CM6        HM63     109.348    1.50
+DBA          C2       "O1'"       "C1'"     114.919    2.35
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DBA             sp2_sp3_2          O1          C1          C2       "O1'"     120.000    10.0     6
+DBA             sp3_sp3_1          C1          C2       "O1'"       "C1'"     180.000    10.0     3
+DBA             sp2_sp2_1       "C2'"       "C1'"       "O1'"          C2     180.000     5.0     2
+DBA       const_sp2_sp2_4       "O1'"       "C1'"       "C2'"         CM2       0.000     5.0     2
+DBA              const_24       "O1'"       "C1'"       "C6'"         CM6       0.000    10.0     2
+DBA       const_sp2_sp2_7         CM2       "C2'"       "C3'"       "C4'"     180.000     5.0     2
+DBA             sp2_sp3_7       "C1'"       "C2'"         CM2        HM21     150.000    10.0     6
+DBA       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"       "C5'"       0.000     5.0     2
+DBA              const_13       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+DBA              const_18       "C4'"       "C5'"       "C6'"         CM6     180.000    10.0     2
+DBA            sp2_sp3_13       "C1'"       "C6'"         CM6        HM61     150.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DBA    plan-1       "C1'"   0.020
+DBA    plan-1       "C2'"   0.020
+DBA    plan-1       "C3'"   0.020
+DBA    plan-1       "C4'"   0.020
+DBA    plan-1       "C5'"   0.020
+DBA    plan-1       "C6'"   0.020
+DBA    plan-1         CM2   0.020
+DBA    plan-1         CM6   0.020
+DBA    plan-1       "H3'"   0.020
+DBA    plan-1       "H4'"   0.020
+DBA    plan-1       "H5'"   0.020
+DBA    plan-1       "O1'"   0.020
+DBA    plan-2          C1   0.020
+DBA    plan-2          C2   0.020
+DBA    plan-2          O1   0.020
+DBA    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DBA           SMILES              ACDLabs 10.04                                                         O=C(O)COc1c(cccc1C)C
+DBA SMILES_CANONICAL               CACTVS 3.341                                                         Cc1cccc(C)c1OCC(O)=O
+DBA           SMILES               CACTVS 3.341                                                         Cc1cccc(C)c1OCC(O)=O
+DBA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         Cc1cccc(c1OCC(=O)O)C
+DBA           SMILES "OpenEye OEToolkits" 1.5.0                                                         Cc1cccc(c1OCC(=O)O)C
+DBA            InChI                InChI  1.03 InChI=1S/C10H12O3/c1-7-4-3-5-8(2)10(7)13-6-9(11)12/h3-5H,6H2,1-2H3,(H,11,12)
+DBA         InChIKey                InChI  1.03                                                  MLBCURLNKYKBEQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DBA acedrg               243         "dictionary generator"                  
+DBA acedrg_database      11          "data source"                           
+DBA rdkit                2017.03.2   "Chemoinformatics tool"
+DBA refmac5              5.8.0238    "optimization tool"                     

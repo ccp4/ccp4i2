@@ -1,0 +1,296 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P86     P86      2-{[4-(DIETHYLAMINO)PIPERIDIN-1-YL]METHYL}-4,6-DIIODOPHENOL     NON-POLYMER     45     21     .     
+#
+data_comp_P86
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P86     C01     C       CR6     0       91.449      93.980      -45.152     
+P86     C1      C       CR6     0       90.315      96.056      -44.621     
+P86     N1      N       NT      0       90.418      98.536      -44.643     
+P86     O1      O       OH1     0       89.907      96.585      -42.307     
+P86     C02     C       CR16    0       91.544      93.656      -43.805     
+P86     C2      C       CH2     0       89.663      97.345      -45.059     
+P86     N2      N       NT      0       92.376      102.370     -44.383     
+P86     C03     C       CH2     0       89.575      99.731      -44.615     
+P86     C3      C       CR16    0       90.843      95.167      -45.559     
+P86     C4      C       CR6     0       91.024      94.538      -42.862     
+P86     C7      C       CR6     0       90.414      95.731      -43.259     
+P86     C8      C       CH2     0       90.339      100.929     -44.059     
+P86     C10     C       CH1     0       91.619      101.183     -44.849     
+P86     C11     C       CH2     0       93.153      103.033     -45.451     
+P86     C12     C       CH3     0       92.367      104.057     -46.223     
+P86     C13     C       CH2     0       93.113      102.183     -43.115     
+P86     C14     C       CH3     0       93.209      103.431     -42.279     
+P86     C15     C       CH2     0       92.435      99.898      -44.964     
+P86     C16     C       CH2     0       91.579      98.763      -45.503     
+P86     I1      I       I       0       92.230      92.659      -46.590     
+P86     I2      I       I       0       91.158      94.067      -40.823     
+P86     H1      H       H       0       89.211      96.360      -41.853     
+P86     H02     H       H       0       91.951      92.860      -43.534     
+P86     H21C    H       H       0       88.759      97.383      -44.677     
+P86     H22C    H       H       0       89.572      97.347      -46.037     
+P86     H031    H       H       0       89.269      99.932      -45.516     
+P86     H032    H       H       0       88.794      99.566      -44.059     
+P86     H3      H       H       0       90.785      95.375      -46.480     
+P86     H81C    H       H       0       90.561      100.764     -43.117     
+P86     H82C    H       H       0       89.768      101.727     -44.100     
+P86     H10     H       H       0       91.329      101.407     -45.767     
+P86     H111    H       H       0       93.487      102.347     -46.079     
+P86     H112    H       H       0       93.940      103.477     -45.051     
+P86     H121    H       H       0       92.929      104.444     -46.914     
+P86     H122    H       H       0       92.067      104.757     -45.621     
+P86     H123    H       H       0       91.597      103.632     -46.634     
+P86     H131    H       H       0       94.026      101.867     -43.324     
+P86     H132    H       H       0       92.672      101.481     -42.582     
+P86     H141    H       H       0       93.699      103.237     -41.463     
+P86     H142    H       H       0       92.316      103.740     -42.054     
+P86     H143    H       H       0       93.674      104.122     -42.778     
+P86     H151    H       H       0       92.785      99.646      -44.083     
+P86     H152    H       H       0       93.197      100.047     -45.564     
+P86     H161    H       H       0       91.278      98.983      -46.402     
+P86     H162    H       H       0       92.116      97.954      -45.554     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P86         C01         C02      DOUBLE       y     1.386  0.0100     1.386  0.0100
+P86         C01          C3      SINGLE       y     1.389  0.0100     1.389  0.0100
+P86         C01          I1      SINGLE       n     2.103  0.0100     2.103  0.0100
+P86          C1          C2      SINGLE       n     1.508  0.0100     1.508  0.0100
+P86          C1          C3      DOUBLE       y     1.390  0.0100     1.390  0.0100
+P86          C1          C7      SINGLE       y     1.398  0.0100     1.398  0.0100
+P86          N1          C2      SINGLE       n     1.465  0.0100     1.465  0.0100
+P86          N1         C03      SINGLE       n     1.458  0.0100     1.458  0.0100
+P86          N1         C16      SINGLE       n     1.458  0.0100     1.458  0.0100
+P86          O1          C7      SINGLE       n     1.374  0.0155     1.374  0.0155
+P86         C02          C4      SINGLE       y     1.390  0.0100     1.390  0.0100
+P86          N2         C10      SINGLE       n     1.475  0.0100     1.475  0.0100
+P86          N2         C11      SINGLE       n     1.473  0.0100     1.473  0.0100
+P86          N2         C13      SINGLE       n     1.473  0.0100     1.473  0.0100
+P86         C03          C8      SINGLE       n     1.517  0.0183     1.517  0.0183
+P86          C4          C7      DOUBLE       y     1.395  0.0100     1.395  0.0100
+P86          C4          I2      SINGLE       n     2.096  0.0100     2.096  0.0100
+P86          C8         C10      SINGLE       n     1.523  0.0100     1.523  0.0100
+P86         C10         C15      SINGLE       n     1.523  0.0100     1.523  0.0100
+P86         C11         C12      SINGLE       n     1.504  0.0200     1.504  0.0200
+P86         C13         C14      SINGLE       n     1.504  0.0200     1.504  0.0200
+P86         C15         C16      SINGLE       n     1.517  0.0183     1.517  0.0183
+P86          O1          H1      SINGLE       n     0.966  0.0059     0.861  0.0200
+P86         C02         H02      SINGLE       n     1.082  0.0130     0.934  0.0100
+P86          C2        H21C      SINGLE       n     1.089  0.0100     0.982  0.0103
+P86          C2        H22C      SINGLE       n     1.089  0.0100     0.982  0.0103
+P86         C03        H031      SINGLE       n     1.089  0.0100     0.973  0.0129
+P86         C03        H032      SINGLE       n     1.089  0.0100     0.973  0.0129
+P86          C3          H3      SINGLE       n     1.082  0.0130     0.946  0.0100
+P86          C8        H81C      SINGLE       n     1.089  0.0100     0.982  0.0100
+P86          C8        H82C      SINGLE       n     1.089  0.0100     0.982  0.0100
+P86         C10         H10      SINGLE       n     1.089  0.0100     0.988  0.0199
+P86         C11        H111      SINGLE       n     1.089  0.0100     0.988  0.0200
+P86         C11        H112      SINGLE       n     1.089  0.0100     0.988  0.0200
+P86         C12        H121      SINGLE       n     1.089  0.0100     0.971  0.0145
+P86         C12        H122      SINGLE       n     1.089  0.0100     0.971  0.0145
+P86         C12        H123      SINGLE       n     1.089  0.0100     0.971  0.0145
+P86         C13        H131      SINGLE       n     1.089  0.0100     0.988  0.0200
+P86         C13        H132      SINGLE       n     1.089  0.0100     0.988  0.0200
+P86         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0145
+P86         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0145
+P86         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0145
+P86         C15        H151      SINGLE       n     1.089  0.0100     0.982  0.0100
+P86         C15        H152      SINGLE       n     1.089  0.0100     0.982  0.0100
+P86         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0129
+P86         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0129
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P86         C02         C01          C3     120.703    1.50
+P86         C02         C01          I1     119.468    1.50
+P86          C3         C01          I1     119.829    1.50
+P86          C2          C1          C3     121.198    1.50
+P86          C2          C1          C7     120.814    1.50
+P86          C3          C1          C7     117.988    1.50
+P86          C2          N1         C03     110.624    1.50
+P86          C2          N1         C16     110.624    1.50
+P86         C03          N1         C16     109.879    1.50
+P86          C7          O1          H1     120.000    3.00
+P86         C01         C02          C4     119.389    1.50
+P86         C01         C02         H02     120.431    1.50
+P86          C4         C02         H02     120.181    1.50
+P86          C1          C2          N1     112.957    1.50
+P86          C1          C2        H21C     109.061    1.50
+P86          C1          C2        H22C     109.061    1.50
+P86          N1          C2        H21C     108.958    1.50
+P86          N1          C2        H22C     108.958    1.50
+P86        H21C          C2        H22C     107.841    1.50
+P86         C10          N2         C11     112.905    1.50
+P86         C10          N2         C13     112.905    1.50
+P86         C11          N2         C13     113.025    2.96
+P86          N1         C03          C8     111.032    1.50
+P86          N1         C03        H031     109.373    1.50
+P86          N1         C03        H032     109.373    1.50
+P86          C8         C03        H031     109.494    1.50
+P86          C8         C03        H032     109.494    1.50
+P86        H031         C03        H032     108.159    1.50
+P86         C01          C3          C1     120.067    1.50
+P86         C01          C3          H3     120.316    1.50
+P86          C1          C3          H3     119.617    1.50
+P86         C02          C4          C7     121.356    1.50
+P86         C02          C4          I2     119.472    1.50
+P86          C7          C4          I2     119.171    1.50
+P86          C1          C7          O1     119.751    3.00
+P86          C1          C7          C4     120.498    1.50
+P86          O1          C7          C4     119.751    3.00
+P86         C03          C8         C10     110.795    1.50
+P86         C03          C8        H81C     109.507    1.50
+P86         C03          C8        H82C     109.507    1.50
+P86         C10          C8        H81C     109.341    1.50
+P86         C10          C8        H82C     109.341    1.50
+P86        H81C          C8        H82C     108.048    1.50
+P86          N2         C10          C8     114.485    2.28
+P86          N2         C10         C15     114.485    2.28
+P86          N2         C10         H10     106.228    1.50
+P86          C8         C10         C15     110.769    1.50
+P86          C8         C10         H10     107.655    1.50
+P86         C15         C10         H10     107.655    1.50
+P86          N2         C11         C12     114.065    1.62
+P86          N2         C11        H111     108.820    1.50
+P86          N2         C11        H112     108.820    1.50
+P86         C12         C11        H111     109.143    1.50
+P86         C12         C11        H112     109.143    1.50
+P86        H111         C11        H112     107.881    1.50
+P86         C11         C12        H121     109.510    1.50
+P86         C11         C12        H122     109.510    1.50
+P86         C11         C12        H123     109.510    1.50
+P86        H121         C12        H122     109.415    1.50
+P86        H121         C12        H123     109.415    1.50
+P86        H122         C12        H123     109.415    1.50
+P86          N2         C13         C14     114.065    1.62
+P86          N2         C13        H131     108.820    1.50
+P86          N2         C13        H132     108.820    1.50
+P86         C14         C13        H131     109.143    1.50
+P86         C14         C13        H132     109.143    1.50
+P86        H131         C13        H132     107.881    1.50
+P86         C13         C14        H141     109.510    1.50
+P86         C13         C14        H142     109.510    1.50
+P86         C13         C14        H143     109.510    1.50
+P86        H141         C14        H142     109.415    1.50
+P86        H141         C14        H143     109.415    1.50
+P86        H142         C14        H143     109.415    1.50
+P86         C10         C15         C16     110.795    1.50
+P86         C10         C15        H151     109.341    1.50
+P86         C10         C15        H152     109.341    1.50
+P86         C16         C15        H151     109.507    1.50
+P86         C16         C15        H152     109.507    1.50
+P86        H151         C15        H152     108.048    1.50
+P86          N1         C16         C15     111.032    1.50
+P86          N1         C16        H161     109.373    1.50
+P86          N1         C16        H162     109.373    1.50
+P86         C15         C16        H161     109.494    1.50
+P86         C15         C16        H162     109.494    1.50
+P86        H161         C16        H162     108.159    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P86       const_sp2_sp2_3          I1         C01         C02          C4     180.000     5.0     2
+P86              const_23          I1         C01          C3          C1     180.000    10.0     2
+P86            sp3_sp3_22          N2         C10          C8         C03     180.000    10.0     3
+P86            sp3_sp3_28          N2         C10         C15         C16     180.000    10.0     3
+P86            sp3_sp3_73          N2         C11         C12        H121     180.000    10.0     3
+P86            sp3_sp3_82          N2         C13         C14        H141     180.000    10.0     3
+P86            sp3_sp3_34         C10         C15         C16          N1      60.000    10.0     3
+P86              const_16          C2          C1          C7          O1       0.000    10.0     2
+P86             sp2_sp3_2          C3          C1          C2          N1     -90.000    10.0     6
+P86              const_19          C2          C1          C3         C01     180.000    10.0     2
+P86            sp3_sp3_50         C15         C16          N1          C2     -60.000    10.0     3
+P86            sp3_sp3_44          C1          C2          N1         C03     -60.000    10.0     3
+P86             sp3_sp3_2          C8         C03          N1          C2     180.000    10.0     3
+P86             sp2_sp2_1          C1          C7          O1          H1     180.000     5.0     2
+P86       const_sp2_sp2_6         C01         C02          C4          I2     180.000     5.0     2
+P86            sp3_sp3_58          C8         C10          N2         C11     180.000    10.0     3
+P86            sp3_sp3_62         C12         C11          N2         C13     -60.000    10.0     3
+P86            sp3_sp3_67         C14         C13          N2         C11     180.000    10.0     3
+P86             sp3_sp3_7          N1         C03          C8         C10     -60.000    10.0     3
+P86              const_12          I2          C4          C7          O1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P86    chir_1    N1    C2    C03    C16    both
+P86    chir_2    N2    C10    C11    C13    both
+P86    chir_3    C10    N2    C8    C15    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+P86    plan-1         C01   0.020
+P86    plan-1         C02   0.020
+P86    plan-1          C1   0.020
+P86    plan-1          C2   0.020
+P86    plan-1          C3   0.020
+P86    plan-1          C4   0.020
+P86    plan-1          C7   0.020
+P86    plan-1         H02   0.020
+P86    plan-1          H3   0.020
+P86    plan-1          I1   0.020
+P86    plan-1          I2   0.020
+P86    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P86           SMILES              ACDLabs 12.01                                                                           Ic1cc(c(O)c(I)c1)CN2CCC(N(CC)CC)CC2
+P86            InChI                InChI  1.03 InChI=1S/C16H24I2N2O/c1-3-20(4-2)14-5-7-19(8-6-14)11-12-9-13(17)10-15(18)16(12)21/h9-10,14,21H,3-8,11H2,1-2H3
+P86         InChIKey                InChI  1.03                                                                                   YZPXNEXVQURJCE-UHFFFAOYSA-N
+P86 SMILES_CANONICAL               CACTVS 3.385                                                                             CCN(CC)C1CCN(CC1)Cc2cc(I)cc(I)c2O
+P86           SMILES               CACTVS 3.385                                                                             CCN(CC)C1CCN(CC1)Cc2cc(I)cc(I)c2O
+P86 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                             CCN(CC)C1CCN(CC1)Cc2cc(cc(c2O)I)I
+P86           SMILES "OpenEye OEToolkits" 1.9.2                                                                             CCN(CC)C1CCN(CC1)Cc2cc(cc(c2O)I)I
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P86 acedrg               243         "dictionary generator"                  
+P86 acedrg_database      11          "data source"                           
+P86 rdkit                2017.03.2   "Chemoinformatics tool"
+P86 refmac5              5.8.0238    "optimization tool"                     

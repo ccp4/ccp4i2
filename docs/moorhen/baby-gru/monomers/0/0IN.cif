@@ -1,0 +1,238 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0IN     0IN      7-(pyridin-3-ylmethyl)quinolin-8-ol     NON-POLYMER     30     18     .     
+#
+data_comp_0IN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0IN     CAE     C       CR6     0       35.680      -14.676     -7.383      
+0IN     CAF     C       CH2     0       34.924      -14.018     -8.524      
+0IN     CAG     C       CR6     0       36.716      -14.025     -6.732      
+0IN     CAH     C       CR66    0       37.400      -14.672     -5.663      
+0IN     CAI     C       CR16    0       35.306      -15.984     -6.973      
+0IN     CAJ     C       CR6     0       33.623      -13.385     -8.069      
+0IN     NAK     N       NRD6    0       38.424      -14.010     -5.034      
+0IN     NAL     N       NRD6    0       32.466      -11.614     -6.923      
+0IN     CAM     C       CR66    0       37.011      -15.980     -5.271      
+0IN     CAN     C       CR16    0       35.948      -16.622     -5.950      
+0IN     OAO     O       OH1     0       37.114      -12.754     -7.089      
+0IN     CAP     C       CR16    0       33.603      -12.203     -7.346      
+0IN     CAQ     C       CR16    0       39.043      -14.632     -4.045      
+0IN     CAR     C       CR16    0       32.393      -13.982     -8.357      
+0IN     CAS     C       CR16    0       31.297      -12.217     -7.221      
+0IN     CAT     C       CR16    0       37.704      -16.600     -4.209      
+0IN     CAU     C       CR16    0       31.215      -13.397     -7.932      
+0IN     CAV     C       CR16    0       38.719      -15.930     -3.595      
+0IN     HAF     H       H       0       34.727      -14.697     -9.207      
+0IN     HAFA    H       H       0       35.488      -13.330     -8.941      
+0IN     HAI     H       H       0       34.600      -16.419     -7.418      
+0IN     HAN     H       H       0       35.681      -17.495     -5.697      
+0IN     HOAO    H       H       0       37.853      -12.420     -6.794      
+0IN     HAP     H       H       0       34.422      -11.790     -7.143      
+0IN     HAQ     H       H       0       39.747      -14.176     -3.613      
+0IN     HAR     H       H       0       32.374      -14.789     -8.845      
+0IN     HAS     H       H       0       30.499      -11.810     -6.928      
+0IN     HAT     H       H       0       37.465      -17.468     -3.931      
+0IN     HAU     H       H       0       30.381      -13.791     -8.123      
+0IN     HAV     H       H       0       39.196      -16.322     -2.884      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0IN         CAE         CAF      SINGLE       n     1.517  0.0100     1.517  0.0100
+0IN         CAE         CAG      DOUBLE       y     1.374  0.0123     1.374  0.0123
+0IN         CAE         CAI      SINGLE       y     1.416  0.0100     1.416  0.0100
+0IN         CAF         CAJ      SINGLE       n     1.517  0.0100     1.517  0.0100
+0IN         CAG         CAH      SINGLE       y     1.418  0.0100     1.418  0.0100
+0IN         CAG         OAO      SINGLE       n     1.374  0.0155     1.374  0.0155
+0IN         CAH         NAK      DOUBLE       y     1.368  0.0100     1.368  0.0100
+0IN         CAH         CAM      SINGLE       y     1.416  0.0100     1.416  0.0100
+0IN         CAI         CAN      DOUBLE       y     1.363  0.0100     1.363  0.0100
+0IN         CAJ         CAP      SINGLE       y     1.382  0.0100     1.382  0.0100
+0IN         CAJ         CAR      DOUBLE       y     1.394  0.0100     1.394  0.0100
+0IN         NAK         CAQ      SINGLE       y     1.317  0.0100     1.317  0.0100
+0IN         NAL         CAP      DOUBLE       y     1.342  0.0117     1.342  0.0117
+0IN         NAL         CAS      SINGLE       y     1.338  0.0156     1.338  0.0156
+0IN         CAM         CAN      SINGLE       y     1.413  0.0100     1.413  0.0100
+0IN         CAM         CAT      DOUBLE       y     1.411  0.0100     1.411  0.0100
+0IN         CAQ         CAV      DOUBLE       y     1.406  0.0100     1.406  0.0100
+0IN         CAR         CAU      SINGLE       y     1.375  0.0185     1.375  0.0185
+0IN         CAS         CAU      DOUBLE       y     1.368  0.0200     1.368  0.0200
+0IN         CAT         CAV      SINGLE       y     1.358  0.0112     1.358  0.0112
+0IN         CAF         HAF      SINGLE       n     1.089  0.0100     0.983  0.0146
+0IN         CAF        HAFA      SINGLE       n     1.089  0.0100     0.983  0.0146
+0IN         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0105
+0IN         CAN         HAN      SINGLE       n     1.082  0.0130     0.948  0.0200
+0IN         OAO        HOAO      SINGLE       n     0.966  0.0059     0.861  0.0200
+0IN         CAP         HAP      SINGLE       n     1.082  0.0130     0.940  0.0200
+0IN         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.943  0.0200
+0IN         CAR         HAR      SINGLE       n     1.082  0.0130     0.943  0.0173
+0IN         CAS         HAS      SINGLE       n     1.082  0.0130     0.942  0.0166
+0IN         CAT         HAT      SINGLE       n     1.082  0.0130     0.942  0.0169
+0IN         CAU         HAU      SINGLE       n     1.082  0.0130     0.942  0.0124
+0IN         CAV         HAV      SINGLE       n     1.082  0.0130     0.942  0.0187
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0IN         CAF         CAE         CAG     120.620    1.50
+0IN         CAF         CAE         CAI     120.025    1.50
+0IN         CAG         CAE         CAI     119.354    1.50
+0IN         CAE         CAF         CAJ     113.189    2.84
+0IN         CAE         CAF         HAF     108.909    1.50
+0IN         CAE         CAF        HAFA     108.909    1.50
+0IN         CAJ         CAF         HAF     108.909    1.50
+0IN         CAJ         CAF        HAFA     108.909    1.50
+0IN         HAF         CAF        HAFA     107.770    1.50
+0IN         CAE         CAG         CAH     120.181    1.50
+0IN         CAE         CAG         OAO     121.528    3.00
+0IN         CAH         CAG         OAO     118.292    2.50
+0IN         CAG         CAH         NAK     118.136    1.50
+0IN         CAG         CAH         CAM     119.686    1.50
+0IN         NAK         CAH         CAM     122.178    1.50
+0IN         CAE         CAI         CAN     121.073    1.50
+0IN         CAE         CAI         HAI     119.351    1.50
+0IN         CAN         CAI         HAI     119.576    1.50
+0IN         CAF         CAJ         CAP     121.521    1.50
+0IN         CAF         CAJ         CAR     120.857    1.50
+0IN         CAP         CAJ         CAR     117.622    1.50
+0IN         CAH         NAK         CAQ     117.014    1.50
+0IN         CAP         NAL         CAS     116.925    1.50
+0IN         CAH         CAM         CAN     119.499    1.50
+0IN         CAH         CAM         CAT     119.110    1.50
+0IN         CAN         CAM         CAT     121.390    1.50
+0IN         CAI         CAN         CAM     120.206    1.50
+0IN         CAI         CAN         HAN     119.791    1.50
+0IN         CAM         CAN         HAN     120.002    1.50
+0IN         CAG         OAO        HOAO     120.000    3.00
+0IN         CAJ         CAP         NAL     123.057    1.50
+0IN         CAJ         CAP         HAP     118.496    1.50
+0IN         NAL         CAP         HAP     118.447    1.50
+0IN         NAK         CAQ         CAV     123.797    1.50
+0IN         NAK         CAQ         HAQ     117.879    1.50
+0IN         CAV         CAQ         HAQ     118.324    1.50
+0IN         CAJ         CAR         CAU     120.785    1.50
+0IN         CAJ         CAR         HAR     119.153    1.50
+0IN         CAU         CAR         HAR     120.062    1.50
+0IN         NAL         CAS         CAU     123.185    1.50
+0IN         NAL         CAS         HAS     118.180    1.50
+0IN         CAU         CAS         HAS     118.635    1.50
+0IN         CAM         CAT         CAV     119.424    1.50
+0IN         CAM         CAT         HAT     120.038    1.50
+0IN         CAV         CAT         HAT     120.539    1.50
+0IN         CAR         CAU         CAS     118.426    1.50
+0IN         CAR         CAU         HAU     120.793    1.50
+0IN         CAS         CAU         HAU     120.781    1.50
+0IN         CAQ         CAV         CAT     118.477    1.50
+0IN         CAQ         CAV         HAV     120.622    1.50
+0IN         CAT         CAV         HAV     120.902    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0IN             sp2_sp3_2         CAG         CAE         CAF         CAJ     -90.000    10.0     6
+0IN       const_sp2_sp2_4         CAF         CAE         CAG         OAO       0.000     5.0     2
+0IN              const_55         CAF         CAE         CAI         CAN     180.000    10.0     2
+0IN              const_25         NAK         CAQ         CAV         CAT       0.000    10.0     2
+0IN              const_49         CAJ         CAR         CAU         CAS       0.000    10.0     2
+0IN              const_45         NAL         CAS         CAU         CAR       0.000    10.0     2
+0IN              const_29         CAM         CAT         CAV         CAQ       0.000    10.0     2
+0IN             sp2_sp3_8         CAP         CAJ         CAF         CAE     -90.000    10.0     6
+0IN             sp2_sp2_1         CAE         CAG         OAO        HOAO     180.000     5.0     2
+0IN       const_sp2_sp2_8         OAO         CAG         CAH         NAK       0.000     5.0     2
+0IN              const_22         CAG         CAH         NAK         CAQ     180.000    10.0     2
+0IN       const_sp2_sp2_9         CAG         CAH         CAM         CAN       0.000     5.0     2
+0IN              const_17         CAE         CAI         CAN         CAM       0.000    10.0     2
+0IN              const_39         CAF         CAJ         CAP         NAL     180.000    10.0     2
+0IN              const_59         CAF         CAJ         CAR         CAU     180.000    10.0     2
+0IN              const_23         CAV         CAQ         NAK         CAH       0.000    10.0     2
+0IN              const_41         CAJ         CAP         NAL         CAS       0.000    10.0     2
+0IN              const_43         CAU         CAS         NAL         CAP       0.000    10.0     2
+0IN              const_33         CAH         CAM         CAT         CAV       0.000    10.0     2
+0IN              const_13         CAH         CAM         CAN         CAI       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0IN    plan-1         CAE   0.020
+0IN    plan-1         CAF   0.020
+0IN    plan-1         CAG   0.020
+0IN    plan-1         CAH   0.020
+0IN    plan-1         CAI   0.020
+0IN    plan-1         CAM   0.020
+0IN    plan-1         CAN   0.020
+0IN    plan-1         CAQ   0.020
+0IN    plan-1         CAT   0.020
+0IN    plan-1         CAV   0.020
+0IN    plan-1         HAI   0.020
+0IN    plan-1         HAN   0.020
+0IN    plan-1         HAQ   0.020
+0IN    plan-1         HAT   0.020
+0IN    plan-1         HAV   0.020
+0IN    plan-1         NAK   0.020
+0IN    plan-1         OAO   0.020
+0IN    plan-2         CAF   0.020
+0IN    plan-2         CAJ   0.020
+0IN    plan-2         CAP   0.020
+0IN    plan-2         CAR   0.020
+0IN    plan-2         CAS   0.020
+0IN    plan-2         CAU   0.020
+0IN    plan-2         HAP   0.020
+0IN    plan-2         HAR   0.020
+0IN    plan-2         HAS   0.020
+0IN    plan-2         HAU   0.020
+0IN    plan-2         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0IN           SMILES              ACDLabs 11.02                                                                Oc1c(ccc2cccnc12)Cc3cccnc3
+0IN SMILES_CANONICAL               CACTVS 3.352                                                                Oc1c(Cc2cccnc2)ccc3cccnc13
+0IN           SMILES               CACTVS 3.352                                                                Oc1c(Cc2cccnc2)ccc3cccnc13
+0IN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                              c1cc2ccc(c(c2nc1)O)Cc3cccnc3
+0IN           SMILES "OpenEye OEToolkits" 1.7.0                                                              c1cc2ccc(c(c2nc1)O)Cc3cccnc3
+0IN            InChI                InChI  1.03 InChI=1S/C15H12N2O/c18-15-13(9-11-3-1-7-16-10-11)6-5-12-4-2-8-17-14(12)15/h1-8,10,18H,9H2
+0IN         InChIKey                InChI  1.03                                                               DNRIDZXSDROVMC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0IN acedrg               243         "dictionary generator"                  
+0IN acedrg_database      11          "data source"                           
+0IN rdkit                2017.03.2   "Chemoinformatics tool"
+0IN refmac5              5.8.0238    "optimization tool"                     

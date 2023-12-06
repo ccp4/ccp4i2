@@ -1,0 +1,168 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SHA     SHA      "SALICYLHYDROXAMIC ACID"     NON-POLYMER     18     11     .     
+#
+data_comp_SHA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SHA     C1      C       CR6     0       11.972      21.830      31.303      
+SHA     C2      C       CR16    0       10.935      22.762      31.445      
+SHA     C3      C       CR16    0       9.686       22.543      30.910      
+SHA     C4      C       CR16    0       9.432       21.372      30.215      
+SHA     C5      C       CR16    0       10.424      20.429      30.057      
+SHA     C6      C       CR6     0       11.693      20.645      30.595      
+SHA     O6      O       OH1     0       12.670      19.690      30.426      
+SHA     C7      C       C       0       13.303      22.128      31.910      
+SHA     O7      O       O       0       13.832      21.344      32.709      
+SHA     N8      N       NH1     0       13.864      23.272      31.539      
+SHA     O9      O       OH1     0       15.094      23.657      32.063      
+SHA     H2      H       H       0       11.102      23.560      31.916      
+SHA     H3      H       H       0       9.006       23.188      31.018      
+SHA     H4      H       H       0       8.578       21.217      29.847      
+SHA     H5      H       H       0       10.249      19.634      29.584      
+SHA     HO6     H       H       0       12.541      19.016      29.904      
+SHA     HN8     H       H       0       13.524      23.844      30.962      
+SHA     HO9     H       H       0       14.944      23.975      32.855      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SHA          C1          C2      DOUBLE       y     1.397  0.0100     1.397  0.0100
+SHA          C1          C6      SINGLE       y     1.403  0.0100     1.403  0.0100
+SHA          C1          C7      SINGLE       n     1.490  0.0109     1.490  0.0109
+SHA          C2          C3      SINGLE       y     1.373  0.0108     1.373  0.0108
+SHA          C3          C4      DOUBLE       y     1.383  0.0123     1.383  0.0123
+SHA          C4          C5      SINGLE       y     1.375  0.0106     1.375  0.0106
+SHA          C5          C6      DOUBLE       y     1.390  0.0100     1.390  0.0100
+SHA          C6          O6      SINGLE       n     1.374  0.0155     1.374  0.0155
+SHA          C7          O7      DOUBLE       n     1.238  0.0100     1.238  0.0100
+SHA          C7          N8      SINGLE       n     1.325  0.0100     1.325  0.0100
+SHA          N8          O9      SINGLE       n     1.390  0.0100     1.390  0.0100
+SHA          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+SHA          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0180
+SHA          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0183
+SHA          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0179
+SHA          O6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+SHA          N8         HN8      SINGLE       n     1.016  0.0100     0.880  0.0200
+SHA          O9         HO9      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SHA          C2          C1          C6     117.249    1.50
+SHA          C2          C1          C7     119.477    2.89
+SHA          C6          C1          C7     123.274    3.00
+SHA          C1          C2          C3     121.732    1.50
+SHA          C1          C2          H2     118.847    1.50
+SHA          C3          C2          H2     119.421    1.50
+SHA          C2          C3          C4     120.189    1.50
+SHA          C2          C3          H3     119.860    1.50
+SHA          C4          C3          H3     119.951    1.50
+SHA          C3          C4          C5     120.690    1.50
+SHA          C3          C4          H4     119.840    1.50
+SHA          C5          C4          H4     119.471    1.50
+SHA          C4          C5          C6     120.216    1.50
+SHA          C4          C5          H5     120.131    1.50
+SHA          C6          C5          H5     119.654    1.50
+SHA          C1          C6          C5     119.925    1.50
+SHA          C1          C6          O6     120.038    3.00
+SHA          C5          C6          O6     120.038    3.00
+SHA          C6          O6         HO6     120.000    3.00
+SHA          C1          C7          O7     121.566    1.50
+SHA          C1          C7          N8     115.502    1.50
+SHA          O7          C7          N8     122.932    1.50
+SHA          C7          N8          O9     120.186    1.50
+SHA          C7          N8         HN8     124.661    3.00
+SHA          O9          N8         HN8     115.154    3.00
+SHA          N8          O9         HO9     106.924    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SHA       const_sp2_sp2_3          C7          C1          C2          C3     180.000     5.0     2
+SHA              const_24          C7          C1          C6          O6       0.000    10.0     2
+SHA             sp2_sp2_2          C2          C1          C7          O7       0.000     5.0     2
+SHA       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+SHA       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+SHA              const_13          C3          C4          C5          C6       0.000    10.0     2
+SHA              const_18          C4          C5          C6          O6     180.000    10.0     2
+SHA             sp2_sp2_5          C1          C6          O6         HO6     180.000     5.0     2
+SHA             sp2_sp2_9          O7          C7          N8          O9       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SHA    plan-1          C1   0.020
+SHA    plan-1          C2   0.020
+SHA    plan-1          C3   0.020
+SHA    plan-1          C4   0.020
+SHA    plan-1          C5   0.020
+SHA    plan-1          C6   0.020
+SHA    plan-1          C7   0.020
+SHA    plan-1          H2   0.020
+SHA    plan-1          H3   0.020
+SHA    plan-1          H4   0.020
+SHA    plan-1          H5   0.020
+SHA    plan-1          O6   0.020
+SHA    plan-2          C1   0.020
+SHA    plan-2          C7   0.020
+SHA    plan-2          N8   0.020
+SHA    plan-2          O7   0.020
+SHA    plan-3          C7   0.020
+SHA    plan-3         HN8   0.020
+SHA    plan-3          N8   0.020
+SHA    plan-3          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SHA           SMILES              ACDLabs 10.04                                                O=C(c1ccccc1O)NO
+SHA SMILES_CANONICAL               CACTVS 3.341                                                ONC(=O)c1ccccc1O
+SHA           SMILES               CACTVS 3.341                                                ONC(=O)c1ccccc1O
+SHA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            c1ccc(c(c1)C(=O)NO)O
+SHA           SMILES "OpenEye OEToolkits" 1.5.0                                            c1ccc(c(c1)C(=O)NO)O
+SHA            InChI                InChI  1.03 InChI=1S/C7H7NO3/c9-6-4-2-1-3-5(6)7(10)8-11/h1-4,9,11H,(H,8,10)
+SHA         InChIKey                InChI  1.03                                     HBROZNQEVUILML-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SHA acedrg               243         "dictionary generator"                  
+SHA acedrg_database      11          "data source"                           
+SHA rdkit                2017.03.2   "Chemoinformatics tool"
+SHA refmac5              5.8.0238    "optimization tool"                     

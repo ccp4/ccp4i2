@@ -1,0 +1,544 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CQM     CQM      Citramalyl-CoA     NON-POLYMER     94     57     .     
+#
+data_comp_CQM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CQM     C2      C       CH2     0       -29.764     20.000      -17.476     
+CQM     C4      C       C       0       -30.249     19.964      -19.956     
+CQM     C6      C       CH3     0       -28.536     21.554      -19.012     
+CQM     P2A     P       P       0       -23.467     24.527      -3.587      
+CQM     O5A     O       O       0       -22.758     25.840      -3.636      
+CQM     O4A     O       OP      -1      -24.787     24.444      -2.894      
+CQM     O3A     O       O2      0       -22.483     23.417      -2.974      
+CQM     O6A     O       O2      0       -23.643     23.991      -5.089      
+CQM     P1A     P       P       0       -20.915     23.416      -2.637      
+CQM     O1A     O       O       0       -20.561     22.105      -2.017      
+CQM     O2A     O       OP      -1      -20.583     24.664      -1.887      
+CQM     O5B     O       O2      0       -20.282     23.495      -4.110      
+CQM     C5B     C       CH2     0       -18.846     23.665      -4.247      
+CQM     C4B     C       CH1     0       -18.407     23.202      -5.616      
+CQM     O4B     O       O2      0       -18.863     21.841      -5.830      
+CQM     C3B     C       CH1     0       -18.945     24.033      -6.784      
+CQM     O3B     O       O2      0       -17.900     24.336      -7.717      
+CQM     C2B     C       CH1     0       -20.020     23.135      -7.406      
+CQM     O2B     O       OH1     0       -20.162     23.306      -8.800      
+CQM     C1B     C       CH1     0       -19.505     21.738      -7.079      
+CQM     P3B     P       P       0       -17.276     25.823      -7.557      
+CQM     O7A     O       O       0       -16.038     25.862      -8.432      
+CQM     O8A     O       OP      -1      -16.942     26.014      -6.089      
+CQM     O9A     O       OP      -1      -18.341     26.793      -8.032      
+CQM     N9A     N       NT      0       -20.578     20.744      -6.986      
+CQM     C4A     C       CR56    0       -21.095     20.035      -8.037      
+CQM     N3A     N       NRD6    0       -20.712     20.099      -9.326      
+CQM     C2A     C       CR16    0       -21.429     19.263      -10.079     
+CQM     N1A     N       NRD6    0       -22.416     18.429      -9.712      
+CQM     C6A     C       CR6     0       -22.779     18.388      -8.403      
+CQM     C5A     C       CR56    0       -22.087     19.233      -7.508      
+CQM     N7A     N       NRD5    0       -22.194     19.444      -6.138      
+CQM     C8A     C       CR15    0       -21.285     20.352      -5.868      
+CQM     N6A     N       NH2     0       -23.755     17.564      -8.034      
+CQM     CBP     C       CT      0       -24.725     23.936      -7.280      
+CQM     CCP     C       CH2     0       -24.900     24.223      -5.787      
+CQM     CDP     C       CH3     0       -23.676     24.903      -7.844      
+CQM     CEP     C       CH3     0       -26.064     24.216      -7.977      
+CQM     CAP     C       CH1     0       -24.278     22.481      -7.532      
+CQM     OAP     O       OH1     0       -25.198     21.568      -6.939      
+CQM     C9P     C       C       0       -24.082     22.113      -8.998      
+CQM     O9P     O       O       0       -22.966     22.235      -9.501      
+CQM     N8P     N       NH1     0       -25.138     21.665      -9.669      
+CQM     C7P     C       CH2     0       -25.090     21.235      -11.062     
+CQM     C6P     C       CH2     0       -24.955     22.395      -12.027     
+CQM     C5P     C       C       0       -24.933     21.931      -13.471     
+CQM     O5P     O       O       0       -24.146     21.055      -13.826     
+CQM     N4P     N       NH1     0       -25.806     22.491      -14.324     
+CQM     C3P     C       CH2     0       -25.973     22.084      -15.713     
+CQM     C2P     C       CH2     0       -26.847     20.859      -15.844     
+CQM     S1P     S       S2      0       -28.536     21.177      -15.274     
+CQM     C1      C       C       0       -29.987     20.733      -16.182     
+CQM     O2      O       O       0       -31.085     21.003      -15.761     
+CQM     C3      C       CT      0       -29.874     20.864      -18.745     
+CQM     O7      O       OH1     0       -30.858     21.874      -18.558     
+CQM     O3      O       O       0       -31.195     20.329      -20.686     
+CQM     O4      O       OC      -1      -29.574     18.928      -20.127     
+CQM     H1      H       H       0       -30.425     19.279      -17.524     
+CQM     H2      H       H       0       -28.878     19.585      -17.447     
+CQM     H3      H       H       0       -27.884     20.895      -19.311     
+CQM     H4      H       H       0       -28.218     21.975      -18.195     
+CQM     H5      H       H       0       -28.650     22.231      -19.701     
+CQM     H8      H       H       0       -18.375     23.138      -3.554      
+CQM     H9      H       H       0       -18.609     24.618      -4.129      
+CQM     H10     H       H       0       -17.426     23.213      -5.639      
+CQM     H11     H       H       0       -19.367     24.858      -6.451      
+CQM     H12     H       H       0       -20.891     23.294      -6.955      
+CQM     H13     H       H       0       -20.513     24.063      -8.953      
+CQM     H14     H       H       0       -18.859     21.461      -7.767      
+CQM     H17     H       H       0       -21.212     19.256      -10.998     
+CQM     H18     H       H       0       -21.137     20.686      -5.000      
+CQM     H19     H       H       0       -23.724     17.177      -7.248      
+CQM     H20     H       H       0       -24.427     17.413      -8.579      
+CQM     H21     H       H       0       -25.180     25.152      -5.663      
+CQM     H22     H       H       0       -25.598     23.646      -5.417      
+CQM     H23     H       H       0       -23.735     24.929      -8.815      
+CQM     H24     H       H       0       -22.787     24.607      -7.585      
+CQM     H25     H       H       0       -23.831     25.797      -7.492      
+CQM     H26     H       H       0       -26.394     25.090      -7.706      
+CQM     H27     H       H       0       -26.715     23.538      -7.726      
+CQM     H28     H       H       0       -25.946     24.206      -8.942      
+CQM     H29     H       H       0       -23.404     22.363      -7.087      
+CQM     H30     H       H       0       -24.931     21.359      -6.161      
+CQM     H31     H       H       0       -25.907     21.624      -9.258      
+CQM     H32     H       H       0       -25.909     20.739      -11.271     
+CQM     H33     H       H       0       -24.331     20.627      -11.182     
+CQM     H34     H       H       0       -24.132     22.879      -11.840     
+CQM     H35     H       H       0       -25.696     23.011      -11.895     
+CQM     H36     H       H       0       -26.302     23.146      -14.033     
+CQM     H37     H       H       0       -25.095     21.897      -16.108     
+CQM     H38     H       H       0       -26.380     22.821      -16.216     
+CQM     H39     H       H       0       -26.461     20.131      -15.318     
+CQM     H40     H       H       0       -26.867     20.579      -16.780     
+CQM     H41     H       H       0       -30.969     22.322      -19.272     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CQM          C3          O7      SINGLE       n     1.418  0.0121     1.418  0.0121
+CQM          C4          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+CQM          C6          C3      SINGLE       n     1.525  0.0170     1.525  0.0170
+CQM          C4          C3      SINGLE       n     1.551  0.0100     1.551  0.0100
+CQM          C2          C3      SINGLE       n     1.534  0.0100     1.534  0.0100
+CQM          C4          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+CQM          C1          O2      DOUBLE       n     1.207  0.0100     1.207  0.0100
+CQM          C2          C1      SINGLE       n     1.501  0.0100     1.501  0.0100
+CQM         S1P          C1      SINGLE       n     1.762  0.0200     1.762  0.0200
+CQM         C3P         C2P      SINGLE       n     1.510  0.0158     1.510  0.0158
+CQM         C2P         S1P      SINGLE       n     1.809  0.0191     1.809  0.0191
+CQM         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+CQM         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CQM         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+CQM         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+CQM         C7P         C6P      SINGLE       n     1.513  0.0195     1.513  0.0195
+CQM         N8P         C7P      SINGLE       n     1.457  0.0100     1.457  0.0100
+CQM         C2A         N1A      SINGLE       y     1.339  0.0100     1.339  0.0100
+CQM         N1A         C6A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+CQM         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+CQM         N3A         C2A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+CQM         C6A         C5A      SINGLE       y     1.408  0.0100     1.408  0.0100
+CQM         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CQM         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+CQM         CAP         C9P      SINGLE       n     1.519  0.0108     1.519  0.0108
+CQM         C4A         N3A      SINGLE       y     1.343  0.0100     1.343  0.0100
+CQM         C4A         C5A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+CQM         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+CQM         N9A         C4A      SINGLE       y     1.372  0.0100     1.372  0.0100
+CQM         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+CQM         CBP         CAP      SINGLE       n     1.532  0.0112     1.532  0.0112
+CQM         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+CQM         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+CQM         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+CQM         CBP         CCP      SINGLE       n     1.526  0.0108     1.526  0.0108
+CQM         N9A         C8A      SINGLE       y     1.372  0.0200     1.372  0.0200
+CQM         C1B         N9A      SINGLE       n     1.458  0.0200     1.458  0.0200
+CQM         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+CQM         C2B         C1B      SINGLE       n     1.525  0.0100     1.525  0.0100
+CQM         O4B         C1B      SINGLE       n     1.409  0.0100     1.409  0.0100
+CQM         C3B         C2B      SINGLE       n     1.529  0.0125     1.529  0.0125
+CQM         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+CQM         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+CQM         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+CQM         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+CQM         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+CQM         C4B         C3B      SINGLE       n     1.525  0.0133     1.525  0.0133
+CQM         P2A         O5A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+CQM         P3B         O7A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+CQM         P2A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+CQM         P2A         O4A      SINGLE       n     1.493  0.0122     1.493  0.0122
+CQM         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+CQM         O3A         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+CQM         P3B         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+CQM         P3B         O9A      SINGLE       n     1.517  0.0192     1.517  0.0192
+CQM         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+CQM         P1A         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+CQM         P1A         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+CQM         P1A         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+CQM          C2          H1      SINGLE       n     1.089  0.0100     0.979  0.0159
+CQM          C2          H2      SINGLE       n     1.089  0.0100     0.979  0.0159
+CQM          C6          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+CQM          C6          H4      SINGLE       n     1.089  0.0100     0.973  0.0141
+CQM          C6          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+CQM         C5B          H8      SINGLE       n     1.089  0.0100     0.989  0.0200
+CQM         C5B          H9      SINGLE       n     1.089  0.0100     0.989  0.0200
+CQM         C4B         H10      SINGLE       n     1.089  0.0100     0.981  0.0200
+CQM         C3B         H11      SINGLE       n     1.089  0.0100     0.985  0.0119
+CQM         C2B         H12      SINGLE       n     1.089  0.0100     0.994  0.0200
+CQM         O2B         H13      SINGLE       n     0.970  0.0120     0.849  0.0200
+CQM         C1B         H14      SINGLE       n     1.089  0.0100     0.984  0.0200
+CQM         C2A         H17      SINGLE       n     1.082  0.0130     0.945  0.0200
+CQM         C8A         H18      SINGLE       n     1.082  0.0130     0.942  0.0170
+CQM         N6A         H19      SINGLE       n     1.016  0.0100     0.877  0.0200
+CQM         N6A         H20      SINGLE       n     1.016  0.0100     0.877  0.0200
+CQM         CCP         H21      SINGLE       n     1.089  0.0100     0.978  0.0102
+CQM         CCP         H22      SINGLE       n     1.089  0.0100     0.978  0.0102
+CQM         CDP         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+CQM         CDP         H24      SINGLE       n     1.089  0.0100     0.973  0.0146
+CQM         CDP         H25      SINGLE       n     1.089  0.0100     0.973  0.0146
+CQM         CEP         H26      SINGLE       n     1.089  0.0100     0.973  0.0146
+CQM         CEP         H27      SINGLE       n     1.089  0.0100     0.973  0.0146
+CQM         CEP         H28      SINGLE       n     1.089  0.0100     0.973  0.0146
+CQM         CAP         H29      SINGLE       n     1.089  0.0100     0.988  0.0129
+CQM         OAP         H30      SINGLE       n     0.970  0.0120     0.848  0.0200
+CQM         N8P         H31      SINGLE       n     1.016  0.0100     0.872  0.0200
+CQM         C7P         H32      SINGLE       n     1.089  0.0100     0.980  0.0159
+CQM         C7P         H33      SINGLE       n     1.089  0.0100     0.980  0.0159
+CQM         C6P         H34      SINGLE       n     1.089  0.0100     0.973  0.0156
+CQM         C6P         H35      SINGLE       n     1.089  0.0100     0.973  0.0156
+CQM         N4P         H36      SINGLE       n     1.016  0.0100     0.872  0.0200
+CQM         C3P         H37      SINGLE       n     1.089  0.0100     0.981  0.0127
+CQM         C3P         H38      SINGLE       n     1.089  0.0100     0.981  0.0127
+CQM         C2P         H39      SINGLE       n     1.089  0.0100     0.978  0.0177
+CQM         C2P         H40      SINGLE       n     1.089  0.0100     0.978  0.0177
+CQM          O7         H41      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CQM          C3          C2          C1     113.804    1.59
+CQM          C3          C2          H1     108.842    1.50
+CQM          C3          C2          H2     108.842    1.50
+CQM          C1          C2          H1     108.026    1.59
+CQM          C1          C2          H2     108.026    1.59
+CQM          H1          C2          H2     107.705    1.50
+CQM          O3          C4          C3     117.350    1.66
+CQM          O3          C4          O4     125.300    1.50
+CQM          C3          C4          O4     117.350    1.66
+CQM          C3          C6          H3     109.538    1.50
+CQM          C3          C6          H4     109.538    1.50
+CQM          C3          C6          H5     109.538    1.50
+CQM          H3          C6          H4     109.441    1.50
+CQM          H3          C6          H5     109.441    1.50
+CQM          H4          C6          H5     109.441    1.50
+CQM         O6A         P2A         O5A     107.912    2.57
+CQM         O6A         P2A         O3A     101.065    1.97
+CQM         O6A         P2A         O4A     107.912    2.57
+CQM         O5A         P2A         O3A     108.816    2.14
+CQM         O5A         P2A         O4A     118.411    2.35
+CQM         O3A         P2A         O4A     108.816    2.14
+CQM         P2A         O3A         P1A     132.542    3.00
+CQM         CCP         O6A         P2A     119.251    1.51
+CQM         O3A         P1A         O5B     101.065    1.97
+CQM         O3A         P1A         O1A     108.816    2.14
+CQM         O3A         P1A         O2A     108.816    2.14
+CQM         O5B         P1A         O1A     109.410    1.50
+CQM         O5B         P1A         O2A     109.410    1.50
+CQM         O1A         P1A         O2A     118.411    2.35
+CQM         C5B         O5B         P1A     118.553    2.41
+CQM         C4B         C5B         O5B     109.342    1.50
+CQM         C4B         C5B          H8     109.624    1.50
+CQM         C4B         C5B          H9     109.624    1.50
+CQM         O5B         C5B          H8     109.845    1.50
+CQM         O5B         C5B          H9     109.845    1.50
+CQM          H8         C5B          H9     108.472    1.50
+CQM         O4B         C4B         C3B     105.508    1.50
+CQM         O4B         C4B         C5B     109.123    1.50
+CQM         O4B         C4B         H10     108.947    1.50
+CQM         C3B         C4B         C5B     114.866    1.63
+CQM         C3B         C4B         H10     109.143    1.50
+CQM         C5B         C4B         H10     108.268    1.50
+CQM         C1B         O4B         C4B     109.903    1.50
+CQM         C2B         C3B         O3B     110.766    3.00
+CQM         C2B         C3B         C4B     102.352    1.50
+CQM         C2B         C3B         H11     110.255    2.04
+CQM         O3B         C3B         C4B     110.864    2.31
+CQM         O3B         C3B         H11     110.343    1.64
+CQM         C4B         C3B         H11     110.624    1.81
+CQM         C3B         O3B         P3B     109.471    3.00
+CQM         O2B         C2B         C1B     111.715    2.69
+CQM         O2B         C2B         C3B     112.463    2.73
+CQM         O2B         C2B         H12     110.448    1.97
+CQM         C1B         C2B         C3B     101.388    1.50
+CQM         C1B         C2B         H12     110.636    1.70
+CQM         C3B         C2B         H12     110.255    2.04
+CQM         C2B         O2B         H13     109.103    2.13
+CQM         N9A         C1B         C2B     113.752    2.20
+CQM         N9A         C1B         O4B     108.167    1.51
+CQM         N9A         C1B         H14     109.246    1.50
+CQM         C2B         C1B         O4B     106.047    1.50
+CQM         C2B         C1B         H14     109.015    1.50
+CQM         O4B         C1B         H14     109.807    1.50
+CQM         O3B         P3B         O7A     106.518    3.00
+CQM         O3B         P3B         O8A     106.518    3.00
+CQM         O3B         P3B         O9A     106.518    3.00
+CQM         O7A         P3B         O8A     112.139    1.52
+CQM         O7A         P3B         O9A     112.139    1.52
+CQM         O8A         P3B         O9A     112.139    1.52
+CQM         C4A         N9A         C8A     107.594    1.50
+CQM         C4A         N9A         C1B     125.158    1.54
+CQM         C8A         N9A         C1B     126.078    2.46
+CQM         N3A         C4A         C5A     126.489    1.50
+CQM         N3A         C4A         N9A     125.845    1.50
+CQM         C5A         C4A         N9A     107.666    1.69
+CQM         C2A         N3A         C4A     110.982    1.50
+CQM         N1A         C2A         N3A     129.332    1.50
+CQM         N1A         C2A         H17     115.313    1.50
+CQM         N3A         C2A         H17     115.355    1.50
+CQM         C2A         N1A         C6A     118.521    1.50
+CQM         N1A         C6A         N6A     118.799    1.50
+CQM         N1A         C6A         C5A     117.409    1.50
+CQM         N6A         C6A         C5A     123.792    1.50
+CQM         C6A         C5A         C4A     117.267    1.50
+CQM         C6A         C5A         N7A     132.145    1.50
+CQM         C4A         C5A         N7A     110.588    1.50
+CQM         C5A         N7A         C8A     103.927    1.50
+CQM         N7A         C8A         N9A     112.130    1.94
+CQM         N7A         C8A         H18     123.170    1.50
+CQM         N9A         C8A         H18     124.701    2.19
+CQM         C6A         N6A         H19     119.723    1.50
+CQM         C6A         N6A         H20     119.723    1.50
+CQM         H19         N6A         H20     120.554    1.88
+CQM         CAP         CBP         CDP     109.534    1.52
+CQM         CAP         CBP         CEP     109.534    1.52
+CQM         CAP         CBP         CCP     111.094    2.85
+CQM         CDP         CBP         CEP     108.765    1.50
+CQM         CDP         CBP         CCP     109.385    1.50
+CQM         CEP         CBP         CCP     109.385    1.50
+CQM         CBP         CCP         O6A     108.435    1.69
+CQM         CBP         CCP         H21     109.473    1.50
+CQM         CBP         CCP         H22     109.473    1.50
+CQM         O6A         CCP         H21     109.739    1.50
+CQM         O6A         CCP         H22     109.739    1.50
+CQM         H21         CCP         H22     108.108    1.50
+CQM         CBP         CDP         H23     109.575    1.50
+CQM         CBP         CDP         H24     109.575    1.50
+CQM         CBP         CDP         H25     109.575    1.50
+CQM         H23         CDP         H24     109.377    1.50
+CQM         H23         CDP         H25     109.377    1.50
+CQM         H24         CDP         H25     109.377    1.50
+CQM         CBP         CEP         H26     109.575    1.50
+CQM         CBP         CEP         H27     109.575    1.50
+CQM         CBP         CEP         H28     109.575    1.50
+CQM         H26         CEP         H27     109.377    1.50
+CQM         H26         CEP         H28     109.377    1.50
+CQM         H27         CEP         H28     109.377    1.50
+CQM         C9P         CAP         OAP     109.850    1.55
+CQM         C9P         CAP         CBP     111.511    2.91
+CQM         C9P         CAP         H29     108.529    1.70
+CQM         OAP         CAP         CBP     109.482    3.00
+CQM         OAP         CAP         H29     108.675    1.50
+CQM         CBP         CAP         H29     107.825    1.50
+CQM         CAP         OAP         H30     108.894    3.00
+CQM         O9P         C9P         N8P     122.985    1.50
+CQM         O9P         C9P         CAP     119.851    1.78
+CQM         N8P         C9P         CAP     117.147    1.50
+CQM         C7P         N8P         C9P     122.964    1.80
+CQM         C7P         N8P         H31     118.351    1.90
+CQM         C9P         N8P         H31     118.685    1.94
+CQM         C6P         C7P         N8P     112.257    1.50
+CQM         C6P         C7P         H32     108.971    1.50
+CQM         C6P         C7P         H33     108.971    1.50
+CQM         N8P         C7P         H32     108.979    1.50
+CQM         N8P         C7P         H33     108.979    1.50
+CQM         H32         C7P         H33     107.877    1.50
+CQM         C5P         C6P         C7P     112.120    2.79
+CQM         C5P         C6P         H34     108.945    1.50
+CQM         C5P         C6P         H35     108.945    1.50
+CQM         C7P         C6P         H34     109.432    1.50
+CQM         C7P         C6P         H35     109.432    1.50
+CQM         H34         C6P         H35     107.745    2.07
+CQM         O5P         C5P         N4P     121.943    1.50
+CQM         O5P         C5P         C6P     120.987    1.50
+CQM         N4P         C5P         C6P     117.070    1.96
+CQM         C3P         N4P         C5P     123.437    1.80
+CQM         C3P         N4P         H36     118.700    1.83
+CQM         C5P         N4P         H36     117.862    2.10
+CQM         C2P         C3P         N4P     112.117    1.54
+CQM         C2P         C3P         H37     109.038    1.50
+CQM         C2P         C3P         H38     109.038    1.50
+CQM         N4P         C3P         H37     109.102    1.50
+CQM         N4P         C3P         H38     109.102    1.50
+CQM         H37         C3P         H38     107.995    1.50
+CQM         C3P         C2P         S1P     112.239    3.00
+CQM         C3P         C2P         H39     108.964    1.50
+CQM         C3P         C2P         H40     108.964    1.50
+CQM         S1P         C2P         H39     109.066    1.50
+CQM         S1P         C2P         H40     109.066    1.50
+CQM         H39         C2P         H40     107.807    1.50
+CQM          C1         S1P         C2P     120.000    3.00
+CQM          O2          C1          C2     123.766    1.64
+CQM          O2          C1         S1P     122.927    2.65
+CQM          C2          C1         S1P     113.307    2.65
+CQM          O7          C3          C6     108.031    2.01
+CQM          O7          C3          C4     109.765    1.50
+CQM          O7          C3          C2     109.352    1.86
+CQM          C6          C3          C4     111.511    2.91
+CQM          C6          C3          C2     109.529    1.50
+CQM          C4          C3          C2     109.606    1.52
+CQM          C3          O7         H41     109.172    2.84
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CQM             sp2_sp3_8          O2          C1          C2          C3     120.000    10.0     6
+CQM            sp3_sp3_37          C1          C2          C3          O7     180.000    10.0     3
+CQM           sp3_sp3_145         C4B         C5B         O5B         P1A     180.000    10.0     3
+CQM           sp3_sp3_133         O4B         C4B         C5B         O5B     180.000    10.0     3
+CQM             sp3_sp3_2         C5B         C4B         O4B         C1B     -60.000    10.0     3
+CQM           sp3_sp3_125         O3B         C3B         C4B         C5B     180.000    10.0     3
+CQM             sp3_sp3_5         N9A         C1B         O4B         C4B     180.000    10.0     3
+CQM           sp3_sp3_115         C2B         C3B         O3B         P3B     180.000    10.0     3
+CQM            sp3_sp3_20         O2B         C2B         C3B         O3B     -60.000    10.0     3
+CQM           sp3_sp3_120         C3B         O3B         P3B         O7A      60.000    10.0     3
+CQM           sp3_sp3_106         C1B         C2B         O2B         H13     180.000    10.0     3
+CQM            sp3_sp3_11         N9A         C1B         C2B         O2B      60.000    10.0     3
+CQM            sp2_sp3_37         C4A         N9A         C1B         C2B     150.000    10.0     6
+CQM             sp2_sp3_1          O3          C4          C3          O7       0.000    10.0     6
+CQM              const_15         N3A         C4A         N9A         C8A     180.000    10.0     2
+CQM              const_25         N7A         C8A         N9A         C4A       0.000    10.0     2
+CQM       const_sp2_sp2_1         C5A         C4A         N3A         C2A       0.000     5.0     2
+CQM              const_17         N3A         C4A         C5A         C6A       0.000    10.0     2
+CQM       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+CQM       const_sp2_sp2_5         N3A         C2A         N1A         C6A       0.000     5.0     2
+CQM       const_sp2_sp2_8         N6A         C6A         N1A         C2A     180.000     5.0     2
+CQM              const_10         C4A         C5A         C6A         N6A     180.000    10.0     2
+CQM             sp2_sp2_9         N1A         C6A         N6A         H19       0.000     5.0     2
+CQM            sp3_sp3_28          O7          C3          C6          H3     180.000    10.0     3
+CQM              const_22         C6A         C5A         N7A         C8A     180.000    10.0     2
+CQM              const_23         N9A         C8A         N7A         C5A       0.000    10.0     2
+CQM            sp3_sp3_97         CAP         CBP         CCP         O6A     180.000    10.0     3
+CQM            sp3_sp3_82         CAP         CBP         CDP         H23      60.000    10.0     3
+CQM            sp3_sp3_88         CAP         CBP         CEP         H26     180.000    10.0     3
+CQM            sp3_sp3_70         C9P         CAP         CBP         CDP     180.000    10.0     3
+CQM            sp3_sp3_67         C9P         CAP         OAP         H30     180.000    10.0     3
+CQM            sp2_sp3_31         O9P         C9P         CAP         OAP       0.000    10.0     6
+CQM           sp3_sp3_131         P1A         O3A         P2A         O6A     -60.000    10.0     3
+CQM           sp3_sp3_114         CCP         O6A         P2A         O5A      60.000    10.0     3
+CQM            sp2_sp2_13         O9P         C9P         N8P         C7P       0.000     5.0     2
+CQM            sp2_sp3_26         C9P         N8P         C7P         C6P     120.000    10.0     6
+CQM            sp3_sp3_58         C5P         C6P         C7P         N8P     180.000    10.0     3
+CQM            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+CQM             sp2_sp2_5         O5P         C5P         N4P         C3P       0.000     5.0     2
+CQM            sp2_sp3_14         C5P         N4P         C3P         C2P     120.000    10.0     6
+CQM            sp3_sp3_46         S1P         C2P         C3P         N4P     180.000    10.0     3
+CQM            sp3_sp3_55         C3P         C2P         S1P          C1     180.000    10.0     3
+CQM             sp2_sp2_1          O2          C1         S1P         C2P     180.000     5.0     2
+CQM            sp3_sp3_25          C6          C3          O7         H41     180.000    10.0     3
+CQM           sp3_sp3_143         P2A         O3A         P1A         O5B     -60.000    10.0     3
+CQM           sp3_sp3_109         CBP         CCP         O6A         P2A     180.000    10.0     3
+CQM           sp3_sp3_148         C5B         O5B         P1A         O3A     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CQM    chir_1    P2A    O3A    O6A    O4A    both
+CQM    chir_2    P1A    O3A    O5B    O2A    both
+CQM    chir_3    C4B    O4B    C3B    C5B    negative
+CQM    chir_4    C3B    O3B    C4B    C2B    positive
+CQM    chir_5    C2B    O2B    C1B    C3B    negative
+CQM    chir_6    C1B    O4B    N9A    C2B    negative
+CQM    chir_7    P3B    O3B    O8A    O9A    both
+CQM    chir_8    CBP    CAP    CCP    CDP    both
+CQM    chir_9    CAP    OAP    C9P    CBP    negative
+CQM    chir_10    C3    O7    C4    C2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CQM    plan-1         C1B   0.020
+CQM    plan-1         C2A   0.020
+CQM    plan-1         C4A   0.020
+CQM    plan-1         C5A   0.020
+CQM    plan-1         C6A   0.020
+CQM    plan-1         C8A   0.020
+CQM    plan-1         H17   0.020
+CQM    plan-1         H18   0.020
+CQM    plan-1         N1A   0.020
+CQM    plan-1         N3A   0.020
+CQM    plan-1         N6A   0.020
+CQM    plan-1         N7A   0.020
+CQM    plan-1         N9A   0.020
+CQM    plan-2          C3   0.020
+CQM    plan-2          C4   0.020
+CQM    plan-2          O3   0.020
+CQM    plan-2          O4   0.020
+CQM    plan-3         C6A   0.020
+CQM    plan-3         H19   0.020
+CQM    plan-3         H20   0.020
+CQM    plan-3         N6A   0.020
+CQM    plan-4         C9P   0.020
+CQM    plan-4         CAP   0.020
+CQM    plan-4         N8P   0.020
+CQM    plan-4         O9P   0.020
+CQM    plan-5         C7P   0.020
+CQM    plan-5         C9P   0.020
+CQM    plan-5         H31   0.020
+CQM    plan-5         N8P   0.020
+CQM    plan-6         C5P   0.020
+CQM    plan-6         C6P   0.020
+CQM    plan-6         N4P   0.020
+CQM    plan-6         O5P   0.020
+CQM    plan-7         C3P   0.020
+CQM    plan-7         C5P   0.020
+CQM    plan-7         H36   0.020
+CQM    plan-7         N4P   0.020
+CQM    plan-8          C1   0.020
+CQM    plan-8          C2   0.020
+CQM    plan-8          O2   0.020
+CQM    plan-8         S1P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CQM           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                        C(C(SCCNC(CCNC(C(C(COP(OP(=O)(O)OCC1OC(C(C1OP(O)(O)=O)O)n2cnc3c2ncnc3N)(O)=O)(C)C)O)=O)=O)=O)C(C(O)=O)(C)O
+CQM            InChI                InChI  1.03 InChI=1S/C26H42N7O20P3S/c1-25(2,19(37)22(38)29-5-4-14(34)28-6-7-57-15(35)8-26(3,41)24(39)40)10-50-56(47,48)53-55(45,46)49-9-13-18(52-54(42,43)44)17(36)23(51-13)33-12-32-16-20(27)30-11-31-21(16)33/h11-13,17-19,23,36-37,41H,4-10H2,1-3H3,(H,28,34)(H,29,38)(H,39,40)(H,45,46)(H,47,48)(H2,27,30,31)(H2,42,43,44)/t13-,17-,18-,19+,23-,26+/m1/s1
+CQM         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                       XYGOWHUIVNMEIA-XBVYHAPZSA-N
+CQM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                         CC(C)(CO[P](O)(=O)O[P](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[C@@H](O)C(=O)NCCC(=O)NCCSC(=O)C[C@](C)(O)C(O)=O
+CQM           SMILES               CACTVS 3.385                                                                                                                                                                                                                 CC(C)(CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[CH](O)C(=O)NCCC(=O)NCCSC(=O)C[C](C)(O)C(O)=O
+CQM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                              C[C@](CC(=O)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O)(C(=O)O)O
+CQM           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                                                        CC(C)(COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)C(C(=O)NCCC(=O)NCCSC(=O)CC(C)(C(=O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CQM acedrg               243         "dictionary generator"                  
+CQM acedrg_database      11          "data source"                           
+CQM rdkit                2017.03.2   "Chemoinformatics tool"
+CQM refmac5              5.8.0238    "optimization tool"                     

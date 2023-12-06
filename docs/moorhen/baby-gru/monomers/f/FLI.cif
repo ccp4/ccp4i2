@@ -1,0 +1,569 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FLI     FLI      (3R,4S,6S,8S,10R,12R,14R,16S,17E,19E,21E,23E,25E,28R)-3-hexyl-4,6,8,10,12,14,16-heptahydroxy-17,28-dimethyloxacyclooctacosa-17,19,21,23,25-pentaen-2-one     NON-POLYMER     102     44     .     
+#
+data_comp_FLI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FLI     C1      C       C       0       2.318       42.804      22.174      
+FLI     O1      O       O       0       1.922       43.907      21.890      
+FLI     C2      C       CH1     0       1.846       42.068      23.424      
+FLI     C3      C       CH1     0       1.954       42.956      24.677      
+FLI     C4      C       CH2     0       3.330       43.632      24.926      
+FLI     C5      C       CH1     0       3.517       44.258      26.302      
+FLI     C6      C       CH2     0       4.672       45.245      26.364      
+FLI     C7      C       CH1     0       4.857       45.940      27.703      
+FLI     C8      C       CH2     0       5.773       47.152      27.632      
+FLI     C9      C       CH1     0       5.963       47.897      28.943      
+FLI     C10     C       CH2     0       6.645       49.246      28.776      
+FLI     C11     C       CH1     0       6.810       50.054      30.054      
+FLI     C12     C       CH2     0       7.286       51.479      29.807      
+FLI     C13     C       CH1     0       6.196       52.477      29.429      
+FLI     C14     C       CH2     0       6.716       53.826      28.934      
+FLI     C15     C       CH1     0       7.528       53.814      27.640      
+FLI     C16     C       C       0       6.860       53.126      26.465      
+FLI     C17     C       C1      0       7.156       51.852      26.158      
+FLI     C18     C       C1      0       6.642       51.007      25.101      
+FLI     C19     C       C1      0       6.907       49.670      24.829      
+FLI     C1P     C       CH2     0       0.437       41.502      23.161      
+FLI     C20     C       C1      0       6.358       48.883      23.824      
+FLI     C21     C       C1      0       6.602       47.534      23.594      
+FLI     C22     C       C1      0       6.036       46.730      22.612      
+FLI     C23     C       C1      0       6.258       45.373      22.406      
+FLI     C24     C       C1      0       5.652       44.535      21.399      
+FLI     C25     C       C1      0       5.852       43.230      21.219      
+FLI     C26     C       CH2     0       5.182       42.384      20.178      
+FLI     C27     C       CH1     0       3.667       42.501      20.147      
+FLI     C28     C       CH3     0       3.016       41.622      19.103      
+FLI     C29     C       CH3     0       5.841       53.961      25.725      
+FLI     C2P     C       CH2     0       0.379       40.342      22.176      
+FLI     O30     O       O2      0       3.206       42.065      21.471      
+FLI     C3P     C       CH2     0       -0.949      39.627      22.112      
+FLI     C4P     C       CH2     0       -1.087      38.679      20.946      
+FLI     C5P     C       CH2     0       -2.425      37.989      20.861      
+FLI     C6P     C       CH3     0       -3.530      38.873      20.332      
+FLI     OA3     O       OH1     0       1.628       42.164      25.821      
+FLI     OA5     O       OH1     0       3.726       43.225      27.265      
+FLI     OA7     O       OH1     0       5.381       45.006      28.648      
+FLI     OA9     O       OH1     0       6.729       47.087      29.836      
+FLI     OB1     O       OH1     0       7.734       49.386      30.913      
+FLI     OB3     O       OH1     0       5.366       52.707      30.569      
+FLI     OB5     O       OH1     0       7.840       55.165      27.330      
+FLI     H2      H       H       0       2.446       41.305      23.562      
+FLI     H3      H       H       0       1.265       43.669      24.601      
+FLI     H4      H       H       0       3.459       44.334      24.253      
+FLI     H4A     H       H       0       4.034       42.963      24.788      
+FLI     H5      H       H       0       2.683       44.737      26.542      
+FLI     H6      H       H       0       4.531       45.931      25.676      
+FLI     H6A     H       H       0       5.500       44.770      26.140      
+FLI     H7      H       H       0       3.968       46.238      28.026      
+FLI     H8      H       H       0       5.409       47.777      26.969      
+FLI     H8A     H       H       0       6.651       46.859      27.308      
+FLI     H9      H       H       0       5.071       48.046      29.351      
+FLI     H10     H       H       0       6.126       49.779      28.137      
+FLI     H10A    H       H       0       7.532       49.099      28.384      
+FLI     H11     H       H       0       5.933       50.091      30.515      
+FLI     H12     H       H       0       7.955       51.457      29.091      
+FLI     H12A    H       H       0       7.736       51.802      30.617      
+FLI     H13     H       H       0       5.632       52.072      28.721      
+FLI     H14     H       H       0       7.274       54.219      29.642      
+FLI     H14A    H       H       0       5.946       54.424      28.807      
+FLI     H15     H       H       0       8.382       53.351      27.816      
+FLI     H17     H       H       0       7.791       51.415      26.701      
+FLI     H18     H       H       0       6.044       51.418      24.500      
+FLI     H19     H       H       0       7.532       49.247      25.394      
+FLI     H1P     H       H       0       -0.132      42.225      22.822      
+FLI     H1PA    H       H       0       0.054       41.200      24.010      
+FLI     H20     H       H       0       5.757       49.310      23.235      
+FLI     H21     H       H       0       7.220       47.117      24.171      
+FLI     H22     H       H       0       5.435       47.151      22.019      
+FLI     H23     H       H       0       6.871       44.955      22.988      
+FLI     H24     H       H       0       5.055       44.966      20.810      
+FLI     H25     H       H       0       6.465       42.805      21.795      
+FLI     H26     H       H       0       5.397       41.438      20.324      
+FLI     H26A    H       H       0       5.511       42.628      19.287      
+FLI     H27     H       H       0       3.415       43.443      19.983      
+FLI     H28     H       H       0       2.632       40.834      19.528      
+FLI     H28A    H       H       0       3.680       41.343      18.447      
+FLI     H28B    H       H       0       2.311       42.122      18.654      
+FLI     H29     H       H       0       5.135       53.390      25.383      
+FLI     H29A    H       H       0       6.272       54.419      24.985      
+FLI     H29B    H       H       0       5.456       54.617      26.329      
+FLI     H2P     H       H       0       1.072       39.691      22.418      
+FLI     H2PA    H       H       0       0.592       40.679      21.279      
+FLI     H3P     H       H       0       -1.664      40.296      22.059      
+FLI     H3PA    H       H       0       -1.074      39.122      22.944      
+FLI     H4P     H       H       0       -0.386      37.996      21.011      
+FLI     H4PA    H       H       0       -0.939      39.178      20.115      
+FLI     H5P     H       H       0       -2.673      37.671      21.756      
+FLI     H5PA    H       H       0       -2.339      37.204      20.278      
+FLI     H6P     H       H       0       -4.348      38.354      20.245      
+FLI     H6PA    H       H       0       -3.276      39.224      19.461      
+FLI     H6PB    H       H       0       -3.679      39.611      20.947      
+FLI     HOA3    H       H       0       2.203       41.548      25.928      
+FLI     HOA5    H       H       0       4.462       42.832      27.107      
+FLI     HOA7    H       H       0       6.162       44.770      28.413      
+FLI     HOA9    H       H       0       7.509       46.975      29.521      
+FLI     HOB1    H       H       0       8.500       49.366      30.546      
+FLI     HOB3    H       H       0       5.821       53.079      31.182      
+FLI     HOB5    H       H       0       8.493       55.187      26.790      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FLI          C1          O1      DOUBLE       n     1.203  0.0150     1.203  0.0150
+FLI          C1          C2      SINGLE       n     1.516  0.0186     1.516  0.0186
+FLI          C1         O30      SINGLE       n     1.343  0.0132     1.343  0.0132
+FLI          C2          C3      SINGLE       n     1.536  0.0100     1.536  0.0100
+FLI          C2         C1P      SINGLE       n     1.538  0.0100     1.538  0.0100
+FLI          C3          C4      SINGLE       n     1.541  0.0200     1.541  0.0200
+FLI          C3         OA3      SINGLE       n     1.426  0.0179     1.426  0.0179
+FLI          C4          C5      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI          C5          C6      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI          C5         OA5      SINGLE       n     1.424  0.0199     1.424  0.0199
+FLI          C6          C7      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI          C7          C8      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI          C7         OA7      SINGLE       n     1.424  0.0199     1.424  0.0199
+FLI          C8          C9      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI          C9         C10      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI          C9         OA9      SINGLE       n     1.424  0.0199     1.424  0.0199
+FLI         C10         C11      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI         C11         C12      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI         C11         OB1      SINGLE       n     1.424  0.0199     1.424  0.0199
+FLI         C12         C13      SINGLE       n     1.517  0.0200     1.517  0.0200
+FLI         C13         C14      SINGLE       n     1.525  0.0100     1.525  0.0100
+FLI         C13         OB3      SINGLE       n     1.424  0.0199     1.424  0.0199
+FLI         C14         C15      SINGLE       n     1.525  0.0100     1.525  0.0100
+FLI         C15         C16      SINGLE       n     1.511  0.0129     1.511  0.0129
+FLI         C15         OB5      SINGLE       n     1.419  0.0162     1.419  0.0162
+FLI         C16         C17      DOUBLE       n     1.333  0.0198     1.333  0.0198
+FLI         C16         C29      SINGLE       n     1.506  0.0134     1.506  0.0134
+FLI         C17         C18      SINGLE       n     1.445  0.0200     1.445  0.0200
+FLI         C18         C19      DOUBLE       n     1.391  0.0200     1.391  0.0200
+FLI         C19         C20      SINGLE       n     1.391  0.0200     1.391  0.0200
+FLI         C1P         C2P      SINGLE       n     1.523  0.0116     1.523  0.0116
+FLI         C20         C21      DOUBLE       n     1.391  0.0200     1.391  0.0200
+FLI         C21         C22      SINGLE       n     1.391  0.0200     1.391  0.0200
+FLI         C22         C23      DOUBLE       n     1.391  0.0200     1.391  0.0200
+FLI         C23         C24      SINGLE       n     1.445  0.0200     1.445  0.0200
+FLI         C24         C25      DOUBLE       n     1.332  0.0144     1.332  0.0144
+FLI         C25         C26      SINGLE       n     1.498  0.0152     1.498  0.0152
+FLI         C26         C27      SINGLE       n     1.518  0.0100     1.518  0.0100
+FLI         C27         C28      SINGLE       n     1.511  0.0100     1.511  0.0100
+FLI         C27         O30      SINGLE       n     1.459  0.0137     1.459  0.0137
+FLI         C2P         C3P      SINGLE       n     1.509  0.0200     1.509  0.0200
+FLI         C3P         C4P      SINGLE       n     1.509  0.0200     1.509  0.0200
+FLI         C4P         C5P      SINGLE       n     1.507  0.0200     1.507  0.0200
+FLI         C5P         C6P      SINGLE       n     1.510  0.0200     1.510  0.0200
+FLI          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0100
+FLI          C3          H3      SINGLE       n     1.089  0.0100     0.995  0.0200
+FLI          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI          C5          H5      SINGLE       n     1.089  0.0100     0.992  0.0184
+FLI          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI          C7          H7      SINGLE       n     1.089  0.0100     0.992  0.0184
+FLI          C8          H8      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI          C8         H8A      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI          C9          H9      SINGLE       n     1.089  0.0100     0.992  0.0184
+FLI         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI         C10        H10A      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI         C11         H11      SINGLE       n     1.089  0.0100     0.992  0.0184
+FLI         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0160
+FLI         C13         H13      SINGLE       n     1.089  0.0100     0.992  0.0184
+FLI         C14         H14      SINGLE       n     1.089  0.0100     0.983  0.0125
+FLI         C14        H14A      SINGLE       n     1.089  0.0100     0.983  0.0125
+FLI         C15         H15      SINGLE       n     1.089  0.0100     0.988  0.0129
+FLI         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0200
+FLI         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0196
+FLI         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0196
+FLI         C1P         H1P      SINGLE       n     1.089  0.0100     0.980  0.0160
+FLI         C1P        H1PA      SINGLE       n     1.089  0.0100     0.980  0.0160
+FLI         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0196
+FLI         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0196
+FLI         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0196
+FLI         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0196
+FLI         C24         H24      SINGLE       n     1.082  0.0130     0.943  0.0200
+FLI         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0181
+FLI         C26         H26      SINGLE       n     1.089  0.0100     0.981  0.0185
+FLI         C26        H26A      SINGLE       n     1.089  0.0100     0.981  0.0185
+FLI         C27         H27      SINGLE       n     1.089  0.0100     0.990  0.0173
+FLI         C28         H28      SINGLE       n     1.089  0.0100     0.974  0.0145
+FLI         C28        H28A      SINGLE       n     1.089  0.0100     0.974  0.0145
+FLI         C28        H28B      SINGLE       n     1.089  0.0100     0.974  0.0145
+FLI         C29         H29      SINGLE       n     1.089  0.0100     0.971  0.0140
+FLI         C29        H29A      SINGLE       n     1.089  0.0100     0.971  0.0140
+FLI         C29        H29B      SINGLE       n     1.089  0.0100     0.971  0.0140
+FLI         C2P         H2P      SINGLE       n     1.089  0.0100     0.981  0.0163
+FLI         C2P        H2PA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FLI         C3P         H3P      SINGLE       n     1.089  0.0100     0.981  0.0163
+FLI         C3P        H3PA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FLI         C4P         H4P      SINGLE       n     1.089  0.0100     0.981  0.0163
+FLI         C4P        H4PA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FLI         C5P         H5P      SINGLE       n     1.089  0.0100     0.982  0.0155
+FLI         C5P        H5PA      SINGLE       n     1.089  0.0100     0.982  0.0155
+FLI         C6P         H6P      SINGLE       n     1.089  0.0100     0.973  0.0157
+FLI         C6P        H6PA      SINGLE       n     1.089  0.0100     0.973  0.0157
+FLI         C6P        H6PB      SINGLE       n     1.089  0.0100     0.973  0.0157
+FLI         OA3        HOA3      SINGLE       n     0.970  0.0120     0.848  0.0200
+FLI         OA5        HOA5      SINGLE       n     0.970  0.0120     0.848  0.0200
+FLI         OA7        HOA7      SINGLE       n     0.970  0.0120     0.848  0.0200
+FLI         OA9        HOA9      SINGLE       n     0.970  0.0120     0.848  0.0200
+FLI         OB1        HOB1      SINGLE       n     0.970  0.0120     0.848  0.0200
+FLI         OB3        HOB3      SINGLE       n     0.970  0.0120     0.848  0.0200
+FLI         OB5        HOB5      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FLI          O1          C1          C2     123.936    2.15
+FLI          O1          C1         O30     124.099    2.59
+FLI          C2          C1         O30     111.965    1.81
+FLI          C1          C2          C3     110.587    2.32
+FLI          C1          C2         C1P     109.716    2.03
+FLI          C1          C2          H2     107.456    2.04
+FLI          C3          C2         C1P     114.669    1.50
+FLI          C3          C2          H2     107.398    1.50
+FLI         C1P          C2          H2     107.780    1.50
+FLI          C2          C3          C4     115.497    1.50
+FLI          C2          C3         OA3     108.541    2.18
+FLI          C2          C3          H3     107.902    1.50
+FLI          C4          C3         OA3     109.024    2.32
+FLI          C4          C3          H3     108.603    1.50
+FLI         OA3          C3          H3     107.749    1.50
+FLI          C3          C4          C5     115.229    2.13
+FLI          C3          C4          H4     108.468    1.50
+FLI          C3          C4         H4A     108.468    1.50
+FLI          C5          C4          H4     108.468    1.50
+FLI          C5          C4         H4A     108.468    1.50
+FLI          H4          C4         H4A     107.406    1.50
+FLI          C4          C5          C6     113.270    1.72
+FLI          C4          C5         OA5     109.024    2.32
+FLI          C4          C5          H5     108.603    1.50
+FLI          C6          C5         OA5     109.024    2.32
+FLI          C6          C5          H5     108.603    1.50
+FLI         OA5          C5          H5     108.270    1.50
+FLI          C5          C6          C7     115.229    2.13
+FLI          C5          C6          H6     108.468    1.50
+FLI          C5          C6         H6A     108.468    1.50
+FLI          C7          C6          H6     108.468    1.50
+FLI          C7          C6         H6A     108.468    1.50
+FLI          H6          C6         H6A     107.406    1.50
+FLI          C6          C7          C8     113.270    1.72
+FLI          C6          C7         OA7     109.024    2.32
+FLI          C6          C7          H7     108.603    1.50
+FLI          C8          C7         OA7     109.024    2.32
+FLI          C8          C7          H7     108.603    1.50
+FLI         OA7          C7          H7     108.270    1.50
+FLI          C7          C8          C9     115.229    2.13
+FLI          C7          C8          H8     108.468    1.50
+FLI          C7          C8         H8A     108.468    1.50
+FLI          C9          C8          H8     108.468    1.50
+FLI          C9          C8         H8A     108.468    1.50
+FLI          H8          C8         H8A     107.406    1.50
+FLI          C8          C9         C10     113.270    1.72
+FLI          C8          C9         OA9     109.024    2.32
+FLI          C8          C9          H9     108.603    1.50
+FLI         C10          C9         OA9     109.024    2.32
+FLI         C10          C9          H9     108.603    1.50
+FLI         OA9          C9          H9     108.270    1.50
+FLI          C9         C10         C11     115.229    2.13
+FLI          C9         C10         H10     108.468    1.50
+FLI          C9         C10        H10A     108.468    1.50
+FLI         C11         C10         H10     108.468    1.50
+FLI         C11         C10        H10A     108.468    1.50
+FLI         H10         C10        H10A     107.406    1.50
+FLI         C10         C11         C12     113.270    1.72
+FLI         C10         C11         OB1     109.024    2.32
+FLI         C10         C11         H11     108.603    1.50
+FLI         C12         C11         OB1     109.024    2.32
+FLI         C12         C11         H11     108.603    1.50
+FLI         OB1         C11         H11     108.270    1.50
+FLI         C11         C12         C13     115.229    2.13
+FLI         C11         C12         H12     108.468    1.50
+FLI         C11         C12        H12A     108.468    1.50
+FLI         C13         C12         H12     108.468    1.50
+FLI         C13         C12        H12A     108.468    1.50
+FLI         H12         C12        H12A     107.406    1.50
+FLI         C12         C13         C14     113.270    1.72
+FLI         C12         C13         OB3     109.024    2.32
+FLI         C12         C13         H13     108.603    1.50
+FLI         C14         C13         OB3     109.024    2.32
+FLI         C14         C13         H13     108.603    1.50
+FLI         OB3         C13         H13     108.270    1.50
+FLI         C13         C14         C15     111.094    2.85
+FLI         C13         C14         H14     108.468    1.50
+FLI         C13         C14        H14A     108.468    1.50
+FLI         C15         C14         H14     108.460    1.50
+FLI         C15         C14        H14A     108.460    1.50
+FLI         H14         C14        H14A     107.406    1.50
+FLI         C14         C15         C16     115.195    1.50
+FLI         C14         C15         OB5     108.204    2.17
+FLI         C14         C15         H15     108.868    1.50
+FLI         C16         C15         OB5     110.737    1.94
+FLI         C16         C15         H15     108.257    1.50
+FLI         OB5         C15         H15     108.263    1.50
+FLI         C15         C16         C17     122.753    3.00
+FLI         C15         C16         C29     114.251    2.59
+FLI         C17         C16         C29     122.996    2.49
+FLI         C16         C17         C18     126.544    3.00
+FLI         C16         C17         H17     117.632    1.50
+FLI         C18         C17         H17     115.824    2.90
+FLI         C17         C18         C19     131.161    3.00
+FLI         C17         C18         H18     114.236    2.93
+FLI         C19         C18         H18     114.602    1.85
+FLI         C18         C19         C20     127.252    3.00
+FLI         C18         C19         H19     116.374    1.85
+FLI         C20         C19         H19     116.374    1.85
+FLI          C2         C1P         C2P     114.798    1.57
+FLI          C2         C1P         H1P     108.632    1.50
+FLI          C2         C1P        H1PA     108.632    1.50
+FLI         C2P         C1P         H1P     108.469    1.50
+FLI         C2P         C1P        H1PA     108.469    1.50
+FLI         H1P         C1P        H1PA     107.657    1.50
+FLI         C19         C20         C21     127.252    3.00
+FLI         C19         C20         H20     116.374    1.85
+FLI         C21         C20         H20     116.374    1.85
+FLI         C20         C21         C22     127.252    3.00
+FLI         C20         C21         H21     116.374    1.85
+FLI         C22         C21         H21     116.374    1.85
+FLI         C21         C22         C23     127.252    3.00
+FLI         C21         C22         H22     116.374    1.85
+FLI         C23         C22         H22     116.374    1.85
+FLI         C22         C23         C24     127.252    3.00
+FLI         C22         C23         H23     116.374    1.85
+FLI         C24         C23         H23     116.374    1.85
+FLI         C23         C24         C25     126.726    2.74
+FLI         C23         C24         H24     115.972    1.85
+FLI         C25         C24         H24     117.302    1.50
+FLI         C24         C25         C26     125.367    2.56
+FLI         C24         C25         H25     117.184    1.50
+FLI         C26         C25         H25     117.448    1.96
+FLI         C25         C26         C27     114.338    1.52
+FLI         C25         C26         H26     109.879    2.65
+FLI         C25         C26        H26A     109.879    2.65
+FLI         C27         C26         H26     107.030    2.79
+FLI         C27         C26        H26A     107.030    2.79
+FLI         H26         C26        H26A     107.440    1.74
+FLI         C26         C27         C28     113.382    1.50
+FLI         C26         C27         O30     106.474    2.40
+FLI         C26         C27         H27     109.739    1.62
+FLI         C28         C27         O30     107.864    1.91
+FLI         C28         C27         H27     109.568    1.50
+FLI         O30         C27         H27     109.532    1.50
+FLI         C27         C28         H28     109.475    1.50
+FLI         C27         C28        H28A     109.475    1.50
+FLI         C27         C28        H28B     109.475    1.50
+FLI         H28         C28        H28A     109.425    1.50
+FLI         H28         C28        H28B     109.425    1.50
+FLI        H28A         C28        H28B     109.425    1.50
+FLI         C16         C29         H29     109.466    1.50
+FLI         C16         C29        H29A     109.466    1.50
+FLI         C16         C29        H29B     109.466    1.50
+FLI         H29         C29        H29A     109.342    1.50
+FLI         H29         C29        H29B     109.342    1.50
+FLI        H29A         C29        H29B     109.342    1.50
+FLI         C1P         C2P         C3P     115.535    2.06
+FLI         C1P         C2P         H2P     108.762    1.50
+FLI         C1P         C2P        H2PA     108.762    1.50
+FLI         C3P         C2P         H2P     108.698    1.50
+FLI         C3P         C2P        H2PA     108.698    1.50
+FLI         H2P         C2P        H2PA     107.646    1.50
+FLI          C1         O30         C27     117.944    1.50
+FLI         C2P         C3P         C4P     114.243    1.69
+FLI         C2P         C3P         H3P     108.698    1.50
+FLI         C2P         C3P        H3PA     108.698    1.50
+FLI         C4P         C3P         H3P     108.698    1.50
+FLI         C4P         C3P        H3PA     108.698    1.50
+FLI         H3P         C3P        H3PA     107.646    1.50
+FLI         C3P         C4P         C5P     114.362    3.00
+FLI         C3P         C4P         H4P     108.698    1.50
+FLI         C3P         C4P        H4PA     108.698    1.50
+FLI         C5P         C4P         H4P     108.653    1.50
+FLI         C5P         C4P        H4PA     108.653    1.50
+FLI         H4P         C4P        H4PA     107.646    1.50
+FLI         C4P         C5P         C6P     113.719    3.00
+FLI         C4P         C5P         H5P     108.758    1.50
+FLI         C4P         C5P        H5PA     108.758    1.50
+FLI         C6P         C5P         H5P     108.918    1.50
+FLI         C6P         C5P        H5PA     108.918    1.50
+FLI         H5P         C5P        H5PA     107.763    1.50
+FLI         C5P         C6P         H6P     109.554    1.50
+FLI         C5P         C6P        H6PA     109.554    1.50
+FLI         C5P         C6P        H6PB     109.554    1.50
+FLI         H6P         C6P        H6PA     109.380    1.50
+FLI         H6P         C6P        H6PB     109.380    1.50
+FLI        H6PA         C6P        H6PB     109.380    1.50
+FLI          C3         OA3        HOA3     109.790    3.00
+FLI          C5         OA5        HOA5     108.921    2.24
+FLI          C7         OA7        HOA7     108.921    2.24
+FLI          C9         OA9        HOA9     108.921    2.24
+FLI         C11         OB1        HOB1     108.921    2.24
+FLI         C13         OB3        HOB3     108.921    2.24
+FLI         C15         OB5        HOB5     109.460    2.36
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FLI             sp2_sp3_1          O1          C1          C2          C3       0.000    10.0     6
+FLI             sp2_sp2_1          O1          C1         O30         C27     180.000     5.0     2
+FLI            sp3_sp3_94          C9         C10         C11         C12     180.000    10.0     3
+FLI           sp3_sp3_103         C10         C11         C12         C13     180.000    10.0     3
+FLI           sp3_sp3_112         C10         C11         OB1        HOB1     180.000    10.0     3
+FLI           sp3_sp3_115         C11         C12         C13         C14     180.000    10.0     3
+FLI           sp3_sp3_124         C12         C13         C14         C15     180.000    10.0     3
+FLI           sp3_sp3_133         C12         C13         OB3        HOB3     180.000    10.0     3
+FLI           sp3_sp3_136         C13         C14         C15         C16     180.000    10.0     3
+FLI             sp2_sp3_7         C17         C16         C15         C14       0.000    10.0     6
+FLI           sp3_sp3_145         C14         C15         OB5        HOB5     180.000    10.0     3
+FLI             sp2_sp2_3         C15         C16         C17         C18     180.000     5.0     2
+FLI            sp2_sp3_13         C15         C16         C29         H29       0.000    10.0     6
+FLI             sp2_sp2_7         C16         C17         C18         C19     180.000     5.0     2
+FLI            sp2_sp2_11         C17         C18         C19         C20     180.000     5.0     2
+FLI            sp2_sp2_15         C18         C19         C20         C21     180.000     5.0     2
+FLI           sp3_sp3_148          C2         C1P         C2P         C3P     180.000    10.0     3
+FLI            sp2_sp2_19         C19         C20         C21         C22     180.000     5.0     2
+FLI            sp2_sp2_23         C20         C21         C22         C23     180.000     5.0     2
+FLI            sp2_sp2_27         C21         C22         C23         C24     180.000     5.0     2
+FLI            sp2_sp2_31         C22         C23         C24         C25     180.000     5.0     2
+FLI            sp2_sp2_35         C23         C24         C25         C26     180.000     5.0     2
+FLI            sp2_sp3_20         C24         C25         C26         C27     120.000    10.0     6
+FLI           sp3_sp3_157         C25         C26         C27         C28     180.000    10.0     3
+FLI           sp3_sp3_166         C26         C27         C28         H28     180.000    10.0     3
+FLI           sp3_sp3_175         C26         C27         O30          C1     180.000    10.0     3
+FLI            sp3_sp3_10         C2P         C1P          C2          C1     180.000    10.0     3
+FLI             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+FLI           sp3_sp3_178         C1P         C2P         C3P         C4P     180.000    10.0     3
+FLI           sp3_sp3_187         C2P         C3P         C4P         C5P     180.000    10.0     3
+FLI           sp3_sp3_196         C3P         C4P         C5P         C6P     180.000    10.0     3
+FLI           sp3_sp3_205         C4P         C5P         C6P         H6P     180.000    10.0     3
+FLI            sp3_sp3_28          C2          C3         OA3        HOA3     180.000    10.0     3
+FLI            sp3_sp3_19          C2          C3          C4          C5     180.000    10.0     3
+FLI            sp3_sp3_31          C3          C4          C5          C6     180.000    10.0     3
+FLI            sp3_sp3_49          C4          C5         OA5        HOA5     180.000    10.0     3
+FLI            sp3_sp3_40          C4          C5          C6          C7     180.000    10.0     3
+FLI            sp3_sp3_52          C5          C6          C7          C8     180.000    10.0     3
+FLI            sp3_sp3_70          C6          C7         OA7        HOA7     180.000    10.0     3
+FLI            sp3_sp3_61          C6          C7          C8          C9     180.000    10.0     3
+FLI            sp3_sp3_73          C7          C8          C9         C10     180.000    10.0     3
+FLI            sp3_sp3_82         C11         C10          C9          C8     180.000    10.0     3
+FLI            sp3_sp3_91          C8          C9         OA9        HOA9     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FLI    chir_1    C2    C1    C3    C1P    negative
+FLI    chir_2    C3    OA3    C2    C4    positive
+FLI    chir_3    C5    OA5    C4    C6    positive
+FLI    chir_4    C7    OA7    C6    C8    positive
+FLI    chir_5    C9    OA9    C10    C8    negative
+FLI    chir_6    C11    OB1    C12    C10    negative
+FLI    chir_7    C13    OB3    C14    C12    negative
+FLI    chir_8    C15    OB5    C16    C14    positive
+FLI    chir_9    C27    O30    C26    C28    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FLI    plan-1          C1   0.020
+FLI    plan-1          C2   0.020
+FLI    plan-1          O1   0.020
+FLI    plan-1         O30   0.020
+FLI    plan-2         C15   0.020
+FLI    plan-2         C16   0.020
+FLI    plan-2         C17   0.020
+FLI    plan-2         C29   0.020
+FLI    plan-3         C16   0.020
+FLI    plan-3         C17   0.020
+FLI    plan-3         C18   0.020
+FLI    plan-3         H17   0.020
+FLI    plan-4         C17   0.020
+FLI    plan-4         C18   0.020
+FLI    plan-4         C19   0.020
+FLI    plan-4         H18   0.020
+FLI    plan-5         C18   0.020
+FLI    plan-5         C19   0.020
+FLI    plan-5         C20   0.020
+FLI    plan-5         H19   0.020
+FLI    plan-6         C19   0.020
+FLI    plan-6         C20   0.020
+FLI    plan-6         C21   0.020
+FLI    plan-6         H20   0.020
+FLI    plan-7         C20   0.020
+FLI    plan-7         C21   0.020
+FLI    plan-7         C22   0.020
+FLI    plan-7         H21   0.020
+FLI    plan-8         C21   0.020
+FLI    plan-8         C22   0.020
+FLI    plan-8         C23   0.020
+FLI    plan-8         H22   0.020
+FLI    plan-9         C22   0.020
+FLI    plan-9         C23   0.020
+FLI    plan-9         C24   0.020
+FLI    plan-9         H23   0.020
+FLI   plan-10         C23   0.020
+FLI   plan-10         C24   0.020
+FLI   plan-10         C25   0.020
+FLI   plan-10         H24   0.020
+FLI   plan-11         C24   0.020
+FLI   plan-11         C25   0.020
+FLI   plan-11         C26   0.020
+FLI   plan-11         H25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FLI SMILES_CANONICAL               CACTVS 3.352                                                                                                                                                CCCCCC[C@@H]1[C@@H](O)C[C@@H](O)C[C@@H](O)C[C@@H](O)C[C@@H](O)C[C@@H](O)C[C@H](O)\C(=C\C=C\C=C\C=C\C=C\C[C@@H](C)OC1=O)C
+FLI           SMILES               CACTVS 3.352                                                                                                                                                                       CCCCCC[CH]1[CH](O)C[CH](O)C[CH](O)C[CH](O)C[CH](O)C[CH](O)C[CH](O)C(=CC=CC=CC=CC=CC[CH](C)OC1=O)C
+FLI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                     CCCCCC[C@@H]1[C@H](C[C@H](C[C@H](C[C@H](C[C@H](C[C@H](C[C@@H](/C(=C/C=C/C=C/C=C/C=C/C[C@H](OC1=O)C)/C)O)O)O)O)O)O)O
+FLI           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                                  CCCCCCC1C(CC(CC(CC(CC(CC(CC(C(=CC=CC=CC=CC=CCC(OC1=O)C)C)O)O)O)O)O)O)O
+FLI            InChI                InChI  1.03 InChI=1S/C35H58O9/c1-4-5-6-15-18-32-34(42)24-31(40)22-29(38)20-27(36)19-28(37)21-30(39)23-33(41)25(2)16-13-11-9-7-8-10-12-14-17-26(3)44-35(32)43/h7-14,16,26-34,36-42H,4-6,15,17-24H2,1-3H3/b9-7+,10-8+,13-11+,14-12+,25-16+/t26-,27+,28-,29+,30-,31+,32-,33+,34+/m1/s1
+FLI         InChIKey                InChI  1.03                                                                                                                                                                                                                                             FODXYXCKUOAJAV-XHDOTJGXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FLI acedrg               243         "dictionary generator"                  
+FLI acedrg_database      11          "data source"                           
+FLI rdkit                2017.03.2   "Chemoinformatics tool"
+FLI refmac5              5.8.0238    "optimization tool"                     

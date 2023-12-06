@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ELI     ELI      "6-(3-METHYL-1,4-DIOXO-1,4-DIHYDRONAPHTHALEN-2-YL)HEXANOIC ACID"     NON-POLYMER     38     21     .     
+#
+data_comp_ELI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ELI     C1      C       CR16    0       81.612      13.128      55.596      
+ELI     C2      C       CR16    0       82.028      14.268      54.933      
+ELI     C3      C       CR66    0       82.793      15.232      55.598      
+ELI     C4      C       CR66    0       83.135      15.035      56.942      
+ELI     C5      C       CR16    0       82.708      13.879      57.602      
+ELI     C6      C       CR16    0       81.953      12.933      56.933      
+ELI     O7      O       O       0       82.934      16.631      53.699      
+ELI     C10     C       CR6     0       83.236      16.458      54.881      
+ELI     C11     C       CR6     0       83.948      16.051      57.666      
+ELI     C14     C       CR6     0       84.332      17.320      56.977      
+ELI     C15     C       CR6     0       84.044      17.489      55.603      
+ELI     O16     O       O       0       84.294      15.857      58.832      
+ELI     C17     C       CH3     0       85.049      18.354      57.801      
+ELI     C18     C       CH2     0       84.484      18.702      54.815      
+ELI     C19     C       CH2     0       83.489      19.848      54.890      
+ELI     C20     C       CH2     0       83.879      21.091      54.101      
+ELI     C23     C       CH2     0       82.806      22.171      54.050      
+ELI     C26     C       CH2     0       83.249      23.394      53.310      
+ELI     C43     C       C       0       82.209      24.499      53.239      
+ELI     O44     O       O       0       81.133      24.260      52.656      
+ELI     O45     O       OC      -1      82.478      25.596      53.768      
+ELI     H1      H       H       0       81.097      12.482      55.142      
+ELI     H2      H       H       0       81.793      14.392      54.031      
+ELI     H5      H       H       0       82.934      13.739      58.504      
+ELI     H6      H       H       0       81.669      12.154      57.383      
+ELI     H171    H       H       0       84.929      19.232      57.414      
+ELI     H172    H       H       0       85.994      18.144      57.834      
+ELI     H173    H       H       0       84.692      18.360      58.702      
+ELI     H181    H       H       0       84.609      18.455      53.874      
+ELI     H182    H       H       0       85.352      19.014      55.152      
+ELI     H191    H       H       0       83.372      20.099      55.830      
+ELI     H192    H       H       0       82.623      19.529      54.560      
+ELI     H201    H       H       0       84.098      20.822      53.184      
+ELI     H202    H       H       0       84.690      21.472      54.501      
+ELI     H231    H       H       0       82.563      22.418      54.967      
+ELI     H232    H       H       0       82.008      21.803      53.618      
+ELI     H261    H       H       0       83.493      23.139      52.395      
+ELI     H262    H       H       0       84.053      23.752      53.742      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ELI          C1          C2      DOUBLE       y     1.380  0.0100     1.380  0.0100
+ELI          C1          C6      SINGLE       y     1.389  0.0136     1.389  0.0136
+ELI          C2          C3      SINGLE       y     1.392  0.0100     1.392  0.0100
+ELI          C3          C4      DOUBLE       y     1.396  0.0100     1.396  0.0100
+ELI          C3         C10      SINGLE       n     1.484  0.0102     1.484  0.0102
+ELI          C4          C5      SINGLE       y     1.392  0.0100     1.392  0.0100
+ELI          C4         C11      SINGLE       n     1.484  0.0102     1.484  0.0102
+ELI          C5          C6      DOUBLE       y     1.380  0.0100     1.380  0.0100
+ELI          O7         C10      DOUBLE       n     1.229  0.0101     1.229  0.0101
+ELI         C10         C15      SINGLE       n     1.485  0.0118     1.485  0.0118
+ELI         C11         C14      SINGLE       n     1.485  0.0118     1.485  0.0118
+ELI         C11         O16      DOUBLE       n     1.229  0.0101     1.229  0.0101
+ELI         C14         C15      DOUBLE       n     1.376  0.0200     1.376  0.0200
+ELI         C14         C17      SINGLE       n     1.499  0.0100     1.499  0.0100
+ELI         C15         C18      SINGLE       n     1.507  0.0100     1.507  0.0100
+ELI         C18         C19      SINGLE       n     1.520  0.0104     1.520  0.0104
+ELI         C19         C20      SINGLE       n     1.523  0.0122     1.523  0.0122
+ELI         C20         C23      SINGLE       n     1.523  0.0117     1.523  0.0117
+ELI         C23         C26      SINGLE       n     1.497  0.0200     1.497  0.0200
+ELI         C26         C43      SINGLE       n     1.519  0.0109     1.519  0.0109
+ELI         C43         O44      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ELI         C43         O45      SINGLE       n     1.247  0.0187     1.247  0.0187
+ELI          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0198
+ELI          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0157
+ELI          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0157
+ELI          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0198
+ELI         C17        H171      SINGLE       n     1.089  0.0100     0.969  0.0130
+ELI         C17        H172      SINGLE       n     1.089  0.0100     0.969  0.0130
+ELI         C17        H173      SINGLE       n     1.089  0.0100     0.969  0.0130
+ELI         C18        H181      SINGLE       n     1.089  0.0100     0.982  0.0127
+ELI         C18        H182      SINGLE       n     1.089  0.0100     0.982  0.0127
+ELI         C19        H191      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELI         C19        H192      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELI         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELI         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELI         C23        H231      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELI         C23        H232      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELI         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0185
+ELI         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ELI          C2          C1          C6     120.125    1.50
+ELI          C2          C1          H1     119.901    1.50
+ELI          C6          C1          H1     119.974    1.50
+ELI          C1          C2          C3     120.102    1.50
+ELI          C1          C2          H2     119.977    1.50
+ELI          C3          C2          H2     119.921    1.50
+ELI          C2          C3          C4     119.773    1.50
+ELI          C2          C3         C10     119.428    1.50
+ELI          C4          C3         C10     120.798    1.50
+ELI          C3          C4          C5     119.773    1.50
+ELI          C3          C4         C11     120.798    1.50
+ELI          C5          C4         C11     119.428    1.50
+ELI          C4          C5          C6     120.102    1.50
+ELI          C4          C5          H5     119.921    1.50
+ELI          C6          C5          H5     119.977    1.50
+ELI          C1          C6          C5     120.125    1.50
+ELI          C1          C6          H6     119.974    1.50
+ELI          C5          C6          H6     119.901    1.50
+ELI          C3         C10          O7     120.541    1.50
+ELI          C3         C10         C15     119.523    1.50
+ELI          O7         C10         C15     119.936    1.50
+ELI          C4         C11         C14     119.523    1.50
+ELI          C4         C11         O16     120.541    1.50
+ELI         C14         C11         O16     119.936    1.50
+ELI         C11         C14         C15     119.679    1.50
+ELI         C11         C14         C17     117.824    1.50
+ELI         C15         C14         C17     122.497    2.03
+ELI         C10         C15         C14     119.679    1.50
+ELI         C10         C15         C18     117.948    1.56
+ELI         C14         C15         C18     122.373    2.50
+ELI         C14         C17        H171     109.593    1.50
+ELI         C14         C17        H172     109.593    1.50
+ELI         C14         C17        H173     109.593    1.50
+ELI        H171         C17        H172     109.339    1.50
+ELI        H171         C17        H173     109.339    1.50
+ELI        H172         C17        H173     109.339    1.50
+ELI         C15         C18         C19     113.676    2.28
+ELI         C15         C18        H181     108.898    1.50
+ELI         C15         C18        H182     108.898    1.50
+ELI         C19         C18        H181     108.550    1.50
+ELI         C19         C18        H182     108.550    1.50
+ELI        H181         C18        H182     107.675    1.50
+ELI         C18         C19         C20     114.513    1.98
+ELI         C18         C19        H191     108.652    1.50
+ELI         C18         C19        H192     108.652    1.50
+ELI         C20         C19        H191     108.694    1.50
+ELI         C20         C19        H192     108.694    1.50
+ELI        H191         C19        H192     107.673    1.50
+ELI         C19         C20         C23     114.879    1.50
+ELI         C19         C20        H201     108.551    1.50
+ELI         C19         C20        H202     108.551    1.50
+ELI         C23         C20        H201     108.698    1.50
+ELI         C23         C20        H202     108.698    1.50
+ELI        H201         C20        H202     107.646    1.50
+ELI         C20         C23         C26     112.553    1.50
+ELI         C20         C23        H231     108.698    1.50
+ELI         C20         C23        H232     108.698    1.50
+ELI         C26         C23        H231     109.164    1.50
+ELI         C26         C23        H232     109.164    1.50
+ELI        H231         C23        H232     107.646    1.50
+ELI         C23         C26         C43     114.612    2.19
+ELI         C23         C26        H261     108.815    1.50
+ELI         C23         C26        H262     108.815    1.50
+ELI         C43         C26        H261     108.404    1.50
+ELI         C43         C26        H262     108.404    1.50
+ELI        H261         C26        H262     107.521    1.50
+ELI         C26         C43         O44     118.214    1.64
+ELI         C26         C43         O45     118.214    1.64
+ELI         O44         C43         O45     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ELI       const_sp2_sp2_5          C6          C1          C2          C3       0.000     5.0     2
+ELI              const_21          C2          C1          C6          C5       0.000    10.0     2
+ELI             sp2_sp3_8         C10         C15         C18         C19     -90.000    10.0     6
+ELI             sp3_sp3_1         C15         C18         C19         C20     180.000    10.0     3
+ELI            sp3_sp3_10         C18         C19         C20         C23     180.000    10.0     3
+ELI            sp3_sp3_19         C19         C20         C23         C26     180.000    10.0     3
+ELI            sp3_sp3_28         C20         C23         C26         C43     180.000    10.0     3
+ELI            sp2_sp3_14         O44         C43         C26         C23     120.000    10.0     6
+ELI       const_sp2_sp2_9          C1          C2          C3          C4       0.000     5.0     2
+ELI       const_sp2_sp2_1          C2          C3          C4          C5       0.000     5.0     2
+ELI            sp2_sp2_20          O7         C10          C3          C2       0.000     5.0     2
+ELI              const_13          C3          C4          C5          C6       0.000    10.0     2
+ELI             sp2_sp2_3         O16         C11          C4          C3     180.000     5.0     2
+ELI              const_17          C4          C5          C6          C1       0.000    10.0     2
+ELI            sp2_sp2_16          O7         C10         C15         C18       0.000     5.0     2
+ELI             sp2_sp2_8         O16         C11         C14         C17       0.000     5.0     2
+ELI            sp2_sp2_12         C17         C14         C15         C18       0.000     5.0     2
+ELI             sp2_sp3_1         C11         C14         C17        H171     150.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ELI    plan-1          C1   0.020
+ELI    plan-1         C10   0.020
+ELI    plan-1         C11   0.020
+ELI    plan-1          C2   0.020
+ELI    plan-1          C3   0.020
+ELI    plan-1          C4   0.020
+ELI    plan-1          C5   0.020
+ELI    plan-1          C6   0.020
+ELI    plan-1          H1   0.020
+ELI    plan-1          H2   0.020
+ELI    plan-1          H5   0.020
+ELI    plan-1          H6   0.020
+ELI    plan-2         C10   0.020
+ELI    plan-2         C15   0.020
+ELI    plan-2          C3   0.020
+ELI    plan-2          O7   0.020
+ELI    plan-3         C11   0.020
+ELI    plan-3         C14   0.020
+ELI    plan-3          C4   0.020
+ELI    plan-3         O16   0.020
+ELI    plan-4         C11   0.020
+ELI    plan-4         C14   0.020
+ELI    plan-4         C15   0.020
+ELI    plan-4         C17   0.020
+ELI    plan-5         C10   0.020
+ELI    plan-5         C14   0.020
+ELI    plan-5         C15   0.020
+ELI    plan-5         C18   0.020
+ELI    plan-6         C26   0.020
+ELI    plan-6         C43   0.020
+ELI    plan-6         O44   0.020
+ELI    plan-6         O45   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ELI           SMILES              ACDLabs 10.04                                                                             O=C2c1c(cccc1)C(=O)C(=C2C)CCCCCC(=O)O
+ELI SMILES_CANONICAL               CACTVS 3.341                                                                               CC1=C(CCCCCC(O)=O)C(=O)c2ccccc2C1=O
+ELI           SMILES               CACTVS 3.341                                                                               CC1=C(CCCCCC(O)=O)C(=O)c2ccccc2C1=O
+ELI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               CC1=C(C(=O)c2ccccc2C1=O)CCCCCC(=O)O
+ELI           SMILES "OpenEye OEToolkits" 1.5.0                                                                               CC1=C(C(=O)c2ccccc2C1=O)CCCCCC(=O)O
+ELI            InChI                InChI  1.03 InChI=1S/C17H18O4/c1-11-12(7-3-2-4-10-15(18)19)17(21)14-9-6-5-8-13(14)16(11)20/h5-6,8-9H,2-4,7,10H2,1H3,(H,18,19)
+ELI         InChIKey                InChI  1.03                                                                                       ICGRXHWXPCXIKM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ELI acedrg               243         "dictionary generator"                  
+ELI acedrg_database      11          "data source"                           
+ELI rdkit                2017.03.2   "Chemoinformatics tool"
+ELI refmac5              5.8.0238    "optimization tool"                     

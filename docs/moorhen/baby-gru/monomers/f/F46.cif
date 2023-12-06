@@ -1,0 +1,475 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+F46     F46      N-[2-fluoro-5-({9-[2-(morpholin-4-yl)ethoxy]-11-oxo-6,11-dihydrodibenzo[b,e]oxepin-3-yl}amino)phenyl]benzamide     NON-POLYMER     72     42     .     
+#
+data_comp_F46
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+F46     OAA     O       O       0       -0.887      -1.289      -14.585     
+F46     OAB     O       O       0       -1.753      3.536       -23.548     
+F46     FAC     F       F       0       -5.318      -2.536      -15.744     
+F46     CAD     C       CR16    0       -0.277      -4.975      -11.243     
+F46     CAE     C       CR16    0       -1.047      -5.453      -12.284     
+F46     CAF     C       CR16    0       0.074       -3.641      -11.206     
+F46     CAG     C       CR16    0       -1.466      -4.599      -13.295     
+F46     CAH     C       CR16    0       -0.344      -2.780      -12.210     
+F46     CAI     C       CR16    0       -3.864      -1.740      -18.963     
+F46     CAJ     C       CR16    0       -2.192      0.711       -20.509     
+F46     CAK     C       CR16    0       -4.814      -2.005      -17.989     
+F46     CAL     C       CR16    0       -1.853      1.382       -28.040     
+F46     CAM     C       CR16    0       -0.875      0.826       -27.226     
+F46     CAN     C       CR16    0       -2.231      1.610       -21.543     
+F46     CAO     C       CR16    0       -2.093      -2.018      -17.349     
+F46     CAP     C       CR16    0       -1.003      -0.846      -21.902     
+F46     CAQ     C       CR16    0       -2.757      2.560       -26.143     
+F46     CAR     C       CH2     0       -5.511      6.829       -28.667     
+F46     CAS     C       CH2     0       -5.713      6.898       -31.004     
+F46     CAT     C       CH2     0       -4.084      2.531       -29.541     
+F46     CAU     C       CH2     0       -5.787      5.347       -28.737     
+F46     CAV     C       CH2     0       -5.733      5.394       -31.128     
+F46     CAW     C       CH2     0       -5.317      3.285       -29.966     
+F46     CAX     C       CH2     0       0.246       0.502       -25.004     
+F46     NAY     N       NH1     0       -2.709      -2.576      -14.994     
+F46     NAZ     N       NH1     0       -1.532      -1.471      -19.628     
+F46     OBA     O       O2      0       -4.962      7.338       -29.878     
+F46     OBB     O       O2      0       -3.818      2.874       -28.182     
+F46     OBC     O       O2      0       -0.436      -0.389      -24.110     
+F46     CBD     C       C       0       -1.554      -2.289      -14.338     
+F46     CBE     C       C       0       -1.741      2.350       -23.855     
+F46     CBF     C       CR6     0       -2.507      -1.742      -18.647     
+F46     CBG     C       CR6     0       -1.582      -0.529      -20.676     
+F46     CBH     C       CR6     0       -4.398      -2.273      -16.707     
+F46     CBI     C       CR6     0       -2.801      2.250       -27.500     
+F46     CBJ     C       CR6     0       -1.123      -3.248      -13.268     
+F46     CBK     C       CR6     0       -0.807      1.133       -25.867     
+F46     CBL     C       CR6     0       -3.049      -2.287      -16.353     
+F46     CBM     C       CR6     0       -1.020      0.057       -22.948     
+F46     CBN     C       CR6     0       -1.655      1.308       -22.799     
+F46     CBO     C       CR6     0       -1.770      1.991       -25.311     
+F46     NBP     N       NT      0       -5.165      4.758       -29.931     
+F46     HAD     H       H       0       0.008       -5.559      -10.558     
+F46     HAE     H       H       0       -1.286      -6.365      -12.311     
+F46     HAF     H       H       0       0.599       -3.312      -10.495     
+F46     HAG     H       H       0       -1.991      -4.938      -13.998     
+F46     HAH     H       H       0       -0.098      -1.873      -12.172     
+F46     HAI     H       H       0       -4.138      -1.554      -19.842     
+F46     HAJ     H       H       0       -2.584      0.931       -19.682     
+F46     HAK     H       H       0       -5.731      -2.002      -18.202     
+F46     HAL     H       H       0       -1.871      1.167       -28.958     
+F46     HAM     H       H       0       -0.239      0.239       -27.600     
+F46     HAN     H       H       0       -2.650      2.444       -21.412     
+F46     HAO     H       H       0       -1.187      -2.019      -17.142     
+F46     HAP     H       H       0       -0.585      -1.687      -22.023     
+F46     HAQ     H       H       0       -3.395      3.149       -25.772     
+F46     HAR     H       H       0       -6.345      7.301       -28.472     
+F46     HARA    H       H       0       -4.886      7.004       -27.936     
+F46     HAS     H       H       0       -6.632      7.226       -30.925     
+F46     HASA    H       H       0       -5.325      7.281       -31.815     
+F46     HAT     H       H       0       -3.327      2.778       -30.103     
+F46     HATA    H       H       0       -4.232      1.571       -29.622     
+F46     HAU     H       H       0       -5.434      4.911       -27.930     
+F46     HAUA    H       H       0       -6.758      5.196       -28.765     
+F46     HAV     H       H       0       -5.214      5.124       -31.919     
+F46     HAVA    H       H       0       -6.659      5.088       -31.252     
+F46     HAW     H       H       0       -6.057      3.022       -29.384     
+F46     HAWA    H       H       0       -5.545      3.007       -30.875     
+F46     HAX     H       H       0       0.736       1.183       -24.500     
+F46     HAXA    H       H       0       0.884       0.001       -25.551     
+F46     HNAY    H       H       0       -3.343      -2.970      -14.532     
+F46     HNAZ    H       H       0       -0.805      -1.948      -19.581     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+F46         OAA         CBD      DOUBLE       n     1.226  0.0100     1.226  0.0100
+F46         OAB         CBE      DOUBLE       n     1.224  0.0110     1.224  0.0110
+F46         FAC         CBH      SINGLE       n     1.357  0.0110     1.357  0.0110
+F46         CAD         CAE      DOUBLE       y     1.376  0.0124     1.376  0.0124
+F46         CAD         CAF      SINGLE       y     1.376  0.0124     1.376  0.0124
+F46         CAE         CAG      SINGLE       y     1.384  0.0100     1.384  0.0100
+F46         CAF         CAH      DOUBLE       y     1.384  0.0100     1.384  0.0100
+F46         CAG         CBJ      DOUBLE       y     1.389  0.0100     1.389  0.0100
+F46         CAH         CBJ      SINGLE       y     1.389  0.0100     1.389  0.0100
+F46         CAI         CAK      DOUBLE       y     1.384  0.0100     1.384  0.0100
+F46         CAI         CBF      SINGLE       y     1.389  0.0100     1.389  0.0100
+F46         CAJ         CAN      DOUBLE       y     1.368  0.0103     1.368  0.0103
+F46         CAJ         CBG      SINGLE       y     1.389  0.0100     1.389  0.0100
+F46         CAK         CBH      SINGLE       y     1.372  0.0100     1.372  0.0100
+F46         CAL         CAM      SINGLE       y     1.385  0.0100     1.385  0.0100
+F46         CAL         CBI      DOUBLE       y     1.386  0.0109     1.386  0.0109
+F46         CAM         CBK      DOUBLE       y     1.391  0.0100     1.391  0.0100
+F46         CAN         CBN      SINGLE       y     1.405  0.0113     1.405  0.0113
+F46         CAO         CBF      DOUBLE       y     1.386  0.0100     1.386  0.0100
+F46         CAO         CBL      SINGLE       y     1.395  0.0130     1.395  0.0130
+F46         CAP         CBG      DOUBLE       y     1.390  0.0100     1.390  0.0100
+F46         CAP         CBM      SINGLE       y     1.378  0.0100     1.378  0.0100
+F46         CAQ         CBI      SINGLE       y     1.388  0.0110     1.388  0.0110
+F46         CAQ         CBO      DOUBLE       y     1.408  0.0100     1.408  0.0100
+F46         CAR         CAU      SINGLE       n     1.506  0.0100     1.506  0.0100
+F46         CAR         OBA      SINGLE       n     1.420  0.0100     1.420  0.0100
+F46         CAS         CAV      SINGLE       n     1.506  0.0100     1.506  0.0100
+F46         CAS         OBA      SINGLE       n     1.420  0.0100     1.420  0.0100
+F46         CAT         CAW      SINGLE       n     1.505  0.0100     1.505  0.0100
+F46         CAT         OBB      SINGLE       n     1.425  0.0100     1.425  0.0100
+F46         CAU         NBP      SINGLE       n     1.464  0.0116     1.464  0.0116
+F46         CAV         NBP      SINGLE       n     1.464  0.0116     1.464  0.0116
+F46         CAW         NBP      SINGLE       n     1.470  0.0153     1.470  0.0153
+F46         CAX         OBC      SINGLE       n     1.432  0.0146     1.432  0.0146
+F46         CAX         CBK      SINGLE       n     1.502  0.0100     1.502  0.0100
+F46         NAY         CBD      SINGLE       n     1.351  0.0126     1.351  0.0126
+F46         NAY         CBL      SINGLE       n     1.409  0.0200     1.409  0.0200
+F46         NAZ         CBF      SINGLE       n     1.404  0.0159     1.404  0.0159
+F46         NAZ         CBG      SINGLE       n     1.404  0.0159     1.404  0.0159
+F46         OBB         CBI      SINGLE       n     1.369  0.0106     1.369  0.0106
+F46         OBC         CBM      SINGLE       n     1.369  0.0100     1.369  0.0100
+F46         CBD         CBJ      SINGLE       n     1.494  0.0100     1.494  0.0100
+F46         CBE         CBN      SINGLE       n     1.471  0.0162     1.471  0.0162
+F46         CBE         CBO      SINGLE       n     1.501  0.0100     1.501  0.0100
+F46         CBH         CBL      DOUBLE       y     1.385  0.0129     1.385  0.0129
+F46         CBK         CBO      SINGLE       y     1.404  0.0100     1.404  0.0100
+F46         CBM         CBN      DOUBLE       y     1.398  0.0100     1.398  0.0100
+F46         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0161
+F46         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0180
+F46         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0180
+F46         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0168
+F46         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0168
+F46         CAI         HAI      SINGLE       n     1.082  0.0130     0.939  0.0128
+F46         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0198
+F46         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0159
+F46         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0169
+F46         CAM         HAM      SINGLE       n     1.082  0.0130     0.943  0.0173
+F46         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0200
+F46         CAO         HAO      SINGLE       n     1.082  0.0130     0.930  0.0100
+F46         CAP         HAP      SINGLE       n     1.082  0.0130     0.947  0.0200
+F46         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.944  0.0161
+F46         CAR         HAR      SINGLE       n     1.089  0.0100     0.978  0.0127
+F46         CAR        HARA      SINGLE       n     1.089  0.0100     0.978  0.0127
+F46         CAS         HAS      SINGLE       n     1.089  0.0100     0.978  0.0127
+F46         CAS        HASA      SINGLE       n     1.089  0.0100     0.978  0.0127
+F46         CAT         HAT      SINGLE       n     1.089  0.0100     0.975  0.0100
+F46         CAT        HATA      SINGLE       n     1.089  0.0100     0.975  0.0100
+F46         CAU         HAU      SINGLE       n     1.089  0.0100     0.983  0.0103
+F46         CAU        HAUA      SINGLE       n     1.089  0.0100     0.983  0.0103
+F46         CAV         HAV      SINGLE       n     1.089  0.0100     0.983  0.0103
+F46         CAV        HAVA      SINGLE       n     1.089  0.0100     0.983  0.0103
+F46         CAW         HAW      SINGLE       n     1.089  0.0100     0.977  0.0152
+F46         CAW        HAWA      SINGLE       n     1.089  0.0100     0.977  0.0152
+F46         CAX         HAX      SINGLE       n     1.089  0.0100     0.978  0.0133
+F46         CAX        HAXA      SINGLE       n     1.089  0.0100     0.978  0.0133
+F46         NAY        HNAY      SINGLE       n     1.016  0.0100     0.876  0.0200
+F46         NAZ        HNAZ      SINGLE       n     1.016  0.0100     0.870  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+F46         CAE         CAD         CAF     119.943    1.50
+F46         CAE         CAD         HAD     120.028    1.50
+F46         CAF         CAD         HAD     120.028    1.50
+F46         CAD         CAE         CAG     120.226    1.50
+F46         CAD         CAE         HAE     119.933    1.50
+F46         CAG         CAE         HAE     119.842    1.50
+F46         CAD         CAF         CAH     120.226    1.50
+F46         CAD         CAF         HAF     119.933    1.50
+F46         CAH         CAF         HAF     119.842    1.50
+F46         CAE         CAG         CBJ     120.300    1.50
+F46         CAE         CAG         HAG     119.776    1.50
+F46         CBJ         CAG         HAG     119.925    1.50
+F46         CAF         CAH         CBJ     120.300    1.50
+F46         CAF         CAH         HAH     119.776    1.50
+F46         CBJ         CAH         HAH     119.925    1.50
+F46         CAK         CAI         CBF     120.761    1.50
+F46         CAK         CAI         HAI     119.648    1.50
+F46         CBF         CAI         HAI     119.591    1.50
+F46         CAN         CAJ         CBG     120.330    1.50
+F46         CAN         CAJ         HAJ     119.994    1.50
+F46         CBG         CAJ         HAJ     119.676    1.50
+F46         CAI         CAK         CBH     119.047    1.50
+F46         CAI         CAK         HAK     120.543    1.50
+F46         CBH         CAK         HAK     120.410    1.50
+F46         CAM         CAL         CBI     119.924    1.50
+F46         CAM         CAL         HAL     120.057    1.50
+F46         CBI         CAL         HAL     120.019    1.50
+F46         CAL         CAM         CBK     121.098    1.50
+F46         CAL         CAM         HAM     119.529    1.50
+F46         CBK         CAM         HAM     119.372    1.50
+F46         CAJ         CAN         CBN     120.750    1.50
+F46         CAJ         CAN         HAN     119.783    1.50
+F46         CBN         CAN         HAN     119.467    1.50
+F46         CBF         CAO         CBL     118.994    1.76
+F46         CBF         CAO         HAO     120.532    1.50
+F46         CBL         CAO         HAO     120.474    1.50
+F46         CBG         CAP         CBM     120.198    1.50
+F46         CBG         CAP         HAP     120.202    1.50
+F46         CBM         CAP         HAP     119.600    1.50
+F46         CBI         CAQ         CBO     120.290    1.50
+F46         CBI         CAQ         HAQ     120.068    1.50
+F46         CBO         CAQ         HAQ     119.643    1.50
+F46         CAU         CAR         OBA     111.652    1.50
+F46         CAU         CAR         HAR     109.301    1.50
+F46         CAU         CAR        HARA     109.301    1.50
+F46         OBA         CAR         HAR     109.195    1.50
+F46         OBA         CAR        HARA     109.195    1.50
+F46         HAR         CAR        HARA     108.175    1.50
+F46         CAV         CAS         OBA     111.652    1.50
+F46         CAV         CAS         HAS     109.301    1.50
+F46         CAV         CAS        HASA     109.301    1.50
+F46         OBA         CAS         HAS     109.195    1.50
+F46         OBA         CAS        HASA     109.195    1.50
+F46         HAS         CAS        HASA     108.175    1.50
+F46         CAW         CAT         OBB     107.560    1.73
+F46         CAW         CAT         HAT     110.293    1.50
+F46         CAW         CAT        HATA     110.293    1.50
+F46         OBB         CAT         HAT     110.103    1.50
+F46         OBB         CAT        HATA     110.103    1.50
+F46         HAT         CAT        HATA     108.653    1.50
+F46         CAR         CAU         NBP     110.272    1.50
+F46         CAR         CAU         HAU     109.668    1.50
+F46         CAR         CAU        HAUA     109.668    1.50
+F46         NBP         CAU         HAU     109.589    1.50
+F46         NBP         CAU        HAUA     109.589    1.50
+F46         HAU         CAU        HAUA     108.316    1.50
+F46         CAS         CAV         NBP     110.272    1.50
+F46         CAS         CAV         HAV     109.668    1.50
+F46         CAS         CAV        HAVA     109.668    1.50
+F46         NBP         CAV         HAV     109.589    1.50
+F46         NBP         CAV        HAVA     109.589    1.50
+F46         HAV         CAV        HAVA     108.316    1.50
+F46         CAT         CAW         NBP     113.936    1.71
+F46         CAT         CAW         HAW     108.646    1.50
+F46         CAT         CAW        HAWA     108.646    1.50
+F46         NBP         CAW         HAW     108.784    1.50
+F46         NBP         CAW        HAWA     108.784    1.50
+F46         HAW         CAW        HAWA     107.745    1.50
+F46         OBC         CAX         CBK     109.567    2.18
+F46         OBC         CAX         HAX     109.697    1.50
+F46         OBC         CAX        HAXA     109.697    1.50
+F46         CBK         CAX         HAX     110.054    1.50
+F46         CBK         CAX        HAXA     110.054    1.50
+F46         HAX         CAX        HAXA     108.398    1.50
+F46         CBD         NAY         CBL     125.550    3.00
+F46         CBD         NAY        HNAY     117.805    2.38
+F46         CBL         NAY        HNAY     116.645    3.00
+F46         CBF         NAZ         CBG     127.229    1.73
+F46         CBF         NAZ        HNAZ     116.386    2.23
+F46         CBG         NAZ        HNAZ     116.386    2.23
+F46         CAR         OBA         CAS     109.829    1.50
+F46         CAT         OBB         CBI     117.255    1.53
+F46         CAX         OBC         CBM     118.066    1.50
+F46         OAA         CBD         NAY     123.137    1.50
+F46         OAA         CBD         CBJ     120.916    1.50
+F46         NAY         CBD         CBJ     115.948    1.50
+F46         OAB         CBE         CBN     119.816    1.50
+F46         OAB         CBE         CBO     119.156    1.50
+F46         CBN         CBE         CBO     121.028    1.59
+F46         CAI         CBF         CAO     120.371    1.50
+F46         CAI         CBF         NAZ     119.769    2.22
+F46         CAO         CBF         NAZ     119.861    2.70
+F46         CAJ         CBG         CAP     119.541    1.50
+F46         CAJ         CBG         NAZ     120.183    2.22
+F46         CAP         CBG         NAZ     120.275    2.70
+F46         FAC         CBH         CAK     119.781    1.50
+F46         FAC         CBH         CBL     118.201    1.50
+F46         CAK         CBH         CBL     122.018    1.82
+F46         CAL         CBI         CAQ     120.235    1.50
+F46         CAL         CBI         OBB     120.154    3.00
+F46         CAQ         CBI         OBB     119.608    3.00
+F46         CAG         CBJ         CAH     119.007    1.50
+F46         CAG         CBJ         CBD     120.497    2.90
+F46         CAH         CBJ         CBD     120.497    2.90
+F46         CAM         CBK         CAX     119.092    1.55
+F46         CAM         CBK         CBO     119.108    1.50
+F46         CAX         CBK         CBO     121.800    1.50
+F46         CAO         CBL         NAY     122.033    3.00
+F46         CAO         CBL         CBH     118.809    1.59
+F46         NAY         CBL         CBH     119.158    2.08
+F46         CAP         CBM         OBC     121.960    3.00
+F46         CAP         CBM         CBN     120.398    1.50
+F46         OBC         CBM         CBN     117.643    2.15
+F46         CAN         CBN         CBE     119.099    2.35
+F46         CAN         CBN         CBM     118.783    1.50
+F46         CBE         CBN         CBM     122.118    2.01
+F46         CAQ         CBO         CBE     117.697    2.61
+F46         CAQ         CBO         CBK     119.348    1.50
+F46         CBE         CBO         CBK     122.955    2.60
+F46         CAU         NBP         CAV     108.582    1.50
+F46         CAU         NBP         CAW     110.750    1.50
+F46         CAV         NBP         CAW     110.750    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+F46              const_26         CAI         CAK         CBH         FAC     180.000    10.0     2
+F46              const_61         CBI         CAL         CAM         CBK       0.000    10.0     2
+F46              const_94         CAM         CAL         CBI         OBB     180.000    10.0     2
+F46              const_66         CAL         CAM         CBK         CAX     180.000    10.0     2
+F46              const_46         CAJ         CAN         CBN         CBE     180.000    10.0     2
+F46              const_38         CBL         CAO         CBF         NAZ     180.000    10.0     2
+F46              const_34         CBF         CAO         CBL         NAY     180.000    10.0     2
+F46              const_58         CBM         CAP         CBG         NAZ     180.000    10.0     2
+F46              const_54         CBG         CAP         CBM         OBC     180.000    10.0     2
+F46              const_78         CBO         CAQ         CBI         OBB     180.000    10.0     2
+F46              const_74         CBI         CAQ         CBO         CBE     180.000    10.0     2
+F46             sp3_sp3_1         OBA         CAR         CAU         NBP      60.000    10.0     3
+F46            sp3_sp3_34         CAU         CAR         OBA         CAS     180.000    10.0     3
+F46            sp3_sp3_22         OBA         CAS         CAV         NBP     -60.000    10.0     3
+F46            sp3_sp3_31         CAV         CAS         OBA         CAR      60.000    10.0     3
+F46            sp3_sp3_37         OBB         CAT         CAW         NBP     180.000    10.0     3
+F46            sp3_sp3_46         CAW         CAT         OBB         CBI     180.000    10.0     3
+F46            sp3_sp3_11         CAR         CAU         NBP         CAW      60.000    10.0     3
+F46            sp3_sp3_17         CAS         CAV         NBP         CAW     180.000    10.0     3
+F46            sp3_sp3_50         CAT         CAW         NBP         CAU     -60.000    10.0     3
+F46            sp3_sp3_55         CBK         CAX         OBC         CBM     180.000    10.0     3
+F46             sp2_sp3_2         CAM         CBK         CAX         OBC     -90.000    10.0     6
+F46             sp2_sp2_3         OAA         CBD         NAY         CBL       0.000     5.0     2
+F46             sp2_sp2_5         CAO         CBL         NAY         CBD     180.000     5.0     2
+F46             sp2_sp2_9         CAI         CBF         NAZ         CBG     180.000     5.0     2
+F46            sp2_sp2_13         CAJ         CBG         NAZ         CBF     180.000     5.0     2
+F46            sp2_sp2_17         CAL         CBI         OBB         CAT     180.000     5.0     2
+F46            sp2_sp2_19         CAP         CBM         OBC         CAX     180.000     5.0     2
+F46            sp2_sp2_23         OAA         CBD         CBJ         CAG       0.000     5.0     2
+F46            sp2_sp2_27         OAB         CBE         CBN         CAN       0.000     5.0     2
+F46            sp2_sp2_31         OAB         CBE         CBO         CAQ       0.000     5.0     2
+F46              const_32         FAC         CBH         CBL         NAY       0.000    10.0     2
+F46              const_72         CAX         CBK         CBO         CBE       0.000    10.0     2
+F46              const_52         OBC         CBM         CBN         CBE       0.000    10.0     2
+F46       const_sp2_sp2_1         CAF         CAD         CAE         CAG       0.000     5.0     2
+F46              const_81         CAE         CAD         CAF         CAH       0.000    10.0     2
+F46       const_sp2_sp2_5         CAD         CAE         CAG         CBJ       0.000     5.0     2
+F46              const_17         CAD         CAF         CAH         CBJ       0.000    10.0     2
+F46              const_10         CAE         CAG         CBJ         CBD     180.000    10.0     2
+F46              const_14         CAF         CAH         CBJ         CBD     180.000    10.0     2
+F46              const_21         CBF         CAI         CAK         CBH       0.000    10.0     2
+F46              const_86         CAK         CAI         CBF         NAZ     180.000    10.0     2
+F46              const_41         CBG         CAJ         CAN         CBN       0.000    10.0     2
+F46              const_90         CAN         CAJ         CBG         NAZ     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+F46    chir_1    NBP    CAW    CAU    CAV    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+F46    plan-1         CAI   0.020
+F46    plan-1         CAK   0.020
+F46    plan-1         CAO   0.020
+F46    plan-1         CBF   0.020
+F46    plan-1         CBH   0.020
+F46    plan-1         CBL   0.020
+F46    plan-1         FAC   0.020
+F46    plan-1         HAI   0.020
+F46    plan-1         HAK   0.020
+F46    plan-1         HAO   0.020
+F46    plan-1         NAY   0.020
+F46    plan-1         NAZ   0.020
+F46    plan-2         CAL   0.020
+F46    plan-2         CAM   0.020
+F46    plan-2         CAQ   0.020
+F46    plan-2         CAX   0.020
+F46    plan-2         CBE   0.020
+F46    plan-2         CBI   0.020
+F46    plan-2         CBK   0.020
+F46    plan-2         CBO   0.020
+F46    plan-2         HAL   0.020
+F46    plan-2         HAM   0.020
+F46    plan-2         HAQ   0.020
+F46    plan-2         OBB   0.020
+F46    plan-3         CAJ   0.020
+F46    plan-3         CAN   0.020
+F46    plan-3         CAP   0.020
+F46    plan-3         CBE   0.020
+F46    plan-3         CBG   0.020
+F46    plan-3         CBM   0.020
+F46    plan-3         CBN   0.020
+F46    plan-3         HAJ   0.020
+F46    plan-3         HAN   0.020
+F46    plan-3         HAP   0.020
+F46    plan-3         NAZ   0.020
+F46    plan-3         OBC   0.020
+F46    plan-4         CAD   0.020
+F46    plan-4         CAE   0.020
+F46    plan-4         CAF   0.020
+F46    plan-4         CAG   0.020
+F46    plan-4         CAH   0.020
+F46    plan-4         CBD   0.020
+F46    plan-4         CBJ   0.020
+F46    plan-4         HAD   0.020
+F46    plan-4         HAE   0.020
+F46    plan-4         HAF   0.020
+F46    plan-4         HAG   0.020
+F46    plan-4         HAH   0.020
+F46    plan-5         CBD   0.020
+F46    plan-5         CBL   0.020
+F46    plan-5        HNAY   0.020
+F46    plan-5         NAY   0.020
+F46    plan-6         CBF   0.020
+F46    plan-6         CBG   0.020
+F46    plan-6        HNAZ   0.020
+F46    plan-6         NAZ   0.020
+F46    plan-7         CBD   0.020
+F46    plan-7         CBJ   0.020
+F46    plan-7         NAY   0.020
+F46    plan-7         OAA   0.020
+F46    plan-8         CBE   0.020
+F46    plan-8         CBN   0.020
+F46    plan-8         CBO   0.020
+F46    plan-8         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+F46           SMILES              ACDLabs 12.01                                                                                                                                  Fc2ccc(cc2NC(=O)c1ccccc1)Nc5ccc6C(=O)c4cc(OCCN3CCOCC3)ccc4COc6c5
+F46            InChI                InChI  1.03 InChI=1S/C33H30FN3O5/c34-29-11-8-24(18-30(29)36-33(39)22-4-2-1-3-5-22)35-25-7-10-27-31(19-25)42-21-23-6-9-26(20-28(23)32(27)38)41-17-14-37-12-15-40-16-13-37/h1-11,18-20,35H,12-17,21H2,(H,36,39)
+F46         InChIKey                InChI  1.03                                                                                                                                                                       OPUXVIDSMSFXIU-UHFFFAOYSA-N
+F46 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                  Fc1ccc(Nc2ccc3C(=O)c4cc(OCCN5CCOCC5)ccc4COc3c2)cc1NC(=O)c6ccccc6
+F46           SMILES               CACTVS 3.370                                                                                                                                  Fc1ccc(Nc2ccc3C(=O)c4cc(OCCN5CCOCC5)ccc4COc3c2)cc1NC(=O)c6ccccc6
+F46 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                c1ccc(cc1)C(=O)Nc2cc(ccc2F)Nc3ccc4c(c3)OCc5ccc(cc5C4=O)OCCN6CCOCC6
+F46           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                c1ccc(cc1)C(=O)Nc2cc(ccc2F)Nc3ccc4c(c3)OCc5ccc(cc5C4=O)OCCN6CCOCC6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+F46 acedrg               243         "dictionary generator"                  
+F46 acedrg_database      11          "data source"                           
+F46 rdkit                2017.03.2   "Chemoinformatics tool"
+F46 refmac5              5.8.0238    "optimization tool"                     

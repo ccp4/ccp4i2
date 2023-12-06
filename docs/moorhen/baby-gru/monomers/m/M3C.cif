@@ -1,0 +1,212 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M3C     M3C      (2S)-2-AMINO-4-(METHYLSULFANYL)-1-(1,3-THIAZOL-2-YL)BUTANE-1,1-DIOL     NON-POLYMER     28     14     .     
+#
+data_comp_M3C
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M3C     N1      N       NT2     0       16.614      2.996       0.882       
+M3C     C2      C       CH1     0       16.285      3.265       2.296       
+M3C     C10     C       CH2     0       17.326      4.241       2.873       
+M3C     C11     C       CH2     0       18.707      3.628       3.077       
+M3C     S12     S       S2      0       19.774      4.654       4.121       
+M3C     C13     C       CH3     0       19.285      4.088       5.749       
+M3C     C3      C       CT      0       14.819      3.744       2.436       
+M3C     O4      O       OH1     0       14.007      2.847       1.688       
+M3C     O15     O       OH1     0       14.734      5.065       1.914       
+M3C     C5      C       CR5     0       14.393      3.716       3.863       
+M3C     N6      N       NRD5    0       14.220      4.794       4.658       
+M3C     C7      C       CR15    0       13.819      4.481       5.951       
+M3C     C8      C       CR15    0       13.686      3.109       6.141       
+M3C     S9      S       S2      0       14.061      2.320       4.722       
+M3C     HN11    H       H       0       16.707      3.751       0.424       
+M3C     HN12    H       H       0       17.373      2.540       0.818       
+M3C     H2      H       H       0       16.384      2.414       2.782       
+M3C     H101    H       H       0       17.005      4.579       3.735       
+M3C     H102    H       H       0       17.407      5.008       2.266       
+M3C     H111    H       H       0       19.139      3.506       2.205       
+M3C     H112    H       H       0       18.612      2.745       3.494       
+M3C     H131    H       H       0       19.768      4.586       6.421       
+M3C     H132    H       H       0       19.489      3.148       5.837       
+M3C     H133    H       H       0       18.337      4.224       5.866       
+M3C     HO4     H       H       0       13.233      3.184       1.591       
+M3C     H15     H       H       0       14.808      5.038       1.070       
+M3C     H7      H       H       0       13.660      5.132       6.613       
+M3C     H8      H       H       0       13.429      2.646       6.921       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M3C          N1          C2      SINGLE       n     1.473  0.0130     1.473  0.0130
+M3C          C2         C10      SINGLE       n     1.527  0.0173     1.527  0.0173
+M3C          C2          C3      SINGLE       n     1.540  0.0133     1.540  0.0133
+M3C         C10         C11      SINGLE       n     1.524  0.0100     1.524  0.0100
+M3C         C11         S12      SINGLE       n     1.811  0.0200     1.811  0.0200
+M3C         S12         C13      SINGLE       n     1.792  0.0100     1.792  0.0100
+M3C          C3          O4      SINGLE       n     1.417  0.0200     1.417  0.0200
+M3C          C3         O15      SINGLE       n     1.417  0.0200     1.417  0.0200
+M3C          C3          C5      SINGLE       n     1.486  0.0106     1.486  0.0106
+M3C          C5          N6      DOUBLE       y     1.332  0.0200     1.332  0.0200
+M3C          C5          S9      SINGLE       y     1.695  0.0200     1.695  0.0200
+M3C          N6          C7      SINGLE       y     1.371  0.0139     1.371  0.0139
+M3C          C7          C8      DOUBLE       y     1.380  0.0196     1.380  0.0196
+M3C          C8          S9      SINGLE       y     1.695  0.0200     1.695  0.0200
+M3C          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+M3C          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+M3C          C2          H2      SINGLE       n     1.089  0.0100     0.985  0.0149
+M3C         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0160
+M3C         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0160
+M3C         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0122
+M3C         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0122
+M3C         C13        H131      SINGLE       n     1.089  0.0100     0.965  0.0170
+M3C         C13        H132      SINGLE       n     1.089  0.0100     0.965  0.0170
+M3C         C13        H133      SINGLE       n     1.089  0.0100     0.965  0.0170
+M3C          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+M3C         O15         H15      SINGLE       n     0.970  0.0120     0.848  0.0200
+M3C          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0176
+M3C          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M3C          C2          N1        HN11     109.715    3.00
+M3C          C2          N1        HN12     109.715    3.00
+M3C        HN11          N1        HN12     107.559    3.00
+M3C          N1          C2         C10     110.129    2.63
+M3C          N1          C2          C3     111.883    2.59
+M3C          N1          C2          H2     107.944    1.55
+M3C         C10          C2          C3     111.094    2.85
+M3C         C10          C2          H2     107.815    1.50
+M3C          C3          C2          H2     109.155    1.50
+M3C          C2         C10         C11     113.897    1.50
+M3C          C2         C10        H101     108.489    1.50
+M3C          C2         C10        H102     108.489    1.50
+M3C         C11         C10        H101     108.955    1.50
+M3C         C11         C10        H102     108.955    1.50
+M3C        H101         C10        H102     107.698    1.50
+M3C         C10         C11         S12     112.576    2.44
+M3C         C10         C11        H111     109.206    1.50
+M3C         C10         C11        H112     109.206    1.50
+M3C         S12         C11        H111     108.861    1.50
+M3C         S12         C11        H112     108.861    1.50
+M3C        H111         C11        H112     107.939    1.50
+M3C         C11         S12         C13     100.595    1.50
+M3C         S12         C13        H131     109.425    1.50
+M3C         S12         C13        H132     109.425    1.50
+M3C         S12         C13        H133     109.425    1.50
+M3C        H131         C13        H132     109.509    1.50
+M3C        H131         C13        H133     109.509    1.50
+M3C        H132         C13        H133     109.509    1.50
+M3C          C2          C3          O4     109.482    3.00
+M3C          C2          C3         O15     109.482    3.00
+M3C          C2          C3          C5     110.747    2.16
+M3C          O4          C3         O15     111.904    1.92
+M3C          O4          C3          C5     111.149    2.31
+M3C         O15          C3          C5     111.149    2.31
+M3C          C3          O4         HO4     109.055    1.50
+M3C          C3         O15         H15     109.055    1.50
+M3C          C3          C5          N6     127.036    3.00
+M3C          C3          C5          S9     124.904    3.00
+M3C          N6          C5          S9     108.060    3.00
+M3C          C5          N6          C7     107.168    1.65
+M3C          N6          C7          C8     108.652    1.50
+M3C          N6          C7          H7     124.987    1.50
+M3C          C8          C7          H7     126.361    1.50
+M3C          C7          C8          S9     108.060    3.00
+M3C          C7          C8          H8     128.837    1.50
+M3C          S9          C8          H8     123.103    3.00
+M3C          C5          S9          C8     108.060    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M3C             sp3_sp3_1         C10          C2          N1        HN11     180.000    10.0     3
+M3C       const_sp2_sp2_3          C8          C7          N6          C5       0.000     5.0     2
+M3C       const_sp2_sp2_5          N6          C7          C8          S9       0.000     5.0     2
+M3C       const_sp2_sp2_9          C7          C8          S9          C5       0.000     5.0     2
+M3C             sp3_sp3_7         C11         C10          C2          N1     180.000    10.0     3
+M3C            sp3_sp3_16          N1          C2          C3          O4     180.000    10.0     3
+M3C            sp3_sp3_25          C2         C10         C11         S12     180.000    10.0     3
+M3C            sp3_sp3_34         C10         C11         S12         C13     180.000    10.0     3
+M3C            sp3_sp3_37        H131         C13         S12         C11     180.000    10.0     3
+M3C            sp3_sp3_42          C2          C3          O4         HO4     -60.000    10.0     3
+M3C            sp3_sp3_45          C2          C3         O15         H15     -60.000    10.0     3
+M3C             sp2_sp3_3          N6          C5          C3          C2      30.000    10.0     6
+M3C       const_sp2_sp2_2          C3          C5          N6          C7     180.000     5.0     2
+M3C              const_12          C3          C5          S9          C8     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+M3C    chir_1    C2    N1    C3    C10    positive
+M3C    chir_2    C3    O4    O15    C5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M3C    plan-1          C3   0.020
+M3C    plan-1          C5   0.020
+M3C    plan-1          C7   0.020
+M3C    plan-1          C8   0.020
+M3C    plan-1          H7   0.020
+M3C    plan-1          H8   0.020
+M3C    plan-1          N6   0.020
+M3C    plan-1          S9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M3C           SMILES              ACDLabs 10.04                                                                       OC(O)(c1nccs1)C(N)CCSC
+M3C SMILES_CANONICAL               CACTVS 3.341                                                                   CSCC[C@H](N)C(O)(O)c1sccn1
+M3C           SMILES               CACTVS 3.341                                                                    CSCC[CH](N)C(O)(O)c1sccn1
+M3C SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                  CSCC[C@@H](C(c1nccs1)(O)O)N
+M3C           SMILES "OpenEye OEToolkits" 1.5.0                                                                       CSCCC(C(c1nccs1)(O)O)N
+M3C            InChI                InChI  1.03 InChI=1S/C8H14N2O2S2/c1-13-4-2-6(9)8(11,12)7-10-3-5-14-7/h3,5-6,11-12H,2,4,9H2,1H3/t6-/m0/s1
+M3C         InChIKey                InChI  1.03                                                                  NPPGNJAWTLSRQG-LURJTMIESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M3C acedrg               243         "dictionary generator"                  
+M3C acedrg_database      11          "data source"                           
+M3C rdkit                2017.03.2   "Chemoinformatics tool"
+M3C refmac5              5.8.0238    "optimization tool"                     

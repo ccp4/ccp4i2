@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OIL     OIL      "(2S,3S)-2-hydroxy-3-methylpentanoic acid"     NON-POLYMER     20     9     .     
+#
+data_comp_OIL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OIL     C       C       C       0       3.599       -5.465      8.880       
+OIL     O       O       O       0       4.636       -4.773      8.918       
+OIL     O1      O       OH1     0       3.198       -5.470      11.261      
+OIL     CA      C       CH1     0       2.574       -5.253      10.002      
+OIL     CB      C       CH1     0       1.908       -3.867      9.943       
+OIL     CD1     C       CH3     0       0.551       -2.184      11.333      
+OIL     CG1     C       CH2     0       0.924       -3.634      11.098      
+OIL     CG2     C       CH3     0       1.221       -3.643      8.597       
+OIL     OXT     O       OC      -1      3.323       -6.313      8.009       
+OIL     HO1     H       H       0       2.689       -5.936      11.755      
+OIL     HA      H       H       0       1.859       -5.926      9.888       
+OIL     HB      H       H       0       2.629       -3.195      10.022      
+OIL     HD1     H       H       0       0.223       -2.076      12.242      
+OIL     HD1A    H       H       0       -0.145      -1.921      10.706      
+OIL     HD1B    H       H       0       1.333       -1.620      11.203      
+OIL     HG1     H       H       0       1.313       -3.987      11.924      
+OIL     HG1A    H       H       0       0.104       -4.141      10.913      
+OIL     HG2     H       H       0       0.599       -2.898      8.662       
+OIL     HG2A    H       H       0       0.733       -4.446      8.344       
+OIL     HG2B    H       H       0       1.887       -3.443      7.917       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OIL           C          CA      SINGLE       n     1.533  0.0100     1.533  0.0100
+OIL           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+OIL           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+OIL          O1          CA      SINGLE       n     1.419  0.0162     1.419  0.0162
+OIL          CA          CB      SINGLE       n     1.534  0.0100     1.534  0.0100
+OIL          CB         CG1      SINGLE       n     1.532  0.0100     1.532  0.0100
+OIL         CD1         CG1      SINGLE       n     1.511  0.0200     1.511  0.0200
+OIL          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+OIL          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+OIL          CA          HA      SINGLE       n     1.089  0.0100     0.988  0.0129
+OIL          CB          HB      SINGLE       n     1.089  0.0100     0.989  0.0175
+OIL         CD1         HD1      SINGLE       n     1.089  0.0100     0.973  0.0157
+OIL         CD1        HD1A      SINGLE       n     1.089  0.0100     0.973  0.0157
+OIL         CD1        HD1B      SINGLE       n     1.089  0.0100     0.973  0.0157
+OIL         CG1         HG1      SINGLE       n     1.089  0.0100     0.981  0.0160
+OIL         CG1        HG1A      SINGLE       n     1.089  0.0100     0.981  0.0160
+OIL         CG2         HG2      SINGLE       n     1.089  0.0100     0.973  0.0146
+OIL         CG2        HG2A      SINGLE       n     1.089  0.0100     0.973  0.0146
+OIL         CG2        HG2B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OIL          CA           C         OXT     117.167    1.52
+OIL          CA           C           O     117.167    1.52
+OIL         OXT           C           O     125.666    1.50
+OIL          CA          O1         HO1     108.894    3.00
+OIL           C          CA          O1     111.343    1.72
+OIL           C          CA          CB     111.511    2.91
+OIL           C          CA          HA     108.330    1.50
+OIL          O1          CA          CB     110.114    2.85
+OIL          O1          CA          HA     108.675    1.50
+OIL          CB          CA          HA     108.757    2.66
+OIL          CA          CB         CG1     111.094    2.85
+OIL          CA          CB         CG2     111.041    1.50
+OIL          CA          CB          HB     107.221    1.50
+OIL         CG1          CB         CG2     111.118    1.50
+OIL         CG1          CB          HB     107.675    1.50
+OIL         CG2          CB          HB     107.528    1.50
+OIL         CG1         CD1         HD1     109.566    1.50
+OIL         CG1         CD1        HD1A     109.566    1.50
+OIL         CG1         CD1        HD1B     109.566    1.50
+OIL         HD1         CD1        HD1A     109.380    1.50
+OIL         HD1         CD1        HD1B     109.380    1.50
+OIL        HD1A         CD1        HD1B     109.380    1.50
+OIL          CB         CG1         CD1     114.215    1.50
+OIL          CB         CG1         HG1     108.471    1.50
+OIL          CB         CG1        HG1A     108.471    1.50
+OIL         CD1         CG1         HG1     108.717    1.50
+OIL         CD1         CG1        HG1A     108.717    1.50
+OIL         HG1         CG1        HG1A     107.862    1.50
+OIL          CB         CG2         HG2     109.636    1.50
+OIL          CB         CG2        HG2A     109.636    1.50
+OIL          CB         CG2        HG2B     109.636    1.50
+OIL         HG2         CG2        HG2A     109.411    1.50
+OIL         HG2         CG2        HG2B     109.411    1.50
+OIL        HG2A         CG2        HG2B     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OIL             sp2_sp3_1         OXT           C          CA          O1       0.000    10.0     6
+OIL             sp3_sp3_1           C          CA          O1         HO1     180.000    10.0     3
+OIL             sp3_sp3_4           C          CA          CB         CG1     180.000    10.0     3
+OIL            sp3_sp3_13          CA          CB         CG1         CD1     180.000    10.0     3
+OIL            sp3_sp3_31          CA          CB         CG2         HG2     180.000    10.0     3
+OIL            sp3_sp3_22         HD1         CD1         CG1          CB     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OIL    chir_1    CA    O1    C    CB    positive
+OIL    chir_2    CB    CA    CG1    CG2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OIL    plan-1           C   0.020
+OIL    plan-1          CA   0.020
+OIL    plan-1           O   0.020
+OIL    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OIL           SMILES              ACDLabs 12.01                                                           O=C(O)C(O)C(C)CC
+OIL SMILES_CANONICAL               CACTVS 3.370                                                   CC[C@H](C)[C@H](O)C(O)=O
+OIL           SMILES               CACTVS 3.370                                                     CC[CH](C)[CH](O)C(O)=O
+OIL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                  CC[C@H](C)[C@@H](C(=O)O)O
+OIL           SMILES "OpenEye OEToolkits" 1.7.0                                                           CCC(C)C(C(=O)O)O
+OIL            InChI                InChI  1.03 InChI=1S/C6H12O3/c1-3-4(2)5(7)6(8)9/h4-5,7H,3H2,1-2H3,(H,8,9)/t4-,5-/m0/s1
+OIL         InChIKey                InChI  1.03                                                RILPIWOPNGRASR-WHFBIAKZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OIL acedrg               243         "dictionary generator"                  
+OIL acedrg_database      11          "data source"                           
+OIL rdkit                2017.03.2   "Chemoinformatics tool"
+OIL refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,513 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PHV     PHV      N-[(benzyloxy)carbonyl]-beta-phenyl-D-phenylalanyl-N-[(1S)-4-methoxy-1-phosphonobutyl]-L-prolinamide     NON-POLYMER     83     45     .     
+#
+data_comp_PHV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PHV     C14     C       C       0       12.714      -16.838     13.836      
+PHV     O14     O       O       0       12.049      -16.634     14.830      
+PHV     O15     O       O2      0       13.944      -17.385     13.835      
+PHV     C16     C       CH2     0       14.464      -17.936     15.079      
+PHV     C41     C       CR6     0       15.108      -16.850     15.892      
+PHV     C42     C       CR16    0       14.510      -16.378     17.053      
+PHV     C43     C       CR16    0       15.113      -15.375     17.801      
+PHV     C44     C       CR16    0       16.318      -14.837     17.396      
+PHV     C45     C       CR16    0       16.921      -15.298     16.245      
+PHV     C46     C       CR16    0       16.319      -16.302     15.496      
+PHV     C22     C       CR16    0       9.042       -14.454     9.699       
+PHV     C23     C       CR16    0       7.767       -13.965     9.445       
+PHV     C24     C       CR16    0       6.663       -14.583     9.998       
+PHV     C25     C       CR16    0       6.829       -15.688     10.806      
+PHV     C26     C       CR16    0       8.102       -16.181     11.064      
+PHV     C21     C       CR6     0       9.231       -15.573     10.512      
+PHV     C12     C       CH1     0       10.631      -16.112     10.796      
+PHV     C11     C       CH1     0       11.026      -15.956     12.282      
+PHV     C10     C       C       0       11.060      -14.473     12.682      
+PHV     O10     O       O       0       11.808      -13.724     12.055      
+PHV     N13     N       NH1     0       12.330      -16.538     12.577      
+PHV     C31     C       CR6     0       10.779      -17.528     10.241      
+PHV     C36     C       CR16    0       11.298      -17.731     8.961       
+PHV     C35     C       CR16    0       11.436      -19.011     8.440       
+PHV     C34     C       CR16    0       11.057      -20.107     9.185       
+PHV     C33     C       CR16    0       10.539      -19.930     10.452      
+PHV     C32     C       CR16    0       10.400      -18.651     10.979      
+PHV     N9      N       NR5     0       10.349      -14.020     13.731      
+PHV     C8      C       CH1     0       10.617      -12.703     14.321      
+PHV     C7      C       C       0       12.009      -12.622     14.955      
+PHV     O7      O       O       0       12.341      -13.431     15.823      
+PHV     C8A     C       CH2     0       9.514       -12.540     15.378      
+PHV     C8B     C       CH2     0       8.437       -13.502     14.949      
+PHV     C8C     C       CH2     0       9.201       -14.671     14.383      
+PHV     P       P       P       0       14.270      -10.975     16.706      
+PHV     C1      C       CH3     0       15.187      -14.934     10.683      
+PHV     C2      C       CH2     0       15.994      -14.152     12.782      
+PHV     O2      O       O2      0       16.215      -14.242     11.383      
+PHV     C3      C       CH2     0       15.212      -12.899     13.090      
+PHV     C4      C       CH2     0       15.112      -12.588     14.577      
+PHV     C5      C       CH1     0       14.199      -11.403     14.928      
+PHV     N6      N       NH1     0       12.816      -11.647     14.490      
+PHV     OP1     O       O       0       14.508      -12.228     17.475      
+PHV     OP2     O       OP      -1      15.398      -10.014     16.860      
+PHV     OP3     O       OP      -1      12.963      -10.350     17.060      
+PHV     H16     H       H       0       15.130      -18.625     14.872      
+PHV     H16A    H       H       0       13.744      -18.360     15.592      
+PHV     H42     H       H       0       13.686      -16.742     17.336      
+PHV     H43     H       H       0       14.697      -15.061     18.588      
+PHV     H44     H       H       0       16.727      -14.154     17.904      
+PHV     H45     H       H       0       17.745      -14.932     15.965      
+PHV     H46     H       H       0       16.738      -16.613     14.710      
+PHV     H22     H       H       0       9.790       -14.024     9.315       
+PHV     H23     H       H       0       7.656       -13.208     8.891       
+PHV     H24     H       H       0       5.798       -14.249     9.824       
+PHV     H25     H       H       0       6.075       -16.111     11.185      
+PHV     H26     H       H       0       8.205       -16.937     11.618      
+PHV     H12     H       H       0       11.261      -15.547     10.271      
+PHV     H11     H       H       0       10.355      -16.434     12.821      
+PHV     HN13    H       H       0       12.889      -16.677     11.916      
+PHV     H36     H       H       0       11.561      -16.988     8.442       
+PHV     H35     H       H       0       11.791      -19.130     7.573       
+PHV     H34     H       H       0       11.152      -20.977     8.830       
+PHV     H33     H       H       0       10.279      -20.679     10.964      
+PHV     H32     H       H       0       10.041      -18.544     11.844      
+PHV     H8      H       H       0       10.520      -12.004     13.632      
+PHV     H8A     H       H       0       9.175       -11.619     15.387      
+PHV     H8AA    H       H       0       9.841       -12.764     16.276      
+PHV     H8B     H       H       0       7.858       -13.100     14.268      
+PHV     H8BA    H       H       0       7.889       -13.779     15.712      
+PHV     H8C     H       H       0       9.494       -15.283     15.090      
+PHV     H8CA    H       H       0       8.656       -15.166     13.735      
+PHV     H1      H       H       0       15.344      -14.863     9.728       
+PHV     H1A     H       H       0       14.325      -14.543     10.899      
+PHV     H1B     H       H       0       15.193      -15.870     10.942      
+PHV     H2      H       H       0       16.856      -14.127     13.249      
+PHV     H2A     H       H       0       15.499      -14.939     13.099      
+PHV     H3      H       H       0       14.309      -12.994     12.724      
+PHV     H3A     H       H       0       15.639      -12.141     12.639      
+PHV     H4      H       H       0       16.011      -12.391     14.913      
+PHV     H4A     H       H       0       14.793      -13.386     15.044      
+PHV     H5      H       H       0       14.529      -10.621     14.422      
+PHV     HN6     H       H       0       12.508      -11.108     13.881      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PHV           P         OP2      SINGLE       n     1.492  0.0200     1.492  0.0200
+PHV           P         OP1      DOUBLE       n     1.492  0.0200     1.492  0.0200
+PHV          C2          C3      SINGLE       n     1.508  0.0200     1.508  0.0200
+PHV          C1          O2      SINGLE       n     1.415  0.0200     1.415  0.0200
+PHV          C2          O2      SINGLE       n     1.412  0.0177     1.412  0.0177
+PHV          C3          C4      SINGLE       n     1.519  0.0163     1.519  0.0163
+PHV          C4          C5      SINGLE       n     1.532  0.0129     1.532  0.0129
+PHV           P          C5      SINGLE       n     1.820  0.0200     1.820  0.0200
+PHV          C5          N6      SINGLE       n     1.465  0.0100     1.465  0.0100
+PHV          C7          N6      SINGLE       n     1.339  0.0113     1.339  0.0113
+PHV          C7          O7      DOUBLE       n     1.231  0.0100     1.231  0.0100
+PHV          C8          C7      SINGLE       n     1.525  0.0113     1.525  0.0113
+PHV          C8         C8A      SINGLE       n     1.533  0.0100     1.533  0.0100
+PHV          N9          C8      SINGLE       n     1.463  0.0100     1.463  0.0100
+PHV          N9         C8C      SINGLE       n     1.472  0.0100     1.472  0.0100
+PHV         C10          N9      SINGLE       n     1.337  0.0100     1.337  0.0100
+PHV         C10         O10      DOUBLE       n     1.227  0.0149     1.227  0.0149
+PHV         C11         C10      SINGLE       n     1.528  0.0130     1.528  0.0130
+PHV         C12         C11      SINGLE       n     1.533  0.0151     1.533  0.0151
+PHV         C11         N13      SINGLE       n     1.454  0.0100     1.454  0.0100
+PHV         C14         N13      SINGLE       n     1.344  0.0100     1.344  0.0100
+PHV         C14         O14      DOUBLE       n     1.210  0.0102     1.210  0.0102
+PHV         C14         O15      SINGLE       n     1.341  0.0100     1.341  0.0100
+PHV         O15         C16      SINGLE       n     1.450  0.0125     1.450  0.0125
+PHV         C16         C41      SINGLE       n     1.501  0.0101     1.501  0.0101
+PHV         C21         C12      SINGLE       n     1.524  0.0100     1.524  0.0100
+PHV         C26         C21      SINGLE       y     1.391  0.0100     1.391  0.0100
+PHV         C22         C21      DOUBLE       y     1.391  0.0100     1.391  0.0100
+PHV         C22         C23      SINGLE       y     1.386  0.0100     1.386  0.0100
+PHV         C23         C24      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PHV         C24         C25      SINGLE       y     1.374  0.0127     1.374  0.0127
+PHV         C25         C26      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PHV         C12         C31      SINGLE       n     1.524  0.0100     1.524  0.0100
+PHV         C31         C32      DOUBLE       y     1.391  0.0100     1.391  0.0100
+PHV         C33         C32      SINGLE       y     1.386  0.0100     1.386  0.0100
+PHV         C34         C33      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PHV         C35         C34      SINGLE       y     1.374  0.0127     1.374  0.0127
+PHV         C36         C35      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PHV         C31         C36      SINGLE       y     1.391  0.0100     1.391  0.0100
+PHV         C41         C42      DOUBLE       y     1.383  0.0108     1.383  0.0108
+PHV         C41         C46      SINGLE       y     1.383  0.0108     1.383  0.0108
+PHV         C42         C43      SINGLE       y     1.386  0.0100     1.386  0.0100
+PHV         C43         C44      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PHV         C44         C45      SINGLE       y     1.374  0.0127     1.374  0.0127
+PHV         C45         C46      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PHV         C8A         C8B      SINGLE       n     1.508  0.0200     1.508  0.0200
+PHV         C8B         C8C      SINGLE       n     1.512  0.0163     1.512  0.0163
+PHV           P         OP3      SINGLE       n     1.492  0.0200     1.492  0.0200
+PHV         C16         H16      SINGLE       n     1.089  0.0100     0.980  0.0157
+PHV         C16        H16A      SINGLE       n     1.089  0.0100     0.980  0.0157
+PHV         C42         H42      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHV         C43         H43      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHV         C44         H44      SINGLE       n     1.082  0.0130     0.944  0.0161
+PHV         C45         H45      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHV         C46         H46      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHV         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHV         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHV         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0161
+PHV         C25         H25      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHV         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHV         C12         H12      SINGLE       n     1.089  0.0100     0.996  0.0100
+PHV         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0198
+PHV         N13        HN13      SINGLE       n     1.016  0.0100     0.875  0.0200
+PHV         C36         H36      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHV         C35         H35      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHV         C34         H34      SINGLE       n     1.082  0.0130     0.944  0.0161
+PHV         C33         H33      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHV         C32         H32      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHV          C8          H8      SINGLE       n     1.089  0.0100     0.987  0.0200
+PHV         C8A         H8A      SINGLE       n     1.089  0.0100     0.981  0.0200
+PHV         C8A        H8AA      SINGLE       n     1.089  0.0100     0.981  0.0200
+PHV         C8B         H8B      SINGLE       n     1.089  0.0100     0.980  0.0200
+PHV         C8B        H8BA      SINGLE       n     1.089  0.0100     0.980  0.0200
+PHV         C8C         H8C      SINGLE       n     1.089  0.0100     0.980  0.0200
+PHV         C8C        H8CA      SINGLE       n     1.089  0.0100     0.980  0.0200
+PHV          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0146
+PHV          C1         H1A      SINGLE       n     1.089  0.0100     0.971  0.0146
+PHV          C1         H1B      SINGLE       n     1.089  0.0100     0.971  0.0146
+PHV          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0174
+PHV          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0174
+PHV          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0166
+PHV          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0166
+PHV          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+PHV          C4         H4A      SINGLE       n     1.089  0.0100     0.980  0.0160
+PHV          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0200
+PHV          N6         HN6      SINGLE       n     1.016  0.0100     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PHV         N13         C14         O14     124.890    1.50
+PHV         N13         C14         O15     110.815    1.50
+PHV         O14         C14         O15     124.295    1.50
+PHV         C14         O15         C16     115.730    1.50
+PHV         O15         C16         C41     109.508    2.22
+PHV         O15         C16         H16     109.538    1.50
+PHV         O15         C16        H16A     109.538    1.50
+PHV         C41         C16         H16     109.785    1.50
+PHV         C41         C16        H16A     109.785    1.50
+PHV         H16         C16        H16A     108.275    1.50
+PHV         C16         C41         C42     120.651    1.50
+PHV         C16         C41         C46     120.651    1.50
+PHV         C42         C41         C46     118.697    1.50
+PHV         C41         C42         C43     120.514    1.50
+PHV         C41         C42         H42     119.732    1.50
+PHV         C43         C42         H42     119.754    1.50
+PHV         C42         C43         C44     120.186    1.50
+PHV         C42         C43         H43     119.862    1.50
+PHV         C44         C43         H43     119.952    1.50
+PHV         C43         C44         C45     119.903    1.50
+PHV         C43         C44         H44     120.048    1.50
+PHV         C45         C44         H44     120.048    1.50
+PHV         C44         C45         C46     120.186    1.50
+PHV         C44         C45         H45     119.952    1.50
+PHV         C46         C45         H45     119.862    1.50
+PHV         C41         C46         C45     120.514    1.50
+PHV         C41         C46         H46     119.732    1.50
+PHV         C45         C46         H46     119.754    1.50
+PHV         C21         C22         C23     120.763    1.50
+PHV         C21         C22         H22     119.589    1.50
+PHV         C23         C22         H22     119.648    1.50
+PHV         C22         C23         C24     120.166    1.50
+PHV         C22         C23         H23     119.872    1.50
+PHV         C24         C23         H23     119.962    1.50
+PHV         C23         C24         C25     119.884    1.50
+PHV         C23         C24         H24     120.058    1.50
+PHV         C25         C24         H24     120.058    1.50
+PHV         C24         C25         C26     120.166    1.50
+PHV         C24         C25         H25     119.962    1.50
+PHV         C26         C25         H25     119.872    1.50
+PHV         C21         C26         C25     120.763    1.50
+PHV         C21         C26         H26     119.589    1.50
+PHV         C25         C26         H26     119.648    1.50
+PHV         C12         C21         C26     120.871    1.59
+PHV         C12         C21         C22     120.871    1.59
+PHV         C26         C21         C22     118.258    1.50
+PHV         C11         C12         C21     112.352    1.90
+PHV         C11         C12         C31     112.352    1.90
+PHV         C11         C12         H12     107.573    1.50
+PHV         C21         C12         C31     111.144    1.76
+PHV         C21         C12         H12     106.727    1.50
+PHV         C31         C12         H12     106.727    1.50
+PHV         C10         C11         C12     111.511    2.91
+PHV         C10         C11         N13     109.025    1.50
+PHV         C10         C11         H11     109.397    1.50
+PHV         C12         C11         N13     111.308    2.28
+PHV         C12         C11         H11     108.234    1.50
+PHV         N13         C11         H11     108.161    1.50
+PHV          N9         C10         O10     121.135    1.50
+PHV          N9         C10         C11     118.732    2.08
+PHV         O10         C10         C11     120.133    1.84
+PHV         C11         N13         C14     120.995    1.63
+PHV         C11         N13        HN13     119.380    1.92
+PHV         C14         N13        HN13     119.625    2.20
+PHV         C12         C31         C32     120.871    1.59
+PHV         C12         C31         C36     120.871    1.59
+PHV         C32         C31         C36     118.258    1.50
+PHV         C35         C36         C31     120.763    1.50
+PHV         C35         C36         H36     119.648    1.50
+PHV         C31         C36         H36     119.589    1.50
+PHV         C34         C35         C36     120.166    1.50
+PHV         C34         C35         H35     119.962    1.50
+PHV         C36         C35         H35     119.872    1.50
+PHV         C33         C34         C35     119.884    1.50
+PHV         C33         C34         H34     120.058    1.50
+PHV         C35         C34         H34     120.058    1.50
+PHV         C32         C33         C34     120.166    1.50
+PHV         C32         C33         H33     119.872    1.50
+PHV         C34         C33         H33     119.962    1.50
+PHV         C31         C32         C33     120.763    1.50
+PHV         C31         C32         H32     119.589    1.50
+PHV         C33         C32         H32     119.648    1.50
+PHV          C8          N9         C8C     112.727    1.50
+PHV          C8          N9         C10     120.973    1.99
+PHV         C8C          N9         C10     126.301    3.00
+PHV          C7          C8         C8A     111.268    1.50
+PHV          C7          C8          N9     112.246    1.50
+PHV          C7          C8          H8     109.755    1.50
+PHV         C8A          C8          N9     103.192    1.50
+PHV         C8A          C8          H8     110.282    1.50
+PHV          N9          C8          H8     110.260    1.50
+PHV          N6          C7          O7     123.141    1.50
+PHV          N6          C7          C8     115.672    1.64
+PHV          O7          C7          C8     121.187    1.50
+PHV          C8         C8A         C8B     103.507    1.50
+PHV          C8         C8A         H8A     110.824    1.50
+PHV          C8         C8A        H8AA     110.824    1.50
+PHV         C8B         C8A         H8A     110.886    1.50
+PHV         C8B         C8A        H8AA     110.886    1.50
+PHV         H8A         C8A        H8AA     108.922    1.50
+PHV         C8A         C8B         C8C     104.327    2.00
+PHV         C8A         C8B         H8B     110.864    1.50
+PHV         C8A         C8B        H8BA     110.864    1.50
+PHV         C8C         C8B         H8B     110.793    1.50
+PHV         C8C         C8B        H8BA     110.793    1.50
+PHV         H8B         C8B        H8BA     108.899    1.50
+PHV          N9         C8C         C8B     103.293    1.50
+PHV          N9         C8C         H8C     111.063    1.50
+PHV          N9         C8C        H8CA     111.063    1.50
+PHV         C8B         C8C         H8C     111.171    1.50
+PHV         C8B         C8C        H8CA     111.171    1.50
+PHV         H8C         C8C        H8CA     108.998    1.50
+PHV         OP2           P         OP1     112.502    1.50
+PHV         OP2           P          C5     110.326    3.00
+PHV         OP2           P         OP3     112.502    1.50
+PHV         OP1           P          C5     110.326    3.00
+PHV         OP1           P         OP3     112.502    1.50
+PHV          C5           P         OP3     110.326    3.00
+PHV          O2          C1          H1     109.470    1.50
+PHV          O2          C1         H1A     109.470    1.50
+PHV          O2          C1         H1B     109.470    1.50
+PHV          H1          C1         H1A     109.532    1.53
+PHV          H1          C1         H1B     109.532    1.53
+PHV         H1A          C1         H1B     109.532    1.53
+PHV          C3          C2          O2     109.601    2.19
+PHV          C3          C2          H2     109.912    1.50
+PHV          C3          C2         H2A     109.912    1.50
+PHV          O2          C2          H2     109.765    1.50
+PHV          O2          C2         H2A     109.765    1.50
+PHV          H2          C2         H2A     108.375    1.50
+PHV          C1          O2          C2     112.458    1.50
+PHV          C2          C3          C4     113.691    3.00
+PHV          C2          C3          H3     108.852    1.50
+PHV          C2          C3         H3A     108.852    1.50
+PHV          C4          C3          H3     108.801    1.50
+PHV          C4          C3         H3A     108.801    1.50
+PHV          H3          C3         H3A     107.788    1.50
+PHV          C3          C4          C5     114.535    1.69
+PHV          C3          C4          H4     108.801    1.50
+PHV          C3          C4         H4A     108.801    1.50
+PHV          C5          C4          H4     108.507    1.50
+PHV          C5          C4         H4A     108.507    1.50
+PHV          H4          C4         H4A     107.715    1.50
+PHV          C4          C5           P     111.410    2.87
+PHV          C4          C5          N6     109.834    1.50
+PHV          C4          C5          H5     108.236    1.50
+PHV           P          C5          N6     108.817    2.81
+PHV           P          C5          H5     108.528    1.50
+PHV          N6          C5          H5     108.091    1.50
+PHV          C5          N6          C7     122.782    1.50
+PHV          C5          N6         HN6     118.159    2.04
+PHV          C7          N6         HN6     119.058    2.56
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PHV            sp2_sp2_13         N13         C14         O15         C16     180.000     5.0     2
+PHV            sp2_sp2_11         O14         C14         N13         C11       0.000     5.0     2
+PHV              const_61         C21         C22         C23         C24       0.000    10.0     2
+PHV       const_sp2_sp2_3         C12         C21         C22         C23     180.000     5.0     2
+PHV              const_17         C22         C23         C24         C25       0.000    10.0     2
+PHV              const_13         C23         C24         C25         C26       0.000    10.0     2
+PHV       const_sp2_sp2_9         C24         C25         C26         C21       0.000     5.0     2
+PHV       const_sp2_sp2_7         C12         C21         C26         C25     180.000     5.0     2
+PHV            sp2_sp3_43         C26         C21         C12         C11     150.000    10.0     6
+PHV            sp3_sp3_71         C10         C11         C12         C21     -60.000    10.0     3
+PHV            sp2_sp3_50         C32         C31         C12         C11     -90.000    10.0     6
+PHV            sp2_sp3_28         O10         C10         C11         C12     180.000    10.0     6
+PHV            sp2_sp3_31         C14         N13         C11         C10       0.000    10.0     6
+PHV             sp2_sp2_7         O10         C10          N9          C8       0.000     5.0     2
+PHV              const_67         C12         C31         C36         C35     180.000    10.0     2
+PHV              const_23         C12         C31         C32         C33     180.000    10.0     2
+PHV              const_37         C34         C35         C36         C31       0.000    10.0     2
+PHV              const_33         C33         C34         C35         C36       0.000    10.0     2
+PHV              const_29         C32         C33         C34         C35       0.000    10.0     2
+PHV              const_25         C31         C32         C33         C34       0.000    10.0     2
+PHV             sp2_sp3_5         C10          N9          C8          C7     -60.000    10.0     6
+PHV            sp2_sp3_22         C10          N9         C8C         C8B     180.000    10.0     6
+PHV            sp2_sp3_13          N6          C7          C8         C8A       0.000    10.0     6
+PHV             sp3_sp3_4          C7          C8         C8A         C8B     180.000    10.0     3
+PHV             sp2_sp2_3          O7          C7          N6          C5       0.000     5.0     2
+PHV            sp3_sp3_79         C41         C16         O15         C14     180.000    10.0     3
+PHV            sp3_sp3_10          C8         C8A         C8B         C8C      60.000    10.0     3
+PHV            sp3_sp3_19         C8A         C8B         C8C          N9     -60.000    10.0     3
+PHV            sp3_sp3_61          C4          C5           P         OP2     180.000    10.0     3
+PHV            sp3_sp3_37          H1          C1          O2          C2     180.000    10.0     3
+PHV            sp3_sp3_40          C3          C2          O2          C1     180.000    10.0     3
+PHV            sp3_sp3_28          O2          C2          C3          C4     180.000    10.0     3
+PHV            sp3_sp3_43          C2          C3          C4          C5     180.000    10.0     3
+PHV            sp3_sp3_52          C3          C4          C5           P     180.000    10.0     3
+PHV            sp2_sp3_38         C42         C41         C16         O15     -90.000    10.0     6
+PHV             sp2_sp3_7          C7          N6          C5          C4       0.000    10.0     6
+PHV              const_43         C16         C41         C42         C43     180.000    10.0     2
+PHV              const_71         C16         C41         C46         C45     180.000    10.0     2
+PHV              const_45         C41         C42         C43         C44       0.000    10.0     2
+PHV              const_49         C42         C43         C44         C45       0.000    10.0     2
+PHV              const_53         C43         C44         C45         C46       0.000    10.0     2
+PHV              const_57         C44         C45         C46         C41       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PHV    chir_1    C12    C11    C21    C31    both
+PHV    chir_2    C11    N13    C10    C12    negative
+PHV    chir_3    C8    N9    C7    C8A    positive
+PHV    chir_4    P    OP2    OP3    OP1    both
+PHV    chir_5    C5    P    N6    C4    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PHV    plan-1         C12   0.020
+PHV    plan-1         C21   0.020
+PHV    plan-1         C22   0.020
+PHV    plan-1         C23   0.020
+PHV    plan-1         C24   0.020
+PHV    plan-1         C25   0.020
+PHV    plan-1         C26   0.020
+PHV    plan-1         H22   0.020
+PHV    plan-1         H23   0.020
+PHV    plan-1         H24   0.020
+PHV    plan-1         H25   0.020
+PHV    plan-1         H26   0.020
+PHV    plan-2         C12   0.020
+PHV    plan-2         C31   0.020
+PHV    plan-2         C32   0.020
+PHV    plan-2         C33   0.020
+PHV    plan-2         C34   0.020
+PHV    plan-2         C35   0.020
+PHV    plan-2         C36   0.020
+PHV    plan-2         H32   0.020
+PHV    plan-2         H33   0.020
+PHV    plan-2         H34   0.020
+PHV    plan-2         H35   0.020
+PHV    plan-2         H36   0.020
+PHV    plan-3         C16   0.020
+PHV    plan-3         C41   0.020
+PHV    plan-3         C42   0.020
+PHV    plan-3         C43   0.020
+PHV    plan-3         C44   0.020
+PHV    plan-3         C45   0.020
+PHV    plan-3         C46   0.020
+PHV    plan-3         H42   0.020
+PHV    plan-3         H43   0.020
+PHV    plan-3         H44   0.020
+PHV    plan-3         H45   0.020
+PHV    plan-3         H46   0.020
+PHV    plan-4         C14   0.020
+PHV    plan-4         N13   0.020
+PHV    plan-4         O14   0.020
+PHV    plan-4         O15   0.020
+PHV    plan-5         C10   0.020
+PHV    plan-5         C11   0.020
+PHV    plan-5          N9   0.020
+PHV    plan-5         O10   0.020
+PHV    plan-6         C11   0.020
+PHV    plan-6         C14   0.020
+PHV    plan-6        HN13   0.020
+PHV    plan-6         N13   0.020
+PHV    plan-7         C10   0.020
+PHV    plan-7          C8   0.020
+PHV    plan-7         C8C   0.020
+PHV    plan-7          N9   0.020
+PHV    plan-8          C7   0.020
+PHV    plan-8          C8   0.020
+PHV    plan-8          N6   0.020
+PHV    plan-8          O7   0.020
+PHV    plan-9          C5   0.020
+PHV    plan-9          C7   0.020
+PHV    plan-9         HN6   0.020
+PHV    plan-9          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PHV           SMILES              ACDLabs 12.01                                                                                                                                                                             O=C(NC(CCCOC)P(=O)(O)O)C4N(C(=O)C(NC(=O)OCc1ccccc1)C(c2ccccc2)c3ccccc3)CCC4
+PHV SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                               COCCC[C@@H](NC(=O)[C@@H]1CCCN1C(=O)[C@H](NC(=O)OCc2ccccc2)C(c3ccccc3)c4ccccc4)[P](O)(O)=O
+PHV           SMILES               CACTVS 3.370                                                                                                                                                                    COCCC[CH](NC(=O)[CH]1CCCN1C(=O)[CH](NC(=O)OCc2ccccc2)C(c3ccccc3)c4ccccc4)[P](O)(O)=O
+PHV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                COCCC[C@@H](NC(=O)[C@@H]1CCCN1C(=O)[C@@H](C(c2ccccc2)c3ccccc3)NC(=O)OCc4ccccc4)P(=O)(O)O
+PHV           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                               COCCCC(NC(=O)C1CCCN1C(=O)C(C(c2ccccc2)c3ccccc3)NC(=O)OCc4ccccc4)P(=O)(O)O
+PHV            InChI                InChI  1.03 InChI=1S/C33H40N3O8P/c1-43-22-12-20-28(45(40,41)42)34-31(37)27-19-11-21-36(27)32(38)30(35-33(39)44-23-24-13-5-2-6-14-24)29(25-15-7-3-8-16-25)26-17-9-4-10-18-26/h2-10,13-18,27-30H,11-12,19-23H2,1H3,(H,34,37)(H,35,39)(H2,40,41,42)/t27-,28-,30+/m0/s1
+PHV         InChIKey                InChI  1.03                                                                                                                                                                                                                             RQOYKJRZXWFGEE-TWLDFKIOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PHV acedrg               243         "dictionary generator"                  
+PHV acedrg_database      11          "data source"                           
+PHV rdkit                2017.03.2   "Chemoinformatics tool"
+PHV refmac5              5.8.0238    "optimization tool"                     

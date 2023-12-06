@@ -1,0 +1,319 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SDT     SDT      3,4-dihydroxy-9,10-secoandrosta-1(10),2,4-triene-9,17-dione     NON-POLYMER     47     23     .     
+#
+data_comp_SDT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SDT     OAD     O       O       0       85.158      30.633      47.128      
+SDT     CAP     C       CR5     0       84.220      30.498      47.878      
+SDT     CAI     C       CH2     0       84.271      29.836      49.241      
+SDT     CAL     C       CH2     0       82.815      29.674      49.687      
+SDT     CAV     C       CH1     0       82.015      29.856      48.391      
+SDT     CAW     C       CT      0       82.795      30.960      47.621      
+SDT     CAB     C       CH3     0       82.665      32.384      48.207      
+SDT     CAN     C       CH2     0       82.324      30.910      46.173      
+SDT     CAJ     C       CH2     0       80.808      31.076      46.021      
+SDT     CAU     C       CH1     0       80.505      30.183      48.462      
+SDT     CAO     C       CR6     0       79.894      30.577      47.123      
+SDT     OAC     O       O       0       78.695      30.517      46.940      
+SDT     CAM     C       CH2     0       79.716      29.061      49.153      
+SDT     CAK     C       CH2     0       79.628      27.752      48.358      
+SDT     CAT     C       CR6     0       78.751      26.708      49.022      
+SDT     CAS     C       CR6     0       77.372      26.738      48.815      
+SDT     OAF     O       OH1     0       76.789      27.699      48.018      
+SDT     CAR     C       CR6     0       76.533      25.791      49.411      
+SDT     OAE     O       OH1     0       75.174      25.827      49.201      
+SDT     CAH     C       CR16    0       77.076      24.809      50.220      
+SDT     CAG     C       CR16    0       78.447      24.775      50.430      
+SDT     CAQ     C       CR6     0       79.299      25.706      49.849      
+SDT     CAA     C       CH3     0       80.793      25.616      50.119      
+SDT     HAI     H       H       0       84.710      28.971      49.181      
+SDT     HAIA    H       H       0       84.763      30.391      49.869      
+SDT     HAL     H       H       0       82.572      30.355      50.355      
+SDT     HALA    H       H       0       82.663      28.782      50.074      
+SDT     HAV     H       H       0       82.123      29.030      47.859      
+SDT     HAB     H       H       0       82.014      32.894      47.697      
+SDT     HABA    H       H       0       83.525      32.838      48.165      
+SDT     HABB    H       H       0       82.375      32.337      49.132      
+SDT     HAN     H       H       0       82.593      30.044      45.774      
+SDT     HANA    H       H       0       82.776      31.627      45.661      
+SDT     HAJ     H       H       0       80.520      30.617      45.201      
+SDT     HAJA    H       H       0       80.603      32.030      45.903      
+SDT     HAU     H       H       0       80.423      30.974      49.051      
+SDT     HAM     H       H       0       78.805      29.385      49.331      
+SDT     HAMA    H       H       0       80.135      28.875      50.021      
+SDT     HAK     H       H       0       80.529      27.390      48.238      
+SDT     HAKA    H       H       0       79.271      27.939      47.465      
+SDT     HOAF    H       H       0       76.118      28.152      48.311      
+SDT     HOAE    H       H       0       74.678      25.157      49.417      
+SDT     HAH     H       H       0       76.515      24.167      50.626      
+SDT     HAG     H       H       0       78.809      24.103      50.983      
+SDT     HAA     H       H       0       80.966      24.941      50.795      
+SDT     HAAA    H       H       0       81.119      26.475      50.434      
+SDT     HAAB    H       H       0       81.257      25.377      49.300      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SDT         OAD         CAP      DOUBLE       n     1.209  0.0100     1.209  0.0100
+SDT         CAP         CAI      SINGLE       n     1.515  0.0114     1.515  0.0114
+SDT         CAP         CAW      SINGLE       n     1.519  0.0100     1.519  0.0100
+SDT         CAI         CAL      SINGLE       n     1.531  0.0100     1.531  0.0100
+SDT         CAL         CAV      SINGLE       n     1.532  0.0100     1.532  0.0100
+SDT         CAV         CAW      SINGLE       n     1.555  0.0141     1.555  0.0141
+SDT         CAV         CAU      SINGLE       n     1.541  0.0133     1.541  0.0133
+SDT         CAW         CAB      SINGLE       n     1.539  0.0100     1.539  0.0100
+SDT         CAW         CAN      SINGLE       n     1.524  0.0117     1.524  0.0117
+SDT         CAN         CAJ      SINGLE       n     1.525  0.0130     1.525  0.0130
+SDT         CAJ         CAO      SINGLE       n     1.509  0.0101     1.509  0.0101
+SDT         CAU         CAO      SINGLE       n     1.511  0.0116     1.511  0.0116
+SDT         CAU         CAM      SINGLE       n     1.531  0.0100     1.531  0.0100
+SDT         CAO         OAC      DOUBLE       n     1.214  0.0100     1.214  0.0100
+SDT         CAM         CAK      SINGLE       n     1.527  0.0145     1.527  0.0145
+SDT         CAK         CAT      SINGLE       n     1.512  0.0103     1.512  0.0103
+SDT         CAT         CAS      DOUBLE       y     1.387  0.0100     1.387  0.0100
+SDT         CAT         CAQ      SINGLE       y     1.400  0.0100     1.400  0.0100
+SDT         CAS         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+SDT         CAS         CAR      SINGLE       y     1.394  0.0100     1.394  0.0100
+SDT         CAR         OAE      SINGLE       n     1.374  0.0155     1.374  0.0155
+SDT         CAR         CAH      DOUBLE       y     1.381  0.0100     1.381  0.0100
+SDT         CAH         CAG      SINGLE       y     1.385  0.0100     1.385  0.0100
+SDT         CAG         CAQ      DOUBLE       y     1.385  0.0100     1.385  0.0100
+SDT         CAQ         CAA      SINGLE       n     1.510  0.0199     1.510  0.0199
+SDT         CAI         HAI      SINGLE       n     1.089  0.0100     0.972  0.0144
+SDT         CAI        HAIA      SINGLE       n     1.089  0.0100     0.972  0.0144
+SDT         CAL         HAL      SINGLE       n     1.089  0.0100     0.984  0.0100
+SDT         CAL        HALA      SINGLE       n     1.089  0.0100     0.984  0.0100
+SDT         CAV         HAV      SINGLE       n     1.089  0.0100     0.989  0.0175
+SDT         CAB         HAB      SINGLE       n     1.089  0.0100     0.972  0.0157
+SDT         CAB        HABA      SINGLE       n     1.089  0.0100     0.972  0.0157
+SDT         CAB        HABB      SINGLE       n     1.089  0.0100     0.972  0.0157
+SDT         CAN         HAN      SINGLE       n     1.089  0.0100     0.990  0.0100
+SDT         CAN        HANA      SINGLE       n     1.089  0.0100     0.990  0.0100
+SDT         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.983  0.0142
+SDT         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.983  0.0142
+SDT         CAU         HAU      SINGLE       n     1.089  0.0100     0.990  0.0101
+SDT         CAM         HAM      SINGLE       n     1.089  0.0100     0.983  0.0186
+SDT         CAM        HAMA      SINGLE       n     1.089  0.0100     0.983  0.0186
+SDT         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0150
+SDT         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0150
+SDT         OAF        HOAF      SINGLE       n     0.966  0.0059     0.861  0.0200
+SDT         OAE        HOAE      SINGLE       n     0.966  0.0059     0.861  0.0200
+SDT         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0200
+SDT         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0173
+SDT         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0135
+SDT         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0135
+SDT         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SDT         OAD         CAP         CAI     125.367    1.50
+SDT         OAD         CAP         CAW     126.064    1.50
+SDT         CAI         CAP         CAW     108.587    1.50
+SDT         CAP         CAI         CAL     105.743    1.50
+SDT         CAP         CAI         HAI     110.353    1.50
+SDT         CAP         CAI        HAIA     110.353    1.50
+SDT         CAL         CAI         HAI     110.585    1.50
+SDT         CAL         CAI        HAIA     110.585    1.50
+SDT         HAI         CAI        HAIA     108.596    1.50
+SDT         CAI         CAL         CAV     104.001    1.50
+SDT         CAI         CAL         HAL     110.974    1.50
+SDT         CAI         CAL        HALA     110.974    1.50
+SDT         CAV         CAL         HAL     111.120    1.50
+SDT         CAV         CAL        HALA     111.120    1.50
+SDT         HAL         CAL        HALA     108.883    1.50
+SDT         CAL         CAV         CAW     104.033    1.50
+SDT         CAL         CAV         CAU     115.729    3.00
+SDT         CAL         CAV         HAV     108.514    1.92
+SDT         CAW         CAV         CAU     111.036    2.95
+SDT         CAW         CAV         HAV     106.108    1.50
+SDT         CAU         CAV         HAV     108.428    1.50
+SDT         CAP         CAW         CAV     100.596    1.50
+SDT         CAP         CAW         CAB     106.289    2.96
+SDT         CAP         CAW         CAN     114.952    3.00
+SDT         CAV         CAW         CAB     113.420    1.50
+SDT         CAV         CAW         CAN     108.894    1.50
+SDT         CAB         CAW         CAN     111.272    1.50
+SDT         CAW         CAB         HAB     109.471    1.50
+SDT         CAW         CAB        HABA     109.471    1.50
+SDT         CAW         CAB        HABB     109.471    1.50
+SDT         HAB         CAB        HABA     109.337    1.50
+SDT         HAB         CAB        HABB     109.337    1.50
+SDT        HABA         CAB        HABB     109.337    1.50
+SDT         CAW         CAN         CAJ     112.172    1.50
+SDT         CAW         CAN         HAN     109.443    1.50
+SDT         CAW         CAN        HANA     109.443    1.50
+SDT         CAJ         CAN         HAN     109.151    1.50
+SDT         CAJ         CAN        HANA     109.151    1.50
+SDT         HAN         CAN        HANA     107.912    1.50
+SDT         CAN         CAJ         CAO     113.181    1.89
+SDT         CAN         CAJ         HAJ     109.471    1.68
+SDT         CAN         CAJ        HAJA     109.471    1.68
+SDT         CAO         CAJ         HAJ     107.600    2.51
+SDT         CAO         CAJ        HAJA     107.600    2.51
+SDT         HAJ         CAJ        HAJA     107.394    1.55
+SDT         CAV         CAU         CAO     111.002    2.32
+SDT         CAV         CAU         CAM     112.339    2.63
+SDT         CAV         CAU         HAU     106.487    1.50
+SDT         CAO         CAU         CAM     111.944    1.61
+SDT         CAO         CAU         HAU     107.177    1.50
+SDT         CAM         CAU         HAU     106.959    1.50
+SDT         CAJ         CAO         CAU     116.011    1.50
+SDT         CAJ         CAO         OAC     122.016    1.50
+SDT         CAU         CAO         OAC     121.990    1.50
+SDT         CAU         CAM         CAK     113.013    1.50
+SDT         CAU         CAM         HAM     108.333    1.50
+SDT         CAU         CAM        HAMA     108.333    1.50
+SDT         CAK         CAM         HAM     108.843    1.50
+SDT         CAK         CAM        HAMA     108.843    1.50
+SDT         HAM         CAM        HAMA     107.474    1.50
+SDT         CAM         CAK         CAT     113.349    1.50
+SDT         CAM         CAK         HAK     109.045    1.50
+SDT         CAM         CAK        HAKA     109.045    1.50
+SDT         CAT         CAK         HAK     108.906    1.50
+SDT         CAT         CAK        HAKA     108.906    1.50
+SDT         HAK         CAK        HAKA     107.860    1.50
+SDT         CAK         CAT         CAS     120.103    1.68
+SDT         CAK         CAT         CAQ     120.597    1.67
+SDT         CAS         CAT         CAQ     119.300    1.50
+SDT         CAT         CAS         OAF     119.672    3.00
+SDT         CAT         CAS         CAR     120.656    1.50
+SDT         OAF         CAS         CAR     119.672    3.00
+SDT         CAS         OAF        HOAF     120.000    3.00
+SDT         CAS         CAR         OAE     120.151    3.00
+SDT         CAS         CAR         CAH     119.697    1.50
+SDT         OAE         CAR         CAH     120.151    3.00
+SDT         CAR         OAE        HOAE     120.000    3.00
+SDT         CAR         CAH         CAG     119.629    1.50
+SDT         CAR         CAH         HAH     120.008    1.50
+SDT         CAG         CAH         HAH     120.363    1.50
+SDT         CAH         CAG         CAQ     121.641    1.50
+SDT         CAH         CAG         HAG     119.263    1.50
+SDT         CAQ         CAG         HAG     119.096    1.50
+SDT         CAT         CAQ         CAG     119.077    1.50
+SDT         CAT         CAQ         CAA     120.904    1.50
+SDT         CAG         CAQ         CAA     120.019    1.50
+SDT         CAQ         CAA         HAA     109.545    1.50
+SDT         CAQ         CAA        HAAA     109.545    1.50
+SDT         CAQ         CAA        HAAB     109.545    1.50
+SDT         HAA         CAA        HAAA     109.348    1.50
+SDT         HAA         CAA        HAAB     109.348    1.50
+SDT        HAAA         CAA        HAAB     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SDT            sp3_sp3_73         CAT         CAK         CAM         CAU     180.000    10.0     3
+SDT            sp2_sp3_26         CAS         CAT         CAK         CAM     -90.000    10.0     6
+SDT       const_sp2_sp2_4         OAF         CAS         CAT         CAK       0.000     5.0     2
+SDT              const_24         CAA         CAQ         CAT         CAK       0.000    10.0     2
+SDT             sp2_sp2_1         CAT         CAS         OAF        HOAF     180.000     5.0     2
+SDT       const_sp2_sp2_8         OAE         CAR         CAS         OAF       0.000     5.0     2
+SDT             sp2_sp2_3         CAS         CAR         OAE        HOAE     180.000     5.0     2
+SDT              const_10         CAG         CAH         CAR         OAE     180.000    10.0     2
+SDT              const_13         CAQ         CAG         CAH         CAR       0.000    10.0     2
+SDT             sp2_sp3_4         OAD         CAP         CAI         CAL     180.000    10.0     6
+SDT            sp2_sp3_23         OAD         CAP         CAW         CAB     -60.000    10.0     6
+SDT              const_18         CAH         CAG         CAQ         CAA     180.000    10.0     2
+SDT            sp2_sp3_31         CAT         CAQ         CAA         HAA     150.000    10.0     6
+SDT             sp3_sp3_1         CAP         CAI         CAL         CAV     -60.000    10.0     3
+SDT            sp3_sp3_10         CAI         CAL         CAV         CAW      60.000    10.0     3
+SDT            sp3_sp3_20         CAL         CAV         CAW         CAB      60.000    10.0     3
+SDT            sp3_sp3_50         CAM         CAU         CAV         CAL     180.000    10.0     3
+SDT            sp3_sp3_55         HAB         CAB         CAW         CAP     180.000    10.0     3
+SDT            sp3_sp3_30         CAJ         CAN         CAW         CAB     180.000    10.0     3
+SDT            sp3_sp3_37         CAO         CAJ         CAN         CAW      60.000    10.0     3
+SDT            sp2_sp3_10         OAC         CAO         CAJ         CAN     180.000    10.0     6
+SDT            sp2_sp3_17         OAC         CAO         CAU         CAM     -60.000    10.0     6
+SDT            sp3_sp3_64         CAK         CAM         CAU         CAV     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SDT    chir_1    CAV    CAW    CAU    CAL    positive
+SDT    chir_2    CAW    CAP    CAV    CAN    positive
+SDT    chir_3    CAU    CAO    CAV    CAM    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SDT    plan-1         CAA   0.020
+SDT    plan-1         CAG   0.020
+SDT    plan-1         CAH   0.020
+SDT    plan-1         CAK   0.020
+SDT    plan-1         CAQ   0.020
+SDT    plan-1         CAR   0.020
+SDT    plan-1         CAS   0.020
+SDT    plan-1         CAT   0.020
+SDT    plan-1         HAG   0.020
+SDT    plan-1         HAH   0.020
+SDT    plan-1         OAE   0.020
+SDT    plan-1         OAF   0.020
+SDT    plan-2         CAI   0.020
+SDT    plan-2         CAP   0.020
+SDT    plan-2         CAW   0.020
+SDT    plan-2         OAD   0.020
+SDT    plan-3         CAJ   0.020
+SDT    plan-3         CAO   0.020
+SDT    plan-3         CAU   0.020
+SDT    plan-3         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SDT           SMILES              ACDLabs 10.04                                                                                                   O=C3C(CCc1c(ccc(O)c1O)C)C2C(C(=O)CC2)(CC3)C
+SDT SMILES_CANONICAL               CACTVS 3.341                                                                                          Cc1ccc(O)c(O)c1CC[C@H]2[C@@H]3CCC(=O)[C@@]3(C)CCC2=O
+SDT           SMILES               CACTVS 3.341                                                                                               Cc1ccc(O)c(O)c1CC[CH]2[CH]3CCC(=O)[C]3(C)CCC2=O
+SDT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           Cc1ccc(c(c1CC[C@H]2[C@@H]3CCC(=O)[C@]3(CCC2=O)C)O)O
+SDT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                       Cc1ccc(c(c1CCC2C3CCC(=O)C3(CCC2=O)C)O)O
+SDT            InChI                InChI  1.03 InChI=1S/C19H24O4/c1-11-3-7-16(21)18(23)12(11)4-5-13-14-6-8-17(22)19(14,2)10-9-15(13)20/h3,7,13-14,21,23H,4-6,8-10H2,1-2H3/t13-,14-,19-/m0/s1
+SDT         InChIKey                InChI  1.03                                                                                                                   YUHVBHDSVLKFNI-NJSLBKSFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SDT acedrg               243         "dictionary generator"                  
+SDT acedrg_database      11          "data source"                           
+SDT rdkit                2017.03.2   "Chemoinformatics tool"
+SDT refmac5              5.8.0238    "optimization tool"                     

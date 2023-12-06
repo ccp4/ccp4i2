@@ -1,0 +1,465 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MOV     MOV      "AMG 510 (bound form)"     NON-POLYMER     73     41     .     
+#
+data_comp_MOV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MOV     C21     C       CH3     0       -2.406      -7.052      -2.365      
+MOV     C20     C       CH1     0       -1.286      -6.061      -2.065      
+MOV     C19     C       CH2     0       -1.795      -4.614      -1.925      
+MOV     N6      N       NR6     0       -2.596      -4.440      -0.699      
+MOV     C23     C       C       0       -3.749      -3.735      -0.592      
+MOV     O2      O       O       0       -4.447      -3.823      0.415       
+MOV     C24     C       CH2     0       -4.206      -2.862      -1.747      
+MOV     C25     C       CH3     0       -5.286      -1.876      -1.357      
+MOV     C18     C       CH2     0       -2.031      -5.081      0.499       
+MOV     C17     C       CH2     0       -0.615      -5.583      0.297       
+MOV     N2      N       NR6     0       -0.540      -6.477      -0.859      
+MOV     C7      C       CR6     0       0.162       -7.655      -0.852      
+MOV     N3      N       NRD6    0       -0.427      -8.727      -0.288      
+MOV     C8      C       CR6     0       0.190       -9.923      -0.233      
+MOV     O1      O       O       0       -0.366      -10.889     0.285       
+MOV     N4      N       NR6     0       1.491       -10.093     -0.770      
+MOV     C9      C       CR6     0       2.118       -11.400     -0.693      
+MOV     C13     C       CR6     0       1.869       -12.349     -1.691      
+MOV     C22     C       CH3     0       0.966       -12.053     -2.854      
+MOV     C12     C       CR16    0       2.490       -13.592     -1.580      
+MOV     C11     C       CR16    0       3.318       -13.846     -0.503      
+MOV     N5      N       NRD6    0       3.574       -12.951     0.469       
+MOV     C10     C       CR6     0       2.993       -11.739     0.408       
+MOV     C14     C       CH1     0       3.321       -10.770     1.533       
+MOV     C16     C       CH3     0       3.001       -11.388     2.884       
+MOV     C15     C       CH3     0       4.770       -10.315     1.453       
+MOV     C2      C       CR66    0       2.148       -9.010      -1.368      
+MOV     N1      N       NRD6    0       3.376       -9.203      -1.866      
+MOV     C1      C       CR66    0       1.476       -7.743      -1.417      
+MOV     C5      C       CR16    0       2.159       -6.667      -2.023      
+MOV     C4      C       CR6     0       3.412       -6.873      -2.532      
+MOV     F1      F       F       0       4.070       -5.851      -3.109      
+MOV     C3      C       CR6     0       4.019       -8.168      -2.440      
+MOV     C6      C       CR6     0       5.378       -8.464      -2.973      
+MOV     C30     C       CR6     0       6.496       -7.814      -2.461      
+MOV     F2      F       F       0       6.353       -6.901      -1.472      
+MOV     C29     C       CR16    0       7.773       -8.060      -2.926      
+MOV     C28     C       CR16    0       7.934       -8.999      -3.945      
+MOV     C27     C       CR16    0       6.847       -9.666      -4.477      
+MOV     C26     C       CR6     0       5.570       -9.405      -3.996      
+MOV     O3      O       OH1     0       4.506       -10.084     -4.545      
+MOV     H1      H       H       0       -2.751      -7.418      -1.534      
+MOV     H2      H       H       0       -2.060      -7.774      -2.914      
+MOV     H3      H       H       0       -3.124      -6.604      -2.840      
+MOV     H4      H       H       0       -0.667      -6.067      -2.838      
+MOV     H5      H       H       0       -1.038      -4.009      -1.909      
+MOV     H6      H       H       0       -2.329      -4.401      -2.704      
+MOV     H7      H       H       0       -4.542      -3.434      -2.465      
+MOV     H8      H       H       0       -3.439      -2.365      -2.096      
+MOV     H9      H       H       0       -5.450      -1.265      -2.097      
+MOV     H10     H       H       0       -4.998      -1.370      -0.578      
+MOV     H11     H       H       0       -6.105      -2.357      -1.147      
+MOV     H12     H       H       0       -2.601      -5.833      0.756       
+MOV     H13     H       H       0       -2.033      -4.440      1.238       
+MOV     H14     H       H       0       -0.327      -6.064      1.102       
+MOV     H15     H       H       0       -0.009      -4.822      0.168       
+MOV     H16     H       H       0       0.103       -11.749     -2.528      
+MOV     H17     H       H       0       0.842       -12.854     -3.389      
+MOV     H18     H       H       0       1.362       -11.359     -3.406      
+MOV     H19     H       H       0       2.342       -14.252     -2.239      
+MOV     H20     H       H       0       3.735       -14.706     -0.444      
+MOV     H21     H       H       0       2.751       -9.975      1.427       
+MOV     H22     H       H       0       2.100       -11.756     2.867       
+MOV     H23     H       H       0       3.057       -10.704     3.574       
+MOV     H24     H       H       0       3.637       -12.098     3.080       
+MOV     H25     H       H       0       5.171       -10.626     0.623       
+MOV     H26     H       H       0       5.273       -10.673     2.206       
+MOV     H27     H       H       0       4.803       -9.343      1.480       
+MOV     H28     H       H       0       1.754       -5.818      -2.076      
+MOV     H29     H       H       0       8.512       -7.605      -2.563      
+MOV     H30     H       H       0       8.802       -9.183      -4.278      
+MOV     H31     H       H       0       6.967       -10.298     -5.164      
+MOV     H32     H       H       0       3.896       -9.654      -4.973      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MOV         C13         C22      SINGLE       n     1.500  0.0100     1.500  0.0100
+MOV         C26          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+MOV         C27         C26      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MOV         C28         C27      SINGLE       y     1.376  0.0117     1.376  0.0117
+MOV          C6         C26      SINGLE       y     1.399  0.0100     1.399  0.0100
+MOV         C13         C12      DOUBLE       y     1.391  0.0100     1.391  0.0100
+MOV          C9         C13      SINGLE       y     1.394  0.0100     1.394  0.0100
+MOV         C12         C11      SINGLE       y     1.378  0.0103     1.378  0.0103
+MOV         C20         C19      SINGLE       n     1.527  0.0200     1.527  0.0200
+MOV         C19          N6      SINGLE       n     1.466  0.0100     1.466  0.0100
+MOV         C29         C28      DOUBLE       y     1.391  0.0100     1.391  0.0100
+MOV          C3          C6      SINGLE       n     1.487  0.0100     1.487  0.0100
+MOV          C6         C30      DOUBLE       y     1.387  0.0100     1.387  0.0100
+MOV          C4          F1      SINGLE       n     1.346  0.0102     1.346  0.0102
+MOV          C4          C3      DOUBLE       y     1.416  0.0200     1.416  0.0200
+MOV          N1          C3      SINGLE       y     1.342  0.0100     1.342  0.0100
+MOV          C5          C4      SINGLE       y     1.363  0.0129     1.363  0.0129
+MOV          C2          N1      DOUBLE       y     1.330  0.0123     1.330  0.0123
+MOV          C1          C5      DOUBLE       y     1.405  0.0125     1.405  0.0125
+MOV          C2          C1      SINGLE       y     1.426  0.0200     1.426  0.0200
+MOV          N4          C2      SINGLE       y     1.393  0.0124     1.393  0.0124
+MOV         C20          N2      SINGLE       n     1.475  0.0100     1.475  0.0100
+MOV         C21         C20      SINGLE       n     1.523  0.0100     1.523  0.0100
+MOV          C7          C1      SINGLE       y     1.421  0.0200     1.421  0.0200
+MOV          N4          C9      SINGLE       n     1.447  0.0100     1.447  0.0100
+MOV          C9         C10      DOUBLE       y     1.426  0.0174     1.426  0.0174
+MOV         C11          N5      DOUBLE       y     1.342  0.0112     1.342  0.0112
+MOV          C8          N4      SINGLE       y     1.409  0.0100     1.409  0.0100
+MOV          C7          N3      DOUBLE       y     1.339  0.0118     1.339  0.0118
+MOV          N2          C7      SINGLE       n     1.364  0.0191     1.364  0.0191
+MOV          N3          C8      SINGLE       y     1.334  0.0126     1.334  0.0126
+MOV          C8          O1      DOUBLE       n     1.228  0.0100     1.228  0.0100
+MOV         C17          N2      SINGLE       n     1.462  0.0100     1.462  0.0100
+MOV         C23         C24      SINGLE       n     1.503  0.0187     1.503  0.0187
+MOV         C24         C25      SINGLE       n     1.512  0.0100     1.512  0.0100
+MOV         C18         C17      SINGLE       n     1.513  0.0100     1.513  0.0100
+MOV          N6         C23      SINGLE       n     1.347  0.0100     1.347  0.0100
+MOV          N6         C18      SINGLE       n     1.462  0.0100     1.462  0.0100
+MOV         C30         C29      SINGLE       y     1.377  0.0100     1.377  0.0100
+MOV         C30          F2      SINGLE       n     1.353  0.0112     1.353  0.0112
+MOV         C23          O2      DOUBLE       n     1.226  0.0100     1.226  0.0100
+MOV          N5         C10      SINGLE       y     1.339  0.0111     1.339  0.0111
+MOV         C10         C14      SINGLE       n     1.516  0.0100     1.516  0.0100
+MOV         C14         C16      SINGLE       n     1.516  0.0114     1.516  0.0114
+MOV         C14         C15      SINGLE       n     1.516  0.0114     1.516  0.0114
+MOV         C21          H1      SINGLE       n     1.089  0.0100     0.971  0.0171
+MOV         C21          H2      SINGLE       n     1.089  0.0100     0.971  0.0171
+MOV         C21          H3      SINGLE       n     1.089  0.0100     0.971  0.0171
+MOV         C20          H4      SINGLE       n     1.089  0.0100     0.990  0.0145
+MOV         C19          H5      SINGLE       n     1.089  0.0100     0.969  0.0100
+MOV         C19          H6      SINGLE       n     1.089  0.0100     0.969  0.0100
+MOV         C24          H7      SINGLE       n     1.089  0.0100     0.978  0.0104
+MOV         C24          H8      SINGLE       n     1.089  0.0100     0.978  0.0104
+MOV         C25          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C25         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C25         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C18         H12      SINGLE       n     1.089  0.0100     0.978  0.0161
+MOV         C18         H13      SINGLE       n     1.089  0.0100     0.978  0.0161
+MOV         C17         H14      SINGLE       n     1.089  0.0100     0.980  0.0193
+MOV         C17         H15      SINGLE       n     1.089  0.0100     0.980  0.0193
+MOV         C22         H16      SINGLE       n     1.089  0.0100     0.971  0.0135
+MOV         C22         H17      SINGLE       n     1.089  0.0100     0.971  0.0135
+MOV         C22         H18      SINGLE       n     1.089  0.0100     0.971  0.0135
+MOV         C12         H19      SINGLE       n     1.082  0.0130     0.945  0.0100
+MOV         C11         H20      SINGLE       n     1.082  0.0130     0.957  0.0200
+MOV         C14         H21      SINGLE       n     1.089  0.0100     0.984  0.0100
+MOV         C16         H22      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C16         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C16         H24      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C15         H25      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C15         H26      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV         C15         H27      SINGLE       n     1.089  0.0100     0.973  0.0141
+MOV          C5         H28      SINGLE       n     1.082  0.0130     0.943  0.0200
+MOV         C29         H29      SINGLE       n     1.082  0.0130     0.941  0.0154
+MOV         C28         H30      SINGLE       n     1.082  0.0130     0.947  0.0140
+MOV         C27         H31      SINGLE       n     1.082  0.0130     0.941  0.0179
+MOV          O3         H32      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MOV         C20         C21          H1     109.597    1.50
+MOV         C20         C21          H2     109.597    1.50
+MOV         C20         C21          H3     109.597    1.50
+MOV          H1         C21          H2     109.356    1.50
+MOV          H1         C21          H3     109.356    1.50
+MOV          H2         C21          H3     109.356    1.50
+MOV         C19         C20          N2     110.160    1.50
+MOV         C19         C20         C21     113.157    3.00
+MOV         C19         C20          H4     107.168    1.85
+MOV          N2         C20         C21     110.271    2.01
+MOV          N2         C20          H4     109.078    1.50
+MOV         C21         C20          H4     108.008    1.50
+MOV         C20         C19          N6     110.160    1.50
+MOV         C20         C19          H5     109.072    1.50
+MOV         C20         C19          H6     109.072    1.50
+MOV          N6         C19          H5     109.531    1.50
+MOV          N6         C19          H6     109.531    1.50
+MOV          H5         C19          H6     108.248    1.50
+MOV         C19          N6         C23     123.498    3.00
+MOV         C19          N6         C18     113.005    1.50
+MOV         C23          N6         C18     123.498    3.00
+MOV         C24         C23          N6     118.257    1.50
+MOV         C24         C23          O2     120.666    1.81
+MOV          N6         C23          O2     121.078    1.50
+MOV         C23         C24         C25     112.349    1.50
+MOV         C23         C24          H7     109.148    1.50
+MOV         C23         C24          H8     109.148    1.50
+MOV         C25         C24          H7     109.091    1.50
+MOV         C25         C24          H8     109.091    1.50
+MOV          H7         C24          H8     107.852    1.50
+MOV         C24         C25          H9     109.477    1.50
+MOV         C24         C25         H10     109.477    1.50
+MOV         C24         C25         H11     109.477    1.50
+MOV          H9         C25         H10     109.380    1.50
+MOV          H9         C25         H11     109.380    1.50
+MOV         H10         C25         H11     109.380    1.50
+MOV         C17         C18          N6     110.365    1.50
+MOV         C17         C18         H12     109.482    1.50
+MOV         C17         C18         H13     109.482    1.50
+MOV          N6         C18         H12     109.471    1.50
+MOV          N6         C18         H13     109.471    1.50
+MOV         H12         C18         H13     108.187    1.50
+MOV          N2         C17         C18     110.454    1.50
+MOV          N2         C17         H14     109.564    1.50
+MOV          N2         C17         H15     109.564    1.50
+MOV         C18         C17         H14     109.514    1.50
+MOV         C18         C17         H15     109.514    1.50
+MOV         H14         C17         H15     108.196    1.50
+MOV         C20          N2          C7     120.957    3.00
+MOV         C20          N2         C17     115.159    2.92
+MOV          C7          N2         C17     123.883    1.77
+MOV          C1          C7          N3     121.302    1.65
+MOV          C1          C7          N2     120.477    1.50
+MOV          N3          C7          N2     118.222    1.50
+MOV          C7          N3          C8     118.761    1.50
+MOV          N4          C8          N3     119.325    1.50
+MOV          N4          C8          O1     118.813    2.07
+MOV          N3          C8          O1     121.862    1.50
+MOV          C2          N4          C9     120.407    2.11
+MOV          C2          N4          C8     120.768    2.19
+MOV          C9          N4          C8     118.825    1.50
+MOV         C13          C9          N4     120.109    1.68
+MOV         C13          C9         C10     119.914    1.50
+MOV          N4          C9         C10     119.977    1.53
+MOV         C22         C13         C12     120.465    1.50
+MOV         C22         C13          C9     121.490    1.50
+MOV         C12         C13          C9     118.045    1.50
+MOV         C13         C22         H16     109.719    1.50
+MOV         C13         C22         H17     109.719    1.50
+MOV         C13         C22         H18     109.719    1.50
+MOV         H16         C22         H17     109.348    1.50
+MOV         H16         C22         H18     109.348    1.50
+MOV         H17         C22         H18     109.348    1.50
+MOV         C13         C12         C11     119.568    1.50
+MOV         C13         C12         H19     119.696    1.50
+MOV         C11         C12         H19     120.737    1.50
+MOV         C12         C11          N5     123.564    1.50
+MOV         C12         C11         H20     118.423    1.50
+MOV          N5         C11         H20     118.014    1.50
+MOV         C11          N5         C10     118.034    1.50
+MOV          C9         C10          N5     120.877    1.50
+MOV          C9         C10         C14     121.919    1.56
+MOV          N5         C10         C14     117.205    1.64
+MOV         C10         C14         C16     110.153    1.92
+MOV         C10         C14         C15     110.153    1.92
+MOV         C10         C14         H21     107.715    1.50
+MOV         C16         C14         C15     111.176    1.50
+MOV         C16         C14         H21     108.267    1.50
+MOV         C15         C14         H21     108.267    1.50
+MOV         C14         C16         H22     109.476    1.50
+MOV         C14         C16         H23     109.476    1.50
+MOV         C14         C16         H24     109.476    1.50
+MOV         H22         C16         H23     109.411    1.50
+MOV         H22         C16         H24     109.411    1.50
+MOV         H23         C16         H24     109.411    1.50
+MOV         C14         C15         H25     109.476    1.50
+MOV         C14         C15         H26     109.476    1.50
+MOV         C14         C15         H27     109.476    1.50
+MOV         H25         C15         H26     109.411    1.50
+MOV         H25         C15         H27     109.411    1.50
+MOV         H26         C15         H27     109.411    1.50
+MOV          N1          C2          C1     122.872    1.50
+MOV          N1          C2          N4     117.116    1.50
+MOV          C1          C2          N4     120.012    1.50
+MOV          C3          N1          C2     118.011    1.50
+MOV          C5          C1          C2     117.735    1.50
+MOV          C5          C1          C7     122.433    1.72
+MOV          C2          C1          C7     119.832    1.50
+MOV          C4          C5          C1     119.619    1.50
+MOV          C4          C5         H28     120.575    1.50
+MOV          C1          C5         H28     119.806    1.50
+MOV          F1          C4          C3     120.140    1.65
+MOV          F1          C4          C5     119.417    1.50
+MOV          C3          C4          C5     120.443    1.81
+MOV          C6          C3          C4     122.636    2.99
+MOV          C6          C3          N1     116.043    1.50
+MOV          C4          C3          N1     121.320    1.50
+MOV         C26          C6          C3     121.038    1.50
+MOV         C26          C6         C30     118.916    1.58
+MOV          C3          C6         C30     120.046    1.50
+MOV          C6         C30         C29     122.669    1.50
+MOV          C6         C30          F2     119.410    1.50
+MOV         C29         C30          F2     117.922    1.50
+MOV         C28         C29         C30     117.769    1.50
+MOV         C28         C29         H29     121.323    1.50
+MOV         C30         C29         H29     120.908    1.50
+MOV         C27         C28         C29     120.464    1.50
+MOV         C27         C28         H30     119.740    1.50
+MOV         C29         C28         H30     119.796    1.50
+MOV         C26         C27         C28     119.673    1.50
+MOV         C26         C27         H31     119.882    1.50
+MOV         C28         C27         H31     120.445    1.50
+MOV          O3         C26         C27     119.746    3.00
+MOV          O3         C26          C6     119.746    3.00
+MOV         C27         C26          C6     120.508    1.50
+MOV         C26          O3         H32     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MOV            sp3_sp3_19         C19         C20         C21          H1     180.000    10.0     3
+MOV            sp2_sp2_11          C1          C7          N2         C20     180.000     5.0     2
+MOV              const_79          C1          C7          N3          C8       0.000    10.0     2
+MOV              const_35          C5          C1          C7          N3     180.000    10.0     2
+MOV              const_50          O1          C8          N3          C7     180.000    10.0     2
+MOV              const_47          O1          C8          N4          C2     180.000    10.0     2
+MOV             sp2_sp2_7         C13          C9          N4          C2     180.000     5.0     2
+MOV              const_44          N1          C2          N4          C9       0.000    10.0     2
+MOV       const_sp2_sp2_4         C22         C13          C9          N4       0.000     5.0     2
+MOV              const_77         C14         C10          C9         C13     180.000    10.0     2
+MOV            sp2_sp3_19         C12         C13         C22         H16     150.000    10.0     6
+MOV       const_sp2_sp2_6         C11         C12         C13         C22     180.000     5.0     2
+MOV       const_sp2_sp2_9          N5         C11         C12         C13       0.000     5.0     2
+MOV            sp2_sp3_29          C7          N2         C20         C21     -60.000    10.0     6
+MOV             sp3_sp3_2          N6         C19         C20         C21     180.000    10.0     3
+MOV              const_13         C12         C11          N5         C10       0.000    10.0     2
+MOV              const_16         C14         C10          N5         C11     180.000    10.0     2
+MOV            sp2_sp3_38          C9         C10         C14         C16     -90.000    10.0     6
+MOV            sp3_sp3_40         C15         C14         C16         H22      60.000    10.0     3
+MOV            sp3_sp3_46         C16         C14         C15         H25     180.000    10.0     3
+MOV              const_17          C1          C2          N1          C3       0.000    10.0     2
+MOV              const_37          C5          C1          C2          N1       0.000    10.0     2
+MOV              const_20          C6          C3          N1          C2     180.000    10.0     2
+MOV              const_29          C2          C1          C5          C4       0.000    10.0     2
+MOV              const_27          F1          C4          C5          C1     180.000    10.0     2
+MOV             sp2_sp3_4         C23          N6         C19         C20     180.000    10.0     6
+MOV              const_24          C6          C3          C4          F1       0.000    10.0     2
+MOV             sp2_sp2_3          C4          C3          C6         C26     180.000     5.0     2
+MOV              const_73          F2         C30          C6         C26     180.000    10.0     2
+MOV              const_54          O3         C26          C6          C3       0.000    10.0     2
+MOV              const_68         C28         C29         C30          F2     180.000    10.0     2
+MOV              const_63         C27         C28         C29         C30       0.000    10.0     2
+MOV              const_59         C26         C27         C28         C29       0.000    10.0     2
+MOV              const_57          O3         C26         C27         C28     180.000    10.0     2
+MOV             sp2_sp2_1         C27         C26          O3         H32     180.000     5.0     2
+MOV            sp2_sp2_15         C24         C23          N6         C19     180.000     5.0     2
+MOV            sp2_sp3_10         C23          N6         C18         C17     180.000    10.0     6
+MOV            sp2_sp3_35          O2         C23         C24         C25     -60.000    10.0     6
+MOV            sp3_sp3_28         C23         C24         C25          H9     180.000    10.0     3
+MOV            sp3_sp3_10          N2         C17         C18          N6     -60.000    10.0     3
+MOV            sp2_sp3_13         C20          N2         C17         C18       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MOV    chir_1    C20    N2    C19    C21    positive
+MOV    chir_2    C14    C10    C16    C15    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MOV    plan-1          C1   0.020
+MOV    plan-1          C2   0.020
+MOV    plan-1          C3   0.020
+MOV    plan-1          C4   0.020
+MOV    plan-1          C5   0.020
+MOV    plan-1          C6   0.020
+MOV    plan-1          C7   0.020
+MOV    plan-1          C8   0.020
+MOV    plan-1          C9   0.020
+MOV    plan-1          F1   0.020
+MOV    plan-1         H28   0.020
+MOV    plan-1          N1   0.020
+MOV    plan-1          N2   0.020
+MOV    plan-1          N3   0.020
+MOV    plan-1          N4   0.020
+MOV    plan-1          O1   0.020
+MOV    plan-2         C10   0.020
+MOV    plan-2         C11   0.020
+MOV    plan-2         C12   0.020
+MOV    plan-2         C13   0.020
+MOV    plan-2         C14   0.020
+MOV    plan-2         C22   0.020
+MOV    plan-2          C9   0.020
+MOV    plan-2         H19   0.020
+MOV    plan-2         H20   0.020
+MOV    plan-2          N4   0.020
+MOV    plan-2          N5   0.020
+MOV    plan-3         C26   0.020
+MOV    plan-3         C27   0.020
+MOV    plan-3         C28   0.020
+MOV    plan-3         C29   0.020
+MOV    plan-3          C3   0.020
+MOV    plan-3         C30   0.020
+MOV    plan-3          C6   0.020
+MOV    plan-3          F2   0.020
+MOV    plan-3         H29   0.020
+MOV    plan-3         H30   0.020
+MOV    plan-3         H31   0.020
+MOV    plan-3          O3   0.020
+MOV    plan-4         C18   0.020
+MOV    plan-4         C19   0.020
+MOV    plan-4         C23   0.020
+MOV    plan-4          N6   0.020
+MOV    plan-5         C23   0.020
+MOV    plan-5         C24   0.020
+MOV    plan-5          N6   0.020
+MOV    plan-5          O2   0.020
+MOV    plan-6         C17   0.020
+MOV    plan-6         C20   0.020
+MOV    plan-6          C7   0.020
+MOV    plan-6          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MOV           SMILES              ACDLabs 12.01                                                                                                                               CC1N(CCN(C1)C(=O)CC)C3=NC(=O)N(c2c(nccc2C)C(C)C)c4c3cc(F)c(n4)c5c(F)cccc5O
+MOV            InChI                InChI  1.03 InChI=1S/C30H32F2N6O3/c1-6-23(40)36-12-13-37(18(5)15-36)28-19-14-21(32)26(24-20(31)8-7-9-22(24)39)34-29(19)38(30(41)35-28)27-17(4)10-11-33-25(27)16(2)3/h7-11,14,16,18,39H,6,12-13,15H2,1-5H3/t18-/m0/s1
+MOV         InChIKey                InChI  1.03                                                                                                                                                                              ZIXPBHVQXGLHAG-SFHVURJKSA-N
+MOV SMILES_CANONICAL               CACTVS 3.385                                                                                                                          CCC(=O)N1CCN([C@@H](C)C1)C2=NC(=O)N(c3nc(c(F)cc23)c4c(O)cccc4F)c5c(C)ccnc5C(C)C
+MOV           SMILES               CACTVS 3.385                                                                                                                            CCC(=O)N1CCN([CH](C)C1)C2=NC(=O)N(c3nc(c(F)cc23)c4c(O)cccc4F)c5c(C)ccnc5C(C)C
+MOV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                           CCC(=O)N1CCN([C@H](C1)C)C2=NC(=O)N(c3c2cc(c(n3)c4c(cccc4F)O)F)c5c(ccnc5C(C)C)C
+MOV           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                               CCC(=O)N1CCN(C(C1)C)C2=NC(=O)N(c3c2cc(c(n3)c4c(cccc4F)O)F)c5c(ccnc5C(C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MOV acedrg               243         "dictionary generator"                  
+MOV acedrg_database      11          "data source"                           
+MOV rdkit                2017.03.2   "Chemoinformatics tool"
+MOV refmac5              5.8.0238    "optimization tool"                     

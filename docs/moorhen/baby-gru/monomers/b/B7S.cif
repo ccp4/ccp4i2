@@ -1,0 +1,176 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B7S     B7S      5,7-dihydroxy-4H-1-benzopyran-4-one     NON-POLYMER     19     13     .     
+#
+data_comp_B7S
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B7S     C10     C       CR6     0       -16.243     13.831      42.084      
+B7S     C01     C       CR16    0       -15.397     14.986      41.926      
+B7S     C02     C       CR16    0       -14.142     14.865      41.316      
+B7S     C04     C       CR66    0       -14.425     12.546      40.973      
+B7S     C05     C       CR16    0       -13.841     11.393      40.464      
+B7S     C06     C       CR6     0       -14.561     10.206      40.556      
+B7S     C07     C       CR16    0       -15.837     10.167      41.144      
+B7S     C08     C       CR6     0       -16.394     11.326      41.641      
+B7S     C09     C       CR66    0       -15.697     12.565      41.570      
+B7S     O03     O       O2      0       -13.658     13.687      40.849      
+B7S     O11     O       O       0       -17.348     13.913      42.616      
+B7S     O12     O       OH1     0       -17.643     11.287      42.216      
+B7S     O13     O       OH1     0       -14.010     9.048       40.063      
+B7S     H011    H       H       0       -15.681     15.842      42.234      
+B7S     H021    H       H       0       -13.620     15.606      41.224      
+B7S     H051    H       H       0       -12.986     11.414      40.070      
+B7S     H071    H       H       0       -16.315     9.347       41.198      
+B7S     H121    H       H       0       -17.741     11.492      43.046      
+B7S     H131    H       H       0       -14.518     8.429       39.746      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B7S         C06         O13      SINGLE       n     1.374  0.0155     1.374  0.0155
+B7S         C05         C06      DOUBLE       y     1.388  0.0100     1.388  0.0100
+B7S         C06         C07      SINGLE       y     1.402  0.0106     1.402  0.0106
+B7S         C04         C05      SINGLE       y     1.386  0.0100     1.386  0.0100
+B7S         C07         C08      DOUBLE       y     1.374  0.0100     1.374  0.0100
+B7S         C04         O03      SINGLE       y     1.375  0.0100     1.375  0.0100
+B7S         C04         C09      DOUBLE       y     1.396  0.0100     1.396  0.0100
+B7S         C08         C09      SINGLE       y     1.417  0.0100     1.417  0.0100
+B7S         C08         O12      SINGLE       n     1.374  0.0155     1.374  0.0155
+B7S         C02         O03      SINGLE       y     1.354  0.0103     1.354  0.0103
+B7S         C10         C09      SINGLE       y     1.457  0.0155     1.457  0.0155
+B7S         C01         C02      DOUBLE       y     1.405  0.0200     1.405  0.0200
+B7S         C10         C01      SINGLE       y     1.440  0.0100     1.440  0.0100
+B7S         C10         O11      DOUBLE       n     1.228  0.0180     1.228  0.0180
+B7S         C01        H011      SINGLE       n     1.082  0.0130     0.953  0.0200
+B7S         C02        H021      SINGLE       n     1.082  0.0130     0.911  0.0200
+B7S         C05        H051      SINGLE       n     1.082  0.0130     0.942  0.0200
+B7S         C07        H071      SINGLE       n     1.082  0.0130     0.951  0.0200
+B7S         O12        H121      SINGLE       n     0.966  0.0059     0.861  0.0200
+B7S         O13        H131      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B7S         C09         C10         C01     115.986    1.50
+B7S         C09         C10         O11     122.319    1.50
+B7S         C01         C10         O11     121.695    1.50
+B7S         C02         C01         C10     121.775    1.50
+B7S         C02         C01        H011     118.325    1.92
+B7S         C10         C01        H011     119.900    1.95
+B7S         O03         C02         C01     123.924    1.50
+B7S         O03         C02        H021     117.326    1.95
+B7S         C01         C02        H021     118.750    1.57
+B7S         C05         C04         O03     115.553    1.50
+B7S         C05         C04         C09     123.689    1.50
+B7S         O03         C04         C09     120.758    1.50
+B7S         C06         C05         C04     117.805    1.50
+B7S         C06         C05        H051     121.115    1.50
+B7S         C04         C05        H051     121.079    1.50
+B7S         O13         C06         C05     119.313    3.00
+B7S         O13         C06         C07     119.313    3.00
+B7S         C05         C06         C07     121.375    1.50
+B7S         C06         C07         C08     119.275    1.50
+B7S         C06         C07        H071     120.434    1.50
+B7S         C08         C07        H071     120.291    1.50
+B7S         C07         C08         C09     120.510    1.50
+B7S         C07         C08         O12     121.363    3.00
+B7S         C09         C08         O12     118.127    2.50
+B7S         C04         C09         C08     117.346    1.50
+B7S         C04         C09         C10     119.447    1.50
+B7S         C08         C09         C10     123.207    1.50
+B7S         C04         O03         C02     118.110    1.50
+B7S         C08         O12        H121     120.000    3.00
+B7S         C06         O13        H131     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B7S              const_38         C02         C01         C10         O11     180.000    10.0     2
+B7S       const_sp2_sp2_2         C04         C09         C10         O11     180.000     5.0     2
+B7S              const_13         C10         C01         C02         O03       0.000    10.0     2
+B7S              const_11         C01         C02         O03         C04       0.000    10.0     2
+B7S              const_19         O03         C04         C05         C06     180.000    10.0     2
+B7S       const_sp2_sp2_5         C05         C04         C09         C08       0.000     5.0     2
+B7S              const_10         C05         C04         O03         C02     180.000    10.0     2
+B7S              const_22         C04         C05         C06         O13     180.000    10.0     2
+B7S             sp2_sp2_1         C05         C06         O13        H131     180.000     5.0     2
+B7S              const_27         O13         C06         C07         C08     180.000    10.0     2
+B7S              const_30         C06         C07         C08         O12     180.000    10.0     2
+B7S             sp2_sp2_3         C07         C08         O12        H121     180.000     5.0     2
+B7S              const_35         O12         C08         C09         C04     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B7S    plan-1         C01   0.020
+B7S    plan-1         C02   0.020
+B7S    plan-1         C04   0.020
+B7S    plan-1         C05   0.020
+B7S    plan-1         C06   0.020
+B7S    plan-1         C07   0.020
+B7S    plan-1         C08   0.020
+B7S    plan-1         C09   0.020
+B7S    plan-1         C10   0.020
+B7S    plan-1        H011   0.020
+B7S    plan-1        H021   0.020
+B7S    plan-1        H051   0.020
+B7S    plan-1        H071   0.020
+B7S    plan-1         O03   0.020
+B7S    plan-1         O11   0.020
+B7S    plan-1         O12   0.020
+B7S    plan-1         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B7S           SMILES              ACDLabs 12.01                                      C1(C=COc2c1c(cc(c2)O)O)=O
+B7S            InChI                InChI  1.03 InChI=1S/C9H6O4/c10-5-3-7(12)9-6(11)1-2-13-8(9)4-5/h1-4,10,12H
+B7S         InChIKey                InChI  1.03                                    NYCXYKOXLNBYID-UHFFFAOYSA-N
+B7S SMILES_CANONICAL               CACTVS 3.385                                        Oc1cc(O)c2C(=O)C=COc2c1
+B7S           SMILES               CACTVS 3.385                                        Oc1cc(O)c2C(=O)C=COc2c1
+B7S SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                      c1c(cc2c(c1O)C(=O)C=CO2)O
+B7S           SMILES "OpenEye OEToolkits" 2.0.6                                      c1c(cc2c(c1O)C(=O)C=CO2)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B7S acedrg               243         "dictionary generator"                  
+B7S acedrg_database      11          "data source"                           
+B7S rdkit                2017.03.2   "Chemoinformatics tool"
+B7S refmac5              5.8.0238    "optimization tool"                     

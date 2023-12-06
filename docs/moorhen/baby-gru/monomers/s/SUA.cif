@@ -1,0 +1,264 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SUA     SUA      "(4-SULFAMOYL-PHENYL)-THIOCARBAMIC ACID O-(2-THIOPHEN-3-YL-ETHYL) ESTER"     NON-POLYMER     35     21     .     
+#
+data_comp_SUA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SUA     S1      S       S3      0       -6.075      0.266       -0.026      
+SUA     O1      O       O       0       -6.140      1.696       0.031       
+SUA     O2      O       O       0       -6.718      -0.492      1.006       
+SUA     N1      N       NT2     0       -6.735      -0.180      -1.417      
+SUA     C1      C       CR16    0       -2.073      0.334       -0.528      
+SUA     C2      C       CR16    0       -3.408      0.699       -0.512      
+SUA     C3      C       CR6     0       -4.368      -0.196      -0.046      
+SUA     C4      C       CR16    0       -3.983      -1.457      0.399       
+SUA     C5      C       CR16    0       -2.648      -1.819      0.381       
+SUA     C6      C       CR6     0       -1.681      -0.927      -0.083      
+SUA     N2      N       NH1     0       -0.312      -1.305      -0.096      
+SUA     C7      C       C       0       0.746       -0.774      0.542       
+SUA     S2      S       S1      0       0.566       0.228       1.865       
+SUA     O3      O       O2      0       1.909       -1.155      0.015       
+SUA     C8      C       CH2     0       3.113       -0.370      0.226       
+SUA     C9      C       CH2     0       4.205       -0.934      -0.645      
+SUA     C10     C       CR5     0       5.553       -0.322      -0.389      
+SUA     C11     C       CR15    0       6.221       -0.368      0.890       
+SUA     C12     C       CR15    0       7.426       0.256       0.857       
+SUA     S3      S       S2      0       7.730       0.868       -0.660      
+SUA     C13     C       CR15    0       6.293       0.330       -1.307      
+SUA     HN11    H       H       0       -6.262      -0.772      -1.844      
+SUA     HN12    H       H       0       -7.585      -0.346      -1.352      
+SUA     H11     H       H       0       -1.425      0.941       -0.842      
+SUA     H21     H       H       0       -3.662      1.552       -0.816      
+SUA     H41     H       H       0       -4.627      -2.067      0.712       
+SUA     H51     H       H       0       -2.389      -2.672      0.684       
+SUA     HN21    H       H       0       -0.138      -2.001      -0.591      
+SUA     H81     H       H       0       3.384       -0.415      1.167       
+SUA     H82     H       H       0       2.951       0.568       -0.008      
+SUA     H91     H       H       0       3.967       -0.792      -1.587      
+SUA     H92     H       H       0       4.264       -1.903      -0.496      
+SUA     H111    H       H       0       5.854       -0.784      1.652       
+SUA     H121    H       H       0       8.040       0.356       1.564       
+SUA     H131    H       H       0       6.068       0.487       -2.209      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SUA          S1          O1      DOUBLE       n     1.433  0.0100     1.433  0.0100
+SUA          S1          O2      DOUBLE       n     1.433  0.0100     1.433  0.0100
+SUA          S1          N1      SINGLE       n     1.603  0.0110     1.603  0.0110
+SUA          S1          C3      SINGLE       n     1.766  0.0100     1.766  0.0100
+SUA          C1          C2      DOUBLE       y     1.380  0.0100     1.380  0.0100
+SUA          C1          C6      SINGLE       y     1.391  0.0100     1.391  0.0100
+SUA          C2          C3      SINGLE       y     1.388  0.0100     1.388  0.0100
+SUA          C3          C4      DOUBLE       y     1.388  0.0100     1.388  0.0100
+SUA          C4          C5      SINGLE       y     1.380  0.0100     1.380  0.0100
+SUA          C5          C6      DOUBLE       y     1.391  0.0100     1.391  0.0100
+SUA          C6          N2      SINGLE       n     1.419  0.0100     1.419  0.0100
+SUA          N2          C7      SINGLE       n     1.341  0.0100     1.341  0.0100
+SUA          C7          S2      DOUBLE       n     1.667  0.0100     1.667  0.0100
+SUA          C7          O3      SINGLE       n     1.328  0.0100     1.328  0.0100
+SUA          O3          C8      SINGLE       n     1.451  0.0100     1.451  0.0100
+SUA          C8          C9      SINGLE       n     1.504  0.0200     1.504  0.0200
+SUA          C9         C10      SINGLE       n     1.501  0.0100     1.501  0.0100
+SUA         C10         C11      SINGLE       y     1.430  0.0113     1.430  0.0113
+SUA         C10         C13      DOUBLE       y     1.344  0.0100     1.344  0.0100
+SUA         C11         C12      DOUBLE       y     1.343  0.0200     1.343  0.0200
+SUA         C12          S3      SINGLE       y     1.695  0.0200     1.695  0.0200
+SUA          S3         C13      SINGLE       y     1.695  0.0200     1.695  0.0200
+SUA          N1        HN11      SINGLE       n     1.036  0.0160     0.869  0.0200
+SUA          N1        HN12      SINGLE       n     1.036  0.0160     0.869  0.0200
+SUA          C1         H11      SINGLE       n     1.082  0.0130     0.941  0.0200
+SUA          C2         H21      SINGLE       n     1.082  0.0130     0.941  0.0197
+SUA          C4         H41      SINGLE       n     1.082  0.0130     0.941  0.0197
+SUA          C5         H51      SINGLE       n     1.082  0.0130     0.941  0.0200
+SUA          N2        HN21      SINGLE       n     1.016  0.0100     0.872  0.0100
+SUA          C8         H81      SINGLE       n     1.089  0.0100     0.980  0.0143
+SUA          C8         H82      SINGLE       n     1.089  0.0100     0.980  0.0143
+SUA          C9         H91      SINGLE       n     1.089  0.0100     0.982  0.0147
+SUA          C9         H92      SINGLE       n     1.089  0.0100     0.982  0.0147
+SUA         C11        H111      SINGLE       n     1.082  0.0130     0.942  0.0153
+SUA         C12        H121      SINGLE       n     1.082  0.0130     0.942  0.0200
+SUA         C13        H131      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SUA          O1          S1          O2     118.954    1.50
+SUA          O1          S1          N1     107.154    1.50
+SUA          O1          S1          C3     107.472    1.50
+SUA          O2          S1          N1     107.154    1.50
+SUA          O2          S1          C3     107.472    1.50
+SUA          N1          S1          C3     108.480    1.50
+SUA          S1          N1        HN11     113.070    3.00
+SUA          S1          N1        HN12     113.070    3.00
+SUA        HN11          N1        HN12     115.993    3.00
+SUA          C2          C1          C6     120.206    1.50
+SUA          C2          C1         H11     120.004    1.50
+SUA          C6          C1         H11     119.790    1.50
+SUA          C1          C2          C3     119.948    1.50
+SUA          C1          C2         H21     119.880    1.50
+SUA          C3          C2         H21     120.172    1.50
+SUA          S1          C3          C2     119.828    1.50
+SUA          S1          C3          C4     119.828    1.50
+SUA          C2          C3          C4     120.344    1.50
+SUA          C3          C4          C5     119.948    1.50
+SUA          C3          C4         H41     120.172    1.50
+SUA          C5          C4         H41     119.880    1.50
+SUA          C4          C5          C6     120.206    1.50
+SUA          C4          C5         H51     120.004    1.50
+SUA          C6          C5         H51     119.790    1.50
+SUA          C1          C6          C5     119.348    1.50
+SUA          C1          C6          N2     120.326    3.00
+SUA          C5          C6          N2     120.326    3.00
+SUA          C6          N2          C7     130.274    1.64
+SUA          C6          N2        HN21     114.627    1.50
+SUA          C7          N2        HN21     115.098    1.50
+SUA          N2          C7          S2     122.377    1.61
+SUA          N2          C7          O3     112.835    1.50
+SUA          S2          C7          O3     124.787    1.50
+SUA          C7          O3          C8     119.071    1.50
+SUA          O3          C8          C9     107.877    2.08
+SUA          O3          C8         H81     109.852    1.50
+SUA          O3          C8         H82     109.852    1.50
+SUA          C9          C8         H81     109.702    1.50
+SUA          C9          C8         H82     109.702    1.50
+SUA         H81          C8         H82     108.319    1.50
+SUA          C8          C9         C10     113.549    1.50
+SUA          C8          C9         H91     109.160    1.50
+SUA          C8          C9         H92     109.160    1.50
+SUA         C10          C9         H91     108.985    1.50
+SUA         C10          C9         H92     108.985    1.50
+SUA         H91          C9         H92     107.724    1.50
+SUA          C9         C10         C11     125.218    1.50
+SUA          C9         C10         C13     127.841    1.92
+SUA         C11         C10         C13     106.940    1.50
+SUA         C10         C11         C12     107.945    1.50
+SUA         C10         C11        H111     125.406    1.50
+SUA         C12         C11        H111     126.649    1.50
+SUA         C11         C12          S3     108.372    3.00
+SUA         C11         C12        H121     128.442    2.40
+SUA          S3         C12        H121     123.186    3.00
+SUA         C12          S3         C13     108.372    3.00
+SUA         C10         C13          S3     108.372    3.00
+SUA         C10         C13        H131     128.252    2.51
+SUA          S3         C13        H131     123.376    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SUA             sp3_sp3_2        HN11          N1          S1          O1     -60.000    10.0     3
+SUA             sp2_sp3_1          C2          C3          S1          O1     150.000    10.0     6
+SUA             sp2_sp2_7          S2          C7          N2          C6       0.000     5.0     2
+SUA             sp2_sp2_9          N2          C7          O3          C8     180.000     5.0     2
+SUA             sp3_sp3_7          C9          C8          O3          C7     180.000    10.0     3
+SUA            sp3_sp3_10          O3          C8          C9         C10     180.000    10.0     3
+SUA             sp2_sp3_8         C11         C10          C9          C8     -90.000    10.0     6
+SUA       const_sp2_sp2_3          C9         C10         C11         C12     180.000     5.0     2
+SUA              const_39          C9         C10         C13          S3     180.000    10.0     2
+SUA       const_sp2_sp2_5         C10         C11         C12          S3       0.000     5.0     2
+SUA       const_sp2_sp2_9         C11         C12          S3         C13       0.000     5.0     2
+SUA              const_11         C10         C13          S3         C12       0.000    10.0     2
+SUA              const_13          C6          C1          C2          C3       0.000    10.0     2
+SUA              const_34          C2          C1          C6          N2     180.000    10.0     2
+SUA              const_18          C1          C2          C3          S1     180.000    10.0     2
+SUA              const_23          S1          C3          C4          C5     180.000    10.0     2
+SUA              const_25          C3          C4          C5          C6       0.000    10.0     2
+SUA              const_30          C4          C5          C6          N2     180.000    10.0     2
+SUA             sp2_sp2_1          C1          C6          N2          C7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SUA    chir_1    S1    O1    O2    N1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SUA    plan-1         C10   0.020
+SUA    plan-1         C11   0.020
+SUA    plan-1         C12   0.020
+SUA    plan-1         C13   0.020
+SUA    plan-1          C9   0.020
+SUA    plan-1        H111   0.020
+SUA    plan-1        H121   0.020
+SUA    plan-1        H131   0.020
+SUA    plan-1          S3   0.020
+SUA    plan-2          C1   0.020
+SUA    plan-2          C2   0.020
+SUA    plan-2          C3   0.020
+SUA    plan-2          C4   0.020
+SUA    plan-2          C5   0.020
+SUA    plan-2          C6   0.020
+SUA    plan-2         H11   0.020
+SUA    plan-2         H21   0.020
+SUA    plan-2         H41   0.020
+SUA    plan-2         H51   0.020
+SUA    plan-2          N2   0.020
+SUA    plan-2          S1   0.020
+SUA    plan-3          C6   0.020
+SUA    plan-3          C7   0.020
+SUA    plan-3        HN21   0.020
+SUA    plan-3          N2   0.020
+SUA    plan-4          C7   0.020
+SUA    plan-4          N2   0.020
+SUA    plan-4          O3   0.020
+SUA    plan-4          S2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SUA           SMILES              ACDLabs 11.02                                                                                        O=S(=O)(N)c1ccc(cc1)NC(=S)OCCc2ccsc2
+SUA SMILES_CANONICAL               CACTVS 3.352                                                                                      N[S](=O)(=O)c1ccc(NC(=S)OCCc2cscc2)cc1
+SUA           SMILES               CACTVS 3.352                                                                                      N[S](=O)(=O)c1ccc(NC(=S)OCCc2cscc2)cc1
+SUA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                        c1cc(ccc1NC(=S)OCCc2ccsc2)S(=O)(=O)N
+SUA           SMILES "OpenEye OEToolkits" 1.7.0                                                                                        c1cc(ccc1NC(=S)OCCc2ccsc2)S(=O)(=O)N
+SUA            InChI                InChI  1.03 InChI=1S/C13H14N2O3S3/c14-21(16,17)12-3-1-11(2-4-12)15-13(19)18-7-5-10-6-8-20-9-10/h1-4,6,8-9H,5,7H2,(H,15,19)(H2,14,16,17)
+SUA         InChIKey                InChI  1.03                                                                                                 NXMUSVRWCFYOTJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SUA acedrg               243         "dictionary generator"                  
+SUA acedrg_database      11          "data source"                           
+SUA rdkit                2017.03.2   "Chemoinformatics tool"
+SUA refmac5              5.8.0238    "optimization tool"                     

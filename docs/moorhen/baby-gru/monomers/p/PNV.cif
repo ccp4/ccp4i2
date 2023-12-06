@@ -1,0 +1,300 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PNV     PNV      "(2S,5R,6R)-3,3-DIMETHYL-7-OXO-6-(2-PHENOXYACETAMIDO)-4-THIA-1- AZABICYCLO(3.2.0)HEPTANE-2-CARBOXYLIC ACID"     NON-POLYMER     41     24     .     
+#
+data_comp_PNV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PNV     C24     C       CR16    0       13.794      52.208      33.444      
+PNV     C23     C       CR16    0       12.655      51.953      32.692      
+PNV     C22     C       CR16    0       11.918      52.987      32.156      
+PNV     C21     C       CR16    0       12.316      54.290      32.371      
+PNV     C20     C       CR16    0       13.450      54.569      33.122      
+PNV     C19     C       CR6     0       14.193      53.526      33.667      
+PNV     O1      O       O2      0       15.292      53.938      34.383      
+PNV     C2      C       CH2     0       15.995      53.051      35.254      
+PNV     C3      C       C       0       15.146      52.654      36.442      
+PNV     O18     O       O       0       14.669      53.533      37.154      
+PNV     N4      N       NH1     0       14.977      51.340      36.679      
+PNV     C5      C       CH1     0       14.150      50.726      37.687      
+PNV     C6      C       C       0       12.873      51.424      38.191      
+PNV     O17     O       O       0       11.840      51.796      37.711      
+PNV     C8      C       CH1     0       14.590      50.752      39.198      
+PNV     N7      N       NT      0       13.370      51.524      39.495      
+PNV     S11     S       S2      0       15.997      51.772      39.699      
+PNV     C10     C       CT      0       14.953      52.703      40.908      
+PNV     C12     C       CH3     0       14.972      51.933      42.229      
+PNV     C15     C       CH3     0       15.550      54.097      41.095      
+PNV     C9      C       CH1     0       13.540      52.776      40.230      
+PNV     C13     C       C       0       12.382      53.012      41.200      
+PNV     O14     O       OC      -1      11.830      52.061      41.728      
+PNV     O16     O       O       0       12.042      54.161      41.420      
+PNV     H1      H       H       0       14.286      51.491      33.805      
+PNV     H2      H       H       0       12.386      51.061      32.546      
+PNV     H3      H       H       0       11.146      52.805      31.645      
+PNV     H4      H       H       0       11.815      55.000      32.007      
+PNV     H5      H       H       0       13.715      55.462      33.265      
+PNV     H6      H       H       0       16.804      53.495      35.576      
+PNV     H7      H       H       0       16.273      52.257      34.758      
+PNV     H8      H       H       0       15.442      50.747      36.145      
+PNV     H9      H       H       0       13.935      49.812      37.391      
+PNV     H10     H       H       0       14.606      49.858      39.620      
+PNV     H11     H       H       0       14.412      51.144      42.153      
+PNV     H12     H       H       0       14.638      52.502      42.941      
+PNV     H13     H       H       0       15.883      51.664      42.434      
+PNV     H14     H       H       0       14.870      54.694      41.446      
+PNV     H15     H       H       0       15.864      54.434      40.239      
+PNV     H16     H       H       0       16.294      54.052      41.717      
+PNV     H17     H       H       0       13.542      53.523      39.572      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PNV         C22         C21      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PNV         C23         C22      SINGLE       y     1.375  0.0126     1.375  0.0126
+PNV         C21         C20      SINGLE       y     1.385  0.0100     1.385  0.0100
+PNV         C24         C23      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PNV         C20         C19      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PNV         C24         C19      SINGLE       y     1.386  0.0109     1.386  0.0109
+PNV         C19          O1      SINGLE       n     1.369  0.0100     1.369  0.0100
+PNV          O1          C2      SINGLE       n     1.424  0.0100     1.424  0.0100
+PNV          C2          C3      SINGLE       n     1.510  0.0100     1.510  0.0100
+PNV          C3          N4      SINGLE       n     1.339  0.0100     1.339  0.0100
+PNV          C3         O18      DOUBLE       n     1.227  0.0100     1.227  0.0100
+PNV          N4          C5      SINGLE       n     1.436  0.0100     1.436  0.0100
+PNV          C5          C6      SINGLE       n     1.538  0.0100     1.538  0.0100
+PNV          C5          C8      SINGLE       n     1.569  0.0197     1.569  0.0197
+PNV          C6         O17      DOUBLE       n     1.199  0.0100     1.199  0.0100
+PNV          C6          N7      SINGLE       n     1.397  0.0132     1.397  0.0132
+PNV          C8          N7      SINGLE       n     1.471  0.0139     1.471  0.0139
+PNV          C8         S11      SINGLE       n     1.810  0.0119     1.810  0.0119
+PNV          N7          C9      SINGLE       n     1.458  0.0100     1.458  0.0100
+PNV         S11         C10      SINGLE       n     1.851  0.0113     1.851  0.0113
+PNV         C10          C9      SINGLE       n     1.561  0.0167     1.561  0.0167
+PNV          C9         C13      SINGLE       n     1.520  0.0177     1.520  0.0177
+PNV         C10         C15      SINGLE       n     1.527  0.0100     1.527  0.0100
+PNV         C10         C12      SINGLE       n     1.527  0.0100     1.527  0.0100
+PNV         C13         O16      DOUBLE       n     1.218  0.0200     1.218  0.0200
+PNV         C13         O14      SINGLE       n     1.218  0.0200     1.218  0.0200
+PNV         C24          H1      SINGLE       n     1.082  0.0130     0.942  0.0163
+PNV         C23          H2      SINGLE       n     1.082  0.0130     0.943  0.0183
+PNV         C22          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+PNV         C21          H4      SINGLE       n     1.082  0.0130     0.943  0.0183
+PNV         C20          H5      SINGLE       n     1.082  0.0130     0.942  0.0163
+PNV          C2          H6      SINGLE       n     1.089  0.0100     0.977  0.0137
+PNV          C2          H7      SINGLE       n     1.089  0.0100     0.977  0.0137
+PNV          N4          H8      SINGLE       n     1.016  0.0100     0.924  0.0200
+PNV          C5          H9      SINGLE       n     1.089  0.0100     0.984  0.0200
+PNV          C8         H10      SINGLE       n     1.089  0.0100     0.988  0.0132
+PNV         C12         H11      SINGLE       n     1.089  0.0100     0.971  0.0169
+PNV         C12         H12      SINGLE       n     1.089  0.0100     0.971  0.0169
+PNV         C12         H13      SINGLE       n     1.089  0.0100     0.971  0.0169
+PNV         C15         H14      SINGLE       n     1.089  0.0100     0.971  0.0169
+PNV         C15         H15      SINGLE       n     1.089  0.0100     0.971  0.0169
+PNV         C15         H16      SINGLE       n     1.089  0.0100     0.971  0.0169
+PNV          C9         H17      SINGLE       n     1.089  0.0100     0.995  0.0104
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PNV         C23         C24         C19     119.315    1.50
+PNV         C23         C24          H1     120.377    1.50
+PNV         C19         C24          H1     120.308    1.50
+PNV         C22         C23         C24     120.734    1.50
+PNV         C22         C23          H2     119.817    1.50
+PNV         C24         C23          H2     119.448    1.50
+PNV         C21         C22         C23     119.951    1.50
+PNV         C21         C22          H3     120.024    1.50
+PNV         C23         C22          H3     120.024    1.50
+PNV         C22         C21         C20     120.734    1.50
+PNV         C22         C21          H4     119.817    1.50
+PNV         C20         C21          H4     119.448    1.50
+PNV         C21         C20         C19     119.315    1.50
+PNV         C21         C20          H5     120.377    1.50
+PNV         C19         C20          H5     120.308    1.50
+PNV         C20         C19         C24     119.950    1.50
+PNV         C20         C19          O1     120.025    3.00
+PNV         C24         C19          O1     120.025    3.00
+PNV         C19          O1          C2     118.110    1.50
+PNV          O1          C2          C3     110.296    2.00
+PNV          O1          C2          H6     109.578    1.50
+PNV          O1          C2          H7     109.578    1.50
+PNV          C3          C2          H6     109.539    1.50
+PNV          C3          C2          H7     109.539    1.50
+PNV          H6          C2          H7     108.122    1.50
+PNV          C2          C3          N4     116.983    1.98
+PNV          C2          C3         O18     120.788    1.95
+PNV          N4          C3         O18     122.229    1.50
+PNV          C3          N4          C5     120.921    2.50
+PNV          C3          N4          H8     118.756    2.51
+PNV          C5          N4          H8     120.323    3.00
+PNV          N4          C5          C6     116.563    3.00
+PNV          N4          C5          C8     118.905    3.00
+PNV          N4          C5          H9     109.992    1.69
+PNV          C6          C5          C8      85.978    1.75
+PNV          C6          C5          H9     111.185    1.68
+PNV          C8          C5          H9     113.345    1.95
+PNV          C5          C6         O17     136.472    1.50
+PNV          C5          C6          N7      92.485    1.50
+PNV         O17          C6          N7     131.043    1.50
+PNV          C5          C8          N7      88.590    1.50
+PNV          C5          C8         S11     116.971    3.00
+PNV          C5          C8         H10     114.585    1.80
+PNV          N7          C8         S11     109.471    3.00
+PNV          N7          C8         H10     114.251    1.50
+PNV         S11          C8         H10     113.121    1.50
+PNV          C6          N7          C8      93.371    1.96
+PNV          C6          N7          C9     125.105    2.14
+PNV          C8          N7          C9     115.054    3.00
+PNV          C8         S11         C10      92.966    1.65
+PNV         S11         C10          C9     107.036    2.68
+PNV         S11         C10         C15     108.686    1.50
+PNV         S11         C10         C12     108.686    1.50
+PNV          C9         C10         C15     112.667    2.44
+PNV          C9         C10         C12     112.667    2.44
+PNV         C15         C10         C12     110.924    1.50
+PNV         C10         C12         H11     109.494    1.50
+PNV         C10         C12         H12     109.494    1.50
+PNV         C10         C12         H13     109.494    1.50
+PNV         H11         C12         H12     109.486    1.50
+PNV         H11         C12         H13     109.486    1.50
+PNV         H12         C12         H13     109.486    1.50
+PNV         C10         C15         H14     109.494    1.50
+PNV         C10         C15         H15     109.494    1.50
+PNV         C10         C15         H16     109.494    1.50
+PNV         H14         C15         H15     109.486    1.50
+PNV         H14         C15         H16     109.486    1.50
+PNV         H15         C15         H16     109.486    1.50
+PNV          N7          C9         C10     105.237    2.32
+PNV          N7          C9         C13     111.071    1.62
+PNV          N7          C9         H17     108.587    1.50
+PNV         C10          C9         C13     112.424    2.46
+PNV         C10          C9         H17     109.303    1.50
+PNV         C13          C9         H17     108.963    1.74
+PNV          C9         C13         O16     118.867    2.73
+PNV          C9         C13         O14     118.867    2.73
+PNV         O16         C13         O14     122.267    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PNV       const_sp2_sp2_1         C22         C23         C24         C19       0.000     5.0     2
+PNV              const_23          O1         C19         C24         C23     180.000    10.0     2
+PNV            sp2_sp3_25          C3          N4          C5          C6       0.000    10.0     6
+PNV            sp2_sp3_17         O17          C6          C5          N4     -60.000    10.0     6
+PNV            sp3_sp3_19          N4          C5          C8          N7      60.000    10.0     3
+PNV             sp2_sp2_3         O17          C6          N7          C8     180.000     5.0     2
+PNV             sp2_sp3_1          C6          N7          C8          C5       0.000    10.0     6
+PNV            sp3_sp3_26          C5          C8         S11         C10      60.000    10.0     3
+PNV            sp2_sp3_11          C6          N7          C9         C13     -60.000    10.0     6
+PNV            sp3_sp3_12         C15         C10         S11          C8      60.000    10.0     3
+PNV            sp3_sp3_43         C15         C10         C12         H11     -60.000    10.0     3
+PNV            sp3_sp3_34         C12         C10         C15         H14     -60.000    10.0     3
+PNV             sp3_sp3_5         C15         C10          C9         C13      60.000    10.0     3
+PNV       const_sp2_sp2_5         C21         C22         C23         C24       0.000     5.0     2
+PNV            sp2_sp3_31         O16         C13          C9          N7       0.000    10.0     6
+PNV       const_sp2_sp2_9         C20         C21         C22         C23       0.000     5.0     2
+PNV              const_13         C19         C20         C21         C22       0.000    10.0     2
+PNV              const_19          O1         C19         C20         C21     180.000    10.0     2
+PNV             sp2_sp2_5         C20         C19          O1          C2     180.000     5.0     2
+PNV            sp3_sp3_13          C3          C2          O1         C19     180.000    10.0     3
+PNV            sp2_sp3_20          N4          C3          C2          O1     120.000    10.0     6
+PNV             sp2_sp2_7          C2          C3          N4          C5     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PNV    chir_1    C5    N4    C8    C6    negative
+PNV    chir_2    C8    S11    N7    C5    negative
+PNV    chir_3    C10    S11    C9    C15    both
+PNV    chir_4    C9    N7    C10    C13    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PNV    plan-1         C19   0.020
+PNV    plan-1         C20   0.020
+PNV    plan-1         C21   0.020
+PNV    plan-1         C22   0.020
+PNV    plan-1         C23   0.020
+PNV    plan-1         C24   0.020
+PNV    plan-1          H1   0.020
+PNV    plan-1          H2   0.020
+PNV    plan-1          H3   0.020
+PNV    plan-1          H4   0.020
+PNV    plan-1          H5   0.020
+PNV    plan-1          O1   0.020
+PNV    plan-2          C2   0.020
+PNV    plan-2          C3   0.020
+PNV    plan-2          N4   0.020
+PNV    plan-2         O18   0.020
+PNV    plan-3          C3   0.020
+PNV    plan-3          C5   0.020
+PNV    plan-3          H8   0.020
+PNV    plan-3          N4   0.020
+PNV    plan-4          C5   0.020
+PNV    plan-4          C6   0.020
+PNV    plan-4          N7   0.020
+PNV    plan-4         O17   0.020
+PNV    plan-5         C13   0.020
+PNV    plan-5          C9   0.020
+PNV    plan-5         O14   0.020
+PNV    plan-5         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PNV           SMILES              ACDLabs 12.01                                                                                                               c1c(cccc1)OCC(NC2C(N3C2SC(C)(C)C3C(=O)O)=O)=O
+PNV            InChI                InChI  1.03 InChI=1S/C16H18N2O5S/c1-16(2)12(15(21)22)18-13(20)11(14(18)24-16)17-10(19)8-23-9-6-4-3-5-7-9/h3-7,11-12,14H,8H2,1-2H3,(H,17,19)(H,21,22)/t11-,12+,14-/m1/s1
+PNV         InChIKey                InChI  1.03                                                                                                                                 BPLBGHOLXOTWMN-MBNYWOFBSA-N
+PNV SMILES_CANONICAL               CACTVS 3.385                                                                                                    CC1(C)S[C@@H]2[C@H](NC(=O)COc3ccccc3)C(=O)N2[C@H]1C(O)=O
+PNV           SMILES               CACTVS 3.385                                                                                                        CC1(C)S[CH]2[CH](NC(=O)COc3ccccc3)C(=O)N2[CH]1C(O)=O
+PNV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                 CC1([C@@H](N2[C@H](S1)[C@@H](C2=O)NC(=O)COc3ccccc3)C(=O)O)C
+PNV           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                               CC1(C(N2C(S1)C(C2=O)NC(=O)COc3ccccc3)C(=O)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PNV acedrg               243         "dictionary generator"                  
+PNV acedrg_database      11          "data source"                           
+PNV rdkit                2017.03.2   "Chemoinformatics tool"
+PNV refmac5              5.8.0238    "optimization tool"                     

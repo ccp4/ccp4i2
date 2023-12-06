@@ -1,0 +1,213 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BJQ     BJQ      "[(2~{S})-1-methoxy-1-oxidanylidene-3-phenyl-propan-2-yl]azanium"     NON-POLYMER     27     13     .     
+#
+data_comp_BJQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BJQ     N       N       NT3     1       -30.435     25.489      -4.656      
+BJQ     CA      C       CH1     0       -29.853     25.017      -3.369      
+BJQ     C       C       C       0       -30.314     23.590      -3.124      
+BJQ     CB      C       CH2     0       -30.211     25.973      -2.224      
+BJQ     CG      C       CR6     0       -31.686     26.170      -1.975      
+BJQ     CD1     C       CR16    0       -32.377     25.347      -1.093      
+BJQ     CD2     C       CR16    0       -32.386     27.188      -2.614      
+BJQ     CE1     C       CR16    0       -33.735     25.531      -0.863      
+BJQ     CE2     C       CR16    0       -33.743     27.372      -2.382      
+BJQ     CZ      C       CR16    0       -34.416     26.543      -1.507      
+BJQ     O       O       O       0       -31.197     23.041      -3.736      
+BJQ     CM      C       CH3     0       -30.125     21.833      -1.531      
+BJQ     OXT     O       O2      0       -29.598     23.036      -2.149      
+BJQ     HN2     H       H       0       -30.283     26.382      -4.754      
+BJQ     H3      H       H       0       -31.333     25.335      -4.672      
+BJQ     HN1     H       H       0       -30.045     25.044      -5.349      
+BJQ     HA      H       H       0       -28.867     25.006      -3.464      
+BJQ     HBC2    H       H       0       -29.808     26.845      -2.419      
+BJQ     HBC1    H       H       0       -29.798     25.634      -1.403      
+BJQ     HD1     H       H       0       -31.918     24.651      -0.650      
+BJQ     HD2     H       H       0       -31.932     27.758      -3.214      
+BJQ     HE1     H       H       0       -34.191     24.962      -0.264      
+BJQ     HE2     H       H       0       -34.206     28.066      -2.824      
+BJQ     HZ      H       H       0       -35.339     26.669      -1.349      
+BJQ     HMC3    H       H       0       -30.122     21.111      -2.178      
+BJQ     HMC2    H       H       0       -31.033     21.994      -1.228      
+BJQ     HMC1    H       H       0       -29.569     21.592      -0.774      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BJQ           N          CA      SINGLE       n     1.487  0.0100     1.487  0.0100
+BJQ           C           O      DOUBLE       n     1.203  0.0150     1.203  0.0150
+BJQ          CA           C      SINGLE       n     1.516  0.0115     1.516  0.0115
+BJQ          CA          CB      SINGLE       n     1.531  0.0100     1.531  0.0100
+BJQ           C         OXT      SINGLE       n     1.326  0.0123     1.326  0.0123
+BJQ         CD2         CE2      SINGLE       y     1.386  0.0100     1.386  0.0100
+BJQ          CG         CD2      DOUBLE       y     1.385  0.0111     1.385  0.0111
+BJQ         CE2          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BJQ          CB          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+BJQ          CG         CD1      SINGLE       y     1.385  0.0111     1.385  0.0111
+BJQ          CM         OXT      SINGLE       n     1.447  0.0130     1.447  0.0130
+BJQ         CE1          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+BJQ         CD1         CE1      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BJQ           N         HN2      SINGLE       n     1.036  0.0160     0.911  0.0200
+BJQ           N          H3      SINGLE       n     1.036  0.0160     0.911  0.0200
+BJQ           N         HN1      SINGLE       n     1.036  0.0160     0.911  0.0200
+BJQ          CA          HA      SINGLE       n     1.089  0.0100     0.991  0.0200
+BJQ          CB        HBC2      SINGLE       n     1.089  0.0100     0.980  0.0164
+BJQ          CB        HBC1      SINGLE       n     1.089  0.0100     0.980  0.0164
+BJQ         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+BJQ         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+BJQ         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+BJQ         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+BJQ          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+BJQ          CM        HMC3      SINGLE       n     1.089  0.0100     0.970  0.0175
+BJQ          CM        HMC2      SINGLE       n     1.089  0.0100     0.970  0.0175
+BJQ          CM        HMC1      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BJQ          CA           N         HN2     109.646    1.54
+BJQ          CA           N          H3     109.646    1.54
+BJQ          CA           N         HN1     109.646    1.54
+BJQ         HN2           N          H3     109.028    2.41
+BJQ         HN2           N         HN1     109.028    2.41
+BJQ          H3           N         HN1     109.028    2.41
+BJQ           N          CA           C     107.914    1.50
+BJQ           N          CA          CB     110.494    1.50
+BJQ           N          CA          HA     108.601    1.50
+BJQ           C          CA          CB     112.845    1.64
+BJQ           C          CA          HA     108.451    1.50
+BJQ          CB          CA          HA     108.690    1.50
+BJQ           O           C          CA     124.718    1.50
+BJQ           O           C         OXT     124.602    1.50
+BJQ          CA           C         OXT     110.680    1.50
+BJQ          CA          CB          CG     114.745    1.55
+BJQ          CA          CB        HBC2     108.434    1.50
+BJQ          CA          CB        HBC1     108.434    1.50
+BJQ          CG          CB        HBC2     108.862    1.50
+BJQ          CG          CB        HBC1     108.862    1.50
+BJQ        HBC2          CB        HBC1     107.782    1.50
+BJQ         CD2          CG          CB     120.970    1.50
+BJQ         CD2          CG         CD1     118.060    1.50
+BJQ          CB          CG         CD1     120.970    1.50
+BJQ          CG         CD1         CE1     120.624    1.50
+BJQ          CG         CD1         HD1     119.591    1.50
+BJQ         CE1         CD1         HD1     119.786    1.50
+BJQ         CE2         CD2          CG     120.624    1.50
+BJQ         CE2         CD2         HD2     119.786    1.50
+BJQ          CG         CD2         HD2     119.591    1.50
+BJQ          CZ         CE1         CD1     120.325    1.50
+BJQ          CZ         CE1         HE1     119.883    1.50
+BJQ         CD1         CE1         HE1     119.792    1.50
+BJQ         CD2         CE2          CZ     120.325    1.50
+BJQ         CD2         CE2         HE2     119.792    1.50
+BJQ          CZ         CE2         HE2     119.883    1.50
+BJQ         CE2          CZ         CE1     120.043    1.50
+BJQ         CE2          CZ          HZ     119.979    1.50
+BJQ         CE1          CZ          HZ     119.979    1.50
+BJQ         OXT          CM        HMC3     109.367    1.50
+BJQ         OXT          CM        HMC2     109.367    1.50
+BJQ         OXT          CM        HMC1     109.367    1.50
+BJQ        HMC3          CM        HMC2     109.532    1.53
+BJQ        HMC3          CM        HMC1     109.532    1.53
+BJQ        HMC2          CM        HMC1     109.532    1.53
+BJQ           C         OXT          CM     116.120    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BJQ             sp3_sp3_1           C          CA           N         HN2     180.000    10.0     3
+BJQ            sp3_sp3_20        HMC3          CM         OXT           C     -60.000    10.0     3
+BJQ             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+BJQ            sp3_sp3_10           N          CA          CB          CG     180.000    10.0     3
+BJQ             sp2_sp2_1           O           C         OXT          CM     180.000     5.0     2
+BJQ             sp2_sp3_8         CD2          CG          CB          CA     -90.000    10.0     6
+BJQ              const_22         CE1         CD1          CG          CB     180.000    10.0     2
+BJQ       const_sp2_sp2_2         CE2         CD2          CG          CB     180.000     5.0     2
+BJQ              const_17          CG         CD1         CE1          CZ       0.000    10.0     2
+BJQ       const_sp2_sp2_5          CG         CD2         CE2          CZ       0.000     5.0     2
+BJQ              const_13         CD1         CE1          CZ         CE2       0.000    10.0     2
+BJQ       const_sp2_sp2_9         CD2         CE2          CZ         CE1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BJQ    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BJQ    plan-1          CB   0.020
+BJQ    plan-1         CD1   0.020
+BJQ    plan-1         CD2   0.020
+BJQ    plan-1         CE1   0.020
+BJQ    plan-1         CE2   0.020
+BJQ    plan-1          CG   0.020
+BJQ    plan-1          CZ   0.020
+BJQ    plan-1         HD1   0.020
+BJQ    plan-1         HD2   0.020
+BJQ    plan-1         HE1   0.020
+BJQ    plan-1         HE2   0.020
+BJQ    plan-1          HZ   0.020
+BJQ    plan-2           C   0.020
+BJQ    plan-2          CA   0.020
+BJQ    plan-2           O   0.020
+BJQ    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BJQ            InChI                InChI  1.03 InChI=1S/C10H13NO2/c1-13-10(12)9(11)7-8-5-3-2-4-6-8/h2-6,9H,7,11H2,1H3/p+1/t9-/m0/s1
+BJQ         InChIKey                InChI  1.03                                                          VSDUZFOSJDMAFZ-VIFPVBQESA-O
+BJQ SMILES_CANONICAL               CACTVS 3.385                                                       COC(=O)[C@@H]([NH3+])Cc1ccccc1
+BJQ           SMILES               CACTVS 3.385                                                         COC(=O)[CH]([NH3+])Cc1ccccc1
+BJQ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                        COC(=O)[C@H](Cc1ccccc1)[NH3+]
+BJQ           SMILES "OpenEye OEToolkits" 2.0.6                                                            COC(=O)C(Cc1ccccc1)[NH3+]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BJQ acedrg               243         "dictionary generator"                  
+BJQ acedrg_database      11          "data source"                           
+BJQ rdkit                2017.03.2   "Chemoinformatics tool"
+BJQ refmac5              5.8.0238    "optimization tool"                     

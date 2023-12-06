@@ -1,0 +1,321 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KXO     KXO      6-(3-fluorophenyl)-N-[1-(2,2,2-trifluoroethyl)piperidin-4-yl]pyridine-3-carboxamide     NON-POLYMER     46     27     .     
+#
+data_comp_KXO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KXO     C4      C       CR16    0       20.600      -0.031      16.828      
+KXO     C5      C       CR16    0       19.234      -0.255      16.774      
+KXO     C6      C       CR16    0       16.065      1.530       17.134      
+KXO     C7      C       CR16    0       20.194      1.881       18.172      
+KXO     C8      C       CH2     0       25.410      -0.432      16.693      
+KXO     C10     C       CH2     0       26.929      -0.338      16.646      
+KXO     C13     C       CR6     0       16.901      0.451       17.419      
+KXO     C15     C       CR6     0       21.108      1.044       17.544      
+KXO     C17     C       CH1     0       24.868      0.376       17.863      
+KXO     C1      C       CR16    0       14.940      -0.955      17.646      
+KXO     C2      C       CR16    0       16.319      -0.795      17.670      
+KXO     C3      C       CR16    0       14.109      0.125       17.367      
+KXO     C9      C       CH2     0       25.496      -0.118      19.159      
+KXO     C11     C       CH2     0       27.019      -0.050      19.074      
+KXO     C12     C       CH2     0       27.539      -2.256      18.085      
+KXO     C14     C       CR6     0       14.701      1.347       17.117      
+KXO     C16     C       CR6     0       18.378      0.621       17.439      
+KXO     C18     C       C       0       22.577      1.329       17.612      
+KXO     C19     C       CT      0       28.922      -2.839      18.221      
+KXO     N20     N       NRD6    0       18.857      1.680       18.131      
+KXO     N21     N       NH1     0       23.403      0.292       17.921      
+KXO     N22     N       NT      0       27.554      -0.793      17.909      
+KXO     O23     O       O       0       22.990      2.460       17.354      
+KXO     F24     F       F       0       13.905      2.414       16.842      
+KXO     F25     F       F       0       29.537      -2.383      19.304      
+KXO     F26     F       F       0       28.885      -4.161      18.314      
+KXO     F27     F       F       0       29.682      -2.536      17.177      
+KXO     H4      H       H       0       21.183      -0.621      16.383      
+KXO     H5      H       H       0       18.891      -0.979      16.301      
+KXO     H6      H       H       0       16.437      2.378       16.960      
+KXO     H7      H       H       0       20.514      2.616       18.654      
+KXO     H8      H       H       0       25.033      -0.089      15.854      
+KXO     H8A     H       H       0       25.139      -1.372      16.787      
+KXO     H10     H       H       0       27.264      -0.876      15.908      
+KXO     H10A    H       H       0       27.186      0.585       16.481      
+KXO     H17     H       H       0       25.138      1.326       17.734      
+KXO     H1      H       H       0       14.561      -1.806      17.821      
+KXO     H2      H       H       0       16.870      -1.534      17.861      
+KXO     H3      H       H       0       13.169      0.026       17.348      
+KXO     H9      H       H       0       25.215      -1.044      19.328      
+KXO     H9A     H       H       0       25.184      0.436       19.906      
+KXO     H11     H       H       0       27.403      -0.414      19.890      
+KXO     H11A    H       H       0       27.292      0.881       19.006      
+KXO     H12     H       H       0       27.024      -2.486      18.883      
+KXO     H12A    H       H       0       27.096      -2.674      17.321      
+KXO     HN21    H       H       0       23.047      -0.460      18.175      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KXO          C4          C5      DOUBLE       y     1.382  0.0100     1.382  0.0100
+KXO          C4         C15      SINGLE       y     1.385  0.0100     1.385  0.0100
+KXO          C5         C16      SINGLE       y     1.389  0.0113     1.389  0.0113
+KXO          C6         C13      DOUBLE       y     1.390  0.0100     1.390  0.0100
+KXO          C6         C14      SINGLE       y     1.374  0.0106     1.374  0.0106
+KXO          C7         C15      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KXO          C7         N20      SINGLE       y     1.341  0.0157     1.341  0.0157
+KXO          C8         C10      SINGLE       n     1.517  0.0183     1.517  0.0183
+KXO          C8         C17      SINGLE       n     1.522  0.0100     1.522  0.0100
+KXO         C10         N22      SINGLE       n     1.464  0.0160     1.464  0.0160
+KXO         C13          C2      SINGLE       y     1.393  0.0100     1.393  0.0100
+KXO         C13         C16      SINGLE       n     1.486  0.0100     1.486  0.0100
+KXO         C15         C18      SINGLE       n     1.496  0.0100     1.496  0.0100
+KXO         C17         N21      SINGLE       n     1.464  0.0100     1.464  0.0100
+KXO         C17          C9      SINGLE       n     1.522  0.0100     1.522  0.0100
+KXO          C1          C2      DOUBLE       y     1.384  0.0100     1.384  0.0100
+KXO          C1          C3      SINGLE       y     1.380  0.0172     1.380  0.0172
+KXO          C3         C14      DOUBLE       y     1.372  0.0188     1.372  0.0188
+KXO          C9         C11      SINGLE       n     1.517  0.0183     1.517  0.0183
+KXO         C11         N22      SINGLE       n     1.464  0.0160     1.464  0.0160
+KXO         C12         N22      SINGLE       n     1.467  0.0106     1.467  0.0106
+KXO         C12         C19      SINGLE       n     1.507  0.0109     1.507  0.0109
+KXO         C14         F24      SINGLE       n     1.359  0.0100     1.359  0.0100
+KXO         C16         N20      DOUBLE       y     1.347  0.0108     1.347  0.0108
+KXO         C18         N21      SINGLE       n     1.342  0.0182     1.342  0.0182
+KXO         C18         O23      DOUBLE       n     1.230  0.0114     1.230  0.0114
+KXO         C19         F27      SINGLE       n     1.326  0.0188     1.326  0.0188
+KXO         C19         F26      SINGLE       n     1.326  0.0188     1.326  0.0188
+KXO         C19         F25      SINGLE       n     1.326  0.0188     1.326  0.0188
+KXO          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+KXO          C5          H5      SINGLE       n     1.082  0.0130     0.930  0.0100
+KXO          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0153
+KXO          C7          H7      SINGLE       n     1.082  0.0130     0.935  0.0100
+KXO          C8          H8      SINGLE       n     1.089  0.0100     0.982  0.0100
+KXO          C8         H8A      SINGLE       n     1.089  0.0100     0.982  0.0100
+KXO         C10         H10      SINGLE       n     1.089  0.0100     0.973  0.0129
+KXO         C10        H10A      SINGLE       n     1.089  0.0100     0.973  0.0129
+KXO         C17         H17      SINGLE       n     1.089  0.0100     0.997  0.0100
+KXO          C1          H1      SINGLE       n     1.082  0.0130     0.948  0.0200
+KXO          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0186
+KXO          C3          H3      SINGLE       n     1.082  0.0130     0.945  0.0200
+KXO          C9          H9      SINGLE       n     1.089  0.0100     0.982  0.0100
+KXO          C9         H9A      SINGLE       n     1.089  0.0100     0.982  0.0100
+KXO         C11         H11      SINGLE       n     1.089  0.0100     0.973  0.0129
+KXO         C11        H11A      SINGLE       n     1.089  0.0100     0.973  0.0129
+KXO         C12         H12      SINGLE       n     1.089  0.0100     0.977  0.0152
+KXO         C12        H12A      SINGLE       n     1.089  0.0100     0.977  0.0152
+KXO         N21        HN21      SINGLE       n     1.016  0.0100     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KXO          C5          C4         C15     120.671    1.50
+KXO          C5          C4          H4     119.294    1.50
+KXO         C15          C4          H4     120.035    1.50
+KXO          C4          C5         C16     119.298    1.50
+KXO          C4          C5          H5     120.455    1.50
+KXO         C16          C5          H5     120.248    1.50
+KXO         C13          C6         C14     119.675    1.50
+KXO         C13          C6          H6     119.787    1.50
+KXO         C14          C6          H6     120.538    1.50
+KXO         C15          C7         N20     122.861    1.50
+KXO         C15          C7          H7     118.887    1.50
+KXO         N20          C7          H7     118.252    1.50
+KXO         C10          C8         C17     110.724    1.50
+KXO         C10          C8          H8     109.507    1.50
+KXO         C10          C8         H8A     109.507    1.50
+KXO         C17          C8          H8     109.485    1.50
+KXO         C17          C8         H8A     109.485    1.50
+KXO          H8          C8         H8A     108.048    1.50
+KXO          C8         C10         N22     111.289    1.50
+KXO          C8         C10         H10     109.494    1.50
+KXO          C8         C10        H10A     109.494    1.50
+KXO         N22         C10         H10     109.353    1.50
+KXO         N22         C10        H10A     109.353    1.50
+KXO         H10         C10        H10A     108.159    1.50
+KXO          C6         C13          C2     118.481    1.50
+KXO          C6         C13         C16     120.664    1.50
+KXO          C2         C13         C16     120.856    1.50
+KXO          C4         C15          C7     117.698    1.50
+KXO          C4         C15         C18     120.935    2.89
+KXO          C7         C15         C18     121.368    2.73
+KXO          C8         C17         N21     110.528    1.50
+KXO          C8         C17          C9     110.184    1.50
+KXO          C8         C17         H17     108.389    1.50
+KXO         N21         C17          C9     110.528    1.50
+KXO         N21         C17         H17     108.351    1.50
+KXO          C9         C17         H17     108.389    1.50
+KXO          C2          C1          C3     120.175    1.50
+KXO          C2          C1          H1     120.018    1.50
+KXO          C3          C1          H1     119.808    1.50
+KXO         C13          C2          C1     120.640    1.50
+KXO         C13          C2          H2     119.669    1.50
+KXO          C1          C2          H2     119.691    1.50
+KXO          C1          C3         C14     117.901    1.50
+KXO          C1          C3          H3     121.134    1.50
+KXO         C14          C3          H3     120.965    1.50
+KXO         C17          C9         C11     110.724    1.50
+KXO         C17          C9          H9     109.485    1.50
+KXO         C17          C9         H9A     109.485    1.50
+KXO         C11          C9          H9     109.507    1.50
+KXO         C11          C9         H9A     109.507    1.50
+KXO          H9          C9         H9A     108.048    1.50
+KXO          C9         C11         N22     111.289    1.50
+KXO          C9         C11         H11     109.494    1.50
+KXO          C9         C11        H11A     109.494    1.50
+KXO         N22         C11         H11     109.353    1.50
+KXO         N22         C11        H11A     109.353    1.50
+KXO         H11         C11        H11A     108.159    1.50
+KXO         N22         C12         C19     113.220    1.50
+KXO         N22         C12         H12     108.913    1.50
+KXO         N22         C12        H12A     108.913    1.50
+KXO         C19         C12         H12     109.072    1.50
+KXO         C19         C12        H12A     109.072    1.50
+KXO         H12         C12        H12A     107.868    1.50
+KXO          C6         C14          C3     123.128    1.50
+KXO          C6         C14         F24     118.381    1.50
+KXO          C3         C14         F24     118.491    1.50
+KXO          C5         C16         C13     122.141    1.50
+KXO          C5         C16         N20     121.397    1.50
+KXO         C13         C16         N20     116.462    1.50
+KXO         C15         C18         N21     116.663    1.50
+KXO         C15         C18         O23     120.863    1.50
+KXO         N21         C18         O23     122.475    1.50
+KXO         C12         C19         F27     111.267    1.50
+KXO         C12         C19         F26     111.267    1.50
+KXO         C12         C19         F25     111.267    1.50
+KXO         F27         C19         F26     107.197    1.50
+KXO         F27         C19         F25     107.197    1.50
+KXO         F26         C19         F25     107.197    1.50
+KXO          C7         N20         C16     118.076    1.50
+KXO         C17         N21         C18     122.508    1.50
+KXO         C17         N21        HN21     118.833    1.52
+KXO         C18         N21        HN21     118.660    1.57
+KXO         C10         N22         C11     109.788    1.50
+KXO         C10         N22         C12     111.219    1.66
+KXO         C11         N22         C12     111.219    1.66
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KXO              const_21         C15          C4          C5         C16       0.000    10.0     2
+KXO              const_39         C18         C15          C4          C5     180.000    10.0     2
+KXO              const_19         F24         C14          C3          C1     180.000    10.0     2
+KXO            sp3_sp3_22         N22         C11          C9         C17     -60.000    10.0     3
+KXO            sp3_sp3_17          C9         C11         N22         C12     180.000    10.0     3
+KXO            sp3_sp3_55         N22         C12         C19         F27     180.000    10.0     3
+KXO            sp3_sp3_50         C19         C12         N22         C10     -60.000    10.0     3
+KXO              const_29          C5         C16         N20          C7       0.000    10.0     2
+KXO            sp2_sp2_11         O23         C18         N21         C17       0.000     5.0     2
+KXO              const_27         C13         C16          C5          C4     180.000    10.0     2
+KXO              const_43         F24         C14          C6         C13     180.000    10.0     2
+KXO       const_sp2_sp2_1          C2         C13          C6         C14       0.000     5.0     2
+KXO              const_31         C15          C7         N20         C16       0.000    10.0     2
+KXO              const_35         C18         C15          C7         N20     180.000    10.0     2
+KXO             sp3_sp3_1         N22         C10          C8         C17      60.000    10.0     3
+KXO            sp3_sp3_46         N21         C17          C8         C10     -60.000    10.0     3
+KXO            sp3_sp3_11          C8         C10         N22         C12      60.000    10.0     3
+KXO       const_sp2_sp2_5          C6         C13          C2          C1       0.000     5.0     2
+KXO             sp2_sp2_1          C6         C13         C16          C5     180.000     5.0     2
+KXO             sp2_sp2_5          C4         C15         C18         N21     180.000     5.0     2
+KXO            sp3_sp3_34         N21         C17          C9         C11     -60.000    10.0     3
+KXO             sp2_sp3_2         C18         N21         C17          C8     120.000    10.0     6
+KXO       const_sp2_sp2_9          C3          C1          C2         C13       0.000     5.0     2
+KXO              const_13          C2          C1          C3         C14       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KXO    chir_1    C17    N21    C8    C9    both
+KXO    chir_2    C19    F27    F26    F25    both
+KXO    chir_3    N22    C12    C10    C11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KXO    plan-1         C13   0.020
+KXO    plan-1         C15   0.020
+KXO    plan-1         C16   0.020
+KXO    plan-1         C18   0.020
+KXO    plan-1          C4   0.020
+KXO    plan-1          C5   0.020
+KXO    plan-1          C7   0.020
+KXO    plan-1          H4   0.020
+KXO    plan-1          H5   0.020
+KXO    plan-1          H7   0.020
+KXO    plan-1         N20   0.020
+KXO    plan-2          C1   0.020
+KXO    plan-2         C13   0.020
+KXO    plan-2         C14   0.020
+KXO    plan-2         C16   0.020
+KXO    plan-2          C2   0.020
+KXO    plan-2          C3   0.020
+KXO    plan-2          C6   0.020
+KXO    plan-2         F24   0.020
+KXO    plan-2          H1   0.020
+KXO    plan-2          H2   0.020
+KXO    plan-2          H3   0.020
+KXO    plan-2          H6   0.020
+KXO    plan-3         C15   0.020
+KXO    plan-3         C18   0.020
+KXO    plan-3         N21   0.020
+KXO    plan-3         O23   0.020
+KXO    plan-4         C17   0.020
+KXO    plan-4         C18   0.020
+KXO    plan-4        HN21   0.020
+KXO    plan-4         N21   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KXO SMILES_CANONICAL               CACTVS 3.352                                                                                           Fc1cccc(c1)c2ccc(cn2)C(=O)NC3CCN(CC3)CC(F)(F)F
+KXO           SMILES               CACTVS 3.352                                                                                           Fc1cccc(c1)c2ccc(cn2)C(=O)NC3CCN(CC3)CC(F)(F)F
+KXO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                         c1cc(cc(c1)F)c2ccc(cn2)C(=O)NC3CCN(CC3)CC(F)(F)F
+KXO           SMILES "OpenEye OEToolkits" 1.7.0                                                                                         c1cc(cc(c1)F)c2ccc(cn2)C(=O)NC3CCN(CC3)CC(F)(F)F
+KXO            InChI                InChI  1.03 InChI=1S/C19H19F4N3O/c20-15-3-1-2-13(10-15)17-5-4-14(11-24-17)18(27)25-16-6-8-26(9-7-16)12-19(21,22)23/h1-5,10-11,16H,6-9,12H2,(H,25,27)
+KXO         InChIKey                InChI  1.03                                                                                                              LPUCBGGXXIUBAZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KXO acedrg               243         "dictionary generator"                  
+KXO acedrg_database      11          "data source"                           
+KXO rdkit                2017.03.2   "Chemoinformatics tool"
+KXO refmac5              5.8.0238    "optimization tool"                     

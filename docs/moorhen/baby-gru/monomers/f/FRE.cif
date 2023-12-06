@@ -1,0 +1,595 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FRE     FRE      "FERULOYL COENZYME A"     NON-POLYMER     102     62     .     
+#
+data_comp_FRE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FRE     N1A     N       NRD6    0       38.895      54.776      35.831      
+FRE     C2A     C       CR16    0       37.952      55.025      36.754      
+FRE     N3A     N       NRD6    0       37.951      55.934      37.730      
+FRE     C4A     C       CR56    0       39.084      56.663      37.720      
+FRE     C5A     C       CR56    0       40.139      56.524      36.837      
+FRE     C6A     C       CR6     0       40.028      55.525      35.846      
+FRE     N6A     N       NH2     0       40.966      55.283      34.934      
+FRE     N7A     N       NRD5    0       41.135      57.446      37.129      
+FRE     C8A     C       CR15    0       40.679      58.113      38.163      
+FRE     N9A     N       NT      0       39.422      57.695      38.562      
+FRE     C1B     C       CH1     0       38.623      58.215      39.706      
+FRE     C2B     C       CH1     0       38.750      59.712      39.994      
+FRE     O2B     O       OH1     0       38.588      59.995      41.369      
+FRE     C3B     C       CH1     0       37.638      60.297      39.119      
+FRE     O3B     O       O2      0       37.159      61.552      39.613      
+FRE     P3B     P       P       0       37.819      62.854      38.911      
+FRE     O7A     O       OP      -1      37.265      62.909      37.499      
+FRE     O8A     O       OP      -1      39.324      62.661      38.926      
+FRE     O9A     O       O       0       37.389      64.049      39.740      
+FRE     C4B     C       CH1     0       36.551      59.235      39.231      
+FRE     O4B     O       O2      0       37.252      57.985      39.460      
+FRE     C5B     C       CH2     0       35.651      59.096      38.026      
+FRE     O5B     O       O2      0       36.433      58.673      36.876      
+FRE     P1A     P       P       0       35.788      58.698      35.406      
+FRE     O1A     O       O       0       36.842      58.371      34.400      
+FRE     O2A     O       OP      -1      35.009      59.958      35.217      
+FRE     O3A     O       O2      0       34.764      57.467      35.488      
+FRE     P2A     P       P       0       33.722      56.864      34.428      
+FRE     O4A     O       O       0       32.910      57.979      33.855      
+FRE     O5A     O       OP      -1      33.013      55.705      35.047      
+FRE     O6A     O       O2      0       34.711      56.325      33.284      
+FRE     CBP     C       CT      0       36.309      54.762      32.286      
+FRE     CCP     C       CH2     0       35.298      54.997      33.412      
+FRE     CDP     C       CH3     0       35.583      54.839      30.935      
+FRE     CEP     C       CH3     0       37.375      55.867      32.325      
+FRE     CAP     C       CH1     0       37.009      53.395      32.414      
+FRE     OAP     O       OH1     0       37.762      53.349      33.621      
+FRE     C9P     C       C       0       36.069      52.196      32.364      
+FRE     O9P     O       O       0       35.542      51.799      33.403      
+FRE     N8P     N       NH1     0       35.854      51.631      31.180      
+FRE     C7P     C       CH2     0       34.930      50.523      30.972      
+FRE     C6P     C       CH2     0       35.475      49.199      31.489      
+FRE     C5P     C       C       0       34.571      47.981      31.411      
+FRE     O5P     O       O       0       34.882      46.963      32.027      
+FRE     N4P     N       NH1     0       33.438      48.040      30.689      
+FRE     C3P     C       CH2     0       32.646      46.876      30.319      
+FRE     C2P     C       CH2     0       31.656      46.466      31.382      
+FRE     S1P     S       S2      0       30.380      45.433      30.626      
+FRE     C1      C       CR6     0       29.786      44.137      24.680      
+FRE     C2      C       CR6     0       29.097      45.276      25.105      
+FRE     C3      C       CR16    0       28.581      45.335      26.391      
+FRE     C4      C       CR6     0       28.743      44.262      27.276      
+FRE     C5      C       CR16    0       29.434      43.125      26.840      
+FRE     C6      C       CR6     0       29.948      43.063      25.562      
+FRE     C7      C       C1      0       28.198      44.312      28.639      
+FRE     C8      C       C1      0       27.886      45.396      29.349      
+FRE     C9      C       C       0       28.801      46.120      30.256      
+FRE     O10     O       O       0       28.464      47.179      30.739      
+FRE     O11     O       OH1     0       28.924      46.345      24.259      
+FRE     O12     O       OH1     0       30.294      44.090      23.401      
+FRE     O13     O       O2      0       30.635      41.996      25.051      
+FRE     C13     C       CH3     0       29.878      40.850      24.672      
+FRE     H4      H       H       0       37.182      54.480      36.706      
+FRE     HN61    H       H       0       41.494      55.932      34.670      
+FRE     HN62    H       H       0       41.055      54.474      34.604      
+FRE     H3      H       H       0       41.162      58.810      38.571      
+FRE     "H1'"   H       H       0       38.889      57.723      40.516      
+FRE     "H2'"   H       H       0       39.623      60.064      39.692      
+FRE     H2      H       H       0       37.883      59.625      41.664      
+FRE     "H3'"   H       H       0       37.949      60.379      38.188      
+FRE     "H4'"   H       H       0       35.989      59.431      40.012      
+FRE     "H5'1"  H       H       0       35.218      59.965      37.839      
+FRE     "H5'2"  H       H       0       34.946      58.430      38.214      
+FRE     H121    H       H       0       34.591      54.324      33.368      
+FRE     H122    H       H       0       35.744      54.916      34.279      
+FRE     H11     H       H       0       36.157      54.485      30.234      
+FRE     H12     H       H       0       35.360      55.764      30.731      
+FRE     H13     H       H       0       34.763      54.316      30.973      
+FRE     H141    H       H       0       38.124      55.620      31.756      
+FRE     H142    H       H       0       37.690      55.983      33.239      
+FRE     H143    H       H       0       36.997      56.706      32.010      
+FRE     H10     H       H       0       37.643      53.318      31.660      
+FRE     H1      H       H       0       38.369      52.761      33.545      
+FRE     HN8     H       H       0       36.281      51.936      30.483      
+FRE     H71     H       H       0       34.748      50.440      30.012      
+FRE     H72     H       H       0       34.084      50.721      31.425      
+FRE     H61     H       H       0       35.739      49.314      32.418      
+FRE     H62     H       H       0       36.293      48.995      31.003      
+FRE     HN4     H       H       0       33.141      48.814      30.441      
+FRE     H31     H       H       0       33.245      46.122      30.133      
+FRE     H32     H       H       0       32.158      47.081      29.492      
+FRE     H21     H       H       0       31.248      47.261      31.780      
+FRE     H22     H       H       0       32.114      45.966      32.087      
+FRE     H6      H       H       0       28.118      46.105      26.669      
+FRE     H5      H       H       0       29.549      42.396      27.424      
+FRE     H7      H       H       0       28.053      43.479      29.060      
+FRE     H8      H       H       0       27.012      45.743      29.276      
+FRE     H111    H       H       0       28.189      46.793      24.276      
+FRE     H112    H       H       0       30.174      43.389      22.916      
+FRE     H131    H       H       0       29.218      41.103      24.006      
+FRE     H132    H       H       0       29.428      40.488      25.453      
+FRE     H133    H       H       0       30.473      40.179      24.300      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FRE         N1A         C2A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+FRE         N1A         C6A      SINGLE       y     1.354  0.0100     1.354  0.0100
+FRE         C2A         N3A      SINGLE       y     1.330  0.0100     1.330  0.0100
+FRE         N3A         C4A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+FRE         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+FRE         C4A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+FRE         C5A         C6A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+FRE         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+FRE         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+FRE         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+FRE         C8A         N9A      SINGLE       y     1.372  0.0200     1.372  0.0200
+FRE         N9A         C1B      SINGLE       n     1.458  0.0200     1.458  0.0200
+FRE         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+FRE         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+FRE         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+FRE         C2B         C3B      SINGLE       n     1.529  0.0125     1.529  0.0125
+FRE         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+FRE         C3B         C4B      SINGLE       n     1.525  0.0133     1.525  0.0133
+FRE         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+FRE         P3B         O7A      SINGLE       n     1.517  0.0192     1.517  0.0192
+FRE         P3B         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+FRE         P3B         O9A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+FRE         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+FRE         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+FRE         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+FRE         O5B         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+FRE         P1A         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FRE         P1A         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+FRE         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+FRE         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+FRE         P2A         O4A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FRE         P2A         O5A      SINGLE       n     1.493  0.0122     1.493  0.0122
+FRE         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+FRE         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+FRE         CBP         CCP      SINGLE       n     1.526  0.0108     1.526  0.0108
+FRE         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+FRE         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+FRE         CBP         CAP      SINGLE       n     1.532  0.0112     1.532  0.0112
+FRE         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+FRE         CAP         C9P      SINGLE       n     1.519  0.0108     1.519  0.0108
+FRE         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FRE         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+FRE         N8P         C7P      SINGLE       n     1.457  0.0100     1.457  0.0100
+FRE         C7P         C6P      SINGLE       n     1.513  0.0195     1.513  0.0195
+FRE         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+FRE         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FRE         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+FRE         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+FRE         C3P         C2P      SINGLE       n     1.510  0.0158     1.510  0.0158
+FRE         C2P         S1P      SINGLE       n     1.809  0.0191     1.809  0.0191
+FRE         S1P          C9      SINGLE       n     1.762  0.0200     1.762  0.0200
+FRE          C1          C2      DOUBLE       y     1.393  0.0100     1.393  0.0100
+FRE          C1          C6      SINGLE       y     1.393  0.0100     1.393  0.0100
+FRE          C1         O12      SINGLE       n     1.374  0.0155     1.374  0.0155
+FRE          C2          C3      SINGLE       y     1.381  0.0147     1.381  0.0147
+FRE          C2         O11      SINGLE       n     1.374  0.0155     1.374  0.0155
+FRE          C3          C4      DOUBLE       y     1.396  0.0100     1.396  0.0100
+FRE          C4          C5      SINGLE       y     1.396  0.0100     1.396  0.0100
+FRE          C4          C7      SINGLE       n     1.466  0.0100     1.466  0.0100
+FRE          C5          C6      DOUBLE       y     1.374  0.0100     1.374  0.0100
+FRE          C6         O13      SINGLE       n     1.366  0.0100     1.366  0.0100
+FRE          C7          C8      DOUBLE       n     1.327  0.0200     1.327  0.0200
+FRE          C8          C9      SINGLE       n     1.476  0.0169     1.476  0.0169
+FRE          C9         O10      DOUBLE       n     1.211  0.0160     1.211  0.0160
+FRE         O13         C13      SINGLE       n     1.424  0.0117     1.424  0.0117
+FRE         C2A          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+FRE         N6A        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+FRE         N6A        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+FRE         C8A          H3      SINGLE       n     1.082  0.0130     0.942  0.0170
+FRE         C1B       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+FRE         C2B       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+FRE         O2B          H2      SINGLE       n     0.970  0.0120     0.849  0.0200
+FRE         C3B       "H3'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+FRE         C4B       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+FRE         C5B      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+FRE         C5B      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+FRE         CCP        H121      SINGLE       n     1.089  0.0100     0.978  0.0102
+FRE         CCP        H122      SINGLE       n     1.089  0.0100     0.978  0.0102
+FRE         CDP         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRE         CDP         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRE         CDP         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRE         CEP        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRE         CEP        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRE         CEP        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRE         CAP         H10      SINGLE       n     1.089  0.0100     0.988  0.0129
+FRE         OAP          H1      SINGLE       n     0.970  0.0120     0.848  0.0200
+FRE         N8P         HN8      SINGLE       n     1.016  0.0100     0.872  0.0200
+FRE         C7P         H71      SINGLE       n     1.089  0.0100     0.980  0.0159
+FRE         C7P         H72      SINGLE       n     1.089  0.0100     0.980  0.0159
+FRE         C6P         H61      SINGLE       n     1.089  0.0100     0.973  0.0156
+FRE         C6P         H62      SINGLE       n     1.089  0.0100     0.973  0.0156
+FRE         N4P         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+FRE         C3P         H31      SINGLE       n     1.089  0.0100     0.981  0.0127
+FRE         C3P         H32      SINGLE       n     1.089  0.0100     0.981  0.0127
+FRE         C2P         H21      SINGLE       n     1.089  0.0100     0.978  0.0177
+FRE         C2P         H22      SINGLE       n     1.089  0.0100     0.978  0.0177
+FRE          C3          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+FRE          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+FRE          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0200
+FRE          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0196
+FRE         O11        H111      SINGLE       n     0.966  0.0059     0.861  0.0200
+FRE         O12        H112      SINGLE       n     0.966  0.0059     0.861  0.0200
+FRE         C13        H131      SINGLE       n     1.089  0.0100     0.971  0.0157
+FRE         C13        H132      SINGLE       n     1.089  0.0100     0.971  0.0157
+FRE         C13        H133      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FRE         C2A         N1A         C6A     118.521    1.50
+FRE         N1A         C2A         N3A     129.332    1.50
+FRE         N1A         C2A          H4     115.313    1.50
+FRE         N3A         C2A          H4     115.355    1.50
+FRE         C2A         N3A         C4A     110.982    1.50
+FRE         N3A         C4A         C5A     126.489    1.50
+FRE         N3A         C4A         N9A     125.845    1.50
+FRE         C5A         C4A         N9A     107.666    1.69
+FRE         C4A         C5A         C6A     117.267    1.50
+FRE         C4A         C5A         N7A     110.588    1.50
+FRE         C6A         C5A         N7A     132.145    1.50
+FRE         N1A         C6A         C5A     117.409    1.50
+FRE         N1A         C6A         N6A     118.799    1.50
+FRE         C5A         C6A         N6A     123.792    1.50
+FRE         C6A         N6A        HN61     119.723    1.50
+FRE         C6A         N6A        HN62     119.723    1.50
+FRE        HN61         N6A        HN62     120.554    1.88
+FRE         C5A         N7A         C8A     103.927    1.50
+FRE         N7A         C8A         N9A     112.130    1.94
+FRE         N7A         C8A          H3     123.170    1.50
+FRE         N9A         C8A          H3     124.701    2.19
+FRE         C4A         N9A         C8A     107.594    1.50
+FRE         C4A         N9A         C1B     125.158    1.54
+FRE         C8A         N9A         C1B     126.078    2.46
+FRE         N9A         C1B         C2B     113.752    2.20
+FRE         N9A         C1B         O4B     108.167    1.51
+FRE         N9A         C1B       "H1'"     109.246    1.50
+FRE         C2B         C1B         O4B     106.047    1.50
+FRE         C2B         C1B       "H1'"     109.015    1.50
+FRE         O4B         C1B       "H1'"     109.807    1.50
+FRE         C1B         C2B         O2B     111.715    2.69
+FRE         C1B         C2B         C3B     101.388    1.50
+FRE         C1B         C2B       "H2'"     110.636    1.70
+FRE         O2B         C2B         C3B     112.463    2.73
+FRE         O2B         C2B       "H2'"     110.448    1.97
+FRE         C3B         C2B       "H2'"     110.255    2.04
+FRE         C2B         O2B          H2     109.103    2.13
+FRE         C2B         C3B         O3B     110.766    3.00
+FRE         C2B         C3B         C4B     102.352    1.50
+FRE         C2B         C3B       "H3'"     110.255    2.04
+FRE         O3B         C3B         C4B     110.864    2.31
+FRE         O3B         C3B       "H3'"     110.343    1.64
+FRE         C4B         C3B       "H3'"     110.624    1.81
+FRE         C3B         O3B         P3B     109.471    3.00
+FRE         O3B         P3B         O7A     106.518    3.00
+FRE         O3B         P3B         O8A     106.518    3.00
+FRE         O3B         P3B         O9A     106.518    3.00
+FRE         O7A         P3B         O8A     112.139    1.52
+FRE         O7A         P3B         O9A     112.139    1.52
+FRE         O8A         P3B         O9A     112.139    1.52
+FRE         C3B         C4B         O4B     105.508    1.50
+FRE         C3B         C4B         C5B     114.866    1.63
+FRE         C3B         C4B       "H4'"     109.143    1.50
+FRE         O4B         C4B         C5B     109.123    1.50
+FRE         O4B         C4B       "H4'"     108.947    1.50
+FRE         C5B         C4B       "H4'"     108.268    1.50
+FRE         C1B         O4B         C4B     109.903    1.50
+FRE         C4B         C5B         O5B     109.342    1.50
+FRE         C4B         C5B      "H5'1"     109.624    1.50
+FRE         C4B         C5B      "H5'2"     109.624    1.50
+FRE         O5B         C5B      "H5'1"     109.845    1.50
+FRE         O5B         C5B      "H5'2"     109.845    1.50
+FRE      "H5'1"         C5B      "H5'2"     108.472    1.50
+FRE         C5B         O5B         P1A     118.553    2.41
+FRE         O5B         P1A         O1A     109.410    1.50
+FRE         O5B         P1A         O2A     109.410    1.50
+FRE         O5B         P1A         O3A     101.065    1.97
+FRE         O1A         P1A         O2A     118.411    2.35
+FRE         O1A         P1A         O3A     108.816    2.14
+FRE         O2A         P1A         O3A     108.816    2.14
+FRE         P1A         O3A         P2A     132.542    3.00
+FRE         O3A         P2A         O4A     108.816    2.14
+FRE         O3A         P2A         O5A     108.816    2.14
+FRE         O3A         P2A         O6A     101.065    1.97
+FRE         O4A         P2A         O5A     118.411    2.35
+FRE         O4A         P2A         O6A     107.912    2.57
+FRE         O5A         P2A         O6A     107.912    2.57
+FRE         P2A         O6A         CCP     119.251    1.51
+FRE         CCP         CBP         CDP     109.385    1.50
+FRE         CCP         CBP         CEP     109.385    1.50
+FRE         CCP         CBP         CAP     111.094    2.85
+FRE         CDP         CBP         CEP     108.765    1.50
+FRE         CDP         CBP         CAP     109.534    1.52
+FRE         CEP         CBP         CAP     109.534    1.52
+FRE         O6A         CCP         CBP     108.435    1.69
+FRE         O6A         CCP        H121     109.739    1.50
+FRE         O6A         CCP        H122     109.739    1.50
+FRE         CBP         CCP        H121     109.473    1.50
+FRE         CBP         CCP        H122     109.473    1.50
+FRE        H121         CCP        H122     108.108    1.50
+FRE         CBP         CDP         H11     109.575    1.50
+FRE         CBP         CDP         H12     109.575    1.50
+FRE         CBP         CDP         H13     109.575    1.50
+FRE         H11         CDP         H12     109.377    1.50
+FRE         H11         CDP         H13     109.377    1.50
+FRE         H12         CDP         H13     109.377    1.50
+FRE         CBP         CEP        H141     109.575    1.50
+FRE         CBP         CEP        H142     109.575    1.50
+FRE         CBP         CEP        H143     109.575    1.50
+FRE        H141         CEP        H142     109.377    1.50
+FRE        H141         CEP        H143     109.377    1.50
+FRE        H142         CEP        H143     109.377    1.50
+FRE         CBP         CAP         OAP     109.482    3.00
+FRE         CBP         CAP         C9P     111.511    2.91
+FRE         CBP         CAP         H10     107.825    1.50
+FRE         OAP         CAP         C9P     109.850    1.55
+FRE         OAP         CAP         H10     108.675    1.50
+FRE         C9P         CAP         H10     108.529    1.70
+FRE         CAP         OAP          H1     108.894    3.00
+FRE         CAP         C9P         O9P     119.859    1.78
+FRE         CAP         C9P         N8P     117.147    1.50
+FRE         O9P         C9P         N8P     122.977    1.50
+FRE         C9P         N8P         C7P     122.964    1.80
+FRE         C9P         N8P         HN8     118.685    1.94
+FRE         C7P         N8P         HN8     118.351    1.90
+FRE         N8P         C7P         C6P     112.257    1.50
+FRE         N8P         C7P         H71     108.979    1.50
+FRE         N8P         C7P         H72     108.979    1.50
+FRE         C6P         C7P         H71     108.971    1.50
+FRE         C6P         C7P         H72     108.971    1.50
+FRE         H71         C7P         H72     107.877    1.50
+FRE         C7P         C6P         C5P     112.120    2.79
+FRE         C7P         C6P         H61     109.432    1.50
+FRE         C7P         C6P         H62     109.432    1.50
+FRE         C5P         C6P         H61     108.945    1.50
+FRE         C5P         C6P         H62     108.945    1.50
+FRE         H61         C6P         H62     107.745    2.07
+FRE         C6P         C5P         O5P     120.987    1.50
+FRE         C6P         C5P         N4P     117.070    1.96
+FRE         O5P         C5P         N4P     121.943    1.50
+FRE         C5P         N4P         C3P     123.437    1.80
+FRE         C5P         N4P         HN4     117.862    2.10
+FRE         C3P         N4P         HN4     118.700    1.83
+FRE         N4P         C3P         C2P     112.117    1.54
+FRE         N4P         C3P         H31     109.102    1.50
+FRE         N4P         C3P         H32     109.102    1.50
+FRE         C2P         C3P         H31     109.038    1.50
+FRE         C2P         C3P         H32     109.038    1.50
+FRE         H31         C3P         H32     107.995    1.50
+FRE         C3P         C2P         S1P     112.239    3.00
+FRE         C3P         C2P         H21     108.964    1.50
+FRE         C3P         C2P         H22     108.964    1.50
+FRE         S1P         C2P         H21     109.066    1.50
+FRE         S1P         C2P         H22     109.066    1.50
+FRE         H21         C2P         H22     107.807    1.50
+FRE         C2P         S1P          C9     120.000    3.00
+FRE          C2          C1          C6     119.389    1.50
+FRE          C2          C1         O12     120.306    3.00
+FRE          C6          C1         O12     120.306    3.00
+FRE          C1          C2          C3     120.041    1.50
+FRE          C1          C2         O11     119.980    3.00
+FRE          C3          C2         O11     119.980    3.00
+FRE          C2          C3          C4     120.938    1.50
+FRE          C2          C3          H6     119.515    1.50
+FRE          C4          C3          H6     119.547    1.50
+FRE          C3          C4          C5     119.327    1.50
+FRE          C3          C4          C7     120.336    1.93
+FRE          C5          C4          C7     120.336    1.93
+FRE          C4          C5          C6     120.275    1.50
+FRE          C4          C5          H5     119.902    1.50
+FRE          C6          C5          H5     119.823    1.50
+FRE          C1          C6          C5     120.030    1.50
+FRE          C1          C6         O13     114.782    1.50
+FRE          C5          C6         O13     125.188    1.50
+FRE          C4          C7          C8     127.270    1.50
+FRE          C4          C7          H7     116.261    1.50
+FRE          C8          C7          H7     116.469    1.50
+FRE          C7          C8          C9     124.804    3.00
+FRE          C7          C8          H8     118.508    1.50
+FRE          C9          C8          H8     116.688    2.36
+FRE         S1P          C9          C8     118.936    3.00
+FRE         S1P          C9         O10     120.701    2.65
+FRE          C8          C9         O10     120.363    3.00
+FRE          C2         O11        H111     120.000    3.00
+FRE          C1         O12        H112     120.000    3.00
+FRE          C6         O13         C13     117.276    1.50
+FRE         O13         C13        H131     109.428    1.50
+FRE         O13         C13        H132     109.428    1.50
+FRE         O13         C13        H133     109.428    1.50
+FRE        H131         C13        H132     109.509    1.50
+FRE        H131         C13        H133     109.509    1.50
+FRE        H132         C13        H133     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FRE              const_21         N3A         C2A         N1A         C6A       0.000    10.0     2
+FRE              const_44         N6A         C6A         N1A         C2A     180.000    10.0     2
+FRE             sp3_sp3_5         N9A         C1B         C2B         O2B      60.000    10.0     3
+FRE            sp3_sp3_32         N9A         C1B         O4B         C4B      60.000    10.0     3
+FRE            sp3_sp3_34         C1B         C2B         O2B          H2     180.000    10.0     3
+FRE            sp3_sp3_14         O2B         C2B         C3B         O3B     -60.000    10.0     3
+FRE            sp3_sp3_37         C2B         C3B         O3B         P3B     180.000    10.0     3
+FRE            sp3_sp3_23         O3B         C3B         C4B         C5B      60.000    10.0     3
+FRE            sp3_sp3_41         C3B         O3B         P3B         O7A     -60.000    10.0     3
+FRE            sp3_sp3_29         C5B         C4B         O4B         C1B     180.000    10.0     3
+FRE            sp3_sp3_43         C3B         C4B         C5B         O5B     180.000    10.0     3
+FRE              const_23         N1A         C2A         N3A         C4A       0.000    10.0     2
+FRE            sp3_sp3_52         C4B         C5B         O5B         P1A     180.000    10.0     3
+FRE            sp3_sp3_57         C5B         O5B         P1A         O1A      60.000    10.0     3
+FRE            sp3_sp3_59         P2A         O3A         P1A         O5B     -60.000    10.0     3
+FRE            sp3_sp3_63         P1A         O3A         P2A         O4A      60.000    10.0     3
+FRE            sp3_sp3_64         CCP         O6A         P2A         O3A     180.000    10.0     3
+FRE              const_25         C5A         C4A         N3A         C2A       0.000    10.0     2
+FRE            sp3_sp3_67         CBP         CCP         O6A         P2A     180.000    10.0     3
+FRE            sp3_sp3_73         CDP         CBP         CCP         O6A      60.000    10.0     3
+FRE            sp3_sp3_79         CCP         CBP         CDP         H11     180.000    10.0     3
+FRE            sp3_sp3_91         CCP         CBP         CEP        H141      60.000    10.0     3
+FRE            sp3_sp3_98         OAP         CAP         CBP         CCP     -60.000    10.0     3
+FRE           sp3_sp3_106         CBP         CAP         OAP          H1     180.000    10.0     3
+FRE             sp2_sp3_7         O9P         C9P         CAP         CBP       0.000    10.0     6
+FRE             sp2_sp2_5         CAP         C9P         N8P         C7P     180.000     5.0     2
+FRE            sp2_sp3_14         C9P         N8P         C7P         C6P     120.000    10.0     6
+FRE              const_27         N3A         C4A         C5A         C6A       0.000    10.0     2
+FRE              const_47         N3A         C4A         N9A         C8A     180.000    10.0     2
+FRE           sp3_sp3_109         C5P         C6P         C7P         N8P     180.000    10.0     3
+FRE            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+FRE             sp2_sp2_9         C6P         C5P         N4P         C3P     180.000     5.0     2
+FRE            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+FRE           sp3_sp3_118         S1P         C2P         C3P         N4P     180.000    10.0     3
+FRE           sp3_sp3_127         C3P         C2P         S1P          C9     180.000    10.0     3
+FRE            sp2_sp2_13          C8          C9         S1P         C2P     180.000     5.0     2
+FRE       const_sp2_sp2_4         O12          C1          C2         O11       0.000     5.0     2
+FRE              const_52         O12          C1          C6         O13       0.000    10.0     2
+FRE            sp2_sp2_15          C2          C1         O12        H112     180.000     5.0     2
+FRE       const_sp2_sp2_7         O11          C2          C3          C4     180.000     5.0     2
+FRE            sp2_sp2_17          C1          C2         O11        H111     180.000     5.0     2
+FRE              const_32         C4A         C5A         C6A         N6A     180.000    10.0     2
+FRE              const_35         C4A         C5A         N7A         C8A       0.000    10.0     2
+FRE              const_10          C2          C3          C4          C7     180.000    10.0     2
+FRE              const_15          C7          C4          C5          C6     180.000    10.0     2
+FRE            sp2_sp2_19          C3          C4          C7          C8     180.000     5.0     2
+FRE              const_18          C4          C5          C6         O13     180.000    10.0     2
+FRE            sp2_sp2_23          C1          C6         O13         C13     180.000     5.0     2
+FRE            sp2_sp2_25          C4          C7          C8          C9     180.000     5.0     2
+FRE            sp2_sp2_29          C7          C8          C9         S1P     180.000     5.0     2
+FRE             sp2_sp2_3         N1A         C6A         N6A        HN61       0.000     5.0     2
+FRE           sp3_sp3_131        H131         C13         O13          C6     -60.000    10.0     3
+FRE              const_37         N9A         C8A         N7A         C5A       0.000    10.0     2
+FRE              const_39         N7A         C8A         N9A         C4A       0.000    10.0     2
+FRE             sp2_sp3_1         C4A         N9A         C1B         C2B     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FRE    chir_1    C1B    O4B    N9A    C2B    negative
+FRE    chir_2    C2B    O2B    C1B    C3B    negative
+FRE    chir_3    C3B    O3B    C4B    C2B    positive
+FRE    chir_4    P3B    O3B    O7A    O8A    both
+FRE    chir_5    C4B    O4B    C3B    C5B    negative
+FRE    chir_6    P1A    O3A    O5B    O2A    both
+FRE    chir_7    P2A    O3A    O6A    O5A    both
+FRE    chir_8    CBP    CAP    CCP    CDP    both
+FRE    chir_9    CAP    OAP    C9P    CBP    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FRE    plan-1         C1B   0.020
+FRE    plan-1         C2A   0.020
+FRE    plan-1         C4A   0.020
+FRE    plan-1         C5A   0.020
+FRE    plan-1         C6A   0.020
+FRE    plan-1         C8A   0.020
+FRE    plan-1          H3   0.020
+FRE    plan-1          H4   0.020
+FRE    plan-1         N1A   0.020
+FRE    plan-1         N3A   0.020
+FRE    plan-1         N6A   0.020
+FRE    plan-1         N7A   0.020
+FRE    plan-1         N9A   0.020
+FRE    plan-2          C1   0.020
+FRE    plan-2          C2   0.020
+FRE    plan-2          C3   0.020
+FRE    plan-2          C4   0.020
+FRE    plan-2          C5   0.020
+FRE    plan-2          C6   0.020
+FRE    plan-2          C7   0.020
+FRE    plan-2          H5   0.020
+FRE    plan-2          H6   0.020
+FRE    plan-2         O11   0.020
+FRE    plan-2         O12   0.020
+FRE    plan-2         O13   0.020
+FRE    plan-3         C6A   0.020
+FRE    plan-3        HN61   0.020
+FRE    plan-3        HN62   0.020
+FRE    plan-3         N6A   0.020
+FRE    plan-4         C9P   0.020
+FRE    plan-4         CAP   0.020
+FRE    plan-4         N8P   0.020
+FRE    plan-4         O9P   0.020
+FRE    plan-5         C7P   0.020
+FRE    plan-5         C9P   0.020
+FRE    plan-5         HN8   0.020
+FRE    plan-5         N8P   0.020
+FRE    plan-6         C5P   0.020
+FRE    plan-6         C6P   0.020
+FRE    plan-6         N4P   0.020
+FRE    plan-6         O5P   0.020
+FRE    plan-7         C3P   0.020
+FRE    plan-7         C5P   0.020
+FRE    plan-7         HN4   0.020
+FRE    plan-7         N4P   0.020
+FRE    plan-8          C4   0.020
+FRE    plan-8          C7   0.020
+FRE    plan-8          C8   0.020
+FRE    plan-8          H7   0.020
+FRE    plan-9          C7   0.020
+FRE    plan-9          C8   0.020
+FRE    plan-9          C9   0.020
+FRE    plan-9          H8   0.020
+FRE   plan-10          C8   0.020
+FRE   plan-10          C9   0.020
+FRE   plan-10         O10   0.020
+FRE   plan-10         S1P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FRE           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                                            O=C(SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O)\C=C\c4cc(O)c(O)c(OC)c4
+FRE SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                                                 COc1cc(\C=C\C(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P@](O)(=O)O[P@](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O[P](O)(O)=O)n3cnc4c(N)ncnc34)cc(O)c1O
+FRE           SMILES               CACTVS 3.341                                                                                                                                                                                                                                           COc1cc(C=CC(=O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH]([CH](O)[CH]2O[P](O)(O)=O)n3cnc4c(N)ncnc34)cc(O)c1O
+FRE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                  CC(C)(CO[P@@](=O)(O)O[P@@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)C(C(=O)NCCC(=O)NCCSC(=O)\C=C\c4cc(c(c(c4)OC)O)O)O
+FRE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                                              CC(C)(COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)C(C(=O)NCCC(=O)NCCSC(=O)C=Cc4cc(c(c(c4)OC)O)O)O
+FRE            InChI                InChI  1.03 InChI=1S/C31H44N7O20P3S/c1-31(2,26(44)29(45)34-7-6-20(40)33-8-9-62-21(41)5-4-16-10-17(39)23(42)18(11-16)53-3)13-55-61(51,52)58-60(49,50)54-12-19-25(57-59(46,47)48)24(43)30(56-19)38-15-37-22-27(32)35-14-36-28(22)38/h4-5,10-11,14-15,19,24-26,30,39,42-44H,6-9,12-13H2,1-3H3,(H,33,40)(H,34,45)(H,49,50)(H,51,52)(H2,32,35,36)(H2,46,47,48)/b5-4+/t19-,24-,25-,26+,30-/m1/s1
+FRE         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                    ILSPFIPSQSFPCN-VYBUCKLUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FRE acedrg               243         "dictionary generator"                  
+FRE acedrg_database      11          "data source"                           
+FRE rdkit                2017.03.2   "Chemoinformatics tool"
+FRE refmac5              5.8.0238    "optimization tool"                     

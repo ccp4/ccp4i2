@@ -1,0 +1,316 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P3B     P3B      "(3E,4R,5R)-4,5-dihydroxy-3-{[(Z)-{3-hydroxy-2-methyl-5-[(phosphonooxy)methyl]pyridin-4(1H)-ylidene}methyl]imino}cyclohex-1-ene-1-carboxylic acid"     NON-POLYMER     43     27     .     
+#
+data_comp_P3B
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P3B     OAH     O       OP      -1      26.146      -15.896     -48.227     
+P3B     PBA     P       P       0       26.209      -16.543     -49.597     
+P3B     OAI     O       O       0       24.840      -16.728     -50.226     
+P3B     OAC     O       OP      -1      27.039      -17.813     -49.611     
+P3B     OAQ     O       O2      0       26.993      -15.496     -50.543     
+P3B     CAM     C       CH2     0       26.488      -14.189     -50.809     
+P3B     CAV     C       CR6     0       27.250      -13.577     -51.953     
+P3B     CAL     C       CR16    0       28.089      -12.520     -51.709     
+P3B     NAP     N       NR6     0       28.678      -11.874     -52.738     
+P3B     CAU     C       CR6     0       28.786      -12.366     -53.975     
+P3B     CAA     C       CH3     0       29.705      -11.705     -54.945     
+P3B     CAW     C       CR6     0       28.024      -13.495     -54.302     
+P3B     OAE     O       OH1     0       28.121      -14.023     -55.551     
+P3B     CAX     C       CR6     0       27.144      -14.062     -53.313     
+P3B     CAJ     C       C1      0       26.175      -15.164     -53.657     
+P3B     NAO     N       N       0       25.695      -15.284     -54.839     
+P3B     CAT     C       CR6     0       25.114      -16.312     -55.359     
+P3B     CAK     C       CR16    0       24.651      -17.428     -54.685     
+P3B     CAS     C       CR6     0       23.458      -18.008     -55.055     
+P3B     CAR     C       C       0       22.603      -18.557     -54.088     
+P3B     OAD     O       O       0       21.558      -19.082     -54.437     
+P3B     OAB     O       OC      -1      22.898      -18.500     -52.904     
+P3B     CAN     C       CH2     0       23.107      -18.026     -56.524     
+P3B     CAY     C       CH1     0       24.239      -17.529     -57.415     
+P3B     OAF     O       OH1     0       23.741      -17.275     -58.725     
+P3B     CAZ     C       CH1     0       24.870      -16.259     -56.857     
+P3B     OAG     O       OH1     0       26.115      -16.018     -57.515     
+P3B     H3      H       H       0       26.580      -13.633     -50.007     
+P3B     H4      H       H       0       25.536      -14.243     -51.035     
+P3B     H5      H       H       0       28.263      -12.239     -50.831     
+P3B     H18     H       H       0       29.021      -11.047     -52.574     
+P3B     H6      H       H       0       29.854      -10.785     -54.682     
+P3B     H7      H       H       0       29.314      -11.722     -55.831     
+P3B     H8      H       H       0       30.552      -12.175     -54.959     
+P3B     H9      H       H       0       28.338      -14.850     -55.653     
+P3B     H10     H       H       0       25.920      -15.766     -52.992     
+P3B     H11     H       H       0       25.170      -17.811     -53.979     
+P3B     H13     H       H       0       22.323      -17.464     -56.672     
+P3B     H19     H       H       0       22.877      -18.935     -56.789     
+P3B     H14     H       H       0       24.929      -18.234     -57.472     
+P3B     H15     H       H       0       23.604      -18.006     -59.118     
+P3B     H16     H       H       0       24.265      -15.496     -57.044     
+P3B     H17     H       H       0       26.241      -15.187     -57.573     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P3B         CAY         OAF      SINGLE       n     1.424  0.0100     1.424  0.0100
+P3B         CAZ         OAG      SINGLE       n     1.427  0.0123     1.427  0.0123
+P3B         CAY         CAZ      SINGLE       n     1.518  0.0150     1.518  0.0150
+P3B         CAN         CAY      SINGLE       n     1.521  0.0117     1.521  0.0117
+P3B         CAT         CAZ      SINGLE       n     1.511  0.0133     1.511  0.0133
+P3B         CAS         CAN      SINGLE       n     1.507  0.0100     1.507  0.0100
+P3B         CAW         OAE      SINGLE       n     1.355  0.0200     1.355  0.0200
+P3B         NAO         CAT      DOUBLE       n     1.279  0.0138     1.279  0.0138
+P3B         CAT         CAK      SINGLE       n     1.363  0.0200     1.363  0.0200
+P3B         CAJ         NAO      SINGLE       n     1.266  0.0180     1.266  0.0180
+P3B         CAK         CAS      DOUBLE       n     1.358  0.0200     1.358  0.0200
+P3B         CAS         CAR      SINGLE       n     1.384  0.0200     1.384  0.0200
+P3B         CAU         CAA      SINGLE       n     1.488  0.0100     1.488  0.0100
+P3B         CAR         OAD      DOUBLE       n     1.217  0.0200     1.217  0.0200
+P3B         CAU         CAW      DOUBLE       n     1.395  0.0100     1.395  0.0100
+P3B         CAW         CAX      SINGLE       n     1.413  0.0200     1.413  0.0200
+P3B         CAR         OAB      SINGLE       n     1.217  0.0200     1.217  0.0200
+P3B         NAP         CAU      SINGLE       n     1.330  0.0100     1.330  0.0100
+P3B         CAX         CAJ      DOUBLE       n     1.485  0.0200     1.485  0.0200
+P3B         CAV         CAX      SINGLE       n     1.425  0.0200     1.425  0.0200
+P3B         CAL         NAP      SINGLE       n     1.347  0.0100     1.347  0.0100
+P3B         CAV         CAL      DOUBLE       n     1.368  0.0100     1.368  0.0100
+P3B         CAM         CAV      SINGLE       n     1.502  0.0100     1.502  0.0100
+P3B         PBA         OAI      DOUBLE       n     1.517  0.0192     1.517  0.0192
+P3B         OAQ         CAM      SINGLE       n     1.425  0.0152     1.425  0.0152
+P3B         PBA         OAQ      SINGLE       n     1.614  0.0178     1.614  0.0178
+P3B         PBA         OAC      SINGLE       n     1.517  0.0192     1.517  0.0192
+P3B         OAH         PBA      SINGLE       n     1.517  0.0192     1.517  0.0192
+P3B         CAM          H3      SINGLE       n     1.089  0.0100     0.980  0.0156
+P3B         CAM          H4      SINGLE       n     1.089  0.0100     0.980  0.0156
+P3B         CAL          H5      SINGLE       n     1.082  0.0130     0.938  0.0200
+P3B         NAP         H18      SINGLE       n     1.016  0.0100     0.910  0.0200
+P3B         CAA          H6      SINGLE       n     1.089  0.0100     0.969  0.0150
+P3B         CAA          H7      SINGLE       n     1.089  0.0100     0.969  0.0150
+P3B         CAA          H8      SINGLE       n     1.089  0.0100     0.969  0.0150
+P3B         OAE          H9      SINGLE       n     0.966  0.0059     0.861  0.0200
+P3B         CAJ         H10      SINGLE       n     1.082  0.0130     0.933  0.0100
+P3B         CAK         H11      SINGLE       n     1.082  0.0130     0.956  0.0191
+P3B         CAN         H13      SINGLE       n     1.089  0.0100     0.975  0.0100
+P3B         CAN         H19      SINGLE       n     1.089  0.0100     0.975  0.0100
+P3B         CAY         H14      SINGLE       n     1.089  0.0100     0.988  0.0175
+P3B         OAF         H15      SINGLE       n     0.970  0.0120     0.841  0.0200
+P3B         CAZ         H16      SINGLE       n     1.089  0.0100     0.991  0.0200
+P3B         OAG         H17      SINGLE       n     0.970  0.0120     0.843  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P3B         OAI         PBA         OAQ     105.808    2.07
+P3B         OAI         PBA         OAC     112.864    1.69
+P3B         OAI         PBA         OAH     112.864    1.69
+P3B         OAQ         PBA         OAC     105.808    2.07
+P3B         OAQ         PBA         OAH     105.808    2.07
+P3B         OAC         PBA         OAH     112.864    1.69
+P3B         CAM         OAQ         PBA     121.496    2.55
+P3B         CAV         CAM         OAQ     110.068    2.87
+P3B         CAV         CAM          H3     109.665    1.50
+P3B         CAV         CAM          H4     109.665    1.50
+P3B         OAQ         CAM          H3     109.514    1.50
+P3B         OAQ         CAM          H4     109.514    1.50
+P3B          H3         CAM          H4     108.221    1.50
+P3B         CAX         CAV         CAL     118.909    1.50
+P3B         CAX         CAV         CAM     121.796    1.50
+P3B         CAL         CAV         CAM     119.295    1.50
+P3B         NAP         CAL         CAV     119.897    1.50
+P3B         NAP         CAL          H5     119.449    1.50
+P3B         CAV         CAL          H5     120.654    1.52
+P3B         CAU         NAP         CAL     124.032    1.50
+P3B         CAU         NAP         H18     117.988    1.59
+P3B         CAL         NAP         H18     117.980    1.50
+P3B         CAA         CAU         CAW     122.651    1.50
+P3B         CAA         CAU         NAP     119.305    1.50
+P3B         CAW         CAU         NAP     118.044    1.50
+P3B         CAU         CAA          H6     109.558    1.50
+P3B         CAU         CAA          H7     109.558    1.50
+P3B         CAU         CAA          H8     109.558    1.50
+P3B          H6         CAA          H7     109.380    1.50
+P3B          H6         CAA          H8     109.380    1.50
+P3B          H7         CAA          H8     109.380    1.50
+P3B         OAE         CAW         CAU     120.136    3.00
+P3B         OAE         CAW         CAX     120.136    3.00
+P3B         CAU         CAW         CAX     119.729    1.50
+P3B         CAW         OAE          H9     120.000    3.00
+P3B         CAW         CAX         CAJ     120.586    2.25
+P3B         CAW         CAX         CAV     119.389    1.50
+P3B         CAJ         CAX         CAV     120.025    1.71
+P3B         NAO         CAJ         CAX     121.166    3.00
+P3B         NAO         CAJ         H10     119.427    1.50
+P3B         CAX         CAJ         H10     119.407    1.50
+P3B         CAT         NAO         CAJ     120.887    2.22
+P3B         CAZ         CAT         NAO     120.038    3.00
+P3B         CAZ         CAT         CAK     118.827    3.00
+P3B         NAO         CAT         CAK     121.134    3.00
+P3B         CAT         CAK         CAS     120.021    1.50
+P3B         CAT         CAK         H11     120.107    1.50
+P3B         CAS         CAK         H11     119.872    1.50
+P3B         CAN         CAS         CAK     118.800    1.77
+P3B         CAN         CAS         CAR     121.821    1.79
+P3B         CAK         CAS         CAR     119.379    1.79
+P3B         CAS         CAR         OAD     119.490    1.50
+P3B         CAS         CAR         OAB     119.490    1.50
+P3B         OAD         CAR         OAB     121.020    1.50
+P3B         CAY         CAN         CAS     112.021    2.38
+P3B         CAY         CAN         H13     108.743    1.50
+P3B         CAY         CAN         H19     108.743    1.50
+P3B         CAS         CAN         H13     109.149    1.50
+P3B         CAS         CAN         H19     109.149    1.50
+P3B         H13         CAN         H19     107.887    1.50
+P3B         OAF         CAY         CAZ     109.779    1.72
+P3B         OAF         CAY         CAN     109.943    1.55
+P3B         OAF         CAY         H14     108.933    1.50
+P3B         CAZ         CAY         CAN     111.124    1.57
+P3B         CAZ         CAY         H14     109.434    1.50
+P3B         CAN         CAY         H14     109.453    2.12
+P3B         CAY         OAF         H15     109.387    3.00
+P3B         OAG         CAZ         CAY     110.170    1.75
+P3B         OAG         CAZ         CAT     108.377    2.05
+P3B         OAG         CAZ         H16     108.370    1.50
+P3B         CAY         CAZ         CAT     112.021    2.38
+P3B         CAY         CAZ         H16     108.836    1.50
+P3B         CAT         CAZ         H16     108.210    1.50
+P3B         CAZ         OAG         H17     108.734    2.82
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P3B            sp2_sp2_25         CAU         CAW         OAE          H9     180.000     5.0     2
+P3B            sp2_sp2_12         OAE         CAW         CAX         CAJ       0.000     5.0     2
+P3B            sp2_sp2_39         NAO         CAJ         CAX         CAW     180.000     5.0     2
+P3B            sp2_sp2_33         CAX         CAJ         NAO         CAT     180.000     5.0     2
+P3B            sp2_sp2_27         CAZ         CAT         NAO         CAJ     180.000     5.0     2
+P3B            sp2_sp2_30         CAS         CAK         CAT         NAO     180.000     5.0     2
+P3B             sp2_sp3_5         NAO         CAT         CAZ         OAG     -60.000    10.0     6
+P3B             sp2_sp2_2         CAT         CAK         CAS         CAR     180.000     5.0     2
+P3B            sp2_sp2_35         OAD         CAR         CAS         CAN     180.000     5.0     2
+P3B            sp2_sp3_10         CAR         CAS         CAN         CAY     180.000    10.0     6
+P3B            sp3_sp3_30         CAM         OAQ         PBA         OAI      60.000    10.0     3
+P3B            sp3_sp3_11         CAS         CAN         CAY         OAF     180.000    10.0     3
+P3B            sp3_sp3_19         CAZ         CAY         OAF         H15     180.000    10.0     3
+P3B             sp3_sp3_5         OAF         CAY         CAZ         OAG     -60.000    10.0     3
+P3B            sp3_sp3_22         CAY         CAZ         OAG         H17     180.000    10.0     3
+P3B            sp3_sp3_25         CAV         CAM         OAQ         PBA     180.000    10.0     3
+P3B            sp2_sp3_20         CAX         CAV         CAM         OAQ     -90.000    10.0     6
+P3B             sp2_sp2_8         CAM         CAV         CAX         CAJ       0.000     5.0     2
+P3B            sp2_sp2_44         NAP         CAL         CAV         CAM     180.000     5.0     2
+P3B            sp2_sp2_21         CAV         CAL         NAP         CAU       0.000     5.0     2
+P3B            sp2_sp2_19         CAA         CAU         NAP         CAL     180.000     5.0     2
+P3B            sp2_sp3_13         CAW         CAU         CAA          H6     150.000    10.0     6
+P3B            sp2_sp2_16         CAA         CAU         CAW         OAE       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P3B    chir_1    PBA    OAQ    OAC    OAH    both
+P3B    chir_2    CAY    OAF    CAZ    CAN    negative
+P3B    chir_3    CAZ    OAG    CAY    CAT    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+P3B    plan-1         CAL   0.020
+P3B    plan-1         CAM   0.020
+P3B    plan-1         CAV   0.020
+P3B    plan-1         CAX   0.020
+P3B    plan-2         CAL   0.020
+P3B    plan-2         CAV   0.020
+P3B    plan-2          H5   0.020
+P3B    plan-2         NAP   0.020
+P3B    plan-3         CAL   0.020
+P3B    plan-3         CAU   0.020
+P3B    plan-3         H18   0.020
+P3B    plan-3         NAP   0.020
+P3B    plan-4         CAA   0.020
+P3B    plan-4         CAU   0.020
+P3B    plan-4         CAW   0.020
+P3B    plan-4         NAP   0.020
+P3B    plan-5         CAU   0.020
+P3B    plan-5         CAW   0.020
+P3B    plan-5         CAX   0.020
+P3B    plan-5         OAE   0.020
+P3B    plan-6         CAJ   0.020
+P3B    plan-6         CAV   0.020
+P3B    plan-6         CAW   0.020
+P3B    plan-6         CAX   0.020
+P3B    plan-7         CAJ   0.020
+P3B    plan-7         CAX   0.020
+P3B    plan-7         H10   0.020
+P3B    plan-7         NAO   0.020
+P3B    plan-8         CAK   0.020
+P3B    plan-8         CAT   0.020
+P3B    plan-8         CAZ   0.020
+P3B    plan-8         NAO   0.020
+P3B    plan-9         CAK   0.020
+P3B    plan-9         CAS   0.020
+P3B    plan-9         CAT   0.020
+P3B    plan-9         H11   0.020
+P3B   plan-10         CAK   0.020
+P3B   plan-10         CAN   0.020
+P3B   plan-10         CAR   0.020
+P3B   plan-10         CAS   0.020
+P3B   plan-11         CAR   0.020
+P3B   plan-11         CAS   0.020
+P3B   plan-11         OAB   0.020
+P3B   plan-11         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P3B           SMILES              ACDLabs 12.01                                                                                                                              OP(O)(=O)OCC1=CNC(C)=C(C1=[C@H]\N=C2/C=C(C(O)=O)CC(C2O)O)O
+P3B            InChI                InChI  1.03 InChI=1S/C15H19N2O9P/c1-7-13(19)10(9(4-16-7)6-26-27(23,24)25)5-17-11-2-8(15(21)22)3-12(18)14(11)20/h2,4-5,12,14,16,18-20H,3,6H2,1H3,(H,21,22)(H2,23,24,25)/b10-5-,17-11+/t12-,14-/m1/s1
+P3B         InChIKey                InChI  1.03                                                                                                                                                             KOPNIGHVUGDBMS-FEZKIMOASA-N
+P3B SMILES_CANONICAL               CACTVS 3.385                                                                                                                    CC1=C(O)C(=C/N=C2C=C(C[C@@H](O)[C@@H]2O)C(O)=O)\C(=CN1)CO[P](O)(O)=O
+P3B           SMILES               CACTVS 3.385                                                                                                                          CC1=C(O)C(=CN=C2C=C(C[CH](O)[CH]2O)C(O)=O)C(=CN1)CO[P](O)(O)=O
+P3B SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                    CC1=C(/C(=C\N=C\2/C=C(C[C@H]([C@@H]2O)O)C(=O)O)/C(=CN1)COP(=O)(O)O)O
+P3B           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                  CC1=C(C(=CN=C2C=C(CC(C2O)O)C(=O)O)C(=CN1)COP(=O)(O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P3B acedrg               243         "dictionary generator"                  
+P3B acedrg_database      11          "data source"                           
+P3B rdkit                2017.03.2   "Chemoinformatics tool"
+P3B refmac5              5.8.0238    "optimization tool"                     

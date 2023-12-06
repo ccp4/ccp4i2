@@ -1,0 +1,306 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ODT     ODT      "(11E,13E,15Z)-OCTADECA-11,13,15-TRIENOIC ACID"     NON-POLYMER     49     20     .     
+#
+data_comp_ODT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ODT     O1      O       O       0       -23.835     -14.533     -8.870      
+ODT     C1      C       C       0       -23.521     -14.631     -7.668      
+ODT     O2      O       OC      -1      -24.325     -14.948     -6.768      
+ODT     C2      C       CH2     0       -22.080     -14.350     -7.277      
+ODT     C3      C       CH2     0       -21.814     -12.940     -6.848      
+ODT     C4      C       CH2     0       -20.363     -12.708     -6.465      
+ODT     C5      C       CH2     0       -20.085     -11.341     -5.889      
+ODT     C6      C       CH2     0       -20.152     -10.219     -6.897      
+ODT     C7      C       CH2     0       -19.782     -8.865      -6.344      
+ODT     C8      C       CH2     0       -19.865     -7.745      -7.352      
+ODT     C9      C       CH2     0       -19.427     -6.387      -6.818      
+ODT     C10     C       CH2     0       -19.567     -5.262      -7.799      
+ODT     C11     C       C1      0       -18.581     -5.333      -8.927      
+ODT     C12     C       C1      0       -18.350     -4.373      -9.823      
+ODT     C13     C       C1      0       -17.430     -4.412      -10.937     
+ODT     C14     C       C1      0       -16.600     -5.459      -11.335     
+ODT     C15     C       C1      0       -15.680     -5.470      -12.452     
+ODT     C16     C       C1      0       -14.894     -6.476      -12.842     
+ODT     C17     C       CH2     0       -14.803     -7.830      -12.205     
+ODT     C18     C       CH3     0       -13.837     -8.733      -12.888     
+ODT     H21     H       H       0       -21.504     -14.562     -8.042      
+ODT     H22     H       H       0       -21.834     -14.955     -6.545      
+ODT     H31     H       H       0       -22.383     -12.722     -6.080      
+ODT     H32     H       H       0       -22.050     -12.330     -7.578      
+ODT     H41     H       H       0       -19.803     -12.834     -7.261      
+ODT     H42     H       H       0       -20.099     -13.386     -5.806      
+ODT     H51     H       H       0       -19.191     -11.346     -5.484      
+ODT     H52     H       H       0       -20.734     -11.162     -5.176      
+ODT     H61     H       H       0       -21.064     -10.173     -7.255      
+ODT     H62     H       H       0       -19.550     -10.430     -7.642      
+ODT     H71     H       H       0       -18.866     -8.907      -5.995      
+ODT     H72     H       H       0       -20.378     -8.658      -5.593      
+ODT     H81     H       H       0       -20.792     -7.674      -7.667      
+ODT     H82     H       H       0       -19.306     -7.977      -8.123      
+ODT     H91     H       H       0       -18.489     -6.448      -6.540      
+ODT     H92     H       H       0       -19.958     -6.178      -6.021      
+ODT     H101    H       H       0       -19.447     -4.410      -7.324      
+ODT     H102    H       H       0       -20.477     -5.276      -8.170      
+ODT     H11     H       H       0       -18.083     -6.128      -9.000      
+ODT     H12     H       H       0       -18.838     -3.572      -9.729      
+ODT     H13     H       H       0       -17.386     -3.629      -11.461     
+ODT     H14     H       H       0       -16.642     -6.245      -10.821     
+ODT     H15     H       H       0       -15.637     -4.673      -12.954     
+ODT     H16     H       H       0       -14.339     -6.330      -13.590     
+ODT     H171    H       H       0       -15.690     -8.248      -12.213     
+ODT     H172    H       H       0       -14.533     -7.725      -11.268     
+ODT     H181    H       H       0       -13.855     -9.608      -12.464     
+ODT     H182    H       H       0       -12.941     -8.360      -12.822     
+ODT     H183    H       H       0       -14.083     -8.822      -13.825     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ODT          O1          C1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ODT          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+ODT          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+ODT          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+ODT          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+ODT          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+ODT          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+ODT          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+ODT          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+ODT          C8          C9      SINGLE       n     1.523  0.0117     1.523  0.0117
+ODT          C9         C10      SINGLE       n     1.497  0.0200     1.497  0.0200
+ODT         C10         C11      SINGLE       n     1.499  0.0157     1.499  0.0157
+ODT         C11         C12      DOUBLE       n     1.332  0.0144     1.332  0.0144
+ODT         C12         C13      SINGLE       n     1.439  0.0200     1.439  0.0200
+ODT         C13         C14      DOUBLE       n     1.391  0.0200     1.391  0.0200
+ODT         C14         C15      SINGLE       n     1.445  0.0200     1.445  0.0200
+ODT         C15         C16      DOUBLE       n     1.332  0.0144     1.332  0.0144
+ODT         C16         C17      SINGLE       n     1.498  0.0100     1.498  0.0100
+ODT         C17         C18      SINGLE       n     1.487  0.0200     1.487  0.0200
+ODT          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+ODT          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+ODT          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+ODT          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+ODT          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+ODT          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0160
+ODT          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0160
+ODT         C10        H101      SINGLE       n     1.089  0.0100     0.983  0.0180
+ODT         C10        H102      SINGLE       n     1.089  0.0100     0.983  0.0180
+ODT         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0181
+ODT         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0200
+ODT         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0196
+ODT         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0196
+ODT         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0200
+ODT         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0181
+ODT         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0159
+ODT         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0159
+ODT         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0141
+ODT         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0141
+ODT         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ODT          O1          C1          O2     123.571    1.50
+ODT          O1          C1          C2     118.214    1.64
+ODT          O2          C1          C2     118.214    1.64
+ODT          C1          C2          C3     114.612    2.19
+ODT          C1          C2         H21     108.404    1.50
+ODT          C1          C2         H22     108.404    1.50
+ODT          C3          C2         H21     108.815    1.50
+ODT          C3          C2         H22     108.815    1.50
+ODT         H21          C2         H22     107.521    1.50
+ODT          C2          C3          C4     112.553    1.50
+ODT          C2          C3         H31     109.164    1.50
+ODT          C2          C3         H32     109.164    1.50
+ODT          C4          C3         H31     108.698    1.50
+ODT          C4          C3         H32     108.698    1.50
+ODT         H31          C3         H32     107.646    1.50
+ODT          C3          C4          C5     114.243    1.69
+ODT          C3          C4         H41     108.698    1.50
+ODT          C3          C4         H42     108.698    1.50
+ODT          C5          C4         H41     108.698    1.50
+ODT          C5          C4         H42     108.698    1.50
+ODT         H41          C4         H42     107.646    1.50
+ODT          C4          C5          C6     114.243    1.69
+ODT          C4          C5         H51     108.698    1.50
+ODT          C4          C5         H52     108.698    1.50
+ODT          C6          C5         H51     108.698    1.50
+ODT          C6          C5         H52     108.698    1.50
+ODT         H51          C5         H52     107.646    1.50
+ODT          C5          C6          C7     114.243    1.69
+ODT          C5          C6         H61     108.698    1.50
+ODT          C5          C6         H62     108.698    1.50
+ODT          C7          C6         H61     108.698    1.50
+ODT          C7          C6         H62     108.698    1.50
+ODT         H61          C6         H62     107.646    1.50
+ODT          C6          C7          C8     114.243    1.69
+ODT          C6          C7         H71     108.698    1.50
+ODT          C6          C7         H72     108.698    1.50
+ODT          C8          C7         H71     108.698    1.50
+ODT          C8          C7         H72     108.698    1.50
+ODT         H71          C7         H72     107.646    1.50
+ODT          C7          C8          C9     114.243    1.69
+ODT          C7          C8         H81     108.698    1.50
+ODT          C7          C8         H82     108.698    1.50
+ODT          C9          C8         H81     108.698    1.50
+ODT          C9          C8         H82     108.698    1.50
+ODT         H81          C8         H82     107.646    1.50
+ODT          C8          C9         C10     114.266    1.80
+ODT          C8          C9         H91     108.698    1.50
+ODT          C8          C9         H92     108.698    1.50
+ODT         C10          C9         H91     108.805    1.50
+ODT         C10          C9         H92     108.805    1.50
+ODT         H91          C9         H92     107.646    1.50
+ODT          C9         C10         C11     113.226    1.94
+ODT          C9         C10        H101     108.819    1.50
+ODT          C9         C10        H102     108.819    1.50
+ODT         C11         C10        H101     108.886    1.50
+ODT         C11         C10        H102     108.886    1.50
+ODT        H101         C10        H102     107.922    1.50
+ODT         C10         C11         C12     125.702    2.56
+ODT         C10         C11         H11     116.780    1.61
+ODT         C12         C11         H11     117.519    1.50
+ODT         C11         C12         C13     126.726    2.74
+ODT         C11         C12         H12     117.302    1.50
+ODT         C13         C12         H12     115.972    1.85
+ODT         C12         C13         C14     127.252    3.00
+ODT         C12         C13         H13     116.374    1.85
+ODT         C14         C13         H13     116.374    1.85
+ODT         C13         C14         C15     127.252    3.00
+ODT         C13         C14         H14     116.374    1.85
+ODT         C15         C14         H14     116.374    1.85
+ODT         C14         C15         C16     126.726    2.74
+ODT         C14         C15         H15     115.972    1.85
+ODT         C16         C15         H15     117.302    1.50
+ODT         C15         C16         C17     125.958    2.56
+ODT         C15         C16         H16     117.775    1.50
+ODT         C17         C16         H16     116.267    2.44
+ODT         C16         C17         C18     112.824    1.50
+ODT         C16         C17        H171     109.018    1.50
+ODT         C16         C17        H172     109.018    1.50
+ODT         C18         C17        H171     108.933    1.50
+ODT         C18         C17        H172     108.933    1.50
+ODT        H171         C17        H172     107.592    1.50
+ODT         C17         C18        H181     109.498    1.50
+ODT         C17         C18        H182     109.498    1.50
+ODT         C17         C18        H183     109.498    1.50
+ODT        H181         C18        H182     109.380    1.50
+ODT        H181         C18        H183     109.380    1.50
+ODT        H182         C18        H183     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ODT            sp3_sp3_64         C11         C10          C9          C8     180.000    10.0     3
+ODT             sp2_sp3_8         C12         C11         C10          C9     120.000    10.0     6
+ODT             sp2_sp2_1         C10         C11         C12         C13     180.000     5.0     2
+ODT             sp2_sp2_5         C11         C12         C13         C14     180.000     5.0     2
+ODT             sp2_sp2_9         C12         C13         C14         C15     180.000     5.0     2
+ODT            sp2_sp2_13         C13         C14         C15         C16     180.000     5.0     2
+ODT            sp2_sp2_17         C14         C15         C16         C17     180.000     5.0     2
+ODT            sp2_sp3_14         C15         C16         C17         C18     120.000    10.0     6
+ODT            sp3_sp3_73         C16         C17         C18        H181     180.000    10.0     3
+ODT             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+ODT             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+ODT            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+ODT            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+ODT            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+ODT            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+ODT            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+ODT            sp3_sp3_55          C7          C8          C9         C10     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ODT    plan-1          C1   0.020
+ODT    plan-1          C2   0.020
+ODT    plan-1          O1   0.020
+ODT    plan-1          O2   0.020
+ODT    plan-2         C10   0.020
+ODT    plan-2         C11   0.020
+ODT    plan-2         C12   0.020
+ODT    plan-2         H11   0.020
+ODT    plan-3         C11   0.020
+ODT    plan-3         C12   0.020
+ODT    plan-3         C13   0.020
+ODT    plan-3         H12   0.020
+ODT    plan-4         C12   0.020
+ODT    plan-4         C13   0.020
+ODT    plan-4         C14   0.020
+ODT    plan-4         H13   0.020
+ODT    plan-5         C13   0.020
+ODT    plan-5         C14   0.020
+ODT    plan-5         C15   0.020
+ODT    plan-5         H14   0.020
+ODT    plan-6         C14   0.020
+ODT    plan-6         C15   0.020
+ODT    plan-6         C16   0.020
+ODT    plan-6         H15   0.020
+ODT    plan-7         C15   0.020
+ODT    plan-7         C16   0.020
+ODT    plan-7         C17   0.020
+ODT    plan-7         H16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ODT           SMILES              ACDLabs 10.04                                                                                     O=C(O)CCCCCCCCC\C=C\C=C\C=C/CC
+ODT SMILES_CANONICAL               CACTVS 3.341                                                                                     CC\C=C/C=C/C=C/CCCCCCCCCC(O)=O
+ODT           SMILES               CACTVS 3.341                                                                                         CCC=CC=CC=CCCCCCCCCCC(O)=O
+ODT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     CC\C=C/C=C/C=C/CCCCCCCCCC(=O)O
+ODT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                         CCC=CC=CC=CCCCCCCCCCC(=O)O
+ODT            InChI                InChI  1.03 InChI=1S/C18H30O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18(19)20/h3-8H,2,9-17H2,1H3,(H,19,20)/b4-3-,6-5+,8-7+
+ODT         InChIKey                InChI  1.03                                                                                        ZSXWVPXJLXTOQQ-ZRGCPWHVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ODT acedrg               243         "dictionary generator"                  
+ODT acedrg_database      11          "data source"                           
+ODT rdkit                2017.03.2   "Chemoinformatics tool"
+ODT refmac5              5.8.0238    "optimization tool"                     

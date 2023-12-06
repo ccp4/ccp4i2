@@ -1,0 +1,330 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FII     FII      "[(3,7,11-TRIMETHYL-DODECA-2,6,10-TRIENYLOXYCARBAMOYL)-METHYL]-PHOSPHONIC ACID"     NON-POLYMER     52     24     .     
+#
+data_comp_FII
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FII     C1      C       CH3     0       97.521      26.044      34.000      
+FII     C2      C       C       0       97.553      27.502      33.634      
+FII     C6      C       CH3     0       96.193      28.133      33.549      
+FII     C10     C       C1      0       98.673      28.175      33.399      
+FII     C11     C       CH2     0       100.088     27.677      33.387      
+FII     C12     C       CH2     0       100.422     26.949      32.092      
+FII     C15     C       C       0       101.808     26.388      31.893      
+FII     C18     C       CH3     0       102.041     25.856      30.506      
+FII     C22     C       C1      0       102.728     26.361      32.860      
+FII     C23     C       CH2     0       104.122     25.809      32.800      
+FII     C24     C       CH2     0       104.937     26.073      34.051      
+FII     C27     C       C       0       106.295     25.426      34.008      
+FII     C30     C       CH3     0       107.316     26.196      33.214      
+FII     C34     C       C1      0       106.523     24.268      34.629      
+FII     C35     C       CH2     0       107.784     23.462      34.686      
+FII     O36     O       O2      0       107.762     22.404      33.716      
+FII     N42     N       NH1     0       108.018     22.889      32.430      
+FII     C43     C       C       0       109.147     22.545      31.832      
+FII     O44     O       O       0       110.007     21.844      32.370      
+FII     C45     C       CH2     0       109.348     23.041      30.424      
+FII     P46     P       P       0       110.547     24.400      30.303      
+FII     O49     O       O       0       110.519     24.910      28.888      
+FII     O50     O       OP      -1      111.900     23.844      30.654      
+FII     O51     O       OP      -1      110.130     25.469      31.274      
+FII     H11     H       H       0       98.366      25.623      33.779      
+FII     H12     H       H       0       96.808      25.603      33.509      
+FII     H13     H       H       0       97.357      25.952      34.952      
+FII     H61     H       H       0       96.273      29.059      33.267      
+FII     H62     H       H       0       95.764      28.100      34.420      
+FII     H63     H       H       0       95.650      27.648      32.907      
+FII     H101    H       H       0       98.571      29.096      33.214      
+FII     H111    H       H       0       100.221     27.069      34.143      
+FII     H112    H       H       0       100.698     28.435      33.496      
+FII     H121    H       H       0       100.242     27.563      31.351      
+FII     H122    H       H       0       99.787      26.212      31.991      
+FII     H181    H       H       0       102.973     25.616      30.390      
+FII     H182    H       H       0       101.802     26.535      29.855      
+FII     H183    H       H       0       101.489     25.070      30.365      
+FII     H221    H       H       0       102.484     26.733      33.689      
+FII     H231    H       H       0       104.586     26.203      32.034      
+FII     H232    H       H       0       104.074     24.842      32.653      
+FII     H241    H       H       0       104.443     25.742      34.829      
+FII     H242    H       H       0       105.049     27.039      34.158      
+FII     H301    H       H       0       108.098     25.648      33.048      
+FII     H302    H       H       0       107.578     26.990      33.707      
+FII     H303    H       H       0       106.929     26.461      32.364      
+FII     H341    H       H       0       105.795     23.891      35.100      
+FII     H351    H       H       0       107.882     23.061      35.584      
+FII     H352    H       H       0       108.571     24.033      34.525      
+FII     HN1     H       H       0       107.420     23.409      32.056      
+FII     H451    H       H       0       108.496     23.346      30.061      
+FII     H452    H       H       0       109.663     22.302      29.872      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FII          C1          C2      SINGLE       n     1.499  0.0156     1.499  0.0156
+FII          C2          C6      SINGLE       n     1.499  0.0156     1.499  0.0156
+FII          C2         C10      DOUBLE       n     1.324  0.0100     1.324  0.0100
+FII         C10         C11      SINGLE       n     1.498  0.0141     1.498  0.0141
+FII         C11         C12      SINGLE       n     1.516  0.0200     1.516  0.0200
+FII         C12         C15      SINGLE       n     1.503  0.0104     1.503  0.0104
+FII         C15         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+FII         C15         C22      DOUBLE       n     1.330  0.0100     1.330  0.0100
+FII         C22         C23      SINGLE       n     1.498  0.0141     1.498  0.0141
+FII         C23         C24      SINGLE       n     1.516  0.0200     1.516  0.0200
+FII         C24         C27      SINGLE       n     1.503  0.0104     1.503  0.0104
+FII         C27         C30      SINGLE       n     1.499  0.0156     1.499  0.0156
+FII         C27         C34      DOUBLE       n     1.329  0.0100     1.329  0.0100
+FII         C34         C35      SINGLE       n     1.488  0.0200     1.488  0.0200
+FII         C35         O36      SINGLE       n     1.434  0.0130     1.434  0.0130
+FII         O36         N42      SINGLE       n     1.396  0.0100     1.396  0.0100
+FII         N42         C43      SINGLE       n     1.320  0.0103     1.320  0.0103
+FII         C43         O44      DOUBLE       n     1.232  0.0104     1.232  0.0104
+FII         C43         C45      SINGLE       n     1.501  0.0164     1.501  0.0164
+FII         C45         P46      SINGLE       n     1.816  0.0200     1.816  0.0200
+FII         P46         O49      DOUBLE       n     1.505  0.0200     1.505  0.0200
+FII         P46         O50      SINGLE       n     1.505  0.0200     1.505  0.0200
+FII         P46         O51      SINGLE       n     1.505  0.0200     1.505  0.0200
+FII          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII          C6         H61      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII          C6         H62      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII          C6         H63      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII         C10        H101      SINGLE       n     1.082  0.0130     0.945  0.0200
+FII         C11        H111      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C11        H112      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C12        H121      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C12        H122      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C18        H181      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII         C18        H182      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII         C18        H183      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII         C22        H221      SINGLE       n     1.082  0.0130     0.945  0.0200
+FII         C23        H231      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C23        H232      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C24        H241      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C24        H242      SINGLE       n     1.089  0.0100     0.979  0.0159
+FII         C30        H301      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII         C30        H302      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII         C30        H303      SINGLE       n     1.089  0.0100     0.971  0.0140
+FII         C34        H341      SINGLE       n     1.082  0.0130     0.945  0.0200
+FII         C35        H351      SINGLE       n     1.089  0.0100     0.988  0.0200
+FII         C35        H352      SINGLE       n     1.089  0.0100     0.988  0.0200
+FII         N42         HN1      SINGLE       n     1.016  0.0100     0.875  0.0200
+FII         C45        H451      SINGLE       n     1.089  0.0100     0.975  0.0200
+FII         C45        H452      SINGLE       n     1.089  0.0100     0.975  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FII          C2          C1         H11     109.600    1.50
+FII          C2          C1         H12     109.600    1.50
+FII          C2          C1         H13     109.600    1.50
+FII         H11          C1         H12     109.342    1.50
+FII         H11          C1         H13     109.342    1.50
+FII         H12          C1         H13     109.342    1.50
+FII          C1          C2          C6     114.618    1.50
+FII          C1          C2         C10     122.691    1.63
+FII          C6          C2         C10     122.691    1.63
+FII          C2          C6         H61     109.600    1.50
+FII          C2          C6         H62     109.600    1.50
+FII          C2          C6         H63     109.600    1.50
+FII         H61          C6         H62     109.342    1.50
+FII         H61          C6         H63     109.342    1.50
+FII         H62          C6         H63     109.342    1.50
+FII          C2         C10         C11     128.282    1.50
+FII          C2         C10        H101     116.082    1.50
+FII         C11         C10        H101     115.635    1.60
+FII         C10         C11         C12     112.751    2.50
+FII         C10         C11        H111     109.181    1.50
+FII         C10         C11        H112     109.181    1.50
+FII         C12         C11        H111     109.013    1.50
+FII         C12         C11        H112     109.013    1.50
+FII        H111         C11        H112     107.922    1.50
+FII         C11         C12         C15     113.520    2.62
+FII         C11         C12        H121     108.867    1.50
+FII         C11         C12        H122     108.867    1.50
+FII         C15         C12        H121     108.816    1.50
+FII         C15         C12        H122     108.816    1.50
+FII        H121         C12        H122     107.710    1.94
+FII         C12         C15         C18     115.131    1.50
+FII         C12         C15         C22     121.188    1.50
+FII         C18         C15         C22     123.681    1.50
+FII         C15         C18        H181     109.541    1.50
+FII         C15         C18        H182     109.541    1.50
+FII         C15         C18        H183     109.541    1.50
+FII        H181         C18        H182     109.342    1.50
+FII        H181         C18        H183     109.342    1.50
+FII        H182         C18        H183     109.342    1.50
+FII         C15         C22         C23     128.114    1.50
+FII         C15         C22        H221     116.261    1.50
+FII         C23         C22        H221     115.635    1.60
+FII         C22         C23         C24     112.751    2.50
+FII         C22         C23        H231     109.181    1.50
+FII         C22         C23        H232     109.181    1.50
+FII         C24         C23        H231     109.013    1.50
+FII         C24         C23        H232     109.013    1.50
+FII        H231         C23        H232     107.922    1.50
+FII         C23         C24         C27     113.520    2.62
+FII         C23         C24        H241     108.867    1.50
+FII         C23         C24        H242     108.867    1.50
+FII         C27         C24        H241     108.816    1.50
+FII         C27         C24        H242     108.816    1.50
+FII        H241         C24        H242     107.710    1.94
+FII         C24         C27         C30     115.386    1.50
+FII         C24         C27         C34     121.607    1.82
+FII         C30         C27         C34     123.007    1.73
+FII         C27         C30        H301     109.541    1.50
+FII         C27         C30        H302     109.541    1.50
+FII         C27         C30        H303     109.541    1.50
+FII        H301         C30        H302     109.342    1.50
+FII        H301         C30        H303     109.342    1.50
+FII        H302         C30        H303     109.342    1.50
+FII         C27         C34         C35     124.396    3.00
+FII         C27         C34        H341     117.563    1.50
+FII         C35         C34        H341     118.040    2.26
+FII         C34         C35         O36     110.427    2.31
+FII         C34         C35        H351     109.840    1.50
+FII         C34         C35        H352     109.840    1.50
+FII         O36         C35        H351     108.659    1.50
+FII         O36         C35        H352     108.659    1.50
+FII        H351         C35        H352     107.985    1.50
+FII         C35         O36         N42     110.195    1.79
+FII         O36         N42         C43     118.472    1.50
+FII         O36         N42         HN1     119.297    3.00
+FII         C43         N42         HN1     122.231    2.48
+FII         N42         C43         O44     123.151    1.50
+FII         N42         C43         C45     115.873    1.98
+FII         O44         C43         C45     120.976    1.52
+FII         C43         C45         P46     113.247    3.00
+FII         C43         C45        H451     108.973    1.50
+FII         C43         C45        H452     108.973    1.50
+FII         P46         C45        H451     108.528    1.50
+FII         P46         C45        H452     108.528    1.50
+FII        H451         C45        H452     108.296    2.31
+FII         C45         P46         O49     110.326    3.00
+FII         C45         P46         O50     110.326    3.00
+FII         C45         P46         O51     110.326    3.00
+FII         O49         P46         O50     111.786    1.50
+FII         O49         P46         O51     111.786    1.50
+FII         O50         P46         O51     111.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FII             sp2_sp3_1          C6          C2          C1         H11       0.000    10.0     6
+FII            sp2_sp3_38         C30         C27         C24         C23     120.000    10.0     6
+FII            sp2_sp3_43         C24         C27         C30        H301       0.000    10.0     6
+FII             sp2_sp2_9         C24         C27         C34         C35     180.000     5.0     2
+FII            sp2_sp3_50         C27         C34         C35         O36     120.000    10.0     6
+FII            sp3_sp3_19         C34         C35         O36         N42     180.000    10.0     3
+FII            sp2_sp2_15         O44         C43         N42         O36       0.000     5.0     2
+FII            sp2_sp3_58         N42         C43         C45         P46     120.000    10.0     6
+FII            sp3_sp3_24         C43         C45         P46         O49      60.000    10.0     3
+FII             sp2_sp3_7          C1          C2          C6         H61       0.000    10.0     6
+FII             sp2_sp2_1         C11         C10          C2          C1     180.000     5.0     2
+FII            sp2_sp3_14          C2         C10         C11         C12     120.000    10.0     6
+FII             sp3_sp3_1         C10         C11         C12         C15     180.000    10.0     3
+FII            sp2_sp3_20         C18         C15         C12         C11     120.000    10.0     6
+FII            sp2_sp3_25         C12         C15         C18        H181       0.000    10.0     6
+FII             sp2_sp2_5         C12         C15         C22         C23     180.000     5.0     2
+FII            sp2_sp3_32         C15         C22         C23         C24     120.000    10.0     6
+FII            sp3_sp3_10         C22         C23         C24         C27     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FII    chir_1    P46    O50    O51    O49    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FII    plan-1          C1   0.020
+FII    plan-1         C10   0.020
+FII    plan-1          C2   0.020
+FII    plan-1          C6   0.020
+FII    plan-2         C10   0.020
+FII    plan-2         C11   0.020
+FII    plan-2          C2   0.020
+FII    plan-2        H101   0.020
+FII    plan-3         C12   0.020
+FII    plan-3         C15   0.020
+FII    plan-3         C18   0.020
+FII    plan-3         C22   0.020
+FII    plan-4         C15   0.020
+FII    plan-4         C22   0.020
+FII    plan-4         C23   0.020
+FII    plan-4        H221   0.020
+FII    plan-5         C24   0.020
+FII    plan-5         C27   0.020
+FII    plan-5         C30   0.020
+FII    plan-5         C34   0.020
+FII    plan-6         C27   0.020
+FII    plan-6         C34   0.020
+FII    plan-6         C35   0.020
+FII    plan-6        H341   0.020
+FII    plan-7         C43   0.020
+FII    plan-7         HN1   0.020
+FII    plan-7         N42   0.020
+FII    plan-7         O36   0.020
+FII    plan-8         C43   0.020
+FII    plan-8         C45   0.020
+FII    plan-8         N42   0.020
+FII    plan-8         O44   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FII           SMILES              ACDLabs 10.04                                                                                                          O=C(NOC\C=C(/C)CC\C=C(/C)CC\C=C(/C)C)CP(=O)(O)O
+FII SMILES_CANONICAL               CACTVS 3.341                                                                                                          CC(C)=CCC\C(C)=C\CC\C(C)=C\CONC(=O)C[P](O)(O)=O
+FII           SMILES               CACTVS 3.341                                                                                                              CC(C)=CCCC(C)=CCCC(C)=CCONC(=O)C[P](O)(O)=O
+FII SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                          CC(=CCC/C(=C/CC/C(=C/CONC(=O)CP(=O)(O)O)/C)/C)C
+FII           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                CC(=CCCC(=CCCC(=CCONC(=O)CP(=O)(O)O)C)C)C
+FII            InChI                InChI  1.03 InChI=1S/C17H30NO5P/c1-14(2)7-5-8-15(3)9-6-10-16(4)11-12-23-18-17(19)13-24(20,21)22/h7,9,11H,5-6,8,10,12-13H2,1-4H3,(H,18,19)(H2,20,21,22)/b15-9+,16-11+
+FII         InChIKey                InChI  1.03                                                                                                                              JAOBYUCYSAOLHS-XGGJEREUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FII acedrg               243         "dictionary generator"                  
+FII acedrg_database      11          "data source"                           
+FII rdkit                2017.03.2   "Chemoinformatics tool"
+FII refmac5              5.8.0238    "optimization tool"                     

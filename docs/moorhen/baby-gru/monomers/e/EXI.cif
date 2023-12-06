@@ -1,0 +1,316 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EXI     EXI      N1-(5-(2-(6-Amino-4-methylpyridin-2-yl)ethyl)pyridin-3-yl)-N1,N2-dimethylethane-1,2-diamine     NON-POLYMER     47     22     .     
+#
+data_comp_EXI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EXI     N01     N       NRD6    0       3.315       16.677      25.223      
+EXI     C02     C       CR6     0       2.194       17.421      25.098      
+EXI     N02     N       NH2     0       1.164       17.122      25.899      
+EXI     C03     C       CR16    0       2.105       18.473      24.166      
+EXI     C04     C       CR6     0       3.195       18.751      23.355      
+EXI     C05     C       CR16    0       4.341       17.975      23.496      
+EXI     C06     C       CR6     0       4.377       16.948      24.432      
+EXI     C07     C       CH3     0       3.135       19.870      22.345      
+EXI     C08     C       CH2     0       5.594       16.080      24.622      
+EXI     C09     C       CH2     0       6.610       16.692      25.601      
+EXI     N11     N       NRD6    0       10.223      15.543      25.557      
+EXI     C12     C       CR16    0       9.105       16.276      25.399      
+EXI     C13     C       CR6     0       7.844       15.842      25.794      
+EXI     C14     C       CR16    0       7.754       14.585      26.382      
+EXI     C15     C       CR6     0       8.899       13.806      26.552      
+EXI     C16     C       CR16    0       10.118      14.332      26.127      
+EXI     C17     C       CH3     0       8.440       12.399      28.528      
+EXI     N17     N       N       0       8.842       12.565      27.130      
+EXI     C18     C       CH2     0       9.173       11.349      26.391      
+EXI     C19     C       CH2     0       7.963       10.578      25.889      
+EXI     N20     N       NT1     0       7.057       11.357      25.040      
+EXI     C21     C       CH3     0       7.632       11.807      23.763      
+EXI     HN02    H       H       0       1.158       16.364      26.343      
+EXI     HN0A    H       H       0       0.494       17.684      25.978      
+EXI     H03     H       H       0       1.317       18.984      24.090      
+EXI     H05     H       H       0       5.091       18.151      22.952      
+EXI     H07     H       H       0       4.021       20.250      22.227      
+EXI     H07A    H       H       0       2.529       20.561      22.659      
+EXI     H07B    H       H       0       2.817       19.525      21.495      
+EXI     H08     H       H       0       6.025       15.948      23.752      
+EXI     H08A    H       H       0       5.311       15.203      24.957      
+EXI     H09     H       H       0       6.173       16.821      26.472      
+EXI     H09A    H       H       0       6.878       17.577      25.267      
+EXI     H12     H       H       0       9.180       17.124      25.001      
+EXI     H14     H       H       0       6.914       14.262      26.660      
+EXI     H16     H       H       0       10.908      13.810      26.239      
+EXI     H17     H       H       0       8.250       13.266      28.924      
+EXI     H17A    H       H       0       9.156       11.970      29.023      
+EXI     H17B    H       H       0       7.643       11.846      28.572      
+EXI     H18     H       H       0       9.698       10.762      26.978      
+EXI     H18A    H       H       0       9.744       11.582      25.626      
+EXI     H19     H       H       0       7.461       10.243      26.661      
+EXI     H19A    H       H       0       8.275       9.798       25.383      
+EXI     HN20    H       H       0       6.751       12.070      25.493      
+EXI     H21     H       H       0       6.923       12.171      23.196      
+EXI     H21A    H       H       0       8.054       11.052      23.309      
+EXI     H21B    H       H       0       8.300       12.501      23.929      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EXI         N01         C02      DOUBLE       y     1.343  0.0133     1.343  0.0133
+EXI         N01         C06      SINGLE       y     1.347  0.0100     1.347  0.0100
+EXI         C02         N02      SINGLE       n     1.335  0.0166     1.335  0.0166
+EXI         C02         C03      SINGLE       y     1.398  0.0169     1.398  0.0169
+EXI         C03         C04      DOUBLE       y     1.383  0.0100     1.383  0.0100
+EXI         C04         C05      SINGLE       y     1.388  0.0100     1.388  0.0100
+EXI         C04         C07      SINGLE       n     1.509  0.0144     1.509  0.0144
+EXI         C05         C06      DOUBLE       y     1.378  0.0181     1.378  0.0181
+EXI         C06         C08      SINGLE       n     1.507  0.0100     1.507  0.0100
+EXI         C08         C09      SINGLE       n     1.538  0.0110     1.538  0.0110
+EXI         C09         C13      SINGLE       n     1.510  0.0100     1.510  0.0100
+EXI         N11         C12      DOUBLE       y     1.340  0.0113     1.340  0.0113
+EXI         N11         C16      SINGLE       y     1.337  0.0105     1.337  0.0105
+EXI         C12         C13      SINGLE       y     1.387  0.0100     1.387  0.0100
+EXI         C13         C14      DOUBLE       y     1.388  0.0100     1.388  0.0100
+EXI         C14         C15      SINGLE       y     1.393  0.0100     1.393  0.0100
+EXI         C15         C16      DOUBLE       y     1.390  0.0107     1.390  0.0107
+EXI         C15         N17      SINGLE       n     1.367  0.0122     1.367  0.0122
+EXI         C17         N17      SINGLE       n     1.461  0.0146     1.461  0.0146
+EXI         N17         C18      SINGLE       n     1.457  0.0133     1.457  0.0133
+EXI         C18         C19      SINGLE       n     1.517  0.0145     1.517  0.0145
+EXI         C19         N20      SINGLE       n     1.463  0.0100     1.463  0.0100
+EXI         N20         C21      SINGLE       n     1.470  0.0124     1.470  0.0124
+EXI         N02        HN02      SINGLE       n     1.016  0.0100     0.877  0.0200
+EXI         N02        HN0A      SINGLE       n     1.016  0.0100     0.877  0.0200
+EXI         C03         H03      SINGLE       n     1.082  0.0130     0.943  0.0168
+EXI         C05         H05      SINGLE       n     1.082  0.0130     0.943  0.0168
+EXI         C07         H07      SINGLE       n     1.089  0.0100     0.971  0.0135
+EXI         C07        H07A      SINGLE       n     1.089  0.0100     0.971  0.0135
+EXI         C07        H07B      SINGLE       n     1.089  0.0100     0.971  0.0135
+EXI         C08         H08      SINGLE       n     1.089  0.0100     0.980  0.0175
+EXI         C08        H08A      SINGLE       n     1.089  0.0100     0.980  0.0175
+EXI         C09         H09      SINGLE       n     1.089  0.0100     0.983  0.0181
+EXI         C09        H09A      SINGLE       n     1.089  0.0100     0.983  0.0181
+EXI         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0200
+EXI         C14         H14      SINGLE       n     1.082  0.0130     0.942  0.0139
+EXI         C16         H16      SINGLE       n     1.082  0.0130     0.953  0.0200
+EXI         C17         H17      SINGLE       n     1.089  0.0100     0.971  0.0181
+EXI         C17        H17A      SINGLE       n     1.089  0.0100     0.971  0.0181
+EXI         C17        H17B      SINGLE       n     1.089  0.0100     0.971  0.0181
+EXI         C18         H18      SINGLE       n     1.089  0.0100     0.982  0.0119
+EXI         C18        H18A      SINGLE       n     1.089  0.0100     0.982  0.0119
+EXI         C19         H19      SINGLE       n     1.089  0.0100     0.980  0.0143
+EXI         C19        H19A      SINGLE       n     1.089  0.0100     0.980  0.0143
+EXI         N20        HN20      SINGLE       n     1.036  0.0160     0.899  0.0200
+EXI         C21         H21      SINGLE       n     1.089  0.0100     0.977  0.0113
+EXI         C21        H21A      SINGLE       n     1.089  0.0100     0.977  0.0113
+EXI         C21        H21B      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EXI         C02         N01         C06     118.635    1.50
+EXI         N01         C02         N02     117.161    1.55
+EXI         N01         C02         C03     121.879    1.50
+EXI         N02         C02         C03     120.961    1.50
+EXI         C02         N02        HN02     119.818    1.59
+EXI         C02         N02        HN0A     119.818    1.59
+EXI        HN02         N02        HN0A     120.363    1.85
+EXI         C02         C03         C04     119.340    1.50
+EXI         C02         C03         H03     120.642    1.50
+EXI         C04         C03         H03     120.018    1.50
+EXI         C03         C04         C05     118.497    1.50
+EXI         C03         C04         C07     120.586    1.50
+EXI         C05         C04         C07     120.917    1.50
+EXI         C04         C05         C06     120.185    1.50
+EXI         C04         C05         H05     119.490    1.50
+EXI         C06         C05         H05     120.325    1.50
+EXI         N01         C06         C05     121.464    1.50
+EXI         N01         C06         C08     116.278    1.50
+EXI         C05         C06         C08     122.258    1.50
+EXI         C04         C07         H07     109.567    1.50
+EXI         C04         C07        H07A     109.567    1.50
+EXI         C04         C07        H07B     109.567    1.50
+EXI         H07         C07        H07A     109.348    1.50
+EXI         H07         C07        H07B     109.348    1.50
+EXI        H07A         C07        H07B     109.348    1.50
+EXI         C06         C08         C09     112.491    1.83
+EXI         C06         C08         H08     108.537    1.89
+EXI         C06         C08        H08A     108.537    1.89
+EXI         C09         C08         H08     109.093    1.50
+EXI         C09         C08        H08A     109.093    1.50
+EXI         H08         C08        H08A     108.000    1.50
+EXI         C08         C09         C13     113.312    1.99
+EXI         C08         C09         H09     108.812    1.50
+EXI         C08         C09        H09A     108.812    1.50
+EXI         C13         C09         H09     108.906    1.50
+EXI         C13         C09        H09A     108.906    1.50
+EXI         H09         C09        H09A     107.732    2.63
+EXI         C12         N11         C16     117.511    1.50
+EXI         N11         C12         C13     123.176    1.50
+EXI         N11         C12         H12     118.562    1.50
+EXI         C13         C12         H12     118.263    1.50
+EXI         C09         C13         C12     121.540    1.64
+EXI         C09         C13         C14     120.719    1.50
+EXI         C12         C13         C14     117.740    1.50
+EXI         C13         C14         C15     120.525    1.50
+EXI         C13         C14         H14     119.344    1.50
+EXI         C15         C14         H14     120.132    1.50
+EXI         C14         C15         C16     118.620    1.50
+EXI         C14         C15         N17     121.509    1.50
+EXI         C16         C15         N17     119.870    2.27
+EXI         N11         C16         C15     122.428    1.50
+EXI         N11         C16         H16     118.652    1.50
+EXI         C15         C16         H16     118.921    1.50
+EXI         N17         C17         H17     109.583    1.50
+EXI         N17         C17        H17A     109.583    1.50
+EXI         N17         C17        H17B     109.583    1.50
+EXI         H17         C17        H17A     109.352    1.56
+EXI         H17         C17        H17B     109.352    1.56
+EXI        H17A         C17        H17B     109.352    1.56
+EXI         C15         N17         C17     121.081    1.50
+EXI         C15         N17         C18     121.739    1.50
+EXI         C17         N17         C18     117.180    1.50
+EXI         N17         C18         C19     113.499    1.96
+EXI         N17         C18         H18     108.897    1.50
+EXI         N17         C18        H18A     108.897    1.50
+EXI         C19         C18         H18     109.119    1.50
+EXI         C19         C18        H18A     109.119    1.50
+EXI         H18         C18        H18A     107.732    1.50
+EXI         C18         C19         N20     113.402    1.73
+EXI         C18         C19         H19     109.281    1.50
+EXI         C18         C19        H19A     109.281    1.50
+EXI         N20         C19         H19     109.402    1.50
+EXI         N20         C19        H19A     109.402    1.50
+EXI         H19         C19        H19A     107.909    1.50
+EXI         C19         N20         C21     112.615    2.70
+EXI         C19         N20        HN20     108.280    3.00
+EXI         C21         N20        HN20     108.144    3.00
+EXI         N20         C21         H21     109.504    1.50
+EXI         N20         C21        H21A     109.504    1.50
+EXI         N20         C21        H21B     109.504    1.50
+EXI         H21         C21        H21A     109.279    1.79
+EXI         H21         C21        H21B     109.279    1.79
+EXI        H21A         C21        H21B     109.279    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EXI       const_sp2_sp2_2         N02         C02         N01         C06     180.000     5.0     2
+EXI              const_38         C08         C06         N01         C02     180.000    10.0     2
+EXI              const_19         C13         C12         N11         C16       0.000    10.0     2
+EXI              const_39         C15         C16         N11         C12       0.000    10.0     2
+EXI              const_22         N11         C12         C13         C09     180.000    10.0     2
+EXI              const_27         C09         C13         C14         C15     180.000    10.0     2
+EXI              const_30         C13         C14         C15         N17     180.000    10.0     2
+EXI              const_35         N17         C15         C16         N11     180.000    10.0     2
+EXI             sp2_sp2_6         C14         C15         N17         C17       0.000     5.0     2
+EXI            sp2_sp3_22         C18         N17         C17         H17     180.000    10.0     6
+EXI            sp2_sp3_29         C17         N17         C18         C19     -60.000    10.0     6
+EXI            sp3_sp3_10         N17         C18         C19         N20     180.000    10.0     3
+EXI            sp3_sp3_20         C18         C19         N20         C21     -60.000    10.0     3
+EXI             sp2_sp2_3         N01         C02         N02        HN02       0.000     5.0     2
+EXI       const_sp2_sp2_5         N02         C02         C03         C04     180.000     5.0     2
+EXI            sp3_sp3_25         H21         C21         N20         C19     180.000    10.0     3
+EXI       const_sp2_sp2_8         C02         C03         C04         C07     180.000     5.0     2
+EXI              const_13         C07         C04         C05         C06     180.000    10.0     2
+EXI             sp2_sp3_1         C03         C04         C07         H07     150.000    10.0     6
+EXI              const_16         C04         C05         C06         C08     180.000    10.0     2
+EXI             sp2_sp3_8         N01         C06         C08         C09     -90.000    10.0     6
+EXI             sp3_sp3_1         C06         C08         C09         C13     180.000    10.0     3
+EXI            sp2_sp3_14         C12         C13         C09         C08     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EXI    chir_1    N20    C19    C21    HN20    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EXI    plan-1         C02   0.020
+EXI    plan-1         C03   0.020
+EXI    plan-1         C04   0.020
+EXI    plan-1         C05   0.020
+EXI    plan-1         C06   0.020
+EXI    plan-1         C07   0.020
+EXI    plan-1         C08   0.020
+EXI    plan-1         H03   0.020
+EXI    plan-1         H05   0.020
+EXI    plan-1         N01   0.020
+EXI    plan-1         N02   0.020
+EXI    plan-2         C09   0.020
+EXI    plan-2         C12   0.020
+EXI    plan-2         C13   0.020
+EXI    plan-2         C14   0.020
+EXI    plan-2         C15   0.020
+EXI    plan-2         C16   0.020
+EXI    plan-2         H12   0.020
+EXI    plan-2         H14   0.020
+EXI    plan-2         H16   0.020
+EXI    plan-2         N11   0.020
+EXI    plan-2         N17   0.020
+EXI    plan-3         C02   0.020
+EXI    plan-3        HN02   0.020
+EXI    plan-3        HN0A   0.020
+EXI    plan-3         N02   0.020
+EXI    plan-4         C15   0.020
+EXI    plan-4         C17   0.020
+EXI    plan-4         C18   0.020
+EXI    plan-4         N17   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EXI            InChI                InChI  1.03 InChI=1S/C17H25N5/c1-13-8-15(21-17(18)9-13)5-4-14-10-16(12-20-11-14)22(3)7-6-19-2/h8-12,19H,4-7H2,1-3H3,(H2,18,21)
+EXI         InChIKey                InChI  1.03                                                                                        BAILAIZRWKFZJT-UHFFFAOYSA-N
+EXI SMILES_CANONICAL               CACTVS 3.385                                                                                 CNCCN(C)c1cncc(CCc2cc(C)cc(N)n2)c1
+EXI           SMILES               CACTVS 3.385                                                                                 CNCCN(C)c1cncc(CCc2cc(C)cc(N)n2)c1
+EXI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                 Cc1cc(nc(c1)N)CCc2cc(cnc2)N(C)CCNC
+EXI           SMILES "OpenEye OEToolkits" 1.7.6                                                                                 Cc1cc(nc(c1)N)CCc2cc(cnc2)N(C)CCNC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EXI acedrg               243         "dictionary generator"                  
+EXI acedrg_database      11          "data source"                           
+EXI rdkit                2017.03.2   "Chemoinformatics tool"
+EXI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,146 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MSU     MSU      "SUCCINIC ACID MONOMETHYL ESTER"     NON-POLYMER     16     9     .     
+#
+data_comp_MSU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MSU     C1      C       C       0       33.656      17.980      52.446      
+MSU     O1      O       O       0       33.847      17.654      53.634      
+MSU     C2      C       CH2     0       33.367      19.440      52.138      
+MSU     C3      C       CH2     0       31.893      19.784      52.039      
+MSU     C4      C       C       0       31.193      19.772      53.368      
+MSU     OT1     O       O       0       31.460      20.519      54.276      
+MSU     OT2     O       O2      0       30.238      18.840      53.422      
+MSU     CT      C       CH3     0       29.548      18.644      54.683      
+MSU     OXT     O       OC      -1      33.688      17.173      51.496      
+MSU     H21     H       H       0       33.807      19.667      51.294      
+MSU     H22     H       H       0       33.778      19.987      52.838      
+MSU     H31     H       H       0       31.454      19.147      51.438      
+MSU     H32     H       H       0       31.798      20.674      51.642      
+MSU     HT1     H       H       0       29.085      19.461      54.929      
+MSU     HT2     H       H       0       30.191      18.414      55.373      
+MSU     HT3     H       H       0       28.904      17.924      54.588      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MSU          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+MSU          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+MSU          C1         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+MSU          C2          C3      SINGLE       n     1.516  0.0200     1.516  0.0200
+MSU          C3          C4      SINGLE       n     1.501  0.0100     1.501  0.0100
+MSU          C4         OT1      DOUBLE       n     1.203  0.0150     1.203  0.0150
+MSU          C4         OT2      SINGLE       n     1.328  0.0136     1.328  0.0136
+MSU         OT2          CT      SINGLE       n     1.447  0.0130     1.447  0.0130
+MSU          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+MSU          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0159
+MSU          C3         H31      SINGLE       n     1.089  0.0100     0.979  0.0159
+MSU          C3         H32      SINGLE       n     1.089  0.0100     0.979  0.0159
+MSU          CT         HT1      SINGLE       n     1.089  0.0100     0.970  0.0175
+MSU          CT         HT2      SINGLE       n     1.089  0.0100     0.970  0.0175
+MSU          CT         HT3      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MSU          O1          C1          C2     118.214    1.64
+MSU          O1          C1         OXT     123.571    1.50
+MSU          C2          C1         OXT     118.214    1.64
+MSU          C1          C2          C3     114.787    1.92
+MSU          C1          C2         H21     108.404    1.50
+MSU          C1          C2         H22     108.404    1.50
+MSU          C3          C2         H21     109.308    1.50
+MSU          C3          C2         H22     109.308    1.50
+MSU         H21          C2         H22     107.521    1.50
+MSU          C2          C3          C4     113.260    1.91
+MSU          C2          C3         H31     109.308    1.50
+MSU          C2          C3         H32     109.308    1.50
+MSU          C4          C3         H31     108.883    1.50
+MSU          C4          C3         H32     108.883    1.50
+MSU         H31          C3         H32     107.521    1.50
+MSU          C3          C4         OT1     125.176    2.71
+MSU          C3          C4         OT2     111.739    2.14
+MSU         OT1          C4         OT2     123.086    1.50
+MSU          C4         OT2          CT     116.218    1.50
+MSU         OT2          CT         HT1     109.367    1.50
+MSU         OT2          CT         HT2     109.367    1.50
+MSU         OT2          CT         HT3     109.367    1.50
+MSU         HT1          CT         HT2     109.532    1.53
+MSU         HT1          CT         HT3     109.532    1.53
+MSU         HT2          CT         HT3     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MSU             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+MSU             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+MSU             sp2_sp3_8         OT1          C4          C3          C2     120.000    10.0     6
+MSU             sp2_sp2_1          C3          C4         OT2          CT     180.000     5.0     2
+MSU            sp3_sp3_11         HT1          CT         OT2          C4     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MSU    plan-1          C1   0.020
+MSU    plan-1          C2   0.020
+MSU    plan-1          O1   0.020
+MSU    plan-1         OXT   0.020
+MSU    plan-2          C3   0.020
+MSU    plan-2          C4   0.020
+MSU    plan-2         OT1   0.020
+MSU    plan-2         OT2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MSU           SMILES              ACDLabs 12.01                                       O=C(O)CCC(=O)OC
+MSU SMILES_CANONICAL               CACTVS 3.370                                       COC(=O)CCC(O)=O
+MSU           SMILES               CACTVS 3.370                                       COC(=O)CCC(O)=O
+MSU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                       COC(=O)CCC(=O)O
+MSU           SMILES "OpenEye OEToolkits" 1.7.0                                       COC(=O)CCC(=O)O
+MSU            InChI                InChI  1.03 InChI=1S/C5H8O4/c1-9-5(8)3-2-4(6)7/h2-3H2,1H3,(H,6,7)
+MSU         InChIKey                InChI  1.03                           JDRMYOQETPMYQX-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MSU acedrg               243         "dictionary generator"                  
+MSU acedrg_database      11          "data source"                           
+MSU rdkit                2017.03.2   "Chemoinformatics tool"
+MSU refmac5              5.8.0238    "optimization tool"                     

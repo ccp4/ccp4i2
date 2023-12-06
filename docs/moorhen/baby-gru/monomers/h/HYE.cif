@@ -1,0 +1,303 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HYE     HYE      (2R,3S,4R)-2-[(S)-(1S)-cyclohex-2-en-1-yl(hydroxy)methyl]-3-hydroxy-4-(2-hydroxyethyl)-3-methyl-5-oxopyrrolidine-2-carbaldehyde     NON-POLYMER     44     21     .     
+#
+data_comp_HYE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HYE     C1      C       CH2     0       5.541       -157.669    38.440      
+HYE     C2      C       CH2     0       6.484       -158.334    39.409      
+HYE     C3      C       CH1     0       6.294       -159.851    39.515      
+HYE     C4      C       CT      0       6.833       -160.524    40.808      
+HYE     C6      C       CH3     0       5.872       -160.432    41.985      
+HYE     O21     O       OH1     0       5.685       -156.260    38.487      
+HYE     C19     C       CR5     0       6.980       -160.639    38.413      
+HYE     O20     O       O       0       7.099       -160.274    37.230      
+HYE     N18     N       NR5     0       7.446       -161.785    38.919      
+HYE     C7      C       CT      0       7.159       -162.002    40.332      
+HYE     C16     C       C1      0       8.399       -162.487    41.094      
+HYE     O17     O       O       0       9.513       -162.228    40.779      
+HYE     C8      C       CH1     0       6.049       -163.087    40.436      
+HYE     O15     O       OH1     0       4.805       -162.502    40.029      
+HYE     C9      C       CH1     0       6.253       -164.424    39.664      
+HYE     C14     C       CH2     0       7.516       -165.229    40.063      
+HYE     C13     C       CH2     0       7.467       -166.677    39.667      
+HYE     C12     C       CH2     0       6.259       -167.374    40.248      
+HYE     C11     C       CR16    0       5.018       -166.577    40.040      
+HYE     C10     C       CR16    0       5.017       -165.283    39.766      
+HYE     O5      O       OH1     0       8.024       -159.843    41.211      
+HYE     H1      H       H       0       4.615       -157.909    38.657      
+HYE     H1A     H       H       0       5.721       -157.984    37.529      
+HYE     H2      H       H       0       6.352       -157.932    40.302      
+HYE     H2A     H       H       0       7.412       -158.149    39.127      
+HYE     H3      H       H       0       5.326       -160.041    39.450      
+HYE     H6      H       H       0       6.043       -161.160    42.606      
+HYE     H6A     H       H       0       4.952       -160.483    41.683      
+HYE     H6B     H       H       0       6.005       -159.587    42.446      
+HYE     HO21    H       H       0       5.248       -155.927    37.845      
+HYE     HN18    H       H       0       7.882       -162.351    38.444      
+HYE     H16     H       H       0       8.263       -163.017    41.858      
+HYE     H8      H       H       0       5.936       -163.322    41.393      
+HYE     HO15    H       H       0       4.216       -162.644    40.623      
+HYE     H9      H       H       0       6.355       -164.191    38.709      
+HYE     H14     H       H       0       8.303       -164.815    39.640      
+HYE     H14A    H       H       0       7.633       -165.172    41.040      
+HYE     H13     H       H       0       8.282       -167.128    39.980      
+HYE     H13A    H       H       0       7.438       -166.746    38.687      
+HYE     H12     H       H       0       6.396       -167.514    41.209      
+HYE     H12A    H       H       0       6.155       -168.252    39.826      
+HYE     H11     H       H       0       4.183       -167.025    40.109      
+HYE     H10     H       H       0       4.180       -164.873    39.598      
+HYE     HO5     H       H       0       8.596       -159.747    40.587      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HYE          C1          C2      SINGLE       n     1.505  0.0200     1.505  0.0200
+HYE          C1         O21      SINGLE       n     1.417  0.0200     1.417  0.0200
+HYE          C2          C3      SINGLE       n     1.527  0.0141     1.527  0.0141
+HYE          C3          C4      SINGLE       n     1.548  0.0137     1.548  0.0137
+HYE          C3         C19      SINGLE       n     1.517  0.0100     1.517  0.0100
+HYE          C4          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+HYE          C4          C7      SINGLE       n     1.552  0.0200     1.552  0.0200
+HYE          C4          O5      SINGLE       n     1.425  0.0111     1.425  0.0111
+HYE         C19         O20      DOUBLE       n     1.243  0.0200     1.243  0.0200
+HYE         C19         N18      SINGLE       n     1.335  0.0100     1.335  0.0100
+HYE         N18          C7      SINGLE       n     1.457  0.0100     1.457  0.0100
+HYE          C7         C16      SINGLE       n     1.529  0.0183     1.529  0.0183
+HYE          C7          C8      SINGLE       n     1.532  0.0142     1.532  0.0142
+HYE         C16         O17      DOUBLE       n     1.185  0.0182     1.185  0.0182
+HYE          C8         O15      SINGLE       n     1.426  0.0165     1.426  0.0165
+HYE          C8          C9      SINGLE       n     1.544  0.0118     1.544  0.0118
+HYE          C9         C14      SINGLE       n     1.525  0.0200     1.525  0.0200
+HYE          C9         C10      SINGLE       n     1.502  0.0100     1.502  0.0100
+HYE         C14         C13      SINGLE       n     1.495  0.0200     1.495  0.0200
+HYE         C13         C12      SINGLE       n     1.510  0.0114     1.510  0.0114
+HYE         C12         C11      SINGLE       n     1.490  0.0131     1.490  0.0131
+HYE         C11         C10      DOUBLE       n     1.317  0.0200     1.317  0.0200
+HYE          C1          H1      SINGLE       n     1.089  0.0100     0.981  0.0174
+HYE          C1         H1A      SINGLE       n     1.089  0.0100     0.981  0.0174
+HYE          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+HYE          C2         H2A      SINGLE       n     1.089  0.0100     0.988  0.0200
+HYE          C3          H3      SINGLE       n     1.089  0.0100     0.990  0.0175
+HYE          C6          H6      SINGLE       n     1.089  0.0100     0.971  0.0169
+HYE          C6         H6A      SINGLE       n     1.089  0.0100     0.971  0.0169
+HYE          C6         H6B      SINGLE       n     1.089  0.0100     0.971  0.0169
+HYE         O21        HO21      SINGLE       n     0.970  0.0120     0.846  0.0200
+HYE         N18        HN18      SINGLE       n     1.016  0.0100     0.858  0.0100
+HYE         C16         H16      SINGLE       n     1.082  0.0130     0.940  0.0157
+HYE          C8          H8      SINGLE       n     1.089  0.0100     0.991  0.0193
+HYE         O15        HO15      SINGLE       n     0.970  0.0120     0.848  0.0200
+HYE          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0200
+HYE         C14         H14      SINGLE       n     1.089  0.0100     0.986  0.0200
+HYE         C14        H14A      SINGLE       n     1.089  0.0100     0.986  0.0200
+HYE         C13         H13      SINGLE       n     1.089  0.0100     0.983  0.0200
+HYE         C13        H13A      SINGLE       n     1.089  0.0100     0.983  0.0200
+HYE         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0200
+HYE         C12        H12A      SINGLE       n     1.089  0.0100     0.980  0.0200
+HYE         C11         H11      SINGLE       n     1.082  0.0130     0.950  0.0200
+HYE         C10         H10      SINGLE       n     1.082  0.0130     0.948  0.0200
+HYE          O5         HO5      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HYE          C2          C1         O21     110.653    1.74
+HYE          C2          C1          H1     109.775    1.50
+HYE          C2          C1         H1A     109.775    1.50
+HYE         O21          C1          H1     109.254    1.87
+HYE         O21          C1         H1A     109.254    1.87
+HYE          H1          C1         H1A     107.387    1.50
+HYE          C1          C2          C3     113.421    1.50
+HYE          C1          C2          H2     108.714    1.50
+HYE          C1          C2         H2A     108.714    1.50
+HYE          C3          C2          H2     108.650    1.50
+HYE          C3          C2         H2A     108.650    1.50
+HYE          H2          C2         H2A     107.785    1.50
+HYE          C2          C3          C4     113.745    2.48
+HYE          C2          C3         C19     113.425    2.50
+HYE          C2          C3          H3     108.314    1.50
+HYE          C4          C3         C19     104.009    1.83
+HYE          C4          C3          H3     107.890    1.50
+HYE         C19          C3          H3     107.886    2.47
+HYE          C3          C4          C6     113.745    2.48
+HYE          C3          C4          C7     104.443    2.26
+HYE          C3          C4          O5     109.250    2.39
+HYE          C6          C4          C7     113.745    2.48
+HYE          C6          C4          O5     109.843    2.13
+HYE          C7          C4          O5     110.722    2.96
+HYE          C4          C6          H6     110.573    3.00
+HYE          C4          C6         H6A     110.573    3.00
+HYE          C4          C6         H6B     110.573    3.00
+HYE          H6          C6         H6A     109.473    1.50
+HYE          H6          C6         H6B     109.473    1.50
+HYE         H6A          C6         H6B     109.473    1.50
+HYE          C1         O21        HO21     108.307    2.62
+HYE          C3         C19         O20     125.691    1.65
+HYE          C3         C19         N18     108.702    1.50
+HYE         O20         C19         N18     125.607    1.50
+HYE         C19         N18          C7     114.638    1.50
+HYE         C19         N18        HN18     122.492    1.50
+HYE          C7         N18        HN18     122.870    1.50
+HYE          C4          C7         N18     102.354    1.84
+HYE          C4          C7         C16     112.424    2.46
+HYE          C4          C7          C8     113.745    2.48
+HYE         N18          C7         C16     111.417    2.02
+HYE         N18          C7          C8     109.797    2.76
+HYE         C16          C7          C8     109.981    2.26
+HYE          C7         C16         O17     123.684    2.73
+HYE          C7         C16         H16     117.829    1.78
+HYE         O17         C16         H16     118.487    1.50
+HYE          C7          C8         O15     109.648    2.81
+HYE          C7          C8          C9     113.749    2.62
+HYE          C7          C8          H8     109.253    1.50
+HYE         O15          C8          C9     110.902    1.50
+HYE         O15          C8          H8     106.464    1.50
+HYE          C9          C8          H8     107.953    1.50
+HYE          C8         O15        HO15     108.256    3.00
+HYE          C8          C9         C14     112.892    1.92
+HYE          C8          C9         C10     110.115    2.66
+HYE          C8          C9          H9     107.068    1.50
+HYE         C14          C9         C10     110.737    1.50
+HYE         C14          C9          H9     107.216    1.50
+HYE         C10          C9          H9     107.287    1.59
+HYE          C9         C14         C13     112.626    1.70
+HYE          C9         C14         H14     109.045    1.50
+HYE          C9         C14        H14A     109.045    1.50
+HYE         C13         C14         H14     109.267    1.50
+HYE         C13         C14        H14A     109.267    1.50
+HYE         H14         C14        H14A     107.919    1.50
+HYE         C14         C13         C12     112.153    2.77
+HYE         C14         C13         H13     109.388    1.50
+HYE         C14         C13        H13A     109.388    1.50
+HYE         C12         C13         H13     109.193    1.50
+HYE         C12         C13        H13A     109.193    1.50
+HYE         H13         C13        H13A     108.036    1.50
+HYE         C13         C12         C11     111.825    1.50
+HYE         C13         C12         H12     109.281    1.50
+HYE         C13         C12        H12A     109.281    1.50
+HYE         C11         C12         H12     109.096    1.50
+HYE         C11         C12        H12A     109.096    1.50
+HYE         H12         C12        H12A     107.871    1.50
+HYE         C12         C11         C10     123.728    1.50
+HYE         C12         C11         H11     117.980    1.50
+HYE         C10         C11         H11     118.291    1.50
+HYE          C9         C10         C11     124.266    1.50
+HYE          C9         C10         H10     117.612    1.50
+HYE         C11         C10         H10     118.140    1.50
+HYE          C4          O5         HO5     110.317    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HYE            sp3_sp3_46         O21          C1          C2          C3     180.000    10.0     3
+HYE            sp3_sp3_55          C2          C1         O21        HO21     180.000    10.0     3
+HYE            sp3_sp3_88          C7          C8         O15        HO15     180.000    10.0     3
+HYE            sp3_sp3_94         O15          C8          C9         C14      60.000    10.0     3
+HYE             sp3_sp3_2         C13         C14          C9          C8     180.000    10.0     3
+HYE            sp2_sp3_26         C11         C10          C9          C8     120.000    10.0     6
+HYE            sp3_sp3_10         C12         C13         C14          C9     -60.000    10.0     3
+HYE            sp3_sp3_19         C11         C12         C13         C14      60.000    10.0     3
+HYE             sp2_sp3_1         C10         C11         C12         C13       0.000    10.0     6
+HYE             sp2_sp2_1          C9         C10         C11         C12       0.000     5.0     2
+HYE            sp3_sp3_58          C1          C2          C3          C4     180.000    10.0     3
+HYE            sp3_sp3_32          C2          C3          C4          C6      60.000    10.0     3
+HYE            sp2_sp3_17         O20         C19          C3          C2     -60.000    10.0     6
+HYE            sp3_sp3_77          C6          C4          O5         HO5      60.000    10.0     3
+HYE            sp3_sp3_73          O5          C4          C6          H6     -60.000    10.0     3
+HYE            sp3_sp3_41          C6          C4          C7         C16     -60.000    10.0     3
+HYE             sp2_sp2_7         O20         C19         N18          C7     180.000     5.0     2
+HYE             sp2_sp3_8         C19         N18          C7         C16     120.000    10.0     6
+HYE            sp2_sp3_21         O17         C16          C7          C8    -120.000    10.0     6
+HYE            sp3_sp3_85         C16          C7          C8         O15     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HYE    chir_1    C3    C19    C4    C2    negative
+HYE    chir_2    C4    O5    C7    C3    positive
+HYE    chir_3    C7    N18    C16    C4    negative
+HYE    chir_4    C8    O15    C7    C9    positive
+HYE    chir_5    C9    C8    C10    C14    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HYE    plan-1         C19   0.020
+HYE    plan-1          C3   0.020
+HYE    plan-1         N18   0.020
+HYE    plan-1         O20   0.020
+HYE    plan-2         C19   0.020
+HYE    plan-2          C7   0.020
+HYE    plan-2        HN18   0.020
+HYE    plan-2         N18   0.020
+HYE    plan-3         C16   0.020
+HYE    plan-3          C7   0.020
+HYE    plan-3         H16   0.020
+HYE    plan-3         O17   0.020
+HYE    plan-4         C10   0.020
+HYE    plan-4         C11   0.020
+HYE    plan-4         C12   0.020
+HYE    plan-4         H11   0.020
+HYE    plan-5         C10   0.020
+HYE    plan-5         C11   0.020
+HYE    plan-5          C9   0.020
+HYE    plan-5         H10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HYE           SMILES              ACDLabs 10.04                                                                                                                 O=CC1(NC(=O)C(C1(O)C)CCO)C(O)C2C=CCCC2
+HYE SMILES_CANONICAL               CACTVS 3.341                                                                                             C[C@]1(O)[C@@H](CCO)C(=O)N[C@]1(C=O)[C@@H](O)[C@H]2CCCC=C2
+HYE           SMILES               CACTVS 3.341                                                                                                    C[C]1(O)[CH](CCO)C(=O)N[C]1(C=O)[CH](O)[CH]2CCCC=C2
+HYE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              C[C@@]1([C@H](C(=O)N[C@]1(C=O)[C@H]([C@H]2CCCC=C2)O)CCO)O
+HYE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                 CC1(C(C(=O)NC1(C=O)C(C2CCCC=C2)O)CCO)O
+HYE            InChI                InChI  1.03 InChI=1S/C15H23NO5/c1-14(21)11(7-8-17)13(20)16-15(14,9-18)12(19)10-5-3-2-4-6-10/h3,5,9-12,17,19,21H,2,4,6-8H2,1H3,(H,16,20)/t10-,11+,12+,14+,15-/m1/s1
+HYE         InChIKey                InChI  1.03                                                                                                                            GHPZQFVQLPZKDP-FUQNVFFISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HYE acedrg               243         "dictionary generator"                  
+HYE acedrg_database      11          "data source"                           
+HYE rdkit                2017.03.2   "Chemoinformatics tool"
+HYE refmac5              5.8.0238    "optimization tool"                     

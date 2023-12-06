@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MZM     MZM      N-(3-methyl-5-sulfamoyl-1,3,4-thiadiazol-2(3H)-ylidene)acetamide     NON-POLYMER     22     14     .     
+#
+data_comp_MZM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MZM     N1      N       NT2     0       50.743      40.592      90.709      
+MZM     S1      S       S3      0       52.141      41.255      91.025      
+MZM     O1      O       O       0       51.992      42.092      92.167      
+MZM     O2      O       O       0       53.134      40.234      91.016      
+MZM     C1      C       CR5     0       52.538      42.328      89.687      
+MZM     S2      S       S2      0       53.435      43.783      89.786      
+MZM     C2      C       CR5     0       53.395      44.109      88.097      
+MZM     N2      N       NR5     0       52.635      43.119      87.522      
+MZM     C5      C       CH3     0       52.272      43.013      86.116      
+MZM     N3      N       NRD5    0       52.214      42.172      88.450      
+MZM     N4      N       N       0       53.940      45.120      87.442      
+MZM     C3      C       C       0       55.185      45.652      87.640      
+MZM     O3      O       O       0       55.960      45.366      88.563      
+MZM     C4      C       CH3     0       55.585      46.661      86.618      
+MZM     H1      H       H       0       50.586      40.465      89.875      
+MZM     H2      H       H       0       50.522      39.951      91.235      
+MZM     H3      H       H       0       51.949      42.117      85.932      
+MZM     H4      H       H       0       53.050      43.196      85.566      
+MZM     H5      H       H       0       51.574      43.656      85.914      
+MZM     H7      H       H       0       56.281      47.230      86.980      
+MZM     H8      H       H       0       54.818      47.204      86.378      
+MZM     H9      H       H       0       55.918      46.208      85.829      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MZM          N2          C5      SINGLE       n     1.455  0.0100     1.455  0.0100
+MZM          C2          N2      SINGLE       n     1.355  0.0200     1.355  0.0200
+MZM          N2          N3      SINGLE       n     1.384  0.0105     1.384  0.0105
+MZM          C3          C4      SINGLE       n     1.490  0.0108     1.490  0.0108
+MZM          C2          N4      DOUBLE       n     1.310  0.0200     1.310  0.0200
+MZM          N4          C3      SINGLE       n     1.363  0.0130     1.363  0.0130
+MZM          S2          C2      SINGLE       n     1.734  0.0200     1.734  0.0200
+MZM          C3          O3      DOUBLE       n     1.235  0.0200     1.235  0.0200
+MZM          C1          N3      DOUBLE       n     1.286  0.0100     1.286  0.0100
+MZM          C1          S2      SINGLE       n     1.734  0.0200     1.734  0.0200
+MZM          S1          C1      SINGLE       n     1.761  0.0200     1.761  0.0200
+MZM          S1          O2      DOUBLE       n     1.424  0.0100     1.424  0.0100
+MZM          N1          S1      SINGLE       n     1.579  0.0100     1.579  0.0100
+MZM          S1          O1      DOUBLE       n     1.424  0.0100     1.424  0.0100
+MZM          N1          H1      SINGLE       n     1.036  0.0160     0.858  0.0103
+MZM          N1          H2      SINGLE       n     1.036  0.0160     0.858  0.0103
+MZM          C5          H3      SINGLE       n     1.089  0.0100     0.970  0.0148
+MZM          C5          H4      SINGLE       n     1.089  0.0100     0.970  0.0148
+MZM          C5          H5      SINGLE       n     1.089  0.0100     0.970  0.0148
+MZM          C4          H7      SINGLE       n     1.089  0.0100     0.969  0.0177
+MZM          C4          H8      SINGLE       n     1.089  0.0100     0.969  0.0177
+MZM          C4          H9      SINGLE       n     1.089  0.0100     0.969  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MZM          S1          N1          H1     114.745    3.00
+MZM          S1          N1          H2     114.745    3.00
+MZM          H1          N1          H2     116.039    3.00
+MZM          C1          S1          O2     105.977    1.50
+MZM          C1          S1          N1     107.645    1.50
+MZM          C1          S1          O1     105.977    1.50
+MZM          O2          S1          N1     108.363    1.50
+MZM          O2          S1          O1     119.911    1.50
+MZM          N1          S1          O1     108.363    1.50
+MZM          N3          C1          S2     107.592    2.21
+MZM          N3          C1          S1     126.377    1.59
+MZM          S2          C1          S1     126.031    1.55
+MZM          C2          S2          C1     107.592    3.00
+MZM          N2          C2          N4     124.908    3.00
+MZM          N2          C2          S2     107.592    2.60
+MZM          N4          C2          S2     127.500    3.00
+MZM          C5          N2          C2     128.620    2.04
+MZM          C5          N2          N3     122.841    1.50
+MZM          C2          N2          N3     108.539    2.27
+MZM          N2          C5          H3     109.447    1.50
+MZM          N2          C5          H4     109.447    1.50
+MZM          N2          C5          H5     109.447    1.50
+MZM          H3          C5          H4     109.490    1.50
+MZM          H3          C5          H5     109.490    1.50
+MZM          H4          C5          H5     109.490    1.50
+MZM          N2          N3          C1     108.686    3.00
+MZM          C2          N4          C3     120.034    3.00
+MZM          C4          C3          N4     114.545    1.50
+MZM          C4          C3          O3     120.749    1.50
+MZM          N4          C3          O3     124.707    2.42
+MZM          C3          C4          H7     109.494    1.50
+MZM          C3          C4          H8     109.494    1.50
+MZM          C3          C4          H9     109.494    1.50
+MZM          H7          C4          H8     109.365    1.50
+MZM          H7          C4          H9     109.365    1.50
+MZM          H8          C4          H9     109.365    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MZM             sp3_sp3_2          H1          N1          S1          O2     -60.000    10.0     3
+MZM            sp2_sp2_13          C4          C3          N4          C2     180.000     5.0     2
+MZM             sp2_sp3_7          N4          C3          C4          H7       0.000    10.0     6
+MZM            sp2_sp3_13          N3          C1          S1          O2     150.000    10.0     6
+MZM            sp2_sp2_16          S1          C1          S2          C2     180.000     5.0     2
+MZM             sp2_sp2_2          S1          C1          N3          N2     180.000     5.0     2
+MZM            sp2_sp2_10          N4          C2          S2          C1     180.000     5.0     2
+MZM            sp2_sp2_11          N2          C2          N4          C3     180.000     5.0     2
+MZM             sp2_sp2_8          N4          C2          N2          C5       0.000     5.0     2
+MZM             sp2_sp3_1          C2          N2          C5          H3     150.000    10.0     6
+MZM             sp2_sp2_4          C5          N2          N3          C1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MZM    chir_1    S1    O2    O1    N1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MZM    plan-1          C1   0.020
+MZM    plan-1          N3   0.020
+MZM    plan-1          S1   0.020
+MZM    plan-1          S2   0.020
+MZM    plan-2          C2   0.020
+MZM    plan-2          N2   0.020
+MZM    plan-2          N4   0.020
+MZM    plan-2          S2   0.020
+MZM    plan-3          C2   0.020
+MZM    plan-3          C5   0.020
+MZM    plan-3          N2   0.020
+MZM    plan-3          N3   0.020
+MZM    plan-4          C3   0.020
+MZM    plan-4          C4   0.020
+MZM    plan-4          N4   0.020
+MZM    plan-4          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MZM           SMILES              ACDLabs 12.01                                                NS(=O)(=O)C=1S/C(N(N=1)C)=N\C(=O)C
+MZM            InChI                InChI  1.03 InChI=1S/C5H8N4O3S2/c1-3(10)7-4-9(2)8-5(13-4)14(6,11)12/h1-2H3,(H2,6,11,12)/b7-4-
+MZM         InChIKey                InChI  1.03                                                       FLOSMHQXBMRNHR-DAXSKMNVSA-N
+MZM SMILES_CANONICAL               CACTVS 3.385                                                   CN1N=C(SC1=NC(C)=O)[S](N)(=O)=O
+MZM           SMILES               CACTVS 3.385                                                   CN1N=C(SC1=NC(C)=O)[S](N)(=O)=O
+MZM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                CC(=O)/N=C\1/N(N=C(S1)S(=O)(=O)N)C
+MZM           SMILES "OpenEye OEToolkits" 2.0.4                                                   CC(=O)N=C1N(N=C(S1)S(=O)(=O)N)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MZM acedrg               243         "dictionary generator"                  
+MZM acedrg_database      11          "data source"                           
+MZM rdkit                2017.03.2   "Chemoinformatics tool"
+MZM refmac5              5.8.0238    "optimization tool"                     

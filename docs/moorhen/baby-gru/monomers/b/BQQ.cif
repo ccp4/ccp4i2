@@ -1,0 +1,307 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BQQ     BQQ      (2~{S})-~{N}-[5-(5-azanylpyridin-3-yl)-4-ethanoyl-1,3-thiazol-2-yl]piperazine-2-carboxamide     NON-POLYMER     42     24     .     
+#
+data_comp_BQQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BQQ     N       N       NT1     0       -24.156     29.336      14.844      
+BQQ     CA      C       CH1     0       -22.978     29.027      13.986      
+BQQ     C       C       C       0       -23.129     29.535      12.540      
+BQQ     O       O       O       0       -22.113     29.780      11.901      
+BQQ     CB      C       CH2     0       -22.668     27.524      14.033      
+BQQ     CAA     C       CH3     0       -28.116     29.867      7.304       
+BQQ     CAE     C       CR16    0       -24.370     28.707      4.149       
+BQQ     CAF     C       CR16    0       -24.479     28.035      6.366       
+BQQ     CAG     C       CR16    0       -24.930     30.320      5.832       
+BQQ     CAH     C       CH2     0       -24.546     26.994      15.492      
+BQQ     CAI     C       CH2     0       -25.156     28.256      14.923      
+BQQ     CAQ     C       C       0       -27.382     30.719      8.294       
+BQQ     CAS     C       CR6     0       -24.704     30.017      4.488       
+BQQ     CAT     C       CR6     0       -24.813     29.319      6.799       
+BQQ     CAU     C       CR5     0       -24.778     29.748      10.680      
+BQQ     CAV     C       CR5     0       -26.131     30.189      8.882       
+BQQ     CAW     C       CR5     0       -25.051     29.602      8.217       
+BQQ     NAB     N       NH2     0       -24.807     30.985      3.516       
+BQQ     NAK     N       NRD6    0       -24.257     27.729      5.062       
+BQQ     NAL     N       NRD5    0       -25.965     30.279      10.257      
+BQQ     NAM     N       NT1     0       -23.084     26.949      15.321      
+BQQ     NAO     N       NH1     0       -24.370     29.745      12.004      
+BQQ     OAC     O       O       0       -27.795     31.827      8.613       
+BQQ     SAP     S       S2      0       -23.900     29.202      9.358       
+BQQ     H1      H       H       0       -24.524     30.130      14.663      
+BQQ     H3      H       H       0       -22.196     29.498      14.378      
+BQQ     H4      H       H       0       -21.705     27.389      13.912      
+BQQ     H5      H       H       0       -23.136     27.066      13.303      
+BQQ     H6      H       H       0       -27.795     28.954      7.356       
+BQQ     H7      H       H       0       -27.968     30.209      6.410       
+BQQ     H8      H       H       0       -29.065     29.886      7.502       
+BQQ     H9      H       H       0       -24.214     28.495      3.233       
+BQQ     H10     H       H       0       -24.400     27.347      7.008       
+BQQ     H11     H       H       0       -25.156     31.192      6.089       
+BQQ     H12     H       H       0       -24.946     26.212      15.048      
+BQQ     H13     H       H       0       -24.760     26.936      16.451      
+BQQ     H14     H       H       0       -25.511     28.073      14.022      
+BQQ     H15     H       H       0       -25.906     28.547      15.494      
+BQQ     H16     H       H       0       -25.125     31.777      3.719       
+BQQ     H17     H       H       0       -24.556     30.808      2.694       
+BQQ     H18     H       H       0       -22.682     27.375      15.988      
+BQQ     H20     H       H       0       -25.024     29.914      12.555      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BQQ         CAS         NAB      SINGLE       n     1.373  0.0200     1.373  0.0200
+BQQ         CAE         CAS      DOUBLE       y     1.390  0.0107     1.390  0.0107
+BQQ         CAE         NAK      SINGLE       y     1.337  0.0105     1.337  0.0105
+BQQ         CAG         CAS      SINGLE       y     1.393  0.0100     1.393  0.0100
+BQQ         CAF         NAK      DOUBLE       y     1.340  0.0198     1.340  0.0198
+BQQ         CAG         CAT      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BQQ         CAF         CAT      SINGLE       y     1.391  0.0100     1.391  0.0100
+BQQ         CAT         CAW      SINGLE       n     1.464  0.0100     1.464  0.0100
+BQQ         CAA         CAQ      SINGLE       n     1.497  0.0156     1.497  0.0156
+BQQ         CAV         CAW      DOUBLE       y     1.385  0.0200     1.385  0.0200
+BQQ         CAW         SAP      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQQ         CAQ         CAV      SINGLE       n     1.479  0.0100     1.479  0.0100
+BQQ         CAQ         OAC      DOUBLE       n     1.224  0.0152     1.224  0.0152
+BQQ         CAV         NAL      SINGLE       y     1.378  0.0100     1.378  0.0100
+BQQ         CAU         SAP      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQQ         CAU         NAL      DOUBLE       y     1.354  0.0165     1.354  0.0165
+BQQ         CAU         NAO      SINGLE       n     1.367  0.0190     1.367  0.0190
+BQQ           C           O      DOUBLE       n     1.224  0.0100     1.224  0.0100
+BQQ           C         NAO      SINGLE       n     1.355  0.0135     1.355  0.0135
+BQQ          CA           C      SINGLE       n     1.517  0.0168     1.517  0.0168
+BQQ          CA          CB      SINGLE       n     1.532  0.0100     1.532  0.0100
+BQQ           N          CA      SINGLE       n     1.479  0.0140     1.479  0.0140
+BQQ          CB         NAM      SINGLE       n     1.467  0.0114     1.467  0.0114
+BQQ         CAH         NAM      SINGLE       n     1.466  0.0134     1.466  0.0134
+BQQ         CAH         CAI      SINGLE       n     1.508  0.0104     1.508  0.0104
+BQQ           N         CAI      SINGLE       n     1.470  0.0141     1.470  0.0141
+BQQ           N          H1      SINGLE       n     1.036  0.0160     0.892  0.0200
+BQQ          CA          H3      SINGLE       n     1.089  0.0100     0.994  0.0120
+BQQ          CB          H4      SINGLE       n     1.089  0.0100     0.980  0.0143
+BQQ          CB          H5      SINGLE       n     1.089  0.0100     0.980  0.0143
+BQQ         CAA          H6      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQQ         CAA          H7      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQQ         CAA          H8      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQQ         CAE          H9      SINGLE       n     1.082  0.0130     0.953  0.0200
+BQQ         CAF         H10      SINGLE       n     1.082  0.0130     0.945  0.0181
+BQQ         CAG         H11      SINGLE       n     1.082  0.0130     0.937  0.0103
+BQQ         CAH         H12      SINGLE       n     1.089  0.0100     0.984  0.0121
+BQQ         CAH         H13      SINGLE       n     1.089  0.0100     0.984  0.0121
+BQQ         CAI         H14      SINGLE       n     1.089  0.0100     0.986  0.0200
+BQQ         CAI         H15      SINGLE       n     1.089  0.0100     0.986  0.0200
+BQQ         NAB         H16      SINGLE       n     1.016  0.0100     0.877  0.0200
+BQQ         NAB         H17      SINGLE       n     1.016  0.0100     0.877  0.0200
+BQQ         NAM         H18      SINGLE       n     1.036  0.0160     0.887  0.0200
+BQQ         NAO         H20      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BQQ          CA           N         CAI     111.782    3.00
+BQQ          CA           N          H1     108.770    3.00
+BQQ         CAI           N          H1     109.383    3.00
+BQQ           C          CA          CB     111.056    2.52
+BQQ           C          CA           N     108.833    1.76
+BQQ           C          CA          H3     107.955    1.50
+BQQ          CB          CA           N     110.258    1.51
+BQQ          CB          CA          H3     107.949    1.50
+BQQ           N          CA          H3     108.275    1.50
+BQQ           O           C         NAO     122.628    1.50
+BQQ           O           C          CA     121.114    1.50
+BQQ         NAO           C          CA     116.259    2.43
+BQQ          CA          CB         NAM     110.258    1.51
+BQQ          CA          CB          H4     109.284    1.50
+BQQ          CA          CB          H5     109.284    1.50
+BQQ         NAM          CB          H4     109.326    1.50
+BQQ         NAM          CB          H5     109.326    1.50
+BQQ          H4          CB          H5     108.200    1.50
+BQQ         CAQ         CAA          H6     109.525    1.50
+BQQ         CAQ         CAA          H7     109.525    1.50
+BQQ         CAQ         CAA          H8     109.525    1.50
+BQQ          H6         CAA          H7     109.390    1.59
+BQQ          H6         CAA          H8     109.390    1.59
+BQQ          H7         CAA          H8     109.390    1.59
+BQQ         CAS         CAE         NAK     122.572    1.50
+BQQ         CAS         CAE          H9     118.805    1.50
+BQQ         NAK         CAE          H9     118.623    1.50
+BQQ         NAK         CAF         CAT     122.972    1.50
+BQQ         NAK         CAF         H10     118.433    1.50
+BQQ         CAT         CAF         H10     118.595    1.50
+BQQ         CAS         CAG         CAT     119.956    1.50
+BQQ         CAS         CAG         H11     120.213    1.50
+BQQ         CAT         CAG         H11     119.831    1.50
+BQQ         NAM         CAH         CAI     110.667    1.74
+BQQ         NAM         CAH         H12     109.479    1.50
+BQQ         NAM         CAH         H13     109.479    1.50
+BQQ         CAI         CAH         H12     109.591    1.50
+BQQ         CAI         CAH         H13     109.591    1.50
+BQQ         H12         CAH         H13     108.060    1.50
+BQQ         CAH         CAI           N     110.456    1.63
+BQQ         CAH         CAI         H14     109.591    1.50
+BQQ         CAH         CAI         H15     109.591    1.50
+BQQ           N         CAI         H14     109.326    1.50
+BQQ           N         CAI         H15     109.326    1.50
+BQQ         H14         CAI         H15     108.060    1.50
+BQQ         CAA         CAQ         CAV     117.684    1.50
+BQQ         CAA         CAQ         OAC     121.736    1.50
+BQQ         CAV         CAQ         OAC     120.580    1.50
+BQQ         NAB         CAS         CAE     120.279    1.86
+BQQ         NAB         CAS         CAG     120.957    1.50
+BQQ         CAE         CAS         CAG     118.764    1.50
+BQQ         CAG         CAT         CAF     118.081    1.50
+BQQ         CAG         CAT         CAW     121.183    1.61
+BQQ         CAF         CAT         CAW     120.736    1.50
+BQQ         SAP         CAU         NAL     108.396    3.00
+BQQ         SAP         CAU         NAO     122.802    3.00
+BQQ         NAL         CAU         NAO     128.802    3.00
+BQQ         CAW         CAV         CAQ     129.433    3.00
+BQQ         CAW         CAV         NAL     109.250    1.50
+BQQ         CAQ         CAV         NAL     121.318    3.00
+BQQ         CAT         CAW         CAV     132.475    2.08
+BQQ         CAT         CAW         SAP     119.129    3.00
+BQQ         CAV         CAW         SAP     108.396    3.00
+BQQ         CAS         NAB         H16     119.789    2.29
+BQQ         CAS         NAB         H17     119.789    2.29
+BQQ         H16         NAB         H17     120.421    3.00
+BQQ         CAE         NAK         CAF     117.655    1.50
+BQQ         CAV         NAL         CAU     105.563    1.59
+BQQ          CB         NAM         CAH     110.415    1.50
+BQQ          CB         NAM         H18     109.383    3.00
+BQQ         CAH         NAM         H18     109.673    3.00
+BQQ         CAU         NAO           C     124.962    2.96
+BQQ         CAU         NAO         H20     117.165    2.70
+BQQ           C         NAO         H20     117.873    2.44
+BQQ         CAW         SAP         CAU     108.396    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BQQ             sp3_sp3_3           C          CA           N         CAI     -60.000    10.0     3
+BQQ            sp3_sp3_37         CAH         CAI           N          CA     180.000    10.0     3
+BQQ             sp2_sp2_9         CAA         CAQ         CAV         CAW     180.000     5.0     2
+BQQ             sp2_sp2_1         CAE         CAS         NAB         H16     180.000     5.0     2
+BQQ             sp2_sp2_5         CAG         CAT         CAW         CAV     180.000     5.0     2
+BQQ              const_32         NAO         CAU         NAL         CAV     180.000    10.0     2
+BQQ            sp2_sp2_13         SAP         CAU         NAO           C     180.000     5.0     2
+BQQ              const_20         NAO         CAU         SAP         CAW     180.000    10.0     2
+BQQ              const_26         CAQ         CAV         CAW         CAT       0.000    10.0     2
+BQQ              const_28         CAQ         CAV         NAL         CAU     180.000    10.0     2
+BQQ              const_22         CAT         CAW         SAP         CAU     180.000    10.0     2
+BQQ             sp2_sp3_7           O           C          CA          CB       0.000    10.0     6
+BQQ            sp3_sp3_10           C          CA          CB         NAM     180.000    10.0     3
+BQQ            sp2_sp2_19           O           C         NAO         CAU       0.000     5.0     2
+BQQ            sp3_sp3_16          CA          CB         NAM         CAH      60.000    10.0     3
+BQQ             sp2_sp3_4         OAC         CAQ         CAA          H6     180.000    10.0     6
+BQQ       const_sp2_sp2_2         NAK         CAE         CAS         NAB     180.000     5.0     2
+BQQ              const_29         CAS         CAE         NAK         CAF       0.000    10.0     2
+BQQ              const_13         NAK         CAF         CAT         CAG       0.000    10.0     2
+BQQ              const_17         CAT         CAF         NAK         CAE       0.000    10.0     2
+BQQ       const_sp2_sp2_6         CAT         CAG         CAS         NAB     180.000     5.0     2
+BQQ       const_sp2_sp2_9         CAS         CAG         CAT         CAF       0.000     5.0     2
+BQQ            sp3_sp3_28         NAM         CAH         CAI           N      60.000    10.0     3
+BQQ            sp3_sp3_22         CAI         CAH         NAM          CB     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BQQ    chir_1    CA    N    C    CB    positive
+BQQ    chir_2    N    CA    CAI    H1    both
+BQQ    chir_3    NAM    CB    CAH    H18    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BQQ    plan-1         CAE   0.020
+BQQ    plan-1         CAF   0.020
+BQQ    plan-1         CAG   0.020
+BQQ    plan-1         CAS   0.020
+BQQ    plan-1         CAT   0.020
+BQQ    plan-1         CAW   0.020
+BQQ    plan-1         H10   0.020
+BQQ    plan-1         H11   0.020
+BQQ    plan-1          H9   0.020
+BQQ    plan-1         NAB   0.020
+BQQ    plan-1         NAK   0.020
+BQQ    plan-2         CAQ   0.020
+BQQ    plan-2         CAT   0.020
+BQQ    plan-2         CAU   0.020
+BQQ    plan-2         CAV   0.020
+BQQ    plan-2         CAW   0.020
+BQQ    plan-2         NAL   0.020
+BQQ    plan-2         NAO   0.020
+BQQ    plan-2         SAP   0.020
+BQQ    plan-3           C   0.020
+BQQ    plan-3          CA   0.020
+BQQ    plan-3         NAO   0.020
+BQQ    plan-3           O   0.020
+BQQ    plan-4         CAA   0.020
+BQQ    plan-4         CAQ   0.020
+BQQ    plan-4         CAV   0.020
+BQQ    plan-4         OAC   0.020
+BQQ    plan-5         CAS   0.020
+BQQ    plan-5         H16   0.020
+BQQ    plan-5         H17   0.020
+BQQ    plan-5         NAB   0.020
+BQQ    plan-6           C   0.020
+BQQ    plan-6         CAU   0.020
+BQQ    plan-6         H20   0.020
+BQQ    plan-6         NAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BQQ            InChI                InChI  1.03 InChI=1S/C15H18N6O2S/c1-8(22)12-13(9-4-10(16)6-18-5-9)24-15(20-12)21-14(23)11-7-17-2-3-19-11/h4-6,11,17,19H,2-3,7,16H2,1H3,(H,20,21,23)/t11-/m0/s1
+BQQ         InChIKey                InChI  1.03                                                                                                                        CTUFUQNJXFRTNL-NSHDSACASA-N
+BQQ SMILES_CANONICAL               CACTVS 3.385                                                                                                      CC(=O)c1nc(NC(=O)[C@@H]2CNCCN2)sc1c3cncc(N)c3
+BQQ           SMILES               CACTVS 3.385                                                                                                        CC(=O)c1nc(NC(=O)[CH]2CNCCN2)sc1c3cncc(N)c3
+BQQ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                    CC(=O)c1c(sc(n1)NC(=O)[C@@H]2CNCCN2)c3cc(cnc3)N
+BQQ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                         CC(=O)c1c(sc(n1)NC(=O)C2CNCCN2)c3cc(cnc3)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BQQ acedrg               243         "dictionary generator"                  
+BQQ acedrg_database      11          "data source"                           
+BQQ rdkit                2017.03.2   "Chemoinformatics tool"
+BQQ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,164 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IOM     IOM      "(DIAMINOMETHYL-METHYL-AMINO)-ACETIC ACID"     NON-POLYMER     19     9     .     
+#
+data_comp_IOM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IOM     NA      N       NT2     0       23.384      21.763      115.663     
+IOM     CA      C       CH1     0       24.841      21.674      115.813     
+IOM     NB      N       NT2     0       25.496      21.976      114.538     
+IOM     NC      N       NT      0       25.418      22.533      116.893     
+IOM     CB      C       CH3     0       24.522      22.804      118.021     
+IOM     CC      C       CH2     0       26.764      22.122      117.343     
+IOM     CD      C       C       0       27.679      23.290      117.709     
+IOM     O1      O       O       0       27.649      24.297      116.971     
+IOM     O2      O       OC      -1      28.396      23.151      118.719     
+IOM     HNA1    H       H       0       23.122      22.586      115.456     
+IOM     HNA2    H       H       0       23.083      21.224      115.024     
+IOM     HCA     H       H       0       25.065      20.741      116.061     
+IOM     HNB1    H       H       0       25.162      22.707      114.159     
+IOM     HNB2    H       H       0       25.404      21.313      113.954     
+IOM     HCB1    H       H       0       25.029      23.169      118.773     
+IOM     HCB2    H       H       0       24.086      21.975      118.298     
+IOM     HCB3    H       H       0       23.843      23.451      117.748     
+IOM     HCC1    H       H       0       27.192      21.607      116.639     
+IOM     HCC2    H       H       0       26.677      21.540      118.117     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IOM          NA          CA      SINGLE       n     1.469  0.0200     1.469  0.0200
+IOM          CA          NB      SINGLE       n     1.469  0.0200     1.469  0.0200
+IOM          CA          NC      SINGLE       n     1.485  0.0183     1.485  0.0183
+IOM          NC          CB      SINGLE       n     1.460  0.0114     1.460  0.0114
+IOM          NC          CC      SINGLE       n     1.463  0.0165     1.463  0.0165
+IOM          CC          CD      SINGLE       n     1.527  0.0103     1.527  0.0103
+IOM          CD          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+IOM          CD          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+IOM          NA        HNA1      SINGLE       n     1.036  0.0160     0.888  0.0200
+IOM          NA        HNA2      SINGLE       n     1.036  0.0160     0.888  0.0200
+IOM          CA         HCA      SINGLE       n     1.089  0.0100     0.990  0.0200
+IOM          NB        HNB1      SINGLE       n     1.036  0.0160     0.888  0.0200
+IOM          NB        HNB2      SINGLE       n     1.036  0.0160     0.888  0.0200
+IOM          CB        HCB1      SINGLE       n     1.089  0.0100     0.977  0.0113
+IOM          CB        HCB2      SINGLE       n     1.089  0.0100     0.977  0.0113
+IOM          CB        HCB3      SINGLE       n     1.089  0.0100     0.977  0.0113
+IOM          CC        HCC1      SINGLE       n     1.089  0.0100     0.971  0.0200
+IOM          CC        HCC2      SINGLE       n     1.089  0.0100     0.971  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IOM          CA          NA        HNA1     111.861    3.00
+IOM          CA          NA        HNA2     111.861    3.00
+IOM        HNA1          NA        HNA2     107.163    3.00
+IOM          NA          CA          NB     114.119    2.88
+IOM          NA          CA          NC     114.119    2.88
+IOM          NA          CA         HCA     109.140    1.50
+IOM          NB          CA          NC     114.119    2.88
+IOM          NB          CA         HCA     109.140    1.50
+IOM          NC          CA         HCA     106.676    1.50
+IOM          CA          NB        HNB1     111.861    3.00
+IOM          CA          NB        HNB2     111.861    3.00
+IOM        HNB1          NB        HNB2     107.163    3.00
+IOM          CA          NC          CB     112.615    2.70
+IOM          CA          NC          CC     112.615    2.70
+IOM          CB          NC          CC     110.923    1.50
+IOM          NC          CB        HCB1     109.519    1.50
+IOM          NC          CB        HCB2     109.519    1.50
+IOM          NC          CB        HCB3     109.519    1.50
+IOM        HCB1          CB        HCB2     109.408    1.50
+IOM        HCB1          CB        HCB3     109.408    1.50
+IOM        HCB2          CB        HCB3     109.408    1.50
+IOM          NC          CC          CD     112.134    2.59
+IOM          NC          CC        HCC1     108.700    1.50
+IOM          NC          CC        HCC2     108.700    1.50
+IOM          CD          CC        HCC1     108.544    1.50
+IOM          CD          CC        HCC2     108.544    1.50
+IOM        HCC1          CC        HCC2     107.487    1.50
+IOM          CC          CD          O1     117.146    1.78
+IOM          CC          CD          O2     117.146    1.78
+IOM          O1          CD          O2     125.708    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IOM             sp3_sp3_3          NB          CA          NA        HNA1      60.000    10.0     3
+IOM             sp3_sp3_7          NA          CA          NB        HNB1     180.000    10.0     3
+IOM            sp3_sp3_15          NA          CA          NC          CB      60.000    10.0     3
+IOM            sp3_sp3_19        HCB1          CB          NC          CA     180.000    10.0     3
+IOM            sp3_sp3_25          CD          CC          NC          CA     180.000    10.0     3
+IOM             sp2_sp3_2          O1          CD          CC          NC     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IOM    chir_1    CA    NC    NA    NB    both
+IOM    chir_2    NC    CA    CC    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IOM    plan-1          CC   0.020
+IOM    plan-1          CD   0.020
+IOM    plan-1          O1   0.020
+IOM    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IOM           SMILES              ACDLabs 10.04                                              O=C(O)CN(C)C(N)N
+IOM SMILES_CANONICAL               CACTVS 3.341                                              CN(CC(O)=O)C(N)N
+IOM           SMILES               CACTVS 3.341                                              CN(CC(O)=O)C(N)N
+IOM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              CN(CC(=O)O)C(N)N
+IOM           SMILES "OpenEye OEToolkits" 1.5.0                                              CN(CC(=O)O)C(N)N
+IOM            InChI                InChI  1.03 InChI=1S/C4H11N3O2/c1-7(4(5)6)2-3(8)9/h4H,2,5-6H2,1H3,(H,8,9)
+IOM         InChIKey                InChI  1.03                                   YNHURFGTTODJOO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IOM acedrg               243         "dictionary generator"                  
+IOM acedrg_database      11          "data source"                           
+IOM rdkit                2017.03.2   "Chemoinformatics tool"
+IOM refmac5              5.8.0238    "optimization tool"                     

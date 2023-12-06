@@ -1,0 +1,162 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OBZ     OBZ      O-benzylhydroxylamine     NON-POLYMER     18     9     .     
+#
+data_comp_OBZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OBZ     O2      O       O2      0       9.735       -15.392     9.039       
+OBZ     C3      C       CH2     0       8.699       -16.102     9.740       
+OBZ     C4      C       CR6     0       9.193       -17.472     10.128      
+OBZ     C9      C       CR16    0       8.655       -18.612     9.549       
+OBZ     C8      C       CR16    0       9.114       -19.873     9.911       
+OBZ     C7      C       CR16    0       10.112      -20.003     10.853      
+OBZ     C6      C       CR16    0       10.656      -18.875     11.436      
+OBZ     C5      C       CR16    0       10.198      -17.614     11.075      
+OBZ     N1      N       NT2     0       9.310       -14.061     8.742       
+OBZ     H3      H       H       0       7.912       -16.180     9.161       
+OBZ     H3A     H       H       0       8.447       -15.599     10.542      
+OBZ     H9      H       H       0       7.971       -18.532     8.904       
+OBZ     H8      H       H       0       8.740       -20.642     9.511       
+OBZ     H7      H       H       0       10.424      -20.859     11.099      
+OBZ     H6      H       H       0       11.340      -18.960     12.081      
+OBZ     H5      H       H       0       10.573      -16.847     11.477      
+OBZ     HN1     H       H       0       9.183       -13.591     9.556       
+OBZ     HN1A    H       H       0       8.533       -14.099     8.199       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OBZ          O2          C3      SINGLE       n     1.436  0.0126     1.436  0.0126
+OBZ          C3          C4      SINGLE       n     1.506  0.0100     1.506  0.0100
+OBZ          C4          C9      DOUBLE       y     1.383  0.0108     1.383  0.0108
+OBZ          C4          C5      SINGLE       y     1.383  0.0108     1.383  0.0108
+OBZ          C9          C8      SINGLE       y     1.386  0.0100     1.386  0.0100
+OBZ          C8          C7      DOUBLE       y     1.374  0.0127     1.374  0.0127
+OBZ          C7          C6      SINGLE       y     1.376  0.0124     1.376  0.0124
+OBZ          C6          C5      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OBZ          O2          N1      SINGLE       n     1.423  0.0200     1.423  0.0200
+OBZ          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0180
+OBZ          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0180
+OBZ          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+OBZ          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+OBZ          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+OBZ          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+OBZ          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+OBZ          N1         HN1      SINGLE       n     1.036  0.0160     0.948  0.0200
+OBZ          N1        HN1A      SINGLE       n     1.036  0.0160     0.948  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OBZ          C3          O2          N1     109.509    1.50
+OBZ          O2          C3          C4     109.965    3.00
+OBZ          O2          C3          H3     109.143    1.78
+OBZ          O2          C3         H3A     109.143    1.78
+OBZ          C4          C3          H3     109.911    1.50
+OBZ          C4          C3         H3A     109.911    1.50
+OBZ          H3          C3         H3A     108.518    1.50
+OBZ          C3          C4          C9     120.651    1.50
+OBZ          C3          C4          C5     120.653    1.50
+OBZ          C9          C4          C5     118.697    1.50
+OBZ          C4          C9          C8     120.514    1.50
+OBZ          C4          C9          H9     119.732    1.50
+OBZ          C8          C9          H9     119.754    1.50
+OBZ          C9          C8          C7     120.186    1.50
+OBZ          C9          C8          H8     119.862    1.50
+OBZ          C7          C8          H8     119.952    1.50
+OBZ          C8          C7          C6     119.903    1.50
+OBZ          C8          C7          H7     120.048    1.50
+OBZ          C6          C7          H7     120.048    1.50
+OBZ          C7          C6          C5     120.186    1.50
+OBZ          C7          C6          H6     119.952    1.50
+OBZ          C5          C6          H6     119.862    1.50
+OBZ          C4          C5          C6     120.514    1.50
+OBZ          C4          C5          H5     119.732    1.50
+OBZ          C6          C5          H5     119.754    1.50
+OBZ          O2          N1         HN1     107.495    3.00
+OBZ          O2          N1        HN1A     107.495    3.00
+OBZ         HN1          N1        HN1A     112.988    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OBZ             sp3_sp3_1          C4          C3          O2          N1     180.000    10.0     3
+OBZ             sp3_sp3_4         HN1          N1          O2          C3     180.000    10.0     3
+OBZ             sp2_sp3_2          C9          C4          C3          O2     -90.000    10.0     6
+OBZ       const_sp2_sp2_3          C3          C4          C9          C8     180.000     5.0     2
+OBZ              const_23          C3          C4          C5          C6     180.000    10.0     2
+OBZ       const_sp2_sp2_5          C7          C8          C9          C4       0.000     5.0     2
+OBZ       const_sp2_sp2_9          C6          C7          C8          C9       0.000     5.0     2
+OBZ              const_13          C5          C6          C7          C8       0.000    10.0     2
+OBZ              const_17          C4          C5          C6          C7       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OBZ    plan-1          C3   0.020
+OBZ    plan-1          C4   0.020
+OBZ    plan-1          C5   0.020
+OBZ    plan-1          C6   0.020
+OBZ    plan-1          C7   0.020
+OBZ    plan-1          C8   0.020
+OBZ    plan-1          C9   0.020
+OBZ    plan-1          H5   0.020
+OBZ    plan-1          H6   0.020
+OBZ    plan-1          H7   0.020
+OBZ    plan-1          H8   0.020
+OBZ    plan-1          H9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OBZ           SMILES              ACDLabs 10.04                      "[(aminooxy)methyl]benzene"
+OBZ SMILES_CANONICAL               CACTVS 3.341                                      NOCc1ccccc1
+OBZ           SMILES               CACTVS 3.341                                      NOCc1ccccc1
+OBZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    c1ccc(cc1)CON
+OBZ           SMILES "OpenEye OEToolkits" 1.5.0                                    c1ccc(cc1)CON
+OBZ            InChI                InChI  1.03 InChI=1S/C7H9NO/c8-9-6-7-4-2-1-3-5-7/h1-5H,6,8H2
+OBZ         InChIKey                InChI  1.03                      XYEOALKITRFCJJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OBZ acedrg               243         "dictionary generator"                  
+OBZ acedrg_database      11          "data source"                           
+OBZ rdkit                2017.03.2   "Chemoinformatics tool"
+OBZ refmac5              5.8.0238    "optimization tool"                     

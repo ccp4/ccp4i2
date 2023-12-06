@@ -1,0 +1,117 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PGL     PGL      "(aminomethyl)phosphonic acid"     NON-POLYMER     10     6     .     
+#
+data_comp_PGL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PGL     N       N       NT2     0       49.997      18.628      -7.830      
+PGL     C       C       CH2     0       50.412      18.015      -6.567      
+PGL     P       P       P       0       51.775      18.904      -5.761      
+PGL     O1      O       O       0       52.981      18.710      -6.614      
+PGL     O2      O       OP      -1      51.370      20.336      -5.685      
+PGL     O3      O       OP      -1      51.945      18.299      -4.409      
+PGL     HN1     H       H       0       49.495      18.045      -8.306      
+PGL     HN2     H       H       0       50.724      18.825      -8.332      
+PGL     H1      H       H       0       50.696      17.094      -6.737      
+PGL     H2      H       H       0       49.647      17.993      -5.956      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PGL           N           C      SINGLE       n     1.464  0.0200     1.464  0.0200
+PGL           C           P      SINGLE       n     1.816  0.0200     1.816  0.0200
+PGL           P          O1      DOUBLE       n     1.492  0.0200     1.492  0.0200
+PGL           P          O2      SINGLE       n     1.492  0.0200     1.492  0.0200
+PGL           P          O3      SINGLE       n     1.492  0.0200     1.492  0.0200
+PGL           N         HN1      SINGLE       n     1.036  0.0160     0.905  0.0200
+PGL           N         HN2      SINGLE       n     1.036  0.0160     0.905  0.0200
+PGL           C          H1      SINGLE       n     1.089  0.0100     0.979  0.0191
+PGL           C          H2      SINGLE       n     1.089  0.0100     0.979  0.0191
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PGL           C           N         HN1     109.971    3.00
+PGL           C           N         HN2     109.971    3.00
+PGL         HN1           N         HN2     107.163    3.00
+PGL           N           C           P     112.238    3.00
+PGL           N           C          H1     108.847    1.50
+PGL           N           C          H2     108.847    1.50
+PGL           P           C          H1     108.528    1.50
+PGL           P           C          H2     108.528    1.50
+PGL          H1           C          H2     107.579    3.00
+PGL           C           P          O1     110.326    3.00
+PGL           C           P          O2     110.326    3.00
+PGL           C           P          O3     110.326    3.00
+PGL          O1           P          O2     112.887    1.64
+PGL          O1           P          O3     112.887    1.64
+PGL          O2           P          O3     112.887    1.64
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PGL             sp3_sp3_1           P           C           N         HN1     180.000    10.0     3
+PGL             sp3_sp3_9           N           C           P          O1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PGL    chir_1    P    O2    O3    O1    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PGL           SMILES              ACDLabs 12.01                                     O=P(O)(O)CN
+PGL SMILES_CANONICAL               CACTVS 3.370                                   NC[P](O)(O)=O
+PGL           SMILES               CACTVS 3.370                                   NC[P](O)(O)=O
+PGL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                   C(N)P(=O)(O)O
+PGL           SMILES "OpenEye OEToolkits" 1.7.0                                   C(N)P(=O)(O)O
+PGL            InChI                InChI  1.03 InChI=1S/CH6NO3P/c2-1-6(3,4)5/h1-2H2,(H2,3,4,5)
+PGL         InChIKey                InChI  1.03                     MGRVRXRGTBOSHW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PGL acedrg               243         "dictionary generator"                  
+PGL acedrg_database      11          "data source"                           
+PGL rdkit                2017.03.2   "Chemoinformatics tool"
+PGL refmac5              5.8.0238    "optimization tool"                     

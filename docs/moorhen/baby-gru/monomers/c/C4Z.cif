@@ -1,0 +1,643 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+C4Z     C4Z      "(2~{R})-3-cyclohexyl-2-[(2~{R},3~{S},4~{S},5~{R},6~{R})-2-(hydroxymethyl)-6-[(1~{R},2~{R})-2-[(2~{S},3~{S},4~{R},5~{S},6~{S})-6-methyl-3,4,5-tris(oxidanyl)oxan-2-yl]oxycyclohexyl]oxy-3,5-bis(oxidanyl)oxan-4-yl]oxy-propanoic acid"     NON-POLYMER     85     40     .     
+#
+data_comp_C4Z
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+C4Z     C4      C       CH1     0       -11.034     -34.140     45.380      
+C4Z     C5      C       CH1     0       -11.701     -33.469     46.588      
+C4Z     C6      C       CH2     0       -12.655     -32.353     46.221      
+C4Z     C3      C       CH1     0       -10.171     -35.308     45.858      
+C4Z     CAD     C       CH2     0       -7.029      -38.892     44.073      
+C4Z     CAC     C       CH2     0       -7.259      -40.403     44.041      
+C4Z     CAB     C       CH2     0       -6.757      -41.068     45.310      
+C4Z     CAG     C       CH2     0       -7.364      -40.428     46.546      
+C4Z     CAF     C       CH2     0       -7.138      -38.916     46.564      
+C4Z     CAE     C       CH1     0       -7.656      -38.237     45.300      
+C4Z     CAH     C       CH2     0       -7.424      -36.724     45.330      
+C4Z     CAI     C       CH1     0       -8.287      -35.922     44.350      
+C4Z     CBM     C       C       0       -7.809      -34.461     44.237      
+C4Z     OBN     O       OC      -1      -7.997      -33.880     43.150      
+C4Z     OBO     O       O       0       -7.259      -33.901     45.209      
+C4Z     O3      O       O2      0       -9.688      -36.021     44.714      
+C4Z     C2      C       CH1     0       -10.972     -36.272     46.730      
+C4Z     O2      O       OH1     0       -10.091     -37.250     47.277      
+C4Z     O4      O       OH1     0       -12.037     -34.605     44.477      
+C4Z     O6      O       OH1     0       -12.026     -31.367     45.405      
+C4Z     O5      O       O2      0       -12.470     -34.458     47.309      
+C4Z     C1      C       CH1     0       -11.679     -35.517     47.849      
+C4Z     O1      O       O2      0       -12.496     -36.415     48.562      
+C4Z     CAR     C       CH1     0       -13.100     -35.961     49.786      
+C4Z     CAW     C       CH2     0       -12.368     -36.556     50.977      
+C4Z     CAV     C       CH2     0       -13.036     -36.159     52.291      
+C4Z     CAU     C       CH2     0       -14.512     -36.535     52.300      
+C4Z     CAT     C       CH2     0       -15.242     -35.964     51.086      
+C4Z     CAS     C       CH1     0       -14.566     -36.378     49.790      
+C4Z     OAX     O       O2      0       -15.229     -35.755     48.677      
+C4Z     CAY     C       CH1     0       -16.283     -36.460     48.059      
+C4Z     OBA     O       O2      0       -15.770     -37.527     47.248      
+C4Z     CBB     C       CH1     0       -14.971     -37.104     46.117      
+C4Z     CBH     C       CH3     0       -14.469     -38.358     45.440      
+C4Z     CBC     C       CH1     0       -15.810     -36.218     45.203      
+C4Z     OBG     O       OH1     0       -16.894     -36.967     44.656      
+C4Z     CBD     C       CH1     0       -16.334     -35.029     45.997      
+C4Z     OBF     O       OH1     0       -17.171     -34.215     45.177      
+C4Z     CAZ     C       CH1     0       -17.116     -35.493     47.223      
+C4Z     OBE     O       OH1     0       -17.525     -34.380     48.016      
+C4Z     H1      H       H       0       -10.460     -33.484     44.919      
+C4Z     H2      H       H       0       -10.997     -33.111     47.183      
+C4Z     H3      H       H       0       -12.984     -31.929     47.041      
+C4Z     H4      H       H       0       -13.425     -32.726     45.743      
+C4Z     H5      H       H       0       -9.413      -34.960     46.386      
+C4Z     H6      H       H       0       -6.067      -38.714     44.070      
+C4Z     H7      H       H       0       -7.409      -38.496     43.264      
+C4Z     H8      H       H       0       -8.219      -40.583     43.938      
+C4Z     H9      H       H       0       -6.794      -40.786     43.266      
+C4Z     H10     H       H       0       -5.780      -40.993     45.352      
+C4Z     H11     H       H       0       -6.987      -42.021     45.291      
+C4Z     H12     H       H       0       -6.962      -40.826     47.349      
+C4Z     H13     H       H       0       -8.328      -40.612     46.567      
+C4Z     H14     H       H       0       -6.181      -38.736     46.655      
+C4Z     H15     H       H       0       -7.589      -38.533     47.343      
+C4Z     H16     H       H       0       -8.627      -38.385     45.257      
+C4Z     H17     H       H       0       -6.478      -36.558     45.129      
+C4Z     H18     H       H       0       -7.587      -36.406     46.242      
+C4Z     H19     H       H       0       -8.184      -36.325     43.471      
+C4Z     H21     H       H       0       -11.649     -36.729     46.176      
+C4Z     H22     H       H       0       -10.545     -37.848     47.655      
+C4Z     H23     H       H       0       -11.673     -34.893     43.776      
+C4Z     H24     H       H       0       -11.423     -30.973     45.852      
+C4Z     H25     H       H       0       -11.003     -35.133     48.464      
+C4Z     H26     H       H       0       -13.048     -34.974     49.841      
+C4Z     H27     H       H       0       -12.361     -37.533     50.896      
+C4Z     H28     H       H       0       -11.439     -36.242     50.976      
+C4Z     H29     H       H       0       -12.946     -35.194     52.422      
+C4Z     H30     H       H       0       -12.583     -36.608     53.033      
+C4Z     H31     H       H       0       -14.928     -36.193     53.117      
+C4Z     H32     H       H       0       -14.599     -37.509     52.302      
+C4Z     H33     H       H       0       -15.256     -34.986     51.144      
+C4Z     H34     H       H       0       -16.168     -36.283     51.083      
+C4Z     H35     H       H       0       -14.618     -37.363     49.700      
+C4Z     H36     H       H       0       -16.861     -36.851     48.764      
+C4Z     H37     H       H       0       -14.195     -36.584     46.440      
+C4Z     H38     H       H       0       -14.230     -38.157     44.521      
+C4Z     H39     H       H       0       -15.164     -39.036     45.452      
+C4Z     H40     H       H       0       -13.687     -38.689     45.911      
+C4Z     H41     H       H       0       -15.241     -35.888     44.468      
+C4Z     H42     H       H       0       -17.298     -36.501     44.084      
+C4Z     H43     H       H       0       -15.562     -34.487     46.300      
+C4Z     H44     H       H       0       -17.324     -33.491     45.577      
+C4Z     H45     H       H       0       -17.925     -35.966     46.914      
+C4Z     H46     H       H       0       -16.845     -33.959     48.279      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+C4Z         CAD         CAC      SINGLE       n     1.527  0.0100     1.527  0.0100
+C4Z         CAC         CAB      SINGLE       n     1.516  0.0136     1.516  0.0136
+C4Z         CAD         CAE      SINGLE       n     1.524  0.0100     1.524  0.0100
+C4Z          C4          O4      SINGLE       n     1.425  0.0176     1.425  0.0176
+C4Z         CBC         OBG      SINGLE       n     1.425  0.0176     1.425  0.0176
+C4Z         CBM         OBO      DOUBLE       n     1.247  0.0187     1.247  0.0187
+C4Z         CBM         OBN      SINGLE       n     1.247  0.0187     1.247  0.0187
+C4Z          C6          O6      SINGLE       n     1.426  0.0200     1.426  0.0200
+C4Z         CAI         CBM      SINGLE       n     1.526  0.0200     1.526  0.0200
+C4Z         CAI          O3      SINGLE       n     1.425  0.0200     1.425  0.0200
+C4Z         CAH         CAI      SINGLE       n     1.519  0.0200     1.519  0.0200
+C4Z          C3          O3      SINGLE       n     1.427  0.0100     1.427  0.0100
+C4Z         CAB         CAG      SINGLE       n     1.516  0.0136     1.516  0.0136
+C4Z          C4          C3      SINGLE       n     1.522  0.0154     1.522  0.0154
+C4Z          C4          C5      SINGLE       n     1.524  0.0200     1.524  0.0200
+C4Z         CBB         CBH      SINGLE       n     1.510  0.0100     1.510  0.0100
+C4Z         CBB         CBC      SINGLE       n     1.523  0.0102     1.523  0.0102
+C4Z         CBC         CBD      SINGLE       n     1.520  0.0158     1.520  0.0158
+C4Z          C5          C6      SINGLE       n     1.511  0.0142     1.511  0.0142
+C4Z         CBD         OBF      SINGLE       n     1.427  0.0138     1.427  0.0138
+C4Z         CAE         CAH      SINGLE       n     1.529  0.0100     1.529  0.0100
+C4Z         CAF         CAE      SINGLE       n     1.524  0.0100     1.524  0.0100
+C4Z          C3          C2      SINGLE       n     1.522  0.0154     1.522  0.0154
+C4Z         OBA         CBB      SINGLE       n     1.445  0.0100     1.445  0.0100
+C4Z          C5          O5      SINGLE       n     1.440  0.0195     1.440  0.0195
+C4Z         CBD         CAZ      SINGLE       n     1.519  0.0200     1.519  0.0200
+C4Z         CAG         CAF      SINGLE       n     1.527  0.0100     1.527  0.0100
+C4Z          O5          C1      SINGLE       n     1.422  0.0169     1.422  0.0169
+C4Z          C2          C1      SINGLE       n     1.522  0.0111     1.522  0.0111
+C4Z          C2          O2      SINGLE       n     1.425  0.0112     1.425  0.0112
+C4Z         CAY         OBA      SINGLE       n     1.422  0.0169     1.422  0.0169
+C4Z         CAY         CAZ      SINGLE       n     1.522  0.0111     1.522  0.0111
+C4Z         CAZ         OBE      SINGLE       n     1.425  0.0112     1.425  0.0112
+C4Z          C1          O1      SINGLE       n     1.406  0.0135     1.406  0.0135
+C4Z         OAX         CAY      SINGLE       n     1.406  0.0135     1.406  0.0135
+C4Z          O1         CAR      SINGLE       n     1.436  0.0105     1.436  0.0105
+C4Z         CAS         OAX      SINGLE       n     1.436  0.0105     1.436  0.0105
+C4Z         CAR         CAS      SINGLE       n     1.522  0.0154     1.522  0.0154
+C4Z         CAR         CAW      SINGLE       n     1.518  0.0100     1.518  0.0100
+C4Z         CAT         CAS      SINGLE       n     1.518  0.0100     1.518  0.0100
+C4Z         CAW         CAV      SINGLE       n     1.525  0.0100     1.525  0.0100
+C4Z         CAU         CAT      SINGLE       n     1.525  0.0100     1.525  0.0100
+C4Z         CAV         CAU      SINGLE       n     1.521  0.0100     1.521  0.0100
+C4Z          C4          H1      SINGLE       n     1.089  0.0100     0.986  0.0131
+C4Z          C5          H2      SINGLE       n     1.089  0.0100     0.988  0.0182
+C4Z          C6          H3      SINGLE       n     1.089  0.0100     0.980  0.0184
+C4Z          C6          H4      SINGLE       n     1.089  0.0100     0.980  0.0184
+C4Z          C3          H5      SINGLE       n     1.089  0.0100     0.989  0.0181
+C4Z         CAD          H6      SINGLE       n     1.089  0.0100     0.978  0.0143
+C4Z         CAD          H7      SINGLE       n     1.089  0.0100     0.978  0.0143
+C4Z         CAC          H8      SINGLE       n     1.089  0.0100     0.982  0.0142
+C4Z         CAC          H9      SINGLE       n     1.089  0.0100     0.982  0.0142
+C4Z         CAB         H10      SINGLE       n     1.089  0.0100     0.981  0.0138
+C4Z         CAB         H11      SINGLE       n     1.089  0.0100     0.981  0.0138
+C4Z         CAG         H12      SINGLE       n     1.089  0.0100     0.982  0.0142
+C4Z         CAG         H13      SINGLE       n     1.089  0.0100     0.982  0.0142
+C4Z         CAF         H14      SINGLE       n     1.089  0.0100     0.978  0.0143
+C4Z         CAF         H15      SINGLE       n     1.089  0.0100     0.978  0.0143
+C4Z         CAE         H16      SINGLE       n     1.089  0.0100     0.983  0.0100
+C4Z         CAH         H17      SINGLE       n     1.089  0.0100     0.981  0.0200
+C4Z         CAH         H18      SINGLE       n     1.089  0.0100     0.981  0.0200
+C4Z         CAI         H19      SINGLE       n     1.089  0.0100     0.974  0.0160
+C4Z          C2         H21      SINGLE       n     1.089  0.0100     0.987  0.0140
+C4Z          O2         H22      SINGLE       n     0.970  0.0120     0.841  0.0200
+C4Z          O4         H23      SINGLE       n     0.970  0.0120     0.841  0.0200
+C4Z          O6         H24      SINGLE       n     0.970  0.0120     0.848  0.0200
+C4Z          C1         H25      SINGLE       n     1.089  0.0100     0.992  0.0127
+C4Z         CAR         H26      SINGLE       n     1.089  0.0100     0.989  0.0181
+C4Z         CAW         H27      SINGLE       n     1.089  0.0100     0.980  0.0165
+C4Z         CAW         H28      SINGLE       n     1.089  0.0100     0.980  0.0165
+C4Z         CAV         H29      SINGLE       n     1.089  0.0100     0.978  0.0147
+C4Z         CAV         H30      SINGLE       n     1.089  0.0100     0.978  0.0147
+C4Z         CAU         H31      SINGLE       n     1.089  0.0100     0.978  0.0147
+C4Z         CAU         H32      SINGLE       n     1.089  0.0100     0.978  0.0147
+C4Z         CAT         H33      SINGLE       n     1.089  0.0100     0.980  0.0165
+C4Z         CAT         H34      SINGLE       n     1.089  0.0100     0.980  0.0165
+C4Z         CAS         H35      SINGLE       n     1.089  0.0100     0.989  0.0181
+C4Z         CAY         H36      SINGLE       n     1.089  0.0100     0.992  0.0127
+C4Z         CBB         H37      SINGLE       n     1.089  0.0100     0.989  0.0117
+C4Z         CBH         H38      SINGLE       n     1.089  0.0100     0.971  0.0171
+C4Z         CBH         H39      SINGLE       n     1.089  0.0100     0.971  0.0171
+C4Z         CBH         H40      SINGLE       n     1.089  0.0100     0.971  0.0171
+C4Z         CBC         H41      SINGLE       n     1.089  0.0100     0.986  0.0131
+C4Z         OBG         H42      SINGLE       n     0.970  0.0120     0.841  0.0200
+C4Z         CBD         H43      SINGLE       n     1.089  0.0100     0.991  0.0121
+C4Z         OBF         H44      SINGLE       n     0.970  0.0120     0.841  0.0200
+C4Z         CAZ         H45      SINGLE       n     1.089  0.0100     0.987  0.0140
+C4Z         OBE         H46      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+C4Z          O4          C4          C3     110.191    1.50
+C4Z          O4          C4          C5     109.072    2.07
+C4Z          O4          C4          H1     109.194    1.50
+C4Z          C3          C4          C5     109.530    2.25
+C4Z          C3          C4          H1     109.014    1.50
+C4Z          C5          C4          H1     109.223    1.50
+C4Z          C4          C5          C6     112.996    1.59
+C4Z          C4          C5          O5     109.140    1.86
+C4Z          C4          C5          H2     108.960    1.50
+C4Z          C6          C5          O5     106.879    1.50
+C4Z          C6          C5          H2     109.269    1.50
+C4Z          O5          C5          H2     109.134    1.50
+C4Z          O6          C6          C5     111.299    2.09
+C4Z          O6          C6          H3     109.265    1.50
+C4Z          O6          C6          H4     109.265    1.50
+C4Z          C5          C6          H3     109.363    1.50
+C4Z          C5          C6          H4     109.363    1.50
+C4Z          H3          C6          H4     108.155    1.50
+C4Z          O3          C3          C4     109.116    2.14
+C4Z          O3          C3          C2     109.116    2.14
+C4Z          O3          C3          H5     109.096    1.50
+C4Z          C4          C3          C2     111.667    1.71
+C4Z          C4          C3          H5     109.558    1.50
+C4Z          C2          C3          H5     109.359    1.50
+C4Z         CAC         CAD         CAE     112.229    1.50
+C4Z         CAC         CAD          H6     109.267    1.50
+C4Z         CAC         CAD          H7     109.267    1.50
+C4Z         CAE         CAD          H6     109.293    1.50
+C4Z         CAE         CAD          H7     109.293    1.50
+C4Z          H6         CAD          H7     107.919    1.50
+C4Z         CAD         CAC         CAB     111.360    1.50
+C4Z         CAD         CAC          H8     109.388    1.50
+C4Z         CAD         CAC          H9     109.388    1.50
+C4Z         CAB         CAC          H8     109.386    1.50
+C4Z         CAB         CAC          H9     109.386    1.50
+C4Z          H8         CAC          H9     108.036    1.50
+C4Z         CAC         CAB         CAG     111.038    1.50
+C4Z         CAC         CAB         H10     109.386    1.50
+C4Z         CAC         CAB         H11     109.386    1.50
+C4Z         CAG         CAB         H10     109.386    1.50
+C4Z         CAG         CAB         H11     109.386    1.50
+C4Z         H10         CAB         H11     108.036    1.50
+C4Z         CAB         CAG         CAF     111.360    1.50
+C4Z         CAB         CAG         H12     109.386    1.50
+C4Z         CAB         CAG         H13     109.386    1.50
+C4Z         CAF         CAG         H12     109.388    1.50
+C4Z         CAF         CAG         H13     109.388    1.50
+C4Z         H12         CAG         H13     108.036    1.50
+C4Z         CAE         CAF         CAG     112.229    1.50
+C4Z         CAE         CAF         H14     109.293    1.50
+C4Z         CAE         CAF         H15     109.293    1.50
+C4Z         CAG         CAF         H14     109.267    1.50
+C4Z         CAG         CAF         H15     109.267    1.50
+C4Z         H14         CAF         H15     107.919    1.50
+C4Z         CAD         CAE         CAH     111.907    1.50
+C4Z         CAD         CAE         CAF     109.635    1.50
+C4Z         CAD         CAE         H16     107.897    1.50
+C4Z         CAH         CAE         CAF     111.907    1.50
+C4Z         CAH         CAE         H16     107.292    1.50
+C4Z         CAF         CAE         H16     107.897    1.50
+C4Z         CAI         CAH         CAE     113.198    2.74
+C4Z         CAI         CAH         H17     109.155    1.50
+C4Z         CAI         CAH         H18     109.155    1.50
+C4Z         CAE         CAH         H17     108.361    1.50
+C4Z         CAE         CAH         H18     108.361    1.50
+C4Z         H17         CAH         H18     107.474    1.50
+C4Z         CBM         CAI          O3     110.427    2.31
+C4Z         CBM         CAI         CAH     111.511    2.91
+C4Z         CBM         CAI         H19     109.227    1.50
+C4Z          O3         CAI         CAH     109.482    3.00
+C4Z          O3         CAI         H19     109.424    1.50
+C4Z         CAH         CAI         H19     109.155    1.50
+C4Z         OBO         CBM         OBN     122.692    1.50
+C4Z         OBO         CBM         CAI     118.654    3.00
+C4Z         OBN         CBM         CAI     118.654    3.00
+C4Z         CAI          O3          C3     114.605    1.66
+C4Z          C3          C2          C1     110.229    1.69
+C4Z          C3          C2          O2     108.784    2.40
+C4Z          C3          C2         H21     109.172    1.50
+C4Z          C1          C2          O2     109.907    1.90
+C4Z          C1          C2         H21     108.647    1.50
+C4Z          O2          C2         H21     108.551    1.50
+C4Z          C2          O2         H22     109.126    2.06
+C4Z          C4          O4         H23     109.564    3.00
+C4Z          C6          O6         H24     109.472    2.41
+C4Z          C5          O5          C1     113.300    1.50
+C4Z          O5          C1          C2     110.316    1.50
+C4Z          O5          C1          O1     110.157    1.98
+C4Z          O5          C1         H25     109.132    1.50
+C4Z          C2          C1          O1     108.782    1.93
+C4Z          C2          C1         H25     109.438    1.50
+C4Z          O1          C1         H25     109.369    1.50
+C4Z          C1          O1         CAR     117.169    1.96
+C4Z          O1         CAR         CAS     108.580    2.45
+C4Z          O1         CAR         CAW     109.852    2.33
+C4Z          O1         CAR         H26     109.522    1.50
+C4Z         CAS         CAR         CAW     111.121    1.50
+C4Z         CAS         CAR         H26     109.166    1.50
+C4Z         CAW         CAR         H26     109.129    1.50
+C4Z         CAR         CAW         CAV     111.244    1.50
+C4Z         CAR         CAW         H27     109.270    1.50
+C4Z         CAR         CAW         H28     109.270    1.50
+C4Z         CAV         CAW         H27     109.437    1.50
+C4Z         CAV         CAW         H28     109.437    1.50
+C4Z         H27         CAW         H28     108.174    1.50
+C4Z         CAW         CAV         CAU     111.052    1.50
+C4Z         CAW         CAV         H29     109.371    1.50
+C4Z         CAW         CAV         H30     109.371    1.50
+C4Z         CAU         CAV         H29     109.386    1.50
+C4Z         CAU         CAV         H30     109.386    1.50
+C4Z         H29         CAV         H30     108.036    1.50
+C4Z         CAT         CAU         CAV     111.052    1.50
+C4Z         CAT         CAU         H31     109.371    1.50
+C4Z         CAT         CAU         H32     109.371    1.50
+C4Z         CAV         CAU         H31     109.386    1.50
+C4Z         CAV         CAU         H32     109.386    1.50
+C4Z         H31         CAU         H32     108.036    1.50
+C4Z         CAS         CAT         CAU     111.244    1.50
+C4Z         CAS         CAT         H33     109.270    1.50
+C4Z         CAS         CAT         H34     109.270    1.50
+C4Z         CAU         CAT         H33     109.437    1.50
+C4Z         CAU         CAT         H34     109.437    1.50
+C4Z         H33         CAT         H34     108.174    1.50
+C4Z         OAX         CAS         CAR     108.580    2.45
+C4Z         OAX         CAS         CAT     109.852    2.33
+C4Z         OAX         CAS         H35     109.522    1.50
+C4Z         CAR         CAS         CAT     111.121    1.50
+C4Z         CAR         CAS         H35     109.166    1.50
+C4Z         CAT         CAS         H35     109.129    1.50
+C4Z         CAY         OAX         CAS     117.169    1.96
+C4Z         OBA         CAY         CAZ     110.316    1.50
+C4Z         OBA         CAY         OAX     110.157    1.98
+C4Z         OBA         CAY         H36     109.132    1.50
+C4Z         CAZ         CAY         OAX     108.782    1.93
+C4Z         CAZ         CAY         H36     109.438    1.50
+C4Z         OAX         CAY         H36     109.369    1.50
+C4Z         CBB         OBA         CAY     113.009    1.50
+C4Z         CBH         CBB         CBC     113.299    1.50
+C4Z         CBH         CBB         OBA     106.787    1.50
+C4Z         CBH         CBB         H37     109.193    1.50
+C4Z         CBC         CBB         OBA     109.213    1.50
+C4Z         CBC         CBB         H37     108.992    1.50
+C4Z         OBA         CBB         H37     109.141    1.50
+C4Z         CBB         CBH         H38     109.468    1.50
+C4Z         CBB         CBH         H39     109.468    1.50
+C4Z         CBB         CBH         H40     109.468    1.50
+C4Z         H38         CBH         H39     109.383    1.59
+C4Z         H38         CBH         H40     109.383    1.59
+C4Z         H39         CBH         H40     109.383    1.59
+C4Z         OBG         CBC         CBB     109.789    1.62
+C4Z         OBG         CBC         CBD     110.101    1.97
+C4Z         OBG         CBC         H41     109.194    1.50
+C4Z         CBB         CBC         CBD     109.500    1.50
+C4Z         CBB         CBC         H41     108.901    1.50
+C4Z         CBD         CBC         H41     109.032    1.50
+C4Z         CBC         OBG         H42     109.564    3.00
+C4Z         CBC         CBD         OBF     110.243    1.88
+C4Z         CBC         CBD         CAZ     110.687    1.67
+C4Z         CBC         CBD         H43     108.653    1.50
+C4Z         OBF         CBD         CAZ     109.587    2.09
+C4Z         OBF         CBD         H43     108.767    1.50
+C4Z         CAZ         CBD         H43     108.712    1.50
+C4Z         CBD         OBF         H44     108.895    2.41
+C4Z         CBD         CAZ         CAY     109.880    1.85
+C4Z         CBD         CAZ         OBE     111.053    2.62
+C4Z         CBD         CAZ         H45     108.505    1.50
+C4Z         CAY         CAZ         OBE     109.907    1.90
+C4Z         CAY         CAZ         H45     108.647    1.50
+C4Z         OBE         CAZ         H45     108.551    1.50
+C4Z         CAZ         OBE         H46     109.126    2.06
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+C4Z                  nu05          C5          O5          C1          C2     -65.719    10.0     3
+C4Z                  nu15          O5          C1          C2          C3      56.280    10.0     3
+C4Z                  nu25          C1          C2          C3          C4     -48.149    10.0     3
+C4Z                  nu35          C2          C3          C4          C5      48.259    10.0     3
+C4Z                  nu45          C3          C4          C5          O5     -56.835    10.0     3
+C4Z                  nu55          C4          C5          O5          C1      66.022    10.0     3
+C4Z                  nu0A         CBB         OBA         CAY         CAZ      61.674    10.0     3
+C4Z                  nu1A         OBA         CAY         CAZ         CBD     -54.492    10.0     3
+C4Z                  nu2A         CAY         CAZ         CBD         CBC      49.439    10.0     3
+C4Z                  nu3A         CAZ         CBD         CBC         CBB     -50.229    10.0     3
+C4Z                  nu4A         CBD         CBC         CBB         OBA      56.846    10.0     3
+C4Z                  nu5A         CBC         CBB         OBA         CAY     -63.116    10.0     3
+C4Z            sp3_sp3_34         CAB         CAC         CAD         CAE      60.000    10.0     3
+C4Z            sp3_sp3_35         CAB         CAC         CAD          H6     180.000    10.0     3
+C4Z            sp3_sp3_36         CAB         CAC         CAD          H7     -60.000    10.0     3
+C4Z            sp3_sp3_37          H8         CAC         CAD         CAE     -60.000    10.0     3
+C4Z            sp3_sp3_38          H8         CAC         CAD          H6      60.000    10.0     3
+C4Z            sp3_sp3_39          H8         CAC         CAD          H7     180.000    10.0     3
+C4Z            sp3_sp3_40          H9         CAC         CAD         CAE     180.000    10.0     3
+C4Z            sp3_sp3_41          H9         CAC         CAD          H6     -60.000    10.0     3
+C4Z            sp3_sp3_42          H9         CAC         CAD          H7      60.000    10.0     3
+C4Z            sp3_sp3_43         CAG         CAB         CAC         CAD     -60.000    10.0     3
+C4Z            sp3_sp3_44         CAG         CAB         CAC          H8      60.000    10.0     3
+C4Z            sp3_sp3_45         CAG         CAB         CAC          H9     180.000    10.0     3
+C4Z            sp3_sp3_46         H10         CAB         CAC         CAD     180.000    10.0     3
+C4Z            sp3_sp3_47         H10         CAB         CAC          H8     -60.000    10.0     3
+C4Z            sp3_sp3_48         H10         CAB         CAC          H9      60.000    10.0     3
+C4Z            sp3_sp3_49         H11         CAB         CAC         CAD      60.000    10.0     3
+C4Z            sp3_sp3_50         H11         CAB         CAC          H8     180.000    10.0     3
+C4Z            sp3_sp3_51         H11         CAB         CAC          H9     -60.000    10.0     3
+C4Z            sp3_sp3_52         CAC         CAB         CAG         CAF      60.000    10.0     3
+C4Z            sp3_sp3_53         CAC         CAB         CAG         H12     180.000    10.0     3
+C4Z            sp3_sp3_54         CAC         CAB         CAG         H13     -60.000    10.0     3
+C4Z            sp3_sp3_55         H10         CAB         CAG         CAF     -60.000    10.0     3
+C4Z            sp3_sp3_56         H10         CAB         CAG         H12      60.000    10.0     3
+C4Z            sp3_sp3_57         H10         CAB         CAG         H13     180.000    10.0     3
+C4Z            sp3_sp3_58         H11         CAB         CAG         CAF     180.000    10.0     3
+C4Z            sp3_sp3_59         H11         CAB         CAG         H12     -60.000    10.0     3
+C4Z            sp3_sp3_60         H11         CAB         CAG         H13      60.000    10.0     3
+C4Z            sp3_sp3_61         CAE         CAF         CAG         CAB     -60.000    10.0     3
+C4Z            sp3_sp3_62         CAE         CAF         CAG         H12      60.000    10.0     3
+C4Z            sp3_sp3_63         CAE         CAF         CAG         H13     180.000    10.0     3
+C4Z            sp3_sp3_64         H14         CAF         CAG         CAB     180.000    10.0     3
+C4Z            sp3_sp3_65         H14         CAF         CAG         H12     -60.000    10.0     3
+C4Z            sp3_sp3_66         H14         CAF         CAG         H13      60.000    10.0     3
+C4Z            sp3_sp3_67         H15         CAF         CAG         CAB      60.000    10.0     3
+C4Z            sp3_sp3_68         H15         CAF         CAG         H12     180.000    10.0     3
+C4Z            sp3_sp3_69         H15         CAF         CAG         H13     -60.000    10.0     3
+C4Z            sp3_sp3_70         CAD         CAE         CAF         CAG      60.000    10.0     3
+C4Z            sp3_sp3_71         CAD         CAE         CAF         H14     180.000    10.0     3
+C4Z            sp3_sp3_72         CAD         CAE         CAF         H15     -60.000    10.0     3
+C4Z            sp3_sp3_73         CAH         CAE         CAF         CAG     -60.000    10.0     3
+C4Z            sp3_sp3_74         CAH         CAE         CAF         H14      60.000    10.0     3
+C4Z            sp3_sp3_75         CAH         CAE         CAF         H15     180.000    10.0     3
+C4Z            sp3_sp3_76         H16         CAE         CAF         CAG     180.000    10.0     3
+C4Z            sp3_sp3_77         H16         CAE         CAF         H14     -60.000    10.0     3
+C4Z            sp3_sp3_78         H16         CAE         CAF         H15      60.000    10.0     3
+C4Z            sp3_sp3_79         CAW         CAR         CAS         CAT      60.000    10.0     3
+C4Z            sp3_sp3_80         CAW         CAR         CAS         OAX     180.000    10.0     3
+C4Z            sp3_sp3_81         CAW         CAR         CAS         H35     -60.000    10.0     3
+C4Z            sp3_sp3_82          O1         CAR         CAS         CAT     -60.000    10.0     3
+C4Z            sp3_sp3_83          O1         CAR         CAS         OAX      60.000    10.0     3
+C4Z            sp3_sp3_84          O1         CAR         CAS         H35     180.000    10.0     3
+C4Z            sp3_sp3_85         H26         CAR         CAS         CAT     180.000    10.0     3
+C4Z            sp3_sp3_86         H26         CAR         CAS         OAX     -60.000    10.0     3
+C4Z            sp3_sp3_87         H26         CAR         CAS         H35      60.000    10.0     3
+C4Z            sp3_sp3_88         CAR         CAS         CAT         CAU     -60.000    10.0     3
+C4Z            sp3_sp3_89         CAR         CAS         CAT         H33      60.000    10.0     3
+C4Z            sp3_sp3_90         CAR         CAS         CAT         H34     180.000    10.0     3
+C4Z            sp3_sp3_91         OAX         CAS         CAT         CAU     180.000    10.0     3
+C4Z            sp3_sp3_92         OAX         CAS         CAT         H33     -60.000    10.0     3
+C4Z            sp3_sp3_93         OAX         CAS         CAT         H34      60.000    10.0     3
+C4Z            sp3_sp3_94         H35         CAS         CAT         CAU      60.000    10.0     3
+C4Z            sp3_sp3_95         H35         CAS         CAT         H33     180.000    10.0     3
+C4Z            sp3_sp3_96         H35         CAS         CAT         H34     -60.000    10.0     3
+C4Z            sp3_sp3_97         CAS         CAT         CAU         CAV      60.000    10.0     3
+C4Z            sp3_sp3_98         CAS         CAT         CAU         H31     180.000    10.0     3
+C4Z            sp3_sp3_99         CAS         CAT         CAU         H32     -60.000    10.0     3
+C4Z           sp3_sp3_100         H33         CAT         CAU         CAV     -60.000    10.0     3
+C4Z           sp3_sp3_101         H33         CAT         CAU         H31      60.000    10.0     3
+C4Z           sp3_sp3_102         H33         CAT         CAU         H32     180.000    10.0     3
+C4Z           sp3_sp3_103         H34         CAT         CAU         CAV     180.000    10.0     3
+C4Z           sp3_sp3_104         H34         CAT         CAU         H31     -60.000    10.0     3
+C4Z           sp3_sp3_105         H34         CAT         CAU         H32      60.000    10.0     3
+C4Z           sp3_sp3_106         CAT         CAU         CAV         CAW     -60.000    10.0     3
+C4Z           sp3_sp3_107         CAT         CAU         CAV         H29      60.000    10.0     3
+C4Z           sp3_sp3_108         CAT         CAU         CAV         H30     180.000    10.0     3
+C4Z           sp3_sp3_109         H31         CAU         CAV         CAW     180.000    10.0     3
+C4Z           sp3_sp3_110         H31         CAU         CAV         H29     -60.000    10.0     3
+C4Z           sp3_sp3_111         H31         CAU         CAV         H30      60.000    10.0     3
+C4Z           sp3_sp3_112         H32         CAU         CAV         CAW      60.000    10.0     3
+C4Z           sp3_sp3_113         H32         CAU         CAV         H29     180.000    10.0     3
+C4Z           sp3_sp3_114         H32         CAU         CAV         H30     -60.000    10.0     3
+C4Z           sp3_sp3_115         CAU         CAV         CAW         CAR      60.000    10.0     3
+C4Z           sp3_sp3_116         CAU         CAV         CAW         H27     180.000    10.0     3
+C4Z           sp3_sp3_117         CAU         CAV         CAW         H28     -60.000    10.0     3
+C4Z           sp3_sp3_118         H29         CAV         CAW         CAR     -60.000    10.0     3
+C4Z           sp3_sp3_119         H29         CAV         CAW         H27      60.000    10.0     3
+C4Z           sp3_sp3_120         H29         CAV         CAW         H28     180.000    10.0     3
+C4Z           sp3_sp3_121         H30         CAV         CAW         CAR     180.000    10.0     3
+C4Z           sp3_sp3_122         H30         CAV         CAW         H27     -60.000    10.0     3
+C4Z           sp3_sp3_123         H30         CAV         CAW         H28      60.000    10.0     3
+C4Z           sp3_sp3_157         CAC         CAD         CAE         CAF     180.000    10.0     3
+C4Z           sp3_sp3_158         CAC         CAD         CAE         H16     -60.000    10.0     3
+C4Z           sp3_sp3_159         CAC         CAD         CAE         CAH      60.000    10.0     3
+C4Z           sp3_sp3_160          H6         CAD         CAE         CAF      60.000    10.0     3
+C4Z           sp3_sp3_161          H6         CAD         CAE         H16     180.000    10.0     3
+C4Z           sp3_sp3_162          H6         CAD         CAE         CAH     -60.000    10.0     3
+C4Z           sp3_sp3_163          H7         CAD         CAE         CAF     -60.000    10.0     3
+C4Z           sp3_sp3_164          H7         CAD         CAE         H16      60.000    10.0     3
+C4Z           sp3_sp3_165          H7         CAD         CAE         CAH     180.000    10.0     3
+C4Z           sp3_sp3_166          C3          C4          O4         H23     180.000    10.0     3
+C4Z           sp3_sp3_167          C5          C4          O4         H23      60.000    10.0     3
+C4Z           sp3_sp3_168          H1          C4          O4         H23     -60.000    10.0     3
+C4Z           sp3_sp3_169         CBB         CBC         OBG         H42     180.000    10.0     3
+C4Z           sp3_sp3_170         CBD         CBC         OBG         H42      60.000    10.0     3
+C4Z           sp3_sp3_171         H41         CBC         OBG         H42     -60.000    10.0     3
+C4Z           sp3_sp3_172          C5          C6          O6         H24     180.000    10.0     3
+C4Z           sp3_sp3_173          H3          C6          O6         H24      60.000    10.0     3
+C4Z           sp3_sp3_174          H4          C6          O6         H24     -60.000    10.0     3
+C4Z             sp2_sp3_1         OBO         CBM         CAI          O3       0.000    10.0     6
+C4Z             sp2_sp3_2         OBO         CBM         CAI         CAH     120.000    10.0     6
+C4Z             sp2_sp3_3         OBO         CBM         CAI         H19    -120.000    10.0     6
+C4Z             sp2_sp3_4         OBN         CBM         CAI          O3     180.000    10.0     6
+C4Z             sp2_sp3_5         OBN         CBM         CAI         CAH     -60.000    10.0     6
+C4Z             sp2_sp3_6         OBN         CBM         CAI         H19      60.000    10.0     6
+C4Z           sp3_sp3_175         CBM         CAI          O3          C3     180.000    10.0     3
+C4Z           sp3_sp3_176         CAH         CAI          O3          C3      60.000    10.0     3
+C4Z           sp3_sp3_177         H19         CAI          O3          C3     -60.000    10.0     3
+C4Z           sp3_sp3_178         CAE         CAH         CAI         CBM     180.000    10.0     3
+C4Z           sp3_sp3_179         CAE         CAH         CAI          O3     -60.000    10.0     3
+C4Z           sp3_sp3_180         CAE         CAH         CAI         H19      60.000    10.0     3
+C4Z           sp3_sp3_181         H17         CAH         CAI         CBM      60.000    10.0     3
+C4Z           sp3_sp3_182         H17         CAH         CAI          O3     180.000    10.0     3
+C4Z           sp3_sp3_183         H17         CAH         CAI         H19     -60.000    10.0     3
+C4Z           sp3_sp3_184         H18         CAH         CAI         CBM     -60.000    10.0     3
+C4Z           sp3_sp3_185         H18         CAH         CAI          O3      60.000    10.0     3
+C4Z           sp3_sp3_186         H18         CAH         CAI         H19     180.000    10.0     3
+C4Z           sp3_sp3_187          C4          C3          O3         CAI     180.000    10.0     3
+C4Z           sp3_sp3_188          C2          C3          O3         CAI      60.000    10.0     3
+C4Z           sp3_sp3_189          H5          C3          O3         CAI     -60.000    10.0     3
+C4Z           sp3_sp3_199         CBC         CBB         CBH         H38     180.000    10.0     3
+C4Z           sp3_sp3_200         CBC         CBB         CBH         H39     -60.000    10.0     3
+C4Z           sp3_sp3_201         CBC         CBB         CBH         H40      60.000    10.0     3
+C4Z           sp3_sp3_202         OBA         CBB         CBH         H38      60.000    10.0     3
+C4Z           sp3_sp3_203         OBA         CBB         CBH         H39     180.000    10.0     3
+C4Z           sp3_sp3_204         OBA         CBB         CBH         H40     -60.000    10.0     3
+C4Z           sp3_sp3_205         H37         CBB         CBH         H38     -60.000    10.0     3
+C4Z           sp3_sp3_206         H37         CBB         CBH         H39      60.000    10.0     3
+C4Z           sp3_sp3_207         H37         CBB         CBH         H40     180.000    10.0     3
+C4Z           sp3_sp3_208          C4          C5          C6          O6     180.000    10.0     3
+C4Z           sp3_sp3_209          C4          C5          C6          H3     -60.000    10.0     3
+C4Z           sp3_sp3_210          C4          C5          C6          H4      60.000    10.0     3
+C4Z           sp3_sp3_211          O5          C5          C6          O6      60.000    10.0     3
+C4Z           sp3_sp3_212          O5          C5          C6          H3     180.000    10.0     3
+C4Z           sp3_sp3_213          O5          C5          C6          H4     -60.000    10.0     3
+C4Z           sp3_sp3_214          H2          C5          C6          O6     -60.000    10.0     3
+C4Z           sp3_sp3_215          H2          C5          C6          H3      60.000    10.0     3
+C4Z           sp3_sp3_216          H2          C5          C6          H4     180.000    10.0     3
+C4Z           sp3_sp3_217         CBC         CBD         OBF         H44     180.000    10.0     3
+C4Z           sp3_sp3_218         CAZ         CBD         OBF         H44      60.000    10.0     3
+C4Z           sp3_sp3_219         H43         CBD         OBF         H44     -60.000    10.0     3
+C4Z           sp3_sp3_220         CAF         CAE         CAH         CAI     180.000    10.0     3
+C4Z           sp3_sp3_221         CAF         CAE         CAH         H17     -60.000    10.0     3
+C4Z           sp3_sp3_222         CAF         CAE         CAH         H18      60.000    10.0     3
+C4Z           sp3_sp3_223         CAD         CAE         CAH         CAI      60.000    10.0     3
+C4Z           sp3_sp3_224         CAD         CAE         CAH         H17     180.000    10.0     3
+C4Z           sp3_sp3_225         CAD         CAE         CAH         H18     -60.000    10.0     3
+C4Z           sp3_sp3_226         H16         CAE         CAH         CAI     -60.000    10.0     3
+C4Z           sp3_sp3_227         H16         CAE         CAH         H17      60.000    10.0     3
+C4Z           sp3_sp3_228         H16         CAE         CAH         H18     180.000    10.0     3
+C4Z           sp3_sp3_229          C3          C2          O2         H22     180.000    10.0     3
+C4Z           sp3_sp3_230          C1          C2          O2         H22      60.000    10.0     3
+C4Z           sp3_sp3_231         H21          C2          O2         H22     -60.000    10.0     3
+C4Z           sp3_sp3_241         CBD         CAZ         OBE         H46     180.000    10.0     3
+C4Z           sp3_sp3_242         CAY         CAZ         OBE         H46      60.000    10.0     3
+C4Z           sp3_sp3_243         H45         CAZ         OBE         H46     -60.000    10.0     3
+C4Z           sp3_sp3_244          O5          C1          O1         CAR     180.000    10.0     3
+C4Z           sp3_sp3_245          C2          C1          O1         CAR      60.000    10.0     3
+C4Z           sp3_sp3_246         H25          C1          O1         CAR     -60.000    10.0     3
+C4Z           sp3_sp3_247         OBA         CAY         OAX         CAS     180.000    10.0     3
+C4Z           sp3_sp3_248         CAZ         CAY         OAX         CAS      60.000    10.0     3
+C4Z           sp3_sp3_249         H36         CAY         OAX         CAS     -60.000    10.0     3
+C4Z           sp3_sp3_250         CAS         CAR          O1          C1     180.000    10.0     3
+C4Z           sp3_sp3_251         CAW         CAR          O1          C1      60.000    10.0     3
+C4Z           sp3_sp3_252         H26         CAR          O1          C1     -60.000    10.0     3
+C4Z           sp3_sp3_253         CAR         CAS         OAX         CAY     180.000    10.0     3
+C4Z           sp3_sp3_254         CAT         CAS         OAX         CAY      60.000    10.0     3
+C4Z           sp3_sp3_255         H35         CAS         OAX         CAY     -60.000    10.0     3
+C4Z           sp3_sp3_256         CAS         CAR         CAW         CAV     180.000    10.0     3
+C4Z           sp3_sp3_257         CAS         CAR         CAW         H27     -60.000    10.0     3
+C4Z           sp3_sp3_258         CAS         CAR         CAW         H28      60.000    10.0     3
+C4Z           sp3_sp3_259          O1         CAR         CAW         CAV      60.000    10.0     3
+C4Z           sp3_sp3_260          O1         CAR         CAW         H27     180.000    10.0     3
+C4Z           sp3_sp3_261          O1         CAR         CAW         H28     -60.000    10.0     3
+C4Z           sp3_sp3_262         H26         CAR         CAW         CAV     -60.000    10.0     3
+C4Z           sp3_sp3_263         H26         CAR         CAW         H27      60.000    10.0     3
+C4Z           sp3_sp3_264         H26         CAR         CAW         H28     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+C4Z    chir_1    C4    O4    C3    C5    positive
+C4Z    chir_2    C5    O5    C4    C6    negative
+C4Z    chir_3    C3    O3    C2    C4    positive
+C4Z    chir_4    CAE    CAH    CAD    CAF    both
+C4Z    chir_5    CAI    O3    CBM    CAH    negative
+C4Z    chir_6    C2    O2    C1    C3    negative
+C4Z    chir_7    C1    O5    O1    C2    negative
+C4Z    chir_8    CAR    O1    CAS    CAW    negative
+C4Z    chir_9    CAS    OAX    CAR    CAT    negative
+C4Z    chir_10    CAY    OAX    OBA    CAZ    positive
+C4Z    chir_11    CBB    OBA    CBC    CBH    positive
+C4Z    chir_12    CBC    OBG    CBB    CBD    positive
+C4Z    chir_13    CBD    OBF    CAZ    CBC    negative
+C4Z    chir_14    CAZ    OBE    CAY    CBD    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+C4Z    plan-1         CAI   0.020
+C4Z    plan-1         CBM   0.020
+C4Z    plan-1         OBN   0.020
+C4Z    plan-1         OBO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+C4Z            InChI                InChI  1.03 InChI=1S/C27H46O13/c1-13-19(29)21(31)22(32)26(36-13)38-15-9-5-6-10-16(15)39-27-23(33)24(20(30)18(12-28)40-27)37-17(25(34)35)11-14-7-3-2-4-8-14/h13-24,26-33H,2-12H2,1H3,(H,34,35)/t13-,15+,16+,17+,18+,19+,20-,21+,22-,23+,24-,26-,27+/m0/s1
+C4Z         InChIKey                InChI  1.03                                                                                                                                                                                                                  GNTJIZLFEURZBX-AUCBMRIBSA-N
+C4Z SMILES_CANONICAL               CACTVS 3.385                                                                                                                  C[C@@H]1O[C@@H](O[C@@H]2CCCC[C@H]2O[C@@H]3O[C@H](CO)[C@H](O)[C@H](O[C@H](CC4CCCCC4)C(O)=O)[C@H]3O)[C@@H](O)[C@H](O)[C@@H]1O
+C4Z           SMILES               CACTVS 3.385                                                                                                                                     C[CH]1O[CH](O[CH]2CCCC[CH]2O[CH]3O[CH](CO)[CH](O)[CH](O[CH](CC4CCCCC4)C(O)=O)[CH]3O)[CH](O)[CH](O)[CH]1O
+C4Z SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                C[C@H]1[C@H]([C@H]([C@@H]([C@@H](O1)O[C@@H]2CCCC[C@H]2O[C@H]3[C@@H]([C@H]([C@H]([C@H](O3)CO)O)O[C@H](CC4CCCCC4)C(=O)O)O)O)O)O
+C4Z           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                        CC1C(C(C(C(O1)OC2CCCCC2OC3C(C(C(C(O3)CO)O)OC(CC4CCCCC4)C(=O)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+C4Z acedrg               243         "dictionary generator"                  
+C4Z acedrg_database      11          "data source"                           
+C4Z rdkit                2017.03.2   "Chemoinformatics tool"
+C4Z refmac5              5.8.0238    "optimization tool"                     

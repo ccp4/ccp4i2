@@ -1,0 +1,235 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5WT     5WT      ~{N}-(1,4-dimethyl-2-oxidanylidene-quinolin-7-yl)ethanamide     NON-POLYMER     31     17     .     
+#
+data_comp_5WT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5WT     CAB     C       CH3     0       6.069       4.992       102.786     
+5WT     CAM     C       CR6     0       7.327       5.272       102.004     
+5WT     CAH     C       CR16    0       8.309       6.002       102.583     
+5WT     CAN     C       CR6     0       9.529       6.297       101.878     
+5WT     OAE     O       O       0       10.426      6.969       102.423     
+5WT     NAQ     N       NR6     0       9.706       5.828       100.584     
+5WT     CAC     C       CH3     0       10.965      6.144       99.881      
+5WT     CAP     C       CR66    0       8.707       5.069       99.953      
+5WT     CAI     C       CR16    0       8.872       4.585       98.635      
+5WT     CAO     C       CR66    0       7.506       4.779       100.649     
+5WT     CAG     C       CR16    0       6.512       4.013       99.997      
+5WT     CAF     C       CR16    0       6.684       3.553       98.724      
+5WT     CAL     C       CR6     0       7.877       3.832       98.016      
+5WT     NAJ     N       NH1     0       8.010       3.329       96.689      
+5WT     CAK     C       C       0       7.907       2.046       96.266      
+5WT     OAD     O       O       0       7.975       1.082       97.022      
+5WT     CAA     C       CH3     0       7.705       1.871       94.787      
+5WT     H1      H       H       0       6.150       5.334       103.693     
+5WT     H2      H       H       0       5.913       4.032       102.823     
+5WT     H3      H       H       0       5.311       5.420       102.352     
+5WT     H4      H       H       0       8.198       6.324       103.462     
+5WT     H5      H       H       0       11.552      6.672       100.442     
+5WT     H6      H       H       0       10.767      6.646       99.074      
+5WT     H7      H       H       0       11.417      5.318       99.644      
+5WT     H8      H       H       0       9.660       4.767       98.159      
+5WT     H9      H       H       0       5.709       3.812       100.445     
+5WT     H10     H       H       0       6.008       3.046       98.317      
+5WT     H11     H       H       0       8.185       3.936       96.083      
+5WT     H12     H       H       0       7.331       0.992       94.612      
+5WT     H13     H       H       0       8.557       1.957       94.330      
+5WT     H14     H       H       0       7.094       2.552       94.460      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5WT         CAK         CAA      SINGLE       n     1.501  0.0141     1.501  0.0141
+5WT         NAJ         CAK      SINGLE       n     1.353  0.0110     1.353  0.0110
+5WT         CAK         OAD      DOUBLE       n     1.226  0.0169     1.226  0.0169
+5WT         CAL         NAJ      SINGLE       n     1.422  0.0200     1.422  0.0200
+5WT         CAI         CAL      DOUBLE       y     1.390  0.0111     1.390  0.0111
+5WT         CAF         CAL      SINGLE       y     1.413  0.0163     1.413  0.0163
+5WT         CAP         CAI      SINGLE       y     1.405  0.0100     1.405  0.0100
+5WT         CAG         CAF      DOUBLE       y     1.362  0.0108     1.362  0.0108
+5WT         NAQ         CAC      SINGLE       n     1.467  0.0100     1.467  0.0100
+5WT         NAQ         CAP      SINGLE       y     1.392  0.0100     1.392  0.0100
+5WT         CAP         CAO      DOUBLE       y     1.404  0.0111     1.404  0.0111
+5WT         CAO         CAG      SINGLE       y     1.407  0.0100     1.407  0.0100
+5WT         CAN         NAQ      SINGLE       y     1.378  0.0100     1.378  0.0100
+5WT         CAM         CAO      SINGLE       y     1.444  0.0113     1.444  0.0113
+5WT         CAN         OAE      DOUBLE       n     1.244  0.0117     1.244  0.0117
+5WT         CAH         CAN      SINGLE       y     1.439  0.0111     1.439  0.0111
+5WT         CAM         CAH      DOUBLE       y     1.350  0.0103     1.350  0.0103
+5WT         CAB         CAM      SINGLE       n     1.502  0.0139     1.502  0.0139
+5WT         CAB          H1      SINGLE       n     1.089  0.0100     0.973  0.0200
+5WT         CAB          H2      SINGLE       n     1.089  0.0100     0.973  0.0200
+5WT         CAB          H3      SINGLE       n     1.089  0.0100     0.973  0.0200
+5WT         CAH          H4      SINGLE       n     1.082  0.0130     0.943  0.0168
+5WT         CAC          H5      SINGLE       n     1.089  0.0100     0.971  0.0182
+5WT         CAC          H6      SINGLE       n     1.089  0.0100     0.971  0.0182
+5WT         CAC          H7      SINGLE       n     1.089  0.0100     0.971  0.0182
+5WT         CAI          H8      SINGLE       n     1.082  0.0130     0.941  0.0186
+5WT         CAG          H9      SINGLE       n     1.082  0.0130     0.943  0.0175
+5WT         CAF         H10      SINGLE       n     1.082  0.0130     0.938  0.0125
+5WT         NAJ         H11      SINGLE       n     1.016  0.0100     0.874  0.0200
+5WT         CAA         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+5WT         CAA         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+5WT         CAA         H14      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5WT         CAM         CAB          H1     109.769    1.50
+5WT         CAM         CAB          H2     109.769    1.50
+5WT         CAM         CAB          H3     109.769    1.50
+5WT          H1         CAB          H2     109.180    1.50
+5WT          H1         CAB          H3     109.180    1.50
+5WT          H2         CAB          H3     109.180    1.50
+5WT         CAO         CAM         CAH     119.065    1.50
+5WT         CAO         CAM         CAB     121.032    1.50
+5WT         CAH         CAM         CAB     119.904    2.09
+5WT         CAN         CAH         CAM     120.440    1.50
+5WT         CAN         CAH          H4     119.641    1.50
+5WT         CAM         CAH          H4     119.919    1.50
+5WT         NAQ         CAN         OAE     118.187    1.50
+5WT         NAQ         CAN         CAH     119.994    2.98
+5WT         OAE         CAN         CAH     121.820    1.50
+5WT         CAC         NAQ         CAP     120.319    1.50
+5WT         CAC         NAQ         CAN     117.867    1.50
+5WT         CAP         NAQ         CAN     121.814    1.50
+5WT         NAQ         CAC          H5     109.345    1.50
+5WT         NAQ         CAC          H6     109.345    1.50
+5WT         NAQ         CAC          H7     109.345    1.50
+5WT          H5         CAC          H6     109.454    1.88
+5WT          H5         CAC          H7     109.454    1.88
+5WT          H6         CAC          H7     109.454    1.88
+5WT         CAI         CAP         NAQ     120.440    1.50
+5WT         CAI         CAP         CAO     119.993    1.50
+5WT         NAQ         CAP         CAO     119.568    1.50
+5WT         CAL         CAI         CAP     120.097    2.81
+5WT         CAL         CAI          H8     119.910    1.50
+5WT         CAP         CAI          H8     119.993    1.50
+5WT         CAP         CAO         CAG     118.922    1.50
+5WT         CAP         CAO         CAM     119.121    1.50
+5WT         CAG         CAO         CAM     121.957    1.50
+5WT         CAF         CAG         CAO     121.192    1.50
+5WT         CAF         CAG          H9     119.332    1.50
+5WT         CAO         CAG          H9     119.476    1.50
+5WT         CAL         CAF         CAG     120.525    1.50
+5WT         CAL         CAF         H10     119.778    1.50
+5WT         CAG         CAF         H10     119.697    1.50
+5WT         NAJ         CAL         CAI     122.888    2.44
+5WT         NAJ         CAL         CAF     117.841    3.00
+5WT         CAI         CAL         CAF     119.271    2.03
+5WT         CAK         NAJ         CAL     127.699    2.00
+5WT         CAK         NAJ         H11     116.960    1.78
+5WT         CAL         NAJ         H11     115.342    2.19
+5WT         CAA         CAK         NAJ     115.097    1.50
+5WT         CAA         CAK         OAD     121.781    1.50
+5WT         NAJ         CAK         OAD     123.122    1.50
+5WT         CAK         CAA         H12     109.546    1.50
+5WT         CAK         CAA         H13     109.546    1.50
+5WT         CAK         CAA         H14     109.546    1.50
+5WT         H12         CAA         H13     109.365    1.50
+5WT         H12         CAA         H14     109.365    1.50
+5WT         H13         CAA         H14     109.365    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5WT            sp2_sp3_13         CAO         CAM         CAB          H1     150.000    10.0     6
+5WT              const_13         CAL         CAF         CAG         CAO       0.000    10.0     2
+5WT              const_10         CAG         CAF         CAL         NAJ     180.000    10.0     2
+5WT             sp2_sp2_5         CAI         CAL         NAJ         CAK     180.000     5.0     2
+5WT             sp2_sp2_1         CAA         CAK         NAJ         CAL     180.000     5.0     2
+5WT             sp2_sp3_1         NAJ         CAK         CAA         H12       0.000    10.0     6
+5WT              const_42         CAN         CAH         CAM         CAB     180.000    10.0     2
+5WT              const_23         CAB         CAM         CAO         CAP     180.000    10.0     2
+5WT              const_38         CAM         CAH         CAN         OAE     180.000    10.0     2
+5WT              const_36         OAE         CAN         NAQ         CAC       0.000    10.0     2
+5WT             sp2_sp3_7         CAP         NAQ         CAC          H5     150.000    10.0     6
+5WT              const_32         CAI         CAP         NAQ         CAC       0.000    10.0     2
+5WT       const_sp2_sp2_2         CAL         CAI         CAP         NAQ     180.000     5.0     2
+5WT              const_25         CAG         CAO         CAP         CAI       0.000    10.0     2
+5WT       const_sp2_sp2_6         CAP         CAI         CAL         NAJ     180.000     5.0     2
+5WT              const_17         CAF         CAG         CAO         CAP       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5WT    plan-1         CAB   0.020
+5WT    plan-1         CAC   0.020
+5WT    plan-1         CAF   0.020
+5WT    plan-1         CAG   0.020
+5WT    plan-1         CAH   0.020
+5WT    plan-1         CAI   0.020
+5WT    plan-1         CAL   0.020
+5WT    plan-1         CAM   0.020
+5WT    plan-1         CAN   0.020
+5WT    plan-1         CAO   0.020
+5WT    plan-1         CAP   0.020
+5WT    plan-1         H10   0.020
+5WT    plan-1          H4   0.020
+5WT    plan-1          H8   0.020
+5WT    plan-1          H9   0.020
+5WT    plan-1         NAJ   0.020
+5WT    plan-1         NAQ   0.020
+5WT    plan-1         OAE   0.020
+5WT    plan-2         CAK   0.020
+5WT    plan-2         CAL   0.020
+5WT    plan-2         H11   0.020
+5WT    plan-2         NAJ   0.020
+5WT    plan-3         CAA   0.020
+5WT    plan-3         CAK   0.020
+5WT    plan-3         NAJ   0.020
+5WT    plan-3         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5WT            InChI                InChI  1.03 InChI=1S/C13H14N2O2/c1-8-6-13(17)15(3)12-7-10(14-9(2)16)4-5-11(8)12/h4-7H,1-3H3,(H,14,16)
+5WT         InChIKey                InChI  1.03                                                               YAOZNWQIDDSLHQ-UHFFFAOYSA-N
+5WT SMILES_CANONICAL               CACTVS 3.385                                                          CN1C(=O)C=C(C)c2ccc(NC(C)=O)cc12
+5WT           SMILES               CACTVS 3.385                                                          CN1C(=O)C=C(C)c2ccc(NC(C)=O)cc12
+5WT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                          CC1=CC(=O)N(c2c1ccc(c2)NC(=O)C)C
+5WT           SMILES "OpenEye OEToolkits" 2.0.4                                                          CC1=CC(=O)N(c2c1ccc(c2)NC(=O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5WT acedrg               243         "dictionary generator"                  
+5WT acedrg_database      11          "data source"                           
+5WT rdkit                2017.03.2   "Chemoinformatics tool"
+5WT refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,317 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZZH     ZZH      "(2S)-2-(4-benzylphenoxy)-3-phenylpropanoic acid"     NON-POLYMER     44     25     .     
+#
+data_comp_ZZH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZZH     CAK     C       CR16    0       19.372      61.531      15.872      
+ZZH     CAG     C       CR16    0       19.036      61.798      14.551      
+ZZH     CAD     C       CR16    0       17.824      62.379      14.248      
+ZZH     CAH     C       CR16    0       16.944      62.695      15.261      
+ZZH     CAL     C       CR16    0       17.278      62.429      16.583      
+ZZH     CAW     C       CR6     0       18.497      61.845      16.906      
+ZZH     CAR     C       CH2     0       18.860      61.553      18.341      
+ZZH     CAY     C       CH1     0       19.491      62.760      19.045      
+ZZH     CAT     C       C       0       19.646      62.470      20.538      
+ZZH     OAB     O       OC      -1      18.949      63.114      21.348      
+ZZH     OAA     O       O       0       20.465      61.601      20.896      
+ZZH     OAS     O       O2      0       20.774      63.002      18.425      
+ZZH     CAX     C       CR6     0       21.421      64.216      18.581      
+ZZH     CAP     C       CR16    0       22.603      64.318      17.855      
+ZZH     CAN     C       CR16    0       23.360      65.480      17.918      
+ZZH     CAO     C       CR16    0       21.016      65.293      19.370      
+ZZH     CAM     C       CR16    0       21.789      66.445      19.418      
+ZZH     CAV     C       CR6     0       22.972      66.562      18.698      
+ZZH     CAQ     C       CH2     0       23.804      67.826      18.758      
+ZZH     CAU     C       CR6     0       23.251      68.944      17.897      
+ZZH     CAI     C       CR16    0       23.401      68.921      16.517      
+ZZH     CAE     C       CR16    0       22.893      69.942      15.723      
+ZZH     CAC     C       CR16    0       22.226      71.001      16.302      
+ZZH     CAF     C       CR16    0       22.065      71.040      17.671      
+ZZH     CAJ     C       CR16    0       22.574      70.017      18.462      
+ZZH     HAK     H       H       0       20.204      61.132      16.073      
+ZZH     HAG     H       H       0       19.641      61.580      13.859      
+ZZH     HAD     H       H       0       17.597      62.560      13.349      
+ZZH     HAH     H       H       0       16.113      63.094      15.057      
+ZZH     HAL     H       H       0       16.670      62.649      17.272      
+ZZH     HAR     H       H       0       19.492      60.803      18.366      
+ZZH     HARA    H       H       0       18.051      61.285      18.828      
+ZZH     HAY     H       H       0       18.911      63.533      18.923      
+ZZH     HAP     H       H       0       22.890      63.597      17.318      
+ZZH     HAN     H       H       0       24.159      65.536      17.419      
+ZZH     HAO     H       H       0       20.220      65.245      19.871      
+ZZH     HAM     H       H       0       21.504      67.167      19.954      
+ZZH     HAQ     H       H       0       24.719      67.620      18.463      
+ZZH     HAQA    H       H       0       23.850      68.134      19.691      
+ZZH     HAI     H       H       0       23.857      68.200      16.113      
+ZZH     HAE     H       H       0       23.006      69.911      14.787      
+ZZH     HAC     H       H       0       21.880      71.695      15.764      
+ZZH     HAF     H       H       0       21.609      71.762      18.072      
+ZZH     HAJ     H       H       0       22.460      70.051      19.398      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZZH         CAK         CAG      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZZH         CAK         CAW      SINGLE       y     1.385  0.0111     1.385  0.0111
+ZZH         CAG         CAD      SINGLE       y     1.374  0.0127     1.374  0.0127
+ZZH         CAD         CAH      DOUBLE       y     1.374  0.0127     1.374  0.0127
+ZZH         CAH         CAL      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZZH         CAL         CAW      DOUBLE       y     1.385  0.0111     1.385  0.0111
+ZZH         CAW         CAR      SINGLE       n     1.509  0.0100     1.509  0.0100
+ZZH         CAR         CAY      SINGLE       n     1.531  0.0200     1.531  0.0200
+ZZH         CAY         CAT      SINGLE       n     1.526  0.0200     1.526  0.0200
+ZZH         CAY         OAS      SINGLE       n     1.434  0.0185     1.434  0.0185
+ZZH         CAT         OAB      SINGLE       n     1.247  0.0187     1.247  0.0187
+ZZH         CAT         OAA      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ZZH         OAS         CAX      SINGLE       n     1.378  0.0100     1.378  0.0100
+ZZH         CAX         CAP      DOUBLE       y     1.386  0.0109     1.386  0.0109
+ZZH         CAX         CAO      SINGLE       y     1.386  0.0109     1.386  0.0109
+ZZH         CAP         CAN      SINGLE       y     1.385  0.0100     1.385  0.0100
+ZZH         CAN         CAV      DOUBLE       y     1.387  0.0100     1.387  0.0100
+ZZH         CAO         CAM      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ZZH         CAM         CAV      SINGLE       y     1.387  0.0100     1.387  0.0100
+ZZH         CAV         CAQ      SINGLE       n     1.515  0.0100     1.515  0.0100
+ZZH         CAQ         CAU      SINGLE       n     1.515  0.0100     1.515  0.0100
+ZZH         CAU         CAI      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ZZH         CAU         CAJ      SINGLE       y     1.385  0.0100     1.385  0.0100
+ZZH         CAI         CAE      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZZH         CAE         CAC      DOUBLE       y     1.374  0.0127     1.374  0.0127
+ZZH         CAC         CAF      SINGLE       y     1.374  0.0127     1.374  0.0127
+ZZH         CAF         CAJ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZZH         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZZH         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZZH         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0161
+ZZH         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZZH         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZZH         CAR         HAR      SINGLE       n     1.089  0.0100     0.981  0.0169
+ZZH         CAR        HARA      SINGLE       n     1.089  0.0100     0.981  0.0169
+ZZH         CAY         HAY      SINGLE       n     1.089  0.0100     0.974  0.0160
+ZZH         CAP         HAP      SINGLE       n     1.082  0.0130     0.943  0.0169
+ZZH         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZZH         CAO         HAO      SINGLE       n     1.082  0.0130     0.943  0.0169
+ZZH         CAM         HAM      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZZH         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.983  0.0146
+ZZH         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.983  0.0146
+ZZH         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZZH         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZZH         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+ZZH         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZZH         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZZH         CAG         CAK         CAW     120.624    1.50
+ZZH         CAG         CAK         HAK     119.786    1.50
+ZZH         CAW         CAK         HAK     119.591    1.50
+ZZH         CAK         CAG         CAD     120.325    1.50
+ZZH         CAK         CAG         HAG     119.792    1.50
+ZZH         CAD         CAG         HAG     119.883    1.50
+ZZH         CAG         CAD         CAH     120.043    1.50
+ZZH         CAG         CAD         HAD     119.979    1.50
+ZZH         CAH         CAD         HAD     119.979    1.50
+ZZH         CAD         CAH         CAL     120.325    1.50
+ZZH         CAD         CAH         HAH     119.883    1.50
+ZZH         CAL         CAH         HAH     119.792    1.50
+ZZH         CAH         CAL         CAW     120.624    1.50
+ZZH         CAH         CAL         HAL     119.786    1.50
+ZZH         CAW         CAL         HAL     119.591    1.50
+ZZH         CAK         CAW         CAL     118.060    1.50
+ZZH         CAK         CAW         CAR     120.970    1.50
+ZZH         CAL         CAW         CAR     120.970    1.50
+ZZH         CAW         CAR         CAY     111.525    1.84
+ZZH         CAW         CAR         HAR     108.813    1.50
+ZZH         CAW         CAR        HARA     108.813    1.50
+ZZH         CAY         CAR         HAR     108.687    1.50
+ZZH         CAY         CAR        HARA     108.687    1.50
+ZZH         HAR         CAR        HARA     107.755    1.50
+ZZH         CAR         CAY         CAT     111.511    2.91
+ZZH         CAR         CAY         OAS     107.754    2.90
+ZZH         CAR         CAY         HAY     109.155    1.50
+ZZH         CAT         CAY         OAS     110.354    2.51
+ZZH         CAT         CAY         HAY     109.227    1.50
+ZZH         OAS         CAY         HAY     109.515    1.50
+ZZH         CAY         CAT         OAB     118.654    3.00
+ZZH         CAY         CAT         OAA     118.654    3.00
+ZZH         OAB         CAT         OAA     122.692    1.50
+ZZH         CAY         OAS         CAX     117.287    1.50
+ZZH         OAS         CAX         CAP     120.094    3.00
+ZZH         OAS         CAX         CAO     120.094    3.00
+ZZH         CAP         CAX         CAO     119.812    1.50
+ZZH         CAX         CAP         CAN     119.679    1.50
+ZZH         CAX         CAP         HAP     120.142    1.50
+ZZH         CAN         CAP         HAP     120.179    1.50
+ZZH         CAP         CAN         CAV     121.581    1.50
+ZZH         CAP         CAN         HAN     119.215    1.50
+ZZH         CAV         CAN         HAN     119.204    1.50
+ZZH         CAX         CAO         CAM     119.679    1.50
+ZZH         CAX         CAO         HAO     120.142    1.50
+ZZH         CAM         CAO         HAO     120.179    1.50
+ZZH         CAO         CAM         CAV     121.581    1.50
+ZZH         CAO         CAM         HAM     119.215    1.50
+ZZH         CAV         CAM         HAM     119.204    1.50
+ZZH         CAN         CAV         CAM     117.670    1.50
+ZZH         CAN         CAV         CAQ     121.164    1.50
+ZZH         CAM         CAV         CAQ     121.164    1.50
+ZZH         CAV         CAQ         CAU     113.580    2.36
+ZZH         CAV         CAQ         HAQ     108.797    1.50
+ZZH         CAV         CAQ        HAQA     108.797    1.50
+ZZH         CAU         CAQ         HAQ     108.797    1.50
+ZZH         CAU         CAQ        HAQA     108.797    1.50
+ZZH         HAQ         CAQ        HAQA     107.770    1.50
+ZZH         CAQ         CAU         CAI     121.122    1.50
+ZZH         CAQ         CAU         CAJ     121.122    1.50
+ZZH         CAI         CAU         CAJ     117.755    1.50
+ZZH         CAU         CAI         CAE     120.989    1.50
+ZZH         CAU         CAI         HAI     119.349    1.50
+ZZH         CAE         CAI         HAI     119.662    1.50
+ZZH         CAI         CAE         CAC     120.183    1.50
+ZZH         CAI         CAE         HAE     119.863    1.50
+ZZH         CAC         CAE         HAE     119.954    1.50
+ZZH         CAE         CAC         CAF     119.900    1.50
+ZZH         CAE         CAC         HAC     120.050    1.50
+ZZH         CAF         CAC         HAC     120.050    1.50
+ZZH         CAC         CAF         CAJ     120.183    1.50
+ZZH         CAC         CAF         HAF     119.954    1.50
+ZZH         CAJ         CAF         HAF     119.863    1.50
+ZZH         CAU         CAJ         CAF     120.989    1.50
+ZZH         CAU         CAJ         HAJ     119.349    1.50
+ZZH         CAF         CAJ         HAJ     119.662    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZZH              const_21         CAD         CAG         CAK         CAW       0.000    10.0     2
+ZZH              const_62         CAG         CAK         CAW         CAR     180.000    10.0     2
+ZZH             sp2_sp2_1         CAP         CAX         OAS         CAY     180.000     5.0     2
+ZZH              const_42         CAN         CAP         CAX         OAS     180.000    10.0     2
+ZZH              const_66         CAM         CAO         CAX         OAS     180.000    10.0     2
+ZZH              const_45         CAV         CAN         CAP         CAX       0.000    10.0     2
+ZZH              const_50         CAP         CAN         CAV         CAQ     180.000    10.0     2
+ZZH              const_57         CAV         CAM         CAO         CAX       0.000    10.0     2
+ZZH              const_54         CAO         CAM         CAV         CAQ     180.000    10.0     2
+ZZH            sp2_sp3_14         CAN         CAV         CAQ         CAU     -90.000    10.0     6
+ZZH            sp2_sp3_20         CAI         CAU         CAQ         CAV     -90.000    10.0     6
+ZZH       const_sp2_sp2_2         CAE         CAI         CAU         CAQ     180.000     5.0     2
+ZZH              const_70         CAF         CAJ         CAU         CAQ     180.000    10.0     2
+ZZH              const_25         CAH         CAD         CAG         CAK       0.000    10.0     2
+ZZH       const_sp2_sp2_5         CAC         CAE         CAI         CAU       0.000     5.0     2
+ZZH       const_sp2_sp2_9         CAF         CAC         CAE         CAI       0.000     5.0     2
+ZZH              const_13         CAE         CAC         CAF         CAJ       0.000    10.0     2
+ZZH              const_17         CAC         CAF         CAJ         CAU       0.000    10.0     2
+ZZH              const_29         CAG         CAD         CAH         CAL       0.000    10.0     2
+ZZH              const_33         CAD         CAH         CAL         CAW       0.000    10.0     2
+ZZH              const_38         CAH         CAL         CAW         CAR     180.000    10.0     2
+ZZH             sp2_sp3_2         CAK         CAW         CAR         CAY     -90.000    10.0     6
+ZZH             sp3_sp3_1         CAW         CAR         CAY         CAT     180.000    10.0     3
+ZZH            sp3_sp3_10         CAR         CAY         OAS         CAX     180.000    10.0     3
+ZZH             sp2_sp3_7         OAB         CAT         CAY         CAR       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZZH    chir_1    CAY    OAS    CAT    CAR    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZZH    plan-1         CAD   0.020
+ZZH    plan-1         CAG   0.020
+ZZH    plan-1         CAH   0.020
+ZZH    plan-1         CAK   0.020
+ZZH    plan-1         CAL   0.020
+ZZH    plan-1         CAR   0.020
+ZZH    plan-1         CAW   0.020
+ZZH    plan-1         HAD   0.020
+ZZH    plan-1         HAG   0.020
+ZZH    plan-1         HAH   0.020
+ZZH    plan-1         HAK   0.020
+ZZH    plan-1         HAL   0.020
+ZZH    plan-2         CAM   0.020
+ZZH    plan-2         CAN   0.020
+ZZH    plan-2         CAO   0.020
+ZZH    plan-2         CAP   0.020
+ZZH    plan-2         CAQ   0.020
+ZZH    plan-2         CAV   0.020
+ZZH    plan-2         CAX   0.020
+ZZH    plan-2         HAM   0.020
+ZZH    plan-2         HAN   0.020
+ZZH    plan-2         HAO   0.020
+ZZH    plan-2         HAP   0.020
+ZZH    plan-2         OAS   0.020
+ZZH    plan-3         CAC   0.020
+ZZH    plan-3         CAE   0.020
+ZZH    plan-3         CAF   0.020
+ZZH    plan-3         CAI   0.020
+ZZH    plan-3         CAJ   0.020
+ZZH    plan-3         CAQ   0.020
+ZZH    plan-3         CAU   0.020
+ZZH    plan-3         HAC   0.020
+ZZH    plan-3         HAE   0.020
+ZZH    plan-3         HAF   0.020
+ZZH    plan-3         HAI   0.020
+ZZH    plan-3         HAJ   0.020
+ZZH    plan-4         CAT   0.020
+ZZH    plan-4         CAY   0.020
+ZZH    plan-4         OAA   0.020
+ZZH    plan-4         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZZH           SMILES              ACDLabs 10.04                                                                                               O=C(O)C(Oc1ccc(cc1)Cc2ccccc2)Cc3ccccc3
+ZZH SMILES_CANONICAL               CACTVS 3.341                                                                                           OC(=O)[C@H](Cc1ccccc1)Oc2ccc(Cc3ccccc3)cc2
+ZZH           SMILES               CACTVS 3.341                                                                                            OC(=O)[CH](Cc1ccccc1)Oc2ccc(Cc3ccccc3)cc2
+ZZH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                        c1ccc(cc1)Cc2ccc(cc2)O[C@@H](Cc3ccccc3)C(=O)O
+ZZH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                             c1ccc(cc1)Cc2ccc(cc2)OC(Cc3ccccc3)C(=O)O
+ZZH            InChI                InChI  1.03 InChI=1S/C22H20O3/c23-22(24)21(16-18-9-5-2-6-10-18)25-20-13-11-19(12-14-20)15-17-7-3-1-4-8-17/h1-14,21H,15-16H2,(H,23,24)/t21-/m0/s1
+ZZH         InChIKey                InChI  1.03                                                                                                          YVAQXSJDDQRTTP-NRFANRHFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZZH acedrg               243         "dictionary generator"                  
+ZZH acedrg_database      11          "data source"                           
+ZZH rdkit                2017.03.2   "Chemoinformatics tool"
+ZZH refmac5              5.8.0238    "optimization tool"                     

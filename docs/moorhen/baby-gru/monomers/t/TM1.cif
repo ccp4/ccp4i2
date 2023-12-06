@@ -1,0 +1,373 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TM1     TM1      "2',3'-O-[(1r)-2,4,6-trinitrocyclohexa-2,5-diene-1,1-diyl]adenosine 5'-(dihydrogen phosphate)"     NON-POLYMER     51     38     .     
+#
+data_comp_TM1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TM1     N1      N       NRD6    0       39.760      -6.162      135.744     
+TM1     C2      C       CR16    0       38.976      -5.409      136.533     
+TM1     N3      N       NRD6    0       38.290      -4.306      136.229     
+TM1     C4      C       CR56    0       38.464      -3.974      134.935     
+TM1     C5      C       CR56    0       39.234      -4.643      134.004     
+TM1     C6      C       CR6     0       39.915      -5.799      134.443     
+TM1     N6      N       NH2     0       40.691      -6.541      133.657     
+TM1     N7      N       NRD5    0       39.165      -3.999      132.775     
+TM1     C8      C       CR15    0       38.373      -2.971      132.979     
+TM1     N9      N       NT      0       37.900      -2.917      134.273     
+TM1     PA      P       P       0       34.939      1.119       130.384     
+TM1     "C1'"   C       CH1     0       37.032      -1.905      134.880     
+TM1     O1A     O       OP      -1      35.086      2.624       130.513     
+TM1     C1F     C       CT      0       37.420      0.855       137.092     
+TM1     "C2'"   C       CH1     0       37.901      -0.821      135.532     
+TM1     "O2'"   O       O2      0       37.554      -0.566      136.894     
+TM1     O2A     O       O       0       33.548      0.698       129.952     
+TM1     C2F     C       CR6     0       38.661      1.406       137.828     
+TM1     N2F     N       N       1       39.984      1.077       137.400     
+TM1     O2F     O       OC      -1      40.220      0.804       136.237     
+TM1     "C3'"   C       CH1     0       37.579      0.475       134.775     
+TM1     "O3'"   O       O2      0       37.293      1.445       135.785     
+TM1     O3A     O       OP      -1      36.034      0.490       129.543     
+TM1     C3F     C       CR16    0       38.552      2.342       138.925     
+TM1     O3F     O       O       0       40.889      1.014       138.223     
+TM1     "C4'"   C       CH1     0       36.346      0.159       133.933     
+TM1     "O4'"   O       O2      0       36.258      -1.279      133.868     
+TM1     C4F     C       CH1     0       37.231      2.954       139.349     
+TM1     N4F     N       N       1       37.102      4.347       138.768     
+TM1     O4F     O       OC      -1      37.023      5.283       139.539     
+TM1     "C5'"   C       CH2     0       36.413      0.714       132.533     
+TM1     "O5'"   O       O2      0       35.135      0.529       131.874     
+TM1     C5F     C       CR16    0       36.046      2.106       138.929     
+TM1     O5F     O       O       0       37.083      4.466       137.558     
+TM1     C6F     C       CR6     0       36.104      1.137       137.848     
+TM1     N6F     N       N       1       34.899      0.433       137.504     
+TM1     O6F     O       OC      -1      33.847      0.723       138.058     
+TM1     O7F     O       O       0       34.903      -0.465      136.679     
+TM1     H2      H       H       0       38.901      -5.701      137.428     
+TM1     HN6     H       H       0       40.813      -6.308      132.819     
+TM1     HN6A    H       H       0       41.081      -7.259      133.979     
+TM1     H8      H       H       0       38.149      -2.355      132.303     
+TM1     "H1'"   H       H       0       36.437      -2.329      135.543     
+TM1     "H2'"   H       H       0       38.850      -1.066      135.446     
+TM1     "H3'"   H       H       0       38.338      0.761       134.213     
+TM1     H3F     H       H       0       39.332      2.588       139.396     
+TM1     "H4'"   H       H       0       35.540      0.516       134.380     
+TM1     H4F     H       H       0       37.225      3.037       140.332     
+TM1     "H5'"   H       H       0       37.117      0.251       132.034     
+TM1     "H5'A"  H       H       0       36.635      1.667       132.572     
+TM1     H5F     H       H       0       35.237      2.214       139.402     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TM1          N1          C2      DOUBLE       y     1.339  0.0100     1.339  0.0100
+TM1          N1          C6      SINGLE       y     1.354  0.0100     1.354  0.0100
+TM1          C2          N3      SINGLE       y     1.330  0.0100     1.330  0.0100
+TM1          N3          C4      DOUBLE       y     1.343  0.0100     1.343  0.0100
+TM1          C4          C5      SINGLE       y     1.381  0.0100     1.381  0.0100
+TM1          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+TM1          C5          C6      DOUBLE       y     1.408  0.0100     1.408  0.0100
+TM1          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+TM1          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+TM1          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+TM1          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+TM1          N9       "C1'"      SINGLE       n     1.460  0.0200     1.460  0.0200
+TM1          PA         O1A      SINGLE       n     1.517  0.0192     1.517  0.0192
+TM1          PA         O2A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+TM1          PA         O3A      SINGLE       n     1.517  0.0192     1.517  0.0192
+TM1          PA       "O5'"      SINGLE       n     1.614  0.0178     1.614  0.0178
+TM1       "C1'"       "C2'"      SINGLE       n     1.534  0.0116     1.534  0.0116
+TM1       "C1'"       "O4'"      SINGLE       n     1.416  0.0117     1.416  0.0117
+TM1         C1F       "O2'"      SINGLE       n     1.429  0.0200     1.429  0.0200
+TM1         C1F         C2F      SINGLE       n     1.516  0.0147     1.516  0.0147
+TM1         C1F       "O3'"      SINGLE       n     1.429  0.0200     1.429  0.0200
+TM1         C1F         C6F      SINGLE       n     1.516  0.0147     1.516  0.0147
+TM1       "C2'"       "O2'"      SINGLE       n     1.426  0.0107     1.426  0.0107
+TM1       "C2'"       "C3'"      SINGLE       n     1.538  0.0132     1.538  0.0132
+TM1         C2F         N2F      SINGLE       n     1.395  0.0200     1.395  0.0200
+TM1         C2F         C3F      DOUBLE       n     1.432  0.0200     1.432  0.0200
+TM1         N2F         O2F      SINGLE       n     1.221  0.0162     1.221  0.0162
+TM1         N2F         O3F      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TM1       "C3'"       "O3'"      SINGLE       n     1.426  0.0107     1.426  0.0107
+TM1       "C3'"       "C4'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+TM1         C3F         C4F      SINGLE       n     1.518  0.0100     1.518  0.0100
+TM1       "C4'"       "O4'"      SINGLE       n     1.440  0.0100     1.440  0.0100
+TM1       "C4'"       "C5'"      SINGLE       n     1.506  0.0149     1.506  0.0149
+TM1         C4F         N4F      SINGLE       n     1.511  0.0200     1.511  0.0200
+TM1         C4F         C5F      SINGLE       n     1.518  0.0100     1.518  0.0100
+TM1         N4F         O4F      SINGLE       n     1.215  0.0117     1.215  0.0117
+TM1         N4F         O5F      DOUBLE       n     1.215  0.0117     1.215  0.0117
+TM1       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+TM1         C5F         C6F      DOUBLE       n     1.432  0.0200     1.432  0.0200
+TM1         C6F         N6F      SINGLE       n     1.395  0.0200     1.395  0.0200
+TM1         N6F         O6F      SINGLE       n     1.221  0.0162     1.221  0.0162
+TM1         N6F         O7F      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TM1          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+TM1          N6         HN6      SINGLE       n     1.016  0.0100     0.877  0.0200
+TM1          N6        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+TM1          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+TM1       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.987  0.0200
+TM1       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.986  0.0173
+TM1       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.986  0.0173
+TM1         C3F         H3F      SINGLE       n     1.082  0.0130     0.945  0.0200
+TM1       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.990  0.0155
+TM1         C4F         H4F      SINGLE       n     1.089  0.0100     0.987  0.0159
+TM1       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.979  0.0188
+TM1       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.979  0.0188
+TM1         C5F         H5F      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TM1          C2          N1          C6     118.521    1.50
+TM1          N1          C2          N3     129.332    1.50
+TM1          N1          C2          H2     115.313    1.50
+TM1          N3          C2          H2     115.355    1.50
+TM1          C2          N3          C4     110.982    1.50
+TM1          N3          C4          C5     126.489    1.50
+TM1          N3          C4          N9     125.845    1.50
+TM1          C5          C4          N9     107.666    1.69
+TM1          C4          C5          C6     117.267    1.50
+TM1          C4          C5          N7     110.588    1.50
+TM1          C6          C5          N7     132.145    1.50
+TM1          N1          C6          C5     117.409    1.50
+TM1          N1          C6          N6     118.799    1.50
+TM1          C5          C6          N6     123.792    1.50
+TM1          C6          N6         HN6     119.723    1.50
+TM1          C6          N6        HN6A     119.723    1.50
+TM1         HN6          N6        HN6A     120.554    1.88
+TM1          C5          N7          C8     103.927    1.50
+TM1          N7          C8          N9     112.130    1.94
+TM1          N7          C8          H8     123.170    1.50
+TM1          N9          C8          H8     124.701    2.19
+TM1          C4          N9          C8     107.594    1.50
+TM1          C4          N9       "C1'"     125.158    1.54
+TM1          C8          N9       "C1'"     126.078    2.46
+TM1         O1A          PA         O2A     112.864    1.69
+TM1         O1A          PA         O3A     112.864    1.69
+TM1         O1A          PA       "O5'"     105.808    2.07
+TM1         O2A          PA         O3A     112.864    1.69
+TM1         O2A          PA       "O5'"     105.808    2.07
+TM1         O3A          PA       "O5'"     105.808    2.07
+TM1          N9       "C1'"       "C2'"     113.788    3.00
+TM1          N9       "C1'"       "O4'"     108.167    1.51
+TM1          N9       "C1'"       "H1'"     109.246    1.50
+TM1       "C2'"       "C1'"       "O4'"     105.038    1.50
+TM1       "C2'"       "C1'"       "H1'"     110.225    1.62
+TM1       "O4'"       "C1'"       "H1'"     109.180    1.50
+TM1       "O2'"         C1F         C2F     108.967    2.70
+TM1       "O2'"         C1F       "O3'"     105.876    1.50
+TM1       "O2'"         C1F         C6F     108.967    2.70
+TM1         C2F         C1F       "O3'"     108.967    2.70
+TM1         C2F         C1F         C6F     112.190    2.26
+TM1       "O3'"         C1F         C6F     108.967    2.70
+TM1       "C1'"       "C2'"       "O2'"     110.652    2.06
+TM1       "C1'"       "C2'"       "C3'"     104.424    1.81
+TM1       "C1'"       "C2'"       "H2'"     110.691    1.64
+TM1       "O2'"       "C2'"       "C3'"     104.902    1.50
+TM1       "O2'"       "C2'"       "H2'"     112.035    1.50
+TM1       "C3'"       "C2'"       "H2'"     112.228    1.50
+TM1         C1F       "O2'"       "C2'"     107.598    1.76
+TM1         C1F         C2F         N2F     117.745    1.50
+TM1         C1F         C2F         C3F     121.527    3.00
+TM1         N2F         C2F         C3F     120.727    2.97
+TM1         C2F         N2F         O2F     119.577    1.50
+TM1         C2F         N2F         O3F     119.577    1.50
+TM1         O2F         N2F         O3F     120.845    1.50
+TM1       "C2'"       "C3'"       "O3'"     104.902    1.50
+TM1       "C2'"       "C3'"       "C4'"     105.191    1.50
+TM1       "C2'"       "C3'"       "H3'"     112.228    1.50
+TM1       "O3'"       "C3'"       "C4'"     111.216    2.18
+TM1       "O3'"       "C3'"       "H3'"     112.035    1.50
+TM1       "C4'"       "C3'"       "H3'"     112.341    1.50
+TM1         C1F       "O3'"       "C3'"     107.598    1.76
+TM1         C2F         C3F         C4F     122.107    3.00
+TM1         C2F         C3F         H3F     118.768    1.50
+TM1         C4F         C3F         H3F     119.125    1.79
+TM1       "C3'"       "C4'"       "O4'"     104.779    1.50
+TM1       "C3'"       "C4'"       "C5'"     113.696    1.50
+TM1       "C3'"       "C4'"       "H4'"     109.132    1.50
+TM1       "O4'"       "C4'"       "C5'"     109.275    1.50
+TM1       "O4'"       "C4'"       "H4'"     108.802    1.73
+TM1       "C5'"       "C4'"       "H4'"     108.994    1.50
+TM1       "C1'"       "O4'"       "C4'"     109.401    1.52
+TM1         C3F         C4F         N4F     110.078    2.01
+TM1         C3F         C4F         C5F     112.879    3.00
+TM1         C3F         C4F         H4F     108.678    1.50
+TM1         N4F         C4F         C5F     110.078    2.01
+TM1         N4F         C4F         H4F     107.692    1.50
+TM1         C5F         C4F         H4F     108.678    1.50
+TM1         C4F         N4F         O4F     118.054    1.50
+TM1         C4F         N4F         O5F     118.048    1.50
+TM1         O4F         N4F         O5F     123.887    1.50
+TM1       "C4'"       "C5'"       "O5'"     108.904    2.44
+TM1       "C4'"       "C5'"       "H5'"     109.191    1.50
+TM1       "C4'"       "C5'"      "H5'A"     109.191    1.50
+TM1       "O5'"       "C5'"       "H5'"     109.821    1.50
+TM1       "O5'"       "C5'"      "H5'A"     109.821    1.50
+TM1       "H5'"       "C5'"      "H5'A"     108.335    1.56
+TM1          PA       "O5'"       "C5'"     118.783    1.50
+TM1         C4F         C5F         C6F     122.107    3.00
+TM1         C4F         C5F         H5F     119.125    1.79
+TM1         C6F         C5F         H5F     118.768    1.50
+TM1         C1F         C6F         C5F     121.527    3.00
+TM1         C1F         C6F         N6F     117.745    1.50
+TM1         C5F         C6F         N6F     120.727    2.97
+TM1         C6F         N6F         O6F     119.577    1.50
+TM1         C6F         N6F         O7F     119.577    1.50
+TM1         O6F         N6F         O7F     120.845    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TM1       const_sp2_sp2_1          N3          C2          N1          C6       0.000     5.0     2
+TM1              const_24          N6          C6          N1          C2     180.000    10.0     2
+TM1            sp3_sp3_41       "C5'"       "O5'"          PA         O1A     -60.000    10.0     3
+TM1             sp3_sp3_5          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+TM1            sp3_sp3_44          N9       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+TM1            sp3_sp3_33         C2F         C1F       "O2'"       "C2'"     180.000    10.0     3
+TM1             sp2_sp3_6         N2F         C2F         C1F       "O2'"      60.000    10.0     6
+TM1            sp3_sp3_46       "O2'"         C1F       "O3'"       "C3'"     180.000    10.0     3
+TM1            sp2_sp3_29         N6F         C6F         C1F       "O2'"     -60.000    10.0     6
+TM1            sp3_sp3_35       "C1'"       "C2'"       "O2'"         C1F     180.000    10.0     3
+TM1            sp3_sp3_11       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+TM1            sp2_sp2_13         C1F         C2F         N2F         O2F     180.000     5.0     2
+TM1             sp2_sp2_3         N2F         C2F         C3F         C4F     180.000     5.0     2
+TM1       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+TM1            sp3_sp3_37       "C2'"       "C3'"       "O3'"         C1F     -60.000    10.0     3
+TM1            sp3_sp3_20       "C2'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+TM1             sp2_sp3_9         C2F         C3F         C4F         N4F    -120.000    10.0     6
+TM1            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+TM1            sp3_sp3_49       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+TM1            sp2_sp3_32         O4F         N4F         C4F         C3F     120.000    10.0     6
+TM1            sp2_sp3_14         C6F         C5F         C4F         N4F     120.000    10.0     6
+TM1       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+TM1            sp3_sp3_58       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+TM1             sp2_sp2_6         C4F         C5F         C6F         N6F     180.000     5.0     2
+TM1            sp2_sp2_17         C1F         C6F         N6F         O6F     180.000     5.0     2
+TM1       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+TM1              const_27          N3          C4          N9          C8     180.000    10.0     2
+TM1              const_12          C4          C5          C6          N6     180.000    10.0     2
+TM1              const_15          C4          C5          N7          C8       0.000    10.0     2
+TM1            sp2_sp2_11          N1          C6          N6         HN6       0.000     5.0     2
+TM1              const_17          N9          C8          N7          C5       0.000    10.0     2
+TM1              const_19          N7          C8          N9          C4       0.000    10.0     2
+TM1            sp2_sp3_19          C4          N9       "C1'"       "C2'"     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TM1    chir_1    PA    "O5'"    O1A    O3A    both
+TM1    chir_2    "C1'"    "O4'"    N9    "C2'"    negative
+TM1    chir_3    C1F    "O2'"    "O3'"    C2F    both
+TM1    chir_4    "C2'"    "O2'"    "C1'"    "C3'"    negative
+TM1    chir_5    "C3'"    "O3'"    "C2'"    "C4'"    negative
+TM1    chir_6    "C4'"    "O4'"    "C3'"    "C5'"    negative
+TM1    chir_7    C4F    N4F    C3F    C5F    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TM1    plan-1       "C1'"   0.020
+TM1    plan-1          C2   0.020
+TM1    plan-1          C4   0.020
+TM1    plan-1          C5   0.020
+TM1    plan-1          C6   0.020
+TM1    plan-1          C8   0.020
+TM1    plan-1          H2   0.020
+TM1    plan-1          H8   0.020
+TM1    plan-1          N1   0.020
+TM1    plan-1          N3   0.020
+TM1    plan-1          N6   0.020
+TM1    plan-1          N7   0.020
+TM1    plan-1          N9   0.020
+TM1    plan-2          C6   0.020
+TM1    plan-2         HN6   0.020
+TM1    plan-2        HN6A   0.020
+TM1    plan-2          N6   0.020
+TM1    plan-3         C1F   0.020
+TM1    plan-3         C2F   0.020
+TM1    plan-3         C3F   0.020
+TM1    plan-3         N2F   0.020
+TM1    plan-4         C2F   0.020
+TM1    plan-4         N2F   0.020
+TM1    plan-4         O2F   0.020
+TM1    plan-4         O3F   0.020
+TM1    plan-5         C2F   0.020
+TM1    plan-5         C3F   0.020
+TM1    plan-5         C4F   0.020
+TM1    plan-5         H3F   0.020
+TM1    plan-6         C4F   0.020
+TM1    plan-6         N4F   0.020
+TM1    plan-6         O4F   0.020
+TM1    plan-6         O5F   0.020
+TM1    plan-7         C4F   0.020
+TM1    plan-7         C5F   0.020
+TM1    plan-7         C6F   0.020
+TM1    plan-7         H5F   0.020
+TM1    plan-8         C1F   0.020
+TM1    plan-8         C5F   0.020
+TM1    plan-8         C6F   0.020
+TM1    plan-8         N6F   0.020
+TM1    plan-9         C6F   0.020
+TM1    plan-9         N6F   0.020
+TM1    plan-9         O6F   0.020
+TM1    plan-9         O7F   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TM1           SMILES              ACDLabs 12.01                                                                                                                                "[O-][N+](=O)C5=CC([N+]([O-])=O)C=C([N+]([O-])=O)C15OC4C(O1)C(OC4n2c3ncnc(N)c3nc2)COP(=O)(O)O"
+TM1 SMILES_CANONICAL               CACTVS 3.370                                                                                                      Nc1ncnc2n(cnc12)[C@@H]3O[C@H](CO[P](O)(O)=O)[C@H]4O[C@@]5(O[C@@H]34)C(=C[C@H](C=C5[N+]([O-])=O)[N+]([O-])=O)[N+]([O-])=O
+TM1           SMILES               CACTVS 3.370                                                                                                               Nc1ncnc2n(cnc12)[CH]3O[CH](CO[P](O)(O)=O)[CH]4O[C]5(O[CH]34)C(=C[CH](C=C5[N+]([O-])=O)[N+]([O-])=O)[N+]([O-])=O
+TM1 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                           c1nc(c2c(n1)n(cn2)[C@H]3[C@H]4[C@@H]([C@H](O3)COP(=O)(O)O)OC5(O4)C(=CC(C=C5[N+](=O)[O-])[N+](=O)[O-])[N+](=O)[O-])N
+TM1           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                            c1nc(c2c(n1)n(cn2)C3C4C(C(O3)COP(=O)(O)O)OC5(O4)C(=CC(C=C5[N+](=O)[O-])[N+](=O)[O-])[N+](=O)[O-])N
+TM1            InChI                InChI  1.03 InChI=1S/C16H15N8O13P/c17-13-10-14(19-4-18-13)21(5-20-10)15-12-11(7(35-15)3-34-38(31,32)33)36-16(37-12)8(23(27)28)1-6(22(25)26)2-9(16)24(29)30/h1-2,4-7,11-12,15H,3H2,(H2,17,18,19)(H2,31,32,33)/t6?,7-,11-,12-,15-,16-/m1/s1
+TM1         InChIKey                InChI  1.03                                                                                                                                                                                                   OHPXFACYTRBVRA-DLHKNTDHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TM1 acedrg               243         "dictionary generator"                  
+TM1 acedrg_database      11          "data source"                           
+TM1 rdkit                2017.03.2   "Chemoinformatics tool"
+TM1 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,202 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5C1     5C1      5-(2-chlorophenyl)-N-hydroxy-1,3-oxazole-2-carboxamide     NON-POLYMER     23     16     .     
+#
+data_comp_5C1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5C1     CAA     C       CR5     0       -1.929      -0.687      8.275       
+5C1     OAB     O       OH1     0       1.069       0.883       9.745       
+5C1     CAC     C       CR15    0       -3.803      -1.358      7.458       
+5C1     CAD     C       CR5     0       -4.062      -0.976      8.722       
+5C1     CAE     C       C       0       -0.522      -0.320      8.469       
+5C1     CAF     C       CR6     0       -5.250      -0.947      9.574       
+5C1     CAG     C       CR6     0       -5.527      0.112       10.450      
+5C1     CAH     C       CR16    0       -6.679      0.106       11.231      
+5C1     CAI     C       CR16    0       -7.565      -0.946      11.136      
+5C1     NAI     N       NRD5    0       -2.471      -1.169      7.184       
+5C1     CAJ     C       CR16    0       -7.314      -1.992      10.271      
+5C1     CAK     C       CR16    0       -6.169      -1.994      9.490       
+5C1     NAL     N       NH1     0       -0.232      0.453       9.511       
+5C1     OAN     O       O2      0       -2.861      -0.560      9.258       
+5C1     OAO     O       O       0       0.337       -0.710      7.676       
+5C1     CL      CL      CL      0       -4.460      1.466       10.612      
+5C1     HOAB    H       H       0       1.237       1.529       9.191       
+5C1     HAC     H       H       0       -4.437      -1.701      6.835       
+5C1     HAH     H       H       0       -6.850      0.818       11.819      
+5C1     HAI     H       H       0       -8.341      -0.950      11.664      
+5C1     HAJ     H       H       0       -7.923      -2.711      10.212      
+5C1     HAK     H       H       0       -6.006      -2.713      8.903       
+5C1     HNAL    H       H       0       -0.840      0.716       10.080      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5C1         CAA         CAE      SINGLE       n     1.461  0.0200     1.461  0.0200
+5C1         CAA         NAI      DOUBLE       y     1.315  0.0200     1.315  0.0200
+5C1         CAA         OAN      SINGLE       y     1.361  0.0100     1.361  0.0100
+5C1         OAB         NAL      SINGLE       n     1.389  0.0110     1.389  0.0110
+5C1         CAC         CAD      DOUBLE       y     1.345  0.0100     1.345  0.0100
+5C1         CAC         NAI      SINGLE       y     1.373  0.0106     1.373  0.0106
+5C1         CAD         CAF      SINGLE       n     1.458  0.0100     1.458  0.0100
+5C1         CAD         OAN      SINGLE       y     1.378  0.0100     1.378  0.0100
+5C1         CAE         NAL      SINGLE       n     1.327  0.0100     1.327  0.0100
+5C1         CAE         OAO      DOUBLE       n     1.231  0.0100     1.231  0.0100
+5C1         CAF         CAG      DOUBLE       y     1.391  0.0118     1.391  0.0118
+5C1         CAF         CAK      SINGLE       y     1.392  0.0100     1.392  0.0100
+5C1         CAG         CAH      SINGLE       y     1.387  0.0114     1.387  0.0114
+5C1         CAG          CL      SINGLE       n     1.727  0.0200     1.727  0.0200
+5C1         CAH         CAI      DOUBLE       y     1.372  0.0132     1.372  0.0132
+5C1         CAI         CAJ      SINGLE       y     1.376  0.0124     1.376  0.0124
+5C1         CAJ         CAK      DOUBLE       y     1.383  0.0100     1.383  0.0100
+5C1         OAB        HOAB      SINGLE       n     0.970  0.0120     0.867  0.0200
+5C1         CAC         HAC      SINGLE       n     1.082  0.0130     0.953  0.0200
+5C1         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0140
+5C1         CAI         HAI      SINGLE       n     1.082  0.0130     0.939  0.0165
+5C1         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0180
+5C1         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0100
+5C1         NAL        HNAL      SINGLE       n     1.016  0.0100     0.872  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5C1         CAE         CAA         NAI     127.594    3.00
+5C1         CAE         CAA         OAN     121.431    2.20
+5C1         NAI         CAA         OAN     110.975    1.50
+5C1         NAL         OAB        HOAB     107.689    3.00
+5C1         CAD         CAC         NAI     109.060    1.50
+5C1         CAD         CAC         HAC     126.431    2.01
+5C1         NAI         CAC         HAC     124.509    1.50
+5C1         CAC         CAD         CAF     136.307    1.50
+5C1         CAC         CAD         OAN     106.627    1.50
+5C1         CAF         CAD         OAN     117.067    1.50
+5C1         CAA         CAE         NAL     116.585    2.93
+5C1         CAA         CAE         OAO     120.840    1.50
+5C1         NAL         CAE         OAO     122.575    1.53
+5C1         CAD         CAF         CAG     120.400    1.61
+5C1         CAD         CAF         CAK     120.340    1.50
+5C1         CAG         CAF         CAK     119.261    1.64
+5C1         CAF         CAG         CAH     121.191    1.50
+5C1         CAF         CAG          CL     120.289    1.50
+5C1         CAH         CAG          CL     118.519    1.50
+5C1         CAG         CAH         CAI     119.145    1.50
+5C1         CAG         CAH         HAH     120.236    1.50
+5C1         CAI         CAH         HAH     120.619    1.50
+5C1         CAH         CAI         CAJ     120.020    1.50
+5C1         CAH         CAI         HAI     119.869    1.50
+5C1         CAJ         CAI         HAI     120.111    1.50
+5C1         CAA         NAI         CAC     106.508    1.65
+5C1         CAI         CAJ         CAK     120.083    1.50
+5C1         CAI         CAJ         HAJ     120.059    1.50
+5C1         CAK         CAJ         HAJ     119.858    1.50
+5C1         CAF         CAK         CAJ     120.301    1.50
+5C1         CAF         CAK         HAK     119.804    1.50
+5C1         CAJ         CAK         HAK     119.895    1.50
+5C1         OAB         NAL         CAE     120.688    1.50
+5C1         OAB         NAL        HNAL     117.383    3.00
+5C1         CAE         NAL        HNAL     121.929    2.28
+5C1         CAA         OAN         CAD     106.829    1.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5C1              const_32         CAE         CAA         OAN         CAD     180.000    10.0     2
+5C1             sp2_sp2_1         NAI         CAA         CAE         NAL     180.000     5.0     2
+5C1       const_sp2_sp2_2         CAE         CAA         NAI         CAC     180.000     5.0     2
+5C1              const_27         CAI         CAJ         CAK         CAF       0.000    10.0     2
+5C1       const_sp2_sp2_6         NAI         CAC         CAD         CAF     180.000     5.0     2
+5C1       const_sp2_sp2_3         CAD         CAC         NAI         CAA       0.000     5.0     2
+5C1       const_sp2_sp2_9         CAC         CAD         OAN         CAA       0.000     5.0     2
+5C1             sp2_sp2_5         CAC         CAD         CAF         CAG     180.000     5.0     2
+5C1            sp2_sp2_11         OAO         CAE         NAL         OAB       0.000     5.0     2
+5C1              const_35         CAD         CAF         CAK         CAJ     180.000    10.0     2
+5C1              const_14         CAD         CAF         CAG          CL       0.000    10.0     2
+5C1              const_17          CL         CAG         CAH         CAI     180.000    10.0     2
+5C1              const_19         CAG         CAH         CAI         CAJ       0.000    10.0     2
+5C1              const_23         CAH         CAI         CAJ         CAK       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5C1    plan-1         CAA   0.020
+5C1    plan-1         CAC   0.020
+5C1    plan-1         CAD   0.020
+5C1    plan-1         CAE   0.020
+5C1    plan-1         CAF   0.020
+5C1    plan-1         HAC   0.020
+5C1    plan-1         NAI   0.020
+5C1    plan-1         OAN   0.020
+5C1    plan-2         CAD   0.020
+5C1    plan-2         CAF   0.020
+5C1    plan-2         CAG   0.020
+5C1    plan-2         CAH   0.020
+5C1    plan-2         CAI   0.020
+5C1    plan-2         CAJ   0.020
+5C1    plan-2         CAK   0.020
+5C1    plan-2          CL   0.020
+5C1    plan-2         HAH   0.020
+5C1    plan-2         HAI   0.020
+5C1    plan-2         HAJ   0.020
+5C1    plan-2         HAK   0.020
+5C1    plan-3         CAA   0.020
+5C1    plan-3         CAE   0.020
+5C1    plan-3         NAL   0.020
+5C1    plan-3         OAO   0.020
+5C1    plan-4         CAE   0.020
+5C1    plan-4        HNAL   0.020
+5C1    plan-4         NAL   0.020
+5C1    plan-4         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5C1            InChI                InChI  1.03 InChI=1S/C10H7ClN2O3/c11-7-4-2-1-3-6(7)8-5-12-10(16-8)9(14)13-15/h1-5,15H,(H,13,14)
+5C1         InChIKey                InChI  1.03                                                         OZEMICSCADZYKS-UHFFFAOYSA-N
+5C1           SMILES              ACDLabs 12.01                                                        O=C(c1ncc(o1)c2c(Cl)cccc2)NO
+5C1 SMILES_CANONICAL               CACTVS 3.370                                                          ONC(=O)c1oc(cn1)c2ccccc2Cl
+5C1           SMILES               CACTVS 3.370                                                          ONC(=O)c1oc(cn1)c2ccccc2Cl
+5C1 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                      c1ccc(c(c1)c2cnc(o2)C(=O)NO)Cl
+5C1           SMILES "OpenEye OEToolkits" 1.7.2                                                      c1ccc(c(c1)c2cnc(o2)C(=O)NO)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5C1 acedrg               243         "dictionary generator"                  
+5C1 acedrg_database      11          "data source"                           
+5C1 rdkit                2017.03.2   "Chemoinformatics tool"
+5C1 refmac5              5.8.0238    "optimization tool"                     

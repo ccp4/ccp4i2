@@ -1,0 +1,112 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DHL     DHL      2-AMINO-ETHANETHIOL     NON-POLYMER     11     4     .     
+#
+data_comp_DHL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DHL     N       N       NT2     0       13.433      17.084      -13.155     
+DHL     CA      C       CH2     0       13.995      17.206      -14.502     
+DHL     CB      C       CH2     0       14.734      18.509      -14.710     
+DHL     SG      S       SH1     0       13.637      19.910      -15.050     
+DHL     HN1     H       H       0       12.876      16.394      -13.120     
+DHL     HN2     H       H       0       12.965      17.811      -12.951     
+DHL     HA2     H       H       0       13.270      17.140      -15.158     
+DHL     HA3     H       H       0       14.613      16.461      -14.658     
+DHL     HB2     H       H       0       15.348      18.408      -15.456     
+DHL     HB3     H       H       0       15.254      18.707      -13.913     
+DHL     HS      H       HSH1    0       12.611      19.386      -14.706     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DHL           N          CA      SINGLE       n     1.464  0.0200     1.464  0.0200
+DHL          CA          CB      SINGLE       n     1.512  0.0155     1.512  0.0155
+DHL          CB          SG      SINGLE       n     1.811  0.0100     1.811  0.0100
+DHL           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+DHL           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+DHL          CA         HA2      SINGLE       n     1.089  0.0100     0.980  0.0143
+DHL          CA         HA3      SINGLE       n     1.089  0.0100     0.980  0.0143
+DHL          CB         HB2      SINGLE       n     1.089  0.0100     0.972  0.0107
+DHL          CB         HB3      SINGLE       n     1.089  0.0100     0.972  0.0107
+DHL          SG          HS      SINGLE       n     1.338  0.0100     1.203  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DHL          CA           N         HN1     109.962    3.00
+DHL          CA           N         HN2     109.962    3.00
+DHL         HN1           N         HN2     107.243    3.00
+DHL           N          CA          CB     111.883    2.59
+DHL           N          CA         HA2     108.870    1.50
+DHL           N          CA         HA3     108.870    1.50
+DHL          CB          CA         HA2     108.883    1.50
+DHL          CB          CA         HA3     108.883    1.50
+DHL         HA2          CA         HA3     107.873    1.50
+DHL          CA          CB          SG     112.239    3.00
+DHL          CA          CB         HB2     108.864    1.50
+DHL          CA          CB         HB3     108.864    1.50
+DHL          SG          CB         HB2     108.594    1.76
+DHL          SG          CB         HB3     108.594    1.76
+DHL         HB2          CB         HB3     108.165    1.50
+DHL          CB          SG          HS      97.089    1.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DHL             sp3_sp3_1          CB          CA           N         HN1     180.000    10.0     3
+DHL             sp3_sp3_7           N          CA          CB          SG     180.000    10.0     3
+DHL            sp3_sp3_16          CA          CB          SG          HS     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DHL           SMILES              ACDLabs 10.04                               SCCN
+DHL SMILES_CANONICAL               CACTVS 3.341                               NCCS
+DHL           SMILES               CACTVS 3.341                               NCCS
+DHL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                             C(CS)N
+DHL           SMILES "OpenEye OEToolkits" 1.5.0                             C(CS)N
+DHL            InChI                InChI  1.03 InChI=1S/C2H7NS/c3-1-2-4/h4H,1-3H2
+DHL         InChIKey                InChI  1.03        UFULAYFCSOUIOV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DHL acedrg               243         "dictionary generator"                  
+DHL acedrg_database      11          "data source"                           
+DHL rdkit                2017.03.2   "Chemoinformatics tool"
+DHL refmac5              5.8.0238    "optimization tool"                     

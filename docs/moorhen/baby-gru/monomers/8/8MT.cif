@@ -1,0 +1,153 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8MT     8MT      4,5-bis(bromanyl)thiophene-2-carbohydrazide     NON-POLYMER     15     11     .     
+#
+data_comp_8MT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8MT     C2      C       CR15    0       140.660     -2.180      2.911       
+8MT     C1      C       CR5     0       139.710     -1.919      1.940       
+8MT     N1      N       NH1     0       137.580     -1.919      0.855       
+8MT     C4      C       CR5     0       141.909     -1.003      1.348       
+8MT     C3      C       CR5     0       141.933     -1.641      2.552       
+8MT     BR1     BR      BR      0       143.281     -0.147      0.447       
+8MT     BR      BR      BR      0       143.464     -1.790      3.609       
+8MT     S       S       S2      0       140.388     -1.059      0.678       
+8MT     C       C       C       0       138.288     -2.300      1.926       
+8MT     O       O       O       0       137.799     -2.933      2.863       
+8MT     N       N       NT2     0       136.205     -2.212      0.714       
+8MT     H1      H       H       0       140.494     -2.653      3.709       
+8MT     H2      H       H       0       137.941     -1.467      0.186       
+8MT     H3      H       H       0       136.132     -3.109      0.627       
+8MT     H4      H       H       0       135.931     -1.838      -0.063      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8MT          C4         BR1      SINGLE       n     1.852  0.0100     1.852  0.0100
+8MT          C4           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+8MT          C1           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+8MT          N1           N      SINGLE       n     1.412  0.0100     1.412  0.0100
+8MT          N1           C      SINGLE       n     1.335  0.0112     1.335  0.0112
+8MT          C4          C3      DOUBLE       y     1.349  0.0200     1.349  0.0200
+8MT          C1           C      SINGLE       n     1.467  0.0127     1.467  0.0127
+8MT           C           O      DOUBLE       n     1.231  0.0100     1.231  0.0100
+8MT          C2          C1      DOUBLE       y     1.366  0.0199     1.366  0.0199
+8MT          C2          C3      SINGLE       y     1.387  0.0200     1.387  0.0200
+8MT          C3          BR      SINGLE       n     1.867  0.0104     1.867  0.0104
+8MT          C2          H1      SINGLE       n     1.082  0.0130     0.942  0.0154
+8MT          N1          H2      SINGLE       n     1.016  0.0100     0.883  0.0200
+8MT           N          H3      SINGLE       n     1.036  0.0160     0.904  0.0200
+8MT           N          H4      SINGLE       n     1.036  0.0160     0.904  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8MT          C1          C2          C3     106.993    1.50
+8MT          C1          C2          H1     126.960    1.56
+8MT          C3          C2          H1     126.047    1.50
+8MT           S          C1           C     119.722    3.00
+8MT           S          C1          C2     108.492    3.00
+8MT           C          C1          C2     131.785    3.00
+8MT           N          N1           C     122.219    1.50
+8MT           N          N1          H2     115.601    2.24
+8MT           C          N1          H2     122.180    2.28
+8MT         BR1          C4           S     121.062    3.00
+8MT         BR1          C4          C3     130.446    2.75
+8MT           S          C4          C3     108.492    3.00
+8MT          C4          C3          C2     107.530    1.50
+8MT          C4          C3          BR     127.376    2.81
+8MT          C2          C3          BR     125.094    1.50
+8MT          C4           S          C1     108.492    3.00
+8MT          N1           C          C1     115.385    1.50
+8MT          N1           C           O     123.239    1.50
+8MT          C1           C           O     121.376    1.72
+8MT          N1           N          H3     107.024    1.59
+8MT          N1           N          H4     107.024    1.59
+8MT          H3           N          H4     107.713    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8MT       const_sp2_sp2_3           C          C1          C2          C3     180.000     5.0     2
+8MT              const_14          C1          C2          C3          BR     180.000    10.0     2
+8MT       const_sp2_sp2_6           C          C1           S          C4     180.000     5.0     2
+8MT             sp2_sp2_6          N1           C          C1           S       0.000     5.0     2
+8MT             sp2_sp3_1           C          N1           N          H3       0.000    10.0     6
+8MT             sp2_sp2_3           O           C          N1           N       0.000     5.0     2
+8MT              const_12          BR          C3          C4         BR1       0.000    10.0     2
+8MT       const_sp2_sp2_8         BR1          C4           S          C1     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8MT    plan-1          BR   0.020
+8MT    plan-1         BR1   0.020
+8MT    plan-1           C   0.020
+8MT    plan-1          C1   0.020
+8MT    plan-1          C2   0.020
+8MT    plan-1          C3   0.020
+8MT    plan-1          C4   0.020
+8MT    plan-1          H1   0.020
+8MT    plan-1           S   0.020
+8MT    plan-2           C   0.020
+8MT    plan-2          H2   0.020
+8MT    plan-2           N   0.020
+8MT    plan-2          N1   0.020
+8MT    plan-3           C   0.020
+8MT    plan-3          C1   0.020
+8MT    plan-3          N1   0.020
+8MT    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8MT            InChI                InChI  1.03 InChI=1S/C5H4Br2N2OS/c6-2-1-3(5(10)9-8)11-4(2)7/h1H,8H2,(H,9,10)
+8MT         InChIKey                InChI  1.03                                      XYZOOBRFZARVRB-UHFFFAOYSA-N
+8MT SMILES_CANONICAL               CACTVS 3.385                                           NNC(=O)c1sc(Br)c(Br)c1
+8MT           SMILES               CACTVS 3.385                                           NNC(=O)c1sc(Br)c(Br)c1
+8MT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                           c1c(c(sc1C(=O)NN)Br)Br
+8MT           SMILES "OpenEye OEToolkits" 2.0.6                                           c1c(c(sc1C(=O)NN)Br)Br
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8MT acedrg               243         "dictionary generator"                  
+8MT acedrg_database      11          "data source"                           
+8MT rdkit                2017.03.2   "Chemoinformatics tool"
+8MT refmac5              5.8.0238    "optimization tool"                     

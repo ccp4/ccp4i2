@@ -1,0 +1,198 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J4J     J4J      2-[(2-nitrophenyl)sulfanyl]acetohydrazide     NON-POLYMER     24     15     .     
+#
+data_comp_J4J
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J4J     O30     O       O       0       28.768      -32.380     41.440      
+J4J     N28     N       N       1       28.656      -31.872     42.545      
+J4J     O29     O       OC      -1      27.885      -32.275     43.401      
+J4J     C27     C       CR6     0       29.492      -30.719     42.860      
+J4J     C26     C       CR16    0       30.649      -30.952     43.612      
+J4J     C25     C       CR16    0       31.473      -29.887     43.934      
+J4J     C24     C       CR16    0       31.156      -28.605     43.518      
+J4J     C23     C       CR16    0       30.012      -28.377     42.776      
+J4J     C22     C       CR6     0       29.159      -29.425     42.422      
+J4J     S21     S       S2      0       27.693      -29.105     41.484      
+J4J     C20     C       CH2     0       26.247      -28.699     42.493      
+J4J     C18     C       C       0       24.988      -28.376     41.729      
+J4J     O19     O       O       0       24.941      -28.548     40.512      
+J4J     N17     N       NH1     0       23.966      -27.921     42.445      
+J4J     N16     N       NT2     0       22.716      -27.604     41.871      
+J4J     H1      H       H       0       30.868      -31.822     43.895      
+J4J     H2      H       H       0       32.255      -30.038     44.439      
+J4J     H3      H       H       0       31.721      -27.885     43.740      
+J4J     H4      H       H       0       29.802      -27.504     42.496      
+J4J     H5      H       H       0       26.473      -27.940     43.053      
+J4J     H6      H       H       0       26.070      -29.448     43.083      
+J4J     H7      H       H       0       24.050      -27.805     43.306      
+J4J     H8      H       H       0       22.830      -26.841     41.401      
+J4J     H9      H       H       0       22.151      -27.424     42.554      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J4J         O30         N28      DOUBLE       n     1.221  0.0162     1.221  0.0162
+J4J         C18         O19      DOUBLE       n     1.229  0.0102     1.229  0.0102
+J4J         C22         S21      SINGLE       n     1.772  0.0127     1.772  0.0127
+J4J         S21         C20      SINGLE       n     1.809  0.0191     1.809  0.0191
+J4J         N28         C27      SINGLE       n     1.457  0.0200     1.457  0.0200
+J4J         N28         O29      SINGLE       n     1.221  0.0162     1.221  0.0162
+J4J         C20         C18      SINGLE       n     1.504  0.0139     1.504  0.0139
+J4J         C18         N17      SINGLE       n     1.327  0.0100     1.327  0.0100
+J4J         C27         C22      DOUBLE       y     1.402  0.0100     1.402  0.0100
+J4J         C23         C22      SINGLE       y     1.393  0.0100     1.393  0.0100
+J4J         C27         C26      SINGLE       y     1.394  0.0127     1.394  0.0127
+J4J         N17         N16      SINGLE       n     1.411  0.0100     1.411  0.0100
+J4J         C24         C23      DOUBLE       y     1.379  0.0106     1.379  0.0106
+J4J         C26         C25      DOUBLE       y     1.382  0.0100     1.382  0.0100
+J4J         C25         C24      SINGLE       y     1.381  0.0104     1.381  0.0104
+J4J         C26          H1      SINGLE       n     1.082  0.0130     0.941  0.0200
+J4J         C25          H2      SINGLE       n     1.082  0.0130     0.943  0.0172
+J4J         C24          H3      SINGLE       n     1.082  0.0130     0.942  0.0167
+J4J         C23          H4      SINGLE       n     1.082  0.0130     0.941  0.0197
+J4J         C20          H5      SINGLE       n     1.089  0.0100     0.970  0.0100
+J4J         C20          H6      SINGLE       n     1.089  0.0100     0.970  0.0100
+J4J         N17          H7      SINGLE       n     1.016  0.0100     0.871  0.0200
+J4J         N16          H8      SINGLE       n     1.036  0.0160     0.904  0.0200
+J4J         N16          H9      SINGLE       n     1.036  0.0160     0.904  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J4J         O30         N28         C27     118.135    1.50
+J4J         O30         N28         O29     123.729    1.50
+J4J         C27         N28         O29     118.135    1.50
+J4J         N28         C27         C22     121.435    1.50
+J4J         N28         C27         C26     117.362    1.50
+J4J         C22         C27         C26     121.203    2.35
+J4J         C27         C26         C25     119.414    1.50
+J4J         C27         C26          H1     120.458    1.50
+J4J         C25         C26          H1     120.128    1.50
+J4J         C26         C25         C24     120.599    1.50
+J4J         C26         C25          H2     119.559    1.50
+J4J         C24         C25          H2     119.842    1.50
+J4J         C23         C24         C25     120.408    1.50
+J4J         C23         C24          H3     119.695    1.50
+J4J         C25         C24          H3     119.897    1.50
+J4J         C22         C23         C24     120.960    1.50
+J4J         C22         C23          H4     119.111    1.50
+J4J         C24         C23          H4     119.928    1.50
+J4J         S21         C22         C27     121.292    2.83
+J4J         S21         C22         C23     121.292    2.83
+J4J         C27         C22         C23     117.415    1.50
+J4J         C22         S21         C20     120.000    3.00
+J4J         S21         C20         C18     111.968    3.00
+J4J         S21         C20          H5     109.066    1.50
+J4J         S21         C20          H6     109.066    1.50
+J4J         C18         C20          H5     109.591    1.50
+J4J         C18         C20          H6     109.591    1.50
+J4J          H5         C20          H6     107.945    1.50
+J4J         O19         C18         C20     119.727    1.50
+J4J         O19         C18         N17     123.346    1.50
+J4J         C20         C18         N17     116.927    1.54
+J4J         C18         N17         N16     122.274    1.50
+J4J         C18         N17          H7     120.040    2.41
+J4J         N16         N17          H7     117.686    2.61
+J4J         N17         N16          H8     106.810    2.44
+J4J         N17         N16          H9     106.810    2.44
+J4J          H8         N16          H9     107.713    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J4J             sp2_sp3_2         O19         C18         C20         S21     120.000    10.0     6
+J4J             sp2_sp2_9         O19         C18         N17         N16       0.000     5.0     2
+J4J             sp2_sp3_7         C18         N17         N16          H8       0.000    10.0     6
+J4J             sp2_sp2_3         C22         C27         N28         O30     180.000     5.0     2
+J4J              const_22         C25         C26         C27         N28     180.000    10.0     2
+J4J       const_sp2_sp2_4         S21         C22         C27         N28       0.000     5.0     2
+J4J              const_17         C24         C25         C26         C27       0.000    10.0     2
+J4J              const_13         C23         C24         C25         C26       0.000    10.0     2
+J4J       const_sp2_sp2_9         C22         C23         C24         C25       0.000     5.0     2
+J4J       const_sp2_sp2_7         S21         C22         C23         C24     180.000     5.0     2
+J4J             sp2_sp2_1         C27         C22         S21         C20     180.000     5.0     2
+J4J             sp3_sp3_1         C18         C20         S21         C22     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J4J    plan-1         C22   0.020
+J4J    plan-1         C23   0.020
+J4J    plan-1         C24   0.020
+J4J    plan-1         C25   0.020
+J4J    plan-1         C26   0.020
+J4J    plan-1         C27   0.020
+J4J    plan-1          H1   0.020
+J4J    plan-1          H2   0.020
+J4J    plan-1          H3   0.020
+J4J    plan-1          H4   0.020
+J4J    plan-1         N28   0.020
+J4J    plan-1         S21   0.020
+J4J    plan-2         C27   0.020
+J4J    plan-2         N28   0.020
+J4J    plan-2         O29   0.020
+J4J    plan-2         O30   0.020
+J4J    plan-3         C18   0.020
+J4J    plan-3         C20   0.020
+J4J    plan-3         N17   0.020
+J4J    plan-3         O19   0.020
+J4J    plan-4         C18   0.020
+J4J    plan-4          H7   0.020
+J4J    plan-4         N16   0.020
+J4J    plan-4         N17   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J4J           SMILES              ACDLabs 12.01                                                   O=[N+](c1ccccc1SCC(NN)=O)[O-]
+J4J            InChI                InChI  1.03 InChI=1S/C8H9N3O3S/c9-10-8(12)5-15-7-4-2-1-3-6(7)11(13)14/h1-4H,5,9H2,(H,10,12)
+J4J         InChIKey                InChI  1.03                                                     CZXFCCXLFQCYBK-UHFFFAOYSA-N
+J4J SMILES_CANONICAL               CACTVS 3.385                                                   NNC(=O)CSc1ccccc1[N+]([O-])=O
+J4J           SMILES               CACTVS 3.385                                                   NNC(=O)CSc1ccccc1[N+]([O-])=O
+J4J SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                               c1ccc(c(c1)[N+](=O)[O-])SCC(=O)NN
+J4J           SMILES "OpenEye OEToolkits" 2.0.6                                               c1ccc(c(c1)[N+](=O)[O-])SCC(=O)NN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J4J acedrg               243         "dictionary generator"                  
+J4J acedrg_database      11          "data source"                           
+J4J rdkit                2017.03.2   "Chemoinformatics tool"
+J4J refmac5              5.8.0238    "optimization tool"                     

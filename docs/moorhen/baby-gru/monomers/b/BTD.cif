@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BTD     BTD      5-BROMOTHIENYLDEOXYURIDINE     NON-POLYMER     35     22     .     
+#
+data_comp_BTD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BTD     "O5'"   O       OH1     0       16.911      93.668      44.644      
+BTD     "C5'"   C       CH2     0       16.588      94.616      45.652      
+BTD     "C4'"   C       CH1     0       17.586      95.750      45.682      
+BTD     "O4'"   O       O2      0       18.906      95.220      45.940      
+BTD     "C1'"   C       CH1     0       19.839      95.797      45.037      
+BTD     N1      N       NR6     0       20.928      94.801      44.797      
+BTD     C6      C       CR16    0       20.578      93.527      44.378      
+BTD     C2      C       CR6     0       22.257      95.164      45.000      
+BTD     O2      O       O       0       22.600      96.282      45.370      
+BTD     N3      N       NR6     0       23.192      94.182      44.758      
+BTD     C4      C       CR6     0       22.918      92.892      44.338      
+BTD     O4      O       O       0       23.861      92.112      44.162      
+BTD     C5      C       CR6     0       21.517      92.564      44.134      
+BTD     C55     C       CR5     0       21.085      91.226      43.698      
+BTD     C44     C       CR15    0       20.059      90.456      44.207      
+BTD     C33     C       CR15    0       19.927      89.205      43.512      
+BTD     C22     C       CR5     0       20.839      89.087      42.515      
+BTD     S11     S       S2      0       21.811      90.434      42.420      
+BTD     BR      BR      BR      0       21.093      87.686      41.330      
+BTD     "C2'"   C       CH2     0       19.032      96.170      43.802      
+BTD     "C3'"   C       CH1     0       17.677      96.556      44.384      
+BTD     "O3'"   O       OH1     0       17.628      97.957      44.644      
+BTD     "HO5'"  H       H       0       16.298      93.084      44.607      
+BTD     "H5'1"  H       H       0       16.579      94.168      46.526      
+BTD     "H5'2"  H       H       0       15.692      94.976      45.483      
+BTD     "H4'"   H       H       0       17.345      96.358      46.422      
+BTD     "H1'"   H       H       0       20.213      96.622      45.445      
+BTD     H6      H       H       0       19.660      93.331      44.253      
+BTD     HN3     H       H       0       24.032      94.406      44.884      
+BTD     H44     H       H       0       19.511      90.712      44.930      
+BTD     H33     H       H       0       19.283      88.552      43.727      
+BTD     "H2'1"  H       H       0       18.949      95.413      43.183      
+BTD     "H2'2"  H       H       0       19.442      96.925      43.327      
+BTD     "H3'"   H       H       0       16.951      96.299      43.765      
+BTD     "HO3'"  H       H       0       18.252      98.175      45.179      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BTD       "O5'"       "C5'"      SINGLE       n     1.421  0.0131     1.421  0.0131
+BTD       "C5'"       "C4'"      SINGLE       n     1.511  0.0103     1.511  0.0103
+BTD       "C4'"       "O4'"      SINGLE       n     1.445  0.0100     1.445  0.0100
+BTD       "C4'"       "C3'"      SINGLE       n     1.526  0.0115     1.526  0.0115
+BTD       "O4'"       "C1'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+BTD       "C1'"          N1      SINGLE       n     1.476  0.0163     1.476  0.0163
+BTD       "C1'"       "C2'"      SINGLE       n     1.523  0.0130     1.523  0.0130
+BTD          N1          C6      SINGLE       y     1.379  0.0100     1.379  0.0100
+BTD          N1          C2      SINGLE       y     1.381  0.0100     1.381  0.0100
+BTD          C6          C5      DOUBLE       y     1.364  0.0100     1.364  0.0100
+BTD          C2          O2      DOUBLE       n     1.224  0.0111     1.224  0.0111
+BTD          C2          N3      SINGLE       y     1.373  0.0100     1.373  0.0100
+BTD          N3          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+BTD          C4          O4      DOUBLE       n     1.235  0.0126     1.235  0.0126
+BTD          C4          C5      SINGLE       y     1.449  0.0137     1.449  0.0137
+BTD          C5         C55      SINGLE       n     1.470  0.0102     1.470  0.0102
+BTD         C55         C44      DOUBLE       y     1.363  0.0200     1.363  0.0200
+BTD         C55         S11      SINGLE       y     1.695  0.0200     1.695  0.0200
+BTD         C44         C33      SINGLE       y     1.413  0.0154     1.413  0.0154
+BTD         C33         C22      DOUBLE       y     1.343  0.0200     1.343  0.0200
+BTD         C22         S11      SINGLE       y     1.695  0.0200     1.695  0.0200
+BTD         C22          BR      SINGLE       n     1.852  0.0100     1.852  0.0100
+BTD       "C2'"       "C3'"      SINGLE       n     1.522  0.0100     1.522  0.0100
+BTD       "C3'"       "O3'"      SINGLE       n     1.424  0.0100     1.424  0.0100
+BTD       "O5'"      "HO5'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+BTD       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.981  0.0200
+BTD       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.981  0.0200
+BTD       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.987  0.0170
+BTD       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.996  0.0200
+BTD          C6          H6      SINGLE       n     1.082  0.0130     0.947  0.0200
+BTD          N3         HN3      SINGLE       n     1.016  0.0100     0.877  0.0200
+BTD         C44         H44      SINGLE       n     1.082  0.0130     0.942  0.0154
+BTD         C33         H33      SINGLE       n     1.082  0.0130     0.942  0.0153
+BTD       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.982  0.0200
+BTD       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.982  0.0200
+BTD       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.988  0.0189
+BTD       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BTD       "C5'"       "O5'"      "HO5'"     109.007    3.00
+BTD       "O5'"       "C5'"       "C4'"     111.279    1.98
+BTD       "O5'"       "C5'"      "H5'1"     109.280    1.50
+BTD       "O5'"       "C5'"      "H5'2"     109.280    1.50
+BTD       "C4'"       "C5'"      "H5'1"     109.326    2.00
+BTD       "C4'"       "C5'"      "H5'2"     109.326    2.00
+BTD      "H5'1"       "C5'"      "H5'2"     108.248    2.26
+BTD       "C5'"       "C4'"       "O4'"     109.573    1.50
+BTD       "C5'"       "C4'"       "C3'"     114.759    1.50
+BTD       "C5'"       "C4'"       "H4'"     109.037    1.87
+BTD       "O4'"       "C4'"       "C3'"     105.770    1.50
+BTD       "O4'"       "C4'"       "H4'"     108.698    1.50
+BTD       "C3'"       "C4'"       "H4'"     109.069    1.50
+BTD       "C4'"       "O4'"       "C1'"     109.692    1.50
+BTD       "O4'"       "C1'"          N1     107.584    1.50
+BTD       "O4'"       "C1'"       "C2'"     106.308    1.50
+BTD       "O4'"       "C1'"       "H1'"     109.550    1.50
+BTD          N1       "C1'"       "C2'"     114.268    1.50
+BTD          N1       "C1'"       "H1'"     109.342    1.50
+BTD       "C2'"       "C1'"       "H1'"     109.741    1.50
+BTD       "C1'"          N1          C6     120.306    2.28
+BTD       "C1'"          N1          C2     118.760    1.50
+BTD          C6          N1          C2     120.934    1.50
+BTD          N1          C6          C5     119.894    3.00
+BTD          N1          C6          H6     119.313    1.56
+BTD          C5          C6          H6     120.793    1.50
+BTD          N1          C2          O2     122.734    1.50
+BTD          N1          C2          N3     115.063    1.50
+BTD          O2          C2          N3     122.204    1.50
+BTD          C2          N3          C4     125.415    1.50
+BTD          C2          N3         HN3     116.423    1.79
+BTD          C4          N3         HN3     118.161    1.78
+BTD          N3          C4          O4     118.307    1.50
+BTD          N3          C4          C5     118.948    3.00
+BTD          O4          C4          C5     122.745    1.85
+BTD          C6          C5          C4     119.747    1.64
+BTD          C6          C5         C55     120.127    1.61
+BTD          C4          C5         C55     120.127    1.61
+BTD          C5         C55         C44     131.079    2.36
+BTD          C5         C55         S11     120.564    3.00
+BTD         C44         C55         S11     108.358    3.00
+BTD         C55         C44         C33     107.531    1.50
+BTD         C55         C44         H44     126.619    1.50
+BTD         C33         C44         H44     125.850    1.50
+BTD         C44         C33         C22     107.395    1.50
+BTD         C44         C33         H33     125.937    1.50
+BTD         C22         C33         H33     126.667    1.50
+BTD         C33         C22         S11     108.358    3.00
+BTD         C33         C22          BR     130.513    2.75
+BTD         S11         C22          BR     121.129    3.00
+BTD         C55         S11         C22     108.358    3.00
+BTD       "C1'"       "C2'"       "C3'"     102.834    1.50
+BTD       "C1'"       "C2'"      "H2'1"     111.187    1.50
+BTD       "C1'"       "C2'"      "H2'2"     111.187    1.50
+BTD       "C3'"       "C2'"      "H2'1"     111.310    1.50
+BTD       "C3'"       "C2'"      "H2'2"     111.310    1.50
+BTD      "H2'1"       "C2'"      "H2'2"     108.952    1.50
+BTD       "C4'"       "C3'"       "C2'"     102.800    1.50
+BTD       "C4'"       "C3'"       "O3'"     110.527    2.37
+BTD       "C4'"       "C3'"       "H3'"     110.775    1.50
+BTD       "C2'"       "C3'"       "O3'"     110.636    2.59
+BTD       "C2'"       "C3'"       "H3'"     110.862    1.50
+BTD       "O3'"       "C3'"       "H3'"     110.713    1.50
+BTD       "C3'"       "O3'"      "HO3'"     109.026    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BTD            sp3_sp3_25       "C4'"       "C5'"       "O5'"      "HO5'"     180.000    10.0     3
+BTD              const_25          O4          C4          C5          C6     180.000    10.0     2
+BTD             sp2_sp2_1          C6          C5         C55         C44     180.000     5.0     2
+BTD       const_sp2_sp2_2         C33         C44         C55          C5     180.000     5.0     2
+BTD              const_40          C5         C55         S11         C22     180.000    10.0     2
+BTD       const_sp2_sp2_5         C22         C33         C44         C55       0.000     5.0     2
+BTD              const_11          BR         C22         C33         C44     180.000    10.0     2
+BTD              const_14          BR         C22         S11         C55     180.000    10.0     2
+BTD            sp3_sp3_17       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+BTD            sp3_sp3_28       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+BTD            sp3_sp3_46       "C4'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+BTD            sp3_sp3_41       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+BTD             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+BTD             sp3_sp3_5          N1       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+BTD             sp3_sp3_7       "O4'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+BTD             sp2_sp3_1          C6          N1       "C1'"       "O4'"     150.000    10.0     6
+BTD              const_16          C5          C6          N1       "C1'"     180.000    10.0     2
+BTD              const_38          O2          C2          N1       "C1'"       0.000    10.0     2
+BTD              const_19          C4          C5          C6          N1       0.000    10.0     2
+BTD              const_33          O2          C2          N3          C4     180.000    10.0     2
+BTD              const_29          O4          C4          N3          C2     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BTD    chir_1    "C4'"    "O4'"    "C3'"    "C5'"    negative
+BTD    chir_2    "C1'"    "O4'"    N1    "C2'"    negative
+BTD    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BTD    plan-1       "C1'"   0.020
+BTD    plan-1          C2   0.020
+BTD    plan-1          C4   0.020
+BTD    plan-1          C5   0.020
+BTD    plan-1         C55   0.020
+BTD    plan-1          C6   0.020
+BTD    plan-1          H6   0.020
+BTD    plan-1         HN3   0.020
+BTD    plan-1          N1   0.020
+BTD    plan-1          N3   0.020
+BTD    plan-1          O2   0.020
+BTD    plan-1          O4   0.020
+BTD    plan-2          BR   0.020
+BTD    plan-2         C22   0.020
+BTD    plan-2         C33   0.020
+BTD    plan-2         C44   0.020
+BTD    plan-2          C5   0.020
+BTD    plan-2         C55   0.020
+BTD    plan-2         H33   0.020
+BTD    plan-2         H44   0.020
+BTD    plan-2         S11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BTD           SMILES              ACDLabs 10.04                                                                                                     Brc3sc(C=1C(=O)NC(=O)N(C=1)C2OC(CO)C(O)C2)cc3
+BTD SMILES_CANONICAL               CACTVS 3.341                                                                                             OC[C@H]1O[C@H](C[C@@H]1O)N2C=C(C(=O)NC2=O)c3sc(Br)cc3
+BTD           SMILES               CACTVS 3.341                                                                                                 OC[CH]1O[CH](C[CH]1O)N2C=C(C(=O)NC2=O)c3sc(Br)cc3
+BTD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           c1cc(sc1C2=CN(C(=O)NC2=O)[C@H]3C[C@@H]([C@H](O3)CO)O)Br
+BTD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        c1cc(sc1C2=CN(C(=O)NC2=O)C3CC(C(O3)CO)O)Br
+BTD            InChI                InChI  1.03 InChI=1S/C13H13BrN2O5S/c14-10-2-1-9(22-10)6-4-16(13(20)15-12(6)19)11-3-7(18)8(5-17)21-11/h1-2,4,7-8,11,17-18H,3,5H2,(H,15,19,20)/t7-,8+,11+/m0/s1
+BTD         InChIKey                InChI  1.03                                                                                                                       IGUZFFOBAZCVRK-VAOFZXAKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BTD acedrg               243         "dictionary generator"                  
+BTD acedrg_database      11          "data source"                           
+BTD rdkit                2017.03.2   "Chemoinformatics tool"
+BTD refmac5              5.8.0238    "optimization tool"                     

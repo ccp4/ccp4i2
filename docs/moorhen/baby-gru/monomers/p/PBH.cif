@@ -1,0 +1,523 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PBH     PBH      (11aS)-7-methoxy-8-(3-{4-[6-(4-methylpiperazin-1-yl)-1H-benzimidazol-2-yl]phenoxy}propoxy)-1,2,3,10,11,11a-hexahydro-5H-pyrrolo[2,1-c][1,4]benzodiazepin-5-one     NON-POLYMER     84     44     .     
+#
+data_comp_PBH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PBH     C1      C       CH2     0       21.126      23.258      54.116      
+PBH     O2      O       O2      0       19.891      20.238      47.153      
+PBH     C3      C       CH2     0       20.998      20.891      54.376      
+PBH     N4      N       NR5     0       21.178      21.214      52.947      
+PBH     O4      O       O2      0       23.540      23.891      42.531      
+PBH     N5      N       NR6     0       30.663      30.430      36.317      
+PBH     O5      O       O       0       20.921      19.110      52.197      
+PBH     N6      N       NT      0       32.793      32.347      36.150      
+PBH     C7      C       CR6     0       20.679      20.640      48.204      
+PBH     C9      C       CR16    0       22.588      22.001      48.830      
+PBH     N10     N       NT1     0       23.260      22.092      51.151      
+PBH     C11     C       CH2     0       22.823      22.962      52.232      
+PBH     C12     C       CH3     0       18.982      19.149      47.316      
+PBH     C13     C       CH2     0       22.848      22.681      46.026      
+PBH     O13     O       O2      0       21.805      21.825      46.515      
+PBH     C14     C       CH2     0       22.725      22.829      44.528      
+PBH     C15     C       CH2     0       23.746      23.780      43.947      
+PBH     C17     C       CR6     0       24.359      24.687      41.765      
+PBH     C18     C       CR16    0       24.125      24.623      40.397      
+PBH     C19     C       CR16    0       25.366      25.528      42.239      
+PBH     C1A     C       CH1     0       21.411      22.664      52.740      
+PBH     C20     C       CR16    0       24.883      25.381      39.523      
+PBH     C21     C       CR16    0       26.118      26.282      41.355      
+PBH     C22     C       CR6     0       25.895      26.225      39.979      
+PBH     C23     C       CR5     0       26.689      27.024      39.032      
+PBH     C24     C       CR56    0       28.291      28.318      38.221      
+PBH     C25     C       CR56    0       27.375      27.988      37.220      
+PBH     C26     C       CR16    0       29.389      29.130      37.951      
+PBH     C27     C       CR16    0       27.552      28.470      35.922      
+PBH     C28     C       CR6     0       29.569      29.617      36.648      
+PBH     C29     C       CR16    0       28.639      29.271      35.647      
+PBH     C2D     C       CH2     0       21.475      22.141      55.085      
+PBH     C30     C       CH2     0       32.056      30.060      36.624      
+PBH     N30     N       NRD5    0       26.379      27.178      37.748      
+PBH     C31     C       CH2     0       30.517      31.668      35.532      
+PBH     C32     C       CH2     0       32.865      31.243      37.109      
+PBH     C33     C       CH2     0       31.401      32.788      36.034      
+PBH     C34     C       CH3     0       33.699      33.446      36.505      
+PBH     N40     N       NR5     0       27.832      27.691      39.364      
+PBH     C5A     C       CR6     0       21.358      20.739      50.538      
+PBH     C5D     C       C       0       21.134      20.297      51.954      
+PBH     C6D     C       CR16    0       20.505      20.268      49.525      
+PBH     C8D     C       CR6     0       21.735      21.524      47.848      
+PBH     C9A     C       CR6     0       22.414      21.611      50.182      
+PBH     H1      H       H       0       21.684      24.050      54.279      
+PBH     H1A     H       H       0       20.180      23.511      54.199      
+PBH     H3      H       H       0       21.538      20.112      54.633      
+PBH     H3A     H       H       0       20.056      20.706      54.580      
+PBH     H9      H       H       0       23.288      22.580      48.609      
+PBH     HN10    H       H       0       23.948      21.573      51.312      
+PBH     H11     H       H       0       22.856      23.891      51.923      
+PBH     H11A    H       H       0       23.450      22.874      52.981      
+PBH     H12     H       H       0       18.281      19.404      47.938      
+PBH     H12A    H       H       0       19.458      18.376      47.662      
+PBH     H12B    H       H       0       18.586      18.928      46.458      
+PBH     H13     H       H       0       23.722      22.299      46.249      
+PBH     H13A    H       H       0       22.781      23.560      46.452      
+PBH     H14     H       H       0       21.825      23.160      44.314      
+PBH     H14A    H       H       0       22.840      21.946      44.111      
+PBH     H15     H       H       0       23.655      24.660      44.365      
+PBH     H15A    H       H       0       24.650      23.448      44.124      
+PBH     H18     H       H       0       23.449      24.061      40.063      
+PBH     H19     H       H       0       25.540      25.588      43.161      
+PBH     H1AA    H       H       0       20.753      23.024      52.094      
+PBH     H20     H       H       0       24.708      25.320      38.603      
+PBH     H21     H       H       0       26.789      26.840      41.694      
+PBH     H26     H       H       0       30.011      29.353      38.621      
+PBH     H27     H       H       0       26.936      28.250      35.243      
+PBH     H29     H       H       0       28.756      29.595      34.770      
+PBH     H2D     H       H       0       21.006      22.260      55.945      
+PBH     H2DA    H       H       0       22.447      22.105      55.249      
+PBH     H30     H       H       0       32.475      29.695      35.817      
+PBH     H30A    H       H       0       32.069      29.361      37.310      
+PBH     H31     H       H       0       29.582      31.963      35.563      
+PBH     H31A    H       H       0       30.739      31.480      34.596      
+PBH     H32     H       H       0       33.797      30.970      37.224      
+PBH     H32A    H       H       0       32.525      31.539      37.977      
+PBH     H33     H       H       0       31.348      33.540      35.410      
+PBH     H33A    H       H       0       31.080      33.093      36.906      
+PBH     H34     H       H       0       33.216      34.294      36.508      
+PBH     H34A    H       H       0       34.420      33.492      35.851      
+PBH     H34B    H       H       0       34.079      33.294      37.390      
+PBH     HN40    H       H       0       28.212      27.723      40.151      
+PBH     H6D     H       H       0       19.804      19.685      49.758      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PBH          C1         C1A      SINGLE       n     1.526  0.0100     1.526  0.0100
+PBH          C1         C2D      SINGLE       n     1.523  0.0139     1.523  0.0139
+PBH          O2          C7      SINGLE       n     1.367  0.0100     1.367  0.0100
+PBH          O2         C12      SINGLE       n     1.424  0.0117     1.424  0.0117
+PBH          C3          N4      SINGLE       n     1.473  0.0100     1.473  0.0100
+PBH          C3         C2D      SINGLE       n     1.516  0.0137     1.516  0.0137
+PBH          N4         C1A      SINGLE       n     1.477  0.0114     1.477  0.0114
+PBH          N4         C5D      SINGLE       n     1.346  0.0100     1.346  0.0100
+PBH          O4         C15      SINGLE       n     1.432  0.0101     1.432  0.0101
+PBH          O4         C17      SINGLE       n     1.369  0.0106     1.369  0.0106
+PBH          N5         C28      SINGLE       n     1.384  0.0200     1.384  0.0200
+PBH          N5         C30      SINGLE       n     1.467  0.0100     1.467  0.0100
+PBH          N5         C31      SINGLE       n     1.467  0.0100     1.467  0.0100
+PBH          O5         C5D      DOUBLE       n     1.230  0.0100     1.230  0.0100
+PBH          N6         C32      SINGLE       n     1.462  0.0100     1.462  0.0100
+PBH          N6         C33      SINGLE       n     1.462  0.0100     1.462  0.0100
+PBH          N6         C34      SINGLE       n     1.462  0.0100     1.462  0.0100
+PBH          C7         C6D      SINGLE       y     1.374  0.0100     1.374  0.0100
+PBH          C7         C8D      DOUBLE       y     1.413  0.0100     1.413  0.0100
+PBH          C9         C8D      SINGLE       y     1.377  0.0100     1.377  0.0100
+PBH          C9         C9A      DOUBLE       y     1.416  0.0100     1.416  0.0100
+PBH         N10         C11      SINGLE       n     1.453  0.0100     1.453  0.0100
+PBH         N10         C9A      SINGLE       n     1.372  0.0100     1.372  0.0100
+PBH         C11         C1A      SINGLE       n     1.528  0.0102     1.528  0.0102
+PBH         C13         O13      SINGLE       n     1.432  0.0101     1.432  0.0101
+PBH         C13         C14      SINGLE       n     1.509  0.0115     1.509  0.0115
+PBH         O13         C8D      SINGLE       n     1.360  0.0100     1.360  0.0100
+PBH         C14         C15      SINGLE       n     1.509  0.0115     1.509  0.0115
+PBH         C17         C18      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PBH         C17         C19      SINGLE       y     1.386  0.0109     1.386  0.0109
+PBH         C18         C20      SINGLE       y     1.379  0.0100     1.379  0.0100
+PBH         C19         C21      DOUBLE       y     1.379  0.0100     1.379  0.0100
+PBH         C20         C22      DOUBLE       y     1.389  0.0100     1.389  0.0100
+PBH         C21         C22      SINGLE       y     1.389  0.0100     1.389  0.0100
+PBH         C22         C23      SINGLE       n     1.465  0.0100     1.465  0.0100
+PBH         C23         N30      DOUBLE       y     1.327  0.0133     1.327  0.0133
+PBH         C23         N40      SINGLE       y     1.358  0.0121     1.358  0.0121
+PBH         C24         C25      SINGLE       y     1.397  0.0100     1.397  0.0100
+PBH         C24         C26      DOUBLE       y     1.389  0.0100     1.389  0.0100
+PBH         C24         N40      SINGLE       y     1.380  0.0100     1.380  0.0100
+PBH         C25         C27      DOUBLE       y     1.393  0.0100     1.393  0.0100
+PBH         C25         N30      SINGLE       y     1.390  0.0100     1.390  0.0100
+PBH         C26         C28      SINGLE       y     1.395  0.0118     1.395  0.0118
+PBH         C27         C29      SINGLE       y     1.371  0.0115     1.371  0.0115
+PBH         C28         C29      DOUBLE       y     1.396  0.0142     1.396  0.0142
+PBH         C30         C32      SINGLE       n     1.511  0.0100     1.511  0.0100
+PBH         C31         C33      SINGLE       n     1.511  0.0100     1.511  0.0100
+PBH         C5A         C5D      SINGLE       n     1.497  0.0100     1.497  0.0100
+PBH         C5A         C6D      DOUBLE       y     1.401  0.0124     1.401  0.0124
+PBH         C5A         C9A      SINGLE       y     1.412  0.0116     1.412  0.0116
+PBH          C1          H1      SINGLE       n     1.089  0.0100     0.983  0.0200
+PBH          C1         H1A      SINGLE       n     1.089  0.0100     0.983  0.0200
+PBH          C3          H3      SINGLE       n     1.089  0.0100     0.982  0.0130
+PBH          C3         H3A      SINGLE       n     1.089  0.0100     0.982  0.0130
+PBH          C9          H9      SINGLE       n     1.082  0.0130     0.935  0.0100
+PBH         N10        HN10      SINGLE       n     1.016  0.0100     0.876  0.0200
+PBH         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0123
+PBH         C11        H11A      SINGLE       n     1.089  0.0100     0.980  0.0123
+PBH         C12         H12      SINGLE       n     1.089  0.0100     0.971  0.0157
+PBH         C12        H12A      SINGLE       n     1.089  0.0100     0.971  0.0157
+PBH         C12        H12B      SINGLE       n     1.089  0.0100     0.971  0.0157
+PBH         C13         H13      SINGLE       n     1.089  0.0100     0.979  0.0131
+PBH         C13        H13A      SINGLE       n     1.089  0.0100     0.979  0.0131
+PBH         C14         H14      SINGLE       n     1.089  0.0100     0.983  0.0175
+PBH         C14        H14A      SINGLE       n     1.089  0.0100     0.983  0.0175
+PBH         C15         H15      SINGLE       n     1.089  0.0100     0.979  0.0131
+PBH         C15        H15A      SINGLE       n     1.089  0.0100     0.979  0.0131
+PBH         C18         H18      SINGLE       n     1.082  0.0130     0.941  0.0179
+PBH         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0179
+PBH         C1A        H1AA      SINGLE       n     1.089  0.0100     0.989  0.0157
+PBH         C20         H20      SINGLE       n     1.082  0.0130     0.938  0.0131
+PBH         C21         H21      SINGLE       n     1.082  0.0130     0.938  0.0131
+PBH         C26         H26      SINGLE       n     1.082  0.0130     0.941  0.0170
+PBH         C27         H27      SINGLE       n     1.082  0.0130     0.942  0.0200
+PBH         C29         H29      SINGLE       n     1.082  0.0130     0.943  0.0168
+PBH         C2D         H2D      SINGLE       n     1.089  0.0100     0.987  0.0200
+PBH         C2D        H2DA      SINGLE       n     1.089  0.0100     0.987  0.0200
+PBH         C30         H30      SINGLE       n     1.089  0.0100     0.980  0.0187
+PBH         C30        H30A      SINGLE       n     1.089  0.0100     0.980  0.0187
+PBH         C31         H31      SINGLE       n     1.089  0.0100     0.980  0.0187
+PBH         C31        H31A      SINGLE       n     1.089  0.0100     0.980  0.0187
+PBH         C32         H32      SINGLE       n     1.089  0.0100     0.978  0.0109
+PBH         C32        H32A      SINGLE       n     1.089  0.0100     0.978  0.0109
+PBH         C33         H33      SINGLE       n     1.089  0.0100     0.978  0.0109
+PBH         C33        H33A      SINGLE       n     1.089  0.0100     0.978  0.0109
+PBH         C34         H34      SINGLE       n     1.089  0.0100     0.975  0.0100
+PBH         C34        H34A      SINGLE       n     1.089  0.0100     0.975  0.0100
+PBH         C34        H34B      SINGLE       n     1.089  0.0100     0.975  0.0100
+PBH         N40        HN40      SINGLE       n     1.016  0.0100     0.876  0.0200
+PBH         C6D         H6D      SINGLE       n     1.082  0.0130     0.942  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PBH         C1A          C1         C2D     104.634    1.50
+PBH         C1A          C1          H1     110.817    1.50
+PBH         C1A          C1         H1A     110.817    1.50
+PBH         C2D          C1          H1     110.886    1.50
+PBH         C2D          C1         H1A     110.886    1.50
+PBH          H1          C1         H1A     108.922    1.50
+PBH          C7          O2         C12     117.276    1.50
+PBH          N4          C3         C2D     102.702    1.50
+PBH          N4          C3          H3     111.172    1.50
+PBH          N4          C3         H3A     111.172    1.50
+PBH         C2D          C3          H3     111.171    1.50
+PBH         C2D          C3         H3A     111.171    1.50
+PBH          H3          C3         H3A     108.998    1.50
+PBH          C3          N4         C1A     111.229    1.77
+PBH          C3          N4         C5D     125.634    2.27
+PBH         C1A          N4         C5D     123.137    2.21
+PBH         C15          O4         C17     118.103    1.50
+PBH         C28          N5         C30     123.506    1.63
+PBH         C28          N5         C31     123.506    1.63
+PBH         C30          N5         C31     112.989    2.47
+PBH         C32          N6         C33     109.130    1.50
+PBH         C32          N6         C34     110.746    1.50
+PBH         C33          N6         C34     110.746    1.50
+PBH          O2          C7         C6D     124.896    1.50
+PBH          O2          C7         C8D     115.317    1.50
+PBH         C6D          C7         C8D     119.788    1.50
+PBH         C8D          C9         C9A     120.131    1.50
+PBH         C8D          C9          H9     120.110    1.50
+PBH         C9A          C9          H9     119.759    1.50
+PBH         C11         N10         C9A     121.236    3.00
+PBH         C11         N10        HN10     116.764    3.00
+PBH         C9A         N10        HN10     113.883    3.00
+PBH         N10         C11         C1A     110.786    2.77
+PBH         N10         C11         H11     109.005    1.50
+PBH         N10         C11        H11A     109.005    1.50
+PBH         C1A         C11         H11     108.875    1.50
+PBH         C1A         C11        H11A     108.875    1.50
+PBH         H11         C11        H11A     108.010    1.71
+PBH          O2         C12         H12     109.428    1.50
+PBH          O2         C12        H12A     109.428    1.50
+PBH          O2         C12        H12B     109.428    1.50
+PBH         H12         C12        H12A     109.509    1.50
+PBH         H12         C12        H12B     109.509    1.50
+PBH        H12A         C12        H12B     109.509    1.50
+PBH         O13         C13         C14     108.249    2.48
+PBH         O13         C13         H13     109.943    1.50
+PBH         O13         C13        H13A     109.943    1.50
+PBH         C14         C13         H13     110.171    1.50
+PBH         C14         C13        H13A     110.171    1.50
+PBH         H13         C13        H13A     108.474    1.50
+PBH         C13         O13         C8D     117.279    1.50
+PBH         C13         C14         C15     113.502    2.05
+PBH         C13         C14         H14     108.820    1.50
+PBH         C13         C14        H14A     108.820    1.50
+PBH         C15         C14         H14     108.820    1.50
+PBH         C15         C14        H14A     108.820    1.50
+PBH         H14         C14        H14A     108.411    3.00
+PBH          O4         C15         C14     108.249    2.48
+PBH          O4         C15         H15     109.943    1.50
+PBH          O4         C15        H15A     109.943    1.50
+PBH         C14         C15         H15     110.171    1.50
+PBH         C14         C15        H15A     110.171    1.50
+PBH         H15         C15        H15A     108.474    1.50
+PBH          O4         C17         C18     120.118    3.00
+PBH          O4         C17         C19     120.118    3.00
+PBH         C18         C17         C19     119.763    1.50
+PBH         C17         C18         C20     119.840    1.50
+PBH         C17         C18         H18     120.098    1.50
+PBH         C20         C18         H18     120.061    1.50
+PBH         C17         C19         C21     119.840    1.50
+PBH         C17         C19         H19     120.098    1.50
+PBH         C21         C19         H19     120.061    1.50
+PBH          C1         C1A          N4     102.363    1.50
+PBH          C1         C1A         C11     113.583    1.63
+PBH          C1         C1A        H1AA     109.529    1.50
+PBH          N4         C1A         C11     112.293    1.58
+PBH          N4         C1A        H1AA     109.977    1.62
+PBH         C11         C1A        H1AA     109.171    1.55
+PBH         C18         C20         C22     121.052    1.50
+PBH         C18         C20         H20     119.314    1.50
+PBH         C22         C20         H20     119.634    1.50
+PBH         C19         C21         C22     121.052    1.50
+PBH         C19         C21         H21     119.314    1.50
+PBH         C22         C21         H21     119.634    1.50
+PBH         C20         C22         C21     118.454    1.50
+PBH         C20         C22         C23     120.773    1.50
+PBH         C21         C22         C23     120.773    1.50
+PBH         C22         C23         N30     124.567    1.50
+PBH         C22         C23         N40     122.833    1.50
+PBH         N30         C23         N40     112.600    1.50
+PBH         C25         C24         C26     121.993    1.50
+PBH         C25         C24         N40     105.546    1.50
+PBH         C26         C24         N40     132.461    1.50
+PBH         C24         C25         C27     120.229    1.50
+PBH         C24         C25         N30     109.635    1.50
+PBH         C27         C25         N30     130.136    1.50
+PBH         C24         C26         C28     119.457    1.58
+PBH         C24         C26         H26     121.120    1.50
+PBH         C28         C26         H26     119.422    1.50
+PBH         C25         C27         C29     118.234    1.50
+PBH         C25         C27         H27     120.800    1.50
+PBH         C29         C27         H27     120.966    1.50
+PBH          N5         C28         C26     120.093    1.87
+PBH          N5         C28         C29     120.283    1.79
+PBH         C26         C28         C29     119.623    1.64
+PBH         C27         C29         C28     120.463    1.50
+PBH         C27         C29         H29     119.523    1.50
+PBH         C28         C29         H29     120.014    1.50
+PBH          C1         C2D          C3     104.327    2.00
+PBH          C1         C2D         H2D     110.864    1.50
+PBH          C1         C2D        H2DA     110.864    1.50
+PBH          C3         C2D         H2D     110.793    1.50
+PBH          C3         C2D        H2DA     110.793    1.50
+PBH         H2D         C2D        H2DA     108.899    1.50
+PBH          N5         C30         C32     110.858    1.50
+PBH          N5         C30         H30     109.542    1.50
+PBH          N5         C30        H30A     109.542    1.50
+PBH         C32         C30         H30     109.514    1.50
+PBH         C32         C30        H30A     109.514    1.50
+PBH         H30         C30        H30A     108.196    1.50
+PBH         C23         N30         C25     105.064    1.50
+PBH          N5         C31         C33     110.858    1.50
+PBH          N5         C31         H31     109.542    1.50
+PBH          N5         C31        H31A     109.542    1.50
+PBH         C33         C31         H31     109.514    1.50
+PBH         C33         C31        H31A     109.514    1.50
+PBH         H31         C31        H31A     108.196    1.50
+PBH          N6         C32         C30     110.838    1.50
+PBH          N6         C32         H32     109.480    1.50
+PBH          N6         C32        H32A     109.480    1.50
+PBH         C30         C32         H32     109.482    1.50
+PBH         C30         C32        H32A     109.482    1.50
+PBH         H32         C32        H32A     108.187    1.50
+PBH          N6         C33         C31     110.838    1.50
+PBH          N6         C33         H33     109.480    1.50
+PBH          N6         C33        H33A     109.480    1.50
+PBH         C31         C33         H33     109.482    1.50
+PBH         C31         C33        H33A     109.482    1.50
+PBH         H33         C33        H33A     108.187    1.50
+PBH          N6         C34         H34     109.526    1.50
+PBH          N6         C34        H34A     109.526    1.50
+PBH          N6         C34        H34B     109.526    1.50
+PBH         H34         C34        H34A     109.428    1.50
+PBH         H34         C34        H34B     109.428    1.50
+PBH        H34A         C34        H34B     109.428    1.50
+PBH         C23         N40         C24     107.155    1.50
+PBH         C23         N40        HN40     126.568    1.56
+PBH         C24         N40        HN40     126.277    1.84
+PBH         C5D         C5A         C6D     119.930    2.06
+PBH         C5D         C5A         C9A     121.201    1.79
+PBH         C6D         C5A         C9A     118.869    1.50
+PBH          N4         C5D          O5     121.393    1.50
+PBH          N4         C5D         C5A     117.859    1.50
+PBH          O5         C5D         C5A     120.751    1.50
+PBH          C7         C6D         C5A     120.530    1.50
+PBH          C7         C6D         H6D     119.768    1.50
+PBH         C5A         C6D         H6D     119.701    1.50
+PBH          C7         C8D          C9     119.996    1.50
+PBH          C7         C8D         O13     115.278    1.70
+PBH          C9         C8D         O13     124.726    1.50
+PBH          C9         C9A         N10     119.830    1.90
+PBH          C9         C9A         C5A     120.686    2.02
+PBH         N10         C9A         C5A     119.485    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PBH             sp3_sp3_2         C2D          C1         C1A         C11     180.000    10.0     3
+PBH            sp3_sp3_49         C1A          C1         C2D          C3     180.000    10.0     3
+PBH            sp2_sp3_26         C9A         N10         C11         C1A     120.000    10.0     6
+PBH            sp2_sp2_13          C9         C9A         N10         C11     180.000     5.0     2
+PBH            sp3_sp3_71         N10         C11         C1A          C1     180.000    10.0     3
+PBH            sp3_sp3_80         C14         C13         O13         C8D     180.000    10.0     3
+PBH            sp3_sp3_83         O13         C13         C14         C15     180.000    10.0     3
+PBH            sp2_sp2_17          C7         C8D         O13         C13     180.000     5.0     2
+PBH            sp3_sp3_92         C13         C14         C15          O4     180.000    10.0     3
+PBH       const_sp2_sp2_3          O4         C17         C18         C20     180.000     5.0     2
+PBH              const_75          O4         C17         C19         C21     180.000    10.0     2
+PBH       const_sp2_sp2_5         C17         C18         C20         C22       0.000     5.0     2
+PBH              const_17         C17         C19         C21         C22       0.000    10.0     2
+PBH            sp3_sp3_59         H12         C12          O2          C7     -60.000    10.0     3
+PBH             sp2_sp2_1         C6D          C7          O2         C12     180.000     5.0     2
+PBH       const_sp2_sp2_9         C18         C20         C22         C21       0.000     5.0     2
+PBH              const_13         C19         C21         C22         C20       0.000    10.0     2
+PBH            sp2_sp2_20         C20         C22         C23         N30       0.000     5.0     2
+PBH              const_22         C22         C23         N30         C25     180.000    10.0     2
+PBH              const_79         C22         C23         N40         C24     180.000    10.0     2
+PBH              const_25         C26         C24         C25         C27       0.000    10.0     2
+PBH              const_81         C25         C24         C26         C28       0.000    10.0     2
+PBH              const_29         C25         C24         N40         C23       0.000    10.0     2
+PBH              const_33         C24         C25         C27         C29       0.000    10.0     2
+PBH              const_23         C24         C25         N30         C23       0.000    10.0     2
+PBH              const_46         C24         C26         C28          N5     180.000    10.0     2
+PBH              const_37         C25         C27         C29         C28       0.000    10.0     2
+PBH              const_43          N5         C28         C29         C27     180.000    10.0     2
+PBH            sp2_sp3_10         C5D          N4          C3         C2D     180.000    10.0     6
+PBH            sp3_sp3_10          C1         C2D          C3          N4     -60.000    10.0     3
+PBH            sp3_sp3_19          N5         C30         C32          N6     -60.000    10.0     3
+PBH            sp3_sp3_40          N5         C31         C33          N6      60.000    10.0     3
+PBH            sp2_sp2_24         C6D         C5A         C5D          O5       0.000     5.0     2
+PBH              const_55         C5D         C5A         C6D          C7     180.000    10.0     2
+PBH              const_60         C5D         C5A         C9A         N10       0.000    10.0     2
+PBH             sp2_sp3_5         C5D          N4         C1A         C11     -60.000    10.0     6
+PBH             sp2_sp2_5          O5         C5D          N4          C3       0.000     5.0     2
+PBH            sp3_sp3_62         C14         C15          O4         C17     180.000    10.0     3
+PBH             sp2_sp2_7         C18         C17          O4         C15     180.000     5.0     2
+PBH             sp2_sp2_9         C26         C28          N5         C30     180.000     5.0     2
+PBH            sp2_sp3_16         C28          N5         C30         C32     180.000    10.0     6
+PBH            sp2_sp3_22         C28          N5         C31         C33     180.000    10.0     6
+PBH            sp3_sp3_29         C30         C32          N6         C34     180.000    10.0     3
+PBH            sp3_sp3_35         C31         C33          N6         C34      60.000    10.0     3
+PBH            sp3_sp3_66         H34         C34          N6         C32     -60.000    10.0     3
+PBH              const_50         C5A         C6D          C7          O2     180.000    10.0     2
+PBH              const_72          O2          C7         C8D         O13       0.000    10.0     2
+PBH              const_67         O13         C8D          C9         C9A     180.000    10.0     2
+PBH              const_62         C8D          C9         C9A         N10     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PBH    chir_1    N6    C32    C33    C34    both
+PBH    chir_2    C1A    N4    C11    C1    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PBH    plan-1         C22   0.020
+PBH    plan-1         C23   0.020
+PBH    plan-1         C24   0.020
+PBH    plan-1         C25   0.020
+PBH    plan-1         C26   0.020
+PBH    plan-1         C27   0.020
+PBH    plan-1         C28   0.020
+PBH    plan-1         C29   0.020
+PBH    plan-1         H26   0.020
+PBH    plan-1         H27   0.020
+PBH    plan-1         H29   0.020
+PBH    plan-1        HN40   0.020
+PBH    plan-1         N30   0.020
+PBH    plan-1         N40   0.020
+PBH    plan-1          N5   0.020
+PBH    plan-2         C17   0.020
+PBH    plan-2         C18   0.020
+PBH    plan-2         C19   0.020
+PBH    plan-2         C20   0.020
+PBH    plan-2         C21   0.020
+PBH    plan-2         C22   0.020
+PBH    plan-2         C23   0.020
+PBH    plan-2         H18   0.020
+PBH    plan-2         H19   0.020
+PBH    plan-2         H20   0.020
+PBH    plan-2         H21   0.020
+PBH    plan-2          O4   0.020
+PBH    plan-3         C5A   0.020
+PBH    plan-3         C5D   0.020
+PBH    plan-3         C6D   0.020
+PBH    plan-3          C7   0.020
+PBH    plan-3         C8D   0.020
+PBH    plan-3          C9   0.020
+PBH    plan-3         C9A   0.020
+PBH    plan-3         H6D   0.020
+PBH    plan-3          H9   0.020
+PBH    plan-3         N10   0.020
+PBH    plan-3         O13   0.020
+PBH    plan-3          O2   0.020
+PBH    plan-4         C1A   0.020
+PBH    plan-4          C3   0.020
+PBH    plan-4         C5D   0.020
+PBH    plan-4          N4   0.020
+PBH    plan-5         C28   0.020
+PBH    plan-5         C30   0.020
+PBH    plan-5         C31   0.020
+PBH    plan-5          N5   0.020
+PBH    plan-6         C5A   0.020
+PBH    plan-6         C5D   0.020
+PBH    plan-6          N4   0.020
+PBH    plan-6          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PBH SMILES_CANONICAL               CACTVS 3.352                                                                                                                                                        COc1cc2C(=O)N3CCC[C@H]3CNc2cc1OCCCOc4ccc(cc4)c5[nH]c6cc(ccc6n5)N7CCN(C)CC7
+PBH           SMILES               CACTVS 3.352                                                                                                                                                         COc1cc2C(=O)N3CCC[CH]3CNc2cc1OCCCOc4ccc(cc4)c5[nH]c6cc(ccc6n5)N7CCN(C)CC7
+PBH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                    CN1CCN(CC1)c2ccc3c(c2)[nH]c(n3)c4ccc(cc4)OCCCOc5cc6c(cc5OC)C(=O)N7CCC[C@H]7CN6
+PBH           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                        CN1CCN(CC1)c2ccc3c(c2)[nH]c(n3)c4ccc(cc4)OCCCOc5cc6c(cc5OC)C(=O)N7CCCC7CN6
+PBH            InChI                InChI  1.03 InChI=1S/C34H40N6O4/c1-38-13-15-39(16-14-38)24-8-11-28-30(19-24)37-33(36-28)23-6-9-26(10-7-23)43-17-4-18-44-32-21-29-27(20-31(32)42-2)34(41)40-12-3-5-25(40)22-35-29/h6-11,19-21,25,35H,3-5,12-18,22H2,1-2H3,(H,36,37)/t25-/m0/s1
+PBH         InChIKey                InChI  1.03                                                                                                                                                                                                       FHYBNKKZFOFFND-VWLOTQADSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PBH acedrg               243         "dictionary generator"                  
+PBH acedrg_database      11          "data source"                           
+PBH rdkit                2017.03.2   "Chemoinformatics tool"
+PBH refmac5              5.8.0238    "optimization tool"                     

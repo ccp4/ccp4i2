@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MRM     MRM      "4-AMINOPIPERIDINE-1-CARBOXYLIC ACID"     NON-POLYMER     22     10     .     
+#
+data_comp_MRM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MRM     NB      N       NT2     0       30.732      -7.153      -9.488      
+MRM     CM1     C       CH1     0       31.554      -6.994      -8.274      
+MRM     CM2     C       CH2     0       32.207      -8.309      -7.878      
+MRM     CM5     C       CH2     0       30.720      -6.400      -7.154      
+MRM     CM3     C       CH2     0       32.003      -8.646      -6.405      
+MRM     NM      N       NR6     0       32.287      -7.490      -5.547      
+MRM     CM4     C       CH2     0       31.528      -6.274      -5.867      
+MRM     C       C       C       0       33.183      -7.545      -4.525      
+MRM     O       O       O       0       33.863      -8.510      -4.249      
+MRM     OXT     O       OH1     0       33.223      -6.405      -3.819      
+MRM     HNB1    H       H       0       30.068      -7.718      -9.316      
+MRM     HNB2    H       H       0       31.237      -7.490      -10.138     
+MRM     HM1     H       H       0       32.276      -6.355      -8.474      
+MRM     HM21    H       H       0       31.836      -9.038      -8.428      
+MRM     HM22    H       H       0       33.172      -8.257      -8.065      
+MRM     HM51    H       H       0       29.926      -6.962      -6.995      
+MRM     HM52    H       H       0       30.404      -5.507      -7.425      
+MRM     HM31    H       H       0       32.592      -9.395      -6.169      
+MRM     HM32    H       H       0       31.077      -8.943      -6.261      
+MRM     HM41    H       H       0       30.917      -6.071      -5.125      
+MRM     HM42    H       H       0       32.148      -5.518      -5.960      
+MRM     HXT     H       H       0       33.748      -6.333      -3.140      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MRM          NB         CM1      SINGLE       n     1.474  0.0100     1.474  0.0100
+MRM         CM1         CM2      SINGLE       n     1.516  0.0100     1.516  0.0100
+MRM         CM1         CM5      SINGLE       n     1.516  0.0100     1.516  0.0100
+MRM         CM2         CM3      SINGLE       n     1.522  0.0100     1.522  0.0100
+MRM         CM5         CM4      SINGLE       n     1.522  0.0100     1.522  0.0100
+MRM         CM3          NM      SINGLE       n     1.460  0.0100     1.460  0.0100
+MRM          NM         CM4      SINGLE       n     1.460  0.0100     1.460  0.0100
+MRM          NM           C      SINGLE       n     1.351  0.0100     1.351  0.0100
+MRM           C           O      DOUBLE       n     1.211  0.0100     1.211  0.0100
+MRM           C         OXT      SINGLE       n     1.338  0.0153     1.338  0.0153
+MRM          NB        HNB1      SINGLE       n     1.036  0.0160     0.889  0.0200
+MRM          NB        HNB2      SINGLE       n     1.036  0.0160     0.889  0.0200
+MRM         CM1         HM1      SINGLE       n     1.089  0.0100     0.985  0.0200
+MRM         CM2        HM21      SINGLE       n     1.089  0.0100     0.985  0.0100
+MRM         CM2        HM22      SINGLE       n     1.089  0.0100     0.985  0.0100
+MRM         CM5        HM51      SINGLE       n     1.089  0.0100     0.985  0.0100
+MRM         CM5        HM52      SINGLE       n     1.089  0.0100     0.985  0.0100
+MRM         CM3        HM31      SINGLE       n     1.089  0.0100     0.982  0.0134
+MRM         CM3        HM32      SINGLE       n     1.089  0.0100     0.982  0.0134
+MRM         CM4        HM41      SINGLE       n     1.089  0.0100     0.982  0.0134
+MRM         CM4        HM42      SINGLE       n     1.089  0.0100     0.982  0.0134
+MRM         OXT         HXT      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MRM         CM1          NB        HNB1     108.817    2.19
+MRM         CM1          NB        HNB2     108.817    2.19
+MRM        HNB1          NB        HNB2     108.673    3.00
+MRM          NB         CM1         CM2     110.671    1.99
+MRM          NB         CM1         CM5     110.671    1.99
+MRM          NB         CM1         HM1     108.366    1.50
+MRM         CM2         CM1         CM5     110.769    1.50
+MRM         CM2         CM1         HM1     107.655    1.50
+MRM         CM5         CM1         HM1     107.655    1.50
+MRM         CM1         CM2         CM3     110.795    1.50
+MRM         CM1         CM2        HM21     109.498    1.50
+MRM         CM1         CM2        HM22     109.498    1.50
+MRM         CM3         CM2        HM21     109.507    1.50
+MRM         CM3         CM2        HM22     109.507    1.50
+MRM        HM21         CM2        HM22     108.048    1.50
+MRM         CM1         CM5         CM4     110.795    1.50
+MRM         CM1         CM5        HM51     109.498    1.50
+MRM         CM1         CM5        HM52     109.498    1.50
+MRM         CM4         CM5        HM51     109.507    1.50
+MRM         CM4         CM5        HM52     109.507    1.50
+MRM        HM51         CM5        HM52     108.048    1.50
+MRM         CM2         CM3          NM     110.373    1.50
+MRM         CM2         CM3        HM31     109.494    1.50
+MRM         CM2         CM3        HM32     109.494    1.50
+MRM          NM         CM3        HM31     109.563    1.50
+MRM          NM         CM3        HM32     109.563    1.50
+MRM        HM31         CM3        HM32     108.159    1.50
+MRM         CM3          NM         CM4     114.620    1.50
+MRM         CM3          NM           C     122.690    2.71
+MRM         CM4          NM           C     122.690    2.71
+MRM         CM5         CM4          NM     110.373    1.50
+MRM         CM5         CM4        HM41     109.494    1.50
+MRM         CM5         CM4        HM42     109.494    1.50
+MRM          NM         CM4        HM41     109.563    1.50
+MRM          NM         CM4        HM42     109.563    1.50
+MRM        HM41         CM4        HM42     108.159    1.50
+MRM          NM           C           O     124.683    1.50
+MRM          NM           C         OXT     111.177    1.50
+MRM           O           C         OXT     124.140    1.64
+MRM           C         OXT         HXT     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MRM            sp3_sp3_30         CM2         CM1          NB        HNB1      60.000    10.0     3
+MRM             sp3_sp3_7          NB         CM1         CM2         CM3     180.000    10.0     3
+MRM            sp3_sp3_37          NB         CM1         CM5         CM4      60.000    10.0     3
+MRM            sp3_sp3_10         CM1         CM2         CM3          NM     -60.000    10.0     3
+MRM            sp3_sp3_19          NM         CM4         CM5         CM1      60.000    10.0     3
+MRM             sp2_sp3_4           C          NM         CM3         CM2     180.000    10.0     6
+MRM            sp2_sp3_10           C          NM         CM4         CM5     180.000    10.0     6
+MRM             sp2_sp2_3           O           C          NM         CM3       0.000     5.0     2
+MRM             sp2_sp2_6           O           C         OXT         HXT       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MRM    chir_1    CM1    NB    CM2    CM5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MRM    plan-1           C   0.020
+MRM    plan-1         CM3   0.020
+MRM    plan-1         CM4   0.020
+MRM    plan-1          NM   0.020
+MRM    plan-2           C   0.020
+MRM    plan-2          NM   0.020
+MRM    plan-2           O   0.020
+MRM    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MRM           SMILES              ACDLabs 10.04                                               O=C(O)N1CCC(N)CC1
+MRM SMILES_CANONICAL               CACTVS 3.341                                               NC1CCN(CC1)C(O)=O
+MRM           SMILES               CACTVS 3.341                                               NC1CCN(CC1)C(O)=O
+MRM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                               C1CN(CCC1N)C(=O)O
+MRM           SMILES "OpenEye OEToolkits" 1.5.0                                               C1CN(CCC1N)C(=O)O
+MRM            InChI                InChI  1.03 InChI=1S/C6H12N2O2/c7-5-1-3-8(4-2-5)6(9)10/h5H,1-4,7H2,(H,9,10)
+MRM         InChIKey                InChI  1.03                                     NQNQKLBWDARKDG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MRM acedrg               243         "dictionary generator"                  
+MRM acedrg_database      11          "data source"                           
+MRM rdkit                2017.03.2   "Chemoinformatics tool"
+MRM refmac5              5.8.0238    "optimization tool"                     

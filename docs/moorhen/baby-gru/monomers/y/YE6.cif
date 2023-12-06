@@ -1,0 +1,212 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YE6     YE6      5-(2-chlorophenyl)furan-2-carbohydrazide     NON-POLYMER     25     16     .     
+#
+data_comp_YE6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YE6     CLAP    CL      CL      0       -5.804      1.450       9.389       
+YE6     CAG     C       CR6     0       -5.724      0.106       8.301       
+YE6     CAH     C       CR16    0       -6.849      -0.177      7.532       
+YE6     CAI     C       CR16    0       -6.823      -1.239      6.652       
+YE6     CAJ     C       CR16    0       -5.689      -2.019      6.532       
+YE6     CAK     C       CR16    0       -4.566      -1.742      7.296       
+YE6     CAF     C       CR6     0       -4.567      -0.673      8.192       
+YE6     CAD     C       CR5     0       -3.376      -0.399      8.990       
+YE6     OAN     O       O2      0       -2.194      -0.303      8.305       
+YE6     CAC     C       CR15    0       -3.136      -0.238      10.310      
+YE6     CAB     C       CR15    0       -1.750      -0.012      10.458      
+YE6     CAA     C       CR5     0       -1.206      -0.061      9.225       
+YE6     CAE     C       C       0       0.165       0.089       8.728       
+YE6     OAO     O       O       0       0.420       0.020       7.526       
+YE6     NAL     N       NH1     0       1.115       0.281       9.653       
+YE6     NAM     N       NT2     0       2.483       0.391       9.315       
+YE6     HAH     H       H       0       -7.619      0.354       7.613       
+YE6     HAI     H       H       0       -7.581      -1.431      6.133       
+YE6     HAJ     H       H       0       -5.678      -2.744      5.929       
+YE6     HAK     H       H       0       -3.797      -2.279      7.209       
+YE6     HAC     H       H       0       -3.774      -0.257      10.999      
+YE6     HAB     H       H       0       -1.297      0.139       11.264      
+YE6     H8      H       H       0       0.942       0.353       10.516      
+YE6     HNAM    H       H       0       2.579       1.157       8.845       
+YE6     H9      H       H       0       2.943       0.482       10.089      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YE6        CLAP         CAG      SINGLE       n     1.727  0.0200     1.727  0.0200
+YE6         CAG         CAH      DOUBLE       y     1.387  0.0114     1.387  0.0114
+YE6         CAG         CAF      SINGLE       y     1.391  0.0118     1.391  0.0118
+YE6         CAH         CAI      SINGLE       y     1.372  0.0132     1.372  0.0132
+YE6         CAI         CAJ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+YE6         CAJ         CAK      SINGLE       y     1.383  0.0100     1.383  0.0100
+YE6         CAK         CAF      DOUBLE       y     1.392  0.0100     1.392  0.0100
+YE6         CAF         CAD      SINGLE       n     1.458  0.0100     1.458  0.0100
+YE6         CAD         OAN      SINGLE       y     1.370  0.0100     1.370  0.0100
+YE6         CAD         CAC      DOUBLE       y     1.352  0.0100     1.352  0.0100
+YE6         OAN         CAA      SINGLE       y     1.372  0.0132     1.372  0.0132
+YE6         CAC         CAB      SINGLE       y     1.411  0.0100     1.411  0.0100
+YE6         CAB         CAA      DOUBLE       y     1.345  0.0126     1.345  0.0126
+YE6         CAA         CAE      SINGLE       n     1.462  0.0100     1.462  0.0100
+YE6         CAE         OAO      DOUBLE       n     1.230  0.0100     1.230  0.0100
+YE6         CAE         NAL      SINGLE       n     1.335  0.0112     1.335  0.0112
+YE6         NAL         NAM      SINGLE       n     1.412  0.0100     1.412  0.0100
+YE6         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0140
+YE6         CAI         HAI      SINGLE       n     1.082  0.0130     0.939  0.0165
+YE6         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0180
+YE6         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0100
+YE6         CAC         HAC      SINGLE       n     1.082  0.0130     0.939  0.0104
+YE6         CAB         HAB      SINGLE       n     1.082  0.0130     0.937  0.0166
+YE6         NAL          H8      SINGLE       n     1.016  0.0100     0.883  0.0200
+YE6         NAM        HNAM      SINGLE       n     1.036  0.0160     0.904  0.0200
+YE6         NAM          H9      SINGLE       n     1.036  0.0160     0.904  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YE6        CLAP         CAG         CAH     118.519    1.50
+YE6        CLAP         CAG         CAF     120.289    1.50
+YE6         CAH         CAG         CAF     121.191    1.50
+YE6         CAG         CAH         CAI     119.145    1.50
+YE6         CAG         CAH         HAH     120.236    1.50
+YE6         CAI         CAH         HAH     120.619    1.50
+YE6         CAH         CAI         CAJ     120.020    1.50
+YE6         CAH         CAI         HAI     119.869    1.50
+YE6         CAJ         CAI         HAI     120.111    1.50
+YE6         CAI         CAJ         CAK     120.083    1.50
+YE6         CAI         CAJ         HAJ     120.059    1.50
+YE6         CAK         CAJ         HAJ     119.858    1.50
+YE6         CAJ         CAK         CAF     120.301    1.50
+YE6         CAJ         CAK         HAK     119.895    1.50
+YE6         CAF         CAK         HAK     119.804    1.50
+YE6         CAG         CAF         CAK     119.261    1.64
+YE6         CAG         CAF         CAD     120.400    1.61
+YE6         CAK         CAF         CAD     120.340    1.50
+YE6         CAF         CAD         OAN     116.381    1.50
+YE6         CAF         CAD         CAC     134.033    1.50
+YE6         OAN         CAD         CAC     109.586    1.50
+YE6         CAD         OAN         CAA     107.554    1.50
+YE6         CAD         CAC         CAB     106.911    1.50
+YE6         CAD         CAC         HAC     126.562    1.50
+YE6         CAB         CAC         HAC     126.527    1.50
+YE6         CAC         CAB         CAA     106.552    1.50
+YE6         CAC         CAB         HAB     126.593    1.50
+YE6         CAA         CAB         HAB     126.855    1.50
+YE6         OAN         CAA         CAB     109.397    1.50
+YE6         OAN         CAA         CAE     118.130    1.80
+YE6         CAB         CAA         CAE     132.474    2.06
+YE6         CAA         CAE         OAO     121.849    1.50
+YE6         CAA         CAE         NAL     115.267    1.50
+YE6         OAO         CAE         NAL     122.883    1.50
+YE6         CAE         NAL         NAM     122.219    1.50
+YE6         CAE         NAL          H8     122.180    2.28
+YE6         NAM         NAL          H8     115.601    2.24
+YE6         NAL         NAM        HNAM     107.024    1.59
+YE6         NAL         NAM          H9     107.024    1.59
+YE6        HNAM         NAM          H9     107.713    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YE6       const_sp2_sp2_7         CAE         CAA         CAB         CAC     180.000     5.0     2
+YE6             sp2_sp2_8         OAN         CAA         CAE         OAO     180.000     5.0     2
+YE6            sp2_sp2_11         OAO         CAE         NAL         NAM       0.000     5.0     2
+YE6             sp2_sp3_1         CAE         NAL         NAM        HNAM       0.000    10.0     6
+YE6              const_15        CLAP         CAG         CAH         CAI     180.000    10.0     2
+YE6              const_34         CAK         CAF         CAG        CLAP     180.000    10.0     2
+YE6              const_17         CAG         CAH         CAI         CAJ       0.000    10.0     2
+YE6              const_21         CAH         CAI         CAJ         CAK       0.000    10.0     2
+YE6              const_25         CAI         CAJ         CAK         CAF       0.000    10.0     2
+YE6              const_29         CAG         CAF         CAK         CAJ       0.000    10.0     2
+YE6             sp2_sp2_3         OAN         CAD         CAF         CAG       0.000     5.0     2
+YE6       const_sp2_sp2_2         CAF         CAD         OAN         CAA     180.000     5.0     2
+YE6              const_38         CAB         CAC         CAD         CAF     180.000    10.0     2
+YE6       const_sp2_sp2_4         CAE         CAA         OAN         CAD     180.000     5.0     2
+YE6       const_sp2_sp2_9         CAA         CAB         CAC         CAD       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YE6    plan-1         CAA   0.020
+YE6    plan-1         CAB   0.020
+YE6    plan-1         CAC   0.020
+YE6    plan-1         CAD   0.020
+YE6    plan-1         CAE   0.020
+YE6    plan-1         CAF   0.020
+YE6    plan-1         HAB   0.020
+YE6    plan-1         HAC   0.020
+YE6    plan-1         OAN   0.020
+YE6    plan-2         CAD   0.020
+YE6    plan-2         CAF   0.020
+YE6    plan-2         CAG   0.020
+YE6    plan-2         CAH   0.020
+YE6    plan-2         CAI   0.020
+YE6    plan-2         CAJ   0.020
+YE6    plan-2         CAK   0.020
+YE6    plan-2        CLAP   0.020
+YE6    plan-2         HAH   0.020
+YE6    plan-2         HAI   0.020
+YE6    plan-2         HAJ   0.020
+YE6    plan-2         HAK   0.020
+YE6    plan-3         CAA   0.020
+YE6    plan-3         CAE   0.020
+YE6    plan-3         NAL   0.020
+YE6    plan-3         OAO   0.020
+YE6    plan-4         CAE   0.020
+YE6    plan-4          H8   0.020
+YE6    plan-4         NAL   0.020
+YE6    plan-4         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YE6           SMILES              ACDLabs 10.04                                                          O=C(c2oc(c1c(Cl)cccc1)cc2)NN
+YE6 SMILES_CANONICAL               CACTVS 3.341                                                            NNC(=O)c1oc(cc1)c2ccccc2Cl
+YE6           SMILES               CACTVS 3.341                                                            NNC(=O)c1oc(cc1)c2ccccc2Cl
+YE6 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        c1ccc(c(c1)c2ccc(o2)C(=O)NN)Cl
+YE6           SMILES "OpenEye OEToolkits" 1.5.0                                                        c1ccc(c(c1)c2ccc(o2)C(=O)NN)Cl
+YE6            InChI                InChI  1.03 InChI=1S/C11H9ClN2O2/c12-8-4-2-1-3-7(8)9-5-6-10(16-9)11(15)14-13/h1-6H,13H2,(H,14,15)
+YE6         InChIKey                InChI  1.03                                                           XQMRHWSGTVEDFG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YE6 acedrg               243         "dictionary generator"                  
+YE6 acedrg_database      11          "data source"                           
+YE6 rdkit                2017.03.2   "Chemoinformatics tool"
+YE6 refmac5              5.8.0238    "optimization tool"                     

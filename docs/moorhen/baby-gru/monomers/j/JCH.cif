@@ -1,0 +1,305 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JCH     JCH      3-[1-[(4-methoxyphenyl)methyl]indol-6-yl]-1~{H}-pyrazol-5-amine     NON-POLYMER     42     24     .     
+#
+data_comp_JCH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JCH     C10     C       CR56    0       -23.303     20.629      -11.137     
+JCH     C13     C       CR6     0       -23.354     23.208      -8.971      
+JCH     C15     C       CR16    0       -23.447     23.316      -6.552      
+JCH     C20     C       CR16    0       -22.036     23.656      -8.914      
+JCH     C21     C       CR15    0       -25.352     20.771      -10.220     
+JCH     C22     C       CR15    0       -25.196     19.474      -10.592     
+JCH     C24     C       CR15    0       -18.953     19.020      -12.976     
+JCH     N01     N       NH2     0       -16.666     19.247      -13.878     
+JCH     C02     C       CR5     0       -17.873     19.729      -13.491     
+JCH     N03     N       NR5     0       -18.246     21.019      -13.542     
+JCH     N04     N       NRD5    0       -19.512     21.182      -13.089     
+JCH     C05     C       CR5     0       -19.959     19.967      -12.733     
+JCH     C06     C       CR6     0       -21.320     19.775      -12.193     
+JCH     C07     C       CR16    0       -21.908     18.507      -12.236     
+JCH     C08     C       CR16    0       -23.175     18.285      -11.742     
+JCH     C09     C       CR56    0       -23.898     19.350      -11.180     
+JCH     N11     N       NT      0       -24.205     21.489      -10.543     
+JCH     C12     C       CH2     0       -24.018     22.915      -10.296     
+JCH     C14     C       CR16    0       -24.048     23.045      -7.774      
+JCH     C16     C       CR6     0       -22.129     23.758      -6.513      
+JCH     O17     O       O2      0       -21.547     24.027      -5.301      
+JCH     C18     C       CH3     0       -20.360     23.319      -4.948      
+JCH     C19     C       CR16    0       -21.423     23.932      -7.699      
+JCH     C23     C       CR16    0       -22.025     20.845      -11.636     
+JCH     H1      H       H       0       -23.931     23.199      -5.751      
+JCH     H2      H       H       0       -21.549     23.774      -9.712      
+JCH     H3      H       H       0       -26.104     21.134      -9.811      
+JCH     H4      H       H       0       -25.826     18.786      -10.482     
+JCH     H5      H       H       0       -18.997     18.091      -12.822     
+JCH     H6      H       H       0       -16.550     18.386      -13.969     
+JCH     H7      H       H       0       -16.007     19.800      -14.036     
+JCH     H8      H       H       0       -17.762     21.699      -13.826     
+JCH     H9      H       H       0       -21.436     17.791      -12.608     
+JCH     H10     H       H       0       -23.558     17.428      -11.777     
+JCH     H11     H       H       0       -23.474     23.292      -11.017     
+JCH     H12     H       H       0       -24.892     23.356      -10.317     
+JCH     H13     H       H       0       -24.942     22.744      -7.792      
+JCH     H14     H       H       0       -19.612     23.669      -5.459      
+JCH     H15     H       H       0       -20.472     22.374      -5.144      
+JCH     H16     H       H       0       -20.187     23.434      -4.000      
+JCH     H17     H       H       0       -20.529     24.232      -7.678      
+JCH     H18     H       H       0       -21.633     21.695      -11.606     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JCH         N03         N04      SINGLE       y     1.352  0.0100     1.352  0.0100
+JCH         C02         N03      SINGLE       y     1.342  0.0116     1.342  0.0116
+JCH         N01         C02      SINGLE       n     1.357  0.0178     1.357  0.0178
+JCH         N04         C05      DOUBLE       y     1.341  0.0100     1.341  0.0100
+JCH         C24         C02      DOUBLE       y     1.400  0.0200     1.400  0.0200
+JCH         C24         C05      SINGLE       y     1.405  0.0100     1.405  0.0100
+JCH         C05         C06      SINGLE       n     1.472  0.0100     1.472  0.0100
+JCH         C06         C07      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JCH         C06         C23      SINGLE       y     1.391  0.0100     1.391  0.0100
+JCH         C07         C08      SINGLE       y     1.373  0.0102     1.373  0.0102
+JCH         C10         C23      DOUBLE       y     1.387  0.0100     1.387  0.0100
+JCH         C08         C09      DOUBLE       y     1.401  0.0100     1.401  0.0100
+JCH         C10         C09      SINGLE       y     1.412  0.0100     1.412  0.0100
+JCH         C10         N11      SINGLE       y     1.381  0.0100     1.381  0.0100
+JCH         C22         C09      SINGLE       y     1.431  0.0170     1.431  0.0170
+JCH         N11         C12      SINGLE       n     1.459  0.0100     1.459  0.0100
+JCH         C21         N11      SINGLE       y     1.390  0.0166     1.390  0.0166
+JCH         C13         C12      SINGLE       n     1.510  0.0100     1.510  0.0100
+JCH         C21         C22      DOUBLE       y     1.356  0.0149     1.356  0.0149
+JCH         C13         C20      DOUBLE       y     1.390  0.0100     1.390  0.0100
+JCH         C13         C14      SINGLE       y     1.390  0.0100     1.390  0.0100
+JCH         C20         C19      SINGLE       y     1.385  0.0100     1.385  0.0100
+JCH         C15         C14      DOUBLE       y     1.385  0.0100     1.385  0.0100
+JCH         C16         C19      DOUBLE       y     1.386  0.0109     1.386  0.0109
+JCH         C15         C16      SINGLE       y     1.386  0.0109     1.386  0.0109
+JCH         C16         O17      SINGLE       n     1.369  0.0100     1.369  0.0100
+JCH         O17         C18      SINGLE       n     1.424  0.0117     1.424  0.0117
+JCH         C15          H1      SINGLE       n     1.082  0.0130     0.943  0.0169
+JCH         C20          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+JCH         C21          H3      SINGLE       n     1.082  0.0130     0.930  0.0100
+JCH         C22          H4      SINGLE       n     1.082  0.0130     0.939  0.0147
+JCH         C24          H5      SINGLE       n     1.082  0.0130     0.942  0.0169
+JCH         N01          H6      SINGLE       n     1.016  0.0100     0.874  0.0200
+JCH         N01          H7      SINGLE       n     1.016  0.0100     0.874  0.0200
+JCH         N03          H8      SINGLE       n     1.016  0.0100     0.881  0.0200
+JCH         C07          H9      SINGLE       n     1.082  0.0130     0.935  0.0100
+JCH         C08         H10      SINGLE       n     1.082  0.0130     0.940  0.0143
+JCH         C12         H11      SINGLE       n     1.089  0.0100     0.979  0.0121
+JCH         C12         H12      SINGLE       n     1.089  0.0100     0.979  0.0121
+JCH         C14         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+JCH         C18         H14      SINGLE       n     1.089  0.0100     0.971  0.0157
+JCH         C18         H15      SINGLE       n     1.089  0.0100     0.971  0.0157
+JCH         C18         H16      SINGLE       n     1.089  0.0100     0.971  0.0157
+JCH         C19         H17      SINGLE       n     1.082  0.0130     0.943  0.0169
+JCH         C23         H18      SINGLE       n     1.082  0.0130     0.937  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JCH         C23         C10         C09     121.863    1.50
+JCH         C23         C10         N11     130.524    1.50
+JCH         C09         C10         N11     107.613    1.50
+JCH         C12         C13         C20     120.736    1.50
+JCH         C12         C13         C14     120.736    1.50
+JCH         C20         C13         C14     118.528    1.50
+JCH         C14         C15         C16     119.658    1.50
+JCH         C14         C15          H1     120.190    1.50
+JCH         C16         C15          H1     120.153    1.50
+JCH         C13         C20         C19     121.183    1.50
+JCH         C13         C20          H2     119.556    1.50
+JCH         C19         C20          H2     119.261    1.50
+JCH         N11         C21         C22     109.638    1.50
+JCH         N11         C21          H3     124.520    1.74
+JCH         C22         C21          H3     125.842    1.50
+JCH         C09         C22         C21     107.637    1.50
+JCH         C09         C22          H4     126.229    1.50
+JCH         C21         C22          H4     126.135    1.50
+JCH         C02         C24         C05     106.929    1.50
+JCH         C02         C24          H5     126.404    1.50
+JCH         C05         C24          H5     126.667    1.50
+JCH         C02         N01          H6     119.832    1.50
+JCH         C02         N01          H7     119.832    1.50
+JCH          H6         N01          H7     120.336    1.50
+JCH         N03         C02         N01     125.128    1.50
+JCH         N03         C02         C24     107.024    1.50
+JCH         N01         C02         C24     127.848    2.16
+JCH         N04         N03         C02     110.277    1.50
+JCH         N04         N03          H8     122.344    3.00
+JCH         C02         N03          H8     127.379    3.00
+JCH         N03         N04         C05     105.854    1.50
+JCH         N04         C05         C24     109.916    1.50
+JCH         N04         C05         C06     120.475    1.50
+JCH         C24         C05         C06     129.610    1.50
+JCH         C05         C06         C07     120.189    1.50
+JCH         C05         C06         C23     120.136    1.61
+JCH         C07         C06         C23     119.675    1.64
+JCH         C06         C07         C08     120.515    1.50
+JCH         C06         C07          H9     119.925    1.50
+JCH         C08         C07          H9     119.560    1.50
+JCH         C07         C08         C09     119.206    1.50
+JCH         C07         C08         H10     120.759    1.50
+JCH         C09         C08         H10     120.035    1.50
+JCH         C08         C09         C10     119.232    1.50
+JCH         C08         C09         C22     133.763    1.50
+JCH         C10         C09         C22     107.005    1.50
+JCH         C10         N11         C12     125.410    2.28
+JCH         C10         N11         C21     108.355    1.50
+JCH         C12         N11         C21     124.337    1.50
+JCH         N11         C12         C13     112.900    1.65
+JCH         N11         C12         H11     108.841    1.50
+JCH         N11         C12         H12     108.841    1.50
+JCH         C13         C12         H11     108.961    1.50
+JCH         C13         C12         H12     108.961    1.50
+JCH         H11         C12         H12     107.872    1.50
+JCH         C13         C14         C15     121.183    1.50
+JCH         C13         C14         H13     119.556    1.50
+JCH         C15         C14         H13     119.261    1.50
+JCH         C19         C16         C15     119.791    1.50
+JCH         C19         C16         O17     120.105    3.00
+JCH         C15         C16         O17     120.105    3.00
+JCH         C16         O17         C18     117.529    1.50
+JCH         O17         C18         H14     109.428    1.50
+JCH         O17         C18         H15     109.428    1.50
+JCH         O17         C18         H16     109.428    1.50
+JCH         H14         C18         H15     109.509    1.50
+JCH         H14         C18         H16     109.509    1.50
+JCH         H15         C18         H16     109.509    1.50
+JCH         C20         C19         C16     119.658    1.50
+JCH         C20         C19         H17     120.190    1.50
+JCH         C16         C19         H17     120.153    1.50
+JCH         C06         C23         C10     119.509    1.58
+JCH         C06         C23         H18     119.396    1.50
+JCH         C10         C23         H18     121.094    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JCH              const_33         C08         C09         C10         C23       0.000    10.0     2
+JCH              const_76         C23         C10         N11         C12       0.000    10.0     2
+JCH              const_13         C09         C10         C23         C06       0.000    10.0     2
+JCH              const_11         C24         C05         N04         N03       0.000    10.0     2
+JCH             sp2_sp2_7         N04         C05         C06         C07       0.000     5.0     2
+JCH              const_23         C05         C06         C07         C08     180.000    10.0     2
+JCH              const_19         C05         C06         C23         C10     180.000    10.0     2
+JCH              const_25         C06         C07         C08         C09       0.000    10.0     2
+JCH              const_29         C07         C08         C09         C10       0.000    10.0     2
+JCH             sp2_sp3_2         C10         N11         C12         C13     -90.000    10.0     6
+JCH             sp2_sp2_9         C19         C16         O17         C18     180.000     5.0     2
+JCH              const_59         O17         C16         C19         C20     180.000    10.0     2
+JCH             sp2_sp3_8         C20         C13         C12         N11     -90.000    10.0     6
+JCH              const_79         C12         C13         C14         C15     180.000    10.0     2
+JCH              const_51         C12         C13         C20         C19     180.000    10.0     2
+JCH             sp3_sp3_2         H14         C18         O17         C16     -60.000    10.0     3
+JCH              const_65         C13         C14         C15         C16       0.000    10.0     2
+JCH              const_62         C14         C15         C16         O17     180.000    10.0     2
+JCH              const_53         C16         C19         C20         C13       0.000    10.0     2
+JCH              const_46         C22         C21         N11         C12     180.000    10.0     2
+JCH              const_41         N11         C21         C22         C09       0.000    10.0     2
+JCH              const_39         C08         C09         C22         C21     180.000    10.0     2
+JCH              const_69         N04         C05         C24         C02       0.000    10.0     2
+JCH       const_sp2_sp2_3         N01         C02         C24         C05     180.000     5.0     2
+JCH             sp2_sp2_1         N03         C02         N01          H6     180.000     5.0     2
+JCH       const_sp2_sp2_7         N01         C02         N03         N04     180.000     5.0     2
+JCH       const_sp2_sp2_9         C02         N03         N04         C05       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JCH    plan-1         C05   0.020
+JCH    plan-1         C06   0.020
+JCH    plan-1         C07   0.020
+JCH    plan-1         C08   0.020
+JCH    plan-1         C09   0.020
+JCH    plan-1         C10   0.020
+JCH    plan-1         C12   0.020
+JCH    plan-1         C21   0.020
+JCH    plan-1         C22   0.020
+JCH    plan-1         C23   0.020
+JCH    plan-1         H10   0.020
+JCH    plan-1         H18   0.020
+JCH    plan-1          H3   0.020
+JCH    plan-1          H4   0.020
+JCH    plan-1          H9   0.020
+JCH    plan-1         N11   0.020
+JCH    plan-2         C02   0.020
+JCH    plan-2         C05   0.020
+JCH    plan-2         C06   0.020
+JCH    plan-2         C24   0.020
+JCH    plan-2          H5   0.020
+JCH    plan-2          H8   0.020
+JCH    plan-2         N01   0.020
+JCH    plan-2         N03   0.020
+JCH    plan-2         N04   0.020
+JCH    plan-3         C12   0.020
+JCH    plan-3         C13   0.020
+JCH    plan-3         C14   0.020
+JCH    plan-3         C15   0.020
+JCH    plan-3         C16   0.020
+JCH    plan-3         C19   0.020
+JCH    plan-3         C20   0.020
+JCH    plan-3          H1   0.020
+JCH    plan-3         H13   0.020
+JCH    plan-3         H17   0.020
+JCH    plan-3          H2   0.020
+JCH    plan-3         O17   0.020
+JCH    plan-4         C02   0.020
+JCH    plan-4          H6   0.020
+JCH    plan-4          H7   0.020
+JCH    plan-4         N01   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JCH            InChI                InChI  1.03 InChI=1S/C19H18N4O/c1-24-16-6-2-13(3-7-16)12-23-9-8-14-4-5-15(10-18(14)23)17-11-19(20)22-21-17/h2-11H,12H2,1H3,(H3,20,21,22)
+JCH         InChIKey                InChI  1.03                                                                                                  OQIZQMWQHPDPIM-UHFFFAOYSA-N
+JCH SMILES_CANONICAL               CACTVS 3.385                                                                                    COc1ccc(Cn2ccc3ccc(cc23)c4cc(N)[nH]n4)cc1
+JCH           SMILES               CACTVS 3.385                                                                                    COc1ccc(Cn2ccc3ccc(cc23)c4cc(N)[nH]n4)cc1
+JCH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                    COc1ccc(cc1)Cn2ccc3c2cc(cc3)c4cc([nH]n4)N
+JCH           SMILES "OpenEye OEToolkits" 2.0.7                                                                                    COc1ccc(cc1)Cn2ccc3c2cc(cc3)c4cc([nH]n4)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JCH acedrg               243         "dictionary generator"                  
+JCH acedrg_database      11          "data source"                           
+JCH rdkit                2017.03.2   "Chemoinformatics tool"
+JCH refmac5              5.8.0238    "optimization tool"                     

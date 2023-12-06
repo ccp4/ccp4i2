@@ -1,0 +1,633 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DH8     DH8      "(2beta,7beta,16S,17R,19E,21beta)-21-(beta-D-glucopyranosyloxy)-2,7-dihydro-7,17-cyclosarpagan-17-yl acetate"     NON-POLYMER     71     37     .     
+#
+data_comp_DH8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DH8     C1      C       CH1     0       70.665      29.535      20.359      
+DH8     O1      O       O2      0       71.110      28.212      20.185      
+DH8     C2      C       CH1     0       70.696      30.244      19.009      
+DH8     O2      O       OH1     0       72.025      30.261      18.496      
+DH8     C3      C       CH1     0       70.152      31.664      19.153      
+DH8     O3      O       OH1     0       70.067      32.275      17.866      
+DH8     C4      C       CH1     0       68.783      31.664      19.826      
+DH8     O4      O       OH1     0       68.368      33.004      20.089      
+DH8     C5      C       CH1     0       68.835      30.880      21.144      
+DH8     O5      O       O2      0       69.340      29.548      20.889      
+DH8     C6      C       CH2     0       67.484      30.718      21.806      
+DH8     O6      O       OH1     0       66.566      30.006      20.976      
+DH8     CAA     C       CH3     0       74.440      25.217      20.459      
+DH8     CAB     C       CH3     0       69.793      21.334      25.662      
+DH8     OAC     O       O       0       69.340      21.127      23.325      
+DH8     CAH     C       C1      0       73.470      26.317      20.764      
+DH8     CAI     C       CR16    0       64.801      22.729      23.283      
+DH8     CAJ     C       CR16    0       65.498      22.829      24.475      
+DH8     CAK     C       CR16    0       65.289      23.276      22.100      
+DH8     CAL     C       CR16    0       66.725      23.494      24.515      
+DH8     CAN     C       CH2     0       70.114      25.178      20.308      
+DH8     CAO     C       CH2     0       69.076      25.893      23.967      
+DH8     NAP     N       NT1     0       67.206      24.568      21.119      
+DH8     OAQ     O       O2      0       70.002      23.122      24.158      
+DH8     CAT     C       C       0       69.673      21.807      24.254      
+DH8     CAU     C       CR66    0       72.179      26.224      21.073      
+DH8     CAV     C       CH1     0       68.029      25.583      21.763      
+DH8     CAW     C       CR56    0       66.516      23.930      22.147      
+DH8     CAX     C       CR56    0       67.224      24.050      23.343      
+DH8     CBC     C       CH1     0       71.355      24.964      21.196      
+DH8     CBD     C       CH1     0       69.225      26.228      20.998      
+DH8     CBF     C       CH1     0       70.342      26.211      23.162      
+DH8     CBG     C       CH1     0       71.304      27.440      21.364      
+DH8     CBH     C       CH1     0       69.724      23.865      22.934      
+DH8     CBI     C       CH1     0       70.893      24.845      22.673      
+DH8     NBJ     N       NT      0       70.047      27.019      21.962      
+DH8     CBK     C       CT      0       68.495      24.805      23.048      
+DH8     H1      H       H       0       71.269      30.004      20.987      
+DH8     H2      H       H       0       70.121      29.752      18.376      
+DH8     HO2     H       H       0       72.013      30.566      17.712      
+DH8     H3      H       H       0       70.779      32.188      19.712      
+DH8     HO3     H       H       0       69.941      33.100      17.964      
+DH8     H4      H       H       0       68.132      31.239      19.220      
+DH8     HO4     H       H       0       68.911      33.382      20.609      
+DH8     H5      H       H       0       69.446      31.343      21.766      
+DH8     H6      H       H       0       67.114      31.603      22.009      
+DH8     H6A     H       H       0       67.594      30.234      22.651      
+DH8     HO6     H       H       0       66.857      29.221      20.842      
+DH8     HAA     H       H       0       74.029      24.359      20.602      
+DH8     HAAA    H       H       0       75.207      25.300      21.035      
+DH8     HAAB    H       H       0       74.723      25.286      19.541      
+DH8     HAB     H       H       0       70.308      21.972      26.182      
+DH8     HABA    H       H       0       70.240      20.472      25.676      
+DH8     HABB    H       H       0       68.907      21.243      26.049      
+DH8     HAH     H       H       0       73.818      27.184      20.733      
+DH8     HAI     H       H       0       63.975      22.279      23.270      
+DH8     HAJ     H       H       0       65.140      22.447      25.260      
+DH8     HAK     H       H       0       64.807      23.205      21.287      
+DH8     HAL     H       H       0       67.211      23.567      25.330      
+DH8     HAN     H       H       0       70.390      25.506      19.419      
+DH8     HANA    H       H       0       69.629      24.332      20.186      
+DH8     HAO     H       H       0       69.287      25.548      24.858      
+DH8     HAOA    H       H       0       68.486      26.670      24.042      
+DH8     HNAP    H       H       0       66.757      24.845      20.430      
+DH8     HAV     H       H       0       67.446      26.323      22.043      
+DH8     HBC     H       H       0       71.874      24.169      20.910      
+DH8     HBD     H       H       0       68.846      26.851      20.328      
+DH8     HBF     H       H       0       71.006      26.676      23.730      
+DH8     HBG     H       H       0       71.786      27.991      22.016      
+DH8     HBH     H       H       0       69.630      23.259      22.165      
+DH8     HBI     H       H       0       71.671      24.590      23.231      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DH8          C1          O1      SINGLE       n     1.403  0.0143     1.403  0.0143
+DH8          C1          C2      SINGLE       n     1.523  0.0116     1.523  0.0116
+DH8          C1          O5      SINGLE       n     1.422  0.0172     1.422  0.0172
+DH8          O1         CBG      SINGLE       n     1.418  0.0125     1.418  0.0125
+DH8          C2          O2      SINGLE       n     1.425  0.0112     1.425  0.0112
+DH8          C2          C3      SINGLE       n     1.519  0.0200     1.519  0.0200
+DH8          C3          O3      SINGLE       n     1.427  0.0138     1.427  0.0138
+DH8          C3          C4      SINGLE       n     1.520  0.0158     1.520  0.0158
+DH8          C4          O4      SINGLE       n     1.425  0.0176     1.425  0.0176
+DH8          C4          C5      SINGLE       n     1.524  0.0200     1.524  0.0200
+DH8          C5          O5      SINGLE       n     1.440  0.0195     1.440  0.0195
+DH8          C5          C6      SINGLE       n     1.511  0.0142     1.511  0.0142
+DH8          C6          O6      SINGLE       n     1.426  0.0200     1.426  0.0200
+DH8         CAA         CAH      SINGLE       n     1.496  0.0100     1.496  0.0100
+DH8         CAB         CAT      SINGLE       n     1.489  0.0100     1.489  0.0100
+DH8         OAC         CAT      DOUBLE       n     1.197  0.0100     1.197  0.0100
+DH8         CAH         CAU      DOUBLE       n     1.322  0.0146     1.322  0.0146
+DH8         CAI         CAJ      DOUBLE       y     1.380  0.0100     1.380  0.0100
+DH8         CAI         CAK      SINGLE       y     1.387  0.0100     1.387  0.0100
+DH8         CAJ         CAL      SINGLE       y     1.392  0.0100     1.392  0.0100
+DH8         CAK         CAW      DOUBLE       y     1.388  0.0100     1.388  0.0100
+DH8         CAL         CAX      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DH8         CAN         CBC      SINGLE       n     1.539  0.0100     1.539  0.0100
+DH8         CAN         CBD      SINGLE       n     1.539  0.0100     1.539  0.0100
+DH8         CAO         CBF      SINGLE       n     1.532  0.0133     1.532  0.0133
+DH8         CAO         CBK      SINGLE       n     1.545  0.0128     1.545  0.0128
+DH8         NAP         CAV      SINGLE       n     1.454  0.0112     1.454  0.0112
+DH8         NAP         CAW      SINGLE       n     1.390  0.0100     1.390  0.0100
+DH8         OAQ         CAT      SINGLE       n     1.348  0.0141     1.348  0.0141
+DH8         OAQ         CBH      SINGLE       n     1.448  0.0137     1.448  0.0137
+DH8         CAU         CBC      SINGLE       n     1.506  0.0100     1.506  0.0100
+DH8         CAU         CBG      SINGLE       n     1.513  0.0151     1.513  0.0151
+DH8         CAV         CBD      SINGLE       n     1.554  0.0100     1.554  0.0100
+DH8         CAV         CBK      SINGLE       n     1.560  0.0161     1.560  0.0161
+DH8         CAW         CAX      SINGLE       y     1.391  0.0100     1.391  0.0100
+DH8         CAX         CBK      SINGLE       n     1.509  0.0100     1.509  0.0100
+DH8         CBC         CBI      SINGLE       n     1.541  0.0100     1.541  0.0100
+DH8         CBD         NBJ      SINGLE       n     1.478  0.0113     1.478  0.0113
+DH8         CBF         CBI      SINGLE       n     1.539  0.0123     1.539  0.0123
+DH8         CBF         NBJ      SINGLE       n     1.465  0.0159     1.465  0.0159
+DH8         CBG         NBJ      SINGLE       n     1.445  0.0101     1.445  0.0101
+DH8         CBH         CBI      SINGLE       n     1.533  0.0148     1.533  0.0148
+DH8         CBH         CBK      SINGLE       n     1.548  0.0100     1.548  0.0100
+DH8          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0183
+DH8          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0140
+DH8          O2         HO2      SINGLE       n     0.970  0.0120     0.841  0.0200
+DH8          C3          H3      SINGLE       n     1.089  0.0100     0.991  0.0121
+DH8          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+DH8          C4          H4      SINGLE       n     1.089  0.0100     0.986  0.0131
+DH8          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+DH8          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0182
+DH8          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0184
+DH8          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0184
+DH8          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+DH8         CAA         HAA      SINGLE       n     1.089  0.0100     0.963  0.0100
+DH8         CAA        HAAA      SINGLE       n     1.089  0.0100     0.963  0.0100
+DH8         CAA        HAAB      SINGLE       n     1.089  0.0100     0.963  0.0100
+DH8         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0140
+DH8         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0140
+DH8         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0140
+DH8         CAH         HAH      SINGLE       n     1.082  0.0130     0.935  0.0106
+DH8         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0173
+DH8         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0193
+DH8         CAK         HAK      SINGLE       n     1.082  0.0130     0.948  0.0200
+DH8         CAL         HAL      SINGLE       n     1.082  0.0130     0.952  0.0200
+DH8         CAN         HAN      SINGLE       n     1.089  0.0100     0.986  0.0200
+DH8         CAN        HANA      SINGLE       n     1.089  0.0100     0.986  0.0200
+DH8         CAO         HAO      SINGLE       n     1.089  0.0100     0.979  0.0184
+DH8         CAO        HAOA      SINGLE       n     1.089  0.0100     0.979  0.0184
+DH8         NAP        HNAP      SINGLE       n     1.016  0.0100     0.868  0.0200
+DH8         CAV         HAV      SINGLE       n     1.089  0.0100     0.982  0.0176
+DH8         CBC         HBC      SINGLE       n     1.089  0.0100     0.996  0.0185
+DH8         CBD         HBD      SINGLE       n     1.089  0.0100     0.991  0.0100
+DH8         CBF         HBF      SINGLE       n     1.089  0.0100     0.988  0.0168
+DH8         CBG         HBG      SINGLE       n     1.089  0.0100     0.980  0.0100
+DH8         CBH         HBH      SINGLE       n     1.089  0.0100     0.988  0.0200
+DH8         CBI         HBI      SINGLE       n     1.089  0.0100     0.990  0.0133
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DH8          O1          C1          C2     108.240    1.70
+DH8          O1          C1          O5     110.394    2.23
+DH8          O1          C1          H1     109.322    1.50
+DH8          C2          C1          O5     110.164    1.50
+DH8          C2          C1          H1     109.599    1.50
+DH8          O5          C1          H1     109.272    1.61
+DH8          C1          O1         CBG     116.577    2.53
+DH8          C1          C2          O2     109.976    1.78
+DH8          C1          C2          C3     110.229    1.69
+DH8          C1          C2          H2     108.925    1.50
+DH8          O2          C2          C3     111.053    2.62
+DH8          O2          C2          H2     108.551    1.50
+DH8          C3          C2          H2     108.505    1.50
+DH8          C2          O2         HO2     109.126    2.06
+DH8          C2          C3          O3     109.587    2.09
+DH8          C2          C3          C4     110.687    1.67
+DH8          C2          C3          H3     108.712    1.50
+DH8          O3          C3          C4     110.243    1.88
+DH8          O3          C3          H3     108.767    1.50
+DH8          C4          C3          H3     108.653    1.50
+DH8          C3          O3         HO3     108.895    2.41
+DH8          C3          C4          O4     110.101    1.97
+DH8          C3          C4          C5     110.272    1.76
+DH8          C3          C4          H4     109.032    1.50
+DH8          O4          C4          C5     109.072    2.07
+DH8          O4          C4          H4     109.194    1.50
+DH8          C5          C4          H4     109.223    1.50
+DH8          C4          O4         HO4     109.564    3.00
+DH8          C4          C5          O5     109.140    1.86
+DH8          C4          C5          C6     112.996    1.59
+DH8          C4          C5          H5     108.960    1.50
+DH8          O5          C5          C6     106.879    1.50
+DH8          O5          C5          H5     109.134    1.50
+DH8          C6          C5          H5     109.269    1.50
+DH8          C1          O5          C5     113.097    1.50
+DH8          C5          C6          O6     111.299    2.09
+DH8          C5          C6          H6     109.363    1.50
+DH8          C5          C6         H6A     109.363    1.50
+DH8          O6          C6          H6     109.265    1.50
+DH8          O6          C6         H6A     109.265    1.50
+DH8          H6          C6         H6A     108.155    1.50
+DH8          C6          O6         HO6     109.472    2.41
+DH8         CAH         CAA         HAA     109.490    1.50
+DH8         CAH         CAA        HAAA     109.490    1.50
+DH8         CAH         CAA        HAAB     109.490    1.50
+DH8         HAA         CAA        HAAA     109.461    1.50
+DH8         HAA         CAA        HAAB     109.461    1.50
+DH8        HAAA         CAA        HAAB     109.461    1.50
+DH8         CAT         CAB         HAB     109.529    1.50
+DH8         CAT         CAB        HABA     109.529    1.50
+DH8         CAT         CAB        HABB     109.529    1.50
+DH8         HAB         CAB        HABA     109.424    1.50
+DH8         HAB         CAB        HABB     109.424    1.50
+DH8        HABA         CAB        HABB     109.424    1.50
+DH8         CAA         CAH         CAU     126.846    1.50
+DH8         CAA         CAH         HAH     116.578    1.50
+DH8         CAU         CAH         HAH     116.576    1.50
+DH8         CAJ         CAI         CAK     121.725    1.50
+DH8         CAJ         CAI         HAI     119.265    1.50
+DH8         CAK         CAI         HAI     119.010    1.50
+DH8         CAI         CAJ         CAL     120.250    1.50
+DH8         CAI         CAJ         HAJ     119.656    1.50
+DH8         CAL         CAJ         HAJ     120.094    1.50
+DH8         CAI         CAK         CAW     117.680    1.50
+DH8         CAI         CAK         HAK     121.457    1.50
+DH8         CAW         CAK         HAK     120.863    1.50
+DH8         CAJ         CAL         CAX     119.109    1.50
+DH8         CAJ         CAL         HAL     120.522    1.50
+DH8         CAX         CAL         HAL     120.369    1.50
+DH8         CBC         CAN         CBD     109.763    1.50
+DH8         CBC         CAN         HAN     109.389    1.50
+DH8         CBC         CAN        HANA     109.389    1.50
+DH8         CBD         CAN         HAN     109.593    1.50
+DH8         CBD         CAN        HANA     109.593    1.50
+DH8         HAN         CAN        HANA     108.199    1.50
+DH8         CBF         CAO         CBK     101.420    1.57
+DH8         CBF         CAO         HAO     110.082    2.12
+DH8         CBF         CAO        HAOA     110.082    2.12
+DH8         CBK         CAO         HAO     111.017    1.50
+DH8         CBK         CAO        HAOA     111.017    1.50
+DH8         HAO         CAO        HAOA     109.065    1.50
+DH8         CAV         NAP         CAW     108.283    1.71
+DH8         CAV         NAP        HNAP     114.799    3.00
+DH8         CAW         NAP        HNAP     118.468    3.00
+DH8         CAT         OAQ         CBH     116.933    1.50
+DH8         CAB         CAT         OAC     125.931    1.50
+DH8         CAB         CAT         OAQ     111.075    1.50
+DH8         OAC         CAT         OAQ     122.994    1.50
+DH8         CAH         CAU         CBC     123.100    3.00
+DH8         CAH         CAU         CBG     124.615    1.50
+DH8         CBC         CAU         CBG     112.285    1.50
+DH8         NAP         CAV         CBD     113.374    3.00
+DH8         NAP         CAV         CBK     103.966    1.91
+DH8         NAP         CAV         HAV     109.450    1.50
+DH8         CBD         CAV         CBK     111.740    2.97
+DH8         CBD         CAV         HAV     108.677    2.12
+DH8         CBK         CAV         HAV     108.652    1.50
+DH8         CAK         CAW         NAP     127.993    1.50
+DH8         CAK         CAW         CAX     121.031    1.50
+DH8         NAP         CAW         CAX     110.976    1.50
+DH8         CAL         CAX         CAW     120.205    1.50
+DH8         CAL         CAX         CBK     130.556    1.50
+DH8         CAW         CAX         CBK     109.239    1.50
+DH8         CAN         CBC         CAU     108.675    1.50
+DH8         CAN         CBC         CBI     107.134    1.50
+DH8         CAN         CBC         HBC     111.297    1.50
+DH8         CAU         CBC         CBI     107.786    1.52
+DH8         CAU         CBC         HBC     109.676    1.50
+DH8         CBI         CBC         HBC     111.170    1.50
+DH8         CAN         CBD         CAV     114.134    2.75
+DH8         CAN         CBD         NBJ     110.807    1.50
+DH8         CAN         CBD         HBD     110.675    1.50
+DH8         CAV         CBD         NBJ     109.735    2.46
+DH8         CAV         CBD         HBD     107.958    1.50
+DH8         NBJ         CBD         HBD     108.529    1.50
+DH8         CAO         CBF         CBI     103.503    2.92
+DH8         CAO         CBF         NBJ     111.077    2.82
+DH8         CAO         CBF         HBF     110.720    1.50
+DH8         CBI         CBF         NBJ     111.077    2.82
+DH8         CBI         CBF         HBF     110.675    1.50
+DH8         NBJ         CBF         HBF     109.337    1.64
+DH8          O1         CBG         CAU     108.573    2.85
+DH8          O1         CBG         NBJ     110.763    2.31
+DH8          O1         CBG         HBG     108.831    1.50
+DH8         CAU         CBG         NBJ     110.223    1.50
+DH8         CAU         CBG         HBG     108.076    1.68
+DH8         NBJ         CBG         HBG     108.759    1.50
+DH8         OAQ         CBH         CBI     109.454    1.50
+DH8         OAQ         CBH         CBK     112.661    3.00
+DH8         OAQ         CBH         HBH     110.748    1.53
+DH8         CBI         CBH         CBK     103.503    2.92
+DH8         CBI         CBH         HBH     109.110    1.50
+DH8         CBK         CBH         HBH     110.582    1.50
+DH8         CBC         CBI         CBF     109.006    1.68
+DH8         CBC         CBI         CBH     114.139    1.84
+DH8         CBC         CBI         HBI     109.491    1.50
+DH8         CBF         CBI         CBH     102.355    2.20
+DH8         CBF         CBI         HBI     110.153    2.01
+DH8         CBH         CBI         HBI     110.515    2.21
+DH8         CBD         NBJ         CBF     113.246    3.00
+DH8         CBD         NBJ         CBG     108.916    1.50
+DH8         CBF         NBJ         CBG     113.246    3.00
+DH8         CAO         CBK         CAV     108.383    2.69
+DH8         CAO         CBK         CAX     114.689    3.00
+DH8         CAO         CBK         CBH     103.002    1.64
+DH8         CAV         CBK         CAX     101.546    1.50
+DH8         CAV         CBK         CBH     114.980    3.00
+DH8         CAX         CBK         CBH     112.370    2.35
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DH8                   nu0          C5          O5          C1          C2     -66.236    10.0     3
+DH8                   nu1          O5          C1          C2          C3      58.222    10.0     3
+DH8                   nu2          C1          C2          C3          C4     -50.975    10.0     3
+DH8                   nu3          C2          C3          C4          C5      49.977    10.0     3
+DH8                   nu4          C3          C4          C5          O5     -56.744    10.0     3
+DH8                   nu5          C4          C5          O5          C1      65.650    10.0     3
+DH8       const_sp2_sp2_1         CAK         CAI         CAJ         CAL       0.000     5.0     2
+DH8       const_sp2_sp2_2         CAK         CAI         CAJ         HAJ     180.000     5.0     2
+DH8       const_sp2_sp2_3         HAI         CAI         CAJ         CAL     180.000     5.0     2
+DH8       const_sp2_sp2_4         HAI         CAI         CAJ         HAJ       0.000     5.0     2
+DH8       const_sp2_sp2_5         CAI         CAJ         CAL         CAX       0.000     5.0     2
+DH8       const_sp2_sp2_6         CAI         CAJ         CAL         HAL     180.000     5.0     2
+DH8       const_sp2_sp2_7         HAJ         CAJ         CAL         CAX     180.000     5.0     2
+DH8       const_sp2_sp2_8         HAJ         CAJ         CAL         HAL       0.000     5.0     2
+DH8       const_sp2_sp2_9         CAJ         CAL         CAX         CAW       0.000     5.0     2
+DH8              const_10         CAJ         CAL         CAX         CBK     180.000    10.0     2
+DH8              const_11         HAL         CAL         CAX         CAW     180.000    10.0     2
+DH8              const_12         HAL         CAL         CAX         CBK       0.000    10.0     2
+DH8              const_13         CAK         CAW         CAX         CAL       0.000    10.0     2
+DH8              const_14         CAK         CAW         CAX         CBK     180.000    10.0     2
+DH8              const_15         NAP         CAW         CAX         CAL     180.000    10.0     2
+DH8              const_16         NAP         CAW         CAX         CBK       0.000    10.0     2
+DH8              const_17         CAI         CAK         CAW         CAX       0.000    10.0     2
+DH8              const_18         CAI         CAK         CAW         NAP     180.000    10.0     2
+DH8              const_19         HAK         CAK         CAW         CAX     180.000    10.0     2
+DH8              const_20         HAK         CAK         CAW         NAP       0.000    10.0     2
+DH8            sp3_sp3_40         CBD         CAN         CBC         CAU      60.000    10.0     3
+DH8            sp3_sp3_41         CBD         CAN         CBC         CBI     180.000    10.0     3
+DH8            sp3_sp3_42         CBD         CAN         CBC         HBC     -60.000    10.0     3
+DH8            sp3_sp3_43         HAN         CAN         CBC         CAU     -60.000    10.0     3
+DH8            sp3_sp3_44         HAN         CAN         CBC         CBI      60.000    10.0     3
+DH8            sp3_sp3_45         HAN         CAN         CBC         HBC     180.000    10.0     3
+DH8            sp3_sp3_46        HANA         CAN         CBC         CAU     180.000    10.0     3
+DH8            sp3_sp3_47        HANA         CAN         CBC         CBI     -60.000    10.0     3
+DH8            sp3_sp3_48        HANA         CAN         CBC         HBC      60.000    10.0     3
+DH8             sp2_sp3_1         CBG         CAU         CBC         CAN       0.000    10.0     6
+DH8             sp2_sp3_2         CBG         CAU         CBC         CBI     120.000    10.0     6
+DH8             sp2_sp3_3         CBG         CAU         CBC         HBC    -120.000    10.0     6
+DH8             sp2_sp3_4         CAH         CAU         CBC         CAN     180.000    10.0     6
+DH8             sp2_sp3_5         CAH         CAU         CBC         CBI     -60.000    10.0     6
+DH8             sp2_sp3_6         CAH         CAU         CBC         HBC      60.000    10.0     6
+DH8             sp2_sp3_7         CBC         CAU         CBG         NBJ       0.000    10.0     6
+DH8             sp2_sp3_8         CBC         CAU         CBG          O1     120.000    10.0     6
+DH8             sp2_sp3_9         CBC         CAU         CBG         HBG    -120.000    10.0     6
+DH8            sp2_sp3_10         CAH         CAU         CBG         NBJ     180.000    10.0     6
+DH8            sp2_sp3_11         CAH         CAU         CBG          O1     -60.000    10.0     6
+DH8            sp2_sp3_12         CAH         CAU         CBG         HBG      60.000    10.0     6
+DH8            sp3_sp3_49         CAU         CBG         NBJ         CBD     -60.000    10.0     3
+DH8            sp3_sp3_50         CAU         CBG         NBJ         CBF      60.000    10.0     3
+DH8            sp3_sp3_51          O1         CBG         NBJ         CBD     180.000    10.0     3
+DH8            sp3_sp3_52          O1         CBG         NBJ         CBF     -60.000    10.0     3
+DH8            sp3_sp3_53         HBG         CBG         NBJ         CBD      60.000    10.0     3
+DH8            sp3_sp3_54         HBG         CBG         NBJ         CBF     180.000    10.0     3
+DH8            sp3_sp3_55         CAN         CBD         NBJ         CBF      60.000    10.0     3
+DH8            sp3_sp3_56         CAN         CBD         NBJ         CBG     180.000    10.0     3
+DH8            sp3_sp3_57         CAV         CBD         NBJ         CBF     -60.000    10.0     3
+DH8            sp3_sp3_58         CAV         CBD         NBJ         CBG      60.000    10.0     3
+DH8            sp3_sp3_59         HBD         CBD         NBJ         CBF     180.000    10.0     3
+DH8            sp3_sp3_60         HBD         CBD         NBJ         CBG     -60.000    10.0     3
+DH8            sp3_sp3_61         CAN         CBC         CBI         CBF     -60.000    10.0     3
+DH8            sp3_sp3_62         CAN         CBC         CBI         CBH      60.000    10.0     3
+DH8            sp3_sp3_63         CAN         CBC         CBI         HBI     180.000    10.0     3
+DH8            sp3_sp3_64         CAU         CBC         CBI         CBF     180.000    10.0     3
+DH8            sp3_sp3_65         CAU         CBC         CBI         CBH     -60.000    10.0     3
+DH8            sp3_sp3_66         CAU         CBC         CBI         HBI      60.000    10.0     3
+DH8            sp3_sp3_67         HBC         CBC         CBI         CBF      60.000    10.0     3
+DH8            sp3_sp3_68         HBC         CBC         CBI         CBH     180.000    10.0     3
+DH8            sp3_sp3_69         HBC         CBC         CBI         HBI     -60.000    10.0     3
+DH8            sp3_sp3_70         CAO         CBF         CBI         CBH      60.000    10.0     3
+DH8            sp3_sp3_71         CAO         CBF         CBI         CBC     180.000    10.0     3
+DH8            sp3_sp3_72         CAO         CBF         CBI         HBI     -60.000    10.0     3
+DH8            sp3_sp3_73         NBJ         CBF         CBI         CBH     -60.000    10.0     3
+DH8            sp3_sp3_74         NBJ         CBF         CBI         CBC      60.000    10.0     3
+DH8            sp3_sp3_75         NBJ         CBF         CBI         HBI     180.000    10.0     3
+DH8            sp3_sp3_76         HBF         CBF         CBI         CBH     180.000    10.0     3
+DH8            sp3_sp3_77         HBF         CBF         CBI         CBC     -60.000    10.0     3
+DH8            sp3_sp3_78         HBF         CBF         CBI         HBI      60.000    10.0     3
+DH8            sp3_sp3_79         CAO         CBF         NBJ         CBD     -60.000    10.0     3
+DH8            sp3_sp3_80         CAO         CBF         NBJ         CBG      60.000    10.0     3
+DH8            sp3_sp3_81         CBI         CBF         NBJ         CBD     180.000    10.0     3
+DH8            sp3_sp3_82         CBI         CBF         NBJ         CBG     -60.000    10.0     3
+DH8            sp3_sp3_83         HBF         CBF         NBJ         CBD      60.000    10.0     3
+DH8            sp3_sp3_84         HBF         CBF         NBJ         CBG     180.000    10.0     3
+DH8            sp3_sp3_85         CBK         CAO         CBF         CBI      60.000    10.0     3
+DH8            sp3_sp3_86         CBK         CAO         CBF         NBJ     180.000    10.0     3
+DH8            sp3_sp3_87         CBK         CAO         CBF         HBF     -60.000    10.0     3
+DH8            sp3_sp3_88         HAO         CAO         CBF         CBI     -60.000    10.0     3
+DH8            sp3_sp3_89         HAO         CAO         CBF         NBJ      60.000    10.0     3
+DH8            sp3_sp3_90         HAO         CAO         CBF         HBF     180.000    10.0     3
+DH8            sp3_sp3_91        HAOA         CAO         CBF         CBI     180.000    10.0     3
+DH8            sp3_sp3_92        HAOA         CAO         CBF         NBJ     -60.000    10.0     3
+DH8            sp3_sp3_93        HAOA         CAO         CBF         HBF      60.000    10.0     3
+DH8            sp3_sp3_94         CBK         CAV         CBD         NBJ     -60.000    10.0     3
+DH8            sp3_sp3_95         CBK         CAV         CBD         CAN      60.000    10.0     3
+DH8            sp3_sp3_96         CBK         CAV         CBD         HBD     180.000    10.0     3
+DH8            sp3_sp3_97         NAP         CAV         CBD         NBJ     180.000    10.0     3
+DH8            sp3_sp3_98         NAP         CAV         CBD         CAN     -60.000    10.0     3
+DH8            sp3_sp3_99         NAP         CAV         CBD         HBD      60.000    10.0     3
+DH8           sp3_sp3_100         HAV         CAV         CBD         NBJ      60.000    10.0     3
+DH8           sp3_sp3_101         HAV         CAV         CBD         CAN     180.000    10.0     3
+DH8           sp3_sp3_102         HAV         CAV         CBD         HBD     -60.000    10.0     3
+DH8           sp3_sp3_103         NAP         CAV         CBK         CAX      60.000    10.0     3
+DH8           sp3_sp3_104         NAP         CAV         CBK         CAO     180.000    10.0     3
+DH8           sp3_sp3_105         NAP         CAV         CBK         CBH     -60.000    10.0     3
+DH8           sp3_sp3_106         CBD         CAV         CBK         CAX     -60.000    10.0     3
+DH8           sp3_sp3_107         CBD         CAV         CBK         CAO      60.000    10.0     3
+DH8           sp3_sp3_108         CBD         CAV         CBK         CBH     180.000    10.0     3
+DH8           sp3_sp3_109         HAV         CAV         CBK         CAX     180.000    10.0     3
+DH8           sp3_sp3_110         HAV         CAV         CBK         CAO     -60.000    10.0     3
+DH8           sp3_sp3_111         HAV         CAV         CBK         CBH      60.000    10.0     3
+DH8           sp3_sp3_112         CBK         CBH         CBI         CBF      60.000    10.0     3
+DH8           sp3_sp3_113         CBK         CBH         CBI         CBC     180.000    10.0     3
+DH8           sp3_sp3_114         CBK         CBH         CBI         HBI     -60.000    10.0     3
+DH8           sp3_sp3_115         OAQ         CBH         CBI         CBF     -60.000    10.0     3
+DH8           sp3_sp3_116         OAQ         CBH         CBI         CBC      60.000    10.0     3
+DH8           sp3_sp3_117         OAQ         CBH         CBI         HBI     180.000    10.0     3
+DH8           sp3_sp3_118         HBH         CBH         CBI         CBF     180.000    10.0     3
+DH8           sp3_sp3_119         HBH         CBH         CBI         CBC     -60.000    10.0     3
+DH8           sp3_sp3_120         HBH         CBH         CBI         HBI      60.000    10.0     3
+DH8           sp3_sp3_121         CBI         CBH         CBK         CAO     -60.000    10.0     3
+DH8           sp3_sp3_122         CBI         CBH         CBK         CAV      60.000    10.0     3
+DH8           sp3_sp3_123         CBI         CBH         CBK         CAX     180.000    10.0     3
+DH8           sp3_sp3_124         OAQ         CBH         CBK         CAO     180.000    10.0     3
+DH8           sp3_sp3_125         OAQ         CBH         CBK         CAV     -60.000    10.0     3
+DH8           sp3_sp3_126         OAQ         CBH         CBK         CAX      60.000    10.0     3
+DH8           sp3_sp3_127         HBH         CBH         CBK         CAO      60.000    10.0     3
+DH8           sp3_sp3_128         HBH         CBH         CBK         CAV     180.000    10.0     3
+DH8           sp3_sp3_129         HBH         CBH         CBK         CAX     -60.000    10.0     3
+DH8            sp2_sp3_13         CAW         NAP         CAV         CBK       0.000    10.0     6
+DH8            sp2_sp3_14         CAW         NAP         CAV         CBD     120.000    10.0     6
+DH8            sp2_sp3_15         CAW         NAP         CAV         HAV    -120.000    10.0     6
+DH8            sp2_sp3_16        HNAP         NAP         CAV         CBK     180.000    10.0     6
+DH8            sp2_sp3_17        HNAP         NAP         CAV         CBD     -60.000    10.0     6
+DH8            sp2_sp3_18        HNAP         NAP         CAV         HAV      60.000    10.0     6
+DH8            sp2_sp3_19         CAW         CAX         CBK         CAV       0.000    10.0     6
+DH8            sp2_sp3_20         CAW         CAX         CBK         CAO     120.000    10.0     6
+DH8            sp2_sp3_21         CAW         CAX         CBK         CBH    -120.000    10.0     6
+DH8            sp2_sp3_22         CAL         CAX         CBK         CAV     180.000    10.0     6
+DH8            sp2_sp3_23         CAL         CAX         CBK         CAO     -60.000    10.0     6
+DH8            sp2_sp3_24         CAL         CAX         CBK         CBH      60.000    10.0     6
+DH8           sp3_sp3_130          C2          C1          O1         CBG     180.000    10.0     3
+DH8           sp3_sp3_131          O5          C1          O1         CBG      60.000    10.0     3
+DH8           sp3_sp3_132          H1          C1          O1         CBG     -60.000    10.0     3
+DH8           sp3_sp3_136         CAU         CBG          O1          C1     180.000    10.0     3
+DH8           sp3_sp3_137         NBJ         CBG          O1          C1      60.000    10.0     3
+DH8           sp3_sp3_138         HBG         CBG          O1          C1     -60.000    10.0     3
+DH8           sp3_sp3_139          C1          C2          O2         HO2     180.000    10.0     3
+DH8           sp3_sp3_140          C3          C2          O2         HO2      60.000    10.0     3
+DH8           sp3_sp3_141          H2          C2          O2         HO2     -60.000    10.0     3
+DH8           sp3_sp3_142          C2          C3          O3         HO3     180.000    10.0     3
+DH8           sp3_sp3_143          C4          C3          O3         HO3      60.000    10.0     3
+DH8           sp3_sp3_144          H3          C3          O3         HO3     -60.000    10.0     3
+DH8           sp3_sp3_145          C3          C4          O4         HO4     180.000    10.0     3
+DH8           sp3_sp3_146          C5          C4          O4         HO4      60.000    10.0     3
+DH8           sp3_sp3_147          H4          C4          O4         HO4     -60.000    10.0     3
+DH8           sp3_sp3_148          C4          C5          C6          O6     180.000    10.0     3
+DH8           sp3_sp3_149          C4          C5          C6          H6     -60.000    10.0     3
+DH8           sp3_sp3_150          C4          C5          C6         H6A      60.000    10.0     3
+DH8           sp3_sp3_151          O5          C5          C6          O6      60.000    10.0     3
+DH8           sp3_sp3_152          O5          C5          C6          H6     180.000    10.0     3
+DH8           sp3_sp3_153          O5          C5          C6         H6A     -60.000    10.0     3
+DH8           sp3_sp3_154          H5          C5          C6          O6     -60.000    10.0     3
+DH8           sp3_sp3_155          H5          C5          C6          H6      60.000    10.0     3
+DH8           sp3_sp3_156          H5          C5          C6         H6A     180.000    10.0     3
+DH8           sp3_sp3_157          C5          C6          O6         HO6     180.000    10.0     3
+DH8           sp3_sp3_158          H6          C6          O6         HO6      60.000    10.0     3
+DH8           sp3_sp3_159         H6A          C6          O6         HO6     -60.000    10.0     3
+DH8            sp2_sp3_25         CAU         CAH         CAA         HAA       0.000    10.0     6
+DH8            sp2_sp3_26         CAU         CAH         CAA        HAAA     120.000    10.0     6
+DH8            sp2_sp3_27         CAU         CAH         CAA        HAAB    -120.000    10.0     6
+DH8            sp2_sp3_28         HAH         CAH         CAA         HAA     180.000    10.0     6
+DH8            sp2_sp3_29         HAH         CAH         CAA        HAAA     -60.000    10.0     6
+DH8            sp2_sp3_30         HAH         CAH         CAA        HAAB      60.000    10.0     6
+DH8            sp2_sp3_31         OAC         CAT         CAB         HAB       0.000    10.0     6
+DH8            sp2_sp3_32         OAC         CAT         CAB        HABA     120.000    10.0     6
+DH8            sp2_sp3_33         OAC         CAT         CAB        HABB    -120.000    10.0     6
+DH8            sp2_sp3_34         OAQ         CAT         CAB         HAB     180.000    10.0     6
+DH8            sp2_sp3_35         OAQ         CAT         CAB        HABA     -60.000    10.0     6
+DH8            sp2_sp3_36         OAQ         CAT         CAB        HABB      60.000    10.0     6
+DH8             sp2_sp2_1         CAA         CAH         CAU         CBC     180.000     5.0     2
+DH8             sp2_sp2_2         CAA         CAH         CAU         CBG       0.000     5.0     2
+DH8             sp2_sp2_3         HAH         CAH         CAU         CBC       0.000     5.0     2
+DH8             sp2_sp2_4         HAH         CAH         CAU         CBG     180.000     5.0     2
+DH8              const_21         CAJ         CAI         CAK         CAW       0.000    10.0     2
+DH8              const_22         CAJ         CAI         CAK         HAK     180.000    10.0     2
+DH8              const_23         HAI         CAI         CAK         CAW     180.000    10.0     2
+DH8              const_24         HAI         CAI         CAK         HAK       0.000    10.0     2
+DH8           sp3_sp3_160         CBC         CAN         CBD         NBJ     180.000    10.0     3
+DH8           sp3_sp3_161         CBC         CAN         CBD         CAV     -60.000    10.0     3
+DH8           sp3_sp3_162         CBC         CAN         CBD         HBD      60.000    10.0     3
+DH8           sp3_sp3_163         HAN         CAN         CBD         NBJ      60.000    10.0     3
+DH8           sp3_sp3_164         HAN         CAN         CBD         CAV     180.000    10.0     3
+DH8           sp3_sp3_165         HAN         CAN         CBD         HBD     -60.000    10.0     3
+DH8           sp3_sp3_166        HANA         CAN         CBD         NBJ     -60.000    10.0     3
+DH8           sp3_sp3_167        HANA         CAN         CBD         CAV      60.000    10.0     3
+DH8           sp3_sp3_168        HANA         CAN         CBD         HBD     180.000    10.0     3
+DH8           sp3_sp3_169         CBF         CAO         CBK         CAV     180.000    10.0     3
+DH8           sp3_sp3_170         CBF         CAO         CBK         CAX     -60.000    10.0     3
+DH8           sp3_sp3_171         CBF         CAO         CBK         CBH      60.000    10.0     3
+DH8           sp3_sp3_172         HAO         CAO         CBK         CAV      60.000    10.0     3
+DH8           sp3_sp3_173         HAO         CAO         CBK         CAX     180.000    10.0     3
+DH8           sp3_sp3_174         HAO         CAO         CBK         CBH     -60.000    10.0     3
+DH8           sp3_sp3_175        HAOA         CAO         CBK         CAV     -60.000    10.0     3
+DH8           sp3_sp3_176        HAOA         CAO         CBK         CAX      60.000    10.0     3
+DH8           sp3_sp3_177        HAOA         CAO         CBK         CBH     180.000    10.0     3
+DH8             sp2_sp2_5         CAX         CAW         NAP         CAV       0.000     5.0     2
+DH8             sp2_sp2_6         CAX         CAW         NAP        HNAP     180.000     5.0     2
+DH8             sp2_sp2_7         CAK         CAW         NAP         CAV     180.000     5.0     2
+DH8             sp2_sp2_8         CAK         CAW         NAP        HNAP       0.000     5.0     2
+DH8             sp2_sp2_9         CAB         CAT         OAQ         CBH     180.000     5.0     2
+DH8            sp2_sp2_10         OAC         CAT         OAQ         CBH       0.000     5.0     2
+DH8           sp3_sp3_178         CBI         CBH         OAQ         CAT     180.000    10.0     3
+DH8           sp3_sp3_179         CBK         CBH         OAQ         CAT     -60.000    10.0     3
+DH8           sp3_sp3_180         HBH         CBH         OAQ         CAT      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DH8    chir_1    C1    O1    O5    C2    positive
+DH8    chir_2    C2    O2    C1    C3    negative
+DH8    chir_3    C3    O3    C2    C4    positive
+DH8    chir_4    C4    O4    C5    C3    positive
+DH8    chir_5    C5    O5    C4    C6    negative
+DH8    chir_6    CAV    NAP    CBD    CBK    positive
+DH8    chir_7    CBC    CAU    CBI    CAN    negative
+DH8    chir_8    CBD    NBJ    CAV    CAN    positive
+DH8    chir_9    CBF    NBJ    CBI    CAO    positive
+DH8    chir_10    CBG    O1    NBJ    CAU    negative
+DH8    chir_11    CBH    OAQ    CBK    CBI    negative
+DH8    chir_12    CBI    CBH    CBF    CBC    positive
+DH8    chir_13    NBJ    CBG    CBD    CBF    negative
+DH8    chir_14    CBK    CBH    CAV    CAX    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DH8    plan-1         CAI   0.020
+DH8    plan-1         CAJ   0.020
+DH8    plan-1         CAK   0.020
+DH8    plan-1         CAL   0.020
+DH8    plan-1         CAW   0.020
+DH8    plan-1         CAX   0.020
+DH8    plan-1         CBK   0.020
+DH8    plan-1         HAI   0.020
+DH8    plan-1         HAJ   0.020
+DH8    plan-1         HAK   0.020
+DH8    plan-1         HAL   0.020
+DH8    plan-1         NAP   0.020
+DH8    plan-2         CAA   0.020
+DH8    plan-2         CAH   0.020
+DH8    plan-2         CAU   0.020
+DH8    plan-2         HAH   0.020
+DH8    plan-3         CAB   0.020
+DH8    plan-3         CAT   0.020
+DH8    plan-3         OAC   0.020
+DH8    plan-3         OAQ   0.020
+DH8    plan-4         CAH   0.020
+DH8    plan-4         CAU   0.020
+DH8    plan-4         CBC   0.020
+DH8    plan-4         CBG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DH8           SMILES              ACDLabs 12.01                                                                                                                                                                                       O=C(OC6C7C5C(=C/C)\C(OC1OC(C(O)C(O)C1O)CO)N4C7CC63c2ccccc2NC3C4C5)C
+DH8            InChI                InChI  1.03 InChI=1S/C27H34N2O8/c1-3-12-13-8-16-23-27(14-6-4-5-7-15(14)28-23)9-17(19(13)24(27)35-11(2)31)29(16)25(12)37-26-22(34)21(33)20(32)18(10-30)36-26/h3-7,13,16-26,28,30,32-34H,8-10H2,1-2H3/b12-3+/t13-,16-,17-,18+,19-,20+,21-,22+,23+,24+,25+,26-,27+/m0/s1
+DH8         InChIKey                InChI  1.03                                                                                                                                                                                                                               XIMVERLQIHPDQE-LIEAMVCMSA-N
+DH8 SMILES_CANONICAL               CACTVS 3.370                                                                                                                             C\C=C1/[C@@H]2C[C@H]3[C@H]4Nc5ccccc5[C@]46C[C@@H]([C@H]2[C@H]6OC(C)=O)[N@@]3[C@@H]1O[C@@H]7O[C@H](CO)[C@@H](O)[C@H](O)[C@H]7O
+DH8           SMILES               CACTVS 3.370                                                                                                                                                   CC=C1[CH]2C[CH]3[CH]4Nc5ccccc5[C]46C[CH]([CH]2[CH]6OC(C)=O)[N]3[CH]1O[CH]7O[CH](CO)[CH](O)[CH](O)[CH]7O
+DH8 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                       C/C=C/1\[C@@H]2C[C@H]3[C@@H]4[C@@]5(C[C@@H]([C@H]2[C@H]5OC(=O)C)[N@]3[C@@H]1O[C@H]6[C@@H]([C@H]([C@@H]([C@H](O6)CO)O)O)O)c7ccccc7N4
+DH8           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                       CC=C1C2CC3C4C5(CC(C2C5OC(=O)C)N3C1OC6C(C(C(C(O6)CO)O)O)O)c7ccccc7N4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DH8 acedrg               243         "dictionary generator"                  
+DH8 acedrg_database      11          "data source"                           
+DH8 rdkit                2017.03.2   "Chemoinformatics tool"
+DH8 refmac5              5.8.0238    "optimization tool"                     

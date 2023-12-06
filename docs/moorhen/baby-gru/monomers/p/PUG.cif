@@ -1,0 +1,255 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PUG     PUG      3-(1,3,7-TRIHYDRO-9-D-RIBITYL-2,6,8-PURINETRIONE-7-YL)     NON-POLYMER     35     21     .     
+#
+data_comp_PUG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PUG     O1      O       O       0       -20.429     -1.993      5.568       
+PUG     C2      C       CR6     0       -20.319     -1.550      4.436       
+PUG     N3      N       NR6     0       -20.413     -2.368      3.330       
+PUG     C4      C       CR6     0       -20.297     -1.934      2.005       
+PUG     O2      O       O       0       -20.397     -2.750      1.081       
+PUG     N1      N       NR6     0       -20.095     -0.208      4.240       
+PUG     C8      C       CR56    0       -19.971     0.297       2.978       
+PUG     C9      C       CR56    0       -20.067     -0.538      1.866       
+PUG     N5      N       NR5     0       -19.898     0.277       0.769       
+PUG     N7      N       NT      0       -19.750     1.596       2.549       
+PUG     C6      C       CR5     0       -19.701     1.579       1.156       
+PUG     O4      O       O       0       -19.518     2.551       0.415       
+PUG     C10     C       CH2     0       -19.577     2.807       3.356       
+PUG     C11     C       CH1     0       -18.193     2.879       3.974       
+PUG     O19     O       OH1     0       -17.239     3.162       2.954       
+PUG     C12     C       CH1     0       -18.073     3.925       5.089       
+PUG     O21     O       OH1     0       -18.885     3.517       6.191       
+PUG     C13     C       CH1     0       -18.451     5.355       4.687       
+PUG     O23     O       OH1     0       -17.753     5.728       3.497       
+PUG     C14     C       CH2     0       -18.155     6.367       5.776       
+PUG     O26     O       OH1     0       -16.757     6.465       6.038       
+PUG     H3      H       H       0       -20.557     -3.231      3.474       
+PUG     H1      H       H       0       -20.034     0.326       4.944       
+PUG     H5      H       H       0       -19.911     0.016       -0.080      
+PUG     H101    H       H       0       -20.262     2.807       4.071       
+PUG     H102    H       H       0       -19.727     3.602       2.786       
+PUG     H11     H       H       0       -17.970     1.992       4.359       
+PUG     H19     H       H       0       -16.472     2.905       3.209       
+PUG     H12     H       H       0       -17.128     3.931       5.392       
+PUG     H21     H       H       0       -18.499     3.732       6.915       
+PUG     H13     H       H       0       -19.437     5.389       4.500       
+PUG     H23     H       H       0       -18.048     6.459       3.183       
+PUG     H141    H       H       0       -18.624     6.106       6.604       
+PUG     H142    H       H       0       -18.494     7.252       5.496       
+PUG     H26     H       H       0       -16.654     6.824       6.797       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PUG          O1          C2      DOUBLE       n     1.220  0.0100     1.220  0.0100
+PUG          C2          N3      SINGLE       y     1.373  0.0104     1.373  0.0104
+PUG          C2          N1      SINGLE       y     1.371  0.0103     1.371  0.0103
+PUG          N3          C4      SINGLE       y     1.392  0.0104     1.392  0.0104
+PUG          C4          O2      DOUBLE       n     1.237  0.0126     1.237  0.0126
+PUG          C4          C9      SINGLE       y     1.419  0.0100     1.419  0.0100
+PUG          N1          C8      SINGLE       y     1.361  0.0200     1.361  0.0200
+PUG          C8          C9      DOUBLE       y     1.419  0.0200     1.419  0.0200
+PUG          C8          N7      SINGLE       y     1.404  0.0200     1.404  0.0200
+PUG          C9          N5      SINGLE       y     1.376  0.0100     1.376  0.0100
+PUG          N5          C6      SINGLE       y     1.366  0.0100     1.366  0.0100
+PUG          N7          C6      SINGLE       y     1.388  0.0100     1.388  0.0100
+PUG          N7         C10      SINGLE       n     1.464  0.0105     1.464  0.0105
+PUG          C6          O4      DOUBLE       n     1.235  0.0131     1.235  0.0131
+PUG         C10         C11      SINGLE       n     1.512  0.0200     1.512  0.0200
+PUG         C11         O19      SINGLE       n     1.424  0.0199     1.424  0.0199
+PUG         C11         C12      SINGLE       n     1.531  0.0100     1.531  0.0100
+PUG         C12         O21      SINGLE       n     1.424  0.0199     1.424  0.0199
+PUG         C12         C13      SINGLE       n     1.530  0.0100     1.530  0.0100
+PUG         C13         O23      SINGLE       n     1.429  0.0100     1.429  0.0100
+PUG         C13         C14      SINGLE       n     1.514  0.0100     1.514  0.0100
+PUG         C14         O26      SINGLE       n     1.425  0.0100     1.425  0.0100
+PUG          N3          H3      SINGLE       n     1.016  0.0100     0.886  0.0200
+PUG          N1          H1      SINGLE       n     1.016  0.0100     0.885  0.0200
+PUG          N5          H5      SINGLE       n     1.016  0.0100     0.888  0.0200
+PUG         C10        H101      SINGLE       n     1.089  0.0100     0.990  0.0100
+PUG         C10        H102      SINGLE       n     1.089  0.0100     0.990  0.0100
+PUG         C11         H11      SINGLE       n     1.089  0.0100     0.992  0.0184
+PUG         O19         H19      SINGLE       n     0.970  0.0120     0.848  0.0200
+PUG         C12         H12      SINGLE       n     1.089  0.0100     0.992  0.0184
+PUG         O21         H21      SINGLE       n     0.970  0.0120     0.848  0.0200
+PUG         C13         H13      SINGLE       n     1.089  0.0100     1.004  0.0200
+PUG         O23         H23      SINGLE       n     0.970  0.0120     0.848  0.0200
+PUG         C14        H141      SINGLE       n     1.089  0.0100     0.988  0.0200
+PUG         C14        H142      SINGLE       n     1.089  0.0100     0.988  0.0200
+PUG         O26         H26      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PUG          O1          C2          N3     121.448    1.50
+PUG          O1          C2          N1     120.065    1.67
+PUG          N3          C2          N1     118.487    1.50
+PUG          C2          N3          C4     123.695    2.07
+PUG          C2          N3          H3     117.739    1.94
+PUG          C4          N3          H3     118.566    1.86
+PUG          N3          C4          O2     119.903    1.50
+PUG          N3          C4          C9     113.888    1.50
+PUG          O2          C4          C9     126.209    1.50
+PUG          C2          N1          C8     121.321    1.50
+PUG          C2          N1          H1     118.446    2.15
+PUG          C8          N1          H1     120.233    1.50
+PUG          N1          C8          C9     121.371    1.50
+PUG          N1          C8          N7     125.130    3.00
+PUG          C9          C8          N7     113.499    1.68
+PUG          C4          C9          C8     121.238    1.63
+PUG          C4          C9          N5     131.099    1.50
+PUG          C8          C9          N5     107.663    1.50
+PUG          C9          N5          C6     110.410    1.50
+PUG          C9          N5          H5     126.055    1.93
+PUG          C6          N5          H5     123.536    1.96
+PUG          C8          N7          C6     108.342    1.50
+PUG          C8          N7         C10     124.975    2.43
+PUG          C6          N7         C10     120.342    1.76
+PUG          N5          C6          N7     106.024    1.50
+PUG          N5          C6          O4     127.415    1.50
+PUG          N7          C6          O4     126.561    1.50
+PUG          N7         C10         C11     111.989    1.71
+PUG          N7         C10        H101     108.458    1.53
+PUG          N7         C10        H102     108.458    1.53
+PUG         C11         C10        H101     109.255    1.50
+PUG         C11         C10        H102     109.255    1.50
+PUG        H101         C10        H102     107.991    1.50
+PUG         C10         C11         O19     109.670    2.62
+PUG         C10         C11         C12     110.999    2.33
+PUG         C10         C11         H11     108.989    1.50
+PUG         O19         C11         C12     109.320    2.01
+PUG         O19         C11         H11     108.183    1.96
+PUG         C12         C11         H11     108.450    1.83
+PUG         C11         O19         H19     109.265    3.00
+PUG         C11         C12         O21     109.320    2.01
+PUG         C11         C12         C13     113.695    2.13
+PUG         C11         C12         H12     108.450    1.83
+PUG         O21         C12         C13     109.164    1.97
+PUG         O21         C12         H12     108.243    1.50
+PUG         C13         C12         H12     108.336    1.50
+PUG         C12         O21         H21     108.564    3.00
+PUG         C12         C13         O23     109.549    1.85
+PUG         C12         C13         C14     112.159    1.50
+PUG         C12         C13         H13     108.777    1.50
+PUG         O23         C13         C14     109.623    1.60
+PUG         O23         C13         H13     108.591    1.50
+PUG         C14         C13         H13     107.986    1.50
+PUG         C13         O23         H23     111.202    3.00
+PUG         C13         C14         O26     111.364    1.50
+PUG         C13         C14        H141     109.234    1.50
+PUG         C13         C14        H142     109.234    1.50
+PUG         O26         C14        H141     109.268    1.50
+PUG         O26         C14        H142     109.268    1.50
+PUG        H141         C14        H142     108.313    1.50
+PUG         C14         O26         H26     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PUG             sp3_sp3_1          N7         C10         C11         O19     180.000    10.0     3
+PUG            sp3_sp3_10         C10         C11         O19         H19     180.000    10.0     3
+PUG            sp3_sp3_13         C10         C11         C12         O21     180.000    10.0     3
+PUG            sp3_sp3_22         C11         C12         O21         H21     180.000    10.0     3
+PUG            sp3_sp3_25         C11         C12         C13         O23     180.000    10.0     3
+PUG            sp3_sp3_34         C12         C13         O23         H23     180.000    10.0     3
+PUG            sp3_sp3_37         C12         C13         C14         O26     180.000    10.0     3
+PUG            sp3_sp3_46         C13         C14         O26         H26     180.000    10.0     3
+PUG       const_sp2_sp2_3          O1          C2          N3          C4     180.000     5.0     2
+PUG              const_35          O1          C2          N1          C8     180.000    10.0     2
+PUG       const_sp2_sp2_7          O2          C4          N3          C2     180.000     5.0     2
+PUG              const_11          O2          C4          C9          C8     180.000    10.0     2
+PUG              const_17          C9          C8          N1          C2       0.000    10.0     2
+PUG              const_13          N1          C8          C9          C4       0.000    10.0     2
+PUG              const_40          N1          C8          N7         C10       0.000    10.0     2
+PUG              const_23          C4          C9          N5          C6     180.000    10.0     2
+PUG              const_27          O4          C6          N5          C9     180.000    10.0     2
+PUG              const_32          O4          C6          N7         C10       0.000    10.0     2
+PUG             sp2_sp3_2          C8          N7         C10         C11     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PUG    chir_1    C11    O19    C12    C10    negative
+PUG    chir_2    C12    O21    C13    C11    positive
+PUG    chir_3    C13    O23    C12    C14    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PUG    plan-1         C10   0.020
+PUG    plan-1          C2   0.020
+PUG    plan-1          C4   0.020
+PUG    plan-1          C6   0.020
+PUG    plan-1          C8   0.020
+PUG    plan-1          C9   0.020
+PUG    plan-1          H1   0.020
+PUG    plan-1          H3   0.020
+PUG    plan-1          H5   0.020
+PUG    plan-1          N1   0.020
+PUG    plan-1          N3   0.020
+PUG    plan-1          N5   0.020
+PUG    plan-1          N7   0.020
+PUG    plan-1          O1   0.020
+PUG    plan-1          O2   0.020
+PUG    plan-1          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PUG           SMILES              ACDLabs 10.04                                                                                                   O=C1C2=C(NC(=O)N1)N(C(=O)N2)CC(O)C(O)C(O)CO
+PUG SMILES_CANONICAL               CACTVS 3.341                                                                                         OC[C@@H](O)[C@@H](O)[C@H](O)CN1C(=O)NC2=C1NC(=O)NC2=O
+PUG           SMILES               CACTVS 3.341                                                                                              OC[CH](O)[CH](O)[CH](O)CN1C(=O)NC2=C1NC(=O)NC2=O
+PUG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     C([C@H]([C@@H]([C@@H](CO)O)O)O)N1C2=C(C(=O)NC(=O)N2)NC1=O
+PUG           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                   C(C(C(C(CO)O)O)O)N1C2=C(C(=O)NC(=O)N2)NC1=O
+PUG            InChI                InChI  1.03 InChI=1S/C10H14N4O7/c15-2-4(17)6(18)3(16)1-14-7-5(11-10(14)21)8(19)13-9(20)12-7/h3-4,6,15-18H,1-2H2,(H,11,21)(H2,12,13,19,20)/t3-,4-,6+/m1/s1
+PUG         InChIKey                InChI  1.03                                                                                                                   XIBHHWBJHOTHGZ-KODRXGBYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PUG acedrg               243         "dictionary generator"                  
+PUG acedrg_database      11          "data source"                           
+PUG rdkit                2017.03.2   "Chemoinformatics tool"
+PUG refmac5              5.8.0238    "optimization tool"                     

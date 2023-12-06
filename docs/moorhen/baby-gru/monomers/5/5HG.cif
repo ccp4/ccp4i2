@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5HG     5HG      "{[2-(6-AMINO-9H-PURIN-9-YL)ETHOXY]METHYL}PHOSPHONIC ACID"     NON-POLYMER     28     18     .     
+#
+data_comp_5HG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5HG     O36     O       O       0       16.676      9.075       11.086      
+5HG     P30     P       P       0       17.496      7.863       11.366      
+5HG     O32     O       OP      -1      17.844      7.129       10.117      
+5HG     O34     O       OP      -1      16.842      6.972       12.367      
+5HG     C28     C       CH2     0       19.053      8.430       12.101      
+5HG     O26     O       O2      0       20.024      7.391       12.024      
+5HG     C24     C       CH2     0       21.236      7.567       12.752      
+5HG     C22     C       CH2     0       22.377      7.714       11.784      
+5HG     N17     N       NT      0       23.605      8.157       12.447      
+5HG     C15     C       CR15    0       24.609      7.372       12.938      
+5HG     N13     N       NRD5    0       25.595      8.046       13.488      
+5HG     C2      C       CR56    0       25.205      9.374       13.347      
+5HG     C3      C       CR56    0       23.980      9.453       12.707      
+5HG     N4      N       NRD6    0       23.290      10.569      12.398      
+5HG     C5      C       CR16    0       23.954      11.655      12.798      
+5HG     N6      N       NRD6    0       25.139      11.742      13.424      
+5HG     C1      C       CR6     0       25.807      10.595      13.720      
+5HG     N20     N       NH2     0       26.981      10.680      14.341      
+5HG     H281    H       H       0       18.890      8.673       13.037      
+5HG     H282    H       H       0       19.366      9.221       11.614      
+5HG     H241    H       H       0       21.384      6.789       13.331      
+5HG     H242    H       H       0       21.176      8.361       13.326      
+5HG     H221    H       H       0       22.138      8.364       11.105      
+5HG     H222    H       H       0       22.545      6.860       11.356      
+5HG     H15     H       H       0       24.590      6.426       12.883      
+5HG     H5      H       H       0       23.531      12.480      12.615      
+5HG     H201    H       H       0       27.163      11.379      14.838      
+5HG     H202    H       H       0       27.568      10.034      14.250      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5HG         O36         P30      DOUBLE       n     1.492  0.0200     1.492  0.0200
+5HG         P30         O32      SINGLE       n     1.492  0.0200     1.492  0.0200
+5HG         P30         O34      SINGLE       n     1.492  0.0200     1.492  0.0200
+5HG         P30         C28      SINGLE       n     1.813  0.0200     1.813  0.0200
+5HG         C28         O26      SINGLE       n     1.418  0.0200     1.418  0.0200
+5HG         O26         C24      SINGLE       n     1.417  0.0200     1.417  0.0200
+5HG         C24         C22      SINGLE       n     1.503  0.0100     1.503  0.0100
+5HG         C22         N17      SINGLE       n     1.464  0.0101     1.464  0.0101
+5HG         N17         C15      SINGLE       y     1.368  0.0147     1.368  0.0147
+5HG         N17          C3      SINGLE       y     1.384  0.0181     1.384  0.0181
+5HG         C15         N13      DOUBLE       y     1.313  0.0100     1.313  0.0100
+5HG         N13          C2      SINGLE       y     1.388  0.0100     1.388  0.0100
+5HG          C2          C3      DOUBLE       y     1.382  0.0100     1.382  0.0100
+5HG          C2          C1      SINGLE       y     1.408  0.0100     1.408  0.0100
+5HG          C3          N4      SINGLE       y     1.345  0.0100     1.345  0.0100
+5HG          N4          C5      DOUBLE       y     1.330  0.0100     1.330  0.0100
+5HG          C5          N6      SINGLE       y     1.339  0.0100     1.339  0.0100
+5HG          N6          C1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+5HG          C1         N20      SINGLE       n     1.330  0.0100     1.330  0.0100
+5HG         C28        H281      SINGLE       n     1.089  0.0100     0.980  0.0118
+5HG         C28        H282      SINGLE       n     1.089  0.0100     0.980  0.0118
+5HG         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0174
+5HG         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0174
+5HG         C22        H221      SINGLE       n     1.089  0.0100     0.970  0.0119
+5HG         C22        H222      SINGLE       n     1.089  0.0100     0.970  0.0119
+5HG         C15         H15      SINGLE       n     1.082  0.0130     0.948  0.0200
+5HG          C5          H5      SINGLE       n     1.082  0.0130     0.945  0.0200
+5HG         N20        H201      SINGLE       n     1.016  0.0100     0.877  0.0200
+5HG         N20        H202      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5HG         O36         P30         O32     112.502    1.50
+5HG         O36         P30         O34     112.502    1.50
+5HG         O36         P30         C28     110.326    3.00
+5HG         O32         P30         O34     112.502    1.50
+5HG         O32         P30         C28     110.326    3.00
+5HG         O34         P30         C28     110.326    3.00
+5HG         P30         C28         O26     108.256    2.94
+5HG         P30         C28        H281     108.528    1.50
+5HG         P30         C28        H282     108.528    1.50
+5HG         O26         C28        H281     109.680    1.50
+5HG         O26         C28        H282     109.680    1.50
+5HG        H281         C28        H282     108.552    1.71
+5HG         C28         O26         C24     113.200    3.00
+5HG         O26         C24         C22     109.380    2.71
+5HG         O26         C24        H241     109.668    1.50
+5HG         O26         C24        H242     109.668    1.50
+5HG         C22         C24        H241     110.359    1.50
+5HG         C22         C24        H242     110.359    1.50
+5HG        H241         C24        H242     108.313    2.12
+5HG         C24         C22         N17     111.989    1.71
+5HG         C24         C22        H221     108.995    1.50
+5HG         C24         C22        H222     108.995    1.50
+5HG         N17         C22        H221     108.458    1.53
+5HG         N17         C22        H222     108.458    1.53
+5HG        H221         C22        H222     108.606    1.72
+5HG         C22         N17         C15     124.795    3.00
+5HG         C22         N17          C3     124.908    2.72
+5HG         C15         N17          C3     107.594    1.50
+5HG         N17         C15         N13     114.617    1.50
+5HG         N17         C15         H15     122.237    1.50
+5HG         N13         C15         H15     123.146    1.50
+5HG         C15         N13          C2     103.565    1.50
+5HG         N13          C2          C3     110.673    1.50
+5HG         N13          C2          C1     132.358    1.50
+5HG          C3          C2          C1     116.969    1.50
+5HG         N17          C3          C2     107.346    1.69
+5HG         N17          C3          N4     125.538    1.56
+5HG          C2          C3          N4     127.116    1.50
+5HG          C3          N4          C5     110.494    1.50
+5HG          N4          C5          N6     129.385    1.50
+5HG          N4          C5          H5     115.329    1.50
+5HG          N6          C5          H5     115.286    1.50
+5HG          C5          N6          C1     118.575    1.50
+5HG          C2          C1          N6     117.462    1.50
+5HG          C2          C1         N20     123.765    1.50
+5HG          N6          C1         N20     118.773    1.50
+5HG          C1         N20        H201     119.723    1.50
+5HG          C1         N20        H202     119.723    1.50
+5HG        H201         N20        H202     120.554    1.88
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5HG       const_sp2_sp2_7          C3          C2         N13         C15       0.000     5.0     2
+5HG       const_sp2_sp2_9         N13          C2          C3         N17       0.000     5.0     2
+5HG              const_28         N20          C1          C2         N13       0.000    10.0     2
+5HG              const_14         N17          C3          N4          C5     180.000    10.0     2
+5HG              const_15          N6          C5          N4          C3       0.000    10.0     2
+5HG              const_17          N4          C5          N6          C1       0.000    10.0     2
+5HG              const_20         N20          C1          N6          C5     180.000    10.0     2
+5HG             sp2_sp2_1          C2          C1         N20        H201     180.000     5.0     2
+5HG             sp3_sp3_3         O26         C28         P30         O36      60.000    10.0     3
+5HG            sp3_sp3_10         P30         C28         O26         C24     180.000    10.0     3
+5HG            sp3_sp3_13         C22         C24         O26         C28     180.000    10.0     3
+5HG            sp3_sp3_16         N17         C22         C24         O26     180.000    10.0     3
+5HG             sp2_sp3_2         C15         N17         C22         C24     -90.000    10.0     6
+5HG              const_22          C2          C3         N17         C22     180.000    10.0     2
+5HG       const_sp2_sp2_2         N13         C15         N17         C22     180.000     5.0     2
+5HG       const_sp2_sp2_5         N17         C15         N13          C2       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+5HG    chir_1    P30    O32    O34    O36    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5HG    plan-1          C1   0.020
+5HG    plan-1         C15   0.020
+5HG    plan-1          C2   0.020
+5HG    plan-1         C22   0.020
+5HG    plan-1          C3   0.020
+5HG    plan-1          C5   0.020
+5HG    plan-1         H15   0.020
+5HG    plan-1          H5   0.020
+5HG    plan-1         N13   0.020
+5HG    plan-1         N17   0.020
+5HG    plan-1         N20   0.020
+5HG    plan-1          N4   0.020
+5HG    plan-1          N6   0.020
+5HG    plan-2          C1   0.020
+5HG    plan-2        H201   0.020
+5HG    plan-2        H202   0.020
+5HG    plan-2         N20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5HG           SMILES              ACDLabs 10.04                                                                                 O=P(O)(O)COCCn1c2ncnc(c2nc1)N
+5HG SMILES_CANONICAL               CACTVS 3.341                                                                               Nc1ncnc2n(CCOC[P](O)(O)=O)cnc12
+5HG           SMILES               CACTVS 3.341                                                                               Nc1ncnc2n(CCOC[P](O)(O)=O)cnc12
+5HG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                             c1nc(c2c(n1)n(cn2)CCOCP(=O)(O)O)N
+5HG           SMILES "OpenEye OEToolkits" 1.5.0                                                                             c1nc(c2c(n1)n(cn2)CCOCP(=O)(O)O)N
+5HG            InChI                InChI  1.03 InChI=1S/C8H12N5O4P/c9-7-6-8(11-3-10-7)13(4-12-6)1-2-17-5-18(14,15)16/h3-4H,1-2,5H2,(H2,9,10,11)(H2,14,15,16)
+5HG         InChIKey                InChI  1.03                                                                                   SUPKOOSCJHTBAH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5HG acedrg               243         "dictionary generator"                  
+5HG acedrg_database      11          "data source"                           
+5HG rdkit                2017.03.2   "Chemoinformatics tool"
+5HG refmac5              5.8.0238    "optimization tool"                     

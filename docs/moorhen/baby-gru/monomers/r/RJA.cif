@@ -1,0 +1,461 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RJA     RJA      "Ratjadone A, bound form"     NON-POLYMER     77     34     .     
+#
+data_comp_RJA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RJA     C1      C       C       0       -34.609     75.042      31.016      
+RJA     O1      O       OC      -1      -35.266     74.061      31.418      
+RJA     C2      C       CH2     0       -33.095     74.983      31.120      
+RJA     O2      O       OH1     0       -30.457     73.384      27.944      
+RJA     C3      C       CH2     0       -32.381     74.759      29.821      
+RJA     O3      O       OH1     0       -43.740     72.232      28.521      
+RJA     C4      C       CH2     0       -32.388     73.305      29.368      
+RJA     O4      O       OH1     0       -44.382     73.739      33.370      
+RJA     C5      C       CH1     0       -31.860     73.093      27.952      
+RJA     O5      O       O2      0       -42.629     71.018      30.786      
+RJA     C6      C       C1      0       -32.117     71.706      27.435      
+RJA     C7      C       C1      0       -33.312     71.139      27.323      
+RJA     C8      C       C       0       -33.664     69.794      26.799      
+RJA     C9      C       C1      0       -34.927     69.281      26.975      
+RJA     "O1'"   O       O       0       -35.128     76.068      30.533      
+RJA     C10     C       CH1     0       -36.111     69.856      27.714      
+RJA     C11     C       CH2     0       -36.898     70.823      26.822      
+RJA     C12     C       C       0       -37.837     71.716      27.600      
+RJA     C13     C       C1      0       -39.148     71.470      27.625      
+RJA     C14     C       C1      0       -40.120     72.143      28.256      
+RJA     C15     C       C1      0       -41.417     71.862      28.249      
+RJA     C16     C       CH1     0       -42.465     72.623      29.005      
+RJA     C17     C       CH1     0       -42.352     72.409      30.508      
+RJA     C18     C       CH2     0       -43.251     73.356      31.294      
+RJA     C19     C       CH1     0       -43.475     72.853      32.705      
+RJA     C20     C       CH1     0       -44.018     71.417      32.755      
+RJA     C21     C       CH1     0       -43.904     70.740      31.381      
+RJA     C22     C       C1      0       -44.052     69.252      31.420      
+RJA     C23     C       C1      0       -45.189     68.600      31.526      
+RJA     C24     C       CH3     0       -45.336     67.115      31.568      
+RJA     C25     C       CH3     0       -32.593     69.021      26.139      
+RJA     C26     C       CH3     0       -37.023     68.737      28.231      
+RJA     C27     C       CH3     0       -37.172     72.860      28.313      
+RJA     C28     C       CH3     0       -43.343     70.609      33.871      
+RJA     H2      H       H       0       -32.855     74.262      31.740      
+RJA     H2A     H       H       0       -32.779     75.825      31.512      
+RJA     HO2     H       H       0       -30.187     73.420      27.142      
+RJA     H3      H       H       0       -31.451     75.054      29.911      
+RJA     H3A     H       H       0       -32.800     75.306      29.124      
+RJA     HO3     H       H       0       -44.253     72.909      28.518      
+RJA     H4      H       H       0       -33.306     72.968      29.421      
+RJA     H4A     H       H       0       -31.844     72.779      29.990      
+RJA     HO4     H       H       0       -44.380     73.554      34.190      
+RJA     H5      H       H       0       -32.319     73.735      27.351      
+RJA     H6      H       H       0       -31.364     71.202      27.179      
+RJA     H7      H       H       0       -34.040     71.670      27.593      
+RJA     H9      H       H       0       -35.085     68.443      26.573      
+RJA     H10     H       H       0       -35.776     70.356      28.492      
+RJA     H11     H       H       0       -37.414     70.308      26.168      
+RJA     H11A    H       H       0       -36.266     71.390      26.333      
+RJA     H13     H       H       0       -39.455     70.720      27.141      
+RJA     H14     H       H       0       -39.854     72.895      28.758      
+RJA     H15     H       H       0       -41.696     71.128      27.727      
+RJA     H16     H       H       0       -42.354     73.584      28.810      
+RJA     H17     H       H       0       -41.414     72.599      30.760      
+RJA     H18     H       H       0       -44.123     73.453      30.836      
+RJA     H18A    H       H       0       -42.828     74.250      31.333      
+RJA     H19     H       H       0       -42.610     72.887      33.186      
+RJA     H20     H       H       0       -44.981     71.485      32.990      
+RJA     H21     H       H       0       -44.612     71.102      30.785      
+RJA     H22     H       H       0       -43.256     68.734      31.365      
+RJA     H23     H       H       0       -45.983     69.107      31.581      
+RJA     H24     H       H       0       -44.490     66.691      31.351      
+RJA     H24A    H       H       0       -46.006     66.830      30.926      
+RJA     H24B    H       H       0       -45.610     66.834      32.456      
+RJA     H25     H       H       0       -32.110     69.595      25.526      
+RJA     H25A    H       H       0       -32.976     68.280      25.648      
+RJA     H25B    H       H       0       -31.981     68.680      26.809      
+RJA     H26     H       H       0       -37.647     69.101      28.883      
+RJA     H26A    H       H       0       -36.482     68.047      28.652      
+RJA     H26B    H       H       0       -37.519     68.351      27.488      
+RJA     H27     H       H       0       -36.206     72.763      28.266      
+RJA     H27A    H       H       0       -37.448     72.867      29.244      
+RJA     H27B    H       H       0       -37.431     73.698      27.895      
+RJA     H28     H       H       0       -43.907     69.859      34.123      
+RJA     H28A    H       H       0       -43.205     71.175      34.648      
+RJA     H28B    H       H       0       -42.484     70.275      33.563      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RJA          C1       "O1'"      DOUBLE       n     1.247  0.0187     1.247  0.0187
+RJA          C1          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+RJA          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+RJA          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+RJA          O2          C5      SINGLE       n     1.433  0.0103     1.433  0.0103
+RJA          C3          C4      SINGLE       n     1.523  0.0147     1.523  0.0147
+RJA          O3         C16      SINGLE       n     1.417  0.0135     1.417  0.0135
+RJA          C4          C5      SINGLE       n     1.525  0.0100     1.525  0.0100
+RJA          O4         C19      SINGLE       n     1.431  0.0100     1.431  0.0100
+RJA          C5          C6      SINGLE       n     1.500  0.0157     1.500  0.0157
+RJA          O5         C17      SINGLE       n     1.437  0.0105     1.437  0.0105
+RJA          O5         C21      SINGLE       n     1.431  0.0100     1.431  0.0100
+RJA          C6          C7      DOUBLE       n     1.324  0.0124     1.324  0.0124
+RJA          C7          C8      SINGLE       n     1.468  0.0200     1.468  0.0200
+RJA          C8         C25      SINGLE       n     1.466  0.0200     1.466  0.0200
+RJA          C8          C9      DOUBLE       n     1.362  0.0200     1.362  0.0200
+RJA          C9         C10      SINGLE       n     1.506  0.0126     1.506  0.0126
+RJA         C10         C11      SINGLE       n     1.531  0.0133     1.531  0.0133
+RJA         C10         C26      SINGLE       n     1.532  0.0131     1.532  0.0131
+RJA         C11         C12      SINGLE       n     1.509  0.0100     1.509  0.0100
+RJA         C12         C27      SINGLE       n     1.502  0.0100     1.502  0.0100
+RJA         C12         C13      DOUBLE       n     1.329  0.0111     1.329  0.0111
+RJA         C13         C14      SINGLE       n     1.325  0.0200     1.325  0.0200
+RJA         C14         C15      DOUBLE       n     1.325  0.0128     1.325  0.0128
+RJA         C15         C16      SINGLE       n     1.499  0.0183     1.499  0.0183
+RJA         C16         C17      SINGLE       n     1.517  0.0154     1.517  0.0154
+RJA         C17         C18      SINGLE       n     1.518  0.0100     1.518  0.0100
+RJA         C18         C19      SINGLE       n     1.513  0.0100     1.513  0.0100
+RJA         C19         C20      SINGLE       n     1.531  0.0100     1.531  0.0100
+RJA         C20         C21      SINGLE       n     1.530  0.0100     1.530  0.0100
+RJA         C20         C28      SINGLE       n     1.531  0.0100     1.531  0.0100
+RJA         C21         C22      SINGLE       n     1.494  0.0100     1.494  0.0100
+RJA         C22         C23      DOUBLE       n     1.315  0.0143     1.315  0.0143
+RJA         C23         C24      SINGLE       n     1.492  0.0100     1.492  0.0100
+RJA          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+RJA          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0185
+RJA          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+RJA          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+RJA          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+RJA          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+RJA          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+RJA          C4         H4A      SINGLE       n     1.089  0.0100     0.980  0.0160
+RJA          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+RJA          C5          H5      SINGLE       n     1.089  0.0100     0.992  0.0103
+RJA          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0181
+RJA          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+RJA          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0181
+RJA         C10         H10      SINGLE       n     1.089  0.0100     0.985  0.0200
+RJA         C11         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+RJA         C11        H11A      SINGLE       n     1.089  0.0100     0.979  0.0159
+RJA         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0200
+RJA         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0200
+RJA         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0181
+RJA         C16         H16      SINGLE       n     1.089  0.0100     0.986  0.0200
+RJA         C17         H17      SINGLE       n     1.089  0.0100     0.990  0.0162
+RJA         C18         H18      SINGLE       n     1.089  0.0100     0.990  0.0100
+RJA         C18        H18A      SINGLE       n     1.089  0.0100     0.990  0.0100
+RJA         C19         H19      SINGLE       n     1.089  0.0100     0.990  0.0123
+RJA         C20         H20      SINGLE       n     1.089  0.0100     0.994  0.0100
+RJA         C21         H21      SINGLE       n     1.089  0.0100     0.993  0.0179
+RJA         C22         H22      SINGLE       n     1.082  0.0130     0.951  0.0200
+RJA         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0172
+RJA         C24         H24      SINGLE       n     1.089  0.0100     0.971  0.0140
+RJA         C24        H24A      SINGLE       n     1.089  0.0100     0.971  0.0140
+RJA         C24        H24B      SINGLE       n     1.089  0.0100     0.971  0.0140
+RJA         C25         H25      SINGLE       n     1.089  0.0100     0.969  0.0177
+RJA         C25        H25A      SINGLE       n     1.089  0.0100     0.969  0.0177
+RJA         C25        H25B      SINGLE       n     1.089  0.0100     0.969  0.0177
+RJA         C26         H26      SINGLE       n     1.089  0.0100     0.973  0.0141
+RJA         C26        H26A      SINGLE       n     1.089  0.0100     0.973  0.0141
+RJA         C26        H26B      SINGLE       n     1.089  0.0100     0.973  0.0141
+RJA         C27         H27      SINGLE       n     1.089  0.0100     0.971  0.0140
+RJA         C27        H27A      SINGLE       n     1.089  0.0100     0.971  0.0140
+RJA         C27        H27B      SINGLE       n     1.089  0.0100     0.971  0.0140
+RJA         C28         H28      SINGLE       n     1.089  0.0100     0.971  0.0171
+RJA         C28        H28A      SINGLE       n     1.089  0.0100     0.971  0.0171
+RJA         C28        H28B      SINGLE       n     1.089  0.0100     0.971  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RJA       "O1'"          C1          O1     123.571    1.50
+RJA       "O1'"          C1          C2     118.214    1.64
+RJA          O1          C1          C2     118.214    1.64
+RJA          C1          C2          C3     114.612    2.19
+RJA          C1          C2          H2     108.404    1.50
+RJA          C1          C2         H2A     108.404    1.50
+RJA          C3          C2          H2     108.815    1.50
+RJA          C3          C2         H2A     108.815    1.50
+RJA          H2          C2         H2A     107.521    1.50
+RJA          C5          O2         HO2     108.953    1.50
+RJA          C2          C3          C4     113.314    2.25
+RJA          C2          C3          H3     109.164    1.50
+RJA          C2          C3         H3A     109.164    1.50
+RJA          C4          C3          H3     108.597    1.50
+RJA          C4          C3         H3A     108.597    1.50
+RJA          H3          C3         H3A     107.646    1.50
+RJA         C16          O3         HO3     108.022    3.00
+RJA          C3          C4          C5     113.983    1.50
+RJA          C3          C4          H4     108.572    1.50
+RJA          C3          C4         H4A     108.572    1.50
+RJA          C5          C4          H4     108.691    1.50
+RJA          C5          C4         H4A     108.691    1.50
+RJA          H4          C4         H4A     107.428    1.50
+RJA         C19          O4         HO4     108.390    2.00
+RJA          O2          C5          C4     109.047    2.08
+RJA          O2          C5          C6     111.273    2.25
+RJA          O2          C5          H5     108.862    1.50
+RJA          C4          C5          C6     112.178    1.75
+RJA          C4          C5          H5     108.382    1.50
+RJA          C6          C5          H5     108.340    1.50
+RJA         C17          O5         C21     112.873    1.50
+RJA          C5          C6          C7     125.406    1.50
+RJA          C5          C6          H6     117.192    1.50
+RJA          C7          C6          H6     117.401    2.02
+RJA          C6          C7          C8     125.259    3.00
+RJA          C6          C7          H7     118.518    2.29
+RJA          C8          C7          H7     116.222    1.50
+RJA          C7          C8         C25     116.788    1.50
+RJA          C7          C8          C9     120.475    3.00
+RJA         C25          C8          C9     122.737    1.98
+RJA          C8          C9         C10     128.928    1.96
+RJA          C8          C9          H9     115.942    1.82
+RJA         C10          C9          H9     115.130    1.50
+RJA          C9         C10         C11     111.186    1.72
+RJA          C9         C10         C26     110.944    1.50
+RJA          C9         C10         H10     108.488    1.50
+RJA         C11         C10         C26     110.140    2.04
+RJA         C11         C10         H10     108.361    1.50
+RJA         C26         C10         H10     108.370    1.50
+RJA         C10         C11         C12     111.511    2.91
+RJA         C10         C11         H11     108.942    1.50
+RJA         C10         C11        H11A     108.942    1.50
+RJA         C12         C11         H11     108.458    1.50
+RJA         C12         C11        H11A     108.458    1.50
+RJA         H11         C11        H11A     108.478    2.35
+RJA         C11         C12         C27     115.285    1.79
+RJA         C11         C12         C13     120.769    1.79
+RJA         C27         C12         C13     123.946    2.49
+RJA         C12         C13         C14     126.544    3.00
+RJA         C12         C13         H13     117.632    1.50
+RJA         C14         C13         H13     115.824    2.90
+RJA         C13         C14         C15     126.238    2.95
+RJA         C13         C14         H14     115.806    2.93
+RJA         C15         C14         H14     117.955    2.29
+RJA         C14         C15         C16     125.121    3.00
+RJA         C14         C15         H15     116.989    2.02
+RJA         C16         C15         H15     117.890    1.50
+RJA          O3         C16         C15     109.726    2.42
+RJA          O3         C16         C17     110.483    2.43
+RJA          O3         C16         H16     107.824    1.50
+RJA         C15         C16         C17     113.355    2.65
+RJA         C15         C16         H16     108.874    1.53
+RJA         C17         C16         H16     109.342    1.50
+RJA          O5         C17         C16     107.499    2.66
+RJA          O5         C17         C18     109.660    1.50
+RJA          O5         C17         H17     108.995    1.50
+RJA         C16         C17         C18     111.163    2.25
+RJA         C16         C17         H17     107.642    1.65
+RJA         C18         C17         H17     108.575    1.50
+RJA         C17         C18         C19     110.394    1.53
+RJA         C17         C18         H18     109.454    1.50
+RJA         C17         C18        H18A     109.454    1.50
+RJA         C19         C18         H18     109.270    1.50
+RJA         C19         C18        H18A     109.270    1.50
+RJA         H18         C18        H18A     108.036    1.50
+RJA          O4         C19         C18     109.687    1.93
+RJA          O4         C19         C20     110.058    2.00
+RJA          O4         C19         H19     108.504    1.50
+RJA         C18         C19         C20     112.499    1.50
+RJA         C18         C19         H19     109.129    1.50
+RJA         C20         C19         H19     109.119    1.50
+RJA         C19         C20         C21     111.124    1.57
+RJA         C19         C20         C28     111.897    1.50
+RJA         C19         C20         H20     107.028    1.50
+RJA         C21         C20         C28     111.163    2.25
+RJA         C21         C20         H20     109.200    1.50
+RJA         C28         C20         H20     107.873    1.57
+RJA          O5         C21         C20     110.767    1.50
+RJA          O5         C21         C22     107.232    1.64
+RJA          O5         C21         H21     108.284    2.17
+RJA         C20         C21         C22     111.056    2.52
+RJA         C20         C21         H21     109.200    1.50
+RJA         C22         C21         H21     108.919    1.50
+RJA         C21         C22         C23     125.629    2.23
+RJA         C21         C22         H22     117.133    1.50
+RJA         C23         C22         H22     117.238    1.50
+RJA         C22         C23         C24     125.444    2.02
+RJA         C22         C23         H23     117.742    1.50
+RJA         C24         C23         H23     116.814    1.50
+RJA         C23         C24         H24     110.507    1.69
+RJA         C23         C24        H24A     110.507    1.69
+RJA         C23         C24        H24B     110.507    1.69
+RJA         H24         C24        H24A     109.305    1.50
+RJA         H24         C24        H24B     109.305    1.50
+RJA        H24A         C24        H24B     109.305    1.50
+RJA          C8         C25         H25     109.517    1.50
+RJA          C8         C25        H25A     109.517    1.50
+RJA          C8         C25        H25B     109.517    1.50
+RJA         H25         C25        H25A     109.342    1.50
+RJA         H25         C25        H25B     109.342    1.50
+RJA        H25A         C25        H25B     109.342    1.50
+RJA         C10         C26         H26     109.470    1.50
+RJA         C10         C26        H26A     109.470    1.50
+RJA         C10         C26        H26B     109.470    1.50
+RJA         H26         C26        H26A     109.411    1.50
+RJA         H26         C26        H26B     109.411    1.50
+RJA        H26A         C26        H26B     109.411    1.50
+RJA         C12         C27         H27     109.541    1.50
+RJA         C12         C27        H27A     109.541    1.50
+RJA         C12         C27        H27B     109.541    1.50
+RJA         H27         C27        H27A     109.342    1.50
+RJA         H27         C27        H27B     109.342    1.50
+RJA        H27A         C27        H27B     109.342    1.50
+RJA         C20         C28         H28     109.707    1.50
+RJA         C20         C28        H28A     109.707    1.50
+RJA         C20         C28        H28B     109.707    1.50
+RJA         H28         C28        H28A     109.342    1.50
+RJA         H28         C28        H28B     109.342    1.50
+RJA        H28A         C28        H28B     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RJA             sp2_sp3_2       "O1'"          C1          C2          C3     120.000    10.0     6
+RJA             sp2_sp2_1          C5          C6          C7          C8     180.000     5.0     2
+RJA             sp2_sp2_6          C6          C7          C8         C25       0.000     5.0     2
+RJA            sp2_sp2_11          C7          C8          C9         C10       0.000     5.0     2
+RJA            sp2_sp3_13          C7          C8         C25         H25       0.000    10.0     6
+RJA            sp2_sp3_19          C8          C9         C10         C11       0.000    10.0     6
+RJA            sp3_sp3_79          C9         C10         C11         C12     180.000    10.0     3
+RJA            sp3_sp3_88          C9         C10         C26         H26     180.000    10.0     3
+RJA            sp2_sp3_26         C27         C12         C11         C10     120.000    10.0     6
+RJA            sp2_sp2_13         C11         C12         C13         C14     180.000     5.0     2
+RJA            sp2_sp3_31         C11         C12         C27         H27       0.000    10.0     6
+RJA            sp2_sp2_17         C12         C13         C14         C15     180.000     5.0     2
+RJA            sp2_sp2_21         C13         C14         C15         C16     180.000     5.0     2
+RJA            sp2_sp3_37         C14         C15         C16          O3       0.000    10.0     6
+RJA            sp3_sp3_97          O3         C16         C17          O5     180.000    10.0     3
+RJA             sp3_sp3_7         C16         C17         C18         C19     180.000    10.0     3
+RJA            sp3_sp3_14         C17         C18         C19          O4     180.000    10.0     3
+RJA            sp3_sp3_26          O4         C19         C20         C28     -60.000    10.0     3
+RJA            sp3_sp3_35         C28         C20         C21         C22      60.000    10.0     3
+RJA           sp3_sp3_106         C19         C20         C28         H28     180.000    10.0     3
+RJA            sp2_sp3_43         C23         C22         C21          O5       0.000    10.0     6
+RJA            sp2_sp2_25         C21         C22         C23         C24     180.000     5.0     2
+RJA            sp2_sp3_49         C22         C23         C24         H24       0.000    10.0     6
+RJA            sp3_sp3_40          C1          C2          C3          C4     180.000    10.0     3
+RJA            sp3_sp3_49          C4          C5          O2         HO2     180.000    10.0     3
+RJA            sp3_sp3_52          C2          C3          C4          C5     180.000    10.0     3
+RJA            sp3_sp3_61         C15         C16          O3         HO3     180.000    10.0     3
+RJA            sp3_sp3_64          C3          C4          C5          O2     180.000    10.0     3
+RJA            sp3_sp3_73         C18         C19          O4         HO4     180.000    10.0     3
+RJA             sp2_sp3_7          C7          C6          C5          O2       0.000    10.0     6
+RJA             sp3_sp3_2         C16         C17          O5         C21     -60.000    10.0     3
+RJA            sp3_sp3_77         C22         C21          O5         C17      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RJA    chir_1    C5    O2    C6    C4    negative
+RJA    chir_2    C10    C9    C11    C26    negative
+RJA    chir_3    C16    O3    C17    C15    negative
+RJA    chir_4    C17    O5    C16    C18    negative
+RJA    chir_5    C19    O4    C20    C18    negative
+RJA    chir_6    C20    C21    C19    C28    positive
+RJA    chir_7    C21    O5    C20    C22    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RJA    plan-1          C1   0.020
+RJA    plan-1          C2   0.020
+RJA    plan-1          O1   0.020
+RJA    plan-1       "O1'"   0.020
+RJA    plan-2          C5   0.020
+RJA    plan-2          C6   0.020
+RJA    plan-2          C7   0.020
+RJA    plan-2          H6   0.020
+RJA    plan-3          C6   0.020
+RJA    plan-3          C7   0.020
+RJA    plan-3          C8   0.020
+RJA    plan-3          H7   0.020
+RJA    plan-4         C25   0.020
+RJA    plan-4          C7   0.020
+RJA    plan-4          C8   0.020
+RJA    plan-4          C9   0.020
+RJA    plan-5         C10   0.020
+RJA    plan-5          C8   0.020
+RJA    plan-5          C9   0.020
+RJA    plan-5          H9   0.020
+RJA    plan-6         C11   0.020
+RJA    plan-6         C12   0.020
+RJA    plan-6         C13   0.020
+RJA    plan-6         C27   0.020
+RJA    plan-7         C12   0.020
+RJA    plan-7         C13   0.020
+RJA    plan-7         C14   0.020
+RJA    plan-7         H13   0.020
+RJA    plan-8         C13   0.020
+RJA    plan-8         C14   0.020
+RJA    plan-8         C15   0.020
+RJA    plan-8         H14   0.020
+RJA    plan-9         C14   0.020
+RJA    plan-9         C15   0.020
+RJA    plan-9         C16   0.020
+RJA    plan-9         H15   0.020
+RJA   plan-10         C21   0.020
+RJA   plan-10         C22   0.020
+RJA   plan-10         C23   0.020
+RJA   plan-10         H22   0.020
+RJA   plan-11         C22   0.020
+RJA   plan-11         C23   0.020
+RJA   plan-11         C24   0.020
+RJA   plan-11         H23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RJA           SMILES              ACDLabs 12.01                                                                                                                                                                                      O=C(O)CCCC(O)/C=C/C(=C\C(C)CC(=C\C=C\C(O)C1OC(/C=C/C)C(C(O)C1)C)\C)C
+RJA            InChI                InChI  1.03 InChI=1S/C28H44O6/c1-6-9-26-22(5)25(31)18-27(34-26)24(30)12-7-10-19(2)16-21(4)17-20(3)14-15-23(29)11-8-13-28(32)33/h6-7,9-10,12,14-15,17,21-27,29-31H,8,11,13,16,18H2,1-5H3,(H,32,33)/b9-6+,12-7+,15-14+,19-10+,20-17-/t21-,22+,23-,24-,25-,26+,27-/m1/s1
+RJA         InChIKey                InChI  1.03                                                                                                                                                                                                                               SSWVBXXPYARFKL-PUAIALDQSA-N
+RJA SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                        C\C=C\[C@@H]1O[C@H](C[C@@H](O)[C@@H]1C)[C@H](O)/C=C/C=C(C)/C[C@@H](C)/C=C(C)\C=C\[C@H](O)CCCC(O)=O
+RJA           SMILES               CACTVS 3.370                                                                                                                                                                           CC=C[CH]1O[CH](C[CH](O)[CH]1C)[CH](O)C=CC=C(C)C[CH](C)C=C(C)C=C[CH](O)CCCC(O)=O
+RJA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                   C/C=C/[C@H]1[C@H]([C@@H](C[C@@H](O1)[C@@H](/C=C/C=C(\C)/C[C@@H](C)/C=C(/C)\C=C\[C@@H](CCCC(=O)O)O)O)O)C
+RJA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                              CC=CC1C(C(CC(O1)C(C=CC=C(C)CC(C)C=C(C)C=CC(CCCC(=O)O)O)O)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RJA acedrg               243         "dictionary generator"                  
+RJA acedrg_database      11          "data source"                           
+RJA rdkit                2017.03.2   "Chemoinformatics tool"
+RJA refmac5              5.8.0238    "optimization tool"                     

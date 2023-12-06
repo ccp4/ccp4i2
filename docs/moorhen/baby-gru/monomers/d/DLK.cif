@@ -1,0 +1,330 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DLK     DLK      2-{1-[(2-Methoxyphenyl)amino]ethylidene}-5-phenyl-1,3-cyclohexanedione     NON-POLYMER     46     25     .     
+#
+data_comp_DLK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DLK     C12     C       CH2     0       15.730      7.138       -26.929     
+DLK     C13     C       CH3     0       15.488      5.272       -22.091     
+DLK     C14     C       C       0       15.015      6.179       -23.183     
+DLK     C15     C       CR6     0       13.034      7.170       -22.046     
+DLK     C01     C       CR6     0       16.992      5.866       -28.727     
+DLK     C02     C       CR16    0       16.547      5.275       -29.906     
+DLK     C03     C       CR16    0       17.287      5.373       -31.080     
+DLK     C04     C       CR16    0       18.482      6.063       -31.092     
+DLK     C05     C       CR16    0       18.940      6.654       -29.934     
+DLK     C06     C       CR16    0       18.201      6.555       -28.761     
+DLK     C07     C       CH1     0       16.193      5.762       -27.438     
+DLK     C08     C       CH2     0       16.956      4.993       -26.358     
+DLK     C09     C       CR6     0       16.190      4.864       -25.068     
+DLK     C10     C       CR6     0       15.427      6.062       -24.564     
+DLK     C11     C       CR6     0       15.043      7.108       -25.586     
+DLK     C16     C       CR16    0       12.164      6.088       -22.027     
+DLK     C17     C       CR16    0       11.023      6.120       -21.233     
+DLK     C18     C       CR16    0       10.746      7.225       -20.457     
+DLK     C19     C       CR16    0       11.600      8.316       -20.455     
+DLK     C20     C       CR6     0       12.750      8.302       -21.250     
+DLK     C21     C       CH3     0       13.379      10.607      -20.843     
+DLK     N01     N       NH1     0       14.211      7.176       -22.834     
+DLK     O01     O       O       0       14.221      8.001       -25.343     
+DLK     O02     O       O       0       16.277      3.796       -24.449     
+DLK     O03     O       O2      0       13.679      9.303       -21.338     
+DLK     H1      H       H       0       16.506      7.735       -26.861     
+DLK     H2      H       H       0       15.110      7.527       -27.584     
+DLK     H3      H       H       0       16.444      5.131       -22.174     
+DLK     H4      H       H       0       15.031      4.418       -22.155     
+DLK     H5      H       H       0       15.302      5.669       -21.226     
+DLK     H6      H       H       0       15.730      4.799       -29.909     
+DLK     H7      H       H       0       16.969      4.967       -31.871     
+DLK     H8      H       H       0       18.984      6.130       -31.889     
+DLK     H9      H       H       0       19.757      7.127       -29.936     
+DLK     H10     H       H       0       18.522      6.964       -27.971     
+DLK     H11     H       H       0       15.380      5.241       -27.643     
+DLK     H12     H       H       0       17.804      5.451       -26.171     
+DLK     H13     H       H       0       17.165      4.093       -26.691     
+DLK     H14     H       H       0       12.345      5.329       -22.555     
+DLK     H15     H       H       0       10.436      5.382       -21.229     
+DLK     H16     H       H       0       9.970       7.241       -19.921     
+DLK     H17     H       H       0       11.400      9.064       -19.920     
+DLK     H18     H       H       0       13.296      10.573      -19.875     
+DLK     H19     H       H       0       12.545      10.918      -21.230     
+DLK     H20     H       H       0       14.095      11.216      -21.085     
+DLK     H22     H       H       0       14.509      7.993       -23.110     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DLK         C04         C05      DOUBLE       y     1.374  0.0127     1.374  0.0127
+DLK         C03         C04      SINGLE       y     1.376  0.0124     1.376  0.0124
+DLK         C05         C06      SINGLE       y     1.387  0.0100     1.387  0.0100
+DLK         C02         C03      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DLK         C01         C06      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DLK         C01         C02      SINGLE       y     1.387  0.0100     1.387  0.0100
+DLK         C01         C07      SINGLE       n     1.518  0.0100     1.518  0.0100
+DLK         C12         C07      SINGLE       n     1.529  0.0200     1.529  0.0200
+DLK         C12         C11      SINGLE       n     1.505  0.0100     1.505  0.0100
+DLK         C07         C08      SINGLE       n     1.529  0.0200     1.529  0.0200
+DLK         C11         O01      DOUBLE       n     1.236  0.0185     1.236  0.0185
+DLK         C08         C09      SINGLE       n     1.505  0.0100     1.505  0.0100
+DLK         C10         C11      SINGLE       n     1.485  0.0200     1.485  0.0200
+DLK         C09         C10      SINGLE       n     1.485  0.0200     1.485  0.0200
+DLK         C09         O02      DOUBLE       n     1.236  0.0185     1.236  0.0185
+DLK         C14         C10      DOUBLE       n     1.428  0.0126     1.428  0.0126
+DLK         C14         N01      SINGLE       n     1.321  0.0100     1.321  0.0100
+DLK         C13         C14      SINGLE       n     1.494  0.0100     1.494  0.0100
+DLK         C15         N01      SINGLE       n     1.413  0.0100     1.413  0.0100
+DLK         C15         C16      DOUBLE       y     1.383  0.0100     1.383  0.0100
+DLK         C16         C17      SINGLE       y     1.387  0.0100     1.387  0.0100
+DLK         C15         C20      SINGLE       y     1.405  0.0100     1.405  0.0100
+DLK         C17         C18      DOUBLE       y     1.376  0.0124     1.376  0.0124
+DLK         C20         O03      SINGLE       n     1.363  0.0100     1.363  0.0100
+DLK         C19         C20      DOUBLE       y     1.391  0.0100     1.391  0.0100
+DLK         C21         O03      SINGLE       n     1.424  0.0117     1.424  0.0117
+DLK         C18         C19      SINGLE       y     1.383  0.0100     1.383  0.0100
+DLK         C12          H1      SINGLE       n     1.089  0.0100     0.982  0.0106
+DLK         C12          H2      SINGLE       n     1.089  0.0100     0.982  0.0106
+DLK         C13          H3      SINGLE       n     1.089  0.0100     0.970  0.0139
+DLK         C13          H4      SINGLE       n     1.089  0.0100     0.970  0.0139
+DLK         C13          H5      SINGLE       n     1.089  0.0100     0.970  0.0139
+DLK         C02          H6      SINGLE       n     1.082  0.0130     0.946  0.0200
+DLK         C03          H7      SINGLE       n     1.082  0.0130     0.944  0.0175
+DLK         C04          H8      SINGLE       n     1.082  0.0130     0.944  0.0161
+DLK         C05          H9      SINGLE       n     1.082  0.0130     0.944  0.0175
+DLK         C06         H10      SINGLE       n     1.082  0.0130     0.946  0.0200
+DLK         C07         H11      SINGLE       n     1.089  0.0100     0.988  0.0122
+DLK         C08         H12      SINGLE       n     1.089  0.0100     0.982  0.0106
+DLK         C08         H13      SINGLE       n     1.089  0.0100     0.982  0.0106
+DLK         C16         H14      SINGLE       n     1.082  0.0130     0.942  0.0170
+DLK         C17         H15      SINGLE       n     1.082  0.0130     0.943  0.0172
+DLK         C18         H16      SINGLE       n     1.082  0.0130     0.943  0.0183
+DLK         C19         H17      SINGLE       n     1.082  0.0130     0.942  0.0151
+DLK         C21         H18      SINGLE       n     1.089  0.0100     0.971  0.0157
+DLK         C21         H19      SINGLE       n     1.089  0.0100     0.971  0.0157
+DLK         C21         H20      SINGLE       n     1.089  0.0100     0.971  0.0157
+DLK         N01         H22      SINGLE       n     1.016  0.0100     0.912  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DLK         C07         C12         C11     112.738    1.50
+DLK         C07         C12          H1     109.306    1.50
+DLK         C07         C12          H2     109.306    1.50
+DLK         C11         C12          H1     108.626    1.50
+DLK         C11         C12          H2     108.626    1.50
+DLK          H1         C12          H2     108.040    1.50
+DLK         C14         C13          H3     109.692    1.73
+DLK         C14         C13          H4     109.692    1.73
+DLK         C14         C13          H5     109.692    1.73
+DLK          H3         C13          H4     109.373    1.50
+DLK          H3         C13          H5     109.373    1.50
+DLK          H4         C13          H5     109.373    1.50
+DLK         C10         C14         N01     117.866    1.50
+DLK         C10         C14         C13     123.461    1.50
+DLK         N01         C14         C13     118.673    1.50
+DLK         N01         C15         C16     122.207    3.00
+DLK         N01         C15         C20     118.658    2.41
+DLK         C16         C15         C20     119.134    1.50
+DLK         C06         C01         C02     117.923    1.50
+DLK         C06         C01         C07     121.038    1.50
+DLK         C02         C01         C07     121.038    1.50
+DLK         C03         C02         C01     120.903    1.50
+DLK         C03         C02          H6     119.690    1.50
+DLK         C01         C02          H6     119.407    1.50
+DLK         C04         C03         C02     120.217    1.50
+DLK         C04         C03          H7     119.978    1.50
+DLK         C02         C03          H7     119.805    1.50
+DLK         C05         C04         C03     119.837    1.50
+DLK         C05         C04          H8     120.081    1.50
+DLK         C03         C04          H8     120.081    1.50
+DLK         C04         C05         C06     120.217    1.50
+DLK         C04         C05          H9     119.978    1.50
+DLK         C06         C05          H9     119.805    1.50
+DLK         C05         C06         C01     120.903    1.50
+DLK         C05         C06         H10     119.690    1.50
+DLK         C01         C06         H10     119.407    1.50
+DLK         C01         C07         C12     112.968    2.02
+DLK         C01         C07         C08     112.968    2.02
+DLK         C01         C07         H11     106.868    1.86
+DLK         C12         C07         C08     111.124    1.57
+DLK         C12         C07         H11     107.348    1.50
+DLK         C08         C07         H11     107.348    1.50
+DLK         C07         C08         C09     112.738    1.50
+DLK         C07         C08         H12     109.306    1.50
+DLK         C07         C08         H13     109.306    1.50
+DLK         C09         C08         H12     108.626    1.50
+DLK         C09         C08         H13     108.626    1.50
+DLK         H12         C08         H13     108.040    1.50
+DLK         C08         C09         C10     118.571    1.64
+DLK         C08         C09         O02     119.132    1.93
+DLK         C10         C09         O02     122.297    1.56
+DLK         C11         C10         C09     118.709    1.50
+DLK         C11         C10         C14     120.645    2.59
+DLK         C09         C10         C14     120.645    2.59
+DLK         C12         C11         O01     119.132    1.93
+DLK         C12         C11         C10     118.571    1.64
+DLK         O01         C11         C10     122.297    1.56
+DLK         C15         C16         C17     120.053    1.50
+DLK         C15         C16         H14     119.919    1.50
+DLK         C17         C16         H14     120.028    1.50
+DLK         C16         C17         C18     120.503    1.50
+DLK         C16         C17         H15     119.607    1.50
+DLK         C18         C17         H15     119.890    1.50
+DLK         C17         C18         C19     120.678    1.50
+DLK         C17         C18         H16     119.846    1.50
+DLK         C19         C18         H16     119.477    1.50
+DLK         C20         C19         C18     119.819    1.50
+DLK         C20         C19         H17     120.024    1.50
+DLK         C18         C19         H17     120.157    1.50
+DLK         C15         C20         O03     115.046    1.50
+DLK         C15         C20         C19     119.813    1.50
+DLK         O03         C20         C19     125.140    1.50
+DLK         O03         C21         H18     109.428    1.50
+DLK         O03         C21         H19     109.428    1.50
+DLK         O03         C21         H20     109.428    1.50
+DLK         H18         C21         H19     109.509    1.50
+DLK         H18         C21         H20     109.509    1.50
+DLK         H19         C21         H20     109.509    1.50
+DLK         C14         N01         C15     129.451    1.50
+DLK         C14         N01         H22     113.227    1.79
+DLK         C15         N01         H22     117.322    2.05
+DLK         C20         O03         C21     117.777    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DLK             sp3_sp3_7         C01         C07         C12         C11     180.000    10.0     3
+DLK            sp2_sp3_16         O01         C11         C12         C07     180.000    10.0     6
+DLK            sp3_sp3_13         C01         C07         C08         C09     180.000    10.0     3
+DLK             sp2_sp3_4         O02         C09         C08         C07     180.000    10.0     6
+DLK             sp2_sp2_4         O02         C09         C10         C14       0.000     5.0     2
+DLK             sp2_sp2_8         C14         C10         C11         O01       0.000     5.0     2
+DLK              const_25         C15         C16         C17         C18       0.000    10.0     2
+DLK              const_29         C16         C17         C18         C19       0.000    10.0     2
+DLK              const_33         C17         C18         C19         C20       0.000    10.0     2
+DLK              const_38         C18         C19         C20         O03     180.000    10.0     2
+DLK            sp2_sp2_21         C15         C20         O03         C21     180.000     5.0     2
+DLK            sp2_sp3_22         N01         C14         C13          H3     180.000    10.0     6
+DLK            sp3_sp3_20         H18         C21         O03         C20     -60.000    10.0     3
+DLK             sp2_sp2_9         C11         C10         C14         N01     180.000     5.0     2
+DLK            sp2_sp2_13         C13         C14         N01         C15     180.000     5.0     2
+DLK              const_23         N01         C15         C16         C17     180.000    10.0     2
+DLK              const_48         N01         C15         C20         O03       0.000    10.0     2
+DLK            sp2_sp2_17         C16         C15         N01         C14     180.000     5.0     2
+DLK             sp2_sp3_8         C06         C01         C07         C12     -90.000    10.0     6
+DLK              const_41         C06         C01         C02         C03       0.000    10.0     2
+DLK       const_sp2_sp2_1         C02         C01         C06         C05       0.000     5.0     2
+DLK              const_17         C01         C02         C03         C04       0.000    10.0     2
+DLK              const_13         C02         C03         C04         C05       0.000    10.0     2
+DLK       const_sp2_sp2_9         C03         C04         C05         C06       0.000     5.0     2
+DLK       const_sp2_sp2_5         C04         C05         C06         C01       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DLK    chir_1    C07    C01    C12    C08    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DLK    plan-1         C15   0.020
+DLK    plan-1         C16   0.020
+DLK    plan-1         C17   0.020
+DLK    plan-1         C18   0.020
+DLK    plan-1         C19   0.020
+DLK    plan-1         C20   0.020
+DLK    plan-1         H14   0.020
+DLK    plan-1         H15   0.020
+DLK    plan-1         H16   0.020
+DLK    plan-1         H17   0.020
+DLK    plan-1         N01   0.020
+DLK    plan-1         O03   0.020
+DLK    plan-2         C01   0.020
+DLK    plan-2         C02   0.020
+DLK    plan-2         C03   0.020
+DLK    plan-2         C04   0.020
+DLK    plan-2         C05   0.020
+DLK    plan-2         C06   0.020
+DLK    plan-2         C07   0.020
+DLK    plan-2         H10   0.020
+DLK    plan-2          H6   0.020
+DLK    plan-2          H7   0.020
+DLK    plan-2          H8   0.020
+DLK    plan-2          H9   0.020
+DLK    plan-3         C10   0.020
+DLK    plan-3         C13   0.020
+DLK    plan-3         C14   0.020
+DLK    plan-3         N01   0.020
+DLK    plan-4         C08   0.020
+DLK    plan-4         C09   0.020
+DLK    plan-4         C10   0.020
+DLK    plan-4         O02   0.020
+DLK    plan-5         C09   0.020
+DLK    plan-5         C10   0.020
+DLK    plan-5         C11   0.020
+DLK    plan-5         C14   0.020
+DLK    plan-6         C10   0.020
+DLK    plan-6         C11   0.020
+DLK    plan-6         C12   0.020
+DLK    plan-6         O01   0.020
+DLK    plan-7         C14   0.020
+DLK    plan-7         C15   0.020
+DLK    plan-7         H22   0.020
+DLK    plan-7         N01   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DLK            InChI                InChI  1.03 InChI=1S/C21H21NO3/c1-14(22-17-10-6-7-11-20(17)25-2)21-18(23)12-16(13-19(21)24)15-8-4-3-5-9-15/h3-11,16,22H,12-13H2,1-2H3/b21-14-/t16-/m0/s1
+DLK         InChIKey                InChI  1.03                                                                                                                  VBDYUYVCODLQFF-AKGOGDBKSA-N
+DLK SMILES_CANONICAL               CACTVS 3.385                                                                                            COc1ccccc1N[C](C)=[C@@]2C(=O)C[CH](CC2=O)c3ccccc3
+DLK           SMILES               CACTVS 3.385                                                                                              COc1ccccc1N[C](C)=[C]2C(=O)C[CH](CC2=O)c3ccccc3
+DLK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                     CC(=C1C(=O)CC(CC1=O)c2ccccc2)Nc3ccccc3OC
+DLK           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                     CC(=C1C(=O)CC(CC1=O)c2ccccc2)Nc3ccccc3OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DLK acedrg               243         "dictionary generator"                  
+DLK acedrg_database      11          "data source"                           
+DLK rdkit                2017.03.2   "Chemoinformatics tool"
+DLK refmac5              5.8.0238    "optimization tool"                     

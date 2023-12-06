@@ -1,0 +1,315 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XPF     XPF      N-{(3S,4S)-4-[4-(5-cyanothiophen-2-yl)phenoxy]tetrahydrofuran-3-yl}propane-2-sulfonamide     NON-POLYMER     46     26     .     
+#
+data_comp_XPF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XPF     C21     C       CR5     0       54.558      81.034      51.972      
+XPF     C18     C       CR16    0       56.886      81.055      52.828      
+XPF     C16     C       CR16    0       56.059      82.994      51.671      
+XPF     C19     C       CR16    0       58.110      81.677      53.011      
+XPF     C25     C       CSP     0       51.582      79.669      49.970      
+XPF     C23     C       CR15    0       52.554      79.917      52.311      
+XPF     C15     C       CR16    0       57.279      83.628      51.845      
+XPF     C22     C       CR15    0       53.720      80.472      52.912      
+XPF     C24     C       CR5     0       52.552      80.077      50.930      
+XPF     C17     C       CR6     0       55.848      81.702      52.156      
+XPF     C14     C       CR6     0       58.319      82.970      52.525      
+XPF     C5      C       CH2     0       62.298      84.542      52.180      
+XPF     C3      C       CH2     0       60.353      84.863      50.912      
+XPF     C1      C       CH1     0       61.266      85.220      53.062      
+XPF     C2      C       CH1     0       59.953      84.824      52.379      
+XPF     C11     C       CH3     0       62.229      87.653      55.660      
+XPF     C12     C       CH3     0       59.914      88.080      56.582      
+XPF     C10     C       CH1     0       60.744      87.342      55.541      
+XPF     N26     N       NSP     0       50.784      79.328      49.215      
+XPF     N6      N       NT1     0       61.365      84.839      54.476      
+XPF     O8      O       O       0       60.995      85.121      56.924      
+XPF     O9      O       O       0       59.080      85.310      55.370      
+XPF     O4      O       O2      0       61.764      84.608      50.860      
+XPF     O13     O       O2      0       59.576      83.475      52.769      
+XPF     S20     S       S2      0       53.928      80.872      50.435      
+XPF     S7      S       S3      0       60.462      85.553      55.665      
+XPF     H1      H       H       0       56.755      80.184      53.162      
+XPF     H2      H       H       0       55.367      83.442      51.217      
+XPF     H3      H       H       0       58.801      81.229      53.466      
+XPF     H4      H       H       0       51.862      79.490      52.790      
+XPF     H5      H       H       0       57.402      84.497      51.510      
+XPF     H6      H       H       0       53.890      80.456      53.838      
+XPF     H7      H       H       0       63.159      85.013      52.226      
+XPF     H8      H       H       0       62.429      83.608      52.451      
+XPF     H9      H       H       0       60.158      85.739      50.524      
+XPF     H10     H       H       0       59.872      84.182      50.401      
+XPF     H11     H       H       0       61.380      86.200      53.001      
+XPF     H12     H       H       0       59.242      85.472      52.589      
+XPF     H13     H       H       0       62.713      87.201      54.948      
+XPF     H14     H       H       0       62.557      87.344      56.523      
+XPF     H15     H       H       0       62.366      88.614      55.587      
+XPF     H16     H       H       0       60.098      89.034      56.526      
+XPF     H17     H       H       0       60.145      87.757      57.470      
+XPF     H18     H       H       0       58.968      87.922      56.415      
+XPF     H19     H       H       0       60.437      87.621      54.645      
+XPF     H20     H       H       0       62.160      84.592      54.768      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XPF          C3          O4      SINGLE       n     1.434  0.0104     1.434  0.0104
+XPF          C3          C2      SINGLE       n     1.520  0.0161     1.520  0.0161
+XPF          C5          O4      SINGLE       n     1.420  0.0200     1.420  0.0200
+XPF         C25         N26      TRIPLE       n     1.149  0.0200     1.149  0.0200
+XPF         C24         S20      SINGLE       y     1.695  0.0200     1.695  0.0200
+XPF         C21         S20      SINGLE       y     1.695  0.0200     1.695  0.0200
+XPF          C2         O13      SINGLE       n     1.446  0.0176     1.446  0.0176
+XPF          C1          C2      SINGLE       n     1.535  0.0170     1.535  0.0170
+XPF         C25         C24      SINGLE       n     1.425  0.0143     1.425  0.0143
+XPF         C14         O13      SINGLE       n     1.370  0.0110     1.370  0.0110
+XPF         C23         C24      DOUBLE       y     1.385  0.0125     1.385  0.0125
+XPF         C19         C14      SINGLE       y     1.389  0.0166     1.389  0.0166
+XPF         C15         C14      DOUBLE       y     1.389  0.0166     1.389  0.0166
+XPF         C18         C19      DOUBLE       y     1.382  0.0100     1.382  0.0100
+XPF         C16         C15      SINGLE       y     1.382  0.0100     1.382  0.0100
+XPF         C18         C17      SINGLE       y     1.392  0.0100     1.392  0.0100
+XPF         C16         C17      DOUBLE       y     1.392  0.0100     1.392  0.0100
+XPF         C21         C17      SINGLE       n     1.464  0.0100     1.464  0.0100
+XPF         C21         C22      DOUBLE       y     1.363  0.0200     1.363  0.0200
+XPF          C5          C1      SINGLE       n     1.519  0.0130     1.519  0.0130
+XPF          C1          N6      SINGLE       n     1.466  0.0100     1.466  0.0100
+XPF         C23         C22      SINGLE       y     1.401  0.0152     1.401  0.0152
+XPF          N6          S7      SINGLE       n     1.649  0.0200     1.649  0.0200
+XPF          O9          S7      DOUBLE       n     1.434  0.0100     1.434  0.0100
+XPF         C10          S7      SINGLE       n     1.814  0.0200     1.814  0.0200
+XPF          O8          S7      DOUBLE       n     1.434  0.0100     1.434  0.0100
+XPF         C12         C10      SINGLE       n     1.522  0.0129     1.522  0.0129
+XPF         C11         C10      SINGLE       n     1.522  0.0129     1.522  0.0129
+XPF         C18          H1      SINGLE       n     1.082  0.0130     0.941  0.0147
+XPF         C16          H2      SINGLE       n     1.082  0.0130     0.941  0.0147
+XPF         C19          H3      SINGLE       n     1.082  0.0130     0.941  0.0179
+XPF         C23          H4      SINGLE       n     1.082  0.0130     0.944  0.0130
+XPF         C15          H5      SINGLE       n     1.082  0.0130     0.941  0.0179
+XPF         C22          H6      SINGLE       n     1.082  0.0130     0.942  0.0154
+XPF          C5          H7      SINGLE       n     1.089  0.0100     0.982  0.0164
+XPF          C5          H8      SINGLE       n     1.089  0.0100     0.982  0.0164
+XPF          C3          H9      SINGLE       n     1.089  0.0100     0.978  0.0200
+XPF          C3         H10      SINGLE       n     1.089  0.0100     0.978  0.0200
+XPF          C1         H11      SINGLE       n     1.089  0.0100     0.989  0.0131
+XPF          C2         H12      SINGLE       n     1.089  0.0100     0.985  0.0119
+XPF         C11         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+XPF         C11         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+XPF         C11         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+XPF         C12         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+XPF         C12         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+XPF         C12         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+XPF         C10         H19      SINGLE       n     1.089  0.0100     0.988  0.0188
+XPF          N6         H20      SINGLE       n     1.036  0.0160     0.882  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XPF         S20         C21         C17     120.547    3.00
+XPF         S20         C21         C22     108.391    3.00
+XPF         C17         C21         C22     131.062    2.36
+XPF         C19         C18         C17     120.510    1.50
+XPF         C19         C18          H1     119.577    1.50
+XPF         C17         C18          H1     119.913    1.50
+XPF         C15         C16         C17     120.510    1.50
+XPF         C15         C16          H2     119.577    1.50
+XPF         C17         C16          H2     119.913    1.50
+XPF         C14         C19         C18     119.899    1.50
+XPF         C14         C19          H3     120.044    1.50
+XPF         C18         C19          H3     120.061    1.50
+XPF         N26         C25         C24     178.257    1.50
+XPF         C24         C23         C22     107.262    1.50
+XPF         C24         C23          H4     127.270    2.63
+XPF         C22         C23          H4     125.468    1.50
+XPF         C14         C15         C16     119.899    1.50
+XPF         C14         C15          H5     120.044    1.50
+XPF         C16         C15          H5     120.061    1.50
+XPF         C21         C22         C23     107.565    1.50
+XPF         C21         C22          H6     126.602    1.50
+XPF         C23         C22          H6     125.833    1.50
+XPF         S20         C24         C25     121.030    3.00
+XPF         S20         C24         C23     108.391    3.00
+XPF         C25         C24         C23     130.579    2.67
+XPF         C18         C17         C16     118.856    1.50
+XPF         C18         C17         C21     120.572    1.61
+XPF         C16         C17         C21     120.572    1.61
+XPF         O13         C14         C19     119.841    3.00
+XPF         O13         C14         C15     119.841    3.00
+XPF         C19         C14         C15     120.318    1.50
+XPF          O4          C5          C1     105.114    1.50
+XPF          O4          C5          H7     110.366    1.50
+XPF          O4          C5          H8     110.366    1.50
+XPF          C1          C5          H7     110.653    1.50
+XPF          C1          C5          H8     110.653    1.50
+XPF          H7          C5          H8     108.865    1.50
+XPF          O4          C3          C2     106.664    2.41
+XPF          O4          C3          H9     110.033    1.50
+XPF          O4          C3         H10     110.033    1.50
+XPF          C2          C3          H9     110.885    1.87
+XPF          C2          C3         H10     110.885    1.87
+XPF          H9          C3         H10     108.734    2.05
+XPF          C2          C1          C5     104.443    2.26
+XPF          C2          C1          N6     113.888    3.00
+XPF          C2          C1         H11     109.421    1.65
+XPF          C5          C1          N6     113.888    3.00
+XPF          C5          C1         H11     109.535    1.50
+XPF          N6          C1         H11     108.188    1.50
+XPF          C3          C2         O13     109.403    2.79
+XPF          C3          C2          C1     103.023    2.34
+XPF          C3          C2         H12     111.763    1.50
+XPF         O13          C2          C1     109.403    2.79
+XPF         O13          C2         H12     110.694    1.50
+XPF          C1          C2         H12     110.706    1.50
+XPF         C10         C11         H13     109.471    1.50
+XPF         C10         C11         H14     109.471    1.50
+XPF         C10         C11         H15     109.471    1.50
+XPF         H13         C11         H14     109.455    1.50
+XPF         H13         C11         H15     109.455    1.50
+XPF         H14         C11         H15     109.455    1.50
+XPF         C10         C12         H16     109.471    1.50
+XPF         C10         C12         H17     109.471    1.50
+XPF         C10         C12         H18     109.471    1.50
+XPF         H16         C12         H17     109.455    1.50
+XPF         H16         C12         H18     109.455    1.50
+XPF         H17         C12         H18     109.455    1.50
+XPF          S7         C10         C12     110.364    1.50
+XPF          S7         C10         C11     110.364    1.50
+XPF          S7         C10         H19     106.986    2.11
+XPF         C12         C10         C11     112.334    1.50
+XPF         C12         C10         H19     108.433    1.50
+XPF         C11         C10         H19     108.433    1.50
+XPF          C1          N6          S7     121.862    1.91
+XPF          C1          N6         H20     117.028    2.63
+XPF          S7          N6         H20     112.300    3.00
+XPF          C3          O4          C5     107.463    3.00
+XPF          C2         O13         C14     118.287    1.70
+XPF         C24         S20         C21     108.391    3.00
+XPF          N6          S7          O9     107.325    1.50
+XPF          N6          S7         C10     106.340    1.53
+XPF          N6          S7          O8     107.325    1.50
+XPF          O9          S7         C10     107.363    1.73
+XPF          O9          S7          O8     119.208    1.50
+XPF         C10          S7          O8     107.363    1.73
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XPF              const_22         C17         C21         S20         C24     180.000    10.0     2
+XPF              const_37         S20         C21         C22         C23       0.000    10.0     2
+XPF             sp2_sp2_4         C18         C17         C21         S20       0.000     5.0     2
+XPF             sp2_sp2_1         C19         C14         O13          C2     180.000     5.0     2
+XPF            sp3_sp3_31          N6          C1          C5          O4      60.000    10.0     3
+XPF             sp3_sp3_1          C1          C5          O4          C3      60.000    10.0     3
+XPF            sp3_sp3_10         O13          C2          C3          O4     -60.000    10.0     3
+XPF             sp3_sp3_4          C2          C3          O4          C5     -60.000    10.0     3
+XPF            sp3_sp3_20          N6          C1          C2         O13     -60.000    10.0     3
+XPF            sp3_sp3_37          C2          C1          N6          S7     180.000    10.0     3
+XPF            sp3_sp3_25          C3          C2         O13         C14     180.000    10.0     3
+XPF            sp3_sp3_70          S7         C10         C11         H13      60.000    10.0     3
+XPF            sp3_sp3_58          S7         C10         C12         H16     180.000    10.0     3
+XPF            sp3_sp3_54         C12         C10          S7          N6     -60.000    10.0     3
+XPF            sp3_sp3_47          C1          N6          S7          O9     180.000    10.0     3
+XPF       const_sp2_sp2_1         C17         C18         C19         C14       0.000     5.0     2
+XPF              const_33         C16         C17         C18         C19       0.000    10.0     2
+XPF              const_13         C14         C15         C16         C17       0.000    10.0     2
+XPF              const_17         C15         C16         C17         C18       0.000    10.0     2
+XPF       const_sp2_sp2_7         O13         C14         C19         C18     180.000     5.0     2
+XPF           other_tor_1         N26         C25         C24         S20      90.000    10.0     1
+XPF              const_29         C21         C22         C23         C24       0.000    10.0     2
+XPF              const_26         C22         C23         C24         C25     180.000    10.0     2
+XPF              const_11         O13         C14         C15         C16     180.000    10.0     2
+XPF              const_24         C25         C24         S20         C21     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XPF    chir_1    C1    N6    C2    C5    positive
+XPF    chir_2    C2    O13    C3    C1    positive
+XPF    chir_3    C10    S7    C12    C11    both
+XPF    chir_4    S7    O9    O8    N6    both
+XPF    chir_5    N6    S7    C1    H20    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XPF    plan-1         C17   0.020
+XPF    plan-1         C21   0.020
+XPF    plan-1         C22   0.020
+XPF    plan-1         C23   0.020
+XPF    plan-1         C24   0.020
+XPF    plan-1         C25   0.020
+XPF    plan-1          H4   0.020
+XPF    plan-1          H6   0.020
+XPF    plan-1         S20   0.020
+XPF    plan-2         C14   0.020
+XPF    plan-2         C15   0.020
+XPF    plan-2         C16   0.020
+XPF    plan-2         C17   0.020
+XPF    plan-2         C18   0.020
+XPF    plan-2         C19   0.020
+XPF    plan-2         C21   0.020
+XPF    plan-2          H1   0.020
+XPF    plan-2          H2   0.020
+XPF    plan-2          H3   0.020
+XPF    plan-2          H5   0.020
+XPF    plan-2         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XPF           SMILES              ACDLabs 12.01                                                                                                       O=S(=O)(NC3COCC3Oc2ccc(c1sc(C#N)cc1)cc2)C(C)C
+XPF            InChI                InChI  1.03 InChI=1S/C18H20N2O4S2/c1-12(2)26(21,22)20-16-10-23-11-17(16)24-14-5-3-13(4-6-14)18-8-7-15(9-19)25-18/h3-8,12,16-17,20H,10-11H2,1-2H3/t16-,17+/m0/s1
+XPF         InChIKey                InChI  1.03                                                                                                                         TTYKUKSFWHEBLI-DLBZAZTESA-N
+XPF SMILES_CANONICAL               CACTVS 3.385                                                                                             CC(C)[S](=O)(=O)N[C@H]1COC[C@H]1Oc2ccc(cc2)c3sc(cc3)C#N
+XPF           SMILES               CACTVS 3.385                                                                                               CC(C)[S](=O)(=O)N[CH]1COC[CH]1Oc2ccc(cc2)c3sc(cc3)C#N
+XPF SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                               CC(C)S(=O)(=O)N[C@H]1COC[C@H]1Oc2ccc(cc2)c3ccc(s3)C#N
+XPF           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                       CC(C)S(=O)(=O)NC1COCC1Oc2ccc(cc2)c3ccc(s3)C#N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XPF acedrg               243         "dictionary generator"                  
+XPF acedrg_database      11          "data source"                           
+XPF rdkit                2017.03.2   "Chemoinformatics tool"
+XPF refmac5              5.8.0238    "optimization tool"                     

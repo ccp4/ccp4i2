@@ -1,0 +1,510 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HHE     HHE      (2R,4S,5S)-5-amino-6-[4-(2-chlorophenyl)-2,2-dimethyl-5-oxopiperazin-1-yl]-2-ethyl-4-hydroxy-N-[(1R,2S,3S,5S,7S)-5-hydroxytricyclo[3.3.1.1~3,7~]dec-2-yl]hexanamide     NON-POLYMER     85     39     .     
+#
+data_comp_HHE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HHE     C1      C       CH1     0       181.240     200.596     104.407     
+HHE     C2      C       CH1     0       182.572     199.850     104.169     
+HHE     C3      C       CH1     0       181.127     200.924     105.913     
+HHE     C4      C       CH2     0       182.569     198.553     104.985     
+HHE     C5      C       CH2     0       181.141     199.620     106.717     
+HHE     C6      C       CT      0       182.441     198.867     106.471     
+HHE     C7      C       CH2     0       182.313     201.805     106.337     
+HHE     C8      C       CH1     0       183.625     201.052     106.100     
+HHE     C9      C       CH2     0       183.759     200.722     104.611     
+HHE     C10     C       CH2     0       183.611     199.737     106.907     
+HHE     O11     O       OH1     0       182.443     197.639     107.221     
+HHE     N12     N       NH1     0       181.058     201.767     103.547     
+HHE     C13     C       CH1     0       179.603     202.652     100.183     
+HHE     C14     C       CH1     0       178.552     202.257     99.130      
+HHE     C15     C       CH2     0       179.045     201.077     98.273      
+HHE     N16     N       NT3     1       178.151     203.391     98.235      
+HHE     N17     N       NT      0       178.051     200.637     97.253      
+HHE     C18     C       CH2     0       177.109     199.679     97.846      
+HHE     C19     C       CR6     0       175.992     199.287     96.928      
+HHE     N20     N       NR6     0       176.278     199.217     95.594      
+HHE     C21     C       CH2     0       177.357     199.999     94.948      
+HHE     C22     C       CT      0       178.550     200.247     95.887      
+HHE     C23     C       CH3     0       179.410     201.351     95.252      
+HHE     C24     C       CH3     0       179.397     198.967     95.954      
+HHE     C25     C       CR6     0       175.469     198.400     94.708      
+HHE     C26     C       CR16    0       174.614     199.008     93.800      
+HHE     C27     C       CR16    0       173.835     198.249     92.939      
+HHE     C28     C       CR16    0       173.906     196.870     92.973      
+HHE     C29     C       CR16    0       174.751     196.241     93.862      
+HHE     C30     C       CR6     0       175.539     197.006     94.733      
+HHE     O31     O       O       0       174.876     199.054     97.379      
+HHE     CL      CL      CL      0       176.593     196.183     95.838      
+HHE     C33     C       CH2     0       179.073     203.545     101.305     
+HHE     C34     C       CH1     0       179.909     203.696     102.586     
+HHE     C35     C       C       0       179.889     202.419     103.408     
+HHE     O36     O       O       0       178.844     202.008     103.905     
+HHE     C37     C       CH2     0       179.420     204.884     103.427     
+HHE     O38     O       OH1     0       180.681     203.298     99.495      
+HHE     C39     C       CH3     0       180.347     205.244     104.573     
+HHE     H1      H       H       0       180.510     199.967     104.187     
+HHE     H2      H       H       0       182.662     199.631     103.202     
+HHE     H3      H       H       0       180.275     201.407     106.088     
+HHE     H4      H       H       0       181.814     197.982     104.703     
+HHE     H5      H       H       0       183.408     198.056     104.826     
+HHE     H6      H       H       0       181.054     199.820     107.680     
+HHE     H7      H       H       0       180.377     199.054     106.449     
+HHE     H8      H       H       0       182.229     202.038     107.293     
+HHE     H9      H       H       0       182.309     202.643     105.815     
+HHE     H10     H       H       0       184.395     201.618     106.390     
+HHE     H11     H       H       0       183.778     201.556     104.084     
+HHE     H12     H       H       0       184.604     200.237     104.452     
+HHE     H13     H       H       0       184.457     199.246     106.765     
+HHE     H14     H       H       0       183.530     199.936     107.872     
+HHE     H15     H       H       0       182.370     197.802     108.037     
+HHE     H16     H       H       0       181.740     202.044     103.083     
+HHE     H17     H       H       0       179.950     201.817     100.589     
+HHE     H18     H       H       0       177.753     201.959     99.615      
+HHE     H19     H       H       0       179.250     200.328     98.866      
+HHE     H20     H       H       0       179.876     201.341     97.840      
+HHE     H21     H       H       0       178.274     204.184     98.656      
+HHE     H22     H       H       0       177.274     203.313     98.013      
+HHE     H23     H       H       0       178.648     203.386     97.477      
+HHE     H25     H       H       0       177.588     198.877     98.110      
+HHE     H26     H       H       0       176.726     200.064     98.650      
+HHE     H27     H       H       0       176.994     200.867     94.657      
+HHE     H28     H       H       0       177.677     199.521     94.149      
+HHE     H29     H       H       0       179.030     202.220     95.456      
+HHE     H30     H       H       0       179.436     201.233     94.288      
+HHE     H31     H       H       0       180.315     201.308     95.599      
+HHE     H32     H       H       0       179.971     198.989     96.736      
+HHE     H33     H       H       0       179.949     198.896     95.158      
+HHE     H34     H       H       0       178.816     198.191     96.008      
+HHE     H35     H       H       0       174.564     199.946     93.776      
+HHE     H36     H       H       0       173.256     198.678     92.330      
+HHE     H37     H       H       0       173.378     196.357     92.389      
+HHE     H38     H       H       0       174.807     195.304     93.892      
+HHE     H39     H       H       0       178.185     203.210     101.564     
+HHE     H40     H       H       0       178.931     204.441     100.928     
+HHE     H41     H       H       0       180.834     203.893     102.315     
+HHE     H42     H       H       0       178.536     204.670     103.789     
+HHE     H43     H       H       0       179.326     205.665     102.843     
+HHE     H44     H       H       0       181.121     203.795     100.021     
+HHE     H45     H       H       0       180.146     206.144     104.884     
+HHE     H46     H       H       0       181.271     205.207     104.269     
+HHE     H47     H       H       0       180.222     204.615     105.305     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HHE         C27         C28      SINGLE       y     1.377  0.0126     1.377  0.0126
+HHE         C28         C29      DOUBLE       y     1.374  0.0100     1.374  0.0100
+HHE         C26         C27      DOUBLE       y     1.385  0.0100     1.385  0.0100
+HHE         C29         C30      SINGLE       y     1.392  0.0147     1.392  0.0147
+HHE         C25         C26      SINGLE       y     1.384  0.0100     1.384  0.0100
+HHE         C25         C30      DOUBLE       y     1.390  0.0106     1.390  0.0106
+HHE         C30          CL      SINGLE       n     1.734  0.0100     1.734  0.0100
+HHE         N20         C25      SINGLE       n     1.446  0.0141     1.446  0.0141
+HHE         N20         C21      SINGLE       n     1.478  0.0100     1.478  0.0100
+HHE         C21         C22      SINGLE       n     1.533  0.0100     1.533  0.0100
+HHE         C22         C23      SINGLE       n     1.533  0.0100     1.533  0.0100
+HHE         C19         N20      SINGLE       n     1.361  0.0125     1.361  0.0125
+HHE         C22         C24      SINGLE       n     1.533  0.0100     1.533  0.0100
+HHE         N17         C22      SINGLE       n     1.481  0.0146     1.481  0.0146
+HHE         C19         O31      DOUBLE       n     1.225  0.0100     1.225  0.0100
+HHE         C18         C19      SINGLE       n     1.498  0.0100     1.498  0.0100
+HHE         N17         C18      SINGLE       n     1.462  0.0100     1.462  0.0100
+HHE         C15         N17      SINGLE       n     1.467  0.0160     1.467  0.0160
+HHE         C14         C15      SINGLE       n     1.536  0.0119     1.536  0.0119
+HHE         C14         N16      SINGLE       n     1.497  0.0100     1.497  0.0100
+HHE         C13         C14      SINGLE       n     1.536  0.0128     1.536  0.0128
+HHE         C13         O38      SINGLE       n     1.424  0.0199     1.424  0.0199
+HHE         C13         C33      SINGLE       n     1.525  0.0100     1.525  0.0100
+HHE         C33         C34      SINGLE       n     1.528  0.0200     1.528  0.0200
+HHE         C34         C37      SINGLE       n     1.528  0.0200     1.528  0.0200
+HHE         C34         C35      SINGLE       n     1.516  0.0100     1.516  0.0100
+HHE         C37         C39      SINGLE       n     1.515  0.0200     1.515  0.0200
+HHE         N12         C35      SINGLE       n     1.340  0.0100     1.340  0.0100
+HHE         C35         O36      DOUBLE       n     1.227  0.0100     1.227  0.0100
+HHE          C1         N12      SINGLE       n     1.461  0.0100     1.461  0.0100
+HHE          C2          C9      SINGLE       n     1.534  0.0100     1.534  0.0100
+HHE          C1          C2      SINGLE       n     1.539  0.0115     1.539  0.0115
+HHE          C2          C4      SINGLE       n     1.527  0.0108     1.527  0.0108
+HHE          C8          C9      SINGLE       n     1.529  0.0100     1.529  0.0100
+HHE          C1          C3      SINGLE       n     1.539  0.0115     1.539  0.0115
+HHE          C4          C6      SINGLE       n     1.518  0.0103     1.518  0.0103
+HHE          C7          C8      SINGLE       n     1.529  0.0100     1.529  0.0100
+HHE          C8         C10      SINGLE       n     1.539  0.0100     1.539  0.0100
+HHE          C3          C7      SINGLE       n     1.534  0.0100     1.534  0.0100
+HHE          C3          C5      SINGLE       n     1.527  0.0108     1.527  0.0108
+HHE          C6         C10      SINGLE       n     1.518  0.0103     1.518  0.0103
+HHE          C5          C6      SINGLE       n     1.518  0.0103     1.518  0.0103
+HHE          C6         O11      SINGLE       n     1.438  0.0100     1.438  0.0100
+HHE          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0199
+HHE          C2          H2      SINGLE       n     1.089  0.0100     0.995  0.0100
+HHE          C3          H3      SINGLE       n     1.089  0.0100     0.995  0.0100
+HHE          C4          H4      SINGLE       n     1.089  0.0100     0.988  0.0131
+HHE          C4          H5      SINGLE       n     1.089  0.0100     0.988  0.0131
+HHE          C5          H6      SINGLE       n     1.089  0.0100     0.988  0.0131
+HHE          C5          H7      SINGLE       n     1.089  0.0100     0.988  0.0131
+HHE          C7          H8      SINGLE       n     1.089  0.0100     0.987  0.0100
+HHE          C7          H9      SINGLE       n     1.089  0.0100     0.987  0.0100
+HHE          C8         H10      SINGLE       n     1.089  0.0100     0.999  0.0100
+HHE          C9         H11      SINGLE       n     1.089  0.0100     0.987  0.0100
+HHE          C9         H12      SINGLE       n     1.089  0.0100     0.987  0.0100
+HHE         C10         H13      SINGLE       n     1.089  0.0100     0.988  0.0131
+HHE         C10         H14      SINGLE       n     1.089  0.0100     0.988  0.0131
+HHE         O11         H15      SINGLE       n     0.970  0.0120     0.835  0.0200
+HHE         N12         H16      SINGLE       n     1.016  0.0100     0.872  0.0200
+HHE         C13         H17      SINGLE       n     1.089  0.0100     0.992  0.0184
+HHE         C14         H18      SINGLE       n     1.089  0.0100     0.982  0.0200
+HHE         C15         H19      SINGLE       n     1.089  0.0100     0.977  0.0152
+HHE         C15         H20      SINGLE       n     1.089  0.0100     0.977  0.0152
+HHE         N16         H21      SINGLE       n     1.036  0.0160     0.907  0.0200
+HHE         N16         H22      SINGLE       n     1.036  0.0160     0.907  0.0200
+HHE         N16         H23      SINGLE       n     1.036  0.0160     0.907  0.0200
+HHE         C18         H25      SINGLE       n     1.089  0.0100     0.970  0.0100
+HHE         C18         H26      SINGLE       n     1.089  0.0100     0.970  0.0100
+HHE         C21         H27      SINGLE       n     1.089  0.0100     0.984  0.0108
+HHE         C21         H28      SINGLE       n     1.089  0.0100     0.984  0.0108
+HHE         C23         H29      SINGLE       n     1.089  0.0100     0.971  0.0171
+HHE         C23         H30      SINGLE       n     1.089  0.0100     0.971  0.0171
+HHE         C23         H31      SINGLE       n     1.089  0.0100     0.971  0.0171
+HHE         C24         H32      SINGLE       n     1.089  0.0100     0.971  0.0171
+HHE         C24         H33      SINGLE       n     1.089  0.0100     0.971  0.0171
+HHE         C24         H34      SINGLE       n     1.089  0.0100     0.971  0.0171
+HHE         C26         H35      SINGLE       n     1.082  0.0130     0.940  0.0105
+HHE         C27         H36      SINGLE       n     1.082  0.0130     0.943  0.0172
+HHE         C28         H37      SINGLE       n     1.082  0.0130     0.939  0.0165
+HHE         C29         H38      SINGLE       n     1.082  0.0130     0.939  0.0138
+HHE         C33         H39      SINGLE       n     1.089  0.0100     0.983  0.0100
+HHE         C33         H40      SINGLE       n     1.089  0.0100     0.983  0.0100
+HHE         C34         H41      SINGLE       n     1.089  0.0100     0.984  0.0100
+HHE         C37         H42      SINGLE       n     1.089  0.0100     0.980  0.0160
+HHE         C37         H43      SINGLE       n     1.089  0.0100     0.980  0.0160
+HHE         O38         H44      SINGLE       n     0.970  0.0120     0.848  0.0200
+HHE         C39         H45      SINGLE       n     1.089  0.0100     0.973  0.0157
+HHE         C39         H46      SINGLE       n     1.089  0.0100     0.973  0.0157
+HHE         C39         H47      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HHE         N12          C1          C2     112.987    2.61
+HHE         N12          C1          C3     112.987    2.61
+HHE         N12          C1          H1     107.022    2.00
+HHE          C2          C1          C3     108.688    1.50
+HHE          C2          C1          H1     107.624    1.50
+HHE          C3          C1          H1     107.624    1.50
+HHE          C9          C2          C1     109.485    1.87
+HHE          C9          C2          C4     109.470    1.50
+HHE          C9          C2          H2     109.603    1.50
+HHE          C1          C2          C4     109.430    2.58
+HHE          C1          C2          H2     109.618    1.50
+HHE          C4          C2          H2     109.458    1.50
+HHE          C1          C3          C7     109.485    1.87
+HHE          C1          C3          C5     109.430    2.58
+HHE          C1          C3          H3     109.618    1.50
+HHE          C7          C3          C5     109.470    1.50
+HHE          C7          C3          H3     109.603    1.50
+HHE          C5          C3          H3     109.458    1.50
+HHE          C2          C4          C6     109.314    1.50
+HHE          C2          C4          H4     109.731    1.50
+HHE          C2          C4          H5     109.731    1.50
+HHE          C6          C4          H4     109.426    1.50
+HHE          C6          C4          H5     109.426    1.50
+HHE          H4          C4          H5     108.172    1.50
+HHE          C3          C5          C6     109.314    1.50
+HHE          C3          C5          H6     109.731    1.50
+HHE          C3          C5          H7     109.731    1.50
+HHE          C6          C5          H6     109.426    1.50
+HHE          C6          C5          H7     109.426    1.50
+HHE          H6          C5          H7     108.172    1.50
+HHE          C4          C6         C10     109.593    1.50
+HHE          C4          C6          C5     109.593    1.50
+HHE          C4          C6         O11     109.869    1.78
+HHE         C10          C6          C5     109.593    1.50
+HHE         C10          C6         O11     109.869    1.78
+HHE          C5          C6         O11     109.869    1.78
+HHE          C8          C7          C3     110.040    1.50
+HHE          C8          C7          H8     109.767    1.50
+HHE          C8          C7          H9     109.767    1.50
+HHE          C3          C7          H8     109.659    1.50
+HHE          C3          C7          H9     109.659    1.50
+HHE          H8          C7          H9     108.211    1.50
+HHE          C9          C8          C7     109.627    1.50
+HHE          C9          C8         C10     109.272    1.50
+HHE          C9          C8         H10     109.490    1.50
+HHE          C7          C8         C10     109.272    1.50
+HHE          C7          C8         H10     109.490    1.50
+HHE         C10          C8         H10     109.511    1.50
+HHE          C2          C9          C8     110.040    1.50
+HHE          C2          C9         H11     109.659    1.50
+HHE          C2          C9         H12     109.659    1.50
+HHE          C8          C9         H11     109.767    1.50
+HHE          C8          C9         H12     109.767    1.50
+HHE         H11          C9         H12     108.211    1.50
+HHE          C8         C10          C6     109.763    1.50
+HHE          C8         C10         H13     109.936    1.50
+HHE          C8         C10         H14     109.936    1.50
+HHE          C6         C10         H13     109.426    1.50
+HHE          C6         C10         H14     109.426    1.50
+HHE         H13         C10         H14     108.172    1.50
+HHE          C6         O11         H15     109.630    2.21
+HHE         C35         N12          C1     122.676    2.71
+HHE         C35         N12         H16     118.344    1.89
+HHE          C1         N12         H16     118.980    1.70
+HHE         C14         C13         O38     109.668    2.07
+HHE         C14         C13         C33     115.501    2.07
+HHE         C14         C13         H17     108.159    1.50
+HHE         O38         C13         C33     109.024    2.32
+HHE         O38         C13         H17     108.700    1.50
+HHE         C33         C13         H17     108.603    1.50
+HHE         C15         C14         N16     109.051    1.50
+HHE         C15         C14         C13     111.094    2.85
+HHE         C15         C14         H18     107.699    1.50
+HHE         N16         C14         C13     112.810    3.00
+HHE         N16         C14         H18     108.026    2.07
+HHE         C13         C14         H18     107.235    1.50
+HHE         N17         C15         C14     112.648    2.60
+HHE         N17         C15         H19     108.913    1.50
+HHE         N17         C15         H20     108.913    1.50
+HHE         C14         C15         H19     108.654    1.50
+HHE         C14         C15         H20     108.654    1.50
+HHE         H19         C15         H20     107.868    1.50
+HHE         C14         N16         H21     109.950    1.71
+HHE         C14         N16         H22     109.950    1.71
+HHE         C14         N16         H23     109.950    1.71
+HHE         H21         N16         H22     109.028    2.41
+HHE         H21         N16         H23     109.028    2.41
+HHE         H22         N16         H23     109.028    2.41
+HHE         C22         N17         C18     111.782    3.00
+HHE         C22         N17         C15     111.960    2.41
+HHE         C18         N17         C15     110.664    1.80
+HHE         C19         C18         N17     112.324    2.63
+HHE         C19         C18         H25     108.871    1.50
+HHE         C19         C18         H26     108.871    1.50
+HHE         N17         C18         H25     109.384    1.50
+HHE         N17         C18         H26     109.384    1.50
+HHE         H25         C18         H26     107.805    1.72
+HHE         N20         C19         O31     122.069    1.50
+HHE         N20         C19         C18     117.534    1.63
+HHE         O31         C19         C18     120.397    1.72
+HHE         C25         N20         C21     117.548    2.71
+HHE         C25         N20         C19     119.151    1.85
+HHE         C21         N20         C19     123.300    2.69
+HHE         N20         C21         C22     110.160    1.50
+HHE         N20         C21         H27     109.367    1.50
+HHE         N20         C21         H28     109.367    1.50
+HHE         C22         C21         H27     108.972    1.50
+HHE         C22         C21         H28     108.972    1.50
+HHE         H27         C21         H28     108.194    1.50
+HHE         C21         C22         C23     109.949    1.53
+HHE         C21         C22         C24     109.949    1.53
+HHE         C21         C22         N17     110.258    1.51
+HHE         C23         C22         C24     108.959    1.50
+HHE         C23         C22         N17     112.120    3.00
+HHE         C24         C22         N17     112.120    3.00
+HHE         C22         C23         H29     109.684    1.50
+HHE         C22         C23         H30     109.684    1.50
+HHE         C22         C23         H31     109.684    1.50
+HHE         H29         C23         H30     109.254    1.50
+HHE         H29         C23         H31     109.254    1.50
+HHE         H30         C23         H31     109.254    1.50
+HHE         C22         C24         H32     109.684    1.50
+HHE         C22         C24         H33     109.684    1.50
+HHE         C22         C24         H34     109.684    1.50
+HHE         H32         C24         H33     109.254    1.50
+HHE         H32         C24         H34     109.254    1.50
+HHE         H33         C24         H34     109.254    1.50
+HHE         C26         C25         C30     119.184    1.64
+HHE         C26         C25         N20     120.445    1.50
+HHE         C30         C25         N20     120.371    1.50
+HHE         C27         C26         C25     120.903    1.50
+HHE         C27         C26         H35     119.938    1.50
+HHE         C25         C26         H35     119.159    1.50
+HHE         C28         C27         C26     120.198    1.50
+HHE         C28         C27         H36     120.063    1.50
+HHE         C26         C27         H36     119.739    1.50
+HHE         C27         C28         C29     119.943    1.50
+HHE         C27         C28         H37     120.149    1.50
+HHE         C29         C28         H37     119.907    1.50
+HHE         C28         C29         C30     119.218    1.50
+HHE         C28         C29         H38     120.991    1.50
+HHE         C30         C29         H38     119.791    2.36
+HHE         C29         C30         C25     120.554    1.50
+HHE         C29         C30          CL     119.059    1.50
+HHE         C25         C30          CL     120.387    1.50
+HHE         C13         C33         C34     117.566    3.00
+HHE         C13         C33         H39     108.468    1.50
+HHE         C13         C33         H40     108.468    1.50
+HHE         C34         C33         H39     108.447    1.50
+HHE         C34         C33         H40     108.447    1.50
+HHE         H39         C33         H40     106.914    1.50
+HHE         C33         C34         C37     111.110    1.87
+HHE         C33         C34         C35     110.994    2.64
+HHE         C33         C34         H41     107.780    1.50
+HHE         C37         C34         C35     110.994    2.64
+HHE         C37         C34         H41     107.780    1.50
+HHE         C35         C34         H41     108.868    1.50
+HHE         C34         C35         N12     115.833    1.98
+HHE         C34         C35         O36     121.749    1.50
+HHE         N12         C35         O36     122.417    1.50
+HHE         C34         C37         C39     112.999    1.85
+HHE         C34         C37         H42     108.447    1.50
+HHE         C34         C37         H43     108.447    1.50
+HHE         C39         C37         H42     108.717    1.50
+HHE         C39         C37         H43     108.717    1.50
+HHE         H42         C37         H43     107.862    1.50
+HHE         C13         O38         H44     108.640    2.32
+HHE         C37         C39         H45     109.566    1.50
+HHE         C37         C39         H46     109.566    1.50
+HHE         C37         C39         H47     109.566    1.50
+HHE         H45         C39         H46     109.380    1.50
+HHE         H45         C39         H47     109.380    1.50
+HHE         H46         C39         H47     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HHE            sp3_sp3_91         N12          C1          C2          C9     -60.000    10.0     3
+HHE            sp2_sp3_19         C35         N12          C1          C2       0.000    10.0     6
+HHE           sp3_sp3_214         N12          C1          C3          C7      60.000    10.0     3
+HHE             sp2_sp2_9         C34         C35         N12          C1     180.000     5.0     2
+HHE           sp3_sp3_163         O38         C13         C14         C15     180.000    10.0     3
+HHE           sp3_sp3_175         C14         C13         C33         C34     180.000    10.0     3
+HHE           sp3_sp3_172         C14         C13         O38         H44     180.000    10.0     3
+HHE           sp3_sp3_145         N16         C14         C15         N17     180.000    10.0     3
+HHE           sp3_sp3_154         C15         C14         N16         H21     180.000    10.0     3
+HHE           sp3_sp3_139         C14         C15         N17         C22     180.000    10.0     3
+HHE           sp3_sp3_134         C19         C18         N17         C15     -60.000    10.0     3
+HHE            sp3_sp3_78         C23         C22         N17         C15     -60.000    10.0     3
+HHE            sp2_sp3_10         O31         C19         C18         N17     180.000    10.0     6
+HHE             sp2_sp2_4         O31         C19         N20         C25       0.000     5.0     2
+HHE             sp2_sp3_4         C25         N20         C21         C22     180.000    10.0     6
+HHE             sp2_sp2_5         C26         C25         N20         C21     180.000     5.0     2
+HHE            sp3_sp3_97          C9          C2          C4          C6     -60.000    10.0     3
+HHE             sp3_sp3_1          C1          C2          C9          C8      60.000    10.0     3
+HHE            sp3_sp3_80         N20         C21         C22         C23      60.000    10.0     3
+HHE           sp3_sp3_121         C24         C22         C23         H29     -60.000    10.0     3
+HHE           sp3_sp3_130         C23         C22         C24         H32     -60.000    10.0     3
+HHE       const_sp2_sp2_1         C30         C25         C26         C27       0.000     5.0     2
+HHE              const_22         C26         C25         C30          CL     180.000    10.0     2
+HHE       const_sp2_sp2_5         C25         C26         C27         C28       0.000     5.0     2
+HHE       const_sp2_sp2_9         C26         C27         C28         C29       0.000     5.0     2
+HHE              const_13         C27         C28         C29         C30       0.000    10.0     2
+HHE              const_18         C28         C29         C30          CL     180.000    10.0     2
+HHE           sp3_sp3_106          C1          C3          C5          C6      60.000    10.0     3
+HHE            sp3_sp3_46          C1          C3          C7          C8      60.000    10.0     3
+HHE           sp3_sp3_184         C13         C33         C34         C37     180.000    10.0     3
+HHE            sp2_sp3_13         N12         C35         C34         C33       0.000    10.0     6
+HHE           sp3_sp3_193         C33         C34         C37         C39     180.000    10.0     3
+HHE           sp3_sp3_202         C34         C37         C39         H45     180.000    10.0     3
+HHE            sp3_sp3_39          C2          C4          C6         O11     -60.000    10.0     3
+HHE            sp3_sp3_66          C3          C5          C6         O11     -60.000    10.0     3
+HHE           sp3_sp3_220          C4          C6         O11         H15     180.000    10.0     3
+HHE            sp3_sp3_30          C8         C10          C6         O11     180.000    10.0     3
+HHE            sp3_sp3_55          C3          C7          C8          C9     -60.000    10.0     3
+HHE            sp3_sp3_10          C7          C8          C9          C2     -60.000    10.0     3
+HHE            sp3_sp3_19          C6         C10          C8          C9      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HHE    chir_1    C1    N12    C3    C2    positive
+HHE    chir_2    C2    C1    C4    C9    positive
+HHE    chir_3    C3    C1    C5    C7    negative
+HHE    chir_4    C6    O11    C5    C4    positive
+HHE    chir_5    C8    C10    C7    C9    positive
+HHE    chir_6    C13    O38    C14    C33    positive
+HHE    chir_7    C14    N16    C13    C15    positive
+HHE    chir_8    N17    C22    C18    C15    negative
+HHE    chir_9    C22    N17    C21    C23    both
+HHE    chir_10    C34    C35    C33    C37    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HHE    plan-1         C25   0.020
+HHE    plan-1         C26   0.020
+HHE    plan-1         C27   0.020
+HHE    plan-1         C28   0.020
+HHE    plan-1         C29   0.020
+HHE    plan-1         C30   0.020
+HHE    plan-1          CL   0.020
+HHE    plan-1         H35   0.020
+HHE    plan-1         H36   0.020
+HHE    plan-1         H37   0.020
+HHE    plan-1         H38   0.020
+HHE    plan-1         N20   0.020
+HHE    plan-2          C1   0.020
+HHE    plan-2         C35   0.020
+HHE    plan-2         H16   0.020
+HHE    plan-2         N12   0.020
+HHE    plan-3         C18   0.020
+HHE    plan-3         C19   0.020
+HHE    plan-3         N20   0.020
+HHE    plan-3         O31   0.020
+HHE    plan-4         C19   0.020
+HHE    plan-4         C21   0.020
+HHE    plan-4         C25   0.020
+HHE    plan-4         N20   0.020
+HHE    plan-5         C34   0.020
+HHE    plan-5         C35   0.020
+HHE    plan-5         N12   0.020
+HHE    plan-5         O36   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HHE           SMILES              ACDLabs 12.01                                                                                                                                                                        O=C(NC3C2CC1CC3CC(O)(C1)C2)C(CC)CC(O)C(N)CN4C(CN(C(=O)C4)c5ccccc5Cl)(C)C
+HHE            InChI                InChI  1.03 InChI=1S/C30H45ClN4O4/c1-4-19(28(38)33-27-20-9-18-10-21(27)14-30(39,12-18)13-20)11-25(36)23(32)15-34-16-26(37)35(17-29(34,2)3)24-8-6-5-7-22(24)31/h5-8,18-21,23,25,27,36,39H,4,9-17,32H2,1-3H3,(H,33,38)/t18-,19-,20-,21+,23+,25+,27-,30-/m1/s1
+HHE         InChIKey                InChI  1.03                                                                                                                                                                                                                     MGQQKSSUXHKDSK-PTMRNKDMSA-N
+HHE SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                    CC[C@H](C[C@H](O)[C@@H](N)CN1CC(=O)N(CC1(C)C)c2ccccc2Cl)C(=O)NC3[C@@H]4CC5C[C@H]3CC(O)(C5)C4
+HHE           SMILES               CACTVS 3.370                                                                                                                                                           CC[CH](C[CH](O)[CH](N)CN1CC(=O)N(CC1(C)C)c2ccccc2Cl)C(=O)NC3[CH]4CC5C[CH]3CC(O)(C5)C4
+HHE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                    CC[C@H](C[C@@H]([C@H](CN1CC(=O)N(CC1(C)C)c2ccccc2Cl)N)O)C(=O)NC3[C@@H]4CC5C[C@H]3CC(C4)(C5)O
+HHE           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                          CCC(CC(C(CN1CC(=O)N(CC1(C)C)c2ccccc2Cl)N)O)C(=O)NC3C4CC5CC3CC(C5)(C4)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HHE acedrg               243         "dictionary generator"                  
+HHE acedrg_database      11          "data source"                           
+HHE rdkit                2017.03.2   "Chemoinformatics tool"
+HHE refmac5              5.8.0238    "optimization tool"                     

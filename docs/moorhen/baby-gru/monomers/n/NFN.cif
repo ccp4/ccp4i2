@@ -1,0 +1,349 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NFN     NFN      6-[[(2-ETHOXY-1-NAPHTHALENYL)CARBONYL]AMINO]-3,3-DIMETHYL-7-OXO-4-THIA-1-AZABICYCLO[3.2.0]HEPTANE-2-CARBOXYLATE     NON-POLYMER     50     29     .     
+#
+data_comp_NFN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NFN     O1      O       O2      0       -0.454      11.704      130.939     
+NFN     C4      C       CR16    0       3.113       11.514      130.048     
+NFN     C3      C       CR16    0       2.001       11.702      130.809     
+NFN     C10     C       CR66    0       3.033       11.145      128.683     
+NFN     C2      C       CR6     0       0.714       11.525      130.243     
+NFN     C9      C       CR66    0       1.754       10.963      128.082     
+NFN     C1      C       CR6     0       0.570       11.163      128.901     
+NFN     C5      C       CR16    0       4.206       10.954      127.909     
+NFN     C6      C       CR16    0       4.128       10.600      126.597     
+NFN     C7      C       CR16    0       2.873       10.417      125.991     
+NFN     C8      C       CR16    0       1.724       10.594      126.711     
+NFN     O3      O       O       0       -1.367      10.100      124.850     
+NFN     C14     C       C       0       -2.001      11.060      125.186     
+NFN     N2      N       NT      0       -2.510      12.129      124.447     
+NFN     C16     C       CH1     0       -1.980      12.679      123.206     
+NFN     C21     C       C       0       -3.120      13.172      122.320     
+NFN     O4      O       OC      -1      -3.910      13.980      122.775     
+NFN     O5      O       O       0       -3.211      12.745      121.182     
+NFN     C15     C       CT      0       -0.946      13.766      123.701     
+NFN     C19     C       CH3     0       0.448       13.157      123.845     
+NFN     C20     C       CH3     0       -0.859      15.001      122.803     
+NFN     S1      S       S2      0       -1.485      14.340      125.380     
+NFN     C13     C       CH1     0       -2.686      13.005      125.605     
+NFN     C12     C       CH1     0       -2.312      11.776      126.510     
+NFN     N1      N       NH1     0       -1.198      11.924      127.404     
+NFN     C11     C       C       0       -0.802      10.979      128.286     
+NFN     O2      O       O       0       -1.457      9.968       128.537     
+NFN     C17     C       CH2     0       -0.467      11.758      132.373     
+NFN     C18     C       CH3     0       -1.898      11.808      132.812     
+NFN     H4      H       H       0       3.960       11.632      130.440     
+NFN     H3      H       H       0       2.098       11.948      131.713     
+NFN     H5      H       H       0       5.051       11.075      128.310     
+NFN     H6      H       H       0       4.917       10.476      126.094     
+NFN     H7      H       H       0       2.824       10.171      125.081     
+NFN     H8      H       H       0       0.895       10.465      126.282     
+NFN     H16     H       H       0       -1.492      11.956      122.726     
+NFN     H191    H       H       0       0.987       13.713      124.432     
+NFN     H192    H       H       0       0.871       13.107      122.972     
+NFN     H193    H       H       0       0.379       12.266      124.219     
+NFN     H201    H       H       0       -1.668      15.532      122.895     
+NFN     H202    H       H       0       -0.755      14.725      121.877     
+NFN     H203    H       H       0       -0.093      15.537      123.066     
+NFN     H13     H       H       0       -3.609      13.334      125.726     
+NFN     H12     H       H       0       -3.082      11.372      126.971     
+NFN     HN1     H       H       0       -0.746      12.671      127.385     
+NFN     H171    H       H       0       0.008       12.556      132.683     
+NFN     H172    H       H       0       -0.026      10.967      132.743     
+NFN     H181    H       H       0       -1.938      11.961      133.771     
+NFN     H182    H       H       0       -2.333      10.966      132.602     
+NFN     H183    H       H       0       -2.355      12.531      132.351     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NFN          O1          C2      SINGLE       n     1.366  0.0100     1.366  0.0100
+NFN          O1         C17      SINGLE       n     1.432  0.0104     1.432  0.0104
+NFN          C4          C3      DOUBLE       y     1.357  0.0100     1.357  0.0100
+NFN          C4         C10      SINGLE       y     1.414  0.0100     1.414  0.0100
+NFN          C3          C2      SINGLE       y     1.410  0.0100     1.410  0.0100
+NFN         C10          C9      DOUBLE       y     1.418  0.0100     1.418  0.0100
+NFN         C10          C5      SINGLE       y     1.415  0.0100     1.415  0.0100
+NFN          C2          C1      DOUBLE       y     1.388  0.0110     1.388  0.0110
+NFN          C9          C1      SINGLE       y     1.440  0.0136     1.440  0.0136
+NFN          C9          C8      SINGLE       y     1.412  0.0100     1.412  0.0100
+NFN          C1         C11      SINGLE       n     1.511  0.0100     1.511  0.0100
+NFN          C5          C6      DOUBLE       y     1.358  0.0118     1.358  0.0118
+NFN          C6          C7      SINGLE       y     1.402  0.0131     1.402  0.0131
+NFN          C7          C8      DOUBLE       y     1.365  0.0100     1.365  0.0100
+NFN          O3         C14      DOUBLE       n     1.199  0.0100     1.199  0.0100
+NFN         C14          N2      SINGLE       n     1.397  0.0132     1.397  0.0132
+NFN         C14         C12      SINGLE       n     1.538  0.0100     1.538  0.0100
+NFN          N2         C16      SINGLE       n     1.458  0.0100     1.458  0.0100
+NFN          N2         C13      SINGLE       n     1.471  0.0139     1.471  0.0139
+NFN         C16         C21      SINGLE       n     1.520  0.0177     1.520  0.0177
+NFN         C16         C15      SINGLE       n     1.561  0.0167     1.561  0.0167
+NFN         C21          O4      SINGLE       n     1.218  0.0200     1.218  0.0200
+NFN         C21          O5      DOUBLE       n     1.218  0.0200     1.218  0.0200
+NFN         C15         C19      SINGLE       n     1.527  0.0100     1.527  0.0100
+NFN         C15         C20      SINGLE       n     1.527  0.0100     1.527  0.0100
+NFN         C15          S1      SINGLE       n     1.851  0.0113     1.851  0.0113
+NFN          S1         C13      SINGLE       n     1.810  0.0119     1.810  0.0119
+NFN         C13         C12      SINGLE       n     1.569  0.0197     1.569  0.0197
+NFN         C12          N1      SINGLE       n     1.436  0.0100     1.436  0.0100
+NFN          N1         C11      SINGLE       n     1.343  0.0185     1.343  0.0185
+NFN         C11          O2      DOUBLE       n     1.230  0.0114     1.230  0.0114
+NFN         C17         C18      SINGLE       n     1.498  0.0164     1.498  0.0164
+NFN          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0145
+NFN          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0138
+NFN          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0192
+NFN          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0184
+NFN          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0184
+NFN          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0160
+NFN         C16         H16      SINGLE       n     1.089  0.0100     0.995  0.0104
+NFN         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0169
+NFN         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0169
+NFN         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0169
+NFN         C20        H201      SINGLE       n     1.089  0.0100     0.971  0.0169
+NFN         C20        H202      SINGLE       n     1.089  0.0100     0.971  0.0169
+NFN         C20        H203      SINGLE       n     1.089  0.0100     0.971  0.0169
+NFN         C13         H13      SINGLE       n     1.089  0.0100     0.988  0.0132
+NFN         C12         H12      SINGLE       n     1.089  0.0100     0.984  0.0200
+NFN          N1         HN1      SINGLE       n     1.016  0.0100     0.872  0.0200
+NFN         C17        H171      SINGLE       n     1.089  0.0100     0.979  0.0127
+NFN         C17        H172      SINGLE       n     1.089  0.0100     0.979  0.0127
+NFN         C18        H181      SINGLE       n     1.089  0.0100     0.971  0.0156
+NFN         C18        H182      SINGLE       n     1.089  0.0100     0.971  0.0156
+NFN         C18        H183      SINGLE       n     1.089  0.0100     0.971  0.0156
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NFN          C2          O1         C17     119.030    1.50
+NFN          C3          C4         C10     121.511    1.50
+NFN          C3          C4          H4     119.215    1.50
+NFN         C10          C4          H4     119.274    1.50
+NFN          C4          C3          C2     119.352    1.50
+NFN          C4          C3          H3     120.176    1.50
+NFN          C2          C3          H3     120.472    1.50
+NFN          C4         C10          C9     119.377    1.50
+NFN          C4         C10          C5     121.286    1.50
+NFN          C9         C10          C5     119.337    1.50
+NFN          O1          C2          C3     122.926    1.50
+NFN          O1          C2          C1     116.098    1.50
+NFN          C3          C2          C1     120.976    1.50
+NFN         C10          C9          C1     119.065    1.50
+NFN         C10          C9          C8     117.614    1.50
+NFN          C1          C9          C8     123.321    1.50
+NFN          C2          C1          C9     119.720    1.50
+NFN          C2          C1         C11     120.856    2.27
+NFN          C9          C1         C11     119.423    1.94
+NFN         C10          C5          C6     120.989    1.50
+NFN         C10          C5          H5     119.396    1.50
+NFN          C6          C5          H5     119.624    1.50
+NFN          C5          C6          C7     120.402    1.50
+NFN          C5          C6          H6     119.827    1.50
+NFN          C7          C6          H6     119.771    1.50
+NFN          C6          C7          C8     120.402    1.50
+NFN          C6          C7          H7     119.771    1.50
+NFN          C8          C7          H7     119.827    1.50
+NFN          C9          C8          C7     121.247    1.50
+NFN          C9          C8          H8     119.258    1.50
+NFN          C7          C8          H8     119.494    1.50
+NFN          O3         C14          N2     131.043    1.50
+NFN          O3         C14         C12     136.472    1.50
+NFN          N2         C14         C12      92.485    1.50
+NFN         C14          N2         C16     125.105    2.14
+NFN         C14          N2         C13      93.371    1.96
+NFN         C16          N2         C13     115.054    3.00
+NFN          N2         C16         C21     111.071    1.62
+NFN          N2         C16         C15     105.237    2.32
+NFN          N2         C16         H16     108.587    1.50
+NFN         C21         C16         C15     112.424    2.46
+NFN         C21         C16         H16     108.963    1.74
+NFN         C15         C16         H16     109.303    1.50
+NFN         C16         C21          O4     118.867    2.73
+NFN         C16         C21          O5     118.867    2.73
+NFN          O4         C21          O5     122.267    1.50
+NFN         C16         C15         C19     112.667    2.44
+NFN         C16         C15         C20     112.667    2.44
+NFN         C16         C15          S1     107.036    2.68
+NFN         C19         C15         C20     110.924    1.50
+NFN         C19         C15          S1     108.686    1.50
+NFN         C20         C15          S1     108.686    1.50
+NFN         C15         C19        H191     109.494    1.50
+NFN         C15         C19        H192     109.494    1.50
+NFN         C15         C19        H193     109.494    1.50
+NFN        H191         C19        H192     109.486    1.50
+NFN        H191         C19        H193     109.486    1.50
+NFN        H192         C19        H193     109.486    1.50
+NFN         C15         C20        H201     109.494    1.50
+NFN         C15         C20        H202     109.494    1.50
+NFN         C15         C20        H203     109.494    1.50
+NFN        H201         C20        H202     109.486    1.50
+NFN        H201         C20        H203     109.486    1.50
+NFN        H202         C20        H203     109.486    1.50
+NFN         C15          S1         C13      92.966    1.65
+NFN          N2         C13          S1     109.471    3.00
+NFN          N2         C13         C12      88.590    1.50
+NFN          N2         C13         H13     114.251    1.50
+NFN          S1         C13         C12     116.971    3.00
+NFN          S1         C13         H13     113.121    1.50
+NFN         C12         C13         H13     114.585    1.80
+NFN         C14         C12         C13      85.978    1.75
+NFN         C14         C12          N1     116.563    3.00
+NFN         C14         C12         H12     111.185    1.68
+NFN         C13         C12          N1     118.905    3.00
+NFN         C13         C12         H12     113.345    1.95
+NFN          N1         C12         H12     109.992    1.69
+NFN         C12          N1         C11     121.408    2.50
+NFN         C12          N1         HN1     120.811    3.00
+NFN         C11          N1         HN1     117.781    2.02
+NFN          C1         C11          N1     116.903    1.95
+NFN          C1         C11          O2     120.312    2.07
+NFN          N1         C11          O2     122.785    1.58
+NFN          O1         C17         C18     107.613    1.50
+NFN          O1         C17        H171     110.040    1.50
+NFN          O1         C17        H172     110.040    1.50
+NFN         C18         C17        H171     110.271    1.50
+NFN         C18         C17        H172     110.271    1.50
+NFN        H171         C17        H172     108.599    1.50
+NFN         C17         C18        H181     109.553    1.50
+NFN         C17         C18        H182     109.553    1.50
+NFN         C17         C18        H183     109.553    1.50
+NFN        H181         C18        H182     109.410    1.50
+NFN        H181         C18        H183     109.410    1.50
+NFN        H182         C18        H183     109.410    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NFN            sp3_sp3_25         C18         C17          O1          C2     180.000    10.0     3
+NFN             sp2_sp2_5          C3          C2          O1         C17     180.000     5.0     2
+NFN             sp2_sp2_4          O3         C14          N2         C16       0.000     5.0     2
+NFN            sp2_sp3_17          O3         C14         C12          N1     -60.000    10.0     6
+NFN            sp2_sp3_11         C14          N2         C16         C21     -60.000    10.0     6
+NFN             sp2_sp3_2         C14          N2         C13          S1     120.000    10.0     6
+NFN            sp2_sp3_19          O4         C21         C16          N2       0.000    10.0     6
+NFN            sp3_sp3_14         C19         C15         C16         C21     -60.000    10.0     3
+NFN            sp3_sp3_34         C20         C15         C19        H191     -60.000    10.0     3
+NFN            sp3_sp3_43         C19         C15         C20        H201     -60.000    10.0     3
+NFN            sp3_sp3_21         C19         C15          S1         C13     180.000    10.0     3
+NFN       const_sp2_sp2_1          C2          C3          C4         C10       0.000     5.0     2
+NFN              const_37          C9         C10          C4          C3       0.000    10.0     2
+NFN            sp3_sp3_22          N2         C13          S1         C15     -60.000    10.0     3
+NFN             sp3_sp3_4          N1         C12         C13          N2     -60.000    10.0     3
+NFN            sp2_sp3_25         C11          N1         C12         C14       0.000    10.0     6
+NFN            sp2_sp2_13          O2         C11          N1         C12       0.000     5.0     2
+NFN            sp3_sp3_46          O1         C17         C18        H181     180.000    10.0     3
+NFN       const_sp2_sp2_7          O1          C2          C3          C4     180.000     5.0     2
+NFN              const_17          C4         C10          C9          C1       0.000    10.0     2
+NFN              const_43          C4         C10          C5          C6     180.000    10.0     2
+NFN              const_12         C11          C1          C2          O1       0.000    10.0     2
+NFN              const_21          C7          C8          C9         C10       0.000    10.0     2
+NFN              const_15         C11          C1          C9         C10     180.000    10.0     2
+NFN             sp2_sp2_7          C2          C1         C11          N1     180.000     5.0     2
+NFN              const_33         C10          C5          C6          C7       0.000    10.0     2
+NFN              const_29          C5          C6          C7          C8       0.000    10.0     2
+NFN              const_25          C6          C7          C8          C9       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NFN    chir_1    C16    N2    C15    C21    positive
+NFN    chir_2    C15    S1    C16    C19    both
+NFN    chir_3    C13    S1    N2    C12    negative
+NFN    chir_4    C12    N1    C13    C14    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NFN    plan-1          C1   0.020
+NFN    plan-1         C10   0.020
+NFN    plan-1         C11   0.020
+NFN    plan-1          C2   0.020
+NFN    plan-1          C3   0.020
+NFN    plan-1          C4   0.020
+NFN    plan-1          C5   0.020
+NFN    plan-1          C6   0.020
+NFN    plan-1          C7   0.020
+NFN    plan-1          C8   0.020
+NFN    plan-1          C9   0.020
+NFN    plan-1          H3   0.020
+NFN    plan-1          H4   0.020
+NFN    plan-1          H5   0.020
+NFN    plan-1          H6   0.020
+NFN    plan-1          H7   0.020
+NFN    plan-1          H8   0.020
+NFN    plan-1          O1   0.020
+NFN    plan-2         C12   0.020
+NFN    plan-2         C14   0.020
+NFN    plan-2          N2   0.020
+NFN    plan-2          O3   0.020
+NFN    plan-3         C16   0.020
+NFN    plan-3         C21   0.020
+NFN    plan-3          O4   0.020
+NFN    plan-3          O5   0.020
+NFN    plan-4         C11   0.020
+NFN    plan-4         C12   0.020
+NFN    plan-4         HN1   0.020
+NFN    plan-4          N1   0.020
+NFN    plan-5          C1   0.020
+NFN    plan-5         C11   0.020
+NFN    plan-5          N1   0.020
+NFN    plan-5          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NFN           SMILES              ACDLabs 10.04                                                                                                                               O=C([O-])C3N4C(=O)C(NC(=O)c2c1ccccc1ccc2OCC)C4SC3(C)C
+NFN SMILES_CANONICAL               CACTVS 3.341                                                                                                                  CCOc1ccc2ccccc2c1C(=O)N[C@H]3[C@H]4SC(C)(C)[C@@H](N4C3=O)C([O-])=O
+NFN           SMILES               CACTVS 3.341                                                                                                                      CCOc1ccc2ccccc2c1C(=O)N[CH]3[CH]4SC(C)(C)[CH](N4C3=O)C([O-])=O
+NFN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                CCOc1ccc2ccccc2c1C(=O)N[C@H]3[C@@H]4N(C3=O)[C@H](C(S4)(C)C)C(=O)[O-]
+NFN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                             CCOc1ccc2ccccc2c1C(=O)NC3C4N(C3=O)C(C(S4)(C)C)C(=O)[O-]
+NFN            InChI                InChI  1.03 InChI=1S/C21H22N2O5S/c1-4-28-13-10-9-11-7-5-6-8-12(11)14(13)17(24)22-15-18(25)23-16(20(26)27)21(2,3)29-19(15)23/h5-10,15-16,19H,4H2,1-3H3,(H,22,24)(H,26,27)/p-1/t15-,16+,19-/m1/s1
+NFN         InChIKey                InChI  1.03                                                                                                                                                         GPXLMGHLHQJAGZ-JTDSTZFVSA-M
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NFN acedrg               243         "dictionary generator"                  
+NFN acedrg_database      11          "data source"                           
+NFN rdkit                2017.03.2   "Chemoinformatics tool"
+NFN refmac5              5.8.0238    "optimization tool"                     

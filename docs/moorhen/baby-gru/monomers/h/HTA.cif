@@ -1,0 +1,357 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HTA     HTA      "N-[3-(N'-HYDROXYCARBOXAMIDO)-2-(2-METHYLPROPYL)-PROPANOYL]-O-TYROSINE-N-METHYLAMIDE"     NON-POLYMER     56     27     .     
+#
+data_comp_HTA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HTA     C1      C       C       0       72.719      81.962      -10.592     
+HTA     C2      C       CH2     0       73.614      81.181      -9.658      
+HTA     C3      C       CH1     0       73.887      81.887      -8.313      
+HTA     C4      C       C       0       75.077      81.204      -7.641      
+HTA     C5      C       CH2     0       72.650      81.877      -7.393      
+HTA     C6      C       CH1     0       72.768      82.635      -6.062      
+HTA     C7      C       CH3     0       72.955      84.129      -6.283      
+HTA     C8      C       CH3     0       71.549      82.380      -5.189      
+HTA     C9      C       CH1     0       77.458      81.435      -7.023      
+HTA     C10     C       C       0       77.932      82.022      -5.692      
+HTA     C11     C       CH2     0       78.474      81.726      -8.133      
+HTA     C12     C       CR6     0       78.011      81.284      -9.501      
+HTA     C13     C       CR16    0       77.698      82.208      -10.491     
+HTA     C14     C       CR16    0       77.868      79.937      -9.804      
+HTA     C15     C       CR16    0       77.268      81.808      -11.749     
+HTA     C16     C       CR16    0       77.437      79.515      -11.055     
+HTA     C17     C       CR6     0       77.128      80.452      -12.035     
+HTA     C18     C       CH3     0       78.761      81.574      -3.419      
+HTA     C19     C       CH3     0       75.863      80.720      -14.084     
+HTA     N1      N       NH1     0       71.442      81.644      -10.556     
+HTA     N2      N       NH1     0       76.146      81.968      -7.380      
+HTA     N3      N       NH1     0       78.294      81.165      -4.734      
+HTA     O1      O       OH1     0       70.527      82.256      -11.405     
+HTA     O2      O       O       0       73.178      82.840      -11.333     
+HTA     O3      O       O       0       75.011      80.012      -7.344      
+HTA     O4      O       O       0       77.962      83.244      -5.554      
+HTA     O5      O       O2      0       76.721      79.947      -13.246     
+HTA     H21     H       H       0       74.469      81.023      -10.110     
+HTA     H22     H       H       0       73.212      80.306      -9.480      
+HTA     H3      H       H       0       74.118      82.824      -8.502      
+HTA     H51     H       H       0       72.428      80.944      -7.192      
+HTA     H52     H       H       0       71.895      82.258      -7.888      
+HTA     H6      H       H       0       73.561      82.296      -5.579      
+HTA     H71     H       H       0       72.874      84.596      -5.433      
+HTA     H72     H       H       0       72.274      84.454      -6.897      
+HTA     H73     H       H       0       73.836      84.295      -6.660      
+HTA     H81     H       H       0       71.461      81.425      -5.025      
+HTA     H82     H       H       0       70.752      82.706      -5.642      
+HTA     H83     H       H       0       71.653      82.847      -4.341      
+HTA     H9      H       H       0       77.389      80.456      -6.926      
+HTA     H111    H       H       0       79.314      81.269      -7.920      
+HTA     H112    H       H       0       78.654      82.690      -8.152      
+HTA     H13     H       H       0       77.785      83.129      -10.307     
+HTA     H14     H       H       0       78.070      79.292      -9.147      
+HTA     H15     H       H       0       77.067      82.457      -12.403     
+HTA     H16     H       H       0       77.351      78.594      -11.239     
+HTA     H181    H       H       0       78.855      82.538      -3.373      
+HTA     H182    H       H       0       79.622      81.162      -3.241      
+HTA     H183    H       H       0       78.124      81.283      -2.746      
+HTA     H191    H       H       0       76.367      81.453      -14.472     
+HTA     H192    H       H       0       75.126      81.074      -13.559     
+HTA     H193    H       H       0       75.513      80.157      -14.794     
+HTA     HN1     H       H       0       71.142      81.047      -9.990      
+HTA     HN2     H       H       0       76.055      82.835      -7.410      
+HTA     HN3     H       H       0       78.253      80.309      -4.893      
+HTA     HO1     H       H       0       70.351      83.043      -11.088     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HTA          C1          C2      SINGLE       n     1.508  0.0116     1.508  0.0116
+HTA          C1          N1      SINGLE       n     1.313  0.0100     1.313  0.0100
+HTA          C1          O2      DOUBLE       n     1.236  0.0100     1.236  0.0100
+HTA          C2          C3      SINGLE       n     1.539  0.0136     1.539  0.0136
+HTA          C3          C4      SINGLE       n     1.525  0.0100     1.525  0.0100
+HTA          C3          C5      SINGLE       n     1.538  0.0116     1.538  0.0116
+HTA          C4          N2      SINGLE       n     1.334  0.0100     1.334  0.0100
+HTA          C4          O3      DOUBLE       n     1.229  0.0102     1.229  0.0102
+HTA          C5          C6      SINGLE       n     1.534  0.0100     1.534  0.0100
+HTA          C6          C7      SINGLE       n     1.521  0.0151     1.521  0.0151
+HTA          C6          C8      SINGLE       n     1.521  0.0151     1.521  0.0151
+HTA          C9         C10      SINGLE       n     1.527  0.0118     1.527  0.0118
+HTA          C9         C11      SINGLE       n     1.532  0.0110     1.532  0.0110
+HTA          C9          N2      SINGLE       n     1.456  0.0100     1.456  0.0100
+HTA         C10          N3      SINGLE       n     1.328  0.0101     1.328  0.0101
+HTA         C10          O4      DOUBLE       n     1.229  0.0102     1.229  0.0102
+HTA         C11         C12      SINGLE       n     1.508  0.0100     1.508  0.0100
+HTA         C12         C13      DOUBLE       y     1.385  0.0110     1.385  0.0110
+HTA         C12         C14      SINGLE       y     1.385  0.0110     1.385  0.0110
+HTA         C13         C15      SINGLE       y     1.385  0.0100     1.385  0.0100
+HTA         C14         C16      DOUBLE       y     1.385  0.0100     1.385  0.0100
+HTA         C15         C17      DOUBLE       y     1.386  0.0109     1.386  0.0109
+HTA         C16         C17      SINGLE       y     1.386  0.0109     1.386  0.0109
+HTA         C17          O5      SINGLE       n     1.369  0.0100     1.369  0.0100
+HTA         C18          N3      SINGLE       n     1.450  0.0100     1.450  0.0100
+HTA         C19          O5      SINGLE       n     1.424  0.0117     1.424  0.0117
+HTA          N1          O1      SINGLE       n     1.389  0.0110     1.389  0.0110
+HTA          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+HTA          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0159
+HTA          C3          H3      SINGLE       n     1.089  0.0100     0.985  0.0200
+HTA          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0160
+HTA          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0160
+HTA          C6          H6      SINGLE       n     1.089  0.0100     0.989  0.0162
+HTA          C7         H71      SINGLE       n     1.089  0.0100     0.973  0.0146
+HTA          C7         H72      SINGLE       n     1.089  0.0100     0.973  0.0146
+HTA          C7         H73      SINGLE       n     1.089  0.0100     0.973  0.0146
+HTA          C8         H81      SINGLE       n     1.089  0.0100     0.973  0.0146
+HTA          C8         H82      SINGLE       n     1.089  0.0100     0.973  0.0146
+HTA          C8         H83      SINGLE       n     1.089  0.0100     0.973  0.0146
+HTA          C9          H9      SINGLE       n     1.089  0.0100     0.988  0.0200
+HTA         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0164
+HTA         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0164
+HTA         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+HTA         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+HTA         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0169
+HTA         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0169
+HTA         C18        H181      SINGLE       n     1.089  0.0100     0.971  0.0198
+HTA         C18        H182      SINGLE       n     1.089  0.0100     0.971  0.0198
+HTA         C18        H183      SINGLE       n     1.089  0.0100     0.971  0.0198
+HTA         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0157
+HTA         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0157
+HTA         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0157
+HTA          N1         HN1      SINGLE       n     1.016  0.0100     0.875  0.0200
+HTA          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0200
+HTA          N3         HN3      SINGLE       n     1.016  0.0100     0.872  0.0200
+HTA          O1         HO1      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HTA          C2          C1          N1     114.903    1.50
+HTA          C2          C1          O2     121.816    1.50
+HTA          N1          C1          O2     123.281    1.50
+HTA          C1          C2          C3     113.351    1.50
+HTA          C1          C2         H21     108.929    1.50
+HTA          C1          C2         H22     108.929    1.50
+HTA          C3          C2         H21     108.942    1.50
+HTA          C3          C2         H22     108.942    1.50
+HTA         H21          C2         H22     107.705    1.50
+HTA          C2          C3          C4     110.441    2.25
+HTA          C2          C3          C5     111.094    2.85
+HTA          C2          C3          H3     108.361    1.50
+HTA          C4          C3          C5     110.094    2.47
+HTA          C4          C3          H3     108.369    1.50
+HTA          C5          C3          H3     107.780    1.50
+HTA          C3          C4          N2     116.228    1.50
+HTA          C3          C4          O3     121.196    1.75
+HTA          N2          C4          O3     122.576    1.50
+HTA          C3          C5          C6     115.572    1.50
+HTA          C3          C5         H51     108.249    1.50
+HTA          C3          C5         H52     108.249    1.50
+HTA          C6          C5         H51     108.194    1.50
+HTA          C6          C5         H52     108.194    1.50
+HTA         H51          C5         H52     107.599    1.50
+HTA          C5          C6          C7     111.049    1.51
+HTA          C5          C6          C8     111.049    1.51
+HTA          C5          C6          H6     108.023    1.50
+HTA          C7          C6          C8     110.507    1.50
+HTA          C7          C6          H6     108.052    1.50
+HTA          C8          C6          H6     108.052    1.50
+HTA          C6          C7         H71     109.488    1.50
+HTA          C6          C7         H72     109.488    1.50
+HTA          C6          C7         H73     109.488    1.50
+HTA         H71          C7         H72     109.411    1.50
+HTA         H71          C7         H73     109.411    1.50
+HTA         H72          C7         H73     109.411    1.50
+HTA          C6          C8         H81     109.488    1.50
+HTA          C6          C8         H82     109.488    1.50
+HTA          C6          C8         H83     109.488    1.50
+HTA         H81          C8         H82     109.411    1.50
+HTA         H81          C8         H83     109.411    1.50
+HTA         H82          C8         H83     109.411    1.50
+HTA         C10          C9         C11     110.507    1.62
+HTA         C10          C9          N2     110.600    2.58
+HTA         C10          C9          H9     108.179    1.50
+HTA         C11          C9          N2     111.012    1.50
+HTA         C11          C9          H9     108.341    1.50
+HTA          N2          C9          H9     108.047    1.50
+HTA          C9         C10          N3     117.196    1.50
+HTA          C9         C10          O4     120.161    1.50
+HTA          N3         C10          O4     122.643    1.50
+HTA          C9         C11         C12     113.550    1.83
+HTA          C9         C11        H111     108.810    1.50
+HTA          C9         C11        H112     108.810    1.50
+HTA         C12         C11        H111     108.862    1.50
+HTA         C12         C11        H112     108.862    1.50
+HTA        H111         C11        H112     107.782    1.50
+HTA         C11         C12         C13     121.080    1.50
+HTA         C11         C12         C14     121.080    1.50
+HTA         C13         C12         C14     117.841    1.50
+HTA         C12         C13         C15     121.479    1.50
+HTA         C12         C13         H13     119.314    1.50
+HTA         C15         C13         H13     119.207    1.50
+HTA         C12         C14         C16     121.479    1.50
+HTA         C12         C14         H14     119.314    1.50
+HTA         C16         C14         H14     119.207    1.50
+HTA         C13         C15         C17     119.690    1.50
+HTA         C13         C15         H15     120.174    1.50
+HTA         C17         C15         H15     120.137    1.50
+HTA         C14         C16         C17     119.690    1.50
+HTA         C14         C16         H16     120.174    1.50
+HTA         C17         C16         H16     120.137    1.50
+HTA         C15         C17         C16     119.823    1.50
+HTA         C15         C17          O5     120.089    3.00
+HTA         C16         C17          O5     120.089    3.00
+HTA          N3         C18        H181     109.480    1.50
+HTA          N3         C18        H182     109.480    1.50
+HTA          N3         C18        H183     109.480    1.50
+HTA        H181         C18        H182     109.279    1.79
+HTA        H181         C18        H183     109.279    1.79
+HTA        H182         C18        H183     109.279    1.79
+HTA          O5         C19        H191     109.428    1.50
+HTA          O5         C19        H192     109.428    1.50
+HTA          O5         C19        H193     109.428    1.50
+HTA        H191         C19        H192     109.509    1.50
+HTA        H191         C19        H193     109.509    1.50
+HTA        H192         C19        H193     109.509    1.50
+HTA          C1          N1          O1     120.736    1.50
+HTA          C1          N1         HN1     120.460    1.50
+HTA          O1          N1         HN1     118.803    2.59
+HTA          C4          N2          C9     122.151    1.76
+HTA          C4          N2         HN2     119.062    2.34
+HTA          C9          N2         HN2     118.787    1.50
+HTA         C10          N3         C18     121.933    1.50
+HTA         C10          N3         HN3     119.540    1.69
+HTA         C18          N3         HN3     118.526    1.58
+HTA          N1          O1         HO1     108.051    2.18
+HTA         C17          O5         C19     117.529    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HTA             sp2_sp3_2          N1          C1          C2          C3     120.000    10.0     6
+HTA             sp2_sp2_1          C2          C1          N1          O1     180.000     5.0     2
+HTA            sp2_sp3_26         C13         C12         C11          C9     -90.000    10.0     6
+HTA       const_sp2_sp2_3         C11         C12         C13         C15     180.000     5.0     2
+HTA              const_23         C11         C12         C14         C16     180.000    10.0     2
+HTA       const_sp2_sp2_5         C12         C13         C15         C17       0.000     5.0     2
+HTA              const_17         C12         C14         C16         C17       0.000    10.0     2
+HTA              const_10         C13         C15         C17          O5     180.000    10.0     2
+HTA              const_14         C14         C16         C17          O5     180.000    10.0     2
+HTA            sp2_sp2_13         C15         C17          O5         C19     180.000     5.0     2
+HTA            sp2_sp3_31         C10          N3         C18        H181       0.000    10.0     6
+HTA            sp3_sp3_56        H191         C19          O5         C17     -60.000    10.0     3
+HTA             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+HTA             sp2_sp3_7          N2          C4          C3          C2       0.000    10.0     6
+HTA            sp3_sp3_10          C2          C3          C5          C6     180.000    10.0     3
+HTA             sp2_sp2_5          C3          C4          N2          C9     180.000     5.0     2
+HTA            sp3_sp3_20          C3          C5          C6          C7     -60.000    10.0     3
+HTA            sp3_sp3_28          C5          C6          C7         H71     180.000    10.0     3
+HTA            sp3_sp3_40          C5          C6          C8         H81      60.000    10.0     3
+HTA            sp3_sp3_46         C12         C11          C9         C10     180.000    10.0     3
+HTA            sp2_sp3_19          C4          N2          C9         C10       0.000    10.0     6
+HTA            sp2_sp3_13          N3         C10          C9         C11       0.000    10.0     6
+HTA             sp2_sp2_9          C9         C10          N3         C18     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HTA    chir_1    C3    C4    C2    C5    negative
+HTA    chir_2    C6    C5    C7    C8    both
+HTA    chir_3    C9    N2    C10    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HTA    plan-1         C11   0.020
+HTA    plan-1         C12   0.020
+HTA    plan-1         C13   0.020
+HTA    plan-1         C14   0.020
+HTA    plan-1         C15   0.020
+HTA    plan-1         C16   0.020
+HTA    plan-1         C17   0.020
+HTA    plan-1         H13   0.020
+HTA    plan-1         H14   0.020
+HTA    plan-1         H15   0.020
+HTA    plan-1         H16   0.020
+HTA    plan-1          O5   0.020
+HTA    plan-2          C1   0.020
+HTA    plan-2          C2   0.020
+HTA    plan-2          N1   0.020
+HTA    plan-2          O2   0.020
+HTA    plan-3          C3   0.020
+HTA    plan-3          C4   0.020
+HTA    plan-3          N2   0.020
+HTA    plan-3          O3   0.020
+HTA    plan-4         C10   0.020
+HTA    plan-4          C9   0.020
+HTA    plan-4          N3   0.020
+HTA    plan-4          O4   0.020
+HTA    plan-5          C1   0.020
+HTA    plan-5         HN1   0.020
+HTA    plan-5          N1   0.020
+HTA    plan-5          O1   0.020
+HTA    plan-6          C4   0.020
+HTA    plan-6          C9   0.020
+HTA    plan-6         HN2   0.020
+HTA    plan-6          N2   0.020
+HTA    plan-7         C10   0.020
+HTA    plan-7         C18   0.020
+HTA    plan-7         HN3   0.020
+HTA    plan-7          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HTA           SMILES              ACDLabs 10.04                                                                                                                            O=C(NO)CC(C(=O)NC(C(=O)NC)Cc1ccc(OC)cc1)CC(C)C
+HTA SMILES_CANONICAL               CACTVS 3.341                                                                                                                    CNC(=O)[C@H](Cc1ccc(OC)cc1)NC(=O)[C@H](CC(C)C)CC(=O)NO
+HTA           SMILES               CACTVS 3.341                                                                                                                      CNC(=O)[CH](Cc1ccc(OC)cc1)NC(=O)[CH](CC(C)C)CC(=O)NO
+HTA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                   CC(C)C[C@H](CC(=O)NO)C(=O)N[C@@H](Cc1ccc(cc1)OC)C(=O)NC
+HTA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                            CC(C)CC(CC(=O)NO)C(=O)NC(Cc1ccc(cc1)OC)C(=O)NC
+HTA            InChI                InChI  1.03 InChI=1S/C19H29N3O5/c1-12(2)9-14(11-17(23)22-26)18(24)21-16(19(25)20-3)10-13-5-7-15(27-4)8-6-13/h5-8,12,14,16,26H,9-11H2,1-4H3,(H,20,25)(H,21,24)(H,22,23)/t14-,16+/m1/s1
+HTA         InChIKey                InChI  1.03                                                                                                                                               QYZPDCGWIJYZMN-ZBFHGGJFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HTA acedrg               243         "dictionary generator"                  
+HTA acedrg_database      11          "data source"                           
+HTA rdkit                2017.03.2   "Chemoinformatics tool"
+HTA refmac5              5.8.0238    "optimization tool"                     

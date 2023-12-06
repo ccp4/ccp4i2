@@ -1,0 +1,364 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+POX     POX      "4-amino-6-{[1-(3-fluorobenzyl)-1H-indazol-5-yl]amino}pyrimidine-5-carbaldehyde O-(2-methoxyethyl)oxime"     NON-POLYMER     54     32     .     
+#
+data_comp_POX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+POX     C1      C       CR6     0       16.102      37.273      96.970      
+POX     C2      C       CR16    0       14.759      37.459      97.266      
+POX     C3      C       CR6     0       14.201      38.709      97.109      
+POX     N6      N       NH2     0       14.274      31.712      86.877      
+POX     C7      C       CH2     0       16.736      35.913      97.130      
+POX     C8      C       CR15    0       15.117      33.147      95.646      
+POX     C9      C       CR6     0       16.199      34.216      92.180      
+POX     C10     C       CR16    0       16.889      35.360      92.611      
+POX     C11     C       CR16    0       16.954      35.692      93.940      
+POX     C12     C       CR56    0       16.309      34.851      94.853      
+POX     C13     C       CR56    0       15.611      33.700      94.440      
+POX     C14     C       CR16    0       15.562      33.379      93.071      
+POX     C15     C       CR16    0       12.898      33.312      89.662      
+POX     C16     C       CR6     0       15.150      33.501      90.010      
+POX     C19     C       C1      0       16.720      32.486      88.241      
+POX     C20     C       CH2     0       18.599      32.770      85.350      
+POX     C21     C       CH2     0       20.035      32.529      85.011      
+POX     C22     C       CH3     0       21.596      32.577      83.229      
+POX     C4      C       CR16    0       14.913      39.791      96.667      
+POX     C5      C       CR16    0       16.249      39.606      96.370      
+POX     C6      C       CR16    0       16.841      38.358      96.518      
+POX     F1      F       F       0       12.885      38.873      97.406      
+POX     N1      N       NR5     0       16.203      34.919      96.209      
+POX     N2      N       NRD5    0       15.466      33.868      96.691      
+POX     N3      N       NH1     0       16.174      33.944      90.793      
+POX     N4      N       NRD6    0       12.973      32.652      88.508      
+POX     N5      N       NRD6    0       13.893      33.752      90.429      
+POX     C17     C       CR6     0       15.390      32.787      88.764      
+POX     C18     C       CR6     0       14.207      32.380      88.042      
+POX     N7      N       N       0       17.103      32.951      87.119      
+POX     O1      O       O2      0       18.333      32.403      86.710      
+POX     O2      O       O2      0       20.247      32.754      83.629      
+POX     H2      H       H       0       14.233      36.718      97.578      
+POX     HN6     H       H       0       14.708      30.952      86.833      
+POX     HN6A    H       H       0       13.883      32.040      86.163      
+POX     H7      H       H       0       16.596      35.606      98.047      
+POX     H7A     H       H       0       17.699      35.991      96.984      
+POX     H8      H       H       0       14.609      32.370      95.703      
+POX     H10     H       H       0       17.314      35.908      91.981      
+POX     H11     H       H       0       17.411      36.448      94.223      
+POX     H14     H       H       0       15.101      32.622      92.777      
+POX     H15     H       H       0       12.024      33.496      89.975      
+POX     H19     H       H       0       17.298      31.942      88.750      
+POX     H20     H       H       0       18.026      32.245      84.753      
+POX     H20A    H       H       0       18.385      33.718      85.215      
+POX     H21     H       H       0       20.278      31.605      85.236      
+POX     H21A    H       H       0       20.604      33.134      85.535      
+POX     H22     H       H       0       21.674      32.739      82.275      
+POX     H22A    H       H       0       21.876      31.668      83.427      
+POX     H22B    H       H       0       22.162      33.202      83.711      
+POX     H4      H       H       0       14.503      40.637      96.569      
+POX     H5      H       H       0       16.765      40.337      96.063      
+POX     H6      H       H       0       17.756      38.248      96.311      
+POX     HN3     H       H       0       16.928      34.109      90.372      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+POX          C1          C2      DOUBLE       y     1.384  0.0100     1.384  0.0100
+POX          C1          C7      SINGLE       n     1.508  0.0100     1.508  0.0100
+POX          C1          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+POX          C2          C3      SINGLE       y     1.374  0.0100     1.374  0.0100
+POX          C3          C4      DOUBLE       y     1.364  0.0125     1.364  0.0125
+POX          C3          F1      SINGLE       n     1.359  0.0106     1.359  0.0106
+POX          N6         C18      SINGLE       n     1.344  0.0100     1.344  0.0100
+POX          C7          N1      SINGLE       n     1.456  0.0100     1.456  0.0100
+POX          C8         C13      SINGLE       y     1.417  0.0100     1.417  0.0100
+POX          C8          N2      DOUBLE       y     1.317  0.0100     1.317  0.0100
+POX          C9         C10      SINGLE       y     1.395  0.0130     1.395  0.0130
+POX          C9         C14      DOUBLE       y     1.374  0.0100     1.374  0.0100
+POX          C9          N3      SINGLE       n     1.409  0.0116     1.409  0.0116
+POX         C10         C11      DOUBLE       y     1.367  0.0100     1.367  0.0100
+POX         C11         C12      SINGLE       y     1.395  0.0100     1.395  0.0100
+POX         C12         C13      DOUBLE       y     1.407  0.0100     1.407  0.0100
+POX         C12          N1      SINGLE       y     1.362  0.0100     1.362  0.0100
+POX         C13         C14      SINGLE       y     1.404  0.0100     1.404  0.0100
+POX         C15          N4      DOUBLE       y     1.329  0.0101     1.329  0.0101
+POX         C15          N5      SINGLE       y     1.329  0.0101     1.329  0.0101
+POX         C16          N3      SINGLE       n     1.357  0.0100     1.357  0.0100
+POX         C16          N5      DOUBLE       y     1.344  0.0100     1.344  0.0100
+POX         C16         C17      SINGLE       y     1.426  0.0200     1.426  0.0200
+POX         C19         C17      SINGLE       n     1.458  0.0116     1.458  0.0116
+POX         C19          N7      DOUBLE       n     1.271  0.0110     1.271  0.0110
+POX         C20         C21      SINGLE       n     1.495  0.0138     1.495  0.0138
+POX         C20          O1      SINGLE       n     1.432  0.0100     1.432  0.0100
+POX         C21          O2      SINGLE       n     1.414  0.0200     1.414  0.0200
+POX         C22          O2      SINGLE       n     1.415  0.0200     1.415  0.0200
+POX          C4          C5      SINGLE       y     1.375  0.0128     1.375  0.0128
+POX          C5          C6      DOUBLE       y     1.385  0.0100     1.385  0.0100
+POX          N1          N2      SINGLE       y     1.369  0.0100     1.369  0.0100
+POX          N4         C18      SINGLE       y     1.342  0.0115     1.342  0.0115
+POX         C17         C18      DOUBLE       y     1.439  0.0100     1.439  0.0100
+POX          N7          O1      SINGLE       n     1.406  0.0102     1.406  0.0102
+POX          C2          H2      SINGLE       n     1.082  0.0130     0.961  0.0200
+POX          N6         HN6      SINGLE       n     1.016  0.0100     0.877  0.0200
+POX          N6        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+POX          C7          H7      SINGLE       n     1.089  0.0100     0.977  0.0141
+POX          C7         H7A      SINGLE       n     1.089  0.0100     0.977  0.0141
+POX          C8          H8      SINGLE       n     1.082  0.0130     0.930  0.0100
+POX         C10         H10      SINGLE       n     1.082  0.0130     0.937  0.0200
+POX         C11         H11      SINGLE       n     1.082  0.0130     0.928  0.0100
+POX         C14         H14      SINGLE       n     1.082  0.0130     0.934  0.0115
+POX         C15         H15      SINGLE       n     1.082  0.0130     0.946  0.0100
+POX         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0164
+POX         C20         H20      SINGLE       n     1.089  0.0100     0.980  0.0146
+POX         C20        H20A      SINGLE       n     1.089  0.0100     0.980  0.0146
+POX         C21         H21      SINGLE       n     1.089  0.0100     0.982  0.0175
+POX         C21        H21A      SINGLE       n     1.089  0.0100     0.982  0.0175
+POX         C22         H22      SINGLE       n     1.089  0.0100     0.971  0.0146
+POX         C22        H22A      SINGLE       n     1.089  0.0100     0.971  0.0146
+POX         C22        H22B      SINGLE       n     1.089  0.0100     0.971  0.0146
+POX          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+POX          C5          H5      SINGLE       n     1.082  0.0130     0.946  0.0200
+POX          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0174
+POX          N3         HN3      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+POX          C2          C1          C7     120.652    1.50
+POX          C2          C1          C6     118.611    1.50
+POX          C7          C1          C6     120.737    1.50
+POX          C1          C2          C3     119.344    1.50
+POX          C1          C2          H2     119.650    1.50
+POX          C3          C2          H2     121.006    1.50
+POX          C2          C3          C4     123.170    1.50
+POX          C2          C3          F1     118.383    1.50
+POX          C4          C3          F1     118.447    1.50
+POX         C18          N6         HN6     119.860    1.50
+POX         C18          N6        HN6A     119.860    1.50
+POX         HN6          N6        HN6A     120.280    1.85
+POX          C1          C7          N1     113.613    1.50
+POX          C1          C7          H7     108.817    1.50
+POX          C1          C7         H7A     108.817    1.50
+POX          N1          C7          H7     108.765    1.50
+POX          N1          C7         H7A     108.765    1.50
+POX          H7          C7         H7A     107.844    1.50
+POX         C13          C8          N2     112.050    1.50
+POX         C13          C8          H8     124.409    2.49
+POX          N2          C8          H8     123.540    1.50
+POX         C10          C9         C14     122.065    2.27
+POX         C10          C9          N3     119.040    2.70
+POX         C14          C9          N3     118.894    2.92
+POX          C9         C10         C11     120.645    1.50
+POX          C9         C10         H10     119.818    1.50
+POX         C11         C10         H10     119.537    1.50
+POX         C10         C11         C12     117.191    1.50
+POX         C10         C11         H11     121.308    1.50
+POX         C12         C11         H11     121.501    1.50
+POX         C11         C12         C13     122.245    1.50
+POX         C11         C12          N1     130.820    1.50
+POX         C13         C12          N1     106.935    1.50
+POX          C8         C13         C12     104.204    1.50
+POX          C8         C13         C14     136.288    1.50
+POX         C12         C13         C14     119.508    1.50
+POX          C9         C14         C13     118.345    1.50
+POX          C9         C14         H14     121.045    1.50
+POX         C13         C14         H14     120.610    1.50
+POX          N4         C15          N5     128.583    1.50
+POX          N4         C15         H15     115.708    1.50
+POX          N5         C15         H15     115.708    1.50
+POX          N3         C16          N5     118.022    2.42
+POX          N3         C16         C17     120.918    1.50
+POX          N5         C16         C17     121.060    1.50
+POX         C17         C19          N7     121.211    1.50
+POX         C17         C19         H19     119.086    1.50
+POX          N7         C19         H19     119.703    1.50
+POX         C21         C20          O1     111.305    2.38
+POX         C21         C20         H20     109.701    1.50
+POX         C21         C20        H20A     109.701    1.50
+POX          O1         C20         H20     109.381    1.50
+POX          O1         C20        H20A     109.381    1.50
+POX         H20         C20        H20A     107.840    1.50
+POX         C20         C21          O2     109.629    1.89
+POX         C20         C21         H21     109.701    1.50
+POX         C20         C21        H21A     109.701    1.50
+POX          O2         C21         H21     109.622    1.50
+POX          O2         C21        H21A     109.622    1.50
+POX         H21         C21        H21A     108.274    1.50
+POX          O2         C22         H22     109.470    1.50
+POX          O2         C22        H22A     109.470    1.50
+POX          O2         C22        H22B     109.470    1.50
+POX         H22         C22        H22A     109.532    1.53
+POX         H22         C22        H22B     109.532    1.53
+POX        H22A         C22        H22B     109.532    1.53
+POX          C3          C4          C5     117.809    1.50
+POX          C3          C4          H4     121.011    1.50
+POX          C5          C4          H4     121.180    1.50
+POX          C4          C5          C6     120.505    1.50
+POX          C4          C5          H5     119.636    1.50
+POX          C6          C5          H5     119.859    1.50
+POX          C1          C6          C5     120.562    1.50
+POX          C1          C6          H6     119.716    1.50
+POX          C5          C6          H6     119.723    1.50
+POX          C7          N1         C12     129.695    1.50
+POX          C7          N1          N2     119.766    1.71
+POX         C12          N1          N2     110.539    1.50
+POX          C8          N2          N1     106.272    1.50
+POX          C9          N3         C16     128.055    2.92
+POX          C9          N3         HN3     116.457    2.39
+POX         C16          N3         HN3     115.489    2.34
+POX         C15          N4         C18     116.719    1.50
+POX         C15          N5         C16     116.719    1.50
+POX         C16         C17         C19     122.071    2.94
+POX         C16         C17         C18     115.857    1.50
+POX         C19         C17         C18     122.071    2.94
+POX          N6         C18          N4     117.023    1.55
+POX          N6         C18         C17     121.917    1.50
+POX          N4         C18         C17     121.060    1.50
+POX         C19          N7          O1     111.348    1.50
+POX         C20          O1          N7     109.094    1.50
+POX         C21          O2         C22     112.505    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+POX              const_47          C7          C1          C2          C3     180.000    10.0     2
+POX              const_67          C7          C1          C6          C5     180.000    10.0     2
+POX             sp2_sp3_2          C2          C1          C7          N1     -90.000    10.0     6
+POX              const_19          C8         C13         C14          C9     180.000    10.0     2
+POX              const_31          N5         C15          N4         C18       0.000    10.0     2
+POX              const_75          N4         C15          N5         C16       0.000    10.0     2
+POX            sp2_sp2_11          N5         C16          N3          C9       0.000     5.0     2
+POX              const_44          N3         C16          N5         C15     180.000    10.0     2
+POX              const_42          N3         C16         C17         C19       0.000    10.0     2
+POX            sp2_sp2_13         C16         C17         C19          N7     180.000     5.0     2
+POX            sp2_sp2_17         C17         C19          N7          O1     180.000     5.0     2
+POX             sp3_sp3_1          O1         C20         C21          O2     180.000    10.0     3
+POX            sp3_sp3_10         C21         C20          O1          N7     180.000    10.0     3
+POX            sp3_sp3_13         C20         C21          O2         C22     180.000    10.0     3
+POX            sp3_sp3_16         H22         C22          O2         C21     180.000    10.0     3
+POX              const_57          C3          C4          C5          C6       0.000    10.0     2
+POX              const_61          C4          C5          C6          C1       0.000    10.0     2
+POX              const_50          C1          C2          C3          F1     180.000    10.0     2
+POX              const_30          C7          N1          N2          C8     180.000    10.0     2
+POX              const_34          N6         C18          N4         C15     180.000    10.0     2
+POX              const_38         C19         C17         C18          N6       0.000    10.0     2
+POX            sp2_sp2_19         C19          N7          O1         C20     180.000     5.0     2
+POX              const_55          F1          C3          C4          C5     180.000    10.0     2
+POX             sp2_sp2_3          N4         C18          N6         HN6       0.000     5.0     2
+POX             sp2_sp3_8         C12          N1          C7          C1     -90.000    10.0     6
+POX              const_21         C12         C13          C8          N2       0.000    10.0     2
+POX              const_69         C13          C8          N2          N1       0.000    10.0     2
+POX              const_72         C13         C14          C9          N3     180.000    10.0     2
+POX             sp2_sp2_5         C10          C9          N3         C16     180.000     5.0     2
+POX       const_sp2_sp2_2         C11         C10          C9          N3     180.000     5.0     2
+POX       const_sp2_sp2_5          C9         C10         C11         C12       0.000     5.0     2
+POX       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+POX              const_14         C11         C12         C13          C8     180.000    10.0     2
+POX              const_28         C11         C12          N1          C7       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+POX    plan-1         C10   0.020
+POX    plan-1         C11   0.020
+POX    plan-1         C12   0.020
+POX    plan-1         C13   0.020
+POX    plan-1         C14   0.020
+POX    plan-1          C7   0.020
+POX    plan-1          C8   0.020
+POX    plan-1          C9   0.020
+POX    plan-1         H10   0.020
+POX    plan-1         H11   0.020
+POX    plan-1         H14   0.020
+POX    plan-1          H8   0.020
+POX    plan-1          N1   0.020
+POX    plan-1          N2   0.020
+POX    plan-1          N3   0.020
+POX    plan-2          C1   0.020
+POX    plan-2          C2   0.020
+POX    plan-2          C3   0.020
+POX    plan-2          C4   0.020
+POX    plan-2          C5   0.020
+POX    plan-2          C6   0.020
+POX    plan-2          C7   0.020
+POX    plan-2          F1   0.020
+POX    plan-2          H2   0.020
+POX    plan-2          H4   0.020
+POX    plan-2          H5   0.020
+POX    plan-2          H6   0.020
+POX    plan-3         C15   0.020
+POX    plan-3         C16   0.020
+POX    plan-3         C17   0.020
+POX    plan-3         C18   0.020
+POX    plan-3         C19   0.020
+POX    plan-3         H15   0.020
+POX    plan-3          N3   0.020
+POX    plan-3          N4   0.020
+POX    plan-3          N5   0.020
+POX    plan-3          N6   0.020
+POX    plan-4         C18   0.020
+POX    plan-4         HN6   0.020
+POX    plan-4        HN6A   0.020
+POX    plan-4          N6   0.020
+POX    plan-5         C17   0.020
+POX    plan-5         C19   0.020
+POX    plan-5         H19   0.020
+POX    plan-5          N7   0.020
+POX    plan-6         C16   0.020
+POX    plan-6          C9   0.020
+POX    plan-6         HN3   0.020
+POX    plan-6          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+POX           SMILES              ACDLabs 10.04                                                                                                                            Fc1cccc(c1)Cn3ncc2cc(ccc23)Nc4ncnc(N)c4\C=N\OCCOC
+POX SMILES_CANONICAL               CACTVS 3.341                                                                                                                            COCCO/N=C/c1c(N)ncnc1Nc2ccc3n(Cc4cccc(F)c4)ncc3c2
+POX           SMILES               CACTVS 3.341                                                                                                                              COCCON=Cc1c(N)ncnc1Nc2ccc3n(Cc4cccc(F)c4)ncc3c2
+POX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                            COCCO/N=C/c1c(ncnc1Nc2ccc3c(c2)cnn3Cc4cccc(c4)F)N
+POX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                              COCCON=Cc1c(ncnc1Nc2ccc3c(c2)cnn3Cc4cccc(c4)F)N
+POX            InChI                InChI  1.03 InChI=1S/C22H22FN7O2/c1-31-7-8-32-28-12-19-21(24)25-14-26-22(19)29-18-5-6-20-16(10-18)11-27-30(20)13-15-3-2-4-17(23)9-15/h2-6,9-12,14H,7-8,13H2,1H3,(H3,24,25,26,29)/b28-12+
+POX         InChIKey                InChI  1.03                                                                                                                                                  KSGYKTRNRCPDHT-KVSWJAHQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+POX acedrg               243         "dictionary generator"                  
+POX acedrg_database      11          "data source"                           
+POX rdkit                2017.03.2   "Chemoinformatics tool"
+POX refmac5              5.8.0238    "optimization tool"                     

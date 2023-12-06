@@ -1,0 +1,436 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G65     G65      Masitinib     NON-POLYMER     66     36     .     
+#
+data_comp_G65
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G65     CBE     C       CH2     0       38.221      89.358      6.483       
+G65     CBF     C       CH2     0       39.730      89.338      6.554       
+G65     NBG     N       NT      0       40.311      90.122      5.470       
+G65     CBJ     C       CH3     0       41.772      90.115      5.548       
+G65     CBH     C       CH2     0       39.859      89.592      4.189       
+G65     CBI     C       CH2     0       38.350      89.603      4.100       
+G65     NBD     N       NT      0       37.750      88.833      5.196       
+G65     CBC     C       CH2     0       36.283      88.835      5.112       
+G65     CAZ     C       CR6     0       35.627      87.714      5.885       
+G65     CBA     C       CR16    0       34.680      87.983      6.871       
+G65     CBB     C       CR16    0       34.073      86.952      7.573       
+G65     CAY     C       CR16    0       35.947      86.386      5.618       
+G65     CAX     C       CR16    0       35.341      85.354      6.322       
+G65     CAV     C       CR6     0       34.403      85.628      7.310       
+G65     CAU     C       C       0       33.753      84.502      8.051       
+G65     OAW     O       O       0       33.148      83.629      7.438       
+G65     NAT     N       NH1     0       33.872      84.509      9.402       
+G65     CAO     C       CR6     0       33.335      83.559      10.299      
+G65     CAN     C       CR16    0       33.787      82.244      10.264      
+G65     CAP     C       CR16    0       32.349      83.931      11.213      
+G65     CAQ     C       CR16    0       31.823      82.994      12.088      
+G65     CAR     C       CR6     0       32.260      81.668      12.075      
+G65     CAS     C       CH3     0       31.679      80.664      13.030      
+G65     CAM     C       CR6     0       33.249      81.309      11.149      
+G65     NAL     N       NH1     0       33.701      79.980      11.123      
+G65     CAJ     C       CR5     0       33.156      78.909      10.459      
+G65     NAK     N       NRD5    0       33.650      77.635      10.453      
+G65     SAI     S       S2      0       31.767      79.018      9.536       
+G65     CAH     C       CR15    0       31.772      77.411      9.103       
+G65     CAG     C       CR5     0       32.861      76.775      9.673       
+G65     CAF     C       CR6     0       33.266      75.365      9.569       
+G65     CAA     C       CR16    0       32.307      74.350      9.492       
+G65     CAB     C       CR16    0       32.720      73.031      9.391       
+G65     CAC     C       CR16    0       34.073      72.755      9.366       
+G65     NAD     N       NRD6    0       35.017      73.706      9.435       
+G65     CAE     C       CR16    0       34.602      74.978      9.532       
+G65     H1      H       H       0       37.857      88.819      7.213       
+G65     H2      H       H       0       37.905      90.277      6.597       
+G65     H3      H       H       0       40.021      89.704      7.413       
+G65     H4      H       H       0       40.047      88.415      6.494       
+G65     H6      H       H       0       42.139      90.659      4.827       
+G65     H7      H       H       0       42.098      89.200      5.463       
+G65     H8      H       H       0       42.054      90.481      6.407       
+G65     H9      H       H       0       40.185      88.676      4.083       
+G65     H10     H       H       0       40.231      90.132      3.464       
+G65     H11     H       H       0       38.076      89.220      3.243       
+G65     H12     H       H       0       38.029      90.526      4.138       
+G65     H14     H       H       0       36.016      88.757      4.170       
+G65     H15     H       H       0       35.944      89.695      5.443       
+G65     H16     H       H       0       34.447      88.876      7.065       
+G65     H17     H       H       0       33.438      87.153      8.237       
+G65     H18     H       H       0       36.584      86.184      4.953       
+G65     H19     H       H       0       35.571      84.463      6.130       
+G65     H20     H       H       0       34.331      85.161      9.768       
+G65     H21     H       H       0       34.456      81.980      9.645       
+G65     H22     H       H       0       32.043      84.822      11.235      
+G65     H23     H       H       0       31.158      83.258      12.702      
+G65     H24     H       H       0       31.050      81.101      13.626      
+G65     H25     H       H       0       32.393      80.264      13.554      
+G65     H26     H       H       0       31.220      79.969      12.531      
+G65     H27     H       H       0       34.430      79.806      11.592      
+G65     H28     H       H       0       31.108      77.043      8.546       
+G65     H29     H       H       0       31.391      74.559      9.511       
+G65     H30     H       H       0       32.087      72.334      9.340       
+G65     H31     H       H       0       34.350      71.857      9.297       
+G65     H32     H       H       0       35.262      75.651      9.580       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G65         CBH         CBI      SINGLE       n     1.509  0.0100     1.509  0.0100
+G65         CBI         NBD      SINGLE       n     1.463  0.0100     1.463  0.0100
+G65         NBG         CBH      SINGLE       n     1.457  0.0100     1.457  0.0100
+G65         NBD         CBC      SINGLE       n     1.465  0.0100     1.465  0.0100
+G65         CBC         CAZ      SINGLE       n     1.509  0.0100     1.509  0.0100
+G65         CAZ         CAY      SINGLE       y     1.389  0.0102     1.389  0.0102
+G65         CAY         CAX      DOUBLE       y     1.384  0.0100     1.384  0.0100
+G65         NBG         CBJ      SINGLE       n     1.462  0.0100     1.462  0.0100
+G65         CBF         NBG      SINGLE       n     1.457  0.0100     1.457  0.0100
+G65         CBE         NBD      SINGLE       n     1.463  0.0100     1.463  0.0100
+G65         CAZ         CBA      DOUBLE       y     1.389  0.0102     1.389  0.0102
+G65         CAX         CAV      SINGLE       y     1.386  0.0100     1.386  0.0100
+G65         CBE         CBF      SINGLE       n     1.509  0.0100     1.509  0.0100
+G65         CBA         CBB      SINGLE       y     1.383  0.0100     1.383  0.0100
+G65         CBB         CAV      DOUBLE       y     1.386  0.0100     1.386  0.0100
+G65         CAV         CAU      SINGLE       n     1.494  0.0100     1.494  0.0100
+G65         CAU         OAW      DOUBLE       n     1.226  0.0100     1.226  0.0100
+G65         CAU         NAT      SINGLE       n     1.351  0.0126     1.351  0.0126
+G65         SAI         CAH      SINGLE       y     1.695  0.0200     1.695  0.0200
+G65         CAH         CAG      DOUBLE       y     1.371  0.0200     1.371  0.0200
+G65         NAT         CAO      SINGLE       n     1.411  0.0100     1.411  0.0100
+G65         CAJ         SAI      SINGLE       y     1.695  0.0200     1.695  0.0200
+G65         NAD         CAE      DOUBLE       y     1.337  0.0100     1.337  0.0100
+G65         CAC         NAD      SINGLE       y     1.336  0.0134     1.336  0.0134
+G65         CAF         CAE      SINGLE       y     1.387  0.0100     1.387  0.0100
+G65         CAG         CAF      SINGLE       n     1.469  0.0100     1.469  0.0100
+G65         CAF         CAA      DOUBLE       y     1.395  0.0100     1.395  0.0100
+G65         CAB         CAC      DOUBLE       y     1.374  0.0152     1.374  0.0152
+G65         NAK         CAG      SINGLE       y     1.391  0.0109     1.391  0.0109
+G65         CAA         CAB      SINGLE       y     1.380  0.0128     1.380  0.0128
+G65         CAO         CAN      DOUBLE       y     1.388  0.0100     1.388  0.0100
+G65         CAN         CAM      SINGLE       y     1.391  0.0100     1.391  0.0100
+G65         CAJ         NAK      DOUBLE       y     1.354  0.0165     1.354  0.0165
+G65         NAL         CAJ      SINGLE       n     1.367  0.0190     1.367  0.0190
+G65         CAO         CAP      SINGLE       y     1.391  0.0100     1.391  0.0100
+G65         CAM         NAL      SINGLE       n     1.397  0.0200     1.397  0.0200
+G65         CAR         CAM      DOUBLE       y     1.395  0.0106     1.395  0.0106
+G65         CAP         CAQ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+G65         CAQ         CAR      SINGLE       y     1.393  0.0100     1.393  0.0100
+G65         CAR         CAS      SINGLE       n     1.499  0.0139     1.499  0.0139
+G65         CBE          H1      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBE          H2      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBF          H3      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBF          H4      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBJ          H6      SINGLE       n     1.089  0.0100     0.975  0.0100
+G65         CBJ          H7      SINGLE       n     1.089  0.0100     0.975  0.0100
+G65         CBJ          H8      SINGLE       n     1.089  0.0100     0.975  0.0100
+G65         CBH          H9      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBH         H10      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBI         H11      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBI         H12      SINGLE       n     1.089  0.0100     0.978  0.0109
+G65         CBC         H14      SINGLE       n     1.089  0.0100     0.982  0.0103
+G65         CBC         H15      SINGLE       n     1.089  0.0100     0.982  0.0103
+G65         CBA         H16      SINGLE       n     1.082  0.0130     0.943  0.0173
+G65         CBB         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+G65         CAY         H18      SINGLE       n     1.082  0.0130     0.943  0.0173
+G65         CAX         H19      SINGLE       n     1.082  0.0130     0.941  0.0168
+G65         NAT         H20      SINGLE       n     1.016  0.0100     0.876  0.0200
+G65         CAN         H21      SINGLE       n     1.082  0.0130     0.949  0.0200
+G65         CAP         H22      SINGLE       n     1.082  0.0130     0.942  0.0183
+G65         CAQ         H23      SINGLE       n     1.082  0.0130     0.943  0.0173
+G65         CAS         H24      SINGLE       n     1.089  0.0100     0.971  0.0135
+G65         CAS         H25      SINGLE       n     1.089  0.0100     0.971  0.0135
+G65         CAS         H26      SINGLE       n     1.089  0.0100     0.971  0.0135
+G65         NAL         H27      SINGLE       n     1.016  0.0100     0.884  0.0200
+G65         CAH         H28      SINGLE       n     1.082  0.0130     0.942  0.0200
+G65         CAA         H29      SINGLE       n     1.082  0.0130     0.940  0.0200
+G65         CAB         H30      SINGLE       n     1.082  0.0130     0.942  0.0155
+G65         CAC         H31      SINGLE       n     1.082  0.0130     0.942  0.0166
+G65         CAE         H32      SINGLE       n     1.082  0.0130     0.944  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G65         NBD         CBE         CBF     110.702    1.50
+G65         NBD         CBE          H1     109.507    1.50
+G65         NBD         CBE          H2     109.507    1.50
+G65         CBF         CBE          H1     109.532    1.50
+G65         CBF         CBE          H2     109.532    1.50
+G65          H1         CBE          H2     108.187    1.50
+G65         NBG         CBF         CBE     110.810    1.50
+G65         NBG         CBF          H3     109.480    1.50
+G65         NBG         CBF          H4     109.480    1.50
+G65         CBE         CBF          H3     109.532    1.50
+G65         CBE         CBF          H4     109.532    1.50
+G65          H3         CBF          H4     108.187    1.50
+G65         CBH         NBG         CBJ     110.746    1.50
+G65         CBH         NBG         CBF     109.130    1.50
+G65         CBJ         NBG         CBF     110.746    1.50
+G65         NBG         CBJ          H6     109.526    1.50
+G65         NBG         CBJ          H7     109.526    1.50
+G65         NBG         CBJ          H8     109.526    1.50
+G65          H6         CBJ          H7     109.428    1.50
+G65          H6         CBJ          H8     109.428    1.50
+G65          H7         CBJ          H8     109.428    1.50
+G65         CBI         CBH         NBG     110.810    1.50
+G65         CBI         CBH          H9     109.532    1.50
+G65         CBI         CBH         H10     109.532    1.50
+G65         NBG         CBH          H9     109.480    1.50
+G65         NBG         CBH         H10     109.480    1.50
+G65          H9         CBH         H10     108.187    1.50
+G65         CBH         CBI         NBD     110.702    1.50
+G65         CBH         CBI         H11     109.532    1.50
+G65         CBH         CBI         H12     109.532    1.50
+G65         NBD         CBI         H11     109.507    1.50
+G65         NBD         CBI         H12     109.507    1.50
+G65         H11         CBI         H12     108.187    1.50
+G65         CBI         NBD         CBC     111.092    1.50
+G65         CBI         NBD         CBE     109.260    1.50
+G65         CBC         NBD         CBE     111.092    1.50
+G65         NBD         CBC         CAZ     113.287    1.50
+G65         NBD         CBC         H14     108.958    1.50
+G65         NBD         CBC         H15     108.958    1.50
+G65         CAZ         CBC         H14     109.108    1.50
+G65         CAZ         CBC         H15     109.108    1.50
+G65         H14         CBC         H15     107.841    1.50
+G65         CBC         CAZ         CAY     120.706    1.50
+G65         CBC         CAZ         CBA     120.706    1.50
+G65         CAY         CAZ         CBA     118.588    1.50
+G65         CAZ         CBA         CBB     120.705    1.50
+G65         CAZ         CBA         H16     119.668    1.50
+G65         CBB         CBA         H16     119.627    1.50
+G65         CBA         CBB         CAV     120.524    1.50
+G65         CBA         CBB         H17     119.641    1.50
+G65         CAV         CBB         H17     119.835    1.50
+G65         CAZ         CAY         CAX     120.705    1.50
+G65         CAZ         CAY         H18     119.668    1.50
+G65         CAX         CAY         H18     119.627    1.50
+G65         CAY         CAX         CAV     120.524    1.50
+G65         CAY         CAX         H19     119.641    1.50
+G65         CAV         CAX         H19     119.835    1.50
+G65         CAX         CAV         CBB     118.954    1.50
+G65         CAX         CAV         CAU     120.523    2.90
+G65         CBB         CAV         CAU     120.523    2.90
+G65         CAV         CAU         OAW     120.916    1.50
+G65         CAV         CAU         NAT     115.948    1.50
+G65         OAW         CAU         NAT     123.137    1.50
+G65         CAU         NAT         CAO     126.750    1.50
+G65         CAU         NAT         H20     117.086    2.38
+G65         CAO         NAT         H20     116.164    1.66
+G65         NAT         CAO         CAN     120.178    3.00
+G65         NAT         CAO         CAP     119.756    2.93
+G65         CAN         CAO         CAP     120.066    1.50
+G65         CAO         CAN         CAM     119.037    1.76
+G65         CAO         CAN         H21     120.799    1.50
+G65         CAM         CAN         H21     120.164    1.50
+G65         CAO         CAP         CAQ     120.379    1.50
+G65         CAO         CAP         H22     119.710    1.50
+G65         CAQ         CAP         H22     119.911    1.50
+G65         CAP         CAQ         CAR     121.238    1.50
+G65         CAP         CAQ         H23     119.396    1.50
+G65         CAR         CAQ         H23     119.366    1.50
+G65         CAM         CAR         CAQ     118.314    1.50
+G65         CAM         CAR         CAS     121.308    1.50
+G65         CAQ         CAR         CAS     120.378    1.50
+G65         CAR         CAS         H24     109.584    1.50
+G65         CAR         CAS         H25     109.584    1.50
+G65         CAR         CAS         H26     109.584    1.50
+G65         H24         CAS         H25     109.348    1.50
+G65         H24         CAS         H26     109.348    1.50
+G65         H25         CAS         H26     109.348    1.50
+G65         CAN         CAM         NAL     120.521    2.40
+G65         CAN         CAM         CAR     120.965    1.78
+G65         NAL         CAM         CAR     118.514    1.50
+G65         CAJ         NAL         CAM     126.633    3.00
+G65         CAJ         NAL         H27     116.554    2.70
+G65         CAM         NAL         H27     116.813    2.03
+G65         SAI         CAJ         NAK     108.623    3.00
+G65         SAI         CAJ         NAL     122.688    3.00
+G65         NAK         CAJ         NAL     128.689    3.00
+G65         CAG         NAK         CAJ     105.585    1.50
+G65         CAH         SAI         CAJ     108.623    3.00
+G65         SAI         CAH         CAG     108.623    3.00
+G65         SAI         CAH         H28     122.728    3.00
+G65         CAG         CAH         H28     128.649    2.15
+G65         CAH         CAG         CAF     132.812    2.57
+G65         CAH         CAG         NAK     108.547    1.50
+G65         CAF         CAG         NAK     118.641    1.50
+G65         CAE         CAF         CAG     121.631    1.50
+G65         CAE         CAF         CAA     117.308    1.50
+G65         CAG         CAF         CAA     121.061    1.50
+G65         CAF         CAA         CAB     119.118    1.50
+G65         CAF         CAA         H29     120.462    1.50
+G65         CAB         CAA         H29     120.420    1.50
+G65         CAC         CAB         CAA     118.948    1.50
+G65         CAC         CAB         H30     120.613    1.50
+G65         CAA         CAB         H30     120.439    1.50
+G65         NAD         CAC         CAB     123.295    1.50
+G65         NAD         CAC         H31     118.125    1.50
+G65         CAB         CAC         H31     118.580    1.50
+G65         CAE         NAD         CAC     117.043    1.50
+G65         NAD         CAE         CAF     124.288    1.50
+G65         NAD         CAE         H32     117.842    1.50
+G65         CAF         CAE         H32     117.870    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G65            sp3_sp3_46         NBD         CBE         CBF         NBG     180.000    10.0     3
+G65             sp3_sp3_2         CBF         CBE         NBD         CBC     180.000    10.0     3
+G65              const_61         CAU         CAV         CBB         CBA     180.000    10.0     2
+G65              const_51         CAV         CAX         CAY         CAZ       0.000    10.0     2
+G65              const_57         CAU         CAV         CAX         CAY     180.000    10.0     2
+G65             sp2_sp2_3         OAW         CAU         CAV         CAX       0.000     5.0     2
+G65             sp2_sp2_7         OAW         CAU         NAT         CAO       0.000     5.0     2
+G65             sp2_sp2_9         CAN         CAO         NAT         CAU     180.000     5.0     2
+G65              const_28         CAM         CAN         CAO         NAT     180.000    10.0     2
+G65              const_79         NAT         CAO         CAP         CAQ     180.000    10.0     2
+G65              const_33         NAL         CAM         CAN         CAO     180.000    10.0     2
+G65              const_43         CAO         CAP         CAQ         CAR       0.000    10.0     2
+G65            sp3_sp3_29         CBE         CBF         NBG         CBJ     180.000    10.0     3
+G65              const_40         CAP         CAQ         CAR         CAS     180.000    10.0     2
+G65             sp2_sp3_7         CAM         CAR         CAS         H24     150.000    10.0     6
+G65              const_38         NAL         CAM         CAR         CAS       0.000    10.0     2
+G65            sp2_sp2_21         CAN         CAM         NAL         CAJ     180.000     5.0     2
+G65            sp2_sp2_17         SAI         CAJ         NAL         CAM     180.000     5.0     2
+G65              const_76         NAL         CAJ         NAK         CAG     180.000    10.0     2
+G65              const_18         NAL         CAJ         SAI         CAH     180.000    10.0     2
+G65              const_25         CAH         CAG         NAK         CAJ       0.000    10.0     2
+G65              const_19         CAG         CAH         SAI         CAJ       0.000    10.0     2
+G65              const_23         CAF         CAG         CAH         SAI     180.000    10.0     2
+G65            sp2_sp2_13         CAE         CAF         CAG         CAH     180.000     5.0     2
+G65            sp3_sp3_41          H6         CBJ         NBG         CBH     -60.000    10.0     3
+G65            sp3_sp3_23         CBI         CBH         NBG         CBJ      60.000    10.0     3
+G65              const_71         CAB         CAA         CAF         CAE       0.000    10.0     2
+G65       const_sp2_sp2_2         NAD         CAE         CAF         CAG     180.000     5.0     2
+G65              const_13         CAF         CAA         CAB         CAC       0.000    10.0     2
+G65       const_sp2_sp2_9         CAA         CAB         CAC         NAD       0.000     5.0     2
+G65       const_sp2_sp2_7         CAB         CAC         NAD         CAE       0.000     5.0     2
+G65       const_sp2_sp2_5         CAF         CAE         NAD         CAC       0.000     5.0     2
+G65            sp3_sp3_13         NBG         CBH         CBI         NBD      60.000    10.0     3
+G65             sp3_sp3_8         CBH         CBI         NBD         CBC      60.000    10.0     3
+G65            sp3_sp3_35         CAZ         CBC         NBD         CBI     -60.000    10.0     3
+G65             sp2_sp3_2         CAY         CAZ         CBC         NBD     -90.000    10.0     6
+G65              const_48         CAX         CAY         CAZ         CBC     180.000    10.0     2
+G65              const_69         CBC         CAZ         CBA         CBB     180.000    10.0     2
+G65              const_63         CAZ         CBA         CBB         CAV       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G65    chir_1    NBG    CBH    CBF    CBJ    both
+G65    chir_2    NBD    CBI    CBE    CBC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G65    plan-1         CAU   0.020
+G65    plan-1         CAV   0.020
+G65    plan-1         CAX   0.020
+G65    plan-1         CAY   0.020
+G65    plan-1         CAZ   0.020
+G65    plan-1         CBA   0.020
+G65    plan-1         CBB   0.020
+G65    plan-1         CBC   0.020
+G65    plan-1         H16   0.020
+G65    plan-1         H17   0.020
+G65    plan-1         H18   0.020
+G65    plan-1         H19   0.020
+G65    plan-2         CAM   0.020
+G65    plan-2         CAN   0.020
+G65    plan-2         CAO   0.020
+G65    plan-2         CAP   0.020
+G65    plan-2         CAQ   0.020
+G65    plan-2         CAR   0.020
+G65    plan-2         CAS   0.020
+G65    plan-2         H21   0.020
+G65    plan-2         H22   0.020
+G65    plan-2         H23   0.020
+G65    plan-2         NAL   0.020
+G65    plan-2         NAT   0.020
+G65    plan-3         CAF   0.020
+G65    plan-3         CAG   0.020
+G65    plan-3         CAH   0.020
+G65    plan-3         CAJ   0.020
+G65    plan-3         H28   0.020
+G65    plan-3         NAK   0.020
+G65    plan-3         NAL   0.020
+G65    plan-3         SAI   0.020
+G65    plan-4         CAA   0.020
+G65    plan-4         CAB   0.020
+G65    plan-4         CAC   0.020
+G65    plan-4         CAE   0.020
+G65    plan-4         CAF   0.020
+G65    plan-4         CAG   0.020
+G65    plan-4         H29   0.020
+G65    plan-4         H30   0.020
+G65    plan-4         H31   0.020
+G65    plan-4         H32   0.020
+G65    plan-4         NAD   0.020
+G65    plan-5         CAU   0.020
+G65    plan-5         CAV   0.020
+G65    plan-5         NAT   0.020
+G65    plan-5         OAW   0.020
+G65    plan-6         CAO   0.020
+G65    plan-6         CAU   0.020
+G65    plan-6         H20   0.020
+G65    plan-6         NAT   0.020
+G65    plan-7         CAJ   0.020
+G65    plan-7         CAM   0.020
+G65    plan-7         H27   0.020
+G65    plan-7         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G65            InChI                InChI  1.03 InChI=1S/C28H30N6OS/c1-20-5-10-24(16-25(20)31-28-32-26(19-36-28)23-4-3-11-29-17-23)30-27(35)22-8-6-21(7-9-22)18-34-14-12-33(2)13-15-34/h3-11,16-17,19H,12-15,18H2,1-2H3,(H,30,35)(H,31,32)
+G65         InChIKey                InChI  1.03                                                                                                                                                                WJEOLQLKVOPQFV-UHFFFAOYSA-N
+G65 SMILES_CANONICAL               CACTVS 3.385                                                                                                                                CN1CCN(CC1)Cc2ccc(cc2)C(=O)Nc3ccc(C)c(Nc4scc(n4)c5cccnc5)c3
+G65           SMILES               CACTVS 3.385                                                                                                                                CN1CCN(CC1)Cc2ccc(cc2)C(=O)Nc3ccc(C)c(Nc4scc(n4)c5cccnc5)c3
+G65 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                  Cc1ccc(cc1Nc2nc(cs2)c3cccnc3)NC(=O)c4ccc(cc4)CN5CCN(CC5)C
+G65           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                  Cc1ccc(cc1Nc2nc(cs2)c3cccnc3)NC(=O)c4ccc(cc4)CN5CCN(CC5)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G65 acedrg               243         "dictionary generator"                  
+G65 acedrg_database      11          "data source"                           
+G65 rdkit                2017.03.2   "Chemoinformatics tool"
+G65 refmac5              5.8.0238    "optimization tool"                     

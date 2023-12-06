@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MQN     MQN      2-methylquinolin-6-amine     NON-POLYMER     22     12     .     
+#
+data_comp_MQN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MQN     CAA     C       CH3     0       14.828      -0.591      -6.185      
+MQN     CAI     C       CR6     0       14.056      0.669       -6.431      
+MQN     NAH     N       NRD6    0       14.027      1.129       -7.675      
+MQN     CAL     C       CR66    0       13.327      2.286       -7.939      
+MQN     CAF     C       CR16    0       13.290      2.785       -9.259      
+MQN     CAD     C       CR16    0       12.604      3.930       -9.553      
+MQN     CAJ     C       CR6     0       11.910      4.649       -8.539      
+MQN     NAB     N       NH2     0       11.227      5.799       -8.859      
+MQN     CAG     C       CR16    0       11.935      4.177       -7.242      
+MQN     CAK     C       CR66    0       12.640      2.993       -6.919      
+MQN     CAE     C       CR16    0       12.691      2.473       -5.601      
+MQN     CAC     C       CR16    0       13.391      1.327       -5.363      
+MQN     H1      H       H       0       14.780      -0.829      -5.244      
+MQN     H2      H       H       0       15.756      -0.459      -6.435      
+MQN     H3      H       H       0       14.453      -1.312      -6.716      
+MQN     H4      H       H       0       13.741      2.325       -9.943      
+MQN     H5      H       H       0       12.587      4.253       -10.439     
+MQN     H6      H       H       0       11.226      6.097       -9.684      
+MQN     H7      H       H       0       10.789      6.240       -8.240      
+MQN     H8      H       H       0       11.479      4.647       -6.569      
+MQN     H9      H       H       0       12.243      2.920       -4.895      
+MQN     H10     H       H       0       13.434      0.969       -4.492      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MQN         CAF         CAD      SINGLE       y     1.364  0.0100     1.364  0.0100
+MQN         CAD         CAJ      DOUBLE       y     1.417  0.0114     1.417  0.0114
+MQN         CAL         CAF      DOUBLE       y     1.410  0.0100     1.410  0.0100
+MQN         CAJ         NAB      SINGLE       n     1.372  0.0200     1.372  0.0200
+MQN         CAJ         CAG      SINGLE       y     1.375  0.0100     1.375  0.0100
+MQN         NAH         CAL      SINGLE       y     1.374  0.0100     1.374  0.0100
+MQN         CAL         CAK      SINGLE       y     1.416  0.0100     1.416  0.0100
+MQN         CAI         NAH      DOUBLE       y     1.321  0.0100     1.321  0.0100
+MQN         CAG         CAK      DOUBLE       y     1.413  0.0100     1.413  0.0100
+MQN         CAK         CAE      SINGLE       y     1.416  0.0100     1.416  0.0100
+MQN         CAA         CAI      SINGLE       n     1.498  0.0100     1.498  0.0100
+MQN         CAI         CAC      SINGLE       y     1.413  0.0100     1.413  0.0100
+MQN         CAE         CAC      DOUBLE       y     1.360  0.0100     1.360  0.0100
+MQN         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0138
+MQN         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0138
+MQN         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0138
+MQN         CAF          H4      SINGLE       n     1.082  0.0130     0.940  0.0115
+MQN         CAD          H5      SINGLE       n     1.082  0.0130     0.943  0.0100
+MQN         NAB          H6      SINGLE       n     1.016  0.0100     0.877  0.0200
+MQN         NAB          H7      SINGLE       n     1.016  0.0100     0.877  0.0200
+MQN         CAG          H8      SINGLE       n     1.082  0.0130     0.939  0.0110
+MQN         CAE          H9      SINGLE       n     1.082  0.0130     0.948  0.0200
+MQN         CAC         H10      SINGLE       n     1.082  0.0130     0.943  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MQN         CAI         CAA          H1     109.675    1.50
+MQN         CAI         CAA          H2     109.675    1.50
+MQN         CAI         CAA          H3     109.675    1.50
+MQN          H1         CAA          H2     109.339    1.66
+MQN          H1         CAA          H3     109.339    1.66
+MQN          H2         CAA          H3     109.339    1.66
+MQN         NAH         CAI         CAA     117.612    1.50
+MQN         NAH         CAI         CAC     121.789    1.50
+MQN         CAA         CAI         CAC     120.599    1.50
+MQN         CAL         NAH         CAI     118.146    1.50
+MQN         CAF         CAL         NAH     118.502    1.50
+MQN         CAF         CAL         CAK     119.430    1.50
+MQN         NAH         CAL         CAK     122.068    1.50
+MQN         CAD         CAF         CAL     121.052    1.50
+MQN         CAD         CAF          H4     119.446    1.50
+MQN         CAL         CAF          H4     119.502    1.50
+MQN         CAF         CAD         CAJ     120.719    1.50
+MQN         CAF         CAD          H5     119.971    1.50
+MQN         CAJ         CAD          H5     119.309    1.50
+MQN         CAD         CAJ         NAB     120.134    1.50
+MQN         CAD         CAJ         CAG     118.771    1.50
+MQN         NAB         CAJ         CAG     121.095    1.50
+MQN         CAJ         NAB          H6     120.146    2.42
+MQN         CAJ         NAB          H7     120.146    2.42
+MQN          H6         NAB          H7     119.708    3.00
+MQN         CAJ         CAG         CAK     120.455    1.50
+MQN         CAJ         CAG          H8     119.701    1.50
+MQN         CAK         CAG          H8     119.843    1.50
+MQN         CAL         CAK         CAG     119.573    1.50
+MQN         CAL         CAK         CAE     118.803    1.50
+MQN         CAG         CAK         CAE     121.624    1.50
+MQN         CAK         CAE         CAC     119.565    1.50
+MQN         CAK         CAE          H9     119.993    1.50
+MQN         CAC         CAE          H9     120.443    1.50
+MQN         CAI         CAC         CAE     119.629    1.50
+MQN         CAI         CAC         H10     119.943    1.50
+MQN         CAE         CAC         H10     120.428    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MQN             sp2_sp3_1         NAH         CAI         CAA          H1     150.000    10.0     6
+MQN              const_13         CAI         CAC         CAE         CAK       0.000    10.0     2
+MQN              const_38         CAE         CAC         CAI         CAA     180.000    10.0     2
+MQN       const_sp2_sp2_2         CAA         CAI         NAH         CAL     180.000     5.0     2
+MQN       const_sp2_sp2_4         CAF         CAL         NAH         CAI     180.000     5.0     2
+MQN              const_18         CAD         CAF         CAL         NAH     180.000    10.0     2
+MQN       const_sp2_sp2_5         CAG         CAK         CAL         CAF       0.000     5.0     2
+MQN              const_21         CAJ         CAD         CAF         CAL       0.000    10.0     2
+MQN              const_26         CAF         CAD         CAJ         NAB     180.000    10.0     2
+MQN             sp2_sp2_1         CAD         CAJ         NAB          H6     180.000     5.0     2
+MQN              const_30         CAK         CAG         CAJ         NAB     180.000    10.0     2
+MQN              const_33         CAJ         CAG         CAK         CAL       0.000    10.0     2
+MQN       const_sp2_sp2_9         CAC         CAE         CAK         CAL       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MQN    plan-1         CAA   0.020
+MQN    plan-1         CAC   0.020
+MQN    plan-1         CAD   0.020
+MQN    plan-1         CAE   0.020
+MQN    plan-1         CAF   0.020
+MQN    plan-1         CAG   0.020
+MQN    plan-1         CAI   0.020
+MQN    plan-1         CAJ   0.020
+MQN    plan-1         CAK   0.020
+MQN    plan-1         CAL   0.020
+MQN    plan-1         H10   0.020
+MQN    plan-1          H4   0.020
+MQN    plan-1          H5   0.020
+MQN    plan-1          H8   0.020
+MQN    plan-1          H9   0.020
+MQN    plan-1         NAB   0.020
+MQN    plan-1         NAH   0.020
+MQN    plan-2         CAJ   0.020
+MQN    plan-2          H6   0.020
+MQN    plan-2          H7   0.020
+MQN    plan-2         NAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MQN           SMILES              ACDLabs 12.01                                             n1c(ccc2cc(ccc12)N)C
+MQN            InChI                InChI  1.03 InChI=1S/C10H10N2/c1-7-2-3-8-6-9(11)4-5-10(8)12-7/h2-6H,11H2,1H3
+MQN         InChIKey                InChI  1.03                                      TYJFYUVDUUACKX-UHFFFAOYSA-N
+MQN SMILES_CANONICAL               CACTVS 3.370                                               Cc1ccc2cc(N)ccc2n1
+MQN           SMILES               CACTVS 3.370                                               Cc1ccc2cc(N)ccc2n1
+MQN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                               Cc1ccc2cc(ccc2n1)N
+MQN           SMILES "OpenEye OEToolkits" 1.7.6                                               Cc1ccc2cc(ccc2n1)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MQN acedrg               243         "dictionary generator"                  
+MQN acedrg_database      11          "data source"                           
+MQN rdkit                2017.03.2   "Chemoinformatics tool"
+MQN refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,160 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8JZ     8JZ      "butyl acetate"     NON-POLYMER     20     8     .     
+#
+data_comp_8JZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8JZ     OAC     O       O       0       43.865      63.836      15.830      
+8JZ     CAH     C       C       0       44.655      63.113      16.369      
+8JZ     CAB     C       CH3     0       46.061      63.484      16.692      
+8JZ     OAG     O       O2      0       44.301      61.866      16.732      
+8JZ     CAF     C       CH2     0       44.891      60.743      16.028      
+8JZ     CAE     C       CH2     0       44.459      60.716      14.581      
+8JZ     CAD     C       CH2     0       45.199      59.688      13.758      
+8JZ     CAA     C       CH3     0       44.804      58.254      14.033      
+8JZ     HAB     H       H       0       46.666      63.017      16.092      
+8JZ     HABA    H       H       0       46.260      63.236      17.609      
+8JZ     HABB    H       H       0       46.176      64.442      16.583      
+8JZ     HAF     H       H       0       44.612      59.910      16.465      
+8JZ     HAFA    H       H       0       45.869      60.794      16.080      
+8JZ     HAE     H       H       0       44.613      61.594      14.176      
+8JZ     HAEA    H       H       0       43.498      60.529      14.537      
+8JZ     HAD     H       H       0       46.161      59.786      13.927      
+8JZ     HADA    H       H       0       45.045      59.880      12.807      
+8JZ     HAA     H       H       0       44.562      57.818      13.198      
+8JZ     HAAA    H       H       0       44.043      58.231      14.640      
+8JZ     HAAB    H       H       0       45.553      57.783      14.438      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8JZ         OAC         CAH      DOUBLE       n     1.199  0.0170     1.199  0.0170
+8JZ         CAH         CAB      SINGLE       n     1.487  0.0164     1.487  0.0164
+8JZ         CAH         OAG      SINGLE       n     1.338  0.0144     1.338  0.0144
+8JZ         OAG         CAF      SINGLE       n     1.446  0.0100     1.446  0.0100
+8JZ         CAF         CAE      SINGLE       n     1.500  0.0200     1.500  0.0200
+8JZ         CAE         CAD      SINGLE       n     1.508  0.0200     1.508  0.0200
+8JZ         CAD         CAA      SINGLE       n     1.510  0.0200     1.510  0.0200
+8JZ         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0140
+8JZ         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0140
+8JZ         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0140
+8JZ         CAF         HAF      SINGLE       n     1.089  0.0100     0.981  0.0134
+8JZ         CAF        HAFA      SINGLE       n     1.089  0.0100     0.981  0.0134
+8JZ         CAE         HAE      SINGLE       n     1.089  0.0100     0.980  0.0166
+8JZ         CAE        HAEA      SINGLE       n     1.089  0.0100     0.980  0.0166
+8JZ         CAD         HAD      SINGLE       n     1.089  0.0100     0.982  0.0155
+8JZ         CAD        HADA      SINGLE       n     1.089  0.0100     0.982  0.0155
+8JZ         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+8JZ         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+8JZ         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8JZ         OAC         CAH         CAB     125.658    2.23
+8JZ         OAC         CAH         OAG     122.258    3.00
+8JZ         CAB         CAH         OAG     112.082    2.88
+8JZ         CAH         CAB         HAB     109.509    1.50
+8JZ         CAH         CAB        HABA     109.509    1.50
+8JZ         CAH         CAB        HABB     109.509    1.50
+8JZ         HAB         CAB        HABA     109.424    1.50
+8JZ         HAB         CAB        HABB     109.424    1.50
+8JZ        HABA         CAB        HABB     109.424    1.50
+8JZ         CAH         OAG         CAF     116.292    1.50
+8JZ         OAG         CAF         CAE     108.612    1.98
+8JZ         OAG         CAF         HAF     109.718    1.50
+8JZ         OAG         CAF        HAFA     109.718    1.50
+8JZ         CAE         CAF         HAF     109.912    1.50
+8JZ         CAE         CAF        HAFA     109.912    1.50
+8JZ         HAF         CAF        HAFA     108.375    1.50
+8JZ         CAF         CAE         CAD     113.747    3.00
+8JZ         CAF         CAE         HAE     108.852    1.50
+8JZ         CAF         CAE        HAEA     108.852    1.50
+8JZ         CAD         CAE         HAE     108.683    1.93
+8JZ         CAD         CAE        HAEA     108.683    1.93
+8JZ         HAE         CAE        HAEA     107.788    1.50
+8JZ         CAE         CAD         CAA     113.306    3.00
+8JZ         CAE         CAD         HAD     108.835    1.50
+8JZ         CAE         CAD        HADA     108.835    1.50
+8JZ         CAA         CAD         HAD     108.918    1.50
+8JZ         CAA         CAD        HADA     108.918    1.50
+8JZ         HAD         CAD        HADA     107.763    1.50
+8JZ         CAD         CAA         HAA     109.554    1.50
+8JZ         CAD         CAA        HAAA     109.554    1.50
+8JZ         CAD         CAA        HAAB     109.554    1.50
+8JZ         HAA         CAA        HAAA     109.380    1.50
+8JZ         HAA         CAA        HAAB     109.380    1.50
+8JZ        HAAA         CAA        HAAB     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8JZ             sp2_sp3_1         OAC         CAH         CAB         HAB       0.000    10.0     6
+8JZ             sp2_sp2_1         OAC         CAH         OAG         CAF     180.000     5.0     2
+8JZ             sp3_sp3_1         CAE         CAF         OAG         CAH     180.000    10.0     3
+8JZ             sp3_sp3_4         CAD         CAE         CAF         OAG     180.000    10.0     3
+8JZ            sp3_sp3_13         CAA         CAD         CAE         CAF     180.000    10.0     3
+8JZ            sp3_sp3_22         HAA         CAA         CAD         CAE     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8JZ    plan-1         CAB   0.020
+8JZ    plan-1         CAH   0.020
+8JZ    plan-1         OAC   0.020
+8JZ    plan-1         OAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8JZ           SMILES              ACDLabs 10.04                                    O=C(OCCCC)C
+8JZ SMILES_CANONICAL               CACTVS 3.341                                    CCCCOC(C)=O
+8JZ           SMILES               CACTVS 3.341                                    CCCCOC(C)=O
+8JZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    CCCCOC(=O)C
+8JZ           SMILES "OpenEye OEToolkits" 1.5.0                                    CCCCOC(=O)C
+8JZ            InChI                InChI  1.03 InChI=1S/C6H12O2/c1-3-4-5-8-6(2)7/h3-5H2,1-2H3
+8JZ         InChIKey                InChI  1.03                    DKPFZGUDAPQIHT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8JZ acedrg               243         "dictionary generator"                  
+8JZ acedrg_database      11          "data source"                           
+8JZ rdkit                2017.03.2   "Chemoinformatics tool"
+8JZ refmac5              5.8.0238    "optimization tool"                     

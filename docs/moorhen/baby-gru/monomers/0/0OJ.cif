@@ -1,0 +1,315 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0OJ     0OJ      "South-methanocarba-2'-deoxyadenosine triphosphate"     NON-POLYMER     45     31     .     
+#
+data_comp_0OJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0OJ     OAF     O       OP      -1      1.110       19.144      13.356      
+0OJ     PBC     P       P       0       0.009       20.170      13.467      
+0OJ     OAG     O       OP      -1      -1.327      19.644      13.004      
+0OJ     OAB     O       O       0       0.372       21.486      12.824      
+0OJ     OAS     O       O2      0       -0.156      20.476      15.043      
+0OJ     PBE     P       P       0       0.897       20.587      16.244      
+0OJ     OAI     O       O       0       1.649       19.301      16.341      
+0OJ     OAD     O       OP      -1      0.196       21.125      17.447      
+0OJ     OAT     O       O2      0       1.883       21.715      15.678      
+0OJ     PBD     P       P       0       3.272       22.308      16.217      
+0OJ     OAH     O       O       0       3.790       23.294      15.223      
+0OJ     OAC     O       OP      -1      4.156       21.172      16.613      
+0OJ     OAR     O       O2      0       2.783       23.086      17.532      
+0OJ     CAL     C       CH2     0       3.770       23.477      18.521      
+0OJ     CAY     C       CH1     0       3.113       24.201      19.677      
+0OJ     CAZ     C       CH1     0       2.340       25.418      19.206      
+0OJ     CAN     C       CH2     0       2.023       26.446      20.251      
+0OJ     CAX     C       CH1     0       2.109       23.333      20.467      
+0OJ     OAE     O       OH1     0       2.626       23.033      21.757      
+0OJ     CAM     C       CH2     0       0.801       24.113      20.599      
+0OJ     CBB     C       CT      0       0.994       25.425      19.872      
+0OJ     N9      N       NT      0       -0.148      25.843      19.098      
+0OJ     C8      C       CR15    0       -1.028      26.816      19.482      
+0OJ     N7      N       NRD5    0       -1.976      26.996      18.586      
+0OJ     C5      C       CR56    0       -1.692      26.091      17.567      
+0OJ     C4      C       CR56    0       -0.553      25.370      17.881      
+0OJ     N3      N       NRD6    0       0.004       24.411      17.119      
+0OJ     C2      C       CR16    0       -0.672      24.214      15.987      
+0OJ     N1      N       NRD6    0       -1.782      24.835      15.556      
+0OJ     C6      C       CR6     0       -2.331      25.801      16.341      
+0OJ     N6      N       NH2     0       -3.431      26.419      15.919      
+0OJ     H5      H       H       0       4.435       24.065      18.109      
+0OJ     H6      H       H       0       4.232       22.683      18.859      
+0OJ     H7      H       H       0       3.827       24.478      20.305      
+0OJ     H8      H       H       0       2.420       25.691      18.274      
+0OJ     H9      H       H       0       2.449       26.359      21.123      
+0OJ     H10     H       H       0       1.879       27.365      19.961      
+0OJ     H11     H       H       0       1.943       22.490      19.980      
+0OJ     H12     H       H       0       3.322       22.554      21.674      
+0OJ     H13     H       H       0       0.588       24.277      21.544      
+0OJ     H14     H       H       0       0.059       23.607      20.199      
+0OJ     H15     H       H       0       -0.976      27.305      20.287      
+0OJ     H16     H       H       0       -0.324      23.550      15.412      
+0OJ     H17     H       H       0       -3.994      25.998      15.393      
+0OJ     H18     H       H       0       -3.588      27.245      16.169      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0OJ         PBC         OAB      DOUBLE       n     1.509  0.0200     1.509  0.0200
+0OJ         OAF         PBC      SINGLE       n     1.509  0.0200     1.509  0.0200
+0OJ         PBC         OAG      SINGLE       n     1.509  0.0200     1.509  0.0200
+0OJ         PBC         OAS      SINGLE       n     1.614  0.0178     1.614  0.0178
+0OJ         PBD         OAH      DOUBLE       n     1.493  0.0122     1.493  0.0122
+0OJ         PBD         OAC      SINGLE       n     1.493  0.0122     1.493  0.0122
+0OJ         OAT         PBD      SINGLE       n     1.604  0.0133     1.604  0.0133
+0OJ         PBE         OAT      SINGLE       n     1.601  0.0114     1.601  0.0114
+0OJ         PBD         OAR      SINGLE       n     1.604  0.0133     1.604  0.0133
+0OJ          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+0OJ          N3          C2      SINGLE       y     1.330  0.0100     1.330  0.0100
+0OJ          N1          C6      SINGLE       y     1.354  0.0100     1.354  0.0100
+0OJ         OAS         PBE      SINGLE       n     1.601  0.0114     1.601  0.0114
+0OJ         PBE         OAI      DOUBLE       n     1.493  0.0157     1.493  0.0157
+0OJ         PBE         OAD      SINGLE       n     1.493  0.0157     1.493  0.0157
+0OJ          C4          N3      DOUBLE       y     1.342  0.0100     1.342  0.0100
+0OJ          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+0OJ          C5          C6      DOUBLE       y     1.408  0.0100     1.408  0.0100
+0OJ         OAR         CAL      SINGLE       n     1.450  0.0166     1.450  0.0166
+0OJ          C5          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+0OJ          N9          C4      SINGLE       y     1.372  0.0100     1.372  0.0100
+0OJ         CAL         CAY      SINGLE       n     1.512  0.0120     1.512  0.0120
+0OJ          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+0OJ         CBB          N9      SINGLE       n     1.439  0.0100     1.439  0.0100
+0OJ          N9          C8      SINGLE       y     1.372  0.0200     1.372  0.0200
+0OJ         CAX         CAM      SINGLE       n     1.524  0.0121     1.524  0.0121
+0OJ         CAM         CBB      SINGLE       n     1.512  0.0137     1.512  0.0137
+0OJ         CAY         CAZ      SINGLE       n     1.519  0.0135     1.519  0.0135
+0OJ         CAY         CAX      SINGLE       n     1.534  0.0166     1.534  0.0166
+0OJ          C8          N7      DOUBLE       y     1.311  0.0100     1.311  0.0100
+0OJ         CAZ         CBB      SINGLE       n     1.508  0.0199     1.508  0.0199
+0OJ         CAZ         CAN      SINGLE       n     1.498  0.0200     1.498  0.0200
+0OJ         CAX         OAE      SINGLE       n     1.420  0.0122     1.420  0.0122
+0OJ         CAN         CBB      SINGLE       n     1.500  0.0139     1.500  0.0139
+0OJ         CAL          H5      SINGLE       n     1.089  0.0100     0.979  0.0188
+0OJ         CAL          H6      SINGLE       n     1.089  0.0100     0.979  0.0188
+0OJ         CAY          H7      SINGLE       n     1.089  0.0100     0.989  0.0197
+0OJ         CAZ          H8      SINGLE       n     1.089  0.0100     0.974  0.0200
+0OJ         CAN          H9      SINGLE       n     1.089  0.0100     0.974  0.0128
+0OJ         CAN         H10      SINGLE       n     1.089  0.0100     0.974  0.0128
+0OJ         CAX         H11      SINGLE       n     1.089  0.0100     0.988  0.0200
+0OJ         OAE         H12      SINGLE       n     0.970  0.0120     0.849  0.0200
+0OJ         CAM         H13      SINGLE       n     1.089  0.0100     0.982  0.0155
+0OJ         CAM         H14      SINGLE       n     1.089  0.0100     0.982  0.0155
+0OJ          C8         H15      SINGLE       n     1.082  0.0130     0.943  0.0200
+0OJ          C2         H16      SINGLE       n     1.082  0.0130     0.945  0.0200
+0OJ          N6         H17      SINGLE       n     1.016  0.0100     0.877  0.0200
+0OJ          N6         H18      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0OJ         OAB         PBC         OAF     112.716    1.50
+0OJ         OAB         PBC         OAG     112.716    1.50
+0OJ         OAB         PBC         OAS     105.965    2.38
+0OJ         OAF         PBC         OAG     112.716    1.50
+0OJ         OAF         PBC         OAS     105.965    2.38
+0OJ         OAG         PBC         OAS     105.965    2.38
+0OJ         PBC         OAS         PBE     132.584    3.00
+0OJ         OAT         PBE         OAS     100.890    2.10
+0OJ         OAT         PBE         OAI     108.678    2.29
+0OJ         OAT         PBE         OAD     108.678    2.29
+0OJ         OAS         PBE         OAI     108.678    2.29
+0OJ         OAS         PBE         OAD     108.678    2.29
+0OJ         OAI         PBE         OAD     119.630    1.50
+0OJ         PBD         OAT         PBE     132.542    3.00
+0OJ         OAH         PBD         OAC     118.411    2.35
+0OJ         OAH         PBD         OAT     108.816    2.14
+0OJ         OAH         PBD         OAR     109.410    1.50
+0OJ         OAC         PBD         OAT     108.816    2.14
+0OJ         OAC         PBD         OAR     109.410    1.50
+0OJ         OAT         PBD         OAR     101.065    1.97
+0OJ         PBD         OAR         CAL     118.553    2.41
+0OJ         OAR         CAL         CAY     109.157    2.94
+0OJ         OAR         CAL          H5     109.821    1.50
+0OJ         OAR         CAL          H6     109.821    1.50
+0OJ         CAY         CAL          H5     109.371    1.50
+0OJ         CAY         CAL          H6     109.371    1.50
+0OJ          H5         CAL          H6     108.335    1.56
+0OJ         CAL         CAY         CAZ     112.346    2.55
+0OJ         CAL         CAY         CAX     113.709    1.89
+0OJ         CAL         CAY          H7     108.530    1.50
+0OJ         CAZ         CAY         CAX     104.590    1.70
+0OJ         CAZ         CAY          H7     110.615    1.50
+0OJ         CAX         CAY          H7     107.909    1.50
+0OJ         CAY         CAZ         CBB     108.186    1.62
+0OJ         CAY         CAZ         CAN     118.459    3.00
+0OJ         CAY         CAZ          H8     118.986    3.00
+0OJ         CBB         CAZ         CAN      59.812    1.50
+0OJ         CBB         CAZ          H8     119.872    2.95
+0OJ         CAN         CAZ          H8     119.664    3.00
+0OJ         CAZ         CAN         CBB      60.239    1.50
+0OJ         CAZ         CAN          H9     117.983    1.68
+0OJ         CAZ         CAN         H10     117.983    1.68
+0OJ         CBB         CAN          H9     117.747    1.50
+0OJ         CBB         CAN         H10     117.747    1.50
+0OJ          H9         CAN         H10     114.452    2.73
+0OJ         CAM         CAX         CAY     105.388    1.72
+0OJ         CAM         CAX         OAE     111.240    2.54
+0OJ         CAM         CAX         H11     110.414    1.64
+0OJ         CAY         CAX         OAE     111.500    2.78
+0OJ         CAY         CAX         H11     110.025    1.50
+0OJ         OAE         CAX         H11     110.259    1.63
+0OJ         CAX         OAE         H12     109.104    3.00
+0OJ         CAX         CAM         CBB     104.590    1.70
+0OJ         CAX         CAM         H13     110.886    1.50
+0OJ         CAX         CAM         H14     110.886    1.50
+0OJ         CBB         CAM         H13     110.615    1.50
+0OJ         CBB         CAM         H14     110.615    1.50
+0OJ         H13         CAM         H14     108.756    1.50
+0OJ          N9         CBB         CAM     109.471    3.00
+0OJ          N9         CBB         CAZ     117.985    1.51
+0OJ          N9         CBB         CAN     117.985    1.51
+0OJ         CAM         CBB         CAZ     108.186    1.62
+0OJ         CAM         CBB         CAN     118.459    3.00
+0OJ         CAZ         CBB         CAN      59.812    1.50
+0OJ          C4          N9         CBB     109.471    3.00
+0OJ          C4          N9          C8     107.594    1.50
+0OJ         CBB          N9          C8     109.471    3.00
+0OJ          N9          C8          N7     112.099    1.94
+0OJ          N9          C8         H15     124.670    2.19
+0OJ          N7          C8         H15     123.232    1.50
+0OJ          C5          N7          C8     103.927    1.50
+0OJ          C6          C5          C4     117.385    1.50
+0OJ          C6          C5          N7     132.158    1.50
+0OJ          C4          C5          N7     110.457    1.50
+0OJ          N3          C4          C5     125.029    1.50
+0OJ          N3          C4          N9     126.575    1.50
+0OJ          C5          C4          N9     108.396    1.69
+0OJ          C2          N3          C4     112.990    1.50
+0OJ          N1          C2          N3     129.110    1.50
+0OJ          N1          C2         H16     115.424    1.50
+0OJ          N3          C2         H16     115.466    1.50
+0OJ          C2          N1          C6     118.299    1.50
+0OJ          N1          C6          N6     118.910    1.50
+0OJ          N1          C6          C5     117.187    1.50
+0OJ          N6          C6          C5     123.903    1.50
+0OJ          C6          N6         H17     119.723    1.50
+0OJ          C6          N6         H18     119.723    1.50
+0OJ         H17          N6         H18     120.554    1.88
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0OJ            sp3_sp3_61         CAY         CAL         OAR         PBD     180.000    10.0     3
+0OJ            sp3_sp3_66         OAR         CAL         CAY          H7      60.000    10.0     3
+0OJ             sp3_sp3_4         CAL         CAY         CAZ         CBB     -60.000    10.0     3
+0OJ            sp3_sp3_79         H11         CAX         CAY         CAZ     -60.000    10.0     3
+0OJ            sp3_sp3_85          H9         CAN         CAZ         CAY      60.000    10.0     3
+0OJ            sp3_sp3_11         CAY         CAZ         CBB          N9      60.000    10.0     3
+0OJ            sp3_sp3_40          H9         CAN         CBB         CAM     180.000    10.0     3
+0OJ            sp3_sp3_91          N7          C5          C6          N1     180.000    10.0     3
+0OJ            sp3_sp3_30         CBB         CAM         CAX         H11     180.000    10.0     3
+0OJ            sp3_sp3_21         CAX         CAM         CBB         CAN     -60.000    10.0     3
+0OJ            sp3_sp3_48         PBE         OAS         PBC         OAG      60.000    10.0     3
+0OJ             sp2_sp3_3          C4          N9         CBB         CAN      30.000    10.0     6
+0OJ              const_27         H15          C8          N9          C4     180.000    10.0     2
+0OJ              const_16          N3          C4          N9         CBB       0.000    10.0     2
+0OJ              const_23          N9          C8          N7          C5       0.000    10.0     2
+0OJ              const_22          C6          C5          N7          C8     180.000    10.0     2
+0OJ              const_17          N3          C4          C5          C6       0.000    10.0     2
+0OJ       const_sp2_sp2_2          C4          C5          C6          N6     180.000     5.0     2
+0OJ              const_11          C5          C4          N3          C2       0.000    10.0     2
+0OJ       const_sp2_sp2_9          N1          C2          N3          C4       0.000     5.0     2
+0OJ       const_sp2_sp2_7          N3          C2          N1          C6       0.000     5.0     2
+0OJ       const_sp2_sp2_6          N6          C6          N1          C2     180.000     5.0     2
+0OJ            sp3_sp3_61         CAY         CAL         OAR         PBD     180.000    10.0     3
+0OJ            sp3_sp3_60         PBC         OAS         PBE         OAI      60.000    10.0     3
+0OJ            sp3_sp3_55         CAL         OAR         PBD         OAT     180.000    10.0     3
+0OJ            sp3_sp3_53         PBD         OAT         PBE         OAS     -60.000    10.0     3
+0OJ            sp3_sp3_59         PBC         OAS         PBE         OAD     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+0OJ    chir_1    PBE    OAT    OAS    OAD    both
+0OJ    chir_2    PBD    OAT    OAR    OAC    both
+0OJ    chir_3    CAY    CAX    CAL    CAZ    negative
+0OJ    chir_4    CAZ    CBB    CAY    CAN    positive
+0OJ    chir_5    CAX    OAE    CAY    CAM    positive
+0OJ    chir_6    CBB    N9    CAZ    CAM    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0OJ    plan-1          C2   0.020
+0OJ    plan-1          C4   0.020
+0OJ    plan-1          C5   0.020
+0OJ    plan-1          C6   0.020
+0OJ    plan-1          C8   0.020
+0OJ    plan-1         CBB   0.020
+0OJ    plan-1         H15   0.020
+0OJ    plan-1         H16   0.020
+0OJ    plan-1          N1   0.020
+0OJ    plan-1          N3   0.020
+0OJ    plan-1          N6   0.020
+0OJ    plan-1          N7   0.020
+0OJ    plan-1          N9   0.020
+0OJ    plan-2          C6   0.020
+0OJ    plan-2         H17   0.020
+0OJ    plan-2         H18   0.020
+0OJ    plan-2          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0OJ            InChI                InChI  1.03 InChI=1S/C12H18N5O11P3/c13-10-9-11(15-4-14-10)17(5-16-9)12-1-7(12)6(8(18)2-12)3-26-30(22,23)28-31(24,25)27-29(19,20)21/h4-8,18H,1-3H2,(H,22,23)(H,24,25)(H2,13,14,15)(H2,19,20,21)/t6-,7-,8-,12-/m0/s1
+0OJ         InChIKey                InChI  1.03                                                                                                                                                                            DNBZILMJAUSGHT-QZOVBDONSA-N
+0OJ SMILES_CANONICAL               CACTVS 3.370                                                                                                                   Nc1ncnc2n(cnc12)[C@@]34C[C@H](O)[C@@H](CO[P](O)(=O)O[P](O)(=O)O[P](O)(O)=O)[C@@H]3C4
+0OJ           SMILES               CACTVS 3.370                                                                                                                          Nc1ncnc2n(cnc12)[C]34C[CH](O)[CH](CO[P](O)(=O)O[P](O)(=O)O[P](O)(O)=O)[CH]3C4
+0OJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                       c1nc(c2c(n1)n(cn2)[C@]34C[C@H]3[C@@H]([C@H](C4)O)COP(=O)(O)OP(=O)(O)OP(=O)(O)O)N
+0OJ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                       c1nc(c2c(n1)n(cn2)C34CC3C(C(C4)O)COP(=O)(O)OP(=O)(O)OP(=O)(O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0OJ acedrg               243         "dictionary generator"                  
+0OJ acedrg_database      11          "data source"                           
+0OJ rdkit                2017.03.2   "Chemoinformatics tool"
+0OJ refmac5              5.8.0238    "optimization tool"                     

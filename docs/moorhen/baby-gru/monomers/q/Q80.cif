@@ -1,0 +1,358 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Q80     Q80      2-({[(2R,4S)-2-[2-(4-chlorophenyl)ethyl]-2-(1H-imidazol-1-ylmethyl)-1,3-dioxolan-4-yl]methyl}sulfanyl)-5-(trifluoromethyl)pyridine     NON-POLYMER     53     32     .     
+#
+data_comp_Q80
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Q80     CLBF    CL      CL      0       18.782      -4.388      29.449      
+Q80     CAB     C       CR6     0       17.812      -3.124      30.151      
+Q80     CAC     C       CR16    0       17.859      -1.857      29.615      
+Q80     CAD     C       CR16    0       17.078      -0.850      30.183      
+Q80     CAA     C       CR16    0       17.011      -3.408      31.234      
+Q80     CAF     C       CR16    0       16.237      -2.390      31.790      
+Q80     CAE     C       CR6     0       16.262      -1.095      31.283      
+Q80     CAG     C       CH2     0       15.407      -0.002      31.892      
+Q80     CAH     C       CH2     0       16.162      1.285       32.246      
+Q80     CAI     C       CT      0       17.226      1.198       33.362      
+Q80     OAP     O       O2      0       18.396      0.582       32.845      
+Q80     CAJ     C       CH2     0       17.625      2.577       33.899      
+Q80     NAK     N       NR5     0       16.543      3.294       34.579      
+Q80     CAO     C       CR15    0       15.811      4.322       34.099      
+Q80     NAN     N       NRD5    0       14.928      4.741       34.979      
+Q80     CAM     C       CR15    0       15.113      3.947       36.078      
+Q80     CAL     C       CR15    0       16.103      3.061       35.852      
+Q80     OAS     O       O2      0       16.770      0.375       34.432      
+Q80     CAR     C       CH2     0       17.687      -0.691      34.636      
+Q80     CAQ     C       CH1     0       18.924      -0.281      33.851      
+Q80     CAT     C       CH2     0       19.648      -1.419      33.175      
+Q80     SAU     S       S2      0       20.118      -2.808      34.227      
+Q80     CAV     C       CR6     0       20.351      -4.293      33.293      
+Q80     CBA     C       CR16    0       19.331      -5.238      33.220      
+Q80     NAW     N       NRD6    0       21.523      -4.426      32.652      
+Q80     CAX     C       CR16    0       21.715      -5.557      31.915      
+Q80     CAY     C       CR6     0       20.757      -6.562      31.787      
+Q80     CAZ     C       CR16    0       19.549      -6.379      32.465      
+Q80     CBB     C       CT      0       21.010      -7.786      30.972      
+Q80     FBD     F       F       0       21.832      -7.574      29.948      
+Q80     FBE     F       F       0       19.904      -8.298      30.439      
+Q80     FBC     F       F       0       21.559      -8.768      31.680      
+Q80     HAC     H       H       0       18.409      -1.673      28.876      
+Q80     HAD     H       H       0       17.109      0.017       29.816      
+Q80     HAA     H       H       0       16.987      -4.275      31.593      
+Q80     HAF     H       H       0       15.689      -2.583      32.532      
+Q80     HAG     H       H       0       14.975      -0.348      32.701      
+Q80     HAGA    H       H       0       14.694      0.224       31.257      
+Q80     HAH     H       H       0       15.497      1.954       32.504      
+Q80     HAHA    H       H       0       16.593      1.621       31.435      
+Q80     HAJ     H       H       0       17.940      3.122       33.160      
+Q80     HAJA    H       H       0       18.364      2.471       34.520      
+Q80     HAO     H       H       0       15.921      4.682       33.235      
+Q80     HAM     H       H       0       14.617      4.017       36.875      
+Q80     HAL     H       H       0       16.428      2.402       36.437      
+Q80     HAR     H       H       0       17.322      -1.527      34.302      
+Q80     HARA    H       H       0       17.892      -0.788      35.582      
+Q80     HAQ     H       H       0       19.552      0.221       34.427      
+Q80     HAT     H       H       0       20.451      -1.058      32.763      
+Q80     HATA    H       H       0       19.076      -1.753      32.464      
+Q80     HBA     H       H       0       18.521      -5.109      33.675      
+Q80     HAX     H       H       0       22.537      -5.660      31.470      
+Q80     HAZ     H       H       0       18.875      -7.036      32.409      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Q80        CLBF         CAB      SINGLE       n     1.741  0.0100     1.741  0.0100
+Q80         CAB         CAC      DOUBLE       y     1.373  0.0107     1.373  0.0107
+Q80         CAB         CAA      SINGLE       y     1.373  0.0107     1.373  0.0107
+Q80         CAC         CAD      SINGLE       y     1.380  0.0199     1.380  0.0199
+Q80         CAD         CAE      DOUBLE       y     1.385  0.0110     1.385  0.0110
+Q80         CAA         CAF      DOUBLE       y     1.380  0.0199     1.380  0.0199
+Q80         CAF         CAE      SINGLE       y     1.385  0.0110     1.385  0.0110
+Q80         CAE         CAG      SINGLE       n     1.512  0.0103     1.512  0.0103
+Q80         CAG         CAH      SINGLE       n     1.528  0.0100     1.528  0.0100
+Q80         CAH         CAI      SINGLE       n     1.532  0.0166     1.532  0.0166
+Q80         CAI         OAP      SINGLE       n     1.421  0.0100     1.421  0.0100
+Q80         CAI         OAS      SINGLE       n     1.421  0.0100     1.421  0.0100
+Q80         CAI         CAJ      SINGLE       n     1.525  0.0186     1.525  0.0186
+Q80         OAP         CAQ      SINGLE       n     1.430  0.0100     1.430  0.0100
+Q80         CAJ         NAK      SINGLE       n     1.464  0.0113     1.464  0.0113
+Q80         NAK         CAO      SINGLE       y     1.349  0.0138     1.349  0.0138
+Q80         NAK         CAL      SINGLE       y     1.368  0.0139     1.368  0.0139
+Q80         CAO         NAN      DOUBLE       y     1.314  0.0111     1.314  0.0111
+Q80         NAN         CAM      SINGLE       y     1.369  0.0102     1.369  0.0102
+Q80         CAM         CAL      DOUBLE       y     1.349  0.0100     1.349  0.0100
+Q80         OAS         CAR      SINGLE       n     1.415  0.0152     1.415  0.0152
+Q80         CAR         CAQ      SINGLE       n     1.523  0.0153     1.523  0.0153
+Q80         CAQ         CAT      SINGLE       n     1.510  0.0136     1.510  0.0136
+Q80         CAT         SAU      SINGLE       n     1.809  0.0191     1.809  0.0191
+Q80         SAU         CAV      SINGLE       n     1.772  0.0127     1.772  0.0127
+Q80         CAV         NAW      SINGLE       y     1.333  0.0159     1.333  0.0159
+Q80         CAV         CBA      DOUBLE       y     1.390  0.0139     1.390  0.0139
+Q80         CBA         CAZ      SINGLE       y     1.383  0.0103     1.383  0.0103
+Q80         NAW         CAX      DOUBLE       y     1.345  0.0200     1.345  0.0200
+Q80         CAX         CAY      SINGLE       y     1.383  0.0136     1.383  0.0136
+Q80         CAY         CBB      SINGLE       n     1.485  0.0137     1.485  0.0137
+Q80         CAY         CAZ      DOUBLE       y     1.392  0.0100     1.392  0.0100
+Q80         CBB         FBE      SINGLE       n     1.329  0.0183     1.329  0.0183
+Q80         CBB         FBD      SINGLE       n     1.329  0.0183     1.329  0.0183
+Q80         CBB         FBC      SINGLE       n     1.329  0.0183     1.329  0.0183
+Q80         CAC         HAC      SINGLE       n     1.082  0.0130     0.939  0.0176
+Q80         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0173
+Q80         CAA         HAA      SINGLE       n     1.082  0.0130     0.939  0.0176
+Q80         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0173
+Q80         CAG         HAG      SINGLE       n     1.089  0.0100     0.981  0.0150
+Q80         CAG        HAGA      SINGLE       n     1.089  0.0100     0.981  0.0150
+Q80         CAH         HAH      SINGLE       n     1.089  0.0100     0.980  0.0191
+Q80         CAH        HAHA      SINGLE       n     1.089  0.0100     0.980  0.0191
+Q80         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.971  0.0119
+Q80         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.971  0.0119
+Q80         CAO         HAO      SINGLE       n     1.082  0.0130     0.942  0.0181
+Q80         CAM         HAM      SINGLE       n     1.082  0.0130     0.941  0.0200
+Q80         CAL         HAL      SINGLE       n     1.082  0.0130     0.939  0.0102
+Q80         CAR         HAR      SINGLE       n     1.089  0.0100     0.972  0.0100
+Q80         CAR        HARA      SINGLE       n     1.089  0.0100     0.972  0.0100
+Q80         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.989  0.0197
+Q80         CAT         HAT      SINGLE       n     1.089  0.0100     0.972  0.0100
+Q80         CAT        HATA      SINGLE       n     1.089  0.0100     0.972  0.0100
+Q80         CBA         HBA      SINGLE       n     1.082  0.0130     0.938  0.0145
+Q80         CAX         HAX      SINGLE       n     1.082  0.0130     0.940  0.0200
+Q80         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Q80        CLBF         CAB         CAC     119.369    1.50
+Q80        CLBF         CAB         CAA     119.369    1.50
+Q80         CAC         CAB         CAA     121.262    1.50
+Q80         CAB         CAC         CAD     119.041    1.50
+Q80         CAB         CAC         HAC     120.452    1.50
+Q80         CAD         CAC         HAC     120.507    1.50
+Q80         CAC         CAD         CAE     121.402    1.50
+Q80         CAC         CAD         HAD     119.311    1.50
+Q80         CAE         CAD         HAD     119.287    1.50
+Q80         CAB         CAA         CAF     119.041    1.50
+Q80         CAB         CAA         HAA     120.452    1.50
+Q80         CAF         CAA         HAA     120.507    1.50
+Q80         CAA         CAF         CAE     121.402    1.50
+Q80         CAA         CAF         HAF     119.311    1.50
+Q80         CAE         CAF         HAF     119.287    1.50
+Q80         CAD         CAE         CAF     117.852    1.50
+Q80         CAD         CAE         CAG     121.074    1.50
+Q80         CAF         CAE         CAG     121.074    1.50
+Q80         CAE         CAG         CAH     112.301    1.77
+Q80         CAE         CAG         HAG     109.258    1.50
+Q80         CAE         CAG        HAGA     109.258    1.50
+Q80         CAH         CAG         HAG     109.095    1.50
+Q80         CAH         CAG        HAGA     109.095    1.50
+Q80         HAG         CAG        HAGA     107.883    1.50
+Q80         CAG         CAH         CAI     112.518    2.73
+Q80         CAG         CAH         HAH     108.882    1.50
+Q80         CAG         CAH        HAHA     108.882    1.50
+Q80         CAI         CAH         HAH     109.253    1.50
+Q80         CAI         CAH        HAHA     109.253    1.50
+Q80         HAH         CAH        HAHA     107.535    1.50
+Q80         CAH         CAI         OAP     109.091    1.63
+Q80         CAH         CAI         OAS     109.091    1.63
+Q80         CAH         CAI         CAJ     111.127    1.91
+Q80         OAP         CAI         OAS     105.202    1.50
+Q80         OAP         CAI         CAJ     109.091    1.63
+Q80         OAS         CAI         CAJ     109.091    1.63
+Q80         CAI         OAP         CAQ     108.166    2.62
+Q80         CAI         CAJ         NAK     112.896    1.50
+Q80         CAI         CAJ         HAJ     109.253    1.50
+Q80         CAI         CAJ        HAJA     109.253    1.50
+Q80         NAK         CAJ         HAJ     108.913    1.50
+Q80         NAK         CAJ        HAJA     108.913    1.50
+Q80         HAJ         CAJ        HAJA     107.855    1.50
+Q80         CAJ         NAK         CAO     127.631    1.50
+Q80         CAJ         NAK         CAL     125.508    1.85
+Q80         CAO         NAK         CAL     106.862    1.50
+Q80         NAK         CAO         NAN     111.292    1.50
+Q80         NAK         CAO         HAO     123.835    1.54
+Q80         NAN         CAO         HAO     124.873    1.50
+Q80         CAO         NAN         CAM     104.736    1.50
+Q80         NAN         CAM         CAL     110.389    1.50
+Q80         NAN         CAM         HAM     124.362    1.50
+Q80         CAL         CAM         HAM     125.249    1.50
+Q80         NAK         CAL         CAM     106.722    1.50
+Q80         NAK         CAL         HAL     125.835    1.86
+Q80         CAM         CAL         HAL     127.444    1.85
+Q80         CAI         OAS         CAR     107.494    1.50
+Q80         OAS         CAR         CAQ     103.730    1.50
+Q80         OAS         CAR         HAR     110.685    1.50
+Q80         OAS         CAR        HARA     110.685    1.50
+Q80         CAQ         CAR         HAR     111.058    1.50
+Q80         CAQ         CAR        HARA     111.058    1.50
+Q80         HAR         CAR        HARA     109.250    1.50
+Q80         OAP         CAQ         CAR     103.272    1.50
+Q80         OAP         CAQ         CAT     109.275    1.50
+Q80         OAP         CAQ         HAQ     109.115    1.50
+Q80         CAR         CAQ         CAT     113.530    1.50
+Q80         CAR         CAQ         HAQ     109.992    1.50
+Q80         CAT         CAQ         HAQ     109.000    1.62
+Q80         CAQ         CAT         SAU     113.180    3.00
+Q80         CAQ         CAT         HAT     108.376    1.50
+Q80         CAQ         CAT        HATA     108.376    1.50
+Q80         SAU         CAT         HAT     109.066    1.50
+Q80         SAU         CAT        HATA     109.066    1.50
+Q80         HAT         CAT        HATA     108.127    1.50
+Q80         CAT         SAU         CAV     120.000    3.00
+Q80         SAU         CAV         NAW     116.740    3.00
+Q80         SAU         CAV         CBA     120.187    2.83
+Q80         NAW         CAV         CBA     123.073    1.50
+Q80         CAV         CBA         CAZ     118.514    1.50
+Q80         CAV         CBA         HBA     120.757    1.50
+Q80         CAZ         CBA         HBA     120.729    1.50
+Q80         CAV         NAW         CAX     116.734    1.50
+Q80         NAW         CAX         CAY     123.129    1.50
+Q80         NAW         CAX         HAX     118.542    1.50
+Q80         CAY         CAX         HAX     118.328    1.50
+Q80         CAX         CAY         CBB     121.287    1.51
+Q80         CAX         CAY         CAZ     117.694    1.50
+Q80         CBB         CAY         CAZ     121.019    1.50
+Q80         CBA         CAZ         CAY     120.856    1.50
+Q80         CBA         CAZ         HAZ     119.782    1.50
+Q80         CAY         CAZ         HAZ     119.362    1.50
+Q80         CAY         CBB         FBE     112.783    1.50
+Q80         CAY         CBB         FBD     112.783    1.50
+Q80         CAY         CBB         FBC     112.783    1.50
+Q80         FBE         CBB         FBD     105.974    1.50
+Q80         FBE         CBB         FBC     105.974    1.50
+Q80         FBD         CBB         FBC     105.974    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Q80             sp3_sp3_5         CAT         CAQ         OAP         CAI     180.000    10.0     3
+Q80             sp2_sp3_8         CAO         NAK         CAJ         CAI     -90.000    10.0     6
+Q80              const_22         NAN         CAO         NAK         CAJ     180.000    10.0     2
+Q80              const_54         CAM         CAL         NAK         CAJ     180.000    10.0     2
+Q80              const_25         NAK         CAO         NAN         CAM       0.000    10.0     2
+Q80              const_27         CAL         CAM         NAN         CAO       0.000    10.0     2
+Q80              const_29         NAK         CAL         CAM         NAN       0.000    10.0     2
+Q80            sp3_sp3_16         CAQ         CAR         OAS         CAI     -60.000    10.0     3
+Q80            sp3_sp3_10         CAT         CAQ         CAR         OAS     -60.000    10.0     3
+Q80            sp3_sp3_49         OAP         CAQ         CAT         SAU     180.000    10.0     3
+Q80       const_sp2_sp2_3        CLBF         CAB         CAC         CAD     180.000     5.0     2
+Q80              const_50         CAF         CAA         CAB        CLBF     180.000    10.0     2
+Q80            sp3_sp3_58         CAQ         CAT         SAU         CAV     180.000    10.0     3
+Q80             sp2_sp2_1         NAW         CAV         SAU         CAT     180.000     5.0     2
+Q80              const_59         SAU         CAV         CBA         CAZ     180.000    10.0     2
+Q80              const_34         SAU         CAV         NAW         CAX     180.000    10.0     2
+Q80              const_45         CAY         CAZ         CBA         CAV       0.000    10.0     2
+Q80              const_35         CAY         CAX         NAW         CAV       0.000    10.0     2
+Q80              const_38         NAW         CAX         CAY         CBB     180.000    10.0     2
+Q80              const_43         CBB         CAY         CAZ         CBA     180.000    10.0     2
+Q80            sp2_sp3_13         CAX         CAY         CBB         FBE     150.000    10.0     6
+Q80       const_sp2_sp2_5         CAB         CAC         CAD         CAE       0.000     5.0     2
+Q80              const_10         CAC         CAD         CAE         CAG     180.000    10.0     2
+Q80              const_17         CAB         CAA         CAF         CAE       0.000    10.0     2
+Q80              const_15         CAG         CAE         CAF         CAA     180.000    10.0     2
+Q80             sp2_sp3_2         CAD         CAE         CAG         CAH     -90.000    10.0     6
+Q80            sp3_sp3_19         CAE         CAG         CAH         CAI     180.000    10.0     3
+Q80            sp3_sp3_30         CAG         CAH         CAI         CAJ      60.000    10.0     3
+Q80             sp3_sp3_2         CAH         CAI         OAP         CAQ     -60.000    10.0     3
+Q80            sp3_sp3_40         CAH         CAI         CAJ         NAK     180.000    10.0     3
+Q80            sp3_sp3_38         CAH         CAI         OAS         CAR      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+Q80    chir_1    CAI    OAP    OAS    CAJ    negative
+Q80    chir_2    CAQ    OAP    CAT    CAR    positive
+Q80    chir_3    CBB    FBE    FBD    FBC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+Q80    plan-1         CAJ   0.020
+Q80    plan-1         CAL   0.020
+Q80    plan-1         CAM   0.020
+Q80    plan-1         CAO   0.020
+Q80    plan-1         HAL   0.020
+Q80    plan-1         HAM   0.020
+Q80    plan-1         HAO   0.020
+Q80    plan-1         NAK   0.020
+Q80    plan-1         NAN   0.020
+Q80    plan-2         CAA   0.020
+Q80    plan-2         CAB   0.020
+Q80    plan-2         CAC   0.020
+Q80    plan-2         CAD   0.020
+Q80    plan-2         CAE   0.020
+Q80    plan-2         CAF   0.020
+Q80    plan-2         CAG   0.020
+Q80    plan-2        CLBF   0.020
+Q80    plan-2         HAA   0.020
+Q80    plan-2         HAC   0.020
+Q80    plan-2         HAD   0.020
+Q80    plan-2         HAF   0.020
+Q80    plan-3         CAV   0.020
+Q80    plan-3         CAX   0.020
+Q80    plan-3         CAY   0.020
+Q80    plan-3         CAZ   0.020
+Q80    plan-3         CBA   0.020
+Q80    plan-3         CBB   0.020
+Q80    plan-3         HAX   0.020
+Q80    plan-3         HAZ   0.020
+Q80    plan-3         HBA   0.020
+Q80    plan-3         NAW   0.020
+Q80    plan-3         SAU   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Q80           SMILES              ACDLabs 10.04                                                                                                                    FC(F)(F)c1ccc(nc1)SCC2OC(OC2)(Cn3cncc3)CCc4ccc(Cl)cc4
+Q80 SMILES_CANONICAL               CACTVS 3.341                                                                                                           FC(F)(F)c1ccc(SC[C@@H]2CO[C@@](CCc3ccc(Cl)cc3)(Cn4ccnc4)O2)nc1
+Q80           SMILES               CACTVS 3.341                                                                                                               FC(F)(F)c1ccc(SC[CH]2CO[C](CCc3ccc(Cl)cc3)(Cn4ccnc4)O2)nc1
+Q80 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                             c1cc(ccc1CC[C@]2(OC[C@H](O2)CSc3ccc(cn3)C(F)(F)F)Cn4ccnc4)Cl
+Q80           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                    c1cc(ccc1CCC2(OCC(O2)CSc3ccc(cn3)C(F)(F)F)Cn4ccnc4)Cl
+Q80            InChI                InChI  1.03 InChI=1S/C22H21ClF3N3O2S/c23-18-4-1-16(2-5-18)7-8-21(14-29-10-9-27-15-29)30-12-19(31-21)13-32-20-6-3-17(11-28-20)22(24,25)26/h1-6,9-11,15,19H,7-8,12-14H2/t19-,21+/m0/s1
+Q80         InChIKey                InChI  1.03                                                                                                                                              QJIXKBNNYAEGKH-PZJWPPBQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Q80 acedrg               243         "dictionary generator"                  
+Q80 acedrg_database      11          "data source"                           
+Q80 rdkit                2017.03.2   "Chemoinformatics tool"
+Q80 refmac5              5.8.0238    "optimization tool"                     

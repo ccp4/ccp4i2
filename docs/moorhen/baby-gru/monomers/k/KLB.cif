@@ -1,0 +1,250 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KLB     KLB      5-(1~{H}-imidazol-5-yl)-4-phenyl-thiophene-2-carboximidamide     NON-POLYMER     31     19     .     
+#
+data_comp_KLB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KLB     C12     C       CR16    0       -16.501     -22.056     -3.100      
+KLB     C13     C       CR16    0       -16.002     -21.574     -4.294      
+KLB     C14     C       CR16    0       -16.784     -20.761     -5.102      
+KLB     C11     C       CR16    0       -17.784     -21.726     -2.710      
+KLB     C10     C       CR16    0       -18.572     -20.913     -3.512      
+KLB     C15     C       CR5     0       -18.890     -20.908     -7.793      
+KLB     C17     C       CR15    0       -18.253     -21.977     -9.593      
+KLB     C19     C       CR15    0       -18.818     -22.252     -7.542      
+KLB     S01     S       S2      0       -20.219     -18.567     -7.504      
+KLB     C02     C       CR5     0       -19.257     -19.799     -6.934      
+KLB     C03     C       CR5     0       -18.920     -19.552     -5.578      
+KLB     C04     C       CR15    0       -19.500     -18.323     -5.096      
+KLB     C05     C       CR5     0       -20.248     -17.684     -6.083      
+KLB     C06     C       C       0       -21.004     -16.422     -6.035      
+KLB     N07     N       NH2     0       -21.038     -15.722     -4.877      
+KLB     N08     N       NH1     0       -21.645     -15.952     -7.062      
+KLB     C09     C       CR6     0       -18.084     -20.418     -4.724      
+KLB     N16     N       NR5     0       -18.524     -20.759     -9.107      
+KLB     N18     N       NRD5    0       -18.419     -22.907     -8.675      
+KLB     H1      H       H       0       -15.967     -22.609     -2.552      
+KLB     H2      H       H       0       -15.126     -21.798     -4.563      
+KLB     H3      H       H       0       -16.436     -20.436     -5.915      
+KLB     H4      H       H       0       -18.127     -22.054     -1.895      
+KLB     H5      H       H       0       -19.446     -20.693     -3.239      
+KLB     H6      H       H       0       -17.971     -22.148     -10.502     
+KLB     H7      H       H       0       -19.011     -22.682     -6.718      
+KLB     H8      H       H       0       -19.380     -18.003     -4.219      
+KLB     H9      H       H       0       -21.482     -14.975     -4.835      
+KLB     H10     H       H       0       -20.622     -16.012     -4.173      
+KLB     H11     H       H       0       -21.588     -16.448     -7.791      
+KLB     H12     H       H       0       -18.480     -19.995     -9.542      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KLB         C17         N16      SINGLE       y     1.337  0.0168     1.337  0.0168
+KLB         C17         N18      DOUBLE       y     1.314  0.0129     1.314  0.0129
+KLB         C15         N16      SINGLE       y     1.372  0.0100     1.372  0.0100
+KLB         C19         N18      SINGLE       y     1.368  0.0100     1.368  0.0100
+KLB         C06         N08      DOUBLE       n     1.288  0.0200     1.288  0.0200
+KLB         S01         C02      SINGLE       y     1.695  0.0200     1.695  0.0200
+KLB         S01         C05      SINGLE       y     1.695  0.0200     1.695  0.0200
+KLB         C15         C19      DOUBLE       y     1.371  0.0104     1.371  0.0104
+KLB         C15         C02      SINGLE       n     1.449  0.0166     1.449  0.0166
+KLB         C02         C03      DOUBLE       y     1.408  0.0200     1.408  0.0200
+KLB         C05         C06      SINGLE       n     1.467  0.0100     1.467  0.0100
+KLB         C06         N07      SINGLE       n     1.347  0.0152     1.347  0.0152
+KLB         C04         C05      DOUBLE       y     1.371  0.0200     1.371  0.0200
+KLB         C03         C04      SINGLE       y     1.404  0.0198     1.404  0.0198
+KLB         C03         C09      SINGLE       n     1.476  0.0100     1.476  0.0100
+KLB         C14         C09      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KLB         C10         C09      SINGLE       y     1.393  0.0100     1.393  0.0100
+KLB         C13         C14      SINGLE       y     1.384  0.0100     1.384  0.0100
+KLB         C11         C10      DOUBLE       y     1.384  0.0100     1.384  0.0100
+KLB         C12         C13      DOUBLE       y     1.376  0.0124     1.376  0.0124
+KLB         C12         C11      SINGLE       y     1.376  0.0114     1.376  0.0114
+KLB         C12          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+KLB         C13          H2      SINGLE       n     1.082  0.0130     0.943  0.0180
+KLB         C14          H3      SINGLE       n     1.082  0.0130     0.942  0.0125
+KLB         C11          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+KLB         C10          H5      SINGLE       n     1.082  0.0130     0.942  0.0125
+KLB         C17          H6      SINGLE       n     1.082  0.0130     0.967  0.0200
+KLB         C19          H7      SINGLE       n     1.082  0.0130     0.949  0.0200
+KLB         C04          H8      SINGLE       n     1.082  0.0130     0.941  0.0169
+KLB         N07          H9      SINGLE       n     1.016  0.0100     0.869  0.0200
+KLB         N07         H10      SINGLE       n     1.016  0.0100     0.869  0.0200
+KLB         N08         H11      SINGLE       n     1.016  0.0100     0.882  0.0200
+KLB         N16         H12      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KLB         C13         C12         C11     119.842    1.50
+KLB         C13         C12          H1     120.079    1.50
+KLB         C11         C12          H1     120.079    1.50
+KLB         C14         C13         C12     120.287    1.50
+KLB         C14         C13          H2     119.756    1.50
+KLB         C12         C13          H2     119.957    1.50
+KLB         C09         C14         C13     120.682    1.50
+KLB         C09         C14          H3     119.564    1.50
+KLB         C13         C14          H3     119.764    1.50
+KLB         C10         C11         C12     120.287    1.50
+KLB         C10         C11          H4     119.756    1.50
+KLB         C12         C11          H4     119.957    1.50
+KLB         C09         C10         C11     120.682    1.50
+KLB         C09         C10          H5     119.564    1.50
+KLB         C11         C10          H5     119.764    1.50
+KLB         N16         C15         C19     106.341    1.61
+KLB         N16         C15         C02     122.689    2.37
+KLB         C19         C15         C02     130.970    3.00
+KLB         N16         C17         N18     110.802    1.50
+KLB         N16         C17          H6     124.364    1.50
+KLB         N18         C17          H6     124.835    1.50
+KLB         N18         C19         C15     109.742    1.50
+KLB         N18         C19          H7     124.113    1.50
+KLB         C15         C19          H7     126.144    3.00
+KLB         C02         S01         C05     108.538    3.00
+KLB         S01         C02         C15     121.044    3.00
+KLB         S01         C02         C03     108.538    3.00
+KLB         C15         C02         C03     130.418    3.00
+KLB         C02         C03         C04     107.063    1.50
+KLB         C02         C03         C09     129.226    2.80
+KLB         C04         C03         C09     123.711    1.62
+KLB         C05         C04         C03     107.324    1.50
+KLB         C05         C04          H8     127.108    1.56
+KLB         C03         C04          H8     125.569    1.50
+KLB         S01         C05         C06     120.969    3.00
+KLB         S01         C05         C04     108.538    3.00
+KLB         C06         C05         C04     130.493    2.46
+KLB         N08         C06         C05     121.953    3.00
+KLB         N08         C06         N07     121.616    2.66
+KLB         C05         C06         N07     116.431    2.93
+KLB         C06         N07          H9     119.928    1.50
+KLB         C06         N07         H10     119.928    1.50
+KLB          H9         N07         H10     120.144    2.31
+KLB         C06         N08         H11     112.803    3.00
+KLB         C03         C09         C14     120.900    1.50
+KLB         C03         C09         C10     120.900    1.50
+KLB         C14         C09         C10     118.199    1.50
+KLB         C17         N16         C15     107.606    1.50
+KLB         C17         N16         H12     126.949    2.70
+KLB         C15         N16         H12     125.445    1.50
+KLB         C17         N18         C19     105.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KLB              const_15         C11         C12         C13         C14       0.000    10.0     2
+KLB              const_53         C10         C11         C12         C13       0.000    10.0     2
+KLB       const_sp2_sp2_7         C02         C03         C04         C05       0.000     5.0     2
+KLB            sp2_sp2_15         C02         C03         C09         C14     180.000     5.0     2
+KLB              const_12         C03         C04         C05         C06     180.000    10.0     2
+KLB            sp2_sp2_10         S01         C05         C06         N08     180.000     5.0     2
+KLB            sp2_sp2_13         N08         C06         N07          H9       0.000     5.0     2
+KLB             sp2_sp2_2         N07         C06         N08         H11       0.000     5.0     2
+KLB              const_19         C12         C13         C14         C09       0.000    10.0     2
+KLB              const_25         C03         C09         C14         C13     180.000    10.0     2
+KLB              const_31         C09         C10         C11         C12       0.000    10.0     2
+KLB              const_29         C03         C09         C10         C11     180.000    10.0     2
+KLB              const_35         C19         C15         N16         C17       0.000    10.0     2
+KLB              const_49         N16         C15         C19         N18       0.000    10.0     2
+KLB             sp2_sp2_5         S01         C02         C15         N16       0.000     5.0     2
+KLB              const_39         N18         C17         N16         C15       0.000    10.0     2
+KLB              const_43         N16         C17         N18         C19       0.000    10.0     2
+KLB              const_45         C15         C19         N18         C17       0.000    10.0     2
+KLB              const_48         C06         C05         S01         C02     180.000    10.0     2
+KLB       const_sp2_sp2_2         C15         C02         S01         C05     180.000     5.0     2
+KLB       const_sp2_sp2_3         S01         C02         C03         C04       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KLB    plan-1         C03   0.020
+KLB    plan-1         C09   0.020
+KLB    plan-1         C10   0.020
+KLB    plan-1         C11   0.020
+KLB    plan-1         C12   0.020
+KLB    plan-1         C13   0.020
+KLB    plan-1         C14   0.020
+KLB    plan-1          H1   0.020
+KLB    plan-1          H2   0.020
+KLB    plan-1          H3   0.020
+KLB    plan-1          H4   0.020
+KLB    plan-1          H5   0.020
+KLB    plan-2         C02   0.020
+KLB    plan-2         C03   0.020
+KLB    plan-2         C04   0.020
+KLB    plan-2         C05   0.020
+KLB    plan-2         C06   0.020
+KLB    plan-2         C09   0.020
+KLB    plan-2         C15   0.020
+KLB    plan-2          H8   0.020
+KLB    plan-2         S01   0.020
+KLB    plan-3         C02   0.020
+KLB    plan-3         C15   0.020
+KLB    plan-3         C17   0.020
+KLB    plan-3         C19   0.020
+KLB    plan-3         H12   0.020
+KLB    plan-3          H6   0.020
+KLB    plan-3          H7   0.020
+KLB    plan-3         N16   0.020
+KLB    plan-3         N18   0.020
+KLB    plan-4         C05   0.020
+KLB    plan-4         C06   0.020
+KLB    plan-4         N07   0.020
+KLB    plan-4         N08   0.020
+KLB    plan-5         C06   0.020
+KLB    plan-5         H10   0.020
+KLB    plan-5          H9   0.020
+KLB    plan-5         N07   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KLB            InChI                InChI  1.03 InChI=1S/C14H12N4S/c15-14(16)12-6-10(9-4-2-1-3-5-9)13(19-12)11-7-17-8-18-11/h1-8H,(H3,15,16)(H,17,18)
+KLB         InChIKey                InChI  1.03                                                                           FXABOLLAJZFHEL-UHFFFAOYSA-N
+KLB SMILES_CANONICAL               CACTVS 3.385                                                                   NC(=N)c1sc(c2[nH]cnc2)c(c1)c3ccccc3
+KLB           SMILES               CACTVS 3.385                                                                   NC(=N)c1sc(c2[nH]cnc2)c(c1)c3ccccc3
+KLB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                           "[H]/N=C(\c1cc(c(s1)c2cnc[nH]2)c3ccccc3)/N"
+KLB           SMILES "OpenEye OEToolkits" 2.0.7                                                                   c1ccc(cc1)c2cc(sc2c3cnc[nH]3)C(=N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KLB acedrg               243         "dictionary generator"                  
+KLB acedrg_database      11          "data source"                           
+KLB rdkit                2017.03.2   "Chemoinformatics tool"
+KLB refmac5              5.8.0238    "optimization tool"                     

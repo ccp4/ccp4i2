@@ -1,0 +1,426 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+C3R     C3R      Carolacton     NON-POLYMER     72     33     .     
+#
+data_comp_C3R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+C3R     C10     C       CH2     0       -57.716     9.126       -0.819      
+C3R     C13     C       CH3     0       -56.789     7.198       -3.138      
+C3R     C15     C       C       0       -56.586     4.679       -1.407      
+C3R     C17     C       C1      0       -57.495     3.959       -2.066      
+C3R     C20     C       C       0       -58.056     2.388       -3.908      
+C3R     C21     C       CH1     0       -57.201     2.161       -5.148      
+C3R     C22     C       CH3     0       -57.446     3.300       -6.136      
+C3R     C26     C       CH2     0       -56.569     0.438       -6.930      
+C3R     C01     C       CH3     0       -57.233     12.060      1.775       
+C3R     C02     C       CH1     0       -57.051     10.653      1.195       
+C3R     C03     C       C1      0       -57.547     9.603       2.158       
+C3R     C04     C       C1      0       -56.924     8.508       2.483       
+C3R     C05     C       CH1     0       -57.459     7.384       3.327       
+C3R     O06     O       OH1     0       -58.873     7.317       3.270       
+C3R     C07     C       CH1     0       -56.850     6.046       2.886       
+C3R     O08     O       OH1     0       -57.181     5.038       3.822       
+C3R     C09     C       CH2     0       -57.772     10.506      -0.165      
+C3R     C11     C       CH2     0       -56.323     8.572       -1.063      
+C3R     C12     C       CH1     0       -56.245     7.173       -1.710      
+C3R     C14     C       CH1     0       -56.916     6.064       -0.878      
+C3R     C16     C       CH3     0       -55.195     4.185       -1.104      
+C3R     C18     C       CH1     0       -57.362     2.540       -2.561      
+C3R     C19     C       CH3     0       -57.906     1.560       -1.515      
+C3R     C23     C       CH1     0       -57.482     0.782       -5.760      
+C3R     O24     O       O2      0       -57.291     -0.218      -4.743      
+C3R     C25     C       CH3     0       -58.441     -0.996      -4.437      
+C3R     C27     C       C       0       -56.859     -0.926      -7.536      
+C3R     O28     O       OC      -1      -57.991     -1.128      -8.019      
+C3R     O29     O       O       0       -55.953     -1.783      -7.524      
+C3R     O30     O       O       0       -59.266     2.440       -4.001      
+C3R     O31     O       O2      0       -56.518     6.158       0.521       
+C3R     C32     C       C       0       -57.327     5.662       1.487       
+C3R     O33     O       O       0       -58.310     4.986       1.304       
+C3R     H2      H       H       0       -58.214     8.493       -0.261      
+C3R     H1      H       H       0       -58.182     9.180       -1.681      
+C3R     H4      H       H       0       -57.703     6.865       -3.151      
+C3R     H3      H       H       0       -56.235     6.635       -3.705      
+C3R     H5      H       H       0       -56.777     8.108       -3.482      
+C3R     H6      H       H       0       -58.320     4.388       -2.247      
+C3R     H7      H       H       0       -56.243     2.178       -4.901      
+C3R     H10     H       H       0       -57.655     4.120       -5.654      
+C3R     H8      H       H       0       -58.190     3.071       -6.720      
+C3R     H9      H       H       0       -56.647     3.439       -6.673      
+C3R     H12     H       H       0       -55.638     0.461       -6.621      
+C3R     H11     H       H       0       -56.672     1.119       -7.627      
+C3R     H14     H       H       0       -57.689     12.010      2.633       
+C3R     H13     H       H       0       -57.759     12.603      1.163       
+C3R     H15     H       H       0       -56.360     12.471      1.900       
+C3R     H16     H       H       0       -56.085     10.502      1.058       
+C3R     H17     H       H       0       -58.386     9.767       2.559       
+C3R     H18     H       H       0       -56.041     8.409       2.160       
+C3R     H19     H       H       0       -57.194     7.550       4.265       
+C3R     H20     H       H       0       -59.153     6.769       3.853       
+C3R     H21     H       H       0       -55.865     6.144       2.866       
+C3R     H22     H       H       0       -56.744     5.171       4.536       
+C3R     H23     H       H       0       -57.386     11.154      -0.791      
+C3R     H24     H       H       0       -58.714     10.746      -0.044      
+C3R     H25     H       H       0       -55.847     8.542       -0.208      
+C3R     H26     H       H       0       -55.842     9.204       -1.638      
+C3R     H27     H       H       0       -55.287     6.942       -1.774      
+C3R     H28     H       H       0       -57.893     6.204       -0.946      
+C3R     H30     H       H       0       -54.647     4.915       -0.774      
+C3R     H31     H       H       0       -54.795     3.828       -1.912      
+C3R     H29     H       H       0       -55.239     3.487       -0.431      
+C3R     H32     H       H       0       -56.417     2.342       -2.687      
+C3R     H34     H       H       0       -58.531     2.017       -0.927      
+C3R     H35     H       H       0       -57.169     1.208       -0.989      
+C3R     H33     H       H       0       -58.363     0.824       -1.958      
+C3R     H36     H       H       0       -58.420     0.769       -6.068      
+C3R     H38     H       H       0       -58.217     -1.647      -3.751      
+C3R     H39     H       H       0       -58.741     -1.458      -5.236      
+C3R     H37     H       H       0       -59.148     -0.415      -4.113      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+C3R         C27         O29      DOUBLE       n     1.247  0.0187     1.247  0.0187
+C3R         C27         O28      SINGLE       n     1.247  0.0187     1.247  0.0187
+C3R         C26         C27      SINGLE       n     1.519  0.0109     1.519  0.0109
+C3R         C26         C23      SINGLE       n     1.521  0.0100     1.521  0.0100
+C3R         C21         C22      SINGLE       n     1.521  0.0173     1.521  0.0173
+C3R         C21         C23      SINGLE       n     1.531  0.0102     1.531  0.0102
+C3R         C23         O24      SINGLE       n     1.435  0.0104     1.435  0.0104
+C3R         C20         C21      SINGLE       n     1.519  0.0100     1.519  0.0100
+C3R         O24         C25      SINGLE       n     1.417  0.0200     1.417  0.0200
+C3R         C20         O30      DOUBLE       n     1.215  0.0107     1.215  0.0107
+C3R         C20         C18      SINGLE       n     1.521  0.0103     1.521  0.0103
+C3R         C13         C12      SINGLE       n     1.521  0.0135     1.521  0.0135
+C3R         C17         C18      SINGLE       n     1.506  0.0100     1.506  0.0100
+C3R         C18         C19      SINGLE       n     1.523  0.0200     1.523  0.0200
+C3R         C11         C12      SINGLE       n     1.538  0.0107     1.538  0.0107
+C3R         C12         C14      SINGLE       n     1.534  0.0100     1.534  0.0100
+C3R         C15         C17      DOUBLE       n     1.330  0.0100     1.330  0.0100
+C3R         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+C3R         C15         C16      SINGLE       n     1.499  0.0156     1.499  0.0156
+C3R         C15         C14      SINGLE       n     1.513  0.0100     1.513  0.0100
+C3R         C10         C09      SINGLE       n     1.523  0.0116     1.523  0.0116
+C3R         C14         O31      SINGLE       n     1.447  0.0139     1.447  0.0139
+C3R         C02         C09      SINGLE       n     1.541  0.0118     1.541  0.0118
+C3R         O31         C32      SINGLE       n     1.334  0.0200     1.334  0.0200
+C3R         C01         C02      SINGLE       n     1.530  0.0100     1.530  0.0100
+C3R         C02         C03      SINGLE       n     1.506  0.0100     1.506  0.0100
+C3R         C32         O33      DOUBLE       n     1.203  0.0150     1.203  0.0150
+C3R         C07         C32      SINGLE       n     1.524  0.0100     1.524  0.0100
+C3R         C03         C04      DOUBLE       n     1.297  0.0200     1.297  0.0200
+C3R         C04         C05      SINGLE       n     1.501  0.0100     1.501  0.0100
+C3R         C05         C07      SINGLE       n     1.532  0.0100     1.532  0.0100
+C3R         C07         O08      SINGLE       n     1.414  0.0100     1.414  0.0100
+C3R         C05         O06      SINGLE       n     1.415  0.0100     1.415  0.0100
+C3R         C10          H2      SINGLE       n     1.089  0.0100     0.981  0.0163
+C3R         C10          H1      SINGLE       n     1.089  0.0100     0.981  0.0163
+C3R         C13          H4      SINGLE       n     1.089  0.0100     0.973  0.0146
+C3R         C13          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+C3R         C13          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+C3R         C17          H6      SINGLE       n     1.082  0.0130     0.947  0.0200
+C3R         C21          H7      SINGLE       n     1.089  0.0100     0.990  0.0142
+C3R         C22         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+C3R         C22          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+C3R         C22          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+C3R         C26         H12      SINGLE       n     1.089  0.0100     0.981  0.0185
+C3R         C26         H11      SINGLE       n     1.089  0.0100     0.981  0.0185
+C3R         C01         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+C3R         C01         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+C3R         C01         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+C3R         C02         H16      SINGLE       n     1.089  0.0100     0.988  0.0135
+C3R         C03         H17      SINGLE       n     1.082  0.0130     0.945  0.0200
+C3R         C04         H18      SINGLE       n     1.082  0.0130     0.945  0.0200
+C3R         C05         H19      SINGLE       n     1.089  0.0100     0.989  0.0183
+C3R         O06         H20      SINGLE       n     0.970  0.0120     0.848  0.0200
+C3R         C07         H21      SINGLE       n     1.089  0.0100     0.990  0.0173
+C3R         O08         H22      SINGLE       n     0.970  0.0120     0.848  0.0200
+C3R         C09         H23      SINGLE       n     1.089  0.0100     0.980  0.0160
+C3R         C09         H24      SINGLE       n     1.089  0.0100     0.980  0.0160
+C3R         C11         H25      SINGLE       n     1.089  0.0100     0.981  0.0160
+C3R         C11         H26      SINGLE       n     1.089  0.0100     0.981  0.0160
+C3R         C12         H27      SINGLE       n     1.089  0.0100     0.989  0.0175
+C3R         C14         H28      SINGLE       n     1.089  0.0100     0.989  0.0134
+C3R         C16         H30      SINGLE       n     1.089  0.0100     0.971  0.0140
+C3R         C16         H31      SINGLE       n     1.089  0.0100     0.971  0.0140
+C3R         C16         H29      SINGLE       n     1.089  0.0100     0.971  0.0140
+C3R         C18         H32      SINGLE       n     1.089  0.0100     0.979  0.0200
+C3R         C19         H34      SINGLE       n     1.089  0.0100     0.972  0.0161
+C3R         C19         H35      SINGLE       n     1.089  0.0100     0.972  0.0161
+C3R         C19         H33      SINGLE       n     1.089  0.0100     0.972  0.0161
+C3R         C23         H36      SINGLE       n     1.089  0.0100     0.987  0.0151
+C3R         C25         H38      SINGLE       n     1.089  0.0100     0.971  0.0146
+C3R         C25         H39      SINGLE       n     1.089  0.0100     0.971  0.0146
+C3R         C25         H37      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+C3R         C11         C10         C09     114.183    2.57
+C3R         C11         C10          H2     108.762    1.50
+C3R         C11         C10          H1     108.762    1.50
+C3R         C09         C10          H2     108.762    1.50
+C3R         C09         C10          H1     108.762    1.50
+C3R          H2         C10          H1     107.646    1.50
+C3R         C12         C13          H4     109.636    1.50
+C3R         C12         C13          H3     109.636    1.50
+C3R         C12         C13          H5     109.636    1.50
+C3R          H4         C13          H3     109.411    1.50
+C3R          H4         C13          H5     109.411    1.50
+C3R          H3         C13          H5     109.411    1.50
+C3R         C17         C15         C16     123.714    1.50
+C3R         C17         C15         C14     121.203    1.50
+C3R         C16         C15         C14     115.084    2.59
+C3R         C18         C17         C15     125.660    3.00
+C3R         C18         C17          H6     117.601    2.09
+C3R         C15         C17          H6     116.739    1.50
+C3R         C21         C20         O30     120.694    1.66
+C3R         C21         C20         C18     117.749    2.45
+C3R         O30         C20         C18     121.557    1.50
+C3R         C22         C21         C23     112.124    1.77
+C3R         C22         C21         C20     108.824    1.85
+C3R         C22         C21          H7     108.296    1.70
+C3R         C23         C21         C20     110.746    2.23
+C3R         C23         C21          H7     107.398    1.50
+C3R         C20         C21          H7     109.337    1.83
+C3R         C21         C22         H10     109.528    1.50
+C3R         C21         C22          H8     109.528    1.50
+C3R         C21         C22          H9     109.528    1.50
+C3R         H10         C22          H8     109.411    1.50
+C3R         H10         C22          H9     109.411    1.50
+C3R          H8         C22          H9     109.411    1.50
+C3R         C27         C26         C23     111.511    2.91
+C3R         C27         C26         H12     108.816    1.50
+C3R         C27         C26         H11     108.816    1.50
+C3R         C23         C26         H12     108.544    1.56
+C3R         C23         C26         H11     108.544    1.56
+C3R         H12         C26         H11     107.737    1.50
+C3R         C02         C01         H14     109.470    1.50
+C3R         C02         C01         H13     109.470    1.50
+C3R         C02         C01         H15     109.470    1.50
+C3R         H14         C01         H13     109.411    1.50
+C3R         H14         C01         H15     109.411    1.50
+C3R         H13         C01         H15     109.411    1.50
+C3R         C09         C02         C01     111.018    1.50
+C3R         C09         C02         C03     109.635    1.50
+C3R         C09         C02         H16     108.719    1.50
+C3R         C01         C02         C03     110.393    1.50
+C3R         C01         C02         H16     108.370    1.50
+C3R         C03         C02         H16     107.709    1.50
+C3R         C02         C03         C04     126.726    2.23
+C3R         C02         C03         H17     116.091    1.50
+C3R         C04         C03         H17     117.183    1.78
+C3R         C03         C04         C05     125.347    1.80
+C3R         C03         C04         H18     117.491    1.78
+C3R         C05         C04         H18     117.162    1.50
+C3R         C04         C05         C07     110.759    1.79
+C3R         C04         C05         O06     110.754    1.50
+C3R         C04         C05         H19     108.518    1.50
+C3R         C07         C05         O06     110.056    1.52
+C3R         C07         C05         H19     108.487    1.50
+C3R         O06         C05         H19     108.666    1.50
+C3R         C05         O06         H20     109.416    1.50
+C3R         C32         C07         C05     109.766    1.73
+C3R         C32         C07         O08     110.656    1.92
+C3R         C32         C07         H21     108.572    1.50
+C3R         C05         C07         O08     110.056    1.52
+C3R         C05         C07         H21     108.487    1.50
+C3R         O08         C07         H21     108.747    1.50
+C3R         C07         O08         H22     108.941    3.00
+C3R         C10         C09         C02     114.798    1.57
+C3R         C10         C09         H23     108.469    1.50
+C3R         C10         C09         H24     108.469    1.50
+C3R         C02         C09         H23     108.885    1.50
+C3R         C02         C09         H24     108.885    1.50
+C3R         H23         C09         H24     107.657    1.50
+C3R         C12         C11         C10     115.586    1.50
+C3R         C12         C11         H25     108.647    1.58
+C3R         C12         C11         H26     108.647    1.58
+C3R         C10         C11         H25     108.469    1.50
+C3R         C10         C11         H26     108.469    1.50
+C3R         H25         C11         H26     107.657    1.50
+C3R         C13         C12         C11     111.118    1.50
+C3R         C13         C12         C14     111.041    1.50
+C3R         C13         C12         H27     107.528    1.50
+C3R         C11         C12         C14     111.094    2.85
+C3R         C11         C12         H27     107.675    1.50
+C3R         C14         C12         H27     107.221    1.50
+C3R         C12         C14         C15     111.511    2.91
+C3R         C12         C14         O31     108.298    2.88
+C3R         C12         C14         H28     108.757    2.66
+C3R         C15         C14         O31     110.354    2.51
+C3R         C15         C14         H28     108.257    1.50
+C3R         O31         C14         H28     109.237    1.50
+C3R         C15         C16         H30     109.466    1.50
+C3R         C15         C16         H31     109.466    1.50
+C3R         C15         C16         H29     109.466    1.50
+C3R         H30         C16         H31     109.342    1.50
+C3R         H30         C16         H29     109.342    1.50
+C3R         H31         C16         H29     109.342    1.50
+C3R         C20         C18         C17     111.575    3.00
+C3R         C20         C18         C19     111.511    2.91
+C3R         C20         C18         H32     108.124    1.50
+C3R         C17         C18         C19     110.138    1.50
+C3R         C17         C18         H32     108.523    1.50
+C3R         C19         C18         H32     108.406    1.60
+C3R         C18         C19         H34     109.571    1.50
+C3R         C18         C19         H35     109.571    1.50
+C3R         C18         C19         H33     109.571    1.50
+C3R         H34         C19         H35     109.411    1.50
+C3R         H34         C19         H33     109.411    1.50
+C3R         H35         C19         H33     109.411    1.50
+C3R         C26         C23         C21     112.581    1.77
+C3R         C26         C23         O24     108.044    3.00
+C3R         C26         C23         H36     108.825    1.50
+C3R         C21         C23         O24     108.156    1.61
+C3R         C21         C23         H36     107.902    1.50
+C3R         O24         C23         H36     108.724    1.50
+C3R         C23         O24         C25     114.258    1.50
+C3R         O24         C25         H38     109.461    1.50
+C3R         O24         C25         H39     109.461    1.50
+C3R         O24         C25         H37     109.461    1.50
+C3R         H38         C25         H39     109.532    1.53
+C3R         H38         C25         H37     109.532    1.53
+C3R         H39         C25         H37     109.532    1.53
+C3R         O29         C27         O28     123.492    1.50
+C3R         O29         C27         C26     118.254    1.50
+C3R         O28         C27         C26     118.254    1.50
+C3R         C14         O31         C32     116.394    1.84
+C3R         O31         C32         O33     124.638    1.85
+C3R         O31         C32         C07     112.486    2.07
+C3R         O33         C32         C07     122.876    1.80
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+C3R            sp3_sp3_79         C02         C09         C10         C11     180.000    10.0     3
+C3R            sp3_sp3_70         C09         C10         C11         C12     180.000    10.0     3
+C3R             sp2_sp2_7         C02         C03         C04         C05     180.000     5.0     2
+C3R            sp2_sp3_49         C03         C04         C05         C07       0.000    10.0     6
+C3R           sp3_sp3_121         C04         C05         O06         H20     180.000    10.0     3
+C3R           sp3_sp3_109         C04         C05         C07         C32     180.000    10.0     3
+C3R           sp3_sp3_118         C32         C07         O08         H22     180.000    10.0     3
+C3R            sp2_sp3_43         O31         C32         C07         C05       0.000    10.0     6
+C3R            sp3_sp3_52         C10         C11         C12         C13     180.000    10.0     3
+C3R            sp3_sp3_61         C13         C12         C14         C15     180.000    10.0     3
+C3R            sp3_sp3_88         C12         C14         O31         C32     180.000    10.0     3
+C3R            sp3_sp3_34         C11         C12         C13          H4     180.000    10.0     3
+C3R            sp3_sp3_43         C20         C18         C19         H34     180.000    10.0     3
+C3R            sp3_sp3_28         C26         C23         O24         C25     180.000    10.0     3
+C3R            sp3_sp3_31         H38         C25         O24         C23     180.000    10.0     3
+C3R            sp2_sp3_31         C17         C15         C14         C12       0.000    10.0     6
+C3R            sp2_sp3_25         C17         C15         C16         H30       0.000    10.0     6
+C3R             sp2_sp2_3         C16         C15         C17         C18       0.000     5.0     2
+C3R             sp2_sp2_5         O33         C32         O31         C14     180.000     5.0     2
+C3R            sp2_sp3_19         C15         C17         C18         C20       0.000    10.0     6
+C3R            sp2_sp3_13         C21         C20         C18         C17       0.000    10.0     6
+C3R             sp2_sp3_7         O30         C20         C21         C22       0.000    10.0     6
+C3R            sp3_sp3_19         C22         C21         C23         C26     180.000    10.0     3
+C3R            sp3_sp3_10         C23         C21         C22         H10     180.000    10.0     3
+C3R             sp3_sp3_1         C21         C23         C26         C27     180.000    10.0     3
+C3R             sp2_sp3_2         O29         C27         C26         C23     120.000    10.0     6
+C3R           sp3_sp3_100         H14         C01         C02         C09     180.000    10.0     3
+C3R            sp2_sp3_37         C04         C03         C02         C09       0.000    10.0     6
+C3R            sp3_sp3_91         C01         C02         C09         C10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+C3R    chir_1    C21    C20    C23    C22    negative
+C3R    chir_2    C02    C03    C09    C01    negative
+C3R    chir_3    C05    O06    C07    C04    negative
+C3R    chir_4    C07    O08    C32    C05    negative
+C3R    chir_5    C12    C14    C11    C13    positive
+C3R    chir_6    C14    O31    C15    C12    positive
+C3R    chir_7    C18    C20    C17    C19    negative
+C3R    chir_8    C23    O24    C21    C26    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+C3R    plan-1         C14   0.020
+C3R    plan-1         C15   0.020
+C3R    plan-1         C16   0.020
+C3R    plan-1         C17   0.020
+C3R    plan-2         C15   0.020
+C3R    plan-2         C17   0.020
+C3R    plan-2         C18   0.020
+C3R    plan-2          H6   0.020
+C3R    plan-3         C18   0.020
+C3R    plan-3         C20   0.020
+C3R    plan-3         C21   0.020
+C3R    plan-3         O30   0.020
+C3R    plan-4         C02   0.020
+C3R    plan-4         C03   0.020
+C3R    plan-4         C04   0.020
+C3R    plan-4         H17   0.020
+C3R    plan-5         C03   0.020
+C3R    plan-5         C04   0.020
+C3R    plan-5         C05   0.020
+C3R    plan-5         H18   0.020
+C3R    plan-6         C26   0.020
+C3R    plan-6         C27   0.020
+C3R    plan-6         O28   0.020
+C3R    plan-6         O29   0.020
+C3R    plan-7         C07   0.020
+C3R    plan-7         C32   0.020
+C3R    plan-7         O31   0.020
+C3R    plan-7         O33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+C3R            InChI                InChI  1.03 InChI=1S/C25H40O8/c1-14-8-7-9-15(2)24(33-25(31)23(30)19(26)11-10-14)17(4)12-16(3)22(29)18(5)20(32-6)13-21(27)28/h10-12,14-16,18-20,23-24,26,30H,7-9,13H2,1-6H3,(H,27,28)/b11-10+,17-12+/t14-,15+,16-,18-,19-,20-,23-,24+/m1/s1
+C3R         InChIKey                InChI  1.03                                                                                                                                                                                                    WCKOGWVWLFJJJX-ZCXGUVEESA-N
+C3R SMILES_CANONICAL               CACTVS 3.385                                                                                                                             CO[C@H](CC(O)=O)[C@@H](C)C(=O)[C@H](C)\C=C(C)\[C@H]1OC(=O)[C@H](O)[C@H](O)/C=C/[C@H](C)CCC[C@@H]1C
+C3R           SMILES               CACTVS 3.385                                                                                                                                           CO[CH](CC(O)=O)[CH](C)C(=O)[CH](C)C=C(C)[CH]1OC(=O)[CH](O)[CH](O)C=C[CH](C)CCC[CH]1C
+C3R SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                      C[C@@H]\1CCC[C@@H]([C@H](OC(=O)[C@@H]([C@@H](/C=C1)O)O)/C(=C/[C@@H](C)C(=O)[C@H](C)[C@@H](CC(=O)O)OC)/C)C
+C3R           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                 CC1CCCC(C(OC(=O)C(C(C=C1)O)O)C(=CC(C)C(=O)C(C)C(CC(=O)O)OC)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+C3R acedrg               243         "dictionary generator"                  
+C3R acedrg_database      11          "data source"                           
+C3R rdkit                2017.03.2   "Chemoinformatics tool"
+C3R refmac5              5.8.0238    "optimization tool"                     

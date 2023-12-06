@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EBP     EBP      "DIETHYL 4-METHYLBENZYLPHOSPHONATE"     NON-POLYMER     35     16     .     
+#
+data_comp_EBP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EBP     C1      C       CR6     0       34.089      -46.340     -4.679      
+EBP     C2      C       CR16    0       33.586      -45.415     -5.592      
+EBP     C3      C       CR16    0       34.373      -44.951     -6.636      
+EBP     C4      C       CR6     0       35.679      -45.387     -6.804      
+EBP     C5      C       CR16    0       36.179      -46.307     -5.893      
+EBP     C6      C       CR16    0       35.402      -46.779     -4.845      
+EBP     C7      C       CH2     0       33.238      -46.849     -3.538      
+EBP     C8      C       CH3     0       36.526      -44.875     -7.943      
+EBP     C9      C       CH2     0       32.908      -50.696     -4.838      
+EBP     C10     C       CH3     0       32.976      -51.605     -3.674      
+EBP     C11     C       CH2     0       30.185      -47.241     -5.196      
+EBP     C12     C       CH3     0       29.709      -46.938     -6.561      
+EBP     P       P       P       0       32.259      -48.285     -3.959      
+EBP     O1      O       O2      0       33.310      -49.356     -4.434      
+EBP     O2      O       O2      0       31.495      -47.868     -5.269      
+EBP     O3      O       O       0       31.372      -48.761     -2.893      
+EBP     H2      H       H       0       32.702      -45.103     -5.501      
+EBP     H3      H       H       0       34.016      -44.327     -7.244      
+EBP     H5      H       H       0       37.064      -46.617     -5.989      
+EBP     H6      H       H       0       35.765      -47.404     -4.240      
+EBP     H71     H       H       0       32.641      -46.131     -3.248      
+EBP     H72     H       H       0       33.823      -47.072     -2.786      
+EBP     H81     H       H       0       37.387      -45.324     -7.940      
+EBP     H82     H       H       0       36.662      -43.919     -7.842      
+EBP     H83     H       H       0       36.076      -45.048     -8.786      
+EBP     H91     H       H       0       31.995      -50.679     -5.192      
+EBP     H92     H       H       0       33.506      -51.020     -5.544      
+EBP     H101    H       H       0       32.598      -52.466     -3.914      
+EBP     H102    H       H       0       32.472      -51.225     -2.936      
+EBP     H103    H       H       0       33.902      -51.721     -3.407      
+EBP     H111    H       H       0       29.554      -47.845     -4.751      
+EBP     H112    H       H       0       30.242      -46.415     -4.673      
+EBP     H121    H       H       0       28.866      -46.458     -6.510      
+EBP     H122    H       H       0       29.580      -47.766     -7.051      
+EBP     H123    H       H       0       30.366      -46.390     -7.019      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EBP          C1          C2      DOUBLE       y     1.391  0.0100     1.391  0.0100
+EBP          C1          C6      SINGLE       y     1.391  0.0100     1.391  0.0100
+EBP          C1          C7      SINGLE       n     1.511  0.0100     1.511  0.0100
+EBP          C2          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+EBP          C3          C4      DOUBLE       y     1.382  0.0115     1.382  0.0115
+EBP          C4          C5      SINGLE       y     1.382  0.0115     1.382  0.0115
+EBP          C4          C8      SINGLE       n     1.507  0.0176     1.507  0.0176
+EBP          C5          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+EBP          C7           P      SINGLE       n     1.788  0.0100     1.788  0.0100
+EBP          C9         C10      SINGLE       n     1.477  0.0200     1.477  0.0200
+EBP          C9          O1      SINGLE       n     1.454  0.0173     1.454  0.0173
+EBP         C11         C12      SINGLE       n     1.477  0.0200     1.477  0.0200
+EBP         C11          O2      SINGLE       n     1.454  0.0173     1.454  0.0173
+EBP           P          O1      SINGLE       n     1.573  0.0100     1.573  0.0100
+EBP           P          O2      SINGLE       n     1.573  0.0100     1.573  0.0100
+EBP           P          O3      DOUBLE       n     1.466  0.0100     1.466  0.0100
+EBP          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0167
+EBP          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0167
+EBP          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0167
+EBP          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0167
+EBP          C7         H71      SINGLE       n     1.089  0.0100     0.978  0.0126
+EBP          C7         H72      SINGLE       n     1.089  0.0100     0.978  0.0126
+EBP          C8         H81      SINGLE       n     1.089  0.0100     0.971  0.0135
+EBP          C8         H82      SINGLE       n     1.089  0.0100     0.971  0.0135
+EBP          C8         H83      SINGLE       n     1.089  0.0100     0.971  0.0135
+EBP          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0146
+EBP          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0146
+EBP         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0156
+EBP         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0156
+EBP         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0156
+EBP         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0146
+EBP         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0146
+EBP         C12        H121      SINGLE       n     1.089  0.0100     0.971  0.0156
+EBP         C12        H122      SINGLE       n     1.089  0.0100     0.971  0.0156
+EBP         C12        H123      SINGLE       n     1.089  0.0100     0.971  0.0156
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EBP          C2          C1          C6     118.266    1.50
+EBP          C2          C1          C7     120.867    1.50
+EBP          C6          C1          C7     120.867    1.50
+EBP          C1          C2          C3     120.723    1.50
+EBP          C1          C2          H2     119.657    1.50
+EBP          C3          C2          H2     119.620    1.50
+EBP          C2          C3          C4     121.236    1.50
+EBP          C2          C3          H3     119.513    1.50
+EBP          C4          C3          H3     119.251    1.50
+EBP          C3          C4          C5     117.817    1.50
+EBP          C3          C4          C8     121.091    1.50
+EBP          C5          C4          C8     121.091    1.50
+EBP          C4          C5          C6     121.236    1.50
+EBP          C4          C5          H5     119.251    1.50
+EBP          C6          C5          H5     119.513    1.50
+EBP          C1          C6          C5     120.723    1.50
+EBP          C1          C6          H6     119.657    1.50
+EBP          C5          C6          H6     119.620    1.50
+EBP          C1          C7           P     113.296    1.58
+EBP          C1          C7         H71     108.564    1.50
+EBP          C1          C7         H72     108.564    1.50
+EBP           P          C7         H71     108.829    1.50
+EBP           P          C7         H72     108.829    1.50
+EBP         H71          C7         H72     107.558    1.50
+EBP          C4          C8         H81     109.567    1.50
+EBP          C4          C8         H82     109.567    1.50
+EBP          C4          C8         H83     109.567    1.50
+EBP         H81          C8         H82     109.348    1.50
+EBP         H81          C8         H83     109.348    1.50
+EBP         H82          C8         H83     109.348    1.50
+EBP         C10          C9          O1     109.352    2.81
+EBP         C10          C9         H91     109.788    1.50
+EBP         C10          C9         H92     109.788    1.50
+EBP          O1          C9         H91     109.728    1.50
+EBP          O1          C9         H92     109.728    1.50
+EBP         H91          C9         H92     108.343    1.50
+EBP          C9         C10        H101     109.474    1.50
+EBP          C9         C10        H102     109.474    1.50
+EBP          C9         C10        H103     109.474    1.50
+EBP        H101         C10        H102     109.410    1.50
+EBP        H101         C10        H103     109.410    1.50
+EBP        H102         C10        H103     109.410    1.50
+EBP         C12         C11          O2     109.352    2.81
+EBP         C12         C11        H111     109.788    1.50
+EBP         C12         C11        H112     109.788    1.50
+EBP          O2         C11        H111     109.728    1.50
+EBP          O2         C11        H112     109.728    1.50
+EBP        H111         C11        H112     108.343    1.50
+EBP         C11         C12        H121     109.474    1.50
+EBP         C11         C12        H122     109.474    1.50
+EBP         C11         C12        H123     109.474    1.50
+EBP        H121         C12        H122     109.410    1.50
+EBP        H121         C12        H123     109.410    1.50
+EBP        H122         C12        H123     109.410    1.50
+EBP          C7           P          O1     104.493    2.64
+EBP          C7           P          O2     104.493    2.64
+EBP          C7           P          O3     115.002    1.50
+EBP          O1           P          O2     104.480    3.00
+EBP          O1           P          O3     113.658    2.71
+EBP          O2           P          O3     113.658    2.71
+EBP          C9          O1           P     120.853    2.18
+EBP         C11          O2           P     120.853    2.18
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EBP       const_sp2_sp2_3          C7          C1          C2          C3     180.000     5.0     2
+EBP              const_23          C7          C1          C6          C5     180.000    10.0     2
+EBP             sp2_sp3_2          C2          C1          C7           P     -90.000    10.0     6
+EBP            sp3_sp3_22          O2         C11         C12        H121     180.000    10.0     3
+EBP            sp3_sp3_31         C12         C11          O2           P     180.000    10.0     3
+EBP            sp3_sp3_36          C9          O1           P          C7      60.000    10.0     3
+EBP            sp3_sp3_39         C11          O2           P          C7      60.000    10.0     3
+EBP       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+EBP              const_10          C2          C3          C4          C8     180.000    10.0     2
+EBP              const_15          C8          C4          C5          C6     180.000    10.0     2
+EBP             sp2_sp3_7          C3          C4          C8         H81     150.000    10.0     6
+EBP              const_17          C4          C5          C6          C1       0.000    10.0     2
+EBP             sp3_sp3_1          C1          C7           P          O1     180.000    10.0     3
+EBP            sp3_sp3_19         C10          C9          O1           P     180.000    10.0     3
+EBP            sp3_sp3_10        H101         C10          C9          O1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EBP    chir_1    P    O1    O2    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EBP    plan-1          C1   0.020
+EBP    plan-1          C2   0.020
+EBP    plan-1          C3   0.020
+EBP    plan-1          C4   0.020
+EBP    plan-1          C5   0.020
+EBP    plan-1          C6   0.020
+EBP    plan-1          C7   0.020
+EBP    plan-1          C8   0.020
+EBP    plan-1          H2   0.020
+EBP    plan-1          H3   0.020
+EBP    plan-1          H5   0.020
+EBP    plan-1          H6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EBP           SMILES              ACDLabs 10.04                                                          O=P(OCC)(OCC)Cc1ccc(cc1)C
+EBP SMILES_CANONICAL               CACTVS 3.341                                                        CCO[P](=O)(Cc1ccc(C)cc1)OCC
+EBP           SMILES               CACTVS 3.341                                                        CCO[P](=O)(Cc1ccc(C)cc1)OCC
+EBP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          CCOP(=O)(Cc1ccc(cc1)C)OCC
+EBP           SMILES "OpenEye OEToolkits" 1.5.0                                                          CCOP(=O)(Cc1ccc(cc1)C)OCC
+EBP            InChI                InChI  1.03 InChI=1S/C12H19O3P/c1-4-14-16(13,15-5-2)10-12-8-6-11(3)7-9-12/h6-9H,4-5,10H2,1-3H3
+EBP         InChIKey                InChI  1.03                                                        QKGBKPZAXXBLJE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EBP acedrg               243         "dictionary generator"                  
+EBP acedrg_database      11          "data source"                           
+EBP rdkit                2017.03.2   "Chemoinformatics tool"
+EBP refmac5              5.8.0238    "optimization tool"                     

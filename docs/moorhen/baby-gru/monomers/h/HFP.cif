@@ -1,0 +1,299 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HFP     HFP      "ALPHA-HYDROXYFARNESYLPHOSPHONIC ACID"     NON-POLYMER     51     20     .     
+#
+data_comp_HFP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HFP     P       P       P       0       197.454     127.400     32.415      
+HFP     O1P     O       O       0       198.459     128.414     31.983      
+HFP     O2P     O       OP      -1      198.022     126.448     33.412      
+HFP     O3P     O       OP      -1      196.205     128.042     32.914      
+HFP     C1      C       CH1     0       197.013     126.422     30.938      
+HFP     O1      O       OH1     0       196.961     127.291     29.824      
+HFP     C2      C       CH2     0       195.675     125.708     31.102      
+HFP     C3      C       CH1     0       195.263     124.751     29.983      
+HFP     C4      C       CH3     0       196.144     123.510     29.964      
+HFP     C5      C       CH2     0       193.771     124.389     30.059      
+HFP     C6      C       CH2     0       193.323     123.640     31.297      
+HFP     C7      C       CH2     0       191.846     123.329     31.319      
+HFP     C8      C       CH1     0       191.372     122.465     32.491      
+HFP     C9      C       CH3     0       191.397     123.238     33.802      
+HFP     C10     C       CH2     0       189.995     121.835     32.225      
+HFP     C11     C       CH2     0       188.837     122.797     32.063      
+HFP     C12     C       CH2     0       187.522     122.119     31.763      
+HFP     C13     C       CH1     0       186.296     123.033     31.757      
+HFP     C14     C       CH3     0       186.307     123.964     30.554      
+HFP     C15     C       CH3     0       185.006     122.228     31.791      
+HFP     H1      H       H       0       197.722     125.747     30.780      
+HFP     HO1     H       H       0       197.145     126.857     29.119      
+HFP     H21     H       H       0       194.975     126.389     31.191      
+HFP     H22     H       H       0       195.700     125.203     31.941      
+HFP     H3      H       H       0       195.393     125.225     29.125      
+HFP     H41     H       H       0       195.766     122.852     29.354      
+HFP     H42     H       H       0       196.193     123.130     30.858      
+HFP     H43     H       H       0       197.038     123.749     29.665      
+HFP     H51     H       H       0       193.548     123.846     29.274      
+HFP     H52     H       H       0       193.252     125.220     29.999      
+HFP     H61     H       H       0       193.542     124.173     32.090      
+HFP     H62     H       H       0       193.821     122.797     31.358      
+HFP     H71     H       H       0       191.615     122.870     30.483      
+HFP     H72     H       H       0       191.352     124.175     31.339      
+HFP     H8      H       H       0       192.014     121.717     32.570      
+HFP     H91     H       H       0       191.016     122.691     34.511      
+HFP     H92     H       H       0       190.876     124.054     33.709      
+HFP     H93     H       H       0       192.316     123.465     34.028      
+HFP     H101    H       H       0       189.788     121.228     32.967      
+HFP     H102    H       H       0       190.060     121.292     31.410      
+HFP     H111    H       H       0       189.040     123.422     31.335      
+HFP     H112    H       H       0       188.738     123.320     32.886      
+HFP     H121    H       H       0       187.379     121.414     32.429      
+HFP     H122    H       H       0       187.590     121.688     30.884      
+HFP     H13     H       H       0       186.329     123.590     32.573      
+HFP     H141    H       H       0       185.475     124.468     30.525      
+HFP     H142    H       H       0       186.397     123.441     29.739      
+HFP     H143    H       H       0       187.057     124.581     30.628      
+HFP     H151    H       H       0       184.984     121.683     32.597      
+HFP     H152    H       H       0       184.963     121.650     31.009      
+HFP     H153    H       H       0       184.245     122.833     31.789      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HFP           P         O1P      DOUBLE       n     1.492  0.0200     1.492  0.0200
+HFP           P         O2P      SINGLE       n     1.492  0.0200     1.492  0.0200
+HFP           P         O3P      SINGLE       n     1.492  0.0200     1.492  0.0200
+HFP           P          C1      SINGLE       n     1.823  0.0200     1.823  0.0200
+HFP          C1          O1      SINGLE       n     1.413  0.0104     1.413  0.0104
+HFP          C1          C2      SINGLE       n     1.524  0.0129     1.524  0.0129
+HFP          C2          C3      SINGLE       n     1.527  0.0128     1.527  0.0128
+HFP          C3          C4      SINGLE       n     1.521  0.0151     1.521  0.0151
+HFP          C3          C5      SINGLE       n     1.530  0.0200     1.530  0.0200
+HFP          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+HFP          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+HFP          C7          C8      SINGLE       n     1.530  0.0200     1.530  0.0200
+HFP          C8          C9      SINGLE       n     1.521  0.0151     1.521  0.0151
+HFP          C8         C10      SINGLE       n     1.530  0.0200     1.530  0.0200
+HFP         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+HFP         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+HFP         C12         C13      SINGLE       n     1.529  0.0177     1.529  0.0177
+HFP         C13         C14      SINGLE       n     1.521  0.0151     1.521  0.0151
+HFP         C13         C15      SINGLE       n     1.521  0.0151     1.521  0.0151
+HFP          C1          H1      SINGLE       n     1.089  0.0100     0.992  0.0156
+HFP          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+HFP          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0160
+HFP          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0160
+HFP          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0162
+HFP          C4         H41      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP          C4         H42      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP          C4         H43      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+HFP          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+HFP          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP          C8          H8      SINGLE       n     1.089  0.0100     0.989  0.0162
+HFP          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+HFP         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+HFP         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0160
+HFP         C13         H13      SINGLE       n     1.089  0.0100     0.989  0.0162
+HFP         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP         C15        H151      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP         C15        H152      SINGLE       n     1.089  0.0100     0.973  0.0146
+HFP         C15        H153      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HFP         O1P           P         O2P     112.502    1.50
+HFP         O1P           P         O3P     112.502    1.50
+HFP         O1P           P          C1     110.326    3.00
+HFP         O2P           P         O3P     112.502    1.50
+HFP         O2P           P          C1     110.326    3.00
+HFP         O3P           P          C1     110.326    3.00
+HFP           P          C1          O1     108.256    2.94
+HFP           P          C1          C2     111.410    2.87
+HFP           P          C1          H1     108.528    1.50
+HFP          O1          C1          C2     109.182    2.31
+HFP          O1          C1          H1     108.198    1.81
+HFP          C2          C1          H1     108.563    1.50
+HFP          C1          O1         HO1     109.133    3.00
+HFP          C1          C2          C3     116.527    2.06
+HFP          C1          C2         H21     108.492    1.50
+HFP          C1          C2         H22     108.492    1.50
+HFP          C3          C2         H21     108.471    1.50
+HFP          C3          C2         H22     108.471    1.50
+HFP         H21          C2         H22     107.715    1.50
+HFP          C2          C3          C4     111.118    1.50
+HFP          C2          C3          C5     111.631    1.85
+HFP          C2          C3          H3     107.675    1.50
+HFP          C4          C3          C5     111.605    1.50
+HFP          C4          C3          H3     108.064    1.50
+HFP          C5          C3          H3     107.002    1.69
+HFP          C3          C4         H41     109.656    1.50
+HFP          C3          C4         H42     109.656    1.50
+HFP          C3          C4         H43     109.656    1.50
+HFP         H41          C4         H42     109.411    1.50
+HFP         H41          C4         H43     109.411    1.50
+HFP         H42          C4         H43     109.411    1.50
+HFP          C3          C5          C6     115.586    1.50
+HFP          C3          C5         H51     108.410    1.50
+HFP          C3          C5         H52     108.410    1.50
+HFP          C6          C5         H51     108.469    1.50
+HFP          C6          C5         H52     108.469    1.50
+HFP         H51          C5         H52     107.657    1.50
+HFP          C5          C6          C7     114.183    2.57
+HFP          C5          C6         H61     108.762    1.50
+HFP          C5          C6         H62     108.762    1.50
+HFP          C7          C6         H61     108.762    1.50
+HFP          C7          C6         H62     108.762    1.50
+HFP         H61          C6         H62     107.646    1.50
+HFP          C6          C7          C8     115.586    1.50
+HFP          C6          C7         H71     108.469    1.50
+HFP          C6          C7         H72     108.469    1.50
+HFP          C8          C7         H71     108.410    1.50
+HFP          C8          C7         H72     108.410    1.50
+HFP         H71          C7         H72     107.657    1.50
+HFP          C7          C8          C9     111.605    1.50
+HFP          C7          C8         C10     111.631    1.85
+HFP          C7          C8          H8     107.002    1.69
+HFP          C9          C8         C10     111.605    1.50
+HFP          C9          C8          H8     108.064    1.50
+HFP         C10          C8          H8     107.002    1.69
+HFP          C8          C9         H91     109.656    1.50
+HFP          C8          C9         H92     109.656    1.50
+HFP          C8          C9         H93     109.656    1.50
+HFP         H91          C9         H92     109.411    1.50
+HFP         H91          C9         H93     109.411    1.50
+HFP         H92          C9         H93     109.411    1.50
+HFP          C8         C10         C11     115.586    1.50
+HFP          C8         C10        H101     108.410    1.50
+HFP          C8         C10        H102     108.410    1.50
+HFP         C11         C10        H101     108.469    1.50
+HFP         C11         C10        H102     108.469    1.50
+HFP        H101         C10        H102     107.657    1.50
+HFP         C10         C11         C12     114.183    2.57
+HFP         C10         C11        H111     108.762    1.50
+HFP         C10         C11        H112     108.762    1.50
+HFP         C12         C11        H111     108.762    1.50
+HFP         C12         C11        H112     108.762    1.50
+HFP        H111         C11        H112     107.646    1.50
+HFP         C11         C12         C13     115.585    1.50
+HFP         C11         C12        H121     108.469    1.50
+HFP         C11         C12        H122     108.469    1.50
+HFP         C13         C12        H121     108.407    1.50
+HFP         C13         C12        H122     108.407    1.50
+HFP        H121         C12        H122     107.657    1.50
+HFP         C12         C13         C14     111.368    1.50
+HFP         C12         C13         C15     111.368    1.50
+HFP         C12         C13         H13     107.933    1.50
+HFP         C14         C13         C15     110.507    1.50
+HFP         C14         C13         H13     108.052    1.50
+HFP         C15         C13         H13     108.052    1.50
+HFP         C13         C14        H141     109.488    1.50
+HFP         C13         C14        H142     109.488    1.50
+HFP         C13         C14        H143     109.488    1.50
+HFP        H141         C14        H142     109.411    1.50
+HFP        H141         C14        H143     109.411    1.50
+HFP        H142         C14        H143     109.411    1.50
+HFP         C13         C15        H151     109.488    1.50
+HFP         C13         C15        H152     109.488    1.50
+HFP         C13         C15        H153     109.488    1.50
+HFP        H151         C15        H152     109.411    1.50
+HFP        H151         C15        H153     109.411    1.50
+HFP        H152         C15        H153     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HFP             sp3_sp3_3          O1          C1           P         O1P      60.000    10.0     3
+HFP            sp3_sp3_58          C5          C6          C7          C8     180.000    10.0     3
+HFP            sp3_sp3_67          C6          C7          C8          C9     180.000    10.0     3
+HFP            sp3_sp3_76          C7          C8          C9         H91     180.000    10.0     3
+HFP            sp3_sp3_85         C11         C10          C8          C7     180.000    10.0     3
+HFP            sp3_sp3_94          C8         C10         C11         C12     180.000    10.0     3
+HFP           sp3_sp3_103         C10         C11         C12         C13     180.000    10.0     3
+HFP           sp3_sp3_113         C11         C12         C13         C14     -60.000    10.0     3
+HFP           sp3_sp3_121         C12         C13         C14        H141     180.000    10.0     3
+HFP           sp3_sp3_133         C12         C13         C15        H151      60.000    10.0     3
+HFP            sp3_sp3_10           P          C1          O1         HO1     180.000    10.0     3
+HFP            sp3_sp3_13           P          C1          C2          C3     180.000    10.0     3
+HFP            sp3_sp3_22          C1          C2          C3          C4     180.000    10.0     3
+HFP            sp3_sp3_31          C2          C3          C4         H41     180.000    10.0     3
+HFP            sp3_sp3_40          C2          C3          C5          C6     180.000    10.0     3
+HFP            sp3_sp3_49          C3          C5          C6          C7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HFP    chir_1    P    O2P    O3P    O1P    both
+HFP    chir_2    C1    P    O1    C2    positive
+HFP    chir_3    C3    C2    C5    C4    positive
+HFP    chir_4    C8    C7    C10    C9    positive
+HFP    chir_5    C13    C12    C14    C15    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HFP           SMILES              ACDLabs 10.04                                                                                            O=P(O)(O)C(O)CC(CCCC(C)CCCC(C)C)C
+HFP SMILES_CANONICAL               CACTVS 3.341                                                                           CC(C)CCC[C@@H](C)CCC[C@@H](C)C[C@@H](O)[P](O)(O)=O
+HFP           SMILES               CACTVS 3.341                                                                                 CC(C)CCC[CH](C)CCC[CH](C)C[CH](O)[P](O)(O)=O
+HFP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                       CC(C)CCCC(C)CCCC(C)C[C@@H](O)P(=O)(O)O
+HFP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                            CC(C)CCCC(C)CCCC(C)CC(O)P(=O)(O)O
+HFP            InChI                InChI  1.03 InChI=1S/C15H33O4P/c1-12(2)7-5-8-13(3)9-6-10-14(4)11-15(16)20(17,18)19/h12-16H,5-11H2,1-4H3,(H2,17,18,19)/t13-,14-,15+/m1/s1
+HFP         InChIKey                InChI  1.03                                                                                                  IJNCEETVCWDDQB-KFWWJZLASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HFP acedrg               243         "dictionary generator"                  
+HFP acedrg_database      11          "data source"                           
+HFP rdkit                2017.03.2   "Chemoinformatics tool"
+HFP refmac5              5.8.0238    "optimization tool"                     

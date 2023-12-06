@@ -1,0 +1,156 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+02T     02T      1-(3-methylthiophen-2-yl)methanamine     NON-POLYMER     17     8     .     
+#
+data_comp_02T
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+02T     C4      C       CR15    0       8.141       -133.001    13.513      
+02T     C5      C       CR15    0       9.312       -132.616    12.941      
+02T     C6      C       CR5     0       10.217      -133.725    12.766      
+02T     C7      C       CH3     0       11.581      -133.585    12.159      
+02T     S3      S       S2      0       8.121       -134.637    13.834      
+02T     C1      C       CR5     0       9.648       -134.934    13.239      
+02T     C2      C       CH2     0       10.213      -136.317    13.262      
+02T     N29     N       NT2     0       11.189      -136.541    14.337      
+02T     H4      H       H       0       7.403       -132.454    13.723      
+02T     H5      H       H       0       9.518       -131.733    12.685      
+02T     H7      H       H       0       12.021      -134.450    12.131      
+02T     H7A     H       H       0       12.115      -132.973    12.690      
+02T     H7B     H       H       0       11.503      -133.238    11.255      
+02T     H2      H       H       0       10.657      -136.498    12.405      
+02T     H2A     H       H       0       9.484       -136.964    13.370      
+02T     HN29    H       H       0       10.754      -136.338    15.106      
+02T     H1      H       H       0       11.833      -135.916    14.215      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+02T          C4          C5      DOUBLE       y     1.343  0.0200     1.343  0.0200
+02T          C4          S3      SINGLE       y     1.695  0.0200     1.695  0.0200
+02T          C5          C6      SINGLE       y     1.430  0.0113     1.430  0.0113
+02T          C6          C7      SINGLE       n     1.499  0.0100     1.499  0.0100
+02T          C6          C1      DOUBLE       y     1.402  0.0200     1.402  0.0200
+02T          S3          C1      SINGLE       y     1.695  0.0200     1.695  0.0200
+02T          C1          C2      SINGLE       n     1.493  0.0100     1.493  0.0100
+02T          C2         N29      SINGLE       n     1.467  0.0144     1.467  0.0144
+02T          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0200
+02T          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0153
+02T          C7          H7      SINGLE       n     1.089  0.0100     0.971  0.0172
+02T          C7         H7A      SINGLE       n     1.089  0.0100     0.971  0.0172
+02T          C7         H7B      SINGLE       n     1.089  0.0100     0.971  0.0172
+02T          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0105
+02T          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0105
+02T         N29        HN29      SINGLE       n     1.036  0.0160     0.905  0.0200
+02T         N29          H1      SINGLE       n     1.036  0.0160     0.905  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+02T          C5          C4          S3     108.361    3.00
+02T          C5          C4          H4     128.447    2.40
+02T          S3          C4          H4     123.192    3.00
+02T          C4          C5          C6     107.934    1.50
+02T          C4          C5          H5     126.655    1.50
+02T          C6          C5          H5     125.411    1.50
+02T          C5          C6          C7     124.786    1.50
+02T          C5          C6          C1     106.983    1.50
+02T          C7          C6          C1     128.231    2.46
+02T          C6          C7          H7     109.729    1.50
+02T          C6          C7         H7A     109.729    1.50
+02T          C6          C7         H7B     109.729    1.50
+02T          H7          C7         H7A     109.190    1.68
+02T          H7          C7         H7B     109.190    1.68
+02T         H7A          C7         H7B     109.190    1.68
+02T          C4          S3          C1     108.361    3.00
+02T          C6          C1          S3     108.361    3.00
+02T          C6          C1          C2     130.371    3.00
+02T          S3          C1          C2     121.268    3.00
+02T          C1          C2         N29     112.622    2.07
+02T          C1          C2          H2     108.978    1.50
+02T          C1          C2         H2A     108.978    1.50
+02T         N29          C2          H2     107.542    2.93
+02T         N29          C2         H2A     107.542    2.93
+02T          H2          C2         H2A     107.966    1.50
+02T          C2         N29        HN29     104.789    3.00
+02T          C2         N29          H1     104.789    3.00
+02T        HN29         N29          H1     107.163    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+02T       const_sp2_sp2_1          S3          C4          C5          C6       0.000     5.0     2
+02T              const_15          C5          C4          S3          C1       0.000    10.0     2
+02T       const_sp2_sp2_6          C4          C5          C6          C7     180.000     5.0     2
+02T             sp2_sp3_1          C5          C6          C7          H7     150.000    10.0     6
+02T              const_12          C2          C1          C6          C7       0.000    10.0     2
+02T              const_14          C2          C1          S3          C4     180.000    10.0     2
+02T             sp2_sp3_8          C6          C1          C2         N29     -90.000    10.0     6
+02T             sp3_sp3_1          C1          C2         N29        HN29     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+02T    plan-1          C1   0.020
+02T    plan-1          C2   0.020
+02T    plan-1          C4   0.020
+02T    plan-1          C5   0.020
+02T    plan-1          C6   0.020
+02T    plan-1          C7   0.020
+02T    plan-1          H4   0.020
+02T    plan-1          H5   0.020
+02T    plan-1          S3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+02T           SMILES              ACDLabs 12.01                                     s1c(c(cc1)C)CN
+02T            InChI                InChI  1.03 InChI=1S/C6H9NS/c1-5-2-3-8-6(5)4-7/h2-3H,4,7H2,1H3
+02T         InChIKey                InChI  1.03                        SWZNXCABBUKIPZ-UHFFFAOYSA-N
+02T SMILES_CANONICAL               CACTVS 3.370                                         Cc1ccsc1CN
+02T           SMILES               CACTVS 3.370                                         Cc1ccsc1CN
+02T SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                         Cc1ccsc1CN
+02T           SMILES "OpenEye OEToolkits" 1.7.2                                         Cc1ccsc1CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+02T acedrg               243         "dictionary generator"                  
+02T acedrg_database      11          "data source"                           
+02T rdkit                2017.03.2   "Chemoinformatics tool"
+02T refmac5              5.8.0238    "optimization tool"                     

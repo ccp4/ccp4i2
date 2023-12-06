@@ -1,0 +1,328 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3RU     3RU      3-(2-aminoquinolin-3-yl)-N-(cyclohexylmethyl)propanamide     NON-POLYMER     48     23     .     
+#
+data_comp_3RU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3RU     C4      C       CR16    0       67.384      50.131      10.535      
+3RU     C5      C       CR66    0       67.165      49.458      9.306       
+3RU     C6      C       CR66    0       67.094      50.210      8.105       
+3RU     C8      C       CR6     0       66.741      48.275      6.826       
+3RU     C10     C       CR16    0       67.010      48.056      9.203       
+3RU     C13     C       CH2     0       67.865      45.253      7.317       
+3RU     C17     C       CH2     0       71.319      46.413      8.484       
+3RU     C20     C       CH2     0       70.980      50.280      8.636       
+3RU     C21     C       CH2     0       72.265      50.581      9.388       
+3RU     C22     C       CH2     0       73.387      49.660      8.943       
+3RU     C19     C       CH2     0       70.589      48.809      8.764       
+3RU     C23     C       CH2     0       72.988      48.190      9.068       
+3RU     C18     C       CH1     0       71.704      47.877      8.319       
+3RU     N15     N       NH1     0       70.123      46.075      7.716       
+3RU     C14     C       C       0       69.076      45.390      8.213       
+3RU     O16     O       O       0       69.077      44.879      9.333       
+3RU     C12     C       CH2     0       66.635      45.970      7.872       
+3RU     C9      C       CR6     0       66.799      47.469      7.979       
+3RU     C1      C       CR16    0       67.525      51.488      10.560      
+3RU     C2      C       CR16    0       67.455      52.235      9.368       
+3RU     C3      C       CR16    0       67.245      51.618      8.166       
+3RU     N7      N       NRD6    0       66.883      49.609      6.881       
+3RU     N11     N       NH2     0       66.535      47.725      5.606       
+3RU     H4      H       H       0       67.432      49.640      11.338      
+3RU     H10     H       H       0       67.050      47.522      9.975       
+3RU     H13     H       H       0       67.660      44.311      7.219       
+3RU     H13A    H       H       0       68.070      45.614      6.441       
+3RU     H17     H       H       0       71.166      46.225      9.440       
+3RU     H17A    H       H       0       72.064      45.842      8.178       
+3RU     H20     H       H       0       70.257      50.841      8.992       
+3RU     H20A    H       H       0       71.099      50.504      7.688       
+3RU     H21     H       H       0       72.525      51.513      9.228       
+3RU     H21A    H       H       0       72.113      50.468      10.350      
+3RU     H22     H       H       0       74.183      49.829      9.494       
+3RU     H22A    H       H       0       73.618      49.856      8.009       
+3RU     H19     H       H       0       69.793      48.644      8.222       
+3RU     H19A    H       H       0       70.363      48.616      9.696       
+3RU     H23     H       H       0       72.870      47.968      10.013      
+3RU     H23A    H       H       0       73.709      47.630      8.717       
+3RU     H18     H       H       0       71.866      48.035      7.361       
+3RU     HN15    H       H       0       70.099      46.333      6.883       
+3RU     H12     H       H       0       66.436      45.604      8.761       
+3RU     H12A    H       H       0       65.869      45.771      7.292       
+3RU     H1      H       H       0       67.671      51.930      11.381      
+3RU     H2      H       H       0       67.554      53.174      9.398       
+3RU     H3      H       H       0       67.199      52.127      7.373       
+3RU     HN11    H       H       0       65.789      47.296      5.439       
+3RU     HN1A    H       H       0       67.149      47.799      4.984       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3RU          C4          C5      DOUBLE       y     1.415  0.0100     1.415  0.0100
+3RU          C4          C1      SINGLE       y     1.361  0.0102     1.361  0.0102
+3RU          C5          C6      SINGLE       y     1.416  0.0100     1.416  0.0100
+3RU          C5         C10      SINGLE       y     1.414  0.0100     1.414  0.0100
+3RU          C6          N7      SINGLE       y     1.375  0.0112     1.375  0.0112
+3RU          C6          C3      DOUBLE       y     1.413  0.0127     1.413  0.0127
+3RU          C8         N11      SINGLE       n     1.353  0.0118     1.353  0.0118
+3RU          C8          N7      DOUBLE       y     1.327  0.0145     1.327  0.0145
+3RU          C8          C9      SINGLE       y     1.395  0.0126     1.395  0.0126
+3RU         C10          C9      DOUBLE       y     1.369  0.0106     1.369  0.0106
+3RU         C13         C14      SINGLE       n     1.508  0.0116     1.508  0.0116
+3RU         C13         C12      SINGLE       n     1.524  0.0200     1.524  0.0200
+3RU         C17         N15      SINGLE       n     1.457  0.0100     1.457  0.0100
+3RU         C17         C18      SINGLE       n     1.522  0.0100     1.522  0.0100
+3RU         C20         C19      SINGLE       n     1.527  0.0100     1.527  0.0100
+3RU         C20         C21      SINGLE       n     1.517  0.0112     1.517  0.0112
+3RU         C21         C22      SINGLE       n     1.516  0.0136     1.516  0.0136
+3RU         C22         C23      SINGLE       n     1.527  0.0100     1.527  0.0100
+3RU         C19         C18      SINGLE       n     1.517  0.0103     1.517  0.0103
+3RU         C23         C18      SINGLE       n     1.517  0.0103     1.517  0.0103
+3RU         N15         C14      SINGLE       n     1.338  0.0117     1.338  0.0117
+3RU         C14         O16      DOUBLE       n     1.229  0.0102     1.229  0.0102
+3RU         C12          C9      SINGLE       n     1.509  0.0100     1.509  0.0100
+3RU          C1          C2      DOUBLE       y     1.403  0.0120     1.403  0.0120
+3RU          C2          C3      SINGLE       y     1.363  0.0103     1.363  0.0103
+3RU          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0169
+3RU         C10         H10      SINGLE       n     1.082  0.0130     0.939  0.0158
+3RU         C13         H13      SINGLE       n     1.089  0.0100     0.970  0.0190
+3RU         C13        H13A      SINGLE       n     1.089  0.0100     0.970  0.0190
+3RU         C17         H17      SINGLE       n     1.089  0.0100     0.987  0.0200
+3RU         C17        H17A      SINGLE       n     1.089  0.0100     0.987  0.0200
+3RU         C20         H20      SINGLE       n     1.089  0.0100     0.982  0.0142
+3RU         C20        H20A      SINGLE       n     1.089  0.0100     0.982  0.0142
+3RU         C21         H21      SINGLE       n     1.089  0.0100     0.981  0.0138
+3RU         C21        H21A      SINGLE       n     1.089  0.0100     0.981  0.0138
+3RU         C22         H22      SINGLE       n     1.089  0.0100     0.982  0.0142
+3RU         C22        H22A      SINGLE       n     1.089  0.0100     0.982  0.0142
+3RU         C19         H19      SINGLE       n     1.089  0.0100     0.978  0.0143
+3RU         C19        H19A      SINGLE       n     1.089  0.0100     0.978  0.0143
+3RU         C23         H23      SINGLE       n     1.089  0.0100     0.978  0.0143
+3RU         C23        H23A      SINGLE       n     1.089  0.0100     0.978  0.0143
+3RU         C18         H18      SINGLE       n     1.089  0.0100     0.984  0.0189
+3RU         N15        HN15      SINGLE       n     1.016  0.0100     0.872  0.0200
+3RU         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0169
+3RU         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0169
+3RU          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0184
+3RU          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0200
+3RU          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0197
+3RU         N11        HN11      SINGLE       n     1.016  0.0100     0.877  0.0200
+3RU         N11        HN1A      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3RU          C5          C4          C1     120.329    1.50
+3RU          C5          C4          H4     119.915    1.50
+3RU          C1          C4          H4     119.756    1.50
+3RU          C4          C5          C6     119.055    1.50
+3RU          C4          C5         C10     122.590    1.50
+3RU          C6          C5         C10     118.355    1.50
+3RU          C5          C6          N7     122.158    1.50
+3RU          C5          C6          C3     119.218    1.50
+3RU          N7          C6          C3     118.624    1.50
+3RU         N11          C8          N7     118.172    1.50
+3RU         N11          C8          C9     120.484    2.27
+3RU          N7          C8          C9     121.344    1.50
+3RU          C5         C10          C9     120.956    1.50
+3RU          C5         C10         H10     119.701    1.50
+3RU          C9         C10         H10     119.343    1.50
+3RU         C14         C13         C12     112.429    2.96
+3RU         C14         C13         H13     108.712    1.50
+3RU         C14         C13        H13A     108.712    1.50
+3RU         C12         C13         H13     108.976    1.50
+3RU         C12         C13        H13A     108.976    1.50
+3RU         H13         C13        H13A     108.535    1.50
+3RU         N15         C17         C18     112.295    2.10
+3RU         N15         C17         H17     108.919    1.50
+3RU         N15         C17        H17A     108.919    1.50
+3RU         C18         C17         H17     109.567    1.50
+3RU         C18         C17        H17A     109.567    1.50
+3RU         H17         C17        H17A     108.091    1.50
+3RU         C19         C20         C21     111.360    1.50
+3RU         C19         C20         H20     109.388    1.50
+3RU         C19         C20        H20A     109.388    1.50
+3RU         C21         C20         H20     109.386    1.50
+3RU         C21         C20        H20A     109.386    1.50
+3RU         H20         C20        H20A     108.036    1.50
+3RU         C20         C21         C22     111.038    1.50
+3RU         C20         C21         H21     109.386    1.50
+3RU         C20         C21        H21A     109.386    1.50
+3RU         C22         C21         H21     109.386    1.50
+3RU         C22         C21        H21A     109.386    1.50
+3RU         H21         C21        H21A     108.036    1.50
+3RU         C21         C22         C23     111.360    1.50
+3RU         C21         C22         H22     109.386    1.50
+3RU         C21         C22        H22A     109.386    1.50
+3RU         C23         C22         H22     109.388    1.50
+3RU         C23         C22        H22A     109.388    1.50
+3RU         H22         C22        H22A     108.036    1.50
+3RU         C20         C19         C18     111.907    1.50
+3RU         C20         C19         H19     109.267    1.50
+3RU         C20         C19        H19A     109.267    1.50
+3RU         C18         C19         H19     109.246    1.50
+3RU         C18         C19        H19A     109.246    1.50
+3RU         H19         C19        H19A     107.919    1.50
+3RU         C22         C23         C18     111.907    1.50
+3RU         C22         C23         H23     109.267    1.50
+3RU         C22         C23        H23A     109.267    1.50
+3RU         C18         C23         H23     109.246    1.50
+3RU         C18         C23        H23A     109.246    1.50
+3RU         H23         C23        H23A     107.919    1.50
+3RU         C17         C18         C19     111.608    2.07
+3RU         C17         C18         C23     111.608    2.07
+3RU         C17         C18         H18     107.612    1.50
+3RU         C19         C18         C23     110.158    1.50
+3RU         C19         C18         H18     108.010    1.50
+3RU         C23         C18         H18     108.010    1.50
+3RU         C17         N15         C14     122.391    1.50
+3RU         C17         N15        HN15     118.953    2.12
+3RU         C14         N15        HN15     118.656    1.94
+3RU         C13         C14         N15     116.143    1.50
+3RU         C13         C14         O16     121.248    1.50
+3RU         N15         C14         O16     122.609    1.50
+3RU         C13         C12          C9     113.063    1.84
+3RU         C13         C12         H12     108.600    1.50
+3RU         C13         C12        H12A     108.600    1.50
+3RU          C9         C12         H12     108.906    1.50
+3RU          C9         C12        H12A     108.906    1.50
+3RU         H12         C12        H12A     107.745    1.50
+3RU          C8          C9         C10     119.642    1.50
+3RU          C8          C9         C12     119.708    1.50
+3RU         C10          C9         C12     120.651    1.50
+3RU          C4          C1          C2     120.359    1.50
+3RU          C4          C1          H1     119.851    1.50
+3RU          C2          C1          H1     119.795    1.50
+3RU          C1          C2          C3     120.760    1.50
+3RU          C1          C2          H2     119.694    1.50
+3RU          C3          C2          H2     119.547    1.50
+3RU          C6          C3          C2     120.273    1.50
+3RU          C6          C3          H3     119.579    1.50
+3RU          C2          C3          H3     120.147    1.50
+3RU          C6          N7          C8     117.546    1.50
+3RU          C8         N11        HN11     119.936    1.50
+3RU          C8         N11        HN1A     119.936    1.50
+3RU        HN11         N11        HN1A     120.128    1.85
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3RU              const_17          C1          C4          C5          C6       0.000    10.0     2
+3RU              const_33          C2          C1          C4          C5       0.000    10.0     2
+3RU            sp3_sp3_16         C17         C18         C19         C20      60.000    10.0     3
+3RU            sp3_sp3_22         C17         C18         C23         C22     -60.000    10.0     3
+3RU             sp2_sp2_5         C13         C14         N15         C17     180.000     5.0     2
+3RU            sp2_sp3_14          C8          C9         C12         C13     -90.000    10.0     6
+3RU              const_29          C4          C1          C2          C3       0.000    10.0     2
+3RU              const_25          C1          C2          C3          C6       0.000    10.0     2
+3RU       const_sp2_sp2_2          C4          C5          C6          N7     180.000     5.0     2
+3RU              const_38          C9         C10          C5          C4     180.000    10.0     2
+3RU              const_21          C2          C3          C6          C5       0.000    10.0     2
+3RU       const_sp2_sp2_5          C5          C6          N7          C8       0.000     5.0     2
+3RU              const_12         N11          C8          C9         C12       0.000    10.0     2
+3RU       const_sp2_sp2_8         N11          C8          N7          C6     180.000     5.0     2
+3RU             sp2_sp2_3          N7          C8         N11        HN11       0.000     5.0     2
+3RU              const_14          C5         C10          C9         C12     180.000    10.0     2
+3RU             sp2_sp3_2         N15         C14         C13         C12     120.000    10.0     6
+3RU            sp3_sp3_46          C9         C12         C13         C14     180.000    10.0     3
+3RU            sp3_sp3_56         N15         C17         C18         C19     -60.000    10.0     3
+3RU             sp2_sp3_8         C14         N15         C17         C18     120.000    10.0     6
+3RU             sp3_sp3_1         C18         C19         C20         C21      60.000    10.0     3
+3RU            sp3_sp3_64         C19         C20         C21         C22     180.000    10.0     3
+3RU            sp3_sp3_37         C20         C21         C22         C23      60.000    10.0     3
+3RU            sp3_sp3_28         C21         C22         C23         C18     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3RU    chir_1    C18    C17    C19    C23    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3RU    plan-1          C1   0.020
+3RU    plan-1         C10   0.020
+3RU    plan-1         C12   0.020
+3RU    plan-1          C2   0.020
+3RU    plan-1          C3   0.020
+3RU    plan-1          C4   0.020
+3RU    plan-1          C5   0.020
+3RU    plan-1          C6   0.020
+3RU    plan-1          C8   0.020
+3RU    plan-1          C9   0.020
+3RU    plan-1          H1   0.020
+3RU    plan-1         H10   0.020
+3RU    plan-1          H2   0.020
+3RU    plan-1          H3   0.020
+3RU    plan-1          H4   0.020
+3RU    plan-1         N11   0.020
+3RU    plan-1          N7   0.020
+3RU    plan-2         C14   0.020
+3RU    plan-2         C17   0.020
+3RU    plan-2        HN15   0.020
+3RU    plan-2         N15   0.020
+3RU    plan-3         C13   0.020
+3RU    plan-3         C14   0.020
+3RU    plan-3         N15   0.020
+3RU    plan-3         O16   0.020
+3RU    plan-4          C8   0.020
+3RU    plan-4        HN11   0.020
+3RU    plan-4        HN1A   0.020
+3RU    plan-4         N11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3RU           SMILES              ACDLabs 12.01                                                                                                                O=C(NCC1CCCCC1)CCc2cc3ccccc3nc2N
+3RU SMILES_CANONICAL               CACTVS 3.370                                                                                                                Nc1nc2ccccc2cc1CCC(=O)NCC3CCCCC3
+3RU           SMILES               CACTVS 3.370                                                                                                                Nc1nc2ccccc2cc1CCC(=O)NCC3CCCCC3
+3RU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                          c1ccc2c(c1)cc(c(n2)N)CCC(=O)NCC3CCCCC3
+3RU           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                          c1ccc2c(c1)cc(c(n2)N)CCC(=O)NCC3CCCCC3
+3RU            InChI                InChI  1.03 InChI=1S/C19H25N3O/c20-19-16(12-15-8-4-5-9-17(15)22-19)10-11-18(23)21-13-14-6-2-1-3-7-14/h4-5,8-9,12,14H,1-3,6-7,10-11,13H2,(H2,20,22)(H,21,23)
+3RU         InChIKey                InChI  1.03                                                                                                                     YOUIXYWUUXULRM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3RU acedrg               243         "dictionary generator"                  
+3RU acedrg_database      11          "data source"                           
+3RU rdkit                2017.03.2   "Chemoinformatics tool"
+3RU refmac5              5.8.0238    "optimization tool"                     

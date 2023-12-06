@@ -1,0 +1,591 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FNK     FNK      "[(2R,3S,4R,5R)-5-(6-amino-9H-purin-9-yl)-3,4-dihydroxytetrahydrofuran-2-yl]methyl (2R,3S,4S)-5-[7,8-dimethyl-5-(3-methylbutanoyl)-2,4-dioxo-1,3,4,5-tetrahydrobenzo[g]pteridin-10(2H)-yl]-2,3,4-trihydroxypentyl dihydrogen diphosphate"     NON-POLYMER     100     59     .     
+#
+data_comp_FNK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FNK     O       O       O       0       -7.748      -11.033     -26.446     
+FNK     P       P       P       0       5.001       -14.464     -30.950     
+FNK     N1      N       NR6     0       -2.180      -11.039     -27.597     
+FNK     C2      C       CR6     0       -2.134      -9.723      -27.205     
+FNK     O2      O       O       0       -1.072      -9.123      -27.155     
+FNK     N3      N       NR6     0       -3.326      -9.122      -26.876     
+FNK     C4      C       CR6     0       -4.570      -9.736      -26.910     
+FNK     O4      O       O       0       -5.561      -9.076      -26.591     
+FNK     N5      N       NT      0       -5.829      -11.865     -27.390     
+FNK     C6      C       CR16    0       -7.051      -13.556     -28.715     
+FNK     C7      C       CR6     0       -7.085      -14.675     -29.511     
+FNK     C8      C       CR6     0       -5.848      -15.322     -29.864     
+FNK     C9      C       CR16    0       -4.661      -14.810     -29.397     
+FNK     CA      C       C       0       -6.790      -11.791     -26.367     
+FNK     PA      P       P       0       4.377       -16.963     -32.360     
+FNK     CB      C       CH2     0       -6.633      -12.723     -25.193     
+FNK     CG      C       CH1     0       -6.716      -12.024     -23.828     
+FNK     "C1'"   C       CH2     0       -2.150      -13.955     -27.986     
+FNK     C10     C       CR66    0       -3.368      -11.760     -27.664     
+FNK     N10     N       NR6     0       -3.392      -13.117     -28.083     
+FNK     N1A     N       NRD6    0       13.911      -21.328     -33.075     
+FNK     O1A     O       OP      -1      3.169       -16.359     -32.995     
+FNK     C1B     C       CH1     0       9.781       -18.454     -34.297     
+FNK     O1P     O       O       0       5.666       -13.917     -32.170     
+FNK     "C2'"   C       CH1     0       -1.209      -13.789     -29.197     
+FNK     "O2'"   O       OH1     0       -1.617      -14.642     -30.264     
+FNK     C2A     C       CR16    0       13.721      -20.390     -34.016     
+FNK     O2A     O       O       0       4.301       -18.383     -31.906     
+FNK     C2B     C       CH1     0       8.636       -18.943     -35.181     
+FNK     O2B     O       OH1     0       9.113       -19.462     -36.405     
+FNK     O2P     O       OP      -1      5.601       -14.180     -29.612     
+FNK     "C3'"   C       CH1     0       0.268       -14.077     -28.891     
+FNK     "O3'"   O       OH1     0       0.706       -13.286     -27.782     
+FNK     N3A     N       NRD6    0       12.625      -19.679     -34.285     
+FNK     C3B     C       CH1     0       7.803       -17.667     -35.344     
+FNK     O3B     O       OH1     0       8.271       -16.825     -36.393     
+FNK     O3P     O       O2      0       4.815       -16.049     -31.117     
+FNK     "C4'"   C       CH1     0       1.216       -13.823     -30.070     
+FNK     "O4'"   O       OH1     0       0.746       -14.494     -31.242     
+FNK     C4A     C       CR56    0       11.615      -20.003     -33.454     
+FNK     C4B     C       CH1     0       7.958       -17.003     -33.969     
+FNK     O4B     O       O2      0       9.256       -17.429     -33.482     
+FNK     C4X     C       CR66    0       -4.608      -11.106     -27.318     
+FNK     "C5'"   C       CH2     0       2.630       -14.281     -29.796     
+FNK     "O5'"   O       O2      0       3.476       -13.967     -30.938     
+FNK     C5A     C       CR56    0       11.660      -20.945     -32.440     
+FNK     C5B     C       CH2     0       6.910       -17.356     -32.943     
+FNK     O5B     O       O2      0       5.637       -16.782     -33.336     
+FNK     C5X     C       CR66    0       -5.845      -13.030     -28.238     
+FNK     C6A     C       CR6     0       12.877      -21.636     -32.250     
+FNK     N6A     N       NH2     0       13.059      -22.564     -31.315     
+FNK     N7A     N       NRD5    0       10.437      -21.014     -31.790     
+FNK     C7M     C       CH3     0       -8.404      -15.206     -30.006     
+FNK     C8A     C       CR15    0       9.691       -20.133     -32.408     
+FNK     C8M     C       CH3     0       -5.844      -16.550     -30.737     
+FNK     C9A     C       CR66    0       -4.618      -13.677     -28.572     
+FNK     N9A     N       NR5     0       10.340      -19.485     -33.429     
+FNK     CD1     C       CH3     0       -7.100      -13.009     -22.737     
+FNK     CD2     C       CH3     0       -5.402      -11.339     -23.490     
+FNK     HN1     H       H       0       -1.411      -11.407     -27.801     
+FNK     HN3     H       H       0       -3.289      -8.272      -26.624     
+FNK     H6      H       H       0       -7.863      -13.138     -28.490     
+FNK     H9      H       H       0       -3.868      -15.248     -29.632     
+FNK     HB      H       H       0       -5.769      -13.180     -25.258     
+FNK     HBA     H       H       0       -7.334      -13.407     -25.237     
+FNK     HG      H       H       0       -7.420      -11.332     -23.875     
+FNK     "H1'"   H       H       0       -2.398      -14.894     -27.895     
+FNK     "H1'A"  H       H       0       -1.677      -13.702     -27.173     
+FNK     H1B     H       H       0       10.490      -18.086     -34.870     
+FNK     "H2'"   H       H       0       -1.278      -12.858     -29.527     
+FNK     "HO2'"  H       H       0       -1.534      -15.456     -30.037     
+FNK     H2A     H       H       0       14.468      -20.209     -34.566     
+FNK     H2B     H       H       0       8.107       -19.638     -34.708     
+FNK     HO2B    H       H       0       9.466       -18.838     -36.862     
+FNK     "H3'"   H       H       0       0.348       -15.032     -28.634     
+FNK     "HO3'"  H       H       0       0.675       -12.465     -27.989     
+FNK     H3B     H       H       0       6.851       -17.900     -35.496     
+FNK     HO3B    H       H       0       9.040       -16.518     -36.207     
+FNK     "H4'"   H       H       0       1.234       -12.836     -30.259     
+FNK     "HO4'"  H       H       0       0.669       -15.329     -31.113     
+FNK     H4B     H       H       0       7.964       -16.028     -34.079     
+FNK     "H5'"   H       H       0       2.639       -15.248     -29.636     
+FNK     "H5'A"  H       H       0       2.979       -13.831     -28.999     
+FNK     H5B     H       H       0       7.179       -17.004     -32.059     
+FNK     H5BA    H       H       0       6.829       -18.340     -32.876     
+FNK     HN6A    H       H       0       12.377      -23.044     -31.040     
+FNK     HN6B    H       H       0       13.858      -22.692     -30.976     
+FNK     H7M     H       H       0       -8.473      -16.154     -29.807     
+FNK     H7MA    H       H       0       -8.468      -15.075     -30.966     
+FNK     H7MB    H       H       0       -9.136      -14.738     -29.571     
+FNK     H8A     H       H       0       8.794       -19.962     -32.177     
+FNK     H8M     H       H       0       -4.931      -16.829     -30.917     
+FNK     H8MA    H       H       0       -6.288      -16.353     -31.578     
+FNK     H8MB    H       H       0       -6.315      -17.270     -30.288     
+FNK     HD1     H       H       0       -7.057      -12.568     -21.871     
+FNK     HD1A    H       H       0       -6.484      -13.763     -22.747     
+FNK     HD1B    H       H       0       -8.006      -13.329     -22.892     
+FNK     HD2     H       H       0       -5.469      -10.925     -22.612     
+FNK     HD2A    H       H       0       -5.210      -10.657     -24.157     
+FNK     HD2B    H       H       0       -4.685      -11.997     -23.484     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FNK           O          CA      DOUBLE       n     1.223  0.0130     1.223  0.0130
+FNK           P       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+FNK           P         O2P      SINGLE       n     1.493  0.0122     1.493  0.0122
+FNK          N1          C2      SINGLE       y     1.371  0.0103     1.371  0.0103
+FNK          C2          O2      DOUBLE       n     1.220  0.0100     1.220  0.0100
+FNK          C2          N3      SINGLE       y     1.373  0.0104     1.373  0.0104
+FNK          N3          C4      SINGLE       y     1.385  0.0100     1.385  0.0100
+FNK          C4          O4      DOUBLE       n     1.232  0.0123     1.232  0.0123
+FNK          N5         C4X      SINGLE       n     1.432  0.0100     1.432  0.0100
+FNK          N5          CA      SINGLE       n     1.401  0.0104     1.401  0.0104
+FNK          C6         C5X      DOUBLE       y     1.393  0.0100     1.393  0.0100
+FNK          C6          C7      SINGLE       y     1.370  0.0100     1.370  0.0100
+FNK          C7          C8      DOUBLE       y     1.437  0.0100     1.437  0.0100
+FNK          C8          C9      SINGLE       y     1.370  0.0100     1.370  0.0100
+FNK          C9         C9A      DOUBLE       y     1.393  0.0100     1.393  0.0100
+FNK          CA          CB      SINGLE       n     1.503  0.0187     1.503  0.0187
+FNK          PA         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FNK          CB          CG      SINGLE       n     1.533  0.0127     1.533  0.0127
+FNK          CG         CD1      SINGLE       n     1.519  0.0152     1.519  0.0152
+FNK          N1         C10      SINGLE       y     1.376  0.0146     1.376  0.0146
+FNK       "C1'"         N10      SINGLE       n     1.483  0.0144     1.483  0.0144
+FNK         C10         N10      SINGLE       n     1.394  0.0198     1.394  0.0198
+FNK         N1A         C6A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+FNK          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+FNK         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+FNK           P         O1P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FNK       "C1'"       "C2'"      SINGLE       n     1.517  0.0189     1.517  0.0189
+FNK       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+FNK       "C2'"       "O2'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+FNK         N1A         C2A      SINGLE       y     1.339  0.0100     1.339  0.0100
+FNK         C2A         N3A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+FNK          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FNK         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+FNK         C2B         C3B      SINGLE       n     1.531  0.0100     1.531  0.0100
+FNK         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+FNK       "C3'"       "O3'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+FNK         N3A         C4A      SINGLE       y     1.343  0.0100     1.343  0.0100
+FNK         C3B         C4B      SINGLE       n     1.535  0.0100     1.535  0.0100
+FNK         C3B         O3B      SINGLE       n     1.422  0.0100     1.422  0.0100
+FNK           P         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FNK       "C3'"       "C4'"      SINGLE       n     1.530  0.0100     1.530  0.0100
+FNK       "C4'"       "C5'"      SINGLE       n     1.511  0.0100     1.511  0.0100
+FNK       "C4'"       "O4'"      SINGLE       n     1.429  0.0100     1.429  0.0100
+FNK         C4A         C5A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+FNK         C4A         N9A      SINGLE       y     1.374  0.0101     1.374  0.0101
+FNK         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+FNK         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+FNK          C4         C4X      SINGLE       y     1.401  0.0196     1.401  0.0196
+FNK         C10         C4X      DOUBLE       y     1.422  0.0200     1.422  0.0200
+FNK       "C5'"       "O5'"      SINGLE       n     1.454  0.0165     1.454  0.0165
+FNK         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+FNK          PA         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+FNK         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+FNK          N5         C5X      SINGLE       n     1.432  0.0104     1.432  0.0104
+FNK         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+FNK         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+FNK         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+FNK          C7         C7M      SINGLE       n     1.504  0.0100     1.504  0.0100
+FNK          C8         C8M      SINGLE       n     1.504  0.0100     1.504  0.0100
+FNK         N10         C9A      SINGLE       n     1.414  0.0133     1.414  0.0133
+FNK         C5X         C9A      SINGLE       y     1.402  0.0155     1.402  0.0155
+FNK         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+FNK         C8A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+FNK          CG         CD2      SINGLE       n     1.519  0.0152     1.519  0.0152
+FNK          N1         HN1      SINGLE       n     1.016  0.0100     0.885  0.0200
+FNK          N3         HN3      SINGLE       n     1.016  0.0100     0.886  0.0200
+FNK          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0127
+FNK          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0127
+FNK          CB          HB      SINGLE       n     1.089  0.0100     0.980  0.0160
+FNK          CB         HBA      SINGLE       n     1.089  0.0100     0.980  0.0160
+FNK          CG          HG      SINGLE       n     1.089  0.0100     0.989  0.0148
+FNK       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.976  0.0163
+FNK       "C1'"      "H1'A"      SINGLE       n     1.089  0.0100     0.976  0.0163
+FNK         C1B         H1B      SINGLE       n     1.089  0.0100     0.984  0.0200
+FNK       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+FNK       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FNK         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+FNK         C2B         H2B      SINGLE       n     1.089  0.0100     0.994  0.0200
+FNK         O2B        HO2B      SINGLE       n     0.970  0.0120     0.849  0.0200
+FNK       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+FNK       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FNK         C3B         H3B      SINGLE       n     1.089  0.0100     0.992  0.0200
+FNK         O3B        HO3B      SINGLE       n     0.970  0.0120     0.849  0.0200
+FNK       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     1.004  0.0200
+FNK       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FNK         C4B         H4B      SINGLE       n     1.089  0.0100     0.981  0.0200
+FNK       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.980  0.0146
+FNK       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.980  0.0146
+FNK         C5B         H5B      SINGLE       n     1.089  0.0100     0.989  0.0200
+FNK         C5B        H5BA      SINGLE       n     1.089  0.0100     0.989  0.0200
+FNK         N6A        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+FNK         N6A        HN6B      SINGLE       n     1.016  0.0100     0.877  0.0200
+FNK         C7M         H7M      SINGLE       n     1.089  0.0100     0.971  0.0135
+FNK         C7M        H7MA      SINGLE       n     1.089  0.0100     0.971  0.0135
+FNK         C7M        H7MB      SINGLE       n     1.089  0.0100     0.971  0.0135
+FNK         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+FNK         C8M         H8M      SINGLE       n     1.089  0.0100     0.971  0.0135
+FNK         C8M        H8MA      SINGLE       n     1.089  0.0100     0.971  0.0135
+FNK         C8M        H8MB      SINGLE       n     1.089  0.0100     0.971  0.0135
+FNK         CD1         HD1      SINGLE       n     1.089  0.0100     0.973  0.0146
+FNK         CD1        HD1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FNK         CD1        HD1B      SINGLE       n     1.089  0.0100     0.973  0.0146
+FNK         CD2         HD2      SINGLE       n     1.089  0.0100     0.973  0.0146
+FNK         CD2        HD2A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FNK         CD2        HD2B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FNK       "O5'"           P         O2P     107.912    2.57
+FNK       "O5'"           P         O1P     107.912    2.57
+FNK       "O5'"           P         O3P     101.065    1.97
+FNK         O2P           P         O1P     118.411    2.35
+FNK         O2P           P         O3P     108.816    2.14
+FNK         O1P           P         O3P     108.816    2.14
+FNK          C2          N1         C10     121.889    1.50
+FNK          C2          N1         HN1     117.411    2.15
+FNK         C10          N1         HN1     120.700    1.50
+FNK          N1          C2          O2     120.722    1.67
+FNK          N1          C2          N3     117.173    1.50
+FNK          O2          C2          N3     122.105    1.50
+FNK          C2          N3          C4     125.132    1.50
+FNK          C2          N3         HN3     116.951    1.94
+FNK          C4          N3         HN3     117.917    1.86
+FNK          N3          C4          O4     119.431    1.50
+FNK          N3          C4         C4X     116.838    1.50
+FNK          O4          C4         C4X     123.730    1.53
+FNK         C4X          N5          CA     120.995    2.48
+FNK         C4X          N5         C5X     115.512    2.15
+FNK          CA          N5         C5X     120.995    2.48
+FNK         C5X          C6          C7     120.977    1.50
+FNK         C5X          C6          H6     119.791    1.50
+FNK          C7          C6          H6     119.233    1.50
+FNK          C6          C7          C8     119.510    1.50
+FNK          C6          C7         C7M     120.043    1.50
+FNK          C8          C7         C7M     120.447    1.50
+FNK          C7          C8          C9     119.510    1.50
+FNK          C7          C8         C8M     120.447    1.50
+FNK          C9          C8         C8M     120.043    1.50
+FNK          C8          C9         C9A     120.977    1.50
+FNK          C8          C9          H9     119.233    1.50
+FNK         C9A          C9          H9     119.791    1.50
+FNK           O          CA          N5     121.840    1.94
+FNK           O          CA          CB     121.015    1.81
+FNK          N5          CA          CB     117.145    1.50
+FNK         O3P          PA         O1A     108.816    2.14
+FNK         O3P          PA         O2A     108.816    2.14
+FNK         O3P          PA         O5B     101.065    1.97
+FNK         O1A          PA         O2A     118.411    2.35
+FNK         O1A          PA         O5B     109.410    1.50
+FNK         O2A          PA         O5B     109.410    1.50
+FNK          CA          CB          CG     113.179    1.74
+FNK          CA          CB          HB     109.148    1.50
+FNK          CA          CB         HBA     109.148    1.50
+FNK          CG          CB          HB     108.631    1.50
+FNK          CG          CB         HBA     108.631    1.50
+FNK          HB          CB         HBA     107.739    1.50
+FNK          CB          CG         CD1     110.697    1.50
+FNK          CB          CG         CD2     110.697    1.50
+FNK          CB          CG          HG     107.823    1.50
+FNK         CD1          CG         CD2     110.507    1.50
+FNK         CD1          CG          HG     108.052    1.50
+FNK         CD2          CG          HG     108.052    1.50
+FNK         N10       "C1'"       "C2'"     111.875    1.74
+FNK         N10       "C1'"       "H1'"     108.866    1.50
+FNK         N10       "C1'"      "H1'A"     108.866    1.50
+FNK       "C2'"       "C1'"       "H1'"     109.194    1.50
+FNK       "C2'"       "C1'"      "H1'A"     109.194    1.50
+FNK       "H1'"       "C1'"      "H1'A"     107.868    1.50
+FNK          N1         C10         N10     119.483    2.02
+FNK          N1         C10         C4X     119.819    1.68
+FNK         N10         C10         C4X     120.698    1.50
+FNK       "C1'"         N10         C10     120.042    1.50
+FNK       "C1'"         N10         C9A     118.885    1.50
+FNK         C10         N10         C9A     121.073    1.50
+FNK         C6A         N1A         C2A     118.521    1.50
+FNK         O4B         C1B         C2B     106.047    1.50
+FNK         O4B         C1B         N9A     108.477    1.50
+FNK         O4B         C1B         H1B     109.807    1.50
+FNK         C2B         C1B         N9A     113.824    1.50
+FNK         C2B         C1B         H1B     109.015    1.50
+FNK         N9A         C1B         H1B     109.561    1.50
+FNK       "C1'"       "C2'"       "C3'"     110.999    2.33
+FNK       "C1'"       "C2'"       "O2'"     109.698    2.33
+FNK       "C1'"       "C2'"       "H2'"     108.757    1.75
+FNK       "C3'"       "C2'"       "O2'"     109.320    2.01
+FNK       "C3'"       "C2'"       "H2'"     108.450    1.83
+FNK       "O2'"       "C2'"       "H2'"     108.183    1.96
+FNK       "C2'"       "O2'"      "HO2'"     109.265    3.00
+FNK         N1A         C2A         N3A     129.332    1.50
+FNK         N1A         C2A         H2A     115.313    1.50
+FNK         N3A         C2A         H2A     115.355    1.50
+FNK         C1B         C2B         C3B     101.239    1.50
+FNK         C1B         C2B         O2B     111.715    2.69
+FNK         C1B         C2B         H2B     110.636    1.70
+FNK         C3B         C2B         O2B     112.782    2.45
+FNK         C3B         C2B         H2B     110.596    1.51
+FNK         O2B         C2B         H2B     110.448    1.97
+FNK         C2B         O2B        HO2B     109.103    2.13
+FNK       "C2'"       "C3'"       "O3'"     109.320    2.01
+FNK       "C2'"       "C3'"       "C4'"     113.695    2.13
+FNK       "C2'"       "C3'"       "H3'"     108.450    1.83
+FNK       "O3'"       "C3'"       "C4'"     109.164    1.97
+FNK       "O3'"       "C3'"       "H3'"     108.243    1.50
+FNK       "C4'"       "C3'"       "H3'"     108.336    1.50
+FNK       "C3'"       "O3'"      "HO3'"     108.564    3.00
+FNK         C2A         N3A         C4A     110.982    1.50
+FNK         C2B         C3B         C4B     102.602    1.50
+FNK         C2B         C3B         O3B     111.581    2.83
+FNK         C2B         C3B         H3B     110.504    1.75
+FNK         C4B         C3B         O3B     111.281    2.46
+FNK         C4B         C3B         H3B     110.452    2.54
+FNK         O3B         C3B         H3B     110.380    1.67
+FNK         C3B         O3B        HO3B     108.744    3.00
+FNK          PA         O3P           P     132.542    3.00
+FNK       "C3'"       "C4'"       "C5'"     112.503    1.50
+FNK       "C3'"       "C4'"       "O4'"     109.549    1.85
+FNK       "C3'"       "C4'"       "H4'"     108.777    1.50
+FNK       "C5'"       "C4'"       "O4'"     109.314    1.96
+FNK       "C5'"       "C4'"       "H4'"     108.656    1.50
+FNK       "O4'"       "C4'"       "H4'"     108.591    1.50
+FNK       "C4'"       "O4'"      "HO4'"     111.202    3.00
+FNK         N3A         C4A         C5A     126.489    1.50
+FNK         N3A         C4A         N9A     127.895    1.50
+FNK         C5A         C4A         N9A     105.616    1.50
+FNK         C3B         C4B         O4B     105.388    1.50
+FNK         C3B         C4B         C5B     116.008    1.52
+FNK         C3B         C4B         H4B     109.363    1.86
+FNK         O4B         C4B         C5B     109.123    1.50
+FNK         O4B         C4B         H4B     108.947    1.50
+FNK         C5B         C4B         H4B     108.268    1.50
+FNK         C1B         O4B         C4B     109.903    1.50
+FNK          N5         C4X          C4     121.934    1.50
+FNK          N5         C4X         C10     118.917    1.50
+FNK          C4         C4X         C10     119.150    1.50
+FNK       "C4'"       "C5'"       "O5'"     109.438    2.56
+FNK       "C4'"       "C5'"       "H5'"     109.582    1.50
+FNK       "C4'"       "C5'"      "H5'A"     109.582    1.50
+FNK       "O5'"       "C5'"       "H5'"     109.393    1.91
+FNK       "O5'"       "C5'"      "H5'A"     109.393    1.91
+FNK       "H5'"       "C5'"      "H5'A"     108.319    1.50
+FNK           P       "O5'"       "C5'"     119.251    1.51
+FNK         C4A         C5A         N7A     110.486    1.50
+FNK         C4A         C5A         C6A     117.267    1.50
+FNK         N7A         C5A         C6A     132.247    1.50
+FNK         C4B         C5B         O5B     109.342    1.50
+FNK         C4B         C5B         H5B     109.624    1.50
+FNK         C4B         C5B        H5BA     109.624    1.50
+FNK         O5B         C5B         H5B     109.845    1.50
+FNK         O5B         C5B        H5BA     109.845    1.50
+FNK         H5B         C5B        H5BA     108.472    1.50
+FNK          PA         O5B         C5B     118.553    2.41
+FNK          C6         C5X          N5     121.836    1.50
+FNK          C6         C5X         C9A     119.513    1.50
+FNK          N5         C5X         C9A     118.652    1.50
+FNK         N1A         C6A         C5A     117.409    1.50
+FNK         N1A         C6A         N6A     118.799    1.50
+FNK         C5A         C6A         N6A     123.792    1.50
+FNK         C6A         N6A        HN6A     119.723    1.50
+FNK         C6A         N6A        HN6B     119.723    1.50
+FNK        HN6A         N6A        HN6B     120.554    1.88
+FNK         C5A         N7A         C8A     104.739    1.50
+FNK          C7         C7M         H7M     109.765    1.50
+FNK          C7         C7M        H7MA     109.765    1.50
+FNK          C7         C7M        H7MB     109.765    1.50
+FNK         H7M         C7M        H7MA     109.348    1.50
+FNK         H7M         C7M        H7MB     109.348    1.50
+FNK        H7MA         C7M        H7MB     109.348    1.50
+FNK         N7A         C8A         N9A     113.469    1.50
+FNK         N7A         C8A         H8A     123.326    1.50
+FNK         N9A         C8A         H8A     123.206    1.50
+FNK          C8         C8M         H8M     109.765    1.50
+FNK          C8         C8M        H8MA     109.765    1.50
+FNK          C8         C8M        H8MB     109.765    1.50
+FNK         H8M         C8M        H8MA     109.348    1.50
+FNK         H8M         C8M        H8MB     109.348    1.50
+FNK        H8MA         C8M        H8MB     109.348    1.50
+FNK          C9         C9A         N10     121.479    1.50
+FNK          C9         C9A         C5X     119.513    1.50
+FNK         N10         C9A         C5X     119.009    1.50
+FNK         C4A         N9A         C1B     127.459    1.80
+FNK         C4A         N9A         C8A     105.693    1.50
+FNK         C1B         N9A         C8A     126.848    1.91
+FNK          CG         CD1         HD1     109.488    1.50
+FNK          CG         CD1        HD1A     109.488    1.50
+FNK          CG         CD1        HD1B     109.488    1.50
+FNK         HD1         CD1        HD1A     109.411    1.50
+FNK         HD1         CD1        HD1B     109.411    1.50
+FNK        HD1A         CD1        HD1B     109.411    1.50
+FNK          CG         CD2         HD2     109.488    1.50
+FNK          CG         CD2        HD2A     109.488    1.50
+FNK          CG         CD2        HD2B     109.488    1.50
+FNK         HD2         CD2        HD2A     109.411    1.50
+FNK         HD2         CD2        HD2B     109.411    1.50
+FNK        HD2A         CD2        HD2B     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FNK              const_62         C7M          C7          C8         C8M       0.000    10.0     2
+FNK            sp2_sp3_13          C6          C7         C7M         H7M     150.000    10.0     6
+FNK              const_57         C8M          C8          C9         C9A     180.000    10.0     2
+FNK            sp2_sp3_19          C7          C8         C8M         H8M     150.000    10.0     6
+FNK              const_52          C8          C9         C9A         N10     180.000    10.0     2
+FNK             sp2_sp3_2           O          CA          CB          CG     120.000    10.0     6
+FNK            sp3_sp3_28           P         O3P          PA         O1A     180.000    10.0     3
+FNK           sp3_sp3_124         C5B         O5B          PA         O3P     180.000    10.0     3
+FNK            sp3_sp3_31          CA          CB          CG         CD1     180.000    10.0     3
+FNK            sp3_sp3_40         HD1         CD1          CG          CB     180.000    10.0     3
+FNK           sp3_sp3_130         HD2         CD2          CG          CB     180.000    10.0     3
+FNK             sp2_sp3_8         C10         N10       "C1'"       "C2'"     -90.000    10.0     6
+FNK            sp3_sp3_49         N10       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+FNK             sp2_sp2_8          N1         C10         N10       "C1'"       0.000     5.0     2
+FNK              const_18          N1         C10         C4X          N5     180.000    10.0     2
+FNK            sp2_sp2_12          C9         C9A         N10       "C1'"       0.000     5.0     2
+FNK            sp3_sp3_89          PA         O3P           P       "O5'"     -60.000    10.0     3
+FNK            sp3_sp3_26       "C5'"       "O5'"           P         O2P     -60.000    10.0     3
+FNK              const_71         N3A         C2A         N1A         C6A       0.000    10.0     2
+FNK              const_26         N6A         C6A         N1A         C2A     180.000    10.0     2
+FNK            sp3_sp3_71         O4B         C1B         C2B         O2B     -60.000    10.0     3
+FNK             sp3_sp3_1         C2B         C1B         O4B         C4B      60.000    10.0     3
+FNK            sp2_sp3_25         C4A         N9A         C1B         O4B     150.000    10.0     6
+FNK            sp3_sp3_67       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+FNK            sp3_sp3_58       "C1'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+FNK              const_37         N1A         C2A         N3A         C4A       0.000    10.0     2
+FNK            sp3_sp3_79         C1B         C2B         O2B        HO2B     180.000    10.0     3
+FNK            sp3_sp3_20         O2B         C2B         C3B         O3B     -60.000    10.0     3
+FNK              const_69         N10         C10          N1          C2     180.000    10.0     2
+FNK       const_sp2_sp2_3          O2          C2          N1         C10     180.000     5.0     2
+FNK            sp3_sp3_82       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+FNK            sp3_sp3_91       "C2'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+FNK              const_35         C5A         C4A         N3A         C2A       0.000    10.0     2
+FNK            sp3_sp3_85         C2B         C3B         O3B        HO3B     180.000    10.0     3
+FNK            sp3_sp3_11         O3B         C3B         C4B         C5B      60.000    10.0     3
+FNK           sp3_sp3_109       "C3'"       "C4'"       "O4'"      "HO4'"     180.000    10.0     3
+FNK           sp3_sp3_100       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+FNK              const_32         N3A         C4A         C5A         N7A     180.000    10.0     2
+FNK              const_76         N3A         C4A         N9A         C1B       0.000    10.0     2
+FNK       const_sp2_sp2_7          O2          C2          N3          C4     180.000     5.0     2
+FNK             sp3_sp3_5         C5B         C4B         O4B         C1B     180.000    10.0     3
+FNK           sp3_sp3_112         C3B         C4B         C5B         O5B     180.000    10.0     3
+FNK           sp3_sp3_121       "C4'"       "C5'"       "O5'"           P     180.000    10.0     3
+FNK              const_28         C4A         C5A         C6A         N6A     180.000    10.0     2
+FNK              const_39         C4A         C5A         N7A         C8A       0.000    10.0     2
+FNK           sp3_sp3_127         C4B         C5B         O5B          PA     180.000    10.0     3
+FNK              const_21          C6         C5X         C9A          C9       0.000    10.0     2
+FNK            sp2_sp2_23         N1A         C6A         N6A        HN6A       0.000     5.0     2
+FNK              const_41         N9A         C8A         N7A         C5A       0.000    10.0     2
+FNK              const_43         N7A         C8A         N9A         C4A       0.000    10.0     2
+FNK              const_11          O4          C4          N3          C2     180.000    10.0     2
+FNK              const_16          O4          C4         C4X          N5       0.000    10.0     2
+FNK            sp2_sp2_15           O          CA          N5         C4X       0.000     5.0     2
+FNK             sp2_sp2_4          C4         C4X          N5          CA       0.000     5.0     2
+FNK            sp2_sp2_20          C6         C5X          N5          CA       0.000     5.0     2
+FNK              const_64         C5X          C6          C7         C7M     180.000    10.0     2
+FNK              const_49          N5         C5X          C6          C7     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FNK    chir_1    P    O3P    "O5'"    O2P    both
+FNK    chir_2    PA    O3P    O5B    O1A    both
+FNK    chir_3    C1B    O4B    N9A    C2B    negative
+FNK    chir_4    "C2'"    "O2'"    "C3'"    "C1'"    positive
+FNK    chir_5    C2B    O2B    C1B    C3B    negative
+FNK    chir_6    "C3'"    "O3'"    "C4'"    "C2'"    positive
+FNK    chir_7    C3B    O3B    C4B    C2B    positive
+FNK    chir_8    "C4'"    "O4'"    "C3'"    "C5'"    negative
+FNK    chir_9    C4B    O4B    C3B    C5B    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FNK    plan-1         C1B   0.020
+FNK    plan-1         C2A   0.020
+FNK    plan-1         C4A   0.020
+FNK    plan-1         C5A   0.020
+FNK    plan-1         C6A   0.020
+FNK    plan-1         C8A   0.020
+FNK    plan-1         H2A   0.020
+FNK    plan-1         H8A   0.020
+FNK    plan-1         N1A   0.020
+FNK    plan-1         N3A   0.020
+FNK    plan-1         N6A   0.020
+FNK    plan-1         N7A   0.020
+FNK    plan-1         N9A   0.020
+FNK    plan-2         C5X   0.020
+FNK    plan-2          C6   0.020
+FNK    plan-2          C7   0.020
+FNK    plan-2         C7M   0.020
+FNK    plan-2          C8   0.020
+FNK    plan-2         C8M   0.020
+FNK    plan-2          C9   0.020
+FNK    plan-2         C9A   0.020
+FNK    plan-2          H6   0.020
+FNK    plan-2          H9   0.020
+FNK    plan-2         N10   0.020
+FNK    plan-2          N5   0.020
+FNK    plan-3         C10   0.020
+FNK    plan-3          C2   0.020
+FNK    plan-3          C4   0.020
+FNK    plan-3         C4X   0.020
+FNK    plan-3         HN1   0.020
+FNK    plan-3         HN3   0.020
+FNK    plan-3          N1   0.020
+FNK    plan-3         N10   0.020
+FNK    plan-3          N3   0.020
+FNK    plan-3          N5   0.020
+FNK    plan-3          O2   0.020
+FNK    plan-3          O4   0.020
+FNK    plan-4          CA   0.020
+FNK    plan-4          CB   0.020
+FNK    plan-4          N5   0.020
+FNK    plan-4           O   0.020
+FNK    plan-5       "C1'"   0.020
+FNK    plan-5         C10   0.020
+FNK    plan-5         C9A   0.020
+FNK    plan-5         N10   0.020
+FNK    plan-6         C6A   0.020
+FNK    plan-6        HN6A   0.020
+FNK    plan-6        HN6B   0.020
+FNK    plan-6         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FNK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                                     Cc1cc2c(cc1C)N(C3=C(N2C[C@@H]([C@@H]([C@@H](CO[P@@](=O)(O)O[P@@](=O)(O)OC[C@@H]4[C@H]([C@H]([C@@H](O4)n5cnc6c5ncnc6N)O)O)O)O)O)NC(=O)NC3=O)C(=O)CC(C)C
+FNK           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                                                                              Cc1cc2c(cc1C)N(C3=C(N2CC(C(C(COP(=O)(O)OP(=O)(O)OCC4C(C(C(O4)n5cnc6c5ncnc6N)O)O)O)O)O)NC(=O)NC3=O)C(=O)CC(C)C
+FNK           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                            O=C(N2c1cc(c(cc1N(C3=C2C(=O)NC(=O)N3)CC(O)C(O)C(O)COP(=O)(O)OP(=O)(O)OCC6OC(n5cnc4c(ncnc45)N)C(O)C6O)C)C)CC(C)C
+FNK            InChI                InChI  1.03 InChI=1S/C32H43N9O16P2/c1-13(2)5-21(44)41-17-7-15(4)14(3)6-16(17)39(29-23(41)30(48)38-32(49)37-29)8-18(42)24(45)19(43)9-54-58(50,51)57-59(52,53)55-10-20-25(46)26(47)31(56-20)40-12-36-22-27(33)34-11-35-28(22)40/h6-7,11-13,18-20,24-26,31,42-43,45-47H,5,8-10H2,1-4H3,(H,50,51)(H,52,53)(H2,33,34,35)(H2,37,38,48,49)/t18-,19+,20+,24-,25+,26+,31+/m0/s1
+FNK         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                CXENQOVRLDMZEP-KQGUAMSLSA-N
+FNK SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                                           CC(C)CC(=O)N1c2cc(C)c(C)cc2N(C[C@H](O)[C@H](O)[C@H](O)CO[P](O)(=O)O[P](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)ncnc45)C6=C1C(=O)NC(=O)N6
+FNK           SMILES               CACTVS 3.370                                                                                                                                                                                                                   CC(C)CC(=O)N1c2cc(C)c(C)cc2N(C[CH](O)[CH](O)[CH](O)CO[P](O)(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)ncnc45)C6=C1C(=O)NC(=O)N6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FNK acedrg               243         "dictionary generator"                  
+FNK acedrg_database      11          "data source"                           
+FNK rdkit                2017.03.2   "Chemoinformatics tool"
+FNK refmac5              5.8.0238    "optimization tool"                     

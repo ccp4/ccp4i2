@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P14     P14      N-[2-(2-{[(4-{[AMINO(IMINO)METHYL]AMINO}BUTYL)AMINO]METHYL}-4-METHOXYPHENOXY)ETHYL]GUANIDINE     NON-POLYMER     56     25     .     
+#
+data_comp_P14
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P14     C1      C       CR6     0       -2.671      1.385       19.090      
+P14     C2      C       CR6     0       -3.161      0.233       18.451      
+P14     C3      C       CR16    0       -4.401      -0.280      18.844      
+P14     C4      C       CR6     0       -5.146      0.328       19.846      
+P14     C5      C       CR16    0       -4.653      1.471       20.467      
+P14     C6      C       CR16    0       -3.422      1.994       20.092      
+P14     OA      O       O2      0       -1.443      1.822       18.643      
+P14     CB      C       CH2     0       -0.786      2.973       19.192      
+P14     CG      C       CH2     0       -1.399      4.214       18.590      
+P14     ND      N       NH1     0       -0.639      5.420       18.879      
+P14     CE      C       C       0       -0.587      6.064       20.051      
+P14     NZ1     N       NH2     1       -1.280      5.647       21.103      
+P14     NZ2     N       NH2     0       0.175       7.141       20.169      
+P14     CA      C       CH2     0       -2.375      -0.457      17.359      
+P14     NB      N       NT1     0       -1.355      -1.366      17.862      
+P14     CG1     C       CH2     0       -0.752      -2.220      16.834      
+P14     CD      C       CH2     0       -1.602      -3.444      16.525      
+P14     CE1     C       CH2     0       -0.896      -4.435      15.615      
+P14     CZ      C       CH2     0       -0.784      -3.940      14.184      
+P14     NH      N       NH1     0       -0.260      -4.952      13.270      
+P14     CI      C       C       0       -0.017      -4.779      11.968      
+P14     NJ1     N       NH2     1       0.475       -5.783      11.255      
+P14     NJ2     N       NH2     0       -0.262      -3.621      11.371      
+P14     O1      O       O2      0       -6.349      -0.284      20.120      
+P14     C11     C       CH3     0       -7.101      0.100       21.271      
+P14     H3      H       H       0       -4.735      -1.055      18.419      
+P14     H5      H       H       0       -5.148      1.896       21.146      
+P14     H6      H       H       0       -3.104      2.767       20.524      
+P14     HB1     H       H       0       0.165       2.943       18.971      
+P14     HB2     H       H       0       -0.871      2.990       20.164      
+P14     HG1     H       H       0       -2.313      4.321       18.926      
+P14     HG2     H       H       0       -1.450      4.099       17.617      
+P14     HD      H       H       0       -0.174      5.756       18.221      
+P14     HZ11    H       H       0       -1.222      6.084       21.865      
+P14     HZ12    H       H       0       -1.800      4.947       21.055      
+P14     HZ21    H       H       0       0.215       7.572       20.937      
+P14     HZ22    H       H       0       0.646       7.432       19.482      
+P14     HA1     H       H       0       -1.948      0.217       16.788      
+P14     HA2     H       H       0       -2.999      -0.963      16.797      
+P14     HB11    H       H       0       -0.726      -0.878      18.261      
+P14     HG11    H       H       0       0.132       -2.511      17.142      
+P14     HG12    H       H       0       -0.627      -1.697      16.014      
+P14     HD1     H       H       0       -2.435      -3.155      16.097      
+P14     HD2     H       H       0       -1.833      -3.892      17.367      
+P14     HE1     H       H       0       -1.390      -5.283      15.622      
+P14     HE2     H       H       0       0.004       -4.606      15.965      
+P14     HZ1     H       H       0       -0.195      -3.156      14.162      
+P14     HZ2     H       H       0       -1.670      -3.657      13.873      
+P14     HH      H       H       0       -0.092      -5.741      13.605      
+P14     HJ11    H       H       0       0.638       -5.678      10.397      
+P14     HJ12    H       H       0       0.640       -6.558      11.636      
+P14     HJ21    H       H       0       -0.089      -3.526      10.512      
+P14     HJ22    H       H       0       -0.599      -2.944      11.818      
+P14     H11     H       H       0       -7.399      1.018       21.171      
+P14     H12     H       H       0       -6.544      0.023       22.063      
+P14     H13     H       H       0       -7.872      -0.483      21.360      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P14          C1          C2      DOUBLE       y     1.396  0.0100     1.396  0.0100
+P14          C1          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+P14          C1          OA      SINGLE       n     1.368  0.0107     1.368  0.0107
+P14          C2          C3      SINGLE       y     1.393  0.0100     1.393  0.0100
+P14          C2          CA      SINGLE       n     1.509  0.0100     1.509  0.0100
+P14          C3          C4      DOUBLE       y     1.386  0.0100     1.386  0.0100
+P14          C4          C5      SINGLE       y     1.386  0.0109     1.386  0.0109
+P14          C4          O1      SINGLE       n     1.372  0.0100     1.372  0.0100
+P14          C5          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+P14          OA          CB      SINGLE       n     1.430  0.0100     1.430  0.0100
+P14          CB          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+P14          CG          ND      SINGLE       n     1.452  0.0100     1.452  0.0100
+P14          ND          CE      SINGLE       n     1.328  0.0112     1.328  0.0112
+P14          CE         NZ1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+P14          CE         NZ2      SINGLE       n     1.321  0.0100     1.321  0.0100
+P14          CA          NB      SINGLE       n     1.454  0.0100     1.454  0.0100
+P14          NB         CG1      SINGLE       n     1.465  0.0107     1.465  0.0107
+P14         CG1          CD      SINGLE       n     1.521  0.0100     1.521  0.0100
+P14          CD         CE1      SINGLE       n     1.519  0.0150     1.519  0.0150
+P14         CE1          CZ      SINGLE       n     1.517  0.0143     1.517  0.0143
+P14          CZ          NH      SINGLE       n     1.456  0.0136     1.456  0.0136
+P14          NH          CI      SINGLE       n     1.328  0.0112     1.328  0.0112
+P14          CI         NJ1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+P14          CI         NJ2      SINGLE       n     1.321  0.0100     1.321  0.0100
+P14          O1         C11      SINGLE       n     1.424  0.0117     1.424  0.0117
+P14          C3          H3      SINGLE       n     1.082  0.0130     0.945  0.0164
+P14          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0174
+P14          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0200
+P14          CB         HB1      SINGLE       n     1.089  0.0100     0.977  0.0111
+P14          CB         HB2      SINGLE       n     1.089  0.0100     0.977  0.0111
+P14          CG         HG1      SINGLE       n     1.089  0.0100     0.982  0.0177
+P14          CG         HG2      SINGLE       n     1.089  0.0100     0.982  0.0177
+P14          ND          HD      SINGLE       n     1.016  0.0100     0.872  0.0200
+P14         NZ1        HZ11      SINGLE       n     1.016  0.0100     0.879  0.0200
+P14         NZ1        HZ12      SINGLE       n     1.016  0.0100     0.879  0.0200
+P14         NZ2        HZ21      SINGLE       n     1.016  0.0100     0.881  0.0200
+P14         NZ2        HZ22      SINGLE       n     1.016  0.0100     0.881  0.0200
+P14          CA         HA1      SINGLE       n     1.089  0.0100     0.981  0.0172
+P14          CA         HA2      SINGLE       n     1.089  0.0100     0.981  0.0172
+P14          NB        HB11      SINGLE       n     1.036  0.0160     0.890  0.0200
+P14         CG1        HG11      SINGLE       n     1.089  0.0100     0.980  0.0143
+P14         CG1        HG12      SINGLE       n     1.089  0.0100     0.980  0.0143
+P14          CD         HD1      SINGLE       n     1.089  0.0100     0.981  0.0160
+P14          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0160
+P14         CE1         HE1      SINGLE       n     1.089  0.0100     0.981  0.0160
+P14         CE1         HE2      SINGLE       n     1.089  0.0100     0.981  0.0160
+P14          CZ         HZ1      SINGLE       n     1.089  0.0100     0.981  0.0152
+P14          CZ         HZ2      SINGLE       n     1.089  0.0100     0.981  0.0152
+P14          NH          HH      SINGLE       n     1.016  0.0100     0.872  0.0200
+P14         NJ1        HJ11      SINGLE       n     1.016  0.0100     0.879  0.0200
+P14         NJ1        HJ12      SINGLE       n     1.016  0.0100     0.879  0.0200
+P14         NJ2        HJ21      SINGLE       n     1.016  0.0100     0.881  0.0200
+P14         NJ2        HJ22      SINGLE       n     1.016  0.0100     0.881  0.0200
+P14         C11         H11      SINGLE       n     1.089  0.0100     0.971  0.0157
+P14         C11         H12      SINGLE       n     1.089  0.0100     0.971  0.0157
+P14         C11         H13      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P14          C2          C1          C6     120.887    1.50
+P14          C2          C1          OA     115.600    1.50
+P14          C6          C1          OA     123.513    1.50
+P14          C1          C2          C3     118.195    1.50
+P14          C1          C2          CA     120.399    1.51
+P14          C3          C2          CA     121.406    1.50
+P14          C2          C3          C4     120.038    1.50
+P14          C2          C3          H3     119.753    1.50
+P14          C4          C3          H3     120.209    1.50
+P14          C3          C4          C5     120.213    1.50
+P14          C3          C4          O1     119.954    3.00
+P14          C5          C4          O1     119.832    3.00
+P14          C4          C5          C6     120.320    1.50
+P14          C4          C5          H5     119.933    1.50
+P14          C6          C5          H5     119.747    1.50
+P14          C1          C6          C5     120.346    1.50
+P14          C1          C6          H6     119.919    1.50
+P14          C5          C6          H6     119.735    1.50
+P14          C1          OA          CB     118.127    1.50
+P14          OA          CB          CG     108.315    1.50
+P14          OA          CB         HB1     110.215    1.50
+P14          OA          CB         HB2     110.215    1.50
+P14          CG          CB         HB1     109.867    1.50
+P14          CG          CB         HB2     109.867    1.50
+P14         HB1          CB         HB2     108.672    1.50
+P14          CB          CG          ND     113.008    1.54
+P14          CB          CG         HG1     108.969    1.50
+P14          CB          CG         HG2     108.969    1.50
+P14          ND          CG         HG1     109.102    1.50
+P14          ND          CG         HG2     109.102    1.50
+P14         HG1          CG         HG2     108.238    1.99
+P14          CG          ND          CE     124.469    1.50
+P14          CG          ND          HD     118.185    1.83
+P14          CE          ND          HD     117.345    1.50
+P14          ND          CE         NZ1     120.052    1.50
+P14          ND          CE         NZ2     120.052    1.50
+P14         NZ1          CE         NZ2     119.896    1.50
+P14          CE         NZ1        HZ11     119.855    2.01
+P14          CE         NZ1        HZ12     119.855    2.01
+P14        HZ11         NZ1        HZ12     120.290    2.09
+P14          CE         NZ2        HZ21     119.855    2.01
+P14          CE         NZ2        HZ22     119.855    2.01
+P14        HZ21         NZ2        HZ22     120.290    2.09
+P14          C2          CA          NB     113.604    2.23
+P14          C2          CA         HA1     108.972    1.50
+P14          C2          CA         HA2     108.972    1.50
+P14          NB          CA         HA1     108.965    1.50
+P14          NB          CA         HA2     108.965    1.50
+P14         HA1          CA         HA2     107.860    1.50
+P14          CA          NB         CG1     113.568    1.50
+P14          CA          NB        HB11     107.963    3.00
+P14         CG1          NB        HB11     110.028    3.00
+P14          NB         CG1          CD     111.754    2.01
+P14          NB         CG1        HG11     108.882    1.50
+P14          NB         CG1        HG12     108.882    1.50
+P14          CD         CG1        HG11     109.197    1.51
+P14          CD         CG1        HG12     109.197    1.51
+P14        HG11         CG1        HG12     107.877    1.50
+P14         CG1          CD         CE1     112.652    1.50
+P14         CG1          CD         HD1     108.956    1.50
+P14         CG1          CD         HD2     108.956    1.50
+P14         CE1          CD         HD1     108.999    1.50
+P14         CE1          CD         HD2     108.999    1.50
+P14         HD1          CD         HD2     107.927    1.57
+P14          CD         CE1          CZ     112.652    1.50
+P14          CD         CE1         HE1     108.999    1.50
+P14          CD         CE1         HE2     108.999    1.50
+P14          CZ         CE1         HE1     108.956    1.50
+P14          CZ         CE1         HE2     108.956    1.50
+P14         HE1         CE1         HE2     107.927    1.57
+P14         CE1          CZ          NH     112.382    2.90
+P14         CE1          CZ         HZ1     109.197    1.51
+P14         CE1          CZ         HZ2     109.197    1.51
+P14          NH          CZ         HZ1     109.183    1.50
+P14          NH          CZ         HZ2     109.183    1.50
+P14         HZ1          CZ         HZ2     107.877    1.50
+P14          CZ          NH          CI     124.510    1.50
+P14          CZ          NH          HH     117.883    1.50
+P14          CI          NH          HH     117.606    1.50
+P14          NH          CI         NJ1     120.052    1.50
+P14          NH          CI         NJ2     120.052    1.50
+P14         NJ1          CI         NJ2     119.896    1.50
+P14          CI         NJ1        HJ11     119.855    2.01
+P14          CI         NJ1        HJ12     119.855    2.01
+P14        HJ11         NJ1        HJ12     120.290    2.09
+P14          CI         NJ2        HJ21     119.855    2.01
+P14          CI         NJ2        HJ22     119.855    2.01
+P14        HJ21         NJ2        HJ22     120.290    2.09
+P14          C4          O1         C11     117.529    1.50
+P14          O1         C11         H11     109.428    1.50
+P14          O1         C11         H12     109.428    1.50
+P14          O1         C11         H13     109.428    1.50
+P14         H11         C11         H12     109.509    1.50
+P14         H11         C11         H13     109.509    1.50
+P14         H12         C11         H13     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P14       const_sp2_sp2_4          OA          C1          C2          CA       0.000     5.0     2
+P14              const_23          OA          C1          C6          C5     180.000    10.0     2
+P14             sp2_sp2_1          C2          C1          OA          CB     180.000     5.0     2
+P14             sp2_sp2_9          ND          CE         NZ1        HZ11     180.000     5.0     2
+P14            sp2_sp2_13          ND          CE         NZ2        HZ21     180.000     5.0     2
+P14            sp3_sp3_14          C2          CA          NB         CG1     -60.000    10.0     3
+P14            sp3_sp3_19          CD         CG1          NB          CA     180.000    10.0     3
+P14            sp3_sp3_25         CE1          CD         CG1          NB     180.000    10.0     3
+P14            sp3_sp3_34         CG1          CD         CE1          CZ     180.000    10.0     3
+P14            sp3_sp3_43          CD         CE1          CZ          NH     180.000    10.0     3
+P14            sp2_sp3_14          CI          NH          CZ         CE1     120.000    10.0     6
+P14            sp2_sp2_17         NJ1          CI          NH          CZ     180.000     5.0     2
+P14             sp2_sp3_2          C1          C2          CA          NB     -90.000    10.0     6
+P14       const_sp2_sp2_7          CA          C2          C3          C4     180.000     5.0     2
+P14            sp2_sp2_21          NH          CI         NJ1        HJ11     180.000     5.0     2
+P14            sp2_sp2_25          NH          CI         NJ2        HJ21     180.000     5.0     2
+P14            sp3_sp3_53         H11         C11          O1          C4     -60.000    10.0     3
+P14              const_10          C2          C3          C4          O1     180.000    10.0     2
+P14             sp2_sp2_3          C3          C4          O1         C11     180.000     5.0     2
+P14              const_15          O1          C4          C5          C6     180.000    10.0     2
+P14              const_17          C4          C5          C6          C1       0.000    10.0     2
+P14             sp3_sp3_1          CG          CB          OA          C1     180.000    10.0     3
+P14             sp3_sp3_4          OA          CB          CG          ND     180.000    10.0     3
+P14             sp2_sp3_8          CE          ND          CG          CB     120.000    10.0     6
+P14             sp2_sp2_5         NZ1          CE          ND          CG     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P14    chir_1    NB    CA    CG1    HB11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+P14    plan-1          C1   0.020
+P14    plan-1          C2   0.020
+P14    plan-1          C3   0.020
+P14    plan-1          C4   0.020
+P14    plan-1          C5   0.020
+P14    plan-1          C6   0.020
+P14    plan-1          CA   0.020
+P14    plan-1          H3   0.020
+P14    plan-1          H5   0.020
+P14    plan-1          H6   0.020
+P14    plan-1          O1   0.020
+P14    plan-1          OA   0.020
+P14    plan-2          CE   0.020
+P14    plan-2          CG   0.020
+P14    plan-2          HD   0.020
+P14    plan-2          ND   0.020
+P14    plan-3          CE   0.020
+P14    plan-3          ND   0.020
+P14    plan-3         NZ1   0.020
+P14    plan-3         NZ2   0.020
+P14    plan-4          CE   0.020
+P14    plan-4        HZ11   0.020
+P14    plan-4        HZ12   0.020
+P14    plan-4         NZ1   0.020
+P14    plan-5          CE   0.020
+P14    plan-5        HZ21   0.020
+P14    plan-5        HZ22   0.020
+P14    plan-5         NZ2   0.020
+P14    plan-6          CI   0.020
+P14    plan-6          CZ   0.020
+P14    plan-6          HH   0.020
+P14    plan-6          NH   0.020
+P14    plan-7          CI   0.020
+P14    plan-7          NH   0.020
+P14    plan-7         NJ1   0.020
+P14    plan-7         NJ2   0.020
+P14    plan-8          CI   0.020
+P14    plan-8        HJ11   0.020
+P14    plan-8        HJ12   0.020
+P14    plan-8         NJ1   0.020
+P14    plan-9          CI   0.020
+P14    plan-9        HJ21   0.020
+P14    plan-9        HJ22   0.020
+P14    plan-9         NJ2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P14           SMILES              ACDLabs 10.04                                                                                                     O(c1ccc(OC)cc1CNCCCCNC(=[NH2+])\N)CCNC(=[NH2+])\N
+P14 SMILES_CANONICAL               CACTVS 3.341                                                                                                       COc1ccc(OCCNC(N)=[NH2+])c(CNCCCCNC(N)=[NH2+])c1
+P14           SMILES               CACTVS 3.341                                                                                                       COc1ccc(OCCNC(N)=[NH2+])c(CNCCCCNC(N)=[NH2+])c1
+P14 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                       COc1ccc(c(c1)CNCCCCNC(=[NH2+])N)OCCNC(=[NH2+])N
+P14           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                       COc1ccc(c(c1)CNCCCCNC(=[NH2+])N)OCCNC(=[NH2+])N
+P14            InChI                InChI  1.03 InChI=1S/C16H29N7O2/c1-24-13-4-5-14(25-9-8-23-16(19)20)12(10-13)11-21-6-2-3-7-22-15(17)18/h4-5,10,21H,2-3,6-9,11H2,1H3,(H4,17,18,22)(H4,19,20,23)/p+2
+P14         InChIKey                InChI  1.03                                                                                                                           ZCQAXURCNFAREC-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P14 acedrg               243         "dictionary generator"                  
+P14 acedrg_database      11          "data source"                           
+P14 rdkit                2017.03.2   "Chemoinformatics tool"
+P14 refmac5              5.8.0238    "optimization tool"                     

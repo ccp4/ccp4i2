@@ -1,0 +1,356 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+04O     04O      2-amino-2-deoxy-4,6-O-[(1R)-3-phenylpropylidene]-alpha-D-glucopyranose     NON-POLYMER     42     21     .     
+#
+data_comp_04O
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+04O     C11     C       CH1     0       190.297     87.603      -11.132     
+04O     O11     O       OH1     0       190.987     88.816      -11.187     
+04O     C16     C       CR6     0       191.800     85.427      -2.697      
+04O     C21     C       CH1     0       188.932     87.808      -10.452     
+04O     N21     N       NT2     0       188.168     88.891      -11.089     
+04O     C26     C       CR16    0       192.882     86.095      -2.137      
+04O     C31     C       CH1     0       189.061     88.044      -8.946      
+04O     O31     O       OH1     0       187.760     88.066      -8.366      
+04O     C35     C       CH2     0       191.061     86.340      -4.945      
+04O     C36     C       CR16    0       192.954     86.309      -0.766      
+04O     C41     C       CH1     0       189.886     86.919      -8.372      
+04O     O41     O       O2      0       190.087     87.107      -6.967      
+04O     C45     C       CH2     0       191.722     85.193      -4.189      
+04O     C46     C       CR16    0       191.944     85.857      0.059       
+04O     C51     C       CH1     0       191.247     86.874      -9.057      
+04O     O51     O       O2      0       191.083     86.620      -10.455     
+04O     C56     C       CR16    0       190.865     85.192      -0.481      
+04O     C61     C       CH2     0       192.059     85.757      -8.435      
+04O     O61     O       O2      0       192.149     85.999      -7.024      
+04O     C66     C       CR16    0       190.792     84.977      -1.852      
+04O     CBJ     C       CH1     0       190.872     86.063      -6.411      
+04O     H11     H       H       0       190.142     87.287      -12.056     
+04O     H2      H       H       0       191.704     88.707      -11.623     
+04O     H21     H       H       0       188.421     86.971      -10.569     
+04O     HN21    H       H       0       187.379     88.981      -10.690     
+04O     HN2A    H       H       0       188.034     88.704      -11.947     
+04O     H26     H       H       0       193.576     86.407      -2.696      
+04O     H31     H       H       0       189.513     88.919      -8.776      
+04O     HO31    H       H       0       187.861     88.344      -7.579      
+04O     H35     H       H       0       191.610     87.147      -4.841      
+04O     H35A    H       H       0       190.186     86.525      -4.540      
+04O     H36     H       H       0       193.694     86.765      -0.400      
+04O     H41     H       H       0       189.417     86.058      -8.524      
+04O     H45     H       H       0       191.216     84.369      -4.355      
+04O     H45A    H       H       0       192.630     85.063      -4.537      
+04O     H46     H       H       0       191.993     86.003      0.991       
+04O     H51     H       H       0       191.712     87.741      -8.919      
+04O     H56     H       H       0       190.173     84.882      0.081       
+04O     H61     H       H       0       192.963     85.736      -8.828      
+04O     H61A    H       H       0       191.622     84.888      -8.598      
+04O     H66     H       H       0       190.050     84.521      -2.215      
+04O     HBJ     H       H       0       190.406     85.198      -6.534      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+04O         C11         O11      SINGLE       n     1.392  0.0200     1.392  0.0200
+04O         C11         C21      SINGLE       n     1.535  0.0100     1.535  0.0100
+04O         C11         O51      SINGLE       n     1.424  0.0100     1.424  0.0100
+04O         C16         C26      DOUBLE       y     1.385  0.0111     1.385  0.0111
+04O         C16         C45      SINGLE       n     1.512  0.0101     1.512  0.0101
+04O         C16         C66      SINGLE       y     1.385  0.0111     1.385  0.0111
+04O         C21         N21      SINGLE       n     1.470  0.0107     1.470  0.0107
+04O         C21         C31      SINGLE       n     1.528  0.0118     1.528  0.0118
+04O         C26         C36      SINGLE       y     1.386  0.0100     1.386  0.0100
+04O         C31         O31      SINGLE       n     1.425  0.0100     1.425  0.0100
+04O         C31         C41      SINGLE       n     1.508  0.0100     1.508  0.0100
+04O         C35         C45      SINGLE       n     1.524  0.0200     1.524  0.0200
+04O         C35         CBJ      SINGLE       n     1.504  0.0100     1.504  0.0100
+04O         C36         C46      DOUBLE       y     1.376  0.0124     1.376  0.0124
+04O         C41         O41      SINGLE       n     1.429  0.0100     1.429  0.0100
+04O         C41         C51      SINGLE       n     1.522  0.0108     1.522  0.0108
+04O         O41         CBJ      SINGLE       n     1.415  0.0110     1.415  0.0110
+04O         C46         C56      SINGLE       y     1.374  0.0127     1.374  0.0127
+04O         C51         O51      SINGLE       n     1.427  0.0100     1.427  0.0100
+04O         C51         C61      SINGLE       n     1.513  0.0100     1.513  0.0100
+04O         C56         C66      DOUBLE       y     1.386  0.0100     1.386  0.0100
+04O         C61         O61      SINGLE       n     1.432  0.0100     1.432  0.0100
+04O         O61         CBJ      SINGLE       n     1.414  0.0100     1.414  0.0100
+04O         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0183
+04O         O11          H2      SINGLE       n     0.970  0.0120     0.846  0.0200
+04O         C21         H21      SINGLE       n     1.089  0.0100     0.988  0.0199
+04O         N21        HN21      SINGLE       n     1.036  0.0160     0.889  0.0200
+04O         N21        HN2A      SINGLE       n     1.036  0.0160     0.889  0.0200
+04O         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0174
+04O         C31         H31      SINGLE       n     1.089  0.0100     0.999  0.0100
+04O         O31        HO31      SINGLE       n     0.970  0.0120     0.841  0.0200
+04O         C35         H35      SINGLE       n     1.089  0.0100     0.981  0.0200
+04O         C35        H35A      SINGLE       n     1.089  0.0100     0.981  0.0200
+04O         C36         H36      SINGLE       n     1.082  0.0130     0.944  0.0175
+04O         C41         H41      SINGLE       n     1.089  0.0100     0.992  0.0131
+04O         C45         H45      SINGLE       n     1.089  0.0100     0.981  0.0150
+04O         C45        H45A      SINGLE       n     1.089  0.0100     0.981  0.0150
+04O         C46         H46      SINGLE       n     1.082  0.0130     0.944  0.0161
+04O         C51         H51      SINGLE       n     1.089  0.0100     0.994  0.0160
+04O         C56         H56      SINGLE       n     1.082  0.0130     0.944  0.0175
+04O         C61         H61      SINGLE       n     1.089  0.0100     0.986  0.0129
+04O         C61        H61A      SINGLE       n     1.089  0.0100     0.986  0.0129
+04O         C66         H66      SINGLE       n     1.082  0.0130     0.944  0.0174
+04O         CBJ         HBJ      SINGLE       n     1.089  0.0100     0.990  0.0193
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+04O         O11         C11         C21     109.247    2.43
+04O         O11         C11         O51     108.827    2.45
+04O         O11         C11         H11     108.913    1.50
+04O         C21         C11         O51     110.873    1.50
+04O         C21         C11         H11     108.848    1.50
+04O         O51         C11         H11     108.310    1.50
+04O         C11         O11          H2     109.112    2.54
+04O         C26         C16         C45     120.970    1.50
+04O         C26         C16         C66     118.060    1.50
+04O         C45         C16         C66     120.973    1.50
+04O         C11         C21         N21     111.865    2.42
+04O         C11         C21         C31     111.859    2.18
+04O         C11         C21         H21     107.511    1.55
+04O         N21         C21         C31     111.569    2.38
+04O         N21         C21         H21     108.113    1.50
+04O         C31         C21         H21     107.322    1.50
+04O         C21         N21        HN21     109.984    3.00
+04O         C21         N21        HN2A     109.984    3.00
+04O        HN21         N21        HN2A     108.673    3.00
+04O         C16         C26         C36     120.624    1.50
+04O         C16         C26         H26     119.591    1.50
+04O         C36         C26         H26     119.786    1.50
+04O         C21         C31         O31     108.987    1.52
+04O         C21         C31         C41     107.967    1.50
+04O         C21         C31         H31     109.887    1.50
+04O         O31         C31         C41     110.856    1.50
+04O         O31         C31         H31     109.286    1.50
+04O         C41         C31         H31     109.923    1.50
+04O         C31         O31        HO31     106.041    3.00
+04O         C45         C35         CBJ     113.198    2.74
+04O         C45         C35         H35     108.843    1.50
+04O         C45         C35        H35A     108.843    1.50
+04O         CBJ         C35         H35     108.927    1.50
+04O         CBJ         C35        H35A     108.927    1.50
+04O         H35         C35        H35A     107.474    1.50
+04O         C26         C36         C46     120.325    1.50
+04O         C26         C36         H36     119.792    1.50
+04O         C46         C36         H36     119.883    1.50
+04O         C31         C41         O41     109.753    1.66
+04O         C31         C41         C51     110.215    1.50
+04O         C31         C41         H41     109.209    1.50
+04O         O41         C41         C51     108.231    1.50
+04O         O41         C41         H41     108.958    1.50
+04O         C51         C41         H41     108.927    1.50
+04O         C41         O41         CBJ     110.771    1.50
+04O         C16         C45         C35     113.349    1.50
+04O         C16         C45         H45     108.977    1.50
+04O         C16         C45        H45A     108.977    1.50
+04O         C35         C45         H45     109.045    1.50
+04O         C35         C45        H45A     109.045    1.50
+04O         H45         C45        H45A     107.860    1.50
+04O         C36         C46         C56     120.043    1.50
+04O         C36         C46         H46     119.979    1.50
+04O         C56         C46         H46     119.979    1.50
+04O         C41         C51         O51     109.766    1.50
+04O         C41         C51         C61     108.900    1.50
+04O         C41         C51         H51     109.218    1.50
+04O         O51         C51         C61     108.957    1.50
+04O         O51         C51         H51     109.765    1.50
+04O         C61         C51         H51     109.820    1.50
+04O         C11         O51         C51     111.991    1.50
+04O         C46         C56         C66     120.325    1.50
+04O         C46         C56         H56     119.883    1.50
+04O         C66         C56         H56     119.792    1.50
+04O         C51         C61         O61     108.040    1.50
+04O         C51         C61         H61     109.983    1.50
+04O         C51         C61        H61A     109.983    1.50
+04O         O61         C61         H61     109.629    1.53
+04O         O61         C61        H61A     109.629    1.53
+04O         H61         C61        H61A     108.643    1.50
+04O         C61         O61         CBJ     111.300    1.50
+04O         C16         C66         C56     120.624    1.50
+04O         C16         C66         H66     119.591    1.50
+04O         C56         C66         H66     119.786    1.50
+04O         C35         CBJ         O41     108.569    1.50
+04O         C35         CBJ         O61     108.668    1.50
+04O         C35         CBJ         HBJ     110.384    2.11
+04O         O41         CBJ         O61     110.859    1.50
+04O         O41         CBJ         HBJ     109.417    1.50
+04O         O61         CBJ         HBJ     109.345    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+04O                   nu0         C51         O51         C11         C21     -56.703    10.0     3
+04O                   nu1         O51         C11         C21         C31      49.840    10.0     3
+04O                   nu2         C11         C21         C31         C41     -48.752    10.0     3
+04O                   nu3         C21         C31         C41         C51      54.521    10.0     3
+04O                   nu4         C31         C41         C51         O51     -63.093    10.0     3
+04O                   nu5         C41         C51         O51         C11      63.833    10.0     3
+04O       const_sp2_sp2_1         C66         C16         C26         C36       0.000     5.0     2
+04O       const_sp2_sp2_2         C66         C16         C26         H26     180.000     5.0     2
+04O       const_sp2_sp2_3         C45         C16         C26         C36     180.000     5.0     2
+04O       const_sp2_sp2_4         C45         C16         C26         H26       0.000     5.0     2
+04O       const_sp2_sp2_5         C16         C26         C36         C46       0.000     5.0     2
+04O       const_sp2_sp2_6         C16         C26         C36         H36     180.000     5.0     2
+04O       const_sp2_sp2_7         H26         C26         C36         C46     180.000     5.0     2
+04O       const_sp2_sp2_8         H26         C26         C36         H36       0.000     5.0     2
+04O       const_sp2_sp2_9         C26         C36         C46         C56       0.000     5.0     2
+04O              const_10         C26         C36         C46         H46     180.000    10.0     2
+04O              const_11         H36         C36         C46         C56     180.000    10.0     2
+04O              const_12         H36         C36         C46         H46       0.000    10.0     2
+04O              const_13         C36         C46         C56         C66       0.000    10.0     2
+04O              const_14         C36         C46         C56         H56     180.000    10.0     2
+04O              const_15         H46         C46         C56         C66     180.000    10.0     2
+04O              const_16         H46         C46         C56         H56       0.000    10.0     2
+04O              const_17         C46         C56         C66         C16       0.000    10.0     2
+04O              const_18         C46         C56         C66         H66     180.000    10.0     2
+04O              const_19         H56         C56         C66         C16     180.000    10.0     2
+04O              const_20         H56         C56         C66         H66       0.000    10.0     2
+04O            sp3_sp3_40         C51         C41         O41         CBJ      60.000    10.0     3
+04O            sp3_sp3_41         C31         C41         O41         CBJ     -60.000    10.0     3
+04O            sp3_sp3_42         H41         C41         O41         CBJ     180.000    10.0     3
+04O            sp3_sp3_43         O61         CBJ         O41         C41     -60.000    10.0     3
+04O            sp3_sp3_44         C35         CBJ         O41         C41     180.000    10.0     3
+04O            sp3_sp3_45         HBJ         CBJ         O41         C41      60.000    10.0     3
+04O            sp3_sp3_46         O41         CBJ         O61         C61      60.000    10.0     3
+04O            sp3_sp3_47         C35         CBJ         O61         C61     -60.000    10.0     3
+04O            sp3_sp3_48         HBJ         CBJ         O61         C61     180.000    10.0     3
+04O            sp3_sp3_49         C51         C61         O61         CBJ     -60.000    10.0     3
+04O            sp3_sp3_50         H61         C61         O61         CBJ     180.000    10.0     3
+04O            sp3_sp3_51        H61A         C61         O61         CBJ      60.000    10.0     3
+04O            sp3_sp3_52         C41         C51         C61         O61      60.000    10.0     3
+04O            sp3_sp3_53         C41         C51         C61         H61     180.000    10.0     3
+04O            sp3_sp3_54         C41         C51         C61        H61A     -60.000    10.0     3
+04O            sp3_sp3_55         O51         C51         C61         O61     -60.000    10.0     3
+04O            sp3_sp3_56         O51         C51         C61         H61      60.000    10.0     3
+04O            sp3_sp3_57         O51         C51         C61        H61A     180.000    10.0     3
+04O            sp3_sp3_58         H51         C51         C61         O61     180.000    10.0     3
+04O            sp3_sp3_59         H51         C51         C61         H61     -60.000    10.0     3
+04O            sp3_sp3_60         H51         C51         C61        H61A      60.000    10.0     3
+04O            sp3_sp3_61         C21         C11         O11          H2     180.000    10.0     3
+04O            sp3_sp3_62         O51         C11         O11          H2      60.000    10.0     3
+04O            sp3_sp3_63         H11         C11         O11          H2     -60.000    10.0     3
+04O             sp2_sp3_1         C26         C16         C45         H45     150.000    10.0     6
+04O             sp2_sp3_2         C26         C16         C45         C35     -90.000    10.0     6
+04O             sp2_sp3_3         C26         C16         C45        H45A      30.000    10.0     6
+04O             sp2_sp3_4         C66         C16         C45         H45     -30.000    10.0     6
+04O             sp2_sp3_5         C66         C16         C45         C35      90.000    10.0     6
+04O             sp2_sp3_6         C66         C16         C45        H45A    -150.000    10.0     6
+04O              const_21         C26         C16         C66         C56       0.000    10.0     2
+04O              const_22         C26         C16         C66         H66     180.000    10.0     2
+04O              const_23         C45         C16         C66         C56     180.000    10.0     2
+04O              const_24         C45         C16         C66         H66       0.000    10.0     2
+04O            sp3_sp3_67         C11         C21         N21        HN21     180.000    10.0     3
+04O            sp3_sp3_68         C11         C21         N21        HN2A     -60.000    10.0     3
+04O            sp3_sp3_69         C31         C21         N21        HN21      60.000    10.0     3
+04O            sp3_sp3_70         C31         C21         N21        HN2A     180.000    10.0     3
+04O            sp3_sp3_71         H21         C21         N21        HN21     -60.000    10.0     3
+04O            sp3_sp3_72         H21         C21         N21        HN2A      60.000    10.0     3
+04O            sp3_sp3_73         C21         C31         O31        HO31     180.000    10.0     3
+04O            sp3_sp3_74         C41         C31         O31        HO31      60.000    10.0     3
+04O            sp3_sp3_75         H31         C31         O31        HO31     -60.000    10.0     3
+04O            sp3_sp3_76         CBJ         C35         C45         C16     180.000    10.0     3
+04O            sp3_sp3_77         CBJ         C35         C45         H45     -60.000    10.0     3
+04O            sp3_sp3_78         CBJ         C35         C45        H45A      60.000    10.0     3
+04O            sp3_sp3_79         H35         C35         C45         C16      60.000    10.0     3
+04O            sp3_sp3_80         H35         C35         C45         H45     180.000    10.0     3
+04O            sp3_sp3_81         H35         C35         C45        H45A     -60.000    10.0     3
+04O            sp3_sp3_82        H35A         C35         C45         C16     -60.000    10.0     3
+04O            sp3_sp3_83        H35A         C35         C45         H45      60.000    10.0     3
+04O            sp3_sp3_84        H35A         C35         C45        H45A     180.000    10.0     3
+04O            sp3_sp3_85         C45         C35         CBJ         O41     180.000    10.0     3
+04O            sp3_sp3_86         C45         C35         CBJ         O61     -60.000    10.0     3
+04O            sp3_sp3_87         C45         C35         CBJ         HBJ      60.000    10.0     3
+04O            sp3_sp3_88         H35         C35         CBJ         O41      60.000    10.0     3
+04O            sp3_sp3_89         H35         C35         CBJ         O61     180.000    10.0     3
+04O            sp3_sp3_90         H35         C35         CBJ         HBJ     -60.000    10.0     3
+04O            sp3_sp3_91        H35A         C35         CBJ         O41     -60.000    10.0     3
+04O            sp3_sp3_92        H35A         C35         CBJ         O61      60.000    10.0     3
+04O            sp3_sp3_93        H35A         C35         CBJ         HBJ     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+04O    chir_1    C11    O51    O11    C21    positive
+04O    chir_2    C21    N21    C11    C31    negative
+04O    chir_3    C31    O31    C41    C21    negative
+04O    chir_4    C41    O41    C51    C31    positive
+04O    chir_5    C51    O51    C41    C61    negative
+04O    chir_6    CBJ    O41    O61    C35    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+04O    plan-1         C16   0.020
+04O    plan-1         C26   0.020
+04O    plan-1         C36   0.020
+04O    plan-1         C45   0.020
+04O    plan-1         C46   0.020
+04O    plan-1         C56   0.020
+04O    plan-1         C66   0.020
+04O    plan-1         H26   0.020
+04O    plan-1         H36   0.020
+04O    plan-1         H46   0.020
+04O    plan-1         H56   0.020
+04O    plan-1         H66   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+04O           SMILES              ACDLabs 12.01                                                                                                         O1C(O)C(N)C(O)C2OC(OCC12)CCc3ccccc3
+04O            InChI                InChI  1.03 InChI=1S/C15H21NO5/c16-12-13(17)14-10(20-15(12)18)8-19-11(21-14)7-6-9-4-2-1-3-5-9/h1-5,10-15,17-18H,6-8,16H2/t10-,11-,12-,13-,14-,15+/m1/s1
+04O         InChIKey                InChI  1.03                                                                                                                 AWZFJXPWUYCUGB-OJVARPOJSA-N
+04O SMILES_CANONICAL               CACTVS 3.385                                                                                 N[C@H]1[C@@H](O)O[C@@H]2CO[C@@H](CCc3ccccc3)O[C@H]2[C@@H]1O
+04O           SMILES               CACTVS 3.385                                                                                           N[CH]1[CH](O)O[CH]2CO[CH](CCc3ccccc3)O[CH]2[CH]1O
+04O SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                           c1ccc(cc1)CC[C@@H]2OC[C@@H]3[C@@H](O2)[C@@H]([C@H]([C@H](O3)O)N)O
+04O           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                       c1ccc(cc1)CCC2OCC3C(O2)C(C(C(O3)O)N)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+04O acedrg               243         "dictionary generator"                  
+04O acedrg_database      11          "data source"                           
+04O rdkit                2017.03.2   "Chemoinformatics tool"
+04O refmac5              5.8.0238    "optimization tool"                     

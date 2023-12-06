@@ -1,0 +1,650 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KWM     KWM      "[[(2~{R},3~{S},4~{R},5~{R})-5-(6-aminopurin-9-yl)-3,4-bis(oxidanyl)oxolan-2-yl]methoxy-oxidanyl-phosphoryl] [(2~{R},3~{S},4~{S})-5-[(9~{S},11~{R})-15,16-dimethyl-11-oxidanyl-5,7-bis(oxidanylidene)-9-phenyl-2,4,6,12-tetrazabicyclo[11.4.0]heptadeca-1(17),13,15-trien-2-yl]-2,3,4-tris(oxidanyl)pentyl] hydrogen phosphate"     NON-POLYMER     110     63     .     
+#
+data_comp_KWM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KWM     O1      O       O       0       23.943      52.036      48.318      
+KWM     O2      O       O       0       23.304      53.910      51.859      
+KWM     C1      C       C       0       24.236      52.559      49.391      
+KWM     N1      N       NH1     0       23.780      52.082      50.590      
+KWM     C2      C       C       0       23.641      52.720      51.839      
+KWM     N2      N       NH1     0       23.948      52.051      52.973      
+KWM     C3      C       CH2     0       24.710      50.802      53.043      
+KWM     C4      C       CH2     0       25.294      53.635      49.470      
+KWM     C5      C       CH1     0       26.551      53.188      50.255      
+KWM     C6      C       CR6     0       27.583      52.538      49.343      
+KWM     C7      C       CR16    0       28.367      53.298      48.475      
+KWM     C8      C       CR16    0       29.300      52.688      47.644      
+KWM     C9      C       CR16    0       29.458      51.317      47.663      
+KWM     C10     C       CR16    0       28.686      50.550      48.511      
+KWM     C11     C       CR16    0       27.751      51.153      49.342      
+KWM     C12     C       CH2     0       27.115      54.350      51.088      
+KWM     C13     C       CH1     0       28.268      53.986      52.025      
+KWM     O3      O       OH1     0       28.658      55.172      52.707      
+KWM     N3      N       NH1     0       27.930      52.939      52.999      
+KWM     C14     C       CR6     0       28.142      51.608      52.827      
+KWM     C15     C       CR16    0       29.359      51.143      52.270      
+KWM     C16     C       CR6     0       29.622      49.794      52.068      
+KWM     C17     C       CH3     0       30.948      49.376      51.454      
+KWM     C18     C       CR6     0       28.656      48.841      52.447      
+KWM     C19     C       CH3     0       28.904      47.355      52.251      
+KWM     C20     C       CR16    0       27.451      49.262      53.003      
+KWM     C21     C       CR6     0       27.156      50.616      53.211      
+KWM     N4      N       N       0       25.948      50.929      53.788      
+KWM     C22     C       CH2     0       25.863      51.324      55.203      
+KWM     C23     C       CH1     0       26.059      50.196      56.215      
+KWM     O4      O       OH1     0       27.444      49.828      56.260      
+KWM     C24     C       CH1     0       25.149      48.973      55.963      
+KWM     O5      O       OH1     0       23.789      49.409      56.017      
+KWM     C25     C       CH1     0       25.357      47.820      56.951      
+KWM     O6      O       OH1     0       26.709      47.365      56.870      
+KWM     C26     C       CH2     0       24.430      46.652      56.696      
+KWM     O7      O       O2      0       24.771      45.540      57.572      
+KWM     P1      P       P       0       23.889      44.200      57.527      
+KWM     O8      O       O       0       24.478      43.217      58.484      
+KWM     O9      O       OP      -1      22.451      44.574      57.672      
+KWM     O10     O       O2      0       24.153      43.697      56.027      
+KWM     P2      P       P       0       25.427      43.035      55.312      
+KWM     O11     O       O       0       25.127      42.864      53.860      
+KWM     O12     O       OP      -1      26.646      43.808      55.695      
+KWM     O13     O       O2      0       25.466      41.596      56.022      
+KWM     C27     C       CH2     0       24.402      40.652      55.738      
+KWM     C28     C       CH1     0       24.604      39.406      56.564      
+KWM     O14     O       O2      0       23.441      38.551      56.419      
+KWM     C29     C       CH1     0       25.795      38.523      56.173      
+KWM     O15     O       OH1     0       26.298      37.816      57.300      
+KWM     C30     C       CH1     0       25.167      37.595      55.129      
+KWM     O16     O       OH1     0       25.867      36.379      54.976      
+KWM     C31     C       CH1     0       23.783      37.368      55.731      
+KWM     N5      N       NR5     0       22.743      37.099      54.743      
+KWM     C32     C       CR15    0       22.315      37.953      53.756      
+KWM     N6      N       NRD5    0       21.364      37.453      53.009      
+KWM     C33     C       CR56    0       21.142      36.189      53.535      
+KWM     C34     C       CR56    0       21.987      35.958      54.608      
+KWM     N7      N       NRD6    0       22.040      34.836      55.351      
+KWM     C35     C       CR16    0       21.156      33.931      54.928      
+KWM     N8      N       NRD6    0       20.282      34.013      53.913      
+KWM     C36     C       CR6     0       20.247      35.156      53.179      
+KWM     N9      N       NH2     0       19.383      35.244      52.171      
+KWM     H1      H       H       0       23.483      51.256      50.565      
+KWM     H2      H       H       0       23.650      52.373      53.724      
+KWM     H3      H       H       0       24.915      50.494      52.145      
+KWM     H4      H       H       0       24.155      50.130      53.472      
+KWM     H5      H       H       0       24.908      54.438      49.890      
+KWM     H6      H       H       0       25.559      53.883      48.554      
+KWM     H7      H       H       0       26.268      52.496      50.905      
+KWM     H8      H       H       0       28.267      54.236      48.454      
+KWM     H9      H       H       0       29.827      53.214      47.065      
+KWM     H10     H       H       0       30.092      50.906      47.098      
+KWM     H11     H       H       0       28.793      49.612      48.526      
+KWM     H12     H       H       0       27.229      50.619      49.921      
+KWM     H13     H       H       0       26.389      54.724      51.630      
+KWM     H14     H       H       0       27.416      55.057      50.480      
+KWM     H15     H       H       0       29.025      53.697      51.476      
+KWM     H16     H       H       0       29.335      54.998      53.187      
+KWM     H17     H       H       0       27.570      53.200      53.754      
+KWM     H18     H       H       0       30.012      51.774      52.013      
+KWM     H19     H       H       0       30.789      48.768      50.714      
+KWM     H20     H       H       0       31.490      48.931      52.125      
+KWM     H21     H       H       0       31.421      50.159      51.127      
+KWM     H22     H       H       0       28.159      46.844      52.607      
+KWM     H23     H       H       0       29.718      47.098      52.714      
+KWM     H24     H       H       0       29.000      47.165      51.304      
+KWM     H25     H       H       0       26.816      48.607      53.252      
+KWM     H26     H       H       0       24.992      51.733      55.374      
+KWM     H27     H       H       0       26.542      52.005      55.377      
+KWM     H28     H       H       0       25.822      50.557      57.114      
+KWM     H29     H       H       0       27.578      49.142      55.783      
+KWM     H30     H       H       0       25.331      48.634      55.051      
+KWM     H31     H       H       0       23.613      49.687      56.799      
+KWM     H32     H       H       0       25.192      48.161      57.881      
+KWM     H33     H       H       0       26.892      46.830      57.503      
+KWM     H34     H       H       0       24.507      46.369      55.761      
+KWM     H35     H       H       0       23.503      46.922      56.862      
+KWM     H38     H       H       0       24.409      40.418      54.777      
+KWM     H39     H       H       0       23.527      41.057      55.956      
+KWM     H40     H       H       0       24.689      39.671      57.505      
+KWM     H41     H       H       0       26.512      39.072      55.762      
+KWM     H42     H       H       0       27.095      37.574      57.137      
+KWM     H43     H       H       0       25.096      38.059      54.254      
+KWM     H44     H       H       0       25.469      35.901      54.398      
+KWM     H45     H       H       0       23.833      36.620      56.368      
+KWM     H46     H       H       0       22.676      38.813      53.627      
+KWM     H47     H       H       0       21.144      33.118      55.410      
+KWM     H48     H       H       0       18.717      34.675      52.115      
+KWM     H49     H       H       0       19.481      35.873      51.566      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KWM          O1          C1      DOUBLE       n     1.229  0.0107     1.229  0.0107
+KWM          O2          C2      DOUBLE       n     1.235  0.0158     1.235  0.0158
+KWM          C1          N1      SINGLE       n     1.364  0.0100     1.364  0.0100
+KWM          C1          C4      SINGLE       n     1.506  0.0120     1.506  0.0120
+KWM          N1          C2      SINGLE       n     1.399  0.0138     1.399  0.0138
+KWM          C2          N2      SINGLE       n     1.344  0.0130     1.344  0.0130
+KWM          N2          C3      SINGLE       n     1.455  0.0118     1.455  0.0118
+KWM          C3          N4      SINGLE       n     1.440  0.0125     1.440  0.0125
+KWM          C4          C5      SINGLE       n     1.524  0.0200     1.524  0.0200
+KWM          C5          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+KWM          C5         C12      SINGLE       n     1.533  0.0103     1.533  0.0103
+KWM          C6          C7      DOUBLE       y     1.390  0.0100     1.390  0.0100
+KWM          C6         C11      SINGLE       y     1.390  0.0100     1.390  0.0100
+KWM          C7          C8      SINGLE       y     1.386  0.0100     1.386  0.0100
+KWM          C8          C9      DOUBLE       y     1.376  0.0124     1.376  0.0124
+KWM          C9         C10      SINGLE       y     1.376  0.0124     1.376  0.0124
+KWM         C10         C11      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KWM         C12         C13      SINGLE       n     1.527  0.0112     1.527  0.0112
+KWM         C13          O3      SINGLE       n     1.423  0.0112     1.423  0.0112
+KWM         C13          N3      SINGLE       n     1.457  0.0148     1.457  0.0148
+KWM          N3         C14      SINGLE       n     1.347  0.0138     1.347  0.0138
+KWM         C14         C15      SINGLE       y     1.403  0.0173     1.403  0.0173
+KWM         C14         C21      DOUBLE       y     1.419  0.0200     1.419  0.0200
+KWM         C15         C16      DOUBLE       y     1.387  0.0100     1.387  0.0100
+KWM         C16         C17      SINGLE       n     1.510  0.0199     1.510  0.0199
+KWM         C16         C18      SINGLE       y     1.404  0.0100     1.404  0.0100
+KWM         C18         C19      SINGLE       n     1.510  0.0199     1.510  0.0199
+KWM         C18         C20      DOUBLE       y     1.387  0.0100     1.387  0.0100
+KWM         C20         C21      SINGLE       y     1.395  0.0113     1.395  0.0113
+KWM         C21          N4      SINGLE       n     1.367  0.0122     1.367  0.0122
+KWM          N4         C22      SINGLE       n     1.464  0.0106     1.464  0.0106
+KWM         C22         C23      SINGLE       n     1.521  0.0130     1.521  0.0130
+KWM         C23          O4      SINGLE       n     1.431  0.0100     1.431  0.0100
+KWM         C23         C24      SINGLE       n     1.532  0.0163     1.532  0.0163
+KWM         C24          O5      SINGLE       n     1.424  0.0199     1.424  0.0199
+KWM         C24         C25      SINGLE       n     1.530  0.0100     1.530  0.0100
+KWM         C25          O6      SINGLE       n     1.429  0.0100     1.429  0.0100
+KWM         C25         C26      SINGLE       n     1.511  0.0100     1.511  0.0100
+KWM         C26          O7      SINGLE       n     1.454  0.0165     1.454  0.0165
+KWM          O7          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+KWM          P1          O8      DOUBLE       n     1.493  0.0122     1.493  0.0122
+KWM          P1          O9      SINGLE       n     1.493  0.0122     1.493  0.0122
+KWM          P1         O10      SINGLE       n     1.604  0.0133     1.604  0.0133
+KWM         O10          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+KWM          P2         O11      DOUBLE       n     1.493  0.0122     1.493  0.0122
+KWM          P2         O12      SINGLE       n     1.493  0.0122     1.493  0.0122
+KWM          P2         O13      SINGLE       n     1.604  0.0133     1.604  0.0133
+KWM         O13         C27      SINGLE       n     1.450  0.0166     1.450  0.0166
+KWM         C27         C28      SINGLE       n     1.509  0.0100     1.509  0.0100
+KWM         C28         O14      SINGLE       n     1.451  0.0100     1.451  0.0100
+KWM         C28         C29      SINGLE       n     1.535  0.0100     1.535  0.0100
+KWM         O14         C31      SINGLE       n     1.409  0.0100     1.409  0.0100
+KWM         C29         O15      SINGLE       n     1.422  0.0100     1.422  0.0100
+KWM         C29         C30      SINGLE       n     1.531  0.0100     1.531  0.0100
+KWM         C30         O16      SINGLE       n     1.411  0.0100     1.411  0.0100
+KWM         C30         C31      SINGLE       n     1.525  0.0100     1.525  0.0100
+KWM         C31          N5      SINGLE       n     1.458  0.0100     1.458  0.0100
+KWM          N5         C32      SINGLE       y     1.372  0.0100     1.372  0.0100
+KWM          N5         C34      SINGLE       y     1.374  0.0101     1.374  0.0101
+KWM         C32          N6      DOUBLE       y     1.310  0.0100     1.310  0.0100
+KWM          N6         C33      SINGLE       y     1.388  0.0100     1.388  0.0100
+KWM         C33         C34      DOUBLE       y     1.381  0.0100     1.381  0.0100
+KWM         C33         C36      SINGLE       y     1.408  0.0100     1.408  0.0100
+KWM         C34          N7      SINGLE       y     1.343  0.0100     1.343  0.0100
+KWM          N7         C35      DOUBLE       y     1.330  0.0100     1.330  0.0100
+KWM         C35          N8      SINGLE       y     1.339  0.0100     1.339  0.0100
+KWM          N8         C36      DOUBLE       y     1.354  0.0100     1.354  0.0100
+KWM         C36          N9      SINGLE       n     1.330  0.0100     1.330  0.0100
+KWM          N1          H1      SINGLE       n     1.016  0.0100     0.878  0.0200
+KWM          N2          H2      SINGLE       n     1.016  0.0100     0.872  0.0200
+KWM          C3          H3      SINGLE       n     1.089  0.0100     0.972  0.0100
+KWM          C3          H4      SINGLE       n     1.089  0.0100     0.972  0.0100
+KWM          C4          H5      SINGLE       n     1.089  0.0100     0.985  0.0100
+KWM          C4          H6      SINGLE       n     1.089  0.0100     0.985  0.0100
+KWM          C5          H7      SINGLE       n     1.089  0.0100     0.994  0.0155
+KWM          C7          H8      SINGLE       n     1.082  0.0130     0.944  0.0174
+KWM          C8          H9      SINGLE       n     1.082  0.0130     0.944  0.0175
+KWM          C9         H10      SINGLE       n     1.082  0.0130     0.944  0.0161
+KWM         C10         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+KWM         C11         H12      SINGLE       n     1.082  0.0130     0.944  0.0174
+KWM         C12         H13      SINGLE       n     1.089  0.0100     0.980  0.0160
+KWM         C12         H14      SINGLE       n     1.089  0.0100     0.980  0.0160
+KWM         C13         H15      SINGLE       n     1.089  0.0100     0.980  0.0100
+KWM          O3         H16      SINGLE       n     0.970  0.0120     0.848  0.0200
+KWM          N3         H17      SINGLE       n     1.016  0.0100     0.880  0.0200
+KWM         C15         H18      SINGLE       n     1.082  0.0130     0.945  0.0100
+KWM         C17         H19      SINGLE       n     1.089  0.0100     0.971  0.0135
+KWM         C17         H20      SINGLE       n     1.089  0.0100     0.971  0.0135
+KWM         C17         H21      SINGLE       n     1.089  0.0100     0.971  0.0135
+KWM         C19         H22      SINGLE       n     1.089  0.0100     0.971  0.0135
+KWM         C19         H23      SINGLE       n     1.089  0.0100     0.971  0.0135
+KWM         C19         H24      SINGLE       n     1.089  0.0100     0.971  0.0135
+KWM         C20         H25      SINGLE       n     1.082  0.0130     0.945  0.0100
+KWM         C22         H26      SINGLE       n     1.089  0.0100     0.979  0.0121
+KWM         C22         H27      SINGLE       n     1.089  0.0100     0.979  0.0121
+KWM         C23         H28      SINGLE       n     1.089  0.0100     0.997  0.0100
+KWM          O4         H29      SINGLE       n     0.970  0.0120     0.848  0.0200
+KWM         C24         H30      SINGLE       n     1.089  0.0100     0.992  0.0184
+KWM          O5         H31      SINGLE       n     0.970  0.0120     0.848  0.0200
+KWM         C25         H32      SINGLE       n     1.089  0.0100     1.004  0.0200
+KWM          O6         H33      SINGLE       n     0.970  0.0120     0.848  0.0200
+KWM         C26         H34      SINGLE       n     1.089  0.0100     0.980  0.0146
+KWM         C26         H35      SINGLE       n     1.089  0.0100     0.980  0.0146
+KWM         C27         H38      SINGLE       n     1.089  0.0100     0.989  0.0200
+KWM         C27         H39      SINGLE       n     1.089  0.0100     0.989  0.0200
+KWM         C28         H40      SINGLE       n     1.089  0.0100     0.981  0.0200
+KWM         C29         H41      SINGLE       n     1.089  0.0100     0.992  0.0200
+KWM         O15         H42      SINGLE       n     0.970  0.0120     0.849  0.0200
+KWM         C30         H43      SINGLE       n     1.089  0.0100     0.994  0.0200
+KWM         O16         H44      SINGLE       n     0.970  0.0120     0.849  0.0200
+KWM         C31         H45      SINGLE       n     1.089  0.0100     0.984  0.0200
+KWM         C32         H46      SINGLE       n     1.082  0.0130     0.942  0.0170
+KWM         C35         H47      SINGLE       n     1.082  0.0130     0.945  0.0200
+KWM          N9         H48      SINGLE       n     1.016  0.0100     0.877  0.0200
+KWM          N9         H49      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KWM          O1          C1          N1     123.059    1.50
+KWM          O1          C1          C4     121.962    1.50
+KWM          N1          C1          C4     114.979    1.50
+KWM          C1          N1          C2     129.484    1.50
+KWM          C1          N1          H1     115.337    1.50
+KWM          C2          N1          H1     115.179    1.50
+KWM          O2          C2          N1     118.867    1.50
+KWM          O2          C2          N2     123.112    1.50
+KWM          N1          C2          N2     118.021    1.50
+KWM          C2          N2          C3     122.426    1.63
+KWM          C2          N2          H2     118.985    1.50
+KWM          C3          N2          H2     118.588    2.00
+KWM          N2          C3          N4     108.186    3.00
+KWM          N2          C3          H3     108.450    1.50
+KWM          N2          C3          H4     108.450    1.50
+KWM          N4          C3          H3     108.842    1.74
+KWM          N4          C3          H4     108.842    1.74
+KWM          H3          C3          H4     108.426    1.73
+KWM          C1          C4          C5     112.596    1.96
+KWM          C1          C4          H5     108.929    1.50
+KWM          C1          C4          H6     108.929    1.50
+KWM          C5          C4          H5     108.980    1.50
+KWM          C5          C4          H6     108.980    1.50
+KWM          H5          C4          H6     107.705    1.50
+KWM          C4          C5          C6     111.746    1.75
+KWM          C4          C5         C12     110.044    1.50
+KWM          C4          C5          H7     107.657    1.50
+KWM          C6          C5         C12     111.511    1.50
+KWM          C6          C5          H7     107.635    1.50
+KWM         C12          C5          H7     107.249    1.50
+KWM          C5          C6          C7     120.902    1.50
+KWM          C5          C6         C11     120.902    1.50
+KWM          C7          C6         C11     118.196    1.50
+KWM          C6          C7          C8     120.460    1.50
+KWM          C6          C7          H8     119.666    1.50
+KWM          C8          C7          H8     119.874    1.50
+KWM          C7          C8          C9     120.389    1.50
+KWM          C7          C8          H9     119.760    1.50
+KWM          C9          C8          H9     119.851    1.50
+KWM          C8          C9         C10     120.107    1.50
+KWM          C8          C9         H10     119.947    1.50
+KWM         C10          C9         H10     119.947    1.50
+KWM          C9         C10         C11     120.389    1.50
+KWM          C9         C10         H11     119.851    1.50
+KWM         C11         C10         H11     119.760    1.50
+KWM          C6         C11         C10     120.460    1.50
+KWM          C6         C11         H12     119.666    1.50
+KWM         C10         C11         H12     119.874    1.50
+KWM          C5         C12         C13     111.094    2.85
+KWM          C5         C12         H13     108.805    1.50
+KWM          C5         C12         H14     108.805    1.50
+KWM         C13         C12         H13     108.945    1.50
+KWM         C13         C12         H14     108.945    1.50
+KWM         H13         C12         H14     107.715    1.50
+KWM         C12         C13          O3     109.282    2.17
+KWM         C12         C13          N3     111.308    2.28
+KWM         C12         C13         H15     108.564    1.57
+KWM          O3         C13          N3     113.213    3.00
+KWM          O3         C13         H15     108.584    1.50
+KWM          N3         C13         H15     109.172    1.50
+KWM         C13          O3         H16     108.679    2.86
+KWM         C13          N3         C14     121.889    2.30
+KWM         C13          N3         H17     119.240    2.23
+KWM         C14          N3         H17     118.870    2.04
+KWM          N3         C14         C15     119.653    1.76
+KWM          N3         C14         C21     121.116    1.90
+KWM         C15         C14         C21     119.231    2.53
+KWM         C14         C15         C16     122.365    1.50
+KWM         C14         C15         H18     118.655    1.50
+KWM         C16         C15         H18     118.980    1.50
+KWM         C15         C16         C17     119.691    1.50
+KWM         C15         C16         C18     119.248    1.50
+KWM         C17         C16         C18     121.065    1.50
+KWM         C16         C17         H19     109.545    1.50
+KWM         C16         C17         H20     109.545    1.50
+KWM         C16         C17         H21     109.545    1.50
+KWM         H19         C17         H20     109.348    1.50
+KWM         H19         C17         H21     109.348    1.50
+KWM         H20         C17         H21     109.348    1.50
+KWM         C16         C18         C19     121.060    1.50
+KWM         C16         C18         C20     119.248    1.50
+KWM         C19         C18         C20     119.695    1.50
+KWM         C18         C19         H22     109.545    1.50
+KWM         C18         C19         H23     109.545    1.50
+KWM         C18         C19         H24     109.545    1.50
+KWM         H22         C19         H23     109.348    1.50
+KWM         H22         C19         H24     109.348    1.50
+KWM         H23         C19         H24     109.348    1.50
+KWM         C18         C20         C21     120.677    1.50
+KWM         C18         C20         H25     119.211    1.50
+KWM         C21         C20         H25     120.112    1.50
+KWM         C14         C21         C20     119.231    2.53
+KWM         C14         C21          N4     121.058    3.00
+KWM         C20         C21          N4     119.711    1.50
+KWM          C3          N4         C21     121.066    1.50
+KWM          C3          N4         C22     117.164    2.02
+KWM         C21          N4         C22     121.769    1.50
+KWM          N4         C22         C23     111.308    2.28
+KWM          N4         C22         H26     108.897    1.50
+KWM          N4         C22         H27     108.897    1.50
+KWM         C23         C22         H26     108.598    1.50
+KWM         C23         C22         H27     108.598    1.50
+KWM         H26         C22         H27     107.790    1.50
+KWM         C22         C23          O4     109.698    2.33
+KWM         C22         C23         C24     110.999    2.33
+KWM         C22         C23         H28     108.757    1.75
+KWM          O4         C23         C24     109.845    1.96
+KWM          O4         C23         H28     108.019    1.50
+KWM         C24         C23         H28     108.022    1.50
+KWM         C23          O4         H29     109.296    1.50
+KWM         C23         C24          O5     108.384    1.62
+KWM         C23         C24         C25     113.695    2.13
+KWM         C23         C24         H30     107.921    1.50
+KWM          O5         C24         C25     109.164    1.97
+KWM          O5         C24         H30     108.243    1.50
+KWM         C25         C24         H30     108.336    1.50
+KWM         C24          O5         H31     108.564    3.00
+KWM         C24         C25          O6     109.549    1.85
+KWM         C24         C25         C26     112.503    1.50
+KWM         C24         C25         H32     108.777    1.50
+KWM          O6         C25         C26     109.314    1.96
+KWM          O6         C25         H32     108.591    1.50
+KWM         C26         C25         H32     108.656    1.50
+KWM         C25          O6         H33     111.202    3.00
+KWM         C25         C26          O7     109.438    2.56
+KWM         C25         C26         H34     109.582    1.50
+KWM         C25         C26         H35     109.582    1.50
+KWM          O7         C26         H34     109.393    1.91
+KWM          O7         C26         H35     109.393    1.91
+KWM         H34         C26         H35     108.319    1.50
+KWM         C26          O7          P1     119.251    1.51
+KWM          O7          P1          O8     107.912    2.57
+KWM          O7          P1          O9     107.912    2.57
+KWM          O7          P1         O10     101.065    1.97
+KWM          O8          P1          O9     118.411    2.35
+KWM          O8          P1         O10     108.816    2.14
+KWM          O9          P1         O10     108.816    2.14
+KWM          P1         O10          P2     132.542    3.00
+KWM         O10          P2         O11     108.816    2.14
+KWM         O10          P2         O12     108.816    2.14
+KWM         O10          P2         O13     101.065    1.97
+KWM         O11          P2         O12     118.411    2.35
+KWM         O11          P2         O13     109.410    1.50
+KWM         O12          P2         O13     109.410    1.50
+KWM          P2         O13         C27     118.553    2.41
+KWM         O13         C27         C28     109.342    1.50
+KWM         O13         C27         H38     109.845    1.50
+KWM         O13         C27         H39     109.845    1.50
+KWM         C28         C27         H38     109.624    1.50
+KWM         C28         C27         H39     109.624    1.50
+KWM         H38         C27         H39     108.472    1.50
+KWM         C27         C28         O14     109.123    1.50
+KWM         C27         C28         C29     116.008    1.52
+KWM         C27         C28         H40     108.268    1.50
+KWM         O14         C28         C29     105.388    1.50
+KWM         O14         C28         H40     108.947    1.50
+KWM         C29         C28         H40     109.363    1.86
+KWM         C28         O14         C31     109.903    1.50
+KWM         C28         C29         O15     111.281    2.46
+KWM         C28         C29         C30     102.602    1.50
+KWM         C28         C29         H41     110.452    2.54
+KWM         O15         C29         C30     111.581    2.83
+KWM         O15         C29         H41     110.380    1.67
+KWM         C30         C29         H41     110.504    1.75
+KWM         C29         O15         H42     108.744    3.00
+KWM         C29         C30         O16     112.782    2.45
+KWM         C29         C30         C31     101.239    1.50
+KWM         C29         C30         H43     110.596    1.51
+KWM         O16         C30         C31     111.715    2.69
+KWM         O16         C30         H43     110.448    1.97
+KWM         C31         C30         H43     110.636    1.70
+KWM         C30         O16         H44     109.103    2.13
+KWM         O14         C31         C30     106.047    1.50
+KWM         O14         C31          N5     108.477    1.50
+KWM         O14         C31         H45     109.807    1.50
+KWM         C30         C31          N5     113.824    1.50
+KWM         C30         C31         H45     109.015    1.50
+KWM          N5         C31         H45     109.561    1.50
+KWM         C31          N5         C32     126.848    1.91
+KWM         C31          N5         C34     127.459    1.80
+KWM         C32          N5         C34     105.693    1.50
+KWM          N5         C32          N6     113.469    1.50
+KWM          N5         C32         H46     123.206    1.50
+KWM          N6         C32         H46     123.326    1.50
+KWM         C32          N6         C33     104.739    1.50
+KWM          N6         C33         C34     110.486    1.50
+KWM          N6         C33         C36     132.247    1.50
+KWM         C34         C33         C36     117.267    1.50
+KWM          N5         C34         C33     105.616    1.50
+KWM          N5         C34          N7     127.895    1.50
+KWM         C33         C34          N7     126.489    1.50
+KWM         C34          N7         C35     110.982    1.50
+KWM          N7         C35          N8     129.332    1.50
+KWM          N7         C35         H47     115.355    1.50
+KWM          N8         C35         H47     115.313    1.50
+KWM         C35          N8         C36     118.521    1.50
+KWM         C33         C36          N8     117.409    1.50
+KWM         C33         C36          N9     123.792    1.50
+KWM          N8         C36          N9     118.799    1.50
+KWM         C36          N9         H48     119.723    1.50
+KWM         C36          N9         H49     119.723    1.50
+KWM         H48          N9         H49     120.554    1.88
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KWM       const_sp2_sp2_5          C6          C7          C8          C9       0.000     5.0     2
+KWM       const_sp2_sp2_9          C7          C8          C9         C10       0.000     5.0     2
+KWM              const_13         C11         C10          C9          C8       0.000    10.0     2
+KWM              const_17          C9         C10         C11          C6       0.000    10.0     2
+KWM            sp3_sp3_43          C5         C12         C13          O3     180.000    10.0     3
+KWM            sp3_sp3_52         C12         C13          O3         H16     180.000    10.0     3
+KWM            sp2_sp3_25         C14          N3         C13         C12       0.000    10.0     6
+KWM            sp2_sp2_13         C15         C14          N3         C13     180.000     5.0     2
+KWM              const_23          N3         C14         C15         C16     180.000    10.0     2
+KWM              const_68          N3         C14         C21          N4       0.000    10.0     2
+KWM              const_26         C14         C15         C16         C17     180.000    10.0     2
+KWM            sp2_sp3_31         C15         C16         C17         H19     150.000    10.0     6
+KWM              const_32         C17         C16         C18         C19       0.000    10.0     2
+KWM            sp2_sp3_37         C16         C18         C19         H22     150.000    10.0     6
+KWM              const_35         C19         C18         C20         C21     180.000    10.0     2
+KWM              const_38         C18         C20         C21          N4     180.000    10.0     2
+KWM            sp2_sp2_17         C14         C21          N4          C3     180.000     5.0     2
+KWM            sp2_sp3_44          C3          N4         C22         C23     120.000    10.0     6
+KWM            sp3_sp3_55          N4         C22         C23          O4     180.000    10.0     3
+KWM            sp3_sp3_64         C22         C23          O4         H29     180.000    10.0     3
+KWM            sp3_sp3_67         C22         C23         C24          O5     180.000    10.0     3
+KWM             sp2_sp2_3          O1          C1          N1          C2       0.000     5.0     2
+KWM             sp2_sp3_2          O1          C1          C4          C5     120.000    10.0     6
+KWM            sp3_sp3_76         C23         C24          O5         H31     180.000    10.0     3
+KWM            sp3_sp3_79         C23         C24         C25          O6     180.000    10.0     3
+KWM            sp3_sp3_88         C24         C25          O6         H33     180.000    10.0     3
+KWM            sp3_sp3_91         C24         C25         C26          O7     180.000    10.0     3
+KWM           sp3_sp3_100         C25         C26          O7          P1     180.000    10.0     3
+KWM           sp3_sp3_105         C26          O7          P1          O8      60.000    10.0     3
+KWM           sp3_sp3_107          P2         O10          P1          O7     -60.000    10.0     3
+KWM             sp2_sp2_7          O2          C2          N1          C1       0.000     5.0     2
+KWM           sp3_sp3_111          P1         O10          P2         O11      60.000    10.0     3
+KWM           sp3_sp3_112         C27         O13          P2         O10     180.000    10.0     3
+KWM           sp3_sp3_115         C28         C27         O13          P2     180.000    10.0     3
+KWM           sp3_sp3_118         O13         C27         C28         O14     180.000    10.0     3
+KWM             sp3_sp3_2         C27         C28         O14         C31     -60.000    10.0     3
+KWM           sp3_sp3_131         C27         C28         C29         O15     180.000    10.0     3
+KWM             sp3_sp3_4         C30         C31         O14         C28     -60.000    10.0     3
+KWM           sp3_sp3_136         C28         C29         O15         H42     180.000    10.0     3
+KWM            sp3_sp3_20         O15         C29         C30         O16     -60.000    10.0     3
+KWM            sp2_sp2_11          O2          C2          N2          C3       0.000     5.0     2
+KWM           sp3_sp3_139         C29         C30         O16         H44     180.000    10.0     3
+KWM            sp3_sp3_10         O16         C30         C31         O14     -60.000    10.0     3
+KWM            sp2_sp3_49         C32          N5         C31         O14     150.000    10.0     6
+KWM              const_42          N6         C32          N5         C31     180.000    10.0     2
+KWM              const_70         C33         C34          N5         C31     180.000    10.0     2
+KWM              const_45          N5         C32          N6         C33       0.000    10.0     2
+KWM              const_47         C34         C33          N6         C32       0.000    10.0     2
+KWM              const_49          N6         C33         C34          N5       0.000    10.0     2
+KWM              const_76          N6         C33         C36          N9       0.000    10.0     2
+KWM              const_54          N5         C34          N7         C35     180.000    10.0     2
+KWM              const_55          N8         C35          N7         C34       0.000    10.0     2
+KWM              const_57          N7         C35          N8         C36       0.000    10.0     2
+KWM             sp2_sp3_8          C2          N2          C3          N4     120.000    10.0     6
+KWM              const_60          N9         C36          N8         C35     180.000    10.0     2
+KWM            sp2_sp2_21         C33         C36          N9         H48     180.000     5.0     2
+KWM            sp2_sp3_17         C22          N4          C3          N2     -60.000    10.0     6
+KWM            sp3_sp3_26          C1          C4          C5         C12     -60.000    10.0     3
+KWM            sp3_sp3_34         C13         C12          C5          C4     180.000    10.0     3
+KWM            sp2_sp3_19          C7          C6          C5          C4     150.000    10.0     6
+KWM       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+KWM              const_62         C10         C11          C6          C5     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KWM    chir_1    C5    C6    C4    C12    positive
+KWM    chir_2    C13    O3    N3    C12    negative
+KWM    chir_3    C23    O4    C24    C22    positive
+KWM    chir_4    C24    O5    C25    C23    positive
+KWM    chir_5    C25    O6    C24    C26    negative
+KWM    chir_6    P1    O10    O7    O9    both
+KWM    chir_7    P2    O10    O13    O12    both
+KWM    chir_8    C28    O14    C29    C27    negative
+KWM    chir_9    C29    O15    C28    C30    positive
+KWM    chir_10    C30    O16    C31    C29    negative
+KWM    chir_11    C31    O14    N5    C30    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KWM    plan-1         C31   0.020
+KWM    plan-1         C32   0.020
+KWM    plan-1         C33   0.020
+KWM    plan-1         C34   0.020
+KWM    plan-1         C35   0.020
+KWM    plan-1         C36   0.020
+KWM    plan-1         H46   0.020
+KWM    plan-1         H47   0.020
+KWM    plan-1          N5   0.020
+KWM    plan-1          N6   0.020
+KWM    plan-1          N7   0.020
+KWM    plan-1          N8   0.020
+KWM    plan-1          N9   0.020
+KWM    plan-2         C10   0.020
+KWM    plan-2         C11   0.020
+KWM    plan-2          C5   0.020
+KWM    plan-2          C6   0.020
+KWM    plan-2          C7   0.020
+KWM    plan-2          C8   0.020
+KWM    plan-2          C9   0.020
+KWM    plan-2         H10   0.020
+KWM    plan-2         H11   0.020
+KWM    plan-2         H12   0.020
+KWM    plan-2          H8   0.020
+KWM    plan-2          H9   0.020
+KWM    plan-3         C14   0.020
+KWM    plan-3         C15   0.020
+KWM    plan-3         C16   0.020
+KWM    plan-3         C17   0.020
+KWM    plan-3         C18   0.020
+KWM    plan-3         C19   0.020
+KWM    plan-3         C20   0.020
+KWM    plan-3         C21   0.020
+KWM    plan-3         H18   0.020
+KWM    plan-3         H25   0.020
+KWM    plan-3          N3   0.020
+KWM    plan-3          N4   0.020
+KWM    plan-4          C1   0.020
+KWM    plan-4          C4   0.020
+KWM    plan-4          N1   0.020
+KWM    plan-4          O1   0.020
+KWM    plan-5          C1   0.020
+KWM    plan-5          C2   0.020
+KWM    plan-5          H1   0.020
+KWM    plan-5          N1   0.020
+KWM    plan-6          C2   0.020
+KWM    plan-6          N1   0.020
+KWM    plan-6          N2   0.020
+KWM    plan-6          O2   0.020
+KWM    plan-7          C2   0.020
+KWM    plan-7          C3   0.020
+KWM    plan-7          H2   0.020
+KWM    plan-7          N2   0.020
+KWM    plan-8         C13   0.020
+KWM    plan-8         C14   0.020
+KWM    plan-8         H17   0.020
+KWM    plan-8          N3   0.020
+KWM    plan-9         C21   0.020
+KWM    plan-9         C22   0.020
+KWM    plan-9          C3   0.020
+KWM    plan-9          N4   0.020
+KWM   plan-10         C36   0.020
+KWM   plan-10         H48   0.020
+KWM   plan-10         H49   0.020
+KWM   plan-10          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KWM           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                                        O=C1NC(=O)NCN(c3c(NC(CC(C1)c2ccccc2)O)cc(C)c(C)c3)CC(O)C(O)C(O)COP(=O)(O)OP(=O)(O)OCC4OC(C(C4O)O)n5cnc6c5ncnc6N
+KWM            InChI                InChI  1.03 InChI=1S/C36H49N9O16P2/c1-18-8-22-23(9-19(18)2)44(16-41-36(53)43-28(49)11-21(10-27(48)42-22)20-6-4-3-5-7-20)12-24(46)30(50)25(47)13-58-62(54,55)61-63(56,57)59-14-26-31(51)32(52)35(60-26)45-17-40-29-33(37)38-15-39-34(29)45/h3-9,15,17,21,24-27,30-32,35,42,46-48,50-52H,10-14,16H2,1-2H3,(H,54,55)(H,56,57)(H2,37,38,39)(H2,41,43,49,53)/t21-,24-,25+,26+,27+,30-,31+,32+,35+/m0/s1
+KWM         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                            SBYKCXFDZHDKMO-WNNJLNMTSA-N
+KWM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                                Cc1cc2N[C@H](O)C[C@@H](CC(=O)NC(=O)NCN(C[C@H](O)[C@H](O)[C@H](O)CO[P](O)(=O)O[P](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)ncnc45)c2cc1C)c6ccccc6
+KWM           SMILES               CACTVS 3.385                                                                                                                                                                                                                                           Cc1cc2N[CH](O)C[CH](CC(=O)NC(=O)NCN(C[CH](O)[CH](O)[CH](O)CO[P](O)(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)ncnc45)c2cc1C)c6ccccc6
+KWM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                                               Cc1cc2c(cc1C)N(CNC(=O)NC(=O)C[C@H](C[C@H](N2)O)c3ccccc3)C[C@@H]([C@@H]([C@@H](COP(=O)(O)OP(=O)(O)OC[C@@H]4[C@H]([C@H]([C@@H](O4)n5cnc6c5ncnc6N)O)O)O)O)O
+KWM           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                                                                                        Cc1cc2c(cc1C)N(CNC(=O)NC(=O)CC(CC(N2)O)c3ccccc3)CC(C(C(COP(=O)(O)OP(=O)(O)OCC4C(C(C(O4)n5cnc6c5ncnc6N)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KWM acedrg               243         "dictionary generator"                  
+KWM acedrg_database      11          "data source"                           
+KWM rdkit                2017.03.2   "Chemoinformatics tool"
+KWM refmac5              5.8.0238    "optimization tool"                     

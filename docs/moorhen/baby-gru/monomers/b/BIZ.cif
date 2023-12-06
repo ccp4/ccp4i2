@@ -1,0 +1,609 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BIZ     BIZ      BIZELESIN     NON-POLYMER     94     56     .     
+#
+data_comp_BIZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BIZ     C       C       C       0       -4.485      0.308       2.722       
+BIZ     O       O       O       0       -4.536      -0.349      3.756       
+BIZ     N1      N       NH1     0       -4.793      -0.208      1.481       
+BIZ     C2      C       CR6     0       -5.631      -1.303      1.182       
+BIZ     C3      C       CR16    0       -5.208      -2.189      0.213       
+BIZ     C4      C       CR56    0       -6.031      -3.281      -0.105      
+BIZ     C5      C       CR56    0       -7.265      -3.436      0.572       
+BIZ     C6      C       CR16    0       -7.685      -2.532      1.548       
+BIZ     C7      C       CR16    0       -6.859      -1.465      1.843       
+BIZ     N8      N       NR5     0       -7.882      -4.564      0.095       
+BIZ     C9      C       CR5     0       -7.086      -5.156      -0.863      
+BIZ     C10     C       CR15    0       -5.934      -4.371      -1.022      
+BIZ     C11     C       C       0       -7.529      -6.354      -1.543      
+BIZ     O12     O       O       0       -8.730      -6.472      -1.780      
+BIZ     N13     N       NT      0       -6.634      -7.326      -1.955      
+BIZ     C14     C       CH2     0       -5.225      -7.482      -1.509      
+BIZ     C15     C       CH1     0       -4.877      -8.902      -1.975      
+BIZ     C16     C       CR56    0       -5.750      -9.047      -3.198      
+BIZ     C17     C       CR56    0       -6.768      -8.097      -3.148      
+BIZ     C18     C       CH3     0       -5.101      -9.948      -0.899      
+BIZ     C19     C       CR16    0       -7.712      -8.012      -4.173      
+BIZ     C20     C       CR6     0       -7.650      -8.879      -5.256      
+BIZ     O21     O       OH1     0       -8.580      -8.800      -6.265      
+BIZ     C22     C       CR56    0       -6.631      -9.847      -5.332      
+BIZ     C23     C       CR56    0       -5.672      -9.939      -4.305      
+BIZ     C24     C       CR5     0       -4.779      -11.006     -4.663      
+BIZ     C25     C       CR15    0       -5.224      -11.499     -5.858      
+BIZ     C26     C       CH3     0       -3.600      -11.462     -3.861      
+BIZ     N27     N       NR5     0       -6.335      -10.810     -6.266      
+BIZ     "N1'"   N       NH1     0       -4.106      1.632       2.683       
+BIZ     "C2'"   C       CR6     0       -4.139      2.559       3.743       
+BIZ     "C3'"   C       CR16    0       -2.962      3.168       4.124       
+BIZ     "C4'"   C       CR56    0       -2.998      4.096       5.178       
+BIZ     "C5'"   C       CR56    0       -4.235      4.377       5.808       
+BIZ     "C6'"   C       CR16    0       -5.419      3.756       5.409       
+BIZ     "C7'"   C       CR16    0       -5.359      2.848       4.371       
+BIZ     "N8'"   N       NR5     0       -4.017      5.303       6.794       
+BIZ     "C9'"   C       CR5     0       -2.681      5.645       6.820       
+BIZ     "CA'"   C       CR15    0       -2.017      4.897       5.837       
+BIZ     "CB'"   C       C       0       -2.188      6.590       7.794       
+BIZ     "OC'"   O       O       0       -2.667      6.557       8.926       
+BIZ     "ND'"   N       NT      0       -1.182      7.487       7.482       
+BIZ     "CE'"   C       CH2     0       -0.703      7.843       6.121       
+BIZ     "CF'"   C       CH1     0       0.115       9.118       6.371       
+BIZ     "CG'"   C       CR56    0       0.623       8.884       7.774       
+BIZ     "CH'"   C       CR56    0       -0.167      7.914       8.390       
+BIZ     "CI'"   C       CH3     0       -0.685      10.399      6.183       
+BIZ     "CJ'"   C       CR16    0       0.101       7.505       9.698       
+BIZ     "CK'"   C       CR6     0       1.156       8.066       10.405      
+BIZ     "OL'"   O       OH1     0       1.419       7.669       11.694      
+BIZ     "CM'"   C       CR56    0       1.968       9.047       9.807       
+BIZ     "CN'"   C       CR56    0       1.710       9.464       8.487       
+BIZ     "CO'"   C       CR5     0       2.695       10.459      8.163       
+BIZ     "CP'"   C       CR15    0       3.484       10.598      9.271       
+BIZ     "CQ'"   C       CH3     0       2.807       11.184      6.858       
+BIZ     "NR'"   N       NR5     0       3.055       9.754       10.262      
+BIZ     HN1     H       H       0       -4.415      0.174       0.784       
+BIZ     H3      H       H       0       -4.390      -2.071      -0.225      
+BIZ     H6      H       H       0       -8.504      -2.647      1.989       
+BIZ     H7      H       H       0       -7.123      -0.847      2.496       
+BIZ     HN8     H       H       0       -8.667      -4.871      0.363       
+BIZ     H10     H       H       0       -5.218      -4.540      -1.613      
+BIZ     H141    H       H       0       -4.658      -6.811      -1.941      
+BIZ     H142    H       H       0       -5.165      -7.390      -0.535      
+BIZ     H15     H       H       0       -3.922      -8.918      -2.254      
+BIZ     H181    H       H       0       -5.356      -10.787     -1.314      
+BIZ     H182    H       H       0       -5.806      -9.656      -0.299      
+BIZ     H183    H       H       0       -4.279      -10.070     -0.399      
+BIZ     H19     H       H       0       -8.401      -7.373      -4.144      
+BIZ     HO2     H       H       0       -8.937      -9.518      -6.578      
+BIZ     H25     H       H       0       -4.827      -12.211     -6.336      
+BIZ     H261    H       H       0       -3.149      -12.187     -4.327      
+BIZ     H262    H       H       0       -3.898      -11.775     -2.991      
+BIZ     H263    H       H       0       -2.980      -10.723     -3.742      
+BIZ     HN7     H       H       0       -6.782      -10.963     -7.006      
+BIZ     "HN1'"  H       H       0       -3.792      1.941       1.922       
+BIZ     "H3'"   H       H       0       -2.154      2.969       3.696       
+BIZ     "H6'"   H       H       0       -6.231      3.952       5.835       
+BIZ     "H7'"   H       H       0       -6.142      2.419       4.087       
+BIZ     "HN8'"  H       H       0       -4.637      5.639       7.329       
+BIZ     "H10'"  H       H       0       -1.095      4.929       5.635       
+BIZ     "H4'1"  H       H       0       -0.147      7.121       5.761       
+BIZ     "H4'2"  H       H       0       -1.464      8.003       5.525       
+BIZ     "H15'"  H       H       0       0.889       9.125       5.746       
+BIZ     "H8'1"  H       H       0       -0.515      10.999      6.927       
+BIZ     "H8'2"  H       H       0       -1.634      10.199      6.141       
+BIZ     "H8'3"  H       H       0       -0.407      10.824      5.357       
+BIZ     "H19'"  H       H       0       -0.429      6.851       10.117      
+BIZ     "HO2'"  H       H       0       1.577       8.257       12.302      
+BIZ     "H25'"  H       H       0       4.219       11.187      9.347       
+BIZ     "H6'1"  H       H       0       3.591       11.758      6.870       
+BIZ     "H6'2"  H       H       0       2.013       11.727      6.717       
+BIZ     "H6'3"  H       H       0       2.889       10.541      6.134       
+BIZ     "HN7'"  H       H       0       3.419       9.681       11.057      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BIZ           C           O      DOUBLE       n     1.225  0.0102     1.225  0.0102
+BIZ           C          N1      SINGLE       n     1.371  0.0114     1.371  0.0114
+BIZ           C       "N1'"      SINGLE       n     1.371  0.0114     1.371  0.0114
+BIZ          N1          C2      SINGLE       n     1.406  0.0123     1.406  0.0123
+BIZ          C2          C3      DOUBLE       y     1.374  0.0100     1.374  0.0100
+BIZ          C2          C7      SINGLE       y     1.395  0.0130     1.395  0.0130
+BIZ          C3          C4      SINGLE       y     1.400  0.0100     1.400  0.0100
+BIZ          C4          C5      DOUBLE       y     1.414  0.0100     1.414  0.0100
+BIZ          C4         C10      SINGLE       y     1.428  0.0100     1.428  0.0100
+BIZ          C5          C6      SINGLE       y     1.392  0.0100     1.392  0.0100
+BIZ          C5          N8      SINGLE       y     1.369  0.0100     1.369  0.0100
+BIZ          C6          C7      DOUBLE       y     1.367  0.0176     1.367  0.0176
+BIZ          N8          C9      SINGLE       y     1.377  0.0100     1.377  0.0100
+BIZ          C9         C10      DOUBLE       y     1.402  0.0200     1.402  0.0200
+BIZ          C9         C11      SINGLE       n     1.429  0.0200     1.429  0.0200
+BIZ         C11         O12      DOUBLE       n     1.228  0.0115     1.228  0.0115
+BIZ         C11         N13      SINGLE       n     1.367  0.0144     1.367  0.0144
+BIZ         N13         C14      SINGLE       n     1.485  0.0100     1.485  0.0100
+BIZ         N13         C17      SINGLE       n     1.420  0.0100     1.420  0.0100
+BIZ         C14         C15      SINGLE       n     1.533  0.0142     1.533  0.0142
+BIZ         C15         C16      SINGLE       n     1.511  0.0100     1.511  0.0100
+BIZ         C15         C18      SINGLE       n     1.512  0.0200     1.512  0.0200
+BIZ         C16         C17      DOUBLE       y     1.389  0.0102     1.389  0.0102
+BIZ         C16         C23      SINGLE       y     1.414  0.0200     1.414  0.0200
+BIZ         C17         C19      SINGLE       y     1.388  0.0100     1.388  0.0100
+BIZ         C19         C20      DOUBLE       y     1.379  0.0132     1.379  0.0132
+BIZ         C20         O21      SINGLE       n     1.374  0.0155     1.374  0.0155
+BIZ         C20         C22      SINGLE       y     1.404  0.0100     1.404  0.0100
+BIZ         C22         C23      DOUBLE       y     1.409  0.0100     1.409  0.0100
+BIZ         C22         N27      SINGLE       y     1.373  0.0100     1.373  0.0100
+BIZ         C23         C24      SINGLE       y     1.439  0.0119     1.439  0.0119
+BIZ         C24         C25      DOUBLE       y     1.366  0.0100     1.366  0.0100
+BIZ         C24         C26      SINGLE       n     1.497  0.0100     1.497  0.0100
+BIZ         C25         N27      SINGLE       y     1.368  0.0100     1.368  0.0100
+BIZ       "N1'"       "C2'"      SINGLE       n     1.406  0.0123     1.406  0.0123
+BIZ       "C2'"       "C3'"      DOUBLE       y     1.374  0.0100     1.374  0.0100
+BIZ       "C2'"       "C7'"      SINGLE       y     1.395  0.0130     1.395  0.0130
+BIZ       "C3'"       "C4'"      SINGLE       y     1.400  0.0100     1.400  0.0100
+BIZ       "C4'"       "C5'"      DOUBLE       y     1.414  0.0100     1.414  0.0100
+BIZ       "C4'"       "CA'"      SINGLE       y     1.428  0.0100     1.428  0.0100
+BIZ       "C5'"       "C6'"      SINGLE       y     1.392  0.0100     1.392  0.0100
+BIZ       "C5'"       "N8'"      SINGLE       y     1.369  0.0100     1.369  0.0100
+BIZ       "C6'"       "C7'"      DOUBLE       y     1.367  0.0176     1.367  0.0176
+BIZ       "N8'"       "C9'"      SINGLE       y     1.377  0.0100     1.377  0.0100
+BIZ       "C9'"       "CA'"      DOUBLE       y     1.402  0.0200     1.402  0.0200
+BIZ       "C9'"       "CB'"      SINGLE       n     1.429  0.0200     1.429  0.0200
+BIZ       "CB'"       "OC'"      DOUBLE       n     1.228  0.0115     1.228  0.0115
+BIZ       "CB'"       "ND'"      SINGLE       n     1.367  0.0144     1.367  0.0144
+BIZ       "ND'"       "CE'"      SINGLE       n     1.485  0.0100     1.485  0.0100
+BIZ       "ND'"       "CH'"      SINGLE       n     1.420  0.0100     1.420  0.0100
+BIZ       "CE'"       "CF'"      SINGLE       n     1.533  0.0142     1.533  0.0142
+BIZ       "CF'"       "CG'"      SINGLE       n     1.511  0.0100     1.511  0.0100
+BIZ       "CF'"       "CI'"      SINGLE       n     1.512  0.0200     1.512  0.0200
+BIZ       "CG'"       "CH'"      DOUBLE       y     1.389  0.0102     1.389  0.0102
+BIZ       "CG'"       "CN'"      SINGLE       y     1.414  0.0200     1.414  0.0200
+BIZ       "CH'"       "CJ'"      SINGLE       y     1.388  0.0100     1.388  0.0100
+BIZ       "CJ'"       "CK'"      DOUBLE       y     1.379  0.0132     1.379  0.0132
+BIZ       "CK'"       "OL'"      SINGLE       n     1.374  0.0155     1.374  0.0155
+BIZ       "CK'"       "CM'"      SINGLE       y     1.404  0.0100     1.404  0.0100
+BIZ       "CM'"       "CN'"      DOUBLE       y     1.409  0.0100     1.409  0.0100
+BIZ       "CM'"       "NR'"      SINGLE       y     1.373  0.0100     1.373  0.0100
+BIZ       "CN'"       "CO'"      SINGLE       y     1.439  0.0119     1.439  0.0119
+BIZ       "CO'"       "CP'"      DOUBLE       y     1.366  0.0100     1.366  0.0100
+BIZ       "CO'"       "CQ'"      SINGLE       n     1.497  0.0100     1.497  0.0100
+BIZ       "CP'"       "NR'"      SINGLE       y     1.368  0.0100     1.368  0.0100
+BIZ          N1         HN1      SINGLE       n     1.016  0.0100     0.879  0.0200
+BIZ          C3          H3      SINGLE       n     1.082  0.0130     0.936  0.0142
+BIZ          C6          H6      SINGLE       n     1.082  0.0130     0.937  0.0100
+BIZ          C7          H7      SINGLE       n     1.082  0.0130     0.937  0.0200
+BIZ          N8         HN8      SINGLE       n     1.016  0.0100     0.885  0.0200
+BIZ         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+BIZ         C14        H141      SINGLE       n     1.089  0.0100     0.980  0.0143
+BIZ         C14        H142      SINGLE       n     1.089  0.0100     0.980  0.0143
+BIZ         C15         H15      SINGLE       n     1.089  0.0100     0.995  0.0200
+BIZ         C18        H181      SINGLE       n     1.089  0.0100     0.970  0.0163
+BIZ         C18        H182      SINGLE       n     1.089  0.0100     0.970  0.0163
+BIZ         C18        H183      SINGLE       n     1.089  0.0100     0.970  0.0163
+BIZ         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0171
+BIZ         O21         HO2      SINGLE       n     0.966  0.0059     0.861  0.0200
+BIZ         C25         H25      SINGLE       n     1.082  0.0130     0.945  0.0191
+BIZ         C26        H261      SINGLE       n     1.089  0.0100     0.972  0.0139
+BIZ         C26        H262      SINGLE       n     1.089  0.0100     0.972  0.0139
+BIZ         C26        H263      SINGLE       n     1.089  0.0100     0.972  0.0139
+BIZ         N27         HN7      SINGLE       n     1.016  0.0100     0.878  0.0200
+BIZ       "N1'"      "HN1'"      SINGLE       n     1.016  0.0100     0.879  0.0200
+BIZ       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.936  0.0142
+BIZ       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.937  0.0100
+BIZ       "C7'"       "H7'"      SINGLE       n     1.082  0.0130     0.937  0.0200
+BIZ       "N8'"      "HN8'"      SINGLE       n     1.016  0.0100     0.885  0.0200
+BIZ       "CA'"      "H10'"      SINGLE       n     1.082  0.0130     0.944  0.0200
+BIZ       "CE'"      "H4'1"      SINGLE       n     1.089  0.0100     0.980  0.0143
+BIZ       "CE'"      "H4'2"      SINGLE       n     1.089  0.0100     0.980  0.0143
+BIZ       "CF'"      "H15'"      SINGLE       n     1.089  0.0100     0.995  0.0200
+BIZ       "CI'"      "H8'1"      SINGLE       n     1.089  0.0100     0.970  0.0163
+BIZ       "CI'"      "H8'2"      SINGLE       n     1.089  0.0100     0.970  0.0163
+BIZ       "CI'"      "H8'3"      SINGLE       n     1.089  0.0100     0.970  0.0163
+BIZ       "CJ'"      "H19'"      SINGLE       n     1.082  0.0130     0.942  0.0171
+BIZ       "OL'"      "HO2'"      SINGLE       n     0.966  0.0059     0.861  0.0200
+BIZ       "CP'"      "H25'"      SINGLE       n     1.082  0.0130     0.945  0.0191
+BIZ       "CQ'"      "H6'1"      SINGLE       n     1.089  0.0100     0.972  0.0139
+BIZ       "CQ'"      "H6'2"      SINGLE       n     1.089  0.0100     0.972  0.0139
+BIZ       "CQ'"      "H6'3"      SINGLE       n     1.089  0.0100     0.972  0.0139
+BIZ       "NR'"      "HN7'"      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BIZ           O           C          N1     123.894    1.50
+BIZ           O           C       "N1'"     123.894    1.50
+BIZ          N1           C       "N1'"     112.213    1.51
+BIZ           C          N1          C2     126.436    2.10
+BIZ           C          N1         HN1     116.993    1.80
+BIZ          C2          N1         HN1     116.571    2.05
+BIZ          N1          C2          C3     119.073    2.92
+BIZ          N1          C2          C7     119.021    3.00
+BIZ          C3          C2          C7     121.906    2.27
+BIZ          C2          C3          C4     118.186    1.50
+BIZ          C2          C3          H3     121.262    1.50
+BIZ          C4          C3          H3     120.552    1.50
+BIZ          C3          C4          C5     119.348    1.50
+BIZ          C3          C4         C10     134.009    1.50
+BIZ          C5          C4         C10     106.642    1.50
+BIZ          C4          C5          C6     122.264    1.50
+BIZ          C4          C5          N8     107.813    1.50
+BIZ          C6          C5          N8     129.923    1.50
+BIZ          C5          C6          C7     117.809    1.50
+BIZ          C5          C6          H6     120.955    1.50
+BIZ          C7          C6          H6     121.235    1.50
+BIZ          C2          C7          C6     120.486    1.50
+BIZ          C2          C7          H7     119.897    1.50
+BIZ          C6          C7          H7     119.617    1.50
+BIZ          C5          N8          C9     108.847    1.50
+BIZ          C5          N8         HN8     125.714    1.50
+BIZ          C9          N8         HN8     125.439    2.15
+BIZ          N8          C9         C10     108.898    1.50
+BIZ          N8          C9         C11     122.779    3.00
+BIZ         C10          C9         C11     128.323    3.00
+BIZ          C4         C10          C9     107.799    1.50
+BIZ          C4         C10         H10     126.028    1.50
+BIZ          C9         C10         H10     126.173    1.50
+BIZ          C9         C11         O12     120.829    1.84
+BIZ          C9         C11         N13     118.196    2.28
+BIZ         O12         C11         N13     120.975    1.65
+BIZ         C11         N13         C14     123.923    2.61
+BIZ         C11         N13         C17     122.248    1.97
+BIZ         C14         N13         C17     109.024    2.34
+BIZ         N13         C14         C15     103.104    2.01
+BIZ         N13         C14        H141     109.403    1.50
+BIZ         N13         C14        H142     109.403    1.50
+BIZ         C15         C14        H141     111.094    1.50
+BIZ         C15         C14        H142     111.094    1.50
+BIZ        H141         C14        H142     109.055    1.50
+BIZ         C14         C15         C16     103.118    1.50
+BIZ         C14         C15         C18     112.133    1.62
+BIZ         C14         C15         H15     108.548    1.50
+BIZ         C16         C15         C18     114.113    2.84
+BIZ         C16         C15         H15     108.945    1.60
+BIZ         C18         C15         H15     109.106    3.00
+BIZ         C15         C16         C17     109.673    1.57
+BIZ         C15         C16         C23     130.288    3.00
+BIZ         C17         C16         C23     120.039    1.50
+BIZ         N13         C17         C16     109.957    1.50
+BIZ         N13         C17         C19     129.206    1.50
+BIZ         C16         C17         C19     120.836    1.50
+BIZ         C15         C18        H181     109.280    2.21
+BIZ         C15         C18        H182     109.280    2.21
+BIZ         C15         C18        H183     109.280    2.21
+BIZ        H181         C18        H182     109.629    1.50
+BIZ        H181         C18        H183     109.629    1.50
+BIZ        H182         C18        H183     109.629    1.50
+BIZ         C17         C19         C20     119.175    1.50
+BIZ         C17         C19         H19     121.141    1.50
+BIZ         C20         C19         H19     119.684    1.50
+BIZ         C19         C20         O21     120.737    3.00
+BIZ         C19         C20         C22     119.571    1.50
+BIZ         O21         C20         C22     119.693    3.00
+BIZ         C20         O21         HO2     120.000    3.00
+BIZ         C20         C22         C23     120.345    1.72
+BIZ         C20         C22         N27     131.927    1.56
+BIZ         C23         C22         N27     107.728    1.50
+BIZ         C16         C23         C22     120.034    2.33
+BIZ         C16         C23         C24     132.619    1.50
+BIZ         C22         C23         C24     107.346    1.50
+BIZ         C23         C24         C25     106.819    1.50
+BIZ         C23         C24         C26     125.317    1.81
+BIZ         C25         C24         C26     127.864    1.50
+BIZ         C24         C25         N27     109.572    1.50
+BIZ         C24         C25         H25     125.494    1.50
+BIZ         N27         C25         H25     124.935    1.50
+BIZ         C24         C26        H261     109.644    1.50
+BIZ         C24         C26        H262     109.644    1.50
+BIZ         C24         C26        H263     109.644    1.50
+BIZ        H261         C26        H262     109.292    1.50
+BIZ        H261         C26        H263     109.292    1.50
+BIZ        H262         C26        H263     109.292    1.50
+BIZ         C22         N27         C25     108.535    1.50
+BIZ         C22         N27         HN7     126.082    1.93
+BIZ         C25         N27         HN7     125.383    1.77
+BIZ           C       "N1'"       "C2'"     126.436    2.10
+BIZ           C       "N1'"      "HN1'"     116.993    1.80
+BIZ       "C2'"       "N1'"      "HN1'"     116.571    2.05
+BIZ       "N1'"       "C2'"       "C3'"     119.073    2.92
+BIZ       "N1'"       "C2'"       "C7'"     119.021    3.00
+BIZ       "C3'"       "C2'"       "C7'"     121.906    2.27
+BIZ       "C2'"       "C3'"       "C4'"     118.186    1.50
+BIZ       "C2'"       "C3'"       "H3'"     121.262    1.50
+BIZ       "C4'"       "C3'"       "H3'"     120.552    1.50
+BIZ       "C3'"       "C4'"       "C5'"     119.348    1.50
+BIZ       "C3'"       "C4'"       "CA'"     134.009    1.50
+BIZ       "C5'"       "C4'"       "CA'"     106.642    1.50
+BIZ       "C4'"       "C5'"       "C6'"     122.264    1.50
+BIZ       "C4'"       "C5'"       "N8'"     107.813    1.50
+BIZ       "C6'"       "C5'"       "N8'"     129.923    1.50
+BIZ       "C5'"       "C6'"       "C7'"     117.809    1.50
+BIZ       "C5'"       "C6'"       "H6'"     120.955    1.50
+BIZ       "C7'"       "C6'"       "H6'"     121.235    1.50
+BIZ       "C2'"       "C7'"       "C6'"     120.486    1.50
+BIZ       "C2'"       "C7'"       "H7'"     119.897    1.50
+BIZ       "C6'"       "C7'"       "H7'"     119.617    1.50
+BIZ       "C5'"       "N8'"       "C9'"     108.847    1.50
+BIZ       "C5'"       "N8'"      "HN8'"     125.714    1.50
+BIZ       "C9'"       "N8'"      "HN8'"     125.439    2.15
+BIZ       "N8'"       "C9'"       "CA'"     108.898    1.50
+BIZ       "N8'"       "C9'"       "CB'"     122.779    3.00
+BIZ       "CA'"       "C9'"       "CB'"     128.323    3.00
+BIZ       "C4'"       "CA'"       "C9'"     107.799    1.50
+BIZ       "C4'"       "CA'"      "H10'"     126.028    1.50
+BIZ       "C9'"       "CA'"      "H10'"     126.173    1.50
+BIZ       "C9'"       "CB'"       "OC'"     120.829    1.84
+BIZ       "C9'"       "CB'"       "ND'"     118.196    2.28
+BIZ       "OC'"       "CB'"       "ND'"     120.975    1.65
+BIZ       "CB'"       "ND'"       "CE'"     123.923    2.61
+BIZ       "CB'"       "ND'"       "CH'"     122.248    1.97
+BIZ       "CE'"       "ND'"       "CH'"     109.024    2.34
+BIZ       "ND'"       "CE'"       "CF'"     103.104    2.01
+BIZ       "ND'"       "CE'"      "H4'1"     109.403    1.50
+BIZ       "ND'"       "CE'"      "H4'2"     109.403    1.50
+BIZ       "CF'"       "CE'"      "H4'1"     111.094    1.50
+BIZ       "CF'"       "CE'"      "H4'2"     111.094    1.50
+BIZ      "H4'1"       "CE'"      "H4'2"     109.055    1.50
+BIZ       "CE'"       "CF'"       "CG'"     103.118    1.50
+BIZ       "CE'"       "CF'"       "CI'"     112.133    1.62
+BIZ       "CE'"       "CF'"      "H15'"     108.548    1.50
+BIZ       "CG'"       "CF'"       "CI'"     114.113    2.84
+BIZ       "CG'"       "CF'"      "H15'"     108.945    1.60
+BIZ       "CI'"       "CF'"      "H15'"     109.106    3.00
+BIZ       "CF'"       "CG'"       "CH'"     109.673    1.57
+BIZ       "CF'"       "CG'"       "CN'"     130.288    3.00
+BIZ       "CH'"       "CG'"       "CN'"     120.039    1.50
+BIZ       "ND'"       "CH'"       "CG'"     109.957    1.50
+BIZ       "ND'"       "CH'"       "CJ'"     129.206    1.50
+BIZ       "CG'"       "CH'"       "CJ'"     120.836    1.50
+BIZ       "CF'"       "CI'"      "H8'1"     109.280    2.21
+BIZ       "CF'"       "CI'"      "H8'2"     109.280    2.21
+BIZ       "CF'"       "CI'"      "H8'3"     109.280    2.21
+BIZ      "H8'1"       "CI'"      "H8'2"     109.629    1.50
+BIZ      "H8'1"       "CI'"      "H8'3"     109.629    1.50
+BIZ      "H8'2"       "CI'"      "H8'3"     109.629    1.50
+BIZ       "CH'"       "CJ'"       "CK'"     119.175    1.50
+BIZ       "CH'"       "CJ'"      "H19'"     121.141    1.50
+BIZ       "CK'"       "CJ'"      "H19'"     119.684    1.50
+BIZ       "CJ'"       "CK'"       "OL'"     120.737    3.00
+BIZ       "CJ'"       "CK'"       "CM'"     119.571    1.50
+BIZ       "OL'"       "CK'"       "CM'"     119.693    3.00
+BIZ       "CK'"       "OL'"      "HO2'"     120.000    3.00
+BIZ       "CK'"       "CM'"       "CN'"     120.345    1.72
+BIZ       "CK'"       "CM'"       "NR'"     131.927    1.56
+BIZ       "CN'"       "CM'"       "NR'"     107.728    1.50
+BIZ       "CG'"       "CN'"       "CM'"     120.034    2.33
+BIZ       "CG'"       "CN'"       "CO'"     132.619    1.50
+BIZ       "CM'"       "CN'"       "CO'"     107.346    1.50
+BIZ       "CN'"       "CO'"       "CP'"     106.819    1.50
+BIZ       "CN'"       "CO'"       "CQ'"     125.317    1.81
+BIZ       "CP'"       "CO'"       "CQ'"     127.864    1.50
+BIZ       "CO'"       "CP'"       "NR'"     109.572    1.50
+BIZ       "CO'"       "CP'"      "H25'"     125.494    1.50
+BIZ       "NR'"       "CP'"      "H25'"     124.935    1.50
+BIZ       "CO'"       "CQ'"      "H6'1"     109.644    1.50
+BIZ       "CO'"       "CQ'"      "H6'2"     109.644    1.50
+BIZ       "CO'"       "CQ'"      "H6'3"     109.644    1.50
+BIZ      "H6'1"       "CQ'"      "H6'2"     109.292    1.50
+BIZ      "H6'1"       "CQ'"      "H6'3"     109.292    1.50
+BIZ      "H6'2"       "CQ'"      "H6'3"     109.292    1.50
+BIZ       "CM'"       "NR'"       "CP'"     108.535    1.50
+BIZ       "CM'"       "NR'"      "HN7'"     126.082    1.93
+BIZ       "CP'"       "NR'"      "HN7'"     125.383    1.77
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BIZ             sp2_sp2_3           O           C          N1          C2       0.000     5.0     2
+BIZ             sp2_sp2_7           O           C       "N1'"       "C2'"       0.000     5.0     2
+BIZ              const_14          C4         C10          C9         C11     180.000    10.0     2
+BIZ            sp2_sp2_15         O12         C11          C9          N8       0.000     5.0     2
+BIZ            sp2_sp2_19         O12         C11         N13         C14       0.000     5.0     2
+BIZ             sp2_sp3_4         C11         N13         C14         C15     180.000    10.0     6
+BIZ            sp2_sp2_22         C16         C17         N13         C11     180.000     5.0     2
+BIZ             sp3_sp3_2         N13         C14         C15         C18      60.000    10.0     3
+BIZ             sp2_sp3_8         C17         C16         C15         C18     120.000    10.0     6
+BIZ            sp3_sp3_19         C14         C15         C18        H181     180.000    10.0     3
+BIZ              const_17         C15         C16         C17         N13       0.000    10.0     2
+BIZ             const_139         C15         C16         C23         C22     180.000    10.0     2
+BIZ              const_23         N13         C17         C19         C20     180.000    10.0     2
+BIZ              const_26         C17         C19         C20         O21     180.000    10.0     2
+BIZ            sp2_sp2_25         C19         C20         O21         HO2     180.000     5.0     2
+BIZ              const_31         O21         C20         C22         C23     180.000    10.0     2
+BIZ              const_33         C20         C22         C23         C16       0.000    10.0     2
+BIZ             const_143         C20         C22         N27         C25     180.000    10.0     2
+BIZ              const_60         C16         C23         C24         C26       0.000    10.0     2
+BIZ              const_63         C26         C24         C25         N27     180.000    10.0     2
+BIZ            sp2_sp3_25         C23         C24         C26        H261     150.000    10.0     6
+BIZ              const_65         C24         C25         N27         C22       0.000    10.0     2
+BIZ            sp2_sp2_27       "C3'"       "C2'"       "N1'"           C     180.000     5.0     2
+BIZ             sp2_sp2_9          C3          C2          N1           C     180.000     5.0     2
+BIZ              const_39       "N1'"       "C2'"       "C3'"       "C4'"     180.000    10.0     2
+BIZ             const_147       "N1'"       "C2'"       "C7'"       "C6'"     180.000    10.0     2
+BIZ              const_41       "C2'"       "C3'"       "C4'"       "C5'"       0.000    10.0     2
+BIZ              const_45       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+BIZ             const_151       "C3'"       "C4'"       "CA'"       "C9'"     180.000    10.0     2
+BIZ              const_49       "C4'"       "C5'"       "C6'"       "C7'"       0.000    10.0     2
+BIZ              const_85       "C4'"       "C5'"       "N8'"       "C9'"       0.000    10.0     2
+BIZ              const_53       "C5'"       "C6'"       "C7'"       "C2'"       0.000    10.0     2
+BIZ              const_91       "CB'"       "C9'"       "N8'"       "C5'"     180.000    10.0     2
+BIZ              const_95       "CB'"       "C9'"       "CA'"       "C4'"     180.000    10.0     2
+BIZ            sp2_sp2_32       "N8'"       "C9'"       "CB'"       "OC'"       0.000     5.0     2
+BIZ            sp2_sp2_37       "OC'"       "CB'"       "ND'"       "CE'"       0.000     5.0     2
+BIZ              const_71          N1          C2          C3          C4     180.000    10.0     2
+BIZ             const_131          N1          C2          C7          C6     180.000    10.0     2
+BIZ            sp2_sp3_16       "CB'"       "ND'"       "CE'"       "CF'"     180.000    10.0     6
+BIZ            sp2_sp2_40       "CG'"       "CH'"       "ND'"       "CB'"     180.000     5.0     2
+BIZ            sp3_sp3_11       "ND'"       "CE'"       "CF'"       "CI'"      60.000    10.0     3
+BIZ            sp2_sp3_20       "CH'"       "CG'"       "CF'"       "CI'"     120.000    10.0     6
+BIZ            sp3_sp3_28       "CE'"       "CF'"       "CI'"      "H8'1"     180.000    10.0     3
+BIZ              const_97       "CF'"       "CG'"       "CH'"       "ND'"       0.000    10.0     2
+BIZ             const_155       "CF'"       "CG'"       "CN'"       "CM'"     180.000    10.0     2
+BIZ             const_103       "ND'"       "CH'"       "CJ'"       "CK'"     180.000    10.0     2
+BIZ             const_106       "CH'"       "CJ'"       "CK'"       "OL'"     180.000    10.0     2
+BIZ            sp2_sp2_43       "CJ'"       "CK'"       "OL'"      "HO2'"     180.000     5.0     2
+BIZ             const_111       "OL'"       "CK'"       "CM'"       "CN'"     180.000    10.0     2
+BIZ              const_73          C2          C3          C4          C5       0.000    10.0     2
+BIZ             const_113       "CK'"       "CM'"       "CN'"       "CG'"       0.000    10.0     2
+BIZ             const_159       "CK'"       "CM'"       "NR'"       "CP'"     180.000    10.0     2
+BIZ             const_120       "CG'"       "CN'"       "CO'"       "CQ'"       0.000    10.0     2
+BIZ             const_123       "CQ'"       "CO'"       "CP'"       "NR'"     180.000    10.0     2
+BIZ            sp2_sp3_31       "CN'"       "CO'"       "CQ'"      "H6'1"     150.000    10.0     6
+BIZ             const_125       "CO'"       "CP'"       "NR'"       "CM'"       0.000    10.0     2
+BIZ             const_134          C9         C10          C4          C3     180.000    10.0     2
+BIZ       const_sp2_sp2_1          C3          C4          C5          C6       0.000     5.0     2
+BIZ              const_77          C4          C5          C6          C7       0.000    10.0     2
+BIZ       const_sp2_sp2_5          C4          C5          N8          C9       0.000     5.0     2
+BIZ              const_81          C5          C6          C7          C2       0.000    10.0     2
+BIZ              const_11         C11          C9          N8          C5     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BIZ    chir_1    C15    C14    C16    C18    positive
+BIZ    chir_2    "CF'"    "CE'"    "CG'"    "CI'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BIZ    plan-1         C10   0.020
+BIZ    plan-1         C11   0.020
+BIZ    plan-1          C2   0.020
+BIZ    plan-1          C3   0.020
+BIZ    plan-1          C4   0.020
+BIZ    plan-1          C5   0.020
+BIZ    plan-1          C6   0.020
+BIZ    plan-1          C7   0.020
+BIZ    plan-1          C9   0.020
+BIZ    plan-1         H10   0.020
+BIZ    plan-1          H3   0.020
+BIZ    plan-1          H6   0.020
+BIZ    plan-1          H7   0.020
+BIZ    plan-1         HN8   0.020
+BIZ    plan-1          N1   0.020
+BIZ    plan-1          N8   0.020
+BIZ    plan-2         C15   0.020
+BIZ    plan-2         C16   0.020
+BIZ    plan-2         C17   0.020
+BIZ    plan-2         C19   0.020
+BIZ    plan-2         C20   0.020
+BIZ    plan-2         C22   0.020
+BIZ    plan-2         C23   0.020
+BIZ    plan-2         C24   0.020
+BIZ    plan-2         C25   0.020
+BIZ    plan-2         C26   0.020
+BIZ    plan-2         H19   0.020
+BIZ    plan-2         H25   0.020
+BIZ    plan-2         HN7   0.020
+BIZ    plan-2         N13   0.020
+BIZ    plan-2         N27   0.020
+BIZ    plan-2         O21   0.020
+BIZ    plan-3       "C2'"   0.020
+BIZ    plan-3       "C3'"   0.020
+BIZ    plan-3       "C4'"   0.020
+BIZ    plan-3       "C5'"   0.020
+BIZ    plan-3       "C6'"   0.020
+BIZ    plan-3       "C7'"   0.020
+BIZ    plan-3       "C9'"   0.020
+BIZ    plan-3       "CA'"   0.020
+BIZ    plan-3       "CB'"   0.020
+BIZ    plan-3      "H10'"   0.020
+BIZ    plan-3       "H3'"   0.020
+BIZ    plan-3       "H6'"   0.020
+BIZ    plan-3       "H7'"   0.020
+BIZ    plan-3      "HN8'"   0.020
+BIZ    plan-3       "N1'"   0.020
+BIZ    plan-3       "N8'"   0.020
+BIZ    plan-4       "CF'"   0.020
+BIZ    plan-4       "CG'"   0.020
+BIZ    plan-4       "CH'"   0.020
+BIZ    plan-4       "CJ'"   0.020
+BIZ    plan-4       "CK'"   0.020
+BIZ    plan-4       "CM'"   0.020
+BIZ    plan-4       "CN'"   0.020
+BIZ    plan-4       "CO'"   0.020
+BIZ    plan-4       "CP'"   0.020
+BIZ    plan-4       "CQ'"   0.020
+BIZ    plan-4      "H19'"   0.020
+BIZ    plan-4      "H25'"   0.020
+BIZ    plan-4      "HN7'"   0.020
+BIZ    plan-4       "ND'"   0.020
+BIZ    plan-4       "NR'"   0.020
+BIZ    plan-4       "OL'"   0.020
+BIZ    plan-5           C   0.020
+BIZ    plan-5          N1   0.020
+BIZ    plan-5       "N1'"   0.020
+BIZ    plan-5           O   0.020
+BIZ    plan-6           C   0.020
+BIZ    plan-6          C2   0.020
+BIZ    plan-6         HN1   0.020
+BIZ    plan-6          N1   0.020
+BIZ    plan-7         C11   0.020
+BIZ    plan-7          C9   0.020
+BIZ    plan-7         N13   0.020
+BIZ    plan-7         O12   0.020
+BIZ    plan-8           C   0.020
+BIZ    plan-8       "C2'"   0.020
+BIZ    plan-8      "HN1'"   0.020
+BIZ    plan-8       "N1'"   0.020
+BIZ    plan-9       "C9'"   0.020
+BIZ    plan-9       "CB'"   0.020
+BIZ    plan-9       "ND'"   0.020
+BIZ    plan-9       "OC'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BIZ           SMILES              ACDLabs 10.04                                                                                                                                                                               O=C(N3c2cc(O)c1c(c(cn1)C)c2C(C)C3)c5cc4cc(ccc4n5)NC(=O)Nc6cc7cc(nc7cc6)C(=O)N%10c9cc(O)c8c(c(cn8)C)c9C(C)C%10
+BIZ SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                             C[C@@H]1CN(C(=O)c2[nH]c3ccc(NC(=O)Nc4ccc5[nH]c(cc5c4)C(=O)N6C[C@@H](C)c7c6cc(O)c8[nH]cc(C)c78)cc3c2)c9cc(O)c%10[nH]cc(C)c%10c19
+BIZ           SMILES               CACTVS 3.341                                                                                                                                                                 C[CH]1CN(C(=O)c2[nH]c3ccc(NC(=O)Nc4ccc5[nH]c(cc5c4)C(=O)N6C[CH](C)c7c6cc(O)c8[nH]cc(C)c78)cc3c2)c9cc(O)c%10[nH]cc(C)c%10c19
+BIZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                   Cc1c[nH]c2c1c3c(cc2O)N(C[C@H]3C)C(=O)c4cc5cc(ccc5[nH]4)NC(=O)Nc6ccc7c(c6)cc([nH]7)C(=O)N8C[C@H](c9c8cc(c1c9c(c[nH]1)C)O)C
+BIZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                           Cc1c[nH]c2c1c3c(cc2O)N(CC3C)C(=O)c4cc5cc(ccc5[nH]4)NC(=O)Nc6ccc7c(c6)cc([nH]7)C(=O)N8CC(c9c8cc(c1c9c(c[nH]1)C)O)C
+BIZ            InChI                InChI  1.03 InChI=1S/C43H38N8O5/c1-19-15-44-39-33(52)13-31-35(37(19)39)21(3)17-50(31)41(54)29-11-23-9-25(5-7-27(23)48-29)46-43(56)47-26-6-8-28-24(10-26)12-30(49-28)42(55)51-18-22(4)36-32(51)14-34(53)40-38(36)20(2)16-45-40/h5-16,21-22,44-45,48-49,52-53H,17-18H2,1-4H3,(H2,46,47,56)/t21-,22-/m1/s1
+BIZ         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                 OAOMXBKMJIBOHZ-FGZHOGPDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BIZ acedrg               243         "dictionary generator"                  
+BIZ acedrg_database      11          "data source"                           
+BIZ rdkit                2017.03.2   "Chemoinformatics tool"
+BIZ refmac5              5.8.0238    "optimization tool"                     

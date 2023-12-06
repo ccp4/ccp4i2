@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B25     B25      5-nitro-1H-indole-2-carboximidamide     NON-POLYMER     23     15     .     
+#
+data_comp_B25
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B25     C1      C       CR56    0       -29.769     -16.886     9.660       
+B25     N1      N       N       1       -27.239     -15.851     12.843      
+B25     O1      O       O       0       -26.326     -16.606     13.140      
+B25     C2      C       CR16    0       -29.083     -15.669     9.614       
+B25     N2      N       NH2     0       -32.224     -20.810     8.968       
+B25     O2      O       OC      -1      -27.448     -14.794     13.418      
+B25     C3      C       CR16    0       -28.258     -15.347     10.666      
+B25     N3      N       NH1     0       -32.696     -19.175     7.471       
+B25     C4      C       CR6     0       -28.122     -16.227     11.745      
+B25     N4      N       NR5     0       -30.639     -17.443     8.761       
+B25     C5      C       CR16    0       -28.796     -17.445     11.815      
+B25     C6      C       CR56    0       -29.638     -17.783     10.747      
+B25     C7      C       CR15    0       -30.475     -18.899     10.449      
+B25     C8      C       CR5     0       -31.070     -18.666     9.234       
+B25     C9      C       C       0       -32.024     -19.548     8.518       
+B25     H2      H       H       0       -29.184     -15.090     8.884       
+B25     H1N2    H       H       0       -31.792     -21.109     9.657       
+B25     H2N2    H       H       0       -32.795     -21.329     8.565       
+B25     H3      H       H       0       -27.784     -14.532     10.659      
+B25     H1N3    H       H       0       -32.569     -18.353     7.189       
+B25     HN4     H       H       0       -30.885     -17.076     7.996       
+B25     H5      H       H       0       -28.690     -18.024     12.552      
+B25     H7      H       H       0       -30.594     -19.661     10.992      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B25          N3          C9      DOUBLE       n     1.288  0.0200     1.288  0.0200
+B25          N4          C8      SINGLE       y     1.377  0.0100     1.377  0.0100
+B25          C1          N4      SINGLE       y     1.369  0.0100     1.369  0.0100
+B25          C8          C9      SINGLE       n     1.458  0.0200     1.458  0.0200
+B25          N2          C9      SINGLE       n     1.347  0.0152     1.347  0.0152
+B25          C1          C2      DOUBLE       y     1.392  0.0100     1.392  0.0100
+B25          C2          C3      SINGLE       y     1.371  0.0100     1.371  0.0100
+B25          C7          C8      DOUBLE       y     1.370  0.0100     1.370  0.0100
+B25          C1          C6      SINGLE       y     1.414  0.0100     1.414  0.0100
+B25          C3          C4      DOUBLE       y     1.394  0.0127     1.394  0.0127
+B25          C6          C7      SINGLE       y     1.428  0.0100     1.428  0.0100
+B25          C5          C6      DOUBLE       y     1.399  0.0100     1.399  0.0100
+B25          C4          C5      SINGLE       y     1.390  0.0111     1.390  0.0111
+B25          N1          C4      SINGLE       n     1.457  0.0200     1.457  0.0200
+B25          N1          O2      SINGLE       n     1.221  0.0162     1.221  0.0162
+B25          N1          O1      DOUBLE       n     1.221  0.0162     1.221  0.0162
+B25          C2          H2      SINGLE       n     1.082  0.0130     0.937  0.0100
+B25          N2        H1N2      SINGLE       n     1.016  0.0100     0.869  0.0200
+B25          N2        H2N2      SINGLE       n     1.016  0.0100     0.869  0.0200
+B25          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0177
+B25          N3        H1N3      SINGLE       n     1.016  0.0100     0.882  0.0200
+B25          N4         HN4      SINGLE       n     1.016  0.0100     0.885  0.0200
+B25          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0180
+B25          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B25          N4          C1          C2     130.120    1.50
+B25          N4          C1          C6     107.813    1.50
+B25          C2          C1          C6     122.067    1.50
+B25          C4          N1          O2     118.351    1.50
+B25          C4          N1          O1     118.351    1.50
+B25          O2          N1          O1     123.298    1.50
+B25          C1          C2          C3     117.613    1.50
+B25          C1          C2          H2     121.054    1.50
+B25          C3          C2          H2     121.334    1.50
+B25          C9          N2        H1N2     119.928    1.50
+B25          C9          N2        H2N2     119.928    1.50
+B25        H1N2          N2        H2N2     120.144    2.31
+B25          C2          C3          C4     119.822    1.50
+B25          C2          C3          H3     120.015    1.50
+B25          C4          C3          H3     120.163    1.50
+B25          C9          N3        H1N3     112.803    3.00
+B25          C3          C4          C5     123.358    1.50
+B25          C3          C4          N1     118.305    1.50
+B25          C5          C4          N1     118.337    1.50
+B25          C8          N4          C1     108.847    1.50
+B25          C8          N4         HN4     125.439    2.15
+B25          C1          N4         HN4     125.714    1.50
+B25          C6          C5          C4     117.989    1.50
+B25          C6          C5          H5     120.765    1.50
+B25          C4          C5          H5     121.245    1.50
+B25          C1          C6          C7     106.642    1.50
+B25          C1          C6          C5     119.151    1.50
+B25          C7          C6          C5     134.206    1.50
+B25          C8          C7          C6     107.799    1.50
+B25          C8          C7          H7     126.173    1.50
+B25          C6          C7          H7     126.028    1.50
+B25          N4          C8          C9     124.290    2.16
+B25          N4          C8          C7     108.898    1.50
+B25          C9          C8          C7     126.812    2.47
+B25          N3          C9          C8     121.953    3.00
+B25          N3          C9          N2     121.616    2.66
+B25          C8          C9          N2     116.431    2.93
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B25              const_37          N4          C1          C6          C7       0.000    10.0     2
+B25       const_sp2_sp2_3          N4          C1          C2          C3     180.000     5.0     2
+B25              const_23          C2          C1          N4          C8     180.000    10.0     2
+B25              const_17          C4          C5          C6          C1       0.000    10.0     2
+B25              const_33          C1          C6          C7          C8       0.000    10.0     2
+B25              const_30          C6          C7          C8          C9     180.000    10.0     2
+B25             sp2_sp2_4          N4          C8          C9          N3       0.000     5.0     2
+B25            sp2_sp2_11          C3          C4          N1          O2     180.000     5.0     2
+B25       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+B25             sp2_sp2_9          N3          C9          N2        H1N2       0.000     5.0     2
+B25              const_10          C2          C3          C4          N1     180.000    10.0     2
+B25             sp2_sp2_2          N2          C9          N3        H1N3       0.000     5.0     2
+B25              const_15          N1          C4          C5          C6     180.000    10.0     2
+B25              const_27          C9          C8          N4          C1     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B25    plan-1          C1   0.020
+B25    plan-1          C2   0.020
+B25    plan-1          C3   0.020
+B25    plan-1          C4   0.020
+B25    plan-1          C5   0.020
+B25    plan-1          C6   0.020
+B25    plan-1          C7   0.020
+B25    plan-1          C8   0.020
+B25    plan-1          C9   0.020
+B25    plan-1          H2   0.020
+B25    plan-1          H3   0.020
+B25    plan-1          H5   0.020
+B25    plan-1          H7   0.020
+B25    plan-1         HN4   0.020
+B25    plan-1          N1   0.020
+B25    plan-1          N4   0.020
+B25    plan-2          C4   0.020
+B25    plan-2          N1   0.020
+B25    plan-2          O1   0.020
+B25    plan-2          O2   0.020
+B25    plan-3          C9   0.020
+B25    plan-3        H1N2   0.020
+B25    plan-3        H2N2   0.020
+B25    plan-3          N2   0.020
+B25    plan-4          C8   0.020
+B25    plan-4          C9   0.020
+B25    plan-4          N2   0.020
+B25    plan-4          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B25           SMILES              ACDLabs 12.01                                      "[O-][N+](=O)c1cc2c(cc1)nc(c2)C(=[N@H])N"
+B25 SMILES_CANONICAL               CACTVS 3.370                                           NC(=N)c1[nH]c2ccc(cc2c1)[N+]([O-])=O
+B25           SMILES               CACTVS 3.370                                           NC(=N)c1[nH]c2ccc(cc2c1)[N+]([O-])=O
+B25 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                   "[H]/N=C(/c1cc2cc(ccc2[nH]1)[N+](=O)[O-])\N"
+B25           SMILES "OpenEye OEToolkits" 1.7.0                                         c1cc2c(cc1[N+](=O)[O-])cc([nH]2)C(=N)N
+B25            InChI                InChI  1.03 InChI=1S/C9H8N4O2/c10-9(11)8-4-5-3-6(13(14)15)1-2-7(5)12-8/h1-4,12H,(H3,10,11)
+B25         InChIKey                InChI  1.03                                                    ZFLOQYGDSBVASK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B25 acedrg               243         "dictionary generator"                  
+B25 acedrg_database      11          "data source"                           
+B25 rdkit                2017.03.2   "Chemoinformatics tool"
+B25 refmac5              5.8.0238    "optimization tool"                     

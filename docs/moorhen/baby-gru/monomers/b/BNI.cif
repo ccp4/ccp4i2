@@ -1,0 +1,324 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BNI     BNI      "5-(2-OXO-HEXAHYDRO-THIENO[3,4-D]IMIDAZOL-6-YL)-PENTANOIC ACID (4-NITRO-PHENYL)-AMIDE"     NON-POLYMER     45     25     .     
+#
+data_comp_BNI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BNI     C1      C       C       0       -3.627      31.323      28.683      
+BNI     C10     C       CH2     0       -3.631      30.987      27.209      
+BNI     C9      C       CH2     0       -2.621      29.950      26.822      
+BNI     C8      C       CH2     0       -2.813      29.414      25.413      
+BNI     C7      C       CH2     0       -2.529      30.440      24.315      
+BNI     C2      C       CH1     0       -2.266      29.920      22.896      
+BNI     C6      C       CH2     0       -2.213      28.373      20.969      
+BNI     C4      C       CH1     0       -0.789      29.574      22.618      
+BNI     C5      C       CH1     0       -0.767      28.590      21.412      
+BNI     C3      C       CR5     0       0.214       27.577      23.258      
+BNI     O2      O       O       0       -4.571      31.046      29.412      
+BNI     O3      O       O       0       0.777       26.723      23.964      
+BNI     N1      N       NR5     0       -0.147      27.414      21.966      
+BNI     N2      N       NR5     0       -0.137      28.819      23.657      
+BNI     S1      S       S2      0       -3.209      28.412      22.474      
+BNI     N17     N       NH1     0       -2.512      31.953      29.123      
+BNI     C18     C       CR6     0       -2.132      32.212      30.461      
+BNI     C20     C       CR16    0       -1.825      33.519      30.856      
+BNI     C21     C       CR16    0       -1.453      33.789      32.154      
+BNI     C22     C       CR6     0       -1.384      32.738      33.070      
+BNI     C23     C       CR16    0       -1.685      31.427      32.699      
+BNI     C24     C       CR16    0       -2.057      31.171      31.395      
+BNI     N25     N       N       1       -0.991      33.015      34.448      
+BNI     O26     O       O       0       0.059       33.609      34.643      
+BNI     O27     O       OC      -1      -1.728      32.640      35.346      
+BNI     H101    H       H       0       -3.455      31.806      26.698      
+BNI     H102    H       H       0       -4.524      30.666      26.961      
+BNI     H91     H       H       0       -2.675      29.202      27.453      
+BNI     H92     H       H       0       -1.724      30.338      26.893      
+BNI     H81     H       H       0       -3.738      29.102      25.323      
+BNI     H82     H       H       0       -2.224      28.641      25.290      
+BNI     H71     H       H       0       -1.742      30.974      24.589      
+BNI     H72     H       H       0       -3.298      31.062      24.269      
+BNI     H21A    H       H       0       -2.539      30.629      22.264      
+BNI     H61     H       H       0       -2.491      29.078      20.358      
+BNI     H62     H       H       0       -2.306      27.513      20.522      
+BNI     HC4     H       H       0       -0.273      30.395      22.406      
+BNI     HC5     H       H       0       -0.224      28.958      20.667      
+BNI     HN11    H       H       0       -0.013      26.675      21.535      
+BNI     HN21    H       H       0       0.025       29.113      24.455      
+BNI     H171    H       H       0       -1.955      32.240      28.511      
+BNI     H20     H       H       0       -1.875      34.221      30.228      
+BNI     H21     H       H       0       -1.248      34.670      32.413      
+BNI     H23     H       H       0       -1.637      30.725      33.324      
+BNI     H24     H       H       0       -2.263      30.289      31.130      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BNI          C1         C10      SINGLE       n     1.510  0.0129     1.510  0.0129
+BNI          C1          O2      DOUBLE       n     1.223  0.0143     1.223  0.0143
+BNI          C1         N17      SINGLE       n     1.350  0.0120     1.350  0.0120
+BNI         C10          C9      SINGLE       n     1.497  0.0200     1.497  0.0200
+BNI          C9          C8      SINGLE       n     1.519  0.0164     1.519  0.0164
+BNI          C8          C7      SINGLE       n     1.527  0.0100     1.527  0.0100
+BNI          C7          C2      SINGLE       n     1.516  0.0200     1.516  0.0200
+BNI          C2          C4      SINGLE       n     1.540  0.0100     1.540  0.0100
+BNI          C2          S1      SINGLE       n     1.828  0.0100     1.828  0.0100
+BNI          C6          C5      SINGLE       n     1.527  0.0106     1.527  0.0106
+BNI          C6          S1      SINGLE       n     1.809  0.0122     1.809  0.0122
+BNI          C4          C5      SINGLE       n     1.546  0.0190     1.546  0.0190
+BNI          C4          N2      SINGLE       n     1.440  0.0100     1.440  0.0100
+BNI          C5          N1      SINGLE       n     1.440  0.0100     1.440  0.0100
+BNI          C3          O3      DOUBLE       n     1.242  0.0100     1.242  0.0100
+BNI          C3          N1      SINGLE       n     1.351  0.0100     1.351  0.0100
+BNI          C3          N2      SINGLE       n     1.351  0.0100     1.351  0.0100
+BNI         N17         C18      SINGLE       n     1.414  0.0100     1.414  0.0100
+BNI         C18         C20      DOUBLE       y     1.395  0.0100     1.395  0.0100
+BNI         C18         C24      SINGLE       y     1.395  0.0100     1.395  0.0100
+BNI         C20         C21      SINGLE       y     1.373  0.0100     1.373  0.0100
+BNI         C21         C22      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BNI         C22         C23      SINGLE       y     1.393  0.0100     1.393  0.0100
+BNI         C22         N25      SINGLE       n     1.457  0.0200     1.457  0.0200
+BNI         C23         C24      DOUBLE       y     1.377  0.0100     1.377  0.0100
+BNI         N25         O26      DOUBLE       n     1.221  0.0162     1.221  0.0162
+BNI         N25         O27      SINGLE       n     1.221  0.0162     1.221  0.0162
+BNI         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0185
+BNI         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0185
+BNI          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0160
+BNI          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0160
+BNI          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0160
+BNI          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0160
+BNI          C7         H71      SINGLE       n     1.089  0.0100     0.990  0.0100
+BNI          C7         H72      SINGLE       n     1.089  0.0100     0.990  0.0100
+BNI          C2        H21A      SINGLE       n     1.089  0.0100     0.988  0.0181
+BNI          C6         H61      SINGLE       n     1.089  0.0100     0.973  0.0162
+BNI          C6         H62      SINGLE       n     1.089  0.0100     0.973  0.0162
+BNI          C4         HC4      SINGLE       n     1.089  0.0100     0.992  0.0104
+BNI          C5         HC5      SINGLE       n     1.089  0.0100     0.992  0.0104
+BNI          N1        HN11      SINGLE       n     1.016  0.0100     0.866  0.0173
+BNI          N2        HN21      SINGLE       n     1.016  0.0100     0.866  0.0173
+BNI         N17        H171      SINGLE       n     1.016  0.0100     0.874  0.0200
+BNI         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0200
+BNI         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0200
+BNI         C23         H23      SINGLE       n     1.082  0.0130     0.941  0.0200
+BNI         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BNI         C10          C1          O2     122.304    1.50
+BNI         C10          C1         N17     114.645    1.50
+BNI          O2          C1         N17     123.054    1.50
+BNI          C1         C10          C9     113.697    1.65
+BNI          C1         C10        H101     108.910    1.50
+BNI          C1         C10        H102     108.910    1.50
+BNI          C9         C10        H101     108.897    1.50
+BNI          C9         C10        H102     108.897    1.50
+BNI        H101         C10        H102     107.846    1.50
+BNI         C10          C9          C8     113.314    2.25
+BNI         C10          C9         H91     108.795    1.50
+BNI         C10          C9         H92     108.795    1.50
+BNI          C8          C9         H91     108.623    1.50
+BNI          C8          C9         H92     108.623    1.50
+BNI         H91          C9         H92     107.646    1.50
+BNI          C9          C8          C7     114.188    2.10
+BNI          C9          C8         H81     108.803    1.50
+BNI          C9          C8         H82     108.803    1.50
+BNI          C7          C8         H81     108.765    1.50
+BNI          C7          C8         H82     108.765    1.50
+BNI         H81          C8         H82     107.696    1.50
+BNI          C8          C7          C2     114.922    2.04
+BNI          C8          C7         H71     108.756    1.50
+BNI          C8          C7         H72     108.756    1.50
+BNI          C2          C7         H71     108.334    1.50
+BNI          C2          C7         H72     108.334    1.50
+BNI         H71          C7         H72     107.535    1.50
+BNI          C7          C2          C4     113.984    2.76
+BNI          C7          C2          S1     111.156    2.31
+BNI          C7          C2        H21A     109.052    1.71
+BNI          C4          C2          S1     105.927    1.58
+BNI          C4          C2        H21A     109.157    1.50
+BNI          S1          C2        H21A     108.608    1.50
+BNI          C5          C6          S1     105.927    1.58
+BNI          C5          C6         H61     110.225    1.62
+BNI          C5          C6         H62     110.225    1.62
+BNI          S1          C6         H61     110.350    1.50
+BNI          S1          C6         H62     110.350    1.50
+BNI         H61          C6         H62     108.811    1.50
+BNI          C2          C4          C5     104.802    1.87
+BNI          C2          C4          N2     113.949    2.21
+BNI          C2          C4         HC4     110.779    1.50
+BNI          C5          C4          N2     103.067    1.50
+BNI          C5          C4         HC4     110.773    1.50
+BNI          N2          C4         HC4     110.900    1.50
+BNI          C6          C5          C4     104.802    1.87
+BNI          C6          C5          N1     113.949    2.21
+BNI          C6          C5         HC5     110.691    1.64
+BNI          C4          C5          N1     103.067    1.50
+BNI          C4          C5         HC5     110.773    1.50
+BNI          N1          C5         HC5     110.900    1.50
+BNI          O3          C3          N1     125.707    1.50
+BNI          O3          C3          N2     125.707    1.50
+BNI          N1          C3          N2     108.587    1.50
+BNI          C5          N1          C3     112.454    1.50
+BNI          C5          N1        HN11     124.974    2.25
+BNI          C3          N1        HN11     122.572    2.15
+BNI          C4          N2          C3     112.454    1.50
+BNI          C4          N2        HN21     124.974    2.25
+BNI          C3          N2        HN21     122.572    2.15
+BNI          C2          S1          C6      92.264    3.00
+BNI          C1         N17         C18     127.481    1.50
+BNI          C1         N17        H171     116.600    1.57
+BNI         C18         N17        H171     115.919    1.69
+BNI         N17         C18         C20     120.400    3.00
+BNI         N17         C18         C24     120.400    3.00
+BNI         C20         C18         C24     119.201    1.50
+BNI         C18         C20         C21     120.244    1.50
+BNI         C18         C20         H20     119.869    1.50
+BNI         C21         C20         H20     119.887    1.50
+BNI         C20         C21         C22     119.076    1.50
+BNI         C20         C21         H21     120.102    1.50
+BNI         C22         C21         H21     120.822    1.50
+BNI         C21         C22         C23     122.159    1.50
+BNI         C21         C22         N25     118.921    1.50
+BNI         C23         C22         N25     118.921    1.50
+BNI         C22         C23         C24     119.076    1.50
+BNI         C22         C23         H23     120.822    1.50
+BNI         C24         C23         H23     120.102    1.50
+BNI         C18         C24         C23     120.244    1.50
+BNI         C18         C24         H24     119.869    1.50
+BNI         C23         C24         H24     119.887    1.50
+BNI         C22         N25         O26     118.257    1.50
+BNI         C22         N25         O27     118.257    1.50
+BNI         O26         N25         O27     123.486    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BNI             sp2_sp3_8          O2          C1         C10          C9     120.000    10.0     6
+BNI             sp2_sp2_9         C10          C1         N17         C18     180.000     5.0     2
+BNI            sp2_sp2_13         C20         C18         N17          C1     180.000     5.0     2
+BNI       const_sp2_sp2_3         N17         C18         C20         C21     180.000     5.0     2
+BNI              const_23         N17         C18         C24         C23     180.000    10.0     2
+BNI       const_sp2_sp2_5         C18         C20         C21         C22       0.000     5.0     2
+BNI              const_10         C20         C21         C22         N25     180.000    10.0     2
+BNI              const_15         N25         C22         C23         C24     180.000    10.0     2
+BNI            sp2_sp2_17         C21         C22         N25         O26     180.000     5.0     2
+BNI            sp3_sp3_31          C1         C10          C9          C8     180.000    10.0     3
+BNI              const_17         C22         C23         C24         C18       0.000    10.0     2
+BNI            sp3_sp3_40          C7          C8          C9         C10     180.000    10.0     3
+BNI            sp3_sp3_49          C2          C7          C8          C9     180.000    10.0     3
+BNI            sp3_sp3_58          C4          C2          C7          C8     180.000    10.0     3
+BNI            sp3_sp3_68          C7          C2          S1          C6      60.000    10.0     3
+BNI             sp3_sp3_4          C7          C2          C4          C5     -60.000    10.0     3
+BNI            sp3_sp3_28          C5          C6          S1          C2     -60.000    10.0     3
+BNI            sp3_sp3_19          C4          C5          C6          S1      60.000    10.0     3
+BNI            sp2_sp3_14          C3          N2          C4          C2     120.000    10.0     6
+BNI            sp3_sp3_10          C2          C4          C5          C6     -60.000    10.0     3
+BNI             sp2_sp3_2          C3          N1          C5          C6     120.000    10.0     6
+BNI             sp2_sp2_3          O3          C3          N1          C5     180.000     5.0     2
+BNI             sp2_sp2_7          O3          C3          N2          C4     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BNI    chir_1    C2    S1    C4    C7    positive
+BNI    chir_2    C4    N2    C2    C5    positive
+BNI    chir_3    C5    N1    C6    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BNI    plan-1         C18   0.020
+BNI    plan-1         C20   0.020
+BNI    plan-1         C21   0.020
+BNI    plan-1         C22   0.020
+BNI    plan-1         C23   0.020
+BNI    plan-1         C24   0.020
+BNI    plan-1         H20   0.020
+BNI    plan-1         H21   0.020
+BNI    plan-1         H23   0.020
+BNI    plan-1         H24   0.020
+BNI    plan-1         N17   0.020
+BNI    plan-1         N25   0.020
+BNI    plan-2          C1   0.020
+BNI    plan-2         C10   0.020
+BNI    plan-2         N17   0.020
+BNI    plan-2          O2   0.020
+BNI    plan-3          C3   0.020
+BNI    plan-3          N1   0.020
+BNI    plan-3          N2   0.020
+BNI    plan-3          O3   0.020
+BNI    plan-4          C3   0.020
+BNI    plan-4          C5   0.020
+BNI    plan-4        HN11   0.020
+BNI    plan-4          N1   0.020
+BNI    plan-5          C3   0.020
+BNI    plan-5          C4   0.020
+BNI    plan-5        HN21   0.020
+BNI    plan-5          N2   0.020
+BNI    plan-6          C1   0.020
+BNI    plan-6         C18   0.020
+BNI    plan-6        H171   0.020
+BNI    plan-6         N17   0.020
+BNI    plan-7         C22   0.020
+BNI    plan-7         N25   0.020
+BNI    plan-7         O26   0.020
+BNI    plan-7         O27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BNI           SMILES              ACDLabs 10.04                                                                                                                  O=C1NC2C(SCC2N1)CCCCC(=O)Nc3ccc([N+]([O-])=O)cc3
+BNI SMILES_CANONICAL               CACTVS 3.341                                                                                                  "[O-][N+](=O)c1ccc(NC(=O)CCCC[C@@H]2SC[C@@H]3NC(=O)N[C@H]23)cc1"
+BNI           SMILES               CACTVS 3.341                                                                                                       "[O-][N+](=O)c1ccc(NC(=O)CCCC[CH]2SC[CH]3NC(=O)N[CH]23)cc1"
+BNI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                   c1cc(ccc1NC(=O)CCCC[C@H]2[C@@H]3[C@H](CS2)NC(=O)N3)[N+](=O)[O-]
+BNI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                c1cc(ccc1NC(=O)CCCCC2C3C(CS2)NC(=O)N3)[N+](=O)[O-]
+BNI            InChI                InChI  1.03 InChI=1S/C16H20N4O4S/c21-14(17-10-5-7-11(8-6-10)20(23)24)4-2-1-3-13-15-12(9-25-13)18-16(22)19-15/h5-8,12-13,15H,1-4,9H2,(H,17,21)(H2,18,19,22)/t12-,13-,15-/m0/s1
+BNI         InChIKey                InChI  1.03                                                                                                                                       PORZMUYPQKOFQY-YDHLFZDLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BNI acedrg               243         "dictionary generator"                  
+BNI acedrg_database      11          "data source"                           
+BNI rdkit                2017.03.2   "Chemoinformatics tool"
+BNI refmac5              5.8.0238    "optimization tool"                     

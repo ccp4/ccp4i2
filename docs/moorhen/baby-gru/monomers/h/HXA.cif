@@ -1,0 +1,352 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HXA     HXA      "DOCOSA-4,7,10,13,16,19-HEXAENOIC ACID"     NON-POLYMER     55     24     .     
+#
+data_comp_HXA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HXA     C1      C       C       0       20.747      31.670      18.177      
+HXA     O1      O       O       0       20.068      31.678      17.131      
+HXA     O2      O       OC      -1      21.929      31.277      18.229      
+HXA     C2      C       CH2     0       20.099      32.166      19.458      
+HXA     C3      C       CH2     0       19.220      31.132      20.174      
+HXA     C4      C       C1      0       18.729      31.583      21.517      
+HXA     C5      C       C1      0       19.422      31.584      22.643      
+HXA     C6      C       CH2     0       20.845      31.133      22.799      
+HXA     C7      C       C1      0       21.353      31.142      24.211      
+HXA     C8      C       C1      0       22.523      30.683      24.612      
+HXA     C9      C       CH2     0       23.569      30.062      23.735      
+HXA     C10     C       C1      0       24.216      31.035      22.791      
+HXA     C11     C       C1      0       25.011      30.742      21.773      
+HXA     C12     C       CH2     0       25.457      29.373      21.335      
+HXA     C13     C       C1      0       25.210      29.116      19.878      
+HXA     C14     C       C1      0       24.098      28.643      19.346      
+HXA     C15     C       CH2     0       22.856      28.254      20.091      
+HXA     C16     C       C1      0       22.957      26.916      20.765      
+HXA     C17     C       C1      0       22.032      26.339      21.515      
+HXA     C18     C       CH2     0       20.679      26.896      21.861      
+HXA     C19     C       C1      0       20.602      27.468      23.244      
+HXA     C20     C       C1      0       19.533      28.016      23.794      
+HXA     C21     C       CH2     0       18.193      28.177      23.144      
+HXA     C22     C       CH3     0       17.197      28.849      24.022      
+HXA     H21     H       H       0       19.554      32.951      19.244      
+HXA     H22     H       H       0       20.806      32.458      20.068      
+HXA     H31     H       H       0       19.734      30.306      20.285      
+HXA     H32     H       H       0       18.448      30.931      19.607      
+HXA     H4      H       H       0       17.838      31.895      21.562      
+HXA     H5      H       H       0       18.984      31.897      23.422      
+HXA     H61     H       H       0       21.424      31.712      22.250      
+HXA     H62     H       H       0       20.932      30.221      22.435      
+HXA     H7      H       H       0       20.782      31.511      24.870      
+HXA     H8      H       H       0       22.725      30.749      25.535      
+HXA     H91     H       H       0       23.159      29.332      23.215      
+HXA     H92     H       H       0       24.263      29.653      24.302      
+HXA     H10     H       H       0       24.036      31.952      22.942      
+HXA     H11     H       H       0       25.335      31.472      21.264      
+HXA     H121    H       H       0       25.002      28.683      21.870      
+HXA     H122    H       H       0       26.422      29.279      21.517      
+HXA     H13     H       H       0       25.923      29.313      19.286      
+HXA     H14     H       H       0       24.078      28.537      18.405      
+HXA     H151    H       H       0       22.094      28.242      19.465      
+HXA     H152    H       H       0       22.656      28.942      20.768      
+HXA     H16     H       H       0       23.766      26.439      20.638      
+HXA     H17     H       H       0       22.241      25.488      21.872      
+HXA     H181    H       H       0       20.008      26.178      21.775      
+HXA     H182    H       H       0       20.430      27.592      21.209      
+HXA     H19     H       H       0       21.392      27.432      23.766      
+HXA     H20     H       H       0       19.617      28.337      24.679      
+HXA     H211    H       H       0       17.851      27.292      22.893      
+HXA     H212    H       H       0       18.297      28.700      22.321      
+HXA     H221    H       H       0       16.371      28.990      23.527      
+HXA     H222    H       H       0       17.549      29.707      24.315      
+HXA     H223    H       H       0       17.017      28.290      24.798      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HXA          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HXA          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+HXA          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+HXA          C2          C3      SINGLE       n     1.534  0.0182     1.534  0.0182
+HXA          C3          C4      SINGLE       n     1.498  0.0156     1.498  0.0156
+HXA          C4          C5      DOUBLE       n     1.322  0.0108     1.322  0.0108
+HXA          C5          C6      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA          C6          C7      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA          C7          C8      DOUBLE       n     1.317  0.0200     1.317  0.0200
+HXA          C8          C9      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA          C9         C10      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA         C10         C11      DOUBLE       n     1.317  0.0200     1.317  0.0200
+HXA         C11         C12      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA         C12         C13      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA         C13         C14      DOUBLE       n     1.317  0.0200     1.317  0.0200
+HXA         C14         C15      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA         C15         C16      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA         C16         C17      DOUBLE       n     1.317  0.0200     1.317  0.0200
+HXA         C17         C18      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA         C18         C19      SINGLE       n     1.498  0.0200     1.498  0.0200
+HXA         C19         C20      DOUBLE       n     1.320  0.0157     1.320  0.0157
+HXA         C20         C21      SINGLE       n     1.498  0.0100     1.498  0.0100
+HXA         C21         C22      SINGLE       n     1.487  0.0200     1.487  0.0200
+HXA          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+HXA          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0159
+HXA          C3         H31      SINGLE       n     1.089  0.0100     0.979  0.0159
+HXA          C3         H32      SINGLE       n     1.089  0.0100     0.979  0.0159
+HXA          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+HXA          C5          H5      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA          C6         H61      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA          C6         H62      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA          C7          H7      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA          C8          H8      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA          C9         H91      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA          C9         H92      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA         C10         H10      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA         C11         H11      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA         C12        H121      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA         C12        H122      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA         C13         H13      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA         C14         H14      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA         C15        H151      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA         C15        H152      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA         C16         H16      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA         C17         H17      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA         C18        H181      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA         C18        H182      SINGLE       n     1.089  0.0100     0.986  0.0100
+HXA         C19         H19      SINGLE       n     1.082  0.0130     0.947  0.0200
+HXA         C20         H20      SINGLE       n     1.082  0.0130     0.945  0.0200
+HXA         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0159
+HXA         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0159
+HXA         C22        H221      SINGLE       n     1.089  0.0100     0.973  0.0141
+HXA         C22        H222      SINGLE       n     1.089  0.0100     0.973  0.0141
+HXA         C22        H223      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HXA          O1          C1          O2     123.571    1.50
+HXA          O1          C1          C2     118.214    1.64
+HXA          O2          C1          C2     118.214    1.64
+HXA          C1          C2          C3     114.808    1.90
+HXA          C1          C2         H21     108.404    1.50
+HXA          C1          C2         H22     108.404    1.50
+HXA          C3          C2         H21     108.945    1.50
+HXA          C3          C2         H22     108.945    1.50
+HXA         H21          C2         H22     107.521    1.50
+HXA          C2          C3          C4     113.808    3.00
+HXA          C2          C3         H31     108.745    1.50
+HXA          C2          C3         H32     108.745    1.50
+HXA          C4          C3         H31     108.886    1.50
+HXA          C4          C3         H32     108.886    1.50
+HXA         H31          C3         H32     107.922    1.50
+HXA          C3          C4          C5     125.684    3.00
+HXA          C3          C4          H4     117.007    1.61
+HXA          C5          C4          H4     117.310    2.16
+HXA          C4          C5          C6     125.699    1.66
+HXA          C4          C5          H5     117.527    2.16
+HXA          C6          C5          H5     116.773    1.62
+HXA          C5          C6          C7     114.535    3.00
+HXA          C5          C6         H61     109.415    1.72
+HXA          C5          C6         H62     109.415    1.72
+HXA          C7          C6         H61     109.415    1.72
+HXA          C7          C6         H62     109.415    1.72
+HXA         H61          C6         H62     107.005    1.50
+HXA          C6          C7          C8     125.699    1.66
+HXA          C6          C7          H7     116.773    1.62
+HXA          C8          C7          H7     117.527    2.16
+HXA          C7          C8          C9     125.699    1.66
+HXA          C7          C8          H8     117.527    2.16
+HXA          C9          C8          H8     116.773    1.62
+HXA          C8          C9         C10     114.535    3.00
+HXA          C8          C9         H91     109.415    1.72
+HXA          C8          C9         H92     109.415    1.72
+HXA         C10          C9         H91     109.415    1.72
+HXA         C10          C9         H92     109.415    1.72
+HXA         H91          C9         H92     107.005    1.50
+HXA          C9         C10         C11     125.699    1.66
+HXA          C9         C10         H10     116.773    1.62
+HXA         C11         C10         H10     117.527    2.16
+HXA         C10         C11         C12     125.699    1.66
+HXA         C10         C11         H11     117.527    2.16
+HXA         C12         C11         H11     116.773    1.62
+HXA         C11         C12         C13     114.535    3.00
+HXA         C11         C12        H121     109.415    1.72
+HXA         C11         C12        H122     109.415    1.72
+HXA         C13         C12        H121     109.415    1.72
+HXA         C13         C12        H122     109.415    1.72
+HXA        H121         C12        H122     107.005    1.50
+HXA         C12         C13         C14     125.699    1.66
+HXA         C12         C13         H13     116.773    1.62
+HXA         C14         C13         H13     117.527    2.16
+HXA         C13         C14         C15     125.699    1.66
+HXA         C13         C14         H14     117.527    2.16
+HXA         C15         C14         H14     116.773    1.62
+HXA         C14         C15         C16     114.535    3.00
+HXA         C14         C15        H151     109.415    1.72
+HXA         C14         C15        H152     109.415    1.72
+HXA         C16         C15        H151     109.415    1.72
+HXA         C16         C15        H152     109.415    1.72
+HXA        H151         C15        H152     107.005    1.50
+HXA         C15         C16         C17     125.699    1.66
+HXA         C15         C16         H16     116.773    1.62
+HXA         C17         C16         H16     117.527    2.16
+HXA         C16         C17         C18     125.699    1.66
+HXA         C16         C17         H17     117.527    2.16
+HXA         C18         C17         H17     116.773    1.62
+HXA         C17         C18         C19     114.535    3.00
+HXA         C17         C18        H181     109.415    1.72
+HXA         C17         C18        H182     109.415    1.72
+HXA         C19         C18        H181     109.415    1.72
+HXA         C19         C18        H182     109.415    1.72
+HXA        H181         C18        H182     107.005    1.50
+HXA         C18         C19         C20     125.699    1.66
+HXA         C18         C19         H19     116.773    1.62
+HXA         C20         C19         H19     117.527    2.16
+HXA         C19         C20         C21     126.013    2.53
+HXA         C19         C20         H20     117.529    2.16
+HXA         C21         C20         H20     116.458    2.44
+HXA         C20         C21         C22     112.824    1.50
+HXA         C20         C21        H211     109.018    1.50
+HXA         C20         C21        H212     109.018    1.50
+HXA         C22         C21        H211     108.933    1.50
+HXA         C22         C21        H212     108.933    1.50
+HXA        H211         C21        H212     107.592    1.50
+HXA         C21         C22        H221     109.498    1.50
+HXA         C21         C22        H222     109.498    1.50
+HXA         C21         C22        H223     109.498    1.50
+HXA        H221         C22        H222     109.380    1.50
+HXA        H221         C22        H223     109.380    1.50
+HXA        H222         C22        H223     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HXA             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+HXA            sp2_sp3_32         C11         C10          C9          C8     120.000    10.0     6
+HXA             sp2_sp2_9          C9         C10         C11         C12     180.000     5.0     2
+HXA            sp2_sp3_38         C10         C11         C12         C13     120.000    10.0     6
+HXA            sp2_sp3_44         C14         C13         C12         C11     120.000    10.0     6
+HXA            sp2_sp2_13         C12         C13         C14         C15     180.000     5.0     2
+HXA            sp2_sp3_50         C13         C14         C15         C16     120.000    10.0     6
+HXA            sp2_sp3_56         C17         C16         C15         C14     120.000    10.0     6
+HXA            sp2_sp2_17         C15         C16         C17         C18     180.000     5.0     2
+HXA            sp2_sp3_62         C16         C17         C18         C19     120.000    10.0     6
+HXA            sp2_sp3_68         C20         C19         C18         C17     120.000    10.0     6
+HXA            sp2_sp2_21         C18         C19         C20         C21     180.000     5.0     2
+HXA            sp2_sp3_74         C19         C20         C21         C22     120.000    10.0     6
+HXA            sp3_sp3_10         C20         C21         C22        H221     180.000    10.0     3
+HXA             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+HXA             sp2_sp3_8          C5          C4          C3          C2     120.000    10.0     6
+HXA             sp2_sp2_1          C3          C4          C5          C6     180.000     5.0     2
+HXA            sp2_sp3_14          C4          C5          C6          C7     120.000    10.0     6
+HXA            sp2_sp3_20          C8          C7          C6          C5     120.000    10.0     6
+HXA             sp2_sp2_5          C6          C7          C8          C9     180.000     5.0     2
+HXA            sp2_sp3_26          C7          C8          C9         C10     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HXA    plan-1          C1   0.020
+HXA    plan-1          C2   0.020
+HXA    plan-1          O1   0.020
+HXA    plan-1          O2   0.020
+HXA    plan-2          C3   0.020
+HXA    plan-2          C4   0.020
+HXA    plan-2          C5   0.020
+HXA    plan-2          H4   0.020
+HXA    plan-3          C4   0.020
+HXA    plan-3          C5   0.020
+HXA    plan-3          C6   0.020
+HXA    plan-3          H5   0.020
+HXA    plan-4          C6   0.020
+HXA    plan-4          C7   0.020
+HXA    plan-4          C8   0.020
+HXA    plan-4          H7   0.020
+HXA    plan-5          C7   0.020
+HXA    plan-5          C8   0.020
+HXA    plan-5          C9   0.020
+HXA    plan-5          H8   0.020
+HXA    plan-6         C10   0.020
+HXA    plan-6         C11   0.020
+HXA    plan-6          C9   0.020
+HXA    plan-6         H10   0.020
+HXA    plan-7         C10   0.020
+HXA    plan-7         C11   0.020
+HXA    plan-7         C12   0.020
+HXA    plan-7         H11   0.020
+HXA    plan-8         C12   0.020
+HXA    plan-8         C13   0.020
+HXA    plan-8         C14   0.020
+HXA    plan-8         H13   0.020
+HXA    plan-9         C13   0.020
+HXA    plan-9         C14   0.020
+HXA    plan-9         C15   0.020
+HXA    plan-9         H14   0.020
+HXA   plan-10         C15   0.020
+HXA   plan-10         C16   0.020
+HXA   plan-10         C17   0.020
+HXA   plan-10         H16   0.020
+HXA   plan-11         C16   0.020
+HXA   plan-11         C17   0.020
+HXA   plan-11         C18   0.020
+HXA   plan-11         H17   0.020
+HXA   plan-12         C18   0.020
+HXA   plan-12         C19   0.020
+HXA   plan-12         C20   0.020
+HXA   plan-12         H19   0.020
+HXA   plan-13         C19   0.020
+HXA   plan-13         C20   0.020
+HXA   plan-13         C21   0.020
+HXA   plan-13         H20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HXA           SMILES              ACDLabs 10.04                                                                                                                                                 O=C(O)CC\C=C/C/C=C\C\C=C/C\C=C/C\C=C/C\C=C/CC
+HXA SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                 CC/C=C\C\C=C/C/C=C\C\C=C/C/C=C\C\C=C/CCC(O)=O
+HXA           SMILES               CACTVS 3.341                                                                                                                                                             CCC=CCC=CCC=CCC=CCC=CCC=CCCC(O)=O
+HXA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                 CC\C=C/C\C=C/C\C=C/C\C=C/C\C=C/C\C=C/CCC(=O)O
+HXA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                             CCC=CCC=CCC=CCC=CCC=CCC=CCCC(=O)O
+HXA            InChI                InChI  1.03 InChI=1S/C22H32O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22(23)24/h3-4,6-7,9-10,12-13,15-16,18-19H,2,5,8,11,14,17,20-21H2,1H3,(H,23,24)/b4-3-,7-6-,10-9-,13-12-,16-15-,19-18-
+HXA         InChIKey                InChI  1.03                                                                                                                                                                   MBMBGCFOFBJSGT-KUBAVDMBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HXA acedrg               243         "dictionary generator"                  
+HXA acedrg_database      11          "data source"                           
+HXA rdkit                2017.03.2   "Chemoinformatics tool"
+HXA refmac5              5.8.0238    "optimization tool"                     

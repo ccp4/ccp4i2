@@ -1,0 +1,283 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AD8     AD8      1-(adamantan-1-yl)-2-(1H-imidazol-1-yl)ethanone     NON-POLYMER     38     18     .     
+#
+data_comp_AD8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AD8     N       N       NT      0       5.695       -18.677     0.959       
+AD8     CAQ     C       CR15    0       6.380       -19.286     -0.046      
+AD8     NAP     N       NRD5    0       6.167       -18.704     -1.206      
+AD8     CAO     C       CR15    0       5.303       -17.672     -0.933      
+AD8     CAN     C       CR15    0       5.000       -17.636     0.383       
+AD8     CA      C       CH2     0       5.681       -19.040     2.376       
+AD8     C       C       C       0       4.567       -20.003     2.746       
+AD8     O       O       O       0       3.800       -20.378     1.886       
+AD8     CAE     C       CT      0       4.406       -20.505     4.186       
+AD8     CAF     C       CH2     0       4.538       -22.043     4.194       
+AD8     CAI     C       CH2     0       2.996       -20.136     4.694       
+AD8     CAD     C       CH2     0       5.444       -19.928     5.174       
+AD8     CAC     C       CH1     0       5.211       -20.486     6.592       
+AD8     CAB     C       CH2     0       5.347       -22.012     6.571       
+AD8     CAH     C       CH2     0       3.807       -20.103     7.070       
+AD8     CAJ     C       CH1     0       2.767       -20.693     6.113       
+AD8     CAG     C       CH2     0       2.900       -22.219     6.089       
+AD8     CAA     C       CH1     0       4.305       -22.600     5.613       
+AD8     HAQ     H       H       0       6.938       -20.034     0.083       
+AD8     HAO     H       H       0       4.971       -17.075     -1.581      
+AD8     HAN     H       H       0       4.436       -17.034     0.832       
+AD8     HA      H       H       0       5.582       -18.232     2.910       
+AD8     HAA     H       H       0       6.534       -19.448     2.608       
+AD8     HAF     H       H       0       3.878       -22.434     3.575       
+AD8     HAFA    H       H       0       5.439       -22.296     3.883       
+AD8     HAI     H       H       0       2.899       -19.154     4.704       
+AD8     HAIA    H       H       0       2.318       -20.506     4.082       
+AD8     HAD     H       H       0       5.370       -18.944     5.192       
+AD8     HADA    H       H       0       6.352       -20.165     4.874       
+AD8     HAC     H       H       0       5.887       -20.103     7.211       
+AD8     HAB     H       H       0       6.251       -22.262     6.275       
+AD8     HABA    H       H       0       5.208       -22.371     7.476       
+AD8     HAH     H       H       0       3.719       -19.123     7.095       
+AD8     HAHA    H       H       0       3.658       -20.449     7.979       
+AD8     HAJ     H       H       0       1.856       -20.445     6.420       
+AD8     HAG     H       H       0       2.227       -22.603     5.482       
+AD8     HAGA    H       H       0       2.743       -22.581     6.990       
+AD8     HAAA    H       H       0       4.393       -23.589     5.597       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AD8           N         CAQ      SINGLE       y     1.368  0.0147     1.368  0.0147
+AD8           N         CAN      SINGLE       y     1.390  0.0195     1.390  0.0195
+AD8           N          CA      SINGLE       n     1.462  0.0102     1.462  0.0102
+AD8         CAQ         NAP      DOUBLE       y     1.314  0.0111     1.314  0.0111
+AD8         NAP         CAO      SINGLE       y     1.369  0.0102     1.369  0.0102
+AD8         CAO         CAN      DOUBLE       y     1.349  0.0100     1.349  0.0100
+AD8          CA           C      SINGLE       n     1.514  0.0104     1.514  0.0104
+AD8           C           O      DOUBLE       n     1.210  0.0100     1.210  0.0100
+AD8           C         CAE      SINGLE       n     1.528  0.0100     1.528  0.0100
+AD8         CAE         CAF      SINGLE       n     1.539  0.0100     1.539  0.0100
+AD8         CAE         CAI      SINGLE       n     1.539  0.0100     1.539  0.0100
+AD8         CAE         CAD      SINGLE       n     1.539  0.0100     1.539  0.0100
+AD8         CAF         CAA      SINGLE       n     1.536  0.0116     1.536  0.0116
+AD8         CAI         CAJ      SINGLE       n     1.536  0.0116     1.536  0.0116
+AD8         CAD         CAC      SINGLE       n     1.536  0.0116     1.536  0.0116
+AD8         CAC         CAB      SINGLE       n     1.529  0.0100     1.529  0.0100
+AD8         CAC         CAH      SINGLE       n     1.529  0.0100     1.529  0.0100
+AD8         CAB         CAA      SINGLE       n     1.529  0.0100     1.529  0.0100
+AD8         CAH         CAJ      SINGLE       n     1.529  0.0100     1.529  0.0100
+AD8         CAJ         CAG      SINGLE       n     1.529  0.0100     1.529  0.0100
+AD8         CAG         CAA      SINGLE       n     1.529  0.0100     1.529  0.0100
+AD8         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0181
+AD8         CAO         HAO      SINGLE       n     1.082  0.0130     0.941  0.0200
+AD8         CAN         HAN      SINGLE       n     1.082  0.0130     0.939  0.0102
+AD8          CA          HA      SINGLE       n     1.089  0.0100     0.973  0.0156
+AD8          CA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0156
+AD8         CAF         HAF      SINGLE       n     1.089  0.0100     0.986  0.0200
+AD8         CAF        HAFA      SINGLE       n     1.089  0.0100     0.986  0.0200
+AD8         CAI         HAI      SINGLE       n     1.089  0.0100     0.986  0.0200
+AD8         CAI        HAIA      SINGLE       n     1.089  0.0100     0.986  0.0200
+AD8         CAD         HAD      SINGLE       n     1.089  0.0100     0.986  0.0200
+AD8         CAD        HADA      SINGLE       n     1.089  0.0100     0.986  0.0200
+AD8         CAC         HAC      SINGLE       n     1.089  0.0100     0.993  0.0134
+AD8         CAB         HAB      SINGLE       n     1.089  0.0100     0.984  0.0144
+AD8         CAB        HABA      SINGLE       n     1.089  0.0100     0.984  0.0144
+AD8         CAH         HAH      SINGLE       n     1.089  0.0100     0.984  0.0144
+AD8         CAH        HAHA      SINGLE       n     1.089  0.0100     0.984  0.0144
+AD8         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.993  0.0134
+AD8         CAG         HAG      SINGLE       n     1.089  0.0100     0.984  0.0144
+AD8         CAG        HAGA      SINGLE       n     1.089  0.0100     0.984  0.0144
+AD8         CAA        HAAA      SINGLE       n     1.089  0.0100     0.993  0.0134
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AD8         CAQ           N         CAN     108.641    1.96
+AD8         CAQ           N          CA     125.852    1.50
+AD8         CAN           N          CA     121.985    2.29
+AD8           N         CAQ         NAP     113.063    1.50
+AD8           N         CAQ         HAQ     122.850    1.68
+AD8         NAP         CAQ         HAQ     124.087    1.50
+AD8         CAQ         NAP         CAO     104.780    1.50
+AD8         NAP         CAO         CAN     110.439    1.50
+AD8         NAP         CAO         HAO     124.330    1.50
+AD8         CAN         CAO         HAO     125.217    1.50
+AD8           N         CAN         CAO     107.684    2.05
+AD8           N         CAN         HAN     125.075    1.80
+AD8         CAO         CAN         HAN     127.240    1.85
+AD8           N          CA           C     112.849    2.16
+AD8           N          CA          HA     109.576    1.50
+AD8           N          CA         HAA     109.576    1.50
+AD8           C          CA          HA     108.871    1.74
+AD8           C          CA         HAA     108.871    1.74
+AD8          HA          CA         HAA     108.085    1.50
+AD8          CA           C           O     120.287    1.50
+AD8          CA           C         CAE     118.560    2.61
+AD8           O           C         CAE     121.153    1.50
+AD8           C         CAE         CAF     109.911    2.51
+AD8           C         CAE         CAI     109.911    2.51
+AD8           C         CAE         CAD     109.911    2.51
+AD8         CAF         CAE         CAI     108.762    1.50
+AD8         CAF         CAE         CAD     108.762    1.50
+AD8         CAI         CAE         CAD     108.762    1.50
+AD8         CAE         CAF         CAA     109.655    1.50
+AD8         CAE         CAF         HAF     109.394    1.50
+AD8         CAE         CAF        HAFA     109.394    1.50
+AD8         CAA         CAF         HAF     109.662    1.50
+AD8         CAA         CAF        HAFA     109.662    1.50
+AD8         HAF         CAF        HAFA     108.213    1.50
+AD8         CAE         CAI         CAJ     109.655    1.50
+AD8         CAE         CAI         HAI     109.394    1.50
+AD8         CAE         CAI        HAIA     109.394    1.50
+AD8         CAJ         CAI         HAI     109.662    1.50
+AD8         CAJ         CAI        HAIA     109.662    1.50
+AD8         HAI         CAI        HAIA     108.213    1.50
+AD8         CAE         CAD         CAC     109.655    1.50
+AD8         CAE         CAD         HAD     109.394    1.50
+AD8         CAE         CAD        HADA     109.394    1.50
+AD8         CAC         CAD         HAD     109.662    1.50
+AD8         CAC         CAD        HADA     109.662    1.50
+AD8         HAD         CAD        HADA     108.213    1.50
+AD8         CAD         CAC         CAB     109.438    1.50
+AD8         CAD         CAC         CAH     109.438    1.50
+AD8         CAD         CAC         HAC     109.352    1.50
+AD8         CAB         CAC         CAH     109.627    1.50
+AD8         CAB         CAC         HAC     109.490    1.50
+AD8         CAH         CAC         HAC     109.490    1.50
+AD8         CAC         CAB         CAA     109.494    1.50
+AD8         CAC         CAB         HAB     109.767    1.50
+AD8         CAC         CAB        HABA     109.767    1.50
+AD8         CAA         CAB         HAB     109.767    1.50
+AD8         CAA         CAB        HABA     109.767    1.50
+AD8         HAB         CAB        HABA     108.211    1.50
+AD8         CAC         CAH         CAJ     109.494    1.50
+AD8         CAC         CAH         HAH     109.767    1.50
+AD8         CAC         CAH        HAHA     109.767    1.50
+AD8         CAJ         CAH         HAH     109.767    1.50
+AD8         CAJ         CAH        HAHA     109.767    1.50
+AD8         HAH         CAH        HAHA     108.211    1.50
+AD8         CAI         CAJ         CAH     109.438    1.50
+AD8         CAI         CAJ         CAG     109.438    1.50
+AD8         CAI         CAJ         HAJ     109.352    1.50
+AD8         CAH         CAJ         CAG     109.627    1.50
+AD8         CAH         CAJ         HAJ     109.490    1.50
+AD8         CAG         CAJ         HAJ     109.490    1.50
+AD8         CAJ         CAG         CAA     109.494    1.50
+AD8         CAJ         CAG         HAG     109.767    1.50
+AD8         CAJ         CAG        HAGA     109.767    1.50
+AD8         CAA         CAG         HAG     109.767    1.50
+AD8         CAA         CAG        HAGA     109.767    1.50
+AD8         HAG         CAG        HAGA     108.211    1.50
+AD8         CAF         CAA         CAB     109.438    1.50
+AD8         CAF         CAA         CAG     109.438    1.50
+AD8         CAF         CAA        HAAA     109.352    1.50
+AD8         CAB         CAA         CAG     109.627    1.50
+AD8         CAB         CAA        HAAA     109.490    1.50
+AD8         CAG         CAA        HAAA     109.490    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AD8       const_sp2_sp2_2         NAP         CAQ           N          CA     180.000     5.0     2
+AD8              const_14         CAO         CAN           N          CA     180.000    10.0     2
+AD8             sp2_sp3_2         CAQ           N          CA           C     -90.000    10.0     6
+AD8            sp3_sp3_73         CAE         CAI         CAJ         CAH      60.000    10.0     3
+AD8            sp3_sp3_37         CAB         CAC         CAD         CAE      60.000    10.0     3
+AD8            sp3_sp3_28         CAA         CAB         CAC         CAD     -60.000    10.0     3
+AD8            sp3_sp3_91         CAD         CAC         CAH         CAJ     -60.000    10.0     3
+AD8            sp3_sp3_19         CAF         CAA         CAB         CAC      60.000    10.0     3
+AD8            sp3_sp3_64         CAC         CAH         CAJ         CAI      60.000    10.0     3
+AD8            sp3_sp3_55         CAA         CAG         CAJ         CAI     -60.000    10.0     3
+AD8            sp3_sp3_46         CAF         CAA         CAG         CAJ      60.000    10.0     3
+AD8       const_sp2_sp2_5           N         CAQ         NAP         CAO       0.000     5.0     2
+AD8       const_sp2_sp2_7         CAN         CAO         NAP         CAQ       0.000     5.0     2
+AD8       const_sp2_sp2_9           N         CAN         CAO         NAP       0.000     5.0     2
+AD8             sp2_sp3_8           O           C          CA           N     120.000    10.0     6
+AD8            sp2_sp3_14          CA           C         CAE         CAF     120.000    10.0     6
+AD8            sp3_sp3_85           C         CAE         CAI         CAJ     -60.000    10.0     3
+AD8           sp3_sp3_102         CAC         CAD         CAE           C      60.000    10.0     3
+AD8             sp3_sp3_7           C         CAE         CAF         CAA     180.000    10.0     3
+AD8            sp3_sp3_10         CAB         CAA         CAF         CAE     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AD8    chir_1    CAE    C    CAF    CAI    both
+AD8    chir_2    CAC    CAD    CAB    CAH    both
+AD8    chir_3    CAJ    CAI    CAH    CAG    both
+AD8    chir_4    CAA    CAF    CAB    CAG    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AD8    plan-1          CA   0.020
+AD8    plan-1         CAN   0.020
+AD8    plan-1         CAO   0.020
+AD8    plan-1         CAQ   0.020
+AD8    plan-1         HAN   0.020
+AD8    plan-1         HAO   0.020
+AD8    plan-1         HAQ   0.020
+AD8    plan-1           N   0.020
+AD8    plan-1         NAP   0.020
+AD8    plan-2           C   0.020
+AD8    plan-2          CA   0.020
+AD8    plan-2         CAE   0.020
+AD8    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AD8           SMILES              ACDLabs 10.04                                                                               O=C(C13CC2CC(CC(C1)C2)C3)Cn4ccnc4
+AD8 SMILES_CANONICAL               CACTVS 3.341                                                                               O=C(Cn1ccnc1)C23CC4CC(CC(C4)C2)C3
+AD8           SMILES               CACTVS 3.341                                                                               O=C(Cn1ccnc1)C23CC4CC(CC(C4)C2)C3
+AD8 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                             c1cn(cn1)CC(=O)C23CC4CC(C2)CC(C4)C3
+AD8           SMILES "OpenEye OEToolkits" 1.5.0                                                                             c1cn(cn1)CC(=O)C23CC4CC(C2)CC(C4)C3
+AD8            InChI                InChI  1.03 InChI=1S/C15H20N2O/c18-14(9-17-2-1-16-10-17)15-6-11-3-12(7-15)5-13(4-11)8-15/h1-2,10-13H,3-9H2/t11-,12+,13-,15-
+AD8         InChIKey                InChI  1.03                                                                                     BBCQJSMDKDHVKG-BVMXXOESSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AD8 acedrg               243         "dictionary generator"                  
+AD8 acedrg_database      11          "data source"                           
+AD8 rdkit                2017.03.2   "Chemoinformatics tool"
+AD8 refmac5              5.8.0238    "optimization tool"                     

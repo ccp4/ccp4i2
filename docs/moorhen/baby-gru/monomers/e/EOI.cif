@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EOI     EOI      "[[(2R)-1-(6-aminopurin-9-yl)propan-2-yl]oxymethyl-sulfanyl-phosphoryl] phosphono hydrogen phosphate"     NON-POLYMER     40     27     .     
+#
+data_comp_EOI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EOI     C       C       CH3     0       35.327      -51.670     41.650      
+EOI     N       N       NR5     0       37.746      -50.935     43.353      
+EOI     O       O       O2      0       36.288      -49.501     41.358      
+EOI     P       P       P       0       36.983      -47.928     39.332      
+EOI     S       S       SH1     0       36.148      -47.328     37.510      
+EOI     C1      C       CH1     0       36.531      -50.909     41.173      
+EOI     N1      N       NRD5    0       37.994      -49.675     45.194      
+EOI     O1      O       O       0       37.473      -46.775     40.117      
+EOI     P1      P       P       0       39.675      -48.902     38.924      
+EOI     C2      C       CH2     0       37.777      -51.323     41.933      
+EOI     N2      N       NRD6    0       36.899      -52.985     44.368      
+EOI     O2      O       O2      0       38.078      -48.993     38.982      
+EOI     P2      P       P       0       39.655      -50.619     36.518      
+EOI     C3      C       CR15    0       38.120      -49.745     43.888      
+EOI     N3      N       NRD6    0       36.697      -52.786     46.769      
+EOI     O3      O       O       0       40.054      -47.667     38.175      
+EOI     C4      C       CR56    0       37.505      -50.926     45.541      
+EOI     N4      N       NH2     0       37.251      -50.870     47.944      
+EOI     O4      O       OP      -1      40.214      -49.122     40.298      
+EOI     C5      C       CR56    0       37.351      -51.715     44.413      
+EOI     O5      O       O2      0       40.028      -50.180     38.027      
+EOI     C6      C       CR16    0       36.602      -53.424     45.591      
+EOI     O6      O       OP      -1      39.454      -49.340     35.742      
+EOI     C7      C       CR6     0       37.155      -51.507     46.779      
+EOI     O7      O       OP      -1      40.831      -51.423     36.019      
+EOI     C8      C       CH2     0       35.696      -48.824     40.245      
+EOI     O8      O       O       0       38.393      -51.439     36.625      
+EOI     H       H       H       0       35.523      -52.624     41.645      
+EOI     HA      H       H       0       34.574      -51.491     41.059      
+EOI     HB      H       H       0       35.103      -51.390     42.555      
+EOI     HS      H       HSH1    0       36.795      -47.793     36.598      
+EOI     H1      H       H       0       36.676      -51.096     40.209      
+EOI     H2      H       H       0       37.884      -52.305     41.873      
+EOI     H2A     H       H       0       38.569      -50.906     41.509      
+EOI     H3      H       H       0       38.437      -49.025     43.359      
+EOI     HN4     H       H       0       37.791      -50.183     48.022      
+EOI     HN4A    H       H       0       36.773      -51.140     48.630      
+EOI     H6      H       H       0       36.278      -54.311     45.637      
+EOI     H8      H       H       0       35.028      -48.177     40.564      
+EOI     H8A     H       H       0       35.255      -49.460     39.638      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EOI           C          C1      SINGLE       n     1.501  0.0160     1.501  0.0160
+EOI           N          C2      SINGLE       n     1.470  0.0100     1.470  0.0100
+EOI           N          C3      SINGLE       y     1.355  0.0153     1.355  0.0153
+EOI           N          C5      SINGLE       y     1.373  0.0100     1.373  0.0100
+EOI           O          C8      SINGLE       n     1.418  0.0200     1.418  0.0200
+EOI           O          C1      SINGLE       n     1.437  0.0100     1.437  0.0100
+EOI           P          C8      SINGLE       n     1.813  0.0200     1.813  0.0200
+EOI           P           S      SINGLE       n     2.091  0.0200     2.091  0.0200
+EOI           P          O2      SINGLE       n     1.567  0.0100     1.567  0.0100
+EOI           P          O1      DOUBLE       n     1.478  0.0169     1.478  0.0169
+EOI          C1          C2      SINGLE       n     1.512  0.0200     1.512  0.0200
+EOI          N1          C3      DOUBLE       y     1.313  0.0100     1.313  0.0100
+EOI          N1          C4      SINGLE       y     1.388  0.0100     1.388  0.0100
+EOI          P1          O5      SINGLE       n     1.601  0.0114     1.601  0.0114
+EOI          P1          O3      DOUBLE       n     1.493  0.0157     1.493  0.0157
+EOI          P1          O2      SINGLE       n     1.601  0.0114     1.601  0.0114
+EOI          P1          O4      SINGLE       n     1.493  0.0157     1.493  0.0157
+EOI          N2          C5      DOUBLE       y     1.345  0.0100     1.345  0.0100
+EOI          N2          C6      SINGLE       y     1.330  0.0100     1.330  0.0100
+EOI          P2          O8      DOUBLE       n     1.509  0.0200     1.509  0.0200
+EOI          P2          O6      SINGLE       n     1.509  0.0200     1.509  0.0200
+EOI          P2          O7      SINGLE       n     1.509  0.0200     1.509  0.0200
+EOI          P2          O5      SINGLE       n     1.614  0.0178     1.614  0.0178
+EOI          N3          C6      DOUBLE       y     1.339  0.0100     1.339  0.0100
+EOI          N3          C7      SINGLE       y     1.354  0.0100     1.354  0.0100
+EOI          C4          C5      SINGLE       y     1.382  0.0100     1.382  0.0100
+EOI          C4          C7      DOUBLE       y     1.408  0.0100     1.408  0.0100
+EOI          N4          C7      SINGLE       n     1.330  0.0100     1.330  0.0100
+EOI           C           H      SINGLE       n     1.089  0.0100     0.974  0.0145
+EOI           C          HA      SINGLE       n     1.089  0.0100     0.974  0.0145
+EOI           C          HB      SINGLE       n     1.089  0.0100     0.974  0.0145
+EOI           S          HS      SINGLE       n     1.338  0.0100     1.211  0.0200
+EOI          C1          H1      SINGLE       n     1.089  0.0100     0.992  0.0184
+EOI          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0100
+EOI          C2         H2A      SINGLE       n     1.089  0.0100     0.990  0.0100
+EOI          C3          H3      SINGLE       n     1.082  0.0130     0.948  0.0200
+EOI          N4         HN4      SINGLE       n     1.016  0.0100     0.877  0.0200
+EOI          N4        HN4A      SINGLE       n     1.016  0.0100     0.877  0.0200
+EOI          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+EOI          C8          H8      SINGLE       n     1.089  0.0100     0.983  0.0103
+EOI          C8         H8A      SINGLE       n     1.089  0.0100     0.983  0.0103
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EOI          C1           C           H     109.481    1.50
+EOI          C1           C          HA     109.481    1.50
+EOI          C1           C          HB     109.481    1.50
+EOI           H           C          HA     109.425    1.50
+EOI           H           C          HB     109.425    1.50
+EOI          HA           C          HB     109.425    1.50
+EOI          C2           N          C3     127.391    1.50
+EOI          C2           N          C5     126.814    1.50
+EOI          C3           N          C5     105.795    1.50
+EOI          C8           O          C1     113.250    1.50
+EOI          C8           P           S     106.276    3.00
+EOI          C8           P          O2     103.812    3.00
+EOI          C8           P          O1     110.326    3.00
+EOI           S           P          O2     105.685    3.00
+EOI           S           P          O1     111.281    3.00
+EOI          O2           P          O1     114.767    2.02
+EOI           P           S          HS     109.471    3.00
+EOI           C          C1           O     108.917    2.95
+EOI           C          C1          C2     111.042    1.86
+EOI           C          C1          H1     109.344    1.50
+EOI           O          C1          C2     109.149    3.00
+EOI           O          C1          H1     108.915    1.50
+EOI          C2          C1          H1     108.989    1.50
+EOI          C3          N1          C4     103.549    1.50
+EOI          O5          P1          O3     108.678    2.29
+EOI          O5          P1          O2     100.890    2.10
+EOI          O5          P1          O4     108.678    2.29
+EOI          O3          P1          O2     108.570    2.41
+EOI          O3          P1          O4     119.630    1.50
+EOI          O2          P1          O4     108.570    2.41
+EOI           N          C2          C1     112.232    1.50
+EOI           N          C2          H2     108.820    1.50
+EOI           N          C2         H2A     108.820    1.50
+EOI          C1          C2          H2     109.255    1.50
+EOI          C1          C2         H2A     109.255    1.50
+EOI          H2          C2         H2A     107.991    1.50
+EOI          C5          N2          C6     110.494    1.50
+EOI           P          O2          P1     132.584    3.00
+EOI          O8          P2          O6     112.716    1.50
+EOI          O8          P2          O7     112.716    1.50
+EOI          O8          P2          O5     105.965    2.38
+EOI          O6          P2          O7     112.716    1.50
+EOI          O6          P2          O5     105.965    2.38
+EOI          O7          P2          O5     105.965    2.38
+EOI           N          C3          N1     114.123    1.50
+EOI           N          C3          H3     122.673    1.50
+EOI          N1          C3          H3     123.204    1.50
+EOI          C6          N3          C7     118.575    1.50
+EOI          N1          C4          C5     110.546    1.50
+EOI          N1          C4          C7     132.485    1.50
+EOI          C5          C4          C7     116.969    1.50
+EOI          C7          N4         HN4     119.723    1.50
+EOI          C7          N4        HN4A     119.723    1.50
+EOI         HN4          N4        HN4A     120.554    1.88
+EOI           N          C5          N2     126.898    1.50
+EOI           N          C5          C4     105.986    1.50
+EOI          N2          C5          C4     127.116    1.50
+EOI          P1          O5          P2     132.584    3.00
+EOI          N2          C6          N3     129.385    1.50
+EOI          N2          C6          H6     115.329    1.50
+EOI          N3          C6          H6     115.286    1.50
+EOI          N3          C7          C4     117.462    1.50
+EOI          N3          C7          N4     118.773    1.50
+EOI          C4          C7          N4     123.765    1.50
+EOI           O          C8           P     108.256    2.94
+EOI           O          C8          H8     109.680    1.50
+EOI           O          C8         H8A     109.680    1.50
+EOI           P          C8          H8     108.528    1.50
+EOI           P          C8         H8A     108.528    1.50
+EOI          H8          C8         H8A     108.552    1.71
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EOI             sp3_sp3_1           H           C          C1           O     180.000    10.0     3
+EOI              const_14           N          C5          N2          C6     180.000    10.0     2
+EOI              const_27          N3          C6          N2          C5       0.000    10.0     2
+EOI            sp3_sp3_48          P1          O5          P2          O8      60.000    10.0     3
+EOI              const_21          N2          C6          N3          C7       0.000    10.0     2
+EOI              const_20          N4          C7          N3          C6     180.000    10.0     2
+EOI       const_sp2_sp2_9          N1          C4          C5           N       0.000     5.0     2
+EOI              const_18          N1          C4          C7          N4       0.000    10.0     2
+EOI             sp2_sp2_3          N3          C7          N4         HN4       0.000     5.0     2
+EOI       const_sp2_sp2_2          N1          C3           N          C2     180.000     5.0     2
+EOI              const_26          N2          C5           N          C2       0.000    10.0     2
+EOI             sp2_sp3_2          C3           N          C2          C1     -90.000    10.0     6
+EOI            sp3_sp3_10           P          C8           O          C1     180.000    10.0     3
+EOI            sp3_sp3_13           C          C1           O          C8     180.000    10.0     3
+EOI            sp3_sp3_28          P1          O2           P          C8     180.000    10.0     3
+EOI            sp3_sp3_16           O          C8           P           S     180.000    10.0     3
+EOI            sp3_sp3_25          C8           P           S          HS     180.000    10.0     3
+EOI            sp3_sp3_31           C          C1          C2           N     180.000    10.0     3
+EOI       const_sp2_sp2_5           N          C3          N1          C4       0.000     5.0     2
+EOI       const_sp2_sp2_7          C5          C4          N1          C3       0.000     5.0     2
+EOI            sp3_sp3_44           P          O2          P1          O5     -60.000    10.0     3
+EOI            sp3_sp3_42          P2          O5          P1          O3      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EOI    chir_1    P    S    O2    O1    negative
+EOI    chir_2    C1    O    C2    C    negative
+EOI    chir_3    P1    O2    O5    O4    both
+EOI    chir_4    P2    O5    O6    O7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EOI    plan-1          C2   0.020
+EOI    plan-1          C3   0.020
+EOI    plan-1          C4   0.020
+EOI    plan-1          C5   0.020
+EOI    plan-1          C6   0.020
+EOI    plan-1          C7   0.020
+EOI    plan-1          H3   0.020
+EOI    plan-1          H6   0.020
+EOI    plan-1           N   0.020
+EOI    plan-1          N1   0.020
+EOI    plan-1          N2   0.020
+EOI    plan-1          N3   0.020
+EOI    plan-1          N4   0.020
+EOI    plan-2          C7   0.020
+EOI    plan-2         HN4   0.020
+EOI    plan-2        HN4A   0.020
+EOI    plan-2          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EOI            InChI                InChI  1.03 InChI=1S/C9H16N5O9P3S/c1-6(2-14-4-13-7-8(10)11-3-12-9(7)14)21-5-24(15,27)22-26(19,20)23-25(16,17)18/h3-4,6H,2,5H2,1H3,(H,15,27)(H,19,20)(H2,10,11,12)(H2,16,17,18)/t6-,24-/m1/s1
+EOI         InChIKey                InChI  1.03                                                                                                                                                      BMDSOWJDBWVWQG-FMWWOLKHSA-N
+EOI SMILES_CANONICAL               CACTVS 3.385                                                                                                                   C[C@H](Cn1cnc2c(N)ncnc12)OC[P@@](S)(=O)O[P](O)(=O)O[P](O)(O)=O
+EOI           SMILES               CACTVS 3.385                                                                                                                      C[CH](Cn1cnc2c(N)ncnc12)OC[P](S)(=O)O[P](O)(=O)O[P](O)(O)=O
+EOI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                         C[C@H](Cn1cnc2c1ncnc2N)OC[P@@](=O)(OP(=O)(O)OP(=O)(O)O)S
+EOI           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                 CC(Cn1cnc2c1ncnc2N)OCP(=O)(OP(=O)(O)OP(=O)(O)O)S
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EOI acedrg               243         "dictionary generator"                  
+EOI acedrg_database      11          "data source"                           
+EOI rdkit                2017.03.2   "Chemoinformatics tool"
+EOI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,331 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OPI     OPI      "PANTOTHENYL-AMINOETHANOL-11-PIVALIC ACID"     NON-POLYMER     54     24     .     
+#
+data_comp_OPI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OPI     OP1     O       OH1     0       27.958      -17.400     12.913      
+OPI     CP2     C       CH2     0       27.374      -18.116     13.987      
+OPI     CP3     C       CH2     0       28.067      -17.811     15.291      
+OPI     NP4     N       NH1     0       27.482      -18.535     16.414      
+OPI     CP5     C       C       0       26.759      -17.997     17.411      
+OPI     OP5     O       O       0       26.502      -16.796     17.472      
+OPI     CP6     C       CH2     0       26.257      -18.943     18.483      
+OPI     CP7     C       CH2     0       27.342      -19.334     19.468      
+OPI     NP8     N       NH1     0       26.836      -20.135     20.577      
+OPI     CP9     C       C       0       27.577      -20.492     21.622      
+OPI     OP9     O       O       0       28.772      -20.218     21.721      
+OPI     CPA     C       CH1     0       26.894      -21.249     22.756      
+OPI     OPA     O       OH1     0       25.958      -22.174     22.210      
+OPI     CPB     C       CT      0       26.199      -20.368     23.814      
+OPI     CPD     C       CH3     0       25.637      -21.267     24.927      
+OPI     CPE     C       CH3     0       27.227      -19.407     24.428      
+OPI     CPC     C       CH2     0       25.054      -19.556     23.202      
+OPI     OA6     O       O2      0       24.427      -18.685     24.174      
+OPI     CT1     C       C       0       23.169      -18.930     24.546      
+OPI     OT1     O       O       0       22.904      -19.561     25.537      
+OPI     CT2     C       CT      0       22.123      -18.354     23.603      
+OPI     CT3     C       CH3     0       21.379      -19.522     22.967      
+OPI     CT4     C       CH3     0       21.140      -17.519     24.416      
+OPI     CT5     C       CH3     0       22.710      -17.471     22.494      
+OPI     HP1     H       H       0       27.616      -17.665     12.186      
+OPI     HP21    H       H       0       27.432      -19.075     13.810      
+OPI     HP22    H       H       0       26.429      -17.877     14.063      
+OPI     HP31    H       H       0       28.023      -16.847     15.468      
+OPI     HP32    H       H       0       29.014      -18.063     15.223      
+OPI     HP4     H       H       0       27.620      -19.396     16.431      
+OPI     HP61    H       H       0       25.903      -19.744     18.057      
+OPI     HP62    H       H       0       25.524      -18.517     18.961      
+OPI     HP71    H       H       0       27.756      -18.520     19.825      
+OPI     HP72    H       H       0       28.034      -19.842     18.996      
+OPI     HP8     H       H       0       26.002      -20.394     20.550      
+OPI     HPA     H       H       0       27.596      -21.765     23.224      
+OPI     HPA0    H       H       0       26.038      -22.925     22.597      
+OPI     HPD1    H       H       0       24.766      -21.611     24.662      
+OPI     HPD2    H       H       0       25.540      -20.757     25.751      
+OPI     HPD3    H       H       0       26.240      -22.014     25.084      
+OPI     HPE1    H       H       0       27.418      -18.687     23.801      
+OPI     HPE2    H       H       0       28.049      -19.889     24.623      
+OPI     HPE3    H       H       0       26.876      -19.025     25.251      
+OPI     HPC1    H       H       0       24.390      -20.171     22.824      
+OPI     HPC2    H       H       0       25.404      -19.007     22.473      
+OPI     HT31    H       H       0       20.716      -19.183     22.340      
+OPI     HT32    H       H       0       20.933      -20.040     23.660      
+OPI     HT33    H       H       0       22.009      -20.092     22.493      
+OPI     HT41    H       H       0       21.614      -16.786     24.847      
+OPI     HT42    H       H       0       20.720      -18.075     25.095      
+OPI     HT43    H       H       0       20.455      -17.158     23.827      
+OPI     HT51    H       H       0       21.987      -17.029     22.017      
+OPI     HT52    H       H       0       23.214      -18.019     21.868      
+OPI     HT53    H       H       0       23.295      -16.797     22.881      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OPI         OP1         CP2      SINGLE       n     1.417  0.0159     1.417  0.0159
+OPI         CP2         CP3      SINGLE       n     1.508  0.0100     1.508  0.0100
+OPI         CP3         NP4      SINGLE       n     1.455  0.0100     1.455  0.0100
+OPI         NP4         CP5      SINGLE       n     1.337  0.0118     1.337  0.0118
+OPI         CP5         OP5      DOUBLE       n     1.229  0.0102     1.229  0.0102
+OPI         CP5         CP6      SINGLE       n     1.514  0.0100     1.514  0.0100
+OPI         CP6         CP7      SINGLE       n     1.513  0.0195     1.513  0.0195
+OPI         CP7         NP8      SINGLE       n     1.457  0.0100     1.457  0.0100
+OPI         NP8         CP9      SINGLE       n     1.326  0.0100     1.326  0.0100
+OPI         CP9         OP9      DOUBLE       n     1.229  0.0102     1.229  0.0102
+OPI         CP9         CPA      SINGLE       n     1.519  0.0108     1.519  0.0108
+OPI         CPA         OPA      SINGLE       n     1.419  0.0162     1.419  0.0162
+OPI         CPA         CPB      SINGLE       n     1.532  0.0112     1.532  0.0112
+OPI         CPB         CPD      SINGLE       n     1.531  0.0109     1.531  0.0109
+OPI         CPB         CPE      SINGLE       n     1.531  0.0109     1.531  0.0109
+OPI         CPB         CPC      SINGLE       n     1.526  0.0108     1.526  0.0108
+OPI         CPC         OA6      SINGLE       n     1.444  0.0100     1.444  0.0100
+OPI         OA6         CT1      SINGLE       n     1.329  0.0119     1.329  0.0119
+OPI         CT1         OT1      DOUBLE       n     1.203  0.0150     1.203  0.0150
+OPI         CT1         CT2      SINGLE       n     1.512  0.0100     1.512  0.0100
+OPI         CT2         CT3      SINGLE       n     1.525  0.0153     1.525  0.0153
+OPI         CT2         CT4      SINGLE       n     1.525  0.0153     1.525  0.0153
+OPI         CT2         CT5      SINGLE       n     1.525  0.0153     1.525  0.0153
+OPI         OP1         HP1      SINGLE       n     0.970  0.0120     0.846  0.0200
+OPI         CP2        HP21      SINGLE       n     1.089  0.0100     0.977  0.0146
+OPI         CP2        HP22      SINGLE       n     1.089  0.0100     0.977  0.0146
+OPI         CP3        HP31      SINGLE       n     1.089  0.0100     0.982  0.0177
+OPI         CP3        HP32      SINGLE       n     1.089  0.0100     0.982  0.0177
+OPI         NP4         HP4      SINGLE       n     1.016  0.0100     0.872  0.0200
+OPI         CP6        HP61      SINGLE       n     1.089  0.0100     0.973  0.0156
+OPI         CP6        HP62      SINGLE       n     1.089  0.0100     0.973  0.0156
+OPI         CP7        HP71      SINGLE       n     1.089  0.0100     0.980  0.0159
+OPI         CP7        HP72      SINGLE       n     1.089  0.0100     0.980  0.0159
+OPI         NP8         HP8      SINGLE       n     1.016  0.0100     0.872  0.0200
+OPI         CPA         HPA      SINGLE       n     1.089  0.0100     0.988  0.0129
+OPI         OPA        HPA0      SINGLE       n     0.970  0.0120     0.848  0.0200
+OPI         CPD        HPD1      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPI         CPD        HPD2      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPI         CPD        HPD3      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPI         CPE        HPE1      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPI         CPE        HPE2      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPI         CPE        HPE3      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPI         CPC        HPC1      SINGLE       n     1.089  0.0100     0.980  0.0146
+OPI         CPC        HPC2      SINGLE       n     1.089  0.0100     0.980  0.0146
+OPI         CT3        HT31      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT3        HT32      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT3        HT33      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT4        HT41      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT4        HT42      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT4        HT43      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT5        HT51      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT5        HT52      SINGLE       n     1.089  0.0100     0.973  0.0141
+OPI         CT5        HT53      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OPI         CP2         OP1         HP1     109.054    3.00
+OPI         OP1         CP2         CP3     111.317    1.83
+OPI         OP1         CP2        HP21     109.500    1.50
+OPI         OP1         CP2        HP22     109.500    1.50
+OPI         CP3         CP2        HP21     109.120    1.50
+OPI         CP3         CP2        HP22     109.120    1.50
+OPI        HP21         CP2        HP22     108.121    1.50
+OPI         CP2         CP3         NP4     112.279    1.50
+OPI         CP2         CP3        HP31     109.460    1.50
+OPI         CP2         CP3        HP32     109.460    1.50
+OPI         NP4         CP3        HP31     108.374    1.50
+OPI         NP4         CP3        HP32     108.374    1.50
+OPI        HP31         CP3        HP32     108.238    1.99
+OPI         CP3         NP4         CP5     123.791    1.80
+OPI         CP3         NP4         HP4     117.993    2.56
+OPI         CP5         NP4         HP4     118.216    2.10
+OPI         NP4         CP5         OP5     121.943    1.50
+OPI         NP4         CP5         CP6     117.070    1.96
+OPI         OP5         CP5         CP6     120.987    1.50
+OPI         CP5         CP6         CP7     112.120    2.79
+OPI         CP5         CP6        HP61     108.945    1.50
+OPI         CP5         CP6        HP62     108.945    1.50
+OPI         CP7         CP6        HP61     109.432    1.50
+OPI         CP7         CP6        HP62     109.432    1.50
+OPI        HP61         CP6        HP62     107.745    2.07
+OPI         CP6         CP7         NP8     112.257    1.50
+OPI         CP6         CP7        HP71     108.971    1.50
+OPI         CP6         CP7        HP72     108.971    1.50
+OPI         NP8         CP7        HP71     108.979    1.50
+OPI         NP8         CP7        HP72     108.979    1.50
+OPI        HP71         CP7        HP72     107.877    1.50
+OPI         CP7         NP8         CP9     122.964    1.80
+OPI         CP7         NP8         HP8     118.351    1.90
+OPI         CP9         NP8         HP8     118.685    1.94
+OPI         NP8         CP9         OP9     122.985    1.50
+OPI         NP8         CP9         CPA     117.147    1.50
+OPI         OP9         CP9         CPA     119.851    1.78
+OPI         CP9         CPA         OPA     109.850    1.55
+OPI         CP9         CPA         CPB     111.511    2.91
+OPI         CP9         CPA         HPA     108.529    1.70
+OPI         OPA         CPA         CPB     109.482    3.00
+OPI         OPA         CPA         HPA     108.675    1.50
+OPI         CPB         CPA         HPA     107.825    1.50
+OPI         CPA         OPA        HPA0     108.894    3.00
+OPI         CPA         CPB         CPD     109.534    1.52
+OPI         CPA         CPB         CPE     109.534    1.52
+OPI         CPA         CPB         CPC     111.094    2.85
+OPI         CPD         CPB         CPE     108.765    1.50
+OPI         CPD         CPB         CPC     109.385    1.50
+OPI         CPE         CPB         CPC     109.385    1.50
+OPI         CPB         CPD        HPD1     109.575    1.50
+OPI         CPB         CPD        HPD2     109.575    1.50
+OPI         CPB         CPD        HPD3     109.575    1.50
+OPI        HPD1         CPD        HPD2     109.377    1.50
+OPI        HPD1         CPD        HPD3     109.377    1.50
+OPI        HPD2         CPD        HPD3     109.377    1.50
+OPI         CPB         CPE        HPE1     109.575    1.50
+OPI         CPB         CPE        HPE2     109.575    1.50
+OPI         CPB         CPE        HPE3     109.575    1.50
+OPI        HPE1         CPE        HPE2     109.377    1.50
+OPI        HPE1         CPE        HPE3     109.377    1.50
+OPI        HPE2         CPE        HPE3     109.377    1.50
+OPI         CPB         CPC         OA6     107.754    2.90
+OPI         CPB         CPC        HPC1     109.473    1.50
+OPI         CPB         CPC        HPC2     109.473    1.50
+OPI         OA6         CPC        HPC1     110.009    1.50
+OPI         OA6         CPC        HPC2     110.009    1.50
+OPI        HPC1         CPC        HPC2     108.591    1.50
+OPI         CPC         OA6         CT1     116.652    1.80
+OPI         OA6         CT1         OT1     123.664    1.50
+OPI         OA6         CT1         CT2     111.291    1.50
+OPI         OT1         CT1         CT2     125.045    1.50
+OPI         CT1         CT2         CT3     109.053    1.78
+OPI         CT1         CT2         CT4     109.053    1.78
+OPI         CT1         CT2         CT5     109.053    1.78
+OPI         CT3         CT2         CT4     109.837    1.50
+OPI         CT3         CT2         CT5     109.837    1.50
+OPI         CT4         CT2         CT5     109.837    1.50
+OPI         CT2         CT3        HT31     109.504    1.50
+OPI         CT2         CT3        HT32     109.504    1.50
+OPI         CT2         CT3        HT33     109.504    1.50
+OPI        HT31         CT3        HT32     109.377    1.50
+OPI        HT31         CT3        HT33     109.377    1.50
+OPI        HT32         CT3        HT33     109.377    1.50
+OPI         CT2         CT4        HT41     109.504    1.50
+OPI         CT2         CT4        HT42     109.504    1.50
+OPI         CT2         CT4        HT43     109.504    1.50
+OPI        HT41         CT4        HT42     109.377    1.50
+OPI        HT41         CT4        HT43     109.377    1.50
+OPI        HT42         CT4        HT43     109.377    1.50
+OPI         CT2         CT5        HT51     109.504    1.50
+OPI         CT2         CT5        HT52     109.504    1.50
+OPI         CT2         CT5        HT53     109.504    1.50
+OPI        HT51         CT5        HT52     109.377    1.50
+OPI        HT51         CT5        HT53     109.377    1.50
+OPI        HT52         CT5        HT53     109.377    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OPI             sp3_sp3_1         CP3         CP2         OP1         HP1     180.000    10.0     3
+OPI            sp3_sp3_22         CP9         CPA         OPA        HPA0     180.000    10.0     3
+OPI            sp3_sp3_25         CP9         CPA         CPB         CPD     180.000    10.0     3
+OPI            sp3_sp3_37         CPA         CPB         CPD        HPD1      60.000    10.0     3
+OPI            sp3_sp3_43         CPA         CPB         CPE        HPE1     180.000    10.0     3
+OPI            sp3_sp3_52         CPA         CPB         CPC         OA6     180.000    10.0     3
+OPI            sp3_sp3_61         CPB         CPC         OA6         CT1     180.000    10.0     3
+OPI             sp2_sp2_9         OT1         CT1         OA6         CPC     180.000     5.0     2
+OPI            sp2_sp3_26         OA6         CT1         CT2         CT3     120.000    10.0     6
+OPI             sp3_sp3_4         OP1         CP2         CP3         NP4     180.000    10.0     3
+OPI            sp3_sp3_64         CT1         CT2         CT3        HT31     180.000    10.0     3
+OPI            sp3_sp3_76         CT1         CT2         CT4        HT41      60.000    10.0     3
+OPI            sp3_sp3_82         CT1         CT2         CT5        HT51     180.000    10.0     3
+OPI             sp2_sp3_2         CP5         NP4         CP3         CP2     120.000    10.0     6
+OPI             sp2_sp2_3         OP5         CP5         NP4         CP3       0.000     5.0     2
+OPI             sp2_sp3_8         NP4         CP5         CP6         CP7     120.000    10.0     6
+OPI            sp3_sp3_13         CP5         CP6         CP7         NP8     180.000    10.0     3
+OPI            sp2_sp3_14         CP9         NP8         CP7         CP6     120.000    10.0     6
+OPI             sp2_sp2_7         OP9         CP9         NP8         CP7       0.000     5.0     2
+OPI            sp2_sp3_19         NP8         CP9         CPA         OPA       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OPI    chir_1    CPA    OPA    CP9    CPB    negative
+OPI    chir_2    CPB    CPA    CPC    CPD    both
+OPI    chir_3    CT2    CT1    CT3    CT4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OPI    plan-1         CP3   0.020
+OPI    plan-1         CP5   0.020
+OPI    plan-1         HP4   0.020
+OPI    plan-1         NP4   0.020
+OPI    plan-2         CP5   0.020
+OPI    plan-2         CP6   0.020
+OPI    plan-2         NP4   0.020
+OPI    plan-2         OP5   0.020
+OPI    plan-3         CP7   0.020
+OPI    plan-3         CP9   0.020
+OPI    plan-3         HP8   0.020
+OPI    plan-3         NP8   0.020
+OPI    plan-4         CP9   0.020
+OPI    plan-4         CPA   0.020
+OPI    plan-4         NP8   0.020
+OPI    plan-4         OP9   0.020
+OPI    plan-5         CT1   0.020
+OPI    plan-5         CT2   0.020
+OPI    plan-5         OA6   0.020
+OPI    plan-5         OT1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OPI           SMILES              ACDLabs 10.04                                                                                               O=C(NCCC(=O)NCCO)C(O)C(COC(=O)C(C)(C)C)(C)C
+OPI SMILES_CANONICAL               CACTVS 3.341                                                                                          CC(C)(C)C(=O)OCC(C)(C)[C@@H](O)C(=O)NCCC(=O)NCCO
+OPI           SMILES               CACTVS 3.341                                                                                            CC(C)(C)C(=O)OCC(C)(C)[CH](O)C(=O)NCCC(=O)NCCO
+OPI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           CC(C)(C)C(=O)OCC(C)(C)[C@H](C(=O)NCCC(=O)NCCO)O
+OPI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                               CC(C)(C)C(=O)OCC(C)(C)C(C(=O)NCCC(=O)NCCO)O
+OPI            InChI                InChI  1.03 InChI=1S/C16H30N2O6/c1-15(2,3)14(23)24-10-16(4,5)12(21)13(22)18-7-6-11(20)17-8-9-19/h12,19,21H,6-10H2,1-5H3,(H,17,20)(H,18,22)/t12-/m0/s1
+OPI         InChIKey                InChI  1.03                                                                                                               BUEKNBNKVUKNIB-LBPRGKRZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OPI acedrg               243         "dictionary generator"                  
+OPI acedrg_database      11          "data source"                           
+OPI rdkit                2017.03.2   "Chemoinformatics tool"
+OPI refmac5              5.8.0238    "optimization tool"                     

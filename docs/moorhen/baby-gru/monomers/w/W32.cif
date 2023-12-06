@@ -1,0 +1,418 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+W32     W32      4-({3-chloro-4-[3-(trifluoromethyl)phenoxy]phenyl}amino)-N-[2-(methylsulfonyl)ethyl]-8,9-dihydro-7H-pyrimido[4,5-b]azepine-6-carboxamide     NON-POLYMER     62     39     .     
+#
+data_comp_W32
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+W32     C1      C       CR16    0       17.331      29.594      5.053       
+W32     C2      C       CR16    0       16.766      28.477      5.652       
+W32     C3      C       CR16    0       16.758      32.309      10.940      
+W32     C4      C       CR16    0       17.185      30.854      5.608       
+W32     C5      C       CR16    0       16.948      31.952      9.616       
+W32     C6      C       CR16    0       15.888      29.887      7.381       
+W32     C7      C       CR16    0       15.173      33.995      10.274      
+W32     C8      C       CR16    0       12.402      34.468      13.536      
+W32     C9      C       CR6     0       14.856      35.079      14.470      
+W32     C10     C       CR6     0       16.034      28.617      6.825       
+W32     C11     C       CR6     0       15.876      33.330      11.289      
+W32     C12     C       CR6     0       16.468      30.994      6.779       
+W32     C13     C       CR6     0       16.237      32.602      8.605       
+W32     C14     C       CR6     0       15.364      33.623      8.955       
+W32     C15     C       CR6     0       13.651      35.576      15.088      
+W32     C16     C       CR6     0       14.666      34.207      13.322      
+W32     C17     C       C1      0       16.176      35.414      15.026      
+W32     C18     C       C       0       16.516      35.467      16.325      
+W32     C19     C       C       0       17.874      35.778      16.770      
+W32     C20     C       CH2     0       15.491      35.109      17.377      
+W32     C21     C       CH2     0       14.290      36.047      17.452      
+W32     C22     C       CH3     0       22.995      34.569      19.175      
+W32     C23     C       CH2     0       20.299      35.983      16.347      
+W32     C24     C       CH2     0       20.927      35.072      17.383      
+W32     C25     C       CT      0       15.418      27.425      7.495       
+W32     N26     N       NRD6    0       12.435      35.270      14.598      
+W32     N27     N       NRD6    0       13.424      33.920      12.880      
+W32     N28     N       NH1     0       13.716      36.394      16.151      
+W32     N29     N       NH1     0       15.718      33.658      12.654      
+W32     N30     N       NH1     0       18.948      35.583      15.981      
+W32     O31     O       O       0       18.007      36.286      17.885      
+W32     O32     O       O       0       23.436      35.424      16.768      
+W32     O33     O       O       0       22.416      36.966      18.378      
+W32     O34     O       O2      0       16.373      32.305      7.253       
+W32     F35     F       F       0       16.186      26.927      8.459       
+W32     F36     F       F       0       14.248      27.695      8.068       
+W32     F37     F       F       0       15.179      26.414      6.664       
+W32     S38     S       S3      0       22.544      35.639      17.864      
+W32     CL1     CL      CL      0       14.480      34.459      7.721       
+W32     H1      H       H       0       17.824      29.495      4.257       
+W32     H2      H       H       0       16.881      27.629      5.254       
+W32     H3      H       H       0       17.236      31.858      11.616      
+W32     H4      H       H       0       17.574      31.605      5.193       
+W32     H5      H       H       0       17.544      31.259      9.400       
+W32     H6      H       H       0       15.397      29.986      8.182       
+W32     H7      H       H       0       14.540      34.721      10.501      
+W32     H8      H       H       0       11.541      34.257      13.206      
+W32     H9      H       H       0       16.843      35.650      14.403      
+W32     H10     H       H       0       15.918      35.084      18.252      
+W32     H11     H       H       0       15.166      34.209      17.192      
+W32     H12     H       H       0       14.562      36.871      17.904      
+W32     H13     H       H       0       13.596      35.626      17.998      
+W32     H14     H       H       0       22.277      33.937      19.336      
+W32     H15     H       H       0       23.154      35.093      19.976      
+W32     H16     H       H       0       23.803      34.089      18.934      
+W32     H17     H       H       0       20.860      35.979      15.542      
+W32     H18     H       H       0       20.283      36.899      16.696      
+W32     H19     H       H       0       20.993      34.173      17.011      
+W32     H20     H       H       0       20.348      35.037      18.165      
+W32     H21     H       H       0       13.386      37.204      16.055      
+W32     H22     H       H       0       16.411      33.454      13.156      
+W32     H23     H       H       0       18.854      35.164      15.228      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+W32          C1          C2      DOUBLE       y     1.382  0.0119     1.382  0.0119
+W32          C1          C4      SINGLE       y     1.382  0.0111     1.382  0.0111
+W32         C25         F37      SINGLE       n     1.329  0.0183     1.329  0.0183
+W32          C2         C10      SINGLE       y     1.383  0.0100     1.383  0.0100
+W32          C4         C12      DOUBLE       y     1.378  0.0100     1.378  0.0100
+W32         C10         C25      SINGLE       n     1.495  0.0100     1.495  0.0100
+W32          C6         C10      DOUBLE       y     1.387  0.0100     1.387  0.0100
+W32          C6         C12      SINGLE       y     1.381  0.0100     1.381  0.0100
+W32         C12         O34      SINGLE       n     1.391  0.0100     1.391  0.0100
+W32         C25         F36      SINGLE       n     1.329  0.0183     1.329  0.0183
+W32         C25         F35      SINGLE       n     1.329  0.0183     1.329  0.0183
+W32         C13         O34      SINGLE       n     1.383  0.0127     1.383  0.0127
+W32         C14         CL1      SINGLE       n     1.733  0.0100     1.733  0.0100
+W32         C13         C14      DOUBLE       y     1.383  0.0100     1.383  0.0100
+W32          C5         C13      SINGLE       y     1.387  0.0131     1.387  0.0131
+W32          C7         C14      SINGLE       y     1.378  0.0114     1.378  0.0114
+W32          C3          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+W32          C7         C11      DOUBLE       y     1.397  0.0100     1.397  0.0100
+W32          C3         C11      SINGLE       y     1.389  0.0100     1.389  0.0100
+W32         C11         N29      SINGLE       n     1.407  0.0100     1.407  0.0100
+W32         C16         N29      SINGLE       n     1.357  0.0100     1.357  0.0100
+W32         C16         N27      SINGLE       y     1.344  0.0100     1.344  0.0100
+W32          C8         N27      DOUBLE       y     1.329  0.0101     1.329  0.0101
+W32          C9         C16      DOUBLE       y     1.426  0.0200     1.426  0.0200
+W32          C8         N26      SINGLE       y     1.329  0.0101     1.329  0.0101
+W32          C9         C17      SINGLE       n     1.470  0.0100     1.470  0.0100
+W32          C9         C15      SINGLE       y     1.439  0.0100     1.439  0.0100
+W32         C15         N26      DOUBLE       y     1.342  0.0115     1.342  0.0115
+W32         C17         C18      DOUBLE       n     1.339  0.0100     1.339  0.0100
+W32         C15         N28      SINGLE       n     1.338  0.0129     1.338  0.0129
+W32         C23         N30      SINGLE       n     1.453  0.0100     1.453  0.0100
+W32         C19         N30      SINGLE       n     1.336  0.0127     1.336  0.0127
+W32         C23         C24      SINGLE       n     1.513  0.0171     1.513  0.0171
+W32         C21         N28      SINGLE       n     1.460  0.0100     1.460  0.0100
+W32         C18         C19      SINGLE       n     1.420  0.0200     1.420  0.0200
+W32         C18         C20      SINGLE       n     1.505  0.0100     1.505  0.0100
+W32         O32         S38      DOUBLE       n     1.429  0.0100     1.429  0.0100
+W32         C19         O31      DOUBLE       n     1.229  0.0129     1.229  0.0129
+W32         C24         S38      SINGLE       n     1.779  0.0100     1.779  0.0100
+W32         C20         C21      SINGLE       n     1.519  0.0139     1.519  0.0139
+W32         O33         S38      DOUBLE       n     1.429  0.0100     1.429  0.0100
+W32         C22         S38      SINGLE       n     1.752  0.0100     1.752  0.0100
+W32          C1          H1      SINGLE       n     1.082  0.0130     0.941  0.0152
+W32          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0174
+W32          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0170
+W32          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0163
+W32          C5          H5      SINGLE       n     1.082  0.0130     0.939  0.0116
+W32          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0164
+W32          C7          H7      SINGLE       n     1.082  0.0130     0.991  0.0200
+W32          C8          H8      SINGLE       n     1.082  0.0130     0.946  0.0100
+W32         C17          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+W32         C20         H10      SINGLE       n     1.089  0.0100     0.975  0.0121
+W32         C20         H11      SINGLE       n     1.089  0.0100     0.975  0.0121
+W32         C21         H12      SINGLE       n     1.089  0.0100     0.978  0.0200
+W32         C21         H13      SINGLE       n     1.089  0.0100     0.978  0.0200
+W32         C22         H14      SINGLE       n     1.089  0.0100     0.970  0.0152
+W32         C22         H15      SINGLE       n     1.089  0.0100     0.970  0.0152
+W32         C22         H16      SINGLE       n     1.089  0.0100     0.970  0.0152
+W32         C23         H17      SINGLE       n     1.089  0.0100     0.981  0.0127
+W32         C23         H18      SINGLE       n     1.089  0.0100     0.981  0.0127
+W32         C24         H19      SINGLE       n     1.089  0.0100     0.975  0.0200
+W32         C24         H20      SINGLE       n     1.089  0.0100     0.975  0.0200
+W32         N28         H21      SINGLE       n     1.016  0.0100     0.880  0.0200
+W32         N29         H22      SINGLE       n     1.016  0.0100     0.880  0.0200
+W32         N30         H23      SINGLE       n     1.016  0.0100     0.870  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+W32          C2          C1          C4     120.712    1.50
+W32          C2          C1          H1     119.783    1.50
+W32          C4          C1          H1     119.505    1.50
+W32          C1          C2         C10     119.399    1.50
+W32          C1          C2          H2     120.081    1.50
+W32         C10          C2          H2     120.520    1.50
+W32          C5          C3         C11     120.847    1.50
+W32          C5          C3          H3     119.645    1.50
+W32         C11          C3          H3     119.508    1.50
+W32          C1          C4         C12     119.089    1.50
+W32          C1          C4          H4     120.384    1.50
+W32         C12          C4          H4     120.527    1.50
+W32         C13          C5          C3     119.948    1.50
+W32         C13          C5          H5     119.958    1.50
+W32          C3          C5          H5     120.093    1.50
+W32         C10          C6         C12     120.596    1.50
+W32         C10          C6          H6     119.215    1.50
+W32         C12          C6          H6     120.189    1.50
+W32         C14          C7         C11     119.078    1.50
+W32         C14          C7          H7     120.760    1.50
+W32         C11          C7          H7     120.162    1.50
+W32         N27          C8         N26     128.583    1.50
+W32         N27          C8          H8     115.708    1.50
+W32         N26          C8          H8     115.708    1.50
+W32         C16          C9         C17     122.071    1.50
+W32         C16          C9         C15     115.857    1.50
+W32         C17          C9         C15     122.071    1.50
+W32          C2         C10         C25     120.736    1.50
+W32          C2         C10          C6     118.951    1.50
+W32         C25         C10          C6     120.312    1.50
+W32          C7         C11          C3     119.376    1.50
+W32          C7         C11         N29     120.671    2.70
+W32          C3         C11         N29     119.953    3.00
+W32          C4         C12          C6     121.253    1.50
+W32          C4         C12         O34     119.867    3.00
+W32          C6         C12         O34     118.881    3.00
+W32         O34         C13         C14     119.109    2.14
+W32         O34         C13          C5     121.552    2.47
+W32         C14         C13          C5     119.339    1.50
+W32         CL1         C14         C13     119.530    1.50
+W32         CL1         C14          C7     119.058    1.50
+W32         C13         C14          C7     121.412    1.50
+W32          C9         C15         N26     121.060    1.50
+W32          C9         C15         N28     120.811    1.50
+W32         N26         C15         N28     118.129    1.87
+W32         N29         C16         N27     118.022    2.42
+W32         N29         C16          C9     120.918    1.50
+W32         N27         C16          C9     121.060    1.50
+W32          C9         C17         C18     129.211    2.00
+W32          C9         C17          H9     115.748    1.50
+W32         C18         C17          H9     115.041    1.50
+W32         C17         C18         C19     118.188    3.00
+W32         C17         C18         C20     122.794    1.50
+W32         C19         C18         C20     119.018    3.00
+W32         N30         C19         C18     117.939    3.00
+W32         N30         C19         O31     122.469    1.83
+W32         C18         C19         O31     119.592    1.99
+W32         C18         C20         C21     111.511    2.91
+W32         C18         C20         H10     108.693    1.50
+W32         C18         C20         H11     108.693    1.50
+W32         C21         C20         H10     108.888    1.50
+W32         C21         C20         H11     108.888    1.50
+W32         H10         C20         H11     107.705    1.50
+W32         N28         C21         C20     111.815    1.50
+W32         N28         C21         H12     108.979    1.50
+W32         N28         C21         H13     108.979    1.50
+W32         C20         C21         H12     109.081    1.50
+W32         C20         C21         H13     109.081    1.50
+W32         H12         C21         H13     107.909    1.50
+W32         S38         C22         H14     109.505    1.50
+W32         S38         C22         H15     109.505    1.50
+W32         S38         C22         H16     109.505    1.50
+W32         H14         C22         H15     109.823    1.50
+W32         H14         C22         H16     109.823    1.50
+W32         H15         C22         H16     109.823    1.50
+W32         N30         C23         C24     112.355    1.86
+W32         N30         C23         H17     109.102    1.50
+W32         N30         C23         H18     109.102    1.50
+W32         C24         C23         H17     108.964    1.50
+W32         C24         C23         H18     108.964    1.50
+W32         H17         C23         H18     107.995    1.50
+W32         C23         C24         S38     111.256    2.92
+W32         C23         C24         H19     108.480    1.53
+W32         C23         C24         H20     108.480    1.53
+W32         S38         C24         H19     109.377    1.50
+W32         S38         C24         H20     109.377    1.50
+W32         H19         C24         H20     108.043    1.50
+W32         F37         C25         C10     112.813    1.50
+W32         F37         C25         F36     105.974    1.50
+W32         F37         C25         F35     105.974    1.50
+W32         C10         C25         F36     112.813    1.50
+W32         C10         C25         F35     112.813    1.50
+W32         F36         C25         F35     105.974    1.50
+W32          C8         N26         C15     116.719    1.50
+W32         C16         N27          C8     116.719    1.50
+W32         C15         N28         C21     123.870    1.50
+W32         C15         N28         H21     117.943    1.82
+W32         C21         N28         H21     118.187    1.65
+W32         C11         N29         C16     129.188    2.56
+W32         C11         N29         H22     115.498    2.63
+W32         C16         N29         H22     115.313    2.34
+W32         C23         N30         C19     123.023    1.50
+W32         C23         N30         H23     118.247    1.83
+W32         C19         N30         H23     118.729    2.08
+W32         C12         O34         C13     118.810    1.50
+W32         O32         S38         C24     108.322    1.50
+W32         O32         S38         O33     118.392    2.04
+W32         O32         S38         C22     108.931    1.50
+W32         C24         S38         O33     108.322    1.50
+W32         C24         S38         C22     104.032    1.79
+W32         O33         S38         C22     108.931    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+W32       const_sp2_sp2_1          C4          C1          C2         C10       0.000     5.0     2
+W32              const_55          C2          C1          C4         C12       0.000    10.0     2
+W32             sp2_sp2_5          C7         C11         N29         C16     180.000     5.0     2
+W32             sp2_sp2_1          C4         C12         O34         C13     180.000     5.0     2
+W32              const_32         O34         C13         C14         CL1       0.000    10.0     2
+W32             sp2_sp2_3         C14         C13         O34         C12     180.000     5.0     2
+W32              const_54         N28         C15         N26          C8     180.000    10.0     2
+W32            sp2_sp2_21          C9         C15         N28         C21     180.000     5.0     2
+W32              const_44         N29         C16         N27          C8     180.000    10.0     2
+W32            sp2_sp2_11         N27         C16         N29         C11       0.000     5.0     2
+W32            sp2_sp2_18          C9         C17         C18         C19       0.000     5.0     2
+W32            sp2_sp2_31         C17         C18         C19         N30       0.000     5.0     2
+W32            sp2_sp3_20         C17         C18         C20         C21     120.000    10.0     6
+W32            sp2_sp2_25         C18         C19         N30         C23     180.000     5.0     2
+W32            sp3_sp3_19         C18         C20         C21         N28     180.000    10.0     3
+W32       const_sp2_sp2_7         C25         C10          C2          C1     180.000     5.0     2
+W32            sp2_sp3_14         C15         N28         C21         C20     120.000    10.0     6
+W32            sp3_sp3_28         H14         C22         S38         O32     180.000    10.0     3
+W32             sp3_sp3_1         N30         C23         C24         S38     180.000    10.0     3
+W32             sp2_sp3_8         C19         N30         C23         C24     120.000    10.0     6
+W32            sp3_sp3_11         C23         C24         S38         O32     -60.000    10.0     3
+W32              const_61         N29         C11          C3          C5     180.000    10.0     2
+W32              const_21         C11          C3          C5         C13       0.000    10.0     2
+W32              const_19         O34         C12          C4          C1     180.000    10.0     2
+W32              const_27         O34         C13          C5          C3     180.000    10.0     2
+W32              const_15         O34         C12          C6         C10     180.000    10.0     2
+W32              const_11         C25         C10          C6         C12     180.000    10.0     2
+W32              const_39         N29         C11          C7         C14     180.000    10.0     2
+W32              const_35         CL1         C14          C7         C11     180.000    10.0     2
+W32              const_63         N27          C8         N26         C15       0.000    10.0     2
+W32              const_41         N26          C8         N27         C16       0.000    10.0     2
+W32              const_52         N28         C15          C9         C17       0.000    10.0     2
+W32              const_48         N29         C16          C9         C17       0.000    10.0     2
+W32            sp2_sp2_13         C18         C17          C9         C16     180.000     5.0     2
+W32             sp2_sp3_1          C2         C10         C25         F37     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+W32    chir_1    C25    F37    F36    F35    both
+W32    chir_2    S38    O32    O33    C24    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+W32    plan-1          C1   0.020
+W32    plan-1         C10   0.020
+W32    plan-1         C12   0.020
+W32    plan-1          C2   0.020
+W32    plan-1         C25   0.020
+W32    plan-1          C4   0.020
+W32    plan-1          C6   0.020
+W32    plan-1          H1   0.020
+W32    plan-1          H2   0.020
+W32    plan-1          H4   0.020
+W32    plan-1          H6   0.020
+W32    plan-1         O34   0.020
+W32    plan-2         C11   0.020
+W32    plan-2         C13   0.020
+W32    plan-2         C14   0.020
+W32    plan-2          C3   0.020
+W32    plan-2          C5   0.020
+W32    plan-2          C7   0.020
+W32    plan-2         CL1   0.020
+W32    plan-2          H3   0.020
+W32    plan-2          H5   0.020
+W32    plan-2          H7   0.020
+W32    plan-2         N29   0.020
+W32    plan-2         O34   0.020
+W32    plan-3         C15   0.020
+W32    plan-3         C16   0.020
+W32    plan-3         C17   0.020
+W32    plan-3          C8   0.020
+W32    plan-3          C9   0.020
+W32    plan-3          H8   0.020
+W32    plan-3         N26   0.020
+W32    plan-3         N27   0.020
+W32    plan-3         N28   0.020
+W32    plan-3         N29   0.020
+W32    plan-4         C17   0.020
+W32    plan-4         C18   0.020
+W32    plan-4          C9   0.020
+W32    plan-4          H9   0.020
+W32    plan-5         C17   0.020
+W32    plan-5         C18   0.020
+W32    plan-5         C19   0.020
+W32    plan-5         C20   0.020
+W32    plan-6         C18   0.020
+W32    plan-6         C19   0.020
+W32    plan-6         N30   0.020
+W32    plan-6         O31   0.020
+W32    plan-7         C15   0.020
+W32    plan-7         C21   0.020
+W32    plan-7         H21   0.020
+W32    plan-7         N28   0.020
+W32    plan-8         C11   0.020
+W32    plan-8         C16   0.020
+W32    plan-8         H22   0.020
+W32    plan-8         N29   0.020
+W32    plan-9         C19   0.020
+W32    plan-9         C23   0.020
+W32    plan-9         H23   0.020
+W32    plan-9         N30   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+W32           SMILES              ACDLabs 12.01                                                                                                                               FC(F)(F)c4cc(Oc1ccc(cc1Cl)Nc3ncnc2c3C=C(C(=O)NCCS(=O)(=O)C)CCN2)ccc4
+W32            InChI                InChI  1.03 InChI=1S/C25H23ClF3N5O4S/c1-39(36,37)10-9-31-24(35)15-7-8-30-22-19(11-15)23(33-14-32-22)34-17-5-6-21(20(26)13-17)38-18-4-2-3-16(12-18)25(27,28)29/h2-6,11-14H,7-10H2,1H3,(H,31,35)(H2,30,32,33,34)
+W32         InChIKey                InChI  1.03                                                                                                                                                                        QRXMEGUJRZKMEO-UHFFFAOYSA-N
+W32 SMILES_CANONICAL               CACTVS 3.370                                                                                                                           C[S](=O)(=O)CCNC(=O)C1=Cc2c(NCC1)ncnc2Nc3ccc(Oc4cccc(c4)C(F)(F)F)c(Cl)c3
+W32           SMILES               CACTVS 3.370                                                                                                                           C[S](=O)(=O)CCNC(=O)C1=Cc2c(NCC1)ncnc2Nc3ccc(Oc4cccc(c4)C(F)(F)F)c(Cl)c3
+W32 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                             CS(=O)(=O)CCNC(=O)C1=Cc2c(ncnc2Nc3ccc(c(c3)Cl)Oc4cccc(c4)C(F)(F)F)NCC1
+W32           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                             CS(=O)(=O)CCNC(=O)C1=Cc2c(ncnc2Nc3ccc(c(c3)Cl)Oc4cccc(c4)C(F)(F)F)NCC1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+W32 acedrg               243         "dictionary generator"                  
+W32 acedrg_database      11          "data source"                           
+W32 rdkit                2017.03.2   "Chemoinformatics tool"
+W32 refmac5              5.8.0238    "optimization tool"                     

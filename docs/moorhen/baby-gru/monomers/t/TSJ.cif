@@ -1,0 +1,322 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TSJ     TSJ      "3-methyl-4-({3-[3-methyl-5-(trifluoromethyl)phenyl]-1H-pyrazol-5-yl}carbamoyl)benzoic acid"     NON-POLYMER     44     29     .     
+#
+data_comp_TSJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TSJ     F1      F       F       0       20.668      28.358      4.229       
+TSJ     CAV     C       CT      0       21.021      29.623      4.431       
+TSJ     F2      F       F       0       22.247      29.740      3.927       
+TSJ     F3      F       F       0       21.158      29.753      5.747       
+TSJ     CAH     C       CR6     0       20.032      30.593      3.859       
+TSJ     CAI     C       CR16    0       18.706      30.547      4.269       
+TSJ     CAG     C       CR16    0       20.399      31.551      2.919       
+TSJ     CAF     C       CR6     0       19.483      32.451      2.389       
+TSJ     CAU     C       CH3     0       19.916      33.477      1.370       
+TSJ     CAE     C       CR16    0       18.162      32.381      2.818       
+TSJ     CAJ     C       CR6     0       17.756      31.436      3.764       
+TSJ     CAK     C       CR5     0       16.352      31.352      4.216       
+TSJ     CAO     C       CR15    0       15.800      30.544      5.219       
+TSJ     NAL     N       NRD5    0       15.373      32.084      3.659       
+TSJ     NAM     N       NR5     0       14.219      31.758      4.294       
+TSJ     CAN     C       CR5     0       14.428      30.830      5.244       
+TSJ     NAP     N       NH1     0       13.430      30.282      6.065       
+TSJ     CAQ     C       C       0       13.524      29.118      6.787       
+TSJ     OAR     O       O       0       14.352      28.254      6.536       
+TSJ     C4      C       CR6     0       12.563      28.942      7.927       
+TSJ     C3      C       CR16    0       12.366      30.018      8.814       
+TSJ     C2      C       CR16    0       11.496      29.902      9.883       
+TSJ     C1      C       CR6     0       10.810      28.714      10.103      
+TSJ     C8      C       C       0       9.868       28.584      11.261      
+TSJ     O1      O       O       0       9.991       27.591      12.001      
+TSJ     O2      O       OC      -1      9.015       29.476      11.418      
+TSJ     C6      C       CR16    0       11.006      27.644      9.233       
+TSJ     C5      C       CR6     0       11.873      27.736      8.148       
+TSJ     C7      C       CH3     0       12.027      26.525      7.256       
+TSJ     H1      H       H       0       18.443      29.901      4.907       
+TSJ     H2      H       H       0       21.290      31.609      2.622       
+TSJ     H3      H       H       0       19.173      34.066      1.159       
+TSJ     H4      H       H       0       20.209      33.027      0.561       
+TSJ     H5      H       H       0       20.649      34.002      1.729       
+TSJ     H6      H       H       0       17.533      32.990      2.461       
+TSJ     H7      H       H       0       16.256      29.929      5.766       
+TSJ     H8      H       H       0       13.450      32.131      4.079       
+TSJ     H9      H       H       0       12.679      30.729      6.098       
+TSJ     H10     H       H       0       12.827      30.831      8.673       
+TSJ     H11     H       H       0       11.370      30.631      10.465      
+TSJ     H13     H       H       0       10.541      26.835      9.379       
+TSJ     H14     H       H       0       11.364      25.854      7.487       
+TSJ     H15     H       H       0       12.915      26.149      7.370       
+TSJ     H16     H       H       0       11.905      26.786      6.329       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TSJ         CAF         CAU      SINGLE       n     1.510  0.0100     1.510  0.0100
+TSJ         CAG         CAF      SINGLE       y     1.386  0.0100     1.386  0.0100
+TSJ         CAF         CAE      DOUBLE       y     1.386  0.0100     1.386  0.0100
+TSJ         CAH         CAG      DOUBLE       y     1.386  0.0100     1.386  0.0100
+TSJ         CAE         CAJ      SINGLE       y     1.391  0.0100     1.391  0.0100
+TSJ         CAV          F2      SINGLE       n     1.329  0.0183     1.329  0.0183
+TSJ         CAV         CAH      SINGLE       n     1.495  0.0100     1.495  0.0100
+TSJ         CAH         CAI      SINGLE       y     1.384  0.0100     1.384  0.0100
+TSJ         CAI         CAJ      DOUBLE       y     1.391  0.0100     1.391  0.0100
+TSJ         CAJ         CAK      SINGLE       n     1.472  0.0100     1.472  0.0100
+TSJ          F1         CAV      SINGLE       n     1.329  0.0183     1.329  0.0183
+TSJ         CAV          F3      SINGLE       n     1.329  0.0183     1.329  0.0183
+TSJ         CAK         NAL      DOUBLE       y     1.341  0.0100     1.341  0.0100
+TSJ         NAL         NAM      SINGLE       y     1.352  0.0100     1.352  0.0100
+TSJ         CAK         CAO      SINGLE       y     1.405  0.0100     1.405  0.0100
+TSJ         NAM         CAN      SINGLE       y     1.342  0.0116     1.342  0.0116
+TSJ         CAO         CAN      DOUBLE       y     1.412  0.0200     1.412  0.0200
+TSJ         CAN         NAP      SINGLE       n     1.397  0.0143     1.397  0.0143
+TSJ         NAP         CAQ      SINGLE       n     1.360  0.0157     1.360  0.0157
+TSJ         CAQ         OAR      DOUBLE       n     1.221  0.0100     1.221  0.0100
+TSJ         CAQ          C4      SINGLE       n     1.497  0.0104     1.497  0.0104
+TSJ          C5          C7      SINGLE       n     1.508  0.0100     1.508  0.0100
+TSJ          C4          C5      SINGLE       y     1.398  0.0100     1.398  0.0100
+TSJ          C4          C3      DOUBLE       y     1.400  0.0130     1.400  0.0130
+TSJ          C6          C5      DOUBLE       y     1.376  0.0159     1.376  0.0159
+TSJ          C3          C2      SINGLE       y     1.381  0.0100     1.381  0.0100
+TSJ          C1          C6      SINGLE       y     1.390  0.0100     1.390  0.0100
+TSJ          C2          C1      DOUBLE       y     1.387  0.0103     1.387  0.0103
+TSJ          C1          C8      SINGLE       n     1.498  0.0200     1.498  0.0200
+TSJ          C8          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+TSJ          C8          O2      SINGLE       n     1.244  0.0200     1.244  0.0200
+TSJ         CAI          H1      SINGLE       n     1.082  0.0130     0.946  0.0200
+TSJ         CAG          H2      SINGLE       n     1.082  0.0130     0.941  0.0156
+TSJ         CAU          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+TSJ         CAU          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+TSJ         CAU          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+TSJ         CAE          H6      SINGLE       n     1.082  0.0130     0.946  0.0200
+TSJ         CAO          H7      SINGLE       n     1.082  0.0130     0.942  0.0169
+TSJ         NAM          H8      SINGLE       n     1.016  0.0100     0.881  0.0200
+TSJ         NAP          H9      SINGLE       n     1.016  0.0100     0.873  0.0200
+TSJ          C3         H10      SINGLE       n     1.082  0.0130     0.946  0.0174
+TSJ          C2         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+TSJ          C6         H13      SINGLE       n     1.082  0.0130     0.944  0.0147
+TSJ          C7         H14      SINGLE       n     1.089  0.0100     0.971  0.0135
+TSJ          C7         H15      SINGLE       n     1.089  0.0100     0.971  0.0135
+TSJ          C7         H16      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TSJ          F2         CAV         CAH     112.813    1.50
+TSJ          F2         CAV          F1     105.974    1.50
+TSJ          F2         CAV          F3     105.974    1.50
+TSJ         CAH         CAV          F1     112.813    1.50
+TSJ         CAH         CAV          F3     112.813    1.50
+TSJ          F1         CAV          F3     105.974    1.50
+TSJ         CAG         CAH         CAV     120.861    1.50
+TSJ         CAG         CAH         CAI     118.744    1.50
+TSJ         CAV         CAH         CAI     120.395    1.50
+TSJ         CAH         CAI         CAJ     121.110    1.50
+TSJ         CAH         CAI          H1     119.558    1.50
+TSJ         CAJ         CAI          H1     119.332    1.50
+TSJ         CAF         CAG         CAH     121.920    1.50
+TSJ         CAF         CAG          H2     118.122    1.50
+TSJ         CAH         CAG          H2     119.958    1.50
+TSJ         CAU         CAF         CAG     121.029    1.50
+TSJ         CAU         CAF         CAE     120.838    1.50
+TSJ         CAG         CAF         CAE     118.125    1.50
+TSJ         CAF         CAU          H3     109.567    1.50
+TSJ         CAF         CAU          H4     109.567    1.50
+TSJ         CAF         CAU          H5     109.567    1.50
+TSJ          H3         CAU          H4     109.348    1.50
+TSJ          H3         CAU          H5     109.348    1.50
+TSJ          H4         CAU          H5     109.348    1.50
+TSJ         CAF         CAE         CAJ     121.110    1.50
+TSJ         CAF         CAE          H6     119.168    1.50
+TSJ         CAJ         CAE          H6     119.722    1.50
+TSJ         CAE         CAJ         CAI     118.991    1.50
+TSJ         CAE         CAJ         CAK     120.505    1.50
+TSJ         CAI         CAJ         CAK     120.505    1.50
+TSJ         CAJ         CAK         NAL     121.015    1.50
+TSJ         CAJ         CAK         CAO     129.069    1.50
+TSJ         NAL         CAK         CAO     109.916    1.50
+TSJ         CAK         CAO         CAN     106.929    1.50
+TSJ         CAK         CAO          H7     126.667    1.50
+TSJ         CAN         CAO          H7     126.404    1.50
+TSJ         CAK         NAL         NAM     105.854    1.50
+TSJ         NAL         NAM         CAN     110.277    1.50
+TSJ         NAL         NAM          H8     122.344    3.00
+TSJ         CAN         NAM          H8     127.379    3.00
+TSJ         NAM         CAN         CAO     107.024    1.50
+TSJ         NAM         CAN         NAP     124.581    1.89
+TSJ         CAO         CAN         NAP     128.395    3.00
+TSJ         CAN         NAP         CAQ     125.095    2.23
+TSJ         CAN         NAP          H9     116.905    2.82
+TSJ         CAQ         NAP          H9     118.000    1.72
+TSJ         NAP         CAQ         OAR     122.627    1.50
+TSJ         NAP         CAQ          C4     116.259    1.50
+TSJ         OAR         CAQ          C4     121.114    1.50
+TSJ         CAQ          C4          C5     120.745    1.82
+TSJ         CAQ          C4          C3     119.998    2.89
+TSJ          C5          C4          C3     119.257    1.50
+TSJ          C4          C3          C2     120.655    1.50
+TSJ          C4          C3         H10     119.701    1.50
+TSJ          C2          C3         H10     119.644    1.50
+TSJ          C3          C2          C1     120.571    1.50
+TSJ          C3          C2         H11     119.641    1.50
+TSJ          C1          C2         H11     119.788    1.50
+TSJ          C6          C1          C2     119.367    1.50
+TSJ          C6          C1          C8     120.237    1.50
+TSJ          C2          C1          C8     120.396    1.50
+TSJ          C1          C8          O1     117.791    1.50
+TSJ          C1          C8          O2     117.791    1.50
+TSJ          O1          C8          O2     124.418    1.50
+TSJ          C5          C6          C1     121.133    1.50
+TSJ          C5          C6         H13     118.965    1.50
+TSJ          C1          C6         H13     119.902    1.50
+TSJ          C7          C5          C4     122.231    1.50
+TSJ          C7          C5          C6     118.752    1.50
+TSJ          C4          C5          C6     119.017    1.50
+TSJ          C5          C7         H14     109.545    1.50
+TSJ          C5          C7         H15     109.545    1.50
+TSJ          C5          C7         H16     109.545    1.50
+TSJ         H14          C7         H15     109.348    1.50
+TSJ         H14          C7         H16     109.348    1.50
+TSJ         H15          C7         H16     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TSJ             sp2_sp2_2         CAE         CAJ         CAK         NAL       0.000     5.0     2
+TSJ              const_59         CAJ         CAK         CAO         CAN     180.000    10.0     2
+TSJ              const_42         CAJ         CAK         NAL         NAM     180.000    10.0     2
+TSJ              const_51         NAP         CAN         CAO         CAK     180.000    10.0     2
+TSJ              const_43         CAK         NAL         NAM         CAN       0.000    10.0     2
+TSJ              const_47         NAP         CAN         NAM         NAL     180.000    10.0     2
+TSJ             sp2_sp2_5         NAM         CAN         NAP         CAQ     180.000     5.0     2
+TSJ            sp2_sp2_11         OAR         CAQ         NAP         CAN       0.000     5.0     2
+TSJ            sp2_sp2_13          C5          C4         CAQ         NAP     180.000     5.0     2
+TSJ              const_62          C2          C3          C4         CAQ     180.000    10.0     2
+TSJ       const_sp2_sp2_4         CAQ          C4          C5          C7       0.000     5.0     2
+TSJ             sp2_sp3_7         CAG         CAH         CAV          F2     150.000    10.0     6
+TSJ              const_17          C1          C2          C3          C4       0.000    10.0     2
+TSJ              const_15          C8          C1          C2          C3     180.000    10.0     2
+TSJ            sp2_sp2_17          C6          C1          C8          O1     180.000     5.0     2
+TSJ              const_11          C8          C1          C6          C5     180.000    10.0     2
+TSJ       const_sp2_sp2_7          C7          C5          C6          C1     180.000     5.0     2
+TSJ            sp2_sp3_13          C4          C5          C7         H14     150.000    10.0     6
+TSJ              const_55         CAV         CAH         CAI         CAJ     180.000    10.0     2
+TSJ              const_22         CAF         CAG         CAH         CAV     180.000    10.0     2
+TSJ              const_37         CAH         CAI         CAJ         CAE       0.000    10.0     2
+TSJ              const_27         CAU         CAF         CAG         CAH     180.000    10.0     2
+TSJ             sp2_sp3_1         CAG         CAF         CAU          H3     150.000    10.0     6
+TSJ              const_30         CAJ         CAE         CAF         CAU     180.000    10.0     2
+TSJ              const_33         CAF         CAE         CAJ         CAI       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TSJ    chir_1    CAV    F2    F1    F3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TSJ    plan-1         CAE   0.020
+TSJ    plan-1         CAF   0.020
+TSJ    plan-1         CAG   0.020
+TSJ    plan-1         CAH   0.020
+TSJ    plan-1         CAI   0.020
+TSJ    plan-1         CAJ   0.020
+TSJ    plan-1         CAK   0.020
+TSJ    plan-1         CAU   0.020
+TSJ    plan-1         CAV   0.020
+TSJ    plan-1          H1   0.020
+TSJ    plan-1          H2   0.020
+TSJ    plan-1          H6   0.020
+TSJ    plan-2         CAJ   0.020
+TSJ    plan-2         CAK   0.020
+TSJ    plan-2         CAN   0.020
+TSJ    plan-2         CAO   0.020
+TSJ    plan-2          H7   0.020
+TSJ    plan-2          H8   0.020
+TSJ    plan-2         NAL   0.020
+TSJ    plan-2         NAM   0.020
+TSJ    plan-2         NAP   0.020
+TSJ    plan-3          C1   0.020
+TSJ    plan-3          C2   0.020
+TSJ    plan-3          C3   0.020
+TSJ    plan-3          C4   0.020
+TSJ    plan-3          C5   0.020
+TSJ    plan-3          C6   0.020
+TSJ    plan-3          C7   0.020
+TSJ    plan-3          C8   0.020
+TSJ    plan-3         CAQ   0.020
+TSJ    plan-3         H10   0.020
+TSJ    plan-3         H11   0.020
+TSJ    plan-3         H13   0.020
+TSJ    plan-4         CAN   0.020
+TSJ    plan-4         CAQ   0.020
+TSJ    plan-4          H9   0.020
+TSJ    plan-4         NAP   0.020
+TSJ    plan-5          C4   0.020
+TSJ    plan-5         CAQ   0.020
+TSJ    plan-5         NAP   0.020
+TSJ    plan-5         OAR   0.020
+TSJ    plan-6          C1   0.020
+TSJ    plan-6          C8   0.020
+TSJ    plan-6          O1   0.020
+TSJ    plan-6          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TSJ           SMILES              ACDLabs 12.01                                                                                             FC(F)(F)c1cc(cc(c1)C)c2cc(nn2)NC(=O)c3c(cc(cc3)C(=O)O)C
+TSJ            InChI                InChI  1.03 InChI=1S/C20H16F3N3O3/c1-10-5-13(8-14(6-10)20(21,22)23)16-9-17(26-25-16)24-18(27)15-4-3-12(19(28)29)7-11(15)2/h3-9H,1-2H3,(H,28,29)(H2,24,25,26,27)
+TSJ         InChIKey                InChI  1.03                                                                                                                         MLGFDWKUOYDRDY-UHFFFAOYSA-N
+TSJ SMILES_CANONICAL               CACTVS 3.385                                                                                            Cc1cc(cc(c1)C(F)(F)F)c2cc([nH]n2)NC(=O)c3ccc(cc3C)C(O)=O
+TSJ           SMILES               CACTVS 3.385                                                                                            Cc1cc(cc(c1)C(F)(F)F)c2cc([nH]n2)NC(=O)c3ccc(cc3C)C(O)=O
+TSJ SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                            Cc1cc(cc(c1)C(F)(F)F)c2cc([nH]n2)NC(=O)c3ccc(cc3C)C(=O)O
+TSJ           SMILES "OpenEye OEToolkits" 1.9.2                                                                                            Cc1cc(cc(c1)C(F)(F)F)c2cc([nH]n2)NC(=O)c3ccc(cc3C)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TSJ acedrg               243         "dictionary generator"                  
+TSJ acedrg_database      11          "data source"                           
+TSJ rdkit                2017.03.2   "Chemoinformatics tool"
+TSJ refmac5              5.8.0238    "optimization tool"                     

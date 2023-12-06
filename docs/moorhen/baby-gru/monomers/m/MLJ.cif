@@ -1,0 +1,345 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MLJ     MLJ      ~{N}-[3-oxidanylidene-3-[[(1~{R})-1,2,3,4-tetrahydronaphthalen-1-yl]amino]propyl]-4-(trifluoromethyloxy)benzamide     NON-POLYMER     50     29     .     
+#
+data_comp_MLJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MLJ     C02     C       CT      0       37.322      -43.377     121.061     
+MLJ     C06     C       CR6     0       38.978      -43.700     119.373     
+MLJ     C07     C       CR16    0       38.290      -43.767     118.164     
+MLJ     C08     C       CR16    0       38.918      -43.387     116.990     
+MLJ     C09     C       CR6     0       40.242      -42.948     116.992     
+MLJ     C10     C       CR16    0       40.918      -42.888     118.210     
+MLJ     C11     C       CR16    0       40.299      -43.265     119.390     
+MLJ     C12     C       C       0       40.904      -42.536     115.705     
+MLJ     C15     C       CH2     0       43.008      -42.452     114.417     
+MLJ     C16     C       CH2     0       44.069      -41.479     114.891     
+MLJ     C17     C       C       0       43.483      -40.207     115.467     
+MLJ     C20     C       CH1     0       42.579      -39.134     117.518     
+MLJ     C21     C       CH2     0       43.266      -38.959     118.867     
+MLJ     C22     C       CH2     0       42.762      -39.964     119.879     
+MLJ     C23     C       CH2     0       41.286      -39.743     120.143     
+MLJ     C24     C       CR66    0       40.470      -39.579     118.883     
+MLJ     C25     C       CR16    0       39.081      -39.711     118.938     
+MLJ     C26     C       CR16    0       38.302      -39.565     117.806     
+MLJ     C27     C       CR16    0       38.901      -39.281     116.593     
+MLJ     C28     C       CR16    0       40.277      -39.143     116.524     
+MLJ     C29     C       CR66    0       41.072      -39.288     117.658     
+MLJ     F01     F       F       0       36.188      -43.743     120.499     
+MLJ     F03     F       F       0       37.181      -43.557     122.359     
+MLJ     F04     F       F       0       37.451      -42.078     120.867     
+MLJ     N14     N       NH1     0       42.171      -42.932     115.514     
+MLJ     N19     N       NH1     0       43.157      -40.254     116.776     
+MLJ     O05     O       O2      0       38.352      -44.092     120.591     
+MLJ     O13     O       O       0       40.294      -41.837     114.896     
+MLJ     O18     O       O       0       43.318      -39.212     114.768     
+MLJ     H071    H       H       0       37.397      -44.063     118.145     
+MLJ     H081    H       H       0       38.443      -43.431     116.179     
+MLJ     H101    H       H       0       41.811      -42.593     118.233     
+MLJ     H111    H       H       0       40.770      -43.222     120.204     
+MLJ     H152    H       H       0       43.449      -43.219     113.996     
+MLJ     H151    H       H       0       42.456      -42.016     113.736     
+MLJ     H161    H       H       0       44.647      -41.246     114.144     
+MLJ     H162    H       H       0       44.624      -41.908     115.565     
+MLJ     H201    H       H       0       42.743      -38.312     117.004     
+MLJ     H211    H       H       0       44.231      -39.067     118.755     
+MLJ     H212    H       H       0       43.101      -38.054     119.199     
+MLJ     H222    H       H       0       43.261      -39.870     120.716     
+MLJ     H221    H       H       0       42.902      -40.872     119.542     
+MLJ     H231    H       H       0       41.178      -38.941     120.697     
+MLJ     H232    H       H       0       40.935      -40.505     120.651     
+MLJ     H251    H       H       0       38.669      -39.906     119.768     
+MLJ     H261    H       H       0       37.364      -39.659     117.862     
+MLJ     H271    H       H       0       38.375      -39.180     115.816     
+MLJ     H281    H       H       0       40.686      -38.951     115.691     
+MLJ     H141    H       H       0       42.516      -43.522     116.059     
+MLJ     H191    H       H       0       43.293      -40.999     117.197     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MLJ         C12         O13      DOUBLE       n     1.230  0.0114     1.230  0.0114
+MLJ         C15         C16      SINGLE       n     1.513  0.0195     1.513  0.0195
+MLJ         C15         N14      SINGLE       n     1.457  0.0100     1.457  0.0100
+MLJ         C12         N14      SINGLE       n     1.333  0.0111     1.333  0.0111
+MLJ         C09         C12      SINGLE       n     1.502  0.0100     1.502  0.0100
+MLJ         C08         C09      DOUBLE       y     1.391  0.0100     1.391  0.0100
+MLJ         C07         C08      SINGLE       y     1.381  0.0100     1.381  0.0100
+MLJ         C16         C17      SINGLE       n     1.506  0.0190     1.506  0.0190
+MLJ         C17         O18      DOUBLE       n     1.227  0.0100     1.227  0.0100
+MLJ         C09         C10      SINGLE       y     1.391  0.0100     1.391  0.0100
+MLJ         C06         C07      DOUBLE       y     1.386  0.0109     1.386  0.0109
+MLJ         C17         N19      SINGLE       n     1.343  0.0102     1.343  0.0102
+MLJ         C02         F01      SINGLE       n     1.318  0.0152     1.318  0.0152
+MLJ         C10         C11      DOUBLE       y     1.381  0.0100     1.381  0.0100
+MLJ         C06         C11      SINGLE       y     1.386  0.0109     1.386  0.0109
+MLJ         C06         O05      SINGLE       n     1.421  0.0100     1.421  0.0100
+MLJ         C02         F04      SINGLE       n     1.318  0.0152     1.318  0.0152
+MLJ         C20         N19      SINGLE       n     1.459  0.0100     1.459  0.0100
+MLJ         C02         O05      SINGLE       n     1.327  0.0168     1.327  0.0168
+MLJ         C02         F03      SINGLE       n     1.318  0.0152     1.318  0.0152
+MLJ         C20         C21      SINGLE       n     1.522  0.0100     1.522  0.0100
+MLJ         C20         C29      SINGLE       n     1.517  0.0127     1.517  0.0127
+MLJ         C21         C22      SINGLE       n     1.510  0.0146     1.510  0.0146
+MLJ         C28         C29      SINGLE       y     1.389  0.0100     1.389  0.0100
+MLJ         C27         C28      DOUBLE       y     1.382  0.0100     1.382  0.0100
+MLJ         C24         C29      DOUBLE       y     1.388  0.0100     1.388  0.0100
+MLJ         C22         C23      SINGLE       n     1.512  0.0141     1.512  0.0141
+MLJ         C26         C27      SINGLE       y     1.380  0.0108     1.380  0.0108
+MLJ         C23         C24      SINGLE       n     1.507  0.0100     1.507  0.0100
+MLJ         C24         C25      SINGLE       y     1.392  0.0100     1.392  0.0100
+MLJ         C25         C26      DOUBLE       y     1.379  0.0100     1.379  0.0100
+MLJ         C07        H071      SINGLE       n     1.082  0.0130     0.941  0.0179
+MLJ         C08        H081      SINGLE       n     1.082  0.0130     0.941  0.0168
+MLJ         C10        H101      SINGLE       n     1.082  0.0130     0.941  0.0168
+MLJ         C11        H111      SINGLE       n     1.082  0.0130     0.941  0.0179
+MLJ         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0159
+MLJ         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0159
+MLJ         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0156
+MLJ         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0156
+MLJ         C20        H201      SINGLE       n     1.089  0.0100     0.983  0.0100
+MLJ         C21        H211      SINGLE       n     1.089  0.0100     0.978  0.0101
+MLJ         C21        H212      SINGLE       n     1.089  0.0100     0.978  0.0101
+MLJ         C22        H222      SINGLE       n     1.089  0.0100     0.979  0.0102
+MLJ         C22        H221      SINGLE       n     1.089  0.0100     0.979  0.0102
+MLJ         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0111
+MLJ         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0111
+MLJ         C25        H251      SINGLE       n     1.082  0.0130     0.946  0.0179
+MLJ         C26        H261      SINGLE       n     1.082  0.0130     0.944  0.0178
+MLJ         C27        H271      SINGLE       n     1.082  0.0130     0.944  0.0178
+MLJ         C28        H281      SINGLE       n     1.082  0.0130     0.948  0.0200
+MLJ         N14        H141      SINGLE       n     1.016  0.0100     0.873  0.0200
+MLJ         N19        H191      SINGLE       n     1.016  0.0100     0.866  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MLJ         F01         C02         F04     107.218    1.66
+MLJ         F01         C02         O05     111.622    2.31
+MLJ         F01         C02         F03     107.218    1.66
+MLJ         F04         C02         O05     111.622    2.31
+MLJ         F04         C02         F03     107.218    1.66
+MLJ         O05         C02         F03     111.622    2.31
+MLJ         C07         C06         C11     119.804    1.50
+MLJ         C07         C06         O05     120.098    1.84
+MLJ         C11         C06         O05     120.098    1.84
+MLJ         C08         C07         C06     119.671    1.50
+MLJ         C08         C07        H071     120.183    1.50
+MLJ         C06         C07        H071     120.146    1.50
+MLJ         C09         C08         C07     120.993    1.50
+MLJ         C09         C08        H081     119.729    1.50
+MLJ         C07         C08        H081     119.278    1.50
+MLJ         C12         C09         C08     120.566    2.80
+MLJ         C12         C09         C10     120.566    2.80
+MLJ         C08         C09         C10     118.869    1.50
+MLJ         C09         C10         C11     120.993    1.50
+MLJ         C09         C10        H101     119.729    1.50
+MLJ         C11         C10        H101     119.278    1.50
+MLJ         C10         C11         C06     119.671    1.50
+MLJ         C10         C11        H111     120.183    1.50
+MLJ         C06         C11        H111     120.146    1.50
+MLJ         O13         C12         N14     122.164    1.50
+MLJ         O13         C12         C09     120.968    1.50
+MLJ         N14         C12         C09     116.868    1.50
+MLJ         C16         C15         N14     112.092    1.50
+MLJ         C16         C15        H152     108.971    1.50
+MLJ         C16         C15        H151     108.971    1.50
+MLJ         N14         C15        H152     109.020    1.50
+MLJ         N14         C15        H151     109.020    1.50
+MLJ        H152         C15        H151     107.877    1.50
+MLJ         C15         C16         C17     112.736    1.50
+MLJ         C15         C16        H161     109.432    1.50
+MLJ         C15         C16        H162     109.432    1.50
+MLJ         C17         C16        H161     108.894    1.50
+MLJ         C17         C16        H162     108.894    1.50
+MLJ        H161         C16        H162     107.745    2.07
+MLJ         C16         C17         O18     122.056    1.50
+MLJ         C16         C17         N19     115.397    1.50
+MLJ         O18         C17         N19     122.547    1.56
+MLJ         N19         C20         C21     111.357    1.50
+MLJ         N19         C20         C29     111.406    1.50
+MLJ         N19         C20        H201     107.152    1.50
+MLJ         C21         C20         C29     111.326    1.50
+MLJ         C21         C20        H201     107.602    1.50
+MLJ         C29         C20        H201     107.565    1.50
+MLJ         C20         C21         C22     111.067    1.50
+MLJ         C20         C21        H211     109.423    1.50
+MLJ         C20         C21        H212     109.423    1.50
+MLJ         C22         C21        H211     109.490    1.50
+MLJ         C22         C21        H212     109.490    1.50
+MLJ        H211         C21        H212     108.063    1.50
+MLJ         C21         C22         C23     109.825    1.50
+MLJ         C21         C22        H222     109.704    1.50
+MLJ         C21         C22        H221     109.704    1.50
+MLJ         C23         C22        H222     109.494    1.50
+MLJ         C23         C22        H221     109.494    1.50
+MLJ        H222         C22        H221     108.017    1.50
+MLJ         C22         C23         C24     112.570    1.51
+MLJ         C22         C23        H231     109.139    1.50
+MLJ         C22         C23        H232     109.139    1.50
+MLJ         C24         C23        H231     109.040    1.50
+MLJ         C24         C23        H232     109.040    1.50
+MLJ        H231         C23        H232     107.825    1.50
+MLJ         C29         C24         C23     121.253    1.50
+MLJ         C29         C24         C25     118.539    1.50
+MLJ         C23         C24         C25     120.208    1.50
+MLJ         C24         C25         C26     121.009    1.50
+MLJ         C24         C25        H251     119.284    1.50
+MLJ         C26         C25        H251     119.707    1.50
+MLJ         C27         C26         C25     120.084    1.50
+MLJ         C27         C26        H261     119.995    1.50
+MLJ         C25         C26        H261     119.921    1.50
+MLJ         C28         C27         C26     120.084    1.50
+MLJ         C28         C27        H271     119.921    1.50
+MLJ         C26         C27        H271     119.995    1.50
+MLJ         C29         C28         C27     121.084    1.50
+MLJ         C29         C28        H281     119.372    1.50
+MLJ         C27         C28        H281     119.544    1.50
+MLJ         C20         C29         C28     119.233    1.50
+MLJ         C20         C29         C24     121.567    1.50
+MLJ         C28         C29         C24     119.200    1.50
+MLJ         C15         N14         C12     121.796    1.50
+MLJ         C15         N14        H141     118.813    1.50
+MLJ         C12         N14        H141     119.379    1.77
+MLJ         C17         N19         C20     122.606    1.50
+MLJ         C17         N19        H191     118.186    2.17
+MLJ         C20         N19        H191     119.208    1.50
+MLJ         C06         O05         C02     117.389    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MLJ            sp3_sp3_37         F01         C02         O05         C06     180.000    10.0     3
+MLJ             sp2_sp2_9         C16         C17         N19         C20     180.000     5.0     2
+MLJ             sp3_sp3_4         N19         C20         C21         C22     -60.000    10.0     3
+MLJ            sp2_sp3_29         C28         C29         C20         N19     -60.000    10.0     6
+MLJ            sp2_sp3_19         C17         N19         C20         C21       0.000    10.0     6
+MLJ            sp3_sp3_10         C20         C21         C22         C23     -60.000    10.0     3
+MLJ            sp3_sp3_19         C21         C22         C23         C24      60.000    10.0     3
+MLJ             sp2_sp3_1         C29         C24         C23         C22       0.000    10.0     6
+MLJ              const_45         C29         C24         C25         C26       0.000    10.0     2
+MLJ              const_21         C23         C24         C29         C20       0.000    10.0     2
+MLJ              const_37         C24         C25         C26         C27       0.000    10.0     2
+MLJ              const_33         C25         C26         C27         C28       0.000    10.0     2
+MLJ              const_29         C26         C27         C28         C29       0.000    10.0     2
+MLJ              const_26         C27         C28         C29         C20     180.000    10.0     2
+MLJ       const_sp2_sp2_3         O05         C06         C07         C08     180.000     5.0     2
+MLJ            sp2_sp2_13         C07         C06         O05         C02     180.000     5.0     2
+MLJ              const_43         O05         C06         C11         C10     180.000    10.0     2
+MLJ       const_sp2_sp2_5         C06         C07         C08         C09       0.000     5.0     2
+MLJ              const_10         C07         C08         C09         C12     180.000    10.0     2
+MLJ              const_15         C12         C09         C10         C11     180.000    10.0     2
+MLJ             sp2_sp2_6         C08         C09         C12         O13       0.000     5.0     2
+MLJ              const_17         C09         C10         C11         C06       0.000    10.0     2
+MLJ             sp2_sp2_3         O13         C12         N14         C15       0.000     5.0     2
+MLJ             sp2_sp3_8         C12         N14         C15         C16     120.000    10.0     6
+MLJ            sp3_sp3_28         N14         C15         C16         C17     180.000    10.0     3
+MLJ            sp2_sp3_14         O18         C17         C16         C15     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MLJ    chir_1    C02    F01    F04    F03    both
+MLJ    chir_2    C20    N19    C29    C21    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MLJ    plan-1         C20   0.020
+MLJ    plan-1         C23   0.020
+MLJ    plan-1         C24   0.020
+MLJ    plan-1         C25   0.020
+MLJ    plan-1         C26   0.020
+MLJ    plan-1         C27   0.020
+MLJ    plan-1         C28   0.020
+MLJ    plan-1         C29   0.020
+MLJ    plan-1        H251   0.020
+MLJ    plan-1        H261   0.020
+MLJ    plan-1        H271   0.020
+MLJ    plan-1        H281   0.020
+MLJ    plan-2         C06   0.020
+MLJ    plan-2         C07   0.020
+MLJ    plan-2         C08   0.020
+MLJ    plan-2         C09   0.020
+MLJ    plan-2         C10   0.020
+MLJ    plan-2         C11   0.020
+MLJ    plan-2         C12   0.020
+MLJ    plan-2        H071   0.020
+MLJ    plan-2        H081   0.020
+MLJ    plan-2        H101   0.020
+MLJ    plan-2        H111   0.020
+MLJ    plan-2         O05   0.020
+MLJ    plan-3         C09   0.020
+MLJ    plan-3         C12   0.020
+MLJ    plan-3         N14   0.020
+MLJ    plan-3         O13   0.020
+MLJ    plan-4         C16   0.020
+MLJ    plan-4         C17   0.020
+MLJ    plan-4         N19   0.020
+MLJ    plan-4         O18   0.020
+MLJ    plan-5         C12   0.020
+MLJ    plan-5         C15   0.020
+MLJ    plan-5        H141   0.020
+MLJ    plan-5         N14   0.020
+MLJ    plan-6         C17   0.020
+MLJ    plan-6         C20   0.020
+MLJ    plan-6        H191   0.020
+MLJ    plan-6         N19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MLJ            InChI                InChI  1.03 InChI=1S/C21H21F3N2O3/c22-21(23,24)29-16-10-8-15(9-11-16)20(28)25-13-12-19(27)26-18-7-3-5-14-4-1-2-6-17(14)18/h1-2,4,6,8-11,18H,3,5,7,12-13H2,(H,25,28)(H,26,27)/t18-/m1/s1
+MLJ         InChIKey                InChI  1.03                                                                                                                                                 SGNRHEDBLPGDDC-GOSISDBHSA-N
+MLJ SMILES_CANONICAL               CACTVS 3.385                                                                                                                        FC(F)(F)Oc1ccc(cc1)C(=O)NCCC(=O)N[C@@H]2CCCc3ccccc23
+MLJ           SMILES               CACTVS 3.385                                                                                                                          FC(F)(F)Oc1ccc(cc1)C(=O)NCCC(=O)N[CH]2CCCc3ccccc23
+MLJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                                                       c1ccc2c(c1)CCC[C@H]2NC(=O)CCNC(=O)c3ccc(cc3)OC(F)(F)F
+MLJ           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                                           c1ccc2c(c1)CCCC2NC(=O)CCNC(=O)c3ccc(cc3)OC(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MLJ acedrg               243         "dictionary generator"                  
+MLJ acedrg_database      11          "data source"                           
+MLJ rdkit                2017.03.2   "Chemoinformatics tool"
+MLJ refmac5              5.8.0238    "optimization tool"                     

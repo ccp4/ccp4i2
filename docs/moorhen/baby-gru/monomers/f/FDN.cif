@@ -1,0 +1,276 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FDN     FDN      (5S)-3-ANILINO-5-(2,4-DIFLUOROPHENYL)-5-METHYL-1,3-OXAZOLIDINE-2,4-DIONE     NON-POLYMER     35     23     .     
+#
+data_comp_FDN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FDN     F13     F       F       0       72.015      58.532      165.748     
+FDN     C13     C       CR6     0       71.045      58.622      164.803     
+FDN     C12     C       CR16    0       71.432      58.383      163.497     
+FDN     C11     C       CR6     0       70.455      58.473      162.532     
+FDN     F11     F       F       0       70.805      58.244      161.241     
+FDN     C10     C       CR16    0       69.147      58.782      162.815     
+FDN     C9      C       CR16    0       68.791      59.017      164.138     
+FDN     C8      C       CR6     0       69.732      58.933      165.162     
+FDN     C5      C       CT      0       69.297      59.210      166.608     
+FDN     C7      C       CH3     0       68.969      60.680      166.881     
+FDN     O4      O       O2      0       70.363      58.845      167.537     
+FDN     C3      C       CR5     0       69.830      58.138      168.548     
+FDN     O3      O       O       0       70.338      58.062      169.635     
+FDN     N2      N       NT      0       68.643      57.564      168.143     
+FDN     C6      C       CR5     0       68.159      58.309      167.072     
+FDN     O6      O       O       0       67.013      58.287      166.662     
+FDN     N1      N       NH1     0       67.810      56.825      168.967     
+FDN     C21     C       CR6     0       68.208      55.677      169.690     
+FDN     C22     C       CR16    0       69.228      54.825      169.239     
+FDN     C23     C       CR16    0       69.578      53.707      169.985     
+FDN     C24     C       CR16    0       68.927      53.421      171.170     
+FDN     C25     C       CR16    0       67.920      54.250      171.621     
+FDN     C26     C       CR16    0       67.554      55.374      170.893     
+FDN     H12     H       H       0       72.321      58.170      163.279     
+FDN     H10     H       H       0       68.508      58.835      162.128     
+FDN     H9      H       H       0       67.895      59.232      164.341     
+FDN     H71     H       H       0       68.139      60.746      167.357     
+FDN     H72     H       H       0       68.894      61.154      166.050     
+FDN     H73     H       H       0       69.667      61.075      167.407     
+FDN     HN1     H       H       0       66.975      57.074      169.057     
+FDN     H22     H       H       0       69.672      55.020      168.431     
+FDN     H23     H       H       0       70.265      53.139      169.678     
+FDN     H24     H       H       0       69.171      52.658      171.671     
+FDN     H25     H       H       0       67.477      54.054      172.430     
+FDN     H26     H       H       0       66.866      55.942      171.199     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FDN         F13         C13      SINGLE       n     1.357  0.0100     1.357  0.0100
+FDN         C13         C12      DOUBLE       y     1.379  0.0100     1.379  0.0100
+FDN         C13          C8      SINGLE       y     1.388  0.0100     1.388  0.0100
+FDN         C12         C11      SINGLE       y     1.368  0.0158     1.368  0.0158
+FDN         C11         F11      SINGLE       n     1.357  0.0100     1.357  0.0100
+FDN         C11         C10      DOUBLE       y     1.365  0.0159     1.365  0.0159
+FDN         C10          C9      SINGLE       y     1.386  0.0100     1.386  0.0100
+FDN          C9          C8      DOUBLE       y     1.387  0.0100     1.387  0.0100
+FDN          C8          C5      SINGLE       n     1.527  0.0100     1.527  0.0100
+FDN          C5          C7      SINGLE       n     1.526  0.0112     1.526  0.0112
+FDN          C5          O4      SINGLE       n     1.458  0.0100     1.458  0.0100
+FDN          C5          C6      SINGLE       n     1.521  0.0168     1.521  0.0168
+FDN          O4          C3      SINGLE       n     1.342  0.0100     1.342  0.0100
+FDN          C3          O3      DOUBLE       n     1.202  0.0100     1.202  0.0100
+FDN          C3          N2      SINGLE       n     1.377  0.0200     1.377  0.0200
+FDN          N2          C6      SINGLE       n     1.394  0.0146     1.394  0.0146
+FDN          N2          N1      SINGLE       n     1.384  0.0100     1.384  0.0100
+FDN          C6          O6      DOUBLE       n     1.217  0.0100     1.217  0.0100
+FDN          N1         C21      SINGLE       n     1.406  0.0200     1.406  0.0200
+FDN         C21         C22      DOUBLE       y     1.396  0.0142     1.396  0.0142
+FDN         C21         C26      SINGLE       y     1.396  0.0142     1.396  0.0142
+FDN         C22         C23      SINGLE       y     1.385  0.0100     1.385  0.0100
+FDN         C23         C24      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FDN         C24         C25      SINGLE       y     1.376  0.0112     1.376  0.0112
+FDN         C25         C26      DOUBLE       y     1.385  0.0100     1.385  0.0100
+FDN         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0146
+FDN         C10         H10      SINGLE       n     1.082  0.0130     0.940  0.0141
+FDN          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0164
+FDN          C7         H71      SINGLE       n     1.089  0.0100     0.959  0.0100
+FDN          C7         H72      SINGLE       n     1.089  0.0100     0.959  0.0100
+FDN          C7         H73      SINGLE       n     1.089  0.0100     0.959  0.0100
+FDN          N1         HN1      SINGLE       n     1.016  0.0100     0.876  0.0200
+FDN         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0178
+FDN         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0172
+FDN         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0161
+FDN         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0172
+FDN         C26         H26      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FDN         F13         C13         C12     117.338    1.50
+FDN         F13         C13          C8     119.632    1.50
+FDN         C12         C13          C8     123.030    1.50
+FDN         C13         C12         C11     116.430    1.50
+FDN         C13         C12         H12     121.719    1.50
+FDN         C11         C12         H12     121.851    1.50
+FDN         C12         C11         F11     118.245    1.50
+FDN         C12         C11         C10     122.978    1.50
+FDN         F11         C11         C10     118.776    1.50
+FDN         C11         C10          C9     118.185    1.50
+FDN         C11         C10         H10     120.857    1.50
+FDN          C9         C10         H10     120.957    1.50
+FDN         C10          C9          C8     120.488    1.50
+FDN         C10          C9          H9     119.741    1.50
+FDN          C8          C9          H9     119.771    1.50
+FDN         C13          C8          C9     118.888    1.66
+FDN         C13          C8          C5     120.839    2.23
+FDN          C9          C8          C5     120.273    1.70
+FDN          C8          C5          C7     114.362    1.83
+FDN          C8          C5          O4     109.128    1.50
+FDN          C8          C5          C6     112.135    3.00
+FDN          C7          C5          O4     106.749    1.50
+FDN          C7          C5          C6     111.539    2.78
+FDN          O4          C5          C6     103.937    1.50
+FDN          C5          C7         H71     109.447    1.50
+FDN          C5          C7         H72     109.447    1.50
+FDN          C5          C7         H73     109.447    1.50
+FDN         H71          C7         H72     109.469    1.50
+FDN         H71          C7         H73     109.469    1.50
+FDN         H72          C7         H73     109.469    1.50
+FDN          C5          O4          C3     108.743    2.23
+FDN          O4          C3          O3     123.073    1.50
+FDN          O4          C3          N2     110.181    1.50
+FDN          O3          C3          N2     126.746    1.50
+FDN          C3          N2          C6     109.935    2.71
+FDN          C3          N2          N1     121.419    2.10
+FDN          C6          N2          N1     121.419    2.10
+FDN          C5          C6          N2     108.365    1.65
+FDN          C5          C6          O6     126.690    1.96
+FDN          N2          C6          O6     124.945    1.50
+FDN          N2          N1         C21     121.538    3.00
+FDN          N2          N1         HN1     120.474    2.32
+FDN         C21          N1         HN1     117.988    2.16
+FDN          N1         C21         C22     120.389    2.92
+FDN          N1         C21         C26     120.389    2.92
+FDN         C22         C21         C26     119.221    1.50
+FDN         C21         C22         C23     120.019    1.50
+FDN         C21         C22         H22     119.272    2.76
+FDN         C23         C22         H22     120.709    1.50
+FDN         C22         C23         C24     120.449    1.50
+FDN         C22         C23         H23     119.634    1.50
+FDN         C24         C23         H23     119.916    1.50
+FDN         C23         C24         C25     119.841    1.50
+FDN         C23         C24         H24     120.080    1.50
+FDN         C25         C24         H24     120.080    1.50
+FDN         C24         C25         C26     120.449    1.50
+FDN         C24         C25         H25     119.916    1.50
+FDN         C26         C25         H25     119.634    1.50
+FDN         C21         C26         C25     120.019    1.50
+FDN         C21         C26         H26     119.272    2.76
+FDN         C25         C26         H26     120.709    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FDN             sp2_sp2_2          O3          C3          O4          C5     180.000     5.0     2
+FDN             sp2_sp2_6          O3          C3          N2          N1       0.000     5.0     2
+FDN            sp2_sp2_10          O6          C6          N2          N1       0.000     5.0     2
+FDN            sp2_sp2_11         C21          N1          N2          C3     180.000     5.0     2
+FDN            sp2_sp2_15         C22         C21          N1          N2     180.000     5.0     2
+FDN              const_23          N1         C21         C22         C23     180.000    10.0     2
+FDN              const_47          N1         C21         C26         C25     180.000    10.0     2
+FDN              const_25         C21         C22         C23         C24       0.000    10.0     2
+FDN              const_29         C22         C23         C24         C25       0.000    10.0     2
+FDN       const_sp2_sp2_2         C11         C12         C13         F13     180.000     5.0     2
+FDN              const_43         F13         C13          C8          C9     180.000    10.0     2
+FDN              const_33         C23         C24         C25         C26       0.000    10.0     2
+FDN              const_37         C24         C25         C26         C21       0.000    10.0     2
+FDN       const_sp2_sp2_7         F11         C11         C12         C13     180.000     5.0     2
+FDN              const_10          C9         C10         C11         F11     180.000    10.0     2
+FDN              const_13         C11         C10          C9          C8       0.000    10.0     2
+FDN              const_17         C13          C8          C9         C10       0.000    10.0     2
+FDN             sp2_sp3_1         C13          C8          C5          C7     150.000    10.0     6
+FDN             sp3_sp3_3          C7          C5          O4          C3     -60.000    10.0     3
+FDN            sp2_sp3_12          O6          C6          C5          C7      60.000    10.0     6
+FDN             sp3_sp3_4          C8          C5          C7         H71     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FDN    chir_1    C5    O4    C6    C8    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FDN    plan-1         C21   0.020
+FDN    plan-1         C22   0.020
+FDN    plan-1         C23   0.020
+FDN    plan-1         C24   0.020
+FDN    plan-1         C25   0.020
+FDN    plan-1         C26   0.020
+FDN    plan-1         H22   0.020
+FDN    plan-1         H23   0.020
+FDN    plan-1         H24   0.020
+FDN    plan-1         H25   0.020
+FDN    plan-1         H26   0.020
+FDN    plan-1          N1   0.020
+FDN    plan-2         C10   0.020
+FDN    plan-2         C11   0.020
+FDN    plan-2         C12   0.020
+FDN    plan-2         C13   0.020
+FDN    plan-2          C5   0.020
+FDN    plan-2          C8   0.020
+FDN    plan-2          C9   0.020
+FDN    plan-2         F11   0.020
+FDN    plan-2         F13   0.020
+FDN    plan-2         H10   0.020
+FDN    plan-2         H12   0.020
+FDN    plan-2          H9   0.020
+FDN    plan-3          C3   0.020
+FDN    plan-3          N2   0.020
+FDN    plan-3          O3   0.020
+FDN    plan-3          O4   0.020
+FDN    plan-4          C5   0.020
+FDN    plan-4          C6   0.020
+FDN    plan-4          N2   0.020
+FDN    plan-4          O6   0.020
+FDN    plan-5         C21   0.020
+FDN    plan-5         HN1   0.020
+FDN    plan-5          N1   0.020
+FDN    plan-5          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FDN           SMILES              ACDLabs 10.04                                                                             O=C2OC(C(=O)N2Nc1ccccc1)(c3ccc(F)cc3F)C
+FDN SMILES_CANONICAL               CACTVS 3.341                                                                          C[C@]1(OC(=O)N(Nc2ccccc2)C1=O)c3ccc(F)cc3F
+FDN           SMILES               CACTVS 3.341                                                                           C[C]1(OC(=O)N(Nc2ccccc2)C1=O)c3ccc(F)cc3F
+FDN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                       C[C@@]1(C(=O)N(C(=O)O1)Nc2ccccc2)c3ccc(cc3F)F
+FDN           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CC1(C(=O)N(C(=O)O1)Nc2ccccc2)c3ccc(cc3F)F
+FDN            InChI                InChI  1.03 InChI=1S/C16H12F2N2O3/c1-16(12-8-7-10(17)9-13(12)18)14(21)20(15(22)23-16)19-11-5-3-2-4-6-11/h2-9,19H,1H3/t16-/m0/s1
+FDN         InChIKey                InChI  1.03                                                                                         OZZFJGCAYWBVBI-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FDN acedrg               243         "dictionary generator"                  
+FDN acedrg_database      11          "data source"                           
+FDN rdkit                2017.03.2   "Chemoinformatics tool"
+FDN refmac5              5.8.0238    "optimization tool"                     

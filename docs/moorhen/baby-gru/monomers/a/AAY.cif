@@ -1,0 +1,556 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AAY     AAY      "8-[2-((2S)-4-HYDROXY-1-{[5-(HYDROXYMETHYL)-6-METHOXY-2-NAPHTHYL]METHYL}-6-OXOPIPERIDIN-2-YL)ETHYL]-3,7-DIMETHYL-1,2,3,7,8,8A-HEXAHYDRONAPHTHALEN-1-YL 2-METHYLBUTANOATE"     NON-POLYMER     93     44     .     
+#
+data_comp_AAY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AAY     O52     O       O       0       29.104      85.289      39.608      
+AAY     C51     C       C       0       29.524      86.084      38.816      
+AAY     C53     C       CH1     0       28.708      86.730      37.716      
+AAY     C62     C       CH3     0       27.848      85.676      37.032      
+AAY     C55     C       CH2     0       27.855      87.873      38.254      
+AAY     C58     C       CH3     0       28.652      89.135      38.519      
+AAY     O50     O       O2      0       30.815      86.528      38.790      
+AAY     C26     C       CH1     0       31.798      85.990      39.726      
+AAY     C28     C       CH2     0       32.300      84.650      39.206      
+AAY     C31     C       CH1     0       33.086      84.792      37.893      
+AAY     C46     C       CH3     0       32.205      84.561      36.661      
+AAY     C33     C       CR16    0       33.842      86.104      37.769      
+AAY     C35     C       CR66    0       33.795      87.093      38.670      
+AAY     C24     C       CH1     0       32.928      87.019      39.911      
+AAY     C36     C       CR16    0       34.635      88.261      38.448      
+AAY     C38     C       CR16    0       34.522      89.368      39.168      
+AAY     C40     C       CH1     0       33.661      89.420      40.408      
+AAY     C42     C       CH3     0       34.533      89.255      41.654      
+AAY     C22     C       CH1     0       32.462      88.441      40.309      
+AAY     C19     C       CH2     0       31.569      88.499      41.559      
+AAY     C16     C       CH2     0       31.044      89.878      41.946      
+AAY     C2      C       CH1     0       29.890      89.921      42.957      
+AAY     N1      N       NR6     0       30.122      89.022      44.119      
+AAY     C12     C       CR6     0       29.377      87.929      44.419      
+AAY     O13     O       O       0       29.750      87.086      45.247      
+AAY     C9      C       CH2     0       28.012      87.789      43.806      
+AAY     C7      C       CH1     0       27.500      89.095      43.231      
+AAY     O14     O       OH1     0       26.289      88.877      42.513      
+AAY     C4      C       CH2     0       28.543      89.665      42.287      
+AAY     C66     C       CH2     0       31.251      89.404      44.992      
+AAY     C69     C       CR6     0       30.904      90.573      45.880      
+AAY     C92     C       CR16    0       31.563      91.817      45.732      
+AAY     C90     C       CR16    0       31.251      92.886      46.524      
+AAY     C73     C       CR66    0       30.243      92.793      47.529      
+AAY     C74     C       CR6     0       29.869      93.887      48.399      
+AAY     C85     C       CH2     0       30.563      95.222      48.262      
+AAY     O88     O       OH1     0       30.241      95.882      47.040      
+AAY     C75     C       CR6     0       28.865      93.683      49.337      
+AAY     O80     O       O2      0       28.549      94.733      50.149      
+AAY     C81     C       CH3     0       27.238      94.879      50.695      
+AAY     C76     C       CR16    0       28.222      92.429      49.468      
+AAY     C78     C       CR16    0       28.566      91.401      48.656      
+AAY     C72     C       CR66    0       29.574      91.538      47.672      
+AAY     C70     C       CR16    0       29.925      90.454      46.832      
+AAY     H53     H       H       0       29.320      87.111      37.037      
+AAY     H621    H       H       0       27.369      86.080      36.287      
+AAY     H622    H       H       0       27.207      85.314      37.669      
+AAY     H623    H       H       0       28.414      84.958      36.700      
+AAY     H551    H       H       0       27.424      87.593      39.089      
+AAY     H552    H       H       0       27.148      88.081      37.609      
+AAY     H581    H       H       0       28.048      89.852      38.781      
+AAY     H582    H       H       0       29.129      89.395      37.712      
+AAY     H583    H       H       0       29.291      88.974      39.235      
+AAY     H26     H       H       0       31.381      85.841      40.599      
+AAY     H281    H       H       0       32.883      84.246      39.884      
+AAY     H282    H       H       0       31.537      84.049      39.068      
+AAY     H31     H       H       0       33.773      84.081      37.904      
+AAY     H461    H       H       0       32.526      85.100      35.919      
+AAY     H462    H       H       0       31.287      84.803      36.857      
+AAY     H463    H       H       0       32.240      83.623      36.410      
+AAY     H33     H       H       0       34.381      86.228      36.997      
+AAY     H24     H       H       0       33.497      86.692      40.650      
+AAY     H36     H       H       0       35.289      88.228      37.768      
+AAY     H38     H       H       0       34.981      90.150      38.916      
+AAY     H40     H       H       0       33.285      90.332      40.449      
+AAY     H421    H       H       0       34.436      88.357      42.010      
+AAY     H422    H       H       0       34.259      89.893      42.332      
+AAY     H423    H       H       0       35.468      89.409      41.438      
+AAY     H22     H       H       0       31.896      88.768      39.552      
+AAY     H191    H       H       0       32.068      88.132      42.319      
+AAY     H192    H       H       0       30.794      87.918      41.414      
+AAY     H161    H       H       0       30.747      90.330      41.127      
+AAY     H162    H       H       0       31.789      90.403      42.307      
+AAY     H2      H       H       0       29.855      90.844      43.305      
+AAY     H91     H       H       0       27.387      87.474      44.491      
+AAY     H92A    H       H       0       28.050      87.118      43.093      
+AAY     H7      H       H       0       27.331      89.740      43.962      
+AAY     H14     H       H       0       25.934      89.622      42.348      
+AAY     H41     H       H       0       28.671      89.047      41.550      
+AAY     H42     H       H       0       28.214      90.499      41.916      
+AAY     H661    H       H       0       32.032      89.641      44.443      
+AAY     H662    H       H       0       31.516      88.646      45.560      
+AAY     H92     H       H       0       32.233      91.908      45.077      
+AAY     H90     H       H       0       31.713      93.696      46.400      
+AAY     H851    H       H       0       31.535      95.086      48.300      
+AAY     H852    H       H       0       30.320      95.812      49.009      
+AAY     H88     H       H       0       30.602      96.650      47.050      
+AAY     H811    H       H       0       27.117      94.242      51.419      
+AAY     H812    H       H       0       26.575      94.714      50.004      
+AAY     H813    H       H       0       27.131      95.781      51.038      
+AAY     H76     H       H       0       27.551      92.302      50.109      
+AAY     H78     H       H       0       28.126      90.575      48.751      
+AAY     H70     H       H       0       29.480      89.633      46.933      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AAY         O52         C51      DOUBLE       n     1.197  0.0100     1.197  0.0100
+AAY         C51         C53      SINGLE       n     1.509  0.0153     1.509  0.0153
+AAY         C51         O50      SINGLE       n     1.346  0.0200     1.346  0.0200
+AAY         C53         C62      SINGLE       n     1.521  0.0173     1.521  0.0173
+AAY         C53         C55      SINGLE       n     1.521  0.0200     1.521  0.0200
+AAY         C55         C58      SINGLE       n     1.515  0.0200     1.515  0.0200
+AAY         O50         C26      SINGLE       n     1.456  0.0100     1.456  0.0100
+AAY         C26         C28      SINGLE       n     1.519  0.0126     1.519  0.0126
+AAY         C26         C24      SINGLE       n     1.532  0.0120     1.532  0.0120
+AAY         C28         C31      SINGLE       n     1.533  0.0100     1.533  0.0100
+AAY         C31         C46      SINGLE       n     1.529  0.0100     1.529  0.0100
+AAY         C31         C33      SINGLE       n     1.513  0.0145     1.513  0.0145
+AAY         C33         C35      DOUBLE       n     1.329  0.0152     1.329  0.0152
+AAY         C35         C24      SINGLE       n     1.508  0.0107     1.508  0.0107
+AAY         C35         C36      SINGLE       n     1.452  0.0100     1.452  0.0100
+AAY         C24         C22      SINGLE       n     1.540  0.0100     1.540  0.0100
+AAY         C36         C38      DOUBLE       n     1.325  0.0100     1.325  0.0100
+AAY         C38         C40      SINGLE       n     1.508  0.0109     1.508  0.0109
+AAY         C40         C42      SINGLE       n     1.528  0.0100     1.528  0.0100
+AAY         C40         C22      SINGLE       n     1.543  0.0112     1.543  0.0112
+AAY         C22         C19      SINGLE       n     1.532  0.0100     1.532  0.0100
+AAY         C19         C16      SINGLE       n     1.524  0.0100     1.524  0.0100
+AAY         C16          C2      SINGLE       n     1.523  0.0200     1.523  0.0200
+AAY          C2          N1      SINGLE       n     1.476  0.0100     1.476  0.0100
+AAY          C2          C4      SINGLE       n     1.519  0.0158     1.519  0.0158
+AAY          N1         C12      SINGLE       n     1.345  0.0100     1.345  0.0100
+AAY          N1         C66      SINGLE       n     1.470  0.0100     1.470  0.0100
+AAY         C12         O13      DOUBLE       n     1.238  0.0100     1.238  0.0100
+AAY         C12          C9      SINGLE       n     1.500  0.0100     1.500  0.0100
+AAY          C9          C7      SINGLE       n     1.517  0.0100     1.517  0.0100
+AAY          C7         O14      SINGLE       n     1.425  0.0100     1.425  0.0100
+AAY          C7          C4      SINGLE       n     1.520  0.0100     1.520  0.0100
+AAY         C66         C69      SINGLE       n     1.508  0.0100     1.508  0.0100
+AAY         C69         C92      DOUBLE       y     1.412  0.0118     1.412  0.0118
+AAY         C69         C70      SINGLE       y     1.369  0.0106     1.369  0.0106
+AAY         C92         C90      SINGLE       y     1.363  0.0100     1.363  0.0100
+AAY         C90         C73      DOUBLE       y     1.419  0.0100     1.419  0.0100
+AAY         C73         C74      SINGLE       y     1.429  0.0140     1.429  0.0140
+AAY         C73         C72      SINGLE       y     1.423  0.0100     1.423  0.0100
+AAY         C74         C85      SINGLE       n     1.505  0.0100     1.505  0.0100
+AAY         C74         C75      DOUBLE       y     1.377  0.0100     1.377  0.0100
+AAY         C85         O88      SINGLE       n     1.425  0.0152     1.425  0.0152
+AAY         C75         O80      SINGLE       n     1.358  0.0100     1.358  0.0100
+AAY         C75         C76      SINGLE       y     1.405  0.0114     1.405  0.0114
+AAY         O80         C81      SINGLE       n     1.424  0.0117     1.424  0.0117
+AAY         C76         C78      DOUBLE       y     1.351  0.0115     1.351  0.0115
+AAY         C78         C72      SINGLE       y     1.415  0.0105     1.415  0.0105
+AAY         C72         C70      DOUBLE       y     1.413  0.0100     1.413  0.0100
+AAY         C53         H53      SINGLE       n     1.089  0.0100     0.990  0.0142
+AAY         C62        H621      SINGLE       n     1.089  0.0100     0.973  0.0141
+AAY         C62        H622      SINGLE       n     1.089  0.0100     0.973  0.0141
+AAY         C62        H623      SINGLE       n     1.089  0.0100     0.973  0.0141
+AAY         C55        H551      SINGLE       n     1.089  0.0100     0.980  0.0160
+AAY         C55        H552      SINGLE       n     1.089  0.0100     0.980  0.0160
+AAY         C58        H581      SINGLE       n     1.089  0.0100     0.973  0.0157
+AAY         C58        H582      SINGLE       n     1.089  0.0100     0.973  0.0157
+AAY         C58        H583      SINGLE       n     1.089  0.0100     0.973  0.0157
+AAY         C26         H26      SINGLE       n     1.089  0.0100     0.980  0.0106
+AAY         C28        H281      SINGLE       n     1.089  0.0100     0.981  0.0170
+AAY         C28        H282      SINGLE       n     1.089  0.0100     0.981  0.0170
+AAY         C31         H31      SINGLE       n     1.089  0.0100     0.989  0.0103
+AAY         C46        H461      SINGLE       n     1.089  0.0100     0.971  0.0163
+AAY         C46        H462      SINGLE       n     1.089  0.0100     0.971  0.0163
+AAY         C46        H463      SINGLE       n     1.089  0.0100     0.971  0.0163
+AAY         C33         H33      SINGLE       n     1.082  0.0130     0.949  0.0200
+AAY         C24         H24      SINGLE       n     1.089  0.0100     0.988  0.0146
+AAY         C36         H36      SINGLE       n     1.082  0.0130     0.944  0.0187
+AAY         C38         H38      SINGLE       n     1.082  0.0130     0.942  0.0158
+AAY         C40         H40      SINGLE       n     1.089  0.0100     0.989  0.0200
+AAY         C42        H421      SINGLE       n     1.089  0.0100     0.971  0.0163
+AAY         C42        H422      SINGLE       n     1.089  0.0100     0.971  0.0163
+AAY         C42        H423      SINGLE       n     1.089  0.0100     0.971  0.0163
+AAY         C22         H22      SINGLE       n     1.089  0.0100     1.001  0.0150
+AAY         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0140
+AAY         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0140
+AAY         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0140
+AAY         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0140
+AAY          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0100
+AAY          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0168
+AAY          C9        H92A      SINGLE       n     1.089  0.0100     0.980  0.0168
+AAY          C7          H7      SINGLE       n     1.089  0.0100     0.989  0.0104
+AAY         O14         H14      SINGLE       n     0.970  0.0120     0.841  0.0200
+AAY          C4         H41      SINGLE       n     1.089  0.0100     0.970  0.0100
+AAY          C4         H42      SINGLE       n     1.089  0.0100     0.970  0.0100
+AAY         C66        H661      SINGLE       n     1.089  0.0100     0.985  0.0126
+AAY         C66        H662      SINGLE       n     1.089  0.0100     0.985  0.0126
+AAY         C92         H92      SINGLE       n     1.082  0.0130     0.941  0.0105
+AAY         C90         H90      SINGLE       n     1.082  0.0130     0.943  0.0175
+AAY         C85        H851      SINGLE       n     1.089  0.0100     0.983  0.0100
+AAY         C85        H852      SINGLE       n     1.089  0.0100     0.983  0.0100
+AAY         O88         H88      SINGLE       n     0.970  0.0120     0.849  0.0200
+AAY         C81        H811      SINGLE       n     1.089  0.0100     0.971  0.0157
+AAY         C81        H812      SINGLE       n     1.089  0.0100     0.971  0.0157
+AAY         C81        H813      SINGLE       n     1.089  0.0100     0.971  0.0157
+AAY         C76         H76      SINGLE       n     1.082  0.0130     0.937  0.0138
+AAY         C78         H78      SINGLE       n     1.082  0.0130     0.941  0.0145
+AAY         C70         H70      SINGLE       n     1.082  0.0130     0.939  0.0158
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AAY         O52         C51         C53     125.546    1.50
+AAY         O52         C51         O50     123.296    1.50
+AAY         C53         C51         O50     111.158    1.50
+AAY         C51         C53         C62     109.799    2.02
+AAY         C51         C53         C55     111.511    2.91
+AAY         C51         C53         H53     109.379    1.80
+AAY         C62         C53         C55     111.474    1.79
+AAY         C62         C53         H53     108.386    1.50
+AAY         C55         C53         H53     107.780    1.50
+AAY         C53         C62        H621     109.605    1.50
+AAY         C53         C62        H622     109.605    1.50
+AAY         C53         C62        H623     109.605    1.50
+AAY        H621         C62        H622     109.411    1.50
+AAY        H621         C62        H623     109.411    1.50
+AAY        H622         C62        H623     109.411    1.50
+AAY         C53         C55         C58     112.999    1.85
+AAY         C53         C55        H551     109.375    1.50
+AAY         C53         C55        H552     109.375    1.50
+AAY         C58         C55        H551     108.717    1.50
+AAY         C58         C55        H552     108.717    1.50
+AAY        H551         C55        H552     107.862    1.50
+AAY         C55         C58        H581     109.566    1.50
+AAY         C55         C58        H582     109.566    1.50
+AAY         C55         C58        H583     109.566    1.50
+AAY        H581         C58        H582     109.380    1.50
+AAY        H581         C58        H583     109.380    1.50
+AAY        H582         C58        H583     109.380    1.50
+AAY         C51         O50         C26     117.993    1.50
+AAY         O50         C26         C28     108.180    1.87
+AAY         O50         C26         C24     108.374    1.95
+AAY         O50         C26         H26     109.295    1.50
+AAY         C28         C26         C24     112.392    2.23
+AAY         C28         C26         H26     108.506    1.50
+AAY         C24         C26         H26     108.183    1.50
+AAY         C26         C28         C31     111.124    1.57
+AAY         C26         C28        H281     109.171    1.50
+AAY         C26         C28        H282     109.171    1.50
+AAY         C31         C28        H281     109.280    1.50
+AAY         C31         C28        H282     109.280    1.50
+AAY        H281         C28        H282     108.270    1.50
+AAY         C28         C31         C46     111.536    1.50
+AAY         C28         C31         C33     111.559    2.33
+AAY         C28         C31         H31     106.712    1.50
+AAY         C46         C31         C33     110.115    2.66
+AAY         C46         C31         H31     107.846    1.50
+AAY         C33         C31         H31     106.538    1.50
+AAY         C31         C46        H461     109.727    1.50
+AAY         C31         C46        H462     109.727    1.50
+AAY         C31         C46        H463     109.727    1.50
+AAY        H461         C46        H462     109.342    1.50
+AAY        H461         C46        H463     109.342    1.50
+AAY        H462         C46        H463     109.342    1.50
+AAY         C31         C33         C35     121.899    3.00
+AAY         C31         C33         H33     119.281    1.98
+AAY         C35         C33         H33     118.820    1.97
+AAY         C33         C35         C24     120.581    2.37
+AAY         C33         C35         C36     118.838    2.38
+AAY         C24         C35         C36     120.581    2.37
+AAY         C26         C24         C35     109.299    2.39
+AAY         C26         C24         C22     112.399    2.36
+AAY         C26         C24         H24     107.288    1.50
+AAY         C35         C24         C22     109.299    2.39
+AAY         C35         C24         H24     107.750    1.86
+AAY         C22         C24         H24     106.651    1.50
+AAY         C35         C36         C38     122.723    1.50
+AAY         C35         C36         H36     118.506    1.50
+AAY         C38         C36         H36     118.771    1.50
+AAY         C36         C38         C40     121.843    3.00
+AAY         C36         C38         H38     120.291    1.50
+AAY         C40         C38         H38     117.866    1.50
+AAY         C38         C40         C42     109.571    1.50
+AAY         C38         C40         C22     112.021    2.38
+AAY         C38         C40         H40     107.086    1.74
+AAY         C42         C40         C22     113.802    1.87
+AAY         C42         C40         H40     106.386    1.70
+AAY         C22         C40         H40     106.668    1.50
+AAY         C40         C42        H421     110.331    1.78
+AAY         C40         C42        H422     110.331    1.78
+AAY         C40         C42        H423     110.331    1.78
+AAY        H421         C42        H422     109.342    1.50
+AAY        H421         C42        H423     109.342    1.50
+AAY        H422         C42        H423     109.342    1.50
+AAY         C24         C22         C40     112.392    2.23
+AAY         C24         C22         C19     112.168    2.77
+AAY         C24         C22         H22     107.223    2.48
+AAY         C40         C22         C19     110.815    2.12
+AAY         C40         C22         H22     107.150    1.50
+AAY         C19         C22         H22     106.549    1.50
+AAY         C22         C19         C16     115.760    1.80
+AAY         C22         C19        H191     108.471    1.50
+AAY         C22         C19        H192     108.471    1.50
+AAY         C16         C19        H191     108.521    1.50
+AAY         C16         C19        H192     108.521    1.50
+AAY        H191         C19        H192     107.474    1.50
+AAY         C19         C16          C2     115.289    2.42
+AAY         C19         C16        H161     108.521    1.50
+AAY         C19         C16        H162     108.521    1.50
+AAY          C2         C16        H161     108.561    1.50
+AAY          C2         C16        H162     108.561    1.50
+AAY        H161         C16        H162     107.474    1.50
+AAY         C16          C2          N1     110.271    2.01
+AAY         C16          C2          C4     113.849    2.23
+AAY         C16          C2          H2     107.628    1.50
+AAY          N1          C2          C4     110.160    1.50
+AAY          N1          C2          H2     107.857    1.50
+AAY          C4          C2          H2     107.540    1.50
+AAY          C2          N1         C12     123.267    2.69
+AAY          C2          N1         C66     116.962    1.78
+AAY         C12          N1         C66     119.772    1.50
+AAY          N1         C12         O13     121.103    1.50
+AAY          N1         C12          C9     117.801    1.50
+AAY         O13         C12          C9     121.096    1.72
+AAY         C12          C9          C7     111.730    1.50
+AAY         C12          C9         H91     108.560    1.50
+AAY         C12          C9        H92A     108.560    1.50
+AAY          C7          C9         H91     108.743    1.50
+AAY          C7          C9        H92A     108.743    1.50
+AAY         H91          C9        H92A     107.877    1.50
+AAY          C9          C7         O14     109.943    1.55
+AAY          C9          C7          C4     110.366    1.50
+AAY          C9          C7          H7     109.453    2.12
+AAY         O14          C7          C4     108.854    1.50
+AAY         O14          C7          H7     108.828    1.50
+AAY          C4          C7          H7     109.261    1.50
+AAY          C7         O14         H14     108.820    1.99
+AAY          C2          C4          C7     113.131    2.09
+AAY          C2          C4         H41     109.019    1.50
+AAY          C2          C4         H42     109.019    1.50
+AAY          C7          C4         H41     109.304    1.50
+AAY          C7          C4         H42     109.304    1.50
+AAY         H41          C4         H42     107.836    1.50
+AAY          N1         C66         C69     112.662    1.53
+AAY          N1         C66        H661     109.326    1.50
+AAY          N1         C66        H662     109.326    1.50
+AAY         C69         C66        H661     109.072    1.50
+AAY         C69         C66        H662     109.072    1.50
+AAY        H661         C66        H662     107.841    1.50
+AAY         C66         C69         C92     120.494    1.50
+AAY         C66         C69         C70     120.416    1.50
+AAY         C92         C69         C70     119.090    1.50
+AAY         C69         C92         C90     121.325    1.50
+AAY         C69         C92         H92     119.225    1.50
+AAY         C90         C92         H92     119.450    1.50
+AAY         C92         C90         C73     120.974    1.50
+AAY         C92         C90         H90     119.605    1.50
+AAY         C73         C90         H90     119.421    1.50
+AAY         C90         C73         C74     122.842    1.50
+AAY         C90         C73         C72     117.832    1.50
+AAY         C74         C73         C72     119.326    1.50
+AAY         C73         C74         C85     120.253    1.90
+AAY         C73         C74         C75     118.951    1.50
+AAY         C85         C74         C75     120.796    1.50
+AAY         C74         C85         O88     112.831    1.50
+AAY         C74         C85        H851     109.450    1.50
+AAY         C74         C85        H852     109.450    1.50
+AAY         O88         C85        H851     108.980    1.50
+AAY         O88         C85        H852     108.980    1.50
+AAY        H851         C85        H852     107.992    1.50
+AAY         C85         O88         H88     108.237    1.57
+AAY         C74         C75         O80     116.958    2.52
+AAY         C74         C75         C76     121.488    1.50
+AAY         O80         C75         C76     121.554    1.50
+AAY         C75         O80         C81     118.585    1.50
+AAY         O80         C81        H811     109.428    1.50
+AAY         O80         C81        H812     109.428    1.50
+AAY         O80         C81        H813     109.428    1.50
+AAY        H811         C81        H812     109.509    1.50
+AAY        H811         C81        H813     109.509    1.50
+AAY        H812         C81        H813     109.509    1.50
+AAY         C75         C76         C78     119.350    1.50
+AAY         C75         C76         H76     120.473    1.50
+AAY         C78         C76         H76     120.177    1.50
+AAY         C76         C78         C72     121.510    1.50
+AAY         C76         C78         H78     119.215    1.50
+AAY         C72         C78         H78     119.275    1.50
+AAY         C73         C72         C78     119.376    1.50
+AAY         C73         C72         C70     119.300    1.50
+AAY         C78         C72         C70     121.324    1.50
+AAY         C69         C70         C72     121.479    1.50
+AAY         C69         C70         H70     119.310    1.50
+AAY         C72         C70         H70     119.212    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AAY             sp2_sp2_9         C31         C33         C35         C24       0.000     5.0     2
+AAY            sp2_sp3_13         C33         C35         C24         C26       0.000    10.0     6
+AAY            sp2_sp2_17         C33         C35         C36         C38     180.000     5.0     2
+AAY            sp3_sp3_23         C19         C22         C24         C26     -60.000    10.0     3
+AAY             sp2_sp2_5         C35         C36         C38         C40       0.000     5.0     2
+AAY            sp2_sp3_20         C36         C38         C40         C42     120.000    10.0     6
+AAY           sp3_sp3_103         C38         C40         C42        H421     180.000    10.0     3
+AAY            sp3_sp3_32         C19         C22         C40         C42      60.000    10.0     3
+AAY           sp3_sp3_112         C16         C19         C22         C24     180.000    10.0     3
+AAY           sp3_sp3_121          C2         C16         C19         C22     180.000    10.0     3
+AAY            sp2_sp3_31         O52         C51         C53         C62       0.000    10.0     6
+AAY            sp2_sp2_13         O52         C51         O50         C26     180.000     5.0     2
+AAY           sp3_sp3_130         C19         C16          C2          N1     180.000    10.0     3
+AAY             sp2_sp3_5         C66          N1          C2         C16     -60.000    10.0     6
+AAY           sp3_sp3_142         C16          C2          C4          C7      60.000    10.0     3
+AAY             sp2_sp2_4         O13         C12          N1         C66       0.000     5.0     2
+AAY            sp2_sp3_38          C2          N1         C66         C69     -90.000    10.0     6
+AAY            sp2_sp3_10         O13         C12          C9          C7     180.000    10.0     6
+AAY             sp3_sp3_4         O14          C7          C9         C12     180.000    10.0     3
+AAY           sp3_sp3_148          C9          C7         O14         H14     180.000    10.0     3
+AAY            sp3_sp3_11          C2          C4          C7         O14     180.000    10.0     3
+AAY            sp2_sp3_44         C92         C69         C66          N1     -90.000    10.0     6
+AAY            sp3_sp3_55         C51         C53         C62        H621     180.000    10.0     3
+AAY            sp3_sp3_64         C51         C53         C55         C58     180.000    10.0     3
+AAY       const_sp2_sp2_3         C66         C69         C92         C90     180.000     5.0     2
+AAY              const_43         C66         C69         C70         C72     180.000    10.0     2
+AAY       const_sp2_sp2_5         C73         C90         C92         C69       0.000     5.0     2
+AAY              const_11         C74         C73         C90         C92     180.000    10.0     2
+AAY              const_24         C90         C73         C74         C85       0.000    10.0     2
+AAY              const_14         C78         C72         C73         C90     180.000    10.0     2
+AAY            sp2_sp3_50         C73         C74         C85         O88     -90.000    10.0     6
+AAY              const_28         C85         C74         C75         O80       0.000    10.0     2
+AAY           sp3_sp3_151         C74         C85         O88         H88     180.000    10.0     3
+AAY            sp2_sp2_19         C74         C75         O80         C81     180.000     5.0     2
+AAY              const_31         O80         C75         C76         C78     180.000    10.0     2
+AAY           sp3_sp3_155        H811         C81         O80         C75     -60.000    10.0     3
+AAY              const_33         C75         C76         C78         C72       0.000    10.0     2
+AAY              const_37         C73         C72         C78         C76       0.000    10.0     2
+AAY              const_17         C69         C70         C72         C73       0.000    10.0     2
+AAY            sp3_sp3_73         C53         C55         C58        H581     180.000    10.0     3
+AAY            sp3_sp3_82         C28         C26         O50         C51     180.000    10.0     3
+AAY            sp3_sp3_86         C35         C24         C26         O50     -60.000    10.0     3
+AAY            sp3_sp3_40         O50         C26         C28         C31     -60.000    10.0     3
+AAY            sp3_sp3_47         C26         C28         C31         C46      60.000    10.0     3
+AAY            sp3_sp3_94         C28         C31         C46        H461     180.000    10.0     3
+AAY            sp2_sp3_26         C35         C33         C31         C46     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AAY    chir_1    C53    C51    C55    C62    positive
+AAY    chir_2    C26    O50    C24    C28    positive
+AAY    chir_3    C31    C33    C28    C46    negative
+AAY    chir_4    C24    C26    C35    C22    negative
+AAY    chir_5    C40    C38    C22    C42    negative
+AAY    chir_6    C22    C24    C40    C19    positive
+AAY    chir_7    C2    N1    C4    C16    positive
+AAY    chir_8    C7    O14    C9    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AAY    plan-1         C66   0.020
+AAY    plan-1         C69   0.020
+AAY    plan-1         C70   0.020
+AAY    plan-1         C72   0.020
+AAY    plan-1         C73   0.020
+AAY    plan-1         C74   0.020
+AAY    plan-1         C75   0.020
+AAY    plan-1         C76   0.020
+AAY    plan-1         C78   0.020
+AAY    plan-1         C85   0.020
+AAY    plan-1         C90   0.020
+AAY    plan-1         C92   0.020
+AAY    plan-1         H70   0.020
+AAY    plan-1         H76   0.020
+AAY    plan-1         H78   0.020
+AAY    plan-1         H90   0.020
+AAY    plan-1         H92   0.020
+AAY    plan-1         O80   0.020
+AAY    plan-2         C51   0.020
+AAY    plan-2         C53   0.020
+AAY    plan-2         O50   0.020
+AAY    plan-2         O52   0.020
+AAY    plan-3         C31   0.020
+AAY    plan-3         C33   0.020
+AAY    plan-3         C35   0.020
+AAY    plan-3         H33   0.020
+AAY    plan-4         C24   0.020
+AAY    plan-4         C33   0.020
+AAY    plan-4         C35   0.020
+AAY    plan-4         C36   0.020
+AAY    plan-5         C35   0.020
+AAY    plan-5         C36   0.020
+AAY    plan-5         C38   0.020
+AAY    plan-5         H36   0.020
+AAY    plan-6         C36   0.020
+AAY    plan-6         C38   0.020
+AAY    plan-6         C40   0.020
+AAY    plan-6         H38   0.020
+AAY    plan-7         C12   0.020
+AAY    plan-7          C2   0.020
+AAY    plan-7         C66   0.020
+AAY    plan-7          N1   0.020
+AAY    plan-8         C12   0.020
+AAY    plan-8          C9   0.020
+AAY    plan-8          N1   0.020
+AAY    plan-8         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AAY           SMILES              ACDLabs 10.04                                                                                                                                                                                           O=C(OC1C2C(=CC(C)C1)C=CC(C)C2CCC3N(C(=O)CC(O)C3)Cc4ccc5c(c4)ccc(OC)c5CO)C(C)CC
+AAY SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                          CC[C@H](C)C(=O)O[C@H]1C[C@@H](C)C=C2C=C[C@H](C)[C@H](CC[C@H]3C[C@@H](O)CC(=O)N3Cc4ccc5c(CO)c(OC)ccc5c4)[C@@H]12
+AAY           SMILES               CACTVS 3.341                                                                                                                                                                     CC[CH](C)C(=O)O[CH]1C[CH](C)C=C2C=C[CH](C)[CH](CC[CH]3C[CH](O)CC(=O)N3Cc4ccc5c(CO)c(OC)ccc5c4)[CH]12
+AAY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                             CC[C@H](C)C(=O)O[C@H]1C[C@H](C=C2[C@H]1[C@H]([C@H](C=C2)C)CC[C@H]3C[C@H](CC(=O)N3Cc4ccc5c(c4)ccc(c5CO)OC)O)C
+AAY           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                             CCC(C)C(=O)OC1CC(C=C2C1C(C(C=C2)C)CCC3CC(CC(=O)N3Cc4ccc5c(c4)ccc(c5CO)OC)O)C
+AAY            InChI                InChI  1.03 InChI=1S/C37H49NO6/c1-6-23(3)37(42)44-34-16-22(2)15-27-9-7-24(4)30(36(27)34)13-11-28-18-29(40)19-35(41)38(28)20-25-8-12-31-26(17-25)10-14-33(43-5)32(31)21-39/h7-10,12,14-15,17,22-24,28-30,34,36,39-40H,6,11,13,16,18-21H2,1-5H3/t22-,23-,24-,28-,29+,30-,34-,36-/m0/s1
+AAY         InChIKey                InChI  1.03                                                                                                                                                                                                                                              WPVRNXUYVXQXPY-YFAYRSKXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AAY acedrg               243         "dictionary generator"                  
+AAY acedrg_database      11          "data source"                           
+AAY rdkit                2017.03.2   "Chemoinformatics tool"
+AAY refmac5              5.8.0238    "optimization tool"                     

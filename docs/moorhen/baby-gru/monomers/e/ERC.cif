@@ -1,0 +1,373 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ERC     ERC      8-hydroxy-5-[(1R)-1-hydroxy-2-({2-[3-methoxy-4-(3-sulfanylpropoxy)phenyl]ethyl}amino)ethyl]quinolin-2(1H)-one     NON-POLYMER     59     31     .     
+#
+data_comp_ERC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ERC     C1      C       CR6     0       16.348      8.556       14.285      
+ERC     N1      N       NR6     0       17.626      8.097       14.390      
+ERC     O1      O       O       0       15.659      8.744       15.307      
+ERC     S1      S       SH1     0       9.115       11.753      2.389       
+ERC     C2      C       CR16    0       15.869      8.799       12.943      
+ERC     N2      N       NT1     0       17.189      7.085       7.505       
+ERC     O2      O       OH1     0       20.266      7.141       14.748      
+ERC     C3      C       CR16    0       16.646      8.582       11.863      
+ERC     O3      O       OH1     0       19.479      8.366       8.539       
+ERC     C4      C       CR66    0       17.971      8.106       11.999      
+ERC     O4      O       O2      0       14.650      11.327      5.318       
+ERC     C5      C       CR66    0       18.456      7.862       13.306      
+ERC     O5      O       O2      0       12.104      10.952      5.871       
+ERC     C6      C       CR6     0       19.779      7.383       13.484      
+ERC     C7      C       CR16    0       20.591      7.155       12.398      
+ERC     C8      C       CR16    0       20.117      7.394       11.094      
+ERC     C9      C       CR6     0       18.848      7.864       10.858      
+ERC     C10     C       CH1     0       18.395      8.098       9.424       
+ERC     C11     C       CH2     0       17.632      6.885       8.892       
+ERC     C12     C       CH2     0       16.168      6.126       7.058       
+ERC     C13     C       CH2     0       15.608      6.476       5.678       
+ERC     C14     C       CR6     0       14.651      7.645       5.728       
+ERC     C15     C       CR16    0       13.306      7.466       6.022       
+ERC     C16     C       CR16    0       12.425      8.546       6.076       
+ERC     C17     C       CR6     0       12.891      9.833       5.835       
+ERC     C18     C       CR6     0       14.261      10.031      5.540       
+ERC     C19     C       CR16    0       15.114      8.935       5.492       
+ERC     C20     C       CH3     0       15.278      11.628      4.074       
+ERC     C21     C       CH2     0       11.602      11.468      4.630       
+ERC     C22     C       CH2     0       10.297      12.180      4.891       
+ERC     C23     C       CH2     0       9.106       11.544      4.187       
+ERC     HN1     H       H       0       17.939      7.941       15.213      
+ERC     HS1     H       HSH1    0       8.205       11.012      2.127       
+ERC     H2      H       H       0       14.979      9.121       12.829      
+ERC     HN2     H       H       0       16.862      7.917       7.439       
+ERC     HO2     H       H       0       21.078      7.349       14.944      
+ERC     H3      H       H       0       16.293      8.753       11.010      
+ERC     HO3     H       H       0       19.740      9.164       8.663       
+ERC     H7      H       H       0       21.466      6.838       12.528      
+ERC     H8      H       H       0       20.695      7.227       10.369      
+ERC     H10     H       H       0       17.798      8.881       9.399       
+ERC     H11     H       H       0       18.212      6.094       8.933       
+ERC     H11A    H       H       0       16.850      6.721       9.463       
+ERC     H12     H       H       0       15.430      6.109       7.706       
+ERC     H12A    H       H       0       16.562      5.227       7.024       
+ERC     H13     H       H       0       15.143      5.693       5.313       
+ERC     H13A    H       H       0       16.351      6.692       5.076       
+ERC     H15     H       H       0       12.980      6.597       6.185       
+ERC     H16     H       H       0       11.513      8.405       6.274       
+ERC     H19     H       H       0       16.029      9.069       5.296       
+ERC     H20     H       H       0       14.729      11.297      3.344       
+ERC     H20A    H       H       0       16.151      11.203      4.042       
+ERC     H20B    H       H       0       15.382      12.589      3.990       
+ERC     H21     H       H       0       11.467      10.737      3.991       
+ERC     H21A    H       H       0       12.251      12.093      4.247       
+ERC     H22     H       H       0       10.380      13.109      4.593       
+ERC     H22A    H       H       0       10.123      12.192      5.855       
+ERC     H23     H       H       0       9.110       10.581      4.349       
+ERC     H23A    H       H       0       8.282       11.961      4.506       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ERC          C1          N1      SINGLE       y     1.359  0.0100     1.359  0.0100
+ERC          C1          O1      DOUBLE       n     1.247  0.0100     1.247  0.0100
+ERC          C1          C2      SINGLE       y     1.444  0.0100     1.444  0.0100
+ERC          N1          C5      SINGLE       y     1.380  0.0100     1.380  0.0100
+ERC          S1         C23      SINGLE       n     1.810  0.0100     1.810  0.0100
+ERC          C2          C3      DOUBLE       y     1.345  0.0100     1.345  0.0100
+ERC          N2         C11      SINGLE       n     1.467  0.0124     1.467  0.0124
+ERC          N2         C12      SINGLE       n     1.467  0.0127     1.467  0.0127
+ERC          O2          C6      SINGLE       n     1.374  0.0155     1.374  0.0155
+ERC          C3          C4      SINGLE       y     1.407  0.0100     1.407  0.0100
+ERC          O3         C10      SINGLE       n     1.423  0.0133     1.423  0.0133
+ERC          C4          C5      DOUBLE       y     1.404  0.0111     1.404  0.0111
+ERC          C4          C9      SINGLE       y     1.446  0.0105     1.446  0.0105
+ERC          O4         C18      SINGLE       n     1.369  0.0100     1.369  0.0100
+ERC          O4         C20      SINGLE       n     1.424  0.0117     1.424  0.0117
+ERC          C5          C6      SINGLE       y     1.412  0.0102     1.412  0.0102
+ERC          O5         C17      SINGLE       n     1.367  0.0100     1.367  0.0100
+ERC          O5         C21      SINGLE       n     1.432  0.0101     1.432  0.0101
+ERC          C6          C7      DOUBLE       y     1.372  0.0177     1.372  0.0177
+ERC          C7          C8      SINGLE       y     1.405  0.0135     1.405  0.0135
+ERC          C8          C9      DOUBLE       y     1.367  0.0100     1.367  0.0100
+ERC          C9         C10      SINGLE       n     1.516  0.0100     1.516  0.0100
+ERC         C10         C11      SINGLE       n     1.527  0.0100     1.527  0.0100
+ERC         C12         C13      SINGLE       n     1.525  0.0180     1.525  0.0180
+ERC         C13         C14      SINGLE       n     1.511  0.0100     1.511  0.0100
+ERC         C14         C15      DOUBLE       y     1.385  0.0110     1.385  0.0110
+ERC         C14         C19      SINGLE       y     1.388  0.0100     1.388  0.0100
+ERC         C15         C16      SINGLE       y     1.391  0.0100     1.391  0.0100
+ERC         C16         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ERC         C17         C18      SINGLE       y     1.408  0.0100     1.408  0.0100
+ERC         C18         C19      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ERC         C21         C22      SINGLE       n     1.506  0.0131     1.506  0.0131
+ERC         C22         C23      SINGLE       n     1.522  0.0100     1.522  0.0100
+ERC          N1         HN1      SINGLE       n     1.016  0.0100     0.894  0.0200
+ERC          S1         HS1      SINGLE       n     1.338  0.0100     1.203  0.0200
+ERC          C2          H2      SINGLE       n     1.082  0.0130     0.953  0.0190
+ERC          N2         HN2      SINGLE       n     1.036  0.0160     0.899  0.0200
+ERC          O2         HO2      SINGLE       n     0.966  0.0059     0.861  0.0200
+ERC          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0175
+ERC          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+ERC          C7          H7      SINGLE       n     1.082  0.0130     0.940  0.0139
+ERC          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0200
+ERC         C10         H10      SINGLE       n     1.089  0.0100     0.987  0.0156
+ERC         C11         H11      SINGLE       n     1.089  0.0100     0.982  0.0143
+ERC         C11        H11A      SINGLE       n     1.089  0.0100     0.982  0.0143
+ERC         C12         H12      SINGLE       n     1.089  0.0100     0.982  0.0143
+ERC         C12        H12A      SINGLE       n     1.089  0.0100     0.982  0.0143
+ERC         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0158
+ERC         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0158
+ERC         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0173
+ERC         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0200
+ERC         C19         H19      SINGLE       n     1.082  0.0130     0.945  0.0164
+ERC         C20         H20      SINGLE       n     1.089  0.0100     0.971  0.0157
+ERC         C20        H20A      SINGLE       n     1.089  0.0100     0.971  0.0157
+ERC         C20        H20B      SINGLE       n     1.089  0.0100     0.971  0.0157
+ERC         C21         H21      SINGLE       n     1.089  0.0100     0.979  0.0131
+ERC         C21        H21A      SINGLE       n     1.089  0.0100     0.979  0.0131
+ERC         C22         H22      SINGLE       n     1.089  0.0100     0.979  0.0100
+ERC         C22        H22A      SINGLE       n     1.089  0.0100     0.979  0.0100
+ERC         C23         H23      SINGLE       n     1.089  0.0100     0.977  0.0169
+ERC         C23        H23A      SINGLE       n     1.089  0.0100     0.977  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ERC          N1          C1          O1     120.385    1.50
+ERC          N1          C1          C2     115.904    1.50
+ERC          O1          C1          C2     123.717    1.50
+ERC          C1          N1          C5     123.567    1.50
+ERC          C1          N1         HN1     117.905    1.50
+ERC          C5          N1         HN1     118.528    1.72
+ERC         C23          S1         HS1      98.146    3.00
+ERC          C1          C2          C3     121.361    1.50
+ERC          C1          C2          H2     118.668    1.50
+ERC          C3          C2          H2     119.971    1.50
+ERC         C11          N2         C12     113.474    1.55
+ERC         C11          N2         HN2     108.280    3.00
+ERC         C12          N2         HN2     108.280    3.00
+ERC          C6          O2         HO2     120.000    3.00
+ERC          C2          C3          C4     120.775    1.50
+ERC          C2          C3          H3     119.629    1.50
+ERC          C4          C3          H3     119.596    1.50
+ERC         C10          O3         HO3     108.627    3.00
+ERC          C3          C4          C5     118.982    1.50
+ERC          C3          C4          C9     121.764    1.50
+ERC          C5          C4          C9     119.255    1.50
+ERC         C18          O4         C20     117.276    1.50
+ERC          N1          C5          C4     119.411    1.50
+ERC          N1          C5          C6     121.105    1.50
+ERC          C4          C5          C6     119.484    1.50
+ERC         C17          O5         C21     117.279    1.50
+ERC          O2          C6          C5     118.174    2.50
+ERC          O2          C6          C7     121.410    3.00
+ERC          C5          C6          C7     120.416    1.50
+ERC          C6          C7          C8     120.168    1.50
+ERC          C6          C7          H7     119.820    1.50
+ERC          C8          C7          H7     120.012    1.50
+ERC          C7          C8          C9     121.479    1.50
+ERC          C7          C8          H8     119.069    1.50
+ERC          C9          C8          H8     119.452    1.50
+ERC          C4          C9          C8     119.199    1.50
+ERC          C4          C9         C10     120.855    1.56
+ERC          C8          C9         C10     119.946    1.50
+ERC          O3         C10          C9     111.310    1.88
+ERC          O3         C10         C11     109.047    2.04
+ERC          O3         C10         H10     108.576    1.50
+ERC          C9         C10         C11     111.777    2.17
+ERC          C9         C10         H10     109.106    1.50
+ERC         C11         C10         H10     109.057    1.50
+ERC          N2         C11         C10     111.883    2.59
+ERC          N2         C11         H11     109.402    1.50
+ERC          N2         C11        H11A     109.402    1.50
+ERC         C10         C11         H11     109.677    1.73
+ERC         C10         C11        H11A     109.677    1.73
+ERC         H11         C11        H11A     108.426    1.50
+ERC          N2         C12         C13     111.644    2.18
+ERC          N2         C12         H12     109.402    1.50
+ERC          N2         C12        H12A     109.402    1.50
+ERC         C13         C12         H12     109.189    1.50
+ERC         C13         C12        H12A     109.189    1.50
+ERC         H12         C12        H12A     108.162    1.50
+ERC         C12         C13         C14     112.139    1.84
+ERC         C12         C13         H13     109.025    1.50
+ERC         C12         C13        H13A     109.025    1.50
+ERC         C14         C13         H13     109.239    1.50
+ERC         C14         C13        H13A     109.239    1.50
+ERC         H13         C13        H13A     107.823    1.50
+ERC         C13         C14         C15     121.194    1.50
+ERC         C13         C14         C19     120.255    1.50
+ERC         C15         C14         C19     118.552    1.50
+ERC         C14         C15         C16     121.602    1.50
+ERC         C14         C15         H15     119.253    1.50
+ERC         C16         C15         H15     119.145    1.50
+ERC         C15         C16         C17     119.824    1.50
+ERC         C15         C16         H16     120.217    1.50
+ERC         C17         C16         H16     119.960    1.50
+ERC          O5         C17         C16     124.672    1.50
+ERC          O5         C17         C18     115.710    1.70
+ERC         C16         C17         C18     119.617    1.50
+ERC          O4         C18         C17     115.493    1.50
+ERC          O4         C18         C19     125.071    1.50
+ERC         C17         C18         C19     119.436    1.50
+ERC         C14         C19         C18     120.969    1.50
+ERC         C14         C19         H19     119.474    1.50
+ERC         C18         C19         H19     119.556    1.50
+ERC          O4         C20         H20     109.428    1.50
+ERC          O4         C20        H20A     109.428    1.50
+ERC          O4         C20        H20B     109.428    1.50
+ERC         H20         C20        H20A     109.509    1.50
+ERC         H20         C20        H20B     109.509    1.50
+ERC        H20A         C20        H20B     109.509    1.50
+ERC          O5         C21         C22     108.230    2.17
+ERC          O5         C21         H21     109.943    1.50
+ERC          O5         C21        H21A     109.943    1.50
+ERC         C22         C21         H21     110.123    1.50
+ERC         C22         C21        H21A     110.123    1.50
+ERC         H21         C21        H21A     108.474    1.50
+ERC         C21         C22         C23     113.075    1.97
+ERC         C21         C22         H22     108.893    1.50
+ERC         C21         C22        H22A     108.893    1.50
+ERC         C23         C22         H22     108.867    1.50
+ERC         C23         C22        H22A     108.867    1.50
+ERC         H22         C22        H22A     107.715    1.50
+ERC          S1         C23         C22     113.854    1.50
+ERC          S1         C23         H23     105.353    2.82
+ERC          S1         C23        H23A     105.353    2.82
+ERC         C22         C23         H23     109.079    1.50
+ERC         C22         C23        H23A     109.079    1.50
+ERC         H23         C23        H23A     111.425    1.71
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ERC              const_23          O1          C1          N1          C5     180.000    10.0     2
+ERC              const_59          O1          C1          C2          C3     180.000    10.0     2
+ERC             sp2_sp2_3         C17         C18          O4         C20     180.000     5.0     2
+ERC            sp3_sp3_20         H20         C20          O4         C18     -60.000    10.0     3
+ERC              const_44          N1          C5          C6          O2       0.000    10.0     2
+ERC             sp2_sp2_5         C16         C17          O5         C21     180.000     5.0     2
+ERC            sp3_sp3_23         C22         C21          O5         C17     180.000    10.0     3
+ERC              const_47          O2          C6          C7          C8     180.000    10.0     2
+ERC              const_49          C6          C7          C8          C9       0.000    10.0     2
+ERC              const_54          C7          C8          C9         C10     180.000    10.0     2
+ERC             sp2_sp3_1          C4          C9         C10          O3     150.000    10.0     6
+ERC            sp3_sp3_26          O3         C10         C11          N2     180.000    10.0     3
+ERC            sp3_sp3_35          N2         C12         C13         C14     180.000    10.0     3
+ERC              const_25          C4          C5          N1          C1       0.000    10.0     2
+ERC             sp2_sp3_8         C15         C14         C13         C12     -90.000    10.0     6
+ERC       const_sp2_sp2_3         C13         C14         C15         C16     180.000     5.0     2
+ERC              const_67         C13         C14         C19         C18     180.000    10.0     2
+ERC       const_sp2_sp2_5         C14         C15         C16         C17       0.000     5.0     2
+ERC              const_10         C15         C16         C17          O5     180.000    10.0     2
+ERC              const_16          O5         C17         C18          O4       0.000    10.0     2
+ERC              const_19          O4         C18         C19         C14     180.000    10.0     2
+ERC            sp3_sp3_44          O5         C21         C22         C23     180.000    10.0     3
+ERC            sp3_sp3_53         C21         C22         C23          S1     180.000    10.0     3
+ERC             sp3_sp3_1         C22         C23          S1         HS1     180.000    10.0     3
+ERC              const_37          C1          C2          C3          C4       0.000    10.0     2
+ERC             sp3_sp3_5         C10         C11          N2         C12     -60.000    10.0     3
+ERC            sp3_sp3_10         C13         C12          N2         C11     180.000    10.0     3
+ERC             sp2_sp2_1          C5          C6          O2         HO2     180.000     5.0     2
+ERC              const_33          C2          C3          C4          C5       0.000    10.0     2
+ERC            sp3_sp3_17         C11         C10          O3         HO3      60.000    10.0     3
+ERC              const_29          C3          C4          C5          N1       0.000    10.0     2
+ERC              const_64          C3          C4          C9         C10       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ERC    chir_1    C10    O3    C11    C9    negative
+ERC    chir_2    N2    C11    C12    HN2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ERC    plan-1          C1   0.020
+ERC    plan-1         C10   0.020
+ERC    plan-1          C2   0.020
+ERC    plan-1          C3   0.020
+ERC    plan-1          C4   0.020
+ERC    plan-1          C5   0.020
+ERC    plan-1          C6   0.020
+ERC    plan-1          C7   0.020
+ERC    plan-1          C8   0.020
+ERC    plan-1          C9   0.020
+ERC    plan-1          H2   0.020
+ERC    plan-1          H3   0.020
+ERC    plan-1          H7   0.020
+ERC    plan-1          H8   0.020
+ERC    plan-1         HN1   0.020
+ERC    plan-1          N1   0.020
+ERC    plan-1          O1   0.020
+ERC    plan-1          O2   0.020
+ERC    plan-2         C13   0.020
+ERC    plan-2         C14   0.020
+ERC    plan-2         C15   0.020
+ERC    plan-2         C16   0.020
+ERC    plan-2         C17   0.020
+ERC    plan-2         C18   0.020
+ERC    plan-2         C19   0.020
+ERC    plan-2         H15   0.020
+ERC    plan-2         H16   0.020
+ERC    plan-2         H19   0.020
+ERC    plan-2          O4   0.020
+ERC    plan-2          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ERC           SMILES              ACDLabs 12.01                                                                                                                               O=C3C=Cc1c(c(O)ccc1C(O)CNCCc2ccc(OCCCS)c(OC)c2)N3
+ERC SMILES_CANONICAL               CACTVS 3.370                                                                                                                             COc1cc(CCNC[C@H](O)c2ccc(O)c3NC(=O)C=Cc23)ccc1OCCCS
+ERC           SMILES               CACTVS 3.370                                                                                                                              COc1cc(CCNC[CH](O)c2ccc(O)c3NC(=O)C=Cc23)ccc1OCCCS
+ERC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                            COc1cc(ccc1OCCCS)CCNC[C@@H](c2ccc(c3c2C=CC(=O)N3)O)O
+ERC           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                 COc1cc(ccc1OCCCS)CCNCC(c2ccc(c3c2C=CC(=O)N3)O)O
+ERC            InChI                InChI  1.03 InChI=1S/C23H28N2O5S/c1-29-21-13-15(3-7-20(21)30-11-2-12-31)9-10-24-14-19(27)16-4-6-18(26)23-17(16)5-8-22(28)25-23/h3-8,13,19,24,26-27,31H,2,9-12,14H2,1H3,(H,25,28)/t19-/m0/s1
+ERC         InChIKey                InChI  1.03                                                                                                                                                     WAQRESHSGHIXBV-IBGZPJMESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ERC acedrg               243         "dictionary generator"                  
+ERC acedrg_database      11          "data source"                           
+ERC rdkit                2017.03.2   "Chemoinformatics tool"
+ERC refmac5              5.8.0238    "optimization tool"                     

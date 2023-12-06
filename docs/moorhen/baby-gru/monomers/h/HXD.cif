@@ -1,0 +1,247 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HXD     HXD      "(3R)-3-HYDROXYDODECANOIC ACID"     NON-POLYMER     38     15     .     
+#
+data_comp_HXD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HXD     C11     C       CH2     0       28.452      6.632       62.816      
+HXD     C10     C       CH2     0       27.932      6.304       61.439      
+HXD     C12     C       CH3     0       29.960      6.636       62.906      
+HXD     C9      C       CH2     0       26.431      6.413       61.273      
+HXD     C8      C       CH2     0       25.620      5.392       62.047      
+HXD     C7      C       CH2     0       25.822      3.954       61.613      
+HXD     C6      C       CH2     0       26.702      3.139       62.533      
+HXD     C5      C       CH2     0       26.984      1.740       62.043      
+HXD     C4      C       CH2     0       28.068      1.646       60.997      
+HXD     C3      C       CH1     0       28.336      0.247       60.462      
+HXD     O8      O       OH1     0       29.021      0.335       59.211      
+HXD     C2      C       CH2     0       29.148      -0.635      61.404      
+HXD     C1      C       C       0       29.194      -2.084      60.949      
+HXD     O1      O       OC      -1      28.547      -2.928      61.600      
+HXD     O       O       O       0       29.878      -2.365      59.945      
+HXD     H111    H       H       0       28.099      5.974       63.453      
+HXD     H112    H       H       0       28.115      7.515       63.080      
+HXD     H101    H       H       0       28.210      5.392       61.210      
+HXD     H102    H       H       0       28.359      6.910       60.796      
+HXD     H121    H       H       0       30.232      6.882       63.807      
+HXD     H122    H       H       0       30.321      7.280       62.273      
+HXD     H123    H       H       0       30.301      5.750       62.695      
+HXD     H91     H       H       0       26.216      6.324       60.321      
+HXD     H92     H       H       0       26.151      7.310       61.555      
+HXD     H81     H       H       0       24.669      5.614       61.948      
+HXD     H82     H       H       0       25.840      5.470       62.999      
+HXD     H71     H       H       0       26.217      3.947       60.715      
+HXD     H72     H       H       0       24.945      3.519       61.554      
+HXD     H61     H       H       0       26.271      3.083       63.412      
+HXD     H62     H       H       0       27.555      3.609       62.650      
+HXD     H51     H       H       0       26.157      1.366       61.670      
+HXD     H52     H       H       0       27.241      1.185       62.810      
+HXD     H41     H       H       0       28.901      1.996       61.379      
+HXD     H42     H       H       0       27.825      2.225       60.243      
+HXD     H3      H       H       0       27.457      -0.190      60.300      
+HXD     HO8     H       H       0       29.764      0.731       59.322      
+HXD     H21     H       H       0       28.755      -0.596      62.302      
+HXD     H22     H       H       0       30.064      -0.290      61.462      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HXD         C11         C10      SINGLE       n     1.507  0.0200     1.507  0.0200
+HXD         C11         C12      SINGLE       n     1.510  0.0200     1.510  0.0200
+HXD         C10          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+HXD          C9          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+HXD          C8          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+HXD          C7          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+HXD          C6          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+HXD          C5          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+HXD          C4          C3      SINGLE       n     1.520  0.0169     1.520  0.0169
+HXD          C3          O8      SINGLE       n     1.426  0.0179     1.426  0.0179
+HXD          C3          C2      SINGLE       n     1.524  0.0118     1.524  0.0118
+HXD          C2          C1      SINGLE       n     1.519  0.0109     1.519  0.0109
+HXD          C1          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+HXD          C1           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HXD         C11        H111      SINGLE       n     1.089  0.0100     0.982  0.0155
+HXD         C11        H112      SINGLE       n     1.089  0.0100     0.982  0.0155
+HXD         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD         C12        H121      SINGLE       n     1.089  0.0100     0.973  0.0157
+HXD         C12        H122      SINGLE       n     1.089  0.0100     0.973  0.0157
+HXD         C12        H123      SINGLE       n     1.089  0.0100     0.973  0.0157
+HXD          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+HXD          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+HXD          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+HXD          C3          H3      SINGLE       n     1.089  0.0100     0.995  0.0200
+HXD          O8         HO8      SINGLE       n     0.970  0.0120     0.848  0.0200
+HXD          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+HXD          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HXD         C10         C11         C12     113.719    3.00
+HXD         C10         C11        H111     108.758    1.50
+HXD         C10         C11        H112     108.758    1.50
+HXD         C12         C11        H111     108.918    1.50
+HXD         C12         C11        H112     108.918    1.50
+HXD        H111         C11        H112     107.763    1.50
+HXD         C11         C10          C9     114.362    3.00
+HXD         C11         C10        H101     108.653    1.50
+HXD         C11         C10        H102     108.653    1.50
+HXD          C9         C10        H101     108.698    1.50
+HXD          C9         C10        H102     108.698    1.50
+HXD        H101         C10        H102     107.646    1.50
+HXD         C11         C12        H121     109.554    1.50
+HXD         C11         C12        H122     109.554    1.50
+HXD         C11         C12        H123     109.554    1.50
+HXD        H121         C12        H122     109.380    1.50
+HXD        H121         C12        H123     109.380    1.50
+HXD        H122         C12        H123     109.380    1.50
+HXD         C10          C9          C8     114.243    1.69
+HXD         C10          C9         H91     108.698    1.50
+HXD         C10          C9         H92     108.698    1.50
+HXD          C8          C9         H91     108.698    1.50
+HXD          C8          C9         H92     108.698    1.50
+HXD         H91          C9         H92     107.646    1.50
+HXD          C9          C8          C7     114.243    1.69
+HXD          C9          C8         H81     108.698    1.50
+HXD          C9          C8         H82     108.698    1.50
+HXD          C7          C8         H81     108.698    1.50
+HXD          C7          C8         H82     108.698    1.50
+HXD         H81          C8         H82     107.646    1.50
+HXD          C8          C7          C6     114.243    1.69
+HXD          C8          C7         H71     108.698    1.50
+HXD          C8          C7         H72     108.698    1.50
+HXD          C6          C7         H71     108.698    1.50
+HXD          C6          C7         H72     108.698    1.50
+HXD         H71          C7         H72     107.646    1.50
+HXD          C7          C6          C5     114.243    1.69
+HXD          C7          C6         H61     108.698    1.50
+HXD          C7          C6         H62     108.698    1.50
+HXD          C5          C6         H61     108.698    1.50
+HXD          C5          C6         H62     108.698    1.50
+HXD         H61          C6         H62     107.646    1.50
+HXD          C6          C5          C4     114.776    2.10
+HXD          C6          C5         H51     108.698    1.50
+HXD          C6          C5         H52     108.698    1.50
+HXD          C4          C5         H51     108.597    1.50
+HXD          C4          C5         H52     108.597    1.50
+HXD         H51          C5         H52     107.646    1.50
+HXD          C5          C4          C3     115.351    1.65
+HXD          C5          C4         H41     108.572    1.50
+HXD          C5          C4         H42     108.572    1.50
+HXD          C3          C4         H41     108.478    1.50
+HXD          C3          C4         H42     108.478    1.50
+HXD         H41          C4         H42     107.428    1.50
+HXD          C4          C3          O8     109.904    2.15
+HXD          C4          C3          C2     114.304    1.50
+HXD          C4          C3          H3     108.124    1.50
+HXD          O8          C3          C2     108.747    2.04
+HXD          O8          C3          H3     108.270    1.50
+HXD          C2          C3          H3     108.825    1.50
+HXD          C3          O8         HO8     108.921    2.24
+HXD          C3          C2          C1     111.511    2.91
+HXD          C3          C2         H21     109.119    1.50
+HXD          C3          C2         H22     109.119    1.50
+HXD          C1          C2         H21     108.816    1.50
+HXD          C1          C2         H22     108.816    1.50
+HXD         H21          C2         H22     107.737    1.50
+HXD          C2          C1          O1     118.254    1.50
+HXD          C2          C1           O     118.254    1.50
+HXD          O1          C1           O     123.492    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HXD             sp3_sp3_1          C9         C10         C11         C12     180.000    10.0     3
+HXD            sp3_sp3_10         C10         C11         C12        H121     180.000    10.0     3
+HXD             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+HXD            sp3_sp3_19         C11         C10          C9          C8     180.000    10.0     3
+HXD            sp3_sp3_28          C7          C8          C9         C10     180.000    10.0     3
+HXD            sp3_sp3_37          C6          C7          C8          C9     180.000    10.0     3
+HXD            sp3_sp3_46          C5          C6          C7          C8     180.000    10.0     3
+HXD            sp3_sp3_55          C4          C5          C6          C7     180.000    10.0     3
+HXD            sp3_sp3_64          C3          C4          C5          C6     180.000    10.0     3
+HXD            sp3_sp3_73          O8          C3          C4          C5     180.000    10.0     3
+HXD            sp3_sp3_82          C4          C3          O8         HO8     180.000    10.0     3
+HXD            sp3_sp3_85          C1          C2          C3          C4     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HXD    chir_1    C3    O8    C2    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HXD    plan-1          C1   0.020
+HXD    plan-1          C2   0.020
+HXD    plan-1           O   0.020
+HXD    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HXD           SMILES              ACDLabs 10.04                                                                           O=C(O)CC(O)CCCCCCCCC
+HXD SMILES_CANONICAL               CACTVS 3.341                                                                      CCCCCCCCC[C@@H](O)CC(O)=O
+HXD           SMILES               CACTVS 3.341                                                                        CCCCCCCCC[CH](O)CC(O)=O
+HXD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                       CCCCCCCCC[C@H](CC(=O)O)O
+HXD           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CCCCCCCCCC(CC(=O)O)O
+HXD            InChI                InChI  1.03 InChI=1S/C12H24O3/c1-2-3-4-5-6-7-8-9-11(13)10-12(14)15/h11,13H,2-10H2,1H3,(H,14,15)/t11-/m1/s1
+HXD         InChIKey                InChI  1.03                                                                    MUCMKTPAZLSKTL-LLVKDONJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HXD acedrg               243         "dictionary generator"                  
+HXD acedrg_database      11          "data source"                           
+HXD rdkit                2017.03.2   "Chemoinformatics tool"
+HXD refmac5              5.8.0238    "optimization tool"                     

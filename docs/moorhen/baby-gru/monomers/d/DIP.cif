@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DIP     DIP      DIPENTYLAMINE     NON-POLYMER     34     11     .     
+#
+data_comp_DIP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DIP     N       N       NT1     0       41.391      -9.843      45.165      
+DIP     C1      C       CH2     0       42.600      -10.604     45.485      
+DIP     C2      C       CH2     0       43.309      -11.092     44.232      
+DIP     C3      C       CH2     0       44.560      -11.889     44.535      
+DIP     C4      C       CH2     0       45.349      -12.283     43.313      
+DIP     C5      C       CH3     0       44.692      -13.366     42.492      
+DIP     "C1'"   C       CH2     0       40.438      -9.642      46.261      
+DIP     "C2'"   C       CH2     0       40.998      -8.827      47.420      
+DIP     "C3'"   C       CH2     0       41.382      -7.406      47.059      
+DIP     "C4'"   C       CH2     0       41.726      -6.543      48.247      
+DIP     "C5'"   C       CH3     0       42.132      -5.127      47.898      
+DIP     HN      H       H       0       41.629      -9.051      44.813      
+DIP     H11     H       H       0       42.361      -11.374     46.041      
+DIP     H12     H       H       0       43.212      -10.039     46.002      
+DIP     H21     H       H       0       43.550      -10.317     43.680      
+DIP     H22     H       H       0       42.692      -11.651     43.714      
+DIP     H31     H       H       0       44.307      -12.702     45.021      
+DIP     H32     H       H       0       45.138      -11.358     45.124      
+DIP     H41     H       H       0       46.237      -12.594     43.597      
+DIP     H42     H       H       0       45.476      -11.489     42.750      
+DIP     H51     H       H       0       45.277      -13.617     41.756      
+DIP     H52     H       H       0       43.848      -13.038     42.136      
+DIP     H53     H       H       0       44.525      -14.144     43.052      
+DIP     "H1'1"  H       H       0       40.154      -10.517     46.599      
+DIP     "H1'2"  H       H       0       39.643      -9.188      45.911      
+DIP     "H2'1"  H       H       0       41.786      -9.285      47.782      
+DIP     "H2'2"  H       H       0       40.324      -8.796      48.132      
+DIP     "H3'1"  H       H       0       40.637      -6.990      46.574      
+DIP     "H3'2"  H       H       0       42.154      -7.429      46.455      
+DIP     "H4'1"  H       H       0       42.462      -6.968      48.740      
+DIP     "H4'2"  H       H       0       40.949      -6.509      48.846      
+DIP     "H5'1"  H       H       0       41.533      -4.499      48.340      
+DIP     "H5'2"  H       H       0       42.081      -4.997      46.935      
+DIP     "H5'3"  H       H       0       43.044      -4.967      48.197      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DIP           N          C1      SINGLE       n     1.463  0.0111     1.463  0.0111
+DIP           N       "C1'"      SINGLE       n     1.463  0.0111     1.463  0.0111
+DIP          C1          C2      SINGLE       n     1.521  0.0100     1.521  0.0100
+DIP          C2          C3      SINGLE       n     1.514  0.0200     1.514  0.0200
+DIP          C3          C4      SINGLE       n     1.507  0.0200     1.507  0.0200
+DIP          C4          C5      SINGLE       n     1.510  0.0200     1.510  0.0200
+DIP       "C1'"       "C2'"      SINGLE       n     1.521  0.0100     1.521  0.0100
+DIP       "C2'"       "C3'"      SINGLE       n     1.514  0.0200     1.514  0.0200
+DIP       "C3'"       "C4'"      SINGLE       n     1.507  0.0200     1.507  0.0200
+DIP       "C4'"       "C5'"      SINGLE       n     1.510  0.0200     1.510  0.0200
+DIP           N          HN      SINGLE       n     1.036  0.0160     0.899  0.0200
+DIP          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0143
+DIP          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0143
+DIP          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+DIP          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+DIP          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+DIP          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+DIP          C4         H41      SINGLE       n     1.089  0.0100     0.982  0.0155
+DIP          C4         H42      SINGLE       n     1.089  0.0100     0.982  0.0155
+DIP          C5         H51      SINGLE       n     1.089  0.0100     0.973  0.0157
+DIP          C5         H52      SINGLE       n     1.089  0.0100     0.973  0.0157
+DIP          C5         H53      SINGLE       n     1.089  0.0100     0.973  0.0157
+DIP       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.980  0.0143
+DIP       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.980  0.0143
+DIP       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.981  0.0160
+DIP       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.981  0.0160
+DIP       "C3'"      "H3'1"      SINGLE       n     1.089  0.0100     0.981  0.0163
+DIP       "C3'"      "H3'2"      SINGLE       n     1.089  0.0100     0.981  0.0163
+DIP       "C4'"      "H4'1"      SINGLE       n     1.089  0.0100     0.982  0.0155
+DIP       "C4'"      "H4'2"      SINGLE       n     1.089  0.0100     0.982  0.0155
+DIP       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.973  0.0157
+DIP       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.973  0.0157
+DIP       "C5'"      "H5'3"      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DIP          C1           N       "C1'"     114.187    2.61
+DIP          C1           N          HN     108.180    3.00
+DIP       "C1'"           N          HN     108.180    3.00
+DIP           N          C1          C2     111.754    2.01
+DIP           N          C1         H11     109.338    1.50
+DIP           N          C1         H12     109.338    1.50
+DIP          C2          C1         H11     109.197    1.51
+DIP          C2          C1         H12     109.197    1.51
+DIP         H11          C1         H12     107.877    1.50
+DIP          C1          C2          C3     113.159    3.00
+DIP          C1          C2         H21     108.956    1.50
+DIP          C1          C2         H22     108.956    1.50
+DIP          C3          C2         H21     109.041    1.50
+DIP          C3          C2         H22     109.041    1.50
+DIP         H21          C2         H22     107.927    1.57
+DIP          C2          C3          C4     114.022    2.49
+DIP          C2          C3         H31     108.806    1.50
+DIP          C2          C3         H32     108.806    1.50
+DIP          C4          C3         H31     108.653    1.50
+DIP          C4          C3         H32     108.653    1.50
+DIP         H31          C3         H32     107.646    1.50
+DIP          C3          C4          C5     113.719    3.00
+DIP          C3          C4         H41     108.758    1.50
+DIP          C3          C4         H42     108.758    1.50
+DIP          C5          C4         H41     108.918    1.50
+DIP          C5          C4         H42     108.918    1.50
+DIP         H41          C4         H42     107.763    1.50
+DIP          C4          C5         H51     109.554    1.50
+DIP          C4          C5         H52     109.554    1.50
+DIP          C4          C5         H53     109.554    1.50
+DIP         H51          C5         H52     109.380    1.50
+DIP         H51          C5         H53     109.380    1.50
+DIP         H52          C5         H53     109.380    1.50
+DIP           N       "C1'"       "C2'"     111.754    2.01
+DIP           N       "C1'"      "H1'1"     109.338    1.50
+DIP           N       "C1'"      "H1'2"     109.338    1.50
+DIP       "C2'"       "C1'"      "H1'1"     109.197    1.51
+DIP       "C2'"       "C1'"      "H1'2"     109.197    1.51
+DIP      "H1'1"       "C1'"      "H1'2"     107.877    1.50
+DIP       "C1'"       "C2'"       "C3'"     113.159    3.00
+DIP       "C1'"       "C2'"      "H2'1"     108.956    1.50
+DIP       "C1'"       "C2'"      "H2'2"     108.956    1.50
+DIP       "C3'"       "C2'"      "H2'1"     109.041    1.50
+DIP       "C3'"       "C2'"      "H2'2"     109.041    1.50
+DIP      "H2'1"       "C2'"      "H2'2"     107.927    1.57
+DIP       "C2'"       "C3'"       "C4'"     114.022    2.49
+DIP       "C2'"       "C3'"      "H3'1"     108.806    1.50
+DIP       "C2'"       "C3'"      "H3'2"     108.806    1.50
+DIP       "C4'"       "C3'"      "H3'1"     108.653    1.50
+DIP       "C4'"       "C3'"      "H3'2"     108.653    1.50
+DIP      "H3'1"       "C3'"      "H3'2"     107.646    1.50
+DIP       "C3'"       "C4'"       "C5'"     113.719    3.00
+DIP       "C3'"       "C4'"      "H4'1"     108.758    1.50
+DIP       "C3'"       "C4'"      "H4'2"     108.758    1.50
+DIP       "C5'"       "C4'"      "H4'1"     108.918    1.50
+DIP       "C5'"       "C4'"      "H4'2"     108.918    1.50
+DIP      "H4'1"       "C4'"      "H4'2"     107.763    1.50
+DIP       "C4'"       "C5'"      "H5'1"     109.554    1.50
+DIP       "C4'"       "C5'"      "H5'2"     109.554    1.50
+DIP       "C4'"       "C5'"      "H5'3"     109.554    1.50
+DIP      "H5'1"       "C5'"      "H5'2"     109.380    1.50
+DIP      "H5'1"       "C5'"      "H5'3"     109.380    1.50
+DIP      "H5'2"       "C5'"      "H5'3"     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DIP             sp3_sp3_2          C2          C1           N       "C1'"     -60.000    10.0     3
+DIP             sp3_sp3_7       "C2'"       "C1'"           N          C1     180.000    10.0     3
+DIP            sp3_sp3_13           N          C1          C2          C3     180.000    10.0     3
+DIP            sp3_sp3_22          C1          C2          C3          C4     180.000    10.0     3
+DIP            sp3_sp3_31          C2          C3          C4          C5     180.000    10.0     3
+DIP            sp3_sp3_40          C3          C4          C5         H51     180.000    10.0     3
+DIP            sp3_sp3_49           N       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+DIP            sp3_sp3_58       "C1'"       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+DIP            sp3_sp3_67       "C2'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+DIP            sp3_sp3_76       "C3'"       "C4'"       "C5'"      "H5'1"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DIP    chir_1    N    C1    "C1'"    HN    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DIP           SMILES              ACDLabs 10.04                                               N(CCCCC)CCCCC
+DIP SMILES_CANONICAL               CACTVS 3.341                                                 CCCCCNCCCCC
+DIP           SMILES               CACTVS 3.341                                                 CCCCCNCCCCC
+DIP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                 CCCCCNCCCCC
+DIP           SMILES "OpenEye OEToolkits" 1.5.0                                                 CCCCCNCCCCC
+DIP            InChI                InChI  1.03 InChI=1S/C10H23N/c1-3-5-7-9-11-10-8-6-4-2/h11H,3-10H2,1-2H3
+DIP         InChIKey                InChI  1.03                                 JACMPVXHEARCBO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DIP acedrg               243         "dictionary generator"                  
+DIP acedrg_database      11          "data source"                           
+DIP rdkit                2017.03.2   "Chemoinformatics tool"
+DIP refmac5              5.8.0238    "optimization tool"                     

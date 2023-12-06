@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3AG     3AG      2-[METHYL-(4-METHYL-PENT-3-ENYL)-AMINO]-ETHYL-DIPHOSPHATE     NON-POLYMER     37     19     .     
+#
+data_comp_3AG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3AG     C1      C       CH3     0       41.638      45.530      45.846      
+3AG     C2      C       C       0       41.631      44.615      47.041      
+3AG     C3      C       CH3     0       40.257      44.319      47.578      
+3AG     C4      C       C1      0       42.731      44.111      47.589      
+3AG     O1      O       O       0       46.227      51.795      49.289      
+3AG     C5      C       CH2     0       44.168      44.362      47.231      
+3AG     C6      C       CH2     0       44.799      45.423      48.115      
+3AG     N1      N       NT      0       44.213      46.762      47.928      
+3AG     C7      C       CH2     0       44.159      47.605      49.138      
+3AG     C8      C       CH2     0       45.495      48.012      49.721      
+3AG     C9      C       CH3     0       44.821      47.473      46.791      
+3AG     O2      O       O2      0       45.905      49.304      49.183      
+3AG     P1      P       P       0       45.923      50.601      50.132      
+3AG     O3      O       O2      0       44.393      50.667      50.607      
+3AG     O4      O       OP      -1      46.791      50.312      51.312      
+3AG     P2      P       P       0       43.575      51.734      51.501      
+3AG     O5      O       O       0       44.015      53.097      51.026      
+3AG     O6      O       OP      -1      43.966      51.461      52.933      
+3AG     O7      O       OP      -1      42.114      51.467      51.234      
+3AG     HC11    H       H       0       42.442      46.074      45.850      
+3AG     HC12    H       H       0       40.862      46.113      45.873      
+3AG     HC13    H       H       0       41.613      45.001      45.032      
+3AG     HC31    H       H       0       40.325      43.846      48.423      
+3AG     HC32    H       H       0       39.772      43.769      46.941      
+3AG     HC33    H       H       0       39.775      45.151      47.716      
+3AG     HC4     H       H       0       42.592      43.505      48.301      
+3AG     HC51    H       H       0       44.232      44.644      46.292      
+3AG     HC52    H       H       0       44.674      43.523      47.335      
+3AG     HC61    H       H       0       45.763      45.458      47.927      
+3AG     HC62    H       H       0       44.692      45.151      49.052      
+3AG     HC71    H       H       0       43.659      47.122      49.828      
+3AG     HC72    H       H       0       43.654      48.418      48.927      
+3AG     HC81    H       H       0       46.180      47.337      49.505      
+3AG     HC82    H       H       0       45.424      48.064      50.703      
+3AG     HC91    H       H       0       44.412      48.356      46.699      
+3AG     HC92    H       H       0       44.673      46.963      45.971      
+3AG     HC93    H       H       0       45.781      47.575      46.939      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3AG          C1          C2      SINGLE       n     1.499  0.0156     1.499  0.0156
+3AG          C2          C3      SINGLE       n     1.499  0.0156     1.499  0.0156
+3AG          C2          C4      DOUBLE       n     1.324  0.0100     1.324  0.0100
+3AG          C4          C5      SINGLE       n     1.501  0.0100     1.501  0.0100
+3AG          O1          P1      DOUBLE       n     1.493  0.0122     1.493  0.0122
+3AG          C5          C6      SINGLE       n     1.518  0.0129     1.518  0.0129
+3AG          C6          N1      SINGLE       n     1.469  0.0103     1.469  0.0103
+3AG          N1          C7      SINGLE       n     1.471  0.0100     1.471  0.0100
+3AG          N1          C9      SINGLE       n     1.467  0.0135     1.467  0.0135
+3AG          C7          C8      SINGLE       n     1.506  0.0173     1.506  0.0173
+3AG          C8          O2      SINGLE       n     1.454  0.0165     1.454  0.0165
+3AG          O2          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+3AG          P1          O3      SINGLE       n     1.604  0.0133     1.604  0.0133
+3AG          P1          O4      SINGLE       n     1.493  0.0122     1.493  0.0122
+3AG          O3          P2      SINGLE       n     1.614  0.0178     1.614  0.0178
+3AG          P2          O5      DOUBLE       n     1.509  0.0200     1.509  0.0200
+3AG          P2          O6      SINGLE       n     1.509  0.0200     1.509  0.0200
+3AG          P2          O7      SINGLE       n     1.509  0.0200     1.509  0.0200
+3AG          C1        HC11      SINGLE       n     1.089  0.0100     0.971  0.0140
+3AG          C1        HC12      SINGLE       n     1.089  0.0100     0.971  0.0140
+3AG          C1        HC13      SINGLE       n     1.089  0.0100     0.971  0.0140
+3AG          C3        HC31      SINGLE       n     1.089  0.0100     0.971  0.0140
+3AG          C3        HC32      SINGLE       n     1.089  0.0100     0.971  0.0140
+3AG          C3        HC33      SINGLE       n     1.089  0.0100     0.971  0.0140
+3AG          C4         HC4      SINGLE       n     1.082  0.0130     0.945  0.0200
+3AG          C5        HC51      SINGLE       n     1.089  0.0100     0.985  0.0177
+3AG          C5        HC52      SINGLE       n     1.089  0.0100     0.985  0.0177
+3AG          C6        HC61      SINGLE       n     1.089  0.0100     0.982  0.0143
+3AG          C6        HC62      SINGLE       n     1.089  0.0100     0.982  0.0143
+3AG          C7        HC71      SINGLE       n     1.089  0.0100     0.980  0.0143
+3AG          C7        HC72      SINGLE       n     1.089  0.0100     0.980  0.0143
+3AG          C8        HC81      SINGLE       n     1.089  0.0100     0.986  0.0100
+3AG          C8        HC82      SINGLE       n     1.089  0.0100     0.986  0.0100
+3AG          C9        HC91      SINGLE       n     1.089  0.0100     0.977  0.0113
+3AG          C9        HC92      SINGLE       n     1.089  0.0100     0.977  0.0113
+3AG          C9        HC93      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3AG          C2          C1        HC11     109.600    1.50
+3AG          C2          C1        HC12     109.600    1.50
+3AG          C2          C1        HC13     109.600    1.50
+3AG        HC11          C1        HC12     109.342    1.50
+3AG        HC11          C1        HC13     109.342    1.50
+3AG        HC12          C1        HC13     109.342    1.50
+3AG          C1          C2          C3     114.618    1.50
+3AG          C1          C2          C4     122.691    1.63
+3AG          C3          C2          C4     122.691    1.63
+3AG          C2          C3        HC31     109.600    1.50
+3AG          C2          C3        HC32     109.600    1.50
+3AG          C2          C3        HC33     109.600    1.50
+3AG        HC31          C3        HC32     109.342    1.50
+3AG        HC31          C3        HC33     109.342    1.50
+3AG        HC32          C3        HC33     109.342    1.50
+3AG          C2          C4          C5     127.730    1.50
+3AG          C2          C4         HC4     115.869    1.50
+3AG          C5          C4         HC4     116.401    1.85
+3AG          C4          C5          C6     112.829    2.66
+3AG          C4          C5        HC51     109.013    1.50
+3AG          C4          C5        HC52     109.013    1.50
+3AG          C6          C5        HC51     108.796    1.50
+3AG          C6          C5        HC52     108.796    1.50
+3AG        HC51          C5        HC52     108.298    1.50
+3AG          C5          C6          N1     113.130    1.75
+3AG          C5          C6        HC61     108.787    1.50
+3AG          C5          C6        HC62     108.787    1.50
+3AG          N1          C6        HC61     109.022    1.50
+3AG          N1          C6        HC62     109.022    1.50
+3AG        HC61          C6        HC62     107.673    1.50
+3AG          C6          N1          C7     112.216    2.51
+3AG          C6          N1          C9     111.105    1.50
+3AG          C7          N1          C9     110.514    1.54
+3AG          N1          C7          C8     112.810    2.41
+3AG          N1          C7        HC71     108.716    1.50
+3AG          N1          C7        HC72     108.716    1.50
+3AG          C8          C7        HC71     108.620    1.50
+3AG          C8          C7        HC72     108.620    1.50
+3AG        HC71          C7        HC72     107.851    1.50
+3AG          C7          C8          O2     109.643    2.62
+3AG          C7          C8        HC81     109.715    1.50
+3AG          C7          C8        HC82     109.715    1.50
+3AG          O2          C8        HC81     109.451    1.50
+3AG          O2          C8        HC82     109.451    1.50
+3AG        HC81          C8        HC82     107.889    1.50
+3AG          N1          C9        HC91     109.480    1.50
+3AG          N1          C9        HC92     109.480    1.50
+3AG          N1          C9        HC93     109.480    1.50
+3AG        HC91          C9        HC92     109.408    1.50
+3AG        HC91          C9        HC93     109.408    1.50
+3AG        HC92          C9        HC93     109.408    1.50
+3AG          C8          O2          P1     119.251    1.51
+3AG          O1          P1          O2     107.912    2.57
+3AG          O1          P1          O3     108.816    2.14
+3AG          O1          P1          O4     118.411    2.35
+3AG          O2          P1          O3     101.065    1.97
+3AG          O2          P1          O4     107.912    2.57
+3AG          O3          P1          O4     108.816    2.14
+3AG          P1          O3          P2     132.584    3.00
+3AG          O3          P2          O5     105.965    2.38
+3AG          O3          P2          O6     105.965    2.38
+3AG          O3          P2          O7     105.965    2.38
+3AG          O5          P2          O6     112.716    1.50
+3AG          O5          P2          O7     112.716    1.50
+3AG          O6          P2          O7     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3AG             sp2_sp3_1          C3          C2          C1        HC11       0.000    10.0     6
+3AG            sp3_sp3_42          C8          O2          P1          O1      60.000    10.0     3
+3AG            sp3_sp3_45          P2          O3          P1          O1      60.000    10.0     3
+3AG            sp3_sp3_48          P1          O3          P2          O5      60.000    10.0     3
+3AG             sp2_sp3_7          C1          C2          C3        HC31       0.000    10.0     6
+3AG             sp2_sp2_1          C1          C2          C4          C5     180.000     5.0     2
+3AG            sp2_sp3_14          C2          C4          C5          C6     120.000    10.0     6
+3AG             sp3_sp3_1          C4          C5          C6          N1     180.000    10.0     3
+3AG            sp3_sp3_10          C5          C6          N1          C7     180.000    10.0     3
+3AG            sp3_sp3_22        HC91          C9          N1          C6     180.000    10.0     3
+3AG            sp3_sp3_16          C8          C7          N1          C6     180.000    10.0     3
+3AG            sp3_sp3_28          N1          C7          C8          O2     180.000    10.0     3
+3AG            sp3_sp3_37          C7          C8          O2          P1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3AG    chir_1    N1    C7    C6    C9    positive
+3AG    chir_2    P1    O3    O2    O4    both
+3AG    chir_3    P2    O3    O6    O7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3AG    plan-1          C1   0.020
+3AG    plan-1          C2   0.020
+3AG    plan-1          C3   0.020
+3AG    plan-1          C4   0.020
+3AG    plan-2          C2   0.020
+3AG    plan-2          C4   0.020
+3AG    plan-2          C5   0.020
+3AG    plan-2         HC4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3AG SMILES_CANONICAL               CACTVS 3.341                                                                   CN(CCO[P]([O-])(=O)O[P]([O-])([O-])=O)CCC=C(C)C
+3AG           SMILES               CACTVS 3.341                                                                   CN(CCO[P]([O-])(=O)O[P]([O-])([O-])=O)CCC=C(C)C
+3AG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                 CC(=CCC[N@](C)CCO[P@](=O)([O-])OP(=O)([O-])[O-])C
+3AG           SMILES "OpenEye OEToolkits" 1.5.0                                                                       CC(=CCCN(C)CCOP(=O)([O-])OP(=O)([O-])[O-])C
+3AG            InChI                InChI  1.03 InChI=1S/C9H21NO7P2/c1-9(2)5-4-6-10(3)7-8-16-19(14,15)17-18(11,12)13/h5H,4,6-8H2,1-3H3,(H,14,15)(H2,11,12,13)/p-3
+3AG         InChIKey                InChI  1.03                                                                                       UWHNDWYDKGVRGE-UHFFFAOYSA-K
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3AG acedrg               243         "dictionary generator"                  
+3AG acedrg_database      11          "data source"                           
+3AG rdkit                2017.03.2   "Chemoinformatics tool"
+3AG refmac5              5.8.0238    "optimization tool"                     

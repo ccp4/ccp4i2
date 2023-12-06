@@ -1,0 +1,338 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G24     G24      "[4-(3-BENZYL-4-HYDROXYBENZYL)-3,5-DIMETHYLPHENOXY]ACETIC ACID"     NON-POLYMER     51     28     .     
+#
+data_comp_G24
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G24     CAF     C       CR16    0       12.592      24.809      42.185      
+G24     CAB     C       CR16    0       12.567      23.578      41.542      
+G24     CAC     C       CR16    0       11.458      22.763      41.651      
+G24     CAD     C       CR16    0       10.378      23.178      42.401      
+G24     CAH     C       CR16    0       10.408      24.410      43.043      
+G24     CAG     C       CR6     0       11.512      25.245      42.942      
+G24     CAQ     C       CH2     0       11.544      26.585      43.648      
+G24     CAP     C       CR6     0       12.017      26.502      45.090      
+G24     CAO     C       CR16    0       13.321      26.094      45.361      
+G24     CBA     C       CR6     0       11.193      26.811      46.170      
+G24     OBC     O       OH1     0       9.892       27.223      45.999      
+G24     CAZ     C       CR16    0       11.661      26.717      47.471      
+G24     CAY     C       CR16    0       12.964      26.307      47.704      
+G24     CAN     C       CR6     0       13.817      25.978      46.658      
+G24     CAM     C       CH2     0       15.244      25.540      46.911      
+G24     CAL     C       CR6     0       15.431      24.178      47.591      
+G24     CAX     C       CR6     0       15.877      24.094      48.924      
+G24     CBB     C       CH3     0       16.174      25.329      49.766      
+G24     CAW     C       CR16    0       16.054      22.839      49.514      
+G24     CAK     C       CR6     0       15.181      22.994      46.871      
+G24     CAE     C       CH3     0       14.699      23.000      45.424      
+G24     CAJ     C       CR16    0       15.365      21.758      47.495      
+G24     CAV     C       CR6     0       15.793      21.669      48.811      
+G24     OAU     O       O2      0       15.952      20.402      49.314      
+G24     CAT     C       CH2     0       15.779      20.163      50.706      
+G24     CAS     C       C       0       15.688      18.675      51.004      
+G24     OAR     O       OC      -1      14.548      18.189      51.140      
+G24     OAI     O       O       0       16.761      18.045      51.092      
+G24     HAF     H       H       0       13.354      25.362      42.106      
+G24     HAB     H       H       0       13.309      23.300      41.029      
+G24     HAC     H       H       0       11.439      21.927      41.214      
+G24     HAD     H       H       0       9.617       22.624      42.479      
+G24     HAH     H       H       0       9.664       24.686      43.555      
+G24     HAQ1    H       H       0       10.644      26.977      43.618      
+G24     HAQ2    H       H       0       12.145      27.185      43.153      
+G24     HAO     H       H       0       13.886      25.876      44.634      
+G24     HBC     H       H       0       9.261       26.857      46.456      
+G24     HAZ     H       H       0       11.093      26.931      48.191      
+G24     HAY     H       H       0       13.276      26.245      48.591      
+G24     HAM1    H       H       0       15.684      26.225      47.456      
+G24     HAM2    H       H       0       15.722      25.511      46.053      
+G24     HBB1    H       H       0       16.374      25.068      50.680      
+G24     HBB2    H       H       0       15.402      25.918      49.765      
+G24     HBB3    H       H       0       16.939      25.799      49.395      
+G24     HAW     H       H       0       16.350      22.794      50.410      
+G24     HAE1    H       H       0       14.724      22.099      45.064      
+G24     HAE2    H       H       0       15.272      23.571      44.887      
+G24     HAE3    H       H       0       13.788      23.331      45.388      
+G24     HAJ     H       H       0       15.191      20.966      47.009      
+G24     HAT1    H       H       0       14.967      20.603      51.014      
+G24     HAT2    H       H       0       16.533      20.542      51.193      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G24         CAF         CAB      DOUBLE       y     1.386  0.0100     1.386  0.0100
+G24         CAF         CAG      SINGLE       y     1.385  0.0100     1.385  0.0100
+G24         CAB         CAC      SINGLE       y     1.376  0.0124     1.376  0.0124
+G24         CAC         CAD      DOUBLE       y     1.374  0.0127     1.374  0.0127
+G24         CAD         CAH      SINGLE       y     1.386  0.0100     1.386  0.0100
+G24         CAH         CAG      DOUBLE       y     1.385  0.0100     1.385  0.0100
+G24         CAG         CAQ      SINGLE       n     1.515  0.0100     1.515  0.0100
+G24         CAQ         CAP      SINGLE       n     1.518  0.0100     1.518  0.0100
+G24         CAP         CAO      DOUBLE       y     1.389  0.0100     1.389  0.0100
+G24         CAP         CBA      SINGLE       y     1.387  0.0100     1.387  0.0100
+G24         CAO         CAN      SINGLE       y     1.388  0.0100     1.388  0.0100
+G24         CBA         OBC      SINGLE       n     1.374  0.0155     1.374  0.0155
+G24         CBA         CAZ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+G24         CAZ         CAY      SINGLE       y     1.383  0.0100     1.383  0.0100
+G24         CAY         CAN      DOUBLE       y     1.386  0.0100     1.386  0.0100
+G24         CAN         CAM      SINGLE       n     1.513  0.0100     1.513  0.0100
+G24         CAM         CAL      SINGLE       n     1.525  0.0100     1.525  0.0100
+G24         CAL         CAX      DOUBLE       y     1.396  0.0100     1.396  0.0100
+G24         CAL         CAK      SINGLE       y     1.396  0.0100     1.396  0.0100
+G24         CAX         CBB      SINGLE       n     1.510  0.0199     1.510  0.0199
+G24         CAX         CAW      SINGLE       y     1.392  0.0107     1.392  0.0107
+G24         CAW         CAV      DOUBLE       y     1.386  0.0100     1.386  0.0100
+G24         CAK         CAE      SINGLE       n     1.510  0.0199     1.510  0.0199
+G24         CAK         CAJ      DOUBLE       y     1.392  0.0107     1.392  0.0107
+G24         CAJ         CAV      SINGLE       y     1.386  0.0100     1.386  0.0100
+G24         CAV         OAU      SINGLE       n     1.369  0.0100     1.369  0.0100
+G24         OAU         CAT      SINGLE       n     1.420  0.0100     1.420  0.0100
+G24         CAT         CAS      SINGLE       n     1.520  0.0100     1.520  0.0100
+G24         CAS         OAR      SINGLE       n     1.247  0.0187     1.247  0.0187
+G24         CAS         OAI      DOUBLE       n     1.247  0.0187     1.247  0.0187
+G24         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0174
+G24         CAB         HAB      SINGLE       n     1.082  0.0130     0.944  0.0175
+G24         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+G24         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0175
+G24         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0174
+G24         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.983  0.0146
+G24         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.983  0.0146
+G24         CAO         HAO      SINGLE       n     1.082  0.0130     0.946  0.0164
+G24         OBC         HBC      SINGLE       n     0.966  0.0059     0.861  0.0200
+G24         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.942  0.0141
+G24         CAY         HAY      SINGLE       n     1.082  0.0130     0.943  0.0173
+G24         CAM        HAM1      SINGLE       n     1.089  0.0100     0.983  0.0146
+G24         CAM        HAM2      SINGLE       n     1.089  0.0100     0.983  0.0146
+G24         CBB        HBB1      SINGLE       n     1.089  0.0100     0.971  0.0135
+G24         CBB        HBB2      SINGLE       n     1.089  0.0100     0.971  0.0135
+G24         CBB        HBB3      SINGLE       n     1.089  0.0100     0.971  0.0135
+G24         CAW         HAW      SINGLE       n     1.082  0.0130     0.945  0.0164
+G24         CAE        HAE1      SINGLE       n     1.089  0.0100     0.971  0.0135
+G24         CAE        HAE2      SINGLE       n     1.089  0.0100     0.971  0.0135
+G24         CAE        HAE3      SINGLE       n     1.089  0.0100     0.971  0.0135
+G24         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0164
+G24         CAT        HAT1      SINGLE       n     1.089  0.0100     0.974  0.0102
+G24         CAT        HAT2      SINGLE       n     1.089  0.0100     0.974  0.0102
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G24         CAB         CAF         CAG     120.989    1.50
+G24         CAB         CAF         HAF     119.662    1.50
+G24         CAG         CAF         HAF     119.349    1.50
+G24         CAF         CAB         CAC     120.183    1.50
+G24         CAF         CAB         HAB     119.863    1.50
+G24         CAC         CAB         HAB     119.954    1.50
+G24         CAB         CAC         CAD     119.900    1.50
+G24         CAB         CAC         HAC     120.050    1.50
+G24         CAD         CAC         HAC     120.050    1.50
+G24         CAC         CAD         CAH     120.183    1.50
+G24         CAC         CAD         HAD     119.954    1.50
+G24         CAH         CAD         HAD     119.863    1.50
+G24         CAD         CAH         CAG     120.989    1.50
+G24         CAD         CAH         HAH     119.662    1.50
+G24         CAG         CAH         HAH     119.349    1.50
+G24         CAF         CAG         CAH     117.755    1.50
+G24         CAF         CAG         CAQ     121.122    1.50
+G24         CAH         CAG         CAQ     121.122    1.50
+G24         CAG         CAQ         CAP     114.340    1.50
+G24         CAG         CAQ        HAQ1     108.797    1.50
+G24         CAG         CAQ        HAQ2     108.797    1.50
+G24         CAP         CAQ        HAQ1     108.987    1.50
+G24         CAP         CAQ        HAQ2     108.987    1.50
+G24        HAQ1         CAQ        HAQ2     107.770    1.50
+G24         CAQ         CAP         CAO     120.578    1.50
+G24         CAQ         CAP         CBA     121.473    1.50
+G24         CAO         CAP         CBA     117.949    1.50
+G24         CAP         CAO         CAN     121.728    1.50
+G24         CAP         CAO         HAO     118.989    1.50
+G24         CAN         CAO         HAO     119.283    1.50
+G24         CAP         CBA         OBC     119.276    3.00
+G24         CAP         CBA         CAZ     121.447    1.50
+G24         OBC         CBA         CAZ     119.276    3.00
+G24         CBA         OBC         HBC     120.000    3.00
+G24         CBA         CAZ         CAY     119.930    1.50
+G24         CBA         CAZ         HAZ     119.813    1.50
+G24         CAY         CAZ         HAZ     120.257    1.50
+G24         CAZ         CAY         CAN     121.560    1.50
+G24         CAZ         CAY         HAY     119.226    1.50
+G24         CAN         CAY         HAY     119.214    1.50
+G24         CAO         CAN         CAY     117.386    1.50
+G24         CAO         CAN         CAM     121.221    1.50
+G24         CAY         CAN         CAM     121.393    1.50
+G24         CAN         CAM         CAL     115.255    1.50
+G24         CAN         CAM        HAM1     108.797    1.50
+G24         CAN         CAM        HAM2     108.797    1.50
+G24         CAL         CAM        HAM1     107.689    1.50
+G24         CAL         CAM        HAM2     107.689    1.50
+G24        HAM1         CAM        HAM2     107.770    1.50
+G24         CAM         CAL         CAX     120.060    1.88
+G24         CAM         CAL         CAK     120.060    1.88
+G24         CAX         CAL         CAK     119.879    1.50
+G24         CAL         CAX         CBB     121.398    1.50
+G24         CAL         CAX         CAW     119.171    1.50
+G24         CBB         CAX         CAW     119.431    1.50
+G24         CAX         CBB        HBB1     109.545    1.50
+G24         CAX         CBB        HBB2     109.545    1.50
+G24         CAX         CBB        HBB3     109.545    1.50
+G24        HBB1         CBB        HBB2     109.348    1.50
+G24        HBB1         CBB        HBB3     109.348    1.50
+G24        HBB2         CBB        HBB3     109.348    1.50
+G24         CAX         CAW         CAV     120.916    1.50
+G24         CAX         CAW         HAW     119.189    1.50
+G24         CAV         CAW         HAW     119.895    1.50
+G24         CAL         CAK         CAE     121.398    1.50
+G24         CAL         CAK         CAJ     119.171    1.50
+G24         CAE         CAK         CAJ     119.431    1.50
+G24         CAK         CAE        HAE1     109.545    1.50
+G24         CAK         CAE        HAE2     109.545    1.50
+G24         CAK         CAE        HAE3     109.545    1.50
+G24        HAE1         CAE        HAE2     109.348    1.50
+G24        HAE1         CAE        HAE3     109.348    1.50
+G24        HAE2         CAE        HAE3     109.348    1.50
+G24         CAK         CAJ         CAV     120.916    1.50
+G24         CAK         CAJ         HAJ     119.189    1.50
+G24         CAV         CAJ         HAJ     119.895    1.50
+G24         CAW         CAV         CAJ     119.948    1.50
+G24         CAW         CAV         OAU     120.026    3.00
+G24         CAJ         CAV         OAU     120.026    3.00
+G24         CAV         OAU         CAT     117.722    1.50
+G24         OAU         CAT         CAS     111.607    2.58
+G24         OAU         CAT        HAT1     109.378    1.50
+G24         OAU         CAT        HAT2     109.378    1.50
+G24         CAS         CAT        HAT1     109.314    1.50
+G24         CAS         CAT        HAT2     109.314    1.50
+G24        HAT1         CAT        HAT2     108.052    1.50
+G24         CAT         CAS         OAR     117.215    2.48
+G24         CAT         CAS         OAI     117.215    2.48
+G24         OAR         CAS         OAI     125.570    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G24       const_sp2_sp2_1         CAC         CAB         CAF         CAG       0.000     5.0     2
+G24              const_62         CAB         CAF         CAG         CAQ     180.000    10.0     2
+G24              const_53         CAN         CAY         CAZ         CBA       0.000    10.0     2
+G24              const_51         CAM         CAN         CAY         CAZ     180.000    10.0     2
+G24            sp2_sp3_14         CAO         CAN         CAM         CAL     -90.000    10.0     6
+G24            sp2_sp3_20         CAX         CAL         CAM         CAN     -90.000    10.0     6
+G24              const_24         CAM         CAL         CAX         CBB       0.000    10.0     2
+G24              const_72         CAE         CAK         CAL         CAM       0.000    10.0     2
+G24            sp2_sp3_25         CAL         CAX         CBB        HBB1     150.000    10.0     6
+G24              const_26         CAV         CAW         CAX         CBB     180.000    10.0     2
+G24              const_31         OAU         CAV         CAW         CAX     180.000    10.0     2
+G24            sp2_sp3_31         CAL         CAK         CAE        HAE1     150.000    10.0     6
+G24              const_38         CAV         CAJ         CAK         CAE     180.000    10.0     2
+G24       const_sp2_sp2_5         CAF         CAB         CAC         CAD       0.000     5.0     2
+G24              const_34         CAK         CAJ         CAV         OAU     180.000    10.0     2
+G24             sp2_sp2_3         CAW         CAV         OAU         CAT     180.000     5.0     2
+G24             sp3_sp3_1         CAS         CAT         OAU         CAV     180.000    10.0     3
+G24            sp2_sp3_38         OAR         CAS         CAT         OAU     120.000    10.0     6
+G24       const_sp2_sp2_9         CAB         CAC         CAD         CAH       0.000     5.0     2
+G24              const_13         CAC         CAD         CAH         CAG       0.000    10.0     2
+G24              const_19         CAQ         CAG         CAH         CAD     180.000    10.0     2
+G24             sp2_sp3_2         CAF         CAG         CAQ         CAP     -90.000    10.0     6
+G24             sp2_sp3_8         CAO         CAP         CAQ         CAG     -90.000    10.0     6
+G24              const_42         CAN         CAO         CAP         CAQ     180.000    10.0     2
+G24              const_68         CAQ         CAP         CBA         OBC       0.000    10.0     2
+G24              const_47         CAM         CAN         CAO         CAP     180.000    10.0     2
+G24             sp2_sp2_1         CAP         CBA         OBC         HBC     180.000     5.0     2
+G24              const_58         CAY         CAZ         CBA         OBC     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G24    plan-1         CAB   0.020
+G24    plan-1         CAC   0.020
+G24    plan-1         CAD   0.020
+G24    plan-1         CAF   0.020
+G24    plan-1         CAG   0.020
+G24    plan-1         CAH   0.020
+G24    plan-1         CAQ   0.020
+G24    plan-1         HAB   0.020
+G24    plan-1         HAC   0.020
+G24    plan-1         HAD   0.020
+G24    plan-1         HAF   0.020
+G24    plan-1         HAH   0.020
+G24    plan-2         CAM   0.020
+G24    plan-2         CAN   0.020
+G24    plan-2         CAO   0.020
+G24    plan-2         CAP   0.020
+G24    plan-2         CAQ   0.020
+G24    plan-2         CAY   0.020
+G24    plan-2         CAZ   0.020
+G24    plan-2         CBA   0.020
+G24    plan-2         HAO   0.020
+G24    plan-2         HAY   0.020
+G24    plan-2         HAZ   0.020
+G24    plan-2         OBC   0.020
+G24    plan-3         CAE   0.020
+G24    plan-3         CAJ   0.020
+G24    plan-3         CAK   0.020
+G24    plan-3         CAL   0.020
+G24    plan-3         CAM   0.020
+G24    plan-3         CAV   0.020
+G24    plan-3         CAW   0.020
+G24    plan-3         CAX   0.020
+G24    plan-3         CBB   0.020
+G24    plan-3         HAJ   0.020
+G24    plan-3         HAW   0.020
+G24    plan-3         OAU   0.020
+G24    plan-4         CAS   0.020
+G24    plan-4         CAT   0.020
+G24    plan-4         OAI   0.020
+G24    plan-4         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G24           SMILES              ACDLabs 10.04                                                                                                O=C(O)COc1cc(c(c(c1)C)Cc2ccc(O)c(c2)Cc3ccccc3)C
+G24 SMILES_CANONICAL               CACTVS 3.341                                                                                                  Cc1cc(OCC(O)=O)cc(C)c1Cc2ccc(O)c(Cc3ccccc3)c2
+G24           SMILES               CACTVS 3.341                                                                                                  Cc1cc(OCC(O)=O)cc(C)c1Cc2ccc(O)c(Cc3ccccc3)c2
+G24 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                  Cc1cc(cc(c1Cc2ccc(c(c2)Cc3ccccc3)O)C)OCC(=O)O
+G24           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                  Cc1cc(cc(c1Cc2ccc(c(c2)Cc3ccccc3)O)C)OCC(=O)O
+G24            InChI                InChI  1.03 InChI=1S/C24H24O4/c1-16-10-21(28-15-24(26)27)11-17(2)22(16)14-19-8-9-23(25)20(13-19)12-18-6-4-3-5-7-18/h3-11,13,25H,12,14-15H2,1-2H3,(H,26,27)
+G24         InChIKey                InChI  1.03                                                                                                                    JYHIGYLGYNCMGI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G24 acedrg               243         "dictionary generator"                  
+G24 acedrg_database      11          "data source"                           
+G24 rdkit                2017.03.2   "Chemoinformatics tool"
+G24 refmac5              5.8.0238    "optimization tool"                     

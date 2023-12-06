@@ -1,0 +1,335 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HMY     HMY      (1aR,8S,13S,14S,15aR)-5,13,14-trihydroxy-3-methoxy-8-methyl-8,9,13,14,15,15a-hexahydro-6H-oxireno[k][2]benzoxacyclotetradecine-6,12(1aH)-dione     NON-POLYMER     49     27     .     
+#
+data_comp_HMY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HMY     O23     O       O       0       28.664      5.924       9.123       
+HMY     C7      C       C       0       28.902      6.278       7.997       
+HMY     O8      O       O2      0       28.037      6.913       7.196       
+HMY     C9      C       CH1     0       26.979      7.771       7.775       
+HMY     C25     C       CH3     0       26.850      9.017       6.929       
+HMY     C10     C       CH2     0       25.708      6.937       7.799       
+HMY     C11     C       C1      0       25.614      5.967       8.943       
+HMY     C12     C       C1      0       25.414      4.662       8.882       
+HMY     C2      C       CR6     0       30.222      6.028       7.351       
+HMY     C1      C       CR6     0       31.368      6.621       7.918       
+HMY     O20     O       OH1     0       31.283      7.430       9.029       
+HMY     C6      C       CR16    0       32.622      6.411       7.362       
+HMY     C5      C       CR6     0       32.762      5.601       6.237       
+HMY     O21     O       O2      0       34.058      5.481       5.796       
+HMY     C22     C       CH3     0       34.349      4.709       4.632       
+HMY     C4      C       CR16    0       31.638      5.001       5.672       
+HMY     C3      C       CR6     0       30.368      5.197       6.217       
+HMY     C18     C       CH1     0       29.191      4.544       5.583       
+HMY     O31     O       O2      0       29.416      3.357       4.794       
+HMY     C17     C       CH1     0       28.701      3.236       6.042       
+HMY     C16     C       CH2     0       27.244      2.875       5.975       
+HMY     C15     C       CH1     0       26.723      2.236       7.271       
+HMY     O29     O       OH1     0       27.019      0.837       7.244       
+HMY     C14     C       CH1     0       25.225      2.429       7.543       
+HMY     O28     O       OH1     0       24.480      1.836       6.475       
+HMY     C13     C       C       0       24.876      3.888       7.742       
+HMY     O24     O       O       0       24.089      4.405       6.946       
+HMY     H9      H       H       0       27.226      8.030       8.699       
+HMY     H25     H       H       0       26.193      8.869       6.225       
+HMY     H25A    H       H       0       27.711      9.230       6.527       
+HMY     H25B    H       H       0       26.562      9.761       7.489       
+HMY     H10     H       H       0       25.666      6.480       6.935       
+HMY     H10A    H       H       0       24.952      7.562       7.837       
+HMY     H11     H       H       0       25.804      6.310       9.800       
+HMY     H12     H       H       0       25.772      4.160       9.595       
+HMY     HO20    H       H       0       31.866      7.360       9.658       
+HMY     H6      H       H       0       33.376      6.817       7.747       
+HMY     H22     H       H       0       33.866      5.073       3.872       
+HMY     H22A    H       H       0       34.079      3.788       4.777       
+HMY     H22B    H       H       0       35.303      4.742       4.454       
+HMY     H4      H       H       0       31.730      4.455       4.912       
+HMY     H18     H       H       0       28.524      5.159       5.214       
+HMY     H17     H       H       0       29.208      2.793       6.769       
+HMY     H16     H       H       0       27.107      2.255       5.234       
+HMY     H16A    H       H       0       26.731      3.681       5.776       
+HMY     H15     H       H       0       27.225      2.637       8.031       
+HMY     HO29    H       H       0       26.554      0.450       6.649       
+HMY     H14     H       H       0       25.000      1.940       8.382       
+HMY     HO28    H       H       0       24.472      2.340       5.792       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HMY         O23          C7      DOUBLE       n     1.204  0.0101     1.204  0.0101
+HMY          C7          O8      SINGLE       n     1.332  0.0117     1.332  0.0117
+HMY          C7          C2      SINGLE       n     1.487  0.0105     1.487  0.0105
+HMY          O8          C9      SINGLE       n     1.474  0.0100     1.474  0.0100
+HMY          C9         C25      SINGLE       n     1.511  0.0100     1.511  0.0100
+HMY          C9         C10      SINGLE       n     1.518  0.0100     1.518  0.0100
+HMY         C10         C11      SINGLE       n     1.498  0.0152     1.498  0.0152
+HMY         C11         C12      DOUBLE       n     1.317  0.0147     1.317  0.0147
+HMY         C12         C13      SINGLE       n     1.476  0.0149     1.476  0.0149
+HMY          C2          C1      DOUBLE       y     1.404  0.0100     1.404  0.0100
+HMY          C2          C3      SINGLE       y     1.405  0.0100     1.405  0.0100
+HMY          C1         O20      SINGLE       n     1.374  0.0155     1.374  0.0155
+HMY          C1          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+HMY          C6          C5      DOUBLE       y     1.391  0.0100     1.391  0.0100
+HMY          C5         O21      SINGLE       n     1.369  0.0100     1.369  0.0100
+HMY          C5          C4      SINGLE       y     1.387  0.0101     1.387  0.0101
+HMY         O21         C22      SINGLE       n     1.424  0.0117     1.424  0.0117
+HMY          C4          C3      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HMY          C3         C18      SINGLE       n     1.484  0.0100     1.484  0.0100
+HMY         C18         O31      SINGLE       n     1.440  0.0168     1.440  0.0168
+HMY         C18         C17      SINGLE       n     1.469  0.0108     1.469  0.0108
+HMY         O31         C17      SINGLE       n     1.446  0.0146     1.446  0.0146
+HMY         C17         C16      SINGLE       n     1.502  0.0100     1.502  0.0100
+HMY         C16         C15      SINGLE       n     1.520  0.0200     1.520  0.0200
+HMY         C15         O29      SINGLE       n     1.426  0.0179     1.426  0.0179
+HMY         C15         C14      SINGLE       n     1.531  0.0100     1.531  0.0100
+HMY         C14         O28      SINGLE       n     1.424  0.0153     1.424  0.0153
+HMY         C14         C13      SINGLE       n     1.505  0.0162     1.505  0.0162
+HMY         C13         O24      DOUBLE       n     1.230  0.0184     1.230  0.0184
+HMY          C9          H9      SINGLE       n     1.089  0.0100     0.990  0.0173
+HMY         C25         H25      SINGLE       n     1.089  0.0100     0.974  0.0145
+HMY         C25        H25A      SINGLE       n     1.089  0.0100     0.974  0.0145
+HMY         C25        H25B      SINGLE       n     1.089  0.0100     0.974  0.0145
+HMY         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0185
+HMY         C10        H10A      SINGLE       n     1.089  0.0100     0.981  0.0185
+HMY         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0181
+HMY         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0200
+HMY         O20        HO20      SINGLE       n     0.966  0.0059     0.861  0.0200
+HMY          C6          H6      SINGLE       n     1.082  0.0130     0.939  0.0167
+HMY         C22         H22      SINGLE       n     1.089  0.0100     0.971  0.0157
+HMY         C22        H22A      SINGLE       n     1.089  0.0100     0.971  0.0157
+HMY         C22        H22B      SINGLE       n     1.089  0.0100     0.971  0.0157
+HMY          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0106
+HMY         C18         H18      SINGLE       n     1.089  0.0100     0.980  0.0195
+HMY         C17         H17      SINGLE       n     1.089  0.0100     0.991  0.0200
+HMY         C16         H16      SINGLE       n     1.089  0.0100     0.976  0.0131
+HMY         C16        H16A      SINGLE       n     1.089  0.0100     0.976  0.0131
+HMY         C15         H15      SINGLE       n     1.089  0.0100     0.995  0.0200
+HMY         O29        HO29      SINGLE       n     0.970  0.0120     0.848  0.0200
+HMY         C14         H14      SINGLE       n     1.089  0.0100     0.997  0.0100
+HMY         O28        HO28      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HMY         O23          C7          O8     123.736    1.65
+HMY         O23          C7          C2     123.596    1.94
+HMY          O8          C7          C2     112.669    1.50
+HMY          C7          O8          C9     117.424    1.50
+HMY          O8          C9         C25     108.990    1.50
+HMY          O8          C9         C10     106.283    1.50
+HMY          O8          C9          H9     109.135    1.50
+HMY         C25          C9         C10     113.382    1.50
+HMY         C25          C9          H9     109.568    1.50
+HMY         C10          C9          H9     109.739    1.62
+HMY          C9         C25         H25     109.475    1.50
+HMY          C9         C25        H25A     109.475    1.50
+HMY          C9         C25        H25B     109.475    1.50
+HMY         H25         C25        H25A     109.425    1.50
+HMY         H25         C25        H25B     109.425    1.50
+HMY        H25A         C25        H25B     109.425    1.50
+HMY          C9         C10         C11     114.338    1.52
+HMY          C9         C10         H10     107.030    2.79
+HMY          C9         C10        H10A     107.030    2.79
+HMY         C11         C10         H10     109.879    2.65
+HMY         C11         C10        H10A     109.879    2.65
+HMY         H10         C10        H10A     107.440    1.74
+HMY         C10         C11         C12     125.545    2.56
+HMY         C10         C11         H11     117.626    1.96
+HMY         C12         C11         H11     116.830    2.02
+HMY         C11         C12         C13     124.257    3.00
+HMY         C11         C12         H12     117.982    2.29
+HMY         C13         C12         H12     117.761    1.99
+HMY          C7          C2          C1     119.459    2.17
+HMY          C7          C2          C3     121.125    2.32
+HMY          C1          C2          C3     119.417    1.50
+HMY          C2          C1         O20     119.753    3.00
+HMY          C2          C1          C6     120.495    1.50
+HMY         O20          C1          C6     119.753    3.00
+HMY          C1         O20        HO20     120.000    3.00
+HMY          C1          C6          C5     119.950    1.50
+HMY          C1          C6          H6     119.843    1.50
+HMY          C5          C6          H6     120.207    1.50
+HMY          C6          C5         O21     118.971    3.00
+HMY          C6          C5          C4     120.465    1.50
+HMY         O21          C5          C4     120.564    3.00
+HMY          C5         O21         C22     117.529    1.50
+HMY         O21         C22         H22     109.428    1.50
+HMY         O21         C22        H22A     109.428    1.50
+HMY         O21         C22        H22B     109.428    1.50
+HMY         H22         C22        H22A     109.509    1.50
+HMY         H22         C22        H22B     109.509    1.50
+HMY        H22A         C22        H22B     109.509    1.50
+HMY          C5          C4          C3     120.483    1.50
+HMY          C5          C4          H4     119.950    1.50
+HMY          C3          C4          H4     119.567    1.50
+HMY          C2          C3          C4     119.190    1.84
+HMY          C2          C3         C18     120.616    1.80
+HMY          C4          C3         C18     120.193    1.92
+HMY          C3         C18         O31     117.449    1.50
+HMY          C3         C18         C17     121.179    2.93
+HMY          C3         C18         H18     115.230    1.50
+HMY         O31         C18         C17      59.407    1.50
+HMY         O31         C18         H18     114.846    1.50
+HMY         C17         C18         H18     116.814    1.94
+HMY         C18         O31         C17      61.189    1.50
+HMY         C18         C17         O31      59.407    1.50
+HMY         C18         C17         C16     120.272    3.00
+HMY         C18         C17         H17     116.814    1.94
+HMY         O31         C17         C16     117.659    1.50
+HMY         O31         C17         H17     114.692    1.76
+HMY         C16         C17         H17     114.609    1.50
+HMY         C17         C16         C15     112.541    2.49
+HMY         C17         C16         H16     109.099    1.50
+HMY         C17         C16        H16A     109.099    1.50
+HMY         C15         C16         H16     109.287    1.50
+HMY         C15         C16        H16A     109.287    1.50
+HMY         H16         C16        H16A     107.717    1.63
+HMY         C16         C15         O29     109.182    2.31
+HMY         C16         C15         C14     111.094    2.85
+HMY         C16         C15         H15     107.727    1.50
+HMY         O29         C15         C14     109.317    1.50
+HMY         O29         C15         H15     108.183    1.96
+HMY         C14         C15         H15     108.238    1.72
+HMY         C15         O29        HO29     109.265    3.00
+HMY         C15         C14         O28     109.434    2.40
+HMY         C15         C14         C13     111.873    1.69
+HMY         C15         C14         H14     108.687    1.50
+HMY         O28         C14         C13     109.726    2.42
+HMY         O28         C14         H14     108.675    1.50
+HMY         C13         C14         H14     108.874    1.53
+HMY         C14         O28        HO28     108.894    3.00
+HMY         C12         C13         C14     122.820    3.00
+HMY         C12         C13         O24     119.869    2.74
+HMY         C14         C13         O24     117.311    1.84
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HMY              const_11         O21          C5          C6          C1     180.000    10.0     2
+HMY            sp3_sp3_28         O21         C22         O21          C5     180.000    10.0     3
+HMY              const_16          H4          C4          C5         O21       0.000    10.0     2
+HMY            sp3_sp3_31        H22B         C22         O21          C5     180.000    10.0     3
+HMY              const_19         C18          C3          C4          C5     180.000    10.0     2
+HMY             sp2_sp3_9          C2          C3         C18         H18      30.000    10.0     6
+HMY             sp3_sp3_1          C3         C18         O31         C17      60.000    10.0     3
+HMY            sp3_sp3_38         H17         C17         C18          C3     -60.000    10.0     3
+HMY       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+HMY            sp3_sp3_44         H16         C16         C17         C18      60.000    10.0     3
+HMY             sp2_sp2_3          C1          C2          C7          O8     180.000     5.0     2
+HMY             sp2_sp2_6          C3          C2          C7         O23     180.000     5.0     2
+HMY            sp3_sp3_53         C14         C15         C16         C17      60.000    10.0     3
+HMY            sp3_sp3_62         O28         C14         C15         C16     180.000    10.0     3
+HMY            sp3_sp3_65         C13         C14         C15         C16      60.000    10.0     3
+HMY            sp2_sp3_13         C12         C13         C14         C15       0.000    10.0     6
+HMY            sp2_sp3_16         O24         C13         C14         C15     180.000    10.0     6
+HMY             sp3_sp3_9          H9          C9          O8          C7      60.000    10.0     3
+HMY            sp3_sp3_12         H25         C25          C9          H9      60.000    10.0     3
+HMY            sp3_sp3_21         C11         C10          C9          H9      60.000    10.0     3
+HMY             sp2_sp3_4         H11         C11         C10         H10     180.000    10.0     6
+HMY             sp2_sp2_9         H11         C11         C12         C13       0.000     5.0     2
+HMY            sp2_sp2_13         H12         C12         C13         C14       0.000     5.0     2
+HMY            sp2_sp2_15          C2          C1         O20        HO20     180.000     5.0     2
+HMY       const_sp2_sp2_6          C2          C1          C6          H6     180.000     5.0     2
+HMY            sp2_sp2_17          C6          C5         O21         C22     180.000     5.0     2
+HMY       const_sp2_sp2_9          C4          C5          C6          C1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HMY    chir_1    C9    O8    C10    C25    positive
+HMY    chir_2    C18    O31    C17    C3    negative
+HMY    chir_3    C17    O31    C18    C16    negative
+HMY    chir_4    C15    O29    C14    C16    positive
+HMY    chir_5    C14    O28    C13    C15    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HMY    plan-1          C1   0.020
+HMY    plan-1         C18   0.020
+HMY    plan-1          C2   0.020
+HMY    plan-1          C3   0.020
+HMY    plan-1          C4   0.020
+HMY    plan-1          C5   0.020
+HMY    plan-1          C6   0.020
+HMY    plan-1          C7   0.020
+HMY    plan-1          H4   0.020
+HMY    plan-1          H6   0.020
+HMY    plan-1         O20   0.020
+HMY    plan-1         O21   0.020
+HMY    plan-2          C2   0.020
+HMY    plan-2          C7   0.020
+HMY    plan-2         O23   0.020
+HMY    plan-2          O8   0.020
+HMY    plan-3         C10   0.020
+HMY    plan-3         C11   0.020
+HMY    plan-3         C12   0.020
+HMY    plan-3         H11   0.020
+HMY    plan-4         C11   0.020
+HMY    plan-4         C12   0.020
+HMY    plan-4         C13   0.020
+HMY    plan-4         H12   0.020
+HMY    plan-5         C12   0.020
+HMY    plan-5         C13   0.020
+HMY    plan-5         C14   0.020
+HMY    plan-5         O24   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HMY           SMILES              ACDLabs 10.04                                                                                                                       O=C3C=CCC(OC(=O)c1c(cc(OC)cc1O)C2OC2CC(O)C3O)C
+HMY SMILES_CANONICAL               CACTVS 3.341                                                                                           COc1cc(O)c2C(=O)O[C@@H](C)C\C=C/C(=O)[C@@H](O)[C@@H](O)C[C@H]3O[C@@H]3c2c1
+HMY           SMILES               CACTVS 3.341                                                                                                      COc1cc(O)c2C(=O)O[CH](C)CC=CC(=O)[CH](O)[CH](O)C[CH]3O[CH]3c2c1
+HMY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              C[C@H]1CC=CC(=O)[C@H]([C@H](C[C@@H]2[C@H](O2)c3cc(cc(c3C(=O)O1)O)OC)O)O
+HMY           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                   CC1CC=CC(=O)C(C(CC2C(O2)c3cc(cc(c3C(=O)O1)O)OC)O)O
+HMY            InChI                InChI  1.03 InChI=1S/C19H22O8/c1-9-4-3-5-12(20)17(23)14(22)8-15-18(27-15)11-6-10(25-2)7-13(21)16(11)19(24)26-9/h3,5-7,9,14-15,17-18,21-23H,4,8H2,1-2H3/t9-,14-,15+,17+,18+/m0/s1
+HMY         InChIKey                InChI  1.03                                                                                                                                          SSNQAUBBJYCSMY-LWQPPDATSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HMY acedrg               243         "dictionary generator"                  
+HMY acedrg_database      11          "data source"                           
+HMY rdkit                2017.03.2   "Chemoinformatics tool"
+HMY refmac5              5.8.0238    "optimization tool"                     

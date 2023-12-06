@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BNM     BNM      N-[3-(cyclopentylsulfamoyl)-5-(2-oxo-2,3-dihydro-1,3-thiazol-4-yl)phenyl]cyclopropanecarboxamide     NON-POLYMER     48     27     .     
+#
+data_comp_BNM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BNM     O01     O       O       0       -4.059      -5.931      -0.622      
+BNM     C02     C       C       0       -3.863      -7.104      -0.916      
+BNM     N03     N       NH1     0       -4.725      -8.104      -0.588      
+BNM     C04     C       CR6     0       -6.091      -7.958      -0.215      
+BNM     C05     C       CR16    0       -6.965      -7.132      -0.929      
+BNM     C06     C       CR6     0       -8.300      -7.016      -0.534      
+BNM     C07     C       CR5     0       -9.227      -6.145      -1.272      
+BNM     C08     C       CR15    0       -8.916      -4.893      -1.825      
+BNM     S09     S       S2      0       -10.260     -4.250      -2.567      
+BNM     C10     C       CR5     0       -11.240     -5.547      -2.190      
+BNM     O11     O       O       0       -12.389     -5.527      -2.548      
+BNM     N12     N       NR5     0       -10.552     -6.489      -1.492      
+BNM     C13     C       CR16    0       -8.742      -7.737      0.576       
+BNM     C14     C       CR6     0       -7.876      -8.565      1.281       
+BNM     S15     S       S3      0       -8.480      -9.454      2.679       
+BNM     O16     O       O       0       -9.784      -9.938      2.344       
+BNM     O17     O       O       0       -7.473      -10.384     3.091       
+BNM     N18     N       NT1     0       -8.672      -8.395      3.890       
+BNM     C19     C       CH1     0       -7.571      -7.622      4.466       
+BNM     C20     C       CH2     0       -7.250      -6.340      3.700       
+BNM     C21     C       CH2     0       -6.822      -5.308      4.741       
+BNM     C22     C       CH2     0       -6.921      -5.986      6.088       
+BNM     C23     C       CH2     0       -7.863      -7.160      5.881       
+BNM     C24     C       CR16    0       -6.546      -8.678      0.892       
+BNM     C25     C       CH1     0       -2.658      -7.542      -1.640      
+BNM     C26     C       CH2     0       -2.423      -6.972      -3.014      
+BNM     C27     C       CH2     0       -2.838      -8.380      -2.879      
+BNM     H1      H       H       0       -4.417      -8.909      -0.587      
+BNM     H2      H       H       0       -6.657      -6.651      -1.672      
+BNM     H3      H       H       0       -8.091      -4.439      -1.812      
+BNM     H21     H       H       0       -10.922     -7.238      -1.215      
+BNM     H4      H       H       0       -9.642      -7.662      0.845       
+BNM     H5      H       H       0       -9.468      -8.014      3.886       
+BNM     H6      H       H       0       -6.764      -8.194      4.480       
+BNM     H7      H       H       0       -6.530      -6.498      3.059       
+BNM     H8      H       H       0       -8.037      -6.029      3.212       
+BNM     H9      H       H       0       -7.409      -4.526      4.707       
+BNM     H10     H       H       0       -5.905      -5.013      4.573       
+BNM     H11     H       H       0       -7.279      -5.371      6.759       
+BNM     H12     H       H       0       -6.042      -6.296      6.384       
+BNM     H13     H       H       0       -7.681      -7.872      6.525       
+BNM     H14     H       H       0       -8.795      -6.880      5.971       
+BNM     H15     H       H       0       -5.944      -9.237      1.366       
+BNM     H16     H       H       0       -1.864      -7.723      -1.091      
+BNM     H17     H       H       0       -3.076      -6.338      -3.358      
+BNM     H18     H       H       0       -1.503      -6.795      -3.279      
+BNM     H19     H       H       0       -3.747      -8.611      -3.139      
+BNM     H20     H       H       0       -2.174      -9.068      -3.059      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BNM         C26         C27      SINGLE       n     1.476  0.0137     1.476  0.0137
+BNM         C25         C27      SINGLE       n     1.505  0.0106     1.505  0.0106
+BNM         C25         C26      SINGLE       n     1.505  0.0106     1.505  0.0106
+BNM         O01         C02      DOUBLE       n     1.224  0.0100     1.224  0.0100
+BNM         C08         S09      SINGLE       y     1.695  0.0200     1.695  0.0200
+BNM         S09         C10      SINGLE       y     1.695  0.0200     1.695  0.0200
+BNM         C02         C25      SINGLE       n     1.471  0.0100     1.471  0.0100
+BNM         C07         C08      DOUBLE       y     1.389  0.0200     1.389  0.0200
+BNM         C02         N03      SINGLE       n     1.357  0.0100     1.357  0.0100
+BNM         C10         O11      DOUBLE       n     1.204  0.0100     1.204  0.0100
+BNM         C10         N12      SINGLE       y     1.342  0.0200     1.342  0.0200
+BNM         C07         N12      SINGLE       y     1.376  0.0101     1.376  0.0101
+BNM         C06         C07      SINGLE       n     1.471  0.0100     1.471  0.0100
+BNM         C05         C06      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BNM         C04         C05      SINGLE       y     1.394  0.0100     1.394  0.0100
+BNM         N03         C04      SINGLE       n     1.422  0.0100     1.422  0.0100
+BNM         C06         C13      SINGLE       y     1.392  0.0100     1.392  0.0100
+BNM         C04         C24      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BNM         C13         C14      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BNM         C14         C24      SINGLE       y     1.387  0.0100     1.387  0.0100
+BNM         C14         S15      SINGLE       n     1.762  0.0100     1.762  0.0100
+BNM         S15         O16      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BNM         S15         O17      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BNM         S15         N18      SINGLE       n     1.618  0.0151     1.618  0.0151
+BNM         C19         C20      SINGLE       n     1.522  0.0200     1.522  0.0200
+BNM         C20         C21      SINGLE       n     1.523  0.0152     1.523  0.0152
+BNM         N18         C19      SINGLE       n     1.463  0.0100     1.463  0.0100
+BNM         C19         C23      SINGLE       n     1.522  0.0200     1.522  0.0200
+BNM         C21         C22      SINGLE       n     1.512  0.0200     1.512  0.0200
+BNM         C22         C23      SINGLE       n     1.523  0.0152     1.523  0.0152
+BNM         N03          H1      SINGLE       n     1.016  0.0100     0.860  0.0200
+BNM         C05          H2      SINGLE       n     1.082  0.0130     0.937  0.0103
+BNM         C08          H3      SINGLE       n     1.082  0.0130     0.942  0.0200
+BNM         N12         H21      SINGLE       n     1.016  0.0100     0.880  0.0200
+BNM         C13          H4      SINGLE       n     1.082  0.0130     0.942  0.0177
+BNM         N18          H5      SINGLE       n     1.036  0.0160     0.882  0.0200
+BNM         C19          H6      SINGLE       n     1.089  0.0100     0.989  0.0131
+BNM         C20          H7      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNM         C20          H8      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNM         C21          H9      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNM         C21         H10      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNM         C22         H11      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNM         C22         H12      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNM         C23         H13      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNM         C23         H14      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNM         C24         H15      SINGLE       n     1.082  0.0130     0.949  0.0200
+BNM         C25         H16      SINGLE       n     1.089  0.0100     0.982  0.0185
+BNM         C26         H17      SINGLE       n     1.089  0.0100     0.973  0.0200
+BNM         C26         H18      SINGLE       n     1.089  0.0100     0.973  0.0200
+BNM         C27         H19      SINGLE       n     1.089  0.0100     0.973  0.0200
+BNM         C27         H20      SINGLE       n     1.089  0.0100     0.973  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BNM         O01         C02         C25     122.833    1.50
+BNM         O01         C02         N03     122.824    1.50
+BNM         C25         C02         N03     114.343    1.50
+BNM         C02         N03         C04     125.835    1.57
+BNM         C02         N03          H1     117.448    1.50
+BNM         C04         N03          H1     116.716    1.50
+BNM         C05         C04         N03     119.817    3.00
+BNM         C05         C04         C24     120.366    2.01
+BNM         N03         C04         C24     119.817    3.00
+BNM         C06         C05         C04     119.951    1.50
+BNM         C06         C05          H2     119.833    1.50
+BNM         C04         C05          H2     120.215    1.50
+BNM         C07         C06         C05     120.495    1.50
+BNM         C07         C06         C13     120.495    1.50
+BNM         C05         C06         C13     119.010    1.50
+BNM         C08         C07         N12     106.807    1.61
+BNM         C08         C07         C06     129.650    2.56
+BNM         N12         C07         C06     123.543    1.50
+BNM         S09         C08         C07     108.374    3.00
+BNM         S09         C08          H3     122.618    3.00
+BNM         C07         C08          H3     129.008    3.00
+BNM         C08         S09         C10     108.374    3.00
+BNM         S09         C10         O11     120.807    3.00
+BNM         S09         C10         N12     108.374    3.00
+BNM         O11         C10         N12     130.819    1.50
+BNM         C10         N12         C07     108.071    1.50
+BNM         C10         N12         H21     126.551    3.00
+BNM         C07         N12         H21     125.377    1.67
+BNM         C06         C13         C14     120.846    1.50
+BNM         C06         C13          H4     119.300    1.50
+BNM         C14         C13          H4     119.854    1.50
+BNM         C13         C14         C24     120.527    1.50
+BNM         C13         C14         S15     119.737    1.50
+BNM         C24         C14         S15     119.737    1.50
+BNM         C14         S15         O16     107.528    1.50
+BNM         C14         S15         O17     107.528    1.50
+BNM         C14         S15         N18     107.676    1.50
+BNM         O16         S15         O17     119.556    1.50
+BNM         O16         S15         N18     106.957    1.50
+BNM         O17         S15         N18     106.957    1.50
+BNM         S15         N18         C19     122.414    2.14
+BNM         S15         N18          H5     113.046    3.00
+BNM         C19         N18          H5     117.028    2.63
+BNM         C20         C19         N18     113.390    3.00
+BNM         C20         C19         C23     104.374    1.55
+BNM         C20         C19          H6     108.708    1.50
+BNM         N18         C19         C23     113.390    3.00
+BNM         N18         C19          H6     108.188    1.50
+BNM         C23         C19          H6     108.708    1.50
+BNM         C19         C20         C21     104.866    1.82
+BNM         C19         C20          H7     110.783    1.50
+BNM         C19         C20          H8     110.783    1.50
+BNM         C21         C20          H7     110.871    1.50
+BNM         C21         C20          H8     110.871    1.50
+BNM          H7         C20          H8     108.887    1.50
+BNM         C20         C21         C22     105.632    1.63
+BNM         C20         C21          H9     110.660    1.50
+BNM         C20         C21         H10     110.660    1.50
+BNM         C22         C21          H9     110.679    1.50
+BNM         C22         C21         H10     110.679    1.50
+BNM          H9         C21         H10     108.634    1.62
+BNM         C21         C22         C23     105.632    1.63
+BNM         C21         C22         H11     110.679    1.50
+BNM         C21         C22         H12     110.679    1.50
+BNM         C23         C22         H11     110.660    1.50
+BNM         C23         C22         H12     110.660    1.50
+BNM         H11         C22         H12     108.634    1.62
+BNM         C19         C23         C22     104.866    1.82
+BNM         C19         C23         H13     110.783    1.50
+BNM         C19         C23         H14     110.783    1.50
+BNM         C22         C23         H13     110.871    1.50
+BNM         C22         C23         H14     110.871    1.50
+BNM         H13         C23         H14     108.887    1.50
+BNM         C04         C24         C14     119.300    1.50
+BNM         C04         C24         H15     120.005    2.19
+BNM         C14         C24         H15     120.695    1.50
+BNM         C27         C25         C26      58.261    1.50
+BNM         C27         C25         C02     117.566    1.52
+BNM         C27         C25         H16     116.898    1.50
+BNM         C26         C25         C02     117.566    1.52
+BNM         C26         C25         H16     116.898    1.50
+BNM         C02         C25         H16     115.904    1.65
+BNM         C27         C26         C25      60.870    1.50
+BNM         C27         C26         H17     117.759    1.50
+BNM         C27         C26         H18     117.759    1.50
+BNM         C25         C26         H17     117.683    1.50
+BNM         C25         C26         H18     117.683    1.50
+BNM         H17         C26         H18     114.868    1.50
+BNM         C26         C27         C25      60.870    1.50
+BNM         C26         C27         H19     117.759    1.50
+BNM         C26         C27         H20     117.759    1.50
+BNM         C25         C27         H19     117.683    1.50
+BNM         C25         C27         H20     117.683    1.50
+BNM         H19         C27         H20     114.868    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BNM              const_14         C06         C13         C14         S15     180.000    10.0     2
+BNM            sp2_sp3_10         C24         C14         S15         O16     -30.000    10.0     6
+BNM              const_19         S15         C14         C24         C04     180.000    10.0     2
+BNM            sp3_sp3_71         C23         C19         N18          H5     -60.000    10.0     3
+BNM            sp3_sp3_75          H6         C19         N18          H5      60.000    10.0     3
+BNM             sp3_sp3_7         N18         C19         C20         C21     180.000    10.0     3
+BNM            sp3_sp3_82          H6         C19         C23         C22     -60.000    10.0     3
+BNM            sp3_sp3_10         C19         C20         C21         C22     -60.000    10.0     3
+BNM              const_34         C08         C07         N12         H21     180.000    10.0     2
+BNM             sp2_sp3_5         N03         C02         C25         C27     -60.000    10.0     6
+BNM            sp3_sp3_19         C20         C21         C22         C23      60.000    10.0     3
+BNM            sp3_sp3_28         C21         C22         C23         C19     -60.000    10.0     3
+BNM            sp3_sp3_61         H16         C25         C26         C27     -60.000    10.0     3
+BNM            sp3_sp3_37         C02         C25         C27         C26      60.000    10.0     3
+BNM            sp2_sp2_12         C24         C04         N03          H1     180.000     5.0     2
+BNM             sp2_sp3_8         C13         C14         S15         O17     -90.000    10.0     6
+BNM       const_sp2_sp2_3         N03         C04         C05         C06     180.000     5.0     2
+BNM       const_sp2_sp2_6         C04         C05         C06         C07     180.000     5.0     2
+BNM              const_11         C07         C06         C13         C14     180.000    10.0     2
+BNM             sp2_sp2_8         C13         C06         C07         N12     180.000     5.0     2
+BNM              const_36         C06         C07         N12         H21       0.000    10.0     2
+BNM              const_21         N12         C07         C08         S09       0.000    10.0     2
+BNM              const_25         C07         C08         S09         C10       0.000    10.0     2
+BNM              const_28         O11         C10         S09         C08     180.000    10.0     2
+BNM              const_31         O11         C10         N12         C07     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BNM    chir_1    S15    O16    O17    N18    both
+BNM    chir_2    C19    N18    C20    C23    both
+BNM    chir_3    C25    C02    C27    C26    both
+BNM    chir_4    N18    S15    C19    H5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BNM    plan-1         C06   0.020
+BNM    plan-1         C07   0.020
+BNM    plan-1         C08   0.020
+BNM    plan-1         C10   0.020
+BNM    plan-1         H21   0.020
+BNM    plan-1          H3   0.020
+BNM    plan-1         N12   0.020
+BNM    plan-1         O11   0.020
+BNM    plan-1         S09   0.020
+BNM    plan-2         C04   0.020
+BNM    plan-2         C05   0.020
+BNM    plan-2         C06   0.020
+BNM    plan-2         C07   0.020
+BNM    plan-2         C13   0.020
+BNM    plan-2         C14   0.020
+BNM    plan-2         C24   0.020
+BNM    plan-2         H15   0.020
+BNM    plan-2          H2   0.020
+BNM    plan-2          H4   0.020
+BNM    plan-2         N03   0.020
+BNM    plan-2         S15   0.020
+BNM    plan-3         C02   0.020
+BNM    plan-3         C25   0.020
+BNM    plan-3         N03   0.020
+BNM    plan-3         O01   0.020
+BNM    plan-4         C02   0.020
+BNM    plan-4         C04   0.020
+BNM    plan-4          H1   0.020
+BNM    plan-4         N03   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BNM           SMILES              ACDLabs 12.01                                                                                             O=C4SC=C(c2cc(cc(NC(=O)C1CC1)c2)S(=O)(=O)NC3CCCC3)N4
+BNM            InChI                InChI  1.03 InChI=1S/C18H21N3O4S2/c22-17(11-5-6-11)19-14-7-12(16-10-26-18(23)20-16)8-15(9-14)27(24,25)21-13-3-1-2-4-13/h7-11,13,21H,1-6H2,(H,19,22)(H,20,23)
+BNM         InChIKey                InChI  1.03                                                                                                                      OLJJIVPNEQZRJR-UHFFFAOYSA-N
+BNM SMILES_CANONICAL               CACTVS 3.385                                                                                           O=C1NC(=CS1)c2cc(NC(=O)C3CC3)cc(c2)[S](=O)(=O)NC4CCCC4
+BNM           SMILES               CACTVS 3.385                                                                                           O=C1NC(=CS1)c2cc(NC(=O)C3CC3)cc(c2)[S](=O)(=O)NC4CCCC4
+BNM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                             c1c(cc(cc1NC(=O)C2CC2)S(=O)(=O)NC3CCCC3)C4=CSC(=O)N4
+BNM           SMILES "OpenEye OEToolkits" 1.7.6                                                                                             c1c(cc(cc1NC(=O)C2CC2)S(=O)(=O)NC3CCCC3)C4=CSC(=O)N4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BNM acedrg               243         "dictionary generator"                  
+BNM acedrg_database      11          "data source"                           
+BNM rdkit                2017.03.2   "Chemoinformatics tool"
+BNM refmac5              5.8.0238    "optimization tool"                     

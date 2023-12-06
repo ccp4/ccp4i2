@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PNY     PNY      (2R)-2,4-dihydroxy-3,3-dimethyl-N-{3-oxo-3-[(2-sulfanylethyl)amino]propyl}butanamide     NON-POLYMER     40     18     .     
+#
+data_comp_PNY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PNY     CAA     C       CH2     0       -8.883      12.176      7.580       
+PNY     CAB     C       CH3     0       -11.207     11.952      6.722       
+PNY     OAC     O       O       0       -10.736     16.037      1.342       
+PNY     OAD     O       O       0       -10.685     15.380      4.786       
+PNY     OAE     O       OH1     0       -7.719      12.979      7.748       
+PNY     CAF     C       CT      0       -10.015     12.909      6.858       
+PNY     SAG     S       SH1     0       -6.098      15.947      1.953       
+PNY     CAH     C       CH2     0       -7.667      15.074      2.190       
+PNY     CAI     C       CH3     0       -10.442     14.103      7.722       
+PNY     CAJ     C       CH2     0       -8.313      14.661      0.891       
+PNY     CAK     C       CH2     0       -12.450     14.007      3.015       
+PNY     CAL     C       CH2     0       -12.041     14.052      1.554       
+PNY     NAM     N       NH1     0       -9.636      14.087      1.094       
+PNY     NAN     N       NH1     0       -11.412     13.446      3.877       
+PNY     CAO     C       C       0       -10.748     14.807      1.315       
+PNY     CAP     C       C       0       -10.618     14.157      4.674       
+PNY     CAQ     C       CH1     0       -9.558      13.406      5.472       
+PNY     OAR     O       OH1     0       -9.064      12.321      4.691       
+PNY     HAA     H       H       0       -9.198      11.891      8.469       
+PNY     HAAA    H       H       0       -8.641      11.367      7.073       
+PNY     HAB     H       H       0       -11.029     11.299      6.024       
+PNY     HABA    H       H       0       -12.010     12.452      6.495       
+PNY     HABB    H       H       0       -11.350     11.487      7.565       
+PNY     HOAE    H       H       0       -7.150      12.544      8.199       
+PNY     HSAG    H       HSH1    0       -5.821      16.072      3.117       
+PNY     HAH     H       H       0       -8.277      15.654      2.677       
+PNY     HAHA    H       H       0       -7.505      14.282      2.728       
+PNY     HAI     H       H       0       -9.766      14.801      7.669       
+PNY     HAIA    H       H       0       -10.538     13.820      8.648       
+PNY     HAIB    H       H       0       -11.292     14.455      7.406       
+PNY     HAJ     H       H       0       -7.740      13.999      0.447       
+PNY     HAJA    H       H       0       -8.383      15.443      0.303       
+PNY     HAK     H       H       0       -13.259     13.460      3.099       
+PNY     HAKA    H       H       0       -12.674     14.914      3.312       
+PNY     HAL     H       H       0       -12.749     14.478      1.038       
+PNY     HALA    H       H       0       -11.949     13.144      1.218       
+PNY     HNAM    H       H       0       -9.709      13.218      1.074       
+PNY     HNAN    H       H       0       -11.310     12.579      3.865       
+PNY     HAQ     H       H       0       -8.811      14.033      5.621       
+PNY     HOAR    H       H       0       -8.538      12.623      4.099       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PNY         CAA         OAE      SINGLE       n     1.423  0.0111     1.423  0.0111
+PNY         CAA         CAF      SINGLE       n     1.525  0.0104     1.525  0.0104
+PNY         CAB         CAF      SINGLE       n     1.531  0.0109     1.531  0.0109
+PNY         OAC         CAO      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PNY         OAD         CAP      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PNY         CAF         CAI      SINGLE       n     1.531  0.0109     1.531  0.0109
+PNY         CAF         CAQ      SINGLE       n     1.532  0.0112     1.532  0.0112
+PNY         SAG         CAH      SINGLE       n     1.811  0.0100     1.811  0.0100
+PNY         CAH         CAJ      SINGLE       n     1.509  0.0190     1.509  0.0190
+PNY         CAJ         NAM      SINGLE       n     1.455  0.0100     1.455  0.0100
+PNY         CAK         CAL      SINGLE       n     1.513  0.0195     1.513  0.0195
+PNY         CAK         NAN      SINGLE       n     1.457  0.0100     1.457  0.0100
+PNY         CAL         CAO      SINGLE       n     1.514  0.0100     1.514  0.0100
+PNY         NAM         CAO      SINGLE       n     1.337  0.0118     1.337  0.0118
+PNY         NAN         CAP      SINGLE       n     1.326  0.0100     1.326  0.0100
+PNY         CAP         CAQ      SINGLE       n     1.519  0.0108     1.519  0.0108
+PNY         CAQ         OAR      SINGLE       n     1.419  0.0162     1.419  0.0162
+PNY         CAA         HAA      SINGLE       n     1.089  0.0100     0.985  0.0115
+PNY         CAA        HAAA      SINGLE       n     1.089  0.0100     0.985  0.0115
+PNY         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+PNY         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0146
+PNY         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0146
+PNY         OAE        HOAE      SINGLE       n     0.970  0.0120     0.846  0.0200
+PNY         SAG        HSAG      SINGLE       n     1.338  0.0100     1.203  0.0200
+PNY         CAH         HAH      SINGLE       n     1.089  0.0100     0.972  0.0107
+PNY         CAH        HAHA      SINGLE       n     1.089  0.0100     0.972  0.0107
+PNY         CAI         HAI      SINGLE       n     1.089  0.0100     0.973  0.0146
+PNY         CAI        HAIA      SINGLE       n     1.089  0.0100     0.973  0.0146
+PNY         CAI        HAIB      SINGLE       n     1.089  0.0100     0.973  0.0146
+PNY         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0127
+PNY         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0127
+PNY         CAK         HAK      SINGLE       n     1.089  0.0100     0.980  0.0159
+PNY         CAK        HAKA      SINGLE       n     1.089  0.0100     0.980  0.0159
+PNY         CAL         HAL      SINGLE       n     1.089  0.0100     0.973  0.0156
+PNY         CAL        HALA      SINGLE       n     1.089  0.0100     0.973  0.0156
+PNY         NAM        HNAM      SINGLE       n     1.016  0.0100     0.872  0.0200
+PNY         NAN        HNAN      SINGLE       n     1.016  0.0100     0.872  0.0200
+PNY         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.988  0.0129
+PNY         OAR        HOAR      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PNY         OAE         CAA         CAF     112.722    1.73
+PNY         OAE         CAA         HAA     109.100    1.50
+PNY         OAE         CAA        HAAA     109.100    1.50
+PNY         CAF         CAA         HAA     109.473    1.50
+PNY         CAF         CAA        HAAA     109.473    1.50
+PNY         HAA         CAA        HAAA     108.307    1.50
+PNY         CAF         CAB         HAB     109.575    1.50
+PNY         CAF         CAB        HABA     109.575    1.50
+PNY         CAF         CAB        HABB     109.575    1.50
+PNY         HAB         CAB        HABA     109.377    1.50
+PNY         HAB         CAB        HABB     109.377    1.50
+PNY        HABA         CAB        HABB     109.377    1.50
+PNY         CAA         OAE        HOAE     108.853    2.22
+PNY         CAA         CAF         CAB     109.385    1.50
+PNY         CAA         CAF         CAI     109.385    1.50
+PNY         CAA         CAF         CAQ     111.094    2.85
+PNY         CAB         CAF         CAI     108.765    1.50
+PNY         CAB         CAF         CAQ     109.534    1.52
+PNY         CAI         CAF         CAQ     109.534    1.52
+PNY         CAH         SAG        HSAG      97.089    1.52
+PNY         SAG         CAH         CAJ     112.239    3.00
+PNY         SAG         CAH         HAH     108.594    1.76
+PNY         SAG         CAH        HAHA     108.594    1.76
+PNY         CAJ         CAH         HAH     108.864    1.50
+PNY         CAJ         CAH        HAHA     108.864    1.50
+PNY         HAH         CAH        HAHA     108.165    1.50
+PNY         CAF         CAI         HAI     109.575    1.50
+PNY         CAF         CAI        HAIA     109.575    1.50
+PNY         CAF         CAI        HAIB     109.575    1.50
+PNY         HAI         CAI        HAIA     109.377    1.50
+PNY         HAI         CAI        HAIB     109.377    1.50
+PNY        HAIA         CAI        HAIB     109.377    1.50
+PNY         CAH         CAJ         NAM     112.117    1.54
+PNY         CAH         CAJ         HAJ     108.883    1.50
+PNY         CAH         CAJ        HAJA     108.883    1.50
+PNY         NAM         CAJ         HAJ     109.102    1.50
+PNY         NAM         CAJ        HAJA     109.102    1.50
+PNY         HAJ         CAJ        HAJA     107.995    1.50
+PNY         CAL         CAK         NAN     112.257    1.50
+PNY         CAL         CAK         HAK     108.971    1.50
+PNY         CAL         CAK        HAKA     108.971    1.50
+PNY         NAN         CAK         HAK     108.979    1.50
+PNY         NAN         CAK        HAKA     108.979    1.50
+PNY         HAK         CAK        HAKA     107.877    1.50
+PNY         CAK         CAL         CAO     112.120    2.79
+PNY         CAK         CAL         HAL     109.432    1.50
+PNY         CAK         CAL        HALA     109.432    1.50
+PNY         CAO         CAL         HAL     108.945    1.50
+PNY         CAO         CAL        HALA     108.945    1.50
+PNY         HAL         CAL        HALA     107.745    2.07
+PNY         CAJ         NAM         CAO     123.437    1.80
+PNY         CAJ         NAM        HNAM     118.700    1.83
+PNY         CAO         NAM        HNAM     117.862    2.10
+PNY         CAK         NAN         CAP     122.964    1.80
+PNY         CAK         NAN        HNAN     118.351    1.90
+PNY         CAP         NAN        HNAN     118.685    1.94
+PNY         OAC         CAO         CAL     120.987    1.50
+PNY         OAC         CAO         NAM     121.943    1.50
+PNY         CAL         CAO         NAM     117.070    1.96
+PNY         OAD         CAP         NAN     122.985    1.50
+PNY         OAD         CAP         CAQ     119.851    1.78
+PNY         NAN         CAP         CAQ     117.147    1.50
+PNY         CAF         CAQ         CAP     111.511    2.91
+PNY         CAF         CAQ         OAR     109.482    3.00
+PNY         CAF         CAQ         HAQ     107.825    1.50
+PNY         CAP         CAQ         OAR     109.850    1.55
+PNY         CAP         CAQ         HAQ     108.529    1.70
+PNY         OAR         CAQ         HAQ     108.675    1.50
+PNY         CAQ         OAR        HOAR     108.894    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PNY             sp3_sp3_1         CAF         CAA         OAE        HOAE     180.000    10.0     3
+PNY             sp3_sp3_5         OAE         CAA         CAF         CAB     -60.000    10.0     3
+PNY            sp3_sp3_52         NAN         CAK         CAL         CAO     180.000    10.0     3
+PNY             sp2_sp3_8         CAP         NAN         CAK         CAL     120.000    10.0     6
+PNY            sp2_sp3_14         OAC         CAO         CAL         CAK     120.000    10.0     6
+PNY             sp2_sp2_3         OAC         CAO         NAM         CAJ       0.000     5.0     2
+PNY             sp2_sp2_7         OAD         CAP         NAN         CAK       0.000     5.0     2
+PNY            sp2_sp3_19         OAD         CAP         CAQ         CAF       0.000    10.0     6
+PNY            sp3_sp3_61         CAF         CAQ         OAR        HOAR     180.000    10.0     3
+PNY            sp3_sp3_13         HAB         CAB         CAF         CAA     180.000    10.0     3
+PNY            sp3_sp3_34         CAA         CAF         CAQ         CAP      60.000    10.0     3
+PNY            sp3_sp3_25         CAA         CAF         CAI         HAI      60.000    10.0     3
+PNY            sp3_sp3_40         CAJ         CAH         SAG        HSAG     180.000    10.0     3
+PNY            sp3_sp3_43         SAG         CAH         CAJ         NAM     180.000    10.0     3
+PNY             sp2_sp3_2         CAO         NAM         CAJ         CAH     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PNY    chir_1    CAF    CAQ    CAA    CAB    both
+PNY    chir_2    CAQ    OAR    CAP    CAF    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PNY    plan-1         CAJ   0.020
+PNY    plan-1         CAO   0.020
+PNY    plan-1        HNAM   0.020
+PNY    plan-1         NAM   0.020
+PNY    plan-2         CAK   0.020
+PNY    plan-2         CAP   0.020
+PNY    plan-2        HNAN   0.020
+PNY    plan-2         NAN   0.020
+PNY    plan-3         CAL   0.020
+PNY    plan-3         CAO   0.020
+PNY    plan-3         NAM   0.020
+PNY    plan-3         OAC   0.020
+PNY    plan-4         CAP   0.020
+PNY    plan-4         CAQ   0.020
+PNY    plan-4         NAN   0.020
+PNY    plan-4         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PNY           SMILES              ACDLabs 12.01                                                                                           O=C(NCCS)CCNC(=O)C(O)C(C)(C)CO
+PNY SMILES_CANONICAL               CACTVS 3.370                                                                                      CC(C)(CO)[C@@H](O)C(=O)NCCC(=O)NCCS
+PNY           SMILES               CACTVS 3.370                                                                                        CC(C)(CO)[CH](O)C(=O)NCCC(=O)NCCS
+PNY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                       CC(C)(CO)[C@H](C(=O)NCCC(=O)NCCS)O
+PNY           SMILES "OpenEye OEToolkits" 1.7.0                                                                                           CC(C)(CO)C(C(=O)NCCC(=O)NCCS)O
+PNY            InChI                InChI  1.03 InChI=1S/C11H22N2O4S/c1-11(2,7-14)9(16)10(17)13-4-3-8(15)12-5-6-18/h9,14,16,18H,3-7H2,1-2H3,(H,12,15)(H,13,17)/t9-/m0/s1
+PNY         InChIKey                InChI  1.03                                                                                              ZNXZGRMVNNHPCA-VIFPVBQESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PNY acedrg               243         "dictionary generator"                  
+PNY acedrg_database      11          "data source"                           
+PNY rdkit                2017.03.2   "Chemoinformatics tool"
+PNY refmac5              5.8.0238    "optimization tool"                     

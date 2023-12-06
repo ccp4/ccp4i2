@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AHI     AHI      3-{[(E)-AMINO(HYDROXYIMINO)METHYL]AMINO}PROPAN-1-AMINIUM     NON-POLYMER     22     9     .     
+#
+data_comp_AHI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AHI     N10     N       NH2     0       -2.888      42.578      11.381      
+AHI     C09     C       C       0       -3.002      43.645      10.575      
+AHI     NP1     N       N       0       -2.733      43.618      9.294       
+AHI     N08     N       NH1     0       -3.412      44.799      11.111      
+AHI     C07     C       CH2     0       -3.597      46.064      10.404      
+AHI     C06     C       CH2     0       -4.062      47.154      11.352      
+AHI     C03     C       CH2     0       -4.290      48.482      10.664      
+AHI     N02     N       NT3     1       -4.738      49.519      11.624      
+AHI     O16     O       OH1     0       -2.311      42.333      8.863       
+AHI     H101    H       H       0       -2.619      41.809      11.046      
+AHI     H102    H       H       0       -3.078      42.637      12.240      
+AHI     H08     H       H       0       -3.585      44.794      11.967      
+AHI     H071    H       H       0       -4.262      45.943      9.692       
+AHI     H072    H       H       0       -2.750      46.330      9.987       
+AHI     H061    H       H       0       -3.391      47.268      12.056      
+AHI     H062    H       H       0       -4.894      46.868      11.782      
+AHI     H031    H       H       0       -4.967      48.377      9.969       
+AHI     H032    H       H       0       -3.462      48.776      10.239      
+AHI     H021    H       H       0       -4.875      50.302      11.188      
+AHI     H022    H       H       0       -4.105      49.640      12.262      
+AHI     H023    H       H       0       -5.512      49.258      12.018      
+AHI     H16     H       H       0       -2.890      41.761      8.582       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AHI         N10         C09      SINGLE       n     1.334  0.0143     1.334  0.0143
+AHI         C09         NP1      DOUBLE       n     1.293  0.0200     1.293  0.0200
+AHI         C09         N08      SINGLE       n     1.329  0.0121     1.329  0.0121
+AHI         NP1         O16      SINGLE       n     1.415  0.0195     1.415  0.0195
+AHI         N08         C07      SINGLE       n     1.456  0.0136     1.456  0.0136
+AHI         C07         C06      SINGLE       n     1.517  0.0117     1.517  0.0117
+AHI         C06         C03      SINGLE       n     1.513  0.0120     1.513  0.0120
+AHI         C03         N02      SINGLE       n     1.482  0.0123     1.482  0.0123
+AHI         N10        H101      SINGLE       n     1.016  0.0100     0.881  0.0200
+AHI         N10        H102      SINGLE       n     1.016  0.0100     0.881  0.0200
+AHI         N08         H08      SINGLE       n     1.016  0.0100     0.872  0.0200
+AHI         C07        H071      SINGLE       n     1.089  0.0100     0.981  0.0152
+AHI         C07        H072      SINGLE       n     1.089  0.0100     0.981  0.0152
+AHI         C06        H061      SINGLE       n     1.089  0.0100     0.979  0.0161
+AHI         C06        H062      SINGLE       n     1.089  0.0100     0.979  0.0161
+AHI         C03        H031      SINGLE       n     1.089  0.0100     0.976  0.0165
+AHI         C03        H032      SINGLE       n     1.089  0.0100     0.976  0.0165
+AHI         N02        H021      SINGLE       n     1.036  0.0160     0.907  0.0200
+AHI         N02        H022      SINGLE       n     1.036  0.0160     0.907  0.0200
+AHI         N02        H023      SINGLE       n     1.036  0.0160     0.907  0.0200
+AHI         O16         H16      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AHI         C09         N10        H101     119.894    2.29
+AHI         C09         N10        H102     119.894    2.29
+AHI        H101         N10        H102     120.211    2.09
+AHI         N10         C09         NP1     123.579    2.82
+AHI         N10         C09         N08     117.078    3.00
+AHI         NP1         C09         N08     119.343    2.67
+AHI         C09         NP1         O16     110.625    1.59
+AHI         C09         N08         C07     125.947    2.13
+AHI         C09         N08         H08     116.571    1.50
+AHI         C07         N08         H08     117.481    1.50
+AHI         N08         C07         C06     110.271    1.50
+AHI         N08         C07        H071     109.183    1.50
+AHI         N08         C07        H072     109.183    1.50
+AHI         C06         C07        H071     109.350    1.50
+AHI         C06         C07        H072     109.350    1.50
+AHI        H071         C07        H072     107.877    1.50
+AHI         C07         C06         C03     113.326    2.10
+AHI         C07         C06        H061     108.958    1.50
+AHI         C07         C06        H062     108.958    1.50
+AHI         C03         C06        H061     109.249    1.50
+AHI         C03         C06        H062     109.249    1.50
+AHI        H061         C06        H062     107.594    1.73
+AHI         C06         C03         N02     111.271    1.50
+AHI         C06         C03        H031     109.434    1.50
+AHI         C06         C03        H032     109.434    1.50
+AHI         N02         C03        H031     108.989    1.50
+AHI         N02         C03        H032     108.989    1.50
+AHI        H031         C03        H032     108.067    1.50
+AHI         C03         N02        H021     109.775    1.81
+AHI         C03         N02        H022     109.775    1.81
+AHI         C03         N02        H023     109.775    1.81
+AHI        H021         N02        H022     109.021    2.83
+AHI        H021         N02        H023     109.021    2.83
+AHI        H022         N02        H023     109.021    2.83
+AHI         NP1         O16         H16     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AHI             sp2_sp2_3         NP1         C09         N10        H101       0.000     5.0     2
+AHI             sp2_sp2_5         N10         C09         NP1         O16     180.000     5.0     2
+AHI             sp2_sp2_9         N10         C09         N08         C07       0.000     5.0     2
+AHI            sp2_sp2_11         C09         NP1         O16         H16     180.000     5.0     2
+AHI             sp2_sp3_2         C09         N08         C07         C06     120.000    10.0     6
+AHI             sp3_sp3_1         C03         C06         C07         N08     180.000    10.0     3
+AHI            sp3_sp3_10         N02         C03         C06         C07     180.000    10.0     3
+AHI            sp3_sp3_19         C06         C03         N02        H021     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AHI    plan-1         C09   0.020
+AHI    plan-1        H101   0.020
+AHI    plan-1        H102   0.020
+AHI    plan-1         N10   0.020
+AHI    plan-2         C09   0.020
+AHI    plan-2         N08   0.020
+AHI    plan-2         N10   0.020
+AHI    plan-2         NP1   0.020
+AHI    plan-3         C07   0.020
+AHI    plan-3         C09   0.020
+AHI    plan-3         H08   0.020
+AHI    plan-3         N08   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AHI           SMILES              ACDLabs 10.04                                           N(/O)=C(/N)NCCC[NH3+]
+AHI SMILES_CANONICAL               CACTVS 3.341                                             N\C(NCCC[NH3+])=N/O
+AHI           SMILES               CACTVS 3.341                                               NC(NCCC[NH3+])=NO
+AHI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          C(C[NH3+])CN/C(=N/O)/N
+AHI           SMILES "OpenEye OEToolkits" 1.5.0                                             C(C[NH3+])CNC(=NO)N
+AHI            InChI                InChI  1.03 InChI=1S/C4H12N4O/c5-2-1-3-7-4(6)8-9/h9H,1-3,5H2,(H3,6,7,8)/p+1
+AHI         InChIKey                InChI  1.03                                     HYBLXYGPQAIGPY-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AHI acedrg               243         "dictionary generator"                  
+AHI acedrg_database      11          "data source"                           
+AHI rdkit                2017.03.2   "Chemoinformatics tool"
+AHI refmac5              5.8.0238    "optimization tool"                     

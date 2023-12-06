@@ -1,0 +1,348 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HBV     HBV      3-fluoro-N-hydroxy-4-[(methyl{[(3s,5s,7s)-tricyclo[3.3.1.1~3,7~]decan-1-yl]methyl}amino)methyl]benzamide     NON-POLYMER     52     25     .     
+#
+data_comp_HBV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HBV     C10     C       CH2     0       -48.608     -24.719     -9.960      
+HBV     C13     C       CH1     0       -47.593     -28.404     -10.712     
+HBV     C01     C       CH3     0       -48.012     -22.400     -10.526     
+HBV     C02     C       CH2     0       -48.214     -23.031     -8.181      
+HBV     C03     C       CR6     0       -47.237     -22.008     -7.648      
+HBV     C04     C       CR6     0       -47.637     -20.762     -7.167      
+HBV     C05     C       CR16    0       -46.743     -19.828     -6.682      
+HBV     C06     C       CR6     0       -45.382     -20.128     -6.676      
+HBV     C07     C       C       0       -44.383     -19.143     -6.156      
+HBV     C08     C       CR16    0       -44.953     -21.366     -7.148      
+HBV     C11     C       CT      0       -47.680     -25.948     -10.099     
+HBV     C09     C       CR16    0       -45.869     -22.290     -7.629      
+HBV     C12     C       CH2     0       -48.493     -27.166     -10.572     
+HBV     C14     C       CH2     0       -46.961     -28.731     -9.357      
+HBV     C15     C       CH1     0       -46.127     -27.538     -8.886      
+HBV     C16     C       CH2     0       -45.023     -27.252     -9.907      
+HBV     C17     C       CH1     0       -45.656     -26.928     -11.263     
+HBV     C18     C       CH2     0       -46.559     -25.692     -11.124     
+HBV     C19     C       CH2     0       -46.491     -28.121     -11.734     
+HBV     C20     C       CH2     0       -47.030     -26.301     -8.749      
+HBV     F01     F       F       0       -48.953     -20.444     -7.167      
+HBV     N01     N       NT      0       -47.901     -23.490     -9.548      
+HBV     N02     N       NH1     0       -44.470     -17.913     -6.649      
+HBV     O01     O       OH1     0       -43.611     -16.913     -6.206      
+HBV     O02     O       O       0       -43.538     -19.474     -5.313      
+HBV     H1      H       H       0       -49.302     -24.933     -9.300      
+HBV     H2      H       H       0       -49.059     -24.577     -10.820     
+HBV     H3      H       H       0       -48.139     -29.175     -11.017     
+HBV     H4      H       H       0       -48.846     -21.911     -10.384     
+HBV     H5      H       H       0       -47.999     -22.761     -11.434     
+HBV     H6      H       H       0       -47.258     -21.788     -10.421     
+HBV     H7      H       H       0       -49.120     -22.658     -8.173      
+HBV     H8      H       H       0       -48.209     -23.807     -7.579      
+HBV     H9      H       H       0       -47.053     -18.998     -6.367      
+HBV     H10     H       H       0       -44.036     -21.577     -7.144      
+HBV     H11     H       H       0       -45.561     -23.122     -7.948      
+HBV     H12     H       H       0       -48.913     -26.962     -11.445     
+HBV     H13     H       H       0       -49.214     -27.353     -9.920      
+HBV     H14     H       H       0       -47.666     -28.925     -8.698      
+HBV     H15     H       H       0       -46.389     -29.527     -9.439      
+HBV     H16     H       H       0       -45.718     -27.746     -8.006      
+HBV     H17     H       H       0       -44.436     -28.037     -9.992      
+HBV     H18     H       H       0       -44.477     -26.491     -9.604      
+HBV     H19     H       H       0       -44.942     -26.741     -11.925     
+HBV     H20     H       H       0       -46.960     -25.474     -12.002     
+HBV     H21     H       H       0       -46.013     -24.919     -10.834     
+HBV     H22     H       H       0       -46.892     -27.921     -12.611     
+HBV     H23     H       H       0       -45.915     -28.913     -11.832     
+HBV     H24     H       H       0       -47.737     -26.480     -8.080      
+HBV     H25     H       H       0       -46.491     -25.535     -8.429      
+HBV     H27     H       H       0       -45.041     -17.650     -7.266      
+HBV     H28     H       H       0       -43.913     -16.642     -5.439      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HBV         C17         C19      SINGLE       n     1.527  0.0103     1.527  0.0103
+HBV         C13         C19      SINGLE       n     1.527  0.0103     1.527  0.0103
+HBV         C01         N01      SINGLE       n     1.460  0.0114     1.460  0.0114
+HBV         C17         C18      SINGLE       n     1.533  0.0100     1.533  0.0100
+HBV         C11         C18      SINGLE       n     1.533  0.0120     1.533  0.0120
+HBV         C13         C12      SINGLE       n     1.533  0.0100     1.533  0.0100
+HBV         C11         C12      SINGLE       n     1.533  0.0120     1.533  0.0120
+HBV         C16         C17      SINGLE       n     1.527  0.0103     1.527  0.0103
+HBV         C13         C14      SINGLE       n     1.527  0.0103     1.527  0.0103
+HBV         C10         C11      SINGLE       n     1.545  0.0100     1.545  0.0100
+HBV         C10         N01      SINGLE       n     1.470  0.0100     1.470  0.0100
+HBV         C11         C20      SINGLE       n     1.533  0.0120     1.533  0.0120
+HBV         C02         N01      SINGLE       n     1.465  0.0143     1.465  0.0143
+HBV         C15         C16      SINGLE       n     1.527  0.0103     1.527  0.0103
+HBV         C14         C15      SINGLE       n     1.527  0.0103     1.527  0.0103
+HBV         C02         C03      SINGLE       n     1.509  0.0100     1.509  0.0100
+HBV         C15         C20      SINGLE       n     1.533  0.0100     1.533  0.0100
+HBV         C03         C09      SINGLE       y     1.391  0.0116     1.391  0.0116
+HBV         C08         C09      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HBV         C03         C04      DOUBLE       y     1.385  0.0121     1.385  0.0121
+HBV         C06         C08      SINGLE       y     1.389  0.0100     1.389  0.0100
+HBV         C04         F01      SINGLE       n     1.354  0.0100     1.354  0.0100
+HBV         C04         C05      SINGLE       y     1.370  0.0179     1.370  0.0179
+HBV         C05         C06      DOUBLE       y     1.390  0.0100     1.390  0.0100
+HBV         C06         C07      SINGLE       n     1.495  0.0106     1.495  0.0106
+HBV         C07         O02      DOUBLE       n     1.238  0.0100     1.238  0.0100
+HBV         C07         N02      SINGLE       n     1.325  0.0100     1.325  0.0100
+HBV         N02         O01      SINGLE       n     1.390  0.0100     1.390  0.0100
+HBV         C10          H1      SINGLE       n     1.089  0.0100     0.981  0.0150
+HBV         C10          H2      SINGLE       n     1.089  0.0100     0.981  0.0150
+HBV         C13          H3      SINGLE       n     1.089  0.0100     0.992  0.0157
+HBV         C01          H4      SINGLE       n     1.089  0.0100     0.977  0.0113
+HBV         C01          H5      SINGLE       n     1.089  0.0100     0.977  0.0113
+HBV         C01          H6      SINGLE       n     1.089  0.0100     0.977  0.0113
+HBV         C02          H7      SINGLE       n     1.089  0.0100     0.981  0.0172
+HBV         C02          H8      SINGLE       n     1.089  0.0100     0.981  0.0172
+HBV         C05          H9      SINGLE       n     1.082  0.0130     0.940  0.0126
+HBV         C08         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+HBV         C09         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+HBV         C12         H12      SINGLE       n     1.089  0.0100     0.990  0.0100
+HBV         C12         H13      SINGLE       n     1.089  0.0100     0.990  0.0100
+HBV         C14         H14      SINGLE       n     1.089  0.0100     0.984  0.0144
+HBV         C14         H15      SINGLE       n     1.089  0.0100     0.984  0.0144
+HBV         C15         H16      SINGLE       n     1.089  0.0100     0.992  0.0157
+HBV         C16         H17      SINGLE       n     1.089  0.0100     0.984  0.0144
+HBV         C16         H18      SINGLE       n     1.089  0.0100     0.984  0.0144
+HBV         C17         H19      SINGLE       n     1.089  0.0100     0.992  0.0157
+HBV         C18         H20      SINGLE       n     1.089  0.0100     0.990  0.0100
+HBV         C18         H21      SINGLE       n     1.089  0.0100     0.990  0.0100
+HBV         C19         H22      SINGLE       n     1.089  0.0100     0.984  0.0144
+HBV         C19         H23      SINGLE       n     1.089  0.0100     0.984  0.0144
+HBV         C20         H24      SINGLE       n     1.089  0.0100     0.990  0.0100
+HBV         C20         H25      SINGLE       n     1.089  0.0100     0.990  0.0100
+HBV         N02         H27      SINGLE       n     1.016  0.0100     0.880  0.0200
+HBV         O01         H28      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HBV         C11         C10         N01     111.435    3.00
+HBV         C11         C10          H1     108.429    1.50
+HBV         C11         C10          H2     108.429    1.50
+HBV         N01         C10          H1     108.989    1.50
+HBV         N01         C10          H2     108.989    1.50
+HBV          H1         C10          H2     107.673    1.50
+HBV         C19         C13         C12     109.438    1.50
+HBV         C19         C13         C14     109.627    1.50
+HBV         C19         C13          H3     109.490    1.50
+HBV         C12         C13         C14     109.438    1.50
+HBV         C12         C13          H3     109.352    1.50
+HBV         C14         C13          H3     109.490    1.50
+HBV         N01         C01          H4     109.519    1.50
+HBV         N01         C01          H5     109.519    1.50
+HBV         N01         C01          H6     109.519    1.50
+HBV          H4         C01          H5     109.408    1.50
+HBV          H4         C01          H6     109.408    1.50
+HBV          H5         C01          H6     109.408    1.50
+HBV         N01         C02         C03     112.673    1.70
+HBV         N01         C02          H7     109.010    1.50
+HBV         N01         C02          H8     109.010    1.50
+HBV         C03         C02          H7     109.005    1.50
+HBV         C03         C02          H8     109.005    1.50
+HBV          H7         C02          H8     107.928    1.50
+HBV         C02         C03         C09     120.757    1.50
+HBV         C02         C03         C04     121.909    1.50
+HBV         C09         C03         C04     117.334    1.50
+HBV         C03         C04         F01     118.504    1.50
+HBV         C03         C04         C05     122.879    1.50
+HBV         F01         C04         C05     118.617    1.50
+HBV         C04         C05         C06     119.060    1.50
+HBV         C04         C05          H9     120.165    1.50
+HBV         C06         C05          H9     120.775    1.50
+HBV         C08         C06         C05     119.646    1.50
+HBV         C08         C06         C07     120.177    2.89
+HBV         C05         C06         C07     120.177    2.89
+HBV         C06         C07         O02     121.566    1.50
+HBV         C06         C07         N02     115.502    1.50
+HBV         O02         C07         N02     122.932    1.50
+HBV         C09         C08         C06     120.338    1.50
+HBV         C09         C08         H10     119.734    1.50
+HBV         C06         C08         H10     119.928    1.50
+HBV         C18         C11         C12     108.631    1.50
+HBV         C18         C11         C10     110.358    1.93
+HBV         C18         C11         C20     108.631    1.50
+HBV         C12         C11         C10     110.358    1.93
+HBV         C12         C11         C20     108.631    1.50
+HBV         C10         C11         C20     110.358    1.93
+HBV         C03         C09         C08     120.744    1.50
+HBV         C03         C09         H11     119.813    1.50
+HBV         C08         C09         H11     119.443    1.50
+HBV         C13         C12         C11     110.525    1.50
+HBV         C13         C12         H12     109.662    1.50
+HBV         C13         C12         H13     109.662    1.50
+HBV         C11         C12         H12     109.552    1.50
+HBV         C11         C12         H13     109.552    1.50
+HBV         H12         C12         H13     108.213    1.50
+HBV         C13         C14         C15     109.494    1.50
+HBV         C13         C14         H14     109.767    1.50
+HBV         C13         C14         H15     109.767    1.50
+HBV         C15         C14         H14     109.767    1.50
+HBV         C15         C14         H15     109.767    1.50
+HBV         H14         C14         H15     108.211    1.50
+HBV         C16         C15         C14     109.627    1.50
+HBV         C16         C15         C20     109.438    1.50
+HBV         C16         C15         H16     109.490    1.50
+HBV         C14         C15         C20     109.438    1.50
+HBV         C14         C15         H16     109.490    1.50
+HBV         C20         C15         H16     109.352    1.50
+HBV         C17         C16         C15     109.494    1.50
+HBV         C17         C16         H17     109.767    1.50
+HBV         C17         C16         H18     109.767    1.50
+HBV         C15         C16         H17     109.767    1.50
+HBV         C15         C16         H18     109.767    1.50
+HBV         H17         C16         H18     108.211    1.50
+HBV         C19         C17         C18     109.438    1.50
+HBV         C19         C17         C16     109.627    1.50
+HBV         C19         C17         H19     109.490    1.50
+HBV         C18         C17         C16     109.438    1.50
+HBV         C18         C17         H19     109.352    1.50
+HBV         C16         C17         H19     109.490    1.50
+HBV         C17         C18         C11     110.525    1.50
+HBV         C17         C18         H20     109.662    1.50
+HBV         C17         C18         H21     109.662    1.50
+HBV         C11         C18         H20     109.552    1.50
+HBV         C11         C18         H21     109.552    1.50
+HBV         H20         C18         H21     108.213    1.50
+HBV         C17         C19         C13     109.494    1.50
+HBV         C17         C19         H22     109.767    1.50
+HBV         C17         C19         H23     109.767    1.50
+HBV         C13         C19         H22     109.767    1.50
+HBV         C13         C19         H23     109.767    1.50
+HBV         H22         C19         H23     108.211    1.50
+HBV         C11         C20         C15     110.525    1.50
+HBV         C11         C20         H24     109.552    1.50
+HBV         C11         C20         H25     109.552    1.50
+HBV         C15         C20         H24     109.662    1.50
+HBV         C15         C20         H25     109.662    1.50
+HBV         H24         C20         H25     108.213    1.50
+HBV         C01         N01         C10     111.006    1.77
+HBV         C01         N01         C02     110.620    1.50
+HBV         C10         N01         C02     113.503    2.88
+HBV         C07         N02         O01     120.186    1.50
+HBV         C07         N02         H27     124.661    3.00
+HBV         O01         N02         H27     115.154    3.00
+HBV         N02         O01         H28     106.924    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HBV           sp3_sp3_116         N01         C10         C11         C18     -60.000    10.0     3
+HBV           sp3_sp3_124         C11         C10         N01         C01     180.000    10.0     3
+HBV            sp3_sp3_13         C10         C11         C12         C13     180.000    10.0     3
+HBV            sp3_sp3_79         C10         C11         C18         C17      60.000    10.0     3
+HBV            sp3_sp3_25         C10         C11         C20         C15     180.000    10.0     3
+HBV            sp3_sp3_37         C13         C14         C15         C16      60.000    10.0     3
+HBV            sp3_sp3_91         C14         C15         C16         C17     -60.000    10.0     3
+HBV            sp3_sp3_28         C16         C15         C20         C11     -60.000    10.0     3
+HBV            sp3_sp3_82         C15         C16         C17         C19      60.000    10.0     3
+HBV            sp3_sp3_64         C19         C17         C18         C11      60.000    10.0     3
+HBV            sp3_sp3_55         C18         C17         C19         C13     -60.000    10.0     3
+HBV             sp3_sp3_1         C11         C12         C13         C19      60.000    10.0     3
+HBV           sp3_sp3_106         C19         C13         C14         C15     180.000    10.0     3
+HBV            sp3_sp3_46         C12         C13         C19         C17      60.000    10.0     3
+HBV           sp3_sp3_100          H4         C01         N01         C10     180.000    10.0     3
+HBV           sp3_sp3_130         C03         C02         N01         C01     180.000    10.0     3
+HBV             sp2_sp3_2         C09         C03         C02         N01     -90.000    10.0     6
+HBV       const_sp2_sp2_3         C02         C03         C09         C08     180.000     5.0     2
+HBV              const_24         C02         C03         C04         F01       0.000    10.0     2
+HBV              const_19         F01         C04         C05         C06     180.000    10.0     2
+HBV              const_14         C04         C05         C06         C07     180.000    10.0     2
+HBV             sp2_sp2_2         C08         C06         C07         O02       0.000     5.0     2
+HBV              const_11         C07         C06         C08         C09     180.000    10.0     2
+HBV             sp2_sp2_7         O02         C07         N02         O01       0.000     5.0     2
+HBV       const_sp2_sp2_5         C06         C08         C09         C03       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HBV    chir_1    C13    C12    C19    C14    both
+HBV    chir_2    C11    C10    C18    C12    both
+HBV    chir_3    C15    C20    C16    C14    both
+HBV    chir_4    C17    C18    C19    C16    both
+HBV    chir_5    N01    C02    C10    C01    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HBV    plan-1         C02   0.020
+HBV    plan-1         C03   0.020
+HBV    plan-1         C04   0.020
+HBV    plan-1         C05   0.020
+HBV    plan-1         C06   0.020
+HBV    plan-1         C07   0.020
+HBV    plan-1         C08   0.020
+HBV    plan-1         C09   0.020
+HBV    plan-1         F01   0.020
+HBV    plan-1         H10   0.020
+HBV    plan-1         H11   0.020
+HBV    plan-1          H9   0.020
+HBV    plan-2         C06   0.020
+HBV    plan-2         C07   0.020
+HBV    plan-2         N02   0.020
+HBV    plan-2         O02   0.020
+HBV    plan-3         C07   0.020
+HBV    plan-3         H27   0.020
+HBV    plan-3         N02   0.020
+HBV    plan-3         O01   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HBV           SMILES              ACDLabs 12.01                                                                                                               C(C13CC2CC(C1)CC(C2)C3)N(C)Cc4c(F)cc(C(=O)NO)cc4
+HBV            InChI                InChI  1.03 InChI=1S/C20H27FN2O2/c1-23(11-17-3-2-16(7-18(17)21)19(24)22-25)12-20-8-13-4-14(9-20)6-15(5-13)10-20/h2-3,7,13-15,25H,4-6,8-12H2,1H3,(H,22,24)/t13-,14+,15-,20-
+HBV         InChIKey                InChI  1.03                                                                                                                                    IGZQZELTOHAHNW-PVGDPBLGSA-N
+HBV SMILES_CANONICAL               CACTVS 3.385                                                                                                                   CN(Cc1ccc(cc1F)C(=O)NO)CC23CC4CC(CC(C4)C2)C3
+HBV           SMILES               CACTVS 3.385                                                                                                                   CN(Cc1ccc(cc1F)C(=O)NO)CC23CC4CC(CC(C4)C2)C3
+HBV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                   CN(Cc1ccc(cc1F)C(=O)NO)CC23CC4CC(C2)CC(C4)C3
+HBV           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                   CN(Cc1ccc(cc1F)C(=O)NO)CC23CC4CC(C2)CC(C4)C3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HBV acedrg               243         "dictionary generator"                  
+HBV acedrg_database      11          "data source"                           
+HBV rdkit                2017.03.2   "Chemoinformatics tool"
+HBV refmac5              5.8.0238    "optimization tool"                     

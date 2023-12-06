@@ -1,0 +1,147 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A20     A20      "3-aminopropane-1-sulfonic acid"     NON-POLYMER     17     8     .     
+#
+data_comp_A20
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A20     OAD     O       O       0       -1.662      -5.265      -32.924     
+A20     SAH     S       S3      0       -2.996      -5.019      -33.393     
+A20     OAB     O       O       0       -3.214      -3.976      -34.354     
+A20     OAC     O       OH1     0       -3.954      -4.836      -32.190     
+A20     CAG     C       CH2     0       -3.559      -6.525      -34.137     
+A20     CAF     C       CH2     0       -5.017      -6.475      -34.550     
+A20     CAE     C       CH2     0       -5.472      -7.740      -35.263     
+A20     NAA     N       NT2     0       -5.413      -8.935      -34.416     
+A20     H10     H       H       0       -4.050      -4.049      -32.023     
+A20     H1      H       H       0       -3.434      -7.256      -33.505     
+A20     H2      H       H       0       -3.014      -6.712      -34.924     
+A20     H3      H       H       0       -5.163      -5.711      -35.146     
+A20     H4      H       H       0       -5.578      -6.345      -33.757     
+A20     H5      H       H       0       -4.909      -7.884      -36.051     
+A20     H6      H       H       0       -6.393      -7.619      -35.573     
+A20     H7      H       H       0       -5.862      -9.606      -34.785     
+A20     H8      H       H       0       -5.779      -8.779      -33.623     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A20         CAE         NAA      SINGLE       n     1.466  0.0117     1.466  0.0117
+A20         CAF         CAE      SINGLE       n     1.522  0.0137     1.522  0.0137
+A20         CAG         CAF      SINGLE       n     1.516  0.0200     1.516  0.0200
+A20         SAH         CAG      SINGLE       n     1.771  0.0119     1.771  0.0119
+A20         SAH         OAB      DOUBLE       n     1.435  0.0100     1.435  0.0100
+A20         OAD         SAH      DOUBLE       n     1.435  0.0100     1.435  0.0100
+A20         SAH         OAC      SINGLE       n     1.549  0.0200     1.549  0.0200
+A20         OAC         H10      SINGLE       n     0.970  0.0120     0.811  0.0200
+A20         CAG          H1      SINGLE       n     1.089  0.0100     0.975  0.0200
+A20         CAG          H2      SINGLE       n     1.089  0.0100     0.975  0.0200
+A20         CAF          H3      SINGLE       n     1.089  0.0100     0.980  0.0123
+A20         CAF          H4      SINGLE       n     1.089  0.0100     0.980  0.0123
+A20         CAE          H5      SINGLE       n     1.089  0.0100     0.979  0.0106
+A20         CAE          H6      SINGLE       n     1.089  0.0100     0.979  0.0106
+A20         NAA          H7      SINGLE       n     1.036  0.0160     0.888  0.0200
+A20         NAA          H8      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A20         CAG         SAH         OAB     106.916    1.50
+A20         CAG         SAH         OAD     106.916    1.50
+A20         CAG         SAH         OAC     103.568    2.80
+A20         OAB         SAH         OAD     119.289    2.60
+A20         OAB         SAH         OAC     110.306    2.80
+A20         OAD         SAH         OAC     110.306    2.80
+A20         SAH         OAC         H10     110.371    3.00
+A20         CAF         CAG         SAH     113.010    1.50
+A20         CAF         CAG          H1     108.920    1.50
+A20         CAF         CAG          H2     108.920    1.50
+A20         SAH         CAG          H1     108.904    1.50
+A20         SAH         CAG          H2     108.904    1.50
+A20          H1         CAG          H2     107.844    1.50
+A20         CAE         CAF         CAG     113.326    2.10
+A20         CAE         CAF          H3     108.805    1.50
+A20         CAE         CAF          H4     108.805    1.50
+A20         CAG         CAF          H3     109.743    1.50
+A20         CAG         CAF          H4     109.743    1.50
+A20          H3         CAF          H4     107.937    1.50
+A20         NAA         CAE         CAF     113.282    2.68
+A20         NAA         CAE          H5     108.763    1.50
+A20         NAA         CAE          H6     108.763    1.50
+A20         CAF         CAE          H5     109.099    1.50
+A20         CAF         CAE          H6     109.099    1.50
+A20          H5         CAE          H6     107.806    1.50
+A20         CAE         NAA          H7     110.839    3.00
+A20         CAE         NAA          H8     110.839    3.00
+A20          H7         NAA          H8     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A20            sp3_sp3_36         H10         OAC         SAH         CAG      60.000    10.0     3
+A20            sp3_sp3_25         CAF         CAG         SAH         OAB     180.000    10.0     3
+A20            sp3_sp3_16         CAE         CAF         CAG         SAH     180.000    10.0     3
+A20             sp3_sp3_7         NAA         CAE         CAF         CAG     180.000    10.0     3
+A20             sp3_sp3_1         CAF         CAE         NAA          H7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+A20    chir_1    SAH    OAB    OAD    OAC    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A20           SMILES              ACDLabs 12.01                                      O=S(=O)(O)CCCN
+A20            InChI                InChI  1.03 InChI=1S/C3H9NO3S/c4-2-1-3-8(5,6)7/h1-4H2,(H,5,6,7)
+A20         InChIKey                InChI  1.03                         SNKZJIOFVMKAOJ-UHFFFAOYSA-N
+A20 SMILES_CANONICAL               CACTVS 3.370                                    NCCC[S](O)(=O)=O
+A20           SMILES               CACTVS 3.370                                    NCCC[S](O)(=O)=O
+A20 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                    C(CN)CS(=O)(=O)O
+A20           SMILES "OpenEye OEToolkits" 1.7.6                                    C(CN)CS(=O)(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A20 acedrg               243         "dictionary generator"                  
+A20 acedrg_database      11          "data source"                           
+A20 rdkit                2017.03.2   "Chemoinformatics tool"
+A20 refmac5              5.8.0238    "optimization tool"                     

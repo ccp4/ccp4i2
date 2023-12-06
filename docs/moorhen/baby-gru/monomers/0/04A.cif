@@ -1,0 +1,391 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+04A     04A      "N,N'-[sulfanediylbis(ethane-2,1-diyl-1,3,4-thiadiazole-5,2-diyl)]bis(2-phenylacetamide)"     NON-POLYMER     59     35     .     
+#
+data_comp_04A
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+04A     OAA     O       O       0       7.379       -7.003      45.416      
+04A     OAB     O       O       0       -3.082      -4.827      44.483      
+04A     CAC     C       CR16    0       6.121       -1.589      46.334      
+04A     CAD     C       CR16    0       -8.410      -4.028      42.799      
+04A     CAE     C       CR16    0       5.742       -2.423      47.364      
+04A     CAF     C       CR16    0       7.155       -1.957      45.500      
+04A     CAG     C       CR16    0       -7.579      -2.978      43.126      
+04A     CAH     C       CR16    0       -7.870      -5.208      42.334      
+04A     CAI     C       CR16    0       6.399       -3.631      47.562      
+04A     CAJ     C       CR16    0       7.814       -3.165      45.696      
+04A     CAK     C       CR16    0       -6.202      -3.108      42.988      
+04A     CAL     C       CR16    0       -6.494      -5.340      42.194      
+04A     CAM     C       CH2     0       1.835       -10.742     47.016      
+04A     CAN     C       CH2     0       -0.538      -9.274      47.501      
+04A     CAO     C       CH2     0       3.221       -10.897     46.392      
+04A     CAP     C       CH2     0       -1.607      -9.974      46.664      
+04A     CAQ     C       CH2     0       8.160       -5.332      46.947      
+04A     CAR     C       CH2     0       -4.145      -4.434      42.368      
+04A     NAS     N       NRD5    0       4.862       -10.168     48.143      
+04A     NAT     N       NRD5    0       -1.442      -9.366      44.237      
+04A     NAU     N       NRD5    0       5.746       -9.103      48.432      
+04A     NAV     N       NRD5    0       -1.984      -8.451      43.307      
+04A     NAW     N       NH1     0       6.497       -7.016      47.526      
+04A     NAX     N       NH1     0       -3.552      -6.650      43.185      
+04A     SAY     S       S2      0       1.063       -9.139      46.659      
+04A     SAZ     S       S2      0       4.669       -8.584      46.305      
+04A     SBA     S       S2      0       -3.030      -7.986      45.468      
+04A     CBB     C       C       0       7.314       -6.524      46.548      
+04A     CBC     C       C       0       -3.543      -5.310      43.448      
+04A     CBD     C       CR6     0       7.443       -4.019      46.729      
+04A     CBE     C       CR6     0       -5.641      -4.291      42.521      
+04A     CBF     C       CR5     0       4.224       -10.017     47.037      
+04A     CBG     C       CR5     0       -1.916      -9.225      45.423      
+04A     CBH     C       CR5     0       5.747       -8.169      47.504      
+04A     CBI     C       CR5     0       -2.861      -7.633      43.848      
+04A     HAC     H       H       0       5.674       -0.768      46.200      
+04A     HAD     H       H       0       -9.345      -3.940      42.893      
+04A     HAE     H       H       0       5.035       -2.173      47.936      
+04A     HAF     H       H       0       7.416       -1.388      44.794      
+04A     HAG     H       H       0       -7.945      -2.169      43.446      
+04A     HAH     H       H       0       -8.437      -5.929      42.108      
+04A     HAI     H       H       0       6.134       -4.196      48.270      
+04A     HAJ     H       H       0       8.520       -3.410      45.121      
+04A     HAK     H       H       0       -5.640      -2.384      43.215      
+04A     HAL     H       H       0       -6.134      -6.150      41.873      
+04A     HAM     H       H       0       1.901       -10.844     47.988      
+04A     HAMA    H       H       0       1.246       -11.450     46.681      
+04A     HAN     H       H       0       -0.406      -9.765      48.339      
+04A     HANA    H       H       0       -0.843      -8.371      47.731      
+04A     HAO     H       H       0       3.175       -10.683     45.442      
+04A     HAOA    H       H       0       3.514       -11.822     46.479      
+04A     HAP     H       H       0       -2.423      -10.065     47.188      
+04A     HAPA    H       H       0       -1.299      -10.866     46.424      
+04A     HAQ     H       H       0       8.984       -5.340      46.422      
+04A     HAQA    H       H       0       8.405       -5.413      47.889      
+04A     HAR     H       H       0       -3.944      -4.821      41.494      
+04A     HARA    H       H       0       -3.729      -3.551      42.409      
+04A     HNAW    H       H       0       6.427       -6.551      48.268      
+04A     HNAX    H       H       0       -4.046      -6.931      42.518      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+04A         OAA         CBB      DOUBLE       n     1.230  0.0104     1.230  0.0104
+04A         OAB         CBC      DOUBLE       n     1.230  0.0104     1.230  0.0104
+04A         CAC         CAF      DOUBLE       y     1.374  0.0127     1.374  0.0127
+04A         CAC         CAE      SINGLE       y     1.374  0.0127     1.374  0.0127
+04A         CAD         CAG      DOUBLE       y     1.374  0.0127     1.374  0.0127
+04A         CAD         CAH      SINGLE       y     1.374  0.0127     1.374  0.0127
+04A         CAE         CAI      DOUBLE       y     1.386  0.0100     1.386  0.0100
+04A         CAF         CAJ      SINGLE       y     1.386  0.0100     1.386  0.0100
+04A         CAG         CAK      SINGLE       y     1.386  0.0100     1.386  0.0100
+04A         CAH         CAL      DOUBLE       y     1.386  0.0100     1.386  0.0100
+04A         CAI         CBD      SINGLE       y     1.386  0.0100     1.386  0.0100
+04A         CAJ         CBD      DOUBLE       y     1.386  0.0100     1.386  0.0100
+04A         CAK         CBE      DOUBLE       y     1.386  0.0100     1.386  0.0100
+04A         CAL         CBE      SINGLE       y     1.386  0.0100     1.386  0.0100
+04A         CAM         CAO      SINGLE       n     1.527  0.0100     1.527  0.0100
+04A         CAM         SAY      SINGLE       n     1.814  0.0100     1.814  0.0100
+04A         CAN         SAY      SINGLE       n     1.814  0.0100     1.814  0.0100
+04A         CAN         CAP      SINGLE       n     1.527  0.0100     1.527  0.0100
+04A         CAO         CBF      SINGLE       n     1.481  0.0100     1.481  0.0100
+04A         CAP         CBG      SINGLE       n     1.481  0.0100     1.481  0.0100
+04A         CAQ         CBB      SINGLE       n     1.514  0.0100     1.514  0.0100
+04A         CAQ         CBD      SINGLE       n     1.510  0.0100     1.510  0.0100
+04A         CAR         CBE      SINGLE       n     1.510  0.0100     1.510  0.0100
+04A         CAR         CBC      SINGLE       n     1.514  0.0100     1.514  0.0100
+04A         NAS         CBF      DOUBLE       y     1.281  0.0100     1.281  0.0100
+04A         NAS         NAU      SINGLE       y     1.395  0.0133     1.395  0.0133
+04A         NAT         NAV      SINGLE       y     1.395  0.0133     1.395  0.0133
+04A         NAT         CBG      DOUBLE       y     1.281  0.0100     1.281  0.0100
+04A         NAU         CBH      DOUBLE       y     1.301  0.0200     1.301  0.0200
+04A         NAV         CBI      DOUBLE       y     1.301  0.0200     1.301  0.0200
+04A         NAW         CBB      SINGLE       n     1.357  0.0146     1.357  0.0146
+04A         NAW         CBH      SINGLE       n     1.367  0.0190     1.367  0.0190
+04A         NAX         CBI      SINGLE       n     1.367  0.0190     1.367  0.0190
+04A         NAX         CBC      SINGLE       n     1.357  0.0146     1.357  0.0146
+04A         SAZ         CBF      SINGLE       y     1.695  0.0200     1.695  0.0200
+04A         SAZ         CBH      SINGLE       y     1.695  0.0200     1.695  0.0200
+04A         SBA         CBI      SINGLE       y     1.695  0.0200     1.695  0.0200
+04A         SBA         CBG      SINGLE       y     1.695  0.0200     1.695  0.0200
+04A         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+04A         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0161
+04A         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0175
+04A         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0175
+04A         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0175
+04A         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0175
+04A         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0174
+04A         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0174
+04A         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0174
+04A         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0174
+04A         CAM         HAM      SINGLE       n     1.089  0.0100     0.980  0.0184
+04A         CAM        HAMA      SINGLE       n     1.089  0.0100     0.980  0.0184
+04A         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0184
+04A         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0184
+04A         CAO         HAO      SINGLE       n     1.089  0.0100     0.974  0.0100
+04A         CAO        HAOA      SINGLE       n     1.089  0.0100     0.974  0.0100
+04A         CAP         HAP      SINGLE       n     1.089  0.0100     0.974  0.0100
+04A         CAP        HAPA      SINGLE       n     1.089  0.0100     0.974  0.0100
+04A         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.977  0.0143
+04A         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.977  0.0143
+04A         CAR         HAR      SINGLE       n     1.089  0.0100     0.977  0.0143
+04A         CAR        HARA      SINGLE       n     1.089  0.0100     0.977  0.0143
+04A         NAW        HNAW      SINGLE       n     1.016  0.0100     0.878  0.0200
+04A         NAX        HNAX      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+04A         CAF         CAC         CAE     120.043    1.50
+04A         CAF         CAC         HAC     119.979    1.50
+04A         CAE         CAC         HAC     119.979    1.50
+04A         CAG         CAD         CAH     120.043    1.50
+04A         CAG         CAD         HAD     119.979    1.50
+04A         CAH         CAD         HAD     119.979    1.50
+04A         CAC         CAE         CAI     120.325    1.50
+04A         CAC         CAE         HAE     119.883    1.50
+04A         CAI         CAE         HAE     119.792    1.50
+04A         CAC         CAF         CAJ     120.325    1.50
+04A         CAC         CAF         HAF     119.883    1.50
+04A         CAJ         CAF         HAF     119.792    1.50
+04A         CAD         CAG         CAK     120.325    1.50
+04A         CAD         CAG         HAG     119.883    1.50
+04A         CAK         CAG         HAG     119.792    1.50
+04A         CAD         CAH         CAL     120.325    1.50
+04A         CAD         CAH         HAH     119.883    1.50
+04A         CAL         CAH         HAH     119.792    1.50
+04A         CAE         CAI         CBD     120.624    1.50
+04A         CAE         CAI         HAI     119.786    1.50
+04A         CBD         CAI         HAI     119.591    1.50
+04A         CAF         CAJ         CBD     120.624    1.50
+04A         CAF         CAJ         HAJ     119.786    1.50
+04A         CBD         CAJ         HAJ     119.591    1.50
+04A         CAG         CAK         CBE     120.624    1.50
+04A         CAG         CAK         HAK     119.786    1.50
+04A         CBE         CAK         HAK     119.591    1.50
+04A         CAH         CAL         CBE     120.624    1.50
+04A         CAH         CAL         HAL     119.786    1.50
+04A         CBE         CAL         HAL     119.591    1.50
+04A         CAO         CAM         SAY     113.522    2.26
+04A         CAO         CAM         HAM     109.701    1.50
+04A         CAO         CAM        HAMA     109.701    1.50
+04A         SAY         CAM         HAM     108.654    1.50
+04A         SAY         CAM        HAMA     108.654    1.50
+04A         HAM         CAM        HAMA     107.922    1.50
+04A         SAY         CAN         CAP     113.522    2.26
+04A         SAY         CAN         HAN     108.654    1.50
+04A         SAY         CAN        HANA     108.654    1.50
+04A         CAP         CAN         HAN     109.701    1.50
+04A         CAP         CAN        HANA     109.701    1.50
+04A         HAN         CAN        HANA     107.922    1.50
+04A         CAM         CAO         CBF     110.747    2.16
+04A         CAM         CAO         HAO     109.066    1.50
+04A         CAM         CAO        HAOA     109.066    1.50
+04A         CBF         CAO         HAO     108.392    1.50
+04A         CBF         CAO        HAOA     108.392    1.50
+04A         HAO         CAO        HAOA     107.724    1.50
+04A         CAN         CAP         CBG     110.747    2.16
+04A         CAN         CAP         HAP     109.066    1.50
+04A         CAN         CAP        HAPA     109.066    1.50
+04A         CBG         CAP         HAP     108.392    1.50
+04A         CBG         CAP        HAPA     108.392    1.50
+04A         HAP         CAP        HAPA     107.724    1.50
+04A         CBB         CAQ         CBD     111.650    2.25
+04A         CBB         CAQ         HAQ     109.007    1.50
+04A         CBB         CAQ        HAQA     109.007    1.50
+04A         CBD         CAQ         HAQ     109.288    1.50
+04A         CBD         CAQ        HAQA     109.288    1.50
+04A         HAQ         CAQ        HAQA     108.049    1.50
+04A         CBE         CAR         CBC     111.650    2.25
+04A         CBE         CAR         HAR     109.288    1.50
+04A         CBE         CAR        HARA     109.288    1.50
+04A         CBC         CAR         HAR     109.007    1.50
+04A         CBC         CAR        HARA     109.007    1.50
+04A         HAR         CAR        HARA     108.049    1.50
+04A         CBF         NAS         NAU     107.531    1.50
+04A         NAV         NAT         CBG     107.531    1.50
+04A         NAS         NAU         CBH     107.290    1.50
+04A         NAT         NAV         CBI     107.290    1.50
+04A         CBB         NAW         CBH     124.962    2.96
+04A         CBB         NAW        HNAW     117.873    2.44
+04A         CBH         NAW        HNAW     117.165    2.70
+04A         CBI         NAX         CBC     124.962    2.96
+04A         CBI         NAX        HNAX     117.165    2.70
+04A         CBC         NAX        HNAX     117.873    2.44
+04A         CAM         SAY         CAN     102.177    1.97
+04A         CBF         SAZ         CBH     108.393    3.00
+04A         CBI         SBA         CBG     108.393    3.00
+04A         OAA         CBB         CAQ     122.030    1.50
+04A         OAA         CBB         NAW     123.014    1.50
+04A         CAQ         CBB         NAW     114.956    1.58
+04A         OAB         CBC         CAR     122.030    1.50
+04A         OAB         CBC         NAX     123.014    1.50
+04A         CAR         CBC         NAX     114.956    1.58
+04A         CAI         CBD         CAJ     118.060    1.50
+04A         CAI         CBD         CAQ     120.970    1.50
+04A         CAJ         CBD         CAQ     120.970    1.50
+04A         CAK         CBE         CAL     118.060    1.50
+04A         CAK         CBE         CAR     120.970    1.50
+04A         CAL         CBE         CAR     120.970    1.50
+04A         CAO         CBF         NAS     130.414    1.50
+04A         CAO         CBF         SAZ     121.193    3.00
+04A         NAS         CBF         SAZ     108.393    3.00
+04A         CAP         CBG         NAT     130.414    1.50
+04A         CAP         CBG         SBA     121.193    3.00
+04A         NAT         CBG         SBA     108.393    3.00
+04A         NAU         CBH         NAW     126.979    3.00
+04A         NAU         CBH         SAZ     108.393    3.00
+04A         NAW         CBH         SAZ     124.628    3.00
+04A         NAV         CBI         NAX     126.979    3.00
+04A         NAV         CBI         SBA     108.393    3.00
+04A         NAX         CBI         SBA     124.628    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+04A              const_30         CAG         CAK         CBE         CAR     180.000    10.0     2
+04A              const_34         CAH         CAL         CBE         CAR     180.000    10.0     2
+04A             sp3_sp3_1         SAY         CAM         CAO         CBF     180.000    10.0     3
+04A            sp3_sp3_10         CAO         CAM         SAY         CAN     180.000    10.0     3
+04A            sp3_sp3_16         SAY         CAN         CAP         CBG     180.000    10.0     3
+04A            sp3_sp3_13         CAP         CAN         SAY         CAM     180.000    10.0     3
+04A             sp2_sp3_2         NAS         CBF         CAO         CAM     -90.000    10.0     6
+04A             sp2_sp3_8         NAT         CBG         CAP         CAN     -90.000    10.0     6
+04A            sp2_sp3_14         OAA         CBB         CAQ         CBD     120.000    10.0     6
+04A            sp2_sp3_20         CAI         CBD         CAQ         CBB     -90.000    10.0     6
+04A            sp2_sp3_32         OAB         CBC         CAR         CBE     120.000    10.0     6
+04A            sp2_sp3_26         CAK         CBE         CAR         CBC     -90.000    10.0     6
+04A              const_64         CBF         NAS         NAU         CBH       0.000    10.0     2
+04A              const_42         CAO         CBF         NAS         NAU     180.000    10.0     2
+04A              const_49         CBG         NAT         NAV         CBI       0.000    10.0     2
+04A              const_66         CAP         CBG         NAT         NAV     180.000    10.0     2
+04A              const_48         NAW         CBH         NAU         NAS     180.000    10.0     2
+04A              const_51         NAX         CBI         NAV         NAT     180.000    10.0     2
+04A             sp2_sp2_3         OAA         CBB         NAW         CBH       0.000     5.0     2
+04A             sp2_sp2_5         NAU         CBH         NAW         CBB     180.000     5.0     2
+04A            sp2_sp2_15         OAB         CBC         NAX         CBI       0.000     5.0     2
+04A             sp2_sp2_9         NAV         CBI         NAX         CBC     180.000     5.0     2
+04A              const_44         CAO         CBF         SAZ         CBH     180.000    10.0     2
+04A              const_46         NAW         CBH         SAZ         CBF     180.000    10.0     2
+04A              const_55         CAP         CBG         SBA         CBI     180.000    10.0     2
+04A              const_53         NAX         CBI         SBA         CBG     180.000    10.0     2
+04A              const_56         CAF         CAC         CAE         CAI       0.000    10.0     2
+04A       const_sp2_sp2_1         CAE         CAC         CAF         CAJ       0.000     5.0     2
+04A              const_21         CAH         CAD         CAG         CAK       0.000    10.0     2
+04A              const_60         CAG         CAD         CAH         CAL       0.000    10.0     2
+04A              const_17         CAC         CAE         CAI         CBD       0.000    10.0     2
+04A       const_sp2_sp2_5         CAC         CAF         CAJ         CBD       0.000     5.0     2
+04A              const_25         CAD         CAG         CAK         CBE       0.000    10.0     2
+04A              const_37         CAD         CAH         CAL         CBE       0.000    10.0     2
+04A              const_14         CAE         CAI         CBD         CAQ     180.000    10.0     2
+04A              const_10         CAF         CAJ         CBD         CAQ     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+04A    plan-1         CAD   0.020
+04A    plan-1         CAG   0.020
+04A    plan-1         CAH   0.020
+04A    plan-1         CAK   0.020
+04A    plan-1         CAL   0.020
+04A    plan-1         CAR   0.020
+04A    plan-1         CBE   0.020
+04A    plan-1         HAD   0.020
+04A    plan-1         HAG   0.020
+04A    plan-1         HAH   0.020
+04A    plan-1         HAK   0.020
+04A    plan-1         HAL   0.020
+04A    plan-2         CAO   0.020
+04A    plan-2         CBF   0.020
+04A    plan-2         CBH   0.020
+04A    plan-2         NAS   0.020
+04A    plan-2         NAU   0.020
+04A    plan-2         NAW   0.020
+04A    plan-2         SAZ   0.020
+04A    plan-3         CAP   0.020
+04A    plan-3         CBG   0.020
+04A    plan-3         CBI   0.020
+04A    plan-3         NAT   0.020
+04A    plan-3         NAV   0.020
+04A    plan-3         NAX   0.020
+04A    plan-3         SBA   0.020
+04A    plan-4         CAC   0.020
+04A    plan-4         CAE   0.020
+04A    plan-4         CAF   0.020
+04A    plan-4         CAI   0.020
+04A    plan-4         CAJ   0.020
+04A    plan-4         CAQ   0.020
+04A    plan-4         CBD   0.020
+04A    plan-4         HAC   0.020
+04A    plan-4         HAE   0.020
+04A    plan-4         HAF   0.020
+04A    plan-4         HAI   0.020
+04A    plan-4         HAJ   0.020
+04A    plan-5         CBB   0.020
+04A    plan-5         CBH   0.020
+04A    plan-5        HNAW   0.020
+04A    plan-5         NAW   0.020
+04A    plan-6         CBC   0.020
+04A    plan-6         CBI   0.020
+04A    plan-6        HNAX   0.020
+04A    plan-6         NAX   0.020
+04A    plan-7         CAQ   0.020
+04A    plan-7         CBB   0.020
+04A    plan-7         NAW   0.020
+04A    plan-7         OAA   0.020
+04A    plan-8         CAR   0.020
+04A    plan-8         CBC   0.020
+04A    plan-8         NAX   0.020
+04A    plan-8         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+04A           SMILES              ACDLabs 12.01                                                                                                                      O=C(Nc1nnc(s1)CCSCCc2nnc(s2)NC(=O)Cc3ccccc3)Cc4ccccc4
+04A            InChI                InChI  1.03 InChI=1S/C24H24N6O2S3/c31-19(15-17-7-3-1-4-8-17)25-23-29-27-21(34-23)11-13-33-14-12-22-28-30-24(35-22)26-20(32)16-18-9-5-2-6-10-18/h1-10H,11-16H2,(H,25,29,31)(H,26,30,32)
+04A         InChIKey                InChI  1.03                                                                                                                                                MDJIPXYRSZHCFS-UHFFFAOYSA-N
+04A SMILES_CANONICAL               CACTVS 3.370                                                                                                                      O=C(Cc1ccccc1)Nc2sc(CCSCCc3sc(NC(=O)Cc4ccccc4)nn3)nn2
+04A           SMILES               CACTVS 3.370                                                                                                                      O=C(Cc1ccccc1)Nc2sc(CCSCCc3sc(NC(=O)Cc4ccccc4)nn3)nn2
+04A SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                    c1ccc(cc1)CC(=O)Nc2nnc(s2)CCSCCc3nnc(s3)NC(=O)Cc4ccccc4
+04A           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                    c1ccc(cc1)CC(=O)Nc2nnc(s2)CCSCCc3nnc(s3)NC(=O)Cc4ccccc4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+04A acedrg               243         "dictionary generator"                  
+04A acedrg_database      11          "data source"                           
+04A rdkit                2017.03.2   "Chemoinformatics tool"
+04A refmac5              5.8.0238    "optimization tool"                     

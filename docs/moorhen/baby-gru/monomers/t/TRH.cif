@@ -1,0 +1,461 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TRH     TRH      "2'-DEOXY-THYMIDINE-BETA-L-RHAMNOSE"     NON-POLYMER     59     35     .     
+#
+data_comp_TRH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TRH     O4P     O       OP      -1      15.380      60.164      51.480      
+TRH     P2      P       P       0       16.394      59.833      52.525      
+TRH     O3P     O       O       0       17.420      58.799      52.199      
+TRH     O1      O       O2      0       17.135      61.185      52.978      
+TRH     C1      C       CH1     0       18.076      61.257      54.020      
+TRH     C2      C       CH1     0       17.556      62.230      55.076      
+TRH     O2      O       OH1     0       17.255      63.489      54.480      
+TRH     C3      C       CH1     0       18.589      62.387      56.186      
+TRH     O3      O       OH1     0       18.147      63.367      57.125      
+TRH     C4      C       CH1     0       19.947      62.780      55.613      
+TRH     O4      O       OH1     0       20.928      62.815      56.648      
+TRH     C5      C       CH1     0       20.362      61.779      54.538      
+TRH     O5      O       O2      0       19.329      61.704      53.526      
+TRH     C6      C       CH3     0       21.651      62.146      53.836      
+TRH     OPP     O       O2      0       15.635      59.415      53.875      
+TRH     P       P       P       0       14.971      58.039      54.363      
+TRH     O1P     O       OP      -1      14.385      58.244      55.721      
+TRH     O2P     O       O       0       15.962      56.937      54.180      
+TRH     "O5'"   O       O2      0       13.787      57.873      53.292      
+TRH     "C5'"   C       CH2     0       12.639      58.754      53.389      
+TRH     "C4'"   C       CH1     0       11.732      58.533      52.203      
+TRH     "O4'"   O       O2      0       12.455      58.807      50.982      
+TRH     "C3'"   C       CH1     0       11.171      57.112      52.076      
+TRH     "O3'"   O       OH1     0       9.753       57.133      51.931      
+TRH     "C2'"   C       CH2     0       11.826      56.564      50.814      
+TRH     "C1'"   C       CH1     0       12.126      57.822      50.013      
+TRH     N11     N       NR6     0       13.269      57.700      49.065      
+TRH     C21     C       CR6     0       13.039      57.799      47.699      
+TRH     O21     O       O       0       11.933      57.989      47.206      
+TRH     N31     N       NR6     0       14.162      57.670      46.912      
+TRH     C41     C       CR6     0       15.463      57.454      47.335      
+TRH     O41     O       O       0       16.371      57.358      46.502      
+TRH     C51     C       CR6     0       15.637      57.357      48.770      
+TRH     C5A     C       CH3     0       17.016      57.123      49.316      
+TRH     C61     C       CR16    0       14.549      57.483      49.553      
+TRH     HC1     H       H       0       18.190      60.362      54.426      
+TRH     HC2     H       H       0       16.728      61.863      55.468      
+TRH     HO2     H       H       0       16.879      63.981      55.049      
+TRH     HC3     H       H       0       18.684      61.519      56.655      
+TRH     HO3     H       H       0       18.652      63.348      57.797      
+TRH     HC4     H       H       0       19.876      63.674      55.204      
+TRH     HO4     H       H       0       20.998      62.058      57.009      
+TRH     HC5     H       H       0       20.466      60.889      54.956      
+TRH     HC61    H       H       0       21.508      62.177      52.876      
+TRH     HC62    H       H       0       22.328      61.480      54.038      
+TRH     HC63    H       H       0       21.955      63.016      54.143      
+TRH     "H5'1"  H       H       0       12.940      59.696      53.405      
+TRH     "H5'2"  H       H       0       12.144      58.569      54.225      
+TRH     "H4'C"  H       H       0       10.981      59.171      52.272      
+TRH     "H3'C"  H       H       0       11.426      56.568      52.861      
+TRH     "H3'O"  H       H       0       9.538       57.588      51.246      
+TRH     "H2'1"  H       H       0       11.214      55.971      50.324      
+TRH     "H2'2"  H       H       0       12.646      56.069      51.026      
+TRH     "H1'C"  H       H       0       11.306      58.108      49.530      
+TRH     H31N    H       H       0       14.023      57.734      46.031      
+TRH     HCA1    H       H       0       16.963      56.909      50.261      
+TRH     HCA2    H       H       0       17.553      57.924      49.198      
+TRH     HCA3    H       H       0       17.432      56.385      48.842      
+TRH     H61C    H       H       0       14.659      57.418      50.495      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TRH         O4P          P2      SINGLE       n     1.493  0.0122     1.493  0.0122
+TRH          P2         O3P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TRH          P2          O1      SINGLE       n     1.604  0.0133     1.604  0.0133
+TRH          P2         OPP      SINGLE       n     1.604  0.0133     1.604  0.0133
+TRH          O1          C1      SINGLE       n     1.403  0.0143     1.403  0.0143
+TRH          C1          C2      SINGLE       n     1.522  0.0165     1.522  0.0165
+TRH          C1          O5      SINGLE       n     1.417  0.0109     1.417  0.0109
+TRH          C2          O2      SINGLE       n     1.425  0.0112     1.425  0.0112
+TRH          C2          C3      SINGLE       n     1.519  0.0200     1.519  0.0200
+TRH          C3          O3      SINGLE       n     1.427  0.0138     1.427  0.0138
+TRH          C3          C4      SINGLE       n     1.520  0.0158     1.520  0.0158
+TRH          C4          O4      SINGLE       n     1.425  0.0176     1.425  0.0176
+TRH          C4          C5      SINGLE       n     1.523  0.0102     1.523  0.0102
+TRH          C5          O5      SINGLE       n     1.445  0.0100     1.445  0.0100
+TRH          C5          C6      SINGLE       n     1.510  0.0100     1.510  0.0100
+TRH         OPP           P      SINGLE       n     1.604  0.0133     1.604  0.0133
+TRH           P         O1P      SINGLE       n     1.493  0.0122     1.493  0.0122
+TRH           P         O2P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TRH           P       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+TRH       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+TRH       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+TRH       "C4'"       "O4'"      SINGLE       n     1.445  0.0100     1.445  0.0100
+TRH       "C4'"       "C3'"      SINGLE       n     1.526  0.0115     1.526  0.0115
+TRH       "O4'"       "C1'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+TRH       "C3'"       "O3'"      SINGLE       n     1.424  0.0100     1.424  0.0100
+TRH       "C3'"       "C2'"      SINGLE       n     1.522  0.0100     1.522  0.0100
+TRH       "C2'"       "C1'"      SINGLE       n     1.523  0.0130     1.523  0.0130
+TRH       "C1'"         N11      SINGLE       n     1.477  0.0139     1.477  0.0139
+TRH         N11         C21      SINGLE       y     1.379  0.0100     1.379  0.0100
+TRH         N11         C61      SINGLE       y     1.380  0.0107     1.380  0.0107
+TRH         C21         O21      DOUBLE       n     1.224  0.0111     1.224  0.0111
+TRH         C21         N31      SINGLE       y     1.373  0.0100     1.373  0.0100
+TRH         N31         C41      SINGLE       y     1.383  0.0100     1.383  0.0100
+TRH         C41         O41      DOUBLE       n     1.234  0.0141     1.234  0.0141
+TRH         C41         C51      SINGLE       y     1.446  0.0100     1.446  0.0100
+TRH         C51         C5A      SINGLE       n     1.500  0.0100     1.500  0.0100
+TRH         C51         C61      DOUBLE       y     1.343  0.0112     1.343  0.0112
+TRH          C1         HC1      SINGLE       n     1.089  0.0100     0.989  0.0153
+TRH          C2         HC2      SINGLE       n     1.089  0.0100     0.987  0.0140
+TRH          O2         HO2      SINGLE       n     0.970  0.0120     0.841  0.0200
+TRH          C3         HC3      SINGLE       n     1.089  0.0100     0.991  0.0121
+TRH          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+TRH          C4         HC4      SINGLE       n     1.089  0.0100     0.986  0.0131
+TRH          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+TRH          C5         HC5      SINGLE       n     1.089  0.0100     0.989  0.0117
+TRH          C6        HC61      SINGLE       n     1.089  0.0100     0.971  0.0171
+TRH          C6        HC62      SINGLE       n     1.089  0.0100     0.971  0.0171
+TRH          C6        HC63      SINGLE       n     1.089  0.0100     0.971  0.0171
+TRH       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TRH       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TRH       "C4'"      "H4'C"      SINGLE       n     1.089  0.0100     0.987  0.0170
+TRH       "C3'"      "H3'C"      SINGLE       n     1.089  0.0100     0.988  0.0189
+TRH       "O3'"      "H3'O"      SINGLE       n     0.970  0.0120     0.849  0.0200
+TRH       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.982  0.0200
+TRH       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.982  0.0200
+TRH       "C1'"      "H1'C"      SINGLE       n     1.089  0.0100     0.996  0.0200
+TRH         N31        H31N      SINGLE       n     1.016  0.0100     0.893  0.0200
+TRH         C5A        HCA1      SINGLE       n     1.089  0.0100     0.971  0.0135
+TRH         C5A        HCA2      SINGLE       n     1.089  0.0100     0.971  0.0135
+TRH         C5A        HCA3      SINGLE       n     1.089  0.0100     0.971  0.0135
+TRH         C61        H61C      SINGLE       n     1.082  0.0130     0.951  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TRH         O4P          P2         O3P     116.964    2.85
+TRH         O4P          P2          O1     108.530    2.45
+TRH         O4P          P2         OPP     108.570    2.41
+TRH         O3P          P2          O1     108.530    2.45
+TRH         O3P          P2         OPP     108.570    2.41
+TRH          O1          P2         OPP     101.077    2.30
+TRH          P2          O1          C1     122.306    2.63
+TRH          O1          C1          C2     108.240    1.70
+TRH          O1          C1          O5     110.394    2.23
+TRH          O1          C1         HC1     109.322    1.50
+TRH          C2          C1          O5     110.164    1.50
+TRH          C2          C1         HC1     109.599    1.50
+TRH          O5          C1         HC1     109.272    1.61
+TRH          C1          C2          O2     109.976    1.78
+TRH          C1          C2          C3     110.229    1.69
+TRH          C1          C2         HC2     108.925    1.50
+TRH          O2          C2          C3     111.053    2.62
+TRH          O2          C2         HC2     108.551    1.50
+TRH          C3          C2         HC2     108.505    1.50
+TRH          C2          O2         HO2     109.126    2.06
+TRH          C2          C3          O3     109.587    2.09
+TRH          C2          C3          C4     110.687    1.67
+TRH          C2          C3         HC3     108.712    1.50
+TRH          O3          C3          C4     110.243    1.88
+TRH          O3          C3         HC3     108.767    1.50
+TRH          C4          C3         HC3     108.653    1.50
+TRH          C3          O3         HO3     108.895    2.41
+TRH          C3          C4          O4     110.101    1.97
+TRH          C3          C4          C5     109.500    1.50
+TRH          C3          C4         HC4     109.032    1.50
+TRH          O4          C4          C5     109.789    1.62
+TRH          O4          C4         HC4     109.194    1.50
+TRH          C5          C4         HC4     108.901    1.50
+TRH          C4          O4         HO4     109.564    3.00
+TRH          C4          C5          O5     109.213    1.50
+TRH          C4          C5          C6     113.299    1.50
+TRH          C4          C5         HC5     108.992    1.50
+TRH          O5          C5          C6     106.787    1.50
+TRH          O5          C5         HC5     109.141    1.50
+TRH          C6          C5         HC5     109.193    1.50
+TRH          C1          O5          C5     113.152    1.70
+TRH          C5          C6        HC61     109.468    1.50
+TRH          C5          C6        HC62     109.468    1.50
+TRH          C5          C6        HC63     109.468    1.50
+TRH        HC61          C6        HC62     109.383    1.59
+TRH        HC61          C6        HC63     109.383    1.59
+TRH        HC62          C6        HC63     109.383    1.59
+TRH          P2         OPP           P     132.542    3.00
+TRH         OPP           P         O1P     108.816    2.14
+TRH         OPP           P         O2P     108.816    2.14
+TRH         OPP           P       "O5'"     101.065    1.97
+TRH         O1P           P         O2P     118.411    2.35
+TRH         O1P           P       "O5'"     109.410    1.50
+TRH         O2P           P       "O5'"     109.410    1.50
+TRH           P       "O5'"       "C5'"     118.553    2.41
+TRH       "O5'"       "C5'"       "C4'"     109.342    1.50
+TRH       "O5'"       "C5'"      "H5'1"     109.845    1.50
+TRH       "O5'"       "C5'"      "H5'2"     109.845    1.50
+TRH       "C4'"       "C5'"      "H5'1"     109.624    1.50
+TRH       "C4'"       "C5'"      "H5'2"     109.624    1.50
+TRH      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+TRH       "C5'"       "C4'"       "O4'"     109.615    1.50
+TRH       "C5'"       "C4'"       "C3'"     114.866    1.63
+TRH       "C5'"       "C4'"      "H4'C"     108.268    1.50
+TRH       "O4'"       "C4'"       "C3'"     105.770    1.50
+TRH       "O4'"       "C4'"      "H4'C"     108.698    1.50
+TRH       "C3'"       "C4'"      "H4'C"     109.069    1.50
+TRH       "C4'"       "O4'"       "C1'"     109.692    1.50
+TRH       "C4'"       "C3'"       "O3'"     110.527    2.37
+TRH       "C4'"       "C3'"       "C2'"     102.800    1.50
+TRH       "C4'"       "C3'"      "H3'C"     110.775    1.50
+TRH       "O3'"       "C3'"       "C2'"     110.636    2.59
+TRH       "O3'"       "C3'"      "H3'C"     110.713    1.50
+TRH       "C2'"       "C3'"      "H3'C"     110.862    1.50
+TRH       "C3'"       "O3'"      "H3'O"     109.026    2.38
+TRH       "C3'"       "C2'"       "C1'"     102.834    1.50
+TRH       "C3'"       "C2'"      "H2'1"     111.310    1.50
+TRH       "C3'"       "C2'"      "H2'2"     111.310    1.50
+TRH       "C1'"       "C2'"      "H2'1"     111.187    1.50
+TRH       "C1'"       "C2'"      "H2'2"     111.187    1.50
+TRH      "H2'1"       "C2'"      "H2'2"     108.952    1.50
+TRH       "O4'"       "C1'"       "C2'"     106.308    1.50
+TRH       "O4'"       "C1'"         N11     107.584    1.50
+TRH       "O4'"       "C1'"      "H1'C"     109.550    1.50
+TRH       "C2'"       "C1'"         N11     114.268    1.50
+TRH       "C2'"       "C1'"      "H1'C"     109.741    1.50
+TRH         N11       "C1'"      "H1'C"     109.342    1.50
+TRH       "C1'"         N11         C21     118.265    1.50
+TRH       "C1'"         N11         C61     120.492    1.50
+TRH         C21         N11         C61     121.243    1.50
+TRH         N11         C21         O21     122.872    1.50
+TRH         N11         C21         N31     114.786    1.50
+TRH         O21         C21         N31     122.342    1.50
+TRH         C21         N31         C41     127.106    1.50
+TRH         C21         N31        H31N     115.584    1.79
+TRH         C41         N31        H31N     117.311    1.81
+TRH         N31         C41         O41     119.787    1.50
+TRH         N31         C41         C51     115.265    1.50
+TRH         O41         C41         C51     124.948    1.50
+TRH         C41         C51         C5A     118.650    1.50
+TRH         C41         C51         C61     118.305    1.50
+TRH         C5A         C51         C61     123.045    1.50
+TRH         C51         C5A        HCA1     109.652    1.50
+TRH         C51         C5A        HCA2     109.652    1.50
+TRH         C51         C5A        HCA3     109.652    1.50
+TRH        HCA1         C5A        HCA2     109.348    1.50
+TRH        HCA1         C5A        HCA3     109.348    1.50
+TRH        HCA2         C5A        HCA3     109.348    1.50
+TRH         N11         C61         C51     123.296    1.50
+TRH         N11         C61        H61C     117.926    1.56
+TRH         C51         C61        H61C     118.779    1.68
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TRH                   nu0          C5          O5          C1          C2      65.957    10.0     3
+TRH                   nu1          O5          C1          C2          C3     -58.876    10.0     3
+TRH                   nu2          C1          C2          C3          C4      51.963    10.0     3
+TRH                   nu3          C2          C3          C4          C5     -50.493    10.0     3
+TRH                   nu4          C3          C4          C5          O5      56.220    10.0     3
+TRH                   nu5          C4          C5          O5          C1     -64.765    10.0     3
+TRH             sp3_sp3_1       "C3'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+TRH             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+TRH             sp3_sp3_3      "H4'C"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+TRH             sp3_sp3_4       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+TRH             sp3_sp3_5         N11       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+TRH             sp3_sp3_6      "H1'C"       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+TRH             sp3_sp3_7       "O4'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+TRH             sp3_sp3_8       "O4'"       "C1'"       "C2'"      "H2'1"     180.000    10.0     3
+TRH             sp3_sp3_9       "O4'"       "C1'"       "C2'"      "H2'2"     -60.000    10.0     3
+TRH            sp3_sp3_10         N11       "C1'"       "C2'"       "C3'"     -60.000    10.0     3
+TRH            sp3_sp3_11         N11       "C1'"       "C2'"      "H2'1"      60.000    10.0     3
+TRH            sp3_sp3_12         N11       "C1'"       "C2'"      "H2'2"     180.000    10.0     3
+TRH            sp3_sp3_13      "H1'C"       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+TRH            sp3_sp3_14      "H1'C"       "C1'"       "C2'"      "H2'1"     -60.000    10.0     3
+TRH            sp3_sp3_15      "H1'C"       "C1'"       "C2'"      "H2'2"      60.000    10.0     3
+TRH            sp3_sp3_16       "C1'"       "C2'"       "C3'"       "C4'"     -60.000    10.0     3
+TRH            sp3_sp3_17       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+TRH            sp3_sp3_18       "C1'"       "C2'"       "C3'"      "H3'C"     180.000    10.0     3
+TRH            sp3_sp3_19      "H2'1"       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+TRH            sp3_sp3_20      "H2'1"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+TRH            sp3_sp3_21      "H2'1"       "C2'"       "C3'"      "H3'C"      60.000    10.0     3
+TRH            sp3_sp3_22      "H2'2"       "C2'"       "C3'"       "C4'"      60.000    10.0     3
+TRH            sp3_sp3_23      "H2'2"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+TRH            sp3_sp3_24      "H2'2"       "C2'"       "C3'"      "H3'C"     -60.000    10.0     3
+TRH       const_sp2_sp2_1         N31         C21         N11         C61       0.000     5.0     2
+TRH       const_sp2_sp2_2         N31         C21         N11       "C1'"     180.000     5.0     2
+TRH       const_sp2_sp2_3         O21         C21         N11         C61     180.000     5.0     2
+TRH       const_sp2_sp2_4         O21         C21         N11       "C1'"       0.000     5.0     2
+TRH       const_sp2_sp2_5         N11         C21         N31         C41       0.000     5.0     2
+TRH       const_sp2_sp2_6         N11         C21         N31        H31N     180.000     5.0     2
+TRH       const_sp2_sp2_7         O21         C21         N31         C41     180.000     5.0     2
+TRH       const_sp2_sp2_8         O21         C21         N31        H31N       0.000     5.0     2
+TRH       const_sp2_sp2_9         C51         C41         N31         C21       0.000     5.0     2
+TRH              const_10         C51         C41         N31        H31N     180.000    10.0     2
+TRH              const_11         O41         C41         N31         C21     180.000    10.0     2
+TRH              const_12         O41         C41         N31        H31N       0.000    10.0     2
+TRH              const_13         N31         C41         C51         C61       0.000    10.0     2
+TRH              const_14         N31         C41         C51         C5A     180.000    10.0     2
+TRH              const_15         O41         C41         C51         C61     180.000    10.0     2
+TRH              const_16         O41         C41         C51         C5A       0.000    10.0     2
+TRH              const_17         C41         C51         C61         N11       0.000    10.0     2
+TRH              const_18         C41         C51         C61        H61C     180.000    10.0     2
+TRH              const_19         C5A         C51         C61         N11     180.000    10.0     2
+TRH              const_20         C5A         C51         C61        H61C       0.000    10.0     2
+TRH            sp3_sp3_64          C1          O1          P2         OPP     180.000    10.0     3
+TRH            sp3_sp3_65          C1          O1          P2         O4P     -60.000    10.0     3
+TRH            sp3_sp3_66          C1          O1          P2         O3P      60.000    10.0     3
+TRH            sp3_sp3_67           P         OPP          P2         O4P     180.000    10.0     3
+TRH            sp3_sp3_68           P         OPP          P2          O1     -60.000    10.0     3
+TRH            sp3_sp3_69           P         OPP          P2         O3P      60.000    10.0     3
+TRH            sp3_sp3_70          C2          C1          O1          P2     180.000    10.0     3
+TRH            sp3_sp3_71          O5          C1          O1          P2      60.000    10.0     3
+TRH            sp3_sp3_72         HC1          C1          O1          P2     -60.000    10.0     3
+TRH            sp3_sp3_76          C1          C2          O2         HO2     180.000    10.0     3
+TRH            sp3_sp3_77          C3          C2          O2         HO2      60.000    10.0     3
+TRH            sp3_sp3_78         HC2          C2          O2         HO2     -60.000    10.0     3
+TRH            sp3_sp3_79          C2          C3          O3         HO3     180.000    10.0     3
+TRH            sp3_sp3_80          C4          C3          O3         HO3      60.000    10.0     3
+TRH            sp3_sp3_81         HC3          C3          O3         HO3     -60.000    10.0     3
+TRH            sp3_sp3_82          C3          C4          O4         HO4     180.000    10.0     3
+TRH            sp3_sp3_83          C5          C4          O4         HO4      60.000    10.0     3
+TRH            sp3_sp3_84         HC4          C4          O4         HO4     -60.000    10.0     3
+TRH            sp3_sp3_85          C4          C5          C6        HC61     180.000    10.0     3
+TRH            sp3_sp3_86          C4          C5          C6        HC62     -60.000    10.0     3
+TRH            sp3_sp3_87          C4          C5          C6        HC63      60.000    10.0     3
+TRH            sp3_sp3_88          O5          C5          C6        HC61      60.000    10.0     3
+TRH            sp3_sp3_89          O5          C5          C6        HC62     180.000    10.0     3
+TRH            sp3_sp3_90          O5          C5          C6        HC63     -60.000    10.0     3
+TRH            sp3_sp3_91         HC5          C5          C6        HC61     -60.000    10.0     3
+TRH            sp3_sp3_92         HC5          C5          C6        HC62      60.000    10.0     3
+TRH            sp3_sp3_93         HC5          C5          C6        HC63     180.000    10.0     3
+TRH            sp3_sp3_94          P2         OPP           P         O1P     180.000    10.0     3
+TRH            sp3_sp3_95          P2         OPP           P       "O5'"     -60.000    10.0     3
+TRH            sp3_sp3_96          P2         OPP           P         O2P      60.000    10.0     3
+TRH            sp3_sp3_97       "C5'"       "O5'"           P         OPP     180.000    10.0     3
+TRH            sp3_sp3_98       "C5'"       "O5'"           P         O1P     -60.000    10.0     3
+TRH            sp3_sp3_99       "C5'"       "O5'"           P         O2P      60.000    10.0     3
+TRH           sp3_sp3_100       "C4'"       "C5'"       "O5'"           P     180.000    10.0     3
+TRH           sp3_sp3_101      "H5'1"       "C5'"       "O5'"           P      60.000    10.0     3
+TRH           sp3_sp3_102      "H5'2"       "C5'"       "O5'"           P     -60.000    10.0     3
+TRH           sp3_sp3_103       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+TRH           sp3_sp3_104       "O4'"       "C4'"       "C5'"      "H5'1"     -60.000    10.0     3
+TRH           sp3_sp3_105       "O4'"       "C4'"       "C5'"      "H5'2"      60.000    10.0     3
+TRH           sp3_sp3_106       "C3'"       "C4'"       "C5'"       "O5'"      60.000    10.0     3
+TRH           sp3_sp3_107       "C3'"       "C4'"       "C5'"      "H5'1"     180.000    10.0     3
+TRH           sp3_sp3_108       "C3'"       "C4'"       "C5'"      "H5'2"     -60.000    10.0     3
+TRH           sp3_sp3_109      "H4'C"       "C4'"       "C5'"       "O5'"     -60.000    10.0     3
+TRH           sp3_sp3_110      "H4'C"       "C4'"       "C5'"      "H5'1"      60.000    10.0     3
+TRH           sp3_sp3_111      "H4'C"       "C4'"       "C5'"      "H5'2"     180.000    10.0     3
+TRH           sp3_sp3_112       "C2'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+TRH           sp3_sp3_113       "C2'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+TRH           sp3_sp3_114       "C2'"       "C3'"       "C4'"      "H4'C"      60.000    10.0     3
+TRH           sp3_sp3_115       "O3'"       "C3'"       "C4'"       "O4'"      60.000    10.0     3
+TRH           sp3_sp3_116       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+TRH           sp3_sp3_117       "O3'"       "C3'"       "C4'"      "H4'C"     -60.000    10.0     3
+TRH           sp3_sp3_118      "H3'C"       "C3'"       "C4'"       "O4'"     -60.000    10.0     3
+TRH           sp3_sp3_119      "H3'C"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+TRH           sp3_sp3_120      "H3'C"       "C3'"       "C4'"      "H4'C"     180.000    10.0     3
+TRH           sp3_sp3_121       "C4'"       "C3'"       "O3'"      "H3'O"     180.000    10.0     3
+TRH           sp3_sp3_122       "C2'"       "C3'"       "O3'"      "H3'O"      60.000    10.0     3
+TRH           sp3_sp3_123      "H3'C"       "C3'"       "O3'"      "H3'O"     -60.000    10.0     3
+TRH             sp2_sp3_1         C21         N11       "C1'"       "O4'"     150.000    10.0     6
+TRH             sp2_sp3_2         C21         N11       "C1'"       "C2'"     -90.000    10.0     6
+TRH             sp2_sp3_3         C21         N11       "C1'"      "H1'C"      30.000    10.0     6
+TRH             sp2_sp3_4         C61         N11       "C1'"       "O4'"     -30.000    10.0     6
+TRH             sp2_sp3_5         C61         N11       "C1'"       "C2'"      90.000    10.0     6
+TRH             sp2_sp3_6         C61         N11       "C1'"      "H1'C"    -150.000    10.0     6
+TRH              const_21         C51         C61         N11         C21       0.000    10.0     2
+TRH              const_22         C51         C61         N11       "C1'"     180.000    10.0     2
+TRH              const_23        H61C         C61         N11         C21     180.000    10.0     2
+TRH              const_24        H61C         C61         N11       "C1'"       0.000    10.0     2
+TRH             sp2_sp3_7         C41         C51         C5A        HCA1     150.000    10.0     6
+TRH             sp2_sp3_8         C41         C51         C5A        HCA2     -90.000    10.0     6
+TRH             sp2_sp3_9         C41         C51         C5A        HCA3      30.000    10.0     6
+TRH            sp2_sp3_10         C61         C51         C5A        HCA1     -30.000    10.0     6
+TRH            sp2_sp3_11         C61         C51         C5A        HCA2      90.000    10.0     6
+TRH            sp2_sp3_12         C61         C51         C5A        HCA3    -150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TRH    chir_1    P2    OPP    O1    O4P    both
+TRH    chir_2    C1    O1    O5    C2    negative
+TRH    chir_3    C2    O2    C1    C3    negative
+TRH    chir_4    C3    O3    C2    C4    negative
+TRH    chir_5    C4    O4    C5    C3    negative
+TRH    chir_6    C5    O5    C4    C6    positive
+TRH    chir_7    P    OPP    "O5'"    O1P    both
+TRH    chir_8    "C4'"    "O4'"    "C3'"    "C5'"    negative
+TRH    chir_9    "C3'"    "O3'"    "C4'"    "C2'"    positive
+TRH    chir_10    "C1'"    "O4'"    N11    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TRH    plan-1       "C1'"   0.020
+TRH    plan-1         C21   0.020
+TRH    plan-1         C41   0.020
+TRH    plan-1         C51   0.020
+TRH    plan-1         C5A   0.020
+TRH    plan-1         C61   0.020
+TRH    plan-1        H31N   0.020
+TRH    plan-1        H61C   0.020
+TRH    plan-1         N11   0.020
+TRH    plan-1         N31   0.020
+TRH    plan-1         O21   0.020
+TRH    plan-1         O41   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TRH           SMILES              ACDLabs 10.04                                                                                                                                                               O=P(OC1OC(C(O)C(O)C1O)C)(O)OP(=O)(O)OCC3OC(N2C=C(C(=O)NC2=O)C)CC3O
+TRH SMILES_CANONICAL               CACTVS 3.341                                                                                                                      C[C@@H]1O[C@H](O[P@@](O)(=O)O[P@](O)(=O)OC[C@H]2O[C@H](C[C@@H]2O)N3C=C(C)C(=O)NC3=O)[C@H](O)[C@H](O)[C@H]1O
+TRH           SMILES               CACTVS 3.341                                                                                                                                   C[CH]1O[CH](O[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH](C[CH]2O)N3C=C(C)C(=O)NC3=O)[CH](O)[CH](O)[CH]1O
+TRH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                 C[C@H]1[C@@H]([C@H]([C@H]([C@H](O1)O[P@](=O)(O)O[P@@](=O)(O)OC[C@@H]2[C@H](C[C@@H](O2)N3C=C(C(=O)NC3=O)C)O)O)O)O
+TRH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                           CC1C(C(C(C(O1)OP(=O)(O)OP(=O)(O)OCC2C(CC(O2)N3C=C(C(=O)NC3=O)C)O)O)O)O
+TRH            InChI                InChI  1.03 InChI=1S/C16H26N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15/h4,7-13,15,19-22H,3,5H2,1-2H3,(H,25,26)(H,27,28)(H,17,23,24)/t7-,8-,9+,10+,11-,12+,13+,15+/m0/s1
+TRH         InChIKey                InChI  1.03                                                                                                                                                                                                      ZOSQFDVXNQFKBY-CGAXJHMRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TRH acedrg               243         "dictionary generator"                  
+TRH acedrg_database      11          "data source"                           
+TRH rdkit                2017.03.2   "Chemoinformatics tool"
+TRH refmac5              5.8.0238    "optimization tool"                     

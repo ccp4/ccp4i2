@@ -1,0 +1,244 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+683     683      "2-[(2-carboxyphenyl)amino]-5-methylbenzoic acid"     NON-POLYMER     31     20     .     
+#
+data_comp_683
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+683     OX1     O       O       0       -30.395     -31.017     9.263       
+683     CY1     C       C       0       -29.785     -30.129     8.642       
+683     OX2     O       OC      -1      -30.320     -29.120     8.148       
+683     CY2     C       CR6     0       -28.300     -30.285     8.476       
+683     CY3     C       CR16    0       -27.477     -29.205     8.820       
+683     CY4     C       CR6     0       -26.092     -29.261     8.699       
+683     C4      C       CH3     0       -25.234     -28.080     9.078       
+683     CY5     C       CR16    0       -25.526     -30.441     8.217       
+683     CY6     C       CR16    0       -26.303     -31.533     7.865       
+683     CY0     C       CR6     0       -27.704     -31.482     7.985       
+683     N1      N       NH1     0       -28.491     -32.596     7.627       
+683     CX2     C       CR6     0       -28.249     -33.946     7.951       
+683     CX3     C       CR16    0       -27.884     -34.311     9.260       
+683     CX4     C       CR16    0       -27.641     -35.630     9.591       
+683     CX5     C       CR16    0       -27.753     -36.620     8.638       
+683     CX6     C       CR16    0       -28.109     -36.291     7.345       
+683     CX1     C       CR6     0       -28.362     -34.970     6.969       
+683     CX0     C       C       0       -28.743     -34.707     5.539       
+683     OY1     O       O       0       -29.737     -35.301     5.085       
+683     OY2     O       OC      -1      -28.044     -33.907     4.892       
+683     H2      H       H       0       -27.876     -28.414     9.144       
+683     H3      H       H       0       -24.297     -28.336     9.059       
+683     H4      H       H       0       -25.468     -27.783     9.972       
+683     H5      H       H       0       -25.382     -27.355     8.449       
+683     H6      H       H       0       -24.589     -30.498     8.128       
+683     H7      H       H       0       -25.895     -32.314     7.543       
+683     H8      H       H       0       -29.201     -32.433     7.151       
+683     H9      H       H       0       -27.804     -33.644     9.919       
+683     H10     H       H       0       -27.399     -35.853     10.475      
+683     H11     H       H       0       -27.588     -37.519     8.867       
+683     H12     H       H       0       -28.184     -36.971     6.699       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+683         CX0         OY1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+683         CX0         OY2      SINGLE       n     1.244  0.0200     1.244  0.0200
+683         CX1         CX0      SINGLE       n     1.498  0.0200     1.498  0.0200
+683         OX1         CY1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+683         CY1         CY2      SINGLE       n     1.498  0.0200     1.498  0.0200
+683         CY1         OX2      SINGLE       n     1.244  0.0200     1.244  0.0200
+683         CY0          N1      SINGLE       n     1.405  0.0137     1.405  0.0137
+683          N1         CX2      SINGLE       n     1.405  0.0137     1.405  0.0137
+683         CX6         CX1      DOUBLE       y     1.392  0.0100     1.392  0.0100
+683         CX2         CX1      SINGLE       y     1.417  0.0100     1.417  0.0100
+683         CY2         CY0      DOUBLE       y     1.417  0.0100     1.417  0.0100
+683         CY2         CY3      SINGLE       y     1.396  0.0100     1.396  0.0100
+683         CY6         CY0      SINGLE       y     1.402  0.0100     1.402  0.0100
+683         CY3         CY4      DOUBLE       y     1.388  0.0100     1.388  0.0100
+683         CY5         CY6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+683         CX5         CX6      SINGLE       y     1.378  0.0104     1.378  0.0104
+683         CX2         CX3      DOUBLE       y     1.402  0.0100     1.402  0.0100
+683         CY4         CY5      SINGLE       y     1.392  0.0104     1.392  0.0104
+683         CY4          C4      SINGLE       n     1.508  0.0107     1.508  0.0107
+683         CX4         CX5      DOUBLE       y     1.376  0.0124     1.376  0.0124
+683         CX3         CX4      SINGLE       y     1.378  0.0101     1.378  0.0101
+683         CY3          H2      SINGLE       n     1.082  0.0130     0.944  0.0147
+683          C4          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+683          C4          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+683          C4          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+683         CY5          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+683         CY6          H7      SINGLE       n     1.082  0.0130     0.938  0.0167
+683          N1          H8      SINGLE       n     1.016  0.0100     0.870  0.0200
+683         CX3          H9      SINGLE       n     1.082  0.0130     0.942  0.0198
+683         CX4         H10      SINGLE       n     1.082  0.0130     0.943  0.0172
+683         CX5         H11      SINGLE       n     1.082  0.0130     0.943  0.0180
+683         CX6         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+683         OX1         CY1         CY2     117.739    1.50
+683         OX1         CY1         OX2     124.521    1.50
+683         CY2         CY1         OX2     117.739    1.50
+683         CY1         CY2         CY0     122.227    1.50
+683         CY1         CY2         CY3     118.929    1.50
+683         CY0         CY2         CY3     118.845    1.50
+683         CY2         CY3         CY4     121.914    1.50
+683         CY2         CY3          H2     118.931    1.50
+683         CY4         CY3          H2     119.154    1.50
+683         CY3         CY4         CY5     118.189    1.50
+683         CY3         CY4          C4     120.889    1.50
+683         CY5         CY4          C4     120.922    1.50
+683         CY4          C4          H3     109.567    1.50
+683         CY4          C4          H4     109.567    1.50
+683         CY4          C4          H5     109.567    1.50
+683          H3          C4          H4     109.348    1.50
+683          H3          C4          H5     109.348    1.50
+683          H4          C4          H5     109.348    1.50
+683         CY6         CY5         CY4     122.107    1.50
+683         CY6         CY5          H6     118.959    1.50
+683         CY4         CY5          H6     118.934    1.50
+683         CY0         CY6         CY5     120.453    1.50
+683         CY0         CY6          H7     119.494    1.50
+683         CY5         CY6          H7     120.053    1.50
+683          N1         CY0         CY2     120.761    1.50
+683          N1         CY0         CY6     120.747    1.50
+683         CY2         CY0         CY6     118.492    1.50
+683         CY0          N1         CX2     126.703    1.71
+683         CY0          N1          H8     116.649    2.14
+683         CX2          N1          H8     116.649    2.14
+683          N1         CX2         CX1     120.928    1.50
+683          N1         CX2         CX3     120.914    1.50
+683         CX1         CX2         CX3     118.158    1.50
+683         CX2         CX3         CX4     120.871    1.50
+683         CX2         CX3          H9     119.320    1.50
+683         CX4         CX3          H9     119.810    1.50
+683         CX5         CX4         CX3     120.548    1.50
+683         CX5         CX4         H10     119.867    1.50
+683         CX3         CX4         H10     119.585    1.50
+683         CX6         CX5         CX4     120.222    1.50
+683         CX6         CX5         H11     119.844    1.50
+683         CX4         CX5         H11     119.934    1.50
+683         CX1         CX6         CX5     121.691    1.50
+683         CX1         CX6         H12     118.850    1.50
+683         CX5         CX6         H12     119.459    1.50
+683         CX0         CX1         CX6     118.395    1.50
+683         CX0         CX1         CX2     123.095    1.50
+683         CX6         CX1         CX2     118.510    1.50
+683         OY1         CX0         OY2     124.521    1.50
+683         OY1         CX0         CX1     117.739    1.50
+683         OY2         CX0         CX1     117.739    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+683            sp2_sp2_13         CX1         CX2          N1         CY0     180.000     5.0     2
+683              const_47          N1         CX2         CX3         CX4     180.000    10.0     2
+683       const_sp2_sp2_4         CX0         CX1         CX2          N1       0.000     5.0     2
+683              const_17         CX2         CX3         CX4         CX5       0.000    10.0     2
+683              const_13         CX3         CX4         CX5         CX6       0.000    10.0     2
+683       const_sp2_sp2_9         CX4         CX5         CX6         CX1       0.000     5.0     2
+683       const_sp2_sp2_7         CX0         CX1         CX6         CX5     180.000     5.0     2
+683             sp2_sp2_1         OY1         CX0         CX1         CX6     180.000     5.0     2
+683             sp2_sp2_5         OX1         CY1         CY2         CY0     180.000     5.0     2
+683              const_43         CY1         CY2         CY3         CY4     180.000    10.0     2
+683              const_24          N1         CY0         CY2         CY1       0.000    10.0     2
+683              const_38         CY2         CY3         CY4          C4     180.000    10.0     2
+683             sp2_sp3_1         CY3         CY4          C4          H3     150.000    10.0     6
+683              const_35          C4         CY4         CY5         CY6     180.000    10.0     2
+683              const_29         CY4         CY5         CY6         CY0       0.000    10.0     2
+683              const_27          N1         CY0         CY6         CY5     180.000    10.0     2
+683             sp2_sp2_9         CY2         CY0          N1         CX2     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+683    plan-1         CX0   0.020
+683    plan-1         CX1   0.020
+683    plan-1         CX2   0.020
+683    plan-1         CX3   0.020
+683    plan-1         CX4   0.020
+683    plan-1         CX5   0.020
+683    plan-1         CX6   0.020
+683    plan-1         H10   0.020
+683    plan-1         H11   0.020
+683    plan-1         H12   0.020
+683    plan-1          H9   0.020
+683    plan-1          N1   0.020
+683    plan-2          C4   0.020
+683    plan-2         CY0   0.020
+683    plan-2         CY1   0.020
+683    plan-2         CY2   0.020
+683    plan-2         CY3   0.020
+683    plan-2         CY4   0.020
+683    plan-2         CY5   0.020
+683    plan-2         CY6   0.020
+683    plan-2          H2   0.020
+683    plan-2          H6   0.020
+683    plan-2          H7   0.020
+683    plan-2          N1   0.020
+683    plan-3         CY1   0.020
+683    plan-3         CY2   0.020
+683    plan-3         OX1   0.020
+683    plan-3         OX2   0.020
+683    plan-4         CX2   0.020
+683    plan-4         CY0   0.020
+683    plan-4          H8   0.020
+683    plan-4          N1   0.020
+683    plan-5         CX0   0.020
+683    plan-5         CX1   0.020
+683    plan-5         OY1   0.020
+683    plan-5         OY2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+683           SMILES              ACDLabs 12.01                                                                          O=C(O)c2c(Nc1ccc(cc1C(=O)O)C)cccc2
+683            InChI                InChI  1.03 InChI=1S/C15H13NO4/c1-9-6-7-13(11(8-9)15(19)20)16-12-5-3-2-4-10(12)14(17)18/h2-8,16H,1H3,(H,17,18)(H,19,20)
+683         InChIKey                InChI  1.03                                                                                 KLVTUYAKQNFRLK-UHFFFAOYSA-N
+683 SMILES_CANONICAL               CACTVS 3.370                                                                          Cc1ccc(Nc2ccccc2C(O)=O)c(c1)C(O)=O
+683           SMILES               CACTVS 3.370                                                                          Cc1ccc(Nc2ccccc2C(O)=O)c(c1)C(O)=O
+683 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                          Cc1ccc(c(c1)C(=O)O)Nc2ccccc2C(=O)O
+683           SMILES "OpenEye OEToolkits" 1.7.6                                                                          Cc1ccc(c(c1)C(=O)O)Nc2ccccc2C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+683 acedrg               243         "dictionary generator"                  
+683 acedrg_database      11          "data source"                           
+683 rdkit                2017.03.2   "Chemoinformatics tool"
+683 refmac5              5.8.0238    "optimization tool"                     

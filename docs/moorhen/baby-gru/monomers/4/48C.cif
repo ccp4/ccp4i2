@@ -1,0 +1,288 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+48C     48C      "5'-(D-alanylamino)-5'-deoxyuridine"     NON-POLYMER     41     22     .     
+#
+data_comp_48C
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+48C     OAZ     O       O       0       16.405      25.550      7.398       
+48C     CAU     C       CR6     0       16.687      24.518      7.996       
+48C     NAT     N       NR6     0       17.253      24.551      9.251       
+48C     CAV     C       CR6     0       17.619      23.469      10.034      
+48C     OBA     O       O       0       18.116      23.664      11.143      
+48C     CAX     C       CR16    0       17.366      22.187      9.439       
+48C     CAY     C       CR16    0       16.816      22.120      8.214       
+48C     NAW     N       NR6     0       16.467      23.241      7.487       
+48C     CBB     C       CH1     0       15.866      23.104      6.133       
+48C     OBE     O       O2      0       14.760      22.225      6.209       
+48C     CBD     C       CH1     0       16.853      22.535      5.105       
+48C     OBG     O       OH1     0       16.815      23.321      3.931       
+48C     CBC     C       CH1     0       16.328      21.110      4.886       
+48C     OBH     O       OH1     0       16.589      20.607      3.581       
+48C     CBF     C       CH1     0       14.832      21.294      5.109       
+48C     CAA     C       CH2     0       14.070      20.030      5.452       
+48C     NAB     N       NH1     0       14.444      19.477      6.741       
+48C     C       C       C       0       14.473      18.192      7.141       
+48C     O       O       O       0       14.820      17.888      8.281       
+48C     CA      C       CH1     0       14.070      17.069      6.175       
+48C     N       N       NT3     1       15.070      16.991      5.065       
+48C     CB      C       CH3     0       12.642      17.190      5.651       
+48C     H1      H       H       0       17.394      25.363      9.589       
+48C     H2      H       H       0       17.585      21.404      9.901       
+48C     H3      H       H       0       16.657      21.276      7.837       
+48C     H4      H       H       0       15.544      23.976      5.821       
+48C     H5      H       H       0       17.759      22.511      5.474       
+48C     H6      H       H       0       17.396      23.938      3.985       
+48C     H7      H       H       0       16.708      20.500      5.570       
+48C     H8      H       H       0       16.274      19.821      3.524       
+48C     H9      H       H       0       14.434      21.710      4.306       
+48C     H10     H       H       0       14.239      19.371      4.749       
+48C     H11     H       H       0       13.108      20.230      5.467       
+48C     H12     H       H       0       14.676      20.091      7.354       
+48C     H13     H       H       0       14.135      16.223      6.662       
+48C     H14     H       H       0       15.720      17.622      5.168       
+48C     H15     H       H       0       14.671      17.110      4.255       
+48C     H16     H       H       0       15.468      16.171      5.067       
+48C     H17     H       H       0       12.084      17.625      6.318       
+48C     H18     H       H       0       12.288      16.302      5.471       
+48C     H19     H       H       0       12.623      17.710      4.832       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+48C         CBD         OBG      SINGLE       n     1.412  0.0100     1.412  0.0100
+48C         CBC         OBH      SINGLE       n     1.422  0.0100     1.422  0.0100
+48C          CA           N      SINGLE       n     1.489  0.0100     1.489  0.0100
+48C         CBD         CBC      SINGLE       n     1.533  0.0109     1.533  0.0109
+48C         CBB         CBD      SINGLE       n     1.529  0.0100     1.529  0.0100
+48C         CBC         CBF      SINGLE       n     1.528  0.0117     1.528  0.0117
+48C         CBF         CAA      SINGLE       n     1.514  0.0100     1.514  0.0100
+48C         OBE         CBF      SINGLE       n     1.446  0.0107     1.446  0.0107
+48C          CA          CB      SINGLE       n     1.521  0.0100     1.521  0.0100
+48C           C          CA      SINGLE       n     1.526  0.0100     1.526  0.0100
+48C         CAA         NAB      SINGLE       n     1.447  0.0100     1.447  0.0100
+48C         CBB         OBE      SINGLE       n     1.412  0.0100     1.412  0.0100
+48C         NAW         CBB      SINGLE       n     1.476  0.0133     1.476  0.0133
+48C         NAB           C      SINGLE       n     1.336  0.0104     1.336  0.0104
+48C           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+48C         OAZ         CAU      DOUBLE       n     1.224  0.0111     1.224  0.0111
+48C         CAU         NAW      SINGLE       y     1.383  0.0100     1.383  0.0100
+48C         CAY         NAW      SINGLE       y     1.375  0.0106     1.375  0.0106
+48C         CAU         NAT      SINGLE       y     1.372  0.0112     1.372  0.0112
+48C         CAX         CAY      DOUBLE       y     1.342  0.0100     1.342  0.0100
+48C         NAT         CAV      SINGLE       y     1.381  0.0100     1.381  0.0100
+48C         CAV         CAX      SINGLE       y     1.434  0.0100     1.434  0.0100
+48C         CAV         OBA      DOUBLE       n     1.231  0.0100     1.231  0.0100
+48C         NAT          H1      SINGLE       n     1.016  0.0100     0.889  0.0200
+48C         CAX          H2      SINGLE       n     1.082  0.0130     0.935  0.0100
+48C         CAY          H3      SINGLE       n     1.082  0.0130     0.938  0.0107
+48C         CBB          H4      SINGLE       n     1.089  0.0100     0.981  0.0118
+48C         CBD          H5      SINGLE       n     1.089  0.0100     0.978  0.0200
+48C         OBG          H6      SINGLE       n     0.970  0.0120     0.849  0.0200
+48C         CBC          H7      SINGLE       n     1.089  0.0100     0.992  0.0200
+48C         OBH          H8      SINGLE       n     0.970  0.0120     0.849  0.0200
+48C         CBF          H9      SINGLE       n     1.089  0.0100     0.988  0.0100
+48C         CAA         H10      SINGLE       n     1.089  0.0100     0.982  0.0110
+48C         CAA         H11      SINGLE       n     1.089  0.0100     0.982  0.0110
+48C         NAB         H12      SINGLE       n     1.016  0.0100     0.897  0.0200
+48C          CA         H13      SINGLE       n     1.089  0.0100     0.977  0.0200
+48C           N         H14      SINGLE       n     1.036  0.0160     0.911  0.0200
+48C           N         H15      SINGLE       n     1.036  0.0160     0.911  0.0200
+48C           N         H16      SINGLE       n     1.036  0.0160     0.911  0.0200
+48C          CB         H17      SINGLE       n     1.089  0.0100     0.972  0.0152
+48C          CB         H18      SINGLE       n     1.089  0.0100     0.972  0.0152
+48C          CB         H19      SINGLE       n     1.089  0.0100     0.972  0.0152
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+48C         OAZ         CAU         NAW     122.841    1.50
+48C         OAZ         CAU         NAT     122.311    1.50
+48C         NAW         CAU         NAT     114.848    1.50
+48C         CAU         NAT         CAV     126.992    1.50
+48C         CAU         NAT          H1     115.772    1.79
+48C         CAV         NAT          H1     117.236    1.73
+48C         NAT         CAV         CAX     114.659    1.50
+48C         NAT         CAV         OBA     119.401    1.50
+48C         CAX         CAV         OBA     125.940    1.50
+48C         CAY         CAX         CAV     119.525    1.50
+48C         CAY         CAX          H2     120.325    1.50
+48C         CAV         CAX          H2     120.151    1.50
+48C         NAW         CAY         CAX     122.557    1.50
+48C         NAW         CAY          H3     118.477    1.50
+48C         CAX         CAY          H3     118.966    1.50
+48C         CBB         NAW         CAU     117.109    1.50
+48C         CBB         NAW         CAY     121.471    1.52
+48C         CAU         NAW         CAY     121.419    1.50
+48C         CBD         CBB         OBE     106.825    1.50
+48C         CBD         CBB         NAW     112.859    1.50
+48C         CBD         CBB          H4     109.776    1.83
+48C         OBE         CBB         NAW     108.667    1.50
+48C         OBE         CBB          H4     109.327    1.50
+48C         NAW         CBB          H4     109.166    1.50
+48C         CBF         OBE         CBB     109.375    1.70
+48C         OBG         CBD         CBC     112.861    2.52
+48C         OBG         CBD         CBB     109.476    3.00
+48C         OBG         CBD          H5     111.022    1.77
+48C         CBC         CBD         CBB     101.269    1.50
+48C         CBC         CBD          H5     110.799    1.82
+48C         CBB         CBD          H5     110.760    1.63
+48C         CBD         OBG          H6     109.449    1.85
+48C         OBH         CBC         CBD     111.993    3.00
+48C         OBH         CBC         CBF     110.985    2.41
+48C         OBH         CBC          H7     110.380    1.67
+48C         CBD         CBC         CBF     102.352    1.50
+48C         CBD         CBC          H7     110.108    1.66
+48C         CBF         CBC          H7     110.624    1.81
+48C         CBC         OBH          H8     108.744    3.00
+48C         CBC         CBF         CAA     115.298    1.50
+48C         CBC         CBF         OBE     105.508    1.50
+48C         CBC         CBF          H9     109.143    1.50
+48C         CAA         CBF         OBE     108.989    1.51
+48C         CAA         CBF          H9     109.467    1.50
+48C         OBE         CBF          H9     109.115    1.50
+48C         CBF         CAA         NAB     112.618    1.57
+48C         CBF         CAA         H10     109.022    1.50
+48C         CBF         CAA         H11     109.022    1.50
+48C         NAB         CAA         H10     108.315    1.50
+48C         NAB         CAA         H11     108.315    1.50
+48C         H10         CAA         H11     108.479    1.50
+48C         CAA         NAB           C     122.965    1.78
+48C         CAA         NAB         H12     118.335    2.47
+48C           C         NAB         H12     118.700    1.94
+48C          CA           C         NAB     115.948    1.50
+48C          CA           C           O     120.711    1.50
+48C         NAB           C           O     123.341    1.50
+48C           N          CA          CB     109.928    1.50
+48C           N          CA           C     107.574    1.50
+48C           N          CA         H13     108.662    1.78
+48C          CB          CA           C     111.911    1.98
+48C          CB          CA         H13     109.423    1.50
+48C           C          CA         H13     109.275    1.50
+48C          CA           N         H14     110.048    1.62
+48C          CA           N         H15     110.048    1.62
+48C          CA           N         H16     110.048    1.62
+48C         H14           N         H15     109.028    2.41
+48C         H14           N         H16     109.028    2.41
+48C         H15           N         H16     109.028    2.41
+48C          CA          CB         H17     109.719    1.50
+48C          CA          CB         H18     109.719    1.50
+48C          CA          CB         H19     109.719    1.50
+48C         H17          CB         H18     109.386    1.50
+48C         H17          CB         H19     109.386    1.50
+48C         H18          CB         H19     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+48C            sp3_sp3_31         CBC         CBD         OBG          H6     180.000    10.0     3
+48C            sp3_sp3_14         OBH         CBC         CBD         OBG     -60.000    10.0     3
+48C            sp3_sp3_34         CBD         CBC         OBH          H8     180.000    10.0     3
+48C            sp3_sp3_23         OBH         CBC         CBF         CAA      60.000    10.0     3
+48C            sp3_sp3_46         NAB         CAA         CBF         CBC     180.000    10.0     3
+48C             sp2_sp3_8           C         NAB         CAA         CBF     120.000    10.0     6
+48C             sp2_sp2_1          CA           C         NAB         CAA     180.000     5.0     2
+48C             sp2_sp3_1         NAB           C          CA           N       0.000    10.0     6
+48C            sp3_sp3_37          CB          CA           N         H14     180.000    10.0     3
+48C            sp3_sp3_55           N          CA          CB         H17     180.000    10.0     3
+48C              const_23         OAZ         CAU         NAT         CAV     180.000    10.0     2
+48C       const_sp2_sp2_4         OAZ         CAU         NAW         CBB       0.000     5.0     2
+48C              const_19         OBA         CAV         NAT         CAU     180.000    10.0     2
+48C              const_15         OBA         CAV         CAX         CAY     180.000    10.0     2
+48C       const_sp2_sp2_9         CAV         CAX         CAY         NAW       0.000     5.0     2
+48C       const_sp2_sp2_6         CAX         CAY         NAW         CBB     180.000     5.0     2
+48C            sp2_sp3_13         CAU         NAW         CBB         CBD     150.000    10.0     6
+48C             sp3_sp3_2         OBE         CBB         CBD         OBG     180.000    10.0     3
+48C            sp3_sp3_64         CBD         CBB         OBE         CBF     180.000    10.0     3
+48C            sp3_sp3_29         CAA         CBF         OBE         CBB     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+48C    chir_1    CBB    OBE    NAW    CBD    negative
+48C    chir_2    CBD    OBG    CBB    CBC    negative
+48C    chir_3    CBC    OBH    CBF    CBD    positive
+48C    chir_4    CBF    OBE    CBC    CAA    negative
+48C    chir_5    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+48C    plan-1         CAU   0.020
+48C    plan-1         CAV   0.020
+48C    plan-1         CAX   0.020
+48C    plan-1         CAY   0.020
+48C    plan-1         CBB   0.020
+48C    plan-1          H1   0.020
+48C    plan-1          H2   0.020
+48C    plan-1          H3   0.020
+48C    plan-1         NAT   0.020
+48C    plan-1         NAW   0.020
+48C    plan-1         OAZ   0.020
+48C    plan-1         OBA   0.020
+48C    plan-2           C   0.020
+48C    plan-2         CAA   0.020
+48C    plan-2         H12   0.020
+48C    plan-2         NAB   0.020
+48C    plan-3           C   0.020
+48C    plan-3          CA   0.020
+48C    plan-3         NAB   0.020
+48C    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+48C           SMILES              ACDLabs 12.01                                                                                                                        O=C1NC(=O)N(C=C1)C2OC(C(O)C2O)CNC(=O)C(N)C
+48C            InChI                InChI  1.03 InChI=1S/C12H18N4O6/c1-5(13)10(20)14-4-6-8(18)9(19)11(22-6)16-3-2-7(17)15-12(16)21/h2-3,5-6,8-9,11,18-19H,4,13H2,1H3,(H,14,20)(H,15,17,21)/t5-,6-,8-,9-,11-/m1/s1
+48C         InChIKey                InChI  1.03                                                                                                                                       DKBBANYKDGGYBY-LODYRLCVSA-N
+48C SMILES_CANONICAL               CACTVS 3.385                                                                                                    C[C@@H](N)C(=O)NC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N2C=CC(=O)NC2=O
+48C           SMILES               CACTVS 3.385                                                                                                           C[CH](N)C(=O)NC[CH]1O[CH]([CH](O)[CH]1O)N2C=CC(=O)NC2=O
+48C SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                  C[C@H](C(=O)NC[C@@H]1[C@H]([C@H]([C@@H](O1)N2C=CC(=O)NC2=O)O)O)N
+48C           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                        CC(C(=O)NCC1C(C(C(O1)N2C=CC(=O)NC2=O)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+48C acedrg               243         "dictionary generator"                  
+48C acedrg_database      11          "data source"                           
+48C rdkit                2017.03.2   "Chemoinformatics tool"
+48C refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,275 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3NA     3NA      "{3-[(4,5,7-TRIFLUORO-1,3-BENZOTHIAZOL-2-YL)METHYL]-1H-INDOL-1-YL}ACETIC ACID"     NON-POLYMER     36     26     .     
+#
+data_comp_3NA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3NA     C2      C       CR16    0       16.345      -8.894      17.925      
+3NA     C3      C       CR16    0       17.045      -9.718      15.303      
+3NA     C4      C       CR56    0       17.193      -8.123      17.127      
+3NA     C5      C       CR16    0       15.863      -10.070     17.386      
+3NA     C6      C       CR16    0       16.207      -10.478     16.093      
+3NA     C7      C       CR56    0       17.557      -8.513      15.815      
+3NA     C11     C       CR5     0       18.439      -7.506      15.291      
+3NA     C13     C       CR5     0       18.197      -6.704      12.996      
+3NA     S14     S       S2      0       17.052      -7.398      11.997      
+3NA     N15     N       NT      0       17.822      -6.918      17.386      
+3NA     C16     C       CR15    0       18.561      -6.563      16.267      
+3NA     C17     C       CH2     0       19.051      -7.499      13.923      
+3NA     F19     F       F       0       14.865      -6.613      9.827       
+3NA     C20     C       CH2     0       17.761      -6.110      18.602      
+3NA     F22     F       F       0       17.768      -2.596      12.153      
+3NA     F23     F       F       0       15.866      -2.040      10.280      
+3NA     C24     C       CR56    0       17.307      -4.928      11.968      
+3NA     C25     C       CR16    0       15.377      -4.320      10.064      
+3NA     C26     C       CR6     0       17.067      -3.598      11.595      
+3NA     C27     C       CR56    0       16.560      -5.941      11.369      
+3NA     C28     C       CR6     0       15.590      -5.644      10.412      
+3NA     C29     C       CR6     0       16.107      -3.314      10.650      
+3NA     C32     C       C       0       16.689      -5.021      18.560      
+3NA     O33     O       O       0       16.311      -4.560      19.656      
+3NA     O34     O       OC      -1      16.270      -4.665      17.439      
+3NA     N36     N       NRD5    0       18.230      -5.414      12.902      
+3NA     H2      H       H       0       16.112      -8.622      18.795      
+3NA     H3      H       H       0       17.272      -10.001     14.432      
+3NA     H5      H       H       0       15.290      -10.609     17.902      
+3NA     H6      H       H       0       15.859      -11.289     15.756      
+3NA     H16     H       H       0       19.080      -5.775      16.203      
+3NA     H171    H       H       0       19.125      -8.418      13.592      
+3NA     H172    H       H       0       19.945      -7.101      13.965      
+3NA     H201    H       H       0       18.629      -5.688      18.743      
+3NA     H202    H       H       0       17.580      -6.696      19.360      
+3NA     H25     H       H       0       14.722      -4.114      9.417       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3NA          C2          C4      DOUBLE       y     1.393  0.0100     1.393  0.0100
+3NA          C2          C5      SINGLE       y     1.376  0.0100     1.376  0.0100
+3NA          C3          C6      SINGLE       y     1.377  0.0100     1.377  0.0100
+3NA          C3          C7      DOUBLE       y     1.402  0.0100     1.402  0.0100
+3NA          C4          C7      SINGLE       y     1.413  0.0100     1.413  0.0100
+3NA          C4         N15      SINGLE       y     1.385  0.0100     1.385  0.0100
+3NA          C5          C6      DOUBLE       y     1.395  0.0112     1.395  0.0112
+3NA          C7         C11      SINGLE       y     1.437  0.0100     1.437  0.0100
+3NA         C11         C16      DOUBLE       y     1.363  0.0100     1.363  0.0100
+3NA         C11         C17      SINGLE       n     1.499  0.0100     1.499  0.0100
+3NA         C13         S14      SINGLE       y     1.695  0.0200     1.695  0.0200
+3NA         C13         C17      SINGLE       n     1.492  0.0100     1.492  0.0100
+3NA         C13         N36      DOUBLE       y     1.289  0.0100     1.289  0.0100
+3NA         S14         C27      SINGLE       y     1.695  0.0200     1.695  0.0200
+3NA         N15         C16      SINGLE       y     1.390  0.0166     1.390  0.0166
+3NA         N15         C20      SINGLE       n     1.461  0.0100     1.461  0.0100
+3NA         F19         C28      SINGLE       n     1.344  0.0100     1.344  0.0100
+3NA         C20         C32      SINGLE       n     1.527  0.0103     1.527  0.0103
+3NA         F22         C26      SINGLE       n     1.344  0.0100     1.344  0.0100
+3NA         F23         C29      SINGLE       n     1.348  0.0100     1.348  0.0100
+3NA         C24         C26      SINGLE       y     1.397  0.0114     1.397  0.0114
+3NA         C24         C27      DOUBLE       y     1.385  0.0119     1.385  0.0119
+3NA         C24         N36      SINGLE       y     1.391  0.0100     1.391  0.0100
+3NA         C25         C28      DOUBLE       y     1.380  0.0128     1.380  0.0128
+3NA         C25         C29      SINGLE       y     1.368  0.0112     1.368  0.0112
+3NA         C26         C29      DOUBLE       y     1.371  0.0113     1.371  0.0113
+3NA         C27         C28      SINGLE       y     1.386  0.0172     1.386  0.0172
+3NA         C32         O33      DOUBLE       n     1.247  0.0187     1.247  0.0187
+3NA         C32         O34      SINGLE       n     1.247  0.0187     1.247  0.0187
+3NA          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0184
+3NA          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0200
+3NA          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0181
+3NA          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0181
+3NA         C16         H16      SINGLE       n     1.082  0.0130     0.945  0.0191
+3NA         C17        H171      SINGLE       n     1.089  0.0100     0.979  0.0162
+3NA         C17        H172      SINGLE       n     1.089  0.0100     0.979  0.0162
+3NA         C20        H201      SINGLE       n     1.089  0.0100     0.976  0.0149
+3NA         C20        H202      SINGLE       n     1.089  0.0100     0.976  0.0149
+3NA         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3NA          C4          C2          C5     117.300    1.50
+3NA          C4          C2          H2     121.267    1.50
+3NA          C5          C2          H2     121.433    1.50
+3NA          C6          C3          C7     118.831    1.50
+3NA          C6          C3          H3     120.670    1.50
+3NA          C7          C3          H3     120.498    1.50
+3NA          C2          C4          C7     122.239    1.50
+3NA          C2          C4         N15     130.336    1.50
+3NA          C7          C4         N15     107.425    1.50
+3NA          C2          C5          C6     121.643    1.50
+3NA          C2          C5          H5     119.124    1.50
+3NA          C6          C5          H5     119.233    1.50
+3NA          C3          C6          C5     121.227    1.50
+3NA          C3          C6          H6     119.464    1.50
+3NA          C5          C6          H6     119.309    1.50
+3NA          C3          C7          C4     118.761    1.50
+3NA          C3          C7         C11     133.847    1.50
+3NA          C4          C7         C11     107.393    1.50
+3NA          C7         C11         C16     105.494    1.50
+3NA          C7         C11         C17     126.193    2.61
+3NA         C16         C11         C17     128.313    2.55
+3NA         S14         C13         C17     124.803    3.00
+3NA         S14         C13         N36     108.261    3.00
+3NA         C17         C13         N36     126.935    3.00
+3NA         C13         S14         C27     108.261    3.00
+3NA          C4         N15         C16     108.355    1.50
+3NA          C4         N15         C20     125.430    2.73
+3NA         C16         N15         C20     121.985    2.29
+3NA         C11         C16         N15     110.653    1.50
+3NA         C11         C16         H16     125.233    1.50
+3NA         N15         C16         H16     124.114    1.74
+3NA         C11         C17         C13     111.269    2.00
+3NA         C11         C17        H171     108.919    1.50
+3NA         C11         C17        H172     108.919    1.50
+3NA         C13         C17        H171     108.233    2.01
+3NA         C13         C17        H172     108.233    2.01
+3NA        H171         C17        H172     108.145    1.79
+3NA         N15         C20         C32     112.849    2.16
+3NA         N15         C20        H201     109.048    1.50
+3NA         N15         C20        H202     109.048    1.50
+3NA         C32         C20        H201     108.899    1.50
+3NA         C32         C20        H202     108.899    1.50
+3NA        H201         C20        H202     108.376    1.50
+3NA         C26         C24         C27     120.814    1.92
+3NA         C26         C24         N36     130.051    1.50
+3NA         C27         C24         N36     109.135    1.50
+3NA         C28         C25         C29     120.213    1.50
+3NA         C28         C25         H25     119.393    1.50
+3NA         C29         C25         H25     120.394    1.50
+3NA         F22         C26         C24     120.796    1.50
+3NA         F22         C26         C29     119.934    1.50
+3NA         C24         C26         C29     119.270    1.50
+3NA         S14         C27         C24     108.261    3.00
+3NA         S14         C27         C28     130.925    3.00
+3NA         C24         C27         C28     120.814    1.92
+3NA         F19         C28         C25     119.860    1.74
+3NA         F19         C28         C27     121.464    1.50
+3NA         C25         C28         C27     118.676    1.50
+3NA         F23         C29         C25     118.954    1.50
+3NA         F23         C29         C26     120.833    1.50
+3NA         C25         C29         C26     120.213    1.50
+3NA         C20         C32         O33     117.074    1.50
+3NA         C20         C32         O34     117.068    1.50
+3NA         O33         C32         O34     125.846    1.50
+3NA         C13         N36         C24     106.081    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3NA              const_47          C5          C2          C4          C7       0.000    10.0     2
+3NA              const_63          C4          C2          C5          C6       0.000    10.0     2
+3NA            sp2_sp3_20         O33         C32         C20         N15     120.000    10.0     6
+3NA              const_28         C27         C24         C26         F22     180.000    10.0     2
+3NA              const_22         C26         C24         C27         S14     180.000    10.0     2
+3NA              const_26         C26         C24         N36         C13     180.000    10.0     2
+3NA              const_40         C29         C25         C28         F19     180.000    10.0     2
+3NA              const_36         C28         C25         C29         F23     180.000    10.0     2
+3NA              const_34         F22         C26         C29         F23       0.000    10.0     2
+3NA              const_46         S14         C27         C28         F19       0.000    10.0     2
+3NA              const_55          C7          C3          C6          C5       0.000    10.0     2
+3NA              const_51          C6          C3          C7          C4       0.000    10.0     2
+3NA       const_sp2_sp2_1          C2          C4          C7          C3       0.000     5.0     2
+3NA              const_70          C2          C4         N15         C20       0.000    10.0     2
+3NA              const_59          C2          C5          C6          C3       0.000    10.0     2
+3NA       const_sp2_sp2_8         C17         C11          C7          C3       0.000     5.0     2
+3NA              const_11         C17         C11         C16         N15     180.000    10.0     2
+3NA             sp2_sp3_2          C7         C11         C17         C13     -90.000    10.0     6
+3NA             sp2_sp3_8         S14         C13         C17         C11     -90.000    10.0     6
+3NA              const_72         C17         C13         N36         C24     180.000    10.0     2
+3NA              const_18         C17         C13         S14         C27     180.000    10.0     2
+3NA              const_19         C24         C27         S14         C13       0.000    10.0     2
+3NA              const_14         C11         C16         N15         C20     180.000    10.0     2
+3NA            sp2_sp3_14          C4         N15         C20         C32     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3NA    plan-1         C11   0.020
+3NA    plan-1         C16   0.020
+3NA    plan-1         C17   0.020
+3NA    plan-1          C2   0.020
+3NA    plan-1         C20   0.020
+3NA    plan-1          C3   0.020
+3NA    plan-1          C4   0.020
+3NA    plan-1          C5   0.020
+3NA    plan-1          C6   0.020
+3NA    plan-1          C7   0.020
+3NA    plan-1         H16   0.020
+3NA    plan-1          H2   0.020
+3NA    plan-1          H3   0.020
+3NA    plan-1          H5   0.020
+3NA    plan-1          H6   0.020
+3NA    plan-1         N15   0.020
+3NA    plan-2         C13   0.020
+3NA    plan-2         C17   0.020
+3NA    plan-2         C24   0.020
+3NA    plan-2         C25   0.020
+3NA    plan-2         C26   0.020
+3NA    plan-2         C27   0.020
+3NA    plan-2         C28   0.020
+3NA    plan-2         C29   0.020
+3NA    plan-2         F19   0.020
+3NA    plan-2         F22   0.020
+3NA    plan-2         F23   0.020
+3NA    plan-2         H25   0.020
+3NA    plan-2         N36   0.020
+3NA    plan-2         S14   0.020
+3NA    plan-3         C20   0.020
+3NA    plan-3         C32   0.020
+3NA    plan-3         O33   0.020
+3NA    plan-3         O34   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3NA           SMILES              ACDLabs 10.04                                                                                     O=C(O)Cn2c1ccccc1c(c2)Cc3nc4c(F)c(F)cc(F)c4s3
+3NA SMILES_CANONICAL               CACTVS 3.341                                                                                     OC(=O)Cn1cc(Cc2sc3c(F)cc(F)c(F)c3n2)c4ccccc14
+3NA           SMILES               CACTVS 3.341                                                                                     OC(=O)Cn1cc(Cc2sc3c(F)cc(F)c(F)c3n2)c4ccccc14
+3NA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                   c1ccc2c(c1)c(cn2CC(=O)O)Cc3nc4c(c(cc(c4s3)F)F)F
+3NA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                   c1ccc2c(c1)c(cn2CC(=O)O)Cc3nc4c(c(cc(c4s3)F)F)F
+3NA            InChI                InChI  1.03 InChI=1S/C18H11F3N2O2S/c19-11-6-12(20)18-17(16(11)21)22-14(26-18)5-9-7-23(8-15(24)25)13-4-2-1-3-10(9)13/h1-4,6-7H,5,8H2,(H,24,25)
+3NA         InChIKey                InChI  1.03                                                                                                       KYHVTMFADJNSGS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3NA acedrg               243         "dictionary generator"                  
+3NA acedrg_database      11          "data source"                           
+3NA rdkit                2017.03.2   "Chemoinformatics tool"
+3NA refmac5              5.8.0238    "optimization tool"                     

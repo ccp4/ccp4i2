@@ -1,0 +1,327 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ASD     ASD      4-ANDROSTENE-3-17-DIONE     NON-POLYMER     47     21     .     
+#
+data_comp_ASD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ASD     C1      C       CH2     0       -10.172     5.868       16.711      
+ASD     C10     C       CT      0       -11.680     5.610       16.471      
+ASD     C11     C       CH2     0       -12.354     8.143       16.714      
+ASD     C12     C       CH2     0       -13.193     9.188       17.481      
+ASD     C13     C       CT      0       -14.664     8.813       17.486      
+ASD     C14     C       CH1     0       -14.802     7.393       18.062      
+ASD     C15     C       CH2     0       -16.300     7.246       18.356      
+ASD     C16     C       CH2     0       -16.680     8.640       18.879      
+ASD     C17     C       CR5     0       -15.557     9.567       18.456      
+ASD     C18     C       CH3     0       -15.310     9.018       16.092      
+ASD     C19     C       CH3     0       -11.949     5.577       14.945      
+ASD     C2      C       CH2     0       -9.644      5.391       18.063      
+ASD     C3      C       CR6     0       -9.921      3.938       18.268      
+ASD     C4      C       CR16    0       -11.104     3.432       17.595      
+ASD     C5      C       CR66    0       -12.029     4.240       17.052      
+ASD     C6      C       CH2     0       -13.483     3.880       17.089      
+ASD     C7      C       CH2     0       -14.294     4.935       17.832      
+ASD     C8      C       CH1     0       -14.067     6.330       17.254      
+ASD     C9      C       CH1     0       -12.555     6.690       17.206      
+ASD     O1      O       O       0       -9.202      3.223       18.956      
+ASD     O2      O       O       0       -15.409     10.707      18.832      
+ASD     H11     H       H       0       -9.671      5.408       16.013      
+ASD     H12     H       H       0       -9.983      6.817       16.619      
+ASD     H111    H       H       0       -12.580     8.192       15.768      
+ASD     H112    H       H       0       -11.416     8.387       16.804      
+ASD     H121    H       H       0       -12.869     9.249       18.398      
+ASD     H122    H       H       0       -13.079     10.061      17.065      
+ASD     H14     H       H       0       -14.358     7.411       18.935      
+ASD     H151    H       H       0       -16.458     6.561       19.027      
+ASD     H152    H       H       0       -16.795     7.022       17.550      
+ASD     H161    H       H       0       -16.766     8.634       19.847      
+ASD     H162    H       H       0       -17.523     8.934       18.495      
+ASD     H181    H       H       0       -16.004     9.698       16.141      
+ASD     H182    H       H       0       -15.704     8.186       15.784      
+ASD     H183    H       H       0       -14.635     9.304       15.454      
+ASD     H191    H       H       0       -12.864     5.831       14.765      
+ASD     H192    H       H       0       -11.792     4.683       14.604      
+ASD     H193    H       H       0       -11.353     6.197       14.498      
+ASD     H21     H       H       0       -10.068     5.903       18.774      
+ASD     H22     H       H       0       -8.685      5.546       18.109      
+ASD     H4      H       H       0       -11.224     2.503       17.538      
+ASD     H61     H       H       0       -13.593     3.020       17.531      
+ASD     H62     H       H       0       -13.818     3.796       16.180      
+ASD     H71     H       H       0       -14.041     4.933       18.778      
+ASD     H72     H       H       0       -15.244     4.709       17.771      
+ASD     H8      H       H       0       -14.419     6.338       16.338      
+ASD     H9      H       H       0       -12.250     6.683       18.145      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ASD          C1         C10      SINGLE       n     1.538  0.0100     1.538  0.0100
+ASD          C1          C2      SINGLE       n     1.525  0.0100     1.525  0.0100
+ASD         C10         C19      SINGLE       n     1.545  0.0100     1.545  0.0100
+ASD         C10          C5      SINGLE       n     1.522  0.0100     1.522  0.0100
+ASD         C10          C9      SINGLE       n     1.562  0.0100     1.562  0.0100
+ASD         C11         C12      SINGLE       n     1.540  0.0100     1.540  0.0100
+ASD         C11          C9      SINGLE       n     1.541  0.0100     1.541  0.0100
+ASD         C12         C13      SINGLE       n     1.516  0.0100     1.516  0.0100
+ASD         C13         C14      SINGLE       n     1.535  0.0100     1.535  0.0100
+ASD         C13         C17      SINGLE       n     1.518  0.0100     1.518  0.0100
+ASD         C13         C18      SINGLE       n     1.543  0.0100     1.543  0.0100
+ASD         C14         C15      SINGLE       n     1.532  0.0100     1.532  0.0100
+ASD         C14          C8      SINGLE       n     1.520  0.0100     1.520  0.0100
+ASD         C15         C16      SINGLE       n     1.536  0.0100     1.536  0.0100
+ASD         C16         C17      SINGLE       n     1.515  0.0114     1.515  0.0114
+ASD         C17          O2      DOUBLE       n     1.209  0.0100     1.209  0.0100
+ASD          C2          C3      SINGLE       n     1.492  0.0100     1.492  0.0100
+ASD          C3          C4      SINGLE       n     1.452  0.0110     1.452  0.0110
+ASD          C3          O1      DOUBLE       n     1.225  0.0100     1.225  0.0100
+ASD          C4          C5      DOUBLE       n     1.341  0.0100     1.341  0.0100
+ASD          C5          C6      SINGLE       n     1.498  0.0100     1.498  0.0100
+ASD          C6          C7      SINGLE       n     1.524  0.0100     1.524  0.0100
+ASD          C7          C8      SINGLE       n     1.524  0.0100     1.524  0.0100
+ASD          C8          C9      SINGLE       n     1.546  0.0100     1.546  0.0100
+ASD          C1         H11      SINGLE       n     1.089  0.0100     0.974  0.0100
+ASD          C1         H12      SINGLE       n     1.089  0.0100     0.974  0.0100
+ASD         C11        H111      SINGLE       n     1.089  0.0100     0.974  0.0100
+ASD         C11        H112      SINGLE       n     1.089  0.0100     0.974  0.0100
+ASD         C12        H121      SINGLE       n     1.089  0.0100     0.974  0.0150
+ASD         C12        H122      SINGLE       n     1.089  0.0100     0.974  0.0150
+ASD         C14         H14      SINGLE       n     1.089  0.0100     0.979  0.0100
+ASD         C15        H151      SINGLE       n     1.089  0.0100     0.972  0.0100
+ASD         C15        H152      SINGLE       n     1.089  0.0100     0.972  0.0100
+ASD         C16        H161      SINGLE       n     1.089  0.0100     0.972  0.0144
+ASD         C16        H162      SINGLE       n     1.089  0.0100     0.972  0.0144
+ASD         C18        H181      SINGLE       n     1.089  0.0100     0.972  0.0157
+ASD         C18        H182      SINGLE       n     1.089  0.0100     0.972  0.0157
+ASD         C18        H183      SINGLE       n     1.089  0.0100     0.972  0.0157
+ASD         C19        H191      SINGLE       n     1.089  0.0100     0.969  0.0135
+ASD         C19        H192      SINGLE       n     1.089  0.0100     0.969  0.0135
+ASD         C19        H193      SINGLE       n     1.089  0.0100     0.969  0.0135
+ASD          C2         H21      SINGLE       n     1.089  0.0100     0.973  0.0108
+ASD          C2         H22      SINGLE       n     1.089  0.0100     0.973  0.0108
+ASD          C4          H4      SINGLE       n     1.082  0.0130     0.939  0.0146
+ASD          C6         H61      SINGLE       n     1.089  0.0100     0.973  0.0101
+ASD          C6         H62      SINGLE       n     1.089  0.0100     0.973  0.0101
+ASD          C7         H71      SINGLE       n     1.089  0.0100     0.979  0.0128
+ASD          C7         H72      SINGLE       n     1.089  0.0100     0.979  0.0128
+ASD          C8          H8      SINGLE       n     1.089  0.0100     0.982  0.0100
+ASD          C9          H9      SINGLE       n     1.089  0.0100     0.987  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ASD         C10          C1          C2     113.653    1.50
+ASD         C10          C1         H11     108.726    1.50
+ASD         C10          C1         H12     108.726    1.50
+ASD          C2          C1         H11     108.896    1.50
+ASD          C2          C1         H12     108.896    1.50
+ASD         H11          C1         H12     107.765    1.50
+ASD          C1         C10         C19     109.811    1.50
+ASD          C1         C10          C5     108.894    1.50
+ASD          C1         C10          C9     108.655    1.50
+ASD         C19         C10          C5     108.312    1.50
+ASD         C19         C10          C9     111.675    1.50
+ASD          C5         C10          C9     109.534    1.50
+ASD         C12         C11          C9     113.533    1.50
+ASD         C12         C11        H111     108.860    1.50
+ASD         C12         C11        H112     108.860    1.50
+ASD          C9         C11        H111     108.840    1.50
+ASD          C9         C11        H112     108.840    1.50
+ASD        H111         C11        H112     107.720    1.50
+ASD         C11         C12         C13     110.276    1.50
+ASD         C11         C12        H121     109.340    1.50
+ASD         C11         C12        H122     109.340    1.50
+ASD         C13         C12        H121     109.608    1.50
+ASD         C13         C12        H122     109.608    1.50
+ASD        H121         C12        H122     107.979    1.50
+ASD         C12         C13         C14     109.124    1.50
+ASD         C12         C13         C17     116.776    1.50
+ASD         C12         C13         C18     111.378    1.50
+ASD         C14         C13         C17     100.524    1.50
+ASD         C14         C13         C18     113.533    1.50
+ASD         C17         C13         C18     104.980    1.50
+ASD         C13         C14         C15     104.122    1.50
+ASD         C13         C14          C8     113.225    1.50
+ASD         C13         C14         H14     105.951    1.50
+ASD         C15         C14          C8     119.365    1.50
+ASD         C15         C14         H14     106.241    1.50
+ASD          C8         C14         H14     106.057    1.50
+ASD         C14         C15         C16     102.511    1.50
+ASD         C14         C15        H151     110.972    1.50
+ASD         C14         C15        H152     110.972    1.50
+ASD         C16         C15        H151     111.221    1.50
+ASD         C16         C15        H152     111.221    1.50
+ASD        H151         C15        H152     109.060    1.50
+ASD         C15         C16         C17     105.901    1.50
+ASD         C15         C16        H161     110.806    1.50
+ASD         C15         C16        H162     110.806    1.50
+ASD         C17         C16        H161     110.353    1.50
+ASD         C17         C16        H162     110.353    1.50
+ASD        H161         C16        H162     108.596    1.50
+ASD         C13         C17         C16     108.349    1.50
+ASD         C13         C17          O2     126.288    1.50
+ASD         C16         C17          O2     125.363    1.50
+ASD         C13         C18        H181     109.537    1.50
+ASD         C13         C18        H182     109.537    1.50
+ASD         C13         C18        H183     109.537    1.50
+ASD        H181         C18        H182     109.337    1.50
+ASD        H181         C18        H183     109.337    1.50
+ASD        H182         C18        H183     109.337    1.50
+ASD         C10         C19        H191     109.491    1.50
+ASD         C10         C19        H192     109.491    1.50
+ASD         C10         C19        H193     109.491    1.50
+ASD        H191         C19        H192     109.398    1.50
+ASD        H191         C19        H193     109.398    1.50
+ASD        H192         C19        H193     109.398    1.50
+ASD          C1          C2          C3     111.567    1.50
+ASD          C1          C2         H21     109.220    1.50
+ASD          C1          C2         H22     109.220    1.50
+ASD          C3          C2         H21     109.137    1.50
+ASD          C3          C2         H22     109.137    1.50
+ASD         H21          C2         H22     107.932    1.50
+ASD          C2          C3          C4     116.406    1.50
+ASD          C2          C3          O1     121.837    1.50
+ASD          C4          C3          O1     121.757    1.50
+ASD          C3          C4          C5     123.941    1.50
+ASD          C3          C4          H4     117.869    1.50
+ASD          C5          C4          H4     118.190    1.50
+ASD         C10          C5          C4     122.520    1.50
+ASD         C10          C5          C6     116.574    1.50
+ASD          C4          C5          C6     120.906    1.50
+ASD          C5          C6          C7     112.028    1.50
+ASD          C5          C6         H61     109.141    1.50
+ASD          C5          C6         H62     109.141    1.50
+ASD          C7          C6         H61     109.205    1.50
+ASD          C7          C6         H62     109.205    1.50
+ASD         H61          C6         H62     107.957    1.50
+ASD          C6          C7          C8     111.699    1.50
+ASD          C6          C7         H71     109.235    1.50
+ASD          C6          C7         H72     109.235    1.50
+ASD          C8          C7         H71     109.128    1.50
+ASD          C8          C7         H72     109.128    1.50
+ASD         H71          C7         H72     107.970    1.50
+ASD         C14          C8          C7     111.562    1.50
+ASD         C14          C8          C9     108.824    1.50
+ASD         C14          C8          H8     108.729    1.50
+ASD          C7          C8          C9     110.602    1.50
+ASD          C7          C8          H8     108.639    1.50
+ASD          C9          C8          H8     108.691    1.50
+ASD         C10          C9         C11     113.050    1.50
+ASD         C10          C9          C8     112.733    1.50
+ASD         C10          C9          H9     106.117    1.50
+ASD         C11          C9          C8     111.905    1.50
+ASD         C11          C9          H9     106.099    1.50
+ASD          C8          C9          H9     106.087    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ASD             sp3_sp3_2          C2          C1         C10         C19     180.000    10.0     3
+ASD            sp3_sp3_91         C10          C1          C2          C3     180.000    10.0     3
+ASD            sp2_sp3_10          O1          C3          C2          C1     180.000    10.0     6
+ASD             sp2_sp2_7          O1          C3          C4          C5     180.000     5.0     2
+ASD             sp2_sp2_1          C3          C4          C5         C10       0.000     5.0     2
+ASD            sp2_sp3_13         C10          C5          C6          C7       0.000    10.0     6
+ASD            sp3_sp3_10          C5          C6          C7          C8      60.000    10.0     3
+ASD            sp3_sp3_20          C6          C7          C8         C14      60.000    10.0     3
+ASD            sp3_sp3_29         C14          C8          C9         C10     180.000    10.0     3
+ASD           sp3_sp3_100          C1         C10         C19        H191     180.000    10.0     3
+ASD             sp2_sp3_2          C4          C5         C10         C19     120.000    10.0     6
+ASD           sp3_sp3_116         C19         C10          C9         C11      60.000    10.0     3
+ASD           sp3_sp3_119         C12         C11          C9         C10     -60.000    10.0     3
+ASD            sp3_sp3_37          C9         C11         C12         C13      60.000    10.0     3
+ASD            sp3_sp3_48         C11         C12         C13         C18     180.000    10.0     3
+ASD            sp3_sp3_62         C18         C13         C14         C15     -60.000    10.0     3
+ASD            sp2_sp3_30          O2         C17         C13         C18      60.000    10.0     6
+ASD           sp3_sp3_127         C12         C13         C18        H181     180.000    10.0     3
+ASD            sp3_sp3_65         C13         C14          C8          C7      60.000    10.0     3
+ASD            sp3_sp3_73         C13         C14         C15         C16     -60.000    10.0     3
+ASD            sp3_sp3_82         C14         C15         C16         C17      60.000    10.0     3
+ASD            sp2_sp3_22          O2         C17         C16         C15     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ASD    chir_1    C10    C5    C9    C1    negative
+ASD    chir_2    C13    C17    C14    C12    positive
+ASD    chir_3    C14    C13    C8    C15    positive
+ASD    chir_4    C8    C14    C9    C7    negative
+ASD    chir_5    C9    C10    C8    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ASD    plan-1         C13   0.020
+ASD    plan-1         C16   0.020
+ASD    plan-1         C17   0.020
+ASD    plan-1          O2   0.020
+ASD    plan-2          C2   0.020
+ASD    plan-2          C3   0.020
+ASD    plan-2          C4   0.020
+ASD    plan-2          O1   0.020
+ASD    plan-3          C3   0.020
+ASD    plan-3          C4   0.020
+ASD    plan-3          C5   0.020
+ASD    plan-3          H4   0.020
+ASD    plan-4         C10   0.020
+ASD    plan-4          C4   0.020
+ASD    plan-4          C5   0.020
+ASD    plan-4          C6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ASD           SMILES              ACDLabs 12.01                                                                                                O=C3CCC4C2C(C1(C(=CC(=O)CC1)CC2)C)CCC34C
+ASD SMILES_CANONICAL               CACTVS 3.370                                                                                C[C@]12CC[C@H]3[C@@H](CCC4=CC(=O)CC[C@]34C)[C@@H]1CCC2=O
+ASD           SMILES               CACTVS 3.370                                                                                       C[C]12CC[CH]3[CH](CCC4=CC(=O)CC[C]34C)[CH]1CCC2=O
+ASD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                C[C@]12CCC(=O)C=C1CC[C@@H]3[C@@H]2CC[C@]4([C@H]3CCC4=O)C
+ASD           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                    CC12CCC(=O)C=C1CCC3C2CCC4(C3CCC4=O)C
+ASD            InChI                InChI  1.03 InChI=1S/C19H26O2/c1-18-9-7-13(20)11-12(18)3-4-14-15-5-6-17(21)19(15,2)10-8-16(14)18/h11,14-16H,3-10H2,1-2H3/t14-,15-,16-,18-,19-/m0/s1
+ASD         InChIKey                InChI  1.03                                                                                                             AEMFNILZOJDQLW-QAGGRKNESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ASD acedrg               243         "dictionary generator"                  
+ASD acedrg_database      11          "data source"                           
+ASD rdkit                2017.03.2   "Chemoinformatics tool"
+ASD refmac5              5.8.0238    "optimization tool"                     

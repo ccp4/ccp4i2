@@ -1,0 +1,321 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JAO     JAO      (2S)-2-methylheptadecan-1-ol     NON-POLYMER     57     19     .     
+#
+data_comp_JAO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JAO     CAB     C       CH3     0       -3.779      3.093       15.491      
+JAO     CAE     C       CH2     0       -4.184      5.417       16.424      
+JAO     CAF     C       CH3     0       -11.960     9.488       2.776       
+JAO     CAG     C       CH2     0       -10.936     10.509      3.210       
+JAO     CAH     C       CH2     0       -10.078     10.053      4.362       
+JAO     CAI     C       CH2     0       -9.025      9.038       3.990       
+JAO     CAJ     C       CH2     0       -8.144      8.611       5.138       
+JAO     CAK     C       CH2     0       -7.041      9.587       5.469       
+JAO     CAL     C       CH2     0       -6.181      9.178       6.640       
+JAO     CAM     C       CH2     0       -5.253      8.021       6.356       
+JAO     CAN     C       CH2     0       -4.213      7.783       7.423       
+JAO     CAO     C       CH2     0       -4.765      7.239       8.718       
+JAO     CAP     C       CH2     0       -3.710      6.875       9.735       
+JAO     CAQ     C       CH2     0       -4.259      6.350       11.040      
+JAO     CAR     C       CH2     0       -3.201      5.983       12.053      
+JAO     CAS     C       CH2     0       -3.745      5.599       13.408      
+JAO     CAT     C       CH2     0       -2.699      5.137       14.407      
+JAO     CAU     C       CH1     0       -3.203      4.495       15.705      
+JAO     O3      O       OH1     0       -5.550      5.183       16.094      
+JAO     H1      H       H       0       -4.444      2.899       16.173      
+JAO     H2      H       H       0       -3.060      2.440       15.552      
+JAO     H3      H       H       0       -4.190      3.035       14.612      
+JAO     H4      H       H       0       -3.962      6.349       16.210      
+JAO     H37     H       H       0       -4.069      5.302       17.392      
+JAO     H5      H       H       0       -12.512     9.861       2.066       
+JAO     H6      H       H       0       -12.525     9.251       3.532       
+JAO     H7      H       H       0       -11.508     8.691       2.448       
+JAO     H8      H       H       0       -11.400     11.335      3.470       
+JAO     H9      H       H       0       -10.354     10.720      2.447       
+JAO     H10     H       H       0       -10.658     9.666       5.052       
+JAO     H11     H       H       0       -9.635      10.837      4.752       
+JAO     H12     H       H       0       -8.459      9.417       3.284       
+JAO     H13     H       H       0       -9.469      8.245       3.623       
+JAO     H14     H       H       0       -7.741      7.744       4.919       
+JAO     H15     H       H       0       -8.703      8.486       5.935       
+JAO     H16     H       H       0       -7.443      10.460      5.665       
+JAO     H17     H       H       0       -6.468      9.693       4.680       
+JAO     H18     H       H       0       -6.765      8.934       7.390       
+JAO     H33     H       H       0       -5.644      9.949       6.921       
+JAO     H19     H       H       0       -4.797      8.187       5.503       
+JAO     H34     H       H       0       -5.789      7.206       6.252       
+JAO     H20     H       H       0       -3.753      8.630       7.608       
+JAO     H21     H       H       0       -3.546      7.153       7.076       
+JAO     H22     H       H       0       -5.300      6.441       8.521       
+JAO     H23     H       H       0       -5.363      7.909       9.112       
+JAO     H24     H       H       0       -3.165      7.669       9.920       
+JAO     H25     H       H       0       -3.120      6.194       9.346       
+JAO     H26     H       H       0       -4.806      5.557       10.855      
+JAO     H27     H       H       0       -4.846      7.032       11.431      
+JAO     H28     H       H       0       -2.594      6.746       12.163      
+JAO     H29     H       H       0       -2.675      5.234       11.701      
+JAO     H30     H       H       0       -4.405      4.885       13.286      
+JAO     H35     H       H       0       -4.215      6.375       13.780      
+JAO     H31     H       H       0       -2.148      5.912       14.648      
+JAO     H36     H       H       0       -2.114      4.491       13.957      
+JAO     H32     H       H       0       -2.418      4.393       16.297      
+JAO     H38     H       H       0       -5.754      5.601       15.386      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JAO         CAF         CAG      SINGLE       n     1.510  0.0200     1.510  0.0200
+JAO         CAG         CAH      SINGLE       n     1.507  0.0200     1.507  0.0200
+JAO         CAH         CAI      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAI         CAJ      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAJ         CAK      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAK         CAL      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAL         CAM      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAM         CAN      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAN         CAO      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAO         CAP      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAP         CAQ      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAQ         CAR      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAR         CAS      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAS         CAT      SINGLE       n     1.509  0.0200     1.509  0.0200
+JAO         CAT         CAU      SINGLE       n     1.528  0.0104     1.528  0.0104
+JAO         CAB         CAU      SINGLE       n     1.521  0.0151     1.521  0.0151
+JAO         CAE         CAU      SINGLE       n     1.520  0.0107     1.520  0.0107
+JAO         CAE          O3      SINGLE       n     1.417  0.0200     1.417  0.0200
+JAO         CAB          H1      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAO         CAB          H2      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAO         CAB          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAO         CAE          H4      SINGLE       n     1.089  0.0100     0.981  0.0174
+JAO         CAE         H37      SINGLE       n     1.089  0.0100     0.981  0.0174
+JAO         CAF          H5      SINGLE       n     1.089  0.0100     0.973  0.0157
+JAO         CAF          H6      SINGLE       n     1.089  0.0100     0.973  0.0157
+JAO         CAF          H7      SINGLE       n     1.089  0.0100     0.973  0.0157
+JAO         CAG          H8      SINGLE       n     1.089  0.0100     0.982  0.0155
+JAO         CAG          H9      SINGLE       n     1.089  0.0100     0.982  0.0155
+JAO         CAH         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAH         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAI         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAI         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAJ         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAJ         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAK         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAK         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAL         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAL         H33      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAM         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAM         H34      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAN         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAN         H21      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAO         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAO         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAP         H24      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAP         H25      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAQ         H26      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAQ         H27      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAR         H28      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAR         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAS         H30      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAS         H35      SINGLE       n     1.089  0.0100     0.981  0.0163
+JAO         CAT         H31      SINGLE       n     1.089  0.0100     0.981  0.0160
+JAO         CAT         H36      SINGLE       n     1.089  0.0100     0.981  0.0160
+JAO         CAU         H32      SINGLE       n     1.089  0.0100     0.989  0.0162
+JAO          O3         H38      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JAO         CAU         CAB          H1     109.467    1.50
+JAO         CAU         CAB          H2     109.467    1.50
+JAO         CAU         CAB          H3     109.467    1.50
+JAO          H1         CAB          H2     109.411    1.50
+JAO          H1         CAB          H3     109.411    1.50
+JAO          H2         CAB          H3     109.411    1.50
+JAO         CAU         CAE          O3     112.653    1.50
+JAO         CAU         CAE          H4     109.049    1.50
+JAO         CAU         CAE         H37     109.049    1.50
+JAO          O3         CAE          H4     109.168    1.50
+JAO          O3         CAE         H37     109.168    1.50
+JAO          H4         CAE         H37     107.918    1.50
+JAO         CAG         CAF          H5     109.554    1.50
+JAO         CAG         CAF          H6     109.554    1.50
+JAO         CAG         CAF          H7     109.554    1.50
+JAO          H5         CAF          H6     109.380    1.50
+JAO          H5         CAF          H7     109.380    1.50
+JAO          H6         CAF          H7     109.380    1.50
+JAO         CAF         CAG         CAH     113.719    3.00
+JAO         CAF         CAG          H8     108.918    1.50
+JAO         CAF         CAG          H9     108.918    1.50
+JAO         CAH         CAG          H8     108.758    1.50
+JAO         CAH         CAG          H9     108.758    1.50
+JAO          H8         CAG          H9     107.763    1.50
+JAO         CAG         CAH         CAI     114.362    3.00
+JAO         CAG         CAH         H10     108.653    1.50
+JAO         CAG         CAH         H11     108.653    1.50
+JAO         CAI         CAH         H10     108.698    1.50
+JAO         CAI         CAH         H11     108.698    1.50
+JAO         H10         CAH         H11     107.646    1.50
+JAO         CAH         CAI         CAJ     114.243    1.69
+JAO         CAH         CAI         H12     108.698    1.50
+JAO         CAH         CAI         H13     108.698    1.50
+JAO         CAJ         CAI         H12     108.698    1.50
+JAO         CAJ         CAI         H13     108.698    1.50
+JAO         H12         CAI         H13     107.646    1.50
+JAO         CAI         CAJ         CAK     114.243    1.69
+JAO         CAI         CAJ         H14     108.698    1.50
+JAO         CAI         CAJ         H15     108.698    1.50
+JAO         CAK         CAJ         H14     108.698    1.50
+JAO         CAK         CAJ         H15     108.698    1.50
+JAO         H14         CAJ         H15     107.646    1.50
+JAO         CAJ         CAK         CAL     114.243    1.69
+JAO         CAJ         CAK         H16     108.698    1.50
+JAO         CAJ         CAK         H17     108.698    1.50
+JAO         CAL         CAK         H16     108.698    1.50
+JAO         CAL         CAK         H17     108.698    1.50
+JAO         H16         CAK         H17     107.646    1.50
+JAO         CAK         CAL         CAM     114.243    1.69
+JAO         CAK         CAL         H18     108.698    1.50
+JAO         CAK         CAL         H33     108.698    1.50
+JAO         CAM         CAL         H18     108.698    1.50
+JAO         CAM         CAL         H33     108.698    1.50
+JAO         H18         CAL         H33     107.646    1.50
+JAO         CAL         CAM         CAN     114.243    1.69
+JAO         CAL         CAM         H19     108.698    1.50
+JAO         CAL         CAM         H34     108.698    1.50
+JAO         CAN         CAM         H19     108.698    1.50
+JAO         CAN         CAM         H34     108.698    1.50
+JAO         H19         CAM         H34     107.646    1.50
+JAO         CAM         CAN         CAO     114.243    1.69
+JAO         CAM         CAN         H20     108.698    1.50
+JAO         CAM         CAN         H21     108.698    1.50
+JAO         CAO         CAN         H20     108.698    1.50
+JAO         CAO         CAN         H21     108.698    1.50
+JAO         H20         CAN         H21     107.646    1.50
+JAO         CAN         CAO         CAP     114.243    1.69
+JAO         CAN         CAO         H22     108.698    1.50
+JAO         CAN         CAO         H23     108.698    1.50
+JAO         CAP         CAO         H22     108.698    1.50
+JAO         CAP         CAO         H23     108.698    1.50
+JAO         H22         CAO         H23     107.646    1.50
+JAO         CAO         CAP         CAQ     114.243    1.69
+JAO         CAO         CAP         H24     108.698    1.50
+JAO         CAO         CAP         H25     108.698    1.50
+JAO         CAQ         CAP         H24     108.698    1.50
+JAO         CAQ         CAP         H25     108.698    1.50
+JAO         H24         CAP         H25     107.646    1.50
+JAO         CAP         CAQ         CAR     114.243    1.69
+JAO         CAP         CAQ         H26     108.698    1.50
+JAO         CAP         CAQ         H27     108.698    1.50
+JAO         CAR         CAQ         H26     108.698    1.50
+JAO         CAR         CAQ         H27     108.698    1.50
+JAO         H26         CAQ         H27     107.646    1.50
+JAO         CAQ         CAR         CAS     114.243    1.69
+JAO         CAQ         CAR         H28     108.698    1.50
+JAO         CAQ         CAR         H29     108.698    1.50
+JAO         CAS         CAR         H28     108.698    1.50
+JAO         CAS         CAR         H29     108.698    1.50
+JAO         H28         CAR         H29     107.646    1.50
+JAO         CAR         CAS         CAT     115.535    2.06
+JAO         CAR         CAS         H30     108.698    1.50
+JAO         CAR         CAS         H35     108.698    1.50
+JAO         CAT         CAS         H30     108.762    1.50
+JAO         CAT         CAS         H35     108.762    1.50
+JAO         H30         CAS         H35     107.646    1.50
+JAO         CAS         CAT         CAU     115.451    1.50
+JAO         CAS         CAT         H31     108.469    1.50
+JAO         CAS         CAT         H36     108.469    1.50
+JAO         CAU         CAT         H31     108.401    1.50
+JAO         CAU         CAT         H36     108.401    1.50
+JAO         H31         CAT         H36     107.657    1.50
+JAO         CAT         CAU         CAB     112.374    1.50
+JAO         CAT         CAU         CAE     109.831    1.50
+JAO         CAT         CAU         H32     107.973    1.50
+JAO         CAB         CAU         CAE     110.474    1.50
+JAO         CAB         CAU         H32     107.921    1.50
+JAO         CAE         CAU         H32     108.027    1.50
+JAO         CAE          O3         H38     108.847    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JAO           sp3_sp3_136          H1         CAB         CAU         CAT     180.000    10.0     3
+JAO            sp3_sp3_73         CAM         CAN         CAO         CAP     180.000    10.0     3
+JAO            sp3_sp3_82         CAN         CAO         CAP         CAQ     180.000    10.0     3
+JAO            sp3_sp3_91         CAO         CAP         CAQ         CAR     180.000    10.0     3
+JAO           sp3_sp3_100         CAP         CAQ         CAR         CAS     180.000    10.0     3
+JAO           sp3_sp3_109         CAQ         CAR         CAS         CAT     180.000    10.0     3
+JAO           sp3_sp3_118         CAR         CAS         CAT         CAU     180.000    10.0     3
+JAO           sp3_sp3_127         CAS         CAT         CAU         CAB     180.000    10.0     3
+JAO           sp3_sp3_145          O3         CAE         CAU         CAT     180.000    10.0     3
+JAO           sp3_sp3_154         CAU         CAE          O3         H38     180.000    10.0     3
+JAO             sp3_sp3_1          H5         CAF         CAG         CAH     180.000    10.0     3
+JAO            sp3_sp3_10         CAF         CAG         CAH         CAI     180.000    10.0     3
+JAO            sp3_sp3_19         CAG         CAH         CAI         CAJ     180.000    10.0     3
+JAO            sp3_sp3_28         CAH         CAI         CAJ         CAK     180.000    10.0     3
+JAO            sp3_sp3_37         CAI         CAJ         CAK         CAL     180.000    10.0     3
+JAO            sp3_sp3_46         CAJ         CAK         CAL         CAM     180.000    10.0     3
+JAO            sp3_sp3_55         CAK         CAL         CAM         CAN     180.000    10.0     3
+JAO            sp3_sp3_64         CAL         CAM         CAN         CAO     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JAO    chir_1    CAU    CAE    CAT    CAB    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JAO           SMILES              ACDLabs 12.01                                                                             OCC(CCCCCCCCCCCCCCC)C
+JAO            InChI                InChI  1.03 InChI=1S/C18H38O/c1-3-4-5-6-7-8-9-10-11-12-13-14-15-16-18(2)17-19/h18-19H,3-17H2,1-2H3/t18-/m0/s1
+JAO         InChIKey                InChI  1.03                                                                       DMNPDGLMNXDSPT-SFHVURJKSA-N
+JAO SMILES_CANONICAL               CACTVS 3.370                                                                         CCCCCCCCCCCCCCC[C@H](C)CO
+JAO           SMILES               CACTVS 3.370                                                                          CCCCCCCCCCCCCCC[CH](C)CO
+JAO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                         CCCCCCCCCCCCCCC[C@H](C)CO
+JAO           SMILES "OpenEye OEToolkits" 1.7.6                                                                             CCCCCCCCCCCCCCCC(C)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JAO acedrg               243         "dictionary generator"                  
+JAO acedrg_database      11          "data source"                           
+JAO rdkit                2017.03.2   "Chemoinformatics tool"
+JAO refmac5              5.8.0238    "optimization tool"                     

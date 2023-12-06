@@ -1,0 +1,473 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GIL     GIL      "2-{[6-{3-[AMINO(IMINO)METHYL]PHENOXY}-4-(DIISOPROPYLAMINO)-3,5-DIFLUOROPYRIDIN-2-YL]OXY}-5-[(ISOBUTYLAMINO)CARBONYL]BENZOIC ACID"     NON-POLYMER     76     42     .     
+#
+data_comp_GIL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GIL     C1      C       CR6     0       28.974      7.331       13.449      
+GIL     C2      C       CR16    0       29.030      8.722       13.441      
+GIL     C3      C       CR16    0       29.605      9.391       12.372      
+GIL     C4      C       CR16    0       30.128      8.692       11.297      
+GIL     C5      C       CR6     0       30.074      7.308       11.301      
+GIL     C6      C       CR16    0       29.501      6.627       12.362      
+GIL     C7      C       C       0       28.358      6.600       14.587      
+GIL     N1      N       NH2     0       29.113      5.680       15.226      
+GIL     N2      N       NH1     0       27.142      6.814       14.972      
+GIL     C11     C       CR6     0       31.513      6.879       9.333       
+GIL     C12     C       CR6     0       32.772      7.332       9.712       
+GIL     N3      N       NRD6    0       31.164      6.758       8.060       
+GIL     C13     C       CR6     0       33.699      7.687       8.733       
+GIL     O1      O       O2      0       30.579      6.511       10.259      
+GIL     C14     C       CR6     0       33.302      7.556       7.403       
+GIL     C15     C       CR6     0       32.027      7.088       7.110       
+GIL     N4      N       N       0       34.947      8.151       9.067       
+GIL     O2      O       O2      0       31.702      6.985       5.788       
+GIL     F1      F       F       0       33.088      7.432       11.019      
+GIL     F2      F       F       0       34.141      7.882       6.399       
+GIL     C21     C       CR6     0       30.470      6.512       5.325       
+GIL     C22     C       CR6     0       29.388      7.384       5.181       
+GIL     C23     C       CR16    0       28.183      6.879       4.706       
+GIL     C24     C       CR6     0       28.051      5.529       4.384       
+GIL     C25     C       CR16    0       29.152      4.689       4.530       
+GIL     C26     C       CR16    0       30.347      5.172       4.994       
+GIL     C29     C       C       0       29.504      8.840       5.529       
+GIL     O3      O       OC      -1      28.810      9.272       6.467       
+GIL     O4      O       O       0       30.288      9.538       4.862       
+GIL     C8      C       C       0       26.751      4.980       3.864       
+GIL     C10     C       CH1     0       35.222      9.596       8.947       
+GIL     C16     C       CH1     0       35.961      7.201       9.566       
+GIL     C17     C       CH3     0       36.558      9.935       8.306       
+GIL     C18     C       CH3     0       35.039      10.349      10.255      
+GIL     C19     C       CH3     0       37.010      6.829       8.531       
+GIL     C20     C       CH3     0       36.601      7.619       10.880      
+GIL     O5      O       O       0       26.739      4.288       2.846       
+GIL     N5      N       NH1     0       25.636      5.303       4.536       
+GIL     C9      C       CH2     0       24.290      4.971       4.086       
+GIL     C27     C       CH1     0       23.680      3.823       4.875       
+GIL     C28     C       CH3     0       23.467      4.213       6.329       
+GIL     C30     C       CH3     0       24.521      2.561       4.764       
+GIL     H2      H       H       0       28.678      9.211       14.164      
+GIL     H3      H       H       0       29.640      10.328      12.374      
+GIL     H4      H       H       0       30.517      9.157       10.576      
+GIL     H6      H       H       0       29.468      5.686       12.358      
+GIL     H1N1    H       H       0       29.950      5.533       14.969      
+GIL     H1N2    H       H       0       28.770      5.220       15.903      
+GIL     HN1     H       H       0       26.719      7.384       14.553      
+GIL     H23     H       H       0       27.443      7.460       4.610       
+GIL     H25     H       H       0       29.076      3.777       4.311       
+GIL     H26     H       H       0       31.081      4.595       5.092       
+GIL     H10     H       H       0       34.534      9.959       8.332       
+GIL     H16     H       H       0       35.475      6.359       9.765       
+GIL     H171    H       H       0       36.600      10.891      8.128       
+GIL     H172    H       H       0       36.651      9.450       7.467       
+GIL     H173    H       H       0       37.284      9.689       8.902       
+GIL     H181    H       H       0       35.884      10.389      10.734      
+GIL     H182    H       H       0       34.378      9.893       10.805      
+GIL     H183    H       H       0       34.732      11.254      10.069      
+GIL     H191    H       H       0       37.245      5.890       8.628       
+GIL     H192    H       H       0       37.808      7.372       8.656       
+GIL     H193    H       H       0       36.656      6.980       7.637       
+GIL     H201    H       H       0       35.911      7.907       11.503      
+GIL     H202    H       H       0       37.223      8.350       10.730      
+GIL     H203    H       H       0       37.082      6.864       11.262      
+GIL     H5      H       H       0       25.707      5.726       5.297       
+GIL     H9C1    H       H       0       24.302      4.729       3.135       
+GIL     H9C2    H       H       0       23.717      5.760       4.194       
+GIL     H27     H       H       0       22.796      3.641       4.472       
+GIL     H281    H       H       0       22.989      3.501       6.790       
+GIL     H282    H       H       0       22.946      5.033       6.372       
+GIL     H283    H       H       0       24.329      4.354       6.757       
+GIL     H301    H       H       0       25.338      2.669       5.281       
+GIL     H302    H       H       0       24.745      2.401       3.831       
+GIL     H303    H       H       0       24.017      1.804       5.110       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GIL          C1          C2      DOUBLE       y     1.390  0.0100     1.390  0.0100
+GIL          C1          C6      SINGLE       y     1.395  0.0100     1.395  0.0100
+GIL          C1          C7      SINGLE       n     1.484  0.0100     1.484  0.0100
+GIL          C2          C3      SINGLE       y     1.382  0.0100     1.382  0.0100
+GIL          C3          C4      DOUBLE       y     1.380  0.0100     1.380  0.0100
+GIL          C4          C5      SINGLE       y     1.379  0.0100     1.379  0.0100
+GIL          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+GIL          C5          O1      SINGLE       n     1.401  0.0100     1.401  0.0100
+GIL          C7          N1      SINGLE       n     1.347  0.0152     1.347  0.0152
+GIL          C7          N2      DOUBLE       n     1.287  0.0200     1.287  0.0200
+GIL         C11         C12      DOUBLE       y     1.383  0.0110     1.383  0.0110
+GIL         C11          N3      SINGLE       y     1.318  0.0100     1.318  0.0100
+GIL         C11          O1      SINGLE       n     1.362  0.0100     1.362  0.0100
+GIL         C12         C13      SINGLE       y     1.392  0.0101     1.392  0.0101
+GIL         C12          F1      SINGLE       n     1.348  0.0100     1.348  0.0100
+GIL          N3         C15      DOUBLE       y     1.318  0.0100     1.318  0.0100
+GIL         C13         C14      DOUBLE       y     1.392  0.0101     1.392  0.0101
+GIL         C13          N4      SINGLE       n     1.367  0.0122     1.367  0.0122
+GIL         C14         C15      SINGLE       y     1.383  0.0110     1.383  0.0110
+GIL         C14          F2      SINGLE       n     1.348  0.0100     1.348  0.0100
+GIL         C15          O2      SINGLE       n     1.362  0.0100     1.362  0.0100
+GIL          N4         C10      SINGLE       n     1.467  0.0100     1.467  0.0100
+GIL          N4         C16      SINGLE       n     1.467  0.0100     1.467  0.0100
+GIL          O2         C21      SINGLE       n     1.395  0.0111     1.395  0.0111
+GIL         C21         C22      DOUBLE       y     1.391  0.0100     1.391  0.0100
+GIL         C21         C26      SINGLE       y     1.382  0.0100     1.382  0.0100
+GIL         C22         C23      SINGLE       y     1.386  0.0100     1.386  0.0100
+GIL         C22         C29      SINGLE       n     1.498  0.0200     1.498  0.0200
+GIL         C23         C24      DOUBLE       y     1.390  0.0100     1.390  0.0100
+GIL         C24         C25      SINGLE       y     1.389  0.0100     1.389  0.0100
+GIL         C24          C8      SINGLE       n     1.502  0.0100     1.502  0.0100
+GIL         C25         C26      DOUBLE       y     1.367  0.0100     1.367  0.0100
+GIL         C29          O3      SINGLE       n     1.244  0.0200     1.244  0.0200
+GIL         C29          O4      DOUBLE       n     1.244  0.0200     1.244  0.0200
+GIL          C8          O5      DOUBLE       n     1.230  0.0114     1.230  0.0114
+GIL          C8          N5      SINGLE       n     1.333  0.0111     1.333  0.0111
+GIL         C10         C17      SINGLE       n     1.518  0.0109     1.518  0.0109
+GIL         C10         C18      SINGLE       n     1.518  0.0109     1.518  0.0109
+GIL         C16         C19      SINGLE       n     1.518  0.0109     1.518  0.0109
+GIL         C16         C20      SINGLE       n     1.518  0.0109     1.518  0.0109
+GIL          N5          C9      SINGLE       n     1.454  0.0100     1.454  0.0100
+GIL          C9         C27      SINGLE       n     1.519  0.0156     1.519  0.0156
+GIL         C27         C28      SINGLE       n     1.520  0.0129     1.520  0.0129
+GIL         C27         C30      SINGLE       n     1.520  0.0129     1.520  0.0129
+GIL          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+GIL          C3          H3      SINGLE       n     1.082  0.0130     0.938  0.0149
+GIL          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0163
+GIL          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0200
+GIL          N1        H1N1      SINGLE       n     1.016  0.0100     0.887  0.0200
+GIL          N1        H1N2      SINGLE       n     1.016  0.0100     0.887  0.0200
+GIL          N2         HN1      SINGLE       n     1.016  0.0100     0.823  0.0200
+GIL         C23         H23      SINGLE       n     1.082  0.0130     0.946  0.0200
+GIL         C25         H25      SINGLE       n     1.082  0.0130     0.941  0.0168
+GIL         C26         H26      SINGLE       n     1.082  0.0130     0.939  0.0162
+GIL         C10         H10      SINGLE       n     1.089  0.0100     0.992  0.0164
+GIL         C16         H16      SINGLE       n     1.089  0.0100     0.992  0.0164
+GIL         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C17        H173      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C19        H191      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C19        H192      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C19        H193      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C20        H201      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C20        H202      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C20        H203      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL          N5          H5      SINGLE       n     1.016  0.0100     0.873  0.0200
+GIL          C9        H9C1      SINGLE       n     1.089  0.0100     0.981  0.0152
+GIL          C9        H9C2      SINGLE       n     1.089  0.0100     0.981  0.0152
+GIL         C27         H27      SINGLE       n     1.089  0.0100     0.988  0.0114
+GIL         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C30        H301      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C30        H302      SINGLE       n     1.089  0.0100     0.973  0.0146
+GIL         C30        H303      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GIL          C2          C1          C6     119.159    1.50
+GIL          C2          C1          C7     120.730    1.50
+GIL          C6          C1          C7     120.111    1.66
+GIL          C1          C2          C3     120.276    1.50
+GIL          C1          C2          H2     119.965    1.50
+GIL          C3          C2          H2     119.759    1.50
+GIL          C2          C3          C4     120.467    1.50
+GIL          C2          C3          H3     119.907    1.50
+GIL          C4          C3          H3     119.629    1.50
+GIL          C3          C4          C5     118.847    1.50
+GIL          C3          C4          H4     120.505    1.50
+GIL          C5          C4          H4     120.648    1.50
+GIL          C4          C5          C6     121.010    1.50
+GIL          C4          C5          O1     119.907    2.43
+GIL          C6          C5          O1     119.083    2.70
+GIL          C1          C6          C5     120.240    1.50
+GIL          C1          C6          H6     119.570    1.50
+GIL          C5          C6          H6     120.190    1.50
+GIL          C1          C7          N1     117.501    1.50
+GIL          C1          C7          N2     121.847    3.00
+GIL          N1          C7          N2     120.652    2.66
+GIL          C7          N1        H1N1     119.893    1.50
+GIL          C7          N1        H1N2     119.893    1.50
+GIL        H1N1          N1        H1N2     120.214    2.70
+GIL          C7          N2         HN1     114.748    3.00
+GIL         C12         C11          N3     122.074    1.50
+GIL         C12         C11          O1     118.956    3.00
+GIL          N3         C11          O1     118.970    2.69
+GIL         C11         C12         C13     120.121    1.50
+GIL         C11         C12          F1     119.384    1.50
+GIL         C13         C12          F1     120.495    1.50
+GIL         C11          N3         C15     117.733    1.59
+GIL         C12         C13         C14     117.876    1.50
+GIL         C12         C13          N4     121.062    1.50
+GIL         C14         C13          N4     121.062    1.50
+GIL          C5          O1         C11     119.209    2.48
+GIL         C13         C14         C15     120.121    1.50
+GIL         C13         C14          F2     120.495    1.50
+GIL         C15         C14          F2     119.384    1.50
+GIL          N3         C15         C14     122.074    1.50
+GIL          N3         C15          O2     118.970    2.69
+GIL         C14         C15          O2     118.956    3.00
+GIL         C13          N4         C10     121.548    3.00
+GIL         C13          N4         C16     121.548    3.00
+GIL         C10          N4         C16     116.905    1.94
+GIL         C15          O2         C21     116.317    3.00
+GIL          O2         C21         C22     119.098    2.59
+GIL          O2         C21         C26     120.106    3.00
+GIL         C22         C21         C26     120.796    1.50
+GIL         C21         C22         C23     118.504    1.50
+GIL         C21         C22         C29     121.112    1.50
+GIL         C23         C22         C29     120.384    1.50
+GIL         C22         C23         C24     120.509    1.50
+GIL         C22         C23         H23     119.453    1.50
+GIL         C24         C23         H23     120.038    1.50
+GIL         C23         C24         C25     119.300    1.50
+GIL         C23         C24          C8     120.464    2.64
+GIL         C25         C24          C8     120.237    2.80
+GIL         C24         C25         C26     120.971    1.50
+GIL         C24         C25         H25     119.740    1.50
+GIL         C26         C25         H25     119.289    1.50
+GIL         C21         C26         C25     119.920    1.50
+GIL         C21         C26         H26     120.061    1.50
+GIL         C25         C26         H26     120.019    1.50
+GIL         C22         C29          O3     117.949    1.50
+GIL         C22         C29          O4     117.949    1.50
+GIL          O3         C29          O4     124.103    1.50
+GIL         C24          C8          O5     120.968    1.50
+GIL         C24          C8          N5     116.868    1.50
+GIL          O5          C8          N5     122.164    1.50
+GIL          N4         C10         C17     112.902    1.50
+GIL          N4         C10         C18     112.902    1.50
+GIL          N4         C10         H10     106.907    1.50
+GIL         C17         C10         C18     111.342    1.50
+GIL         C17         C10         H10     107.198    1.50
+GIL         C18         C10         H10     107.198    1.50
+GIL          N4         C16         C19     112.902    1.50
+GIL          N4         C16         C20     112.902    1.50
+GIL          N4         C16         H16     106.907    1.50
+GIL         C19         C16         C20     111.342    1.50
+GIL         C19         C16         H16     107.198    1.50
+GIL         C20         C16         H16     107.198    1.50
+GIL         C10         C17        H171     109.719    1.50
+GIL         C10         C17        H172     109.719    1.50
+GIL         C10         C17        H173     109.719    1.50
+GIL        H171         C17        H172     109.386    1.50
+GIL        H171         C17        H173     109.386    1.50
+GIL        H172         C17        H173     109.386    1.50
+GIL         C10         C18        H181     109.719    1.50
+GIL         C10         C18        H182     109.719    1.50
+GIL         C10         C18        H183     109.719    1.50
+GIL        H181         C18        H182     109.386    1.50
+GIL        H181         C18        H183     109.386    1.50
+GIL        H182         C18        H183     109.386    1.50
+GIL         C16         C19        H191     109.719    1.50
+GIL         C16         C19        H192     109.719    1.50
+GIL         C16         C19        H193     109.719    1.50
+GIL        H191         C19        H192     109.386    1.50
+GIL        H191         C19        H193     109.386    1.50
+GIL        H192         C19        H193     109.386    1.50
+GIL         C16         C20        H201     109.719    1.50
+GIL         C16         C20        H202     109.719    1.50
+GIL         C16         C20        H203     109.719    1.50
+GIL        H201         C20        H202     109.386    1.50
+GIL        H201         C20        H203     109.386    1.50
+GIL        H202         C20        H203     109.386    1.50
+GIL          C8          N5          C9     122.257    1.53
+GIL          C8          N5          H5     119.356    1.77
+GIL          C9          N5          H5     118.387    1.89
+GIL          N5          C9         C27     111.308    2.28
+GIL          N5          C9        H9C1     109.052    1.50
+GIL          N5          C9        H9C2     109.052    1.50
+GIL         C27          C9        H9C1     108.710    1.50
+GIL         C27          C9        H9C2     108.710    1.50
+GIL        H9C1          C9        H9C2     108.781    2.12
+GIL          C9         C27         C28     110.892    1.69
+GIL          C9         C27         C30     110.892    1.69
+GIL          C9         C27         H27     106.498    1.73
+GIL         C28         C27         C30     110.933    1.50
+GIL         C28         C27         H27     108.132    1.50
+GIL         C30         C27         H27     108.132    1.50
+GIL         C27         C28        H281     109.450    1.50
+GIL         C27         C28        H282     109.450    1.50
+GIL         C27         C28        H283     109.450    1.50
+GIL        H281         C28        H282     109.411    1.50
+GIL        H281         C28        H283     109.411    1.50
+GIL        H282         C28        H283     109.411    1.50
+GIL         C27         C30        H301     109.450    1.50
+GIL         C27         C30        H302     109.450    1.50
+GIL         C27         C30        H303     109.450    1.50
+GIL        H301         C30        H302     109.411    1.50
+GIL        H301         C30        H303     109.411    1.50
+GIL        H302         C30        H303     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GIL              const_21          C7          C1          C2          C3     180.000    10.0     2
+GIL              const_61          C7          C1          C6          C5     180.000    10.0     2
+GIL             sp2_sp2_1          C2          C1          C7          N1     180.000     5.0     2
+GIL       const_sp2_sp2_8          F1         C12         C13          N4       0.000     5.0     2
+GIL              const_18          O2         C15          N3         C11     180.000    10.0     2
+GIL              const_12          N4         C13         C14          F2       0.000    10.0     2
+GIL            sp2_sp2_15         C12         C13          N4         C10     180.000     5.0     2
+GIL              const_16          F2         C14         C15          O2       0.000    10.0     2
+GIL            sp2_sp2_19          N3         C15          O2         C21     180.000     5.0     2
+GIL             sp2_sp3_5         C16          N4         C10         C17     -60.000    10.0     6
+GIL            sp2_sp3_11         C10          N4         C16         C19     -60.000    10.0     6
+GIL            sp2_sp2_21         C22         C21          O2         C15     180.000     5.0     2
+GIL              const_23          C1          C2          C3          C4       0.000    10.0     2
+GIL              const_42          O2         C21         C22         C29       0.000    10.0     2
+GIL              const_67          O2         C21         C26         C25     180.000    10.0     2
+GIL              const_45         C29         C22         C23         C24     180.000    10.0     2
+GIL            sp2_sp2_23         C21         C22         C29          O3     180.000     5.0     2
+GIL              const_48         C22         C23         C24          C8     180.000    10.0     2
+GIL              const_53          C8         C24         C25         C26     180.000    10.0     2
+GIL            sp2_sp2_28         C23         C24          C8          O5       0.000     5.0     2
+GIL              const_55         C24         C25         C26         C21       0.000    10.0     2
+GIL            sp2_sp2_33          O5          C8          N5          C9       0.000     5.0     2
+GIL              const_27          C2          C3          C4          C5       0.000    10.0     2
+GIL             sp3_sp3_1          N4         C10         C17        H171     180.000    10.0     3
+GIL            sp3_sp3_13          N4         C10         C18        H181      60.000    10.0     3
+GIL            sp3_sp3_19          N4         C16         C19        H191     180.000    10.0     3
+GIL            sp3_sp3_31          N4         C16         C20        H201      60.000    10.0     3
+GIL            sp2_sp3_14          C8          N5          C9         C27     120.000    10.0     6
+GIL            sp3_sp3_40         C28         C27          C9          N5      60.000    10.0     3
+GIL            sp3_sp3_46          C9         C27         C28        H281     180.000    10.0     3
+GIL            sp3_sp3_58          C9         C27         C30        H301      60.000    10.0     3
+GIL              const_32          C3          C4          C5          O1     180.000    10.0     2
+GIL             sp2_sp2_5          C4          C5          O1         C11     180.000     5.0     2
+GIL              const_37          O1          C5          C6          C1     180.000    10.0     2
+GIL             sp2_sp2_9          N2          C7          N1        H1N1       0.000     5.0     2
+GIL            sp2_sp2_12          N1          C7          N2         HN1       0.000     5.0     2
+GIL       const_sp2_sp2_4          O1         C11         C12          F1       0.000     5.0     2
+GIL              const_64          O1         C11          N3         C15     180.000    10.0     2
+GIL            sp2_sp2_13         C12         C11          O1          C5     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GIL    chir_1    C10    N4    C17    C18    both
+GIL    chir_2    C16    N4    C19    C20    both
+GIL    chir_3    C27    C9    C28    C30    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GIL    plan-1          C1   0.020
+GIL    plan-1          C2   0.020
+GIL    plan-1          C3   0.020
+GIL    plan-1          C4   0.020
+GIL    plan-1          C5   0.020
+GIL    plan-1          C6   0.020
+GIL    plan-1          C7   0.020
+GIL    plan-1          H2   0.020
+GIL    plan-1          H3   0.020
+GIL    plan-1          H4   0.020
+GIL    plan-1          H6   0.020
+GIL    plan-1          O1   0.020
+GIL    plan-2         C11   0.020
+GIL    plan-2         C12   0.020
+GIL    plan-2         C13   0.020
+GIL    plan-2         C14   0.020
+GIL    plan-2         C15   0.020
+GIL    plan-2          F1   0.020
+GIL    plan-2          F2   0.020
+GIL    plan-2          N3   0.020
+GIL    plan-2          N4   0.020
+GIL    plan-2          O1   0.020
+GIL    plan-2          O2   0.020
+GIL    plan-3         C21   0.020
+GIL    plan-3         C22   0.020
+GIL    plan-3         C23   0.020
+GIL    plan-3         C24   0.020
+GIL    plan-3         C25   0.020
+GIL    plan-3         C26   0.020
+GIL    plan-3         C29   0.020
+GIL    plan-3          C8   0.020
+GIL    plan-3         H23   0.020
+GIL    plan-3         H25   0.020
+GIL    plan-3         H26   0.020
+GIL    plan-3          O2   0.020
+GIL    plan-4          C1   0.020
+GIL    plan-4          C7   0.020
+GIL    plan-4          N1   0.020
+GIL    plan-4          N2   0.020
+GIL    plan-5          C7   0.020
+GIL    plan-5        H1N1   0.020
+GIL    plan-5        H1N2   0.020
+GIL    plan-5          N1   0.020
+GIL    plan-6         C10   0.020
+GIL    plan-6         C13   0.020
+GIL    plan-6         C16   0.020
+GIL    plan-6          N4   0.020
+GIL    plan-7         C22   0.020
+GIL    plan-7         C29   0.020
+GIL    plan-7          O3   0.020
+GIL    plan-7          O4   0.020
+GIL    plan-8         C24   0.020
+GIL    plan-8          C8   0.020
+GIL    plan-8          N5   0.020
+GIL    plan-8          O5   0.020
+GIL    plan-9          C8   0.020
+GIL    plan-9          C9   0.020
+GIL    plan-9          H5   0.020
+GIL    plan-9          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GIL           SMILES              ACDLabs 10.04                                                                                                                         O=C(NCC(C)C)c3ccc(Oc2nc(Oc1cc(C(=[N@H])N)ccc1)c(F)c(c2F)N(C(C)C)C(C)C)c(C(=O)O)c3
+GIL SMILES_CANONICAL               CACTVS 3.341                                                                                                                             CC(C)CNC(=O)c1ccc(Oc2nc(Oc3cccc(c3)C(N)=N)c(F)c(N(C(C)C)C(C)C)c2F)c(c1)C(O)=O
+GIL           SMILES               CACTVS 3.341                                                                                                                             CC(C)CNC(=O)c1ccc(Oc2nc(Oc3cccc(c3)C(N)=N)c(F)c(N(C(C)C)C(C)C)c2F)c(c1)C(O)=O
+GIL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     "[H]/N=C(\c1cccc(c1)Oc2c(c(c(c(n2)Oc3ccc(cc3C(=O)O)C(=O)NCC(C)C)F)N(C(C)C)C(C)C)F)/N"
+GIL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                        "[H]N=C(c1cccc(c1)Oc2c(c(c(c(n2)Oc3ccc(cc3C(=O)O)C(=O)NCC(C)C)F)N(C(C)C)C(C)C)F)N"
+GIL            InChI                InChI  1.03 InChI=1S/C30H35F2N5O5/c1-15(2)14-35-27(38)19-10-11-22(21(13-19)30(39)40)42-29-24(32)25(37(16(3)4)17(5)6)23(31)28(36-29)41-20-9-7-8-18(12-20)26(33)34/h7-13,15-17H,14H2,1-6H3,(H3,33,34)(H,35,38)(H,39,40)
+GIL         InChIKey                InChI  1.03                                                                                                                                                                               JLWMMYZWEHHTFF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GIL acedrg               243         "dictionary generator"                  
+GIL acedrg_database      11          "data source"                           
+GIL rdkit                2017.03.2   "Chemoinformatics tool"
+GIL refmac5              5.8.0238    "optimization tool"                     

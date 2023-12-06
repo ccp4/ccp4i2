@@ -1,0 +1,139 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ALQ     ALQ      "2-METHYL-PROPIONIC ACID"     NON-POLYMER     13     6     .     
+#
+data_comp_ALQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ALQ     CM      C       CH3     0       39.617      39.541      39.547      
+ALQ     CA      C       CH1     0       40.634      40.574      39.080      
+ALQ     CB      C       CH3     0       40.919      40.540      37.586      
+ALQ     C       C       C       0       40.236      41.986      39.533      
+ALQ     O       O       O       0       39.190      42.478      39.066      
+ALQ     OXT     O       OC      -1      40.979      42.572      40.345      
+ALQ     HM1     H       H       0       39.021      39.938      40.207      
+ALQ     HM2     H       H       0       40.085      38.790      39.951      
+ALQ     HM3     H       H       0       39.092      39.224      38.793      
+ALQ     HA      H       H       0       41.489      40.355      39.536      
+ALQ     HB1     H       H       0       41.114      41.439      37.267      
+ALQ     HB2     H       H       0       40.147      40.192      37.107      
+ALQ     HB3     H       H       0       41.687      39.968      37.418      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ALQ          CM          CA      SINGLE       n     1.505  0.0200     1.505  0.0200
+ALQ          CA          CB      SINGLE       n     1.505  0.0200     1.505  0.0200
+ALQ          CA           C      SINGLE       n     1.533  0.0100     1.533  0.0100
+ALQ           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ALQ           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+ALQ          CM         HM1      SINGLE       n     1.089  0.0100     0.973  0.0141
+ALQ          CM         HM2      SINGLE       n     1.089  0.0100     0.973  0.0141
+ALQ          CM         HM3      SINGLE       n     1.089  0.0100     0.973  0.0141
+ALQ          CA          HA      SINGLE       n     1.089  0.0100     0.993  0.0100
+ALQ          CB         HB1      SINGLE       n     1.089  0.0100     0.973  0.0141
+ALQ          CB         HB2      SINGLE       n     1.089  0.0100     0.973  0.0141
+ALQ          CB         HB3      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ALQ          CA          CM         HM1     109.479    1.50
+ALQ          CA          CM         HM2     109.479    1.50
+ALQ          CA          CM         HM3     109.479    1.50
+ALQ         HM1          CM         HM2     109.411    1.50
+ALQ         HM1          CM         HM3     109.411    1.50
+ALQ         HM2          CM         HM3     109.411    1.50
+ALQ          CM          CA          CB     110.971    3.00
+ALQ          CM          CA           C     110.920    1.69
+ALQ          CM          CA          HA     107.805    2.26
+ALQ          CB          CA           C     110.920    1.69
+ALQ          CB          CA          HA     107.805    2.26
+ALQ           C          CA          HA     107.706    1.93
+ALQ          CA          CB         HB1     109.479    1.50
+ALQ          CA          CB         HB2     109.479    1.50
+ALQ          CA          CB         HB3     109.479    1.50
+ALQ         HB1          CB         HB2     109.411    1.50
+ALQ         HB1          CB         HB3     109.411    1.50
+ALQ         HB2          CB         HB3     109.411    1.50
+ALQ          CA           C           O     118.051    1.50
+ALQ          CA           C         OXT     118.051    1.50
+ALQ           O           C         OXT     123.899    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ALQ             sp3_sp3_4          CB          CA          CM         HM1      60.000    10.0     3
+ALQ            sp3_sp3_10          CM          CA          CB         HB1     180.000    10.0     3
+ALQ             sp2_sp3_2           O           C          CA          CM     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ALQ    chir_1    CA    C    CM    CB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ALQ    plan-1           C   0.020
+ALQ    plan-1          CA   0.020
+ALQ    plan-1           O   0.020
+ALQ    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ALQ           SMILES              ACDLabs 12.01                                    O=C(O)C(C)C
+ALQ SMILES_CANONICAL               CACTVS 3.370                                    CC(C)C(O)=O
+ALQ           SMILES               CACTVS 3.370                                    CC(C)C(O)=O
+ALQ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                    CC(C)C(=O)O
+ALQ           SMILES "OpenEye OEToolkits" 1.7.0                                    CC(C)C(=O)O
+ALQ            InChI                InChI  1.03 InChI=1S/C4H8O2/c1-3(2)4(5)6/h3H,1-2H3,(H,5,6)
+ALQ         InChIKey                InChI  1.03                    KQNPFQTWMSNSAP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ALQ acedrg               243         "dictionary generator"                  
+ALQ acedrg_database      11          "data source"                           
+ALQ rdkit                2017.03.2   "Chemoinformatics tool"
+ALQ refmac5              5.8.0238    "optimization tool"                     

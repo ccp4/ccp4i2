@@ -1,0 +1,167 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XXP     XXP      "2-KETO,5-NITRO,6-HYDROXY-3,5-HEXADIENOIC ACID"     NON-POLYMER     17     13     .     
+#
+data_comp_XXP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XXP     O8      O       O       0       1.714       -26.257     11.508      
+XXP     N7      N       N       1       1.927       -26.856     10.463      
+XXP     O9      O       OC      -1      1.003       -27.335     9.818       
+XXP     C5      C       C       0       3.209       -26.959     9.998       
+XXP     C6      C       C1      0       4.355       -26.376     10.756      
+XXP     O10     O       OH1     0       4.128       -25.703     11.891      
+XXP     C4      C       C1      0       3.465       -27.713     8.830       
+XXP     C3      C       C1      0       4.554       -27.715     7.932       
+XXP     C2      C       C       0       5.610       -26.725     7.631       
+XXP     O11     O       O       0       6.627       -27.119     7.044       
+XXP     C1      C       C       0       5.526       -25.318     7.788       
+XXP     O12     O       O       0       4.445       -24.824     8.037       
+XXP     O13     O       OC      -1      6.551       -24.667     7.679       
+XXP     H6      H       H       0       5.242       -26.481     10.463      
+XXP     HO10    H       H       0       4.788       -25.377     12.337      
+XXP     H4      H       H       0       2.812       -28.355     8.627       
+XXP     H3      H       H       0       4.605       -28.511     7.434       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XXP          O8          N7      DOUBLE       n     1.221  0.0162     1.221  0.0162
+XXP          N7          C5      SINGLE       n     1.329  0.0200     1.329  0.0200
+XXP          N7          O9      SINGLE       n     1.221  0.0162     1.221  0.0162
+XXP          C5          C4      SINGLE       n     1.388  0.0200     1.388  0.0200
+XXP          C5          C6      DOUBLE       n     1.476  0.0200     1.476  0.0200
+XXP          C6         O10      SINGLE       n     1.338  0.0153     1.338  0.0153
+XXP          C4          C3      DOUBLE       n     1.397  0.0200     1.397  0.0200
+XXP          C3          C2      SINGLE       n     1.475  0.0100     1.475  0.0100
+XXP          C2         O11      DOUBLE       n     1.235  0.0194     1.235  0.0194
+XXP          C2          C1      SINGLE       n     1.398  0.0200     1.398  0.0200
+XXP          C1         O12      DOUBLE       n     1.214  0.0200     1.214  0.0200
+XXP          C1         O13      SINGLE       n     1.214  0.0200     1.214  0.0200
+XXP          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0180
+XXP         O10        HO10      SINGLE       n     0.966  0.0059     0.861  0.0200
+XXP          C4          H4      SINGLE       n     1.082  0.0130     0.940  0.0178
+XXP          C3          H3      SINGLE       n     1.082  0.0130     0.940  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XXP          O8          N7          C5     118.897    1.50
+XXP          O8          N7          O9     122.205    1.50
+XXP          C5          N7          O9     118.897    1.50
+XXP          N7          C5          C4     118.235    1.50
+XXP          N7          C5          C6     120.492    1.50
+XXP          C4          C5          C6     121.273    3.00
+XXP          C5          C6         O10     117.091    3.00
+XXP          C5          C6          H6     121.832    1.50
+XXP         O10          C6          H6     121.077    3.00
+XXP          C6         O10        HO10     120.000    3.00
+XXP          C5          C4          C3     129.849    1.76
+XXP          C5          C4          H4     115.252    1.81
+XXP          C3          C4          H4     114.900    1.50
+XXP          C4          C3          C2     130.386    1.50
+XXP          C4          C3          H3     113.138    1.50
+XXP          C2          C3          H3     116.476    2.16
+XXP          C3          C2         O11     119.613    1.50
+XXP          C3          C2          C1     123.319    3.00
+XXP         O11          C2          C1     117.068    3.00
+XXP          C2          C1         O12     117.745    2.67
+XXP          C2          C1         O13     117.745    2.67
+XXP         O12          C1         O13     124.510    1.63
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XXP             sp2_sp2_1          C4          C5          N7          O8     180.000     5.0     2
+XXP             sp2_sp2_9          N7          C5          C6         O10     180.000     5.0     2
+XXP             sp2_sp2_5          C3          C4          C5          N7     180.000     5.0     2
+XXP            sp2_sp2_13          C5          C6         O10        HO10     180.000     5.0     2
+XXP            sp2_sp2_15          C2          C3          C4          C5     180.000     5.0     2
+XXP            sp2_sp2_21         O11          C2          C3          C4       0.000     5.0     2
+XXP            sp2_sp2_23         O12          C1          C2          C3     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XXP    plan-1          C5   0.020
+XXP    plan-1          N7   0.020
+XXP    plan-1          O8   0.020
+XXP    plan-1          O9   0.020
+XXP    plan-2          C4   0.020
+XXP    plan-2          C5   0.020
+XXP    plan-2          C6   0.020
+XXP    plan-2          N7   0.020
+XXP    plan-3          C5   0.020
+XXP    plan-3          C6   0.020
+XXP    plan-3          H6   0.020
+XXP    plan-3         O10   0.020
+XXP    plan-4          C3   0.020
+XXP    plan-4          C4   0.020
+XXP    plan-4          C5   0.020
+XXP    plan-4          H4   0.020
+XXP    plan-5          C2   0.020
+XXP    plan-5          C3   0.020
+XXP    plan-5          C4   0.020
+XXP    plan-5          H3   0.020
+XXP    plan-6          C1   0.020
+XXP    plan-6          C2   0.020
+XXP    plan-6          C3   0.020
+XXP    plan-6         O11   0.020
+XXP    plan-7          C1   0.020
+XXP    plan-7          C2   0.020
+XXP    plan-7         O12   0.020
+XXP    plan-7         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XXP           SMILES              ACDLabs 10.04                                        "[O-][N+](=O)C(/C=C\C(=O)C(=O)O)=C/O"
+XXP SMILES_CANONICAL               CACTVS 3.341                                          O\C=C(/C=C\C(=O)C(O)=O)[N+]([O-])=O
+XXP           SMILES               CACTVS 3.341                                             OC=C(C=CC(=O)C(O)=O)[N+]([O-])=O
+XXP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                       C(=C/C(=O)C(=O)O)/C(=C\O)/[N+](=O)[O-]
+XXP           SMILES "OpenEye OEToolkits" 1.5.0                                           C(=CC(=O)C(=O)O)C(=CO)[N+](=O)[O-]
+XXP            InChI                InChI  1.03 InChI=1S/C6H5NO6/c8-3-4(7(12)13)1-2-5(9)6(10)11/h1-3,8H,(H,10,11)/b2-1-,4-3+
+XXP         InChIKey                InChI  1.03                                                  UDOBAQIWFWMQMT-BXTBVDPRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XXP acedrg               243         "dictionary generator"                  
+XXP acedrg_database      11          "data source"                           
+XXP rdkit                2017.03.2   "Chemoinformatics tool"
+XXP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,374 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AJH     AJH      "4-({4-[(3R)-3-amino-4-(2,4,5-trifluorophenyl)butanoyl]-1,4-diazepan-1-yl}carbonyl)benzoic acid"     NON-POLYMER     56     33     .     
+#
+data_comp_AJH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AJH     CAP     C       CR16    0       46.524      12.558      25.237      
+AJH     CAX     C       CR16    0       47.558      13.407      24.877      
+AJH     CAO     C       CR6     0       48.836      13.219      25.387      
+AJH     CAJ     C       C       0       49.953      14.136      24.994      
+AJH     OAW     O       OC      -1      50.994      13.624      24.544      
+AJH     OBD     O       O       0       49.778      15.359      25.140      
+AJH     CAY     C       CR16    0       49.064      12.167      26.265      
+AJH     CAQ     C       CR16    0       48.032      11.317      26.629      
+AJH     CAB     C       CR6     0       46.746      11.511      26.129      
+AJH     CAA     C       C       0       45.628      10.579      26.508      
+AJH     OAN     O       O       0       45.773      9.380       26.266      
+AJH     NAD     N       N       0       44.461      11.082      26.973      
+AJH     CAR     C       CH2     0       44.310      12.309      27.776      
+AJH     CAS     C       CH2     0       44.132      12.026      29.257      
+AJH     CBE     C       CH2     0       43.228      10.300      26.785      
+AJH     CBC     C       CH2     0       43.009      9.236       27.841      
+AJH     CBF     C       CH2     0       43.339      9.671       29.260      
+AJH     NAE     N       N       0       43.035      11.087      29.553      
+AJH     CAC     C       C       0       41.888      11.501      30.155      
+AJH     OAU     O       O       0       41.844      12.564      30.774      
+AJH     CAF     C       CH2     0       40.607      10.701      29.982      
+AJH     CAV     C       CH1     0       39.485      11.509      29.312      
+AJH     NBG     N       NT2     0       38.184      10.841      29.484      
+AJH     CAT     C       CH2     0       39.783      11.766      27.824      
+AJH     CAG     C       CR6     0       38.758      12.659      27.145      
+AJH     CAM     C       CR16    0       38.679      14.010      27.494      
+AJH     CAL     C       CR6     0       37.752      14.822      26.880      
+AJH     FBB     F       F       0       37.667      16.131      27.212      
+AJH     CAK     C       CR6     0       36.898      14.324      25.920      
+AJH     FBA     F       F       0       36.007      15.155      25.344      
+AJH     CAH     C       CR16    0       36.944      13.004      25.547      
+AJH     CAI     C       CR6     0       37.881      12.194      26.173      
+AJH     FAZ     F       F       0       37.927      10.891      25.807      
+AJH     HAP     H       H       0       45.663      12.698      24.886      
+AJH     HAX     H       H       0       47.391      14.116      24.281      
+AJH     HAY     H       H       0       49.926      12.030      26.618      
+AJH     HAQ     H       H       0       48.200      10.609      27.226      
+AJH     HAR     H       H       0       45.096      12.882      27.661      
+AJH     HARA    H       H       0       43.531      12.810      27.454      
+AJH     HAS     H       H       0       43.977      12.877      29.717      
+AJH     HASA    H       H       0       44.971      11.657      29.608      
+AJH     HBE     H       H       0       43.251      9.871       25.902      
+AJH     HBEA    H       H       0       42.459      10.909      26.791      
+AJH     HBC     H       H       0       43.559      8.457       27.618      
+AJH     HBCA    H       H       0       42.074      8.949       27.807      
+AJH     HBF     H       H       0       44.295      9.516       29.414      
+AJH     HBFA    H       H       0       42.852      9.100       29.890      
+AJH     HAF     H       H       0       40.300      10.408      30.859      
+AJH     HAFA    H       H       0       40.773      9.909       29.445      
+AJH     HAV     H       H       0       39.430      12.390      29.760      
+AJH     HNBG    H       H       0       38.227      10.014      29.164      
+AJH     HNBA    H       H       0       37.987      10.785      30.348      
+AJH     HAT     H       H       0       39.828      10.905      27.359      
+AJH     HATA    H       H       0       40.663      12.190      27.744      
+AJH     HAM     H       H       0       39.271      14.365      28.162      
+AJH     HAH     H       H       0       36.361      12.661      24.891      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AJH         CAP         CAB      DOUBLE       y     1.389  0.0100     1.389  0.0100
+AJH         CAP         CAX      SINGLE       y     1.382  0.0100     1.382  0.0100
+AJH         CAX         CAO      DOUBLE       y     1.385  0.0114     1.385  0.0114
+AJH         CAO         CAY      SINGLE       y     1.385  0.0114     1.385  0.0114
+AJH         CAO         CAJ      SINGLE       n     1.498  0.0200     1.498  0.0200
+AJH         CAJ         OBD      DOUBLE       n     1.244  0.0200     1.244  0.0200
+AJH         CAJ         OAW      SINGLE       n     1.244  0.0200     1.244  0.0200
+AJH         CAY         CAQ      DOUBLE       y     1.382  0.0100     1.382  0.0100
+AJH         CAQ         CAB      SINGLE       y     1.389  0.0100     1.389  0.0100
+AJH         CAB         CAA      SINGLE       n     1.502  0.0100     1.502  0.0100
+AJH         CAA         NAD      SINGLE       n     1.344  0.0100     1.344  0.0100
+AJH         CAA         OAN      DOUBLE       n     1.230  0.0114     1.230  0.0114
+AJH         NAD         CBE      SINGLE       n     1.467  0.0103     1.467  0.0103
+AJH         NAD         CAR      SINGLE       n     1.468  0.0100     1.468  0.0100
+AJH         CAR         CAS      SINGLE       n     1.514  0.0138     1.514  0.0138
+AJH         CAS         NAE      SINGLE       n     1.465  0.0100     1.465  0.0100
+AJH         CBE         CBC      SINGLE       n     1.515  0.0142     1.515  0.0142
+AJH         CBC         CBF      SINGLE       n     1.515  0.0142     1.515  0.0142
+AJH         CBF         NAE      SINGLE       n     1.470  0.0100     1.470  0.0100
+AJH         NAE         CAC      SINGLE       n     1.347  0.0100     1.347  0.0100
+AJH         CAC         OAU      DOUBLE       n     1.229  0.0102     1.229  0.0102
+AJH         CAC         CAF      SINGLE       n     1.514  0.0100     1.514  0.0100
+AJH         CAF         CAV      SINGLE       n     1.534  0.0147     1.534  0.0147
+AJH         CAV         CAT      SINGLE       n     1.538  0.0100     1.538  0.0100
+AJH         CAV         NBG      SINGLE       n     1.473  0.0130     1.473  0.0130
+AJH         CAT         CAG      SINGLE       n     1.515  0.0168     1.515  0.0168
+AJH         CAG         CAI      SINGLE       y     1.383  0.0100     1.383  0.0100
+AJH         CAG         CAM      DOUBLE       y     1.393  0.0100     1.393  0.0100
+AJH         CAM         CAL      SINGLE       y     1.373  0.0100     1.373  0.0100
+AJH         CAL         CAK      DOUBLE       y     1.375  0.0100     1.375  0.0100
+AJH         CAL         FBB      SINGLE       n     1.353  0.0100     1.353  0.0100
+AJH         CAK         CAH      SINGLE       y     1.369  0.0100     1.369  0.0100
+AJH         CAK         FBA      SINGLE       n     1.348  0.0100     1.348  0.0100
+AJH         CAH         CAI      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AJH         CAI         FAZ      SINGLE       n     1.354  0.0100     1.354  0.0100
+AJH         CAP         HAP      SINGLE       n     1.082  0.0130     0.941  0.0168
+AJH         CAX         HAX      SINGLE       n     1.082  0.0130     0.941  0.0168
+AJH         CAY         HAY      SINGLE       n     1.082  0.0130     0.941  0.0168
+AJH         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.941  0.0168
+AJH         CAR         HAR      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CAR        HARA      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CAS         HAS      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CAS        HASA      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CBE         HBE      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CBE        HBEA      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CBC         HBC      SINGLE       n     1.089  0.0100     0.979  0.0161
+AJH         CBC        HBCA      SINGLE       n     1.089  0.0100     0.979  0.0161
+AJH         CBF         HBF      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CBF        HBFA      SINGLE       n     1.089  0.0100     0.981  0.0152
+AJH         CAF         HAF      SINGLE       n     1.089  0.0100     0.975  0.0132
+AJH         CAF        HAFA      SINGLE       n     1.089  0.0100     0.975  0.0132
+AJH         CAV         HAV      SINGLE       n     1.089  0.0100     0.990  0.0141
+AJH         NBG        HNBG      SINGLE       n     1.036  0.0160     0.888  0.0200
+AJH         NBG        HNBA      SINGLE       n     1.036  0.0160     0.888  0.0200
+AJH         CAT         HAT      SINGLE       n     1.089  0.0100     0.981  0.0150
+AJH         CAT        HATA      SINGLE       n     1.089  0.0100     0.981  0.0150
+AJH         CAM         HAM      SINGLE       n     1.082  0.0130     0.961  0.0200
+AJH         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AJH         CAB         CAP         CAX     120.506    1.50
+AJH         CAB         CAP         HAP     119.844    1.50
+AJH         CAX         CAP         HAP     119.650    1.50
+AJH         CAP         CAX         CAO     120.476    1.50
+AJH         CAP         CAX         HAX     119.689    1.50
+AJH         CAO         CAX         HAX     119.835    1.50
+AJH         CAX         CAO         CAY     119.099    1.50
+AJH         CAX         CAO         CAJ     120.450    1.50
+AJH         CAY         CAO         CAJ     120.450    1.50
+AJH         CAO         CAJ         OBD     117.791    1.50
+AJH         CAO         CAJ         OAW     117.791    1.50
+AJH         OBD         CAJ         OAW     124.418    1.50
+AJH         CAO         CAY         CAQ     120.476    1.50
+AJH         CAO         CAY         HAY     119.835    1.50
+AJH         CAQ         CAY         HAY     119.689    1.50
+AJH         CAY         CAQ         CAB     120.506    1.50
+AJH         CAY         CAQ         HAQ     119.650    1.50
+AJH         CAB         CAQ         HAQ     119.844    1.50
+AJH         CAP         CAB         CAQ     118.936    1.50
+AJH         CAP         CAB         CAA     120.532    1.94
+AJH         CAQ         CAB         CAA     120.532    1.94
+AJH         CAB         CAA         NAD     117.975    1.50
+AJH         CAB         CAA         OAN     119.829    1.60
+AJH         NAD         CAA         OAN     122.196    1.50
+AJH         CAA         NAD         CBE     121.269    3.00
+AJH         CAA         NAD         CAR     121.558    3.00
+AJH         CBE         NAD         CAR     117.173    1.50
+AJH         NAD         CAR         CAS     111.308    2.28
+AJH         NAD         CAR         HAR     108.944    1.50
+AJH         NAD         CAR        HARA     108.944    1.50
+AJH         CAS         CAR         HAR     108.926    1.50
+AJH         CAS         CAR        HARA     108.926    1.50
+AJH         HAR         CAR        HARA     107.844    1.50
+AJH         CAR         CAS         NAE     112.406    1.62
+AJH         CAR         CAS         HAS     108.926    1.50
+AJH         CAR         CAS        HASA     108.926    1.50
+AJH         NAE         CAS         HAS     109.037    1.50
+AJH         NAE         CAS        HASA     109.037    1.50
+AJH         HAS         CAS        HASA     107.844    1.50
+AJH         NAD         CBE         CBC     113.863    1.50
+AJH         NAD         CBE         HBE     108.728    1.50
+AJH         NAD         CBE        HBEA     108.728    1.50
+AJH         CBC         CBE         HBE     108.842    1.50
+AJH         CBC         CBE        HBEA     108.842    1.50
+AJH         HBE         CBE        HBEA     107.673    1.50
+AJH         CBE         CBC         CBF     113.114    2.45
+AJH         CBE         CBC         HBC     108.861    1.50
+AJH         CBE         CBC        HBCA     108.861    1.50
+AJH         CBF         CBC         HBC     108.861    1.50
+AJH         CBF         CBC        HBCA     108.861    1.50
+AJH         HBC         CBC        HBCA     107.594    1.73
+AJH         CBC         CBF         NAE     113.303    1.62
+AJH         CBC         CBF         HBF     108.842    1.50
+AJH         CBC         CBF        HBFA     108.842    1.50
+AJH         NAE         CBF         HBF     108.589    1.50
+AJH         NAE         CBF        HBFA     108.589    1.50
+AJH         HBF         CBF        HBFA     107.673    1.50
+AJH         CAS         NAE         CBF     116.648    1.50
+AJH         CAS         NAE         CAC     121.510    3.00
+AJH         CBF         NAE         CAC     121.842    1.91
+AJH         NAE         CAC         OAU     121.449    1.50
+AJH         NAE         CAC         CAF     117.451    1.50
+AJH         OAU         CAC         CAF     121.100    1.50
+AJH         CAC         CAF         CAV     112.189    1.50
+AJH         CAC         CAF         HAF     108.929    1.50
+AJH         CAC         CAF        HAFA     108.929    1.50
+AJH         CAV         CAF         HAF     108.853    1.50
+AJH         CAV         CAF        HAFA     108.853    1.50
+AJH         HAF         CAF        HAFA     108.069    1.50
+AJH         CAF         CAV         CAT     111.291    1.60
+AJH         CAF         CAV         NBG     111.883    2.59
+AJH         CAF         CAV         HAV     108.052    1.50
+AJH         CAT         CAV         NBG     111.883    2.59
+AJH         CAT         CAV         HAV     107.624    1.50
+AJH         NBG         CAV         HAV     107.944    1.55
+AJH         CAV         NBG        HNBG     109.715    3.00
+AJH         CAV         NBG        HNBA     109.715    3.00
+AJH        HNBG         NBG        HNBA     107.559    3.00
+AJH         CAV         CAT         CAG     113.565    1.50
+AJH         CAV         CAT         HAT     108.839    1.50
+AJH         CAV         CAT        HATA     108.839    1.50
+AJH         CAG         CAT         HAT     108.906    1.50
+AJH         CAG         CAT        HATA     108.906    1.50
+AJH         HAT         CAT        HATA     107.782    1.50
+AJH         CAT         CAG         CAI     121.914    1.50
+AJH         CAT         CAG         CAM     120.510    1.50
+AJH         CAI         CAG         CAM     117.576    1.50
+AJH         CAG         CAM         CAL     119.488    1.50
+AJH         CAG         CAM         HAM     119.870    1.50
+AJH         CAL         CAM         HAM     120.642    1.50
+AJH         CAM         CAL         CAK     121.291    1.50
+AJH         CAM         CAL         FBB     120.086    1.50
+AJH         CAK         CAL         FBB     118.622    1.50
+AJH         CAL         CAK         CAH     121.259    1.50
+AJH         CAL         CAK         FBA     118.906    1.50
+AJH         CAH         CAK         FBA     119.835    1.50
+AJH         CAK         CAH         CAI     117.215    1.50
+AJH         CAK         CAH         HAH     121.376    1.50
+AJH         CAI         CAH         HAH     121.409    1.50
+AJH         CAG         CAI         CAH     123.170    1.50
+AJH         CAG         CAI         FAZ     118.694    1.50
+AJH         CAH         CAI         FAZ     118.136    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AJH              const_41         CAB         CAP         CAX         CAO       0.000    10.0     2
+AJH       const_sp2_sp2_3         CAA         CAB         CAP         CAX     180.000     5.0     2
+AJH             sp2_sp3_8         CAA         NAD         CAR         CAS     120.000    10.0     6
+AJH             sp2_sp3_2         CAA         NAD         CBE         CBC     120.000    10.0     6
+AJH             sp3_sp3_1         NAD         CAR         CAS         NAE     180.000    10.0     3
+AJH            sp2_sp3_14         CBF         NAE         CAS         CAR     120.000    10.0     6
+AJH            sp3_sp3_10         CBF         CBC         CBE         NAD     180.000    10.0     3
+AJH            sp3_sp3_19         CBE         CBC         CBF         NAE     180.000    10.0     3
+AJH            sp2_sp3_20         CAS         NAE         CBF         CBC     120.000    10.0     6
+AJH            sp2_sp2_15         OAU         CAC         NAE         CAS       0.000     5.0     2
+AJH            sp2_sp3_26         NAE         CAC         CAF         CAV     120.000    10.0     6
+AJH              const_19         CAJ         CAO         CAX         CAP     180.000    10.0     2
+AJH            sp3_sp3_28         CAC         CAF         CAV         CAT     180.000    10.0     3
+AJH            sp3_sp3_46         CAF         CAV         NBG        HNBG     180.000    10.0     3
+AJH            sp3_sp3_37         CAG         CAT         CAV         CAF     180.000    10.0     3
+AJH            sp2_sp3_32         CAI         CAG         CAT         CAV     -90.000    10.0     6
+AJH              const_47         CAT         CAG         CAM         CAL     180.000    10.0     2
+AJH              const_24         CAT         CAG         CAI         FAZ       0.000    10.0     2
+AJH              const_39         FBB         CAL         CAM         CAG     180.000    10.0     2
+AJH              const_36         FBA         CAK         CAL         FBB       0.000    10.0     2
+AJH              const_30         CAI         CAH         CAK         FBA     180.000    10.0     2
+AJH             sp2_sp2_1         OBD         CAJ         CAO         CAX     180.000     5.0     2
+AJH              const_15         CAJ         CAO         CAY         CAQ     180.000    10.0     2
+AJH              const_26         CAK         CAH         CAI         FAZ     180.000    10.0     2
+AJH       const_sp2_sp2_9         CAB         CAQ         CAY         CAO       0.000     5.0     2
+AJH       const_sp2_sp2_7         CAA         CAB         CAQ         CAY     180.000     5.0     2
+AJH             sp2_sp2_5         NAD         CAA         CAB         CAP     180.000     5.0     2
+AJH            sp2_sp2_11         OAN         CAA         NAD         CBE       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AJH    chir_1    CAV    NBG    CAF    CAT    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AJH    plan-1         CAA   0.020
+AJH    plan-1         CAB   0.020
+AJH    plan-1         CAJ   0.020
+AJH    plan-1         CAO   0.020
+AJH    plan-1         CAP   0.020
+AJH    plan-1         CAQ   0.020
+AJH    plan-1         CAX   0.020
+AJH    plan-1         CAY   0.020
+AJH    plan-1         HAP   0.020
+AJH    plan-1         HAQ   0.020
+AJH    plan-1         HAX   0.020
+AJH    plan-1         HAY   0.020
+AJH    plan-2         CAG   0.020
+AJH    plan-2         CAH   0.020
+AJH    plan-2         CAI   0.020
+AJH    plan-2         CAK   0.020
+AJH    plan-2         CAL   0.020
+AJH    plan-2         CAM   0.020
+AJH    plan-2         CAT   0.020
+AJH    plan-2         FAZ   0.020
+AJH    plan-2         FBA   0.020
+AJH    plan-2         FBB   0.020
+AJH    plan-2         HAH   0.020
+AJH    plan-2         HAM   0.020
+AJH    plan-3         CAJ   0.020
+AJH    plan-3         CAO   0.020
+AJH    plan-3         OAW   0.020
+AJH    plan-3         OBD   0.020
+AJH    plan-4         CAA   0.020
+AJH    plan-4         CAB   0.020
+AJH    plan-4         NAD   0.020
+AJH    plan-4         OAN   0.020
+AJH    plan-5         CAA   0.020
+AJH    plan-5         CAR   0.020
+AJH    plan-5         CBE   0.020
+AJH    plan-5         NAD   0.020
+AJH    plan-6         CAC   0.020
+AJH    plan-6         CAS   0.020
+AJH    plan-6         CBF   0.020
+AJH    plan-6         NAE   0.020
+AJH    plan-7         CAC   0.020
+AJH    plan-7         CAF   0.020
+AJH    plan-7         NAE   0.020
+AJH    plan-7         OAU   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AJH           SMILES              ACDLabs 10.04                                                                                                                   O=C(N2CCCN(C(=O)c1ccc(C(=O)O)cc1)CC2)CC(N)Cc3cc(F)c(F)cc3F
+AJH SMILES_CANONICAL               CACTVS 3.341                                                                                                              N[C@@H](CC(=O)N1CCCN(CC1)C(=O)c2ccc(cc2)C(O)=O)Cc3cc(F)c(F)cc3F
+AJH           SMILES               CACTVS 3.341                                                                                                                N[CH](CC(=O)N1CCCN(CC1)C(=O)c2ccc(cc2)C(O)=O)Cc3cc(F)c(F)cc3F
+AJH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                              c1cc(ccc1C(=O)N2CCCN(CC2)C(=O)C[C@@H](Cc3cc(c(cc3F)F)F)N)C(=O)O
+AJH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                   c1cc(ccc1C(=O)N2CCCN(CC2)C(=O)CC(Cc3cc(c(cc3F)F)F)N)C(=O)O
+AJH            InChI                InChI  1.03 InChI=1S/C23H24F3N3O4/c24-18-13-20(26)19(25)11-16(18)10-17(27)12-21(30)28-6-1-7-29(9-8-28)22(31)14-2-4-15(5-3-14)23(32)33/h2-5,11,13,17H,1,6-10,12,27H2,(H,32,33)/t17-/m1/s1
+AJH         InChIKey                InChI  1.03                                                                                                                                                  NXUBRAZWHJADLI-QGZVFWFLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AJH acedrg               243         "dictionary generator"                  
+AJH acedrg_database      11          "data source"                           
+AJH rdkit                2017.03.2   "Chemoinformatics tool"
+AJH refmac5              5.8.0238    "optimization tool"                     

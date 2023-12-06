@@ -1,0 +1,261 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CJF     CJF      N4-cyclopropyl-6-morpholin-4-yl-pyrimidine-2,4-diamine     NON-POLYMER     34     17     .     
+#
+data_comp_CJF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CJF     N01     N       NH2     0       27.115      11.023      -14.491     
+CJF     C02     C       CR6     0       27.598      9.948       -15.137     
+CJF     N03     N       NRD6    0       28.897      9.636       -14.944     
+CJF     C04     C       CR6     0       29.394      8.552       -15.586     
+CJF     C05     C       CR16    0       28.572      7.782       -16.431     
+CJF     C06     C       CR6     0       27.230      8.181       -16.585     
+CJF     N07     N       NH1     0       26.347      7.503       -17.385     
+CJF     C08     C       CH1     0       26.723      6.532       -18.400     
+CJF     C09     C       CH2     0       27.418      7.011       -19.623     
+CJF     C10     C       CH2     0       26.008      6.543       -19.702     
+CJF     N11     N       NRD6    0       26.752      9.264       -15.932     
+CJF     N12     N       NR6     0       30.714      8.244       -15.375     
+CJF     C13     C       CH2     0       31.608      7.785       -16.445     
+CJF     C14     C       CH2     0       32.914      8.543       -16.409     
+CJF     O15     O       O2      0       33.527      8.497       -15.123     
+CJF     C16     C       CH2     0       32.656      9.038       -14.133     
+CJF     C17     C       CH2     0       31.357      8.273       -14.056     
+CJF     H1      H       H       0       27.665      11.575      -14.087     
+CJF     H2      H       H       0       26.250      11.171      -14.471     
+CJF     H3      H       H       0       28.912      7.029       -16.883     
+CJF     H4      H       H       0       25.495      7.664       -17.277     
+CJF     H5      H       H       0       26.999      5.649       -18.075     
+CJF     H6      H       H       0       27.583      7.971       -19.707     
+CJF     H7      H       H       0       28.109      6.438       -20.008     
+CJF     H8      H       H       0       25.313      7.216       -19.835     
+CJF     H9      H       H       0       25.839      5.684       -20.136     
+CJF     H10     H       H       0       31.784      6.824       -16.335     
+CJF     H11     H       H       0       31.182      7.918       -17.320     
+CJF     H12     H       H       0       32.753      9.477       -16.657     
+CJF     H13     H       H       0       33.528      8.155       -17.068     
+CJF     H14     H       H       0       32.468      9.977       -14.345     
+CJF     H15     H       H       0       33.102      9.006       -13.261     
+CJF     H16     H       H       0       31.536      7.353       -13.758     
+CJF     H17     H       H       0       30.766      8.696       -13.395     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CJF         C09         C10      SINGLE       n     1.486  0.0159     1.486  0.0159
+CJF         C08         C10      SINGLE       n     1.486  0.0127     1.486  0.0127
+CJF         C08         C09      SINGLE       n     1.486  0.0127     1.486  0.0127
+CJF         N07         C08      SINGLE       n     1.447  0.0200     1.447  0.0200
+CJF         C06         N07      SINGLE       n     1.357  0.0185     1.357  0.0185
+CJF         C05         C06      DOUBLE       y     1.397  0.0192     1.397  0.0192
+CJF         C04         C05      SINGLE       y     1.405  0.0100     1.405  0.0100
+CJF         C06         N11      SINGLE       y     1.348  0.0100     1.348  0.0100
+CJF         C13         C14      SINGLE       n     1.508  0.0100     1.508  0.0100
+CJF         C14         O15      SINGLE       n     1.423  0.0105     1.423  0.0105
+CJF         N12         C13      SINGLE       n     1.462  0.0100     1.462  0.0100
+CJF         C02         N11      DOUBLE       y     1.342  0.0100     1.342  0.0100
+CJF         C04         N12      SINGLE       n     1.366  0.0103     1.366  0.0103
+CJF         N03         C04      DOUBLE       y     1.348  0.0100     1.348  0.0100
+CJF         N12         C17      SINGLE       n     1.462  0.0100     1.462  0.0100
+CJF         O15         C16      SINGLE       n     1.423  0.0105     1.423  0.0105
+CJF         C02         N03      SINGLE       y     1.343  0.0100     1.343  0.0100
+CJF         N01         C02      SINGLE       n     1.341  0.0100     1.341  0.0100
+CJF         C16         C17      SINGLE       n     1.508  0.0100     1.508  0.0100
+CJF         N01          H1      SINGLE       n     1.016  0.0100     0.877  0.0200
+CJF         N01          H2      SINGLE       n     1.016  0.0100     0.877  0.0200
+CJF         C05          H3      SINGLE       n     1.082  0.0130     0.943  0.0168
+CJF         N07          H4      SINGLE       n     1.016  0.0100     0.873  0.0200
+CJF         C08          H5      SINGLE       n     1.089  0.0100     0.981  0.0136
+CJF         C09          H6      SINGLE       n     1.089  0.0100     0.977  0.0155
+CJF         C09          H7      SINGLE       n     1.089  0.0100     0.977  0.0155
+CJF         C10          H8      SINGLE       n     1.089  0.0100     0.977  0.0155
+CJF         C10          H9      SINGLE       n     1.089  0.0100     0.977  0.0155
+CJF         C13         H10      SINGLE       n     1.089  0.0100     0.983  0.0140
+CJF         C13         H11      SINGLE       n     1.089  0.0100     0.983  0.0140
+CJF         C14         H12      SINGLE       n     1.089  0.0100     0.980  0.0155
+CJF         C14         H13      SINGLE       n     1.089  0.0100     0.980  0.0155
+CJF         C16         H14      SINGLE       n     1.089  0.0100     0.980  0.0155
+CJF         C16         H15      SINGLE       n     1.089  0.0100     0.980  0.0155
+CJF         C17         H16      SINGLE       n     1.089  0.0100     0.983  0.0140
+CJF         C17         H17      SINGLE       n     1.089  0.0100     0.983  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CJF         C02         N01          H1     119.826    1.50
+CJF         C02         N01          H2     119.826    1.50
+CJF          H1         N01          H2     120.348    1.96
+CJF         N11         C02         N03     124.245    1.50
+CJF         N11         C02         N01     118.028    1.50
+CJF         N03         C02         N01     117.727    1.50
+CJF         C04         N03         C02     116.802    1.50
+CJF         C05         C04         N12     122.309    1.50
+CJF         C05         C04         N03     121.150    1.50
+CJF         N12         C04         N03     116.550    1.50
+CJF         C06         C05         C04     118.422    1.52
+CJF         C06         C05          H3     120.704    1.50
+CJF         C04         C05          H3     120.873    1.50
+CJF         N07         C06         C05     121.013    2.22
+CJF         N07         C06         N11     117.034    1.88
+CJF         C05         C06         N11     121.952    1.50
+CJF         C08         N07         C06     124.146    1.50
+CJF         C08         N07          H4     117.998    1.50
+CJF         C06         N07          H4     117.856    1.52
+CJF         C10         C08         C09      60.277    1.50
+CJF         C10         C08         N07     118.619    1.50
+CJF         C10         C08          H5     115.577    1.50
+CJF         C09         C08         N07     118.619    1.50
+CJF         C09         C08          H5     115.577    1.50
+CJF         N07         C08          H5     116.356    1.50
+CJF         C10         C09         C08      59.862    1.50
+CJF         C10         C09          H6     117.795    1.50
+CJF         C10         C09          H7     117.795    1.50
+CJF         C08         C09          H6     117.931    1.50
+CJF         C08         C09          H7     117.931    1.50
+CJF          H6         C09          H7     115.138    1.50
+CJF         C09         C10         C08      59.862    1.50
+CJF         C09         C10          H8     117.795    1.50
+CJF         C09         C10          H9     117.795    1.50
+CJF         C08         C10          H8     117.931    1.50
+CJF         C08         C10          H9     117.931    1.50
+CJF          H8         C10          H9     115.138    1.50
+CJF         C06         N11         C02     117.428    1.50
+CJF         C13         N12         C04     123.295    1.63
+CJF         C13         N12         C17     113.410    1.54
+CJF         C04         N12         C17     123.295    1.63
+CJF         C14         C13         N12     109.434    1.50
+CJF         C14         C13         H10     109.720    1.50
+CJF         C14         C13         H11     109.720    1.50
+CJF         N12         C13         H10     109.706    1.50
+CJF         N12         C13         H11     109.706    1.50
+CJF         H10         C13         H11     108.247    1.50
+CJF         C13         C14         O15     111.654    1.50
+CJF         C13         C14         H12     109.316    1.50
+CJF         C13         C14         H13     109.316    1.50
+CJF         O15         C14         H12     109.195    1.50
+CJF         O15         C14         H13     109.195    1.50
+CJF         H12         C14         H13     108.175    1.50
+CJF         C14         O15         C16     109.829    1.50
+CJF         O15         C16         C17     111.654    1.50
+CJF         O15         C16         H14     109.195    1.50
+CJF         O15         C16         H15     109.195    1.50
+CJF         C17         C16         H14     109.316    1.50
+CJF         C17         C16         H15     109.316    1.50
+CJF         H14         C16         H15     108.175    1.50
+CJF         N12         C17         C16     109.434    1.50
+CJF         N12         C17         H16     109.706    1.50
+CJF         N12         C17         H17     109.706    1.50
+CJF         C16         C17         H16     109.720    1.50
+CJF         C16         C17         H17     109.720    1.50
+CJF         H16         C17         H17     108.247    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CJF             sp2_sp2_9         N11         C02         N01          H1     180.000     5.0     2
+CJF             sp2_sp3_6         C04         N12         C13         H11      60.000    10.0     6
+CJF            sp2_sp3_16         C04         N12         C17         C16     180.000    10.0     6
+CJF            sp3_sp3_21         N12         C13         C14         H13     180.000    10.0     3
+CJF            sp3_sp3_30         H13         C14         O15         C16     180.000    10.0     3
+CJF            sp3_sp3_33         H15         C16         O15         C14      60.000    10.0     3
+CJF            sp3_sp3_36         O15         C16         C17         H17     -60.000    10.0     3
+CJF       const_sp2_sp2_2         N01         C02         N11         C06     180.000     5.0     2
+CJF            sp2_sp2_11         N03         C02         N01          H1       0.000     5.0     2
+CJF              const_13         C05         C04         N03         C02       0.000    10.0     2
+CJF             sp2_sp2_8         N03         C04         N12         C17     180.000     5.0     2
+CJF              const_11         N12         C04         C05         C06     180.000    10.0     2
+CJF       const_sp2_sp2_6         C04         C05         C06         N07     180.000     5.0     2
+CJF       const_sp2_sp2_4         N07         C06         N11         C02     180.000     5.0     2
+CJF             sp2_sp2_4         N11         C06         N07          H4     180.000     5.0     2
+CJF            sp2_sp3_11          H4         N07         C08         C10     -60.000    10.0     6
+CJF            sp3_sp3_49          H5         C08         C09         C10     -60.000    10.0     3
+CJF             sp3_sp3_1         N07         C08         C10         C09      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CJF    chir_1    C08    N07    C10    C09    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CJF    plan-1         C02   0.020
+CJF    plan-1         C04   0.020
+CJF    plan-1         C05   0.020
+CJF    plan-1         C06   0.020
+CJF    plan-1          H3   0.020
+CJF    plan-1         N01   0.020
+CJF    plan-1         N03   0.020
+CJF    plan-1         N07   0.020
+CJF    plan-1         N11   0.020
+CJF    plan-1         N12   0.020
+CJF    plan-2         C02   0.020
+CJF    plan-2          H1   0.020
+CJF    plan-2          H2   0.020
+CJF    plan-2         N01   0.020
+CJF    plan-3         C06   0.020
+CJF    plan-3         C08   0.020
+CJF    plan-3          H4   0.020
+CJF    plan-3         N07   0.020
+CJF    plan-4         C04   0.020
+CJF    plan-4         C13   0.020
+CJF    plan-4         C17   0.020
+CJF    plan-4         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CJF            InChI                InChI  1.03 InChI=1S/C11H17N5O/c12-11-14-9(13-8-1-2-8)7-10(15-11)16-3-5-17-6-4-16/h7-8H,1-6H2,(H3,12,13,14,15)
+CJF         InChIKey                InChI  1.03                                                                        ODSBHVJNQBVQRW-UHFFFAOYSA-N
+CJF SMILES_CANONICAL               CACTVS 3.385                                                                        Nc1nc(NC2CC2)cc(n1)N3CCOCC3
+CJF           SMILES               CACTVS 3.385                                                                        Nc1nc(NC2CC2)cc(n1)N3CCOCC3
+CJF SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                        c1c(nc(nc1N2CCOCC2)N)NC3CC3
+CJF           SMILES "OpenEye OEToolkits" 2.0.6                                                                        c1c(nc(nc1N2CCOCC2)N)NC3CC3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CJF acedrg               243         "dictionary generator"                  
+CJF acedrg_database      11          "data source"                           
+CJF rdkit                2017.03.2   "Chemoinformatics tool"
+CJF refmac5              5.8.0238    "optimization tool"                     
