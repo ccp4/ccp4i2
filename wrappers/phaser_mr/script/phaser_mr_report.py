@@ -1,6 +1,7 @@
 from report.CCP4ReportParser import *
 import sys
 import xml.etree.ElementTree as etree
+import base64
 
 class pimpleGraph():
     def __init__(self,title=None, separator =' ', xmlnode=None):
@@ -101,8 +102,8 @@ class phaser_mr_report(Report):
             self.append('<span style = "font-size:150%;"> Commiserations: no solutions have been found</span>')
             self.append('<span style = "font-size:100%;"> The last summary segment from Phaser follows:</span>')
             summaryNodes = self.xmlnode.findall('.//CCP4Summary')
-            if len(summaryNodes)>1: self.addPre(text = summaryNodes[-2].text)
-            if len(summaryNodes)>0: self.addPre(text = summaryNodes[-1].text)
+            if len(summaryNodes)>1: self.addPre(text = base64.b64decode(summaryNodes[-2].text))
+            if len(summaryNodes)>0: self.addPre(text = base64.b64decode(summaryNodes[-1].text))
         
         cellContentAnalysisFold = self.addFold(label = 'Cell Content analysis', initiallyOpen = False,brief='Cell')
         sideBySideDiv = cellContentAnalysisFold.addDiv()

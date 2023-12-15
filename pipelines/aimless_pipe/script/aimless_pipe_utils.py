@@ -278,7 +278,7 @@ def selectGraphs(xmlnode, baseElement="CCP4Table",
                  graphID=None,
                  graphTitle=None,
                  plotTitleList=None):
-  import xml.etree.ElementTree as etree
+  import xml.etree.ElementTree as ET
   '''
   Select from xmlnode (usually = <CCP4Table> element) graphs
   with id= graphID

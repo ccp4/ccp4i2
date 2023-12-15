@@ -29,6 +29,7 @@ from core import CCP4Modules
 from lxml import etree
 from xml.etree import ElementTree as ET
 from core import CCP4Utils
+import base64
 
 class lorestr_i2(CPluginScript):
     TASKNAME = 'lorestr_i2'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -128,7 +129,8 @@ class lorestr_i2(CPluginScript):
 
         self.xmlroot = etree.Element("lorestr_i2")
         logText = etree.SubElement(self.xmlroot,"LogText")
-        logText.text = etree.CDATA(availableStdout)
+        #logText.text = etree.CDATA(availableStdout)
+        logText.text = base64.b64encode(availableStdout)
         self.flushXML()
 
 #        self.logScraper.processLogChunk(str(availableStdout))

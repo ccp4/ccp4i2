@@ -7,6 +7,7 @@ from report.CCP4ReportParser import *
 
 from wrappers.refmac_i2.script import refmac_report
 from wrappers.validate_protein.script import validate_protein_report
+import base64
 
 class prosmart_refmac_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -258,7 +259,7 @@ class prosmart_refmac_report(Report):
             verdictScoreDiv.addText(text="Verdict score: %.2f" % float(verdictNodes[0].findall("verdict_score")[0].text))
             verdictFold.append('<script>var score_widget = new scoreWidget("myScoreWidgetCanvas",'+str(float(verdictNodes[0].findall("verdict_score")[0].text)/100.)+');</script>')
             messageDiv = topDiv.addDiv(style='border:0px solid magenta; width:400px; float: left;')
-            messageDiv.append(cleaner.clean_html(verdictNodes[0].findall("verdict_message")[0].text))
+            messageDiv.append(cleaner.clean_html(base64.b64decode(verdictNodes[0].findall("verdict_message")[0].text)))
 
             RFreeNode = xmlnode.findall('.//RefmacWeight/REFMAC/Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free')
             final_rfree = 'NA'
@@ -268,7 +269,7 @@ class prosmart_refmac_report(Report):
             if len(ClashNode)>0: final_clash = ClashNode[0].text
 
             bottomLineDiv = verdictFold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
-            bottomLineDiv.append(cleaner.clean_html(verdictNodes[0].findall("bottomline")[0].text))
+            bottomLineDiv.append(cleaner.clean_html(base64.b64decode(verdictNodes[0].findall("bottomline")[0].text)))
             tableText = "<table>\n"
             tableText += "<tr><td>R-Free:</td><td>"+final_rfree+"</td><td>(mean in resolution bin: "+verdictNodes[0].findall("meanRfree")[0].text+")</td></tr>\n"
             tableText += "<tr><td>Clashscore:</td><td>"+final_clash+"</td><td>(median in resolution bin: "+verdictNodes[0].findall("medianClash")[0].text+")</td></tr>\n"

@@ -18,6 +18,7 @@ from __future__ import print_function
     """
 
 import os
+import base64
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 
@@ -127,7 +128,8 @@ class AcedrgLink(CPluginScript):
             xmlStructure = etree.Element("acedrg_link")
             logText = etree.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
+                #logText.text = etree.CDATA(logFile.read())
+                logText.text = base64.b64encode(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
 
         return CPluginScript.SUCCEEDED

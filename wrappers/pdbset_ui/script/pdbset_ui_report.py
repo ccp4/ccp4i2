@@ -1,5 +1,6 @@
 from report.CCP4ReportParser import *
 import sys
+import base64
 
 class pdbset_ui_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -18,4 +19,4 @@ class pdbset_ui_report(Report):
             xmlPath = './/pdbset_ui/LogText'
             xmlNodes = self.xmlnode.findall(xmlPath)
             for node in xmlNodes:
-               fold.addPre(text=node.text)
+               fold.addPre(text=base64.b64decode(node.text))

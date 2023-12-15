@@ -8,7 +8,7 @@ except ImportError:
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import os
-
+import base64
 
 class ProvideAlignment(CPluginScript):
 
@@ -88,7 +88,8 @@ class ProvideAlignment(CPluginScript):
         formatNode.text = format
         if status == CPluginScript.SUCCEEDED:
           alignmentNode = etree.SubElement(root,'Alignment')
-          alignmentNode.text = etree.CDATA(alignmentText)
+          #alignmentNode.text = etree.CDATA(alignmentText)
+          alignmentNode.text = base64.b64encode(alignmentText)
           # Try putting sequences in to xml
           try:
             fileType, fileContent = self.container.outputData.ALIGNMENTFILE.identifyFile()

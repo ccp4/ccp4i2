@@ -17,7 +17,7 @@ from core import CCP4XtalData
 import platform
 import json
 import re
-
+import base64
 
 class Cxia2_dials(CPluginScript):
 
@@ -182,7 +182,8 @@ class Cxia2_dials(CPluginScript):
         if os.path.isfile(xia2TxtPath):
             with open(xia2TxtPath, "r") as xia2TxtFile:
                 element = etree.SubElement(self.xmlroot, "Xia2Txt")
-                element.text = etree.CDATA(xia2TxtFile.read())
+                #element.text = etree.CDATA(xia2TxtFile.read())
+                element.text = base64.b64encode(xia2TxtFile.read())
 
         # Infer if xia2 gave an error by virtue of xia2.error existing
         xia2ErrorPath = os.path.normpath(
@@ -191,7 +192,8 @@ class Cxia2_dials(CPluginScript):
         if os.path.isfile(xia2ErrorPath):
             with open(xia2ErrorPath, "r") as xia2ErrorFile:
                 element = etree.SubElement(self.xmlroot, "Xia2Error")
-                element.text = etree.CDATA(xia2ErrorFile.read())
+                #element.text = etree.CDATA(xia2ErrorFile.read())
+                element.text = base64.b64encode(xia2ErrorFile.read())
                 self.flushXML()
             return CPluginScript.SUCCEEDED
 
@@ -215,7 +217,8 @@ class Cxia2_dials(CPluginScript):
                 crystal_name = json_data[0]["crystal_name"]
                 wavelength_names = json_data[0]["wavelengths"]
         element = etree.SubElement(self.xmlroot, "Xia2CrystalName")
-        element.text = etree.CDATA(crystal_name)
+        #element.text = etree.CDATA(crystal_name)
+        element.text = str(crystal_name)
 
         par = self.container.controlParameters
         tmp = par.xia2.xia2__settings.xia2__settings__input
@@ -444,7 +447,8 @@ class Cxia2_dials(CPluginScript):
             self.xmlroot.remove(xia2TxtNode)
         xia2TxtNode = etree.SubElement(self.xmlroot, "Xia2Txt")
         with open(filename, "r") as xia2DotTxtFile:
-            xia2TxtNode.text = etree.CDATA(xia2DotTxtFile.read())
+            #xia2TxtNode.text = etree.CDATA(xia2DotTxtFile.read())
+            xia2TxtNode.text = base64.b64encode(xia2DotTxtFile.read())
         self.flushXML()
 
     def flushXML(self):

@@ -18,6 +18,7 @@
 
 from report.CCP4ReportParser import Report
 import sys
+import base64
 
 class AcedrgLink_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -32,4 +33,4 @@ class AcedrgLink_report(Report):
         if parent is None: parent=self
         if len(self.xmlnode.findall("LogText")) > 0:
             newFold = parent.addFold(label="Log text", initiallyOpen=True)
-            newFold.addPre(text = self.xmlnode.findall("LogText")[0].text)
+            newFold.addPre(text=base64.b64decode(self.xmlnode.findall("LogText")[0].text))

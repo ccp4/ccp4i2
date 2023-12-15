@@ -18,6 +18,7 @@
 
 from report.CCP4ReportParser import Report
 import sys
+import base64
 
 class i2Dimple_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -143,5 +144,5 @@ class i2Dimple_report(Report):
 
         if len(self.xmlnode.findall("LogText")) > 0:
             newFold = parent.addFold(label="Summary", initiallyOpen=True)
-            newFold.addPre(text = self.xmlnode.findall("LogText")[0].text)
+            newFold.addPre(text=base64.b64decode(self.xmlnode.findall("LogText")[0].text))
 

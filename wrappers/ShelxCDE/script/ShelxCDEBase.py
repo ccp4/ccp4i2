@@ -6,6 +6,7 @@ from core import CCP4XtalData
 from lxml import etree
 import math
 from core import CCP4Modules,CCP4Utils
+import base64
 
 class ShelxCDEBase(CPluginScript):
     
@@ -562,7 +563,8 @@ OUTPUT frac
                 with open(lstPath,'r') as lstFile:
                     lstText = lstFile.read()
                     lstNode = etree.SubElement(shelxdNode,'LstText')
-                    lstNode.text=etree.CDATA(lstText)
+                    #lstNode.text=etree.CDATA(lstText)
+                    lstNode.text=base64.b64encode(lstText)
             return CPluginScript.SUCCEEDED
         else:
             self.appendErrorReport(207,self.getWorkDirectory())
@@ -608,7 +610,8 @@ OUTPUT frac
                     with open(lstPath,'r') as lstFile:
                         lstText = lstFile.read()
                         lstNode = etree.SubElement(shelxeNode,'LstText')
-                        lstNode.text=etree.CDATA(lstText)
+                        #lstNode.text=etree.CDATA(lstText)
+                        lstNode.text=base64.b64encode(lstText)
             return CPluginScript.SUCCEEDED
         except:
             self.appendErrorReport(208,self.getWorkDirectory())

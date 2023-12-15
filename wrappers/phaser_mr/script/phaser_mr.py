@@ -11,6 +11,7 @@ from __future__ import print_function
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
+import base64
 
 class phaser_mr(CPluginScript):
 
@@ -437,7 +438,8 @@ class phaser_mr(CPluginScript):
             else:
                 summaryText = "".join(summaryTextLines)
                 #print '\n\n** Found a non-search order summary'
-                preElement.text = etree.CDATA(summaryText)
+                #preElement.text = etree.CDATA(summaryText)
+                preElement.text = base64.b64encode(summaryText)
                 programEtree.append(preElement)
 
         #print len(searchComponentSummaries), len(rotationTables), len(translationTables), len(refinementTables)

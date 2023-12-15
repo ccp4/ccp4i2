@@ -7,6 +7,7 @@ from lxml import etree
 from core import CCP4Utils
 import shutil
 import glob
+import base64
 
 class AlternativeImportXIA2(CPluginScript):
 
@@ -156,7 +157,8 @@ class AlternativeImportXIA2(CPluginScript):
                 preElementText = ''
                 for summaryTextLine in summaryTextLines:
                     preElementText += (summaryTextLine)
-                preElement.text=etree.CDATA(preElementText)
+                #preElement.text=etree.CDATA(preElementText)
+                preElement.text=base64.b64encode(preElementText)
                     
         return pointlessEtree
                 

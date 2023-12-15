@@ -16,6 +16,7 @@ import platform
 import json
 from math import sqrt
 from dxtbx.model.experiment_list import ExperimentList
+import base64
 
 
 class Cxia2_multiplex(CPluginScript):
@@ -173,7 +174,8 @@ class Cxia2_multiplex(CPluginScript):
         if os.path.isfile(xia2MultiplexLogPath):
             with open(xia2MultiplexLogPath, "r") as xia2MultiplexLogFile:
                 element = etree.SubElement(self.xmlroot, "Xia2MultiplexLog")
-                element.text = etree.CDATA(xia2MultiplexLogFile.read())
+                #element.text = etree.CDATA(xia2MultiplexLogFile.read())
+                element.text = base64.b64encode(xia2MultiplexLogFile.read())
 
         # Read xia2.multiplex.json to read performance
         xia2MultiplexJsonPath = os.path.normpath(
@@ -197,9 +199,11 @@ class Cxia2_multiplex(CPluginScript):
 
         # Also store these in the XML for the report
         element = etree.SubElement(self.xmlroot, "Xia2MultiplexSG")
-        element.text = etree.CDATA(run_data["space group"])
+        #element.text = etree.CDATA(run_data["space group"])
+        element.text = str(run_data["space group"])
         element = etree.SubElement(self.xmlroot, "Xia2MultiplexCell")
-        element.text = etree.CDATA(run_data["unit cell"])
+        #element.text = etree.CDATA(run_data["unit cell"])
+        element.text = str(run_data["unit cell"])
 
         unmergedOut = self.container.outputData.UNMERGEDOUT
         obsOut = self.container.outputData.HKLOUT
@@ -328,7 +332,8 @@ class Cxia2_multiplex(CPluginScript):
             self.xmlroot.remove(Xia2MultiplexLogNode)
         xia2MultiplexLogNode = etree.SubElement(self.xmlroot, "Xia2MultiplexLog")
         with open(filename, "r") as xia2MultiplexLogFile:
-            xia2MultiplexLogNode.text = etree.CDATA(xia2MultiplexLogFile.read())
+            #xia2MultiplexLogNode.text = etree.CDATA(xia2MultiplexLogFile.read())
+            xia2MultiplexLogNode.text = base64.b64encode(xia2MultiplexLogFile.read())
         self.flushXML()
 
     def flushXML(self):

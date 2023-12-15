@@ -21,6 +21,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
 from core import CCP4ErrorHandling
 import platform
+import base64
 
 class i2Dimple(CPluginScript):
     TASKNAME = 'i2Dimple'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -195,7 +196,8 @@ class i2Dimple(CPluginScript):
             
             logText = etree.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
+                #logText.text = etree.CDATA(logFile.read())
+                logText.text = base64.b64encode(logFile.read())
             
             #Extract performanceindictors from XML
             try:

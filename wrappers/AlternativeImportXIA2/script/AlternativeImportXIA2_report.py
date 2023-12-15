@@ -1,4 +1,5 @@
 from report.CCP4ReportParser import *
+import base64
 
 class AlternativeImportXIA2_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -67,7 +68,7 @@ class AlternativeImportXIA2_report(Report):
                     for summaryNode in summaryNodes:
                         if len(summaryNode.text) < 2000:
                             font_color = "black"
-                            if "ARNING" in summaryNode.text.upper(): font_color="orange"
+                            if "ARNING" in base64.b64decode(summaryNode.text).upper(): font_color="orange"
                             runSummaryFold.addPre(text = summaryNode.text, font_color=font_color)
 
                     tableNodes = programNode.findall('CCP4ApplicationOutput/CCP4Table')

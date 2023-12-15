@@ -7,6 +7,7 @@ from __future__ import print_function
 import os,shutil,glob
 from lxml import etree
 from core import CCP4PluginScript
+import base64
 
 RUN_TITLES = {
     '2d' : 'Mosflm-Scala integration and processing',
@@ -262,7 +263,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         preElementText = ''
         for summaryTextLine in summaryTextLines:
           preElementText += (summaryTextLine)
-          preElement.text=etree.CDATA(preElementText)
+          preElement.text= base64.b64encode(preElementText)
                     
       return root
   

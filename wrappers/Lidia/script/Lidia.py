@@ -10,6 +10,7 @@ import math
 from core import CCP4Modules
 from core import CCP4Utils
 import platform
+import base64
 
 class lidia(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -75,7 +76,8 @@ class lidia(CPluginScript):
             with open (os.path.normpath(outputMOL),'r') as molFile:
                 molText = molFile.read()
                 molNode = etree.SubElement(rootNode,'MOLDATA')
-                molNode.text = etree.CDATA(molText)
+                #molNode.text = etree.CDATA(molText)
+                molNode.text = base64.b64encode(molText)
             svgNode = etree.SubElement(rootNode,'SVGNode')
             
             svgNode.append(self.svgForMolFile(outputMOL))

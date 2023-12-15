@@ -9,7 +9,7 @@ import os
 from report.CCP4ReportParser import Report
 import json
 import re
-
+import base64
 
 class xia2_dials_report(Report):
 
@@ -32,7 +32,7 @@ class xia2_dials_report(Report):
         xia2SummaryFold = parent.addFold(label="xia2 text", initiallyOpen=True)
         xia2TxtNode = self.xmlnode.findall("Xia2Txt")[0]
         if xia2TxtNode is not None:
-            xia2SummaryFold.addPre(text=xia2TxtNode.text)
+            xia2SummaryFold.addPre(text=base64.b64decode(xia2TxtNode.text))
 
     def defaultReport(self, parent=None):
         if parent is None:
@@ -62,8 +62,9 @@ class xia2_dials_report(Report):
                 style="font-size:125%;color:red;", text="xia2 exited with an error"
             )
             if xia2TxtNode is not None:
-                parent.addPre(text=xia2TxtNode.text)
-            parent.addPre(text=xia2ErrorNode.text)
+                parent.addPre(text=base64.b64decode(xia2TxtNode.text))
+            if xia2ErrorNode is not None:
+                parent.addPre(text=base64.b64decode(xia2ErrorNode.text))
         elif xia2TxtNode is not None:
             xia2SummaryFold = parent.addFold(label="xia2 Text", initiallyOpen=False)
             xia2SummaryFold.addPre(text=xia2TxtNode.text)

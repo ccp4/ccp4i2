@@ -1,5 +1,6 @@
 from report.CCP4ReportParser import *
 import sys
+import base64
 
 class ProvideAlignment_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -30,7 +31,7 @@ class ProvideAlignment_report(Report):
         
         for aliNode in self.xmlnode.findall('.//Alignment'):
             parent.addText(text="Alignment in clustal format:")
-            parent.addPre(text=aliNode.text)
+            parent.addPre(text=base64.b64decode(aliNode.text))
 
         for aliNode in self.xmlnode.findall('.//Commentary'):
             commentFold = parent.addFold(label="Conversion commentary", initiallyOpen=False)

@@ -120,13 +120,13 @@ class MDLMolecule(object):
         fontSize = 8.*(self.factor/8.)
         bondStrokeWidth = 1.*self.factor/8.
         textOutlineStrokeWidth = fontSize/2.
-        styleNode.text = etree.CDATA('''
+        styleNode.text = '''
             polygon.forwards { fill:black; stroke:black; stroke-width:0; stroke-linecap:round;stroke-linejoin:round;}
             polygon.backwards { fill:black; stroke:black; stroke-width:0; stroke-linecap:round;stroke-linejoin:round;}
             line {  stroke:black;stroke-width:BONDSTROKEWIDTH;stroke-linecap:round;}
             text.outline {font-family:Arial, Helvetica, sans-serif; font-size:FONTSIZEpx;stroke-width:TEXTOUTLINESTROKEWIDTH; stroke:white; fill:white; }
             text.foreground {font-family:Arial, Helvetica, sans-serif; font-size:FONTSIZEpx;stroke-width:0; stroke:black; fill:black;}
-'''.replace('BONDSTROKEWIDTH',str(bondStrokeWidth)).replace('FONTSIZE',str(fontSize)).replace('TEXTOUTLINESTROKEWIDTH',str(textOutlineStrokeWidth)) )
+'''.replace('BONDSTROKEWIDTH',str(bondStrokeWidth)).replace('FONTSIZE',str(fontSize)).replace('TEXTOUTLINESTROKEWIDTH',str(textOutlineStrokeWidth)) 
         svgNode.append(styleNode)
         for bond in self.bonds:
             at1 = self.atoms[bond.at1-1]

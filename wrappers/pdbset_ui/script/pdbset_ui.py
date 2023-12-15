@@ -6,6 +6,7 @@ import tempfile
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import pathlib
+import base64
 
 class pdbset_ui(CPluginScript):
 
@@ -53,7 +54,8 @@ class pdbset_ui(CPluginScript):
             xmlStructure = etree.Element("pdbset_ui")
             logText = etree.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
+                #logText.text = etree.CDATA(logFile.read())
+                logText.text = base64.b64encode(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
 
         return CPluginScript.SUCCEEDED

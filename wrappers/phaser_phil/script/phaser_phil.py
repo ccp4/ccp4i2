@@ -18,6 +18,7 @@
 
 import os
 from core.CCP4PluginScript import CPluginScript
+import base64
 
 class phaser_phil(CPluginScript):
     TASKNAME = 'phaser_phil'   # Task name - should be same as class name and match pluginTitle in the .def.xml file

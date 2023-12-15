@@ -2,6 +2,7 @@ from report.CCP4ReportParser import *
 import sys
 from lxml import etree
 import math
+import base64
 
 class ShelxCDEBaseReport(Report):
     
@@ -89,7 +90,7 @@ class ShelxCDEBaseReport(Report):
             if len(lstNodes) > 0:
                 lstFold = shelxdFold.addFold(label='Text of result_fa.lst file', initiallyOpen=False)
                 for lstNode in lstNodes:
-                    lstFold.addPre(outputXml=self.outputXml, internalId="ShelxDLstText", text = lstNode.text)
+                    lstFold.addPre(outputXml=self.outputXml, internalId="ShelxDLstText", text = base64.b64decode(lstNode.text))
             
 
     def shelXEReport(self, parent=None, initiallyOpen=False, idRoot=""):
@@ -133,5 +134,5 @@ class ShelxCDEBaseReport(Report):
                 shelxeFold.addDiv(style='clear:both;')
                 lstFold = shelxeFold.addFold(label='Text of ".lst" file', initiallyOpen=False)
                 for lstNode in lstNodes:
-                    lstFold.addPre(outputXml=self.outputXml, internalId=idRoot+"ShelxELstText", text = lstNode.text)
+                    lstFold.addPre(outputXml=self.outputXml, internalId=idRoot+"ShelxELstText", text = base64.b64decode(lstNode.text))
 

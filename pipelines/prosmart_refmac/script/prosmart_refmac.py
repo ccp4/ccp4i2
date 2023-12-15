@@ -25,6 +25,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 import os,sys,shutil,re
+import base64
 
 class prosmart_refmac(CPluginScript):
 
@@ -657,11 +658,12 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
 
                      mpOutPath = fileRoot+".out"
                      if os.path.isfile(mpOutPath):
-                         etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(open(mpOutPath).read())
+                         etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = base64.b64encode(open(mpOutPath).read())
                      self.saveXml()
                      print("...Succeeded molprobity run after refinement :-)")
                  except Exception as err:
-                     etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(str(err))
+                     #etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(str(err))
+                     etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = base64.b64encode(str(err))
                      self.saveXml()
                      print("...Failed molprobity run after refinement :-(", err)
 
@@ -741,9 +743,11 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                        xml_verdict_score = etree.SubElement(xml_verdict,"verdict_score")
                        xml_verdict_score.text = str(verdict_score)
                        xml_verdict_message = etree.SubElement(xml_verdict,"verdict_message")
-                       xml_verdict_message.text = etree.CDATA(verdict_message)
+                       #xml_verdict_message.text = etree.CDATA(verdict_message)
+                       xml_verdict_message.text = base64.b64encode(verdict_message)
                        xml_bottomline = etree.SubElement(xml_verdict,"bottomline")
-                       xml_bottomline.text = etree.CDATA(bottomline)
+                       #xml_bottomline.text = etree.CDATA(bottomline)
+                       xml_bottomline.text = base64.b64encode(bottomline)
                        xml_meanRfree = etree.SubElement(xml_verdict,"meanRfree")
                        xml_meanRfree.text = str(meanRfree)
                        xml_medianClash = etree.SubElement(xml_verdict,"medianClash")

@@ -19,6 +19,7 @@ GNU Lesser General Public License for more details.
 from lxml import etree
 import os
 import shutil
+import base64
 
 # CCP4 imports
 from core.CCP4PluginScript import CPluginScript
@@ -241,7 +242,8 @@ class AMPLE(CPluginScript):
             self.xmlroot.remove(ampleTxtNode)
         element = etree.SubElement(self.xmlroot, AMPLE_LOG_NODE)
         with open(filename, 'r') as logFile:
-            element.text = etree.CDATA(logFile.read())
+            #element.text = etree.CDATA(logFile.read())
+            element.text = base64.b64encode(logFile.read())
         self.flushXML()
 
     def flushXML(self):

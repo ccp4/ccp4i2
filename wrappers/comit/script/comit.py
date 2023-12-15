@@ -19,6 +19,7 @@
 import os
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
+import base64
 
 class comit(CPluginScript):
     TASKNAME = 'comit'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -75,6 +76,7 @@ class comit(CPluginScript):
             xmlStructure = etree.Element("i2comit")
             logText = etree.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
+                #logText.text = etree.CDATA(logFile.read())
+                logText.text = base64.b64encode(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
         return CPluginScript.SUCCEEDED
