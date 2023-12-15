@@ -244,7 +244,7 @@ if nToCopy > 0:
     ligandsToCopy = ligandsFound[0:nToCopy]
     coot.merge_molecules(ligandsToCopy,0)
 
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
+coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
         self.connectSignal(self.cootPlugin,'finished',self.cootPlugin_finished)
         self.cootPlugin.process()
 
